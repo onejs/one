@@ -1,5 +1,6 @@
 import { Angle, Gradient, Path, type CanvasProps } from './canvas';
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
+import type { UICollectionView, UICollectionViewDiffableDataSource, UITableView, UITableViewDiffableDataSource } from 'one/ios/UIKit';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, UIKitContentProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabViewProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
 declare function TabView(_props: TabViewProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -41,6 +42,9 @@ declare function ControlGroup(_props: ControlGroupProps): never;
 declare function DisclosureGroup(_props: DisclosureGroupProps): never;
 declare function Divider(_props: DividerProps): never;
 declare function UIKitView(_props: UIKitViewProps): never;
+declare function UIKitContent(_props: UIKitContentProps): never;
+declare function collectionCellSource(_view: UICollectionView): Promise<UICollectionViewDiffableDataSource<number, number>>;
+declare function tableCellSource(_view: UITableView): Promise<UITableViewDiffableDataSource<number, number>>;
 declare function Link(_props: LinkProps): never;
 declare function Group(_props: GroupProps): never;
 declare function OverlayContent(_props: OverlayContentProps): never;
@@ -252,6 +256,9 @@ export declare const Swift: {
     DisclosureGroup: typeof DisclosureGroup;
     Divider: typeof Divider;
     UIKitView: typeof UIKitView;
+    UIKitContent: typeof UIKitContent;
+    collectionCellSource: typeof collectionCellSource;
+    tableCellSource: typeof tableCellSource;
     Link: typeof Link;
     Group: typeof Group;
     GroupBox: typeof GroupBox;

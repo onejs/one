@@ -15,102 +15,102 @@ export class WCError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 9.0+
    */
-  static get errorDomain(): string { return callSDK<string>("WatchConnectivity_d968214ecc684fb6", 4195307880137881, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("WatchConnectivity_0e503aef608672fa", 4195307880137881, undefined, []); }
   /**
    * static var genericError: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get genericError(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 4496760102563795, undefined, []); }
+  static get genericError(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 4496760102563795, undefined, []); }
   /**
    * static var notReachable: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get notReachable(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 412927067179362, undefined, []); }
+  static get notReachable(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 412927067179362, undefined, []); }
   /**
    * static var watchOnlyApp: WCError.Code { get }
    * @availability iOS 13.0+
    */
-  static get watchOnlyApp(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 218979266605718, undefined, []); }
+  static get watchOnlyApp(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 218979266605718, undefined, []); }
   /**
    * static var deliveryFailed: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get deliveryFailed(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 990021310088365, undefined, []); }
+  static get deliveryFailed(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 990021310088365, undefined, []); }
   /**
    * static var deviceNotPaired: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get deviceNotPaired(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 1185899319716673, undefined, []); }
+  static get deviceNotPaired(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 1185899319716673, undefined, []); }
   /**
    * static var payloadTooLarge: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get payloadTooLarge(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 1615904763275825, undefined, []); }
+  static get payloadTooLarge(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 1615904763275825, undefined, []); }
   /**
    * static var sessionInactive: WCError.Code { get }
    * @availability iOS 9.3+
    */
-  static get sessionInactive(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 4115851858639340, undefined, []); }
+  static get sessionInactive(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 4115851858639340, undefined, []); }
   /**
    * static var fileAccessDenied: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get fileAccessDenied(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 1683316624332214, undefined, []); }
+  static get fileAccessDenied(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 1683316624332214, undefined, []); }
   /**
    * static var invalidParameter: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get invalidParameter(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 297957122616614, undefined, []); }
+  static get invalidParameter(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 297957122616614, undefined, []); }
   /**
    * static var transferTimedOut: WCError.Code { get }
    * @availability iOS 9.3+
    */
-  static get transferTimedOut(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 3300425606881826, undefined, []); }
+  static get transferTimedOut(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 3300425606881826, undefined, []); }
   /**
    * static var insufficientSpace: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get insufficientSpace(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 3853840985888957, undefined, []); }
+  static get insufficientSpace(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 3853840985888957, undefined, []); }
   /**
    * static var messageReplyFailed: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get messageReplyFailed(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 1016978198689004, undefined, []); }
+  static get messageReplyFailed(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 1016978198689004, undefined, []); }
   /**
    * static var sessionNotActivated: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get sessionNotActivated(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 4127318378316537, undefined, []); }
+  static get sessionNotActivated(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 4127318378316537, undefined, []); }
   /**
    * static var sessionNotSupported: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get sessionNotSupported(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 154301010945761, undefined, []); }
+  static get sessionNotSupported(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 154301010945761, undefined, []); }
   /**
    * static var messageReplyTimedOut: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get messageReplyTimedOut(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 2071919624118389, undefined, []); }
+  static get messageReplyTimedOut(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 2071919624118389, undefined, []); }
   /**
    * static var watchAppNotInstalled: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get watchAppNotInstalled(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 2319744987937650, undefined, []); }
+  static get watchAppNotInstalled(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 2319744987937650, undefined, []); }
   /**
    * static var sessionMissingDelegate: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get sessionMissingDelegate(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 2955643911253241, undefined, []); }
+  static get sessionMissingDelegate(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 2955643911253241, undefined, []); }
   /**
    * static var payloadUnsupportedTypes: WCError.Code { get }
    * @availability iOS 9.0+
    */
-  static get payloadUnsupportedTypes(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 3700365278172978, undefined, []); }
+  static get payloadUnsupportedTypes(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 3700365278172978, undefined, []); }
   /**
    * static var companionAppNotInstalled: WCError.Code { get }
    * @availability iOS 13.0+
    */
-  static get companionAppNotInstalled(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_d968214ecc684fb6", 522481100022053, undefined, []); }
+  static get companionAppNotInstalled(): WCError_Code { return callSDK<WCError_Code>("WatchConnectivity_0e503aef608672fa", 522481100022053, undefined, []); }
   declare readonly $type: { "s:SC11WCErrorCodeLeV": true };
 }
 
@@ -125,7 +125,7 @@ export const WCError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (WCError_Code) | null { return callSDK<(WCError_Code) | null>("WatchConnectivity_d968214ecc684fb6", 1418818434197077, undefined, [rawValue]); }
+  init(rawValue: number): (WCError_Code) | null { return callSDK<(WCError_Code) | null>("WatchConnectivity_0e503aef608672fa", 1418818434197077, undefined, [rawValue]); }
 };
 
 /**
@@ -137,113 +137,113 @@ export class WCSession extends SDKHandle {
    * class func isSupported() -> Bool
    * @availability iOS 9.0+
    */
-  static isSupported(): boolean { return callSDK<boolean>("WatchConnectivity_d968214ecc684fb6", 3738647838740758, undefined, []); }
+  static isSupported(): boolean { return callSDK<boolean>("WatchConnectivity_0e503aef608672fa", 3738647838740758, undefined, []); }
   /**
    * class var `default`: WCSession { get }
    * @availability iOS 9.0+
    */
-  static get default(): WCSession { return callSDK<WCSession>("WatchConnectivity_d968214ecc684fb6", 2182668657907162, undefined, []); }
+  static get default(): WCSession { return callSDK<WCSession>("WatchConnectivity_0e503aef608672fa", 2182668657907162, undefined, []); }
   /**
    * func activate()
    * @availability iOS 9.0+
    */
-  activate(): void { return callSDK<void>("WatchConnectivity_d968214ecc684fb6", 4146477292919925, this, []); }
+  activate(): void { return callSDK<void>("WatchConnectivity_0e503aef608672fa", 4146477292919925, this, []); }
   /**
    * func sendMessage(_ message: [String : Any], replyHandler: (([String : Any]) -> Void)?, errorHandler: ((any Error) -> Void)? = nil)
    * @availability iOS 9.0+
    */
-  sendMessage(message: Record<string, unknown>, replyHandler?: (((arg0: Record<string, unknown>) => void)) | null, errorHandler?: $SDK1): void { return callSDK<void>("WatchConnectivity_d968214ecc684fb6", 2729848407812966, this, [message, replyHandler, errorHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  sendMessage(message: Record<string, unknown>, replyHandler?: (((arg0: Record<string, unknown>) => void)) | null, errorHandler?: $SDK1): void { return callSDK<void>("WatchConnectivity_0e503aef608672fa", 2729848407812966, this, [message, replyHandler, errorHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * func sendMessageData(_ data: Data, replyHandler: ((Data) -> Void)?, errorHandler: ((any Error) -> Void)? = nil)
    * @availability iOS 9.0+
    */
-  sendMessageData(data: ArrayBuffer, replyHandler?: (((arg0: ArrayBuffer) => void)) | null, errorHandler?: $SDK1): void { return callSDK<void>("WatchConnectivity_d968214ecc684fb6", 2730108285723056, this, [data, replyHandler, errorHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  sendMessageData(data: ArrayBuffer, replyHandler?: (((arg0: ArrayBuffer) => void)) | null, errorHandler?: $SDK1): void { return callSDK<void>("WatchConnectivity_0e503aef608672fa", 2730108285723056, this, [data, replyHandler, errorHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * func transferCurrentComplicationUserInfo(_ userInfo: [String : Any] = [:]) -> WCSessionUserInfoTransfer
    * @availability iOS 9.0+
    */
-  transferCurrentComplicationUserInfo(userInfo?: Record<string, unknown>): WCSessionUserInfoTransfer { return callSDK<WCSessionUserInfoTransfer>("WatchConnectivity_d968214ecc684fb6", 3836033425089385, this, [userInfo]); }
+  transferCurrentComplicationUserInfo(userInfo?: Record<string, unknown>): WCSessionUserInfoTransfer { return callSDK<WCSessionUserInfoTransfer>("WatchConnectivity_0e503aef608672fa", 3836033425089385, this, [userInfo]); }
   /**
    * func transferFile(_ file: URL, metadata: [String : Any]?) -> WCSessionFileTransfer
    * @availability iOS 9.0+
    */
-  transferFile(file: string, metadata?: $SDK3): WCSessionFileTransfer { return callSDK<WCSessionFileTransfer>("WatchConnectivity_d968214ecc684fb6", 4368440352591857, this, [file, metadata]); }
+  transferFile(file: string, metadata?: $SDK3): WCSessionFileTransfer { return callSDK<WCSessionFileTransfer>("WatchConnectivity_0e503aef608672fa", 4368440352591857, this, [file, metadata]); }
   /**
    * func transferUserInfo(_ userInfo: [String : Any] = [:]) -> WCSessionUserInfoTransfer
    * @availability iOS 9.0+
    */
-  transferUserInfo(userInfo?: Record<string, unknown>): WCSessionUserInfoTransfer { return callSDK<WCSessionUserInfoTransfer>("WatchConnectivity_d968214ecc684fb6", 751785571838648, this, [userInfo]); }
+  transferUserInfo(userInfo?: Record<string, unknown>): WCSessionUserInfoTransfer { return callSDK<WCSessionUserInfoTransfer>("WatchConnectivity_0e503aef608672fa", 751785571838648, this, [userInfo]); }
   /**
    * func updateApplicationContext(_ applicationContext: [String : Any]) throws
    * @availability iOS 9.0+
    */
-  updateApplicationContext(applicationContext: Record<string, unknown>): void { return callSDK<void>("WatchConnectivity_d968214ecc684fb6", 3399182813601017, this, [applicationContext]); }
+  updateApplicationContext(applicationContext: Record<string, unknown>): void { return callSDK<void>("WatchConnectivity_0e503aef608672fa", 3399182813601017, this, [applicationContext]); }
   /**
    * var activationState: WCSessionActivationState { get }
    * @availability iOS 9.3+
    */
-  get activationState(): WCSessionActivationState { return callSDK<WCSessionActivationState>("WatchConnectivity_d968214ecc684fb6", 2322162589553363, this, []); }
+  get activationState(): WCSessionActivationState { return callSDK<WCSessionActivationState>("WatchConnectivity_0e503aef608672fa", 2322162589553363, this, []); }
   /**
    * var applicationContext: [String : Any] { get }
    * @availability iOS 9.0+
    */
-  get applicationContext(): Record<string, unknown> { return callSDK<Record<string, unknown>>("WatchConnectivity_d968214ecc684fb6", 2858825604228380, this, []); }
+  get applicationContext(): Record<string, unknown> { return callSDK<Record<string, unknown>>("WatchConnectivity_0e503aef608672fa", 2858825604228380, this, []); }
   /**
    * var isComplicationEnabled: Bool { get }
    * @availability iOS 9.0+
    */
-  get isComplicationEnabled(): boolean { return callSDK<boolean>("WatchConnectivity_d968214ecc684fb6", 1715518403764705, this, []); }
+  get isComplicationEnabled(): boolean { return callSDK<boolean>("WatchConnectivity_0e503aef608672fa", 1715518403764705, this, []); }
   /**
    * weak var delegate: (any WCSessionDelegate)? { get set }
    * @availability iOS 9.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("WatchConnectivity_d968214ecc684fb6", 2647644502103159, this, []); }
-  set delegate(value: (Implements<WCSessionDelegate> | SDKHandle) | null) { callSDK<void>("WatchConnectivity_d968214ecc684fb6", 302240017402819, this, [value], [{"protocol":"c:objc(pl)WCSessionDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("WatchConnectivity_0e503aef608672fa", 2647644502103159, this, []); }
+  set delegate(value: (Implements<WCSessionDelegate> | SDKHandle) | null) { callSDK<void>("WatchConnectivity_0e503aef608672fa", 302240017402819, this, [value], [{"protocol":"c:objc(pl)WCSessionDelegate"}]); }
   /**
    * var hasContentPending: Bool { get }
    * @availability iOS 10.0+
    */
-  get hasContentPending(): boolean { return callSDK<boolean>("WatchConnectivity_d968214ecc684fb6", 3496034110923787, this, []); }
+  get hasContentPending(): boolean { return callSDK<boolean>("WatchConnectivity_0e503aef608672fa", 3496034110923787, this, []); }
   /**
    * var outstandingFileTransfers: [WCSessionFileTransfer] { get }
    * @availability iOS 9.0+
    */
-  get outstandingFileTransfers(): Array<WCSessionFileTransfer> { return callSDK<Array<WCSessionFileTransfer>>("WatchConnectivity_d968214ecc684fb6", 1394435251957108, this, []); }
+  get outstandingFileTransfers(): Array<WCSessionFileTransfer> { return callSDK<Array<WCSessionFileTransfer>>("WatchConnectivity_0e503aef608672fa", 1394435251957108, this, []); }
   /**
    * var outstandingUserInfoTransfers: [WCSessionUserInfoTransfer] { get }
    * @availability iOS 9.0+
    */
-  get outstandingUserInfoTransfers(): Array<WCSessionUserInfoTransfer> { return callSDK<Array<WCSessionUserInfoTransfer>>("WatchConnectivity_d968214ecc684fb6", 3902282116504226, this, []); }
+  get outstandingUserInfoTransfers(): Array<WCSessionUserInfoTransfer> { return callSDK<Array<WCSessionUserInfoTransfer>>("WatchConnectivity_0e503aef608672fa", 3902282116504226, this, []); }
   /**
    * var isPaired: Bool { get }
    * @availability iOS 9.0+
    */
-  get isPaired(): boolean { return callSDK<boolean>("WatchConnectivity_d968214ecc684fb6", 403352843897729, this, []); }
+  get isPaired(): boolean { return callSDK<boolean>("WatchConnectivity_0e503aef608672fa", 403352843897729, this, []); }
   /**
    * var isReachable: Bool { get }
    * @availability iOS 9.0+
    */
-  get isReachable(): boolean { return callSDK<boolean>("WatchConnectivity_d968214ecc684fb6", 3627053655667040, this, []); }
+  get isReachable(): boolean { return callSDK<boolean>("WatchConnectivity_0e503aef608672fa", 3627053655667040, this, []); }
   /**
    * var receivedApplicationContext: [String : Any] { get }
    * @availability iOS 9.0+
    */
-  get receivedApplicationContext(): Record<string, unknown> { return callSDK<Record<string, unknown>>("WatchConnectivity_d968214ecc684fb6", 4322244791640861, this, []); }
+  get receivedApplicationContext(): Record<string, unknown> { return callSDK<Record<string, unknown>>("WatchConnectivity_0e503aef608672fa", 4322244791640861, this, []); }
   /**
    * var remainingComplicationUserInfoTransfers: Int { get }
    * @availability iOS 10.0+
    */
-  get remainingComplicationUserInfoTransfers(): number { return callSDK<number>("WatchConnectivity_d968214ecc684fb6", 1441241341157655, this, []); }
+  get remainingComplicationUserInfoTransfers(): number { return callSDK<number>("WatchConnectivity_0e503aef608672fa", 1441241341157655, this, []); }
   /**
    * var isWatchAppInstalled: Bool { get }
    * @availability iOS 9.0+
    */
-  get isWatchAppInstalled(): boolean { return callSDK<boolean>("WatchConnectivity_d968214ecc684fb6", 3352761665845695, this, []); }
+  get isWatchAppInstalled(): boolean { return callSDK<boolean>("WatchConnectivity_0e503aef608672fa", 3352761665845695, this, []); }
   /**
    * var watchDirectoryURL: URL? { get }
    * @availability iOS 9.0+
    */
-  get watchDirectoryURL(): (string) | null { return callSDK<(string) | null>("WatchConnectivity_d968214ecc684fb6", 2498907035777669, this, []); }
+  get watchDirectoryURL(): (string) | null { return callSDK<(string) | null>("WatchConnectivity_0e503aef608672fa", 2498907035777669, this, []); }
   declare readonly $type: { "c:objc(cs)WCSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activationState": true; "applicationContext": true; "isComplicationEnabled": true; "delegate": true; "hasContentPending": true; "outstandingFileTransfers": true; "outstandingUserInfoTransfers": true; "isPaired": true; "isReachable": true; "receivedApplicationContext": true; "remainingComplicationUserInfoTransfers": true; "isWatchAppInstalled": true; "watchDirectoryURL": true };
 }
@@ -259,7 +259,7 @@ export const WCSessionActivationState = {
    * init?(rawValue: Int)
    * @availability iOS 9.3+
    */
-  init(rawValue: number): (WCSessionActivationState) | null { return callSDK<(WCSessionActivationState) | null>("WatchConnectivity_d968214ecc684fb6", 206227903801528, undefined, [rawValue]); }
+  init(rawValue: number): (WCSessionActivationState) | null { return callSDK<(WCSessionActivationState) | null>("WatchConnectivity_0e503aef608672fa", 206227903801528, undefined, [rawValue]); }
 };
 
 /** protocol WCSessionDelegate : NSObjectProtocol */
@@ -327,17 +327,17 @@ export interface WCSessionDelegate {
  */
 export class WCSessionFile extends SDKHandle {
   /** init() */
-  static init(): WCSessionFile { return callSDK<WCSessionFile>("WatchConnectivity_d968214ecc684fb6", 2361488478437589, undefined, []); }
+  static init(): WCSessionFile { return callSDK<WCSessionFile>("WatchConnectivity_0e503aef608672fa", 2361488478437589, undefined, []); }
   /**
    * var fileURL: URL { get }
    * @availability iOS 9.0+
    */
-  get fileURL(): string { return callSDK<string>("WatchConnectivity_d968214ecc684fb6", 151974186803459, this, []); }
+  get fileURL(): string { return callSDK<string>("WatchConnectivity_0e503aef608672fa", 151974186803459, this, []); }
   /**
    * var metadata: [String : Any]? { get }
    * @availability iOS 9.0+
    */
-  get metadata(): $SDK3 { return callSDK<$SDK3>("WatchConnectivity_d968214ecc684fb6", 3064505820119833, this, []); }
+  get metadata(): $SDK3 { return callSDK<$SDK3>("WatchConnectivity_0e503aef608672fa", 3064505820119833, this, []); }
   declare readonly $type: { "c:objc(cs)WCSessionFile": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "fileURL": true; "metadata": true };
 }
@@ -351,24 +351,24 @@ export class WCSessionFileTransfer extends SDKHandle {
    * func cancel()
    * @availability iOS 9.0+
    */
-  cancel(): void { return callSDK<void>("WatchConnectivity_d968214ecc684fb6", 1478043445169812, this, []); }
+  cancel(): void { return callSDK<void>("WatchConnectivity_0e503aef608672fa", 1478043445169812, this, []); }
   /** init() */
-  static init(): WCSessionFileTransfer { return callSDK<WCSessionFileTransfer>("WatchConnectivity_d968214ecc684fb6", 2984904052960738, undefined, []); }
+  static init(): WCSessionFileTransfer { return callSDK<WCSessionFileTransfer>("WatchConnectivity_0e503aef608672fa", 2984904052960738, undefined, []); }
   /**
    * var file: WCSessionFile { get }
    * @availability iOS 9.0+
    */
-  get file(): WCSessionFile { return callSDK<WCSessionFile>("WatchConnectivity_d968214ecc684fb6", 1541605663160171, this, []); }
+  get file(): WCSessionFile { return callSDK<WCSessionFile>("WatchConnectivity_0e503aef608672fa", 1541605663160171, this, []); }
   /**
    * var progress: Progress { get }
    * @availability iOS 12.0+
    */
-  get progress(): _Foundation_Progress { return callSDK<_Foundation_Progress>("WatchConnectivity_d968214ecc684fb6", 4247333493264305, this, []); }
+  get progress(): _Foundation_Progress { return callSDK<_Foundation_Progress>("WatchConnectivity_0e503aef608672fa", 4247333493264305, this, []); }
   /**
    * var isTransferring: Bool { get }
    * @availability iOS 9.0+
    */
-  get isTransferring(): boolean { return callSDK<boolean>("WatchConnectivity_d968214ecc684fb6", 3892282938743480, this, []); }
+  get isTransferring(): boolean { return callSDK<boolean>("WatchConnectivity_0e503aef608672fa", 3892282938743480, this, []); }
   declare readonly $type: { "c:objc(cs)WCSessionFileTransfer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "file": true; "progress": true; "isTransferring": true };
 }
@@ -382,24 +382,24 @@ export class WCSessionUserInfoTransfer extends SDKHandle {
    * func cancel()
    * @availability iOS 9.0+
    */
-  cancel(): void { return callSDK<void>("WatchConnectivity_d968214ecc684fb6", 4168312108720369, this, []); }
+  cancel(): void { return callSDK<void>("WatchConnectivity_0e503aef608672fa", 4168312108720369, this, []); }
   /** init() */
-  static init(): WCSessionUserInfoTransfer { return callSDK<WCSessionUserInfoTransfer>("WatchConnectivity_d968214ecc684fb6", 513450488433938, undefined, []); }
+  static init(): WCSessionUserInfoTransfer { return callSDK<WCSessionUserInfoTransfer>("WatchConnectivity_0e503aef608672fa", 513450488433938, undefined, []); }
   /**
    * var isCurrentComplicationInfo: Bool { get }
    * @availability iOS 9.0+
    */
-  get isCurrentComplicationInfo(): boolean { return callSDK<boolean>("WatchConnectivity_d968214ecc684fb6", 2265767060826080, this, []); }
+  get isCurrentComplicationInfo(): boolean { return callSDK<boolean>("WatchConnectivity_0e503aef608672fa", 2265767060826080, this, []); }
   /**
    * var isTransferring: Bool { get }
    * @availability iOS 9.0+
    */
-  get isTransferring(): boolean { return callSDK<boolean>("WatchConnectivity_d968214ecc684fb6", 4303445001760237, this, []); }
+  get isTransferring(): boolean { return callSDK<boolean>("WatchConnectivity_0e503aef608672fa", 4303445001760237, this, []); }
   /**
    * var userInfo: [String : Any] { get }
    * @availability iOS 9.0+
    */
-  get userInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("WatchConnectivity_d968214ecc684fb6", 2130464783931803, this, []); }
+  get userInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("WatchConnectivity_0e503aef608672fa", 2130464783931803, this, []); }
   declare readonly $type: { "c:objc(cs)WCSessionUserInfoTransfer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCurrentComplicationInfo": true; "isTransferring": true; "userInfo": true };
 }
@@ -408,11 +408,11 @@ export class WCSessionUserInfoTransfer extends SDKHandle {
  * let WCErrorDomain: String
  * @availability iOS 9.0+
  */
-export const WCErrorDomain: string = callSDK<string>("WatchConnectivity_d968214ecc684fb6", 2282323401309908, undefined, []);
+export const WCErrorDomain: string = callSDK<string>("WatchConnectivity_0e503aef608672fa", 2282323401309908, undefined, []);
 
-registerSDKClass("WatchConnectivity.WCError", WCError, { module: "WatchConnectivity_d968214ecc684fb6", properties: {} });
-registerSDKClass("WCSession", WCSession, { module: "WatchConnectivity_d968214ecc684fb6", properties: {"activationState":2322162589553363,"applicationContext":2858825604228380,"isComplicationEnabled":1715518403764705,"delegate":2647644502103159,"hasContentPending":3496034110923787,"outstandingFileTransfers":1394435251957108,"outstandingUserInfoTransfers":3902282116504226,"isPaired":403352843897729,"isReachable":3627053655667040,"receivedApplicationContext":4322244791640861,"remainingComplicationUserInfoTransfers":1441241341157655,"isWatchAppInstalled":3352761665845695,"watchDirectoryURL":2498907035777669}, methods: {"activate":{"id":4146477292919925},"sendMessage":{"id":2729848407812966,"hints":[null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"sendMessageData":{"id":2730108285723056,"hints":[null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"transferCurrentComplicationUserInfo":{"id":3836033425089385},"transferFile":{"id":4368440352591857},"transferUserInfo":{"id":751785571838648},"updateApplicationContext":{"id":3399182813601017}} });
+registerSDKClass("WatchConnectivity.WCError", WCError, { module: "WatchConnectivity_0e503aef608672fa", properties: {} });
+registerSDKClass("WCSession", WCSession, { module: "WatchConnectivity_0e503aef608672fa", properties: {"activationState":2322162589553363,"applicationContext":2858825604228380,"isComplicationEnabled":1715518403764705,"delegate":2647644502103159,"hasContentPending":3496034110923787,"outstandingFileTransfers":1394435251957108,"outstandingUserInfoTransfers":3902282116504226,"isPaired":403352843897729,"isReachable":3627053655667040,"receivedApplicationContext":4322244791640861,"remainingComplicationUserInfoTransfers":1441241341157655,"isWatchAppInstalled":3352761665845695,"watchDirectoryURL":2498907035777669}, methods: {"activate":{"id":4146477292919925},"sendMessage":{"id":2729848407812966,"hints":[null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"sendMessageData":{"id":2730108285723056,"hints":[null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"transferCurrentComplicationUserInfo":{"id":3836033425089385},"transferFile":{"id":4368440352591857},"transferUserInfo":{"id":751785571838648},"updateApplicationContext":{"id":3399182813601017}} });
 registerSDKProtocol("c:objc(pl)WCSessionDelegate", {"sessionActivationDidCompleteWithError":"session(_:activationDidCompleteWith:error:)","sessionDidBecomeInactive":"sessionDidBecomeInactive(_:)","sessionDidDeactivate":"sessionDidDeactivate(_:)","sessionWatchStateDidChange":"sessionWatchStateDidChange(_:)","sessionReachabilityDidChange":"sessionReachabilityDidChange(_:)","sessionDidReceiveMessage":"session(_:didReceiveMessage:)","sessionDidReceiveMessageData":"session(_:didReceiveMessageData:)","sessionDidReceiveApplicationContext":"session(_:didReceiveApplicationContext:)","sessionDidFinishError":"session(_:didFinish:error:)","sessionDidReceiveUserInfo":"session(_:didReceiveUserInfo:)","sessionDidReceive":"session(_:didReceive:)"});
-registerSDKClass("WCSessionFile", WCSessionFile, { module: "WatchConnectivity_d968214ecc684fb6", properties: {"fileURL":151974186803459,"metadata":3064505820119833} });
-registerSDKClass("WCSessionFileTransfer", WCSessionFileTransfer, { module: "WatchConnectivity_d968214ecc684fb6", properties: {"file":1541605663160171,"progress":4247333493264305,"isTransferring":3892282938743480}, methods: {"cancel":{"id":1478043445169812}} });
-registerSDKClass("WCSessionUserInfoTransfer", WCSessionUserInfoTransfer, { module: "WatchConnectivity_d968214ecc684fb6", properties: {"isCurrentComplicationInfo":2265767060826080,"isTransferring":4303445001760237,"userInfo":2130464783931803}, methods: {"cancel":{"id":4168312108720369}} });
+registerSDKClass("WCSessionFile", WCSessionFile, { module: "WatchConnectivity_0e503aef608672fa", properties: {"fileURL":151974186803459,"metadata":3064505820119833} });
+registerSDKClass("WCSessionFileTransfer", WCSessionFileTransfer, { module: "WatchConnectivity_0e503aef608672fa", properties: {"file":1541605663160171,"progress":4247333493264305,"isTransferring":3892282938743480}, methods: {"cancel":{"id":1478043445169812}} });
+registerSDKClass("WCSessionUserInfoTransfer", WCSessionUserInfoTransfer, { module: "WatchConnectivity_0e503aef608672fa", properties: {"isCurrentComplicationInfo":2265767060826080,"isTransferring":4303445001760237,"userInfo":2130464783931803}, methods: {"cancel":{"id":4168312108720369}} });

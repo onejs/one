@@ -11,37 +11,37 @@ type $SDK12 = Array<HKQueryDescriptor>;
 type $SDK13 = ((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: (Array<HKDeletedObject>) | null, arg3: (HKQueryAnchor) | null, arg4: (NativeError) | null) => void);
 type $SDK18 = Array<HKSamplePredicate<HKSample>>;
 type $SDK21 = HKAnchoredObjectQueryDescriptor_Result<unknown>;
-type $SDK26 = Array<HKAppleSleepingBreathingDisturbancesClassification>;
-type $SDK27 = Array<HKAppleWalkingSteadinessClassification>;
-type $SDK28 = (Record<string, unknown>) | null;
-type $SDK31 = ((arg0: boolean, arg1: (NativeError) | null) => void);
-type $SDK34 = Array<HKAudiogramSensitivityPoint>;
-type $SDK35 = Array<HKAudiogramSensitivityTest>;
-type $SDK37 = (HKAudiogramSensitivityPointClampingRange) | null;
-type $SDK39 = (HKContactsLensSpecification) | null;
-type $SDK40 = (NativeMap<HKSampleType, _Foundation_NSPredicate>) | null;
-type $SDK42 = (Array<_Foundation_NSSortDescriptor>) | null;
-type $SDK47 = Array<HKGAD7Assessment_Answer>;
-type $SDK48 = (HKGlassesLensSpecification) | null;
-type $SDK60 = (HKWorkoutZoneConfiguration) | null;
-type $SDK67 = NativeMap<HKQuantityType, HKStatistics>;
-type $SDK69 = (HKWorkoutZoneGroup) | null;
-type $SDK70 = (HKLiveWorkoutDataSource) | null;
-type $SDK74 = (HKWorkoutZoneDuration) | null;
-type $SDK77 = Array<HKPHQ9Assessment_Answer>;
-type $SDK78 = ((arg0: (Array<HKQuantitySample>) | null, arg1: (NativeError) | null) => void);
-type $SDK81 = HKSamplePredicate<HKQuantitySample>;
-type $SDK94 = HKSamplePredicate<HKSample>;
-type $SDK97 = ((arg0: HKSampleQuery, arg1: (Array<HKSample>) | null, arg2: (NativeError) | null) => void);
-type $SDK100 = Array<_Foundation_SortDescriptor<HKSample>>;
-type $SDK105 = (_Foundation_DateInterval) | null;
-type $SDK117 = ((arg0: HKVerifiableClinicalRecordQuery, arg1: (Array<HKVerifiableClinicalRecord>) | null, arg2: (NativeError) | null) => void);
-type $SDK118 = Array<HKVerifiableClinicalRecordSourceType>;
-type $SDK119 = Array<HKVerifiableClinicalRecordCredentialType>;
-type $SDK120 = Array<HKVerifiableClinicalRecord>;
-type $SDK122 = (Array<HKWorkoutEvent>) | null;
-type $SDK123 = (NativeMap<HKQuantityType, HKWorkoutZoneGroup>) | null;
-type $SDK130 = ((arg0: HKWorkoutRouteQuery, arg1: (Array<__LocationEssentials_CLLocation>) | null, arg2: boolean, arg3: (NativeError) | null) => void);
+type $SDK27 = Array<HKAppleSleepingBreathingDisturbancesClassification>;
+type $SDK28 = Array<HKAppleWalkingSteadinessClassification>;
+type $SDK29 = (Record<string, unknown>) | null;
+type $SDK32 = ((arg0: boolean, arg1: (NativeError) | null) => void);
+type $SDK35 = Array<HKAudiogramSensitivityPoint>;
+type $SDK36 = Array<HKAudiogramSensitivityTest>;
+type $SDK38 = (HKAudiogramSensitivityPointClampingRange) | null;
+type $SDK40 = (HKContactsLensSpecification) | null;
+type $SDK41 = (NativeMap<HKSampleType, _Foundation_NSPredicate>) | null;
+type $SDK43 = (Array<_Foundation_NSSortDescriptor>) | null;
+type $SDK48 = Array<HKGAD7Assessment_Answer>;
+type $SDK49 = (HKGlassesLensSpecification) | null;
+type $SDK61 = (HKWorkoutZoneConfiguration) | null;
+type $SDK68 = NativeMap<HKQuantityType, HKStatistics>;
+type $SDK70 = (HKWorkoutZoneGroup) | null;
+type $SDK71 = (HKLiveWorkoutDataSource) | null;
+type $SDK75 = (HKWorkoutZoneDuration) | null;
+type $SDK78 = Array<HKPHQ9Assessment_Answer>;
+type $SDK79 = ((arg0: (Array<HKQuantitySample>) | null, arg1: (NativeError) | null) => void);
+type $SDK82 = HKSamplePredicate<HKQuantitySample>;
+type $SDK95 = HKSamplePredicate<HKSample>;
+type $SDK98 = ((arg0: HKSampleQuery, arg1: (Array<HKSample>) | null, arg2: (NativeError) | null) => void);
+type $SDK101 = Array<_Foundation_SortDescriptor<HKSample>>;
+type $SDK106 = (_Foundation_DateInterval) | null;
+type $SDK118 = ((arg0: HKVerifiableClinicalRecordQuery, arg1: (Array<HKVerifiableClinicalRecord>) | null, arg2: (NativeError) | null) => void);
+type $SDK119 = Array<HKVerifiableClinicalRecordSourceType>;
+type $SDK120 = Array<HKVerifiableClinicalRecordCredentialType>;
+type $SDK121 = Array<HKVerifiableClinicalRecord>;
+type $SDK123 = (Array<HKWorkoutEvent>) | null;
+type $SDK124 = (NativeMap<HKQuantityType, HKWorkoutZoneGroup>) | null;
+type $SDK131 = ((arg0: HKWorkoutRouteQuery, arg1: (Array<__LocationEssentials_CLLocation>) | null, arg2: boolean, arg3: (NativeError) | null) => void);
 /**
  * struct BufferedAsyncByteIterator
  * @availability iOS 16.0+
@@ -797,7 +797,7 @@ export declare class HKAnchoredObjectQueryDescriptor_Results<Sample = unknown> e
     readonly $type: {
         "s:9HealthKit31HKAnchoredObjectQueryDescriptorV7ResultsV": true;
     };
-    readonly $element: $SDK21;
+    readonly $element: HKAnchoredObjectQueryDescriptor_Results_Element<unknown>;
 }
 /**
  * typealias AsyncIterator = HKAnchoredObjectQueryDescriptor<Sample>.Results.Iterator
@@ -870,13 +870,13 @@ export declare const HKAppleSleepingBreathingDisturbancesClassification: {
      * static var allCases: [HKAppleSleepingBreathingDisturbancesClassification] { get }
      * @availability iOS 18.0+
      */
-    readonly allCases: $SDK26;
+    readonly allCases: $SDK27;
 };
 /**
  * typealias AllCases = [HKAppleSleepingBreathingDisturbancesClassification]
  * @availability iOS 18.0+
  */
-export type HKAppleSleepingBreathingDisturbancesClassification_AllCases = $SDK26;
+export type HKAppleSleepingBreathingDisturbancesClassification_AllCases = $SDK27;
 /**
  * enum HKAppleWalkingSteadinessClassification
  * @availability iOS 15.0+
@@ -907,13 +907,13 @@ export declare const HKAppleWalkingSteadinessClassification: {
      * static var allCases: [HKAppleWalkingSteadinessClassification] { get }
      * @availability iOS 15.0+
      */
-    readonly allCases: $SDK27;
+    readonly allCases: $SDK28;
 };
 /**
  * typealias AllCases = [HKAppleWalkingSteadinessClassification]
  * @availability iOS 15.0+
  */
-export type HKAppleWalkingSteadinessClassification_AllCases = $SDK27;
+export type HKAppleWalkingSteadinessClassification_AllCases = $SDK28;
 /**
  * protocol HKAsyncQuery
  * @availability iOS 15.4+
@@ -960,7 +960,7 @@ export declare class HKAttachment extends SDKHandle {
      * var metadata: [String : Any]? { get }
      * @availability iOS 16.0+
      */
-    get metadata(): $SDK28;
+    get metadata(): $SDK29;
     /**
      * var name: String { get }
      * @availability iOS 16.0+
@@ -1062,7 +1062,7 @@ export declare class HKAttachmentStore extends SDKHandle {
      * func removeAttachment(_ attachment: HKAttachment, from object: HKObject) async throws
      * @availability iOS 16.0+
      */
-    removeAttachment(attachment: HKAttachment, object: HKObject, completion: $SDK31): void;
+    removeAttachment(attachment: HKAttachment, object: HKObject, completion: $SDK32): void;
     /**
      * func streamData(for attachment: HKAttachment, dataHandler: @escaping (Data?, (any Error)?, Bool) -> Void) -> Progress
      * @availability iOS 16.0+
@@ -1119,7 +1119,7 @@ export declare class HKObject extends SDKHandle {
      * var metadata: [String : Any]? { get }
      * @availability iOS 8.0+
      */
-    get metadata(): $SDK28;
+    get metadata(): $SDK29;
     /**
      * var source: HKSource { get }
      * @availability iOS 8.0+
@@ -1194,18 +1194,18 @@ export declare class HKAudiogramSample extends HKSample {
      * convenience init(sensitivityPoints: [HKAudiogramSensitivityPoint], start startDate: Date, end endDate: Date, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 18.1+
      */
-    static initSensitivityPointsStartEndDeviceMetadata(sensitivityPoints: $SDK34, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK28): HKAudiogramSample;
+    static initSensitivityPointsStartEndDeviceMetadata(sensitivityPoints: $SDK35, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK29): HKAudiogramSample;
     /**
      * convenience init(sensitivityPoints: [HKAudiogramSensitivityPoint], start startDate: Date, end endDate: Date, metadata: [String : Any]?)
      * @availability iOS 13.0+
      * @deprecated iOS 18.1
      */
-    static initSensitivityPointsStartEndMetadata(sensitivityPoints: $SDK34, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK28): HKAudiogramSample;
+    static initSensitivityPointsStartEndMetadata(sensitivityPoints: $SDK35, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKAudiogramSample;
     /**
      * var sensitivityPoints: [HKAudiogramSensitivityPoint] { get }
      * @availability iOS 13.0+
      */
-    get sensitivityPoints(): $SDK34;
+    get sensitivityPoints(): $SDK35;
     readonly $type: {
         "c:objc(cs)HKAudiogramSample": true;
         "c:objc(cs)HKSample": true;
@@ -1304,7 +1304,7 @@ export declare class HKAudiogramSensitivityPoint extends SDKHandle {
      * convenience init(frequency: HKQuantity, tests: [HKAudiogramSensitivityTest]) throws
      * @availability iOS 18.1+
      */
-    static initFrequencyTests(frequency: HKQuantity, tests: $SDK35): HKAudiogramSensitivityPoint;
+    static initFrequencyTests(frequency: HKQuantity, tests: $SDK36): HKAudiogramSensitivityPoint;
     /**
      * @NSCopying var frequency: HKQuantity { get }
      * @availability iOS 13.0+
@@ -1326,7 +1326,7 @@ export declare class HKAudiogramSensitivityPoint extends SDKHandle {
      * var tests: [HKAudiogramSensitivityTest] { get }
      * @availability iOS 18.1+
      */
-    get tests(): $SDK35;
+    get tests(): $SDK36;
     readonly $type: {
         "c:objc(cs)HKAudiogramSensitivityPoint": true;
         "c:objc(cs)NSObject": true;
@@ -1376,12 +1376,12 @@ export declare class HKAudiogramSensitivityTest extends SDKHandle {
      * init(sensitivity: HKQuantity, type: HKAudiogramConductionType, masked: Bool, side: HKAudiogramSensitivityTestSide, clampingRange: HKAudiogramSensitivityPointClampingRange?) throws
      * @availability iOS 18.1+
      */
-    static init(sensitivity: HKQuantity, type: HKAudiogramConductionType, masked: boolean, side: HKAudiogramSensitivityTestSide, clampingRange?: $SDK37): HKAudiogramSensitivityTest;
+    static init(sensitivity: HKQuantity, type: HKAudiogramConductionType, masked: boolean, side: HKAudiogramSensitivityTestSide, clampingRange?: $SDK38): HKAudiogramSensitivityTest;
     /**
      * @NSCopying var clampingRange: HKAudiogramSensitivityPointClampingRange? { get }
      * @availability iOS 18.1+
      */
-    get clampingRange(): $SDK37;
+    get clampingRange(): $SDK38;
     /**
      * var masked: Bool { get }
      * @availability iOS 18.1+
@@ -1552,12 +1552,12 @@ export declare class HKCategorySample extends HKSample {
      * convenience init(type: HKCategoryType, value: Int, start startDate: Date, end endDate: Date, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 9.0+
      */
-    static initTypeValueStartEndDeviceMetadata(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK28): HKCategorySample;
+    static initTypeValueStartEndDeviceMetadata(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK29): HKCategorySample;
     /**
      * convenience init(type: HKCategoryType, value: Int, start startDate: Date, end endDate: Date, metadata: [String : Any]?)
      * @availability iOS 8.0+
      */
-    static initTypeValueStartEndMetadata(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK28): HKCategorySample;
+    static initTypeValueStartEndMetadata(type: HKCategoryType, value: number, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKCategorySample;
     /**
      * var categoryType: HKCategoryType { get }
      * @availability iOS 8.0+
@@ -2317,7 +2317,7 @@ export declare class HKCDADocumentSample extends HKDocumentSample {
      * convenience init(data documentData: Data, start startDate: Date, end endDate: Date, metadata: [String : Any]?) throws
      * @availability iOS 10.0+
      */
-    static init(documentData: ArrayBuffer, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK28): HKCDADocumentSample;
+    static init(documentData: ArrayBuffer, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKCDADocumentSample;
     /**
      * var document: HKCDADocument? { get }
      * @availability iOS 10.0+
@@ -2636,7 +2636,7 @@ export declare class HKVisionPrescription extends HKSample {
      * convenience init(type: HKVisionPrescriptionType, dateIssued: Date, expirationDate: Date?, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 16.0+
      */
-    static init(type: HKVisionPrescriptionType, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK28): HKVisionPrescription;
+    static init(type: HKVisionPrescriptionType, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK29): HKVisionPrescription;
     /**
      * var dateIssued: Date { get }
      * @availability iOS 16.0+
@@ -2683,7 +2683,7 @@ export declare class HKContactsPrescription extends HKContactsPrescription_base 
      * convenience init(rightEyeSpecification: HKContactsLensSpecification?, leftEyeSpecification: HKContactsLensSpecification?, brand: String, dateIssued: Date, expirationDate: Date?, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 16.0+
      */
-    static init(rightEyeSpecification: $SDK39, leftEyeSpecification: $SDK39, brand: string, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK28): HKContactsPrescription;
+    static init(rightEyeSpecification: $SDK40, leftEyeSpecification: $SDK40, brand: string, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK29): HKContactsPrescription;
     /**
      * var brand: String { get }
      * @availability iOS 16.0+
@@ -2693,12 +2693,12 @@ export declare class HKContactsPrescription extends HKContactsPrescription_base 
      * @NSCopying var leftEye: HKContactsLensSpecification? { get }
      * @availability iOS 16.0+
      */
-    get leftEye(): $SDK39;
+    get leftEye(): $SDK40;
     /**
      * @NSCopying var rightEye: HKContactsLensSpecification? { get }
      * @availability iOS 16.0+
      */
-    get rightEye(): $SDK39;
+    get rightEye(): $SDK40;
     readonly $type: {
         "c:objc(cs)HKContactsPrescription": true;
         "c:objc(cs)HKVisionPrescription": true;
@@ -2738,12 +2738,12 @@ export declare class HKCorrelation extends HKSample {
      * convenience init(type correlationType: HKCorrelationType, start startDate: Date, end endDate: Date, objects: Set<HKSample>, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 9.0+
      */
-    static initTypeStartEndObjectsDeviceMetadata(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>, device?: (HKDevice) | null, metadata?: $SDK28): HKCorrelation;
+    static initTypeStartEndObjectsDeviceMetadata(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>, device?: (HKDevice) | null, metadata?: $SDK29): HKCorrelation;
     /**
      * convenience init(type correlationType: HKCorrelationType, start startDate: Date, end endDate: Date, objects: Set<HKSample>, metadata: [String : Any]?)
      * @availability iOS 8.0+
      */
-    static initTypeStartEndObjectsMetadata(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>, metadata?: $SDK28): HKCorrelation;
+    static initTypeStartEndObjectsMetadata(correlationType: HKCorrelationType, startDate: globalThis.Date, endDate: globalThis.Date, objects: Array<HKSample>, metadata?: $SDK29): HKCorrelation;
     /**
      * func objects(for objectType: HKObjectType) -> Set<HKSample>
      * @availability iOS 8.0+
@@ -2788,7 +2788,7 @@ export declare class HKCorrelationQuery extends HKQuery {
      * init(type correlationType: HKCorrelationType, predicate: NSPredicate?, samplePredicates: [HKSampleType : NSPredicate]?, completion: @escaping @Sendable (HKCorrelationQuery, [HKCorrelation]?, (any Error)?) -> Void)
      * @availability iOS 8.0+
      */
-    static init(correlationType: HKCorrelationType, predicate: $SDK4, samplePredicates: $SDK40, completion: ((arg0: HKCorrelationQuery, arg1: (Array<HKCorrelation>) | null, arg2: (NativeError) | null) => void)): HKCorrelationQuery;
+    static init(correlationType: HKCorrelationType, predicate: $SDK4, samplePredicates: $SDK41, completion: ((arg0: HKCorrelationQuery, arg1: (Array<HKCorrelation>) | null, arg2: (NativeError) | null) => void)): HKCorrelationQuery;
     /**
      * @NSCopying var correlationType: HKCorrelationType { get }
      * @availability iOS 8.0+
@@ -2798,7 +2798,7 @@ export declare class HKCorrelationQuery extends HKQuery {
      * var samplePredicates: [HKSampleType : NSPredicate]? { get }
      * @availability iOS 8.0+
      */
-    get samplePredicates(): $SDK40;
+    get samplePredicates(): $SDK41;
     readonly $type: {
         "c:objc(cs)HKCorrelationQuery": true;
         "c:objc(cs)HKQuery": true;
@@ -2867,12 +2867,12 @@ export declare class HKQuantitySample extends HKSample {
      * convenience init(type quantityType: HKQuantityType, quantity: HKQuantity, start startDate: Date, end endDate: Date, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 9.0+
      */
-    static initTypeQuantityStartEndDeviceMetadata(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK28): HKQuantitySample;
+    static initTypeQuantityStartEndDeviceMetadata(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, device?: (HKDevice) | null, metadata?: $SDK29): HKQuantitySample;
     /**
      * convenience init(type quantityType: HKQuantityType, quantity: HKQuantity, start startDate: Date, end endDate: Date, metadata: [String : Any]?)
      * @availability iOS 8.0+
      */
-    static initTypeQuantityStartEndMetadata(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK28): HKQuantitySample;
+    static initTypeQuantityStartEndMetadata(quantityType: HKQuantityType, quantity: HKQuantity, startDate: globalThis.Date, endDate: globalThis.Date, metadata?: $SDK29): HKQuantitySample;
     /**
      * var count: Int { get }
      * @availability iOS 12.0+
@@ -3005,7 +3005,7 @@ export declare class HKDeletedObject extends SDKHandle {
      * var metadata: [String : Any]? { get }
      * @availability iOS 11.0+
      */
-    get metadata(): $SDK28;
+    get metadata(): $SDK29;
     readonly $type: {
         "c:objc(cs)HKDeletedObject": true;
         "c:objc(cs)NSObject": true;
@@ -3163,7 +3163,7 @@ export declare class HKDocumentQuery extends HKQuery {
      * init(documentType: HKDocumentType, predicate: NSPredicate?, limit: Int, sortDescriptors: [NSSortDescriptor]?, includeDocumentData: Bool, resultsHandler: @escaping @Sendable (HKDocumentQuery, [HKDocumentSample]?, Bool, (any Error)?) -> Void)
      * @availability iOS 10.0+
      */
-    static init(documentType: HKDocumentType, predicate: $SDK4, limit: number, sortDescriptors: $SDK42, includeDocumentData: boolean, resultsHandler: ((arg0: HKDocumentQuery, arg1: (Array<HKDocumentSample>) | null, arg2: boolean, arg3: (NativeError) | null) => void)): HKDocumentQuery;
+    static init(documentType: HKDocumentType, predicate: $SDK4, limit: number, sortDescriptors: $SDK43, includeDocumentData: boolean, resultsHandler: ((arg0: HKDocumentQuery, arg1: (Array<HKDocumentSample>) | null, arg2: boolean, arg3: (NativeError) | null) => void)): HKDocumentQuery;
     /**
      * var includeDocumentData: Bool { get }
      * @availability iOS 10.0+
@@ -3178,7 +3178,7 @@ export declare class HKDocumentQuery extends HKQuery {
      * var sortDescriptors: [NSSortDescriptor]? { get }
      * @availability iOS 10.0+
      */
-    get sortDescriptors(): $SDK42;
+    get sortDescriptors(): $SDK43;
     readonly $type: {
         "c:objc(cs)HKDocumentQuery": true;
         "c:objc(cs)HKQuery": true;
@@ -3851,12 +3851,12 @@ export declare class HKGAD7Assessment extends HKScoredAssessment {
      * convenience init(date: Date, answers: [HKGAD7Assessment.Answer], metadata: [String : Any]? = [:])
      * @availability iOS 18.0+
      */
-    static init(date: globalThis.Date, answers: $SDK47, metadata?: $SDK28): HKGAD7Assessment;
+    static init(date: globalThis.Date, answers: $SDK48, metadata?: $SDK29): HKGAD7Assessment;
     /**
      * var answers: [HKGAD7Assessment.Answer] { get }
      * @availability iOS 18.0+
      */
-    get answers(): $SDK47;
+    get answers(): $SDK48;
     readonly $type: {
         "c:objc(cs)HKGAD7Assessment": true;
         "c:objc(cs)HKScoredAssessment": true;
@@ -3958,17 +3958,17 @@ export declare class HKGlassesPrescription extends HKGlassesPrescription_base {
      * convenience init(rightEyeSpecification: HKGlassesLensSpecification?, leftEyeSpecification: HKGlassesLensSpecification?, dateIssued: Date, expirationDate: Date?, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 16.0+
      */
-    static init(rightEyeSpecification: $SDK48, leftEyeSpecification: $SDK48, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK28): HKGlassesPrescription;
+    static init(rightEyeSpecification: $SDK49, leftEyeSpecification: $SDK49, dateIssued: globalThis.Date, expirationDate?: $SDK1, device?: (HKDevice) | null, metadata?: $SDK29): HKGlassesPrescription;
     /**
      * @NSCopying var leftEye: HKGlassesLensSpecification? { get }
      * @availability iOS 16.0+
      */
-    get leftEye(): $SDK48;
+    get leftEye(): $SDK49;
     /**
      * @NSCopying var rightEye: HKGlassesLensSpecification? { get }
      * @availability iOS 16.0+
      */
-    get rightEye(): $SDK48;
+    get rightEye(): $SDK49;
     readonly $type: {
         "c:objc(cs)HKGlassesPrescription": true;
         "c:objc(cs)HKVisionPrescription": true;
@@ -4048,7 +4048,7 @@ export declare class HKHealthStore extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 17.0
      */
-    add(samples: Array<HKSample>, workout: HKWorkout, completion: $SDK31): void;
+    add(samples: Array<HKSample>, workout: HKWorkout, completion: $SDK32): void;
     /**
      * func authorizationStatus(for type: HKObjectType) -> HKAuthorizationStatus
      * @availability iOS 8.0+
@@ -4079,28 +4079,28 @@ export declare class HKHealthStore extends SDKHandle {
      * func delete(_ object: HKObject) async throws
      * @availability iOS 8.0+
      */
-    deleteWithCompletion(object: HKObject, completion: $SDK31): void;
+    deleteWithCompletion(object: HKObject, completion: $SDK32): void;
     /**
      * func delete(_ objects: [HKObject]) async throws
      * @availability iOS 9.0+
      */
-    deleteWithCompletion64175(objects: Array<HKObject>, completion: $SDK31): void;
+    deleteWithCompletion64175(objects: Array<HKObject>, completion: $SDK32): void;
     /**
      * func deleteObjects(of objectType: HKObjectType, predicate: NSPredicate) async throws -> Int
      * @availability iOS 9.0+
      */
     deleteObjects(objectType: HKObjectType, predicate: _Foundation_NSPredicate, completion: ((arg0: boolean, arg1: number, arg2: (NativeError) | null) => void)): void;
     /** func disableAllBackgroundDelivery() async throws */
-    disableAllBackgroundDelivery(completion: $SDK31): void;
+    disableAllBackgroundDelivery(completion: $SDK32): void;
     /** func disableBackgroundDelivery(for type: HKObjectType) async throws */
-    disableBackgroundDelivery(type: HKObjectType, completion: $SDK31): void;
+    disableBackgroundDelivery(type: HKObjectType, completion: $SDK32): void;
     /**
      * func earliestPermittedSampleDate() -> Date
      * @availability iOS 9.0+
      */
     earliestPermittedSampleDate(): globalThis.Date;
     /** func enableBackgroundDelivery(for type: HKObjectType, frequency: HKUpdateFrequency) async throws */
-    enableBackgroundDelivery(type: HKObjectType, frequency: HKUpdateFrequency, completion: $SDK31): void;
+    enableBackgroundDelivery(type: HKObjectType, frequency: HKUpdateFrequency, completion: $SDK32): void;
     /**
      * func execute(_ query: HKQuery)
      * @availability iOS 8.0+
@@ -4125,7 +4125,7 @@ export declare class HKHealthStore extends SDKHandle {
      * func handleAuthorizationForExtension() async throws
      * @availability iOS 9.0+
      */
-    handleAuthorizationForExtension(completion: $SDK31): void;
+    handleAuthorizationForExtension(completion: $SDK32): void;
     /** init() */
     static init(): HKHealthStore;
     /**
@@ -4137,7 +4137,7 @@ export declare class HKHealthStore extends SDKHandle {
      * func recalibrateEstimates(sampleType: HKSampleType, date: Date) async throws
      * @availability iOS 15.0+
      */
-    recalibrateEstimates(sampleType: HKSampleType, date: globalThis.Date, completion: $SDK31): void;
+    recalibrateEstimates(sampleType: HKSampleType, date: globalThis.Date, completion: $SDK32): void;
     /**
      * func recoverActiveWorkoutSession() async throws -> HKWorkoutSession?
      * @availability iOS 26.0+
@@ -4147,27 +4147,27 @@ export declare class HKHealthStore extends SDKHandle {
      * func relateWorkoutEffortSample(_ sample: HKSample, with workout: HKWorkout, activity: HKWorkoutActivity?) async throws -> Bool
      * @availability iOS 18.0+
      */
-    relateWorkoutEffortSample(sample: HKSample, workout: HKWorkout, activity: $SDK3, completion: $SDK31): void;
+    relateWorkoutEffortSample(sample: HKSample, workout: HKWorkout, activity: $SDK3, completion: $SDK32): void;
     /**
      * func requestAuthorization(toShare typesToShare: Set<HKSampleType>?, read typesToRead: Set<HKObjectType>?, completion: @escaping @Sendable (Bool, (any Error)?) -> Void)
      * @availability iOS 8.0+
      */
-    requestAuthorizationToShareReadCompletion(typesToShare: (Array<HKSampleType>) | null, typesToRead: (Array<HKObjectType>) | null, completion: $SDK31): void;
+    requestAuthorizationToShareReadCompletion(typesToShare: (Array<HKSampleType>) | null, typesToRead: (Array<HKObjectType>) | null, completion: $SDK32): void;
     /**
      * func requestPerObjectReadAuthorization(for objectType: HKObjectType, predicate: NSPredicate?) async throws
      * @availability iOS 16.0+
      */
-    requestPerObjectReadAuthorization(objectType: HKObjectType, predicate: $SDK4, completion: $SDK31): void;
+    requestPerObjectReadAuthorization(objectType: HKObjectType, predicate: $SDK4, completion: $SDK32): void;
     /**
      * func save(_ object: HKObject) async throws
      * @availability iOS 8.0+
      */
-    saveWithCompletion(object: HKObject, completion: $SDK31): void;
+    saveWithCompletion(object: HKObject, completion: $SDK32): void;
     /**
      * func save(_ objects: [HKObject]) async throws
      * @availability iOS 8.0+
      */
-    saveWithCompletion30981(objects: Array<HKObject>, completion: $SDK31): void;
+    saveWithCompletion30981(objects: Array<HKObject>, completion: $SDK32): void;
     /**
      * func splitTotalEnergy(_ totalEnergy: HKQuantity, start startDate: Date, end endDate: Date, resultsHandler: @escaping @Sendable (HKQuantity?, HKQuantity?, (any Error)?) -> Void)
      * @availability iOS 9.0+
@@ -4178,7 +4178,7 @@ export declare class HKHealthStore extends SDKHandle {
      * func startWatchApp(toHandle workoutConfiguration: HKWorkoutConfiguration) async throws
      * @availability iOS 10.0+
      */
-    startWatchApp(workoutConfiguration: HKWorkoutConfiguration, completion: $SDK31): void;
+    startWatchApp(workoutConfiguration: HKWorkoutConfiguration, completion: $SDK32): void;
     /**
      * func stop(_ query: HKQuery)
      * @availability iOS 8.0+
@@ -4193,7 +4193,7 @@ export declare class HKHealthStore extends SDKHandle {
      * func unrelateWorkoutEffortSample(_ sample: HKSample, from workout: HKWorkout, activity: HKWorkoutActivity?) async throws -> Bool
      * @availability iOS 18.0+
      */
-    unrelateWorkoutEffortSample(sample: HKSample, workout: HKWorkout, activity: $SDK3, completion: $SDK31): void;
+    unrelateWorkoutEffortSample(sample: HKSample, workout: HKWorkout, activity: $SDK3, completion: $SDK32): void;
     /**
      * func wheelchairUse() throws -> HKWheelchairUseObject
      * @availability iOS 10.0+
@@ -4219,7 +4219,7 @@ export declare class HKHealthStore extends SDKHandle {
      * func preferredWorkoutZoneConfiguration(for quantityType: HKQuantityType) async throws -> HKWorkoutZoneConfiguration?
      * @availability iOS 27.0+
      */
-    preferredWorkoutZoneConfiguration(quantityType: HKQuantityType): Promise<$SDK60>;
+    preferredWorkoutZoneConfiguration(quantityType: HKQuantityType): Promise<$SDK61>;
     readonly $type: {
         "c:objc(cs)HKHealthStore": true;
         "c:objc(cs)NSObject": true;
@@ -4272,12 +4272,12 @@ export declare class HKHeartbeatSeriesBuilder extends HKSeriesBuilder {
      * func addHeartbeat(at timeIntervalSinceStart: TimeInterval, precededByGap: Bool) async throws
      * @availability iOS 13.0+
      */
-    addHeartbeatWithTimeInterval(timeIntervalSinceStart: number, precededByGap: boolean, completion: $SDK31): void;
+    addHeartbeatWithTimeInterval(timeIntervalSinceStart: number, precededByGap: boolean, completion: $SDK32): void;
     /**
      * func addMetadata(_ metadata: [String : Any]) async throws
      * @availability iOS 13.0+
      */
-    addMetadata(metadata: Record<string, unknown>, completion: $SDK31): void;
+    addMetadata(metadata: Record<string, unknown>, completion: $SDK32): void;
     /**
      * func finishSeries() async throws -> HKHeartbeatSeriesSample
      * @availability iOS 13.0+
@@ -4507,27 +4507,27 @@ export declare class HKWorkoutBuilder extends SDKHandle {
      * func addMetadata(_ metadata: [String : Any]) async throws
      * @availability iOS 12.0+
      */
-    addMetadata(metadata: Record<string, unknown>, completion: $SDK31): void;
+    addMetadata(metadata: Record<string, unknown>, completion: $SDK32): void;
     /**
      * func addSamples(_ samples: [HKSample]) async throws
      * @availability iOS 12.0+
      */
-    add(samples: Array<HKSample>, completion: $SDK31): void;
+    add(samples: Array<HKSample>, completion: $SDK32): void;
     /**
      * func addWorkoutActivity(_ workoutActivity: HKWorkoutActivity) async throws
      * @availability iOS 16.0+
      */
-    addWorkoutActivity(workoutActivity: HKWorkoutActivity, completion: $SDK31): void;
+    addWorkoutActivity(workoutActivity: HKWorkoutActivity, completion: $SDK32): void;
     /**
      * func addWorkoutEvents(_ workoutEvents: [HKWorkoutEvent]) async throws
      * @availability iOS 12.0+
      */
-    addWorkoutEvents(workoutEvents: Array<HKWorkoutEvent>, completion: $SDK31): void;
+    addWorkoutEvents(workoutEvents: Array<HKWorkoutEvent>, completion: $SDK32): void;
     /**
      * func beginCollection(at startDate: Date) async throws
      * @availability iOS 12.0+
      */
-    beginCollection(startDate: globalThis.Date, completion: $SDK31): void;
+    beginCollection(startDate: globalThis.Date, completion: $SDK32): void;
     /**
      * func discardWorkout()
      * @availability iOS 12.0+
@@ -4542,7 +4542,7 @@ export declare class HKWorkoutBuilder extends SDKHandle {
      * func endCollection(at endDate: Date) async throws
      * @availability iOS 12.0+
      */
-    endCollection(endDate: globalThis.Date, completion: $SDK31): void;
+    endCollection(endDate: globalThis.Date, completion: $SDK32): void;
     /**
      * func finishWorkout() async throws -> HKWorkout?
      * @availability iOS 12.0+
@@ -4567,17 +4567,17 @@ export declare class HKWorkoutBuilder extends SDKHandle {
      * func updateActivity(uuid UUID: UUID, adding metadata: [String : Any]) async throws
      * @availability iOS 16.0+
      */
-    updateActivityUuidAddingCompletion(UUID: string, metadata: Record<string, unknown>, completion: $SDK31): void;
+    updateActivityUuidAddingCompletion(UUID: string, metadata: Record<string, unknown>, completion: $SDK32): void;
     /**
      * func updateActivity(uuid UUID: UUID, end endDate: Date) async throws
      * @availability iOS 16.0+
      */
-    updateActivityUuidEndCompletion(UUID: string, endDate: globalThis.Date, completion: $SDK31): void;
+    updateActivityUuidEndCompletion(UUID: string, endDate: globalThis.Date, completion: $SDK32): void;
     /**
      * var allStatistics: [HKQuantityType : HKStatistics] { get }
      * @availability iOS 16.0+
      */
-    get allStatistics(): $SDK67;
+    get allStatistics(): $SDK68;
     /**
      * @NSCopying var device: HKDevice? { get }
      * @availability iOS 12.0+
@@ -4617,17 +4617,17 @@ export declare class HKWorkoutBuilder extends SDKHandle {
      * func zoneConfiguration(for quantityType: HKQuantityType) async throws -> HKWorkoutZoneConfiguration?
      * @availability iOS 27.0+
      */
-    zoneConfiguration(quantityType: HKQuantityType): Promise<$SDK60>;
+    zoneConfiguration(quantityType: HKQuantityType): Promise<$SDK61>;
     /**
      * func setCustomZoneConfiguration(_ configuration: HKWorkoutZoneConfiguration?, for quantityType: HKQuantityType) async throws
      * @availability iOS 27.0+
      */
-    setCustomZoneConfiguration(configuration: $SDK60, quantityType: HKQuantityType): Promise<void>;
+    setCustomZoneConfiguration(configuration: $SDK61, quantityType: HKQuantityType): Promise<void>;
     /**
      * func zoneGroup(for quantityType: HKQuantityType) -> HKWorkoutZoneGroup?
      * @availability iOS 27.0+
      */
-    zoneGroup(quantityType: HKQuantityType): $SDK69;
+    zoneGroup(quantityType: HKQuantityType): $SDK70;
     readonly $type: {
         "c:objc(cs)HKWorkoutBuilder": true;
         "c:objc(cs)NSObject": true;
@@ -4658,8 +4658,8 @@ export declare class HKLiveWorkoutBuilder extends HKLiveWorkoutBuilder_base {
      * var dataSource: HKLiveWorkoutDataSource? { get set }
      * @availability iOS 26.0+
      */
-    get dataSource(): $SDK70;
-    set dataSource(value: $SDK70);
+    get dataSource(): $SDK71;
+    set dataSource(value: $SDK71);
     /**
      * weak var delegate: (any HKLiveWorkoutBuilderDelegate)? { get set }
      * @availability iOS 26.0+
@@ -4787,17 +4787,17 @@ export declare class HKLiveWorkoutZoneUpdate extends SDKHandle {
      * @nonobjc final var currentZoneDuration: HKWorkoutZoneDuration? { get }
      * @availability iOS 27.0+
      */
-    get currentZoneDuration(): $SDK74;
+    get currentZoneDuration(): $SDK75;
     /**
      * @nonobjc final var previousZoneDuration: HKWorkoutZoneDuration? { get }
      * @availability iOS 27.0+
      */
-    get previousZoneDuration(): $SDK74;
+    get previousZoneDuration(): $SDK75;
     /**
      * @nonobjc final var zoneGroup: HKWorkoutZoneGroup? { get }
      * @availability iOS 27.0+
      */
-    get zoneGroup(): $SDK69;
+    get zoneGroup(): $SDK70;
     readonly $type: {
         "c:objc(cs)HKLiveWorkoutZoneUpdate": true;
         "c:objc(cs)NSObject": true;
@@ -5051,12 +5051,12 @@ export declare class HKPHQ9Assessment extends HKScoredAssessment {
      * convenience init(date: Date, answers: [HKPHQ9Assessment.Answer], metadata: [String : Any]? = [:])
      * @availability iOS 18.0+
      */
-    static init(date: globalThis.Date, answers: $SDK77, metadata?: $SDK28): HKPHQ9Assessment;
+    static init(date: globalThis.Date, answers: $SDK78, metadata?: $SDK29): HKPHQ9Assessment;
     /**
      * var answers: [HKPHQ9Assessment.Answer] { get }
      * @availability iOS 18.0+
      */
-    get answers(): $SDK77;
+    get answers(): $SDK78;
     readonly $type: {
         "c:objc(cs)HKPHQ9Assessment": true;
         "c:objc(cs)HKScoredAssessment": true;
@@ -5208,12 +5208,12 @@ export declare class HKQuantitySeriesSampleBuilder extends SDKHandle {
      * func finishSeries(metadata: [String : Any]?) async throws -> [HKQuantitySample]
      * @availability iOS 12.0+
      */
-    finishSeriesMetadataCompletion(metadata: $SDK28, completion: $SDK78): void;
+    finishSeriesMetadataCompletion(metadata: $SDK29, completion: $SDK79): void;
     /**
      * func finishSeries(metadata: [String : Any]?, endDate: Date?) async throws -> [HKQuantitySample]
      * @availability iOS 12.0+
      */
-    finishSeriesMetadataEndDateCompletion(metadata: $SDK28, endDate: $SDK1, completion: $SDK78): void;
+    finishSeriesMetadataEndDateCompletion(metadata: $SDK29, endDate: $SDK1, completion: $SDK79): void;
     /**
      * init(healthStore: HKHealthStore, quantityType: HKQuantityType, startDate: Date, device: HKDevice?)
      * @availability iOS 12.0+
@@ -5312,13 +5312,13 @@ export declare class HKQuantitySeriesSampleQueryDescriptor extends SDKHandle {
      * init(predicate: HKSamplePredicate<HKQuantitySample>, options: HKQuantitySeriesSampleQueryDescriptor.Options = [])
      * @availability iOS 15.4+
      */
-    static init(predicate: $SDK81, options?: HKQuantitySeriesSampleQueryDescriptor_Options): HKQuantitySeriesSampleQueryDescriptor;
+    static init(predicate: $SDK82, options?: HKQuantitySeriesSampleQueryDescriptor_Options): HKQuantitySeriesSampleQueryDescriptor;
     /**
      * var predicate: HKSamplePredicate<HKQuantitySample>
      * @availability iOS 15.4+
      */
-    get predicate(): $SDK81;
-    set predicate(value: $SDK81);
+    get predicate(): $SDK82;
+    set predicate(value: $SDK82);
     readonly $type: {
         "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV": true;
     };
@@ -6205,7 +6205,7 @@ export declare class HKSamplePredicate<Sample = unknown> extends SDKHandle {
      * static func quantitySample(type quantityType: HKQuantityType, predicate: NSPredicate? = nil) -> HKSamplePredicate<HKQuantitySample>
      * @availability iOS 15.4+
      */
-    static quantitySample(quantityType: HKQuantityType, predicate?: $SDK4): $SDK81;
+    static quantitySample(quantityType: HKQuantityType, predicate?: $SDK4): $SDK82;
     /**
      * static func heartbeatSeries(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKHeartbeatSeriesSample>
      * @availability iOS 15.4+
@@ -6225,7 +6225,7 @@ export declare class HKSamplePredicate<Sample = unknown> extends SDKHandle {
      * static func sample(type sampleType: HKSampleType, predicate: NSPredicate? = nil) -> HKSamplePredicate<HKSample>
      * @availability iOS 15.4+
      */
-    static sample(sampleType: HKSampleType, predicate?: $SDK4): $SDK94;
+    static sample(sampleType: HKSampleType, predicate?: $SDK4): $SDK95;
     /**
      * static func workout(_ predicate: NSPredicate? = nil) -> HKSamplePredicate<HKWorkout>
      * @availability iOS 15.4+
@@ -6246,18 +6246,18 @@ export declare class HKSampleQuery extends HKQuery {
      * init(queryDescriptors: [HKQueryDescriptor], limit: Int, resultsHandler: @escaping @Sendable (HKSampleQuery, [HKSample]?, (any Error)?) -> Void)
      * @availability iOS 15.0+
      */
-    static initQueryDescriptorsLimitResultsHandler(queryDescriptors: $SDK12, limit: number, resultsHandler: $SDK97): HKSampleQuery;
+    static initQueryDescriptorsLimitResultsHandler(queryDescriptors: $SDK12, limit: number, resultsHandler: $SDK98): HKSampleQuery;
     /**
      * init(queryDescriptors: [HKQueryDescriptor], limit: Int, sortDescriptors: [NSSortDescriptor], resultsHandler: @escaping @Sendable (HKSampleQuery, [HKSample]?, (any Error)?) -> Void)
      * @availability iOS 15.0+
      */
-    static initQueryDescriptorsLimitSortDescriptorsResultsHandler(queryDescriptors: $SDK12, limit: number, sortDescriptors: Array<_Foundation_NSSortDescriptor>, resultsHandler: $SDK97): HKSampleQuery;
+    static initQueryDescriptorsLimitSortDescriptorsResultsHandler(queryDescriptors: $SDK12, limit: number, sortDescriptors: Array<_Foundation_NSSortDescriptor>, resultsHandler: $SDK98): HKSampleQuery;
     /** init(sampleType: HKSampleType, predicate: NSPredicate?, limit: Int, sortDescriptors: [NSSortDescriptor]?, resultsHandler: @escaping @Sendable (HKSampleQuery, [HKSample]?, (any Error)?) -> Void) */
-    static initSampleTypePredicateLimitSortDescriptorsResultsHandler(sampleType: HKSampleType, predicate: $SDK4, limit: number, sortDescriptors: $SDK42, resultsHandler: $SDK97): HKSampleQuery;
+    static initSampleTypePredicateLimitSortDescriptorsResultsHandler(sampleType: HKSampleType, predicate: $SDK4, limit: number, sortDescriptors: $SDK43, resultsHandler: $SDK98): HKSampleQuery;
     /** var limit: Int { get } */
     get limit(): number;
     /** var sortDescriptors: [NSSortDescriptor]? { get } */
-    get sortDescriptors(): $SDK42;
+    get sortDescriptors(): $SDK43;
     readonly $type: {
         "c:objc(cs)HKSampleQuery": true;
         "c:objc(cs)HKQuery": true;
@@ -6280,7 +6280,7 @@ export declare class HKSampleQueryDescriptor<Sample = unknown> extends SDKHandle
      * init(predicates: [HKSamplePredicate<Sample>], sortDescriptors: [SortDescriptor<Sample>], limit: Int? = nil)
      * @availability iOS 15.4+
      */
-    static init(predicates: $SDK18, sortDescriptors: $SDK100, limit?: (number) | null): HKSampleQueryDescriptor<HKSample>;
+    static init(predicates: $SDK18, sortDescriptors: $SDK101, limit?: (number) | null): HKSampleQueryDescriptor<HKSample>;
     /**
      * var predicates: [HKSamplePredicate<Sample>] { get set }
      * @availability iOS 15.4+
@@ -6291,8 +6291,8 @@ export declare class HKSampleQueryDescriptor<Sample = unknown> extends SDKHandle
      * var sortDescriptors: [SortDescriptor<Sample>]
      * @availability iOS 15.4+
      */
-    get sortDescriptors(): $SDK100;
-    set sortDescriptors(value: $SDK100);
+    get sortDescriptors(): $SDK101;
+    set sortDescriptors(value: $SDK101);
     /**
      * var limit: Int?
      * @availability iOS 15.4+
@@ -6442,13 +6442,13 @@ export declare class HKSourceQueryDescriptor<Sample = unknown> extends SDKHandle
      * var predicate: HKSamplePredicate<Sample>
      * @availability iOS 15.4+
      */
-    get predicate(): $SDK94;
-    set predicate(value: $SDK94);
+    get predicate(): $SDK95;
+    set predicate(value: $SDK95);
     /**
      * init(predicate: HKSamplePredicate<Sample>)
      * @availability iOS 15.4+
      */
-    static init(predicate: $SDK94): HKSourceQueryDescriptor<HKSample>;
+    static init(predicate: $SDK95): HKSourceQueryDescriptor<HKSample>;
     readonly $type: {
         "s:9HealthKit23HKSourceQueryDescriptorV": true;
     };
@@ -6533,7 +6533,7 @@ export declare class HKStateOfMind extends HKSample {
      * convenience init(date: Date, kind: HKStateOfMind.Kind, valence: Double, labels: [HKStateOfMind.Label], associations: [HKStateOfMind.Association], metadata: [String : Any]? = [:])
      * @availability iOS 18.0+
      */
-    static init(date: globalThis.Date, kind: HKStateOfMind_Kind, valence: number, labels: Array<HKStateOfMind_Label>, associations: Array<HKStateOfMind_Association>, metadata?: $SDK28): HKStateOfMind;
+    static init(date: globalThis.Date, kind: HKStateOfMind_Kind, valence: number, labels: Array<HKStateOfMind_Label>, associations: Array<HKStateOfMind_Association>, metadata?: $SDK29): HKStateOfMind;
     /**
      * var labels: [HKStateOfMind.Label] { get }
      * @availability iOS 18.0+
@@ -6687,12 +6687,12 @@ export declare class HKStatistics extends SDKHandle {
      * func mostRecentQuantityDateInterval() -> DateInterval?
      * @availability iOS 12.0+
      */
-    mostRecentQuantityDateInterval(): $SDK105;
+    mostRecentQuantityDateInterval(): $SDK106;
     /**
      * func mostRecentQuantityDateInterval(for source: HKSource) -> DateInterval?
      * @availability iOS 12.0+
      */
-    mostRecentQuantityDateIntervalFor(source: HKSource): $SDK105;
+    mostRecentQuantityDateIntervalFor(source: HKSource): $SDK106;
     /**
      * func mostRecentQuantity(for source: HKSource) -> HKQuantity?
      * @availability iOS 12.0+
@@ -6831,13 +6831,13 @@ export declare class HKStatisticsCollectionQueryDescriptor extends SDKHandle {
      * init(predicate: HKSamplePredicate<HKQuantitySample>, options: HKStatisticsOptions, anchorDate: Date, intervalComponents: DateComponents)
      * @availability iOS 15.4+
      */
-    static init(predicate: $SDK81, options: HKStatisticsOptions, anchorDate: globalThis.Date, intervalComponents: _Foundation_DateComponents): HKStatisticsCollectionQueryDescriptor;
+    static init(predicate: $SDK82, options: HKStatisticsOptions, anchorDate: globalThis.Date, intervalComponents: _Foundation_DateComponents): HKStatisticsCollectionQueryDescriptor;
     /**
      * var predicate: HKSamplePredicate<HKQuantitySample>
      * @availability iOS 15.4+
      */
-    get predicate(): $SDK81;
-    set predicate(value: $SDK81);
+    get predicate(): $SDK82;
+    set predicate(value: $SDK82);
     readonly $type: {
         "s:9HealthKit37HKStatisticsCollectionQueryDescriptorV": true;
     };
@@ -7003,13 +7003,13 @@ export declare class HKStatisticsQueryDescriptor extends SDKHandle {
      * init(predicate: HKSamplePredicate<HKQuantitySample>, options: HKStatisticsOptions)
      * @availability iOS 15.4+
      */
-    static init(predicate: $SDK81, options: HKStatisticsOptions): HKStatisticsQueryDescriptor;
+    static init(predicate: $SDK82, options: HKStatisticsOptions): HKStatisticsQueryDescriptor;
     /**
      * var predicate: HKSamplePredicate<HKQuantitySample>
      * @availability iOS 15.4+
      */
-    get predicate(): $SDK81;
-    set predicate(value: $SDK81);
+    get predicate(): $SDK82;
+    set predicate(value: $SDK82);
     readonly $type: {
         "s:9HealthKit27HKStatisticsQueryDescriptorV": true;
     };
@@ -7524,19 +7524,19 @@ export declare const HKVerifiableClinicalRecordCredentialType: {
 /** class HKVerifiableClinicalRecordQuery */
 export declare class HKVerifiableClinicalRecordQuery extends HKQuery {
     /** init(recordTypes: [String], predicate: NSPredicate?, resultsHandler: @escaping @Sendable (HKVerifiableClinicalRecordQuery, [HKVerifiableClinicalRecord]?, (any Error)?) -> Void) */
-    static initRecordTypesPredicateResultsHandler(recordTypes: Array<string>, predicate: $SDK4, resultsHandler: $SDK117): HKVerifiableClinicalRecordQuery;
+    static initRecordTypesPredicateResultsHandler(recordTypes: Array<string>, predicate: $SDK4, resultsHandler: $SDK118): HKVerifiableClinicalRecordQuery;
     /**
      * init(recordTypes: [String], sourceTypes: [HKVerifiableClinicalRecordSourceType], predicate: NSPredicate?, resultsHandler: @escaping @Sendable (HKVerifiableClinicalRecordQuery, [HKVerifiableClinicalRecord]?, (any Error)?) -> Void)
      * @availability iOS 15.4+
      */
-    static initRecordTypesSourceTypesPredicateResultsHandler(recordTypes: Array<string>, sourceTypes: $SDK118, predicate: $SDK4, resultsHandler: $SDK117): HKVerifiableClinicalRecordQuery;
+    static initRecordTypesSourceTypesPredicateResultsHandler(recordTypes: Array<string>, sourceTypes: $SDK119, predicate: $SDK4, resultsHandler: $SDK118): HKVerifiableClinicalRecordQuery;
     /** var recordTypes: [String] { get } */
     get recordTypes(): Array<string>;
     /**
      * var sourceTypes: [HKVerifiableClinicalRecordSourceType] { get }
      * @availability iOS 15.4+
      */
-    get sourceTypes(): $SDK118;
+    get sourceTypes(): $SDK119;
     readonly $type: {
         "c:objc(cs)HKVerifiableClinicalRecordQuery": true;
         "c:objc(cs)HKQuery": true;
@@ -7559,24 +7559,24 @@ export declare class HKVerifiableClinicalRecordQueryDescriptor extends SDKHandle
      * init(recordTypes: [HKVerifiableClinicalRecordCredentialType], sourceTypes: [HKVerifiableClinicalRecordSourceType], predicate: NSPredicate? = nil)
      * @availability iOS 15.4+
      */
-    static init(recordTypes: $SDK119, sourceTypes: $SDK118, predicate?: $SDK4): HKVerifiableClinicalRecordQueryDescriptor;
+    static init(recordTypes: $SDK120, sourceTypes: $SDK119, predicate?: $SDK4): HKVerifiableClinicalRecordQueryDescriptor;
     /**
      * var recordTypes: [HKVerifiableClinicalRecordCredentialType]
      * @availability iOS 15.4+
      */
-    get recordTypes(): $SDK119;
-    set recordTypes(value: $SDK119);
+    get recordTypes(): $SDK120;
+    set recordTypes(value: $SDK120);
     /**
      * var sourceTypes: [HKVerifiableClinicalRecordSourceType]
      * @availability iOS 15.4+
      */
-    get sourceTypes(): $SDK118;
-    set sourceTypes(value: $SDK118);
+    get sourceTypes(): $SDK119;
+    set sourceTypes(value: $SDK119);
     /**
      * func result(for healthStore: HKHealthStore) async throws -> [HKVerifiableClinicalRecord]
      * @availability iOS 15.4+
      */
-    result(healthStore: HKHealthStore): Promise<$SDK120>;
+    result(healthStore: HKHealthStore): Promise<$SDK121>;
     /**
      * var predicate: NSPredicate?
      * @availability iOS 15.4+
@@ -7591,7 +7591,7 @@ export declare class HKVerifiableClinicalRecordQueryDescriptor extends SDKHandle
  * typealias Output = [HKVerifiableClinicalRecord]
  * @availability iOS 15.4+
  */
-export type HKVerifiableClinicalRecordQueryDescriptor_Output = $SDK120;
+export type HKVerifiableClinicalRecordQueryDescriptor_Output = $SDK121;
 /**
  * struct HKVerifiableClinicalRecordSourceType
  * @availability iOS 15.4+
@@ -7810,37 +7810,37 @@ export declare class HKWorkout extends HKSample {
      * @availability iOS 9.0+
      * @deprecated iOS 17.0
      */
-    static initActivityTypeStartEndDurationTotalEnergyBurnedTotalDistanceDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, duration: number, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK28): HKWorkout;
+    static initActivityTypeStartEndDurationTotalEnergyBurnedTotalDistanceDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, duration: number, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout;
     /**
      * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, duration: TimeInterval, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, metadata: [String : Any]?)
      * @availability iOS 8.0+
      * @deprecated iOS 17.0
      */
-    static initActivityTypeStartEndDurationTotalEnergyBurnedTotalDistanceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, duration: number, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, metadata?: $SDK28): HKWorkout;
+    static initActivityTypeStartEndDurationTotalEnergyBurnedTotalDistanceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, duration: number, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, metadata?: $SDK29): HKWorkout;
     /**
      * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, workoutEvents: [HKWorkoutEvent]?, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 9.0+
      * @deprecated iOS 17.0
      */
-    static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK122, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK28): HKWorkout;
+    static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout;
     /**
      * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, workoutEvents: [HKWorkoutEvent]?, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, metadata: [String : Any]?)
      * @availability iOS 8.0+
      * @deprecated iOS 17.0
      */
-    static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK122, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, metadata?: $SDK28): HKWorkout;
+    static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, metadata?: $SDK29): HKWorkout;
     /**
      * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, workoutEvents: [HKWorkoutEvent]?, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, totalFlightsClimbed: HKQuantity?, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 11.0+
      * @deprecated iOS 17.0
      */
-    static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceTotalFlightsClimbedDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK122, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, totalFlightsClimbed?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK28): HKWorkout;
+    static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceTotalFlightsClimbedDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, totalFlightsClimbed?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout;
     /**
      * convenience init(activityType workoutActivityType: HKWorkoutActivityType, start startDate: Date, end endDate: Date, workoutEvents: [HKWorkoutEvent]?, totalEnergyBurned: HKQuantity?, totalDistance: HKQuantity?, totalSwimmingStrokeCount: HKQuantity?, device: HKDevice?, metadata: [String : Any]?)
      * @availability iOS 10.0+
      * @deprecated iOS 17.0
      */
-    static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceTotalSwimmingStrokeCountDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK122, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, totalSwimmingStrokeCount?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK28): HKWorkout;
+    static initActivityTypeStartEndWorkoutEventsTotalEnergyBurnedTotalDistanceTotalSwimmingStrokeCountDeviceMetadata(workoutActivityType: HKWorkoutActivityType, startDate: globalThis.Date, endDate: globalThis.Date, workoutEvents?: $SDK123, totalEnergyBurned?: (HKQuantity) | null, totalDistance?: (HKQuantity) | null, totalSwimmingStrokeCount?: (HKQuantity) | null, device?: (HKDevice) | null, metadata?: $SDK29): HKWorkout;
     /**
      * func statistics(for quantityType: HKQuantityType) -> HKStatistics?
      * @availability iOS 16.0+
@@ -7850,7 +7850,7 @@ export declare class HKWorkout extends HKSample {
      * var allStatistics: [HKQuantityType : HKStatistics] { get }
      * @availability iOS 16.0+
      */
-    get allStatistics(): $SDK67;
+    get allStatistics(): $SDK68;
     /**
      * var duration: TimeInterval { get }
      * @availability iOS 8.0+
@@ -7894,17 +7894,17 @@ export declare class HKWorkout extends HKSample {
      * var workoutEvents: [HKWorkoutEvent]? { get }
      * @availability iOS 8.0+
      */
-    get workoutEvents(): $SDK122;
+    get workoutEvents(): $SDK123;
     /**
      * var zoneGroupsByType: [HKQuantityType : HKWorkoutZoneGroup]? { get }
      * @availability iOS 27.0+
      */
-    get zoneGroupsByType(): $SDK123;
+    get zoneGroupsByType(): $SDK124;
     /**
      * func zoneGroup(for quantityType: HKQuantityType) -> HKWorkoutZoneGroup?
      * @availability iOS 27.0+
      */
-    zoneGroup(quantityType: HKQuantityType): $SDK69;
+    zoneGroup(quantityType: HKQuantityType): $SDK70;
     readonly $type: {
         "c:objc(cs)HKWorkout": true;
         "c:objc(cs)HKSample": true;
@@ -7941,7 +7941,7 @@ export declare class HKWorkoutActivity extends SDKHandle {
      * init(workoutConfiguration: HKWorkoutConfiguration, start startDate: Date, end endDate: Date?, metadata: [String : Any]?)
      * @availability iOS 16.0+
      */
-    static init(workoutConfiguration: HKWorkoutConfiguration, startDate: globalThis.Date, endDate?: $SDK1, metadata?: $SDK28): HKWorkoutActivity;
+    static init(workoutConfiguration: HKWorkoutConfiguration, startDate: globalThis.Date, endDate?: $SDK1, metadata?: $SDK29): HKWorkoutActivity;
     /**
      * func statistics(for quantityType: HKQuantityType) -> HKStatistics?
      * @availability iOS 16.0+
@@ -7956,7 +7956,7 @@ export declare class HKWorkoutActivity extends SDKHandle {
      * var allStatistics: [HKQuantityType : HKStatistics] { get }
      * @availability iOS 16.0+
      */
-    get allStatistics(): $SDK67;
+    get allStatistics(): $SDK68;
     /**
      * var duration: TimeInterval { get }
      * @availability iOS 16.0+
@@ -7971,7 +7971,7 @@ export declare class HKWorkoutActivity extends SDKHandle {
      * var metadata: [String : Any]? { get }
      * @availability iOS 16.0+
      */
-    get metadata(): $SDK28;
+    get metadata(): $SDK29;
     /**
      * var startDate: Date { get }
      * @availability iOS 16.0+
@@ -7991,12 +7991,12 @@ export declare class HKWorkoutActivity extends SDKHandle {
      * var zoneGroupsByType: [HKQuantityType : HKWorkoutZoneGroup]? { get }
      * @availability iOS 27.0+
      */
-    get zoneGroupsByType(): $SDK123;
+    get zoneGroupsByType(): $SDK124;
     /**
      * func zoneGroup(for quantityType: HKQuantityType) -> HKWorkoutZoneGroup?
      * @availability iOS 27.0+
      */
-    zoneGroup(quantityType: HKQuantityType): $SDK69;
+    zoneGroup(quantityType: HKQuantityType): $SDK70;
     readonly $type: {
         "c:objc(cs)HKWorkoutActivity": true;
         "c:objc(cs)NSObject": true;
@@ -8267,7 +8267,7 @@ export declare class HKWorkoutEvent extends SDKHandle {
      * convenience init(type: HKWorkoutEventType, dateInterval: DateInterval, metadata: [String : Any]?)
      * @availability iOS 11.0+
      */
-    static initTypeDateIntervalMetadata(type: HKWorkoutEventType, dateInterval: _Foundation_DateInterval, metadata?: $SDK28): HKWorkoutEvent;
+    static initTypeDateIntervalMetadata(type: HKWorkoutEventType, dateInterval: _Foundation_DateInterval, metadata?: $SDK29): HKWorkoutEvent;
     /**
      * var date: Date { get }
      * @availability iOS 8.0+
@@ -8283,7 +8283,7 @@ export declare class HKWorkoutEvent extends SDKHandle {
      * var metadata: [String : Any]? { get }
      * @availability iOS 10.0+
      */
-    get metadata(): $SDK28;
+    get metadata(): $SDK29;
     /**
      * var type: HKWorkoutEventType { get }
      * @availability iOS 8.0+
@@ -8346,12 +8346,12 @@ export declare class HKWorkoutRouteBuilder extends HKSeriesBuilder {
      * func addMetadata(_ metadata: [String : Any]) async throws
      * @availability iOS 11.0+
      */
-    addMetadata(metadata: Record<string, unknown>, completion: $SDK31): void;
+    addMetadata(metadata: Record<string, unknown>, completion: $SDK32): void;
     /**
      * func finishRoute(with workout: HKWorkout, metadata: [String : Any]?) async throws -> HKWorkoutRoute
      * @availability iOS 11.0+
      */
-    finishRoute(workout: HKWorkout, metadata: $SDK28, completion: ((arg0: (HKWorkoutRoute) | null, arg1: (NativeError) | null) => void)): void;
+    finishRoute(workout: HKWorkout, metadata: $SDK29, completion: ((arg0: (HKWorkoutRoute) | null, arg1: (NativeError) | null) => void)): void;
     /**
      * init(healthStore: HKHealthStore, device: HKDevice?)
      * @availability iOS 11.0+
@@ -8361,7 +8361,7 @@ export declare class HKWorkoutRouteBuilder extends HKSeriesBuilder {
      * func insertRouteData(_ routeData: [CLLocation]) async throws
      * @availability iOS 11.0+
      */
-    insertRouteData(routeData: Array<__LocationEssentials_CLLocation>, completion: $SDK31): void;
+    insertRouteData(routeData: Array<__LocationEssentials_CLLocation>, completion: $SDK32): void;
     readonly $type: {
         "c:objc(cs)HKWorkoutRouteBuilder": true;
         "c:objc(cs)HKSeriesBuilder": true;
@@ -8371,12 +8371,12 @@ export declare class HKWorkoutRouteBuilder extends HKSeriesBuilder {
 /** class HKWorkoutRouteQuery */
 export declare class HKWorkoutRouteQuery extends HKQuery {
     /** init(route workoutRoute: HKWorkoutRoute, dataHandler: @escaping @Sendable (HKWorkoutRouteQuery, [CLLocation]?, Bool, (any Error)?) -> Void) */
-    static initRouteDataHandler(workoutRoute: HKWorkoutRoute, dataHandler: $SDK130): HKWorkoutRouteQuery;
+    static initRouteDataHandler(workoutRoute: HKWorkoutRoute, dataHandler: $SDK131): HKWorkoutRouteQuery;
     /**
      * init(route workoutRoute: HKWorkoutRoute, dateInterval: DateInterval, dataHandler: @escaping @Sendable (HKWorkoutRouteQuery, [CLLocation]?, Bool, (any Error)?) -> Void)
      * @availability iOS 16.0+
      */
-    static initRouteDateIntervalDataHandler(workoutRoute: HKWorkoutRoute, dateInterval: _Foundation_DateInterval, dataHandler: $SDK130): HKWorkoutRouteQuery;
+    static initRouteDateIntervalDataHandler(workoutRoute: HKWorkoutRoute, dateInterval: _Foundation_DateInterval, dataHandler: $SDK131): HKWorkoutRouteQuery;
     readonly $type: {
         "c:objc(cs)HKWorkoutRouteQuery": true;
         "c:objc(cs)HKQuery": true;
@@ -8476,7 +8476,7 @@ export declare class HKWorkoutSession extends SDKHandle {
      * func beginNewActivity(configuration workoutConfiguration: HKWorkoutConfiguration, date: Date, metadata: [String : Any]?)
      * @availability iOS 17.0+
      */
-    beginNewActivity(workoutConfiguration: HKWorkoutConfiguration, date: globalThis.Date, metadata?: $SDK28): void;
+    beginNewActivity(workoutConfiguration: HKWorkoutConfiguration, date: globalThis.Date, metadata?: $SDK29): void;
     /**
      * func end()
      * @availability iOS 17.0+
@@ -8511,7 +8511,7 @@ export declare class HKWorkoutSession extends SDKHandle {
      * func sendToRemoteWorkoutSession(data: Data) async throws
      * @availability iOS 17.0+
      */
-    sendToRemoteWorkoutSession(data: ArrayBuffer, completion: $SDK31): void;
+    sendToRemoteWorkoutSession(data: ArrayBuffer, completion: $SDK32): void;
     /**
      * func startActivity(with date: Date?)
      * @availability iOS 17.0+

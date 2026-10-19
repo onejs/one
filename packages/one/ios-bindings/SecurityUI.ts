@@ -12,42 +12,42 @@ export class SFCertificatePresentation extends SDKHandle {
    * func dismissSheet()
    * @availability iOS 18.4+
    */
-  dismissSheet(): void { return callSDK<void>("SecurityUI_d968214ecc684fb6", 4324022241103527, this, []); }
+  dismissSheet(): void { return callSDK<void>("SecurityUI_0e503aef608672fa", 4324022241103527, this, []); }
   /**
    * init(trust: SecTrust)
    * @availability iOS 18.4+
    */
-  static init(trust: _Security_SecTrust): SFCertificatePresentation { return callSDK<SFCertificatePresentation>("SecurityUI_d968214ecc684fb6", 565654067205619, undefined, [trust]); }
+  static init(trust: _Security_SecTrust): SFCertificatePresentation { return callSDK<SFCertificatePresentation>("SecurityUI_0e503aef608672fa", 565654067205619, undefined, [trust]); }
   /**
    * func presentSheet(in viewController: UIViewController, dismissHandler: (() -> Void)? = nil)
    * @availability iOS 18.4+
    */
-  presentSheet(viewController: _UIKit_UIViewController, dismissHandler?: ((() => void)) | null): void { return callSDK<void>("SecurityUI_d968214ecc684fb6", 585674923064046, this, [viewController, dismissHandler], [null,{"callback":{"out":[]}}]); }
+  presentSheet(viewController: _UIKit_UIViewController, dismissHandler?: ((() => void)) | null): void { return callSDK<void>("SecurityUI_0e503aef608672fa", 585674923064046, this, [viewController, dismissHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * var helpURL: URL? { get set }
    * @availability iOS 18.4+
    */
-  get helpURL(): (string) | null { return callSDK<(string) | null>("SecurityUI_d968214ecc684fb6", 4441638543535432, this, []); }
-  set helpURL(value: (string) | null) { callSDK<void>("SecurityUI_d968214ecc684fb6", 690063162155109, this, [value]); }
+  get helpURL(): (string) | null { return callSDK<(string) | null>("SecurityUI_0e503aef608672fa", 4441638543535432, this, []); }
+  set helpURL(value: (string) | null) { callSDK<void>("SecurityUI_0e503aef608672fa", 690063162155109, this, [value]); }
   /**
    * var message: String? { get set }
    * @availability iOS 18.4+
    */
-  get message(): (string) | null { return callSDK<(string) | null>("SecurityUI_d968214ecc684fb6", 1214406435442267, this, []); }
-  set message(value: (string) | null) { callSDK<void>("SecurityUI_d968214ecc684fb6", 77278870384066, this, [value]); }
+  get message(): (string) | null { return callSDK<(string) | null>("SecurityUI_0e503aef608672fa", 1214406435442267, this, []); }
+  set message(value: (string) | null) { callSDK<void>("SecurityUI_0e503aef608672fa", 77278870384066, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 18.4+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("SecurityUI_d968214ecc684fb6", 3617947307510780, this, []); }
-  set title(value: (string) | null) { callSDK<void>("SecurityUI_d968214ecc684fb6", 4208065072576186, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("SecurityUI_0e503aef608672fa", 3617947307510780, this, []); }
+  set title(value: (string) | null) { callSDK<void>("SecurityUI_0e503aef608672fa", 4208065072576186, this, [value]); }
   /**
    * unowned(unsafe) var trust: SecTrust { get }
    * @availability iOS 18.4+
    */
-  get trust(): _Security_SecTrust { return callSDK<_Security_SecTrust>("SecurityUI_d968214ecc684fb6", 1040679313470695, this, []); }
+  get trust(): _Security_SecTrust { return callSDK<_Security_SecTrust>("SecurityUI_0e503aef608672fa", 1040679313470695, this, []); }
   declare readonly $type: { "c:objc(cs)SFCertificatePresentation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "helpURL": true; "message": true; "title": true; "trust": true };
 }
 
-registerSDKClass("SFCertificatePresentation", SFCertificatePresentation, { module: "SecurityUI_d968214ecc684fb6", properties: {"helpURL":4441638543535432,"message":1214406435442267,"title":3617947307510780,"trust":1040679313470695}, methods: {"dismissSheet":{"id":4324022241103527},"presentSheet":{"id":585674923064046,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("SFCertificatePresentation", SFCertificatePresentation, { module: "SecurityUI_0e503aef608672fa", properties: {"helpURL":4441638543535432,"message":1214406435442267,"title":3617947307510780,"trust":1040679313470695}, methods: {"dismissSheet":{"id":4324022241103527},"presentSheet":{"id":585674923064046,"hints":[null,{"callback":{"out":[]}}]}} });

@@ -58,8 +58,8 @@ export class TranslationUIProviderSelectedTextScene<Content = unknown> extends S
  */
 export type TranslationUIProviderSelectedTextScene_Body<Content = unknown> = SDKHandle;
 
-registerSDKClass("TranslationUIProvider.TranslationProviderUIExtensionConfiguration", TranslationProviderUIExtensionConfiguration, { module: "TranslationUIProvider_d968214ecc684fb6", properties: {} });
+registerSDKClass("TranslationUIProvider.TranslationProviderUIExtensionConfiguration", TranslationProviderUIExtensionConfiguration, { module: "TranslationUIProvider_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:21TranslationUIProvider0aB7ContextP", {"finishTranslation":"finish(translation:)","expandSheet":"expandSheet()"});
 registerSDKProtocol("s:21TranslationUIProvider0aB9ExtensionP", {"init":"init()"});
 registerSDKProtocol("s:21TranslationUIProvider0aB14ExtensionSceneP", {});
-registerSDKClass("TranslationUIProvider.TranslationUIProviderSelectedTextScene", TranslationUIProviderSelectedTextScene, { module: "TranslationUIProvider_d968214ecc684fb6", properties: {} });
+registerSDKClass("TranslationUIProvider.TranslationUIProviderSelectedTextScene", TranslationUIProviderSelectedTextScene, { module: "TranslationUIProvider_0e503aef608672fa", properties: {} });

@@ -21,37 +21,37 @@ export class CXAction extends SDKHandle {
    * func fail()
    * @availability iOS 10.0+
    */
-  fail(): void { return callSDK<void>("CallKit_d968214ecc684fb6", 578655518117719, this, []); }
+  fail(): void { return callSDK<void>("CallKit_0e503aef608672fa", 578655518117719, this, []); }
   /**
    * func fulfill()
    * @availability iOS 10.0+
    */
-  fulfill(): void { return callSDK<void>("CallKit_d968214ecc684fb6", 2201634041783047, this, []); }
+  fulfill(): void { return callSDK<void>("CallKit_0e503aef608672fa", 2201634041783047, this, []); }
   /**
    * init()
    * @availability iOS 10.0+
    */
-  static init(): CXAction { return callSDK<CXAction>("CallKit_d968214ecc684fb6", 4432697311337920, undefined, []); }
+  static init(): CXAction { return callSDK<CXAction>("CallKit_0e503aef608672fa", 4432697311337920, undefined, []); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (CXAction) | null { return callSDK<(CXAction) | null>("CallKit_d968214ecc684fb6", 4492499300190078, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (CXAction) | null { return callSDK<(CXAction) | null>("CallKit_0e503aef608672fa", 4492499300190078, undefined, [aDecoder]); }
   /**
    * var uuid: UUID { get }
    * @availability iOS 10.0+
    */
-  get uuid(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 943226967142042, this, []); }
+  get uuid(): string { return callSDK<string>("CallKit_0e503aef608672fa", 943226967142042, this, []); }
   /**
    * var isComplete: Bool { get }
    * @availability iOS 10.0+
    */
-  get isComplete(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 1109430568502800, this, []); }
+  get isComplete(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 1109430568502800, this, []); }
   /**
    * var timeoutDate: Date { get }
    * @availability iOS 10.0+
    */
-  get timeoutDate(): globalThis.Date { return callSDK<globalThis.Date>("CallKit_d968214ecc684fb6", 1788798911541783, this, []); }
+  get timeoutDate(): globalThis.Date { return callSDK<globalThis.Date>("CallKit_0e503aef608672fa", 1788798911541783, this, []); }
   declare readonly $type: { "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true };
 }
@@ -65,17 +65,17 @@ export class CXCallAction extends (CXAction as unknown as Omit<typeof CXAction, 
    * init(call callUUID: UUID)
    * @availability iOS 10.0+
    */
-  static initCall(callUUID: string): CXCallAction { return callSDK<CXCallAction>("CallKit_d968214ecc684fb6", 553049652110700, undefined, [callUUID]); }
+  static initCall(callUUID: string): CXCallAction { return callSDK<CXCallAction>("CallKit_0e503aef608672fa", 553049652110700, undefined, [callUUID]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (CXCallAction) | null { return callSDK<(CXCallAction) | null>("CallKit_d968214ecc684fb6", 2852001398313247, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (CXCallAction) | null { return callSDK<(CXCallAction) | null>("CallKit_0e503aef608672fa", 2852001398313247, undefined, [aDecoder]); }
   /**
    * var callUUID: UUID { get }
    * @availability iOS 10.0+
    */
-  get callUUID(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 1650524608018538, this, []); }
+  get callUUID(): string { return callSDK<string>("CallKit_0e503aef608672fa", 1650524608018538, this, []); }
   declare readonly $type: { "c:objc(cs)CXCallAction": true; "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true; "callUUID": true };
 }
@@ -89,7 +89,7 @@ export class CXAnswerCallAction extends (CXCallAction as unknown as Omit<typeof 
    * func fulfill(withDateConnected dateConnected: Date)
    * @availability iOS 10.0+
    */
-  fulfill(dateConnected: globalThis.Date): void { return callSDK<void>("CallKit_d968214ecc684fb6", 1041024066726098, this, [dateConnected]); }
+  fulfill(dateConnected: globalThis.Date): void { return callSDK<void>("CallKit_0e503aef608672fa", 1041024066726098, this, [dateConnected]); }
   declare readonly $type: { "c:objc(cs)CXAnswerCallAction": true; "c:objc(cs)CXCallAction": true; "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true; "callUUID": true };
 }
@@ -103,27 +103,27 @@ export class CXCall extends SDKHandle {
    * var uuid: UUID { get }
    * @availability iOS 10.0+
    */
-  get uuid(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 3547614048716938, this, []); }
+  get uuid(): string { return callSDK<string>("CallKit_0e503aef608672fa", 3547614048716938, this, []); }
   /**
    * var hasConnected: Bool { get }
    * @availability iOS 10.0+
    */
-  get hasConnected(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 1029265018123793, this, []); }
+  get hasConnected(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 1029265018123793, this, []); }
   /**
    * var hasEnded: Bool { get }
    * @availability iOS 10.0+
    */
-  get hasEnded(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 413805594676472, this, []); }
+  get hasEnded(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 413805594676472, this, []); }
   /**
    * var isOnHold: Bool { get }
    * @availability iOS 10.0+
    */
-  get isOnHold(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 1527941998965733, this, []); }
+  get isOnHold(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 1527941998965733, this, []); }
   /**
    * var isOutgoing: Bool { get }
    * @availability iOS 10.0+
    */
-  get isOutgoing(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 48804483367081, this, []); }
+  get isOutgoing(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 48804483367081, this, []); }
   declare readonly $type: { "c:objc(cs)CXCall": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "hasConnected": true; "hasEnded": true; "isOnHold": true; "isOutgoing": true };
 }
@@ -137,32 +137,32 @@ export class CXCallController extends SDKHandle {
    * convenience init()
    * @availability iOS 10.0+
    */
-  static init(): CXCallController { return callSDK<CXCallController>("CallKit_d968214ecc684fb6", 3549192989803318, undefined, []); }
+  static init(): CXCallController { return callSDK<CXCallController>("CallKit_0e503aef608672fa", 3549192989803318, undefined, []); }
   /**
    * init(queue: dispatch_queue_t)
    * @availability iOS 10.0+
    */
-  static initQueue(queue: _Dispatch_DispatchQueue): CXCallController { return callSDK<CXCallController>("CallKit_d968214ecc684fb6", 1475165853071259, undefined, [queue]); }
+  static initQueue(queue: _Dispatch_DispatchQueue): CXCallController { return callSDK<CXCallController>("CallKit_0e503aef608672fa", 1475165853071259, undefined, [queue]); }
   /**
    * func request(_ transaction: CXTransaction) async throws
    * @availability iOS 10.0+
    */
-  request(transaction: CXTransaction, completion: $SDK0): void { return callSDK<void>("CallKit_d968214ecc684fb6", 3009860254753661, this, [transaction, completion], [null,{"callback":{"out":[]}}]); }
+  request(transaction: CXTransaction, completion: $SDK0): void { return callSDK<void>("CallKit_0e503aef608672fa", 3009860254753661, this, [transaction, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestTransaction(with action: CXAction) async throws
    * @availability iOS 11.0+
    */
-  requestTransactionWithCompletion(action: CXAction, completion: $SDK0): void { return callSDK<void>("CallKit_d968214ecc684fb6", 3212202201604915, this, [action, completion], [null,{"callback":{"out":[]}}]); }
+  requestTransactionWithCompletion(action: CXAction, completion: $SDK0): void { return callSDK<void>("CallKit_0e503aef608672fa", 3212202201604915, this, [action, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestTransaction(with actions: [CXAction]) async throws
    * @availability iOS 11.0+
    */
-  requestTransactionWithCompletion79419(actions: Array<CXAction>, completion: $SDK0): void { return callSDK<void>("CallKit_d968214ecc684fb6", 2747797623560731, this, [actions, completion], [null,{"callback":{"out":[]}}]); }
+  requestTransactionWithCompletion79419(actions: Array<CXAction>, completion: $SDK0): void { return callSDK<void>("CallKit_0e503aef608672fa", 2747797623560731, this, [actions, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * var callObserver: CXCallObserver { get }
    * @availability iOS 10.0+
    */
-  get callObserver(): CXCallObserver { return callSDK<CXCallObserver>("CallKit_d968214ecc684fb6", 3700823950564911, this, []); }
+  get callObserver(): CXCallObserver { return callSDK<CXCallObserver>("CallKit_0e503aef608672fa", 3700823950564911, this, []); }
   declare readonly $type: { "c:objc(cs)CXCallController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "callObserver": true };
 }
@@ -176,50 +176,50 @@ export class CXCallDirectoryExtensionContext extends SDKHandle {
    * func addBlockingEntry(withNextSequentialPhoneNumber phoneNumber: CXCallDirectoryPhoneNumber)
    * @availability iOS 10.0+
    */
-  addBlockingEntry(phoneNumber: number): void { return callSDK<void>("CallKit_d968214ecc684fb6", 2783960659643929, this, [phoneNumber]); }
+  addBlockingEntry(phoneNumber: number): void { return callSDK<void>("CallKit_0e503aef608672fa", 2783960659643929, this, [phoneNumber]); }
   /**
    * func addIdentificationEntry(withNextSequentialPhoneNumber phoneNumber: CXCallDirectoryPhoneNumber, label: String)
    * @availability iOS 10.0+
    */
-  addIdentificationEntry(phoneNumber: number, label: string): void { return callSDK<void>("CallKit_d968214ecc684fb6", 474225185487809, this, [phoneNumber, label]); }
+  addIdentificationEntry(phoneNumber: number, label: string): void { return callSDK<void>("CallKit_0e503aef608672fa", 474225185487809, this, [phoneNumber, label]); }
   /**
    * func completeRequest() async -> Bool
    * @availability iOS 10.0+
    */
-  completeRequest(completion?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("CallKit_d968214ecc684fb6", 3524396580886695, this, [completion], [{"callback":{"out":[]}}]); }
+  completeRequest(completion?: (((arg0: boolean) => void)) | null): void { return callSDK<void>("CallKit_0e503aef608672fa", 3524396580886695, this, [completion], [{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): CXCallDirectoryExtensionContext { return callSDK<CXCallDirectoryExtensionContext>("CallKit_d968214ecc684fb6", 3024527493137138, undefined, []); }
+  static init(): CXCallDirectoryExtensionContext { return callSDK<CXCallDirectoryExtensionContext>("CallKit_0e503aef608672fa", 3024527493137138, undefined, []); }
   /**
    * func removeAllBlockingEntries()
    * @availability iOS 11.0+
    */
-  removeAllBlockingEntries(): void { return callSDK<void>("CallKit_d968214ecc684fb6", 4452309266359695, this, []); }
+  removeAllBlockingEntries(): void { return callSDK<void>("CallKit_0e503aef608672fa", 4452309266359695, this, []); }
   /**
    * func removeAllIdentificationEntries()
    * @availability iOS 11.0+
    */
-  removeAllIdentificationEntries(): void { return callSDK<void>("CallKit_d968214ecc684fb6", 1750141817985847, this, []); }
+  removeAllIdentificationEntries(): void { return callSDK<void>("CallKit_0e503aef608672fa", 1750141817985847, this, []); }
   /**
    * func removeBlockingEntry(withPhoneNumber phoneNumber: CXCallDirectoryPhoneNumber)
    * @availability iOS 11.0+
    */
-  removeBlockingEntry(phoneNumber: number): void { return callSDK<void>("CallKit_d968214ecc684fb6", 1074507709570298, this, [phoneNumber]); }
+  removeBlockingEntry(phoneNumber: number): void { return callSDK<void>("CallKit_0e503aef608672fa", 1074507709570298, this, [phoneNumber]); }
   /**
    * func removeIdentificationEntry(withPhoneNumber phoneNumber: CXCallDirectoryPhoneNumber)
    * @availability iOS 11.0+
    */
-  removeIdentificationEntry(phoneNumber: number): void { return callSDK<void>("CallKit_d968214ecc684fb6", 348968093038404, this, [phoneNumber]); }
+  removeIdentificationEntry(phoneNumber: number): void { return callSDK<void>("CallKit_0e503aef608672fa", 348968093038404, this, [phoneNumber]); }
   /**
    * weak var delegate: (any CXCallDirectoryExtensionContextDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CallKit_d968214ecc684fb6", 5157099214794, this, []); }
-  set delegate(value: (Implements<CXCallDirectoryExtensionContextDelegate> | SDKHandle) | null) { callSDK<void>("CallKit_d968214ecc684fb6", 1882068986039736, this, [value], [{"protocol":"c:objc(pl)CXCallDirectoryExtensionContextDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CallKit_0e503aef608672fa", 5157099214794, this, []); }
+  set delegate(value: (Implements<CXCallDirectoryExtensionContextDelegate> | SDKHandle) | null) { callSDK<void>("CallKit_0e503aef608672fa", 1882068986039736, this, [value], [{"protocol":"c:objc(pl)CXCallDirectoryExtensionContextDelegate"}]); }
   /**
    * var isIncremental: Bool { get }
    * @availability iOS 11.0+
    */
-  get isIncremental(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 675652810290029, this, []); }
+  get isIncremental(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 675652810290029, this, []); }
   declare readonly $type: { "c:objc(cs)CXCallDirectoryExtensionContext": true; "c:objc(cs)NSExtensionContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "isIncremental": true };
 }
@@ -245,24 +245,24 @@ export class CXCallDirectoryManager extends SDKHandle {
    * class var sharedInstance: CXCallDirectoryManager { get }
    * @availability iOS 10.0+
    */
-  static get sharedInstance(): CXCallDirectoryManager { return callSDK<CXCallDirectoryManager>("CallKit_d968214ecc684fb6", 1706146991620622, undefined, []); }
+  static get sharedInstance(): CXCallDirectoryManager { return callSDK<CXCallDirectoryManager>("CallKit_0e503aef608672fa", 1706146991620622, undefined, []); }
   /**
    * func enabledStatusForExtension(withIdentifier identifier: String) async throws -> CXCallDirectoryManager.EnabledStatus
    * @availability iOS 10.0+
    */
-  getEnabledStatusForExtension(identifier: string, completion: ((arg0: CXCallDirectoryManager_EnabledStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CallKit_d968214ecc684fb6", 3598067571077445, this, [identifier, completion], [null,{"callback":{"out":[]}}]); }
+  getEnabledStatusForExtension(identifier: string, completion: ((arg0: CXCallDirectoryManager_EnabledStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CallKit_0e503aef608672fa", 3598067571077445, this, [identifier, completion], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): CXCallDirectoryManager { return callSDK<CXCallDirectoryManager>("CallKit_d968214ecc684fb6", 1005564663154996, undefined, []); }
+  static init(): CXCallDirectoryManager { return callSDK<CXCallDirectoryManager>("CallKit_0e503aef608672fa", 1005564663154996, undefined, []); }
   /**
    * func openSettings() async throws
    * @availability iOS 13.4+
    */
-  openSettings(completion?: $SDK4): void { return callSDK<void>("CallKit_d968214ecc684fb6", 27768732801659, this, [completion], [{"callback":{"out":[]}}]); }
+  openSettings(completion?: $SDK4): void { return callSDK<void>("CallKit_0e503aef608672fa", 27768732801659, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func reloadExtension(withIdentifier identifier: String) async throws
    * @availability iOS 10.0+
    */
-  reloadExtension(identifier: string, completion?: $SDK4): void { return callSDK<void>("CallKit_d968214ecc684fb6", 2065904432869870, this, [identifier, completion], [null,{"callback":{"out":[]}}]); }
+  reloadExtension(identifier: string, completion?: $SDK4): void { return callSDK<void>("CallKit_0e503aef608672fa", 2065904432869870, this, [identifier, completion], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CXCallDirectoryManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -277,7 +277,7 @@ export const CXCallDirectoryManager_EnabledStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CXCallDirectoryManager_EnabledStatus) | null { return callSDK<(CXCallDirectoryManager_EnabledStatus) | null>("CallKit_d968214ecc684fb6", 3534498030715267, undefined, [rawValue]); }
+  init(rawValue: number): (CXCallDirectoryManager_EnabledStatus) | null { return callSDK<(CXCallDirectoryManager_EnabledStatus) | null>("CallKit_0e503aef608672fa", 3534498030715267, undefined, [rawValue]); }
 };
 
 /** typealias CXCallDirectoryPhoneNumber = Int64 */
@@ -292,9 +292,9 @@ export class CXCallDirectoryProvider extends SDKHandle {
    * func beginRequest(with context: CXCallDirectoryExtensionContext)
    * @availability iOS 10.0+
    */
-  beginRequest(context: CXCallDirectoryExtensionContext): void { return callSDK<void>("CallKit_d968214ecc684fb6", 2359628113362158, this, [context]); }
+  beginRequest(context: CXCallDirectoryExtensionContext): void { return callSDK<void>("CallKit_0e503aef608672fa", 2359628113362158, this, [context]); }
   /** init() */
-  static init(): CXCallDirectoryProvider { return callSDK<CXCallDirectoryProvider>("CallKit_d968214ecc684fb6", 2184477149259602, undefined, []); }
+  static init(): CXCallDirectoryProvider { return callSDK<CXCallDirectoryProvider>("CallKit_0e503aef608672fa", 2184477149259602, undefined, []); }
   declare readonly $type: { "c:objc(cs)CXCallDirectoryProvider": true; "c:objc(cs)NSObject": true };
 }
 
@@ -309,7 +309,7 @@ export const CXCallEndedReason = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CXCallEndedReason) | null { return callSDK<(CXCallEndedReason) | null>("CallKit_d968214ecc684fb6", 1294803036541712, undefined, [rawValue]); }
+  init(rawValue: number): (CXCallEndedReason) | null { return callSDK<(CXCallEndedReason) | null>("CallKit_0e503aef608672fa", 1294803036541712, undefined, [rawValue]); }
 };
 
 /**
@@ -318,17 +318,17 @@ export const CXCallEndedReason = {
  */
 export class CXCallObserver extends SDKHandle {
   /** init() */
-  static init(): CXCallObserver { return callSDK<CXCallObserver>("CallKit_d968214ecc684fb6", 3180620374342964, undefined, []); }
+  static init(): CXCallObserver { return callSDK<CXCallObserver>("CallKit_0e503aef608672fa", 3180620374342964, undefined, []); }
   /**
    * func setDelegate(_ delegate: (any CXCallObserverDelegate)?, queue: dispatch_queue_t?)
    * @availability iOS 10.0+
    */
-  setDelegate(delegate?: (Implements<CXCallObserverDelegate> | SDKHandle) | null, queue?: $SDK6): void { return callSDK<void>("CallKit_d968214ecc684fb6", 3770611755335253, this, [delegate, queue], [{"protocol":"c:objc(pl)CXCallObserverDelegate"},null]); }
+  setDelegate(delegate?: (Implements<CXCallObserverDelegate> | SDKHandle) | null, queue?: $SDK6): void { return callSDK<void>("CallKit_0e503aef608672fa", 3770611755335253, this, [delegate, queue], [{"protocol":"c:objc(pl)CXCallObserverDelegate"},null]); }
   /**
    * var calls: [CXCall] { get }
    * @availability iOS 10.0+
    */
-  get calls(): Array<CXCall> { return callSDK<Array<CXCall>>("CallKit_d968214ecc684fb6", 246128762071466, this, []); }
+  get calls(): Array<CXCall> { return callSDK<Array<CXCall>>("CallKit_0e503aef608672fa", 246128762071466, this, []); }
   declare readonly $type: { "c:objc(cs)CXCallObserver": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "calls": true };
 }
@@ -351,49 +351,49 @@ export interface CXCallObserverDelegate {
  */
 export class CXCallUpdate extends SDKHandle {
   /** init() */
-  static init(): CXCallUpdate { return callSDK<CXCallUpdate>("CallKit_d968214ecc684fb6", 3313811911743224, undefined, []); }
+  static init(): CXCallUpdate { return callSDK<CXCallUpdate>("CallKit_0e503aef608672fa", 3313811911743224, undefined, []); }
   /**
    * var hasVideo: Bool { get set }
    * @availability iOS 10.0+
    */
-  get hasVideo(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 262888011425095, this, []); }
-  set hasVideo(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 455037329114629, this, [value]); }
+  get hasVideo(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 262888011425095, this, []); }
+  set hasVideo(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 455037329114629, this, [value]); }
   /**
    * var localizedCallerName: String? { get set }
    * @availability iOS 10.0+
    */
-  get localizedCallerName(): (string) | null { return callSDK<(string) | null>("CallKit_d968214ecc684fb6", 3725482972477904, this, []); }
-  set localizedCallerName(value: (string) | null) { callSDK<void>("CallKit_d968214ecc684fb6", 938308259748769, this, [value]); }
+  get localizedCallerName(): (string) | null { return callSDK<(string) | null>("CallKit_0e503aef608672fa", 3725482972477904, this, []); }
+  set localizedCallerName(value: (string) | null) { callSDK<void>("CallKit_0e503aef608672fa", 938308259748769, this, [value]); }
   /**
    * @NSCopying var remoteHandle: CXHandle? { get set }
    * @availability iOS 10.0+
    */
-  get remoteHandle(): (CXHandle) | null { return callSDK<(CXHandle) | null>("CallKit_d968214ecc684fb6", 3785332438743879, this, []); }
-  set remoteHandle(value: (CXHandle) | null) { callSDK<void>("CallKit_d968214ecc684fb6", 318063297634377, this, [value]); }
+  get remoteHandle(): (CXHandle) | null { return callSDK<(CXHandle) | null>("CallKit_0e503aef608672fa", 3785332438743879, this, []); }
+  set remoteHandle(value: (CXHandle) | null) { callSDK<void>("CallKit_0e503aef608672fa", 318063297634377, this, [value]); }
   /**
    * var supportsDTMF: Bool { get set }
    * @availability iOS 10.0+
    */
-  get supportsDTMF(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 659427538850012, this, []); }
-  set supportsDTMF(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 3791755720028221, this, [value]); }
+  get supportsDTMF(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 659427538850012, this, []); }
+  set supportsDTMF(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 3791755720028221, this, [value]); }
   /**
    * var supportsGrouping: Bool { get set }
    * @availability iOS 10.0+
    */
-  get supportsGrouping(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 3934967392184749, this, []); }
-  set supportsGrouping(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 2721244732245769, this, [value]); }
+  get supportsGrouping(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 3934967392184749, this, []); }
+  set supportsGrouping(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 2721244732245769, this, [value]); }
   /**
    * var supportsHolding: Bool { get set }
    * @availability iOS 10.0+
    */
-  get supportsHolding(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 229562988888281, this, []); }
-  set supportsHolding(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 1943682027803279, this, [value]); }
+  get supportsHolding(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 229562988888281, this, []); }
+  set supportsHolding(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 1943682027803279, this, [value]); }
   /**
    * var supportsUngrouping: Bool { get set }
    * @availability iOS 10.0+
    */
-  get supportsUngrouping(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 557744305489330, this, []); }
-  set supportsUngrouping(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 882658345793203, this, [value]); }
+  get supportsUngrouping(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 557744305489330, this, []); }
+  set supportsUngrouping(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 882658345793203, this, [value]); }
   declare readonly $type: { "c:objc(cs)CXCallUpdate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "hasVideo": true; "localizedCallerName": true; "remoteHandle": true; "supportsDTMF": true; "supportsGrouping": true; "supportsHolding": true; "supportsUngrouping": true };
 }
@@ -407,7 +407,7 @@ export class CXEndCallAction extends (CXCallAction as unknown as Omit<typeof CXC
    * func fulfill(withDateEnded dateEnded: Date)
    * @availability iOS 10.0+
    */
-  fulfill(dateEnded: globalThis.Date): void { return callSDK<void>("CallKit_d968214ecc684fb6", 4135805859349608, this, [dateEnded]); }
+  fulfill(dateEnded: globalThis.Date): void { return callSDK<void>("CallKit_0e503aef608672fa", 4135805859349608, this, [dateEnded]); }
   declare readonly $type: { "c:objc(cs)CXEndCallAction": true; "c:objc(cs)CXCallAction": true; "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true; "callUUID": true };
 }
@@ -421,27 +421,27 @@ export class CXError extends SDKHandle {
    * static var unentitled: CXError.Code { get }
    * @availability iOS 13.2+
    */
-  static get unentitled(): CXError_Code { return callSDK<CXError_Code>("CallKit_d968214ecc684fb6", 3944791878343596, undefined, []); }
+  static get unentitled(): CXError_Code { return callSDK<CXError_Code>("CallKit_0e503aef608672fa", 3944791878343596, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 10.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 1691262107475278, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CallKit_0e503aef608672fa", 1691262107475278, undefined, []); }
   /**
    * static var unknownError: CXError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unknownError(): CXError_Code { return callSDK<CXError_Code>("CallKit_d968214ecc684fb6", 137061054961808, undefined, []); }
+  static get unknownError(): CXError_Code { return callSDK<CXError_Code>("CallKit_0e503aef608672fa", 137061054961808, undefined, []); }
   /**
    * static var invalidArgument: CXError.Code { get }
    * @availability iOS 13.2+
    */
-  static get invalidArgument(): CXError_Code { return callSDK<CXError_Code>("CallKit_d968214ecc684fb6", 3289074062918754, undefined, []); }
+  static get invalidArgument(): CXError_Code { return callSDK<CXError_Code>("CallKit_0e503aef608672fa", 3289074062918754, undefined, []); }
   /**
    * static var missingVoIPBackgroundMode: CXError.Code { get }
    * @availability iOS 14.5+
    */
-  static get missingVoIPBackgroundMode(): CXError_Code { return callSDK<CXError_Code>("CallKit_d968214ecc684fb6", 1870387699697270, undefined, []); }
+  static get missingVoIPBackgroundMode(): CXError_Code { return callSDK<CXError_Code>("CallKit_0e503aef608672fa", 1870387699697270, undefined, []); }
   declare readonly $type: { "s:SC11CXErrorCodeLeV": true };
 }
 
@@ -456,7 +456,7 @@ export const CXError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CXError_Code) | null { return callSDK<(CXError_Code) | null>("CallKit_d968214ecc684fb6", 2359521749761597, undefined, [rawValue]); }
+  init(rawValue: number): (CXError_Code) | null { return callSDK<(CXError_Code) | null>("CallKit_0e503aef608672fa", 2359521749761597, undefined, [rawValue]); }
 };
 
 /**
@@ -468,52 +468,52 @@ export class CXErrorCodeCallDirectoryManagerError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 10.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 1562511623187547, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CallKit_0e503aef608672fa", 1562511623187547, undefined, []); }
   /**
    * static var currentlyLoading: CXErrorCodeCallDirectoryManagerError.Code { get }
    * @availability iOS 10.3+
    */
-  static get currentlyLoading(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_d968214ecc684fb6", 2430428143479392, undefined, []); }
+  static get currentlyLoading(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_0e503aef608672fa", 2430428143479392, undefined, []); }
   /**
    * static var duplicateEntries: CXErrorCodeCallDirectoryManagerError.Code { get }
    * @availability iOS 10.0+
    */
-  static get duplicateEntries(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_d968214ecc684fb6", 4334011795825170, undefined, []); }
+  static get duplicateEntries(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_0e503aef608672fa", 4334011795825170, undefined, []); }
   /**
    * static var noExtensionFound: CXErrorCodeCallDirectoryManagerError.Code { get }
    * @availability iOS 10.0+
    */
-  static get noExtensionFound(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_d968214ecc684fb6", 3466673602033373, undefined, []); }
+  static get noExtensionFound(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_0e503aef608672fa", 3466673602033373, undefined, []); }
   /**
    * static var entriesOutOfOrder: CXErrorCodeCallDirectoryManagerError.Code { get }
    * @availability iOS 10.0+
    */
-  static get entriesOutOfOrder(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_d968214ecc684fb6", 2485799859478208, undefined, []); }
+  static get entriesOutOfOrder(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_0e503aef608672fa", 2485799859478208, undefined, []); }
   /**
    * static var extensionDisabled: CXErrorCodeCallDirectoryManagerError.Code { get }
    * @availability iOS 10.0+
    */
-  static get extensionDisabled(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_d968214ecc684fb6", 3420084325512253, undefined, []); }
+  static get extensionDisabled(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_0e503aef608672fa", 3420084325512253, undefined, []); }
   /**
    * static var loadingInterrupted: CXErrorCodeCallDirectoryManagerError.Code { get }
    * @availability iOS 10.0+
    */
-  static get loadingInterrupted(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_d968214ecc684fb6", 4176261843858070, undefined, []); }
+  static get loadingInterrupted(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_0e503aef608672fa", 4176261843858070, undefined, []); }
   /**
    * static var maximumEntriesExceeded: CXErrorCodeCallDirectoryManagerError.Code { get }
    * @availability iOS 10.0+
    */
-  static get maximumEntriesExceeded(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_d968214ecc684fb6", 742947058887859, undefined, []); }
+  static get maximumEntriesExceeded(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_0e503aef608672fa", 742947058887859, undefined, []); }
   /**
    * static var unexpectedIncrementalRemoval: CXErrorCodeCallDirectoryManagerError.Code { get }
    * @availability iOS 11.0+
    */
-  static get unexpectedIncrementalRemoval(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_d968214ecc684fb6", 4172454472199269, undefined, []); }
+  static get unexpectedIncrementalRemoval(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_0e503aef608672fa", 4172454472199269, undefined, []); }
   /**
    * static var unknown: CXErrorCodeCallDirectoryManagerError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unknown(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_d968214ecc684fb6", 1151449470137776, undefined, []); }
+  static get unknown(): CXErrorCodeCallDirectoryManagerError_Code { return callSDK<CXErrorCodeCallDirectoryManagerError_Code>("CallKit_0e503aef608672fa", 1151449470137776, undefined, []); }
   declare readonly $type: { "s:SC36CXErrorCodeCallDirectoryManagerErrorLeV": true };
 }
 
@@ -528,7 +528,7 @@ export const CXErrorCodeCallDirectoryManagerError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CXErrorCodeCallDirectoryManagerError_Code) | null { return callSDK<(CXErrorCodeCallDirectoryManagerError_Code) | null>("CallKit_d968214ecc684fb6", 2037695478998047, undefined, [rawValue]); }
+  init(rawValue: number): (CXErrorCodeCallDirectoryManagerError_Code) | null { return callSDK<(CXErrorCodeCallDirectoryManagerError_Code) | null>("CallKit_0e503aef608672fa", 2037695478998047, undefined, [rawValue]); }
 };
 
 /**
@@ -540,47 +540,47 @@ export class CXErrorCodeIncomingCallError extends SDKHandle {
    * static var unentitled: CXErrorCodeIncomingCallError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unentitled(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_d968214ecc684fb6", 2462383902520243, undefined, []); }
+  static get unentitled(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_0e503aef608672fa", 2462383902520243, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 10.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 1637780365296450, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CallKit_0e503aef608672fa", 1637780365296450, undefined, []); }
   /**
    * static var callIsProtected: CXErrorCodeIncomingCallError.Code { get }
    * @availability iOS 10.0+
    */
-  static get callIsProtected(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_d968214ecc684fb6", 2565162909181580, undefined, []); }
+  static get callIsProtected(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_0e503aef608672fa", 2565162909181580, undefined, []); }
   /**
    * static var filteredByBlockList: CXErrorCodeIncomingCallError.Code { get }
    * @availability iOS 10.0+
    */
-  static get filteredByBlockList(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_d968214ecc684fb6", 2341745230355509, undefined, []); }
+  static get filteredByBlockList(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_0e503aef608672fa", 2341745230355509, undefined, []); }
   /**
    * static var callUUIDAlreadyExists: CXErrorCodeIncomingCallError.Code { get }
    * @availability iOS 10.0+
    */
-  static get callUUIDAlreadyExists(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_d968214ecc684fb6", 2046140146364784, undefined, []); }
+  static get callUUIDAlreadyExists(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_0e503aef608672fa", 2046140146364784, undefined, []); }
   /**
    * static var filteredByDoNotDisturb: CXErrorCodeIncomingCallError.Code { get }
    * @availability iOS 10.0+
    */
-  static get filteredByDoNotDisturb(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_d968214ecc684fb6", 3571216027333545, undefined, []); }
+  static get filteredByDoNotDisturb(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_0e503aef608672fa", 3571216027333545, undefined, []); }
   /**
    * static var filteredBySensitiveParticipants: CXErrorCodeIncomingCallError.Code { get }
    * @availability iOS 10.0+
    */
-  static get filteredBySensitiveParticipants(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_d968214ecc684fb6", 475344772628408, undefined, []); }
+  static get filteredBySensitiveParticipants(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_0e503aef608672fa", 475344772628408, undefined, []); }
   /**
    * static var filteredDuringRestrictedSharingMode: CXErrorCodeIncomingCallError.Code { get }
    * @availability iOS 10.0+
    */
-  static get filteredDuringRestrictedSharingMode(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_d968214ecc684fb6", 930932715360916, undefined, []); }
+  static get filteredDuringRestrictedSharingMode(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_0e503aef608672fa", 930932715360916, undefined, []); }
   /**
    * static var unknown: CXErrorCodeIncomingCallError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unknown(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_d968214ecc684fb6", 2527940524287993, undefined, []); }
+  static get unknown(): CXErrorCodeIncomingCallError_Code { return callSDK<CXErrorCodeIncomingCallError_Code>("CallKit_0e503aef608672fa", 2527940524287993, undefined, []); }
   declare readonly $type: { "s:SC28CXErrorCodeIncomingCallErrorLeV": true };
 }
 
@@ -595,7 +595,7 @@ export const CXErrorCodeIncomingCallError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CXErrorCodeIncomingCallError_Code) | null { return callSDK<(CXErrorCodeIncomingCallError_Code) | null>("CallKit_d968214ecc684fb6", 2946684383038099, undefined, [rawValue]); }
+  init(rawValue: number): (CXErrorCodeIncomingCallError_Code) | null { return callSDK<(CXErrorCodeIncomingCallError_Code) | null>("CallKit_0e503aef608672fa", 2946684383038099, undefined, [rawValue]); }
 };
 
 /**
@@ -607,22 +607,22 @@ export class CXErrorCodeNotificationServiceExtensionError extends SDKHandle {
    * static var missingNotificationFilteringEntitlement: CXErrorCodeNotificationServiceExtensionError.Code { get }
    * @availability iOS 14.5+
    */
-  static get missingNotificationFilteringEntitlement(): CXErrorCodeNotificationServiceExtensionError_Code { return callSDK<CXErrorCodeNotificationServiceExtensionError_Code>("CallKit_d968214ecc684fb6", 2255244283048066, undefined, []); }
+  static get missingNotificationFilteringEntitlement(): CXErrorCodeNotificationServiceExtensionError_Code { return callSDK<CXErrorCodeNotificationServiceExtensionError_Code>("CallKit_0e503aef608672fa", 2255244283048066, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 14.5+
    */
-  static get errorDomain(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 4037511809560300, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CallKit_0e503aef608672fa", 4037511809560300, undefined, []); }
   /**
    * static var invalidClientProcess: CXErrorCodeNotificationServiceExtensionError.Code { get }
    * @availability iOS 14.5+
    */
-  static get invalidClientProcess(): CXErrorCodeNotificationServiceExtensionError_Code { return callSDK<CXErrorCodeNotificationServiceExtensionError_Code>("CallKit_d968214ecc684fb6", 1885318291781496, undefined, []); }
+  static get invalidClientProcess(): CXErrorCodeNotificationServiceExtensionError_Code { return callSDK<CXErrorCodeNotificationServiceExtensionError_Code>("CallKit_0e503aef608672fa", 1885318291781496, undefined, []); }
   /**
    * static var unknown: CXErrorCodeNotificationServiceExtensionError.Code { get }
    * @availability iOS 14.5+
    */
-  static get unknown(): CXErrorCodeNotificationServiceExtensionError_Code { return callSDK<CXErrorCodeNotificationServiceExtensionError_Code>("CallKit_d968214ecc684fb6", 434306530434263, undefined, []); }
+  static get unknown(): CXErrorCodeNotificationServiceExtensionError_Code { return callSDK<CXErrorCodeNotificationServiceExtensionError_Code>("CallKit_0e503aef608672fa", 434306530434263, undefined, []); }
   declare readonly $type: { "s:SC44CXErrorCodeNotificationServiceExtensionErrorLeV": true };
 }
 
@@ -637,7 +637,7 @@ export const CXErrorCodeNotificationServiceExtensionError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 14.5+
    */
-  init(rawValue: number): (CXErrorCodeNotificationServiceExtensionError_Code) | null { return callSDK<(CXErrorCodeNotificationServiceExtensionError_Code) | null>("CallKit_d968214ecc684fb6", 4089920098187107, undefined, [rawValue]); }
+  init(rawValue: number): (CXErrorCodeNotificationServiceExtensionError_Code) | null { return callSDK<(CXErrorCodeNotificationServiceExtensionError_Code) | null>("CallKit_0e503aef608672fa", 4089920098187107, undefined, [rawValue]); }
 };
 
 /**
@@ -649,52 +649,52 @@ export class CXErrorCodeRequestTransactionError extends SDKHandle {
    * static var emptyTransaction: CXErrorCodeRequestTransactionError.Code { get }
    * @availability iOS 10.0+
    */
-  static get emptyTransaction(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_d968214ecc684fb6", 2458112744791004, undefined, []); }
+  static get emptyTransaction(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_0e503aef608672fa", 2458112744791004, undefined, []); }
   /**
    * static var unentitled: CXErrorCodeRequestTransactionError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unentitled(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_d968214ecc684fb6", 141408240420821, undefined, []); }
+  static get unentitled(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_0e503aef608672fa", 141408240420821, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 10.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 3378598074178618, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CallKit_0e503aef608672fa", 3378598074178618, undefined, []); }
   /**
    * static var invalidAction: CXErrorCodeRequestTransactionError.Code { get }
    * @availability iOS 10.0+
    */
-  static get invalidAction(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_d968214ecc684fb6", 1247473272060808, undefined, []); }
+  static get invalidAction(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_0e503aef608672fa", 1247473272060808, undefined, []); }
   /**
    * static var callIsProtected: CXErrorCodeRequestTransactionError.Code { get }
    * @availability iOS 10.0+
    */
-  static get callIsProtected(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_d968214ecc684fb6", 1986350172268821, undefined, []); }
+  static get callIsProtected(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_0e503aef608672fa", 1986350172268821, undefined, []); }
   /**
    * static var unknownCallUUID: CXErrorCodeRequestTransactionError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unknownCallUUID(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_d968214ecc684fb6", 2867142746790528, undefined, []); }
+  static get unknownCallUUID(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_0e503aef608672fa", 2867142746790528, undefined, []); }
   /**
    * static var unknownCallProvider: CXErrorCodeRequestTransactionError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unknownCallProvider(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_d968214ecc684fb6", 748585604782738, undefined, []); }
+  static get unknownCallProvider(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_0e503aef608672fa", 748585604782738, undefined, []); }
   /**
    * static var callUUIDAlreadyExists: CXErrorCodeRequestTransactionError.Code { get }
    * @availability iOS 10.0+
    */
-  static get callUUIDAlreadyExists(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_d968214ecc684fb6", 2717526625613436, undefined, []); }
+  static get callUUIDAlreadyExists(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_0e503aef608672fa", 2717526625613436, undefined, []); }
   /**
    * static var maximumCallGroupsReached: CXErrorCodeRequestTransactionError.Code { get }
    * @availability iOS 10.0+
    */
-  static get maximumCallGroupsReached(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_d968214ecc684fb6", 488147232078329, undefined, []); }
+  static get maximumCallGroupsReached(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_0e503aef608672fa", 488147232078329, undefined, []); }
   /**
    * static var unknown: CXErrorCodeRequestTransactionError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unknown(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_d968214ecc684fb6", 1933218087890354, undefined, []); }
+  static get unknown(): CXErrorCodeRequestTransactionError_Code { return callSDK<CXErrorCodeRequestTransactionError_Code>("CallKit_0e503aef608672fa", 1933218087890354, undefined, []); }
   declare readonly $type: { "s:SC34CXErrorCodeRequestTransactionErrorLeV": true };
 }
 
@@ -709,7 +709,7 @@ export const CXErrorCodeRequestTransactionError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CXErrorCodeRequestTransactionError_Code) | null { return callSDK<(CXErrorCodeRequestTransactionError_Code) | null>("CallKit_d968214ecc684fb6", 126021119766633, undefined, [rawValue]); }
+  init(rawValue: number): (CXErrorCodeRequestTransactionError_Code) | null { return callSDK<(CXErrorCodeRequestTransactionError_Code) | null>("CallKit_0e503aef608672fa", 126021119766633, undefined, [rawValue]); }
 };
 
 /**
@@ -721,17 +721,17 @@ export class CXHandle extends SDKHandle {
    * init(type: CXHandle.HandleType, value: String)
    * @availability iOS 10.0+
    */
-  static init(type: CXHandle_HandleType, value: string): CXHandle { return callSDK<CXHandle>("CallKit_d968214ecc684fb6", 608652148112514, undefined, [type, value]); }
+  static init(type: CXHandle_HandleType, value: string): CXHandle { return callSDK<CXHandle>("CallKit_0e503aef608672fa", 608652148112514, undefined, [type, value]); }
   /**
    * var type: CXHandle.HandleType { get }
    * @availability iOS 10.0+
    */
-  get type(): CXHandle_HandleType { return callSDK<CXHandle_HandleType>("CallKit_d968214ecc684fb6", 568468262904542, this, []); }
+  get type(): CXHandle_HandleType { return callSDK<CXHandle_HandleType>("CallKit_0e503aef608672fa", 568468262904542, this, []); }
   /**
    * var value: String { get }
    * @availability iOS 10.0+
    */
-  get value(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 332762005813668, this, []); }
+  get value(): string { return callSDK<string>("CallKit_0e503aef608672fa", 332762005813668, this, []); }
   declare readonly $type: { "c:objc(cs)CXHandle": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "type": true; "value": true };
 }
@@ -747,7 +747,7 @@ export const CXHandle_HandleType = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CXHandle_HandleType) | null { return callSDK<(CXHandle_HandleType) | null>("CallKit_d968214ecc684fb6", 205973773302778, undefined, [rawValue]); }
+  init(rawValue: number): (CXHandle_HandleType) | null { return callSDK<(CXHandle_HandleType) | null>("CallKit_0e503aef608672fa", 205973773302778, undefined, [rawValue]); }
 };
 
 /**
@@ -759,24 +759,24 @@ export class CXPlayDTMFCallAction extends (CXCallAction as unknown as Omit<typeo
    * init(call callUUID: UUID, digits: String, type: CXPlayDTMFCallAction.ActionType)
    * @availability iOS 10.0+
    */
-  static initCallDigitsType(callUUID: string, digits: string, type: CXPlayDTMFCallAction_ActionType): CXPlayDTMFCallAction { return callSDK<CXPlayDTMFCallAction>("CallKit_d968214ecc684fb6", 540413625154595, undefined, [callUUID, digits, type]); }
+  static initCallDigitsType(callUUID: string, digits: string, type: CXPlayDTMFCallAction_ActionType): CXPlayDTMFCallAction { return callSDK<CXPlayDTMFCallAction>("CallKit_0e503aef608672fa", 540413625154595, undefined, [callUUID, digits, type]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (CXPlayDTMFCallAction) | null { return callSDK<(CXPlayDTMFCallAction) | null>("CallKit_d968214ecc684fb6", 605914723957039, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (CXPlayDTMFCallAction) | null { return callSDK<(CXPlayDTMFCallAction) | null>("CallKit_0e503aef608672fa", 605914723957039, undefined, [aDecoder]); }
   /**
    * var digits: String { get set }
    * @availability iOS 10.0+
    */
-  get digits(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 4307163811573085, this, []); }
-  set digits(value: string) { callSDK<void>("CallKit_d968214ecc684fb6", 1060988529358386, this, [value]); }
+  get digits(): string { return callSDK<string>("CallKit_0e503aef608672fa", 4307163811573085, this, []); }
+  set digits(value: string) { callSDK<void>("CallKit_0e503aef608672fa", 1060988529358386, this, [value]); }
   /**
    * var type: CXPlayDTMFCallAction.ActionType { get set }
    * @availability iOS 10.0+
    */
-  get type(): CXPlayDTMFCallAction_ActionType { return callSDK<CXPlayDTMFCallAction_ActionType>("CallKit_d968214ecc684fb6", 1433465312468812, this, []); }
-  set type(value: CXPlayDTMFCallAction_ActionType) { callSDK<void>("CallKit_d968214ecc684fb6", 4044693967971703, this, [value]); }
+  get type(): CXPlayDTMFCallAction_ActionType { return callSDK<CXPlayDTMFCallAction_ActionType>("CallKit_0e503aef608672fa", 1433465312468812, this, []); }
+  set type(value: CXPlayDTMFCallAction_ActionType) { callSDK<void>("CallKit_0e503aef608672fa", 4044693967971703, this, [value]); }
   declare readonly $type: { "c:objc(cs)CXPlayDTMFCallAction": true; "c:objc(cs)CXCallAction": true; "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true; "callUUID": true; "digits": true; "type": true };
 }
@@ -792,7 +792,7 @@ export const CXPlayDTMFCallAction_ActionType = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (CXPlayDTMFCallAction_ActionType) | null { return callSDK<(CXPlayDTMFCallAction_ActionType) | null>("CallKit_d968214ecc684fb6", 3940082830658344, undefined, [rawValue]); }
+  init(rawValue: number): (CXPlayDTMFCallAction_ActionType) | null { return callSDK<(CXPlayDTMFCallAction_ActionType) | null>("CallKit_0e503aef608672fa", 3940082830658344, undefined, [rawValue]); }
 };
 
 /**
@@ -804,63 +804,63 @@ export class CXProvider extends SDKHandle {
    * class func reportNewIncomingVoIPPushPayload(_ dictionaryPayload: [AnyHashable : Any]) async throws
    * @availability iOS 14.5+
    */
-  static reportNewIncomingVoIPPushPayload(dictionaryPayload: NativeMap<unknown, unknown>, completion?: $SDK4): void { return callSDK<void>("CallKit_d968214ecc684fb6", 3935466160265960, undefined, [dictionaryPayload, completion], [null,{"callback":{"out":[]}}]); }
+  static reportNewIncomingVoIPPushPayload(dictionaryPayload: NativeMap<unknown, unknown>, completion?: $SDK4): void { return callSDK<void>("CallKit_0e503aef608672fa", 3935466160265960, undefined, [dictionaryPayload, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * init(configuration: CXProviderConfiguration)
    * @availability iOS 10.0+
    */
-  static init(configuration: CXProviderConfiguration): CXProvider { return callSDK<CXProvider>("CallKit_d968214ecc684fb6", 3970543268217133, undefined, [configuration]); }
+  static init(configuration: CXProviderConfiguration): CXProvider { return callSDK<CXProvider>("CallKit_0e503aef608672fa", 3970543268217133, undefined, [configuration]); }
   /**
    * func invalidate()
    * @availability iOS 10.0+
    */
-  invalidate(): void { return callSDK<void>("CallKit_d968214ecc684fb6", 2640157250391719, this, []); }
+  invalidate(): void { return callSDK<void>("CallKit_0e503aef608672fa", 2640157250391719, this, []); }
   /**
    * func pendingCallActions(of callActionClass: AnyClass, withCall callUUID: UUID) -> [CXCallAction]
    * @availability iOS 10.0+
    */
-  pendingCallActions(callActionClass: string, callUUID: string): Array<CXCallAction> { return callSDK<Array<CXCallAction>>("CallKit_d968214ecc684fb6", 3064836963092698, this, [callActionClass, callUUID]); }
+  pendingCallActions(callActionClass: string, callUUID: string): Array<CXCallAction> { return callSDK<Array<CXCallAction>>("CallKit_0e503aef608672fa", 3064836963092698, this, [callActionClass, callUUID]); }
   /**
    * func reportCall(with UUID: UUID, endedAt dateEnded: Date?, reason endedReason: CXCallEndedReason)
    * @availability iOS 10.0+
    */
-  reportCallWithEndedAtReason(UUID: string, dateEnded: $SDK8, endedReason: CXCallEndedReason): void { return callSDK<void>("CallKit_d968214ecc684fb6", 4428809172805084, this, [UUID, dateEnded, endedReason]); }
+  reportCallWithEndedAtReason(UUID: string, dateEnded: $SDK8, endedReason: CXCallEndedReason): void { return callSDK<void>("CallKit_0e503aef608672fa", 4428809172805084, this, [UUID, dateEnded, endedReason]); }
   /**
    * func reportCall(with UUID: UUID, updated update: CXCallUpdate)
    * @availability iOS 10.0+
    */
-  reportCallWithUpdated(UUID: string, update: CXCallUpdate): void { return callSDK<void>("CallKit_d968214ecc684fb6", 1579370233765769, this, [UUID, update]); }
+  reportCallWithUpdated(UUID: string, update: CXCallUpdate): void { return callSDK<void>("CallKit_0e503aef608672fa", 1579370233765769, this, [UUID, update]); }
   /**
    * func reportNewIncomingCall(with UUID: UUID, update: CXCallUpdate) async throws
    * @availability iOS 10.0+
    */
-  reportNewIncomingCall(UUID: string, update: CXCallUpdate, completion: $SDK0): void { return callSDK<void>("CallKit_d968214ecc684fb6", 815264094340521, this, [UUID, update, completion], [null,null,{"callback":{"out":[]}}]); }
+  reportNewIncomingCall(UUID: string, update: CXCallUpdate, completion: $SDK0): void { return callSDK<void>("CallKit_0e503aef608672fa", 815264094340521, this, [UUID, update, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func reportOutgoingCall(with UUID: UUID, connectedAt dateConnected: Date?)
    * @availability iOS 10.0+
    */
-  reportOutgoingCallWithConnectedAt(UUID: string, dateConnected?: $SDK8): void { return callSDK<void>("CallKit_d968214ecc684fb6", 4354511273460482, this, [UUID, dateConnected]); }
+  reportOutgoingCallWithConnectedAt(UUID: string, dateConnected?: $SDK8): void { return callSDK<void>("CallKit_0e503aef608672fa", 4354511273460482, this, [UUID, dateConnected]); }
   /**
    * func reportOutgoingCall(with UUID: UUID, startedConnectingAt dateStartedConnecting: Date?)
    * @availability iOS 10.0+
    */
-  reportOutgoingCallWithStartedConnectingAt(UUID: string, dateStartedConnecting?: $SDK8): void { return callSDK<void>("CallKit_d968214ecc684fb6", 4286493579935536, this, [UUID, dateStartedConnecting]); }
+  reportOutgoingCallWithStartedConnectingAt(UUID: string, dateStartedConnecting?: $SDK8): void { return callSDK<void>("CallKit_0e503aef608672fa", 4286493579935536, this, [UUID, dateStartedConnecting]); }
   /**
    * func setDelegate(_ delegate: (any CXProviderDelegate)?, queue: dispatch_queue_t?)
    * @availability iOS 10.0+
    */
-  setDelegate(delegate?: (SDKHandle) | null, queue?: $SDK6): void { return callSDK<void>("CallKit_d968214ecc684fb6", 1523110949599288, this, [delegate, queue]); }
+  setDelegate(delegate?: (SDKHandle) | null, queue?: $SDK6): void { return callSDK<void>("CallKit_0e503aef608672fa", 1523110949599288, this, [delegate, queue]); }
   /**
    * @NSCopying var configuration: CXProviderConfiguration { get set }
    * @availability iOS 10.0+
    */
-  get configuration(): CXProviderConfiguration { return callSDK<CXProviderConfiguration>("CallKit_d968214ecc684fb6", 3673142627433053, this, []); }
-  set configuration(value: CXProviderConfiguration) { callSDK<void>("CallKit_d968214ecc684fb6", 1696429532800085, this, [value]); }
+  get configuration(): CXProviderConfiguration { return callSDK<CXProviderConfiguration>("CallKit_0e503aef608672fa", 3673142627433053, this, []); }
+  set configuration(value: CXProviderConfiguration) { callSDK<void>("CallKit_0e503aef608672fa", 1696429532800085, this, [value]); }
   /**
    * var pendingTransactions: [CXTransaction] { get }
    * @availability iOS 10.0+
    */
-  get pendingTransactions(): Array<CXTransaction> { return callSDK<Array<CXTransaction>>("CallKit_d968214ecc684fb6", 616851649499611, this, []); }
+  get pendingTransactions(): Array<CXTransaction> { return callSDK<Array<CXTransaction>>("CallKit_0e503aef608672fa", 616851649499611, this, []); }
   declare readonly $type: { "c:objc(cs)CXProvider": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true; "pendingTransactions": true };
 }
@@ -874,67 +874,67 @@ export class CXProviderConfiguration extends SDKHandle {
    * init()
    * @availability iOS 14.0+
    */
-  static init(): CXProviderConfiguration { return callSDK<CXProviderConfiguration>("CallKit_d968214ecc684fb6", 2090684937856798, undefined, []); }
+  static init(): CXProviderConfiguration { return callSDK<CXProviderConfiguration>("CallKit_0e503aef608672fa", 2090684937856798, undefined, []); }
   /**
    * convenience init(localizedName: String)
    * @availability iOS 10.0+
    * @deprecated iOS 14.0
    */
-  static initLocalizedName(localizedName: string): CXProviderConfiguration { return callSDK<CXProviderConfiguration>("CallKit_d968214ecc684fb6", 3564321711863574, undefined, [localizedName]); }
+  static initLocalizedName(localizedName: string): CXProviderConfiguration { return callSDK<CXProviderConfiguration>("CallKit_0e503aef608672fa", 3564321711863574, undefined, [localizedName]); }
   /**
    * var iconTemplateImageData: Data? { get set }
    * @availability iOS 10.0+
    */
-  get iconTemplateImageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CallKit_d968214ecc684fb6", 1083579181848174, this, []); }
-  set iconTemplateImageData(value: (ArrayBuffer) | null) { callSDK<void>("CallKit_d968214ecc684fb6", 1473157011915841, this, [value]); }
+  get iconTemplateImageData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CallKit_0e503aef608672fa", 1083579181848174, this, []); }
+  set iconTemplateImageData(value: (ArrayBuffer) | null) { callSDK<void>("CallKit_0e503aef608672fa", 1473157011915841, this, [value]); }
   /**
    * var includesCallsInRecents: Bool { get set }
    * @availability iOS 11.0+
    */
-  get includesCallsInRecents(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 339322927437908, this, []); }
-  set includesCallsInRecents(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 1133176749551979, this, [value]); }
+  get includesCallsInRecents(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 339322927437908, this, []); }
+  set includesCallsInRecents(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 1133176749551979, this, [value]); }
   /**
    * var localizedName: String? { get }
    * @availability iOS 10.0+
    * @deprecated iOS 14.0
    */
-  get localizedName(): (string) | null { return callSDK<(string) | null>("CallKit_d968214ecc684fb6", 162887654520113, this, []); }
+  get localizedName(): (string) | null { return callSDK<(string) | null>("CallKit_0e503aef608672fa", 162887654520113, this, []); }
   /**
    * var maximumCallGroups: Int { get set }
    * @availability iOS 10.0+
    */
-  get maximumCallGroups(): number { return callSDK<number>("CallKit_d968214ecc684fb6", 2510421939935913, this, []); }
-  set maximumCallGroups(value: number) { callSDK<void>("CallKit_d968214ecc684fb6", 68975086285347, this, [value]); }
+  get maximumCallGroups(): number { return callSDK<number>("CallKit_0e503aef608672fa", 2510421939935913, this, []); }
+  set maximumCallGroups(value: number) { callSDK<void>("CallKit_0e503aef608672fa", 68975086285347, this, [value]); }
   /**
    * var maximumCallsPerCallGroup: Int { get set }
    * @availability iOS 10.0+
    */
-  get maximumCallsPerCallGroup(): number { return callSDK<number>("CallKit_d968214ecc684fb6", 805555542563446, this, []); }
-  set maximumCallsPerCallGroup(value: number) { callSDK<void>("CallKit_d968214ecc684fb6", 3720796384474762, this, [value]); }
+  get maximumCallsPerCallGroup(): number { return callSDK<number>("CallKit_0e503aef608672fa", 805555542563446, this, []); }
+  set maximumCallsPerCallGroup(value: number) { callSDK<void>("CallKit_0e503aef608672fa", 3720796384474762, this, [value]); }
   /**
    * var ringtoneSound: String? { get set }
    * @availability iOS 10.0+
    */
-  get ringtoneSound(): (string) | null { return callSDK<(string) | null>("CallKit_d968214ecc684fb6", 2935884131950004, this, []); }
-  set ringtoneSound(value: (string) | null) { callSDK<void>("CallKit_d968214ecc684fb6", 4126423968147676, this, [value]); }
+  get ringtoneSound(): (string) | null { return callSDK<(string) | null>("CallKit_0e503aef608672fa", 2935884131950004, this, []); }
+  set ringtoneSound(value: (string) | null) { callSDK<void>("CallKit_0e503aef608672fa", 4126423968147676, this, [value]); }
   /**
    * var supportsAudioTranslation: Bool { get set }
    * @availability iOS 26.0+
    */
-  get supportsAudioTranslation(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 2072342433063227, this, []); }
-  set supportsAudioTranslation(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 2535292852837403, this, [value]); }
+  get supportsAudioTranslation(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 2072342433063227, this, []); }
+  set supportsAudioTranslation(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 2535292852837403, this, [value]); }
   /**
    * var supportsVideo: Bool { get set }
    * @availability iOS 10.0+
    */
-  get supportsVideo(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 694707135226136, this, []); }
-  set supportsVideo(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 2764742368651267, this, [value]); }
+  get supportsVideo(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 694707135226136, this, []); }
+  set supportsVideo(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 2764742368651267, this, [value]); }
   /**
    * @nonobjc final var supportedHandleTypes: Set<CXHandle.HandleType> { get set }
    * @availability iOS 10.0+
    */
-  get supportedHandleTypes(): Array<CXHandle_HandleType> { return callSDK<Array<CXHandle_HandleType>>("CallKit_d968214ecc684fb6", 828647817027231, this, []); }
-  set supportedHandleTypes(value: Array<CXHandle_HandleType>) { callSDK<void>("CallKit_d968214ecc684fb6", 267643136375532, this, [value]); }
+  get supportedHandleTypes(): Array<CXHandle_HandleType> { return callSDK<Array<CXHandle_HandleType>>("CallKit_0e503aef608672fa", 828647817027231, this, []); }
+  set supportedHandleTypes(value: Array<CXHandle_HandleType>) { callSDK<void>("CallKit_0e503aef608672fa", 267643136375532, this, [value]); }
   declare readonly $type: { "c:objc(cs)CXProviderConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "iconTemplateImageData": true; "includesCallsInRecents": true; "localizedName": true; "maximumCallGroups": true; "maximumCallsPerCallGroup": true; "ringtoneSound": true; "supportsAudioTranslation": true; "supportsVideo": true };
 }
@@ -990,18 +990,18 @@ export class CXSetGroupCallAction extends (CXCallAction as unknown as Omit<typeo
    * init(call callUUID: UUID, callUUIDToGroupWith: UUID?)
    * @availability iOS 10.0+
    */
-  static initCallCallUUIDToGroupWith(callUUID: string, callUUIDToGroupWith?: (string) | null): CXSetGroupCallAction { return callSDK<CXSetGroupCallAction>("CallKit_d968214ecc684fb6", 2191504517955478, undefined, [callUUID, callUUIDToGroupWith]); }
+  static initCallCallUUIDToGroupWith(callUUID: string, callUUIDToGroupWith?: (string) | null): CXSetGroupCallAction { return callSDK<CXSetGroupCallAction>("CallKit_0e503aef608672fa", 2191504517955478, undefined, [callUUID, callUUIDToGroupWith]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (CXSetGroupCallAction) | null { return callSDK<(CXSetGroupCallAction) | null>("CallKit_d968214ecc684fb6", 579366885475435, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (CXSetGroupCallAction) | null { return callSDK<(CXSetGroupCallAction) | null>("CallKit_0e503aef608672fa", 579366885475435, undefined, [aDecoder]); }
   /**
    * var callUUIDToGroupWith: UUID? { get set }
    * @availability iOS 10.0+
    */
-  get callUUIDToGroupWith(): (string) | null { return callSDK<(string) | null>("CallKit_d968214ecc684fb6", 2680731104256811, this, []); }
-  set callUUIDToGroupWith(value: (string) | null) { callSDK<void>("CallKit_d968214ecc684fb6", 4491797342220071, this, [value]); }
+  get callUUIDToGroupWith(): (string) | null { return callSDK<(string) | null>("CallKit_0e503aef608672fa", 2680731104256811, this, []); }
+  set callUUIDToGroupWith(value: (string) | null) { callSDK<void>("CallKit_0e503aef608672fa", 4491797342220071, this, [value]); }
   declare readonly $type: { "c:objc(cs)CXSetGroupCallAction": true; "c:objc(cs)CXCallAction": true; "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true; "callUUID": true; "callUUIDToGroupWith": true };
 }
@@ -1015,18 +1015,18 @@ export class CXSetHeldCallAction extends (CXCallAction as unknown as Omit<typeof
    * init(call callUUID: UUID, onHold: Bool)
    * @availability iOS 10.0+
    */
-  static initCallOnHold(callUUID: string, onHold: boolean): CXSetHeldCallAction { return callSDK<CXSetHeldCallAction>("CallKit_d968214ecc684fb6", 1083128490879104, undefined, [callUUID, onHold]); }
+  static initCallOnHold(callUUID: string, onHold: boolean): CXSetHeldCallAction { return callSDK<CXSetHeldCallAction>("CallKit_0e503aef608672fa", 1083128490879104, undefined, [callUUID, onHold]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (CXSetHeldCallAction) | null { return callSDK<(CXSetHeldCallAction) | null>("CallKit_d968214ecc684fb6", 1331037805095463, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (CXSetHeldCallAction) | null { return callSDK<(CXSetHeldCallAction) | null>("CallKit_0e503aef608672fa", 1331037805095463, undefined, [aDecoder]); }
   /**
    * var isOnHold: Bool { get set }
    * @availability iOS 10.0+
    */
-  get isOnHold(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 2400447113593224, this, []); }
-  set isOnHold(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 1653173344078739, this, [value]); }
+  get isOnHold(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 2400447113593224, this, []); }
+  set isOnHold(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 1653173344078739, this, [value]); }
   declare readonly $type: { "c:objc(cs)CXSetHeldCallAction": true; "c:objc(cs)CXCallAction": true; "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true; "callUUID": true; "isOnHold": true };
 }
@@ -1040,18 +1040,18 @@ export class CXSetMutedCallAction extends (CXCallAction as unknown as Omit<typeo
    * convenience init(call callUUID: UUID, muted: Bool)
    * @availability iOS 10.0+
    */
-  static initCallMuted(callUUID: string, muted: boolean): CXSetMutedCallAction { return callSDK<CXSetMutedCallAction>("CallKit_d968214ecc684fb6", 1417945290356076, undefined, [callUUID, muted]); }
+  static initCallMuted(callUUID: string, muted: boolean): CXSetMutedCallAction { return callSDK<CXSetMutedCallAction>("CallKit_0e503aef608672fa", 1417945290356076, undefined, [callUUID, muted]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (CXSetMutedCallAction) | null { return callSDK<(CXSetMutedCallAction) | null>("CallKit_d968214ecc684fb6", 2544993811131790, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (CXSetMutedCallAction) | null { return callSDK<(CXSetMutedCallAction) | null>("CallKit_0e503aef608672fa", 2544993811131790, undefined, [aDecoder]); }
   /**
    * var isMuted: Bool { get set }
    * @availability iOS 10.0+
    */
-  get isMuted(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 3253946574345638, this, []); }
-  set isMuted(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 3584315429129842, this, [value]); }
+  get isMuted(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 3253946574345638, this, []); }
+  set isMuted(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 3584315429129842, this, [value]); }
   declare readonly $type: { "c:objc(cs)CXSetMutedCallAction": true; "c:objc(cs)CXCallAction": true; "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true; "callUUID": true; "isMuted": true };
 }
@@ -1065,32 +1065,32 @@ export class CXSetTranslatingCallAction extends (CXCallAction as unknown as Omit
    * func fulfill(using translationEngine: CXTranslationEngine)
    * @availability iOS 26.0+
    */
-  fulfill(translationEngine: CXTranslationEngine): void { return callSDK<void>("CallKit_d968214ecc684fb6", 2718861745079828, this, [translationEngine]); }
+  fulfill(translationEngine: CXTranslationEngine): void { return callSDK<void>("CallKit_0e503aef608672fa", 2718861745079828, this, [translationEngine]); }
   /**
    * init(call uuid: UUID, isTranslating: Bool, localLanguage: String, remoteLanguage: String)
    * @availability iOS 26.0+
    */
-  static initCallIsTranslatingLocalLanguageRemoteLanguage(uuid: string, isTranslating: boolean, localLanguage: string, remoteLanguage: string): CXSetTranslatingCallAction { return callSDK<CXSetTranslatingCallAction>("CallKit_d968214ecc684fb6", 2641016444609308, undefined, [uuid, isTranslating, localLanguage, remoteLanguage]); }
+  static initCallIsTranslatingLocalLanguageRemoteLanguage(uuid: string, isTranslating: boolean, localLanguage: string, remoteLanguage: string): CXSetTranslatingCallAction { return callSDK<CXSetTranslatingCallAction>("CallKit_0e503aef608672fa", 2641016444609308, undefined, [uuid, isTranslating, localLanguage, remoteLanguage]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 26.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (CXSetTranslatingCallAction) | null { return callSDK<(CXSetTranslatingCallAction) | null>("CallKit_d968214ecc684fb6", 1868625654917900, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (CXSetTranslatingCallAction) | null { return callSDK<(CXSetTranslatingCallAction) | null>("CallKit_0e503aef608672fa", 1868625654917900, undefined, [aDecoder]); }
   /**
    * var isTranslating: Bool { get }
    * @availability iOS 26.0+
    */
-  get isTranslating(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 3723628171720389, this, []); }
+  get isTranslating(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 3723628171720389, this, []); }
   /**
    * var localLanguage: String { get }
    * @availability iOS 26.0+
    */
-  get localLanguage(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 2717371890508965, this, []); }
+  get localLanguage(): string { return callSDK<string>("CallKit_0e503aef608672fa", 2717371890508965, this, []); }
   /**
    * var remoteLanguage: String { get }
    * @availability iOS 26.0+
    */
-  get remoteLanguage(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 453452739938313, this, []); }
+  get remoteLanguage(): string { return callSDK<string>("CallKit_0e503aef608672fa", 453452739938313, this, []); }
   declare readonly $type: { "c:objc(cs)CXSetTranslatingCallAction": true; "c:objc(cs)CXCallAction": true; "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true; "callUUID": true; "isTranslating": true; "localLanguage": true; "remoteLanguage": true };
 }
@@ -1104,35 +1104,35 @@ export class CXStartCallAction extends (CXCallAction as unknown as Omit<typeof C
    * func fulfill(withDateStarted dateStarted: Date)
    * @availability iOS 10.0+
    */
-  fulfill(dateStarted: globalThis.Date): void { return callSDK<void>("CallKit_d968214ecc684fb6", 1157545619060902, this, [dateStarted]); }
+  fulfill(dateStarted: globalThis.Date): void { return callSDK<void>("CallKit_0e503aef608672fa", 1157545619060902, this, [dateStarted]); }
   /**
    * init(call callUUID: UUID, handle: CXHandle)
    * @availability iOS 10.0+
    */
-  static initCallHandle(callUUID: string, handle: CXHandle): CXStartCallAction { return callSDK<CXStartCallAction>("CallKit_d968214ecc684fb6", 2204494438713901, undefined, [callUUID, handle]); }
+  static initCallHandle(callUUID: string, handle: CXHandle): CXStartCallAction { return callSDK<CXStartCallAction>("CallKit_0e503aef608672fa", 2204494438713901, undefined, [callUUID, handle]); }
   /**
    * init?(coder aDecoder: NSCoder)
    * @availability iOS 10.0+
    */
-  static initCoder(aDecoder: _Foundation_NSCoder): (CXStartCallAction) | null { return callSDK<(CXStartCallAction) | null>("CallKit_d968214ecc684fb6", 3194727814216316, undefined, [aDecoder]); }
+  static initCoder(aDecoder: _Foundation_NSCoder): (CXStartCallAction) | null { return callSDK<(CXStartCallAction) | null>("CallKit_0e503aef608672fa", 3194727814216316, undefined, [aDecoder]); }
   /**
    * var contactIdentifier: String? { get set }
    * @availability iOS 10.0+
    */
-  get contactIdentifier(): (string) | null { return callSDK<(string) | null>("CallKit_d968214ecc684fb6", 4060551261673127, this, []); }
-  set contactIdentifier(value: (string) | null) { callSDK<void>("CallKit_d968214ecc684fb6", 1573292104212729, this, [value]); }
+  get contactIdentifier(): (string) | null { return callSDK<(string) | null>("CallKit_0e503aef608672fa", 4060551261673127, this, []); }
+  set contactIdentifier(value: (string) | null) { callSDK<void>("CallKit_0e503aef608672fa", 1573292104212729, this, [value]); }
   /**
    * @NSCopying var handle: CXHandle { get set }
    * @availability iOS 10.0+
    */
-  get handle(): CXHandle { return callSDK<CXHandle>("CallKit_d968214ecc684fb6", 1270105004161528, this, []); }
-  set handle(value: CXHandle) { callSDK<void>("CallKit_d968214ecc684fb6", 2594035411671212, this, [value]); }
+  get handle(): CXHandle { return callSDK<CXHandle>("CallKit_0e503aef608672fa", 1270105004161528, this, []); }
+  set handle(value: CXHandle) { callSDK<void>("CallKit_0e503aef608672fa", 2594035411671212, this, [value]); }
   /**
    * var isVideo: Bool { get set }
    * @availability iOS 10.0+
    */
-  get isVideo(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 3000055374662386, this, []); }
-  set isVideo(value: boolean) { callSDK<void>("CallKit_d968214ecc684fb6", 1483804471242052, this, [value]); }
+  get isVideo(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 3000055374662386, this, []); }
+  set isVideo(value: boolean) { callSDK<void>("CallKit_0e503aef608672fa", 1483804471242052, this, [value]); }
   declare readonly $type: { "c:objc(cs)CXStartCallAction": true; "c:objc(cs)CXCallAction": true; "c:objc(cs)CXAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "isComplete": true; "timeoutDate": true; "callUUID": true; "contactIdentifier": true; "handle": true; "isVideo": true };
 }
@@ -1146,32 +1146,32 @@ export class CXTransaction extends SDKHandle {
    * func addAction(_ action: CXAction)
    * @availability iOS 10.0+
    */
-  addAction(action: CXAction): void { return callSDK<void>("CallKit_d968214ecc684fb6", 2599746437929619, this, [action]); }
+  addAction(action: CXAction): void { return callSDK<void>("CallKit_0e503aef608672fa", 2599746437929619, this, [action]); }
   /**
    * convenience init(action: CXAction)
    * @availability iOS 10.0+
    */
-  static initAction(action: CXAction): CXTransaction { return callSDK<CXTransaction>("CallKit_d968214ecc684fb6", 526005458958088, undefined, [action]); }
+  static initAction(action: CXAction): CXTransaction { return callSDK<CXTransaction>("CallKit_0e503aef608672fa", 526005458958088, undefined, [action]); }
   /**
    * init(actions: [CXAction])
    * @availability iOS 10.0+
    */
-  static initActions(actions: Array<CXAction>): CXTransaction { return callSDK<CXTransaction>("CallKit_d968214ecc684fb6", 927002783985120, undefined, [actions]); }
+  static initActions(actions: Array<CXAction>): CXTransaction { return callSDK<CXTransaction>("CallKit_0e503aef608672fa", 927002783985120, undefined, [actions]); }
   /**
    * var uuid: UUID { get }
    * @availability iOS 10.0+
    */
-  get uuid(): string { return callSDK<string>("CallKit_d968214ecc684fb6", 2408411974924812, this, []); }
+  get uuid(): string { return callSDK<string>("CallKit_0e503aef608672fa", 2408411974924812, this, []); }
   /**
    * var actions: [CXAction] { get }
    * @availability iOS 10.0+
    */
-  get actions(): Array<CXAction> { return callSDK<Array<CXAction>>("CallKit_d968214ecc684fb6", 3851072499631092, this, []); }
+  get actions(): Array<CXAction> { return callSDK<Array<CXAction>>("CallKit_0e503aef608672fa", 3851072499631092, this, []); }
   /**
    * var isComplete: Bool { get }
    * @availability iOS 10.0+
    */
-  get isComplete(): boolean { return callSDK<boolean>("CallKit_d968214ecc684fb6", 3224745154840917, this, []); }
+  get isComplete(): boolean { return callSDK<boolean>("CallKit_0e503aef608672fa", 3224745154840917, this, []); }
   declare readonly $type: { "c:objc(cs)CXTransaction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "uuid": true; "actions": true; "isComplete": true };
 }
@@ -1181,68 +1181,68 @@ export type CXTranslationEngine = "default" | "custom";
 
 export const CXTranslationEngine = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CXTranslationEngine) | null { return callSDK<(CXTranslationEngine) | null>("CallKit_d968214ecc684fb6", 406546369101636, undefined, [rawValue]); }
+  init(rawValue: number): (CXTranslationEngine) | null { return callSDK<(CXTranslationEngine) | null>("CallKit_0e503aef608672fa", 406546369101636, undefined, [rawValue]); }
 };
 
 /** var CXCallDirectoryPhoneNumberMax: CXCallDirectoryPhoneNumber { get } */
-export const CXCallDirectoryPhoneNumberMax: number = callSDK<number>("CallKit_d968214ecc684fb6", 3231096166840383, undefined, []);
+export const CXCallDirectoryPhoneNumberMax: number = callSDK<number>("CallKit_0e503aef608672fa", 3231096166840383, undefined, []);
 
 /**
  * let CXErrorDomain: String
  * @availability iOS 10.0+
  */
-export const CXErrorDomain: string = callSDK<string>("CallKit_d968214ecc684fb6", 39078823570448, undefined, []);
+export const CXErrorDomain: string = callSDK<string>("CallKit_0e503aef608672fa", 39078823570448, undefined, []);
 
 /**
  * let CXErrorDomainCallDirectoryManager: String
  * @availability iOS 10.0+
  */
-export const CXErrorDomainCallDirectoryManager: string = callSDK<string>("CallKit_d968214ecc684fb6", 1248133140805762, undefined, []);
+export const CXErrorDomainCallDirectoryManager: string = callSDK<string>("CallKit_0e503aef608672fa", 1248133140805762, undefined, []);
 
 /**
  * let CXErrorDomainIncomingCall: String
  * @availability iOS 10.0+
  */
-export const CXErrorDomainIncomingCall: string = callSDK<string>("CallKit_d968214ecc684fb6", 3370091090463619, undefined, []);
+export const CXErrorDomainIncomingCall: string = callSDK<string>("CallKit_0e503aef608672fa", 3370091090463619, undefined, []);
 
 /**
  * let CXErrorDomainNotificationServiceExtension: String
  * @availability iOS 14.5+
  */
-export const CXErrorDomainNotificationServiceExtension: string = callSDK<string>("CallKit_d968214ecc684fb6", 3308859668603494, undefined, []);
+export const CXErrorDomainNotificationServiceExtension: string = callSDK<string>("CallKit_0e503aef608672fa", 3308859668603494, undefined, []);
 
 /**
  * let CXErrorDomainRequestTransaction: String
  * @availability iOS 10.0+
  */
-export const CXErrorDomainRequestTransaction: string = callSDK<string>("CallKit_d968214ecc684fb6", 3374919740795636, undefined, []);
+export const CXErrorDomainRequestTransaction: string = callSDK<string>("CallKit_0e503aef608672fa", 3374919740795636, undefined, []);
 
-registerSDKClass("CXAction", CXAction, { module: "CallKit_d968214ecc684fb6", properties: {"uuid":943226967142042,"isComplete":1109430568502800,"timeoutDate":1788798911541783}, methods: {"fail":{"id":578655518117719},"fulfill":{"id":2201634041783047}} });
-registerSDKClass("CXCallAction", CXCallAction, { module: "CallKit_d968214ecc684fb6", properties: {"callUUID":1650524608018538} });
-registerSDKClass("CXAnswerCallAction", CXAnswerCallAction, { module: "CallKit_d968214ecc684fb6", properties: {}, methods: {"fulfill":{"id":1041024066726098}} });
-registerSDKClass("CXCall", CXCall, { module: "CallKit_d968214ecc684fb6", properties: {"uuid":3547614048716938,"hasConnected":1029265018123793,"hasEnded":413805594676472,"isOnHold":1527941998965733,"isOutgoing":48804483367081} });
-registerSDKClass("CXCallController", CXCallController, { module: "CallKit_d968214ecc684fb6", properties: {"callObserver":3700823950564911}, methods: {"request":{"id":3009860254753661,"hints":[null,{"callback":{"out":[]}}]},"requestTransactionWithCompletion":{"id":3212202201604915,"hints":[null,{"callback":{"out":[]}}]},"requestTransactionWithCompletion79419":{"id":2747797623560731,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CXCallDirectoryExtensionContext", CXCallDirectoryExtensionContext, { module: "CallKit_d968214ecc684fb6", properties: {"delegate":5157099214794,"isIncremental":675652810290029}, methods: {"addBlockingEntry":{"id":2783960659643929},"addIdentificationEntry":{"id":474225185487809},"completeRequest":{"id":3524396580886695,"hints":[{"callback":{"out":[]}}]},"removeAllBlockingEntries":{"id":4452309266359695},"removeAllIdentificationEntries":{"id":1750141817985847},"removeBlockingEntry":{"id":1074507709570298},"removeIdentificationEntry":{"id":348968093038404}} });
+registerSDKClass("CXAction", CXAction, { module: "CallKit_0e503aef608672fa", properties: {"uuid":943226967142042,"isComplete":1109430568502800,"timeoutDate":1788798911541783}, methods: {"fail":{"id":578655518117719},"fulfill":{"id":2201634041783047}} });
+registerSDKClass("CXCallAction", CXCallAction, { module: "CallKit_0e503aef608672fa", properties: {"callUUID":1650524608018538} });
+registerSDKClass("CXAnswerCallAction", CXAnswerCallAction, { module: "CallKit_0e503aef608672fa", properties: {}, methods: {"fulfill":{"id":1041024066726098}} });
+registerSDKClass("CXCall", CXCall, { module: "CallKit_0e503aef608672fa", properties: {"uuid":3547614048716938,"hasConnected":1029265018123793,"hasEnded":413805594676472,"isOnHold":1527941998965733,"isOutgoing":48804483367081} });
+registerSDKClass("CXCallController", CXCallController, { module: "CallKit_0e503aef608672fa", properties: {"callObserver":3700823950564911}, methods: {"request":{"id":3009860254753661,"hints":[null,{"callback":{"out":[]}}]},"requestTransactionWithCompletion":{"id":3212202201604915,"hints":[null,{"callback":{"out":[]}}]},"requestTransactionWithCompletion79419":{"id":2747797623560731,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CXCallDirectoryExtensionContext", CXCallDirectoryExtensionContext, { module: "CallKit_0e503aef608672fa", properties: {"delegate":5157099214794,"isIncremental":675652810290029}, methods: {"addBlockingEntry":{"id":2783960659643929},"addIdentificationEntry":{"id":474225185487809},"completeRequest":{"id":3524396580886695,"hints":[{"callback":{"out":[]}}]},"removeAllBlockingEntries":{"id":4452309266359695},"removeAllIdentificationEntries":{"id":1750141817985847},"removeBlockingEntry":{"id":1074507709570298},"removeIdentificationEntry":{"id":348968093038404}} });
 registerSDKProtocol("c:objc(pl)CXCallDirectoryExtensionContextDelegate", {"requestFailedForWithError":"requestFailed(for:withError:)"});
-registerSDKClass("CXCallDirectoryManager", CXCallDirectoryManager, { module: "CallKit_d968214ecc684fb6", properties: {}, methods: {"getEnabledStatusForExtension":{"id":3598067571077445,"hints":[null,{"callback":{"out":[]}}]},"openSettings":{"id":27768732801659,"hints":[{"callback":{"out":[]}}]},"reloadExtension":{"id":2065904432869870,"hints":[null,{"callback":{"out":[]}}]}} });
-registerSDKClass("CXCallDirectoryProvider", CXCallDirectoryProvider, { module: "CallKit_d968214ecc684fb6", properties: {}, methods: {"beginRequest":{"id":2359628113362158}} });
-registerSDKClass("CXCallObserver", CXCallObserver, { module: "CallKit_d968214ecc684fb6", properties: {"calls":246128762071466}, methods: {"setDelegate":{"id":3770611755335253,"hints":[{"protocol":"c:objc(pl)CXCallObserverDelegate"},null]}} });
+registerSDKClass("CXCallDirectoryManager", CXCallDirectoryManager, { module: "CallKit_0e503aef608672fa", properties: {}, methods: {"getEnabledStatusForExtension":{"id":3598067571077445,"hints":[null,{"callback":{"out":[]}}]},"openSettings":{"id":27768732801659,"hints":[{"callback":{"out":[]}}]},"reloadExtension":{"id":2065904432869870,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CXCallDirectoryProvider", CXCallDirectoryProvider, { module: "CallKit_0e503aef608672fa", properties: {}, methods: {"beginRequest":{"id":2359628113362158}} });
+registerSDKClass("CXCallObserver", CXCallObserver, { module: "CallKit_0e503aef608672fa", properties: {"calls":246128762071466}, methods: {"setDelegate":{"id":3770611755335253,"hints":[{"protocol":"c:objc(pl)CXCallObserverDelegate"},null]}} });
 registerSDKProtocol("c:objc(pl)CXCallObserverDelegate", {"callObserverCallChanged":"callObserver(_:callChanged:)"});
-registerSDKClass("CXCallUpdate", CXCallUpdate, { module: "CallKit_d968214ecc684fb6", properties: {"hasVideo":262888011425095,"localizedCallerName":3725482972477904,"remoteHandle":3785332438743879,"supportsDTMF":659427538850012,"supportsGrouping":3934967392184749,"supportsHolding":229562988888281,"supportsUngrouping":557744305489330} });
-registerSDKClass("CXEndCallAction", CXEndCallAction, { module: "CallKit_d968214ecc684fb6", properties: {}, methods: {"fulfill":{"id":4135805859349608}} });
-registerSDKClass("CallKit.CXError", CXError, { module: "CallKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("CallKit.CXErrorCodeCallDirectoryManagerError", CXErrorCodeCallDirectoryManagerError, { module: "CallKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("CallKit.CXErrorCodeIncomingCallError", CXErrorCodeIncomingCallError, { module: "CallKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("CallKit.CXErrorCodeNotificationServiceExtensionError", CXErrorCodeNotificationServiceExtensionError, { module: "CallKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("CallKit.CXErrorCodeRequestTransactionError", CXErrorCodeRequestTransactionError, { module: "CallKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("CXHandle", CXHandle, { module: "CallKit_d968214ecc684fb6", properties: {"type":568468262904542,"value":332762005813668} });
-registerSDKClass("CXPlayDTMFCallAction", CXPlayDTMFCallAction, { module: "CallKit_d968214ecc684fb6", properties: {"digits":4307163811573085,"type":1433465312468812} });
-registerSDKClass("CXProvider", CXProvider, { module: "CallKit_d968214ecc684fb6", properties: {"configuration":3673142627433053,"pendingTransactions":616851649499611}, methods: {"invalidate":{"id":2640157250391719},"pendingCallActions":{"id":3064836963092698},"reportCallWithEndedAtReason":{"id":4428809172805084},"reportCallWithUpdated":{"id":1579370233765769},"reportNewIncomingCall":{"id":815264094340521,"hints":[null,null,{"callback":{"out":[]}}]},"reportOutgoingCallWithConnectedAt":{"id":4354511273460482},"reportOutgoingCallWithStartedConnectingAt":{"id":4286493579935536},"setDelegate":{"id":1523110949599288}} });
-registerSDKClass("CXProviderConfiguration", CXProviderConfiguration, { module: "CallKit_d968214ecc684fb6", properties: {"iconTemplateImageData":1083579181848174,"includesCallsInRecents":339322927437908,"localizedName":162887654520113,"maximumCallGroups":2510421939935913,"maximumCallsPerCallGroup":805555542563446,"ringtoneSound":2935884131950004,"supportsAudioTranslation":2072342433063227,"supportsVideo":694707135226136} });
+registerSDKClass("CXCallUpdate", CXCallUpdate, { module: "CallKit_0e503aef608672fa", properties: {"hasVideo":262888011425095,"localizedCallerName":3725482972477904,"remoteHandle":3785332438743879,"supportsDTMF":659427538850012,"supportsGrouping":3934967392184749,"supportsHolding":229562988888281,"supportsUngrouping":557744305489330} });
+registerSDKClass("CXEndCallAction", CXEndCallAction, { module: "CallKit_0e503aef608672fa", properties: {}, methods: {"fulfill":{"id":4135805859349608}} });
+registerSDKClass("CallKit.CXError", CXError, { module: "CallKit_0e503aef608672fa", properties: {} });
+registerSDKClass("CallKit.CXErrorCodeCallDirectoryManagerError", CXErrorCodeCallDirectoryManagerError, { module: "CallKit_0e503aef608672fa", properties: {} });
+registerSDKClass("CallKit.CXErrorCodeIncomingCallError", CXErrorCodeIncomingCallError, { module: "CallKit_0e503aef608672fa", properties: {} });
+registerSDKClass("CallKit.CXErrorCodeNotificationServiceExtensionError", CXErrorCodeNotificationServiceExtensionError, { module: "CallKit_0e503aef608672fa", properties: {} });
+registerSDKClass("CallKit.CXErrorCodeRequestTransactionError", CXErrorCodeRequestTransactionError, { module: "CallKit_0e503aef608672fa", properties: {} });
+registerSDKClass("CXHandle", CXHandle, { module: "CallKit_0e503aef608672fa", properties: {"type":568468262904542,"value":332762005813668} });
+registerSDKClass("CXPlayDTMFCallAction", CXPlayDTMFCallAction, { module: "CallKit_0e503aef608672fa", properties: {"digits":4307163811573085,"type":1433465312468812} });
+registerSDKClass("CXProvider", CXProvider, { module: "CallKit_0e503aef608672fa", properties: {"configuration":3673142627433053,"pendingTransactions":616851649499611}, methods: {"invalidate":{"id":2640157250391719},"pendingCallActions":{"id":3064836963092698},"reportCallWithEndedAtReason":{"id":4428809172805084},"reportCallWithUpdated":{"id":1579370233765769},"reportNewIncomingCall":{"id":815264094340521,"hints":[null,null,{"callback":{"out":[]}}]},"reportOutgoingCallWithConnectedAt":{"id":4354511273460482},"reportOutgoingCallWithStartedConnectingAt":{"id":4286493579935536},"setDelegate":{"id":1523110949599288}} });
+registerSDKClass("CXProviderConfiguration", CXProviderConfiguration, { module: "CallKit_0e503aef608672fa", properties: {"iconTemplateImageData":1083579181848174,"includesCallsInRecents":339322927437908,"localizedName":162887654520113,"maximumCallGroups":2510421939935913,"maximumCallsPerCallGroup":805555542563446,"ringtoneSound":2935884131950004,"supportsAudioTranslation":2072342433063227,"supportsVideo":694707135226136} });
 registerSDKProtocol("c:objc(pl)CXProviderDelegate", {"providerDidReset":"providerDidReset(_:)","providerDidBegin":"providerDidBegin(_:)","providerExecute":"provider(_:execute:)","providerPerform":"provider(_:perform:)","providerTimedOutPerforming":"provider(_:timedOutPerforming:)","providerDidActivate":"provider(_:didActivate:)","providerDidDeactivate":"provider(_:didDeactivate:)"});
-registerSDKClass("CXSetGroupCallAction", CXSetGroupCallAction, { module: "CallKit_d968214ecc684fb6", properties: {"callUUIDToGroupWith":2680731104256811} });
-registerSDKClass("CXSetHeldCallAction", CXSetHeldCallAction, { module: "CallKit_d968214ecc684fb6", properties: {"isOnHold":2400447113593224} });
-registerSDKClass("CXSetMutedCallAction", CXSetMutedCallAction, { module: "CallKit_d968214ecc684fb6", properties: {"isMuted":3253946574345638} });
-registerSDKClass("CXSetTranslatingCallAction", CXSetTranslatingCallAction, { module: "CallKit_d968214ecc684fb6", properties: {"isTranslating":3723628171720389,"localLanguage":2717371890508965,"remoteLanguage":453452739938313}, methods: {"fulfill":{"id":2718861745079828}} });
-registerSDKClass("CXStartCallAction", CXStartCallAction, { module: "CallKit_d968214ecc684fb6", properties: {"contactIdentifier":4060551261673127,"handle":1270105004161528,"isVideo":3000055374662386}, methods: {"fulfill":{"id":1157545619060902}} });
-registerSDKClass("CXTransaction", CXTransaction, { module: "CallKit_d968214ecc684fb6", properties: {"uuid":2408411974924812,"actions":3851072499631092,"isComplete":3224745154840917}, methods: {"addAction":{"id":2599746437929619}} });
+registerSDKClass("CXSetGroupCallAction", CXSetGroupCallAction, { module: "CallKit_0e503aef608672fa", properties: {"callUUIDToGroupWith":2680731104256811} });
+registerSDKClass("CXSetHeldCallAction", CXSetHeldCallAction, { module: "CallKit_0e503aef608672fa", properties: {"isOnHold":2400447113593224} });
+registerSDKClass("CXSetMutedCallAction", CXSetMutedCallAction, { module: "CallKit_0e503aef608672fa", properties: {"isMuted":3253946574345638} });
+registerSDKClass("CXSetTranslatingCallAction", CXSetTranslatingCallAction, { module: "CallKit_0e503aef608672fa", properties: {"isTranslating":3723628171720389,"localLanguage":2717371890508965,"remoteLanguage":453452739938313}, methods: {"fulfill":{"id":2718861745079828}} });
+registerSDKClass("CXStartCallAction", CXStartCallAction, { module: "CallKit_0e503aef608672fa", properties: {"contactIdentifier":4060551261673127,"handle":1270105004161528,"isVideo":3000055374662386}, methods: {"fulfill":{"id":1157545619060902}} });
+registerSDKClass("CXTransaction", CXTransaction, { module: "CallKit_0e503aef608672fa", properties: {"uuid":2408411974924812,"actions":3851072499631092,"isComplete":3224745154840917}, methods: {"addAction":{"id":2599746437929619}} });

@@ -149,22 +149,22 @@ type $SDK188 = Array<BlendShapeWeights>;
 type $SDK189 = SampledAnimation_SkeletalAnimationOperation<JointTransforms>;
 type $SDK190 = SampledAnimation_SkeletalAnimationOperation_RootMotionOptions<JointTransforms>;
 type $SDK191 = Entity_ChildCollection_IndexingIterator<Scene_AnchorCollection>;
-type $SDK192 = (SceneUnderstandingComponent_EntityType) | null;
-type $SDK194 = Array<SkeletonResource_BlendMask>;
-type $SDK195 = Array<SkeletonResource_Joint>;
-type $SDK198 = Array<SpatialTrackingSession_Configuration_AnchorCapability>;
-type $SDK199 = Array<SpatialTrackingSession_Configuration_SceneUnderstandingCapability>;
-type $SDK202 = {
+type $SDK193 = (SceneUnderstandingComponent_EntityType) | null;
+type $SDK195 = Array<SkeletonResource_BlendMask>;
+type $SDK196 = Array<SkeletonResource_Joint>;
+type $SDK199 = Array<SpatialTrackingSession_Configuration_AnchorCapability>;
+type $SDK200 = Array<SpatialTrackingSession_Configuration_SceneUnderstandingCapability>;
+type $SDK203 = {
     width: number;
     height: number;
 };
-type $SDK203 = (_Foundation_AttributedString) | null;
-type $SDK204 = LoadRequest<TextureResource>;
-type $SDK206 = Array<_CoreGraphics_CGImage>;
-type $SDK207 = (TextureResource_Semantic) | null;
-type $SDK212 = (_AVFoundation_AVSampleBufferVideoRenderer) | null;
-type $SDK213 = (_AVFoundation_AVPlayer) | null;
-type $SDK215 = (VideoPlaybackController_ViewingMode) | null;
+type $SDK204 = (_Foundation_AttributedString) | null;
+type $SDK205 = LoadRequest<TextureResource>;
+type $SDK207 = Array<_CoreGraphics_CGImage>;
+type $SDK208 = (TextureResource_Semantic) | null;
+type $SDK213 = (_AVFoundation_AVSampleBufferVideoRenderer) | null;
+type $SDK214 = (_AVFoundation_AVPlayer) | null;
+type $SDK216 = (VideoPlaybackController_ViewingMode) | null;
 /**
  * struct AccessibilityComponent
  * @availability iOS 17.0+
@@ -20127,7 +20127,7 @@ export declare class Scene_Publisher<E = unknown> extends SDKHandle {
     readonly $type: {
         "s:17RealityFoundation5SceneC9PublisherV": true;
     };
-    readonly $element: unknown;
+    readonly $element: Scene_Publisher_Output<unknown>;
 }
 /**
  * typealias Failure = Never
@@ -20284,13 +20284,13 @@ export declare class SceneUnderstandingComponent extends SDKHandle {
      * init(entityType: SceneUnderstandingComponent.EntityType?)
      * @availability iOS 15.0+
      */
-    static initEntityType(entityType?: $SDK192): SceneUnderstandingComponent;
+    static initEntityType(entityType?: $SDK193): SceneUnderstandingComponent;
     /**
      * var entityType: SceneUnderstandingComponent.EntityType?
      * @availability iOS 15.0+
      */
-    get entityType(): $SDK192;
-    set entityType(value: $SDK192);
+    get entityType(): $SDK193;
+    set entityType(value: $SDK193);
     /**
      * var origin: SceneUnderstandingComponent.Origin { get }
      * @availability iOS 18.0+
@@ -20946,12 +20946,12 @@ export declare class SkeletonResource_AnimationEvaluation extends SDKHandle {
      * let blendMasks: [SkeletonResource.BlendMask]
      * @availability iOS 27.0+
      */
-    get blendMasks(): $SDK194;
+    get blendMasks(): $SDK195;
     /**
      * init(ikResources: [IKResource] = [], blendMasks: [SkeletonResource.BlendMask] = [])
      * @availability iOS 27.0+
      */
-    static init(ikResources?: Array<IKResource>, blendMasks?: $SDK194): SkeletonResource_AnimationEvaluation;
+    static init(ikResources?: Array<IKResource>, blendMasks?: $SDK195): SkeletonResource_AnimationEvaluation;
     /**
      * let ikResources: [IKResource]
      * @availability iOS 27.0+
@@ -21021,7 +21021,7 @@ export declare class SkeletonResource_Joint extends SDKHandle {
      * let children: [SkeletonResource.Joint]
      * @availability iOS 27.0+
      */
-    get children(): $SDK195;
+    get children(): $SDK196;
     /**
      * init(_ name: String, restPoseTransform: Transform = .identity, @SkeletonResource.JointBuilder children: () throws -> [SkeletonResource.Joint] = { [] }) throws
      * @availability iOS 27.0+
@@ -21045,12 +21045,12 @@ export declare class SkeletonResource_JointBuilder extends SDKHandle {
      * static func buildExpression(_ expression: SkeletonResource.Joint) -> [SkeletonResource.Joint]
      * @availability iOS 27.0+
      */
-    static buildExpression(expression: SkeletonResource_Joint): $SDK195;
+    static buildExpression(expression: SkeletonResource_Joint): $SDK196;
     /**
      * static func buildExpression(_ expression: [SkeletonResource.Joint]) -> [SkeletonResource.Joint]
      * @availability iOS 27.0+
      */
-    static buildExpression41642(expression: $SDK195): $SDK195;
+    static buildExpression41642(expression: $SDK196): $SDK196;
     readonly $type: {
         "s:17RealityFoundation16SkeletonResourceC12JointBuilderV": true;
     };
@@ -21214,7 +21214,7 @@ export declare class SpatialTrackingSession_Configuration extends SDKHandle {
      * init(tracking anchorCapabilities: Set<SpatialTrackingSession.Configuration.AnchorCapability> = [], sceneUnderstanding: Set<SpatialTrackingSession.Configuration.SceneUnderstandingCapability> = [], camera: SpatialTrackingSession.Configuration.Camera = .back)
      * @availability iOS 18.0+
      */
-    static init(anchorCapabilities?: $SDK198, sceneUnderstanding?: $SDK199, camera?: SpatialTrackingSession_Configuration_Camera): SpatialTrackingSession_Configuration;
+    static init(anchorCapabilities?: $SDK199, sceneUnderstanding?: $SDK200, camera?: SpatialTrackingSession_Configuration_Camera): SpatialTrackingSession_Configuration;
     readonly $type: {
         "s:17RealityFoundation22SpatialTrackingSessionC13ConfigurationV": true;
     };
@@ -21326,7 +21326,7 @@ export declare class SpatialTrackingSession_UnavailableCapabilities extends SDKH
      * var sceneUnderstanding: Set<SpatialTrackingSession.Configuration.SceneUnderstandingCapability> { get }
      * @availability iOS 18.0+
      */
-    get sceneUnderstanding(): $SDK199;
+    get sceneUnderstanding(): $SDK200;
     /**
      * var missingCameraAuthorization: Bool? { get }
      * @availability iOS 18.0+
@@ -21336,7 +21336,7 @@ export declare class SpatialTrackingSession_UnavailableCapabilities extends SDKH
      * var anchor: Set<SpatialTrackingSession.Configuration.AnchorCapability> { get }
      * @availability iOS 18.0+
      */
-    get anchor(): $SDK198;
+    get anchor(): $SDK199;
     /**
      * init()
      * @availability iOS 18.0+
@@ -21838,14 +21838,14 @@ export declare class TextComponent extends SDKHandle {
      * var size: CGSize { get set }
      * @availability iOS 18.0+
      */
-    get size(): $SDK202;
-    set size(value: $SDK202);
+    get size(): $SDK203;
+    set size(value: $SDK203);
     /**
      * var text: AttributedString?
      * @availability iOS 18.0+
      */
-    get text(): $SDK203;
-    set text(value: $SDK203);
+    get text(): $SDK204;
+    set text(value: $SDK204);
     /**
      * init()
      * @availability iOS 18.0+
@@ -21930,7 +21930,7 @@ export declare class TextureResource extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    replaceAsync(cgImage: _CoreGraphics_CGImage, options: TextureResource_CreateOptions): Promise<$SDK204>;
+    replaceAsync(cgImage: _CoreGraphics_CGImage, options: TextureResource_CreateOptions): Promise<$SDK205>;
     /**
      * @MainActor @preconcurrency convenience init(cubeFromImage cgImage: CGImage, named resourceName: String? = nil, options: TextureResource.CreateOptions) throws
      * @availability iOS 18.0+
@@ -21951,17 +21951,17 @@ export declare class TextureResource extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    static generateAsync(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<$SDK204>;
+    static generateAsync(cgImage: _CoreGraphics_CGImage, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<$SDK205>;
     /**
      * @MainActor @preconcurrency static func texture2DArray(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture2DArraySlicesNamedOptions(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture2DArraySlicesNamedOptions(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency static func texture2DArray(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture2DArraySlicesNamedOptions4110(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture2DArraySlicesNamedOptions4110(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency var mipmapLevelCount: Int { get }
      * @availability iOS 15.0+
@@ -21991,12 +21991,12 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency static func cube(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static cubeSlicesNamedOptions(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static cubeSlicesNamedOptions(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency static func cube(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static cubeSlicesNamedOptions866(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static cubeSlicesNamedOptions866(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency static func load(contentsOf url: URL, withName resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 15.0+
@@ -22062,7 +22062,7 @@ export declare class TextureResource extends SDKHandle {
      * @MainActor @preconcurrency var semantic: TextureResource.Semantic? { get }
      * @availability iOS 15.0+
      */
-    get semantic(): Promise<$SDK207>;
+    get semantic(): Promise<$SDK208>;
     /**
      * @MainActor @preconcurrency func copyAsync(to texture: any MTLTexture, completionHandler: @escaping @MainActor ((any Error)?) -> Void)
      * @availability iOS 15.0+
@@ -22074,23 +22074,23 @@ export declare class TextureResource extends SDKHandle {
      * @availability iOS 15.0+
      * @deprecated iOS 18.0
      */
-    static loadAsyncContentsOfWithNameOptions(url: string, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<$SDK204>;
+    static loadAsyncContentsOfWithNameOptions(url: string, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<$SDK205>;
     /**
      * @MainActor @preconcurrency static func loadAsync(contentsOf url: URL, withName resourceName: String? = nil) -> LoadRequest<TextureResource>
      * @availability iOS 13.0+
      * @deprecated iOS 18.0
      */
-    static loadAsyncContentsOfWithName(url: string, resourceName?: (string) | null): Promise<$SDK204>;
+    static loadAsyncContentsOfWithName(url: string, resourceName?: (string) | null): Promise<$SDK205>;
     /**
      * @MainActor @preconcurrency static func texture3D(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture3DSlicesNamedOptions(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture3DSlicesNamedOptions(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     /**
      * @MainActor @preconcurrency static func texture3D(slices: [CGImage], named resourceName: String? = nil, options: TextureResource.CreateOptions) async throws -> TextureResource
      * @availability iOS 18.0+
      */
-    static texture3DSlicesNamedOptions94552(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    static texture3DSlicesNamedOptions94552(slices: $SDK207, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
     readonly $type: {
         "s:17RealityFoundation15TextureResourceC": true;
     };
@@ -22212,18 +22212,18 @@ export declare class TextureResource_CreateOptions extends SDKHandle {
      * init(semantic: TextureResource.Semantic?, compression: TextureResource.Compression, mipmapsMode: TextureResource.MipmapsMode = .allocateAndGenerateAll)
      * @availability iOS 18.0+
      */
-    static initSemanticCompressionMipmapsMode(semantic: $SDK207, compression: TextureResource_Compression, mipmapsMode?: TextureResource_MipmapsMode): Promise<TextureResource_CreateOptions>;
+    static initSemanticCompressionMipmapsMode(semantic: $SDK208, compression: TextureResource_Compression, mipmapsMode?: TextureResource_MipmapsMode): Promise<TextureResource_CreateOptions>;
     /**
      * init(semantic: TextureResource.Semantic?, mipmapsMode: TextureResource.MipmapsMode = .allocateAndGenerateAll)
      * @availability iOS 15.0+
      */
-    static initSemanticMipmapsMode(semantic?: $SDK207, mipmapsMode?: TextureResource_MipmapsMode): Promise<TextureResource_CreateOptions>;
+    static initSemanticMipmapsMode(semantic?: $SDK208, mipmapsMode?: TextureResource_MipmapsMode): Promise<TextureResource_CreateOptions>;
     /**
      * var semantic: TextureResource.Semantic?
      * @availability iOS 15.0+
      */
-    get semantic(): Promise<$SDK207>;
-    setSemantic(value?: $SDK207): Promise<void>;
+    get semantic(): Promise<$SDK208>;
+    setSemantic(value?: $SDK208): Promise<void>;
     readonly $type: {
         "s:17RealityFoundation15TextureResourceC13CreateOptionsV": true;
     };
@@ -23008,7 +23008,7 @@ export declare class VideoMaterial extends SDKHandle {
      * var videoRenderer: AVSampleBufferVideoRenderer? { get }
      * @availability iOS 18.0+
      */
-    get videoRenderer(): $SDK212;
+    get videoRenderer(): $SDK213;
     /**
      * var triangleFillMode: VideoMaterial.TriangleFillMode { get set }
      * @availability iOS 18.0+
@@ -23024,8 +23024,8 @@ export declare class VideoMaterial extends SDKHandle {
      * @MainActor @preconcurrency var avPlayer: AVPlayer? { get set }
      * @availability iOS 14.0+
      */
-    get avPlayer(): Promise<$SDK213>;
-    setAvPlayer(value?: $SDK213): Promise<void>;
+    get avPlayer(): Promise<$SDK214>;
+    setAvPlayer(value?: $SDK214): Promise<void>;
     readonly $type: {
         "s:17RealityFoundation13VideoMaterialV": true;
     };
@@ -23076,7 +23076,7 @@ export declare class VideoPlaybackController extends SDKHandle {
      * @MainActor @preconcurrency var currentViewingMode: VideoPlaybackController.ViewingMode? { get }
      * @availability iOS 18.0+
      */
-    get currentViewingMode(): Promise<$SDK215>;
+    get currentViewingMode(): Promise<$SDK216>;
     /**
      * @MainActor @preconcurrency var preferredViewingMode: VideoPlaybackController.ViewingMode { get set }
      * @availability iOS 18.0+
@@ -23106,7 +23106,7 @@ export declare class VideoPlayerComponent extends SDKHandle {
      * var avPlayer: AVPlayer? { get }
      * @availability iOS 18.0+
      */
-    get avPlayer(): $SDK213;
+    get avPlayer(): $SDK214;
     /**
      * var screenVideoDimension: SIMD2<Float> { get }
      * @availability iOS 18.0+
@@ -23116,7 +23116,7 @@ export declare class VideoPlayerComponent extends SDKHandle {
      * var viewingMode: VideoPlaybackController.ViewingMode? { get }
      * @availability iOS 18.0+
      */
-    get viewingMode(): $SDK215;
+    get viewingMode(): $SDK216;
     /**
      * init(videoRenderer: AVSampleBufferVideoRenderer)
      * @availability iOS 18.0+
@@ -23126,7 +23126,7 @@ export declare class VideoPlayerComponent extends SDKHandle {
      * var videoRenderer: AVSampleBufferVideoRenderer? { get }
      * @availability iOS 18.0+
      */
-    get videoRenderer(): $SDK212;
+    get videoRenderer(): $SDK213;
     /**
      * var playerScreenSize: SIMD2<Float> { get }
      * @availability iOS 18.0+
@@ -23249,12 +23249,12 @@ export declare class VideoPlayerEvents_ViewingModeDidChange extends SDKHandle {
      * let currentViewingMode: VideoPlaybackController.ViewingMode?
      * @availability iOS 18.0+
      */
-    get currentViewingMode(): $SDK215;
+    get currentViewingMode(): $SDK216;
     /**
      * let previousViewingMode: VideoPlaybackController.ViewingMode?
      * @availability iOS 18.0+
      */
-    get previousViewingMode(): $SDK215;
+    get previousViewingMode(): $SDK216;
     readonly $type: {
         "s:17RealityFoundation17VideoPlayerEventsO20ViewingModeDidChangeV": true;
     };

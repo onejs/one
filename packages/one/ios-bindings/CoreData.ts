@@ -97,457 +97,457 @@ export class CocoaError extends SDKHandle {
    * static var managedObjectMergeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectMergeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2213168973660160, undefined, []); }
+  static get managedObjectMergeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2213168973660160, undefined, []); }
   /**
    * static var migrationCancelledError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationCancelledError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2821458234761659, undefined, []); }
+  static get migrationCancelledError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2821458234761659, undefined, []); }
   /**
    * static var persistentStoreOpenError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreOpenError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 244149132432254, undefined, []); }
+  static get persistentStoreOpenError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 244149132432254, undefined, []); }
   /**
    * static var persistentStoreSaveError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreSaveError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 104297572606593, undefined, []); }
+  static get persistentStoreSaveError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 104297572606593, undefined, []); }
   /**
    * static var externalRecordImportError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get externalRecordImportError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3978970585554878, undefined, []); }
+  static get externalRecordImportError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3978970585554878, undefined, []); }
   /**
    * static var inferredMappingModelError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get inferredMappingModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3217089755482240, undefined, []); }
+  static get inferredMappingModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3217089755482240, undefined, []); }
   /**
    * static var entityMigrationPolicyError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get entityMigrationPolicyError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3746047277669773, undefined, []); }
+  static get entityMigrationPolicyError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3746047277669773, undefined, []); }
   /**
    * static var validationDateTooLateError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationDateTooLateError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3073381484426125, undefined, []); }
+  static get validationDateTooLateError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3073381484426125, undefined, []); }
   /**
    * static var validationDateTooSoonError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationDateTooSoonError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4340164551675723, undefined, []); }
+  static get validationDateTooSoonError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4340164551675723, undefined, []); }
   /**
    * static var validationInvalidDateError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationInvalidDateError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1737676412691333, undefined, []); }
+  static get validationInvalidDateError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1737676412691333, undefined, []); }
   /**
    * static var persistentStoreTimeoutError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreTimeoutError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1682910294843523, undefined, []); }
+  static get persistentStoreTimeoutError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1682910294843523, undefined, []); }
   /**
    * static var managedObjectValidationError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectValidationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1340878048553319, undefined, []); }
+  static get managedObjectValidationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1340878048553319, undefined, []); }
   /**
    * static var validationStringTooLongError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationStringTooLongError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2219869263628092, undefined, []); }
+  static get validationStringTooLongError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2219869263628092, undefined, []); }
   /**
    * static var persistentStoreOperationError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreOperationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1615833694689732, undefined, []); }
+  static get persistentStoreOperationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1615833694689732, undefined, []); }
   /**
    * static var validationMultipleErrorsError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationMultipleErrorsError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3236023078205400, undefined, []); }
+  static get validationMultipleErrorsError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3236023078205400, undefined, []); }
   /**
    * static var validationNumberTooLargeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationNumberTooLargeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 599669827019129, undefined, []); }
+  static get validationNumberTooLargeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 599669827019129, undefined, []); }
   /**
    * static var validationNumberTooSmallError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationNumberTooSmallError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 811603767637070, undefined, []); }
+  static get validationNumberTooSmallError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 811603767637070, undefined, []); }
   /**
    * static var validationStringTooShortError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationStringTooShortError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 837101406050378, undefined, []); }
+  static get validationStringTooShortError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 837101406050378, undefined, []); }
   /**
    * static var persistentStoreInvalidTypeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreInvalidTypeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3680896827988779, undefined, []); }
+  static get persistentStoreInvalidTypeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3680896827988779, undefined, []); }
   /**
    * static var managedObjectContextLockingError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectContextLockingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2158086848879236, undefined, []); }
+  static get managedObjectContextLockingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2158086848879236, undefined, []); }
   /**
    * static var migrationManagerSourceStoreError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationManagerSourceStoreError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 863795621505965, undefined, []); }
+  static get migrationManagerSourceStoreError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 863795621505965, undefined, []); }
   /**
    * static var migrationMissingSourceModelError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationMissingSourceModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 528767458232773, undefined, []); }
+  static get migrationMissingSourceModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 528767458232773, undefined, []); }
   /**
    * static var persistentStoreTypeMismatchError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreTypeMismatchError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4401108788677502, undefined, []); }
+  static get persistentStoreTypeMismatchError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4401108788677502, undefined, []); }
   /**
    * static var managedObjectConstraintMergeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectConstraintMergeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2078019911439520, undefined, []); }
+  static get managedObjectConstraintMergeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2078019911439520, undefined, []); }
   /**
    * static var migrationMissingMappingModelError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationMissingMappingModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2611260238367503, undefined, []); }
+  static get migrationMissingMappingModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2611260238367503, undefined, []); }
   /**
    * static var persistentStoreSaveConflictsError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreSaveConflictsError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3530043857076995, undefined, []); }
+  static get persistentStoreSaveConflictsError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3530043857076995, undefined, []); }
   /**
    * static var persistentStoreIncompleteSaveError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreIncompleteSaveError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2961827562886112, undefined, []); }
+  static get persistentStoreIncompleteSaveError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2961827562886112, undefined, []); }
   /**
    * static var validationStringPatternMatchingError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationStringPatternMatchingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 813123631989253, undefined, []); }
+  static get validationStringPatternMatchingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 813123631989253, undefined, []); }
   /**
    * static var migrationManagerDestinationStoreError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationManagerDestinationStoreError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4114411302725889, undefined, []); }
+  static get migrationManagerDestinationStoreError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4114411302725889, undefined, []); }
   /**
    * static var managedObjectExternalRelationshipError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectExternalRelationshipError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 664002893171923, undefined, []); }
+  static get managedObjectExternalRelationshipError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 664002893171923, undefined, []); }
   /**
    * static var managedObjectReferentialIntegrityError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectReferentialIntegrityError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2586986300145208, undefined, []); }
+  static get managedObjectReferentialIntegrityError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2586986300145208, undefined, []); }
   /**
    * static var persistentStoreCoordinatorLockingError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreCoordinatorLockingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3617015154846239, undefined, []); }
+  static get persistentStoreCoordinatorLockingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3617015154846239, undefined, []); }
   /**
    * static var persistentStoreIncompatibleSchemaError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreIncompatibleSchemaError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1401703300186823, undefined, []); }
+  static get persistentStoreIncompatibleSchemaError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1401703300186823, undefined, []); }
   /**
    * static var validationMissingMandatoryPropertyError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationMissingMandatoryPropertyError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1518292009651184, undefined, []); }
+  static get validationMissingMandatoryPropertyError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1518292009651184, undefined, []); }
   /**
    * static var validationRelationshipDeniedDeleteError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationRelationshipDeniedDeleteError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1904422495670770, undefined, []); }
+  static get validationRelationshipDeniedDeleteError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1904422495670770, undefined, []); }
   /**
    * static var persistentStoreUnsupportedRequestTypeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreUnsupportedRequestTypeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2487648593649802, undefined, []); }
+  static get persistentStoreUnsupportedRequestTypeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2487648593649802, undefined, []); }
   /**
    * static var persistentStoreIncompatibleVersionHashError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreIncompatibleVersionHashError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 829044233312541, undefined, []); }
+  static get persistentStoreIncompatibleVersionHashError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 829044233312541, undefined, []); }
   /**
    * static var validationRelationshipLacksMinimumCountError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationRelationshipLacksMinimumCountError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 133121640955962, undefined, []); }
+  static get validationRelationshipLacksMinimumCountError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 133121640955962, undefined, []); }
   /**
    * static var validationRelationshipExceedsMaximumCountError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationRelationshipExceedsMaximumCountError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 422236985636484, undefined, []); }
+  static get validationRelationshipExceedsMaximumCountError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 422236985636484, undefined, []); }
   /**
    * static var coreData: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get coreData(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 594839606722462, undefined, []); }
+  static get coreData(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 594839606722462, undefined, []); }
   /**
    * static var coreDataError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get coreDataError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1293342639182451, undefined, []); }
+  static get coreDataError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1293342639182451, undefined, []); }
   /**
    * static var sqliteError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get sqliteError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3359426237495972, undefined, []); }
+  static get sqliteError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3359426237495972, undefined, []); }
   /**
    * static var migrationError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3906445545686807, undefined, []); }
+  static get migrationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3906445545686807, undefined, []); }
   /**
    * var validationKey: String? { get }
    * @availability iOS 3.0+
    */
-  get validationKey(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 95541247426588, this, []); }
+  get validationKey(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 95541247426588, this, []); }
   /**
    * var affectedStores: [AnyObject]? { get }
    * @availability iOS 3.0+
    */
-  get affectedStores(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("CoreData_d968214ecc684fb6", 385387700094480, this, []); }
+  get affectedStores(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("CoreData_0e503aef608672fa", 385387700094480, this, []); }
   /**
    * var affectedObjects: [AnyObject]? { get }
    * @availability iOS 3.0+
    */
-  get affectedObjects(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("CoreData_d968214ecc684fb6", 1633742209872173, this, []); }
+  get affectedObjects(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("CoreData_0e503aef608672fa", 1633742209872173, this, []); }
   /**
    * var validationValue: Any? { get }
    * @availability iOS 3.0+
    */
-  get validationValue(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 822436392076326, this, []); }
+  get validationValue(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 822436392076326, this, []); }
   /**
    * var validationObject: Any? { get }
    * @availability iOS 3.0+
    */
-  get validationObject(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 3344483634289829, this, []); }
+  get validationObject(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 3344483634289829, this, []); }
   /**
    * static var managedObjectMerge: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectMerge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3766742144061437, undefined, []); }
+  static get managedObjectMerge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3766742144061437, undefined, []); }
   /**
    * static var migrationCancelled: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationCancelled(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 301845255467245, undefined, []); }
+  static get migrationCancelled(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 301845255467245, undefined, []); }
   /**
    * static var persistentStoreOpen: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreOpen(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3967790219264591, undefined, []); }
+  static get persistentStoreOpen(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3967790219264591, undefined, []); }
   /**
    * static var persistentStoreSave: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreSave(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1177431329965889, undefined, []); }
+  static get persistentStoreSave(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1177431329965889, undefined, []); }
   /**
    * var validationPredicate: NSPredicate? { get }
    * @availability iOS 3.0+
    */
-  get validationPredicate(): $SDK0 { return callSDK<$SDK0>("CoreData_d968214ecc684fb6", 3747983486322352, this, []); }
+  get validationPredicate(): $SDK0 { return callSDK<$SDK0>("CoreData_0e503aef608672fa", 3747983486322352, this, []); }
   /**
    * static var externalRecordImport: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get externalRecordImport(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4295115260466335, undefined, []); }
+  static get externalRecordImport(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4295115260466335, undefined, []); }
   /**
    * static var inferredMappingModel: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get inferredMappingModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2411471927163910, undefined, []); }
+  static get inferredMappingModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2411471927163910, undefined, []); }
   /**
    * static var entityMigrationPolicy: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get entityMigrationPolicy(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3612817913913667, undefined, []); }
+  static get entityMigrationPolicy(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3612817913913667, undefined, []); }
   /**
    * static var validationDateTooLate: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationDateTooLate(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1677568155187638, undefined, []); }
+  static get validationDateTooLate(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1677568155187638, undefined, []); }
   /**
    * static var validationDateTooSoon: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationDateTooSoon(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3677906682351926, undefined, []); }
+  static get validationDateTooSoon(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3677906682351926, undefined, []); }
   /**
    * static var validationInvalidDate: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationInvalidDate(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4131694611004013, undefined, []); }
+  static get validationInvalidDate(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4131694611004013, undefined, []); }
   /**
    * static var persistentStoreTimeout: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreTimeout(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2609267878936612, undefined, []); }
+  static get persistentStoreTimeout(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2609267878936612, undefined, []); }
   /**
    * static var managedObjectValidation: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectValidation(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4153596806333110, undefined, []); }
+  static get managedObjectValidation(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4153596806333110, undefined, []); }
   /**
    * static var validationStringTooLong: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationStringTooLong(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2794473510736682, undefined, []); }
+  static get validationStringTooLong(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2794473510736682, undefined, []); }
   /**
    * static var persistentStoreOperation: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreOperation(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2053417879016090, undefined, []); }
+  static get persistentStoreOperation(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2053417879016090, undefined, []); }
   /**
    * static var validationMultipleErrors: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationMultipleErrors(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3069799243702604, undefined, []); }
+  static get validationMultipleErrors(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3069799243702604, undefined, []); }
   /**
    * static var validationNumberTooLarge: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationNumberTooLarge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3283601477450245, undefined, []); }
+  static get validationNumberTooLarge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3283601477450245, undefined, []); }
   /**
    * static var validationNumberTooSmall: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationNumberTooSmall(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3824233372021531, undefined, []); }
+  static get validationNumberTooSmall(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3824233372021531, undefined, []); }
   /**
    * static var validationStringTooShort: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationStringTooShort(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 713949139237565, undefined, []); }
+  static get validationStringTooShort(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 713949139237565, undefined, []); }
   /**
    * static var persistentStoreInvalidType: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreInvalidType(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1895152993084012, undefined, []); }
+  static get persistentStoreInvalidType(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1895152993084012, undefined, []); }
   /**
    * static var managedObjectContextLocking: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectContextLocking(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 956348826228422, undefined, []); }
+  static get managedObjectContextLocking(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 956348826228422, undefined, []); }
   /**
    * static var migrationManagerSourceStore: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationManagerSourceStore(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2839574133787407, undefined, []); }
+  static get migrationManagerSourceStore(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2839574133787407, undefined, []); }
   /**
    * static var migrationMissingSourceModel: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationMissingSourceModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4430215438531680, undefined, []); }
+  static get migrationMissingSourceModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4430215438531680, undefined, []); }
   /**
    * static var persistentStoreTypeMismatch: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreTypeMismatch(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4194527687664082, undefined, []); }
+  static get persistentStoreTypeMismatch(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4194527687664082, undefined, []); }
   /**
    * static var managedObjectConstraintMerge: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectConstraintMerge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2335919413300414, undefined, []); }
+  static get managedObjectConstraintMerge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2335919413300414, undefined, []); }
   /**
    * static var migrationMissingMappingModel: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationMissingMappingModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 664051974105169, undefined, []); }
+  static get migrationMissingMappingModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 664051974105169, undefined, []); }
   /**
    * static var persistentStoreSaveConflicts: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreSaveConflicts(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 326568667437703, undefined, []); }
+  static get persistentStoreSaveConflicts(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 326568667437703, undefined, []); }
   /**
    * var persistentStoreSaveConflicts: [NSMergeConflict]? { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreSaveConflicts38738(): (Array<NSMergeConflict>) | null { return callSDK<(Array<NSMergeConflict>) | null>("CoreData_d968214ecc684fb6", 2877348972004899, this, []); }
+  get persistentStoreSaveConflicts38738(): (Array<NSMergeConflict>) | null { return callSDK<(Array<NSMergeConflict>) | null>("CoreData_0e503aef608672fa", 2877348972004899, this, []); }
   /**
    * static var persistentStoreIncompleteSave: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreIncompleteSave(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1663603939628603, undefined, []); }
+  static get persistentStoreIncompleteSave(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1663603939628603, undefined, []); }
   /**
    * static var validationStringPatternMatching: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationStringPatternMatching(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 528332425276080, undefined, []); }
+  static get validationStringPatternMatching(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 528332425276080, undefined, []); }
   /**
    * static var migrationManagerDestinationStore: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migrationManagerDestinationStore(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1717539217845456, undefined, []); }
+  static get migrationManagerDestinationStore(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1717539217845456, undefined, []); }
   /**
    * static var managedObjectExternalRelationship: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectExternalRelationship(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3802873737499141, undefined, []); }
+  static get managedObjectExternalRelationship(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3802873737499141, undefined, []); }
   /**
    * static var managedObjectReferentialIntegrity: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get managedObjectReferentialIntegrity(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3402153603559738, undefined, []); }
+  static get managedObjectReferentialIntegrity(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3402153603559738, undefined, []); }
   /**
    * static var persistentStoreCoordinatorLocking: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreCoordinatorLocking(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2256534801430290, undefined, []); }
+  static get persistentStoreCoordinatorLocking(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2256534801430290, undefined, []); }
   /**
    * static var persistentStoreIncompatibleSchema: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreIncompatibleSchema(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2329022363887909, undefined, []); }
+  static get persistentStoreIncompatibleSchema(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2329022363887909, undefined, []); }
   /**
    * static var validationMissingMandatoryProperty: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationMissingMandatoryProperty(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1712978278834280, undefined, []); }
+  static get validationMissingMandatoryProperty(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1712978278834280, undefined, []); }
   /**
    * static var validationRelationshipDeniedDelete: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationRelationshipDeniedDelete(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1090795697385546, undefined, []); }
+  static get validationRelationshipDeniedDelete(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1090795697385546, undefined, []); }
   /**
    * static var persistentStoreUnsupportedRequestType: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreUnsupportedRequestType(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4269027605171782, undefined, []); }
+  static get persistentStoreUnsupportedRequestType(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4269027605171782, undefined, []); }
   /**
    * static var persistentStoreIncompatibleVersionHash: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get persistentStoreIncompatibleVersionHash(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2489197020091992, undefined, []); }
+  static get persistentStoreIncompatibleVersionHash(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2489197020091992, undefined, []); }
   /**
    * static var validationRelationshipLacksMinimumCount: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationRelationshipLacksMinimumCount(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2132444790149024, undefined, []); }
+  static get validationRelationshipLacksMinimumCount(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2132444790149024, undefined, []); }
   /**
    * static var validationRelationshipExceedsMaximumCount: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get validationRelationshipExceedsMaximumCount(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 511521698886150, undefined, []); }
+  static get validationRelationshipExceedsMaximumCount(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 511521698886150, undefined, []); }
   /**
    * static var sqlite: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get sqlite(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1107231478473506, undefined, []); }
+  static get sqlite(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1107231478473506, undefined, []); }
   /**
    * static var migration: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  static get migration(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3602074008115733, undefined, []); }
+  static get migration(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3602074008115733, undefined, []); }
   declare readonly $type: { "s:10Foundation10CocoaErrorV": true };
 }
 
@@ -558,422 +558,422 @@ export const CocoaError_Code = {
    * static var managedObjectMergeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectMergeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2250218991663466, undefined, []); },
+  get managedObjectMergeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2250218991663466, undefined, []); },
   /**
    * static var migrationCancelledError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationCancelledError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3340120097916147, undefined, []); },
+  get migrationCancelledError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3340120097916147, undefined, []); },
   /**
    * static var persistentStoreOpenError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreOpenError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1420983829077878, undefined, []); },
+  get persistentStoreOpenError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1420983829077878, undefined, []); },
   /**
    * static var persistentStoreSaveError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreSaveError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 162775348725234, undefined, []); },
+  get persistentStoreSaveError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 162775348725234, undefined, []); },
   /**
    * static var externalRecordImportError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get externalRecordImportError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2341611111833561, undefined, []); },
+  get externalRecordImportError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2341611111833561, undefined, []); },
   /**
    * static var inferredMappingModelError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get inferredMappingModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4277422903612628, undefined, []); },
+  get inferredMappingModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4277422903612628, undefined, []); },
   /**
    * static var entityMigrationPolicyError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get entityMigrationPolicyError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1520771710314444, undefined, []); },
+  get entityMigrationPolicyError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1520771710314444, undefined, []); },
   /**
    * static var validationDateTooLateError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationDateTooLateError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3111031365050276, undefined, []); },
+  get validationDateTooLateError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3111031365050276, undefined, []); },
   /**
    * static var validationDateTooSoonError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationDateTooSoonError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4213076393651788, undefined, []); },
+  get validationDateTooSoonError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4213076393651788, undefined, []); },
   /**
    * static var validationInvalidDateError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationInvalidDateError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3442997034502441, undefined, []); },
+  get validationInvalidDateError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3442997034502441, undefined, []); },
   /**
    * static var persistentStoreTimeoutError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreTimeoutError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2185022902007576, undefined, []); },
+  get persistentStoreTimeoutError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2185022902007576, undefined, []); },
   /**
    * static var managedObjectValidationError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectValidationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 693276566351207, undefined, []); },
+  get managedObjectValidationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 693276566351207, undefined, []); },
   /**
    * static var validationStringTooLongError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationStringTooLongError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4225560965681686, undefined, []); },
+  get validationStringTooLongError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4225560965681686, undefined, []); },
   /**
    * static var persistentStoreOperationError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreOperationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3215777101143844, undefined, []); },
+  get persistentStoreOperationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3215777101143844, undefined, []); },
   /**
    * static var validationMultipleErrorsError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationMultipleErrorsError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2560662986910290, undefined, []); },
+  get validationMultipleErrorsError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2560662986910290, undefined, []); },
   /**
    * static var validationNumberTooLargeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationNumberTooLargeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 158662202233584, undefined, []); },
+  get validationNumberTooLargeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 158662202233584, undefined, []); },
   /**
    * static var validationNumberTooSmallError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationNumberTooSmallError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 125386987866612, undefined, []); },
+  get validationNumberTooSmallError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 125386987866612, undefined, []); },
   /**
    * static var validationStringTooShortError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationStringTooShortError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4340529738255584, undefined, []); },
+  get validationStringTooShortError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4340529738255584, undefined, []); },
   /**
    * static var persistentStoreInvalidTypeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreInvalidTypeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4180578790740721, undefined, []); },
+  get persistentStoreInvalidTypeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4180578790740721, undefined, []); },
   /**
    * static var managedObjectContextLockingError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectContextLockingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1594276204721610, undefined, []); },
+  get managedObjectContextLockingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1594276204721610, undefined, []); },
   /**
    * static var migrationManagerSourceStoreError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationManagerSourceStoreError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2617767292546699, undefined, []); },
+  get migrationManagerSourceStoreError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2617767292546699, undefined, []); },
   /**
    * static var migrationMissingSourceModelError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationMissingSourceModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 391332208302942, undefined, []); },
+  get migrationMissingSourceModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 391332208302942, undefined, []); },
   /**
    * static var persistentStoreTypeMismatchError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreTypeMismatchError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 75005333415261, undefined, []); },
+  get persistentStoreTypeMismatchError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 75005333415261, undefined, []); },
   /**
    * static var managedObjectConstraintMergeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectConstraintMergeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4466416163848139, undefined, []); },
+  get managedObjectConstraintMergeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4466416163848139, undefined, []); },
   /**
    * static var migrationMissingMappingModelError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationMissingMappingModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4201115618889024, undefined, []); },
+  get migrationMissingMappingModelError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4201115618889024, undefined, []); },
   /**
    * static var persistentStoreSaveConflictsError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreSaveConflictsError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2216249483521426, undefined, []); },
+  get persistentStoreSaveConflictsError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2216249483521426, undefined, []); },
   /**
    * static var persistentStoreIncompleteSaveError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreIncompleteSaveError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 853740432991510, undefined, []); },
+  get persistentStoreIncompleteSaveError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 853740432991510, undefined, []); },
   /**
    * static var validationStringPatternMatchingError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationStringPatternMatchingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3874434904715210, undefined, []); },
+  get validationStringPatternMatchingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3874434904715210, undefined, []); },
   /**
    * static var migrationManagerDestinationStoreError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationManagerDestinationStoreError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1708474352889451, undefined, []); },
+  get migrationManagerDestinationStoreError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1708474352889451, undefined, []); },
   /**
    * static var managedObjectExternalRelationshipError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectExternalRelationshipError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 718819129913630, undefined, []); },
+  get managedObjectExternalRelationshipError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 718819129913630, undefined, []); },
   /**
    * static var managedObjectReferentialIntegrityError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectReferentialIntegrityError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4269291101627972, undefined, []); },
+  get managedObjectReferentialIntegrityError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4269291101627972, undefined, []); },
   /**
    * static var persistentStoreCoordinatorLockingError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreCoordinatorLockingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2602174657697097, undefined, []); },
+  get persistentStoreCoordinatorLockingError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2602174657697097, undefined, []); },
   /**
    * static var persistentStoreIncompatibleSchemaError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreIncompatibleSchemaError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2901961095655368, undefined, []); },
+  get persistentStoreIncompatibleSchemaError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2901961095655368, undefined, []); },
   /**
    * static var validationMissingMandatoryPropertyError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationMissingMandatoryPropertyError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 436340224895888, undefined, []); },
+  get validationMissingMandatoryPropertyError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 436340224895888, undefined, []); },
   /**
    * static var validationRelationshipDeniedDeleteError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationRelationshipDeniedDeleteError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2690502179327, undefined, []); },
+  get validationRelationshipDeniedDeleteError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2690502179327, undefined, []); },
   /**
    * static var persistentStoreUnsupportedRequestTypeError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreUnsupportedRequestTypeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1923194144426021, undefined, []); },
+  get persistentStoreUnsupportedRequestTypeError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1923194144426021, undefined, []); },
   /**
    * static var persistentStoreIncompatibleVersionHashError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreIncompatibleVersionHashError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3948684853756304, undefined, []); },
+  get persistentStoreIncompatibleVersionHashError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3948684853756304, undefined, []); },
   /**
    * static var validationRelationshipLacksMinimumCountError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationRelationshipLacksMinimumCountError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3691980615026324, undefined, []); },
+  get validationRelationshipLacksMinimumCountError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3691980615026324, undefined, []); },
   /**
    * static var validationRelationshipExceedsMaximumCountError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationRelationshipExceedsMaximumCountError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3475255114103194, undefined, []); },
+  get validationRelationshipExceedsMaximumCountError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3475255114103194, undefined, []); },
   /**
    * static var coreData: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get coreData(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 601527903108720, undefined, []); },
+  get coreData(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 601527903108720, undefined, []); },
   /**
    * static var coreDataError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get coreDataError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3874414105530131, undefined, []); },
+  get coreDataError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3874414105530131, undefined, []); },
   /**
    * static var sqliteError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get sqliteError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 735449055125948, undefined, []); },
+  get sqliteError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 735449055125948, undefined, []); },
   /**
    * static var migrationError: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 399869692218535, undefined, []); },
+  get migrationError(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 399869692218535, undefined, []); },
   /**
    * static var managedObjectMerge: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectMerge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3880072277507889, undefined, []); },
+  get managedObjectMerge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3880072277507889, undefined, []); },
   /**
    * static var migrationCancelled: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationCancelled(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1070527054404343, undefined, []); },
+  get migrationCancelled(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1070527054404343, undefined, []); },
   /**
    * static var persistentStoreOpen: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreOpen(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3641527072036013, undefined, []); },
+  get persistentStoreOpen(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3641527072036013, undefined, []); },
   /**
    * static var persistentStoreSave: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreSave(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2971837069416079, undefined, []); },
+  get persistentStoreSave(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2971837069416079, undefined, []); },
   /**
    * static var externalRecordImport: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get externalRecordImport(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2882365226360966, undefined, []); },
+  get externalRecordImport(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2882365226360966, undefined, []); },
   /**
    * static var inferredMappingModel: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get inferredMappingModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2090913004135890, undefined, []); },
+  get inferredMappingModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2090913004135890, undefined, []); },
   /**
    * static var entityMigrationPolicy: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get entityMigrationPolicy(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1440723983166009, undefined, []); },
+  get entityMigrationPolicy(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1440723983166009, undefined, []); },
   /**
    * static var validationDateTooLate: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationDateTooLate(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2092843698456876, undefined, []); },
+  get validationDateTooLate(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2092843698456876, undefined, []); },
   /**
    * static var validationDateTooSoon: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationDateTooSoon(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4430163106551800, undefined, []); },
+  get validationDateTooSoon(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4430163106551800, undefined, []); },
   /**
    * static var validationInvalidDate: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationInvalidDate(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4401907390599851, undefined, []); },
+  get validationInvalidDate(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4401907390599851, undefined, []); },
   /**
    * static var persistentStoreTimeout: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreTimeout(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 268430864278017, undefined, []); },
+  get persistentStoreTimeout(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 268430864278017, undefined, []); },
   /**
    * static var managedObjectValidation: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectValidation(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2852955622613461, undefined, []); },
+  get managedObjectValidation(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2852955622613461, undefined, []); },
   /**
    * static var validationStringTooLong: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationStringTooLong(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4357186787316173, undefined, []); },
+  get validationStringTooLong(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4357186787316173, undefined, []); },
   /**
    * static var persistentStoreOperation: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreOperation(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1146309890356326, undefined, []); },
+  get persistentStoreOperation(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1146309890356326, undefined, []); },
   /**
    * static var validationMultipleErrors: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationMultipleErrors(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4074289493207793, undefined, []); },
+  get validationMultipleErrors(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4074289493207793, undefined, []); },
   /**
    * static var validationNumberTooLarge: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationNumberTooLarge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2574476369485221, undefined, []); },
+  get validationNumberTooLarge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2574476369485221, undefined, []); },
   /**
    * static var validationNumberTooSmall: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationNumberTooSmall(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 236855612898150, undefined, []); },
+  get validationNumberTooSmall(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 236855612898150, undefined, []); },
   /**
    * static var validationStringTooShort: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationStringTooShort(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3756318481647195, undefined, []); },
+  get validationStringTooShort(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3756318481647195, undefined, []); },
   /**
    * static var persistentStoreInvalidType: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreInvalidType(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4263714669616839, undefined, []); },
+  get persistentStoreInvalidType(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4263714669616839, undefined, []); },
   /**
    * static var managedObjectContextLocking: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectContextLocking(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2664501954666454, undefined, []); },
+  get managedObjectContextLocking(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2664501954666454, undefined, []); },
   /**
    * static var migrationManagerSourceStore: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationManagerSourceStore(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 248744777683851, undefined, []); },
+  get migrationManagerSourceStore(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 248744777683851, undefined, []); },
   /**
    * static var migrationMissingSourceModel: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationMissingSourceModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4423501196596738, undefined, []); },
+  get migrationMissingSourceModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4423501196596738, undefined, []); },
   /**
    * static var persistentStoreTypeMismatch: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreTypeMismatch(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2953530405946687, undefined, []); },
+  get persistentStoreTypeMismatch(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2953530405946687, undefined, []); },
   /**
    * static var managedObjectConstraintMerge: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectConstraintMerge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4173022230858272, undefined, []); },
+  get managedObjectConstraintMerge(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4173022230858272, undefined, []); },
   /**
    * static var migrationMissingMappingModel: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationMissingMappingModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4276530426065572, undefined, []); },
+  get migrationMissingMappingModel(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4276530426065572, undefined, []); },
   /**
    * static var persistentStoreSaveConflicts: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreSaveConflicts(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 661426273173025, undefined, []); },
+  get persistentStoreSaveConflicts(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 661426273173025, undefined, []); },
   /**
    * static var persistentStoreIncompleteSave: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreIncompleteSave(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3273378770860918, undefined, []); },
+  get persistentStoreIncompleteSave(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3273378770860918, undefined, []); },
   /**
    * static var validationStringPatternMatching: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationStringPatternMatching(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3797338701695333, undefined, []); },
+  get validationStringPatternMatching(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3797338701695333, undefined, []); },
   /**
    * static var migrationManagerDestinationStore: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migrationManagerDestinationStore(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2885116355654092, undefined, []); },
+  get migrationManagerDestinationStore(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2885116355654092, undefined, []); },
   /**
    * static var managedObjectExternalRelationship: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectExternalRelationship(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4238175360333583, undefined, []); },
+  get managedObjectExternalRelationship(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4238175360333583, undefined, []); },
   /**
    * static var managedObjectReferentialIntegrity: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get managedObjectReferentialIntegrity(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 722077107946132, undefined, []); },
+  get managedObjectReferentialIntegrity(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 722077107946132, undefined, []); },
   /**
    * static var persistentStoreCoordinatorLocking: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreCoordinatorLocking(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4135842302512487, undefined, []); },
+  get persistentStoreCoordinatorLocking(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4135842302512487, undefined, []); },
   /**
    * static var persistentStoreIncompatibleSchema: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreIncompatibleSchema(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 784482491581987, undefined, []); },
+  get persistentStoreIncompatibleSchema(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 784482491581987, undefined, []); },
   /**
    * static var validationMissingMandatoryProperty: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationMissingMandatoryProperty(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 2520683789436303, undefined, []); },
+  get validationMissingMandatoryProperty(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 2520683789436303, undefined, []); },
   /**
    * static var validationRelationshipDeniedDelete: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationRelationshipDeniedDelete(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3094944247840645, undefined, []); },
+  get validationRelationshipDeniedDelete(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3094944247840645, undefined, []); },
   /**
    * static var persistentStoreUnsupportedRequestType: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreUnsupportedRequestType(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 379267029309712, undefined, []); },
+  get persistentStoreUnsupportedRequestType(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 379267029309712, undefined, []); },
   /**
    * static var persistentStoreIncompatibleVersionHash: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreIncompatibleVersionHash(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1393897039792917, undefined, []); },
+  get persistentStoreIncompatibleVersionHash(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1393897039792917, undefined, []); },
   /**
    * static var validationRelationshipLacksMinimumCount: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationRelationshipLacksMinimumCount(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 696069400762924, undefined, []); },
+  get validationRelationshipLacksMinimumCount(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 696069400762924, undefined, []); },
   /**
    * static var validationRelationshipExceedsMaximumCount: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get validationRelationshipExceedsMaximumCount(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 4092003250486773, undefined, []); },
+  get validationRelationshipExceedsMaximumCount(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 4092003250486773, undefined, []); },
   /**
    * static var sqlite: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get sqlite(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 3177007799237323, undefined, []); },
+  get sqlite(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 3177007799237323, undefined, []); },
   /**
    * static var migration: CocoaError.Code { get }
    * @availability iOS 3.0+
    */
-  get migration(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_d968214ecc684fb6", 1902685931236534, undefined, []); }
+  get migration(): _Foundation_CocoaError_Code { return callSDK<_Foundation_CocoaError_Code>("CoreData_0e503aef608672fa", 1902685931236534, undefined, []); }
 };
 
 /**
@@ -982,18 +982,18 @@ export const CocoaError_Code = {
  */
 export class NSPersistentStoreRequest extends SDKHandle {
   /** init() */
-  static init(): NSPersistentStoreRequest { return callSDK<NSPersistentStoreRequest>("CoreData_d968214ecc684fb6", 2872750260528103, undefined, []); }
+  static init(): NSPersistentStoreRequest { return callSDK<NSPersistentStoreRequest>("CoreData_0e503aef608672fa", 2872750260528103, undefined, []); }
   /**
    * var affectedStores: [NSPersistentStore]? { get set }
    * @availability iOS 5.0+
    */
-  get affectedStores(): $SDK2 { return callSDK<$SDK2>("CoreData_d968214ecc684fb6", 3217305954939300, this, []); }
-  set affectedStores(value: $SDK2) { callSDK<void>("CoreData_d968214ecc684fb6", 3321450274512423, this, [value]); }
+  get affectedStores(): $SDK2 { return callSDK<$SDK2>("CoreData_0e503aef608672fa", 3217305954939300, this, []); }
+  set affectedStores(value: $SDK2) { callSDK<void>("CoreData_0e503aef608672fa", 3321450274512423, this, [value]); }
   /**
    * var requestType: NSPersistentStoreRequestType { get }
    * @availability iOS 5.0+
    */
-  get requestType(): NSPersistentStoreRequestType { return callSDK<NSPersistentStoreRequestType>("CoreData_d968214ecc684fb6", 516434419622910, this, []); }
+  get requestType(): NSPersistentStoreRequestType { return callSDK<NSPersistentStoreRequestType>("CoreData_0e503aef608672fa", 516434419622910, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentStoreRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "affectedStores": true; "requestType": true };
 }
@@ -1013,7 +1013,7 @@ export class NSAsynchronousFetchRequest<ResultType = unknown> extends NSPersiste
  */
 export class NSPersistentStoreResult extends SDKHandle {
   /** init() */
-  static init(): NSPersistentStoreResult { return callSDK<NSPersistentStoreResult>("CoreData_d968214ecc684fb6", 3544070850259803, undefined, []); }
+  static init(): NSPersistentStoreResult { return callSDK<NSPersistentStoreResult>("CoreData_0e503aef608672fa", 3544070850259803, undefined, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentStoreResult": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1026,24 +1026,24 @@ export class NSPersistentStoreAsynchronousResult extends (NSPersistentStoreResul
    * func cancel()
    * @availability iOS 8.0+
    */
-  cancel(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1922312510400148, this, []); }
+  cancel(): void { return callSDK<void>("CoreData_0e503aef608672fa", 1922312510400148, this, []); }
   /** init() */
-  static init(): NSPersistentStoreAsynchronousResult { return callSDK<NSPersistentStoreAsynchronousResult>("CoreData_d968214ecc684fb6", 3769309129834385, undefined, []); }
+  static init(): NSPersistentStoreAsynchronousResult { return callSDK<NSPersistentStoreAsynchronousResult>("CoreData_0e503aef608672fa", 3769309129834385, undefined, []); }
   /**
    * var managedObjectContext: NSManagedObjectContext { get }
    * @availability iOS 8.0+
    */
-  get managedObjectContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 141141498082331, this, []); }
+  get managedObjectContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 141141498082331, this, []); }
   /**
    * var operationError: (any Error)? { get }
    * @availability iOS 8.0+
    */
-  get operationError(): (NativeError) | null { return callSDK<(NativeError) | null>("CoreData_d968214ecc684fb6", 359705451135352, this, []); }
+  get operationError(): (NativeError) | null { return callSDK<(NativeError) | null>("CoreData_0e503aef608672fa", 359705451135352, this, []); }
   /**
    * var progress: Progress? { get }
    * @availability iOS 8.0+
    */
-  get progress(): (_Foundation_Progress) | null { return callSDK<(_Foundation_Progress) | null>("CoreData_d968214ecc684fb6", 1700975075983764, this, []); }
+  get progress(): (_Foundation_Progress) | null { return callSDK<(_Foundation_Progress) | null>("CoreData_0e503aef608672fa", 1700975075983764, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentStoreAsynchronousResult": true; "c:objc(cs)NSPersistentStoreResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "managedObjectContext": true; "operationError": true; "progress": true };
 }
@@ -1066,86 +1066,86 @@ export class NSPersistentStore extends SDKHandle {
    * class func metadataForPersistentStore(with url: URL) throws -> [String : Any]
    * @availability iOS 3.0+
    */
-  static metadataForPersistentStore(url: string): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_d968214ecc684fb6", 3118957575255618, undefined, [url]); }
+  static metadataForPersistentStore(url: string): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_0e503aef608672fa", 3118957575255618, undefined, [url]); }
   /**
    * class func migrationManagerClass() -> AnyClass
    * @availability iOS 3.0+
    */
-  static migrationManagerClass(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1795115931070744, undefined, []); }
+  static migrationManagerClass(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1795115931070744, undefined, []); }
   /**
    * class func setMetadata(_ metadata: [String : Any]?, forPersistentStoreAt url: URL) throws
    * @availability iOS 3.0+
    */
-  static setMetadata(metadata: $SDK4, url: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1354751862375334, undefined, [metadata, url]); }
+  static setMetadata(metadata: $SDK4, url: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 1354751862375334, undefined, [metadata, url]); }
   /**
    * func didAdd(to coordinator: NSPersistentStoreCoordinator)
    * @availability iOS 3.0+
    */
-  didAdd(coordinator: NSPersistentStoreCoordinator): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1859734107649036, this, [coordinator]); }
+  didAdd(coordinator: NSPersistentStoreCoordinator): void { return callSDK<void>("CoreData_0e503aef608672fa", 1859734107649036, this, [coordinator]); }
   /**
    * init(persistentStoreCoordinator root: NSPersistentStoreCoordinator?, configurationName name: String?, at url: URL, options: [AnyHashable : Any]? = nil)
    * @availability iOS 3.0+
    */
-  static init(root: $SDK5, name: (string) | null, url: string, options?: $SDK6): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_d968214ecc684fb6", 4415578810806352, undefined, [root, name, url, options]); }
+  static init(root: $SDK5, name: (string) | null, url: string, options?: $SDK6): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_0e503aef608672fa", 4415578810806352, undefined, [root, name, url, options]); }
   /**
    * func loadMetadata() throws
    * @availability iOS 3.0+
    */
-  loadMetadata(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 56544556487087, this, []); }
+  loadMetadata(): void { return callSDK<void>("CoreData_0e503aef608672fa", 56544556487087, this, []); }
   /**
    * func willRemove(from coordinator: NSPersistentStoreCoordinator?)
    * @availability iOS 3.0+
    */
-  willRemove(coordinator?: $SDK5): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3913944718126153, this, [coordinator]); }
+  willRemove(coordinator?: $SDK5): void { return callSDK<void>("CoreData_0e503aef608672fa", 3913944718126153, this, [coordinator]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 3.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 2298970329444352, this, []); }
-  set url(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 1604771677701673, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 2298970329444352, this, []); }
+  set url(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 1604771677701673, this, [value]); }
   /**
    * var configurationName: String { get }
    * @availability iOS 3.0+
    */
-  get configurationName(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1538111270082809, this, []); }
+  get configurationName(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1538111270082809, this, []); }
   /**
    * var coreSpotlightExporter: NSCoreDataCoreSpotlightDelegate { get }
    * @availability iOS 11.0+
    */
-  get coreSpotlightExporter(): NSCoreDataCoreSpotlightDelegate { return callSDK<NSCoreDataCoreSpotlightDelegate>("CoreData_d968214ecc684fb6", 3266192304689530, this, []); }
+  get coreSpotlightExporter(): NSCoreDataCoreSpotlightDelegate { return callSDK<NSCoreDataCoreSpotlightDelegate>("CoreData_0e503aef608672fa", 3266192304689530, this, []); }
   /**
    * var identifier: String! { get set }
    * @availability iOS 3.0+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 2611098631990541, this, []); }
-  set identifier(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 369741162362858, this, [value]); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 2611098631990541, this, []); }
+  set identifier(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 369741162362858, this, [value]); }
   /**
    * var metadata: [String : Any]! { get set }
    * @availability iOS 3.0+
    */
-  get metadata(): $SDK4 { return callSDK<$SDK4>("CoreData_d968214ecc684fb6", 502893987734389, this, []); }
-  set metadata(value: $SDK4) { callSDK<void>("CoreData_d968214ecc684fb6", 558277974880906, this, [value]); }
+  get metadata(): $SDK4 { return callSDK<$SDK4>("CoreData_0e503aef608672fa", 502893987734389, this, []); }
+  set metadata(value: $SDK4) { callSDK<void>("CoreData_0e503aef608672fa", 558277974880906, this, [value]); }
   /**
    * var options: [AnyHashable : Any]? { get }
    * @availability iOS 3.0+
    */
-  get options(): $SDK6 { return callSDK<$SDK6>("CoreData_d968214ecc684fb6", 4338716381091857, this, []); }
+  get options(): $SDK6 { return callSDK<$SDK6>("CoreData_0e503aef608672fa", 4338716381091857, this, []); }
   /**
    * weak var persistentStoreCoordinator: NSPersistentStoreCoordinator? { get }
    * @availability iOS 3.0+
    */
-  get persistentStoreCoordinator(): $SDK5 { return callSDK<$SDK5>("CoreData_d968214ecc684fb6", 3450965154852983, this, []); }
+  get persistentStoreCoordinator(): $SDK5 { return callSDK<$SDK5>("CoreData_0e503aef608672fa", 3450965154852983, this, []); }
   /**
    * var isReadOnly: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isReadOnly(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3873961893371599, this, []); }
-  set isReadOnly(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 4497374374384187, this, [value]); }
+  get isReadOnly(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3873961893371599, this, []); }
+  set isReadOnly(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 4497374374384187, this, [value]); }
   /**
    * var type: String { get }
    * @availability iOS 3.0+
    */
-  get type(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1316757091276579, this, []); }
+  get type(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1316757091276579, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentStore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "configurationName": true; "coreSpotlightExporter": true; "identifier": true; "metadata": true; "options": true; "persistentStoreCoordinator": true; "isReadOnly": true; "type": true };
 }
@@ -1159,62 +1159,62 @@ export class NSAtomicStore extends (NSPersistentStore as unknown as Omit<typeof 
    * func addCacheNodes(_ cacheNodes: Set<NSAtomicStoreCacheNode>)
    * @availability iOS 3.0+
    */
-  addCacheNodes(cacheNodes: $SDK7): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1922275103144898, this, [cacheNodes]); }
+  addCacheNodes(cacheNodes: $SDK7): void { return callSDK<void>("CoreData_0e503aef608672fa", 1922275103144898, this, [cacheNodes]); }
   /**
    * func cacheNode(for objectID: NSManagedObjectID) -> NSAtomicStoreCacheNode?
    * @availability iOS 3.0+
    */
-  cacheNode(objectID: NSManagedObjectID): (NSAtomicStoreCacheNode) | null { return callSDK<(NSAtomicStoreCacheNode) | null>("CoreData_d968214ecc684fb6", 491578575962183, this, [objectID]); }
+  cacheNode(objectID: NSManagedObjectID): (NSAtomicStoreCacheNode) | null { return callSDK<(NSAtomicStoreCacheNode) | null>("CoreData_0e503aef608672fa", 491578575962183, this, [objectID]); }
   /**
    * func cacheNodes() -> Set<NSAtomicStoreCacheNode>
    * @availability iOS 3.0+
    */
-  cacheNodes(): $SDK7 { return callSDK<$SDK7>("CoreData_d968214ecc684fb6", 1603383523369055, this, []); }
+  cacheNodes(): $SDK7 { return callSDK<$SDK7>("CoreData_0e503aef608672fa", 1603383523369055, this, []); }
   /**
    * init(persistentStoreCoordinator coordinator: NSPersistentStoreCoordinator?, configurationName: String?, at url: URL, options: [AnyHashable : Any]? = nil)
    * @availability iOS 3.0+
    */
-  static init(coordinator: $SDK5, configurationName: (string) | null, url: string, options?: $SDK6): NSAtomicStore { return callSDK<NSAtomicStore>("CoreData_d968214ecc684fb6", 2661489999237010, undefined, [coordinator, configurationName, url, options]); }
+  static init(coordinator: $SDK5, configurationName: (string) | null, url: string, options?: $SDK6): NSAtomicStore { return callSDK<NSAtomicStore>("CoreData_0e503aef608672fa", 2661489999237010, undefined, [coordinator, configurationName, url, options]); }
   /**
    * func load() throws
    * @availability iOS 3.0+
    */
-  load(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 934906987757966, this, []); }
+  load(): void { return callSDK<void>("CoreData_0e503aef608672fa", 934906987757966, this, []); }
   /**
    * func newCacheNode(for managedObject: NSManagedObject) -> NSAtomicStoreCacheNode
    * @availability iOS 3.0+
    */
-  newCacheNode(managedObject: NSManagedObject): NSAtomicStoreCacheNode { return callSDK<NSAtomicStoreCacheNode>("CoreData_d968214ecc684fb6", 1338649471921307, this, [managedObject]); }
+  newCacheNode(managedObject: NSManagedObject): NSAtomicStoreCacheNode { return callSDK<NSAtomicStoreCacheNode>("CoreData_0e503aef608672fa", 1338649471921307, this, [managedObject]); }
   /**
    * func newReferenceObject(for managedObject: NSManagedObject) -> Any
    * @availability iOS 3.0+
    */
-  newReferenceObject(managedObject: NSManagedObject): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 4450892759349331, this, [managedObject]); }
+  newReferenceObject(managedObject: NSManagedObject): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 4450892759349331, this, [managedObject]); }
   /**
    * func objectID(for entity: NSEntityDescription, withReferenceObject data: Any) -> NSManagedObjectID
    * @availability iOS 3.0+
    */
-  objectID(entity: NSEntityDescription, data: unknown): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_d968214ecc684fb6", 2464461238346857, this, [entity, data]); }
+  objectID(entity: NSEntityDescription, data: unknown): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_0e503aef608672fa", 2464461238346857, this, [entity, data]); }
   /**
    * func referenceObject(for objectID: NSManagedObjectID) -> Any
    * @availability iOS 3.0+
    */
-  referenceObject(objectID: NSManagedObjectID): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 3186834107519184, this, [objectID]); }
+  referenceObject(objectID: NSManagedObjectID): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 3186834107519184, this, [objectID]); }
   /**
    * func save() throws
    * @availability iOS 3.0+
    */
-  save(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 831137924390319, this, []); }
+  save(): void { return callSDK<void>("CoreData_0e503aef608672fa", 831137924390319, this, []); }
   /**
    * func updateCacheNode(_ node: NSAtomicStoreCacheNode, from managedObject: NSManagedObject)
    * @availability iOS 3.0+
    */
-  updateCacheNode(node: NSAtomicStoreCacheNode, managedObject: NSManagedObject): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2861918985077525, this, [node, managedObject]); }
+  updateCacheNode(node: NSAtomicStoreCacheNode, managedObject: NSManagedObject): void { return callSDK<void>("CoreData_0e503aef608672fa", 2861918985077525, this, [node, managedObject]); }
   /**
    * func willRemoveCacheNodes(_ cacheNodes: Set<NSAtomicStoreCacheNode>)
    * @availability iOS 3.0+
    */
-  willRemoveCacheNodes(cacheNodes: $SDK7): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3996207040589985, this, [cacheNodes]); }
+  willRemoveCacheNodes(cacheNodes: $SDK7): void { return callSDK<void>("CoreData_0e503aef608672fa", 3996207040589985, this, [cacheNodes]); }
   declare readonly $type: { "c:objc(cs)NSAtomicStore": true; "c:objc(cs)NSPersistentStore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "configurationName": true; "coreSpotlightExporter": true; "identifier": true; "metadata": true; "options": true; "persistentStoreCoordinator": true; "isReadOnly": true; "type": true };
 }
@@ -1228,28 +1228,28 @@ export class NSAtomicStoreCacheNode extends SDKHandle {
    * init(objectID moid: NSManagedObjectID)
    * @availability iOS 3.0+
    */
-  static init(moid: NSManagedObjectID): NSAtomicStoreCacheNode { return callSDK<NSAtomicStoreCacheNode>("CoreData_d968214ecc684fb6", 22150049550416, undefined, [moid]); }
+  static init(moid: NSManagedObjectID): NSAtomicStoreCacheNode { return callSDK<NSAtomicStoreCacheNode>("CoreData_0e503aef608672fa", 22150049550416, undefined, [moid]); }
   /**
    * func setValue(_ value: Any?, forKey key: String)
    * @availability iOS 3.0+
    */
-  setValue(value: (unknown) | null, key: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 907042784798186, this, [value, key]); }
+  setValue(value: (unknown) | null, key: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 907042784798186, this, [value, key]); }
   /**
    * func value(forKey key: String) -> Any?
    * @availability iOS 3.0+
    */
-  value(key: string): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 2524708312326536, this, [key]); }
+  value(key: string): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 2524708312326536, this, [key]); }
   /**
    * var objectID: NSManagedObjectID { get }
    * @availability iOS 3.0+
    */
-  get objectID(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_d968214ecc684fb6", 3751222646394068, this, []); }
+  get objectID(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_0e503aef608672fa", 3751222646394068, this, []); }
   /**
    * var propertyCache: NSMutableDictionary? { get set }
    * @availability iOS 3.0+
    */
-  get propertyCache(): $SDK9 { return callSDK<$SDK9>("CoreData_d968214ecc684fb6", 4265154350953748, this, []); }
-  set propertyCache(value: $SDK9) { callSDK<void>("CoreData_d968214ecc684fb6", 246373897811279, this, [value]); }
+  get propertyCache(): $SDK9 { return callSDK<$SDK9>("CoreData_0e503aef608672fa", 4265154350953748, this, []); }
+  set propertyCache(value: $SDK9) { callSDK<void>("CoreData_0e503aef608672fa", 246373897811279, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSAtomicStoreCacheNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectID": true; "propertyCache": true };
 }
@@ -1260,88 +1260,88 @@ export class NSAtomicStoreCacheNode extends SDKHandle {
  */
 export class NSPropertyDescription extends SDKHandle {
   /** init() */
-  static init(): NSPropertyDescription { return callSDK<NSPropertyDescription>("CoreData_d968214ecc684fb6", 2481060829523439, undefined, []); }
+  static init(): NSPropertyDescription { return callSDK<NSPropertyDescription>("CoreData_0e503aef608672fa", 2481060829523439, undefined, []); }
   /**
    * func setValidationPredicates(_ validationPredicates: [NSPredicate]?, withValidationWarnings validationWarnings: [String]?)
    * @availability iOS 3.0+
    */
-  setValidationPredicates(validationPredicates?: (Array<_Foundation_NSPredicate>) | null, validationWarnings?: (Array<string>) | null): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3708490248903415, this, [validationPredicates, validationWarnings]); }
+  setValidationPredicates(validationPredicates?: (Array<_Foundation_NSPredicate>) | null, validationWarnings?: (Array<string>) | null): void { return callSDK<void>("CoreData_0e503aef608672fa", 3708490248903415, this, [validationPredicates, validationWarnings]); }
   /**
    * unowned(unsafe) var entity: NSEntityDescription { get }
    * @availability iOS 3.0+
    */
-  get entity(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_d968214ecc684fb6", 2360624533236600, this, []); }
+  get entity(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_0e503aef608672fa", 2360624533236600, this, []); }
   /**
    * var isIndexed: Bool { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 11.0
    */
-  get isIndexed(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3728795584439969, this, []); }
-  set isIndexed(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 3289428996763211, this, [value]); }
+  get isIndexed(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3728795584439969, this, []); }
+  set isIndexed(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 3289428996763211, this, [value]); }
   /**
    * var isIndexedBySpotlight: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isIndexedBySpotlight(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 1524571807438344, this, []); }
-  set isIndexedBySpotlight(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 3808162169830145, this, [value]); }
+  get isIndexedBySpotlight(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 1524571807438344, this, []); }
+  set isIndexedBySpotlight(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 3808162169830145, this, [value]); }
   /**
    * var name: String { get set }
    * @availability iOS 3.0+
    */
-  get name(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 2064502951833600, this, []); }
-  set name(value: string) { callSDK<void>("CoreData_d968214ecc684fb6", 2401137594028331, this, [value]); }
+  get name(): string { return callSDK<string>("CoreData_0e503aef608672fa", 2064502951833600, this, []); }
+  set name(value: string) { callSDK<void>("CoreData_0e503aef608672fa", 2401137594028331, this, [value]); }
   /**
    * var isOptional: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isOptional(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 814079342349016, this, []); }
-  set isOptional(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 2046067207972882, this, [value]); }
+  get isOptional(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 814079342349016, this, []); }
+  set isOptional(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 2046067207972882, this, [value]); }
   /**
    * var renamingIdentifier: String? { get set }
    * @availability iOS 3.0+
    */
-  get renamingIdentifier(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 2403410330651757, this, []); }
-  set renamingIdentifier(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 2469369899622588, this, [value]); }
+  get renamingIdentifier(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 2403410330651757, this, []); }
+  set renamingIdentifier(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 2469369899622588, this, [value]); }
   /**
    * var isStoredInExternalRecord: Bool { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 11.0
    */
-  get isStoredInExternalRecord(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 1937044633091358, this, []); }
-  set isStoredInExternalRecord(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 3164070040866881, this, [value]); }
+  get isStoredInExternalRecord(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 1937044633091358, this, []); }
+  set isStoredInExternalRecord(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 3164070040866881, this, [value]); }
   /**
    * var isTransient: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isTransient(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 4005146881090207, this, []); }
-  set isTransient(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 3039193994222927, this, [value]); }
+  get isTransient(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 4005146881090207, this, []); }
+  set isTransient(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 3039193994222927, this, [value]); }
   /**
    * var userInfo: [AnyHashable : Any]? { get set }
    * @availability iOS 3.0+
    */
-  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_d968214ecc684fb6", 1574961251104108, this, []); }
-  set userInfo(value: $SDK6) { callSDK<void>("CoreData_d968214ecc684fb6", 13530704900353, this, [value]); }
+  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_0e503aef608672fa", 1574961251104108, this, []); }
+  set userInfo(value: $SDK6) { callSDK<void>("CoreData_0e503aef608672fa", 13530704900353, this, [value]); }
   /**
    * var validationPredicates: [NSPredicate] { get }
    * @availability iOS 3.0+
    */
-  get validationPredicates(): Array<_Foundation_NSPredicate> { return callSDK<Array<_Foundation_NSPredicate>>("CoreData_d968214ecc684fb6", 3690311080511046, this, []); }
+  get validationPredicates(): Array<_Foundation_NSPredicate> { return callSDK<Array<_Foundation_NSPredicate>>("CoreData_0e503aef608672fa", 3690311080511046, this, []); }
   /**
    * var validationWarnings: [Any] { get }
    * @availability iOS 3.0+
    */
-  get validationWarnings(): Array<unknown> { return callSDK<Array<unknown>>("CoreData_d968214ecc684fb6", 3536825492687043, this, []); }
+  get validationWarnings(): Array<unknown> { return callSDK<Array<unknown>>("CoreData_0e503aef608672fa", 3536825492687043, this, []); }
   /**
    * var versionHash: Data { get }
    * @availability iOS 3.0+
    */
-  get versionHash(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreData_d968214ecc684fb6", 702274190996064, this, []); }
+  get versionHash(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreData_0e503aef608672fa", 702274190996064, this, []); }
   /**
    * var versionHashModifier: String? { get set }
    * @availability iOS 3.0+
    */
-  get versionHashModifier(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 2935251789574876, this, []); }
-  set versionHashModifier(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 978655254743267, this, [value]); }
+  get versionHashModifier(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 2935251789574876, this, []); }
+  set versionHashModifier(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 978655254743267, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSPropertyDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entity": true; "isIndexed": true; "isIndexedBySpotlight": true; "name": true; "isOptional": true; "renamingIdentifier": true; "isStoredInExternalRecord": true; "isTransient": true; "userInfo": true; "validationPredicates": true; "validationWarnings": true; "versionHash": true; "versionHashModifier": true };
 }
@@ -1352,60 +1352,60 @@ export class NSPropertyDescription extends SDKHandle {
  */
 export class NSAttributeDescription extends (NSPropertyDescription as unknown as Omit<typeof NSPropertyDescription, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSPropertyDescription, "versionHash">)) {
   /** init() */
-  static init(): NSAttributeDescription { return callSDK<NSAttributeDescription>("CoreData_d968214ecc684fb6", 1754294918518253, undefined, []); }
+  static init(): NSAttributeDescription { return callSDK<NSAttributeDescription>("CoreData_0e503aef608672fa", 1754294918518253, undefined, []); }
   /**
    * var allowsCloudEncryption: Bool { get set }
    * @availability iOS 15.0+
    */
-  get allowsCloudEncryption(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3889113087045178, this, []); }
-  set allowsCloudEncryption(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 921908905387324, this, [value]); }
+  get allowsCloudEncryption(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3889113087045178, this, []); }
+  set allowsCloudEncryption(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 921908905387324, this, [value]); }
   /**
    * var allowsExternalBinaryDataStorage: Bool { get set }
    * @availability iOS 5.0+
    */
-  get allowsExternalBinaryDataStorage(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 1546049444085214, this, []); }
-  set allowsExternalBinaryDataStorage(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 2987251538019053, this, [value]); }
+  get allowsExternalBinaryDataStorage(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 1546049444085214, this, []); }
+  set allowsExternalBinaryDataStorage(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 2987251538019053, this, [value]); }
   /**
    * var attributeType: NSAttributeType { get set }
    * @availability iOS 3.0+
    */
-  get attributeType(): NSAttributeType { return callSDK<NSAttributeType>("CoreData_d968214ecc684fb6", 2170771995524136, this, []); }
-  set attributeType(value: NSAttributeType) { callSDK<void>("CoreData_d968214ecc684fb6", 637631174829859, this, [value]); }
+  get attributeType(): NSAttributeType { return callSDK<NSAttributeType>("CoreData_0e503aef608672fa", 2170771995524136, this, []); }
+  set attributeType(value: NSAttributeType) { callSDK<void>("CoreData_0e503aef608672fa", 637631174829859, this, [value]); }
   /**
    * var attributeValueClassName: String? { get set }
    * @availability iOS 3.0+
    */
-  get attributeValueClassName(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 3275803980255515, this, []); }
-  set attributeValueClassName(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 794080614492155, this, [value]); }
+  get attributeValueClassName(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 3275803980255515, this, []); }
+  set attributeValueClassName(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 794080614492155, this, [value]); }
   /**
    * var defaultValue: Any? { get set }
    * @availability iOS 3.0+
    */
-  get defaultValue(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 2290954574831122, this, []); }
-  set defaultValue(value: (unknown) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 3511812786670138, this, [value]); }
+  get defaultValue(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 2290954574831122, this, []); }
+  set defaultValue(value: (unknown) | null) { callSDK<void>("CoreData_0e503aef608672fa", 3511812786670138, this, [value]); }
   /**
    * var preservesValueInHistoryOnDeletion: Bool { get set }
    * @availability iOS 13.0+
    */
-  get preservesValueInHistoryOnDeletion(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 4119216596544895, this, []); }
-  set preservesValueInHistoryOnDeletion(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 4473578528577794, this, [value]); }
+  get preservesValueInHistoryOnDeletion(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 4119216596544895, this, []); }
+  set preservesValueInHistoryOnDeletion(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 4473578528577794, this, [value]); }
   /**
    * var valueTransformerName: String? { get set }
    * @availability iOS 3.0+
    */
-  get valueTransformerName(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 2881605285266676, this, []); }
-  set valueTransformerName(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 1098566813940713, this, [value]); }
+  get valueTransformerName(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 2881605285266676, this, []); }
+  set valueTransformerName(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 1098566813940713, this, [value]); }
   /**
    * var versionHash: Data { get }
    * @availability iOS 3.0+
    */
-  get versionHash(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreData_d968214ecc684fb6", 4407736336046070, this, []); }
+  get versionHash(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreData_0e503aef608672fa", 4407736336046070, this, []); }
   /**
    * var type: NSAttributeDescription.AttributeType { get set }
    * @availability iOS 15.0+
    */
-  get type(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 446468791617652, this, []); }
-  set type(value: NSAttributeDescription_AttributeType) { callSDK<void>("CoreData_d968214ecc684fb6", 1357184110389876, this, [value]); }
+  get type(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 446468791617652, this, []); }
+  set type(value: NSAttributeDescription_AttributeType) { callSDK<void>("CoreData_0e503aef608672fa", 1357184110389876, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSAttributeDescription": true; "c:objc(cs)NSPropertyDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entity": true; "isIndexed": true; "isIndexedBySpotlight": true; "name": true; "isOptional": true; "renamingIdentifier": true; "isStoredInExternalRecord": true; "isTransient": true; "userInfo": true; "validationPredicates": true; "validationWarnings": true; "versionHash": true; "versionHashModifier": true; "allowsCloudEncryption": true; "allowsExternalBinaryDataStorage": true; "attributeType": true; "attributeValueClassName": true; "defaultValue": true; "preservesValueInHistoryOnDeletion": true; "valueTransformerName": true };
 }
@@ -1421,93 +1421,93 @@ export const NSAttributeDescription_AttributeType = {
    * static let binaryData: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get binaryData(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 2542590082622578, undefined, []); },
+  get binaryData(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 2542590082622578, undefined, []); },
   /**
    * static let transformable: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get transformable(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 3538470483234700, undefined, []); },
+  get transformable(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 3538470483234700, undefined, []); },
   /**
    * static let uri: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get uri(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 66440540689458, undefined, []); },
+  get uri(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 66440540689458, undefined, []); },
   /**
    * static let date: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get date(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 4469888198025934, undefined, []); },
+  get date(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 4469888198025934, undefined, []); },
   /**
    * static let uuid: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get uuid(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 4054456055964616, undefined, []); },
+  get uuid(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 4054456055964616, undefined, []); },
   /**
    * static let float: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get float(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 3213356309219906, undefined, []); },
+  get float(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 3213356309219906, undefined, []); },
   /**
    * static let double: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get double(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 1446409125913461, undefined, []); },
+  get double(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 1446409125913461, undefined, []); },
   /**
    * static let string: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get string(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 2023503004067316, undefined, []); },
+  get string(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 2023503004067316, undefined, []); },
   /**
    * static let boolean: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get boolean(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 873603022287289, undefined, []); },
+  get boolean(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 873603022287289, undefined, []); },
   /**
    * static let decimal: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get decimal(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 3504151718567207, undefined, []); },
+  get decimal(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 3504151718567207, undefined, []); },
   /**
    * static let objectID: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get objectID(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 655302281165867, undefined, []); },
+  get objectID(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 655302281165867, undefined, []); },
   /**
    * init(rawValue: NSAttributeType)
    * @availability iOS 15.0+
    */
-  init(rawValue: NSAttributeType): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 2950184956117818, undefined, [rawValue]); },
+  init(rawValue: NSAttributeType): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 2950184956117818, undefined, [rawValue]); },
   /**
    * var rawValue: NSAttributeType
    * @availability iOS 15.0+
    */
-  getRawValue($self: NSAttributeDescription_AttributeType): NSAttributeType { return callSDK<NSAttributeType>("CoreData_d968214ecc684fb6", 2699155021995446, $self, []); },
-  setRawValue($self: NSAttributeDescription_AttributeType, value: NSAttributeType): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1147035439067998, $self, [value]); },
+  getRawValue($self: NSAttributeDescription_AttributeType): NSAttributeType { return callSDK<NSAttributeType>("CoreData_0e503aef608672fa", 2699155021995446, $self, []); },
+  setRawValue($self: NSAttributeDescription_AttributeType, value: NSAttributeType): void { return callSDK<void>("CoreData_0e503aef608672fa", 1147035439067998, $self, [value]); },
   /**
    * static let composite: NSAttributeDescription.AttributeType
    * @availability iOS 17.0+
    */
-  get composite(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 2708570398660185, undefined, []); },
+  get composite(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 2708570398660185, undefined, []); },
   /**
    * static let integer16: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get integer16(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 3483189786743840, undefined, []); },
+  get integer16(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 3483189786743840, undefined, []); },
   /**
    * static let integer32: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get integer32(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 2893988363167437, undefined, []); },
+  get integer32(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 2893988363167437, undefined, []); },
   /**
    * static let integer64: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get integer64(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 2701465641266292, undefined, []); },
+  get integer64(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 2701465641266292, undefined, []); },
   /**
    * static let undefined: NSAttributeDescription.AttributeType
    * @availability iOS 15.0+
    */
-  get undefined(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 3789864907560441, undefined, []); }
+  get undefined(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 3789864907560441, undefined, []); }
 };
 
 /**
@@ -1521,7 +1521,7 @@ export type NSAttributeType = "undefinedAttributeType" | "integer16AttributeType
 
 export const NSAttributeType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (NSAttributeType) | null { return callSDK<(NSAttributeType) | null>("CoreData_d968214ecc684fb6", 1757467803100569, undefined, [rawValue]); }
+  init(rawValue: number): (NSAttributeType) | null { return callSDK<(NSAttributeType) | null>("CoreData_0e503aef608672fa", 1757467803100569, undefined, [rawValue]); }
 };
 
 /**
@@ -1533,23 +1533,23 @@ export class NSBatchDeleteRequest extends NSPersistentStoreRequest {
    * init(fetchRequest fetch: NSFetchRequest<any NSFetchRequestResult>)
    * @availability iOS 9.0+
    */
-  static initFetchRequest(fetch: $SDK12): NSBatchDeleteRequest { return callSDK<NSBatchDeleteRequest>("CoreData_d968214ecc684fb6", 3743952046364736, undefined, [fetch]); }
+  static initFetchRequest(fetch: $SDK12): NSBatchDeleteRequest { return callSDK<NSBatchDeleteRequest>("CoreData_0e503aef608672fa", 3743952046364736, undefined, [fetch]); }
   /**
    * convenience init(objectIDs objects: [NSManagedObjectID])
    * @availability iOS 9.0+
    */
-  static initObjectIDs(objects: $SDK13): NSBatchDeleteRequest { return callSDK<NSBatchDeleteRequest>("CoreData_d968214ecc684fb6", 2661985428046410, undefined, [objects]); }
+  static initObjectIDs(objects: $SDK13): NSBatchDeleteRequest { return callSDK<NSBatchDeleteRequest>("CoreData_0e503aef608672fa", 2661985428046410, undefined, [objects]); }
   /**
    * @NSCopying var fetchRequest: NSFetchRequest<any NSFetchRequestResult> { get }
    * @availability iOS 9.0+
    */
-  get fetchRequest(): $SDK14 { return callSDK<$SDK14>("CoreData_d968214ecc684fb6", 950022096972682, this, []); }
+  get fetchRequest(): $SDK14 { return callSDK<$SDK14>("CoreData_0e503aef608672fa", 950022096972682, this, []); }
   /**
    * var resultType: NSBatchDeleteRequestResultType { get set }
    * @availability iOS 9.0+
    */
-  get resultType(): NSBatchDeleteRequestResultType { return callSDK<NSBatchDeleteRequestResultType>("CoreData_d968214ecc684fb6", 725419990480056, this, []); }
-  set resultType(value: NSBatchDeleteRequestResultType) { callSDK<void>("CoreData_d968214ecc684fb6", 2532740247734178, this, [value]); }
+  get resultType(): NSBatchDeleteRequestResultType { return callSDK<NSBatchDeleteRequestResultType>("CoreData_0e503aef608672fa", 725419990480056, this, []); }
+  set resultType(value: NSBatchDeleteRequestResultType) { callSDK<void>("CoreData_0e503aef608672fa", 2532740247734178, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSBatchDeleteRequest": true; "c:objc(cs)NSPersistentStoreRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "affectedStores": true; "requestType": true; "fetchRequest": true; "resultType": true };
 }
@@ -1565,7 +1565,7 @@ export const NSBatchDeleteRequestResultType = {
    * init?(rawValue: UInt)
    * @availability iOS 9.0+
    */
-  init(rawValue: number): (NSBatchDeleteRequestResultType) | null { return callSDK<(NSBatchDeleteRequestResultType) | null>("CoreData_d968214ecc684fb6", 1860837617951155, undefined, [rawValue]); }
+  init(rawValue: number): (NSBatchDeleteRequestResultType) | null { return callSDK<(NSBatchDeleteRequestResultType) | null>("CoreData_0e503aef608672fa", 1860837617951155, undefined, [rawValue]); }
 };
 
 /**
@@ -1574,17 +1574,17 @@ export const NSBatchDeleteRequestResultType = {
  */
 export class NSBatchDeleteResult extends (NSPersistentStoreResult as unknown as Omit<typeof NSPersistentStoreResult, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentStoreResult)) {
   /** init() */
-  static init(): NSBatchDeleteResult { return callSDK<NSBatchDeleteResult>("CoreData_d968214ecc684fb6", 2561790115906221, undefined, []); }
+  static init(): NSBatchDeleteResult { return callSDK<NSBatchDeleteResult>("CoreData_0e503aef608672fa", 2561790115906221, undefined, []); }
   /**
    * var result: Any? { get }
    * @availability iOS 9.0+
    */
-  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 2952666818341475, this, []); }
+  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 2952666818341475, this, []); }
   /**
    * var resultType: NSBatchDeleteRequestResultType { get }
    * @availability iOS 9.0+
    */
-  get resultType(): NSBatchDeleteRequestResultType { return callSDK<NSBatchDeleteRequestResultType>("CoreData_d968214ecc684fb6", 2086386574373202, this, []); }
+  get resultType(): NSBatchDeleteRequestResultType { return callSDK<NSBatchDeleteRequestResultType>("CoreData_0e503aef608672fa", 2086386574373202, this, []); }
   declare readonly $type: { "c:objc(cs)NSBatchDeleteResult": true; "c:objc(cs)NSPersistentStoreResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "result": true; "resultType": true };
 }
@@ -1599,49 +1599,49 @@ export class NSBatchInsertRequest extends (NSPersistentStoreRequest as unknown a
    * @availability iOS 13.0+
    * @deprecated iOS 14.0
    */
-  static init(): NSBatchInsertRequest { return callSDK<NSBatchInsertRequest>("CoreData_d968214ecc684fb6", 760838945909557, undefined, []); }
+  static init(): NSBatchInsertRequest { return callSDK<NSBatchInsertRequest>("CoreData_0e503aef608672fa", 760838945909557, undefined, []); }
   /**
    * init(entity: NSEntityDescription, objects dictionaries: [[String : Any]])
    * @availability iOS 13.0+
    */
-  static initEntityObjects(entity: NSEntityDescription, dictionaries: $SDK15): NSBatchInsertRequest { return callSDK<NSBatchInsertRequest>("CoreData_d968214ecc684fb6", 2779441313758886, undefined, [entity, dictionaries]); }
+  static initEntityObjects(entity: NSEntityDescription, dictionaries: $SDK15): NSBatchInsertRequest { return callSDK<NSBatchInsertRequest>("CoreData_0e503aef608672fa", 2779441313758886, undefined, [entity, dictionaries]); }
   /**
    * init(entityName: String, objects dictionaries: [[String : Any]])
    * @availability iOS 13.0+
    */
-  static initEntityNameObjects(entityName: string, dictionaries: $SDK15): NSBatchInsertRequest { return callSDK<NSBatchInsertRequest>("CoreData_d968214ecc684fb6", 3222297464244573, undefined, [entityName, dictionaries]); }
+  static initEntityNameObjects(entityName: string, dictionaries: $SDK15): NSBatchInsertRequest { return callSDK<NSBatchInsertRequest>("CoreData_0e503aef608672fa", 3222297464244573, undefined, [entityName, dictionaries]); }
   /**
    * var dictionaryHandler: ((NSMutableDictionary) -> Bool)? { get set }
    * @availability iOS 14.0+
    */
-  get dictionaryHandler(): (((arg0: _Foundation_NSMutableDictionary) => Promise<boolean>)) | null { return callSDK<(((arg0: _Foundation_NSMutableDictionary) => Promise<boolean>)) | null>("CoreData_d968214ecc684fb6", 1796609373387321, this, []); }
+  get dictionaryHandler(): (((arg0: _Foundation_NSMutableDictionary) => Promise<boolean>)) | null { return callSDK<(((arg0: _Foundation_NSMutableDictionary) => Promise<boolean>)) | null>("CoreData_0e503aef608672fa", 1796609373387321, this, []); }
   /**
    * var entity: NSEntityDescription? { get }
    * @availability iOS 13.0+
    */
-  get entity(): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 1275825279183648, this, []); }
+  get entity(): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 1275825279183648, this, []); }
   /**
    * var entityName: String { get }
    * @availability iOS 13.0+
    */
-  get entityName(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1338379065569450, this, []); }
+  get entityName(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1338379065569450, this, []); }
   /**
    * var managedObjectHandler: ((NSManagedObject) -> Bool)? { get set }
    * @availability iOS 14.0+
    */
-  get managedObjectHandler(): (((arg0: NSManagedObject) => Promise<boolean>)) | null { return callSDK<(((arg0: NSManagedObject) => Promise<boolean>)) | null>("CoreData_d968214ecc684fb6", 2664207839170478, this, []); }
+  get managedObjectHandler(): (((arg0: NSManagedObject) => Promise<boolean>)) | null { return callSDK<(((arg0: NSManagedObject) => Promise<boolean>)) | null>("CoreData_0e503aef608672fa", 2664207839170478, this, []); }
   /**
    * var objectsToInsert: [[String : Any]]? { get set }
    * @availability iOS 13.0+
    */
-  get objectsToInsert(): $SDK19 { return callSDK<$SDK19>("CoreData_d968214ecc684fb6", 3433600625352221, this, []); }
-  set objectsToInsert(value: $SDK19) { callSDK<void>("CoreData_d968214ecc684fb6", 3539986790895632, this, [value]); }
+  get objectsToInsert(): $SDK19 { return callSDK<$SDK19>("CoreData_0e503aef608672fa", 3433600625352221, this, []); }
+  set objectsToInsert(value: $SDK19) { callSDK<void>("CoreData_0e503aef608672fa", 3539986790895632, this, [value]); }
   /**
    * var resultType: NSBatchInsertRequestResultType { get set }
    * @availability iOS 13.0+
    */
-  get resultType(): NSBatchInsertRequestResultType { return callSDK<NSBatchInsertRequestResultType>("CoreData_d968214ecc684fb6", 3247280241898008, this, []); }
-  set resultType(value: NSBatchInsertRequestResultType) { callSDK<void>("CoreData_d968214ecc684fb6", 1486102196622957, this, [value]); }
+  get resultType(): NSBatchInsertRequestResultType { return callSDK<NSBatchInsertRequestResultType>("CoreData_0e503aef608672fa", 3247280241898008, this, []); }
+  set resultType(value: NSBatchInsertRequestResultType) { callSDK<void>("CoreData_0e503aef608672fa", 1486102196622957, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSBatchInsertRequest": true; "c:objc(cs)NSPersistentStoreRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "affectedStores": true; "requestType": true; "entity": true; "entityName": true; "objectsToInsert": true; "resultType": true };
 }
@@ -1657,7 +1657,7 @@ export const NSBatchInsertRequestResultType = {
    * init?(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (NSBatchInsertRequestResultType) | null { return callSDK<(NSBatchInsertRequestResultType) | null>("CoreData_d968214ecc684fb6", 3030025765972788, undefined, [rawValue]); }
+  init(rawValue: number): (NSBatchInsertRequestResultType) | null { return callSDK<(NSBatchInsertRequestResultType) | null>("CoreData_0e503aef608672fa", 3030025765972788, undefined, [rawValue]); }
 };
 
 /**
@@ -1666,17 +1666,17 @@ export const NSBatchInsertRequestResultType = {
  */
 export class NSBatchInsertResult extends (NSPersistentStoreResult as unknown as Omit<typeof NSPersistentStoreResult, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentStoreResult)) {
   /** init() */
-  static init(): NSBatchInsertResult { return callSDK<NSBatchInsertResult>("CoreData_d968214ecc684fb6", 3462665053755967, undefined, []); }
+  static init(): NSBatchInsertResult { return callSDK<NSBatchInsertResult>("CoreData_0e503aef608672fa", 3462665053755967, undefined, []); }
   /**
    * var result: Any? { get }
    * @availability iOS 13.0+
    */
-  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 2541175319177021, this, []); }
+  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 2541175319177021, this, []); }
   /**
    * var resultType: NSBatchInsertRequestResultType { get }
    * @availability iOS 13.0+
    */
-  get resultType(): NSBatchInsertRequestResultType { return callSDK<NSBatchInsertRequestResultType>("CoreData_d968214ecc684fb6", 3505870630768580, this, []); }
+  get resultType(): NSBatchInsertRequestResultType { return callSDK<NSBatchInsertRequestResultType>("CoreData_0e503aef608672fa", 3505870630768580, this, []); }
   declare readonly $type: { "c:objc(cs)NSBatchInsertResult": true; "c:objc(cs)NSPersistentStoreResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "result": true; "resultType": true };
 }
@@ -1690,46 +1690,46 @@ export class NSBatchUpdateRequest extends NSPersistentStoreRequest {
    * init(entity: NSEntityDescription)
    * @availability iOS 8.0+
    */
-  static initEntity(entity: NSEntityDescription): NSBatchUpdateRequest { return callSDK<NSBatchUpdateRequest>("CoreData_d968214ecc684fb6", 3789494706633830, undefined, [entity]); }
+  static initEntity(entity: NSEntityDescription): NSBatchUpdateRequest { return callSDK<NSBatchUpdateRequest>("CoreData_0e503aef608672fa", 3789494706633830, undefined, [entity]); }
   /**
    * init(entityName: String)
    * @availability iOS 8.0+
    */
-  static initEntityName(entityName: string): NSBatchUpdateRequest { return callSDK<NSBatchUpdateRequest>("CoreData_d968214ecc684fb6", 3783215244808245, undefined, [entityName]); }
+  static initEntityName(entityName: string): NSBatchUpdateRequest { return callSDK<NSBatchUpdateRequest>("CoreData_0e503aef608672fa", 3783215244808245, undefined, [entityName]); }
   /**
    * var entity: NSEntityDescription { get }
    * @availability iOS 8.0+
    */
-  get entity(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_d968214ecc684fb6", 1373283789869712, this, []); }
+  get entity(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_0e503aef608672fa", 1373283789869712, this, []); }
   /**
    * var entityName: String { get }
    * @availability iOS 8.0+
    */
-  get entityName(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 3645533235013085, this, []); }
+  get entityName(): string { return callSDK<string>("CoreData_0e503aef608672fa", 3645533235013085, this, []); }
   /**
    * var includesSubentities: Bool { get set }
    * @availability iOS 8.0+
    */
-  get includesSubentities(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2943667067919086, this, []); }
-  set includesSubentities(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 1312751131402230, this, [value]); }
+  get includesSubentities(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2943667067919086, this, []); }
+  set includesSubentities(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 1312751131402230, this, [value]); }
   /**
    * var predicate: NSPredicate? { get set }
    * @availability iOS 8.0+
    */
-  get predicate(): $SDK0 { return callSDK<$SDK0>("CoreData_d968214ecc684fb6", 1489862574997128, this, []); }
-  set predicate(value: $SDK0) { callSDK<void>("CoreData_d968214ecc684fb6", 2239333884173528, this, [value]); }
+  get predicate(): $SDK0 { return callSDK<$SDK0>("CoreData_0e503aef608672fa", 1489862574997128, this, []); }
+  set predicate(value: $SDK0) { callSDK<void>("CoreData_0e503aef608672fa", 2239333884173528, this, [value]); }
   /**
    * var propertiesToUpdate: [AnyHashable : Any]? { get set }
    * @availability iOS 8.0+
    */
-  get propertiesToUpdate(): $SDK6 { return callSDK<$SDK6>("CoreData_d968214ecc684fb6", 608794178200575, this, []); }
-  set propertiesToUpdate(value: $SDK6) { callSDK<void>("CoreData_d968214ecc684fb6", 635955455300313, this, [value]); }
+  get propertiesToUpdate(): $SDK6 { return callSDK<$SDK6>("CoreData_0e503aef608672fa", 608794178200575, this, []); }
+  set propertiesToUpdate(value: $SDK6) { callSDK<void>("CoreData_0e503aef608672fa", 635955455300313, this, [value]); }
   /**
    * var resultType: NSBatchUpdateRequestResultType { get set }
    * @availability iOS 8.0+
    */
-  get resultType(): NSBatchUpdateRequestResultType { return callSDK<NSBatchUpdateRequestResultType>("CoreData_d968214ecc684fb6", 1029153656623194, this, []); }
-  set resultType(value: NSBatchUpdateRequestResultType) { callSDK<void>("CoreData_d968214ecc684fb6", 3107489543395273, this, [value]); }
+  get resultType(): NSBatchUpdateRequestResultType { return callSDK<NSBatchUpdateRequestResultType>("CoreData_0e503aef608672fa", 1029153656623194, this, []); }
+  set resultType(value: NSBatchUpdateRequestResultType) { callSDK<void>("CoreData_0e503aef608672fa", 3107489543395273, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSBatchUpdateRequest": true; "c:objc(cs)NSPersistentStoreRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "affectedStores": true; "requestType": true; "entity": true; "entityName": true; "includesSubentities": true; "predicate": true; "propertiesToUpdate": true; "resultType": true };
 }
@@ -1745,7 +1745,7 @@ export const NSBatchUpdateRequestResultType = {
    * init?(rawValue: UInt)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): (NSBatchUpdateRequestResultType) | null { return callSDK<(NSBatchUpdateRequestResultType) | null>("CoreData_d968214ecc684fb6", 1432098152425556, undefined, [rawValue]); }
+  init(rawValue: number): (NSBatchUpdateRequestResultType) | null { return callSDK<(NSBatchUpdateRequestResultType) | null>("CoreData_0e503aef608672fa", 1432098152425556, undefined, [rawValue]); }
 };
 
 /**
@@ -1754,17 +1754,17 @@ export const NSBatchUpdateRequestResultType = {
  */
 export class NSBatchUpdateResult extends (NSPersistentStoreResult as unknown as Omit<typeof NSPersistentStoreResult, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentStoreResult)) {
   /** init() */
-  static init(): NSBatchUpdateResult { return callSDK<NSBatchUpdateResult>("CoreData_d968214ecc684fb6", 1595297935431877, undefined, []); }
+  static init(): NSBatchUpdateResult { return callSDK<NSBatchUpdateResult>("CoreData_0e503aef608672fa", 1595297935431877, undefined, []); }
   /**
    * var result: Any? { get }
    * @availability iOS 8.0+
    */
-  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 376151843006199, this, []); }
+  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 376151843006199, this, []); }
   /**
    * var resultType: NSBatchUpdateRequestResultType { get }
    * @availability iOS 8.0+
    */
-  get resultType(): NSBatchUpdateRequestResultType { return callSDK<NSBatchUpdateRequestResultType>("CoreData_d968214ecc684fb6", 1311876154613975, this, []); }
+  get resultType(): NSBatchUpdateRequestResultType { return callSDK<NSBatchUpdateRequestResultType>("CoreData_0e503aef608672fa", 1311876154613975, this, []); }
   declare readonly $type: { "c:objc(cs)NSBatchUpdateResult": true; "c:objc(cs)NSPersistentStoreResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "result": true; "resultType": true };
 }
@@ -1775,13 +1775,13 @@ export class NSBatchUpdateResult extends (NSPersistentStoreResult as unknown as 
  */
 export class NSCompositeAttributeDescription extends (NSAttributeDescription as unknown as Omit<typeof NSAttributeDescription, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSAttributeDescription)) {
   /** init() */
-  static init(): NSCompositeAttributeDescription { return callSDK<NSCompositeAttributeDescription>("CoreData_d968214ecc684fb6", 2327760133994777, undefined, []); }
+  static init(): NSCompositeAttributeDescription { return callSDK<NSCompositeAttributeDescription>("CoreData_0e503aef608672fa", 2327760133994777, undefined, []); }
   /**
    * var elements: [NSAttributeDescription] { get set }
    * @availability iOS 17.0+
    */
-  get elements(): Array<NSAttributeDescription> { return callSDK<Array<NSAttributeDescription>>("CoreData_d968214ecc684fb6", 3999201397770894, this, []); }
-  set elements(value: Array<NSAttributeDescription>) { callSDK<void>("CoreData_d968214ecc684fb6", 4191520587027115, this, [value]); }
+  get elements(): Array<NSAttributeDescription> { return callSDK<Array<NSAttributeDescription>>("CoreData_0e503aef608672fa", 3999201397770894, this, []); }
+  set elements(value: Array<NSAttributeDescription>) { callSDK<void>("CoreData_0e503aef608672fa", 4191520587027115, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSCompositeAttributeDescription": true; "c:objc(cs)NSAttributeDescription": true; "c:objc(cs)NSPropertyDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entity": true; "isIndexed": true; "isIndexedBySpotlight": true; "name": true; "isOptional": true; "renamingIdentifier": true; "isStoredInExternalRecord": true; "isTransient": true; "userInfo": true; "validationPredicates": true; "validationWarnings": true; "versionHash": true; "versionHashModifier": true; "allowsCloudEncryption": true; "allowsExternalBinaryDataStorage": true; "attributeType": true; "attributeValueClassName": true; "defaultValue": true; "preservesValueInHistoryOnDeletion": true; "valueTransformerName": true; "elements": true };
 }
@@ -1795,37 +1795,37 @@ export class NSConstraintConflict extends SDKHandle {
    * init(constraint contraint: [String], database databaseObject: NSManagedObject?, databaseSnapshot: [AnyHashable : Any]?, conflicting conflictingObjects: [NSManagedObject], conflictingSnapshots: [Any])
    * @availability iOS 9.0+
    */
-  static init(contraint: Array<string>, databaseObject: $SDK21, databaseSnapshot: $SDK6, conflictingObjects: Array<NSManagedObject>, conflictingSnapshots: Array<unknown>): NSConstraintConflict { return callSDK<NSConstraintConflict>("CoreData_d968214ecc684fb6", 2475331038521589, undefined, [contraint, databaseObject, databaseSnapshot, conflictingObjects, conflictingSnapshots]); }
+  static init(contraint: Array<string>, databaseObject: $SDK21, databaseSnapshot: $SDK6, conflictingObjects: Array<NSManagedObject>, conflictingSnapshots: Array<unknown>): NSConstraintConflict { return callSDK<NSConstraintConflict>("CoreData_0e503aef608672fa", 2475331038521589, undefined, [contraint, databaseObject, databaseSnapshot, conflictingObjects, conflictingSnapshots]); }
   /**
    * var conflictingObjects: [NSManagedObject] { get }
    * @availability iOS 9.0+
    */
-  get conflictingObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 3829339232772237, this, []); }
+  get conflictingObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 3829339232772237, this, []); }
   /**
    * var conflictingSnapshots: [[AnyHashable : Any]] { get }
    * @availability iOS 9.0+
    */
-  get conflictingSnapshots(): Array<NativeMap<unknown, unknown>> { return callSDK<Array<NativeMap<unknown, unknown>>>("CoreData_d968214ecc684fb6", 1256025872253314, this, []); }
+  get conflictingSnapshots(): Array<NativeMap<unknown, unknown>> { return callSDK<Array<NativeMap<unknown, unknown>>>("CoreData_0e503aef608672fa", 1256025872253314, this, []); }
   /**
    * var constraint: [String] { get }
    * @availability iOS 9.0+
    */
-  get constraint(): Array<string> { return callSDK<Array<string>>("CoreData_d968214ecc684fb6", 2587655975978013, this, []); }
+  get constraint(): Array<string> { return callSDK<Array<string>>("CoreData_0e503aef608672fa", 2587655975978013, this, []); }
   /**
    * var constraintValues: [String : Any] { get }
    * @availability iOS 9.0+
    */
-  get constraintValues(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_d968214ecc684fb6", 1310995667556811, this, []); }
+  get constraintValues(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_0e503aef608672fa", 1310995667556811, this, []); }
   /**
    * var databaseObject: NSManagedObject? { get }
    * @availability iOS 9.0+
    */
-  get databaseObject(): $SDK21 { return callSDK<$SDK21>("CoreData_d968214ecc684fb6", 2540516472471187, this, []); }
+  get databaseObject(): $SDK21 { return callSDK<$SDK21>("CoreData_0e503aef608672fa", 2540516472471187, this, []); }
   /**
    * var databaseSnapshot: [String : Any]? { get }
    * @availability iOS 9.0+
    */
-  get databaseSnapshot(): $SDK4 { return callSDK<$SDK4>("CoreData_d968214ecc684fb6", 3202674309062465, this, []); }
+  get databaseSnapshot(): $SDK4 { return callSDK<$SDK4>("CoreData_0e503aef608672fa", 3202674309062465, this, []); }
   declare readonly $type: { "c:objc(cs)NSConstraintConflict": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "conflictingObjects": true; "conflictingSnapshots": true; "constraint": true; "constraintValues": true; "databaseObject": true; "databaseSnapshot": true };
 }
@@ -1839,63 +1839,63 @@ export class NSCoreDataCoreSpotlightDelegate extends SDKHandle {
    * func attributeSet(for object: NSManagedObject) -> CSSearchableItemAttributeSet?
    * @availability iOS 11.0+
    */
-  attributeSet(object: NSManagedObject): (_CoreSpotlight_CSSearchableItemAttributeSet) | null { return callSDK<(_CoreSpotlight_CSSearchableItemAttributeSet) | null>("CoreData_d968214ecc684fb6", 1030493026303622, this, [object]); }
+  attributeSet(object: NSManagedObject): (_CoreSpotlight_CSSearchableItemAttributeSet) | null { return callSDK<(_CoreSpotlight_CSSearchableItemAttributeSet) | null>("CoreData_0e503aef608672fa", 1030493026303622, this, [object]); }
   /**
    * func deleteSpotlightIndex() async throws
    * @availability iOS 14.0+
    */
-  deleteSpotlightIndex(completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("CoreData_d968214ecc684fb6", 731426516333608, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  deleteSpotlightIndex(completionHandler: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("CoreData_0e503aef608672fa", 731426516333608, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * func domainIdentifier() -> String
    * @availability iOS 11.0+
    */
-  domainIdentifier(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 421849414300980, this, []); }
+  domainIdentifier(): string { return callSDK<string>("CoreData_0e503aef608672fa", 421849414300980, this, []); }
   /**
    * func indexName() -> String?
    * @availability iOS 11.0+
    */
-  indexName(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 1071804382901311, this, []); }
+  indexName(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 1071804382901311, this, []); }
   /**
    * init(forStoreWith description: NSPersistentStoreDescription, coordinator psc: NSPersistentStoreCoordinator)
    * @availability iOS 13.0+
    */
-  static initForStoreWithCoordinator(description: NSPersistentStoreDescription, psc: NSPersistentStoreCoordinator): NSCoreDataCoreSpotlightDelegate { return callSDK<NSCoreDataCoreSpotlightDelegate>("CoreData_d968214ecc684fb6", 1609841728011458, undefined, [description, psc]); }
+  static initForStoreWithCoordinator(description: NSPersistentStoreDescription, psc: NSPersistentStoreCoordinator): NSCoreDataCoreSpotlightDelegate { return callSDK<NSCoreDataCoreSpotlightDelegate>("CoreData_0e503aef608672fa", 1609841728011458, undefined, [description, psc]); }
   /**
    * convenience init(forStoreWith description: NSPersistentStoreDescription, model: NSManagedObjectModel)
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  static initForStoreWithModel(description: NSPersistentStoreDescription, model: NSManagedObjectModel): NSCoreDataCoreSpotlightDelegate { return callSDK<NSCoreDataCoreSpotlightDelegate>("CoreData_d968214ecc684fb6", 3725936989216948, undefined, [description, model]); }
+  static initForStoreWithModel(description: NSPersistentStoreDescription, model: NSManagedObjectModel): NSCoreDataCoreSpotlightDelegate { return callSDK<NSCoreDataCoreSpotlightDelegate>("CoreData_0e503aef608672fa", 3725936989216948, undefined, [description, model]); }
   /**
    * func searchableIndex(_ searchableIndex: CSSearchableIndex, reindexAllSearchableItemsWithAcknowledgementHandler acknowledgementHandler: @escaping () -> Void)
    * @availability iOS 11.0+
    */
-  searchableIndexReindexAllSearchableItemsWithAcknowledgementHandler(searchableIndex: _CoreSpotlight_CSSearchableIndex, acknowledgementHandler: (() => void)): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2425162268454379, this, [searchableIndex, acknowledgementHandler], [null,{"callback":{"out":[]}}]); }
+  searchableIndexReindexAllSearchableItemsWithAcknowledgementHandler(searchableIndex: _CoreSpotlight_CSSearchableIndex, acknowledgementHandler: (() => void)): void { return callSDK<void>("CoreData_0e503aef608672fa", 2425162268454379, this, [searchableIndex, acknowledgementHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func searchableIndex(_ searchableIndex: CSSearchableIndex, reindexSearchableItemsWithIdentifiers identifiers: [String], acknowledgementHandler: @escaping () -> Void)
    * @availability iOS 11.0+
    */
-  searchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler(searchableIndex: _CoreSpotlight_CSSearchableIndex, identifiers: Array<string>, acknowledgementHandler: (() => void)): void { return callSDK<void>("CoreData_d968214ecc684fb6", 978834120543192, this, [searchableIndex, identifiers, acknowledgementHandler], [null,null,{"callback":{"out":[]}}]); }
+  searchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler(searchableIndex: _CoreSpotlight_CSSearchableIndex, identifiers: Array<string>, acknowledgementHandler: (() => void)): void { return callSDK<void>("CoreData_0e503aef608672fa", 978834120543192, this, [searchableIndex, identifiers, acknowledgementHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func startSpotlightIndexing()
    * @availability iOS 13.0+
    */
-  startSpotlightIndexing(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1359726841540736, this, []); }
+  startSpotlightIndexing(): void { return callSDK<void>("CoreData_0e503aef608672fa", 1359726841540736, this, []); }
   /**
    * func stopSpotlightIndexing()
    * @availability iOS 13.0+
    */
-  stopSpotlightIndexing(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 90637479534098, this, []); }
+  stopSpotlightIndexing(): void { return callSDK<void>("CoreData_0e503aef608672fa", 90637479534098, this, []); }
   /**
    * var isIndexingEnabled: Bool { get }
    * @availability iOS 15.0+
    */
-  get isIndexingEnabled(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2137974613826434, this, []); }
+  get isIndexingEnabled(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2137974613826434, this, []); }
   /**
    * static let indexDidUpdateNotification: Notification.Name
    * @availability iOS 15.0+
    */
-  static get indexDidUpdateNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3111892933754812, undefined, []); }
+  static get indexDidUpdateNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3111892933754812, undefined, []); }
   declare readonly $type: { "c:objc(cs)NSCoreDataCoreSpotlightDelegate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isIndexingEnabled": true };
 }
@@ -1909,27 +1909,27 @@ export class NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage extends SDKHa
    * static func makeMessage(_ notification: Notification) -> NSCoreDataCoreSpotlightDelegate.IndexDidUpdateMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage) | null { return callSDK<(NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage) | null>("CoreData_d968214ecc684fb6", 2586990258628753, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage) | null { return callSDK<(NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage) | null>("CoreData_0e503aef608672fa", 2586990258628753, undefined, [notification]); }
   /**
    * let historyToken: NSPersistentHistoryToken?
    * @availability iOS 27.0+
    */
-  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_d968214ecc684fb6", 155478075204339, this, []); }
+  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_0e503aef608672fa", 155478075204339, this, []); }
   /**
    * static func makeNotification(_ message: NSCoreDataCoreSpotlightDelegate.IndexDidUpdateMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_d968214ecc684fb6", 3029350731335949, undefined, [message]); }
+  static makeNotification(message: NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_0e503aef608672fa", 3029350731335949, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 1963716427074884, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 1963716427074884, undefined, []); }
   /**
    * let storeUUID: String
    * @availability iOS 27.0+
    */
-  get storeUUID(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 2669696044613328, this, []); }
+  get storeUUID(): string { return callSDK<string>("CoreData_0e503aef608672fa", 2669696044613328, this, []); }
   declare readonly $type: { "s:So31NSCoreDataCoreSpotlightDelegateC0cB0E21IndexDidUpdateMessageV": true };
 }
 
@@ -1945,13 +1945,13 @@ export type NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage_Subject = NSCo
  */
 export class NSMigrationStage extends SDKHandle {
   /** init() */
-  static init(): NSMigrationStage { return callSDK<NSMigrationStage>("CoreData_d968214ecc684fb6", 82216811783251, undefined, []); }
+  static init(): NSMigrationStage { return callSDK<NSMigrationStage>("CoreData_0e503aef608672fa", 82216811783251, undefined, []); }
   /**
    * var label: String! { get set }
    * @availability iOS 17.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 3192942876433156, this, []); }
-  set label(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 2109302381448855, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 3192942876433156, this, []); }
+  set label(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 2109302381448855, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSMigrationStage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "label": true };
 }
@@ -1965,27 +1965,27 @@ export class NSCustomMigrationStage extends (NSMigrationStage as unknown as Omit
    * var currentModel: NSManagedObjectModelReference { get }
    * @availability iOS 17.0+
    */
-  get currentModel(): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_d968214ecc684fb6", 1763960545405299, this, []); }
+  get currentModel(): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_0e503aef608672fa", 1763960545405299, this, []); }
   /**
    * var nextModel: NSManagedObjectModelReference { get }
    * @availability iOS 17.0+
    */
-  get nextModel(): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_d968214ecc684fb6", 4149963280654981, this, []); }
+  get nextModel(): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_0e503aef608672fa", 4149963280654981, this, []); }
   /**
    * convenience init(migratingFrom currentModel: NSManagedObjectModelReference, to nextModel: NSManagedObjectModelReference)
    * @availability iOS 17.0+
    */
-  static init(currentModel: NSManagedObjectModelReference, nextModel: NSManagedObjectModelReference): NSCustomMigrationStage { return callSDK<NSCustomMigrationStage>("CoreData_d968214ecc684fb6", 1903617251499167, undefined, [currentModel, nextModel]); }
+  static init(currentModel: NSManagedObjectModelReference, nextModel: NSManagedObjectModelReference): NSCustomMigrationStage { return callSDK<NSCustomMigrationStage>("CoreData_0e503aef608672fa", 1903617251499167, undefined, [currentModel, nextModel]); }
   /**
    * var didMigrateHandler: ((NSStagedMigrationManager, NSCustomMigrationStage) throws -> Void)? { get set }
    * @availability iOS 17.0+
    */
-  get didMigrateHandler(): $SDK27 { return callSDK<$SDK27>("CoreData_d968214ecc684fb6", 3322481383542501, this, []); }
+  get didMigrateHandler(): $SDK27 { return callSDK<$SDK27>("CoreData_0e503aef608672fa", 3322481383542501, this, []); }
   /**
    * var willMigrateHandler: ((NSStagedMigrationManager, NSCustomMigrationStage) throws -> Void)? { get set }
    * @availability iOS 17.0+
    */
-  get willMigrateHandler(): $SDK27 { return callSDK<$SDK27>("CoreData_d968214ecc684fb6", 1934956989202830, this, []); }
+  get willMigrateHandler(): $SDK27 { return callSDK<$SDK27>("CoreData_0e503aef608672fa", 1934956989202830, this, []); }
   declare readonly $type: { "c:objc(cs)NSCustomMigrationStage": true; "c:objc(cs)NSMigrationStage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "label": true; "currentModel": true; "nextModel": true };
 }
@@ -1995,7 +1995,7 @@ export type NSDeleteRule = "noActionDeleteRule" | "nullifyDeleteRule" | "cascade
 
 export const NSDeleteRule = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (NSDeleteRule) | null { return callSDK<(NSDeleteRule) | null>("CoreData_d968214ecc684fb6", 1056732284360683, undefined, [rawValue]); }
+  init(rawValue: number): (NSDeleteRule) | null { return callSDK<(NSDeleteRule) | null>("CoreData_0e503aef608672fa", 1056732284360683, undefined, [rawValue]); }
 };
 
 /**
@@ -2004,13 +2004,13 @@ export const NSDeleteRule = {
  */
 export class NSDerivedAttributeDescription extends (NSAttributeDescription as unknown as Omit<typeof NSAttributeDescription, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSAttributeDescription)) {
   /** init() */
-  static init(): NSDerivedAttributeDescription { return callSDK<NSDerivedAttributeDescription>("CoreData_d968214ecc684fb6", 3347504245792255, undefined, []); }
+  static init(): NSDerivedAttributeDescription { return callSDK<NSDerivedAttributeDescription>("CoreData_0e503aef608672fa", 3347504245792255, undefined, []); }
   /**
    * var derivationExpression: NSExpression? { get set }
    * @availability iOS 13.0+
    */
-  get derivationExpression(): $SDK28 { return callSDK<$SDK28>("CoreData_d968214ecc684fb6", 3322255030537679, this, []); }
-  set derivationExpression(value: $SDK28) { callSDK<void>("CoreData_d968214ecc684fb6", 2452334144757599, this, [value]); }
+  get derivationExpression(): $SDK28 { return callSDK<$SDK28>("CoreData_0e503aef608672fa", 3322255030537679, this, []); }
+  set derivationExpression(value: $SDK28) { callSDK<void>("CoreData_0e503aef608672fa", 2452334144757599, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSDerivedAttributeDescription": true; "c:objc(cs)NSAttributeDescription": true; "c:objc(cs)NSPropertyDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entity": true; "isIndexed": true; "isIndexedBySpotlight": true; "name": true; "isOptional": true; "renamingIdentifier": true; "isStoredInExternalRecord": true; "isTransient": true; "userInfo": true; "validationPredicates": true; "validationWarnings": true; "versionHash": true; "versionHashModifier": true; "allowsCloudEncryption": true; "allowsExternalBinaryDataStorage": true; "attributeType": true; "attributeValueClassName": true; "defaultValue": true; "preservesValueInHistoryOnDeletion": true; "valueTransformerName": true; "derivationExpression": true };
 }
@@ -2024,132 +2024,132 @@ export class NSEntityDescription extends SDKHandle {
    * class func entity(forEntityName entityName: String, in context: NSManagedObjectContext) -> NSEntityDescription?
    * @availability iOS 3.0+
    */
-  static entity(entityName: string, context: NSManagedObjectContext): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 1383974570930081, undefined, [entityName, context]); }
+  static entity(entityName: string, context: NSManagedObjectContext): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 1383974570930081, undefined, [entityName, context]); }
   /**
    * class func insertNewObject(forEntityName entityName: String, into context: NSManagedObjectContext) -> NSManagedObject
    * @availability iOS 3.0+
    */
-  static insertNewObject(entityName: string, context: NSManagedObjectContext): NSManagedObject { return callSDK<NSManagedObject>("CoreData_d968214ecc684fb6", 1447511132555110, undefined, [entityName, context]); }
+  static insertNewObject(entityName: string, context: NSManagedObjectContext): NSManagedObject { return callSDK<NSManagedObject>("CoreData_0e503aef608672fa", 1447511132555110, undefined, [entityName, context]); }
   /** init() */
-  static init(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_d968214ecc684fb6", 1049723703279335, undefined, []); }
+  static init(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_0e503aef608672fa", 1049723703279335, undefined, []); }
   /**
    * func isKindOf(entity: NSEntityDescription) -> Bool
    * @availability iOS 3.0+
    */
-  isKindOf(entity: NSEntityDescription): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2171078030875619, this, [entity]); }
+  isKindOf(entity: NSEntityDescription): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2171078030875619, this, [entity]); }
   /**
    * func relationships(forDestination entity: NSEntityDescription) -> [NSRelationshipDescription]
    * @availability iOS 3.0+
    */
-  relationships(entity: NSEntityDescription): Array<NSRelationshipDescription> { return callSDK<Array<NSRelationshipDescription>>("CoreData_d968214ecc684fb6", 3963365134726854, this, [entity]); }
+  relationships(entity: NSEntityDescription): Array<NSRelationshipDescription> { return callSDK<Array<NSRelationshipDescription>>("CoreData_0e503aef608672fa", 3963365134726854, this, [entity]); }
   /**
    * var isAbstract: Bool { get set }
    * @availability iOS 3.0+
    */
-  get isAbstract(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 1338514190704947, this, []); }
-  set isAbstract(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 3914222495538876, this, [value]); }
+  get isAbstract(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 1338514190704947, this, []); }
+  set isAbstract(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 3914222495538876, this, [value]); }
   /**
    * var attributesByName: [String : NSAttributeDescription] { get }
    * @availability iOS 3.0+
    */
-  get attributesByName(): Record<string, NSAttributeDescription> { return callSDK<Record<string, NSAttributeDescription>>("CoreData_d968214ecc684fb6", 696513552081970, this, []); }
+  get attributesByName(): Record<string, NSAttributeDescription> { return callSDK<Record<string, NSAttributeDescription>>("CoreData_0e503aef608672fa", 696513552081970, this, []); }
   /**
    * var compoundIndexes: [[Any]] { get set }
    * @availability iOS 3.0+
    * @deprecated iOS 11.0
    */
-  get compoundIndexes(): Array<Array<unknown>> { return callSDK<Array<Array<unknown>>>("CoreData_d968214ecc684fb6", 2641819104617763, this, []); }
-  set compoundIndexes(value: Array<Array<unknown>>) { callSDK<void>("CoreData_d968214ecc684fb6", 1316555034606232, this, [value]); }
+  get compoundIndexes(): Array<Array<unknown>> { return callSDK<Array<Array<unknown>>>("CoreData_0e503aef608672fa", 2641819104617763, this, []); }
+  set compoundIndexes(value: Array<Array<unknown>>) { callSDK<void>("CoreData_0e503aef608672fa", 1316555034606232, this, [value]); }
   /**
    * var coreSpotlightDisplayNameExpression: NSExpression { get set }
    * @availability iOS 11.0+
    */
-  get coreSpotlightDisplayNameExpression(): _Foundation_NSExpression { return callSDK<_Foundation_NSExpression>("CoreData_d968214ecc684fb6", 2681570369477872, this, []); }
-  set coreSpotlightDisplayNameExpression(value: _Foundation_NSExpression) { callSDK<void>("CoreData_d968214ecc684fb6", 192900814922573, this, [value]); }
+  get coreSpotlightDisplayNameExpression(): _Foundation_NSExpression { return callSDK<_Foundation_NSExpression>("CoreData_0e503aef608672fa", 2681570369477872, this, []); }
+  set coreSpotlightDisplayNameExpression(value: _Foundation_NSExpression) { callSDK<void>("CoreData_0e503aef608672fa", 192900814922573, this, [value]); }
   /**
    * var indexes: [NSFetchIndexDescription] { get set }
    * @availability iOS 11.0+
    */
-  get indexes(): $SDK31 { return callSDK<$SDK31>("CoreData_d968214ecc684fb6", 1441404448018393, this, []); }
-  set indexes(value: $SDK31) { callSDK<void>("CoreData_d968214ecc684fb6", 976923849919304, this, [value]); }
+  get indexes(): $SDK31 { return callSDK<$SDK31>("CoreData_0e503aef608672fa", 1441404448018393, this, []); }
+  set indexes(value: $SDK31) { callSDK<void>("CoreData_0e503aef608672fa", 976923849919304, this, [value]); }
   /**
    * var managedObjectClassName: String! { get set }
    * @availability iOS 3.0+
    */
-  get managedObjectClassName(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 1820916324358573, this, []); }
-  set managedObjectClassName(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 4440718913020913, this, [value]); }
+  get managedObjectClassName(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 1820916324358573, this, []); }
+  set managedObjectClassName(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 4440718913020913, this, [value]); }
   /**
    * unowned(unsafe) var managedObjectModel: NSManagedObjectModel { get }
    * @availability iOS 3.0+
    */
-  get managedObjectModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_d968214ecc684fb6", 4179108406149325, this, []); }
+  get managedObjectModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_0e503aef608672fa", 4179108406149325, this, []); }
   /**
    * var name: String? { get set }
    * @availability iOS 3.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 4184566692128086, this, []); }
-  set name(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 250062780214358, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 4184566692128086, this, []); }
+  set name(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 250062780214358, this, [value]); }
   /**
    * var properties: [NSPropertyDescription] { get set }
    * @availability iOS 3.0+
    */
-  get properties(): Array<NSPropertyDescription> { return callSDK<Array<NSPropertyDescription>>("CoreData_d968214ecc684fb6", 1062570261903067, this, []); }
-  set properties(value: Array<NSPropertyDescription>) { callSDK<void>("CoreData_d968214ecc684fb6", 1432455863361310, this, [value]); }
+  get properties(): Array<NSPropertyDescription> { return callSDK<Array<NSPropertyDescription>>("CoreData_0e503aef608672fa", 1062570261903067, this, []); }
+  set properties(value: Array<NSPropertyDescription>) { callSDK<void>("CoreData_0e503aef608672fa", 1432455863361310, this, [value]); }
   /**
    * var propertiesByName: [String : NSPropertyDescription] { get }
    * @availability iOS 3.0+
    */
-  get propertiesByName(): Record<string, NSPropertyDescription> { return callSDK<Record<string, NSPropertyDescription>>("CoreData_d968214ecc684fb6", 994644154784166, this, []); }
+  get propertiesByName(): Record<string, NSPropertyDescription> { return callSDK<Record<string, NSPropertyDescription>>("CoreData_0e503aef608672fa", 994644154784166, this, []); }
   /**
    * var relationshipsByName: [String : NSRelationshipDescription] { get }
    * @availability iOS 3.0+
    */
-  get relationshipsByName(): Record<string, NSRelationshipDescription> { return callSDK<Record<string, NSRelationshipDescription>>("CoreData_d968214ecc684fb6", 689728742443356, this, []); }
+  get relationshipsByName(): Record<string, NSRelationshipDescription> { return callSDK<Record<string, NSRelationshipDescription>>("CoreData_0e503aef608672fa", 689728742443356, this, []); }
   /**
    * var renamingIdentifier: String? { get set }
    * @availability iOS 3.0+
    */
-  get renamingIdentifier(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 3050742660862520, this, []); }
-  set renamingIdentifier(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 1909763945699641, this, [value]); }
+  get renamingIdentifier(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 3050742660862520, this, []); }
+  set renamingIdentifier(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 1909763945699641, this, [value]); }
   /**
    * var subentities: [NSEntityDescription] { get set }
    * @availability iOS 3.0+
    */
-  get subentities(): $SDK35 { return callSDK<$SDK35>("CoreData_d968214ecc684fb6", 1981033859362523, this, []); }
-  set subentities(value: $SDK35) { callSDK<void>("CoreData_d968214ecc684fb6", 3650452213663303, this, [value]); }
+  get subentities(): $SDK35 { return callSDK<$SDK35>("CoreData_0e503aef608672fa", 1981033859362523, this, []); }
+  set subentities(value: $SDK35) { callSDK<void>("CoreData_0e503aef608672fa", 3650452213663303, this, [value]); }
   /**
    * var subentitiesByName: [String : NSEntityDescription] { get }
    * @availability iOS 3.0+
    */
-  get subentitiesByName(): $SDK36 { return callSDK<$SDK36>("CoreData_d968214ecc684fb6", 3170221935682678, this, []); }
+  get subentitiesByName(): $SDK36 { return callSDK<$SDK36>("CoreData_0e503aef608672fa", 3170221935682678, this, []); }
   /**
    * unowned(unsafe) var superentity: NSEntityDescription? { get }
    * @availability iOS 3.0+
    */
-  get superentity(): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 1958637478952813, this, []); }
+  get superentity(): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 1958637478952813, this, []); }
   /**
    * var uniquenessConstraints: [[Any]] { get set }
    * @availability iOS 9.0+
    */
-  get uniquenessConstraints(): Array<Array<unknown>> { return callSDK<Array<Array<unknown>>>("CoreData_d968214ecc684fb6", 3128005065601125, this, []); }
-  set uniquenessConstraints(value: Array<Array<unknown>>) { callSDK<void>("CoreData_d968214ecc684fb6", 534540662353037, this, [value]); }
+  get uniquenessConstraints(): Array<Array<unknown>> { return callSDK<Array<Array<unknown>>>("CoreData_0e503aef608672fa", 3128005065601125, this, []); }
+  set uniquenessConstraints(value: Array<Array<unknown>>) { callSDK<void>("CoreData_0e503aef608672fa", 534540662353037, this, [value]); }
   /**
    * var userInfo: [AnyHashable : Any]? { get set }
    * @availability iOS 3.0+
    */
-  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_d968214ecc684fb6", 2368328779197495, this, []); }
-  set userInfo(value: $SDK6) { callSDK<void>("CoreData_d968214ecc684fb6", 2220935479448146, this, [value]); }
+  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_0e503aef608672fa", 2368328779197495, this, []); }
+  set userInfo(value: $SDK6) { callSDK<void>("CoreData_0e503aef608672fa", 2220935479448146, this, [value]); }
   /**
    * var versionHash: Data { get }
    * @availability iOS 3.0+
    */
-  get versionHash(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreData_d968214ecc684fb6", 334286790761891, this, []); }
+  get versionHash(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreData_0e503aef608672fa", 334286790761891, this, []); }
   /**
    * var versionHashModifier: String? { get set }
    * @availability iOS 3.0+
    */
-  get versionHashModifier(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 1113520883470796, this, []); }
-  set versionHashModifier(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 1832909932116475, this, [value]); }
+  get versionHashModifier(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 1113520883470796, this, []); }
+  set versionHashModifier(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 1832909932116475, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSEntityDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAbstract": true; "attributesByName": true; "compoundIndexes": true; "coreSpotlightDisplayNameExpression": true; "indexes": true; "managedObjectClassName": true; "managedObjectModel": true; "name": true; "properties": true; "propertiesByName": true; "relationshipsByName": true; "renamingIdentifier": true; "subentities": true; "subentitiesByName": true; "superentity": true; "uniquenessConstraints": true; "userInfo": true; "versionHash": true; "versionHashModifier": true };
 }
@@ -2160,73 +2160,73 @@ export class NSEntityDescription extends SDKHandle {
  */
 export class NSEntityMapping extends SDKHandle {
   /** init() */
-  static init(): NSEntityMapping { return callSDK<NSEntityMapping>("CoreData_d968214ecc684fb6", 159131107538767, undefined, []); }
+  static init(): NSEntityMapping { return callSDK<NSEntityMapping>("CoreData_0e503aef608672fa", 159131107538767, undefined, []); }
   /**
    * var attributeMappings: [NSPropertyMapping]? { get set }
    * @availability iOS 3.0+
    */
-  get attributeMappings(): $SDK37 { return callSDK<$SDK37>("CoreData_d968214ecc684fb6", 1146748750533226, this, []); }
-  set attributeMappings(value: $SDK37) { callSDK<void>("CoreData_d968214ecc684fb6", 1061114855076038, this, [value]); }
+  get attributeMappings(): $SDK37 { return callSDK<$SDK37>("CoreData_0e503aef608672fa", 1146748750533226, this, []); }
+  set attributeMappings(value: $SDK37) { callSDK<void>("CoreData_0e503aef608672fa", 1061114855076038, this, [value]); }
   /**
    * var destinationEntityName: String? { get set }
    * @availability iOS 3.0+
    */
-  get destinationEntityName(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 3160397707764136, this, []); }
-  set destinationEntityName(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 3085333303343714, this, [value]); }
+  get destinationEntityName(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 3160397707764136, this, []); }
+  set destinationEntityName(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 3085333303343714, this, [value]); }
   /**
    * var destinationEntityVersionHash: Data? { get set }
    * @availability iOS 3.0+
    */
-  get destinationEntityVersionHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreData_d968214ecc684fb6", 874262091945674, this, []); }
-  set destinationEntityVersionHash(value: (ArrayBuffer) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 2876669916191207, this, [value]); }
+  get destinationEntityVersionHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreData_0e503aef608672fa", 874262091945674, this, []); }
+  set destinationEntityVersionHash(value: (ArrayBuffer) | null) { callSDK<void>("CoreData_0e503aef608672fa", 2876669916191207, this, [value]); }
   /**
    * var entityMigrationPolicyClassName: String? { get set }
    * @availability iOS 3.0+
    */
-  get entityMigrationPolicyClassName(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 1107394083366857, this, []); }
-  set entityMigrationPolicyClassName(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 2282018950428456, this, [value]); }
+  get entityMigrationPolicyClassName(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 1107394083366857, this, []); }
+  set entityMigrationPolicyClassName(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 2282018950428456, this, [value]); }
   /**
    * var mappingType: NSEntityMappingType { get set }
    * @availability iOS 3.0+
    */
-  get mappingType(): NSEntityMappingType { return callSDK<NSEntityMappingType>("CoreData_d968214ecc684fb6", 2012020876719793, this, []); }
-  set mappingType(value: NSEntityMappingType) { callSDK<void>("CoreData_d968214ecc684fb6", 155007465062558, this, [value]); }
+  get mappingType(): NSEntityMappingType { return callSDK<NSEntityMappingType>("CoreData_0e503aef608672fa", 2012020876719793, this, []); }
+  set mappingType(value: NSEntityMappingType) { callSDK<void>("CoreData_0e503aef608672fa", 155007465062558, this, [value]); }
   /**
    * var name: String! { get set }
    * @availability iOS 3.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 2840512146765980, this, []); }
-  set name(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 4047929602465506, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 2840512146765980, this, []); }
+  set name(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 4047929602465506, this, [value]); }
   /**
    * var relationshipMappings: [NSPropertyMapping]? { get set }
    * @availability iOS 3.0+
    */
-  get relationshipMappings(): $SDK37 { return callSDK<$SDK37>("CoreData_d968214ecc684fb6", 4076376214837721, this, []); }
-  set relationshipMappings(value: $SDK37) { callSDK<void>("CoreData_d968214ecc684fb6", 3275692636684064, this, [value]); }
+  get relationshipMappings(): $SDK37 { return callSDK<$SDK37>("CoreData_0e503aef608672fa", 4076376214837721, this, []); }
+  set relationshipMappings(value: $SDK37) { callSDK<void>("CoreData_0e503aef608672fa", 3275692636684064, this, [value]); }
   /**
    * var sourceEntityName: String? { get set }
    * @availability iOS 3.0+
    */
-  get sourceEntityName(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 2997971649559609, this, []); }
-  set sourceEntityName(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 1721336700646141, this, [value]); }
+  get sourceEntityName(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 2997971649559609, this, []); }
+  set sourceEntityName(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 1721336700646141, this, [value]); }
   /**
    * var sourceEntityVersionHash: Data? { get set }
    * @availability iOS 3.0+
    */
-  get sourceEntityVersionHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreData_d968214ecc684fb6", 1083231479512647, this, []); }
-  set sourceEntityVersionHash(value: (ArrayBuffer) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 2862447459522850, this, [value]); }
+  get sourceEntityVersionHash(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("CoreData_0e503aef608672fa", 1083231479512647, this, []); }
+  set sourceEntityVersionHash(value: (ArrayBuffer) | null) { callSDK<void>("CoreData_0e503aef608672fa", 2862447459522850, this, [value]); }
   /**
    * var sourceExpression: NSExpression? { get set }
    * @availability iOS 3.0+
    */
-  get sourceExpression(): $SDK28 { return callSDK<$SDK28>("CoreData_d968214ecc684fb6", 403604266968409, this, []); }
-  set sourceExpression(value: $SDK28) { callSDK<void>("CoreData_d968214ecc684fb6", 1856121267706709, this, [value]); }
+  get sourceExpression(): $SDK28 { return callSDK<$SDK28>("CoreData_0e503aef608672fa", 403604266968409, this, []); }
+  set sourceExpression(value: $SDK28) { callSDK<void>("CoreData_0e503aef608672fa", 1856121267706709, this, [value]); }
   /**
    * var userInfo: [AnyHashable : Any]? { get set }
    * @availability iOS 3.0+
    */
-  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_d968214ecc684fb6", 924280802902875, this, []); }
-  set userInfo(value: $SDK6) { callSDK<void>("CoreData_d968214ecc684fb6", 1803067432377084, this, [value]); }
+  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_0e503aef608672fa", 924280802902875, this, []); }
+  set userInfo(value: $SDK6) { callSDK<void>("CoreData_0e503aef608672fa", 1803067432377084, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSEntityMapping": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributeMappings": true; "destinationEntityName": true; "destinationEntityVersionHash": true; "entityMigrationPolicyClassName": true; "mappingType": true; "name": true; "relationshipMappings": true; "sourceEntityName": true; "sourceEntityVersionHash": true; "sourceExpression": true; "userInfo": true };
 }
@@ -2236,7 +2236,7 @@ export type NSEntityMappingType = "undefinedEntityMappingType" | "customEntityMa
 
 export const NSEntityMappingType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (NSEntityMappingType) | null { return callSDK<(NSEntityMappingType) | null>("CoreData_d968214ecc684fb6", 3629658564052864, undefined, [rawValue]); }
+  init(rawValue: number): (NSEntityMappingType) | null { return callSDK<(NSEntityMappingType) | null>("CoreData_0e503aef608672fa", 3629658564052864, undefined, [rawValue]); }
 };
 
 /**
@@ -2248,39 +2248,39 @@ export class NSEntityMigrationPolicy extends SDKHandle {
    * func begin(_ mapping: NSEntityMapping, with manager: NSMigrationManager) throws
    * @availability iOS 3.0+
    */
-  begin(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_d968214ecc684fb6", 75453204145752, this, [mapping, manager]); }
+  begin(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_0e503aef608672fa", 75453204145752, this, [mapping, manager]); }
   /**
    * func createDestinationInstances(forSource sInstance: NSManagedObject, in mapping: NSEntityMapping, manager: NSMigrationManager) throws
    * @availability iOS 3.0+
    */
-  createDestinationInstances(sInstance: NSManagedObject, mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3961789159613276, this, [sInstance, mapping, manager]); }
+  createDestinationInstances(sInstance: NSManagedObject, mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_0e503aef608672fa", 3961789159613276, this, [sInstance, mapping, manager]); }
   /**
    * func createRelationships(forDestination dInstance: NSManagedObject, in mapping: NSEntityMapping, manager: NSMigrationManager) throws
    * @availability iOS 3.0+
    */
-  createRelationships(dInstance: NSManagedObject, mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2476810088951553, this, [dInstance, mapping, manager]); }
+  createRelationships(dInstance: NSManagedObject, mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_0e503aef608672fa", 2476810088951553, this, [dInstance, mapping, manager]); }
   /**
    * func end(_ mapping: NSEntityMapping, manager: NSMigrationManager) throws
    * @availability iOS 3.0+
    */
-  end(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3128763725190795, this, [mapping, manager]); }
+  end(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_0e503aef608672fa", 3128763725190795, this, [mapping, manager]); }
   /**
    * func endInstanceCreation(forMapping mapping: NSEntityMapping, manager: NSMigrationManager) throws
    * @availability iOS 3.0+
    */
-  endInstanceCreation(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3458987038125492, this, [mapping, manager]); }
+  endInstanceCreation(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_0e503aef608672fa", 3458987038125492, this, [mapping, manager]); }
   /**
    * func endRelationshipCreation(forMapping mapping: NSEntityMapping, manager: NSMigrationManager) throws
    * @availability iOS 3.0+
    */
-  endRelationshipCreation(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3380107190562284, this, [mapping, manager]); }
+  endRelationshipCreation(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_0e503aef608672fa", 3380107190562284, this, [mapping, manager]); }
   /** init() */
-  static init(): NSEntityMigrationPolicy { return callSDK<NSEntityMigrationPolicy>("CoreData_d968214ecc684fb6", 60322202031912, undefined, []); }
+  static init(): NSEntityMigrationPolicy { return callSDK<NSEntityMigrationPolicy>("CoreData_0e503aef608672fa", 60322202031912, undefined, []); }
   /**
    * func performCustomValidation(forMapping mapping: NSEntityMapping, manager: NSMigrationManager) throws
    * @availability iOS 3.0+
    */
-  performCustomValidation(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1784850727714231, this, [mapping, manager]); }
+  performCustomValidation(mapping: NSEntityMapping, manager: NSMigrationManager): void { return callSDK<void>("CoreData_0e503aef608672fa", 1784850727714231, this, [mapping, manager]); }
   declare readonly $type: { "c:objc(cs)NSEntityMigrationPolicy": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2290,25 +2290,25 @@ export class NSEntityMigrationPolicy extends SDKHandle {
  */
 export class NSExpressionDescription extends (NSPropertyDescription as unknown as Omit<typeof NSPropertyDescription, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPropertyDescription)) {
   /** init() */
-  static init(): NSExpressionDescription { return callSDK<NSExpressionDescription>("CoreData_d968214ecc684fb6", 2438760518853379, undefined, []); }
+  static init(): NSExpressionDescription { return callSDK<NSExpressionDescription>("CoreData_0e503aef608672fa", 2438760518853379, undefined, []); }
   /**
    * var expression: NSExpression? { get set }
    * @availability iOS 3.0+
    */
-  get expression(): $SDK28 { return callSDK<$SDK28>("CoreData_d968214ecc684fb6", 2968674734847011, this, []); }
-  set expression(value: $SDK28) { callSDK<void>("CoreData_d968214ecc684fb6", 1213301913163005, this, [value]); }
+  get expression(): $SDK28 { return callSDK<$SDK28>("CoreData_0e503aef608672fa", 2968674734847011, this, []); }
+  set expression(value: $SDK28) { callSDK<void>("CoreData_0e503aef608672fa", 1213301913163005, this, [value]); }
   /**
    * var expressionResultType: NSAttributeType { get set }
    * @availability iOS 3.0+
    */
-  get expressionResultType(): NSAttributeType { return callSDK<NSAttributeType>("CoreData_d968214ecc684fb6", 1596902978845778, this, []); }
-  set expressionResultType(value: NSAttributeType) { callSDK<void>("CoreData_d968214ecc684fb6", 2601164277183992, this, [value]); }
+  get expressionResultType(): NSAttributeType { return callSDK<NSAttributeType>("CoreData_0e503aef608672fa", 1596902978845778, this, []); }
+  set expressionResultType(value: NSAttributeType) { callSDK<void>("CoreData_0e503aef608672fa", 2601164277183992, this, [value]); }
   /**
    * var resultType: NSAttributeDescription.AttributeType { get set }
    * @availability iOS 15.0+
    */
-  get resultType(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_d968214ecc684fb6", 774241724290043, this, []); }
-  set resultType(value: NSAttributeDescription_AttributeType) { callSDK<void>("CoreData_d968214ecc684fb6", 1516770520196283, this, [value]); }
+  get resultType(): NSAttributeDescription_AttributeType { return callSDK<NSAttributeDescription_AttributeType>("CoreData_0e503aef608672fa", 774241724290043, this, []); }
+  set resultType(value: NSAttributeDescription_AttributeType) { callSDK<void>("CoreData_0e503aef608672fa", 1516770520196283, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSExpressionDescription": true; "c:objc(cs)NSPropertyDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entity": true; "isIndexed": true; "isIndexedBySpotlight": true; "name": true; "isOptional": true; "renamingIdentifier": true; "isStoredInExternalRecord": true; "isTransient": true; "userInfo": true; "validationPredicates": true; "validationWarnings": true; "versionHash": true; "versionHashModifier": true; "expression": true; "expressionResultType": true };
 }
@@ -2319,13 +2319,13 @@ export class NSExpressionDescription extends (NSPropertyDescription as unknown a
  */
 export class NSFetchedPropertyDescription extends (NSPropertyDescription as unknown as Omit<typeof NSPropertyDescription, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPropertyDescription)) {
   /** init() */
-  static init(): NSFetchedPropertyDescription { return callSDK<NSFetchedPropertyDescription>("CoreData_d968214ecc684fb6", 1057252028774942, undefined, []); }
+  static init(): NSFetchedPropertyDescription { return callSDK<NSFetchedPropertyDescription>("CoreData_0e503aef608672fa", 1057252028774942, undefined, []); }
   /**
    * var fetchRequest: NSFetchRequest<any NSFetchRequestResult>? { get set }
    * @availability iOS 3.0+
    */
-  get fetchRequest(): $SDK38 { return callSDK<$SDK38>("CoreData_d968214ecc684fb6", 3832677428450738, this, []); }
-  set fetchRequest(value: $SDK39) { callSDK<void>("CoreData_d968214ecc684fb6", 2189610563269026, this, [value]); }
+  get fetchRequest(): $SDK38 { return callSDK<$SDK38>("CoreData_0e503aef608672fa", 3832677428450738, this, []); }
+  set fetchRequest(value: $SDK39) { callSDK<void>("CoreData_0e503aef608672fa", 2189610563269026, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSFetchedPropertyDescription": true; "c:objc(cs)NSPropertyDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entity": true; "isIndexed": true; "isIndexedBySpotlight": true; "name": true; "isOptional": true; "renamingIdentifier": true; "isStoredInExternalRecord": true; "isTransient": true; "userInfo": true; "validationPredicates": true; "validationWarnings": true; "versionHash": true; "versionHashModifier": true; "fetchRequest": true };
 }
@@ -2341,7 +2341,7 @@ export const NSFetchedResultsChangeType = {
    * init?(rawValue: UInt)
    * @availability iOS 3.0+
    */
-  init(rawValue: number): (NSFetchedResultsChangeType) | null { return callSDK<(NSFetchedResultsChangeType) | null>("CoreData_d968214ecc684fb6", 691856004747284, undefined, [rawValue]); }
+  init(rawValue: number): (NSFetchedResultsChangeType) | null { return callSDK<(NSFetchedResultsChangeType) | null>("CoreData_0e503aef608672fa", 691856004747284, undefined, [rawValue]); }
 };
 
 /**
@@ -2395,30 +2395,30 @@ export class NSFetchIndexDescription extends SDKHandle {
    * init(name: String, elements: [NSFetchIndexElementDescription]?)
    * @availability iOS 11.0+
    */
-  static init(name: string, elements?: (Array<NSFetchIndexElementDescription>) | null): NSFetchIndexDescription { return callSDK<NSFetchIndexDescription>("CoreData_d968214ecc684fb6", 1141420653972088, undefined, [name, elements]); }
+  static init(name: string, elements?: (Array<NSFetchIndexElementDescription>) | null): NSFetchIndexDescription { return callSDK<NSFetchIndexDescription>("CoreData_0e503aef608672fa", 1141420653972088, undefined, [name, elements]); }
   /**
    * var elements: [NSFetchIndexElementDescription] { get set }
    * @availability iOS 11.0+
    */
-  get elements(): $SDK43 { return callSDK<$SDK43>("CoreData_d968214ecc684fb6", 2972831586175064, this, []); }
-  set elements(value: $SDK43) { callSDK<void>("CoreData_d968214ecc684fb6", 930010915245157, this, [value]); }
+  get elements(): $SDK43 { return callSDK<$SDK43>("CoreData_0e503aef608672fa", 2972831586175064, this, []); }
+  set elements(value: $SDK43) { callSDK<void>("CoreData_0e503aef608672fa", 930010915245157, this, [value]); }
   /**
    * unowned(unsafe) var entity: NSEntityDescription? { get }
    * @availability iOS 11.0+
    */
-  get entity(): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 3511506107301619, this, []); }
+  get entity(): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 3511506107301619, this, []); }
   /**
    * var name: String { get set }
    * @availability iOS 11.0+
    */
-  get name(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 3947070078325049, this, []); }
-  set name(value: string) { callSDK<void>("CoreData_d968214ecc684fb6", 3475449190928562, this, [value]); }
+  get name(): string { return callSDK<string>("CoreData_0e503aef608672fa", 3947070078325049, this, []); }
+  set name(value: string) { callSDK<void>("CoreData_0e503aef608672fa", 3475449190928562, this, [value]); }
   /**
    * @NSCopying var partialIndexPredicate: NSPredicate? { get set }
    * @availability iOS 11.0+
    */
-  get partialIndexPredicate(): $SDK0 { return callSDK<$SDK0>("CoreData_d968214ecc684fb6", 3373659208258063, this, []); }
-  set partialIndexPredicate(value: $SDK0) { callSDK<void>("CoreData_d968214ecc684fb6", 2531611970963876, this, [value]); }
+  get partialIndexPredicate(): $SDK0 { return callSDK<$SDK0>("CoreData_0e503aef608672fa", 3373659208258063, this, []); }
+  set partialIndexPredicate(value: $SDK0) { callSDK<void>("CoreData_0e503aef608672fa", 2531611970963876, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSFetchIndexDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "elements": true; "entity": true; "name": true; "partialIndexPredicate": true };
 }
@@ -2432,34 +2432,34 @@ export class NSFetchIndexElementDescription extends SDKHandle {
    * init(property: NSPropertyDescription, collationType: NSFetchIndexElementType)
    * @availability iOS 11.0+
    */
-  static init(property: NSPropertyDescription, collationType: NSFetchIndexElementType): NSFetchIndexElementDescription { return callSDK<NSFetchIndexElementDescription>("CoreData_d968214ecc684fb6", 3109812614482309, undefined, [property, collationType]); }
+  static init(property: NSPropertyDescription, collationType: NSFetchIndexElementType): NSFetchIndexElementDescription { return callSDK<NSFetchIndexElementDescription>("CoreData_0e503aef608672fa", 3109812614482309, undefined, [property, collationType]); }
   /**
    * var isAscending: Bool { get set }
    * @availability iOS 11.0+
    */
-  get isAscending(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3491631412048329, this, []); }
-  set isAscending(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 3235034525050127, this, [value]); }
+  get isAscending(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3491631412048329, this, []); }
+  set isAscending(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 3235034525050127, this, [value]); }
   /**
    * var collationType: NSFetchIndexElementType { get set }
    * @availability iOS 11.0+
    */
-  get collationType(): NSFetchIndexElementType { return callSDK<NSFetchIndexElementType>("CoreData_d968214ecc684fb6", 1247767257448053, this, []); }
-  set collationType(value: NSFetchIndexElementType) { callSDK<void>("CoreData_d968214ecc684fb6", 3576141273385800, this, [value]); }
+  get collationType(): NSFetchIndexElementType { return callSDK<NSFetchIndexElementType>("CoreData_0e503aef608672fa", 1247767257448053, this, []); }
+  set collationType(value: NSFetchIndexElementType) { callSDK<void>("CoreData_0e503aef608672fa", 3576141273385800, this, [value]); }
   /**
    * unowned(unsafe) var indexDescription: NSFetchIndexDescription? { get }
    * @availability iOS 11.0+
    */
-  get indexDescription(): (NSFetchIndexDescription) | null { return callSDK<(NSFetchIndexDescription) | null>("CoreData_d968214ecc684fb6", 1599862772438374, this, []); }
+  get indexDescription(): (NSFetchIndexDescription) | null { return callSDK<(NSFetchIndexDescription) | null>("CoreData_0e503aef608672fa", 1599862772438374, this, []); }
   /**
    * var property: NSPropertyDescription? { get }
    * @availability iOS 11.0+
    */
-  get property(): $SDK45 { return callSDK<$SDK45>("CoreData_d968214ecc684fb6", 4360373197272757, this, []); }
+  get property(): $SDK45 { return callSDK<$SDK45>("CoreData_0e503aef608672fa", 4360373197272757, this, []); }
   /**
    * var propertyName: String? { get }
    * @availability iOS 11.0+
    */
-  get propertyName(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 330290117888752, this, []); }
+  get propertyName(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 330290117888752, this, []); }
   declare readonly $type: { "c:objc(cs)NSFetchIndexElementDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isAscending": true; "collationType": true; "indexDescription": true; "property": true; "propertyName": true };
 }
@@ -2475,7 +2475,7 @@ export const NSFetchIndexElementType = {
    * init?(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (NSFetchIndexElementType) | null { return callSDK<(NSFetchIndexElementType) | null>("CoreData_d968214ecc684fb6", 3171309293780643, undefined, [rawValue]); }
+  init(rawValue: number): (NSFetchIndexElementType) | null { return callSDK<(NSFetchIndexElementType) | null>("CoreData_0e503aef608672fa", 3171309293780643, undefined, [rawValue]); }
 };
 
 /**
@@ -2496,24 +2496,24 @@ export class NSFetchRequestExpression extends SDKHandle {
    * class func expression(forFetch fetch: NSExpression, context: NSExpression, countOnly countFlag: Bool) -> NSExpression
    * @availability iOS 3.0+
    */
-  static expression(fetch: _Foundation_NSExpression, context: _Foundation_NSExpression, countFlag: boolean): _Foundation_NSExpression { return callSDK<_Foundation_NSExpression>("CoreData_d968214ecc684fb6", 2288124583544901, undefined, [fetch, context, countFlag]); }
+  static expression(fetch: _Foundation_NSExpression, context: _Foundation_NSExpression, countFlag: boolean): _Foundation_NSExpression { return callSDK<_Foundation_NSExpression>("CoreData_0e503aef608672fa", 2288124583544901, undefined, [fetch, context, countFlag]); }
   /** init() */
-  static init(): NSFetchRequestExpression { return callSDK<NSFetchRequestExpression>("CoreData_d968214ecc684fb6", 931044851067175, undefined, []); }
+  static init(): NSFetchRequestExpression { return callSDK<NSFetchRequestExpression>("CoreData_0e503aef608672fa", 931044851067175, undefined, []); }
   /**
    * var contextExpression: NSExpression { get }
    * @availability iOS 3.0+
    */
-  get contextExpression(): _Foundation_NSExpression { return callSDK<_Foundation_NSExpression>("CoreData_d968214ecc684fb6", 3156970576181128, this, []); }
+  get contextExpression(): _Foundation_NSExpression { return callSDK<_Foundation_NSExpression>("CoreData_0e503aef608672fa", 3156970576181128, this, []); }
   /**
    * var isCountOnlyRequest: Bool { get }
    * @availability iOS 3.0+
    */
-  get isCountOnlyRequest(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2198345791793890, this, []); }
+  get isCountOnlyRequest(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2198345791793890, this, []); }
   /**
    * var requestExpression: NSExpression { get }
    * @availability iOS 3.0+
    */
-  get requestExpression(): _Foundation_NSExpression { return callSDK<_Foundation_NSExpression>("CoreData_d968214ecc684fb6", 955562192158124, this, []); }
+  get requestExpression(): _Foundation_NSExpression { return callSDK<_Foundation_NSExpression>("CoreData_0e503aef608672fa", 955562192158124, this, []); }
   declare readonly $type: { "c:objc(cs)NSFetchRequestExpression": true; "c:objc(cs)NSExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contextExpression": true; "isCountOnlyRequest": true; "requestExpression": true };
 }
@@ -2531,18 +2531,18 @@ export const NSFetchRequestResultType = {
    * static var countResultType: NSFetchRequestResultType { get }
    * @availability iOS 3.0+
    */
-  get countResultType(): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_d968214ecc684fb6", 2217185865805016, undefined, []); },
+  get countResultType(): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_0e503aef608672fa", 2217185865805016, undefined, []); },
   /**
    * static var dictionaryResultType: NSFetchRequestResultType { get }
    * @availability iOS 3.0+
    */
-  get dictionaryResultType(): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_d968214ecc684fb6", 3694017994001706, undefined, []); },
+  get dictionaryResultType(): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_0e503aef608672fa", 3694017994001706, undefined, []); },
   /** static var managedObjectIDResultType: NSFetchRequestResultType { get } */
-  get managedObjectIDResultType(): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_d968214ecc684fb6", 4072140499294535, undefined, []); },
+  get managedObjectIDResultType(): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_0e503aef608672fa", 4072140499294535, undefined, []); },
   /** static var managedObjectResultType: NSFetchRequestResultType { get } */
-  get managedObjectResultType(): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_d968214ecc684fb6", 3409147834605165, undefined, []); },
+  get managedObjectResultType(): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_0e503aef608672fa", 3409147834605165, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_d968214ecc684fb6", 333981537052121, undefined, [rawValue]); }
+  init(rawValue: number): NSFetchRequestResultType { return callSDK<NSFetchRequestResultType>("CoreData_0e503aef608672fa", 333981537052121, undefined, [rawValue]); }
 };
 
 /**
@@ -2554,52 +2554,52 @@ export class NSIncrementalStore extends (NSPersistentStore as unknown as Omit<ty
    * class func identifierForNewStore(at storeURL: URL) -> Any
    * @availability iOS 5.0+
    */
-  static identifierForNewStore(storeURL: string): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 2412548800523400, undefined, [storeURL]); }
+  static identifierForNewStore(storeURL: string): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 2412548800523400, undefined, [storeURL]); }
   /**
    * func execute(_ request: NSPersistentStoreRequest, with context: NSManagedObjectContext?) throws -> Any
    * @availability iOS 5.0+
    */
-  execute(request: NSPersistentStoreRequest, context?: $SDK46): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 3037202048159808, this, [request, context]); }
+  execute(request: NSPersistentStoreRequest, context?: $SDK46): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 3037202048159808, this, [request, context]); }
   /**
    * func loadMetadata() throws
    * @availability iOS 5.0+
    */
-  loadMetadata(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 62173065803539, this, []); }
+  loadMetadata(): void { return callSDK<void>("CoreData_0e503aef608672fa", 62173065803539, this, []); }
   /**
    * func managedObjectContextDidRegisterObjects(with objectIDs: [NSManagedObjectID])
    * @availability iOS 5.0+
    */
-  managedObjectContextDidRegisterObjects(objectIDs: $SDK13): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2856535528631251, this, [objectIDs]); }
+  managedObjectContextDidRegisterObjects(objectIDs: $SDK13): void { return callSDK<void>("CoreData_0e503aef608672fa", 2856535528631251, this, [objectIDs]); }
   /**
    * func managedObjectContextDidUnregisterObjects(with objectIDs: [NSManagedObjectID])
    * @availability iOS 5.0+
    */
-  managedObjectContextDidUnregisterObjects(objectIDs: $SDK13): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1990891070113322, this, [objectIDs]); }
+  managedObjectContextDidUnregisterObjects(objectIDs: $SDK13): void { return callSDK<void>("CoreData_0e503aef608672fa", 1990891070113322, this, [objectIDs]); }
   /**
    * func newObjectID(for entity: NSEntityDescription, referenceObject data: Any) -> NSManagedObjectID
    * @availability iOS 5.0+
    */
-  newObjectID(entity: NSEntityDescription, data: unknown): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_d968214ecc684fb6", 2804051446730583, this, [entity, data]); }
+  newObjectID(entity: NSEntityDescription, data: unknown): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_0e503aef608672fa", 2804051446730583, this, [entity, data]); }
   /**
    * func newValue(forRelationship relationship: NSRelationshipDescription, forObjectWith objectID: NSManagedObjectID, with context: NSManagedObjectContext?) throws -> Any
    * @availability iOS 5.0+
    */
-  newValue(relationship: NSRelationshipDescription, objectID: NSManagedObjectID, context?: $SDK46): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 4400968520127459, this, [relationship, objectID, context]); }
+  newValue(relationship: NSRelationshipDescription, objectID: NSManagedObjectID, context?: $SDK46): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 4400968520127459, this, [relationship, objectID, context]); }
   /**
    * func newValuesForObject(with objectID: NSManagedObjectID, with context: NSManagedObjectContext) throws -> NSIncrementalStoreNode
    * @availability iOS 5.0+
    */
-  newValuesForObject(objectID: NSManagedObjectID, context: NSManagedObjectContext): NSIncrementalStoreNode { return callSDK<NSIncrementalStoreNode>("CoreData_d968214ecc684fb6", 659601101334537, this, [objectID, context]); }
+  newValuesForObject(objectID: NSManagedObjectID, context: NSManagedObjectContext): NSIncrementalStoreNode { return callSDK<NSIncrementalStoreNode>("CoreData_0e503aef608672fa", 659601101334537, this, [objectID, context]); }
   /**
    * func obtainPermanentIDs(for array: [NSManagedObject]) throws -> [NSManagedObjectID]
    * @availability iOS 5.0+
    */
-  obtainPermanentIDs(array: Array<NSManagedObject>): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 2008703960307828, this, [array]); }
+  obtainPermanentIDs(array: Array<NSManagedObject>): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 2008703960307828, this, [array]); }
   /**
    * func referenceObject(for objectID: NSManagedObjectID) -> Any
    * @availability iOS 5.0+
    */
-  referenceObject(objectID: NSManagedObjectID): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 88729107985952, this, [objectID]); }
+  referenceObject(objectID: NSManagedObjectID): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 88729107985952, this, [objectID]); }
   declare readonly $type: { "c:objc(cs)NSIncrementalStore": true; "c:objc(cs)NSPersistentStore": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "configurationName": true; "coreSpotlightExporter": true; "identifier": true; "metadata": true; "options": true; "persistentStoreCoordinator": true; "isReadOnly": true; "type": true };
 }
@@ -2613,27 +2613,27 @@ export class NSIncrementalStoreNode extends SDKHandle {
    * init(objectID: NSManagedObjectID, withValues values: [String : Any], version: UInt64)
    * @availability iOS 5.0+
    */
-  static init(objectID: NSManagedObjectID, values: Record<string, unknown>, version: number): NSIncrementalStoreNode { return callSDK<NSIncrementalStoreNode>("CoreData_d968214ecc684fb6", 2848001872697132, undefined, [objectID, values, version]); }
+  static init(objectID: NSManagedObjectID, values: Record<string, unknown>, version: number): NSIncrementalStoreNode { return callSDK<NSIncrementalStoreNode>("CoreData_0e503aef608672fa", 2848001872697132, undefined, [objectID, values, version]); }
   /**
    * func update(withValues values: [String : Any], version: UInt64)
    * @availability iOS 5.0+
    */
-  update(values: Record<string, unknown>, version: number): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3533856460074449, this, [values, version]); }
+  update(values: Record<string, unknown>, version: number): void { return callSDK<void>("CoreData_0e503aef608672fa", 3533856460074449, this, [values, version]); }
   /**
    * func value(for prop: NSPropertyDescription) -> Any?
    * @availability iOS 5.0+
    */
-  value(prop: NSPropertyDescription): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 1832695147976429, this, [prop]); }
+  value(prop: NSPropertyDescription): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 1832695147976429, this, [prop]); }
   /**
    * var objectID: NSManagedObjectID { get }
    * @availability iOS 5.0+
    */
-  get objectID(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_d968214ecc684fb6", 2017612825933619, this, []); }
+  get objectID(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_0e503aef608672fa", 2017612825933619, this, []); }
   /**
    * var version: UInt64 { get }
    * @availability iOS 5.0+
    */
-  get version(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 1945864280425947, this, []); }
+  get version(): number { return callSDK<number>("CoreData_0e503aef608672fa", 1945864280425947, this, []); }
   declare readonly $type: { "c:objc(cs)NSIncrementalStoreNode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "objectID": true; "version": true };
 }
@@ -2647,12 +2647,12 @@ export class NSLightweightMigrationStage extends (NSMigrationStage as unknown as
    * var versionChecksums: [String] { get }
    * @availability iOS 17.0+
    */
-  get versionChecksums(): Array<string> { return callSDK<Array<string>>("CoreData_d968214ecc684fb6", 3040253297983972, this, []); }
+  get versionChecksums(): Array<string> { return callSDK<Array<string>>("CoreData_0e503aef608672fa", 3040253297983972, this, []); }
   /**
    * convenience init(_ checksums: [String])
    * @availability iOS 17.0+
    */
-  static init(checksums: Array<string>): NSLightweightMigrationStage { return callSDK<NSLightweightMigrationStage>("CoreData_d968214ecc684fb6", 3235545341415980, undefined, [checksums]); }
+  static init(checksums: Array<string>): NSLightweightMigrationStage { return callSDK<NSLightweightMigrationStage>("CoreData_0e503aef608672fa", 3235545341415980, undefined, [checksums]); }
   declare readonly $type: { "c:objc(cs)NSLightweightMigrationStage": true; "c:objc(cs)NSMigrationStage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "label": true; "versionChecksums": true };
 }
@@ -2666,222 +2666,222 @@ export class NSManagedObject extends SDKHandle {
    * @objc dynamic class func fetchRequest() -> NSFetchRequest<any NSFetchRequestResult>
    * @availability iOS 10.0+
    */
-  static fetchRequest(): $SDK14 { return callSDK<$SDK14>("CoreData_d968214ecc684fb6", 3743282823811636, undefined, []); }
+  static fetchRequest(): $SDK14 { return callSDK<$SDK14>("CoreData_0e503aef608672fa", 3743282823811636, undefined, []); }
   /**
    * class func entity() -> NSEntityDescription
    * @availability iOS 10.0+
    */
-  static entity(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_d968214ecc684fb6", 4255536083864224, undefined, []); }
+  static entity(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_0e503aef608672fa", 4255536083864224, undefined, []); }
   /**
    * class var contextShouldIgnoreUnmodeledPropertyChanges: Bool { get }
    * @availability iOS 3.0+
    */
-  static get contextShouldIgnoreUnmodeledPropertyChanges(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3404843495147289, undefined, []); }
+  static get contextShouldIgnoreUnmodeledPropertyChanges(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3404843495147289, undefined, []); }
   /**
    * func awakeFromFetch()
    * @availability iOS 3.0+
    */
-  awakeFromFetch(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3290971617846614, this, []); }
+  awakeFromFetch(): void { return callSDK<void>("CoreData_0e503aef608672fa", 3290971617846614, this, []); }
   /**
    * func awakeFromInsert()
    * @availability iOS 3.0+
    */
-  awakeFromInsert(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2773691162345026, this, []); }
+  awakeFromInsert(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2773691162345026, this, []); }
   /**
    * func awake(fromSnapshotEvents flags: NSSnapshotEventType)
    * @availability iOS 3.0+
    */
-  awake(flags: NSSnapshotEventType): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1622444787647793, this, [flags]); }
+  awake(flags: NSSnapshotEventType): void { return callSDK<void>("CoreData_0e503aef608672fa", 1622444787647793, this, [flags]); }
   /**
    * func changedValues() -> [String : Any]
    * @availability iOS 3.0+
    */
-  changedValues(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_d968214ecc684fb6", 1205155024314285, this, []); }
+  changedValues(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_0e503aef608672fa", 1205155024314285, this, []); }
   /**
    * func changedValuesForCurrentEvent() -> [String : Any]
    * @availability iOS 5.0+
    */
-  changedValuesForCurrentEvent(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_d968214ecc684fb6", 821737049227412, this, []); }
+  changedValuesForCurrentEvent(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_0e503aef608672fa", 821737049227412, this, []); }
   /**
    * func committedValues(forKeys keys: [String]?) -> [String : Any]
    * @availability iOS 3.0+
    */
-  committedValues(keys?: (Array<string>) | null): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_d968214ecc684fb6", 1174797772559012, this, [keys]); }
+  committedValues(keys?: (Array<string>) | null): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_0e503aef608672fa", 1174797772559012, this, [keys]); }
   /**
    * func didAccessValue(forKey key: String?)
    * @availability iOS 3.0+
    */
-  didAccessValue(key?: (string) | null): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1348811794762974, this, [key]); }
+  didAccessValue(key?: (string) | null): void { return callSDK<void>("CoreData_0e503aef608672fa", 1348811794762974, this, [key]); }
   /**
    * func didChangeValue(forKey key: String)
    * @availability iOS 3.0+
    */
-  didChangeValueForKey(key: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2232913778383126, this, [key]); }
+  didChangeValueForKey(key: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 2232913778383126, this, [key]); }
   /**
    * func didChangeValue(forKey inKey: String, withSetMutation inMutationKind: NSKeyValueSetMutationKind, using inObjects: Set<AnyHashable>)
    * @availability iOS 3.0+
    */
-  didChangeValueForKeyWithSetMutationUsing(inKey: string, inMutationKind: _Foundation_NSKeyValueSetMutationKind, inObjects: Array<unknown>): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3776486462067471, this, [inKey, inMutationKind, inObjects]); }
+  didChangeValueForKeyWithSetMutationUsing(inKey: string, inMutationKind: _Foundation_NSKeyValueSetMutationKind, inObjects: Array<unknown>): void { return callSDK<void>("CoreData_0e503aef608672fa", 3776486462067471, this, [inKey, inMutationKind, inObjects]); }
   /**
    * func didSave()
    * @availability iOS 3.0+
    */
-  didSave(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 829685377113837, this, []); }
+  didSave(): void { return callSDK<void>("CoreData_0e503aef608672fa", 829685377113837, this, []); }
   /**
    * func didTurnIntoFault()
    * @availability iOS 3.0+
    */
-  didTurnIntoFault(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2095752068982676, this, []); }
+  didTurnIntoFault(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2095752068982676, this, []); }
   /**
    * func hasFault(forRelationshipNamed key: String) -> Bool
    * @availability iOS 3.0+
    */
-  hasFault(key: string): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3950744915589547, this, [key]); }
+  hasFault(key: string): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3950744915589547, this, [key]); }
   /**
    * convenience init(context moc: NSManagedObjectContext)
    * @availability iOS 10.0+
    */
-  static initContext(moc: NSManagedObjectContext): NSManagedObject { return callSDK<NSManagedObject>("CoreData_d968214ecc684fb6", 4158506088895768, undefined, [moc]); }
+  static initContext(moc: NSManagedObjectContext): NSManagedObject { return callSDK<NSManagedObject>("CoreData_0e503aef608672fa", 4158506088895768, undefined, [moc]); }
   /**
    * init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?)
    * @availability iOS 3.0+
    */
-  static initEntityInsertInto(entity: NSEntityDescription, context?: $SDK46): NSManagedObject { return callSDK<NSManagedObject>("CoreData_d968214ecc684fb6", 2160014048580601, undefined, [entity, context]); }
+  static initEntityInsertInto(entity: NSEntityDescription, context?: $SDK46): NSManagedObject { return callSDK<NSManagedObject>("CoreData_0e503aef608672fa", 2160014048580601, undefined, [entity, context]); }
   /**
    * func objectIDs(forRelationshipNamed key: String) -> [NSManagedObjectID]
    * @availability iOS 8.3+
    */
-  objectIDs(key: string): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 2713149139986247, this, [key]); }
+  objectIDs(key: string): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 2713149139986247, this, [key]); }
   /**
    * func prepareForDeletion()
    * @availability iOS 3.0+
    */
-  prepareForDeletion(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 561016144641542, this, []); }
+  prepareForDeletion(): void { return callSDK<void>("CoreData_0e503aef608672fa", 561016144641542, this, []); }
   /**
    * func primitiveValue(forKey key: String) -> Any?
    * @availability iOS 3.0+
    */
-  primitiveValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 2099952920464217, this, [key]); }
+  primitiveValue(key: string): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 2099952920464217, this, [key]); }
   /**
    * func setPrimitiveValue(_ value: Any?, forKey key: String)
    * @availability iOS 3.0+
    */
-  setPrimitiveValue(value: (unknown) | null, key: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2385680901013277, this, [value, key]); }
+  setPrimitiveValue(value: (unknown) | null, key: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 2385680901013277, this, [value, key]); }
   /**
    * func setValue(_ value: Any?, forKey key: String)
    * @availability iOS 3.0+
    */
-  setValue(value: (unknown) | null, key: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3473673538302708, this, [value, key]); }
+  setValue(value: (unknown) | null, key: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 3473673538302708, this, [value, key]); }
   /**
    * func validateForDelete() throws
    * @availability iOS 3.0+
    */
-  validateForDelete(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2726715586146506, this, []); }
+  validateForDelete(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2726715586146506, this, []); }
   /**
    * func validateForInsert() throws
    * @availability iOS 3.0+
    */
-  validateForInsert(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4269953365408834, this, []); }
+  validateForInsert(): void { return callSDK<void>("CoreData_0e503aef608672fa", 4269953365408834, this, []); }
   /**
    * func validateForUpdate() throws
    * @availability iOS 3.0+
    */
-  validateForUpdate(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3215187879704123, this, []); }
+  validateForUpdate(): void { return callSDK<void>("CoreData_0e503aef608672fa", 3215187879704123, this, []); }
   /**
    * func validateValue(_ value: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKey key: String) throws
    * @availability iOS 3.0+
    */
-  validateValue(key: string): { $ret: null; $out: { "value": (unknown) | null } } { return callSDK<{ $ret: null; $out: { "value": (unknown) | null } }>("CoreData_d968214ecc684fb6", 4439272714433983, this, [null, key]); }
+  validateValue(key: string): { $ret: null; $out: { "value": (unknown) | null } } { return callSDK<{ $ret: null; $out: { "value": (unknown) | null } }>("CoreData_0e503aef608672fa", 4439272714433983, this, [null, key]); }
   /**
    * func value(forKey key: String) -> Any?
    * @availability iOS 3.0+
    */
-  value(key: string): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 3008285897942074, this, [key]); }
+  value(key: string): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 3008285897942074, this, [key]); }
   /**
    * func willAccessValue(forKey key: String?)
    * @availability iOS 3.0+
    */
-  willAccessValue(key?: (string) | null): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3092107571126084, this, [key]); }
+  willAccessValue(key?: (string) | null): void { return callSDK<void>("CoreData_0e503aef608672fa", 3092107571126084, this, [key]); }
   /**
    * func willChangeValue(forKey key: String)
    * @availability iOS 3.0+
    */
-  willChangeValueForKey(key: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2056958596699122, this, [key]); }
+  willChangeValueForKey(key: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 2056958596699122, this, [key]); }
   /**
    * func willChangeValue(forKey inKey: String, withSetMutation inMutationKind: NSKeyValueSetMutationKind, using inObjects: Set<AnyHashable>)
    * @availability iOS 3.0+
    */
-  willChangeValueForKeyWithSetMutationUsing(inKey: string, inMutationKind: _Foundation_NSKeyValueSetMutationKind, inObjects: Array<unknown>): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4482718107820339, this, [inKey, inMutationKind, inObjects]); }
+  willChangeValueForKeyWithSetMutationUsing(inKey: string, inMutationKind: _Foundation_NSKeyValueSetMutationKind, inObjects: Array<unknown>): void { return callSDK<void>("CoreData_0e503aef608672fa", 4482718107820339, this, [inKey, inMutationKind, inObjects]); }
   /**
    * func willSave()
    * @availability iOS 3.0+
    */
-  willSave(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2770982375906691, this, []); }
+  willSave(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2770982375906691, this, []); }
   /**
    * func willTurnIntoFault()
    * @availability iOS 3.0+
    */
-  willTurnIntoFault(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2329603360511980, this, []); }
+  willTurnIntoFault(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2329603360511980, this, []); }
   /**
    * var isDeleted: Bool { get }
    * @availability iOS 3.0+
    */
-  get isDeleted(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3581493203520840, this, []); }
+  get isDeleted(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3581493203520840, this, []); }
   /**
    * var entity: NSEntityDescription { get }
    * @availability iOS 3.0+
    */
-  get entity2423(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_d968214ecc684fb6", 413906464867490, this, []); }
+  get entity2423(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_0e503aef608672fa", 413906464867490, this, []); }
   /**
    * var isFault: Bool { get }
    * @availability iOS 3.0+
    */
-  get isFault(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2280319297991027, this, []); }
+  get isFault(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2280319297991027, this, []); }
   /**
    * var faultingState: Int { get }
    * @availability iOS 3.0+
    */
-  get faultingState(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 3303781667260882, this, []); }
+  get faultingState(): number { return callSDK<number>("CoreData_0e503aef608672fa", 3303781667260882, this, []); }
   /**
    * var hasChanges: Bool { get }
    * @availability iOS 5.0+
    */
-  get hasChanges(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3978003250489335, this, []); }
+  get hasChanges(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3978003250489335, this, []); }
   /**
    * var hasPersistentChangedValues: Bool { get }
    * @availability iOS 7.0+
    */
-  get hasPersistentChangedValues(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3166816587752053, this, []); }
+  get hasPersistentChangedValues(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3166816587752053, this, []); }
   /**
    * var isInserted: Bool { get }
    * @availability iOS 3.0+
    */
-  get isInserted(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 41483860888617, this, []); }
+  get isInserted(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 41483860888617, this, []); }
   /**
    * unowned(unsafe) var managedObjectContext: NSManagedObjectContext? { get }
    * @availability iOS 3.0+
    */
-  get managedObjectContext(): $SDK46 { return callSDK<$SDK46>("CoreData_d968214ecc684fb6", 2188163408271917, this, []); }
+  get managedObjectContext(): $SDK46 { return callSDK<$SDK46>("CoreData_0e503aef608672fa", 2188163408271917, this, []); }
   /**
    * var objectID: NSManagedObjectID { get }
    * @availability iOS 3.0+
    */
-  get objectID(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_d968214ecc684fb6", 4452020309313336, this, []); }
+  get objectID(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_0e503aef608672fa", 4452020309313336, this, []); }
   /**
    * var isUpdated: Bool { get }
    * @availability iOS 3.0+
    */
-  get isUpdated(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2392288412613376, this, []); }
+  get isUpdated(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2392288412613376, this, []); }
   /**
    * nonisolated var objectWillChange: ObservableObjectPublisher { get }
    * @availability iOS 13.0+
    */
-  get objectWillChange(): _Combine_ObservableObjectPublisher { return callSDK<_Combine_ObservableObjectPublisher>("CoreData_d968214ecc684fb6", 927511296095006, this, []); }
+  get objectWillChange(): _Combine_ObservableObjectPublisher { return callSDK<_Combine_ObservableObjectPublisher>("CoreData_0e503aef608672fa", 927511296095006, this, []); }
   /**
    * nonisolated subscript(key: String) -> Any? { get set }
    * @availability iOS 18.0+
    */
-  subscript(key: string): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 231231335522069, this, [key]); }
+  subscript(key: string): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 231231335522069, this, [key]); }
   declare readonly $type: { "c:objc(cs)NSManagedObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isDeleted": true; "entity2423": true; "isFault": true; "faultingState": true; "hasChanges": true; "hasPersistentChangedValues": true; "isInserted": true; "managedObjectContext": true; "objectID": true; "isUpdated": true };
 }
@@ -2901,308 +2901,308 @@ export class NSManagedObjectContext extends SDKHandle {
    * class func mergeChanges(fromRemoteContextSave changeNotificationData: [AnyHashable : Any], into contexts: [NSManagedObjectContext])
    * @availability iOS 9.0+
    */
-  static mergeChangesFromRemoteContextSaveInto(changeNotificationData: NativeMap<unknown, unknown>, contexts: Array<NSManagedObjectContext>): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3440494335456186, undefined, [changeNotificationData, contexts]); }
+  static mergeChangesFromRemoteContextSaveInto(changeNotificationData: NativeMap<unknown, unknown>, contexts: Array<NSManagedObjectContext>): void { return callSDK<void>("CoreData_0e503aef608672fa", 3440494335456186, undefined, [changeNotificationData, contexts]); }
   /**
    * class func new() -> Self
    * @availability iOS 3.0+
    * @deprecated iOS 9.0
    */
-  static new(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 173002081881578, undefined, []); }
+  static new(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 173002081881578, undefined, []); }
   /**
    * func assign(_ object: Any, to store: NSPersistentStore)
    * @availability iOS 3.0+
    */
-  assign(object: unknown, store: NSPersistentStore): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4112878239308811, this, [object, store]); }
+  assign(object: unknown, store: NSPersistentStore): void { return callSDK<void>("CoreData_0e503aef608672fa", 4112878239308811, this, [object, store]); }
   /**
    * func count(for request: NSFetchRequest<any NSFetchRequestResult>) throws -> Int
    * @availability iOS 3.0+
    */
-  count(request: $SDK12): number { return callSDK<number>("CoreData_d968214ecc684fb6", 111202561091920, this, [request]); }
+  count(request: $SDK12): number { return callSDK<number>("CoreData_0e503aef608672fa", 111202561091920, this, [request]); }
   /**
    * func delete(_ object: NSManagedObject)
    * @availability iOS 3.0+
    */
-  delete(object: NSManagedObject): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2917773705305365, this, [object]); }
+  delete(object: NSManagedObject): void { return callSDK<void>("CoreData_0e503aef608672fa", 2917773705305365, this, [object]); }
   /**
    * func detectConflicts(for object: NSManagedObject)
    * @availability iOS 3.0+
    */
-  detectConflicts(object: NSManagedObject): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1302345187693855, this, [object]); }
+  detectConflicts(object: NSManagedObject): void { return callSDK<void>("CoreData_0e503aef608672fa", 1302345187693855, this, [object]); }
   /**
    * func execute(_ request: NSPersistentStoreRequest) throws -> NSPersistentStoreResult
    * @availability iOS 8.0+
    */
-  execute(request: NSPersistentStoreRequest): NSPersistentStoreResult { return callSDK<NSPersistentStoreResult>("CoreData_d968214ecc684fb6", 1605121115919242, this, [request]); }
+  execute(request: NSPersistentStoreRequest): NSPersistentStoreResult { return callSDK<NSPersistentStoreResult>("CoreData_0e503aef608672fa", 1605121115919242, this, [request]); }
   /**
    * func existingObject(with objectID: NSManagedObjectID) throws -> NSManagedObject
    * @availability iOS 3.0+
    */
-  existingObject(objectID: NSManagedObjectID): NSManagedObject { return callSDK<NSManagedObject>("CoreData_d968214ecc684fb6", 2373356575293389, this, [objectID]); }
+  existingObject(objectID: NSManagedObjectID): NSManagedObject { return callSDK<NSManagedObject>("CoreData_0e503aef608672fa", 2373356575293389, this, [objectID]); }
   /**
    * convenience init()
    * @availability iOS 3.0+
    * @deprecated iOS 9.0
    */
-  static init(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 1467856019371563, undefined, []); }
+  static init(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 1467856019371563, undefined, []); }
   /**
    * init(concurrencyType ct: NSManagedObjectContextConcurrencyType)
    * @availability iOS 5.0+
    */
-  static initConcurrencyType(ct: NSManagedObjectContextConcurrencyType): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 2251893952148245, undefined, [ct]); }
+  static initConcurrencyType(ct: NSManagedObjectContextConcurrencyType): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 2251893952148245, undefined, [ct]); }
   /**
    * func insert(_ object: NSManagedObject)
    * @availability iOS 3.0+
    */
-  insert(object: NSManagedObject): void { return callSDK<void>("CoreData_d968214ecc684fb6", 602148291980444, this, [object]); }
+  insert(object: NSManagedObject): void { return callSDK<void>("CoreData_0e503aef608672fa", 602148291980444, this, [object]); }
   /**
    * func lock()
    * @availability iOS 3.0+
    * @deprecated iOS 8.0
    */
-  lock(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 496833521844861, this, []); }
+  lock(): void { return callSDK<void>("CoreData_0e503aef608672fa", 496833521844861, this, []); }
   /**
    * func mergeChanges(fromContextDidSave notification: Notification)
    * @availability iOS 3.0+
    */
-  mergeChangesFromContextDidSave(notification: _Foundation_Notification): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3628500077118278, this, [notification]); }
+  mergeChangesFromContextDidSave(notification: _Foundation_Notification): void { return callSDK<void>("CoreData_0e503aef608672fa", 3628500077118278, this, [notification]); }
   /**
    * func registeredObject(for objectID: NSManagedObjectID) -> NSManagedObject?
    * @availability iOS 3.0+
    */
-  registeredObject(objectID: NSManagedObjectID): $SDK21 { return callSDK<$SDK21>("CoreData_d968214ecc684fb6", 735854645555131, this, [objectID]); }
+  registeredObject(objectID: NSManagedObjectID): $SDK21 { return callSDK<$SDK21>("CoreData_0e503aef608672fa", 735854645555131, this, [objectID]); }
   /**
    * func object(with objectID: NSManagedObjectID) -> NSManagedObject
    * @availability iOS 3.0+
    */
-  object(objectID: NSManagedObjectID): NSManagedObject { return callSDK<NSManagedObject>("CoreData_d968214ecc684fb6", 4280768433653671, this, [objectID]); }
+  object(objectID: NSManagedObjectID): NSManagedObject { return callSDK<NSManagedObject>("CoreData_0e503aef608672fa", 4280768433653671, this, [objectID]); }
   /**
    * func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [String : Any]?, context: UnsafeMutableRawPointer?)
    * @availability iOS 3.0+
    */
-  observeValue(keyPath?: (string) | null, object?: (unknown) | null, change?: $SDK4, context?: (SDKHandle) | null): void { return callSDK<void>("CoreData_d968214ecc684fb6", 270902752660769, this, [keyPath, object, change, context]); }
+  observeValue(keyPath?: (string) | null, object?: (unknown) | null, change?: $SDK4, context?: (SDKHandle) | null): void { return callSDK<void>("CoreData_0e503aef608672fa", 270902752660769, this, [keyPath, object, change, context]); }
   /**
    * func obtainPermanentIDs(for objects: [NSManagedObject]) throws
    * @availability iOS 3.0+
    */
-  obtainPermanentIDs(objects: Array<NSManagedObject>): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2319168213943364, this, [objects]); }
+  obtainPermanentIDs(objects: Array<NSManagedObject>): void { return callSDK<void>("CoreData_0e503aef608672fa", 2319168213943364, this, [objects]); }
   /**
    * func perform(_ block: @escaping @Sendable () -> Void)
    * @availability iOS 5.0+
    */
-  perform(block: (() => void)): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3250532759095777, this, [block], [{"callback":{"out":[]}}]); }
+  perform(block: (() => void)): void { return callSDK<void>("CoreData_0e503aef608672fa", 3250532759095777, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * func performAndWait(_ block: @Sendable () -> Void)
    * @availability iOS 5.0+
    */
-  performAndWait(block: (() => void)): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1155874941693137, this, [block], [{"callback":{"out":[]}}]); }
+  performAndWait(block: (() => void)): void { return callSDK<void>("CoreData_0e503aef608672fa", 1155874941693137, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * func processPendingChanges()
    * @availability iOS 3.0+
    */
-  processPendingChanges(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2623564671234177, this, []); }
+  processPendingChanges(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2623564671234177, this, []); }
   /**
    * func redo()
    * @availability iOS 3.0+
    */
-  redo(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2763191860444207, this, []); }
+  redo(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2763191860444207, this, []); }
   /**
    * func refreshAllObjects()
    * @availability iOS 8.3+
    */
-  refreshAllObjects(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4481642703480767, this, []); }
+  refreshAllObjects(): void { return callSDK<void>("CoreData_0e503aef608672fa", 4481642703480767, this, []); }
   /**
    * func refresh(_ object: NSManagedObject, mergeChanges flag: Bool)
    * @availability iOS 3.0+
    */
-  refresh(object: NSManagedObject, flag: boolean): void { return callSDK<void>("CoreData_d968214ecc684fb6", 260326631861907, this, [object, flag]); }
+  refresh(object: NSManagedObject, flag: boolean): void { return callSDK<void>("CoreData_0e503aef608672fa", 260326631861907, this, [object, flag]); }
   /**
    * func reset()
    * @availability iOS 3.0+
    */
-  reset(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4453761339430894, this, []); }
+  reset(): void { return callSDK<void>("CoreData_0e503aef608672fa", 4453761339430894, this, []); }
   /**
    * func rollback()
    * @availability iOS 3.0+
    */
-  rollback(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2369318423405762, this, []); }
+  rollback(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2369318423405762, this, []); }
   /**
    * func save() throws
    * @availability iOS 3.0+
    */
-  save(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4175570078681910, this, []); }
+  save(): void { return callSDK<void>("CoreData_0e503aef608672fa", 4175570078681910, this, []); }
   /**
    * func setQueryGenerationFrom(_ generation: NSQueryGenerationToken?) throws
    * @availability iOS 10.0+
    */
-  setQueryGenerationFrom(generation?: $SDK49): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3672511972663322, this, [generation]); }
+  setQueryGenerationFrom(generation?: $SDK49): void { return callSDK<void>("CoreData_0e503aef608672fa", 3672511972663322, this, [generation]); }
   /**
    * func shouldHandleInaccessibleFault(_ fault: NSManagedObject, for oid: NSManagedObjectID, triggeredByProperty property: NSPropertyDescription?) -> Bool
    * @availability iOS 9.0+
    */
-  shouldHandleInaccessibleFault(fault: NSManagedObject, oid: NSManagedObjectID, property?: $SDK45): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 1965553219903957, this, [fault, oid, property]); }
+  shouldHandleInaccessibleFault(fault: NSManagedObject, oid: NSManagedObjectID, property?: $SDK45): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 1965553219903957, this, [fault, oid, property]); }
   /**
    * func tryLock() -> Bool
    * @availability iOS 3.0+
    * @deprecated iOS 8.0
    */
-  tryLock(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 304051701247327, this, []); }
+  tryLock(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 304051701247327, this, []); }
   /**
    * func undo()
    * @availability iOS 3.0+
    */
-  undo(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1148200910449940, this, []); }
+  undo(): void { return callSDK<void>("CoreData_0e503aef608672fa", 1148200910449940, this, []); }
   /**
    * func unlock()
    * @availability iOS 3.0+
    * @deprecated iOS 8.0
    */
-  unlock(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3125180488821482, this, []); }
+  unlock(): void { return callSDK<void>("CoreData_0e503aef608672fa", 3125180488821482, this, []); }
   /**
    * var automaticallyMergesChangesFromParent: Bool { get set }
    * @availability iOS 10.0+
    */
-  get automaticallyMergesChangesFromParent(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 4476990242247156, this, []); }
-  set automaticallyMergesChangesFromParent(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 2467144306113342, this, [value]); }
+  get automaticallyMergesChangesFromParent(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 4476990242247156, this, []); }
+  set automaticallyMergesChangesFromParent(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 2467144306113342, this, [value]); }
   /**
    * var concurrencyType: NSManagedObjectContextConcurrencyType { get }
    * @availability iOS 5.0+
    */
-  get concurrencyType(): NSManagedObjectContextConcurrencyType { return callSDK<NSManagedObjectContextConcurrencyType>("CoreData_d968214ecc684fb6", 508539369238100, this, []); }
+  get concurrencyType(): NSManagedObjectContextConcurrencyType { return callSDK<NSManagedObjectContextConcurrencyType>("CoreData_0e503aef608672fa", 508539369238100, this, []); }
   /**
    * var deletedObjects: Set<NSManagedObject> { get }
    * @availability iOS 3.0+
    */
-  get deletedObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 2299077053378614, this, []); }
+  get deletedObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 2299077053378614, this, []); }
   /**
    * var hasChanges: Bool { get }
    * @availability iOS 3.0+
    */
-  get hasChanges(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 914318071559019, this, []); }
+  get hasChanges(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 914318071559019, this, []); }
   /**
    * var insertedObjects: Set<NSManagedObject> { get }
    * @availability iOS 3.0+
    */
-  get insertedObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 3349463633595347, this, []); }
+  get insertedObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 3349463633595347, this, []); }
   /**
    * var mergePolicy: Any { get set }
    * @availability iOS 3.0+
    */
-  get mergePolicy(): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 3203085820963727, this, []); }
-  set mergePolicy(value: unknown) { callSDK<void>("CoreData_d968214ecc684fb6", 2484760170780947, this, [value]); }
+  get mergePolicy(): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 3203085820963727, this, []); }
+  set mergePolicy(value: unknown) { callSDK<void>("CoreData_0e503aef608672fa", 2484760170780947, this, [value]); }
   /**
    * var name: String? { get set }
    * @availability iOS 8.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 684485041510469, this, []); }
-  set name(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 45639294770757, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 684485041510469, this, []); }
+  set name(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 45639294770757, this, [value]); }
   /**
    * var parent: NSManagedObjectContext? { get set }
    * @availability iOS 5.0+
    */
-  get parent(): $SDK46 { return callSDK<$SDK46>("CoreData_d968214ecc684fb6", 2195436784405176, this, []); }
-  set parent(value: $SDK46) { callSDK<void>("CoreData_d968214ecc684fb6", 4450760130263566, this, [value]); }
+  get parent(): $SDK46 { return callSDK<$SDK46>("CoreData_0e503aef608672fa", 2195436784405176, this, []); }
+  set parent(value: $SDK46) { callSDK<void>("CoreData_0e503aef608672fa", 4450760130263566, this, [value]); }
   /**
    * var persistentStoreCoordinator: NSPersistentStoreCoordinator? { get set }
    * @availability iOS 3.0+
    */
-  get persistentStoreCoordinator(): $SDK5 { return callSDK<$SDK5>("CoreData_d968214ecc684fb6", 3496935655667301, this, []); }
-  set persistentStoreCoordinator(value: $SDK5) { callSDK<void>("CoreData_d968214ecc684fb6", 3273308808686699, this, [value]); }
+  get persistentStoreCoordinator(): $SDK5 { return callSDK<$SDK5>("CoreData_0e503aef608672fa", 3496935655667301, this, []); }
+  set persistentStoreCoordinator(value: $SDK5) { callSDK<void>("CoreData_0e503aef608672fa", 3273308808686699, this, [value]); }
   /**
    * var propagatesDeletesAtEndOfEvent: Bool { get set }
    * @availability iOS 3.0+
    */
-  get propagatesDeletesAtEndOfEvent(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2474436168532244, this, []); }
-  set propagatesDeletesAtEndOfEvent(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 1713350312543003, this, [value]); }
+  get propagatesDeletesAtEndOfEvent(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2474436168532244, this, []); }
+  set propagatesDeletesAtEndOfEvent(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 1713350312543003, this, [value]); }
   /**
    * var queryGenerationToken: NSQueryGenerationToken? { get }
    * @availability iOS 10.0+
    */
-  get queryGenerationToken(): $SDK49 { return callSDK<$SDK49>("CoreData_d968214ecc684fb6", 4234019513623856, this, []); }
+  get queryGenerationToken(): $SDK49 { return callSDK<$SDK49>("CoreData_0e503aef608672fa", 4234019513623856, this, []); }
   /**
    * var registeredObjects: Set<NSManagedObject> { get }
    * @availability iOS 3.0+
    */
-  get registeredObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 4006407773487252, this, []); }
+  get registeredObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 4006407773487252, this, []); }
   /**
    * var retainsRegisteredObjects: Bool { get set }
    * @availability iOS 3.0+
    */
-  get retainsRegisteredObjects(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2098485298112549, this, []); }
-  set retainsRegisteredObjects(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 3182283328629754, this, [value]); }
+  get retainsRegisteredObjects(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2098485298112549, this, []); }
+  set retainsRegisteredObjects(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 3182283328629754, this, [value]); }
   /**
    * var shouldDeleteInaccessibleFaults: Bool { get set }
    * @availability iOS 9.0+
    */
-  get shouldDeleteInaccessibleFaults(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 253413603934873, this, []); }
-  set shouldDeleteInaccessibleFaults(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 2809045923110180, this, [value]); }
+  get shouldDeleteInaccessibleFaults(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 253413603934873, this, []); }
+  set shouldDeleteInaccessibleFaults(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 2809045923110180, this, [value]); }
   /**
    * var stalenessInterval: TimeInterval { get set }
    * @availability iOS 3.0+
    */
-  get stalenessInterval(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 1231137955510418, this, []); }
-  set stalenessInterval(value: number) { callSDK<void>("CoreData_d968214ecc684fb6", 3729019930848861, this, [value]); }
+  get stalenessInterval(): number { return callSDK<number>("CoreData_0e503aef608672fa", 1231137955510418, this, []); }
+  set stalenessInterval(value: number) { callSDK<void>("CoreData_0e503aef608672fa", 3729019930848861, this, [value]); }
   /**
    * var transactionAuthor: String? { get set }
    * @availability iOS 11.0+
    */
-  get transactionAuthor(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 3060084077866720, this, []); }
-  set transactionAuthor(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 1995403895001702, this, [value]); }
+  get transactionAuthor(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 3060084077866720, this, []); }
+  set transactionAuthor(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 1995403895001702, this, [value]); }
   /**
    * var undoManager: UndoManager? { get set }
    * @availability iOS 3.0+
    */
-  get undoManager(): $SDK50 { return callSDK<$SDK50>("CoreData_d968214ecc684fb6", 1695427800526807, this, []); }
-  set undoManager(value: $SDK50) { callSDK<void>("CoreData_d968214ecc684fb6", 543337053907316, this, [value]); }
+  get undoManager(): $SDK50 { return callSDK<$SDK50>("CoreData_0e503aef608672fa", 1695427800526807, this, []); }
+  set undoManager(value: $SDK50) { callSDK<void>("CoreData_0e503aef608672fa", 543337053907316, this, [value]); }
   /**
    * var updatedObjects: Set<NSManagedObject> { get }
    * @availability iOS 3.0+
    */
-  get updatedObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 3149068657085392, this, []); }
+  get updatedObjects(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 3149068657085392, this, []); }
   /**
    * var userInfo: NSMutableDictionary { get }
    * @availability iOS 5.0+
    */
-  get userInfo(): _Foundation_NSMutableDictionary { return callSDK<_Foundation_NSMutableDictionary>("CoreData_d968214ecc684fb6", 3408388226161666, this, []); }
+  get userInfo(): _Foundation_NSMutableDictionary { return callSDK<_Foundation_NSMutableDictionary>("CoreData_0e503aef608672fa", 3408388226161666, this, []); }
   /**
    * static let didMergeChangesObjectIDsNotification: Notification.Name
    * @availability iOS 10.3+
    */
-  static get didMergeChangesObjectIDsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3571838990196207, undefined, []); }
+  static get didMergeChangesObjectIDsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3571838990196207, undefined, []); }
   /**
    * static let didSaveObjectIDsNotification: Notification.Name
    * @availability iOS 10.3+
    */
-  static get didSaveObjectIDsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3705220509698229, undefined, []); }
+  static get didSaveObjectIDsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3705220509698229, undefined, []); }
   /**
    * @preconcurrency nonisolated func performAndWait<T>(_ block: @Sendable () throws -> T) rethrows -> T
    * @availability iOS 15.0+
    */
-  performAndWait17958(block: (() => unknown)): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 3193765578799334, this, [block], [{"callback":{"out":[]}}], true); }
+  performAndWait17958(block: (() => unknown)): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 3193765578799334, this, [block], [{"callback":{"out":[]}}], true); }
   /**
    * static let didSaveObjectsNotification: Notification.Name
    * @availability iOS 3.0+
    */
-  static get didSaveObjectsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 241750426545578, undefined, []); }
+  static get didSaveObjectsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 241750426545578, undefined, []); }
   /**
    * static let willSaveObjectsNotification: Notification.Name
    * @availability iOS 3.0+
    */
-  static get willSaveObjectsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 1336526045922409, undefined, []); }
+  static get willSaveObjectsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 1336526045922409, undefined, []); }
   /**
    * static let didChangeObjectsNotification: Notification.Name
    * @availability iOS 3.0+
    */
-  static get didChangeObjectsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 2963652400073872, undefined, []); }
+  static get didChangeObjectsNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 2963652400073872, undefined, []); }
   /**
    * nonisolated func fetch(_ request: NSFetchRequest<any NSFetchRequestResult>) throws -> [Any]
    * @availability iOS 15.0+
    */
-  fetch(request: $SDK12): Array<unknown> { return callSDK<Array<unknown>>("CoreData_d968214ecc684fb6", 2765034853932807, this, [request]); }
+  fetch(request: $SDK12): Array<unknown> { return callSDK<Array<unknown>>("CoreData_0e503aef608672fa", 2765034853932807, this, [request]); }
   /**
    * nonisolated convenience init(_ type: NSManagedObjectContext.ConcurrencyType)
    * @availability iOS 15.0+
    */
-  static init96570(type: NSManagedObjectContext_ConcurrencyType): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 3568257372413829, undefined, [type]); }
+  static init96570(type: NSManagedObjectContext_ConcurrencyType): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 3568257372413829, undefined, [type]); }
   declare readonly $type: { "c:objc(cs)NSManagedObjectContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "automaticallyMergesChangesFromParent": true; "concurrencyType": true; "deletedObjects": true; "hasChanges": true; "insertedObjects": true; "mergePolicy": true; "name": true; "parent": true; "persistentStoreCoordinator": true; "propagatesDeletesAtEndOfEvent": true; "queryGenerationToken": true; "registeredObjects": true; "retainsRegisteredObjects": true; "shouldDeleteInaccessibleFaults": true; "stalenessInterval": true; "transactionAuthor": true; "undoManager": true; "updatedObjects": true; "userInfo": true };
 }
@@ -3218,23 +3218,23 @@ export const NSManagedObjectContext_ConcurrencyType = {
    * static let privateQueue: NSManagedObjectContext.ConcurrencyType
    * @availability iOS 15.0+
    */
-  get privateQueue(): NSManagedObjectContext_ConcurrencyType { return callSDK<NSManagedObjectContext_ConcurrencyType>("CoreData_d968214ecc684fb6", 2026680588485410, undefined, []); },
+  get privateQueue(): NSManagedObjectContext_ConcurrencyType { return callSDK<NSManagedObjectContext_ConcurrencyType>("CoreData_0e503aef608672fa", 2026680588485410, undefined, []); },
   /**
    * init(rawValue: NSManagedObjectContextConcurrencyType)
    * @availability iOS 15.0+
    */
-  init(rawValue: NSManagedObjectContextConcurrencyType): NSManagedObjectContext_ConcurrencyType { return callSDK<NSManagedObjectContext_ConcurrencyType>("CoreData_d968214ecc684fb6", 1169476461371296, undefined, [rawValue]); },
+  init(rawValue: NSManagedObjectContextConcurrencyType): NSManagedObjectContext_ConcurrencyType { return callSDK<NSManagedObjectContext_ConcurrencyType>("CoreData_0e503aef608672fa", 1169476461371296, undefined, [rawValue]); },
   /**
    * var rawValue: NSManagedObjectContextConcurrencyType
    * @availability iOS 15.0+
    */
-  getRawValue($self: NSManagedObjectContext_ConcurrencyType): NSManagedObjectContextConcurrencyType { return callSDK<NSManagedObjectContextConcurrencyType>("CoreData_d968214ecc684fb6", 192333711457842, $self, []); },
-  setRawValue($self: NSManagedObjectContext_ConcurrencyType, value: NSManagedObjectContextConcurrencyType): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3051767462319366, $self, [value]); },
+  getRawValue($self: NSManagedObjectContext_ConcurrencyType): NSManagedObjectContextConcurrencyType { return callSDK<NSManagedObjectContextConcurrencyType>("CoreData_0e503aef608672fa", 192333711457842, $self, []); },
+  setRawValue($self: NSManagedObjectContext_ConcurrencyType, value: NSManagedObjectContextConcurrencyType): void { return callSDK<void>("CoreData_0e503aef608672fa", 3051767462319366, $self, [value]); },
   /**
    * static let mainQueue: NSManagedObjectContext.ConcurrencyType
    * @availability iOS 15.0+
    */
-  get mainQueue(): NSManagedObjectContext_ConcurrencyType { return callSDK<NSManagedObjectContext_ConcurrencyType>("CoreData_d968214ecc684fb6", 2047625753260868, undefined, []); }
+  get mainQueue(): NSManagedObjectContext_ConcurrencyType { return callSDK<NSManagedObjectContext_ConcurrencyType>("CoreData_0e503aef608672fa", 2047625753260868, undefined, []); }
 };
 
 /**
@@ -3252,57 +3252,57 @@ export class NSManagedObjectContext_DidMergeChangesAsyncMessage extends SDKHandl
    * static func makeMessage(_ notification: Notification) -> NSManagedObjectContext.DidMergeChangesAsyncMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (NSManagedObjectContext_DidMergeChangesAsyncMessage) | null { return callSDK<(NSManagedObjectContext_DidMergeChangesAsyncMessage) | null>("CoreData_d968214ecc684fb6", 187962972654798, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (NSManagedObjectContext_DidMergeChangesAsyncMessage) | null { return callSDK<(NSManagedObjectContext_DidMergeChangesAsyncMessage) | null>("CoreData_0e503aef608672fa", 187962972654798, undefined, [notification]); }
   /**
    * let deletedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get deletedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 1842108785446031, this, []); }
+  get deletedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 1842108785446031, this, []); }
   /**
    * let updatedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get updatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 2315350856758917, this, []); }
+  get updatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 2315350856758917, this, []); }
   /**
    * let insertedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get insertedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 2104504385112693, this, []); }
+  get insertedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 2104504385112693, this, []); }
   /**
    * let historyToken: NSPersistentHistoryToken?
    * @availability iOS 27.0+
    */
-  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_d968214ecc684fb6", 653927830594696, this, []); }
+  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_0e503aef608672fa", 653927830594696, this, []); }
   /**
    * let refreshedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get refreshedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 2057448133520925, this, []); }
+  get refreshedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 2057448133520925, this, []); }
   /**
    * let invalidatedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get invalidatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 4302498215395483, this, []); }
+  get invalidatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 4302498215395483, this, []); }
   /**
    * let queryGeneration: NSQueryGenerationToken?
    * @availability iOS 27.0+
    */
-  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_d968214ecc684fb6", 1601324653980352, this, []); }
+  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_0e503aef608672fa", 1601324653980352, this, []); }
   /**
    * static func makeNotification(_ message: NSManagedObjectContext.DidMergeChangesAsyncMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSManagedObjectContext_DidMergeChangesAsyncMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_d968214ecc684fb6", 1899067767304123, undefined, [message]); }
+  static makeNotification(message: NSManagedObjectContext_DidMergeChangesAsyncMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_0e503aef608672fa", 1899067767304123, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 1243753276056090, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 1243753276056090, undefined, []); }
   /**
    * let context: NSManagedObjectContext
    * @availability iOS 27.0+
    */
-  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 3116035639730832, this, []); }
+  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 3116035639730832, this, []); }
   declare readonly $type: { "s:So22NSManagedObjectContextC8CoreDataE27DidMergeChangesAsyncMessageV": true };
 }
 
@@ -3321,57 +3321,57 @@ export class NSManagedObjectContext_DidMergeChangesMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> NSManagedObjectContext.DidMergeChangesMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_DidMergeChangesMessage) | null> { return callSDKAsync<(NSManagedObjectContext_DidMergeChangesMessage) | null>("CoreData_d968214ecc684fb6", 1458608797462182, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_DidMergeChangesMessage) | null> { return callSDKAsync<(NSManagedObjectContext_DidMergeChangesMessage) | null>("CoreData_0e503aef608672fa", 1458608797462182, undefined, [notification]); }
   /**
    * let deletedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get deletedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 2064963704208546, this, []); }
+  get deletedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 2064963704208546, this, []); }
   /**
    * let updatedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get updatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 4231362200860808, this, []); }
+  get updatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 4231362200860808, this, []); }
   /**
    * let insertedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get insertedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 373704116608355, this, []); }
+  get insertedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 373704116608355, this, []); }
   /**
    * let historyToken: NSPersistentHistoryToken?
    * @availability iOS 27.0+
    */
-  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_d968214ecc684fb6", 584482618125278, this, []); }
+  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_0e503aef608672fa", 584482618125278, this, []); }
   /**
    * let refreshedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get refreshedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 606549862797378, this, []); }
+  get refreshedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 606549862797378, this, []); }
   /**
    * let invalidatedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get invalidatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 335381438357619, this, []); }
+  get invalidatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 335381438357619, this, []); }
   /**
    * let queryGeneration: NSQueryGenerationToken?
    * @availability iOS 27.0+
    */
-  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_d968214ecc684fb6", 981091383758615, this, []); }
+  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_0e503aef608672fa", 981091383758615, this, []); }
   /**
    * @MainActor static func makeNotification(_ message: NSManagedObjectContext.DidMergeChangesMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSManagedObjectContext_DidMergeChangesMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_d968214ecc684fb6", 874480853845379, undefined, [message]); }
+  static makeNotification(message: NSManagedObjectContext_DidMergeChangesMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_0e503aef608672fa", 874480853845379, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3948971913485253, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3948971913485253, undefined, []); }
   /**
    * let context: NSManagedObjectContext
    * @availability iOS 27.0+
    */
-  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 2268704018884866, this, []); }
+  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 2268704018884866, this, []); }
   declare readonly $type: { "s:So22NSManagedObjectContextC8CoreDataE22DidMergeChangesMessageV": true };
 }
 
@@ -3390,47 +3390,47 @@ export class NSManagedObjectContext_DidSaveMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> NSManagedObjectContext.DidSaveMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_DidSaveMessage) | null> { return callSDKAsync<(NSManagedObjectContext_DidSaveMessage) | null>("CoreData_d968214ecc684fb6", 4130816807238668, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_DidSaveMessage) | null> { return callSDKAsync<(NSManagedObjectContext_DidSaveMessage) | null>("CoreData_0e503aef608672fa", 4130816807238668, undefined, [notification]); }
   /**
    * let historyToken: NSPersistentHistoryToken?
    * @availability iOS 27.0+
    */
-  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_d968214ecc684fb6", 1981815325106254, this, []); }
+  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_0e503aef608672fa", 1981815325106254, this, []); }
   /**
    * let queryGeneration: NSQueryGenerationToken?
    * @availability iOS 27.0+
    */
-  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_d968214ecc684fb6", 258698844069039, this, []); }
+  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_0e503aef608672fa", 258698844069039, this, []); }
   /**
    * @MainActor static func makeNotification(_ message: NSManagedObjectContext.DidSaveMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSManagedObjectContext_DidSaveMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_d968214ecc684fb6", 594644872473439, undefined, [message]); }
+  static makeNotification(message: NSManagedObjectContext_DidSaveMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_0e503aef608672fa", 594644872473439, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3740318087656520, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3740318087656520, undefined, []); }
   /**
    * let context: NSManagedObjectContext
    * @availability iOS 27.0+
    */
-  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 3387365403217378, this, []); }
+  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 3387365403217378, this, []); }
   /**
    * var deleted: Set<NSManagedObject> { get }
    * @availability iOS 27.0+
    */
-  get deleted(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 4366858161420255, this, []); }
+  get deleted(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 4366858161420255, this, []); }
   /**
    * var updated: Set<NSManagedObject> { get }
    * @availability iOS 27.0+
    */
-  get updated(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 3989019606436660, this, []); }
+  get updated(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 3989019606436660, this, []); }
   /**
    * var inserted: Set<NSManagedObject> { get }
    * @availability iOS 27.0+
    */
-  get inserted(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 824109618375562, this, []); }
+  get inserted(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 824109618375562, this, []); }
   declare readonly $type: { "s:So22NSManagedObjectContextC8CoreDataE14DidSaveMessageV": true };
 }
 
@@ -3449,57 +3449,57 @@ export class NSManagedObjectContext_DidSaveObjectIDsAsyncMessage extends SDKHand
    * let invalidatedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get invalidatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 1778974263261910, this, []); }
+  get invalidatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 1778974263261910, this, []); }
   /**
    * static func makeMessage(_ notification: Notification) -> NSManagedObjectContext.DidSaveObjectIDsAsyncMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (NSManagedObjectContext_DidSaveObjectIDsAsyncMessage) | null { return callSDK<(NSManagedObjectContext_DidSaveObjectIDsAsyncMessage) | null>("CoreData_d968214ecc684fb6", 3239935879539386, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (NSManagedObjectContext_DidSaveObjectIDsAsyncMessage) | null { return callSDK<(NSManagedObjectContext_DidSaveObjectIDsAsyncMessage) | null>("CoreData_0e503aef608672fa", 3239935879539386, undefined, [notification]); }
   /**
    * let deletedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get deletedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 3009280570645189, this, []); }
+  get deletedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 3009280570645189, this, []); }
   /**
    * let updatedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get updatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 20664763997536, this, []); }
+  get updatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 20664763997536, this, []); }
   /**
    * let insertedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get insertedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 2508043292014191, this, []); }
+  get insertedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 2508043292014191, this, []); }
   /**
    * let refreshedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get refreshedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 1755888527126304, this, []); }
+  get refreshedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 1755888527126304, this, []); }
   /**
    * let historyToken: NSPersistentHistoryToken?
    * @availability iOS 27.0+
    */
-  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_d968214ecc684fb6", 497595536740336, this, []); }
+  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_0e503aef608672fa", 497595536740336, this, []); }
   /**
    * let queryGeneration: NSQueryGenerationToken?
    * @availability iOS 27.0+
    */
-  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_d968214ecc684fb6", 3071343649881335, this, []); }
+  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_0e503aef608672fa", 3071343649881335, this, []); }
   /**
    * static func makeNotification(_ message: NSManagedObjectContext.DidSaveObjectIDsAsyncMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSManagedObjectContext_DidSaveObjectIDsAsyncMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_d968214ecc684fb6", 3496493082530942, undefined, [message]); }
+  static makeNotification(message: NSManagedObjectContext_DidSaveObjectIDsAsyncMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_0e503aef608672fa", 3496493082530942, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 2012315286064314, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 2012315286064314, undefined, []); }
   /**
    * let context: NSManagedObjectContext
    * @availability iOS 27.0+
    */
-  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 3536815928201789, this, []); }
+  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 3536815928201789, this, []); }
   declare readonly $type: { "s:So22NSManagedObjectContextC8CoreDataE07DidSaveB15IDsAsyncMessageV": true };
 }
 
@@ -3518,57 +3518,57 @@ export class NSManagedObjectContext_DidSaveObjectIDsMessage extends SDKHandle {
    * let invalidatedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get invalidatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 3401723186194995, this, []); }
+  get invalidatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 3401723186194995, this, []); }
   /**
    * @MainActor static func makeMessage(_ notification: Notification) -> NSManagedObjectContext.DidSaveObjectIDsMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_DidSaveObjectIDsMessage) | null> { return callSDKAsync<(NSManagedObjectContext_DidSaveObjectIDsMessage) | null>("CoreData_d968214ecc684fb6", 757817821363821, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_DidSaveObjectIDsMessage) | null> { return callSDKAsync<(NSManagedObjectContext_DidSaveObjectIDsMessage) | null>("CoreData_0e503aef608672fa", 757817821363821, undefined, [notification]); }
   /**
    * let deletedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get deletedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 234204362880247, this, []); }
+  get deletedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 234204362880247, this, []); }
   /**
    * let updatedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get updatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 3379276360221178, this, []); }
+  get updatedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 3379276360221178, this, []); }
   /**
    * let insertedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get insertedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 1752163943533480, this, []); }
+  get insertedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 1752163943533480, this, []); }
   /**
    * let refreshedIDs: Set<NSManagedObjectID>
    * @availability iOS 27.0+
    */
-  get refreshedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_d968214ecc684fb6", 3165023504631752, this, []); }
+  get refreshedIDs(): $SDK13 { return callSDK<$SDK13>("CoreData_0e503aef608672fa", 3165023504631752, this, []); }
   /**
    * let historyToken: NSPersistentHistoryToken?
    * @availability iOS 27.0+
    */
-  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_d968214ecc684fb6", 702487879130379, this, []); }
+  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_0e503aef608672fa", 702487879130379, this, []); }
   /**
    * let queryGeneration: NSQueryGenerationToken?
    * @availability iOS 27.0+
    */
-  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_d968214ecc684fb6", 417736459432738, this, []); }
+  get queryGeneration(): $SDK49 { return callSDK<$SDK49>("CoreData_0e503aef608672fa", 417736459432738, this, []); }
   /**
    * @MainActor static func makeNotification(_ message: NSManagedObjectContext.DidSaveObjectIDsMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSManagedObjectContext_DidSaveObjectIDsMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_d968214ecc684fb6", 3743468175571353, undefined, [message]); }
+  static makeNotification(message: NSManagedObjectContext_DidSaveObjectIDsMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_0e503aef608672fa", 3743468175571353, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3244516208084394, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3244516208084394, undefined, []); }
   /**
    * let context: NSManagedObjectContext
    * @availability iOS 27.0+
    */
-  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 4199696872237497, this, []); }
+  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 4199696872237497, this, []); }
   declare readonly $type: { "s:So22NSManagedObjectContextC8CoreDataE07DidSaveB10IDsMessageV": true };
 }
 
@@ -3589,12 +3589,12 @@ export const NSManagedObjectContext_NotificationKey = {
    * init?(rawValue: String)
    * @availability iOS 3.0+
    */
-  init(rawValue: string): (NSManagedObjectContext_NotificationKey) | null { return callSDK<(NSManagedObjectContext_NotificationKey) | null>("CoreData_d968214ecc684fb6", 1883937130856721, undefined, [rawValue]); },
+  init(rawValue: string): (NSManagedObjectContext_NotificationKey) | null { return callSDK<(NSManagedObjectContext_NotificationKey) | null>("CoreData_0e503aef608672fa", 1883937130856721, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 3.0+
    */
-  getRawValue($self: NSManagedObjectContext_NotificationKey): string { return callSDK<string>("CoreData_d968214ecc684fb6", 121829462112828, $self, []); }
+  getRawValue($self: NSManagedObjectContext_NotificationKey): string { return callSDK<string>("CoreData_0e503aef608672fa", 121829462112828, $self, []); }
 };
 
 /**
@@ -3612,52 +3612,52 @@ export class NSManagedObjectContext_ObjectsDidChangeMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> NSManagedObjectContext.ObjectsDidChangeMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_ObjectsDidChangeMessage) | null> { return callSDKAsync<(NSManagedObjectContext_ObjectsDidChangeMessage) | null>("CoreData_d968214ecc684fb6", 3035554974280345, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_ObjectsDidChangeMessage) | null> { return callSDKAsync<(NSManagedObjectContext_ObjectsDidChangeMessage) | null>("CoreData_0e503aef608672fa", 3035554974280345, undefined, [notification]); }
   /**
    * var invalidated: Set<NSManagedObject> { get }
    * @availability iOS 27.0+
    */
-  get invalidated(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 3828498480974067, this, []); }
+  get invalidated(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 3828498480974067, this, []); }
   /**
    * let invalidatedAll: Bool?
    * @availability iOS 27.0+
    */
-  get invalidatedAll(): (boolean) | null { return callSDK<(boolean) | null>("CoreData_d968214ecc684fb6", 905287319862176, this, []); }
+  get invalidatedAll(): (boolean) | null { return callSDK<(boolean) | null>("CoreData_0e503aef608672fa", 905287319862176, this, []); }
   /**
    * @MainActor static func makeNotification(_ message: NSManagedObjectContext.ObjectsDidChangeMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSManagedObjectContext_ObjectsDidChangeMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_d968214ecc684fb6", 3360108924101047, undefined, [message]); }
+  static makeNotification(message: NSManagedObjectContext_ObjectsDidChangeMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_0e503aef608672fa", 3360108924101047, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 4191964323047224, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 4191964323047224, undefined, []); }
   /**
    * let context: NSManagedObjectContext
    * @availability iOS 27.0+
    */
-  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 4382790812394296, this, []); }
+  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 4382790812394296, this, []); }
   /**
    * var deleted: Set<NSManagedObject> { get }
    * @availability iOS 27.0+
    */
-  get deleted(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 3075343823117091, this, []); }
+  get deleted(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 3075343823117091, this, []); }
   /**
    * var updated: Set<NSManagedObject> { get }
    * @availability iOS 27.0+
    */
-  get updated(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 1297944283985334, this, []); }
+  get updated(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 1297944283985334, this, []); }
   /**
    * var inserted: Set<NSManagedObject> { get }
    * @availability iOS 27.0+
    */
-  get inserted(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 1246224154196632, this, []); }
+  get inserted(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 1246224154196632, this, []); }
   /**
    * var refreshed: Set<NSManagedObject> { get }
    * @availability iOS 27.0+
    */
-  get refreshed(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 299478047916406, this, []); }
+  get refreshed(): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 299478047916406, this, []); }
   declare readonly $type: { "s:So22NSManagedObjectContextC8CoreDataE23ObjectsDidChangeMessageV": true };
 }
 
@@ -3682,22 +3682,22 @@ export class NSManagedObjectContext_WillSaveMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> NSManagedObjectContext.WillSaveMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_WillSaveMessage) | null> { return callSDKAsync<(NSManagedObjectContext_WillSaveMessage) | null>("CoreData_d968214ecc684fb6", 3591224081652273, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(NSManagedObjectContext_WillSaveMessage) | null> { return callSDKAsync<(NSManagedObjectContext_WillSaveMessage) | null>("CoreData_0e503aef608672fa", 3591224081652273, undefined, [notification]); }
   /**
    * @MainActor static func makeNotification(_ message: NSManagedObjectContext.WillSaveMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSManagedObjectContext_WillSaveMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_d968214ecc684fb6", 3988899473760520, undefined, [message]); }
+  static makeNotification(message: NSManagedObjectContext_WillSaveMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_0e503aef608672fa", 3988899473760520, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 4476602859719398, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 4476602859719398, undefined, []); }
   /**
    * let context: NSManagedObjectContext
    * @availability iOS 27.0+
    */
-  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 1705012297882456, this, []); }
+  get context(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 1705012297882456, this, []); }
   declare readonly $type: { "s:So22NSManagedObjectContextC8CoreDataE15WillSaveMessageV": true };
 }
 
@@ -3718,7 +3718,7 @@ export const NSManagedObjectContextConcurrencyType = {
    * init?(rawValue: UInt)
    * @availability iOS 5.0+
    */
-  init(rawValue: number): (NSManagedObjectContextConcurrencyType) | null { return callSDK<(NSManagedObjectContextConcurrencyType) | null>("CoreData_d968214ecc684fb6", 3096275925043909, undefined, [rawValue]); }
+  init(rawValue: number): (NSManagedObjectContextConcurrencyType) | null { return callSDK<(NSManagedObjectContextConcurrencyType) | null>("CoreData_0e503aef608672fa", 3096275925043909, undefined, [rawValue]); }
 };
 
 /**
@@ -3730,24 +3730,24 @@ export class NSManagedObjectID extends SDKHandle {
    * func uriRepresentation() -> URL
    * @availability iOS 3.0+
    */
-  uriRepresentation(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 2910559561796385, this, []); }
+  uriRepresentation(): string { return callSDK<string>("CoreData_0e503aef608672fa", 2910559561796385, this, []); }
   /** init() */
-  static init(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_d968214ecc684fb6", 1813236777131988, undefined, []); }
+  static init(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_0e503aef608672fa", 1813236777131988, undefined, []); }
   /**
    * var entity: NSEntityDescription { get }
    * @availability iOS 3.0+
    */
-  get entity(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_d968214ecc684fb6", 4206534643759742, this, []); }
+  get entity(): NSEntityDescription { return callSDK<NSEntityDescription>("CoreData_0e503aef608672fa", 4206534643759742, this, []); }
   /**
    * weak var persistentStore: NSPersistentStore? { get }
    * @availability iOS 3.0+
    */
-  get persistentStore(): (NSPersistentStore) | null { return callSDK<(NSPersistentStore) | null>("CoreData_d968214ecc684fb6", 1903496783786975, this, []); }
+  get persistentStore(): (NSPersistentStore) | null { return callSDK<(NSPersistentStore) | null>("CoreData_0e503aef608672fa", 1903496783786975, this, []); }
   /**
    * var isTemporaryID: Bool { get }
    * @availability iOS 3.0+
    */
-  get isTemporaryID(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3401194276967876, this, []); }
+  get isTemporaryID(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3401194276967876, this, []); }
   declare readonly $type: { "c:objc(cs)NSManagedObjectID": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entity": true; "persistentStore": true; "isTemporaryID": true };
 }
@@ -3761,105 +3761,105 @@ export class NSManagedObjectModel extends SDKHandle {
    * class func mergedModel(from bundles: [Bundle]?) -> NSManagedObjectModel?
    * @availability iOS 3.0+
    */
-  static mergedModelFrom(bundles?: $SDK60): $SDK59 { return callSDK<$SDK59>("CoreData_d968214ecc684fb6", 3859400456578764, undefined, [bundles]); }
+  static mergedModelFrom(bundles?: $SDK60): $SDK59 { return callSDK<$SDK59>("CoreData_0e503aef608672fa", 3859400456578764, undefined, [bundles]); }
   /**
    * class func mergedModel(from bundles: [Bundle]?, forStoreMetadata metadata: [String : Any]) -> NSManagedObjectModel?
    * @availability iOS 3.0+
    */
-  static mergedModelFromForStoreMetadata(bundles: $SDK60, metadata: Record<string, unknown>): $SDK59 { return callSDK<$SDK59>("CoreData_d968214ecc684fb6", 1961816877565722, undefined, [bundles, metadata]); }
+  static mergedModelFromForStoreMetadata(bundles: $SDK60, metadata: Record<string, unknown>): $SDK59 { return callSDK<$SDK59>("CoreData_0e503aef608672fa", 1961816877565722, undefined, [bundles, metadata]); }
   /**
    * init?(byMerging models: [NSManagedObjectModel]?)
    * @availability iOS 3.0+
    */
-  static initByMerging(models?: (Array<NSManagedObjectModel>) | null): (NSManagedObjectModel) | null { return callSDK<(NSManagedObjectModel) | null>("CoreData_d968214ecc684fb6", 3019317592476293, undefined, [models]); }
+  static initByMerging(models?: (Array<NSManagedObjectModel>) | null): (NSManagedObjectModel) | null { return callSDK<(NSManagedObjectModel) | null>("CoreData_0e503aef608672fa", 3019317592476293, undefined, [models]); }
   /**
    * init?(byMerging models: [NSManagedObjectModel], forStoreMetadata metadata: [String : Any])
    * @availability iOS 3.0+
    */
-  static initByMergingForStoreMetadata(models: Array<NSManagedObjectModel>, metadata: Record<string, unknown>): (NSManagedObjectModel) | null { return callSDK<(NSManagedObjectModel) | null>("CoreData_d968214ecc684fb6", 509834335424622, undefined, [models, metadata]); }
+  static initByMergingForStoreMetadata(models: Array<NSManagedObjectModel>, metadata: Record<string, unknown>): (NSManagedObjectModel) | null { return callSDK<(NSManagedObjectModel) | null>("CoreData_0e503aef608672fa", 509834335424622, undefined, [models, metadata]); }
   /**
    * func entities(forConfigurationName configuration: String?) -> [NSEntityDescription]?
    * @availability iOS 3.0+
    */
-  entitiesForConfigurationName(configuration?: (string) | null): (Array<NSEntityDescription>) | null { return callSDK<(Array<NSEntityDescription>) | null>("CoreData_d968214ecc684fb6", 1774369427228764, this, [configuration]); }
+  entitiesForConfigurationName(configuration?: (string) | null): (Array<NSEntityDescription>) | null { return callSDK<(Array<NSEntityDescription>) | null>("CoreData_0e503aef608672fa", 1774369427228764, this, [configuration]); }
   /**
    * func fetchRequestFromTemplate(withName name: String, substitutionVariables variables: [String : Any]) -> NSFetchRequest<any NSFetchRequestResult>?
    * @availability iOS 3.0+
    */
-  fetchRequestFromTemplate(name: string, variables: Record<string, unknown>): $SDK38 { return callSDK<$SDK38>("CoreData_d968214ecc684fb6", 3044592907442793, this, [name, variables]); }
+  fetchRequestFromTemplate(name: string, variables: Record<string, unknown>): $SDK38 { return callSDK<$SDK38>("CoreData_0e503aef608672fa", 3044592907442793, this, [name, variables]); }
   /**
    * func fetchRequestTemplate(forName name: String) -> NSFetchRequest<any NSFetchRequestResult>?
    * @availability iOS 3.0+
    */
-  fetchRequestTemplate(name: string): $SDK38 { return callSDK<$SDK38>("CoreData_d968214ecc684fb6", 2424043627908877, this, [name]); }
+  fetchRequestTemplate(name: string): $SDK38 { return callSDK<$SDK38>("CoreData_0e503aef608672fa", 2424043627908877, this, [name]); }
   /**
    * init()
    * @availability iOS 3.0+
    */
-  static init(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_d968214ecc684fb6", 3629290093811942, undefined, []); }
+  static init(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_0e503aef608672fa", 3629290093811942, undefined, []); }
   /**
    * convenience init?(contentsOf url: URL)
    * @availability iOS 3.0+
    */
-  static initContentsOf(url: string): (NSManagedObjectModel) | null { return callSDK<(NSManagedObjectModel) | null>("CoreData_d968214ecc684fb6", 4430497645605627, undefined, [url]); }
+  static initContentsOf(url: string): (NSManagedObjectModel) | null { return callSDK<(NSManagedObjectModel) | null>("CoreData_0e503aef608672fa", 4430497645605627, undefined, [url]); }
   /**
    * func isConfiguration(withName configuration: String?, compatibleWithStoreMetadata metadata: [String : Any]) -> Bool
    * @availability iOS 3.0+
    */
-  isConfiguration(configuration: (string) | null, metadata: Record<string, unknown>): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 1658543748111941, this, [configuration, metadata]); }
+  isConfiguration(configuration: (string) | null, metadata: Record<string, unknown>): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 1658543748111941, this, [configuration, metadata]); }
   /**
    * func setEntities(_ entities: [NSEntityDescription], forConfigurationName configuration: String)
    * @availability iOS 3.0+
    */
-  setEntities(entities: $SDK35, configuration: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4060508499540173, this, [entities, configuration]); }
+  setEntities(entities: $SDK35, configuration: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 4060508499540173, this, [entities, configuration]); }
   /**
    * func setFetchRequestTemplate(_ fetchRequestTemplate: NSFetchRequest<any NSFetchRequestResult>?, forName name: String)
    * @availability iOS 3.0+
    */
-  setFetchRequestTemplate(fetchRequestTemplate: $SDK39, name: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 311062507937060, this, [fetchRequestTemplate, name]); }
+  setFetchRequestTemplate(fetchRequestTemplate: $SDK39, name: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 311062507937060, this, [fetchRequestTemplate, name]); }
   /**
    * var configurations: [String] { get }
    * @availability iOS 3.0+
    */
-  get configurations(): Array<string> { return callSDK<Array<string>>("CoreData_d968214ecc684fb6", 2839509016097864, this, []); }
+  get configurations(): Array<string> { return callSDK<Array<string>>("CoreData_0e503aef608672fa", 2839509016097864, this, []); }
   /**
    * var entities: [NSEntityDescription] { get set }
    * @availability iOS 3.0+
    */
-  get entities(): $SDK35 { return callSDK<$SDK35>("CoreData_d968214ecc684fb6", 512127395785735, this, []); }
-  set entities(value: $SDK35) { callSDK<void>("CoreData_d968214ecc684fb6", 4053252308771868, this, [value]); }
+  get entities(): $SDK35 { return callSDK<$SDK35>("CoreData_0e503aef608672fa", 512127395785735, this, []); }
+  set entities(value: $SDK35) { callSDK<void>("CoreData_0e503aef608672fa", 4053252308771868, this, [value]); }
   /**
    * var entitiesByName: [String : NSEntityDescription] { get }
    * @availability iOS 3.0+
    */
-  get entitiesByName(): $SDK36 { return callSDK<$SDK36>("CoreData_d968214ecc684fb6", 2439112183267165, this, []); }
+  get entitiesByName(): $SDK36 { return callSDK<$SDK36>("CoreData_0e503aef608672fa", 2439112183267165, this, []); }
   /**
    * var entityVersionHashesByName: [String : Data] { get }
    * @availability iOS 3.0+
    */
-  get entityVersionHashesByName(): Record<string, ArrayBuffer> { return callSDK<Record<string, ArrayBuffer>>("CoreData_d968214ecc684fb6", 1266146469740135, this, []); }
+  get entityVersionHashesByName(): Record<string, ArrayBuffer> { return callSDK<Record<string, ArrayBuffer>>("CoreData_0e503aef608672fa", 1266146469740135, this, []); }
   /**
    * var fetchRequestTemplatesByName: [String : NSFetchRequest<any NSFetchRequestResult>] { get }
    * @availability iOS 3.0+
    */
-  get fetchRequestTemplatesByName(): Record<string, NSFetchRequest<SDKHandle>> { return callSDK<Record<string, NSFetchRequest<SDKHandle>>>("CoreData_d968214ecc684fb6", 3867829640376096, this, []); }
+  get fetchRequestTemplatesByName(): Record<string, NSFetchRequest<SDKHandle>> { return callSDK<Record<string, NSFetchRequest<SDKHandle>>>("CoreData_0e503aef608672fa", 3867829640376096, this, []); }
   /**
    * var localizationDictionary: [String : String]? { get set }
    * @availability iOS 3.0+
    */
-  get localizationDictionary(): $SDK66 { return callSDK<$SDK66>("CoreData_d968214ecc684fb6", 2285491330853586, this, []); }
-  set localizationDictionary(value: $SDK66) { callSDK<void>("CoreData_d968214ecc684fb6", 1642436108060283, this, [value]); }
+  get localizationDictionary(): $SDK66 { return callSDK<$SDK66>("CoreData_0e503aef608672fa", 2285491330853586, this, []); }
+  set localizationDictionary(value: $SDK66) { callSDK<void>("CoreData_0e503aef608672fa", 1642436108060283, this, [value]); }
   /**
    * var versionChecksum: String { get }
    * @availability iOS 17.0+
    */
-  get versionChecksum(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1759483593553364, this, []); }
+  get versionChecksum(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1759483593553364, this, []); }
   /**
    * var versionIdentifiers: Set<AnyHashable> { get set }
    * @availability iOS 3.0+
    */
-  get versionIdentifiers(): Array<unknown> { return callSDK<Array<unknown>>("CoreData_d968214ecc684fb6", 2636203627658266, this, []); }
-  set versionIdentifiers(value: Array<unknown>) { callSDK<void>("CoreData_d968214ecc684fb6", 66448246978190, this, [value]); }
+  get versionIdentifiers(): Array<unknown> { return callSDK<Array<unknown>>("CoreData_0e503aef608672fa", 2636203627658266, this, []); }
+  set versionIdentifiers(value: Array<unknown>) { callSDK<void>("CoreData_0e503aef608672fa", 66448246978190, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSManagedObjectModel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configurations": true; "entities": true; "entitiesByName": true; "entityVersionHashesByName": true; "fetchRequestTemplatesByName": true; "localizationDictionary": true; "versionChecksum": true; "versionIdentifiers": true };
 }
@@ -3873,32 +3873,32 @@ export class NSManagedObjectModelReference extends SDKHandle {
    * init(entityVersionHashes versionHash: [AnyHashable : Any], in bundle: Bundle?, versionChecksum: String)
    * @availability iOS 17.0+
    */
-  static initEntityVersionHashesInVersionChecksum(versionHash: NativeMap<unknown, unknown>, bundle: (_Foundation_Bundle) | null, versionChecksum: string): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_d968214ecc684fb6", 1679030086300131, undefined, [versionHash, bundle, versionChecksum]); }
+  static initEntityVersionHashesInVersionChecksum(versionHash: NativeMap<unknown, unknown>, bundle: (_Foundation_Bundle) | null, versionChecksum: string): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_0e503aef608672fa", 1679030086300131, undefined, [versionHash, bundle, versionChecksum]); }
   /**
    * init(fileURL: URL, versionChecksum: String)
    * @availability iOS 17.0+
    */
-  static initFileURLVersionChecksum(fileURL: string, versionChecksum: string): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_d968214ecc684fb6", 1293389010492918, undefined, [fileURL, versionChecksum]); }
+  static initFileURLVersionChecksum(fileURL: string, versionChecksum: string): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_0e503aef608672fa", 1293389010492918, undefined, [fileURL, versionChecksum]); }
   /**
    * init(model: NSManagedObjectModel, versionChecksum: String)
    * @availability iOS 17.0+
    */
-  static initModelVersionChecksum(model: NSManagedObjectModel, versionChecksum: string): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_d968214ecc684fb6", 1779157694518450, undefined, [model, versionChecksum]); }
+  static initModelVersionChecksum(model: NSManagedObjectModel, versionChecksum: string): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_0e503aef608672fa", 1779157694518450, undefined, [model, versionChecksum]); }
   /**
    * init(name modelName: String, in bundle: Bundle?, versionChecksum: String)
    * @availability iOS 17.0+
    */
-  static initNameInVersionChecksum(modelName: string, bundle: (_Foundation_Bundle) | null, versionChecksum: string): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_d968214ecc684fb6", 1111271752799207, undefined, [modelName, bundle, versionChecksum]); }
+  static initNameInVersionChecksum(modelName: string, bundle: (_Foundation_Bundle) | null, versionChecksum: string): NSManagedObjectModelReference { return callSDK<NSManagedObjectModelReference>("CoreData_0e503aef608672fa", 1111271752799207, undefined, [modelName, bundle, versionChecksum]); }
   /**
    * var resolvedModel: NSManagedObjectModel { get }
    * @availability iOS 17.0+
    */
-  get resolvedModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_d968214ecc684fb6", 172242456519464, this, []); }
+  get resolvedModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_0e503aef608672fa", 172242456519464, this, []); }
   /**
    * var versionChecksum: String { get }
    * @availability iOS 17.0+
    */
-  get versionChecksum(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1042531886039, this, []); }
+  get versionChecksum(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1042531886039, this, []); }
   declare readonly $type: { "c:objc(cs)NSManagedObjectModelReference": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "resolvedModel": true; "versionChecksum": true };
 }
@@ -3912,28 +3912,28 @@ export class NSMappingModel extends SDKHandle {
    * class func inferredMappingModel(forSourceModel sourceModel: NSManagedObjectModel, destinationModel: NSManagedObjectModel) throws -> NSMappingModel
    * @availability iOS 3.0+
    */
-  static inferredMappingModel(sourceModel: NSManagedObjectModel, destinationModel: NSManagedObjectModel): NSMappingModel { return callSDK<NSMappingModel>("CoreData_d968214ecc684fb6", 3606304512634485, undefined, [sourceModel, destinationModel]); }
+  static inferredMappingModel(sourceModel: NSManagedObjectModel, destinationModel: NSManagedObjectModel): NSMappingModel { return callSDK<NSMappingModel>("CoreData_0e503aef608672fa", 3606304512634485, undefined, [sourceModel, destinationModel]); }
   /**
    * init?(from bundles: [Bundle]?, forSourceModel sourceModel: NSManagedObjectModel?, destinationModel: NSManagedObjectModel?)
    * @availability iOS 3.0+
    */
-  static initFromForSourceModelDestinationModel(bundles?: $SDK60, sourceModel?: $SDK59, destinationModel?: $SDK59): (NSMappingModel) | null { return callSDK<(NSMappingModel) | null>("CoreData_d968214ecc684fb6", 1027038839100950, undefined, [bundles, sourceModel, destinationModel]); }
+  static initFromForSourceModelDestinationModel(bundles?: $SDK60, sourceModel?: $SDK59, destinationModel?: $SDK59): (NSMappingModel) | null { return callSDK<(NSMappingModel) | null>("CoreData_0e503aef608672fa", 1027038839100950, undefined, [bundles, sourceModel, destinationModel]); }
   /**
    * init?(contentsOf url: URL?)
    * @availability iOS 3.0+
    */
-  static initContentsOf(url?: (string) | null): (NSMappingModel) | null { return callSDK<(NSMappingModel) | null>("CoreData_d968214ecc684fb6", 3050405481593438, undefined, [url]); }
+  static initContentsOf(url?: (string) | null): (NSMappingModel) | null { return callSDK<(NSMappingModel) | null>("CoreData_0e503aef608672fa", 3050405481593438, undefined, [url]); }
   /**
    * var entityMappings: [NSEntityMapping]! { get set }
    * @availability iOS 3.0+
    */
-  get entityMappings(): $SDK68 { return callSDK<$SDK68>("CoreData_d968214ecc684fb6", 843939153244517, this, []); }
-  set entityMappings(value: $SDK68) { callSDK<void>("CoreData_d968214ecc684fb6", 2926522521957141, this, [value]); }
+  get entityMappings(): $SDK68 { return callSDK<$SDK68>("CoreData_0e503aef608672fa", 843939153244517, this, []); }
+  set entityMappings(value: $SDK68) { callSDK<void>("CoreData_0e503aef608672fa", 2926522521957141, this, [value]); }
   /**
    * var entityMappingsByName: [String : NSEntityMapping] { get }
    * @availability iOS 3.0+
    */
-  get entityMappingsByName(): Record<string, NSEntityMapping> { return callSDK<Record<string, NSEntityMapping>>("CoreData_d968214ecc684fb6", 3638764279848896, this, []); }
+  get entityMappingsByName(): Record<string, NSEntityMapping> { return callSDK<Record<string, NSEntityMapping>>("CoreData_0e503aef608672fa", 3638764279848896, this, []); }
   declare readonly $type: { "c:objc(cs)NSMappingModel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entityMappings": true; "entityMappingsByName": true };
 }
@@ -3947,37 +3947,37 @@ export class NSMergeConflict extends SDKHandle {
    * init(source srcObject: NSManagedObject, newVersion newvers: Int, oldVersion oldvers: Int, cachedSnapshot cachesnap: [String : Any]?, persistedSnapshot persnap: [String : Any]?)
    * @availability iOS 5.0+
    */
-  static init(srcObject: NSManagedObject, newvers: number, oldvers: number, cachesnap?: $SDK4, persnap?: $SDK4): NSMergeConflict { return callSDK<NSMergeConflict>("CoreData_d968214ecc684fb6", 4195748699243924, undefined, [srcObject, newvers, oldvers, cachesnap, persnap]); }
+  static init(srcObject: NSManagedObject, newvers: number, oldvers: number, cachesnap?: $SDK4, persnap?: $SDK4): NSMergeConflict { return callSDK<NSMergeConflict>("CoreData_0e503aef608672fa", 4195748699243924, undefined, [srcObject, newvers, oldvers, cachesnap, persnap]); }
   /**
    * var cachedSnapshot: [String : Any]? { get }
    * @availability iOS 5.0+
    */
-  get cachedSnapshot(): $SDK4 { return callSDK<$SDK4>("CoreData_d968214ecc684fb6", 3857596772619658, this, []); }
+  get cachedSnapshot(): $SDK4 { return callSDK<$SDK4>("CoreData_0e503aef608672fa", 3857596772619658, this, []); }
   /**
    * var newVersionNumber: Int { get }
    * @availability iOS 5.0+
    */
-  get newVersionNumber(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 3313020249724118, this, []); }
+  get newVersionNumber(): number { return callSDK<number>("CoreData_0e503aef608672fa", 3313020249724118, this, []); }
   /**
    * var objectSnapshot: [String : Any]? { get }
    * @availability iOS 5.0+
    */
-  get objectSnapshot(): $SDK4 { return callSDK<$SDK4>("CoreData_d968214ecc684fb6", 2907060987047553, this, []); }
+  get objectSnapshot(): $SDK4 { return callSDK<$SDK4>("CoreData_0e503aef608672fa", 2907060987047553, this, []); }
   /**
    * var oldVersionNumber: Int { get }
    * @availability iOS 5.0+
    */
-  get oldVersionNumber(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 1080635819025215, this, []); }
+  get oldVersionNumber(): number { return callSDK<number>("CoreData_0e503aef608672fa", 1080635819025215, this, []); }
   /**
    * var persistedSnapshot: [String : Any]? { get }
    * @availability iOS 5.0+
    */
-  get persistedSnapshot(): $SDK4 { return callSDK<$SDK4>("CoreData_d968214ecc684fb6", 3676066607568082, this, []); }
+  get persistedSnapshot(): $SDK4 { return callSDK<$SDK4>("CoreData_0e503aef608672fa", 3676066607568082, this, []); }
   /**
    * var sourceObject: NSManagedObject { get }
    * @availability iOS 5.0+
    */
-  get sourceObject(): NSManagedObject { return callSDK<NSManagedObject>("CoreData_d968214ecc684fb6", 2571874876985387, this, []); }
+  get sourceObject(): NSManagedObject { return callSDK<NSManagedObject>("CoreData_0e503aef608672fa", 2571874876985387, this, []); }
   declare readonly $type: { "c:objc(cs)NSMergeConflict": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "cachedSnapshot": true; "newVersionNumber": true; "objectSnapshot": true; "oldVersionNumber": true; "persistedSnapshot": true; "sourceObject": true };
 }
@@ -3991,52 +3991,52 @@ export class NSMergePolicy extends SDKHandle {
    * class var error: NSMergePolicy { get }
    * @availability iOS 10.0+
    */
-  static get error(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_d968214ecc684fb6", 4485767754791592, undefined, []); }
+  static get error(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_0e503aef608672fa", 4485767754791592, undefined, []); }
   /**
    * class var mergeByPropertyObjectTrump: NSMergePolicy { get }
    * @availability iOS 10.0+
    */
-  static get mergeByPropertyObjectTrump(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_d968214ecc684fb6", 1425126266319272, undefined, []); }
+  static get mergeByPropertyObjectTrump(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_0e503aef608672fa", 1425126266319272, undefined, []); }
   /**
    * class var mergeByPropertyStoreTrump: NSMergePolicy { get }
    * @availability iOS 10.0+
    */
-  static get mergeByPropertyStoreTrump(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_d968214ecc684fb6", 1568484586976109, undefined, []); }
+  static get mergeByPropertyStoreTrump(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_0e503aef608672fa", 1568484586976109, undefined, []); }
   /**
    * class var overwrite: NSMergePolicy { get }
    * @availability iOS 10.0+
    */
-  static get overwrite(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_d968214ecc684fb6", 1399536583220892, undefined, []); }
+  static get overwrite(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_0e503aef608672fa", 1399536583220892, undefined, []); }
   /**
    * class var rollback: NSMergePolicy { get }
    * @availability iOS 10.0+
    */
-  static get rollback(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_d968214ecc684fb6", 3374443692555640, undefined, []); }
+  static get rollback(): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_0e503aef608672fa", 3374443692555640, undefined, []); }
   /**
    * init(merge ty: NSMergePolicyType)
    * @availability iOS 5.0+
    */
-  static init(ty: NSMergePolicyType): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_d968214ecc684fb6", 1270386414193685, undefined, [ty]); }
+  static init(ty: NSMergePolicyType): NSMergePolicy { return callSDK<NSMergePolicy>("CoreData_0e503aef608672fa", 1270386414193685, undefined, [ty]); }
   /**
    * func resolve(mergeConflicts list: [Any]) throws
    * @availability iOS 5.0+
    */
-  resolveMergeConflicts(list: Array<unknown>): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3693091525115680, this, [list]); }
+  resolveMergeConflicts(list: Array<unknown>): void { return callSDK<void>("CoreData_0e503aef608672fa", 3693091525115680, this, [list]); }
   /**
    * func resolve(constraintConflicts list: [NSConstraintConflict]) throws
    * @availability iOS 9.0+
    */
-  resolveConstraintConflicts(list: Array<NSConstraintConflict>): void { return callSDK<void>("CoreData_d968214ecc684fb6", 39142100260061, this, [list]); }
+  resolveConstraintConflicts(list: Array<NSConstraintConflict>): void { return callSDK<void>("CoreData_0e503aef608672fa", 39142100260061, this, [list]); }
   /**
    * func resolve(optimisticLockingConflicts list: [NSMergeConflict]) throws
    * @availability iOS 9.0+
    */
-  resolveOptimisticLockingConflicts(list: Array<NSMergeConflict>): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1998574607454996, this, [list]); }
+  resolveOptimisticLockingConflicts(list: Array<NSMergeConflict>): void { return callSDK<void>("CoreData_0e503aef608672fa", 1998574607454996, this, [list]); }
   /**
    * var mergeType: NSMergePolicyType { get }
    * @availability iOS 5.0+
    */
-  get mergeType(): NSMergePolicyType { return callSDK<NSMergePolicyType>("CoreData_d968214ecc684fb6", 584967059785632, this, []); }
+  get mergeType(): NSMergePolicyType { return callSDK<NSMergePolicyType>("CoreData_0e503aef608672fa", 584967059785632, this, []); }
   declare readonly $type: { "c:objc(cs)NSMergePolicy": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mergeType": true };
 }
@@ -4046,7 +4046,7 @@ export type NSMergePolicyType = "errorMergePolicyType" | "mergeByPropertyStoreTr
 
 export const NSMergePolicyType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (NSMergePolicyType) | null { return callSDK<(NSMergePolicyType) | null>("CoreData_d968214ecc684fb6", 1768094344787462, undefined, [rawValue]); }
+  init(rawValue: number): (NSMergePolicyType) | null { return callSDK<(NSMergePolicyType) | null>("CoreData_0e503aef608672fa", 1768094344787462, undefined, [rawValue]); }
 };
 
 /**
@@ -4058,99 +4058,99 @@ export class NSMigrationManager extends SDKHandle {
    * func associate(sourceInstance: NSManagedObject, withDestinationInstance destinationInstance: NSManagedObject, for entityMapping: NSEntityMapping)
    * @availability iOS 3.0+
    */
-  associate(sourceInstance: NSManagedObject, destinationInstance: NSManagedObject, entityMapping: NSEntityMapping): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1902043753875733, this, [sourceInstance, destinationInstance, entityMapping]); }
+  associate(sourceInstance: NSManagedObject, destinationInstance: NSManagedObject, entityMapping: NSEntityMapping): void { return callSDK<void>("CoreData_0e503aef608672fa", 1902043753875733, this, [sourceInstance, destinationInstance, entityMapping]); }
   /**
    * func cancelMigrationWithError(_ error: any Error)
    * @availability iOS 3.0+
    */
-  cancelMigrationWithError(error: NativeError): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2372551696041947, this, [error]); }
+  cancelMigrationWithError(error: NativeError): void { return callSDK<void>("CoreData_0e503aef608672fa", 2372551696041947, this, [error]); }
   /**
    * func destinationEntity(for mEntity: NSEntityMapping) -> NSEntityDescription?
    * @availability iOS 3.0+
    */
-  destinationEntity(mEntity: NSEntityMapping): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 3065389274887807, this, [mEntity]); }
+  destinationEntity(mEntity: NSEntityMapping): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 3065389274887807, this, [mEntity]); }
   /**
    * func destinationInstances(forEntityMappingName mappingName: String, sourceInstances: [NSManagedObject]?) -> [NSManagedObject]
    * @availability iOS 3.0+
    */
-  destinationInstances(mappingName: string, sourceInstances?: $SDK71): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 535229243609665, this, [mappingName, sourceInstances]); }
+  destinationInstances(mappingName: string, sourceInstances?: $SDK71): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 535229243609665, this, [mappingName, sourceInstances]); }
   /**
    * init(sourceModel: NSManagedObjectModel, destinationModel: NSManagedObjectModel)
    * @availability iOS 3.0+
    */
-  static init(sourceModel: NSManagedObjectModel, destinationModel: NSManagedObjectModel): NSMigrationManager { return callSDK<NSMigrationManager>("CoreData_d968214ecc684fb6", 2852749804744210, undefined, [sourceModel, destinationModel]); }
+  static init(sourceModel: NSManagedObjectModel, destinationModel: NSManagedObjectModel): NSMigrationManager { return callSDK<NSMigrationManager>("CoreData_0e503aef608672fa", 2852749804744210, undefined, [sourceModel, destinationModel]); }
   /**
    * func migrateStore(from sourceURL: URL, sourceType sStoreType: String, options sOptions: [AnyHashable : Any]? = nil, with mappings: NSMappingModel?, toDestinationURL dURL: URL, destinationType dStoreType: String, destinationOptions dOptions: [AnyHashable : Any]? = nil) throws
    * @availability iOS 3.0+
    */
-  migrateStoreFromSourceTypeOptionsWithToDestinationURLDestinationTypeDestinationOptions(sourceURL: string, sStoreType: string, sOptions: $SDK6, mappings: (NSMappingModel) | null, dURL: string, dStoreType: string, dOptions?: $SDK6): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2925327383778752, this, [sourceURL, sStoreType, sOptions, mappings, dURL, dStoreType, dOptions]); }
+  migrateStoreFromSourceTypeOptionsWithToDestinationURLDestinationTypeDestinationOptions(sourceURL: string, sStoreType: string, sOptions: $SDK6, mappings: (NSMappingModel) | null, dURL: string, dStoreType: string, dOptions?: $SDK6): void { return callSDK<void>("CoreData_0e503aef608672fa", 2925327383778752, this, [sourceURL, sStoreType, sOptions, mappings, dURL, dStoreType, dOptions]); }
   /**
    * func reset()
    * @availability iOS 3.0+
    */
-  reset(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3443385212796770, this, []); }
+  reset(): void { return callSDK<void>("CoreData_0e503aef608672fa", 3443385212796770, this, []); }
   /**
    * func sourceEntity(for mEntity: NSEntityMapping) -> NSEntityDescription?
    * @availability iOS 3.0+
    */
-  sourceEntity(mEntity: NSEntityMapping): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 2869844364095354, this, [mEntity]); }
+  sourceEntity(mEntity: NSEntityMapping): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 2869844364095354, this, [mEntity]); }
   /**
    * func sourceInstances(forEntityMappingName mappingName: String, destinationInstances: [NSManagedObject]?) -> [NSManagedObject]
    * @availability iOS 3.0+
    */
-  sourceInstances(mappingName: string, destinationInstances?: $SDK71): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_d968214ecc684fb6", 10221332123700, this, [mappingName, destinationInstances]); }
+  sourceInstances(mappingName: string, destinationInstances?: $SDK71): Array<NSManagedObject> { return callSDK<Array<NSManagedObject>>("CoreData_0e503aef608672fa", 10221332123700, this, [mappingName, destinationInstances]); }
   /**
    * var currentEntityMapping: NSEntityMapping { get }
    * @availability iOS 3.0+
    */
-  get currentEntityMapping(): NSEntityMapping { return callSDK<NSEntityMapping>("CoreData_d968214ecc684fb6", 2667922753245142, this, []); }
+  get currentEntityMapping(): NSEntityMapping { return callSDK<NSEntityMapping>("CoreData_0e503aef608672fa", 2667922753245142, this, []); }
   /**
    * var destinationContext: NSManagedObjectContext { get }
    * @availability iOS 3.0+
    */
-  get destinationContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 1954178483646613, this, []); }
+  get destinationContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 1954178483646613, this, []); }
   /**
    * var destinationModel: NSManagedObjectModel { get }
    * @availability iOS 3.0+
    */
-  get destinationModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_d968214ecc684fb6", 1729364646438411, this, []); }
+  get destinationModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_0e503aef608672fa", 1729364646438411, this, []); }
   /**
    * var mappingModel: NSMappingModel { get }
    * @availability iOS 3.0+
    */
-  get mappingModel(): NSMappingModel { return callSDK<NSMappingModel>("CoreData_d968214ecc684fb6", 3600552915204531, this, []); }
+  get mappingModel(): NSMappingModel { return callSDK<NSMappingModel>("CoreData_0e503aef608672fa", 3600552915204531, this, []); }
   /**
    * var migrationProgress: Float { get }
    * @availability iOS 3.0+
    */
-  get migrationProgress(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 4460791801802066, this, []); }
+  get migrationProgress(): number { return callSDK<number>("CoreData_0e503aef608672fa", 4460791801802066, this, []); }
   /**
    * var sourceContext: NSManagedObjectContext { get }
    * @availability iOS 3.0+
    */
-  get sourceContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 2250137389018554, this, []); }
+  get sourceContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 2250137389018554, this, []); }
   /**
    * var sourceModel: NSManagedObjectModel { get }
    * @availability iOS 3.0+
    */
-  get sourceModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_d968214ecc684fb6", 2060276146800680, this, []); }
+  get sourceModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_0e503aef608672fa", 2060276146800680, this, []); }
   /**
    * var userInfo: [AnyHashable : Any]? { get set }
    * @availability iOS 3.0+
    */
-  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_d968214ecc684fb6", 4245386175435333, this, []); }
-  set userInfo(value: $SDK6) { callSDK<void>("CoreData_d968214ecc684fb6", 2472591281847692, this, [value]); }
+  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_0e503aef608672fa", 4245386175435333, this, []); }
+  set userInfo(value: $SDK6) { callSDK<void>("CoreData_0e503aef608672fa", 2472591281847692, this, [value]); }
   /**
    * var usesStoreSpecificMigrationManager: Bool { get set }
    * @availability iOS 5.0+
    */
-  get usesStoreSpecificMigrationManager(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3899478502055503, this, []); }
-  set usesStoreSpecificMigrationManager(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 1068009667738571, this, [value]); }
+  get usesStoreSpecificMigrationManager(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3899478502055503, this, []); }
+  set usesStoreSpecificMigrationManager(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 1068009667738571, this, [value]); }
   /**
    * func migrateStore(from sourceURL: URL, type sourceType: NSPersistentStore.StoreType, options sourceOptions: [AnyHashable : Any]? = nil, mapping: NSMappingModel, to destinationURL: URL, type destinationType: NSPersistentStore.StoreType, options destinationOptions: [AnyHashable : Any]? = nil) throws
    * @availability iOS 15.0+
    */
-  migrateStoreFromTypeOptionsMappingToTypeOptions(sourceURL: string, sourceType: NSPersistentStore_StoreType, sourceOptions: $SDK6, mapping: NSMappingModel, destinationURL: string, destinationType: NSPersistentStore_StoreType, destinationOptions?: $SDK6): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4316551073854577, this, [sourceURL, sourceType, sourceOptions, mapping, destinationURL, destinationType, destinationOptions]); }
+  migrateStoreFromTypeOptionsMappingToTypeOptions(sourceURL: string, sourceType: NSPersistentStore_StoreType, sourceOptions: $SDK6, mapping: NSMappingModel, destinationURL: string, destinationType: NSPersistentStore_StoreType, destinationOptions?: $SDK6): void { return callSDK<void>("CoreData_0e503aef608672fa", 4316551073854577, this, [sourceURL, sourceType, sourceOptions, mapping, destinationURL, destinationType, destinationOptions]); }
   declare readonly $type: { "c:objc(cs)NSMigrationManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentEntityMapping": true; "destinationContext": true; "destinationModel": true; "mappingModel": true; "migrationProgress": true; "sourceContext": true; "sourceModel": true; "userInfo": true; "usesStoreSpecificMigrationManager": true };
 }
@@ -4162,58 +4162,58 @@ export const NSNotification_Name = {
    * static let NSCoreDataCoreSpotlightDelegateIndexDidUpdate: NSNotification.Name
    * @availability iOS 14.0+
    */
-  get NSCoreDataCoreSpotlightDelegateIndexDidUpdate(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3744857482776642, undefined, []); },
+  get NSCoreDataCoreSpotlightDelegateIndexDidUpdate(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3744857482776642, undefined, []); },
   /**
    * static let NSManagedObjectContextDidMergeChangesObjectIDs: NSNotification.Name
    * @availability iOS 10.3+
    */
-  get NSManagedObjectContextDidMergeChangesObjectIDs(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 1169691365132895, undefined, []); },
+  get NSManagedObjectContextDidMergeChangesObjectIDs(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 1169691365132895, undefined, []); },
   /**
    * static let NSManagedObjectContextDidSave: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get NSManagedObjectContextDidSave(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 1950611705122734, undefined, []); },
+  get NSManagedObjectContextDidSave(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 1950611705122734, undefined, []); },
   /**
    * static let NSManagedObjectContextDidSaveObjectIDs: NSNotification.Name
    * @availability iOS 10.3+
    */
-  get NSManagedObjectContextDidSaveObjectIDs(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 781038104849237, undefined, []); },
+  get NSManagedObjectContextDidSaveObjectIDs(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 781038104849237, undefined, []); },
   /**
    * static let NSManagedObjectContextObjectsDidChange: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get NSManagedObjectContextObjectsDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 2912980185428192, undefined, []); },
+  get NSManagedObjectContextObjectsDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 2912980185428192, undefined, []); },
   /**
    * static let NSManagedObjectContextWillSave: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get NSManagedObjectContextWillSave(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3335746659539431, undefined, []); },
+  get NSManagedObjectContextWillSave(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3335746659539431, undefined, []); },
   /**
    * static let NSPersistentStoreCoordinatorStoresDidChange: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get NSPersistentStoreCoordinatorStoresDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 757171345851800, undefined, []); },
+  get NSPersistentStoreCoordinatorStoresDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 757171345851800, undefined, []); },
   /**
    * static let NSPersistentStoreCoordinatorStoresWillChange: NSNotification.Name
    * @availability iOS 7.0+
    */
-  get NSPersistentStoreCoordinatorStoresWillChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 1858340192580389, undefined, []); },
+  get NSPersistentStoreCoordinatorStoresWillChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 1858340192580389, undefined, []); },
   /**
    * static let NSPersistentStoreCoordinatorWillRemoveStore: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get NSPersistentStoreCoordinatorWillRemoveStore(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3395893405035392, undefined, []); },
+  get NSPersistentStoreCoordinatorWillRemoveStore(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3395893405035392, undefined, []); },
   /**
    * static let NSPersistentStoreDidImportUbiquitousContentChanges: NSNotification.Name
    * @availability iOS 5.0+
    * @deprecated iOS 10.0
    */
-  get NSPersistentStoreDidImportUbiquitousContentChanges(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 4116986752265305, undefined, []); },
+  get NSPersistentStoreDidImportUbiquitousContentChanges(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 4116986752265305, undefined, []); },
   /**
    * static let NSPersistentStoreRemoteChange: NSNotification.Name
    * @availability iOS 12.0+
    */
-  get NSPersistentStoreRemoteChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 4365134265319206, undefined, []); }
+  get NSPersistentStoreRemoteChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 4365134265319206, undefined, []); }
 };
 
 /**
@@ -4225,63 +4225,63 @@ export class NSPersistentContainer extends SDKHandle {
    * class func defaultDirectoryURL() -> URL
    * @availability iOS 10.0+
    */
-  static defaultDirectoryURL(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 3532972405673417, undefined, []); }
+  static defaultDirectoryURL(): string { return callSDK<string>("CoreData_0e503aef608672fa", 3532972405673417, undefined, []); }
   /**
    * convenience init(name: String)
    * @availability iOS 10.0+
    */
-  static initName(name: string): NSPersistentContainer { return callSDK<NSPersistentContainer>("CoreData_d968214ecc684fb6", 1705843602061979, undefined, [name]); }
+  static initName(name: string): NSPersistentContainer { return callSDK<NSPersistentContainer>("CoreData_0e503aef608672fa", 1705843602061979, undefined, [name]); }
   /**
    * init(name: String, managedObjectModel model: NSManagedObjectModel)
    * @availability iOS 10.0+
    */
-  static initNameManagedObjectModel(name: string, model: NSManagedObjectModel): NSPersistentContainer { return callSDK<NSPersistentContainer>("CoreData_d968214ecc684fb6", 3257052679631224, undefined, [name, model]); }
+  static initNameManagedObjectModel(name: string, model: NSManagedObjectModel): NSPersistentContainer { return callSDK<NSPersistentContainer>("CoreData_0e503aef608672fa", 3257052679631224, undefined, [name, model]); }
   /**
    * func loadPersistentStores(completionHandler block: @escaping (NSPersistentStoreDescription, (any Error)?) -> Void)
    * @availability iOS 10.0+
    */
-  loadPersistentStores(block: $SDK72): void { return callSDK<void>("CoreData_d968214ecc684fb6", 750894410587573, this, [block], [{"callback":{"out":[]}}]); }
+  loadPersistentStores(block: $SDK72): void { return callSDK<void>("CoreData_0e503aef608672fa", 750894410587573, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * func newBackgroundContext() -> NSManagedObjectContext
    * @availability iOS 10.0+
    */
-  newBackgroundContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 2337852057242552, this, []); }
+  newBackgroundContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 2337852057242552, this, []); }
   /**
    * func performBackgroundTask(_ block: @escaping @Sendable (NSManagedObjectContext) -> Void)
    * @availability iOS 10.0+
    */
-  performBackgroundTask(block: ((arg0: NSManagedObjectContext) => void)): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1666508881340104, this, [block], [{"callback":{"out":[]}}]); }
+  performBackgroundTask(block: ((arg0: NSManagedObjectContext) => void)): void { return callSDK<void>("CoreData_0e503aef608672fa", 1666508881340104, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * var managedObjectModel: NSManagedObjectModel { get }
    * @availability iOS 10.0+
    */
-  get managedObjectModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_d968214ecc684fb6", 2960655394575407, this, []); }
+  get managedObjectModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_0e503aef608672fa", 2960655394575407, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 10.0+
    */
-  get name(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 657478362706334, this, []); }
+  get name(): string { return callSDK<string>("CoreData_0e503aef608672fa", 657478362706334, this, []); }
   /**
    * var persistentStoreCoordinator: NSPersistentStoreCoordinator { get }
    * @availability iOS 10.0+
    */
-  get persistentStoreCoordinator(): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_d968214ecc684fb6", 4339941034651302, this, []); }
+  get persistentStoreCoordinator(): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_0e503aef608672fa", 4339941034651302, this, []); }
   /**
    * var persistentStoreDescriptions: [NSPersistentStoreDescription] { get set }
    * @availability iOS 10.0+
    */
-  get persistentStoreDescriptions(): $SDK74 { return callSDK<$SDK74>("CoreData_d968214ecc684fb6", 2996786643035173, this, []); }
-  set persistentStoreDescriptions(value: $SDK74) { callSDK<void>("CoreData_d968214ecc684fb6", 1216705073249990, this, [value]); }
+  get persistentStoreDescriptions(): $SDK74 { return callSDK<$SDK74>("CoreData_0e503aef608672fa", 2996786643035173, this, []); }
+  set persistentStoreDescriptions(value: $SDK74) { callSDK<void>("CoreData_0e503aef608672fa", 1216705073249990, this, [value]); }
   /**
    * var viewContext: NSManagedObjectContext { get }
    * @availability iOS 10.0+
    */
-  get viewContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_d968214ecc684fb6", 3882583031036772, this, []); }
+  get viewContext(): NSManagedObjectContext { return callSDK<NSManagedObjectContext>("CoreData_0e503aef608672fa", 3882583031036772, this, []); }
   /**
    * class var defaultDirectoryURL: URL { get }
    * @availability iOS 15.0+
    */
-  static get defaultDirectoryURL18515(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 3781719604769931, undefined, []); }
+  static get defaultDirectoryURL18515(): string { return callSDK<string>("CoreData_0e503aef608672fa", 3781719604769931, undefined, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentContainer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "managedObjectModel": true; "name": true; "persistentStoreCoordinator": true; "persistentStoreDescriptions": true; "viewContext": true };
 }
@@ -4295,34 +4295,34 @@ export class NSPersistentCloudKitContainer extends NSPersistentContainer {
    * class let eventChangedNotification: NSNotification.Name
    * @availability iOS 14.0+
    */
-  static get eventChangedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 4137318776369923, undefined, []); }
+  static get eventChangedNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 4137318776369923, undefined, []); }
   /**
    * class let eventNotificationUserInfoKey: String
    * @availability iOS 14.0+
    */
-  static get eventNotificationUserInfoKey(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 961944354596913, undefined, []); }
+  static get eventNotificationUserInfoKey(): string { return callSDK<string>("CoreData_0e503aef608672fa", 961944354596913, undefined, []); }
   /**
    * func canDeleteRecord(forManagedObjectWith objectID: NSManagedObjectID) -> Bool
    * @availability iOS 14.0+
    */
-  canDeleteRecord(objectID: NSManagedObjectID): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2684589299737929, this, [objectID]); }
+  canDeleteRecord(objectID: NSManagedObjectID): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2684589299737929, this, [objectID]); }
   /**
    * func canModifyManagedObjects(in store: NSPersistentStore) -> Bool
    * @availability iOS 14.0+
    */
-  canModifyManagedObjects(store: NSPersistentStore): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2628510030262749, this, [store]); }
+  canModifyManagedObjects(store: NSPersistentStore): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2628510030262749, this, [store]); }
   /**
    * func canUpdateRecord(forManagedObjectWith objectID: NSManagedObjectID) -> Bool
    * @availability iOS 14.0+
    */
-  canUpdateRecord(objectID: NSManagedObjectID): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 401274099139633, this, [objectID]); }
+  canUpdateRecord(objectID: NSManagedObjectID): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 401274099139633, this, [objectID]); }
   /** init() */
-  static init(): NSPersistentCloudKitContainer { return callSDK<NSPersistentCloudKitContainer>("CoreData_d968214ecc684fb6", 4483149191280891, undefined, []); }
+  static init(): NSPersistentCloudKitContainer { return callSDK<NSPersistentCloudKitContainer>("CoreData_0e503aef608672fa", 4483149191280891, undefined, []); }
   /**
    * func initializeCloudKitSchema(options: NSPersistentCloudKitContainerSchemaInitializationOptions = []) throws
    * @availability iOS 13.0+
    */
-  initializeCloudKitSchema(options?: NSPersistentCloudKitContainerSchemaInitializationOptions): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1394846933195884, this, [options]); }
+  initializeCloudKitSchema(options?: NSPersistentCloudKitContainerSchemaInitializationOptions): void { return callSDK<void>("CoreData_0e503aef608672fa", 1394846933195884, this, [options]); }
   declare readonly $type: { "c:objc(cs)NSPersistentCloudKitContainer": true; "c:objc(cs)NSPersistentContainer": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "managedObjectModel": true; "name": true; "persistentStoreCoordinator": true; "persistentStoreDescriptions": true; "viewContext": true };
 }
@@ -4336,37 +4336,37 @@ export class NSPersistentCloudKitContainer_Event extends SDKHandle {
    * var endDate: Date? { get }
    * @availability iOS 14.0+
    */
-  get endDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("CoreData_d968214ecc684fb6", 341667625155042, this, []); }
+  get endDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("CoreData_0e503aef608672fa", 341667625155042, this, []); }
   /**
    * var error: (any Error)? { get }
    * @availability iOS 14.0+
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("CoreData_d968214ecc684fb6", 1911882206166401, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("CoreData_0e503aef608672fa", 1911882206166401, this, []); }
   /**
    * var identifier: UUID { get }
    * @availability iOS 14.0+
    */
-  get identifier(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1332511051479449, this, []); }
+  get identifier(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1332511051479449, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 14.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreData_d968214ecc684fb6", 4294831694067435, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("CoreData_0e503aef608672fa", 4294831694067435, this, []); }
   /**
    * var storeIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get storeIdentifier(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1658436035041401, this, []); }
+  get storeIdentifier(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1658436035041401, this, []); }
   /**
    * var succeeded: Bool { get }
    * @availability iOS 14.0+
    */
-  get succeeded(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 380277888818644, this, []); }
+  get succeeded(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 380277888818644, this, []); }
   /**
    * var type: NSPersistentCloudKitContainer.EventType { get }
    * @availability iOS 14.0+
    */
-  get type(): NSPersistentCloudKitContainer_EventType { return callSDK<NSPersistentCloudKitContainer_EventType>("CoreData_d968214ecc684fb6", 3010253617871551, this, []); }
+  get type(): NSPersistentCloudKitContainer_EventType { return callSDK<NSPersistentCloudKitContainer_EventType>("CoreData_0e503aef608672fa", 3010253617871551, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentCloudKitContainerEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endDate": true; "error": true; "identifier": true; "startDate": true; "storeIdentifier": true; "succeeded": true; "type": true };
 }
@@ -4380,22 +4380,22 @@ export class NSPersistentCloudKitContainer_EventChangedMessage extends SDKHandle
    * static func makeMessage(_ notification: Notification) -> NSPersistentCloudKitContainer.EventChangedMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (NSPersistentCloudKitContainer_EventChangedMessage) | null { return callSDK<(NSPersistentCloudKitContainer_EventChangedMessage) | null>("CoreData_d968214ecc684fb6", 4219216542164857, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (NSPersistentCloudKitContainer_EventChangedMessage) | null { return callSDK<(NSPersistentCloudKitContainer_EventChangedMessage) | null>("CoreData_0e503aef608672fa", 4219216542164857, undefined, [notification]); }
   /**
    * static func makeNotification(_ message: NSPersistentCloudKitContainer.EventChangedMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSPersistentCloudKitContainer_EventChangedMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_d968214ecc684fb6", 1298229836100589, undefined, [message]); }
+  static makeNotification(message: NSPersistentCloudKitContainer_EventChangedMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_0e503aef608672fa", 1298229836100589, undefined, [message]); }
   /**
    * static let name: NSNotification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 1545079378661754, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 1545079378661754, undefined, []); }
   /**
    * let event: NSPersistentCloudKitContainer.Event
    * @availability iOS 27.0+
    */
-  get event(): NSPersistentCloudKitContainer_Event { return callSDK<NSPersistentCloudKitContainer_Event>("CoreData_d968214ecc684fb6", 431029475267611, this, []); }
+  get event(): NSPersistentCloudKitContainer_Event { return callSDK<NSPersistentCloudKitContainer_Event>("CoreData_0e503aef608672fa", 431029475267611, this, []); }
   declare readonly $type: { "s:So29NSPersistentCloudKitContainerC8CoreDataE19EventChangedMessageV": true };
 }
 
@@ -4416,7 +4416,7 @@ export const NSPersistentCloudKitContainer_EventType = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (NSPersistentCloudKitContainer_EventType) | null { return callSDK<(NSPersistentCloudKitContainer_EventType) | null>("CoreData_d968214ecc684fb6", 1693781454289612, undefined, [rawValue]); }
+  init(rawValue: number): (NSPersistentCloudKitContainer_EventType) | null { return callSDK<(NSPersistentCloudKitContainer_EventType) | null>("CoreData_0e503aef608672fa", 1693781454289612, undefined, [rawValue]); }
 };
 
 /**
@@ -4428,30 +4428,30 @@ export class NSPersistentCloudKitContainerEventRequest extends (NSPersistentStor
    * class func fetchEvents(after date: Date) -> Self
    * @availability iOS 14.0+
    */
-  static fetchEventsAfter(date: globalThis.Date): NSPersistentCloudKitContainerEventRequest { return callSDK<NSPersistentCloudKitContainerEventRequest>("CoreData_d968214ecc684fb6", 158908523312535, undefined, [date]); }
+  static fetchEventsAfter(date: globalThis.Date): NSPersistentCloudKitContainerEventRequest { return callSDK<NSPersistentCloudKitContainerEventRequest>("CoreData_0e503aef608672fa", 158908523312535, undefined, [date]); }
   /**
    * class func fetchEvents(after event: NSPersistentCloudKitContainer.Event?) -> Self
    * @availability iOS 14.0+
    */
-  static fetchEventsAfter78992(event?: (NSPersistentCloudKitContainer_Event) | null): NSPersistentCloudKitContainerEventRequest { return callSDK<NSPersistentCloudKitContainerEventRequest>("CoreData_d968214ecc684fb6", 3412075552656378, undefined, [event]); }
+  static fetchEventsAfter78992(event?: (NSPersistentCloudKitContainer_Event) | null): NSPersistentCloudKitContainerEventRequest { return callSDK<NSPersistentCloudKitContainerEventRequest>("CoreData_0e503aef608672fa", 3412075552656378, undefined, [event]); }
   /**
    * class func fetchEvents(matchingFetch fetchRequest: NSFetchRequest<any NSFetchRequestResult>) -> Self
    * @availability iOS 14.0+
    */
-  static fetchEventsMatchingFetch(fetchRequest: $SDK12): NSPersistentCloudKitContainerEventRequest { return callSDK<NSPersistentCloudKitContainerEventRequest>("CoreData_d968214ecc684fb6", 2246054827320111, undefined, [fetchRequest]); }
+  static fetchEventsMatchingFetch(fetchRequest: $SDK12): NSPersistentCloudKitContainerEventRequest { return callSDK<NSPersistentCloudKitContainerEventRequest>("CoreData_0e503aef608672fa", 2246054827320111, undefined, [fetchRequest]); }
   /**
    * class func fetchForEvents() -> NSFetchRequest<any NSFetchRequestResult>
    * @availability iOS 14.0+
    */
-  static fetchForEvents(): $SDK14 { return callSDK<$SDK14>("CoreData_d968214ecc684fb6", 2293946033330423, undefined, []); }
+  static fetchForEvents(): $SDK14 { return callSDK<$SDK14>("CoreData_0e503aef608672fa", 2293946033330423, undefined, []); }
   /** init() */
-  static init(): NSPersistentCloudKitContainerEventRequest { return callSDK<NSPersistentCloudKitContainerEventRequest>("CoreData_d968214ecc684fb6", 2207896592106387, undefined, []); }
+  static init(): NSPersistentCloudKitContainerEventRequest { return callSDK<NSPersistentCloudKitContainerEventRequest>("CoreData_0e503aef608672fa", 2207896592106387, undefined, []); }
   /**
    * var resultType: NSPersistentCloudKitContainerEventResult.ResultType { get set }
    * @availability iOS 14.0+
    */
-  get resultType(): NSPersistentCloudKitContainerEventResult_ResultType { return callSDK<NSPersistentCloudKitContainerEventResult_ResultType>("CoreData_d968214ecc684fb6", 4279085184044544, this, []); }
-  set resultType(value: NSPersistentCloudKitContainerEventResult_ResultType) { callSDK<void>("CoreData_d968214ecc684fb6", 88044251940981, this, [value]); }
+  get resultType(): NSPersistentCloudKitContainerEventResult_ResultType { return callSDK<NSPersistentCloudKitContainerEventResult_ResultType>("CoreData_0e503aef608672fa", 4279085184044544, this, []); }
+  set resultType(value: NSPersistentCloudKitContainerEventResult_ResultType) { callSDK<void>("CoreData_0e503aef608672fa", 88044251940981, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSPersistentCloudKitContainerEventRequest": true; "c:objc(cs)NSPersistentStoreRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "affectedStores": true; "requestType": true; "resultType": true };
 }
@@ -4465,12 +4465,12 @@ export class NSPersistentCloudKitContainerEventResult extends NSPersistentStoreR
    * var result: Any? { get }
    * @availability iOS 14.0+
    */
-  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 3833886495551933, this, []); }
+  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 3833886495551933, this, []); }
   /**
    * var resultType: NSPersistentCloudKitContainerEventResult.ResultType { get }
    * @availability iOS 14.0+
    */
-  get resultType(): NSPersistentCloudKitContainerEventResult_ResultType { return callSDK<NSPersistentCloudKitContainerEventResult_ResultType>("CoreData_d968214ecc684fb6", 2540598257915912, this, []); }
+  get resultType(): NSPersistentCloudKitContainerEventResult_ResultType { return callSDK<NSPersistentCloudKitContainerEventResult_ResultType>("CoreData_0e503aef608672fa", 2540598257915912, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentCloudKitContainerEventResult": true; "c:objc(cs)NSPersistentStoreResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "result": true; "resultType": true };
 }
@@ -4486,7 +4486,7 @@ export const NSPersistentCloudKitContainerEventResult_ResultType = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (NSPersistentCloudKitContainerEventResult_ResultType) | null { return callSDK<(NSPersistentCloudKitContainerEventResult_ResultType) | null>("CoreData_d968214ecc684fb6", 1987120483926129, undefined, [rawValue]); }
+  init(rawValue: number): (NSPersistentCloudKitContainerEventResult_ResultType) | null { return callSDK<(NSPersistentCloudKitContainerEventResult_ResultType) | null>("CoreData_0e503aef608672fa", 1987120483926129, undefined, [rawValue]); }
 };
 
 /**
@@ -4498,12 +4498,12 @@ export class NSPersistentCloudKitContainerOptions extends SDKHandle {
    * init(containerIdentifier: String)
    * @availability iOS 13.0+
    */
-  static init(containerIdentifier: string): NSPersistentCloudKitContainerOptions { return callSDK<NSPersistentCloudKitContainerOptions>("CoreData_d968214ecc684fb6", 2536114564356441, undefined, [containerIdentifier]); }
+  static init(containerIdentifier: string): NSPersistentCloudKitContainerOptions { return callSDK<NSPersistentCloudKitContainerOptions>("CoreData_0e503aef608672fa", 2536114564356441, undefined, [containerIdentifier]); }
   /**
    * var containerIdentifier: String { get }
    * @availability iOS 13.0+
    */
-  get containerIdentifier(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1687772815412865, this, []); }
+  get containerIdentifier(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1687772815412865, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentCloudKitContainerOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "containerIdentifier": true };
 }
@@ -4513,11 +4513,11 @@ export type NSPersistentCloudKitContainerSchemaInitializationOptions = Array<"dr
 
 export const NSPersistentCloudKitContainerSchemaInitializationOptions = {
   /** static var dryRun: NSPersistentCloudKitContainerSchemaInitializationOptions { get } */
-  get dryRun(): NSPersistentCloudKitContainerSchemaInitializationOptions { return callSDK<NSPersistentCloudKitContainerSchemaInitializationOptions>("CoreData_d968214ecc684fb6", 3576086260811360, undefined, []); },
+  get dryRun(): NSPersistentCloudKitContainerSchemaInitializationOptions { return callSDK<NSPersistentCloudKitContainerSchemaInitializationOptions>("CoreData_0e503aef608672fa", 3576086260811360, undefined, []); },
   /** static var printSchema: NSPersistentCloudKitContainerSchemaInitializationOptions { get } */
-  get printSchema(): NSPersistentCloudKitContainerSchemaInitializationOptions { return callSDK<NSPersistentCloudKitContainerSchemaInitializationOptions>("CoreData_d968214ecc684fb6", 3488884860781517, undefined, []); },
+  get printSchema(): NSPersistentCloudKitContainerSchemaInitializationOptions { return callSDK<NSPersistentCloudKitContainerSchemaInitializationOptions>("CoreData_0e503aef608672fa", 3488884860781517, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): NSPersistentCloudKitContainerSchemaInitializationOptions { return callSDK<NSPersistentCloudKitContainerSchemaInitializationOptions>("CoreData_d968214ecc684fb6", 1602498310167773, undefined, [rawValue]); }
+  init(rawValue: number): NSPersistentCloudKitContainerSchemaInitializationOptions { return callSDK<NSPersistentCloudKitContainerSchemaInitializationOptions>("CoreData_0e503aef608672fa", 1602498310167773, undefined, [rawValue]); }
 };
 
 /**
@@ -4529,49 +4529,49 @@ export class NSPersistentHistoryChange extends SDKHandle {
    * class func entityDescription(with context: NSManagedObjectContext) -> NSEntityDescription?
    * @availability iOS 13.0+
    */
-  static entityDescriptionWith(context: NSManagedObjectContext): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 1788038432266574, undefined, [context]); }
+  static entityDescriptionWith(context: NSManagedObjectContext): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 1788038432266574, undefined, [context]); }
   /**
    * class var entityDescription: NSEntityDescription? { get }
    * @availability iOS 13.0+
    */
-  static get entityDescription(): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 2463560619943801, undefined, []); }
+  static get entityDescription(): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 2463560619943801, undefined, []); }
   /**
    * class var fetchRequest: NSFetchRequest<any NSFetchRequestResult>? { get }
    * @availability iOS 13.0+
    */
-  static get fetchRequest(): $SDK38 { return callSDK<$SDK38>("CoreData_d968214ecc684fb6", 1657410719580518, undefined, []); }
+  static get fetchRequest(): $SDK38 { return callSDK<$SDK38>("CoreData_0e503aef608672fa", 1657410719580518, undefined, []); }
   /** init() */
-  static init(): NSPersistentHistoryChange { return callSDK<NSPersistentHistoryChange>("CoreData_d968214ecc684fb6", 3323138754018486, undefined, []); }
+  static init(): NSPersistentHistoryChange { return callSDK<NSPersistentHistoryChange>("CoreData_0e503aef608672fa", 3323138754018486, undefined, []); }
   /**
    * var changeID: Int64 { get }
    * @availability iOS 11.0+
    */
-  get changeID(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 1069767223503751, this, []); }
+  get changeID(): number { return callSDK<number>("CoreData_0e503aef608672fa", 1069767223503751, this, []); }
   /**
    * var changeType: NSPersistentHistoryChangeType { get }
    * @availability iOS 11.0+
    */
-  get changeType(): NSPersistentHistoryChangeType { return callSDK<NSPersistentHistoryChangeType>("CoreData_d968214ecc684fb6", 2687666252608626, this, []); }
+  get changeType(): NSPersistentHistoryChangeType { return callSDK<NSPersistentHistoryChangeType>("CoreData_0e503aef608672fa", 2687666252608626, this, []); }
   /**
    * @NSCopying var changedObjectID: NSManagedObjectID { get }
    * @availability iOS 11.0+
    */
-  get changedObjectID(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_d968214ecc684fb6", 1734399374277075, this, []); }
+  get changedObjectID(): NSManagedObjectID { return callSDK<NSManagedObjectID>("CoreData_0e503aef608672fa", 1734399374277075, this, []); }
   /**
    * var tombstone: [AnyHashable : Any]? { get }
    * @availability iOS 11.0+
    */
-  get tombstone(): $SDK6 { return callSDK<$SDK6>("CoreData_d968214ecc684fb6", 3952097360270822, this, []); }
+  get tombstone(): $SDK6 { return callSDK<$SDK6>("CoreData_0e503aef608672fa", 3952097360270822, this, []); }
   /**
    * var transaction: NSPersistentHistoryTransaction? { get }
    * @availability iOS 11.0+
    */
-  get transaction(): $SDK78 { return callSDK<$SDK78>("CoreData_d968214ecc684fb6", 1886752428401105, this, []); }
+  get transaction(): $SDK78 { return callSDK<$SDK78>("CoreData_0e503aef608672fa", 1886752428401105, this, []); }
   /**
    * var updatedProperties: Set<NSPropertyDescription>? { get }
    * @availability iOS 11.0+
    */
-  get updatedProperties(): (Array<NSPropertyDescription>) | null { return callSDK<(Array<NSPropertyDescription>) | null>("CoreData_d968214ecc684fb6", 3811592444717288, this, []); }
+  get updatedProperties(): (Array<NSPropertyDescription>) | null { return callSDK<(Array<NSPropertyDescription>) | null>("CoreData_0e503aef608672fa", 3811592444717288, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentHistoryChange": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "changeID": true; "changeType": true; "changedObjectID": true; "tombstone": true; "transaction": true; "updatedProperties": true };
 }
@@ -4585,56 +4585,56 @@ export class NSPersistentHistoryChangeRequest extends (NSPersistentStoreRequest 
    * class func deleteHistory(before date: Date) -> Self
    * @availability iOS 11.0+
    */
-  static deleteHistoryBefore(date: globalThis.Date): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_d968214ecc684fb6", 2481225275580355, undefined, [date]); }
+  static deleteHistoryBefore(date: globalThis.Date): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_0e503aef608672fa", 2481225275580355, undefined, [date]); }
   /**
    * class func deleteHistory(before token: NSPersistentHistoryToken?) -> Self
    * @availability iOS 11.0+
    */
-  static deleteHistoryBefore69750(token?: $SDK26): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_d968214ecc684fb6", 4274299200866855, undefined, [token]); }
+  static deleteHistoryBefore69750(token?: $SDK26): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_0e503aef608672fa", 4274299200866855, undefined, [token]); }
   /**
    * class func deleteHistory(before transaction: NSPersistentHistoryTransaction?) -> Self
    * @availability iOS 11.0+
    */
-  static deleteHistoryBefore14581(transaction?: $SDK78): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_d968214ecc684fb6", 1007242744015121, undefined, [transaction]); }
+  static deleteHistoryBefore14581(transaction?: $SDK78): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_0e503aef608672fa", 1007242744015121, undefined, [transaction]); }
   /**
    * class func fetchHistory(after date: Date) -> Self
    * @availability iOS 11.0+
    */
-  static fetchHistoryAfter(date: globalThis.Date): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_d968214ecc684fb6", 751761503138300, undefined, [date]); }
+  static fetchHistoryAfter(date: globalThis.Date): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_0e503aef608672fa", 751761503138300, undefined, [date]); }
   /**
    * class func fetchHistory(after token: NSPersistentHistoryToken?) -> Self
    * @availability iOS 11.0+
    */
-  static fetchHistoryAfter57090(token?: $SDK26): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_d968214ecc684fb6", 1464712474665072, undefined, [token]); }
+  static fetchHistoryAfter57090(token?: $SDK26): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_0e503aef608672fa", 1464712474665072, undefined, [token]); }
   /**
    * class func fetchHistory(after transaction: NSPersistentHistoryTransaction?) -> Self
    * @availability iOS 11.0+
    */
-  static fetchHistoryAfter11593(transaction?: $SDK78): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_d968214ecc684fb6", 132132141128046, undefined, [transaction]); }
+  static fetchHistoryAfter11593(transaction?: $SDK78): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_0e503aef608672fa", 132132141128046, undefined, [transaction]); }
   /**
    * class func fetchHistory(withFetch fetchRequest: NSFetchRequest<any NSFetchRequestResult>) -> Self
    * @availability iOS 13.0+
    */
-  static fetchHistoryWithFetch(fetchRequest: $SDK12): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_d968214ecc684fb6", 3618285315736280, undefined, [fetchRequest]); }
+  static fetchHistoryWithFetch(fetchRequest: $SDK12): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_0e503aef608672fa", 3618285315736280, undefined, [fetchRequest]); }
   /** init() */
-  static init(): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_d968214ecc684fb6", 3129372568305205, undefined, []); }
+  static init(): NSPersistentHistoryChangeRequest { return callSDK<NSPersistentHistoryChangeRequest>("CoreData_0e503aef608672fa", 3129372568305205, undefined, []); }
   /**
    * var fetchRequest: NSFetchRequest<any NSFetchRequestResult>? { get set }
    * @availability iOS 13.0+
    */
-  get fetchRequest(): $SDK38 { return callSDK<$SDK38>("CoreData_d968214ecc684fb6", 3353173695999463, this, []); }
-  set fetchRequest(value: $SDK39) { callSDK<void>("CoreData_d968214ecc684fb6", 704570191893837, this, [value]); }
+  get fetchRequest(): $SDK38 { return callSDK<$SDK38>("CoreData_0e503aef608672fa", 3353173695999463, this, []); }
+  set fetchRequest(value: $SDK39) { callSDK<void>("CoreData_0e503aef608672fa", 704570191893837, this, [value]); }
   /**
    * var resultType: NSPersistentHistoryResultType { get set }
    * @availability iOS 11.0+
    */
-  get resultType(): NSPersistentHistoryResultType { return callSDK<NSPersistentHistoryResultType>("CoreData_d968214ecc684fb6", 1918261114565348, this, []); }
-  set resultType(value: NSPersistentHistoryResultType) { callSDK<void>("CoreData_d968214ecc684fb6", 1798095873880785, this, [value]); }
+  get resultType(): NSPersistentHistoryResultType { return callSDK<NSPersistentHistoryResultType>("CoreData_0e503aef608672fa", 1918261114565348, this, []); }
+  set resultType(value: NSPersistentHistoryResultType) { callSDK<void>("CoreData_0e503aef608672fa", 1798095873880785, this, [value]); }
   /**
    * var token: NSPersistentHistoryToken? { get }
    * @availability iOS 11.0+
    */
-  get token(): $SDK26 { return callSDK<$SDK26>("CoreData_d968214ecc684fb6", 4321228033013487, this, []); }
+  get token(): $SDK26 { return callSDK<$SDK26>("CoreData_0e503aef608672fa", 4321228033013487, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentHistoryChangeRequest": true; "c:objc(cs)NSPersistentStoreRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "affectedStores": true; "requestType": true; "fetchRequest": true; "resultType": true; "token": true };
 }
@@ -4650,7 +4650,7 @@ export const NSPersistentHistoryChangeType = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (NSPersistentHistoryChangeType) | null { return callSDK<(NSPersistentHistoryChangeType) | null>("CoreData_d968214ecc684fb6", 1729710216777716, undefined, [rawValue]); }
+  init(rawValue: number): (NSPersistentHistoryChangeType) | null { return callSDK<(NSPersistentHistoryChangeType) | null>("CoreData_0e503aef608672fa", 1729710216777716, undefined, [rawValue]); }
 };
 
 /**
@@ -4659,17 +4659,17 @@ export const NSPersistentHistoryChangeType = {
  */
 export class NSPersistentHistoryResult extends (NSPersistentStoreResult as unknown as Omit<typeof NSPersistentStoreResult, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentStoreResult)) {
   /** init() */
-  static init(): NSPersistentHistoryResult { return callSDK<NSPersistentHistoryResult>("CoreData_d968214ecc684fb6", 568601339694811, undefined, []); }
+  static init(): NSPersistentHistoryResult { return callSDK<NSPersistentHistoryResult>("CoreData_0e503aef608672fa", 568601339694811, undefined, []); }
   /**
    * var result: Any? { get }
    * @availability iOS 11.0+
    */
-  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_d968214ecc684fb6", 515039769958908, this, []); }
+  get result(): (unknown) | null { return callSDK<(unknown) | null>("CoreData_0e503aef608672fa", 515039769958908, this, []); }
   /**
    * var resultType: NSPersistentHistoryResultType { get }
    * @availability iOS 11.0+
    */
-  get resultType(): NSPersistentHistoryResultType { return callSDK<NSPersistentHistoryResultType>("CoreData_d968214ecc684fb6", 2182496677900175, this, []); }
+  get resultType(): NSPersistentHistoryResultType { return callSDK<NSPersistentHistoryResultType>("CoreData_0e503aef608672fa", 2182496677900175, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentHistoryResult": true; "c:objc(cs)NSPersistentStoreResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "result": true; "resultType": true };
 }
@@ -4685,7 +4685,7 @@ export const NSPersistentHistoryResultType = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (NSPersistentHistoryResultType) | null { return callSDK<(NSPersistentHistoryResultType) | null>("CoreData_d968214ecc684fb6", 2480782483185225, undefined, [rawValue]); }
+  init(rawValue: number): (NSPersistentHistoryResultType) | null { return callSDK<(NSPersistentHistoryResultType) | null>("CoreData_0e503aef608672fa", 2480782483185225, undefined, [rawValue]); }
 };
 
 /**
@@ -4694,7 +4694,7 @@ export const NSPersistentHistoryResultType = {
  */
 export class NSPersistentHistoryToken extends SDKHandle {
   /** init() */
-  static init(): NSPersistentHistoryToken { return callSDK<NSPersistentHistoryToken>("CoreData_d968214ecc684fb6", 305148477852600, undefined, []); }
+  static init(): NSPersistentHistoryToken { return callSDK<NSPersistentHistoryToken>("CoreData_0e503aef608672fa", 305148477852600, undefined, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentHistoryToken": true; "c:objc(cs)NSObject": true };
 }
 
@@ -4707,69 +4707,69 @@ export class NSPersistentHistoryTransaction extends SDKHandle {
    * class func entityDescription(with context: NSManagedObjectContext) -> NSEntityDescription?
    * @availability iOS 13.0+
    */
-  static entityDescriptionWith(context: NSManagedObjectContext): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 3057825431030188, undefined, [context]); }
+  static entityDescriptionWith(context: NSManagedObjectContext): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 3057825431030188, undefined, [context]); }
   /**
    * class var entityDescription: NSEntityDescription? { get }
    * @availability iOS 13.0+
    */
-  static get entityDescription(): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 913267452988650, undefined, []); }
+  static get entityDescription(): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 913267452988650, undefined, []); }
   /**
    * class var fetchRequest: NSFetchRequest<any NSFetchRequestResult>? { get }
    * @availability iOS 13.0+
    */
-  static get fetchRequest(): $SDK38 { return callSDK<$SDK38>("CoreData_d968214ecc684fb6", 95699834554656, undefined, []); }
+  static get fetchRequest(): $SDK38 { return callSDK<$SDK38>("CoreData_0e503aef608672fa", 95699834554656, undefined, []); }
   /** init() */
-  static init(): NSPersistentHistoryTransaction { return callSDK<NSPersistentHistoryTransaction>("CoreData_d968214ecc684fb6", 3193255710696048, undefined, []); }
+  static init(): NSPersistentHistoryTransaction { return callSDK<NSPersistentHistoryTransaction>("CoreData_0e503aef608672fa", 3193255710696048, undefined, []); }
   /**
    * func objectIDNotification() -> Notification
    * @availability iOS 11.0+
    */
-  objectIDNotification(): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_d968214ecc684fb6", 2986877405261193, this, []); }
+  objectIDNotification(): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_0e503aef608672fa", 2986877405261193, this, []); }
   /**
    * var author: String? { get }
    * @availability iOS 11.0+
    */
-  get author(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 3374318569628096, this, []); }
+  get author(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 3374318569628096, this, []); }
   /**
    * var bundleID: String { get }
    * @availability iOS 11.0+
    */
-  get bundleID(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 831821313212692, this, []); }
+  get bundleID(): string { return callSDK<string>("CoreData_0e503aef608672fa", 831821313212692, this, []); }
   /**
    * var changes: [NSPersistentHistoryChange]? { get }
    * @availability iOS 11.0+
    */
-  get changes(): (Array<NSPersistentHistoryChange>) | null { return callSDK<(Array<NSPersistentHistoryChange>) | null>("CoreData_d968214ecc684fb6", 1180528425277377, this, []); }
+  get changes(): (Array<NSPersistentHistoryChange>) | null { return callSDK<(Array<NSPersistentHistoryChange>) | null>("CoreData_0e503aef608672fa", 1180528425277377, this, []); }
   /**
    * var contextName: String? { get }
    * @availability iOS 11.0+
    */
-  get contextName(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 717770293515716, this, []); }
+  get contextName(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 717770293515716, this, []); }
   /**
    * var processID: String { get }
    * @availability iOS 11.0+
    */
-  get processID(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1138630796244854, this, []); }
+  get processID(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1138630796244854, this, []); }
   /**
    * var storeID: String { get }
    * @availability iOS 11.0+
    */
-  get storeID(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 4251584964184793, this, []); }
+  get storeID(): string { return callSDK<string>("CoreData_0e503aef608672fa", 4251584964184793, this, []); }
   /**
    * var timestamp: Date { get }
    * @availability iOS 11.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("CoreData_d968214ecc684fb6", 3824817366681988, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("CoreData_0e503aef608672fa", 3824817366681988, this, []); }
   /**
    * var token: NSPersistentHistoryToken { get }
    * @availability iOS 11.0+
    */
-  get token(): NSPersistentHistoryToken { return callSDK<NSPersistentHistoryToken>("CoreData_d968214ecc684fb6", 603247939687838, this, []); }
+  get token(): NSPersistentHistoryToken { return callSDK<NSPersistentHistoryToken>("CoreData_0e503aef608672fa", 603247939687838, this, []); }
   /**
    * var transactionNumber: Int64 { get }
    * @availability iOS 11.0+
    */
-  get transactionNumber(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 3071345633791340, this, []); }
+  get transactionNumber(): number { return callSDK<number>("CoreData_0e503aef608672fa", 3071345633791340, this, []); }
   declare readonly $type: { "c:objc(cs)NSPersistentHistoryTransaction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "author": true; "bundleID": true; "changes": true; "contextName": true; "processID": true; "storeID": true; "timestamp": true; "token": true; "transactionNumber": true };
 }
@@ -4785,28 +4785,28 @@ export const NSPersistentStore_StoreType = {
    * static let binary: NSPersistentStore.StoreType
    * @availability iOS 15.0+
    */
-  get binary(): NSPersistentStore_StoreType { return callSDK<NSPersistentStore_StoreType>("CoreData_d968214ecc684fb6", 2285788746416207, undefined, []); },
+  get binary(): NSPersistentStore_StoreType { return callSDK<NSPersistentStore_StoreType>("CoreData_0e503aef608672fa", 2285788746416207, undefined, []); },
   /**
    * static let sqlite: NSPersistentStore.StoreType
    * @availability iOS 15.0+
    */
-  get sqlite(): NSPersistentStore_StoreType { return callSDK<NSPersistentStore_StoreType>("CoreData_d968214ecc684fb6", 4173081924595678, undefined, []); },
+  get sqlite(): NSPersistentStore_StoreType { return callSDK<NSPersistentStore_StoreType>("CoreData_0e503aef608672fa", 4173081924595678, undefined, []); },
   /**
    * static let inMemory: NSPersistentStore.StoreType
    * @availability iOS 15.0+
    */
-  get inMemory(): NSPersistentStore_StoreType { return callSDK<NSPersistentStore_StoreType>("CoreData_d968214ecc684fb6", 2618188643713466, undefined, []); },
+  get inMemory(): NSPersistentStore_StoreType { return callSDK<NSPersistentStore_StoreType>("CoreData_0e503aef608672fa", 2618188643713466, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): NSPersistentStore_StoreType { return callSDK<NSPersistentStore_StoreType>("CoreData_d968214ecc684fb6", 4300902649199503, undefined, [rawValue]); },
+  init(rawValue: string): NSPersistentStore_StoreType { return callSDK<NSPersistentStore_StoreType>("CoreData_0e503aef608672fa", 4300902649199503, undefined, [rawValue]); },
   /**
    * var rawValue: String
    * @availability iOS 15.0+
    */
-  getRawValue($self: NSPersistentStore_StoreType): string { return callSDK<string>("CoreData_d968214ecc684fb6", 3244034602608561, $self, []); },
-  setRawValue($self: NSPersistentStore_StoreType, value: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 979718834286857, $self, [value]); }
+  getRawValue($self: NSPersistentStore_StoreType): string { return callSDK<string>("CoreData_0e503aef608672fa", 3244034602608561, $self, []); },
+  setRawValue($self: NSPersistentStore_StoreType, value: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 979718834286857, $self, [value]); }
 };
 
 /**
@@ -4827,219 +4827,219 @@ export class NSPersistentStoreCoordinator extends SDKHandle {
    * class func cachedModelForPersistentStore(at url: URL, options: [AnyHashable : Any]? = nil) throws -> NSManagedObjectModel
    * @availability iOS 26.4+
    */
-  static cachedModelForPersistentStore(url: string, options?: $SDK6): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_d968214ecc684fb6", 3971294470716382, undefined, [url, options]); }
+  static cachedModelForPersistentStore(url: string, options?: $SDK6): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_0e503aef608672fa", 3971294470716382, undefined, [url, options]); }
   /**
    * class func metadataForPersistentStore(ofType storeType: String?, at url: URL) throws -> [String : Any]
    * @availability iOS 3.0+
    * @deprecated iOS 9.0
    */
-  static metadataForPersistentStoreOfTypeAt(storeType: (string) | null, url: string): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_d968214ecc684fb6", 4466822980273404, undefined, [storeType, url]); }
+  static metadataForPersistentStoreOfTypeAt(storeType: (string) | null, url: string): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_0e503aef608672fa", 4466822980273404, undefined, [storeType, url]); }
   /**
    * class func metadataForPersistentStore(ofType storeType: String, at url: URL, options: [AnyHashable : Any]? = nil) throws -> [String : Any]
    * @availability iOS 7.0+
    */
-  static metadataForPersistentStoreOfTypeAtOptions(storeType: string, url: string, options?: $SDK6): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_d968214ecc684fb6", 3558299597748232, undefined, [storeType, url, options]); }
+  static metadataForPersistentStoreOfTypeAtOptions(storeType: string, url: string, options?: $SDK6): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_0e503aef608672fa", 3558299597748232, undefined, [storeType, url, options]); }
   /**
    * class func registerStoreClass(_ storeClass: AnyClass?, forStoreType storeType: String)
    * @availability iOS 3.0+
    */
-  static registerStoreClassForStoreType(storeClass: (string) | null, storeType: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 235261628822311, undefined, [storeClass, storeType]); }
+  static registerStoreClassForStoreType(storeClass: (string) | null, storeType: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 235261628822311, undefined, [storeClass, storeType]); }
   /**
    * class func removeUbiquitousContentAndPersistentStore(at storeURL: URL, options: [AnyHashable : Any]? = nil) throws
    * @availability iOS 5.0+
    * @deprecated iOS 10.0
    */
-  static removeUbiquitousContentAndPersistentStore(storeURL: string, options?: $SDK6): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3685511564910101, undefined, [storeURL, options]); }
+  static removeUbiquitousContentAndPersistentStore(storeURL: string, options?: $SDK6): void { return callSDK<void>("CoreData_0e503aef608672fa", 3685511564910101, undefined, [storeURL, options]); }
   /**
    * class func setMetadata(_ metadata: [String : Any]?, forPersistentStoreOfType storeType: String?, at url: URL) throws
    * @availability iOS 3.0+
    * @deprecated iOS 9.0
    */
-  static setMetadataForPersistentStoreOfTypeAt(metadata: $SDK4, storeType: (string) | null, url: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 713922566133520, undefined, [metadata, storeType, url]); }
+  static setMetadataForPersistentStoreOfTypeAt(metadata: $SDK4, storeType: (string) | null, url: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 713922566133520, undefined, [metadata, storeType, url]); }
   /**
    * class func setMetadata(_ metadata: [String : Any]?, forPersistentStoreOfType storeType: String, at url: URL, options: [AnyHashable : Any]? = nil) throws
    * @availability iOS 7.0+
    */
-  static setMetadataForPersistentStoreOfTypeAtOptions(metadata: $SDK4, storeType: string, url: string, options?: $SDK6): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1083956680481715, undefined, [metadata, storeType, url, options]); }
+  static setMetadataForPersistentStoreOfTypeAtOptions(metadata: $SDK4, storeType: string, url: string, options?: $SDK6): void { return callSDK<void>("CoreData_0e503aef608672fa", 1083956680481715, undefined, [metadata, storeType, url, options]); }
   /**
    * class var registeredStoreTypes: [String : NSValue] { get }
    * @availability iOS 3.0+
    */
-  static get registeredStoreTypes(): Record<string, _Foundation_NSValue> { return callSDK<Record<string, _Foundation_NSValue>>("CoreData_d968214ecc684fb6", 3672368156112331, undefined, []); }
+  static get registeredStoreTypes(): Record<string, _Foundation_NSValue> { return callSDK<Record<string, _Foundation_NSValue>>("CoreData_0e503aef608672fa", 3672368156112331, undefined, []); }
   /**
    * func url(for store: NSPersistentStore) -> URL
    * @availability iOS 3.0+
    */
-  url(store: NSPersistentStore): string { return callSDK<string>("CoreData_d968214ecc684fb6", 528542366524700, this, [store]); }
+  url(store: NSPersistentStore): string { return callSDK<string>("CoreData_0e503aef608672fa", 528542366524700, this, [store]); }
   /**
    * func addPersistentStore(with storeDescription: NSPersistentStoreDescription, completionHandler block: @escaping (NSPersistentStoreDescription, (any Error)?) -> Void)
    * @availability iOS 10.0+
    */
-  addPersistentStoreWithCompletionHandler(storeDescription: NSPersistentStoreDescription, block: $SDK72): void { return callSDK<void>("CoreData_d968214ecc684fb6", 389743995974386, this, [storeDescription, block], [null,{"callback":{"out":[]}}]); }
+  addPersistentStoreWithCompletionHandler(storeDescription: NSPersistentStoreDescription, block: $SDK72): void { return callSDK<void>("CoreData_0e503aef608672fa", 389743995974386, this, [storeDescription, block], [null,{"callback":{"out":[]}}]); }
   /**
    * func addPersistentStore(ofType storeType: String, configurationName configuration: String?, at storeURL: URL?, options: [AnyHashable : Any]? = nil) throws -> NSPersistentStore
    * @availability iOS 3.0+
    */
-  addPersistentStoreOfTypeConfigurationNameAtOptions(storeType: string, configuration?: (string) | null, storeURL?: (string) | null, options?: $SDK6): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_d968214ecc684fb6", 3072322497994184, this, [storeType, configuration, storeURL, options]); }
+  addPersistentStoreOfTypeConfigurationNameAtOptions(storeType: string, configuration?: (string) | null, storeURL?: (string) | null, options?: $SDK6): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_0e503aef608672fa", 3072322497994184, this, [storeType, configuration, storeURL, options]); }
   /**
    * func currentPersistentHistoryToken(fromStores stores: [Any]?) -> NSPersistentHistoryToken?
    * @availability iOS 12.0+
    */
-  currentPersistentHistoryToken(stores?: (Array<unknown>) | null): $SDK26 { return callSDK<$SDK26>("CoreData_d968214ecc684fb6", 3848619692140419, this, [stores]); }
+  currentPersistentHistoryToken(stores?: (Array<unknown>) | null): $SDK26 { return callSDK<$SDK26>("CoreData_0e503aef608672fa", 3848619692140419, this, [stores]); }
   /**
    * func destroyPersistentStore(at url: URL, ofType storeType: String, options: [AnyHashable : Any]? = nil) throws
    * @availability iOS 9.0+
    */
-  destroyPersistentStoreAtOfTypeOptions(url: string, storeType: string, options?: $SDK6): void { return callSDK<void>("CoreData_d968214ecc684fb6", 572884449922746, this, [url, storeType, options]); }
+  destroyPersistentStoreAtOfTypeOptions(url: string, storeType: string, options?: $SDK6): void { return callSDK<void>("CoreData_0e503aef608672fa", 572884449922746, this, [url, storeType, options]); }
   /**
    * func execute(_ request: NSPersistentStoreRequest, with context: NSManagedObjectContext) throws -> Any
    * @availability iOS 5.0+
    */
-  execute(request: NSPersistentStoreRequest, context: NSManagedObjectContext): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 1992957455212054, this, [request, context]); }
+  execute(request: NSPersistentStoreRequest, context: NSManagedObjectContext): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 1992957455212054, this, [request, context]); }
   /**
    * func finishDeferredLightweightMigration() throws
    * @availability iOS 14.0+
    */
-  finishDeferredLightweightMigration(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2478470057367470, this, []); }
+  finishDeferredLightweightMigration(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2478470057367470, this, []); }
   /**
    * func finishDeferredLightweightMigrationTask() throws
    * @availability iOS 14.0+
    */
-  finishDeferredLightweightMigrationTask(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 6013427489801, this, []); }
+  finishDeferredLightweightMigrationTask(): void { return callSDK<void>("CoreData_0e503aef608672fa", 6013427489801, this, []); }
   /**
    * init(managedObjectModel model: NSManagedObjectModel)
    * @availability iOS 3.0+
    */
-  static init(model: NSManagedObjectModel): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_d968214ecc684fb6", 3552394745730571, undefined, [model]); }
+  static init(model: NSManagedObjectModel): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_0e503aef608672fa", 3552394745730571, undefined, [model]); }
   /**
    * func lock()
    * @availability iOS 3.0+
    * @deprecated iOS 8.0
    */
-  lock(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2105452254936180, this, []); }
+  lock(): void { return callSDK<void>("CoreData_0e503aef608672fa", 2105452254936180, this, []); }
   /**
    * func managedObjectID(forURIRepresentation url: URL) -> NSManagedObjectID?
    * @availability iOS 3.0+
    */
-  managedObjectIDForURIRepresentation(url: string): (NSManagedObjectID) | null { return callSDK<(NSManagedObjectID) | null>("CoreData_d968214ecc684fb6", 1673000421664192, this, [url]); }
+  managedObjectIDForURIRepresentation(url: string): (NSManagedObjectID) | null { return callSDK<(NSManagedObjectID) | null>("CoreData_0e503aef608672fa", 1673000421664192, this, [url]); }
   /**
    * func metadata(for store: NSPersistentStore) -> [String : Any]
    * @availability iOS 3.0+
    */
-  metadata(store: NSPersistentStore): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_d968214ecc684fb6", 4389523147088004, this, [store]); }
+  metadata(store: NSPersistentStore): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_0e503aef608672fa", 4389523147088004, this, [store]); }
   /**
    * func migratePersistentStore(_ store: NSPersistentStore, to URL: URL, options: [AnyHashable : Any]? = nil, withType storeType: String) throws -> NSPersistentStore
    * @availability iOS 3.0+
    */
-  migratePersistentStoreToOptionsWithType(store: NSPersistentStore, URL: string, options: $SDK6, storeType: string): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_d968214ecc684fb6", 2888010057686277, this, [store, URL, options, storeType]); }
+  migratePersistentStoreToOptionsWithType(store: NSPersistentStore, URL: string, options: $SDK6, storeType: string): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_0e503aef608672fa", 2888010057686277, this, [store, URL, options, storeType]); }
   /**
    * func perform(_ block: @escaping @Sendable () -> Void)
    * @availability iOS 8.0+
    */
-  perform(block: (() => void)): void { return callSDK<void>("CoreData_d968214ecc684fb6", 889037424018130, this, [block], [{"callback":{"out":[]}}]); }
+  perform(block: (() => void)): void { return callSDK<void>("CoreData_0e503aef608672fa", 889037424018130, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * func performAndWait(_ block: @Sendable () -> Void)
    * @availability iOS 8.0+
    */
-  performAndWait(block: (() => void)): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4115972193496419, this, [block], [{"callback":{"out":[]}}]); }
+  performAndWait(block: (() => void)): void { return callSDK<void>("CoreData_0e503aef608672fa", 4115972193496419, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * func persistentStore(for URL: URL) -> NSPersistentStore?
    * @availability iOS 3.0+
    */
-  persistentStore(URL: string): (NSPersistentStore) | null { return callSDK<(NSPersistentStore) | null>("CoreData_d968214ecc684fb6", 3264539607092891, this, [URL]); }
+  persistentStore(URL: string): (NSPersistentStore) | null { return callSDK<(NSPersistentStore) | null>("CoreData_0e503aef608672fa", 3264539607092891, this, [URL]); }
   /**
    * func remove(_ store: NSPersistentStore) throws
    * @availability iOS 3.0+
    */
-  remove(store: NSPersistentStore): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1397566483506413, this, [store]); }
+  remove(store: NSPersistentStore): void { return callSDK<void>("CoreData_0e503aef608672fa", 1397566483506413, this, [store]); }
   /**
    * func replacePersistentStore(at destinationURL: URL, destinationOptions: [AnyHashable : Any]? = nil, withPersistentStoreFrom sourceURL: URL, sourceOptions: [AnyHashable : Any]? = nil, ofType storeType: String) throws
    * @availability iOS 9.0+
    */
-  replacePersistentStoreAtDestinationOptionsWithPersistentStoreFromSourceOptionsOfType(destinationURL: string, destinationOptions: $SDK6, sourceURL: string, sourceOptions: $SDK6, storeType: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 2198854613120090, this, [destinationURL, destinationOptions, sourceURL, sourceOptions, storeType]); }
+  replacePersistentStoreAtDestinationOptionsWithPersistentStoreFromSourceOptionsOfType(destinationURL: string, destinationOptions: $SDK6, sourceURL: string, sourceOptions: $SDK6, storeType: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 2198854613120090, this, [destinationURL, destinationOptions, sourceURL, sourceOptions, storeType]); }
   /**
    * func setMetadata(_ metadata: [String : Any]?, for store: NSPersistentStore)
    * @availability iOS 3.0+
    */
-  setMetadataFor(metadata: $SDK4, store: NSPersistentStore): void { return callSDK<void>("CoreData_d968214ecc684fb6", 1812153477465422, this, [metadata, store]); }
+  setMetadataFor(metadata: $SDK4, store: NSPersistentStore): void { return callSDK<void>("CoreData_0e503aef608672fa", 1812153477465422, this, [metadata, store]); }
   /**
    * func setURL(_ url: URL, for store: NSPersistentStore) -> Bool
    * @availability iOS 3.0+
    */
-  setURL(url: string, store: NSPersistentStore): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3313353472626473, this, [url, store]); }
+  setURL(url: string, store: NSPersistentStore): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3313353472626473, this, [url, store]); }
   /**
    * func tryLock() -> Bool
    * @availability iOS 3.0+
    * @deprecated iOS 8.0
    */
-  tryLock(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 3550690940296262, this, []); }
+  tryLock(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 3550690940296262, this, []); }
   /**
    * func unlock()
    * @availability iOS 3.0+
    * @deprecated iOS 8.0
    */
-  unlock(): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3793162993809594, this, []); }
+  unlock(): void { return callSDK<void>("CoreData_0e503aef608672fa", 3793162993809594, this, []); }
   /**
    * var managedObjectModel: NSManagedObjectModel { get }
    * @availability iOS 3.0+
    */
-  get managedObjectModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_d968214ecc684fb6", 2344004295173231, this, []); }
+  get managedObjectModel(): NSManagedObjectModel { return callSDK<NSManagedObjectModel>("CoreData_0e503aef608672fa", 2344004295173231, this, []); }
   /**
    * var name: String? { get set }
    * @availability iOS 8.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 854120349253892, this, []); }
-  set name(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 764061033021897, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 854120349253892, this, []); }
+  set name(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 764061033021897, this, [value]); }
   /**
    * var persistentStores: [NSPersistentStore] { get }
    * @availability iOS 3.0+
    */
-  get persistentStores(): $SDK84 { return callSDK<$SDK84>("CoreData_d968214ecc684fb6", 4129815673382344, this, []); }
+  get persistentStores(): $SDK84 { return callSDK<$SDK84>("CoreData_0e503aef608672fa", 4129815673382344, this, []); }
   /**
    * func addPersistentStore(type: NSPersistentStore.StoreType, configuration: String? = nil, at storeURL: URL, options: [AnyHashable : Any]? = nil) throws -> NSPersistentStore
    * @availability iOS 15.0+
    */
-  addPersistentStoreTypeConfigurationAtOptions(type: NSPersistentStore_StoreType, configuration: (string) | null, storeURL: string, options?: $SDK6): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_d968214ecc684fb6", 4411764338267223, this, [type, configuration, storeURL, options]); }
+  addPersistentStoreTypeConfigurationAtOptions(type: NSPersistentStore_StoreType, configuration: (string) | null, storeURL: string, options?: $SDK6): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_0e503aef608672fa", 4411764338267223, this, [type, configuration, storeURL, options]); }
   /**
    * func destroyPersistentStore(at url: URL, type storeType: NSPersistentStore.StoreType, options: [AnyHashable : Any]? = nil) throws
    * @availability iOS 15.0+
    */
-  destroyPersistentStoreAtTypeOptions(url: string, storeType: NSPersistentStore_StoreType, options?: $SDK6): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4498197707598163, this, [url, storeType, options]); }
+  destroyPersistentStoreAtTypeOptions(url: string, storeType: NSPersistentStore_StoreType, options?: $SDK6): void { return callSDK<void>("CoreData_0e503aef608672fa", 4498197707598163, this, [url, storeType, options]); }
   /**
    * func migratePersistentStore(_ store: NSPersistentStore, to storeURL: URL, options: [AnyHashable : Any]? = nil, type storeType: NSPersistentStore.StoreType) throws -> NSPersistentStore
    * @availability iOS 15.0+
    */
-  migratePersistentStoreToOptionsType(store: NSPersistentStore, storeURL: string, options: $SDK6, storeType: NSPersistentStore_StoreType): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_d968214ecc684fb6", 4456540973423924, this, [store, storeURL, options, storeType]); }
+  migratePersistentStoreToOptionsType(store: NSPersistentStore, storeURL: string, options: $SDK6, storeType: NSPersistentStore_StoreType): NSPersistentStore { return callSDK<NSPersistentStore>("CoreData_0e503aef608672fa", 4456540973423924, this, [store, storeURL, options, storeType]); }
   /**
    * func replacePersistentStore(at destinationURL: URL, destinationOptions: [AnyHashable : Any]? = nil, withPersistentStoreFrom sourceURL: URL, sourceOptions: [AnyHashable : Any]? = nil, type sourceType: NSPersistentStore.StoreType) throws
    * @availability iOS 15.0+
    */
-  replacePersistentStoreAtDestinationOptionsWithPersistentStoreFromSourceOptionsType(destinationURL: string, destinationOptions: $SDK6, sourceURL: string, sourceOptions: $SDK6, sourceType: NSPersistentStore_StoreType): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3952072148974070, this, [destinationURL, destinationOptions, sourceURL, sourceOptions, sourceType]); }
+  replacePersistentStoreAtDestinationOptionsWithPersistentStoreFromSourceOptionsType(destinationURL: string, destinationOptions: $SDK6, sourceURL: string, sourceOptions: $SDK6, sourceType: NSPersistentStore_StoreType): void { return callSDK<void>("CoreData_0e503aef608672fa", 3952072148974070, this, [destinationURL, destinationOptions, sourceURL, sourceOptions, sourceType]); }
   /**
    * class func metadataForPersistentStore(type storeType: NSPersistentStore.StoreType, at storeURL: URL, options: [AnyHashable : Any]? = nil) throws -> [String : Any]
    * @availability iOS 15.0+
    */
-  static metadataForPersistentStoreTypeAtOptions(storeType: NSPersistentStore_StoreType, storeURL: string, options?: $SDK6): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_d968214ecc684fb6", 482454399377521, undefined, [storeType, storeURL, options]); }
+  static metadataForPersistentStoreTypeAtOptions(storeType: NSPersistentStore_StoreType, storeURL: string, options?: $SDK6): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreData_0e503aef608672fa", 482454399377521, undefined, [storeType, storeURL, options]); }
   /**
    * class func registerStoreClass(_ storeClass: AnyClass?, type: NSPersistentStore.StoreType)
    * @availability iOS 15.0+
    */
-  static registerStoreClassType(storeClass: (string) | null, type: NSPersistentStore_StoreType): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3171645887381041, undefined, [storeClass, type]); }
+  static registerStoreClassType(storeClass: (string) | null, type: NSPersistentStore_StoreType): void { return callSDK<void>("CoreData_0e503aef608672fa", 3171645887381041, undefined, [storeClass, type]); }
   /**
    * class func setMetadata(_ metadata: [String : Any]?, type storeType: NSPersistentStore.StoreType, at storeURL: URL, options: [AnyHashable : Any]? = nil) throws
    * @availability iOS 15.0+
    */
-  static setMetadataTypeAtOptions(metadata: $SDK4, storeType: NSPersistentStore_StoreType, storeURL: string, options?: $SDK6): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3795375570834094, undefined, [metadata, storeType, storeURL, options]); }
+  static setMetadataTypeAtOptions(metadata: $SDK4, storeType: NSPersistentStore_StoreType, storeURL: string, options?: $SDK6): void { return callSDK<void>("CoreData_0e503aef608672fa", 3795375570834094, undefined, [metadata, storeType, storeURL, options]); }
   /**
    * @preconcurrency func performAndWait<T>(_ block: @Sendable () throws -> T) rethrows -> T
    * @availability iOS 15.0+
    */
-  performAndWait483(block: (() => unknown)): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 3900289849472978, this, [block], [{"callback":{"out":[]}}], true); }
+  performAndWait483(block: (() => unknown)): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 3900289849472978, this, [block], [{"callback":{"out":[]}}], true); }
   /**
    * func managedObjectID(for string: String) -> NSManagedObjectID?
    * @availability iOS 18.0+
    */
-  managedObjectIDFor(string: string): (NSManagedObjectID) | null { return callSDK<(NSManagedObjectID) | null>("CoreData_d968214ecc684fb6", 4471537068643861, this, [string]); }
+  managedObjectIDFor(string: string): (NSManagedObjectID) | null { return callSDK<(NSManagedObjectID) | null>("CoreData_0e503aef608672fa", 4471537068643861, this, [string]); }
   declare readonly $type: { "c:objc(cs)NSPersistentStoreCoordinator": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "managedObjectModel": true; "name": true; "persistentStores": true };
 }
@@ -5053,37 +5053,37 @@ export class NSPersistentStoreCoordinator_RemoteChangeMessage extends SDKHandle 
    * let persistentStoreCoordinator: NSPersistentStoreCoordinator
    * @availability iOS 27.0+
    */
-  get persistentStoreCoordinator(): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_d968214ecc684fb6", 1123652134817751, this, []); }
+  get persistentStoreCoordinator(): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_0e503aef608672fa", 1123652134817751, this, []); }
   /**
    * static func makeMessage(_ notification: Notification) -> NSPersistentStoreCoordinator.RemoteChangeMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (NSPersistentStoreCoordinator_RemoteChangeMessage) | null { return callSDK<(NSPersistentStoreCoordinator_RemoteChangeMessage) | null>("CoreData_d968214ecc684fb6", 1094506057087191, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (NSPersistentStoreCoordinator_RemoteChangeMessage) | null { return callSDK<(NSPersistentStoreCoordinator_RemoteChangeMessage) | null>("CoreData_0e503aef608672fa", 1094506057087191, undefined, [notification]); }
   /**
    * let historyToken: NSPersistentHistoryToken?
    * @availability iOS 27.0+
    */
-  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_d968214ecc684fb6", 1775146792382114, this, []); }
+  get historyToken(): $SDK26 { return callSDK<$SDK26>("CoreData_0e503aef608672fa", 1775146792382114, this, []); }
   /**
    * static func makeNotification(_ message: NSPersistentStoreCoordinator.RemoteChangeMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSPersistentStoreCoordinator_RemoteChangeMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_d968214ecc684fb6", 1349990473331245, undefined, [message]); }
+  static makeNotification(message: NSPersistentStoreCoordinator_RemoteChangeMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_0e503aef608672fa", 1349990473331245, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 2259586489084008, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 2259586489084008, undefined, []); }
   /**
    * let storeURL: URL
    * @availability iOS 27.0+
    */
-  get storeURL(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 3285936435330242, this, []); }
+  get storeURL(): string { return callSDK<string>("CoreData_0e503aef608672fa", 3285936435330242, this, []); }
   /**
    * let storeUUID: String
    * @availability iOS 27.0+
    */
-  get storeUUID(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 1007031761567267, this, []); }
+  get storeUUID(): string { return callSDK<string>("CoreData_0e503aef608672fa", 1007031761567267, this, []); }
   declare readonly $type: { "s:So28NSPersistentStoreCoordinatorC8CoreDataE19RemoteChangeMessageV": true };
 }
 
@@ -5102,37 +5102,37 @@ export class NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage extends SD
    * let persistentStoreCoordinator: NSPersistentStoreCoordinator
    * @availability iOS 27.0+
    */
-  get persistentStoreCoordinator(): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_d968214ecc684fb6", 2781059647390815, this, []); }
+  get persistentStoreCoordinator(): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_0e503aef608672fa", 2781059647390815, this, []); }
   /**
    * var uuidChangedStores: (oldValue: NSPersistentStore, newValue: NSPersistentStore)? { get }
    * @availability iOS 27.0+
    */
-  get uuidChangedStores(): $SDK86 { return callSDK<$SDK86>("CoreData_d968214ecc684fb6", 217622526392396, this, []); }
+  get uuidChangedStores(): $SDK86 { return callSDK<$SDK86>("CoreData_0e503aef608672fa", 217622526392396, this, []); }
   /**
    * static func makeMessage(_ notification: Notification) -> NSPersistentStoreCoordinator.StoresDidChangeAsyncMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): (NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage) | null { return callSDK<(NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage) | null>("CoreData_d968214ecc684fb6", 1145557260195590, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): (NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage) | null { return callSDK<(NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage) | null>("CoreData_0e503aef608672fa", 1145557260195590, undefined, [notification]); }
   /**
    * var addedStores: [NSPersistentStore] { get }
    * @availability iOS 27.0+
    */
-  get addedStores(): $SDK84 { return callSDK<$SDK84>("CoreData_d968214ecc684fb6", 3304959037006200, this, []); }
+  get addedStores(): $SDK84 { return callSDK<$SDK84>("CoreData_0e503aef608672fa", 3304959037006200, this, []); }
   /**
    * var removedStores: [NSPersistentStore] { get }
    * @availability iOS 27.0+
    */
-  get removedStores(): $SDK84 { return callSDK<$SDK84>("CoreData_d968214ecc684fb6", 1983916143184847, this, []); }
+  get removedStores(): $SDK84 { return callSDK<$SDK84>("CoreData_0e503aef608672fa", 1983916143184847, this, []); }
   /**
    * static func makeNotification(_ message: NSPersistentStoreCoordinator.StoresDidChangeAsyncMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_d968214ecc684fb6", 2912669056246492, undefined, [message]); }
+  static makeNotification(message: NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage): _Foundation_Notification { return callSDK<_Foundation_Notification>("CoreData_0e503aef608672fa", 2912669056246492, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 967616315692188, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 967616315692188, undefined, []); }
   declare readonly $type: { "s:So28NSPersistentStoreCoordinatorC8CoreDataE27StoresDidChangeAsyncMessageV": true };
 }
 
@@ -5151,37 +5151,37 @@ export class NSPersistentStoreCoordinator_StoresDidChangeMessage extends SDKHand
    * let persistentStoreCoordinator: NSPersistentStoreCoordinator
    * @availability iOS 27.0+
    */
-  get persistentStoreCoordinator(): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_d968214ecc684fb6", 1253610556181078, this, []); }
+  get persistentStoreCoordinator(): NSPersistentStoreCoordinator { return callSDK<NSPersistentStoreCoordinator>("CoreData_0e503aef608672fa", 1253610556181078, this, []); }
   /**
    * var uuidChangedStores: (oldValue: NSPersistentStore, newValue: NSPersistentStore)? { get }
    * @availability iOS 27.0+
    */
-  get uuidChangedStores(): $SDK86 { return callSDK<$SDK86>("CoreData_d968214ecc684fb6", 4495573784006735, this, []); }
+  get uuidChangedStores(): $SDK86 { return callSDK<$SDK86>("CoreData_0e503aef608672fa", 4495573784006735, this, []); }
   /**
    * @MainActor static func makeMessage(_ notification: Notification) -> NSPersistentStoreCoordinator.StoresDidChangeMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(NSPersistentStoreCoordinator_StoresDidChangeMessage) | null> { return callSDKAsync<(NSPersistentStoreCoordinator_StoresDidChangeMessage) | null>("CoreData_d968214ecc684fb6", 2160187483818791, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(NSPersistentStoreCoordinator_StoresDidChangeMessage) | null> { return callSDKAsync<(NSPersistentStoreCoordinator_StoresDidChangeMessage) | null>("CoreData_0e503aef608672fa", 2160187483818791, undefined, [notification]); }
   /**
    * var addedStores: [NSPersistentStore] { get }
    * @availability iOS 27.0+
    */
-  get addedStores(): $SDK84 { return callSDK<$SDK84>("CoreData_d968214ecc684fb6", 1850129328460543, this, []); }
+  get addedStores(): $SDK84 { return callSDK<$SDK84>("CoreData_0e503aef608672fa", 1850129328460543, this, []); }
   /**
    * var removedStores: [NSPersistentStore] { get }
    * @availability iOS 27.0+
    */
-  get removedStores(): $SDK84 { return callSDK<$SDK84>("CoreData_d968214ecc684fb6", 4212252693846424, this, []); }
+  get removedStores(): $SDK84 { return callSDK<$SDK84>("CoreData_0e503aef608672fa", 4212252693846424, this, []); }
   /**
    * @MainActor static func makeNotification(_ message: NSPersistentStoreCoordinator.StoresDidChangeMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: NSPersistentStoreCoordinator_StoresDidChangeMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_d968214ecc684fb6", 1243652042168470, undefined, [message]); }
+  static makeNotification(message: NSPersistentStoreCoordinator_StoresDidChangeMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("CoreData_0e503aef608672fa", 1243652042168470, undefined, [message]); }
   /**
    * static let name: Notification.Name
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_d968214ecc684fb6", 3946589223522467, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("CoreData_0e503aef608672fa", 3946589223522467, undefined, []); }
   declare readonly $type: { "s:So28NSPersistentStoreCoordinatorC8CoreDataE22StoresDidChangeMessageV": true };
 }
 
@@ -5200,81 +5200,81 @@ export class NSPersistentStoreDescription extends SDKHandle {
    * init(url: URL)
    * @availability iOS 10.0+
    */
-  static init(url: string): NSPersistentStoreDescription { return callSDK<NSPersistentStoreDescription>("CoreData_d968214ecc684fb6", 130592777513504, undefined, [url]); }
+  static init(url: string): NSPersistentStoreDescription { return callSDK<NSPersistentStoreDescription>("CoreData_0e503aef608672fa", 130592777513504, undefined, [url]); }
   /**
    * func setOption(_ option: NSObject?, forKey key: String)
    * @availability iOS 10.0+
    */
-  setOption(option: (_ObjectiveC_NSObject) | null, key: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 4473867927508199, this, [option, key]); }
+  setOption(option: (_ObjectiveC_NSObject) | null, key: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 4473867927508199, this, [option, key]); }
   /**
    * func setValue(_ value: NSObject?, forPragmaNamed name: String)
    * @availability iOS 10.0+
    */
-  setValue(value: (_ObjectiveC_NSObject) | null, name: string): void { return callSDK<void>("CoreData_d968214ecc684fb6", 3356544523057612, this, [value, name]); }
+  setValue(value: (_ObjectiveC_NSObject) | null, name: string): void { return callSDK<void>("CoreData_0e503aef608672fa", 3356544523057612, this, [value, name]); }
   /**
    * var url: URL? { get set }
    * @availability iOS 10.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 2550796745971805, this, []); }
-  set url(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 707325400736352, this, [value]); }
+  get url(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 2550796745971805, this, []); }
+  set url(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 707325400736352, this, [value]); }
   /**
    * var cloudKitContainerOptions: NSPersistentCloudKitContainerOptions? { get set }
    * @availability iOS 13.0+
    */
-  get cloudKitContainerOptions(): $SDK90 { return callSDK<$SDK90>("CoreData_d968214ecc684fb6", 411574656304643, this, []); }
-  set cloudKitContainerOptions(value: $SDK90) { callSDK<void>("CoreData_d968214ecc684fb6", 2634150842459695, this, [value]); }
+  get cloudKitContainerOptions(): $SDK90 { return callSDK<$SDK90>("CoreData_0e503aef608672fa", 411574656304643, this, []); }
+  set cloudKitContainerOptions(value: $SDK90) { callSDK<void>("CoreData_0e503aef608672fa", 2634150842459695, this, [value]); }
   /**
    * var configuration: String? { get set }
    * @availability iOS 10.0+
    */
-  get configuration(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 3332018681146813, this, []); }
-  set configuration(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 3387665199689998, this, [value]); }
+  get configuration(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 3332018681146813, this, []); }
+  set configuration(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 3387665199689998, this, [value]); }
   /**
    * var options: [String : NSObject] { get }
    * @availability iOS 10.0+
    */
-  get options(): $SDK91 { return callSDK<$SDK91>("CoreData_d968214ecc684fb6", 1997318612280192, this, []); }
+  get options(): $SDK91 { return callSDK<$SDK91>("CoreData_0e503aef608672fa", 1997318612280192, this, []); }
   /**
    * var isReadOnly: Bool { get set }
    * @availability iOS 10.0+
    */
-  get isReadOnly(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 1738309396374767, this, []); }
-  set isReadOnly(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 1295931354756073, this, [value]); }
+  get isReadOnly(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 1738309396374767, this, []); }
+  set isReadOnly(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 1295931354756073, this, [value]); }
   /**
    * var shouldAddStoreAsynchronously: Bool { get set }
    * @availability iOS 10.0+
    */
-  get shouldAddStoreAsynchronously(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 147752242624100, this, []); }
-  set shouldAddStoreAsynchronously(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 2789134618962165, this, [value]); }
+  get shouldAddStoreAsynchronously(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 147752242624100, this, []); }
+  set shouldAddStoreAsynchronously(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 2789134618962165, this, [value]); }
   /**
    * var shouldInferMappingModelAutomatically: Bool { get set }
    * @availability iOS 10.0+
    */
-  get shouldInferMappingModelAutomatically(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 753136261073425, this, []); }
-  set shouldInferMappingModelAutomatically(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 3469199013610666, this, [value]); }
+  get shouldInferMappingModelAutomatically(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 753136261073425, this, []); }
+  set shouldInferMappingModelAutomatically(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 3469199013610666, this, [value]); }
   /**
    * var shouldMigrateStoreAutomatically: Bool { get set }
    * @availability iOS 10.0+
    */
-  get shouldMigrateStoreAutomatically(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 108289490445641, this, []); }
-  set shouldMigrateStoreAutomatically(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 1624002338211820, this, [value]); }
+  get shouldMigrateStoreAutomatically(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 108289490445641, this, []); }
+  set shouldMigrateStoreAutomatically(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 1624002338211820, this, [value]); }
   /**
    * var sqlitePragmas: [String : NSObject] { get }
    * @availability iOS 10.0+
    */
-  get sqlitePragmas(): $SDK91 { return callSDK<$SDK91>("CoreData_d968214ecc684fb6", 2602567097604874, this, []); }
+  get sqlitePragmas(): $SDK91 { return callSDK<$SDK91>("CoreData_0e503aef608672fa", 2602567097604874, this, []); }
   /**
    * var timeout: TimeInterval { get set }
    * @availability iOS 10.0+
    */
-  get timeout(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 4245555029681695, this, []); }
-  set timeout(value: number) { callSDK<void>("CoreData_d968214ecc684fb6", 1029980680369273, this, [value]); }
+  get timeout(): number { return callSDK<number>("CoreData_0e503aef608672fa", 4245555029681695, this, []); }
+  set timeout(value: number) { callSDK<void>("CoreData_0e503aef608672fa", 1029980680369273, this, [value]); }
   /**
    * var type: String { get set }
    * @availability iOS 10.0+
    */
-  get type(): string { return callSDK<string>("CoreData_d968214ecc684fb6", 30484811056568, this, []); }
-  set type(value: string) { callSDK<void>("CoreData_d968214ecc684fb6", 2387178786670363, this, [value]); }
+  get type(): string { return callSDK<string>("CoreData_0e503aef608672fa", 30484811056568, this, []); }
+  set type(value: string) { callSDK<void>("CoreData_0e503aef608672fa", 2387178786670363, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSPersistentStoreDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "url": true; "cloudKitContainerOptions": true; "configuration": true; "options": true; "isReadOnly": true; "shouldAddStoreAsynchronously": true; "shouldInferMappingModelAutomatically": true; "shouldMigrateStoreAutomatically": true; "sqlitePragmas": true; "timeout": true; "type": true };
 }
@@ -5284,7 +5284,7 @@ export type NSPersistentStoreRequestType = "fetchRequestType" | "saveRequestType
 
 export const NSPersistentStoreRequestType = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (NSPersistentStoreRequestType) | null { return callSDK<(NSPersistentStoreRequestType) | null>("CoreData_d968214ecc684fb6", 1375977798348840, undefined, [rawValue]); }
+  init(rawValue: number): (NSPersistentStoreRequestType) | null { return callSDK<(NSPersistentStoreRequestType) | null>("CoreData_0e503aef608672fa", 1375977798348840, undefined, [rawValue]); }
 };
 
 /**
@@ -5300,7 +5300,7 @@ export const NSPersistentStoreUbiquitousTransitionType = {
    * @availability iOS 7.0+
    * @deprecated iOS 10.0
    */
-  init(rawValue: number): (NSPersistentStoreUbiquitousTransitionType) | null { return callSDK<(NSPersistentStoreUbiquitousTransitionType) | null>("CoreData_d968214ecc684fb6", 154041996027868, undefined, [rawValue]); }
+  init(rawValue: number): (NSPersistentStoreUbiquitousTransitionType) | null { return callSDK<(NSPersistentStoreUbiquitousTransitionType) | null>("CoreData_0e503aef608672fa", 154041996027868, undefined, [rawValue]); }
 };
 
 /**
@@ -5309,25 +5309,25 @@ export const NSPersistentStoreUbiquitousTransitionType = {
  */
 export class NSPropertyMapping extends SDKHandle {
   /** init() */
-  static init(): NSPropertyMapping { return callSDK<NSPropertyMapping>("CoreData_d968214ecc684fb6", 2061988628796588, undefined, []); }
+  static init(): NSPropertyMapping { return callSDK<NSPropertyMapping>("CoreData_0e503aef608672fa", 2061988628796588, undefined, []); }
   /**
    * var name: String? { get set }
    * @availability iOS 3.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("CoreData_d968214ecc684fb6", 4339787560549560, this, []); }
-  set name(value: (string) | null) { callSDK<void>("CoreData_d968214ecc684fb6", 4127360807061638, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("CoreData_0e503aef608672fa", 4339787560549560, this, []); }
+  set name(value: (string) | null) { callSDK<void>("CoreData_0e503aef608672fa", 4127360807061638, this, [value]); }
   /**
    * var userInfo: [AnyHashable : Any]? { get set }
    * @availability iOS 3.0+
    */
-  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_d968214ecc684fb6", 3987952376749397, this, []); }
-  set userInfo(value: $SDK6) { callSDK<void>("CoreData_d968214ecc684fb6", 2650984568693473, this, [value]); }
+  get userInfo(): $SDK6 { return callSDK<$SDK6>("CoreData_0e503aef608672fa", 3987952376749397, this, []); }
+  set userInfo(value: $SDK6) { callSDK<void>("CoreData_0e503aef608672fa", 2650984568693473, this, [value]); }
   /**
    * var valueExpression: NSExpression? { get set }
    * @availability iOS 3.0+
    */
-  get valueExpression(): $SDK28 { return callSDK<$SDK28>("CoreData_d968214ecc684fb6", 256300388111363, this, []); }
-  set valueExpression(value: $SDK28) { callSDK<void>("CoreData_d968214ecc684fb6", 3835564504130725, this, [value]); }
+  get valueExpression(): $SDK28 { return callSDK<$SDK28>("CoreData_0e503aef608672fa", 256300388111363, this, []); }
+  set valueExpression(value: $SDK28) { callSDK<void>("CoreData_0e503aef608672fa", 3835564504130725, this, [value]); }
   declare readonly $type: { "c:objc(cs)NSPropertyMapping": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "userInfo": true; "valueExpression": true };
 }
@@ -5341,9 +5341,9 @@ export class NSQueryGenerationToken extends SDKHandle {
    * class var current: NSQueryGenerationToken { get }
    * @availability iOS 10.0+
    */
-  static get current(): NSQueryGenerationToken { return callSDK<NSQueryGenerationToken>("CoreData_d968214ecc684fb6", 11478656441516, undefined, []); }
+  static get current(): NSQueryGenerationToken { return callSDK<NSQueryGenerationToken>("CoreData_0e503aef608672fa", 11478656441516, undefined, []); }
   /** init() */
-  static init(): NSQueryGenerationToken { return callSDK<NSQueryGenerationToken>("CoreData_d968214ecc684fb6", 327960183832544, undefined, []); }
+  static init(): NSQueryGenerationToken { return callSDK<NSQueryGenerationToken>("CoreData_0e503aef608672fa", 327960183832544, undefined, []); }
   declare readonly $type: { "c:objc(cs)NSQueryGenerationToken": true; "c:objc(cs)NSObject": true };
 }
 
@@ -5353,53 +5353,53 @@ export class NSQueryGenerationToken extends SDKHandle {
  */
 export class NSRelationshipDescription extends (NSPropertyDescription as unknown as Omit<typeof NSPropertyDescription, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSPropertyDescription, "versionHash">)) {
   /** init() */
-  static init(): NSRelationshipDescription { return callSDK<NSRelationshipDescription>("CoreData_d968214ecc684fb6", 189996757010126, undefined, []); }
+  static init(): NSRelationshipDescription { return callSDK<NSRelationshipDescription>("CoreData_0e503aef608672fa", 189996757010126, undefined, []); }
   /**
    * var deleteRule: NSDeleteRule { get set }
    * @availability iOS 3.0+
    */
-  get deleteRule(): NSDeleteRule { return callSDK<NSDeleteRule>("CoreData_d968214ecc684fb6", 460730602279418, this, []); }
-  set deleteRule(value: NSDeleteRule) { callSDK<void>("CoreData_d968214ecc684fb6", 4410191638668078, this, [value]); }
+  get deleteRule(): NSDeleteRule { return callSDK<NSDeleteRule>("CoreData_0e503aef608672fa", 460730602279418, this, []); }
+  set deleteRule(value: NSDeleteRule) { callSDK<void>("CoreData_0e503aef608672fa", 4410191638668078, this, [value]); }
   /**
    * unowned(unsafe) var destinationEntity: NSEntityDescription? { get set }
    * @availability iOS 3.0+
    */
-  get destinationEntity(): $SDK17 { return callSDK<$SDK17>("CoreData_d968214ecc684fb6", 1482940168577442, this, []); }
-  set destinationEntity(value: $SDK17) { callSDK<void>("CoreData_d968214ecc684fb6", 3328840854127398, this, [value]); }
+  get destinationEntity(): $SDK17 { return callSDK<$SDK17>("CoreData_0e503aef608672fa", 1482940168577442, this, []); }
+  set destinationEntity(value: $SDK17) { callSDK<void>("CoreData_0e503aef608672fa", 3328840854127398, this, [value]); }
   /**
    * unowned(unsafe) var inverseRelationship: NSRelationshipDescription? { get set }
    * @availability iOS 3.0+
    */
-  get inverseRelationship(): $SDK92 { return callSDK<$SDK92>("CoreData_d968214ecc684fb6", 3180004493523838, this, []); }
-  set inverseRelationship(value: $SDK92) { callSDK<void>("CoreData_d968214ecc684fb6", 3085655020679861, this, [value]); }
+  get inverseRelationship(): $SDK92 { return callSDK<$SDK92>("CoreData_0e503aef608672fa", 3180004493523838, this, []); }
+  set inverseRelationship(value: $SDK92) { callSDK<void>("CoreData_0e503aef608672fa", 3085655020679861, this, [value]); }
   /**
    * var maxCount: Int { get set }
    * @availability iOS 3.0+
    */
-  get maxCount(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 3847143122959790, this, []); }
-  set maxCount(value: number) { callSDK<void>("CoreData_d968214ecc684fb6", 299221778195104, this, [value]); }
+  get maxCount(): number { return callSDK<number>("CoreData_0e503aef608672fa", 3847143122959790, this, []); }
+  set maxCount(value: number) { callSDK<void>("CoreData_0e503aef608672fa", 299221778195104, this, [value]); }
   /**
    * var minCount: Int { get set }
    * @availability iOS 3.0+
    */
-  get minCount(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 3104333667722064, this, []); }
-  set minCount(value: number) { callSDK<void>("CoreData_d968214ecc684fb6", 1416334507565977, this, [value]); }
+  get minCount(): number { return callSDK<number>("CoreData_0e503aef608672fa", 3104333667722064, this, []); }
+  set minCount(value: number) { callSDK<void>("CoreData_0e503aef608672fa", 1416334507565977, this, [value]); }
   /**
    * var isOrdered: Bool { get set }
    * @availability iOS 5.0+
    */
-  get isOrdered(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 4036345316576744, this, []); }
-  set isOrdered(value: boolean) { callSDK<void>("CoreData_d968214ecc684fb6", 1667572038991092, this, [value]); }
+  get isOrdered(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 4036345316576744, this, []); }
+  set isOrdered(value: boolean) { callSDK<void>("CoreData_0e503aef608672fa", 1667572038991092, this, [value]); }
   /**
    * var isToMany: Bool { get }
    * @availability iOS 3.0+
    */
-  get isToMany(): boolean { return callSDK<boolean>("CoreData_d968214ecc684fb6", 2188932043673461, this, []); }
+  get isToMany(): boolean { return callSDK<boolean>("CoreData_0e503aef608672fa", 2188932043673461, this, []); }
   /**
    * var versionHash: Data { get }
    * @availability iOS 3.0+
    */
-  get versionHash(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreData_d968214ecc684fb6", 566311923782047, this, []); }
+  get versionHash(): ArrayBuffer { return callSDK<ArrayBuffer>("CoreData_0e503aef608672fa", 566311923782047, this, []); }
   declare readonly $type: { "c:objc(cs)NSRelationshipDescription": true; "c:objc(cs)NSPropertyDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "entity": true; "isIndexed": true; "isIndexedBySpotlight": true; "name": true; "isOptional": true; "renamingIdentifier": true; "isStoredInExternalRecord": true; "isTransient": true; "userInfo": true; "validationPredicates": true; "validationWarnings": true; "versionHash": true; "versionHashModifier": true; "deleteRule": true; "destinationEntity": true; "inverseRelationship": true; "maxCount": true; "minCount": true; "isOrdered": true; "isToMany": true };
 }
@@ -5413,27 +5413,27 @@ export class NSSaveChangesRequest extends (NSPersistentStoreRequest as unknown a
    * init(inserted insertedObjects: Set<NSManagedObject>?, updated updatedObjects: Set<NSManagedObject>?, deleted deletedObjects: Set<NSManagedObject>?, locked lockedObjects: Set<NSManagedObject>?)
    * @availability iOS 5.0+
    */
-  static init(insertedObjects?: $SDK71, updatedObjects?: $SDK71, deletedObjects?: $SDK71, lockedObjects?: $SDK71): NSSaveChangesRequest { return callSDK<NSSaveChangesRequest>("CoreData_d968214ecc684fb6", 3683279426261392, undefined, [insertedObjects, updatedObjects, deletedObjects, lockedObjects]); }
+  static init(insertedObjects?: $SDK71, updatedObjects?: $SDK71, deletedObjects?: $SDK71, lockedObjects?: $SDK71): NSSaveChangesRequest { return callSDK<NSSaveChangesRequest>("CoreData_0e503aef608672fa", 3683279426261392, undefined, [insertedObjects, updatedObjects, deletedObjects, lockedObjects]); }
   /**
    * var deletedObjects: Set<NSManagedObject>? { get }
    * @availability iOS 5.0+
    */
-  get deletedObjects(): $SDK71 { return callSDK<$SDK71>("CoreData_d968214ecc684fb6", 4256282166246242, this, []); }
+  get deletedObjects(): $SDK71 { return callSDK<$SDK71>("CoreData_0e503aef608672fa", 4256282166246242, this, []); }
   /**
    * var insertedObjects: Set<NSManagedObject>? { get }
    * @availability iOS 5.0+
    */
-  get insertedObjects(): $SDK71 { return callSDK<$SDK71>("CoreData_d968214ecc684fb6", 2871987660919149, this, []); }
+  get insertedObjects(): $SDK71 { return callSDK<$SDK71>("CoreData_0e503aef608672fa", 2871987660919149, this, []); }
   /**
    * var lockedObjects: Set<NSManagedObject>? { get }
    * @availability iOS 5.0+
    */
-  get lockedObjects(): $SDK71 { return callSDK<$SDK71>("CoreData_d968214ecc684fb6", 1484790650183876, this, []); }
+  get lockedObjects(): $SDK71 { return callSDK<$SDK71>("CoreData_0e503aef608672fa", 1484790650183876, this, []); }
   /**
    * var updatedObjects: Set<NSManagedObject>? { get }
    * @availability iOS 5.0+
    */
-  get updatedObjects(): $SDK71 { return callSDK<$SDK71>("CoreData_d968214ecc684fb6", 200298516075731, this, []); }
+  get updatedObjects(): $SDK71 { return callSDK<$SDK71>("CoreData_0e503aef608672fa", 200298516075731, this, []); }
   declare readonly $type: { "c:objc(cs)NSSaveChangesRequest": true; "c:objc(cs)NSPersistentStoreRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "affectedStores": true; "requestType": true; "deletedObjects": true; "insertedObjects": true; "lockedObjects": true; "updatedObjects": true };
 }
@@ -5443,19 +5443,19 @@ export type NSSnapshotEventType = Array<"undoInsertion" | "undoDeletion" | "undo
 
 export const NSSnapshotEventType = {
   /** static var mergePolicy: NSSnapshotEventType { get } */
-  get mergePolicy(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_d968214ecc684fb6", 354211736408653, undefined, []); },
+  get mergePolicy(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_0e503aef608672fa", 354211736408653, undefined, []); },
   /** static var refresh: NSSnapshotEventType { get } */
-  get refresh(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_d968214ecc684fb6", 2836487499320949, undefined, []); },
+  get refresh(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_0e503aef608672fa", 2836487499320949, undefined, []); },
   /** static var rollback: NSSnapshotEventType { get } */
-  get rollback(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_d968214ecc684fb6", 2233405486979609, undefined, []); },
+  get rollback(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_0e503aef608672fa", 2233405486979609, undefined, []); },
   /** static var undoDeletion: NSSnapshotEventType { get } */
-  get undoDeletion(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_d968214ecc684fb6", 2263647616822673, undefined, []); },
+  get undoDeletion(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_0e503aef608672fa", 2263647616822673, undefined, []); },
   /** static var undoInsertion: NSSnapshotEventType { get } */
-  get undoInsertion(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_d968214ecc684fb6", 4121812505715960, undefined, []); },
+  get undoInsertion(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_0e503aef608672fa", 4121812505715960, undefined, []); },
   /** static var undoUpdate: NSSnapshotEventType { get } */
-  get undoUpdate(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_d968214ecc684fb6", 3112477814723289, undefined, []); },
+  get undoUpdate(): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_0e503aef608672fa", 3112477814723289, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_d968214ecc684fb6", 4174097573164950, undefined, [rawValue]); }
+  init(rawValue: number): NSSnapshotEventType { return callSDK<NSSnapshotEventType>("CoreData_0e503aef608672fa", 4174097573164950, undefined, [rawValue]); }
 };
 
 /**
@@ -5467,307 +5467,307 @@ export class NSStagedMigrationManager extends SDKHandle {
    * var container: NSPersistentContainer? { get }
    * @availability iOS 17.0+
    */
-  get container(): (NSPersistentContainer) | null { return callSDK<(NSPersistentContainer) | null>("CoreData_d968214ecc684fb6", 255598396223334, this, []); }
+  get container(): (NSPersistentContainer) | null { return callSDK<(NSPersistentContainer) | null>("CoreData_0e503aef608672fa", 255598396223334, this, []); }
   /**
    * var stages: [NSMigrationStage] { get }
    * @availability iOS 17.0+
    */
-  get stages(): Array<NSMigrationStage> { return callSDK<Array<NSMigrationStage>>("CoreData_d968214ecc684fb6", 2349423528711469, this, []); }
+  get stages(): Array<NSMigrationStage> { return callSDK<Array<NSMigrationStage>>("CoreData_0e503aef608672fa", 2349423528711469, this, []); }
   /**
    * convenience init(_ stages: [NSMigrationStage])
    * @availability iOS 17.0+
    */
-  static init(stages: Array<NSMigrationStage>): NSStagedMigrationManager { return callSDK<NSStagedMigrationManager>("CoreData_d968214ecc684fb6", 2611606848075175, undefined, [stages]); }
+  static init(stages: Array<NSMigrationStage>): NSStagedMigrationManager { return callSDK<NSStagedMigrationManager>("CoreData_0e503aef608672fa", 2611606848075175, undefined, [stages]); }
   declare readonly $type: { "c:objc(cs)NSStagedMigrationManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "container": true; "stages": true };
 }
 
 /** var NSCoreDataError: Int { get } */
-export const NSCoreDataError: number = callSDK<number>("CoreData_d968214ecc684fb6", 4252197882793034, undefined, []);
+export const NSCoreDataError: number = callSDK<number>("CoreData_0e503aef608672fa", 4252197882793034, undefined, []);
 
 /** var NSEntityMigrationPolicyError: Int { get } */
-export const NSEntityMigrationPolicyError: number = callSDK<number>("CoreData_d968214ecc684fb6", 1488052131676778, undefined, []);
+export const NSEntityMigrationPolicyError: number = callSDK<number>("CoreData_0e503aef608672fa", 1488052131676778, undefined, []);
 
 /** var NSExternalRecordImportError: Int { get } */
-export const NSExternalRecordImportError: number = callSDK<number>("CoreData_d968214ecc684fb6", 1524140186372568, undefined, []);
+export const NSExternalRecordImportError: number = callSDK<number>("CoreData_0e503aef608672fa", 1524140186372568, undefined, []);
 
 /** var NSInferredMappingModelError: Int { get } */
-export const NSInferredMappingModelError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2150783367573543, undefined, []);
+export const NSInferredMappingModelError: number = callSDK<number>("CoreData_0e503aef608672fa", 2150783367573543, undefined, []);
 
 /** var NSManagedObjectConstraintMergeError: Int { get } */
-export const NSManagedObjectConstraintMergeError: number = callSDK<number>("CoreData_d968214ecc684fb6", 1566824431998269, undefined, []);
+export const NSManagedObjectConstraintMergeError: number = callSDK<number>("CoreData_0e503aef608672fa", 1566824431998269, undefined, []);
 
 /** var NSManagedObjectConstraintValidationError: Int { get } */
-export const NSManagedObjectConstraintValidationError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2958662329320850, undefined, []);
+export const NSManagedObjectConstraintValidationError: number = callSDK<number>("CoreData_0e503aef608672fa", 2958662329320850, undefined, []);
 
 /** var NSManagedObjectContextLockingError: Int { get } */
-export const NSManagedObjectContextLockingError: number = callSDK<number>("CoreData_d968214ecc684fb6", 1152966812564413, undefined, []);
+export const NSManagedObjectContextLockingError: number = callSDK<number>("CoreData_0e503aef608672fa", 1152966812564413, undefined, []);
 
 /** var NSManagedObjectExternalRelationshipError: Int { get } */
-export const NSManagedObjectExternalRelationshipError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3399344907790493, undefined, []);
+export const NSManagedObjectExternalRelationshipError: number = callSDK<number>("CoreData_0e503aef608672fa", 3399344907790493, undefined, []);
 
 /** var NSManagedObjectMergeError: Int { get } */
-export const NSManagedObjectMergeError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2031080640956260, undefined, []);
+export const NSManagedObjectMergeError: number = callSDK<number>("CoreData_0e503aef608672fa", 2031080640956260, undefined, []);
 
 /** var NSManagedObjectModelReferenceNotFoundError: Int { get } */
-export const NSManagedObjectModelReferenceNotFoundError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2774704060882848, undefined, []);
+export const NSManagedObjectModelReferenceNotFoundError: number = callSDK<number>("CoreData_0e503aef608672fa", 2774704060882848, undefined, []);
 
 /** var NSManagedObjectReferentialIntegrityError: Int { get } */
-export const NSManagedObjectReferentialIntegrityError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2062033574089827, undefined, []);
+export const NSManagedObjectReferentialIntegrityError: number = callSDK<number>("CoreData_0e503aef608672fa", 2062033574089827, undefined, []);
 
 /** var NSManagedObjectValidationError: Int { get } */
-export const NSManagedObjectValidationError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2996488548903677, undefined, []);
+export const NSManagedObjectValidationError: number = callSDK<number>("CoreData_0e503aef608672fa", 2996488548903677, undefined, []);
 
 /** var NSMigrationCancelledError: Int { get } */
-export const NSMigrationCancelledError: number = callSDK<number>("CoreData_d968214ecc684fb6", 4241896235240009, undefined, []);
+export const NSMigrationCancelledError: number = callSDK<number>("CoreData_0e503aef608672fa", 4241896235240009, undefined, []);
 
 /** var NSMigrationConstraintViolationError: Int { get } */
-export const NSMigrationConstraintViolationError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2401697285367896, undefined, []);
+export const NSMigrationConstraintViolationError: number = callSDK<number>("CoreData_0e503aef608672fa", 2401697285367896, undefined, []);
 
 /** var NSMigrationError: Int { get } */
-export const NSMigrationError: number = callSDK<number>("CoreData_d968214ecc684fb6", 4357768175480095, undefined, []);
+export const NSMigrationError: number = callSDK<number>("CoreData_0e503aef608672fa", 4357768175480095, undefined, []);
 
 /** var NSMigrationManagerDestinationStoreError: Int { get } */
-export const NSMigrationManagerDestinationStoreError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3546967429926873, undefined, []);
+export const NSMigrationManagerDestinationStoreError: number = callSDK<number>("CoreData_0e503aef608672fa", 3546967429926873, undefined, []);
 
 /** var NSMigrationManagerSourceStoreError: Int { get } */
-export const NSMigrationManagerSourceStoreError: number = callSDK<number>("CoreData_d968214ecc684fb6", 477114494288254, undefined, []);
+export const NSMigrationManagerSourceStoreError: number = callSDK<number>("CoreData_0e503aef608672fa", 477114494288254, undefined, []);
 
 /** var NSMigrationMissingMappingModelError: Int { get } */
-export const NSMigrationMissingMappingModelError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3412881011310210, undefined, []);
+export const NSMigrationMissingMappingModelError: number = callSDK<number>("CoreData_0e503aef608672fa", 3412881011310210, undefined, []);
 
 /** var NSMigrationMissingSourceModelError: Int { get } */
-export const NSMigrationMissingSourceModelError: number = callSDK<number>("CoreData_d968214ecc684fb6", 925799008491160, undefined, []);
+export const NSMigrationMissingSourceModelError: number = callSDK<number>("CoreData_0e503aef608672fa", 925799008491160, undefined, []);
 
 /** var NSPersistentHistoryTokenExpiredError: Int { get } */
-export const NSPersistentHistoryTokenExpiredError: number = callSDK<number>("CoreData_d968214ecc684fb6", 73945670303622, undefined, []);
+export const NSPersistentHistoryTokenExpiredError: number = callSDK<number>("CoreData_0e503aef608672fa", 73945670303622, undefined, []);
 
 /** var NSPersistentStoreCoordinatorLockingError: Int { get } */
-export const NSPersistentStoreCoordinatorLockingError: number = callSDK<number>("CoreData_d968214ecc684fb6", 1892990670153271, undefined, []);
+export const NSPersistentStoreCoordinatorLockingError: number = callSDK<number>("CoreData_0e503aef608672fa", 1892990670153271, undefined, []);
 
 /** var NSPersistentStoreIncompatibleSchemaError: Int { get } */
-export const NSPersistentStoreIncompatibleSchemaError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2223174644279792, undefined, []);
+export const NSPersistentStoreIncompatibleSchemaError: number = callSDK<number>("CoreData_0e503aef608672fa", 2223174644279792, undefined, []);
 
 /** var NSPersistentStoreIncompatibleVersionHashError: Int { get } */
-export const NSPersistentStoreIncompatibleVersionHashError: number = callSDK<number>("CoreData_d968214ecc684fb6", 4143300988880133, undefined, []);
+export const NSPersistentStoreIncompatibleVersionHashError: number = callSDK<number>("CoreData_0e503aef608672fa", 4143300988880133, undefined, []);
 
 /** var NSPersistentStoreIncompleteSaveError: Int { get } */
-export const NSPersistentStoreIncompleteSaveError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3823809037502433, undefined, []);
+export const NSPersistentStoreIncompleteSaveError: number = callSDK<number>("CoreData_0e503aef608672fa", 3823809037502433, undefined, []);
 
 /** var NSPersistentStoreInvalidTypeError: Int { get } */
-export const NSPersistentStoreInvalidTypeError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2654899007375208, undefined, []);
+export const NSPersistentStoreInvalidTypeError: number = callSDK<number>("CoreData_0e503aef608672fa", 2654899007375208, undefined, []);
 
 /** var NSPersistentStoreOpenError: Int { get } */
-export const NSPersistentStoreOpenError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2162232373154479, undefined, []);
+export const NSPersistentStoreOpenError: number = callSDK<number>("CoreData_0e503aef608672fa", 2162232373154479, undefined, []);
 
 /** var NSPersistentStoreOperationError: Int { get } */
-export const NSPersistentStoreOperationError: number = callSDK<number>("CoreData_d968214ecc684fb6", 666614408931312, undefined, []);
+export const NSPersistentStoreOperationError: number = callSDK<number>("CoreData_0e503aef608672fa", 666614408931312, undefined, []);
 
 /** var NSPersistentStoreSaveConflictsError: Int { get } */
-export const NSPersistentStoreSaveConflictsError: number = callSDK<number>("CoreData_d968214ecc684fb6", 537635722046433, undefined, []);
+export const NSPersistentStoreSaveConflictsError: number = callSDK<number>("CoreData_0e503aef608672fa", 537635722046433, undefined, []);
 
 /** var NSPersistentStoreSaveError: Int { get } */
-export const NSPersistentStoreSaveError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2992431846953436, undefined, []);
+export const NSPersistentStoreSaveError: number = callSDK<number>("CoreData_0e503aef608672fa", 2992431846953436, undefined, []);
 
 /** var NSPersistentStoreTimeoutError: Int { get } */
-export const NSPersistentStoreTimeoutError: number = callSDK<number>("CoreData_d968214ecc684fb6", 695837870963020, undefined, []);
+export const NSPersistentStoreTimeoutError: number = callSDK<number>("CoreData_0e503aef608672fa", 695837870963020, undefined, []);
 
 /** var NSPersistentStoreTypeMismatchError: Int { get } */
-export const NSPersistentStoreTypeMismatchError: number = callSDK<number>("CoreData_d968214ecc684fb6", 837922963371133, undefined, []);
+export const NSPersistentStoreTypeMismatchError: number = callSDK<number>("CoreData_0e503aef608672fa", 837922963371133, undefined, []);
 
 /** var NSPersistentStoreUnsupportedRequestTypeError: Int { get } */
-export const NSPersistentStoreUnsupportedRequestTypeError: number = callSDK<number>("CoreData_d968214ecc684fb6", 790405267555668, undefined, []);
+export const NSPersistentStoreUnsupportedRequestTypeError: number = callSDK<number>("CoreData_0e503aef608672fa", 790405267555668, undefined, []);
 
 /** var NSSQLiteError: Int { get } */
-export const NSSQLiteError: number = callSDK<number>("CoreData_d968214ecc684fb6", 4101220320724715, undefined, []);
+export const NSSQLiteError: number = callSDK<number>("CoreData_0e503aef608672fa", 4101220320724715, undefined, []);
 
 /** var NSStagedMigrationBackwardMigrationError: Int { get } */
-export const NSStagedMigrationBackwardMigrationError: number = callSDK<number>("CoreData_d968214ecc684fb6", 910417587454234, undefined, []);
+export const NSStagedMigrationBackwardMigrationError: number = callSDK<number>("CoreData_0e503aef608672fa", 910417587454234, undefined, []);
 
 /** var NSStagedMigrationFrameworkVersionMismatchError: Int { get } */
-export const NSStagedMigrationFrameworkVersionMismatchError: number = callSDK<number>("CoreData_d968214ecc684fb6", 4208364974465769, undefined, []);
+export const NSStagedMigrationFrameworkVersionMismatchError: number = callSDK<number>("CoreData_0e503aef608672fa", 4208364974465769, undefined, []);
 
 /** var NSValidationDateTooLateError: Int { get } */
-export const NSValidationDateTooLateError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3292545787253771, undefined, []);
+export const NSValidationDateTooLateError: number = callSDK<number>("CoreData_0e503aef608672fa", 3292545787253771, undefined, []);
 
 /** var NSValidationDateTooSoonError: Int { get } */
-export const NSValidationDateTooSoonError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3249736148352393, undefined, []);
+export const NSValidationDateTooSoonError: number = callSDK<number>("CoreData_0e503aef608672fa", 3249736148352393, undefined, []);
 
 /** var NSValidationInvalidDateError: Int { get } */
-export const NSValidationInvalidDateError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2801203898793024, undefined, []);
+export const NSValidationInvalidDateError: number = callSDK<number>("CoreData_0e503aef608672fa", 2801203898793024, undefined, []);
 
 /** var NSValidationInvalidURIError: Int { get } */
-export const NSValidationInvalidURIError: number = callSDK<number>("CoreData_d968214ecc684fb6", 4278845833276062, undefined, []);
+export const NSValidationInvalidURIError: number = callSDK<number>("CoreData_0e503aef608672fa", 4278845833276062, undefined, []);
 
 /** var NSValidationMissingMandatoryPropertyError: Int { get } */
-export const NSValidationMissingMandatoryPropertyError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3494134055027446, undefined, []);
+export const NSValidationMissingMandatoryPropertyError: number = callSDK<number>("CoreData_0e503aef608672fa", 3494134055027446, undefined, []);
 
 /** var NSValidationMultipleErrorsError: Int { get } */
-export const NSValidationMultipleErrorsError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3315818344739830, undefined, []);
+export const NSValidationMultipleErrorsError: number = callSDK<number>("CoreData_0e503aef608672fa", 3315818344739830, undefined, []);
 
 /** var NSValidationNumberTooLargeError: Int { get } */
-export const NSValidationNumberTooLargeError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2291184782386815, undefined, []);
+export const NSValidationNumberTooLargeError: number = callSDK<number>("CoreData_0e503aef608672fa", 2291184782386815, undefined, []);
 
 /** var NSValidationNumberTooSmallError: Int { get } */
-export const NSValidationNumberTooSmallError: number = callSDK<number>("CoreData_d968214ecc684fb6", 1820599654373392, undefined, []);
+export const NSValidationNumberTooSmallError: number = callSDK<number>("CoreData_0e503aef608672fa", 1820599654373392, undefined, []);
 
 /** var NSValidationRelationshipDeniedDeleteError: Int { get } */
-export const NSValidationRelationshipDeniedDeleteError: number = callSDK<number>("CoreData_d968214ecc684fb6", 2075997778593173, undefined, []);
+export const NSValidationRelationshipDeniedDeleteError: number = callSDK<number>("CoreData_0e503aef608672fa", 2075997778593173, undefined, []);
 
 /** var NSValidationRelationshipExceedsMaximumCountError: Int { get } */
-export const NSValidationRelationshipExceedsMaximumCountError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3427851231380781, undefined, []);
+export const NSValidationRelationshipExceedsMaximumCountError: number = callSDK<number>("CoreData_0e503aef608672fa", 3427851231380781, undefined, []);
 
 /** var NSValidationRelationshipLacksMinimumCountError: Int { get } */
-export const NSValidationRelationshipLacksMinimumCountError: number = callSDK<number>("CoreData_d968214ecc684fb6", 855146881851956, undefined, []);
+export const NSValidationRelationshipLacksMinimumCountError: number = callSDK<number>("CoreData_0e503aef608672fa", 855146881851956, undefined, []);
 
 /** var NSValidationStringPatternMatchingError: Int { get } */
-export const NSValidationStringPatternMatchingError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3981551028447265, undefined, []);
+export const NSValidationStringPatternMatchingError: number = callSDK<number>("CoreData_0e503aef608672fa", 3981551028447265, undefined, []);
 
 /** var NSValidationStringTooLongError: Int { get } */
-export const NSValidationStringTooLongError: number = callSDK<number>("CoreData_d968214ecc684fb6", 1717388793504290, undefined, []);
+export const NSValidationStringTooLongError: number = callSDK<number>("CoreData_0e503aef608672fa", 1717388793504290, undefined, []);
 
 /** var NSValidationStringTooShortError: Int { get } */
-export const NSValidationStringTooShortError: number = callSDK<number>("CoreData_d968214ecc684fb6", 3155880273609201, undefined, []);
+export const NSValidationStringTooShortError: number = callSDK<number>("CoreData_0e503aef608672fa", 3155880273609201, undefined, []);
 
 /**
  * let NSAddedPersistentStoresKey: String
  * @availability iOS 3.0+
  */
-export const NSAddedPersistentStoresKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2427191232963096, undefined, []);
+export const NSAddedPersistentStoresKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2427191232963096, undefined, []);
 
 /**
  * let NSAffectedObjectsErrorKey: String
  * @availability iOS 3.0+
  */
-export const NSAffectedObjectsErrorKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1481121073521917, undefined, []);
+export const NSAffectedObjectsErrorKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1481121073521917, undefined, []);
 
 /**
  * let NSAffectedStoresErrorKey: String
  * @availability iOS 3.0+
  */
-export const NSAffectedStoresErrorKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 687730704764705, undefined, []);
+export const NSAffectedStoresErrorKey: string = callSDK<string>("CoreData_0e503aef608672fa", 687730704764705, undefined, []);
 
 /**
  * let NSBinaryStoreInsecureDecodingCompatibilityOption: String
  * @availability iOS 11.0+
  */
-export const NSBinaryStoreInsecureDecodingCompatibilityOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 1118913749246608, undefined, []);
+export const NSBinaryStoreInsecureDecodingCompatibilityOption: string = callSDK<string>("CoreData_0e503aef608672fa", 1118913749246608, undefined, []);
 
 /**
  * let NSBinaryStoreSecureDecodingClasses: String
  * @availability iOS 11.0+
  */
-export const NSBinaryStoreSecureDecodingClasses: string = callSDK<string>("CoreData_d968214ecc684fb6", 1882367544723839, undefined, []);
+export const NSBinaryStoreSecureDecodingClasses: string = callSDK<string>("CoreData_0e503aef608672fa", 1882367544723839, undefined, []);
 
 /**
  * let NSBinaryStoreType: String
  * @availability iOS 3.0+
  */
-export const NSBinaryStoreType: string = callSDK<string>("CoreData_d968214ecc684fb6", 1720603703916299, undefined, []);
+export const NSBinaryStoreType: string = callSDK<string>("CoreData_0e503aef608672fa", 1720603703916299, undefined, []);
 
 /**
  * let NSCoreDataCoreSpotlightExporter: String
  * @availability iOS 11.0+
  */
-export const NSCoreDataCoreSpotlightExporter: string = callSDK<string>("CoreData_d968214ecc684fb6", 4083649457176429, undefined, []);
+export const NSCoreDataCoreSpotlightExporter: string = callSDK<string>("CoreData_0e503aef608672fa", 4083649457176429, undefined, []);
 
 /** var NSCoreDataVersionNumber: Double */
 export const NSCoreDataVersionNumber = {
-  get value(): number { return callSDK<number>("CoreData_d968214ecc684fb6", 3365740759281248, undefined, []); },
-  set value(value: number) { callSDK<void>("CoreData_d968214ecc684fb6", 423955134142199, undefined, [value]); }
+  get value(): number { return callSDK<number>("CoreData_0e503aef608672fa", 3365740759281248, undefined, []); },
+  set value(value: number) { callSDK<void>("CoreData_0e503aef608672fa", 423955134142199, undefined, [value]); }
 };
 
 /**
  * let NSDeletedObjectIDsKey: String
  * @availability iOS 10.3+
  */
-export const NSDeletedObjectIDsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3988510795695664, undefined, []);
+export const NSDeletedObjectIDsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3988510795695664, undefined, []);
 
 /**
  * let NSDeletedObjectsKey: String
  * @availability iOS 3.0+
  */
-export const NSDeletedObjectsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 351505897887011, undefined, []);
+export const NSDeletedObjectsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 351505897887011, undefined, []);
 
 /**
  * let NSDetailedErrorsKey: String
  * @availability iOS 3.0+
  */
-export const NSDetailedErrorsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2227843629562194, undefined, []);
+export const NSDetailedErrorsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2227843629562194, undefined, []);
 
 /**
  * var NSErrorMergePolicy: AnyObject
  * @availability iOS 3.0+
  */
 export const NSErrorMergePolicy = {
-  get value(): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 2432320582354915, undefined, []); },
-  set value(value: unknown) { callSDK<void>("CoreData_d968214ecc684fb6", 4050142196929477, undefined, [value]); }
+  get value(): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 2432320582354915, undefined, []); },
+  set value(value: unknown) { callSDK<void>("CoreData_0e503aef608672fa", 4050142196929477, undefined, [value]); }
 };
 
 /** var NSFetchRequestExpressionType: NSExpression.ExpressionType { get } */
-export const NSFetchRequestExpressionType: _Foundation_NSExpression_ExpressionType = callSDK<_Foundation_NSExpression_ExpressionType>("CoreData_d968214ecc684fb6", 3212040380811310, undefined, []);
+export const NSFetchRequestExpressionType: _Foundation_NSExpression_ExpressionType = callSDK<_Foundation_NSExpression_ExpressionType>("CoreData_0e503aef608672fa", 3212040380811310, undefined, []);
 
 /**
  * let NSIgnorePersistentStoreVersioningOption: String
  * @availability iOS 3.0+
  */
-export const NSIgnorePersistentStoreVersioningOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 869565302010378, undefined, []);
+export const NSIgnorePersistentStoreVersioningOption: string = callSDK<string>("CoreData_0e503aef608672fa", 869565302010378, undefined, []);
 
 /**
  * let NSInMemoryStoreType: String
  * @availability iOS 3.0+
  */
-export const NSInMemoryStoreType: string = callSDK<string>("CoreData_d968214ecc684fb6", 3094220588755428, undefined, []);
+export const NSInMemoryStoreType: string = callSDK<string>("CoreData_0e503aef608672fa", 3094220588755428, undefined, []);
 
 /**
  * let NSInferMappingModelAutomaticallyOption: String
  * @availability iOS 3.0+
  */
-export const NSInferMappingModelAutomaticallyOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 3218014157335449, undefined, []);
+export const NSInferMappingModelAutomaticallyOption: string = callSDK<string>("CoreData_0e503aef608672fa", 3218014157335449, undefined, []);
 
 /**
  * let NSInsertedObjectIDsKey: String
  * @availability iOS 10.3+
  */
-export const NSInsertedObjectIDsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1351559252533346, undefined, []);
+export const NSInsertedObjectIDsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1351559252533346, undefined, []);
 
 /**
  * let NSInsertedObjectsKey: String
  * @availability iOS 3.0+
  */
-export const NSInsertedObjectsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 4212055281598015, undefined, []);
+export const NSInsertedObjectsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 4212055281598015, undefined, []);
 
 /**
  * let NSInvalidatedAllObjectsKey: String
  * @availability iOS 3.0+
  */
-export const NSInvalidatedAllObjectsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 884964181936614, undefined, []);
+export const NSInvalidatedAllObjectsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 884964181936614, undefined, []);
 
 /**
  * let NSInvalidatedObjectIDsKey: String
  * @availability iOS 10.3+
  */
-export const NSInvalidatedObjectIDsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 4012852572531396, undefined, []);
+export const NSInvalidatedObjectIDsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 4012852572531396, undefined, []);
 
 /**
  * let NSInvalidatedObjectsKey: String
  * @availability iOS 3.0+
  */
-export const NSInvalidatedObjectsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1883482063951486, undefined, []);
+export const NSInvalidatedObjectsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1883482063951486, undefined, []);
 
 /**
  * let NSManagedObjectContextQueryGenerationKey: String
  * @availability iOS 10.0+
  */
-export const NSManagedObjectContextQueryGenerationKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 4196188715140549, undefined, []);
+export const NSManagedObjectContextQueryGenerationKey: string = callSDK<string>("CoreData_0e503aef608672fa", 4196188715140549, undefined, []);
 
 /**
  * var NSMergeByPropertyObjectTrumpMergePolicy: AnyObject
  * @availability iOS 3.0+
  */
 export const NSMergeByPropertyObjectTrumpMergePolicy = {
-  get value(): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 261039543535179, undefined, []); },
-  set value(value: unknown) { callSDK<void>("CoreData_d968214ecc684fb6", 3303258298644336, undefined, [value]); }
+  get value(): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 261039543535179, undefined, []); },
+  set value(value: unknown) { callSDK<void>("CoreData_0e503aef608672fa", 3303258298644336, undefined, [value]); }
 };
 
 /**
@@ -5775,509 +5775,509 @@ export const NSMergeByPropertyObjectTrumpMergePolicy = {
  * @availability iOS 3.0+
  */
 export const NSMergeByPropertyStoreTrumpMergePolicy = {
-  get value(): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 2560686019221563, undefined, []); },
-  set value(value: unknown) { callSDK<void>("CoreData_d968214ecc684fb6", 10085401233226, undefined, [value]); }
+  get value(): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 2560686019221563, undefined, []); },
+  set value(value: unknown) { callSDK<void>("CoreData_0e503aef608672fa", 10085401233226, undefined, [value]); }
 };
 
 /**
  * let NSMigratePersistentStoresAutomaticallyOption: String
  * @availability iOS 3.0+
  */
-export const NSMigratePersistentStoresAutomaticallyOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 1186040490530206, undefined, []);
+export const NSMigratePersistentStoresAutomaticallyOption: string = callSDK<string>("CoreData_0e503aef608672fa", 1186040490530206, undefined, []);
 
 /**
  * let NSMigrationDestinationObjectKey: String
  * @availability iOS 3.0+
  */
-export const NSMigrationDestinationObjectKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3653340486127735, undefined, []);
+export const NSMigrationDestinationObjectKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3653340486127735, undefined, []);
 
 /**
  * let NSMigrationEntityMappingKey: String
  * @availability iOS 3.0+
  */
-export const NSMigrationEntityMappingKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2089073851666337, undefined, []);
+export const NSMigrationEntityMappingKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2089073851666337, undefined, []);
 
 /**
  * let NSMigrationEntityPolicyKey: String
  * @availability iOS 3.0+
  */
-export const NSMigrationEntityPolicyKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3993877355285280, undefined, []);
+export const NSMigrationEntityPolicyKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3993877355285280, undefined, []);
 
 /**
  * let NSMigrationManagerKey: String
  * @availability iOS 3.0+
  */
-export const NSMigrationManagerKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2540544537360252, undefined, []);
+export const NSMigrationManagerKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2540544537360252, undefined, []);
 
 /**
  * let NSMigrationPropertyMappingKey: String
  * @availability iOS 3.0+
  */
-export const NSMigrationPropertyMappingKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 471186649224081, undefined, []);
+export const NSMigrationPropertyMappingKey: string = callSDK<string>("CoreData_0e503aef608672fa", 471186649224081, undefined, []);
 
 /**
  * let NSMigrationSourceObjectKey: String
  * @availability iOS 3.0+
  */
-export const NSMigrationSourceObjectKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3492497049646854, undefined, []);
+export const NSMigrationSourceObjectKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3492497049646854, undefined, []);
 
 /**
  * var NSOverwriteMergePolicy: AnyObject
  * @availability iOS 3.0+
  */
 export const NSOverwriteMergePolicy = {
-  get value(): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 3768775166535952, undefined, []); },
-  set value(value: unknown) { callSDK<void>("CoreData_d968214ecc684fb6", 3922361211180071, undefined, [value]); }
+  get value(): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 3768775166535952, undefined, []); },
+  set value(value: unknown) { callSDK<void>("CoreData_0e503aef608672fa", 3922361211180071, undefined, [value]); }
 };
 
 /**
  * let NSPersistentHistoryTokenKey: String
  * @availability iOS 12.0+
  */
-export const NSPersistentHistoryTokenKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1172497504403066, undefined, []);
+export const NSPersistentHistoryTokenKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1172497504403066, undefined, []);
 
 /**
  * let NSPersistentHistoryTrackingKey: String
  * @availability iOS 11.0+
  */
-export const NSPersistentHistoryTrackingKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3723564745990075, undefined, []);
+export const NSPersistentHistoryTrackingKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3723564745990075, undefined, []);
 
 /**
  * let NSPersistentStoreConnectionPoolMaxSizeKey: String
  * @availability iOS 10.0+
  */
-export const NSPersistentStoreConnectionPoolMaxSizeKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3626923994749994, undefined, []);
+export const NSPersistentStoreConnectionPoolMaxSizeKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3626923994749994, undefined, []);
 
 /**
  * let NSPersistentStoreDeferredLightweightMigrationOptionKey: String
  * @availability iOS 14.0+
  */
-export const NSPersistentStoreDeferredLightweightMigrationOptionKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2740410179838277, undefined, []);
+export const NSPersistentStoreDeferredLightweightMigrationOptionKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2740410179838277, undefined, []);
 
 /**
  * let NSPersistentStoreFileProtectionKey: String
  * @availability iOS 5.0+
  */
-export const NSPersistentStoreFileProtectionKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 958479790531497, undefined, []);
+export const NSPersistentStoreFileProtectionKey: string = callSDK<string>("CoreData_0e503aef608672fa", 958479790531497, undefined, []);
 
 /**
  * let NSPersistentStoreForceDestroyOption: String
  * @availability iOS 6.0+
  */
-export const NSPersistentStoreForceDestroyOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 3206250039774533, undefined, []);
+export const NSPersistentStoreForceDestroyOption: string = callSDK<string>("CoreData_0e503aef608672fa", 3206250039774533, undefined, []);
 
 /**
  * let NSPersistentStoreModelVersionChecksumKey: String
  * @availability iOS 18.0+
  */
-export const NSPersistentStoreModelVersionChecksumKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2975259682602185, undefined, []);
+export const NSPersistentStoreModelVersionChecksumKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2975259682602185, undefined, []);
 
 /**
  * let NSPersistentStoreOSCompatibility: String
  * @availability iOS 3.0+
  */
-export const NSPersistentStoreOSCompatibility: string = callSDK<string>("CoreData_d968214ecc684fb6", 910801589262141, undefined, []);
+export const NSPersistentStoreOSCompatibility: string = callSDK<string>("CoreData_0e503aef608672fa", 910801589262141, undefined, []);
 
 /**
  * let NSPersistentStoreRebuildFromUbiquitousContentOption: String
  * @availability iOS 7.0+
  * @deprecated iOS 10.0
  */
-export const NSPersistentStoreRebuildFromUbiquitousContentOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 3630653395590465, undefined, []);
+export const NSPersistentStoreRebuildFromUbiquitousContentOption: string = callSDK<string>("CoreData_0e503aef608672fa", 3630653395590465, undefined, []);
 
 /**
  * let NSPersistentStoreRemoteChangeNotificationPostOptionKey: String
  * @availability iOS 13.0+
  */
-export const NSPersistentStoreRemoteChangeNotificationPostOptionKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 4135269744789172, undefined, []);
+export const NSPersistentStoreRemoteChangeNotificationPostOptionKey: string = callSDK<string>("CoreData_0e503aef608672fa", 4135269744789172, undefined, []);
 
 /**
  * let NSPersistentStoreRemoveUbiquitousMetadataOption: String
  * @availability iOS 7.0+
  * @deprecated iOS 10.0
  */
-export const NSPersistentStoreRemoveUbiquitousMetadataOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 4320430443845380, undefined, []);
+export const NSPersistentStoreRemoveUbiquitousMetadataOption: string = callSDK<string>("CoreData_0e503aef608672fa", 4320430443845380, undefined, []);
 
 /**
  * let NSPersistentStoreSaveConflictsErrorKey: String
  * @availability iOS 5.0+
  */
-export const NSPersistentStoreSaveConflictsErrorKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1843277958678649, undefined, []);
+export const NSPersistentStoreSaveConflictsErrorKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1843277958678649, undefined, []);
 
 /**
  * let NSPersistentStoreStagedMigrationManagerOptionKey: String
  * @availability iOS 17.0+
  */
-export const NSPersistentStoreStagedMigrationManagerOptionKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3201129198245438, undefined, []);
+export const NSPersistentStoreStagedMigrationManagerOptionKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3201129198245438, undefined, []);
 
 /**
  * let NSPersistentStoreTimeoutOption: String
  * @availability iOS 3.0+
  */
-export const NSPersistentStoreTimeoutOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 683432463526026, undefined, []);
+export const NSPersistentStoreTimeoutOption: string = callSDK<string>("CoreData_0e503aef608672fa", 683432463526026, undefined, []);
 
 /**
  * let NSPersistentStoreURLKey: String
  * @availability iOS 12.0+
  */
-export const NSPersistentStoreURLKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3626607656592216, undefined, []);
+export const NSPersistentStoreURLKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3626607656592216, undefined, []);
 
 /**
  * let NSPersistentStoreUbiquitousContainerIdentifierKey: String
  * @availability iOS 7.0+
  * @deprecated iOS 10.0
  */
-export const NSPersistentStoreUbiquitousContainerIdentifierKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3847613852152922, undefined, []);
+export const NSPersistentStoreUbiquitousContainerIdentifierKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3847613852152922, undefined, []);
 
 /**
  * let NSPersistentStoreUbiquitousContentNameKey: String
  * @availability iOS 5.0+
  * @deprecated iOS 10.0
  */
-export const NSPersistentStoreUbiquitousContentNameKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 287408599971572, undefined, []);
+export const NSPersistentStoreUbiquitousContentNameKey: string = callSDK<string>("CoreData_0e503aef608672fa", 287408599971572, undefined, []);
 
 /**
  * let NSPersistentStoreUbiquitousContentURLKey: String
  * @availability iOS 5.0+
  * @deprecated iOS 10.0
  */
-export const NSPersistentStoreUbiquitousContentURLKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2357011843610161, undefined, []);
+export const NSPersistentStoreUbiquitousContentURLKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2357011843610161, undefined, []);
 
 /**
  * let NSPersistentStoreUbiquitousPeerTokenOption: String
  * @availability iOS 7.0+
  * @deprecated iOS 10.0
  */
-export const NSPersistentStoreUbiquitousPeerTokenOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 1725686084415122, undefined, []);
+export const NSPersistentStoreUbiquitousPeerTokenOption: string = callSDK<string>("CoreData_0e503aef608672fa", 1725686084415122, undefined, []);
 
 /**
  * let NSPersistentStoreUbiquitousTransitionTypeKey: String
  * @availability iOS 7.0+
  * @deprecated iOS 10.0
  */
-export const NSPersistentStoreUbiquitousTransitionTypeKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 4134487587122069, undefined, []);
+export const NSPersistentStoreUbiquitousTransitionTypeKey: string = callSDK<string>("CoreData_0e503aef608672fa", 4134487587122069, undefined, []);
 
 /**
  * let NSReadOnlyPersistentStoreOption: String
  * @availability iOS 3.0+
  */
-export const NSReadOnlyPersistentStoreOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 2702900014625521, undefined, []);
+export const NSReadOnlyPersistentStoreOption: string = callSDK<string>("CoreData_0e503aef608672fa", 2702900014625521, undefined, []);
 
 /**
  * let NSRefreshedObjectIDsKey: String
  * @availability iOS 10.3+
  */
-export const NSRefreshedObjectIDsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3392514505724068, undefined, []);
+export const NSRefreshedObjectIDsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3392514505724068, undefined, []);
 
 /**
  * let NSRefreshedObjectsKey: String
  * @availability iOS 3.0+
  */
-export const NSRefreshedObjectsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1498340554558421, undefined, []);
+export const NSRefreshedObjectsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1498340554558421, undefined, []);
 
 /**
  * let NSRemovedPersistentStoresKey: String
  * @availability iOS 3.0+
  */
-export const NSRemovedPersistentStoresKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2018081667034584, undefined, []);
+export const NSRemovedPersistentStoresKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2018081667034584, undefined, []);
 
 /**
  * var NSRollbackMergePolicy: AnyObject
  * @availability iOS 3.0+
  */
 export const NSRollbackMergePolicy = {
-  get value(): unknown { return callSDK<unknown>("CoreData_d968214ecc684fb6", 2923515415121166, undefined, []); },
-  set value(value: unknown) { callSDK<void>("CoreData_d968214ecc684fb6", 1856934025124910, undefined, [value]); }
+  get value(): unknown { return callSDK<unknown>("CoreData_0e503aef608672fa", 2923515415121166, undefined, []); },
+  set value(value: unknown) { callSDK<void>("CoreData_0e503aef608672fa", 1856934025124910, undefined, [value]); }
 };
 
 /**
  * let NSSQLiteAnalyzeOption: String
  * @availability iOS 3.0+
  */
-export const NSSQLiteAnalyzeOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 1571134788777763, undefined, []);
+export const NSSQLiteAnalyzeOption: string = callSDK<string>("CoreData_0e503aef608672fa", 1571134788777763, undefined, []);
 
 /**
  * let NSSQLiteErrorDomain: String
  * @availability iOS 3.0+
  */
-export const NSSQLiteErrorDomain: string = callSDK<string>("CoreData_d968214ecc684fb6", 536757431375095, undefined, []);
+export const NSSQLiteErrorDomain: string = callSDK<string>("CoreData_0e503aef608672fa", 536757431375095, undefined, []);
 
 /**
  * let NSSQLiteManualVacuumOption: String
  * @availability iOS 3.0+
  */
-export const NSSQLiteManualVacuumOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 4203566508238236, undefined, []);
+export const NSSQLiteManualVacuumOption: string = callSDK<string>("CoreData_0e503aef608672fa", 4203566508238236, undefined, []);
 
 /**
  * let NSSQLitePragmasOption: String
  * @availability iOS 3.0+
  */
-export const NSSQLitePragmasOption: string = callSDK<string>("CoreData_d968214ecc684fb6", 2053199226936030, undefined, []);
+export const NSSQLitePragmasOption: string = callSDK<string>("CoreData_0e503aef608672fa", 2053199226936030, undefined, []);
 
 /**
  * let NSSQLiteStoreType: String
  * @availability iOS 3.0+
  */
-export const NSSQLiteStoreType: string = callSDK<string>("CoreData_d968214ecc684fb6", 3398874830262241, undefined, []);
+export const NSSQLiteStoreType: string = callSDK<string>("CoreData_0e503aef608672fa", 3398874830262241, undefined, []);
 
 /**
  * let NSStoreModelVersionHashesKey: String
  * @availability iOS 3.0+
  */
-export const NSStoreModelVersionHashesKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 695627226840162, undefined, []);
+export const NSStoreModelVersionHashesKey: string = callSDK<string>("CoreData_0e503aef608672fa", 695627226840162, undefined, []);
 
 /**
  * let NSStoreModelVersionIdentifiersKey: String
  * @availability iOS 3.0+
  */
-export const NSStoreModelVersionIdentifiersKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1403706742545695, undefined, []);
+export const NSStoreModelVersionIdentifiersKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1403706742545695, undefined, []);
 
 /**
  * let NSStoreTypeKey: String
  * @availability iOS 3.0+
  */
-export const NSStoreTypeKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3580659609113195, undefined, []);
+export const NSStoreTypeKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3580659609113195, undefined, []);
 
 /**
  * let NSStoreUUIDKey: String
  * @availability iOS 3.0+
  */
-export const NSStoreUUIDKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1391051234035605, undefined, []);
+export const NSStoreUUIDKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1391051234035605, undefined, []);
 
 /**
  * let NSUUIDChangedPersistentStoresKey: String
  * @availability iOS 3.0+
  */
-export const NSUUIDChangedPersistentStoresKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2907986723227227, undefined, []);
+export const NSUUIDChangedPersistentStoresKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2907986723227227, undefined, []);
 
 /**
  * let NSUpdatedObjectIDsKey: String
  * @availability iOS 10.3+
  */
-export const NSUpdatedObjectIDsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1703529544889530, undefined, []);
+export const NSUpdatedObjectIDsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1703529544889530, undefined, []);
 
 /**
  * let NSUpdatedObjectsKey: String
  * @availability iOS 3.0+
  */
-export const NSUpdatedObjectsKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2381790509998875, undefined, []);
+export const NSUpdatedObjectsKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2381790509998875, undefined, []);
 
 /**
  * let NSValidationKeyErrorKey: String
  * @availability iOS 3.0+
  */
-export const NSValidationKeyErrorKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 2573284075819275, undefined, []);
+export const NSValidationKeyErrorKey: string = callSDK<string>("CoreData_0e503aef608672fa", 2573284075819275, undefined, []);
 
 /**
  * let NSValidationObjectErrorKey: String
  * @availability iOS 3.0+
  */
-export const NSValidationObjectErrorKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1521326942679507, undefined, []);
+export const NSValidationObjectErrorKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1521326942679507, undefined, []);
 
 /**
  * let NSValidationPredicateErrorKey: String
  * @availability iOS 3.0+
  */
-export const NSValidationPredicateErrorKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 1554285975634904, undefined, []);
+export const NSValidationPredicateErrorKey: string = callSDK<string>("CoreData_0e503aef608672fa", 1554285975634904, undefined, []);
 
 /**
  * let NSValidationValueErrorKey: String
  * @availability iOS 3.0+
  */
-export const NSValidationValueErrorKey: string = callSDK<string>("CoreData_d968214ecc684fb6", 3942411227479895, undefined, []);
+export const NSValidationValueErrorKey: string = callSDK<string>("CoreData_0e503aef608672fa", 3942411227479895, undefined, []);
 
 /** var NSCoreDataVersionNumber10_10: Double { get } */
-export const NSCoreDataVersionNumber10_10: number = callSDK<number>("CoreData_d968214ecc684fb6", 2022021759289830, undefined, []);
+export const NSCoreDataVersionNumber10_10: number = callSDK<number>("CoreData_0e503aef608672fa", 2022021759289830, undefined, []);
 
 /** var NSCoreDataVersionNumber10_10_2: Double { get } */
-export const NSCoreDataVersionNumber10_10_2: number = callSDK<number>("CoreData_d968214ecc684fb6", 1629205312465349, undefined, []);
+export const NSCoreDataVersionNumber10_10_2: number = callSDK<number>("CoreData_0e503aef608672fa", 1629205312465349, undefined, []);
 
 /** var NSCoreDataVersionNumber10_10_3: Double { get } */
-export const NSCoreDataVersionNumber10_10_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 3605289422779991, undefined, []);
+export const NSCoreDataVersionNumber10_10_3: number = callSDK<number>("CoreData_0e503aef608672fa", 3605289422779991, undefined, []);
 
 /** var NSCoreDataVersionNumber10_11: Double { get } */
-export const NSCoreDataVersionNumber10_11: number = callSDK<number>("CoreData_d968214ecc684fb6", 4143644933726365, undefined, []);
+export const NSCoreDataVersionNumber10_11: number = callSDK<number>("CoreData_0e503aef608672fa", 4143644933726365, undefined, []);
 
 /** var NSCoreDataVersionNumber10_11_3: Double { get } */
-export const NSCoreDataVersionNumber10_11_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 1476719033033142, undefined, []);
+export const NSCoreDataVersionNumber10_11_3: number = callSDK<number>("CoreData_0e503aef608672fa", 1476719033033142, undefined, []);
 
 /** var NSCoreDataVersionNumber10_4: Double { get } */
-export const NSCoreDataVersionNumber10_4: number = callSDK<number>("CoreData_d968214ecc684fb6", 199023750146213, undefined, []);
+export const NSCoreDataVersionNumber10_4: number = callSDK<number>("CoreData_0e503aef608672fa", 199023750146213, undefined, []);
 
 /** var NSCoreDataVersionNumber10_4_3: Double { get } */
-export const NSCoreDataVersionNumber10_4_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 749999629209479, undefined, []);
+export const NSCoreDataVersionNumber10_4_3: number = callSDK<number>("CoreData_0e503aef608672fa", 749999629209479, undefined, []);
 
 /** var NSCoreDataVersionNumber10_5: Double { get } */
-export const NSCoreDataVersionNumber10_5: number = callSDK<number>("CoreData_d968214ecc684fb6", 1622069311024981, undefined, []);
+export const NSCoreDataVersionNumber10_5: number = callSDK<number>("CoreData_0e503aef608672fa", 1622069311024981, undefined, []);
 
 /** var NSCoreDataVersionNumber10_5_3: Double { get } */
-export const NSCoreDataVersionNumber10_5_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 2904669518212804, undefined, []);
+export const NSCoreDataVersionNumber10_5_3: number = callSDK<number>("CoreData_0e503aef608672fa", 2904669518212804, undefined, []);
 
 /** var NSCoreDataVersionNumber10_6: Double { get } */
-export const NSCoreDataVersionNumber10_6: number = callSDK<number>("CoreData_d968214ecc684fb6", 727381392080436, undefined, []);
+export const NSCoreDataVersionNumber10_6: number = callSDK<number>("CoreData_0e503aef608672fa", 727381392080436, undefined, []);
 
 /** var NSCoreDataVersionNumber10_6_2: Double { get } */
-export const NSCoreDataVersionNumber10_6_2: number = callSDK<number>("CoreData_d968214ecc684fb6", 2072197824547388, undefined, []);
+export const NSCoreDataVersionNumber10_6_2: number = callSDK<number>("CoreData_0e503aef608672fa", 2072197824547388, undefined, []);
 
 /** var NSCoreDataVersionNumber10_6_3: Double { get } */
-export const NSCoreDataVersionNumber10_6_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 1413069477559282, undefined, []);
+export const NSCoreDataVersionNumber10_6_3: number = callSDK<number>("CoreData_0e503aef608672fa", 1413069477559282, undefined, []);
 
 /** var NSCoreDataVersionNumber10_7: Double { get } */
-export const NSCoreDataVersionNumber10_7: number = callSDK<number>("CoreData_d968214ecc684fb6", 2535817100147493, undefined, []);
+export const NSCoreDataVersionNumber10_7: number = callSDK<number>("CoreData_0e503aef608672fa", 2535817100147493, undefined, []);
 
 /** var NSCoreDataVersionNumber10_7_2: Double { get } */
-export const NSCoreDataVersionNumber10_7_2: number = callSDK<number>("CoreData_d968214ecc684fb6", 3512701579084006, undefined, []);
+export const NSCoreDataVersionNumber10_7_2: number = callSDK<number>("CoreData_0e503aef608672fa", 3512701579084006, undefined, []);
 
 /** var NSCoreDataVersionNumber10_7_3: Double { get } */
-export const NSCoreDataVersionNumber10_7_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 235508296697278, undefined, []);
+export const NSCoreDataVersionNumber10_7_3: number = callSDK<number>("CoreData_0e503aef608672fa", 235508296697278, undefined, []);
 
 /** var NSCoreDataVersionNumber10_7_4: Double { get } */
-export const NSCoreDataVersionNumber10_7_4: number = callSDK<number>("CoreData_d968214ecc684fb6", 1978205240242002, undefined, []);
+export const NSCoreDataVersionNumber10_7_4: number = callSDK<number>("CoreData_0e503aef608672fa", 1978205240242002, undefined, []);
 
 /** var NSCoreDataVersionNumber10_8: Double { get } */
-export const NSCoreDataVersionNumber10_8: number = callSDK<number>("CoreData_d968214ecc684fb6", 4002148664493191, undefined, []);
+export const NSCoreDataVersionNumber10_8: number = callSDK<number>("CoreData_0e503aef608672fa", 4002148664493191, undefined, []);
 
 /** var NSCoreDataVersionNumber10_8_2: Double { get } */
-export const NSCoreDataVersionNumber10_8_2: number = callSDK<number>("CoreData_d968214ecc684fb6", 1476994842135935, undefined, []);
+export const NSCoreDataVersionNumber10_8_2: number = callSDK<number>("CoreData_0e503aef608672fa", 1476994842135935, undefined, []);
 
 /** var NSCoreDataVersionNumber10_9: Double { get } */
-export const NSCoreDataVersionNumber10_9: number = callSDK<number>("CoreData_d968214ecc684fb6", 2139842953345607, undefined, []);
+export const NSCoreDataVersionNumber10_9: number = callSDK<number>("CoreData_0e503aef608672fa", 2139842953345607, undefined, []);
 
 /** var NSCoreDataVersionNumber10_9_2: Double { get } */
-export const NSCoreDataVersionNumber10_9_2: number = callSDK<number>("CoreData_d968214ecc684fb6", 2702382625959592, undefined, []);
+export const NSCoreDataVersionNumber10_9_2: number = callSDK<number>("CoreData_0e503aef608672fa", 2702382625959592, undefined, []);
 
 /** var NSCoreDataVersionNumber10_9_3: Double { get } */
-export const NSCoreDataVersionNumber10_9_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 1347631078250083, undefined, []);
+export const NSCoreDataVersionNumber10_9_3: number = callSDK<number>("CoreData_0e503aef608672fa", 1347631078250083, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_3_0: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_3_0: number = callSDK<number>("CoreData_d968214ecc684fb6", 1682489221167073, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_3_0: number = callSDK<number>("CoreData_0e503aef608672fa", 1682489221167073, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_3_1: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_3_1: number = callSDK<number>("CoreData_d968214ecc684fb6", 4077216519210303, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_3_1: number = callSDK<number>("CoreData_0e503aef608672fa", 4077216519210303, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_3_2: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_3_2: number = callSDK<number>("CoreData_d968214ecc684fb6", 880239921780991, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_3_2: number = callSDK<number>("CoreData_0e503aef608672fa", 880239921780991, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_4_0: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_4_0: number = callSDK<number>("CoreData_d968214ecc684fb6", 246103342547461, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_4_0: number = callSDK<number>("CoreData_0e503aef608672fa", 246103342547461, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_4_1: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_4_1: number = callSDK<number>("CoreData_d968214ecc684fb6", 3087637049708182, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_4_1: number = callSDK<number>("CoreData_0e503aef608672fa", 3087637049708182, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_4_2: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_4_2: number = callSDK<number>("CoreData_d968214ecc684fb6", 591443883677917, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_4_2: number = callSDK<number>("CoreData_0e503aef608672fa", 591443883677917, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_4_3: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_4_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 3320621617882744, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_4_3: number = callSDK<number>("CoreData_0e503aef608672fa", 3320621617882744, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_5_0: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_5_0: number = callSDK<number>("CoreData_d968214ecc684fb6", 4247913467097304, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_5_0: number = callSDK<number>("CoreData_0e503aef608672fa", 4247913467097304, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_5_1: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_5_1: number = callSDK<number>("CoreData_d968214ecc684fb6", 2583958509421970, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_5_1: number = callSDK<number>("CoreData_0e503aef608672fa", 2583958509421970, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_6_0: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_6_0: number = callSDK<number>("CoreData_d968214ecc684fb6", 3676782519466438, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_6_0: number = callSDK<number>("CoreData_0e503aef608672fa", 3676782519466438, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_6_1: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_6_1: number = callSDK<number>("CoreData_d968214ecc684fb6", 3817006597215152, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_6_1: number = callSDK<number>("CoreData_0e503aef608672fa", 3817006597215152, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_7_0: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_7_0: number = callSDK<number>("CoreData_d968214ecc684fb6", 3319651669957533, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_7_0: number = callSDK<number>("CoreData_0e503aef608672fa", 3319651669957533, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_7_1: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_7_1: number = callSDK<number>("CoreData_d968214ecc684fb6", 2266354588456225, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_7_1: number = callSDK<number>("CoreData_0e503aef608672fa", 2266354588456225, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_8_0: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_8_0: number = callSDK<number>("CoreData_d968214ecc684fb6", 3167005648813686, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_8_0: number = callSDK<number>("CoreData_0e503aef608672fa", 3167005648813686, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_8_3: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_8_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 783413648268035, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_8_3: number = callSDK<number>("CoreData_0e503aef608672fa", 783413648268035, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_9_0: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_9_0: number = callSDK<number>("CoreData_d968214ecc684fb6", 45457382630874, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_9_0: number = callSDK<number>("CoreData_0e503aef608672fa", 45457382630874, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_9_2: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_9_2: number = callSDK<number>("CoreData_d968214ecc684fb6", 2327572005548027, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_9_2: number = callSDK<number>("CoreData_0e503aef608672fa", 2327572005548027, undefined, []);
 
 /** var NSCoreDataVersionNumber_iPhoneOS_9_3: Double { get } */
-export const NSCoreDataVersionNumber_iPhoneOS_9_3: number = callSDK<number>("CoreData_d968214ecc684fb6", 309401659464371, undefined, []);
+export const NSCoreDataVersionNumber_iPhoneOS_9_3: number = callSDK<number>("CoreData_0e503aef608672fa", 309401659464371, undefined, []);
 
-registerSDKClass("Foundation.CocoaError", CocoaError, { module: "CoreData_d968214ecc684fb6", properties: {} }, true);
-registerSDKClass("NSPersistentStoreRequest", NSPersistentStoreRequest, { module: "CoreData_d968214ecc684fb6", properties: {"affectedStores":3217305954939300,"requestType":516434419622910} });
-registerSDKClass("NSAsynchronousFetchRequest", NSAsynchronousFetchRequest, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSPersistentStoreResult", NSPersistentStoreResult, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSPersistentStoreAsynchronousResult", NSPersistentStoreAsynchronousResult, { module: "CoreData_d968214ecc684fb6", properties: {"managedObjectContext":141141498082331,"operationError":359705451135352,"progress":1700975075983764}, methods: {"cancel":{"id":1922312510400148}} });
-registerSDKClass("NSAsynchronousFetchResult", NSAsynchronousFetchResult, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSPersistentStore", NSPersistentStore, { module: "CoreData_d968214ecc684fb6", properties: {"url":2298970329444352,"configurationName":1538111270082809,"coreSpotlightExporter":3266192304689530,"identifier":2611098631990541,"metadata":502893987734389,"options":4338716381091857,"persistentStoreCoordinator":3450965154852983,"isReadOnly":3873961893371599,"type":1316757091276579}, methods: {"didAdd":{"id":1859734107649036},"loadMetadata":{"id":56544556487087},"willRemove":{"id":3913944718126153}} });
-registerSDKClass("NSAtomicStore", NSAtomicStore, { module: "CoreData_d968214ecc684fb6", properties: {}, methods: {"addCacheNodes":{"id":1922275103144898},"cacheNode":{"id":491578575962183},"cacheNodes":{"id":1603383523369055},"load":{"id":934906987757966},"newCacheNode":{"id":1338649471921307},"newReferenceObject":{"id":4450892759349331},"objectID":{"id":2464461238346857},"referenceObject":{"id":3186834107519184},"save":{"id":831137924390319},"updateCacheNode":{"id":2861918985077525},"willRemoveCacheNodes":{"id":3996207040589985}} });
-registerSDKClass("NSAtomicStoreCacheNode", NSAtomicStoreCacheNode, { module: "CoreData_d968214ecc684fb6", properties: {"objectID":3751222646394068,"propertyCache":4265154350953748}, methods: {"setValue":{"id":907042784798186},"value":{"id":2524708312326536}} });
-registerSDKClass("NSPropertyDescription", NSPropertyDescription, { module: "CoreData_d968214ecc684fb6", properties: {"entity":2360624533236600,"isIndexed":3728795584439969,"isIndexedBySpotlight":1524571807438344,"name":2064502951833600,"isOptional":814079342349016,"renamingIdentifier":2403410330651757,"isStoredInExternalRecord":1937044633091358,"isTransient":4005146881090207,"userInfo":1574961251104108,"validationPredicates":3690311080511046,"validationWarnings":3536825492687043,"versionHash":702274190996064,"versionHashModifier":2935251789574876}, methods: {"setValidationPredicates":{"id":3708490248903415}} });
-registerSDKClass("NSAttributeDescription", NSAttributeDescription, { module: "CoreData_d968214ecc684fb6", properties: {"allowsCloudEncryption":3889113087045178,"allowsExternalBinaryDataStorage":1546049444085214,"attributeType":2170771995524136,"attributeValueClassName":3275803980255515,"defaultValue":2290954574831122,"preservesValueInHistoryOnDeletion":4119216596544895,"valueTransformerName":2881605285266676,"versionHash":4407736336046070} });
-registerSDKClass("NSBatchDeleteRequest", NSBatchDeleteRequest, { module: "CoreData_d968214ecc684fb6", properties: {"fetchRequest":950022096972682,"resultType":725419990480056} });
-registerSDKClass("NSBatchDeleteResult", NSBatchDeleteResult, { module: "CoreData_d968214ecc684fb6", properties: {"result":2952666818341475,"resultType":2086386574373202} });
-registerSDKClass("NSBatchInsertRequest", NSBatchInsertRequest, { module: "CoreData_d968214ecc684fb6", properties: {"entity":1275825279183648,"entityName":1338379065569450,"objectsToInsert":3433600625352221,"resultType":3247280241898008} });
-registerSDKClass("NSBatchInsertResult", NSBatchInsertResult, { module: "CoreData_d968214ecc684fb6", properties: {"result":2541175319177021,"resultType":3505870630768580} });
-registerSDKClass("NSBatchUpdateRequest", NSBatchUpdateRequest, { module: "CoreData_d968214ecc684fb6", properties: {"entity":1373283789869712,"entityName":3645533235013085,"includesSubentities":2943667067919086,"predicate":1489862574997128,"propertiesToUpdate":608794178200575,"resultType":1029153656623194} });
-registerSDKClass("NSBatchUpdateResult", NSBatchUpdateResult, { module: "CoreData_d968214ecc684fb6", properties: {"result":376151843006199,"resultType":1311876154613975} });
-registerSDKClass("NSCompositeAttributeDescription", NSCompositeAttributeDescription, { module: "CoreData_d968214ecc684fb6", properties: {"elements":3999201397770894} });
-registerSDKClass("NSConstraintConflict", NSConstraintConflict, { module: "CoreData_d968214ecc684fb6", properties: {"conflictingObjects":3829339232772237,"conflictingSnapshots":1256025872253314,"constraint":2587655975978013,"constraintValues":1310995667556811,"databaseObject":2540516472471187,"databaseSnapshot":3202674309062465} });
-registerSDKClass("NSCoreDataCoreSpotlightDelegate", NSCoreDataCoreSpotlightDelegate, { module: "CoreData_d968214ecc684fb6", properties: {"isIndexingEnabled":2137974613826434}, methods: {"attributeSet":{"id":1030493026303622},"deleteSpotlightIndex":{"id":731426516333608,"hints":[{"callback":{"out":[]}}]},"domainIdentifier":{"id":421849414300980},"indexName":{"id":1071804382901311},"searchableIndexReindexAllSearchableItemsWithAcknowledgementHandler":{"id":2425162268454379,"hints":[null,{"callback":{"out":[]}}]},"searchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler":{"id":978834120543192,"hints":[null,null,{"callback":{"out":[]}}]},"startSpotlightIndexing":{"id":1359726841540736},"stopSpotlightIndexing":{"id":90637479534098}} });
-registerSDKClass("CoreData.NSCoreDataCoreSpotlightDelegate.IndexDidUpdateMessage", NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSMigrationStage", NSMigrationStage, { module: "CoreData_d968214ecc684fb6", properties: {"label":3192942876433156} });
-registerSDKClass("NSCustomMigrationStage", NSCustomMigrationStage, { module: "CoreData_d968214ecc684fb6", properties: {"currentModel":1763960545405299,"nextModel":4149963280654981} });
-registerSDKClass("NSDerivedAttributeDescription", NSDerivedAttributeDescription, { module: "CoreData_d968214ecc684fb6", properties: {"derivationExpression":3322255030537679} });
-registerSDKClass("NSEntityDescription", NSEntityDescription, { module: "CoreData_d968214ecc684fb6", properties: {"isAbstract":1338514190704947,"attributesByName":696513552081970,"compoundIndexes":2641819104617763,"coreSpotlightDisplayNameExpression":2681570369477872,"indexes":1441404448018393,"managedObjectClassName":1820916324358573,"managedObjectModel":4179108406149325,"name":4184566692128086,"properties":1062570261903067,"propertiesByName":994644154784166,"relationshipsByName":689728742443356,"renamingIdentifier":3050742660862520,"subentities":1981033859362523,"subentitiesByName":3170221935682678,"superentity":1958637478952813,"uniquenessConstraints":3128005065601125,"userInfo":2368328779197495,"versionHash":334286790761891,"versionHashModifier":1113520883470796}, methods: {"isKindOf":{"id":2171078030875619},"relationships":{"id":3963365134726854}} });
-registerSDKClass("NSEntityMapping", NSEntityMapping, { module: "CoreData_d968214ecc684fb6", properties: {"attributeMappings":1146748750533226,"destinationEntityName":3160397707764136,"destinationEntityVersionHash":874262091945674,"entityMigrationPolicyClassName":1107394083366857,"mappingType":2012020876719793,"name":2840512146765980,"relationshipMappings":4076376214837721,"sourceEntityName":2997971649559609,"sourceEntityVersionHash":1083231479512647,"sourceExpression":403604266968409,"userInfo":924280802902875} });
-registerSDKClass("NSEntityMigrationPolicy", NSEntityMigrationPolicy, { module: "CoreData_d968214ecc684fb6", properties: {}, methods: {"begin":{"id":75453204145752},"createDestinationInstances":{"id":3961789159613276},"createRelationships":{"id":2476810088951553},"end":{"id":3128763725190795},"endInstanceCreation":{"id":3458987038125492},"endRelationshipCreation":{"id":3380107190562284},"performCustomValidation":{"id":1784850727714231}} });
-registerSDKClass("NSExpressionDescription", NSExpressionDescription, { module: "CoreData_d968214ecc684fb6", properties: {"expression":2968674734847011,"expressionResultType":1596902978845778} });
-registerSDKClass("NSFetchedPropertyDescription", NSFetchedPropertyDescription, { module: "CoreData_d968214ecc684fb6", properties: {"fetchRequest":3832677428450738} });
-registerSDKClass("NSFetchedResultsController", NSFetchedResultsController, { module: "CoreData_d968214ecc684fb6", properties: {} });
+registerSDKClass("Foundation.CocoaError", CocoaError, { module: "CoreData_0e503aef608672fa", properties: {} }, true);
+registerSDKClass("NSPersistentStoreRequest", NSPersistentStoreRequest, { module: "CoreData_0e503aef608672fa", properties: {"affectedStores":3217305954939300,"requestType":516434419622910} });
+registerSDKClass("NSAsynchronousFetchRequest", NSAsynchronousFetchRequest, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSPersistentStoreResult", NSPersistentStoreResult, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSPersistentStoreAsynchronousResult", NSPersistentStoreAsynchronousResult, { module: "CoreData_0e503aef608672fa", properties: {"managedObjectContext":141141498082331,"operationError":359705451135352,"progress":1700975075983764}, methods: {"cancel":{"id":1922312510400148}} });
+registerSDKClass("NSAsynchronousFetchResult", NSAsynchronousFetchResult, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSPersistentStore", NSPersistentStore, { module: "CoreData_0e503aef608672fa", properties: {"url":2298970329444352,"configurationName":1538111270082809,"coreSpotlightExporter":3266192304689530,"identifier":2611098631990541,"metadata":502893987734389,"options":4338716381091857,"persistentStoreCoordinator":3450965154852983,"isReadOnly":3873961893371599,"type":1316757091276579}, methods: {"didAdd":{"id":1859734107649036},"loadMetadata":{"id":56544556487087},"willRemove":{"id":3913944718126153}} });
+registerSDKClass("NSAtomicStore", NSAtomicStore, { module: "CoreData_0e503aef608672fa", properties: {}, methods: {"addCacheNodes":{"id":1922275103144898},"cacheNode":{"id":491578575962183},"cacheNodes":{"id":1603383523369055},"load":{"id":934906987757966},"newCacheNode":{"id":1338649471921307},"newReferenceObject":{"id":4450892759349331},"objectID":{"id":2464461238346857},"referenceObject":{"id":3186834107519184},"save":{"id":831137924390319},"updateCacheNode":{"id":2861918985077525},"willRemoveCacheNodes":{"id":3996207040589985}} });
+registerSDKClass("NSAtomicStoreCacheNode", NSAtomicStoreCacheNode, { module: "CoreData_0e503aef608672fa", properties: {"objectID":3751222646394068,"propertyCache":4265154350953748}, methods: {"setValue":{"id":907042784798186},"value":{"id":2524708312326536}} });
+registerSDKClass("NSPropertyDescription", NSPropertyDescription, { module: "CoreData_0e503aef608672fa", properties: {"entity":2360624533236600,"isIndexed":3728795584439969,"isIndexedBySpotlight":1524571807438344,"name":2064502951833600,"isOptional":814079342349016,"renamingIdentifier":2403410330651757,"isStoredInExternalRecord":1937044633091358,"isTransient":4005146881090207,"userInfo":1574961251104108,"validationPredicates":3690311080511046,"validationWarnings":3536825492687043,"versionHash":702274190996064,"versionHashModifier":2935251789574876}, methods: {"setValidationPredicates":{"id":3708490248903415}} });
+registerSDKClass("NSAttributeDescription", NSAttributeDescription, { module: "CoreData_0e503aef608672fa", properties: {"allowsCloudEncryption":3889113087045178,"allowsExternalBinaryDataStorage":1546049444085214,"attributeType":2170771995524136,"attributeValueClassName":3275803980255515,"defaultValue":2290954574831122,"preservesValueInHistoryOnDeletion":4119216596544895,"valueTransformerName":2881605285266676,"versionHash":4407736336046070} });
+registerSDKClass("NSBatchDeleteRequest", NSBatchDeleteRequest, { module: "CoreData_0e503aef608672fa", properties: {"fetchRequest":950022096972682,"resultType":725419990480056} });
+registerSDKClass("NSBatchDeleteResult", NSBatchDeleteResult, { module: "CoreData_0e503aef608672fa", properties: {"result":2952666818341475,"resultType":2086386574373202} });
+registerSDKClass("NSBatchInsertRequest", NSBatchInsertRequest, { module: "CoreData_0e503aef608672fa", properties: {"entity":1275825279183648,"entityName":1338379065569450,"objectsToInsert":3433600625352221,"resultType":3247280241898008} });
+registerSDKClass("NSBatchInsertResult", NSBatchInsertResult, { module: "CoreData_0e503aef608672fa", properties: {"result":2541175319177021,"resultType":3505870630768580} });
+registerSDKClass("NSBatchUpdateRequest", NSBatchUpdateRequest, { module: "CoreData_0e503aef608672fa", properties: {"entity":1373283789869712,"entityName":3645533235013085,"includesSubentities":2943667067919086,"predicate":1489862574997128,"propertiesToUpdate":608794178200575,"resultType":1029153656623194} });
+registerSDKClass("NSBatchUpdateResult", NSBatchUpdateResult, { module: "CoreData_0e503aef608672fa", properties: {"result":376151843006199,"resultType":1311876154613975} });
+registerSDKClass("NSCompositeAttributeDescription", NSCompositeAttributeDescription, { module: "CoreData_0e503aef608672fa", properties: {"elements":3999201397770894} });
+registerSDKClass("NSConstraintConflict", NSConstraintConflict, { module: "CoreData_0e503aef608672fa", properties: {"conflictingObjects":3829339232772237,"conflictingSnapshots":1256025872253314,"constraint":2587655975978013,"constraintValues":1310995667556811,"databaseObject":2540516472471187,"databaseSnapshot":3202674309062465} });
+registerSDKClass("NSCoreDataCoreSpotlightDelegate", NSCoreDataCoreSpotlightDelegate, { module: "CoreData_0e503aef608672fa", properties: {"isIndexingEnabled":2137974613826434}, methods: {"attributeSet":{"id":1030493026303622},"deleteSpotlightIndex":{"id":731426516333608,"hints":[{"callback":{"out":[]}}]},"domainIdentifier":{"id":421849414300980},"indexName":{"id":1071804382901311},"searchableIndexReindexAllSearchableItemsWithAcknowledgementHandler":{"id":2425162268454379,"hints":[null,{"callback":{"out":[]}}]},"searchableIndexReindexSearchableItemsWithIdentifiersAcknowledgementHandler":{"id":978834120543192,"hints":[null,null,{"callback":{"out":[]}}]},"startSpotlightIndexing":{"id":1359726841540736},"stopSpotlightIndexing":{"id":90637479534098}} });
+registerSDKClass("CoreData.NSCoreDataCoreSpotlightDelegate.IndexDidUpdateMessage", NSCoreDataCoreSpotlightDelegate_IndexDidUpdateMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSMigrationStage", NSMigrationStage, { module: "CoreData_0e503aef608672fa", properties: {"label":3192942876433156} });
+registerSDKClass("NSCustomMigrationStage", NSCustomMigrationStage, { module: "CoreData_0e503aef608672fa", properties: {"currentModel":1763960545405299,"nextModel":4149963280654981} });
+registerSDKClass("NSDerivedAttributeDescription", NSDerivedAttributeDescription, { module: "CoreData_0e503aef608672fa", properties: {"derivationExpression":3322255030537679} });
+registerSDKClass("NSEntityDescription", NSEntityDescription, { module: "CoreData_0e503aef608672fa", properties: {"isAbstract":1338514190704947,"attributesByName":696513552081970,"compoundIndexes":2641819104617763,"coreSpotlightDisplayNameExpression":2681570369477872,"indexes":1441404448018393,"managedObjectClassName":1820916324358573,"managedObjectModel":4179108406149325,"name":4184566692128086,"properties":1062570261903067,"propertiesByName":994644154784166,"relationshipsByName":689728742443356,"renamingIdentifier":3050742660862520,"subentities":1981033859362523,"subentitiesByName":3170221935682678,"superentity":1958637478952813,"uniquenessConstraints":3128005065601125,"userInfo":2368328779197495,"versionHash":334286790761891,"versionHashModifier":1113520883470796}, methods: {"isKindOf":{"id":2171078030875619},"relationships":{"id":3963365134726854}} });
+registerSDKClass("NSEntityMapping", NSEntityMapping, { module: "CoreData_0e503aef608672fa", properties: {"attributeMappings":1146748750533226,"destinationEntityName":3160397707764136,"destinationEntityVersionHash":874262091945674,"entityMigrationPolicyClassName":1107394083366857,"mappingType":2012020876719793,"name":2840512146765980,"relationshipMappings":4076376214837721,"sourceEntityName":2997971649559609,"sourceEntityVersionHash":1083231479512647,"sourceExpression":403604266968409,"userInfo":924280802902875} });
+registerSDKClass("NSEntityMigrationPolicy", NSEntityMigrationPolicy, { module: "CoreData_0e503aef608672fa", properties: {}, methods: {"begin":{"id":75453204145752},"createDestinationInstances":{"id":3961789159613276},"createRelationships":{"id":2476810088951553},"end":{"id":3128763725190795},"endInstanceCreation":{"id":3458987038125492},"endRelationshipCreation":{"id":3380107190562284},"performCustomValidation":{"id":1784850727714231}} });
+registerSDKClass("NSExpressionDescription", NSExpressionDescription, { module: "CoreData_0e503aef608672fa", properties: {"expression":2968674734847011,"expressionResultType":1596902978845778} });
+registerSDKClass("NSFetchedPropertyDescription", NSFetchedPropertyDescription, { module: "CoreData_0e503aef608672fa", properties: {"fetchRequest":3832677428450738} });
+registerSDKClass("NSFetchedResultsController", NSFetchedResultsController, { module: "CoreData_0e503aef608672fa", properties: {} });
 registerSDKProtocol("c:objc(pl)NSFetchedResultsControllerDelegate", {"controllerDidChangeContentWith":"controller(_:didChangeContentWith:)","controllerDidChangeAtForNewIndexPath":"controller(_:didChange:at:for:newIndexPath:)","controllerDidChangeAtSectionIndexFor":"controller(_:didChange:atSectionIndex:for:)","controllerWillChangeContent":"controllerWillChangeContent(_:)","controllerDidChangeContent":"controllerDidChangeContent(_:)"});
 registerSDKProtocol("c:objc(pl)NSFetchedResultsSectionInfo", {});
-registerSDKClass("NSFetchIndexDescription", NSFetchIndexDescription, { module: "CoreData_d968214ecc684fb6", properties: {"elements":2972831586175064,"entity":3511506107301619,"name":3947070078325049,"partialIndexPredicate":3373659208258063} });
-registerSDKClass("NSFetchIndexElementDescription", NSFetchIndexElementDescription, { module: "CoreData_d968214ecc684fb6", properties: {"isAscending":3491631412048329,"collationType":1247767257448053,"indexDescription":1599862772438374,"property":4360373197272757,"propertyName":330290117888752} });
-registerSDKClass("NSFetchRequest", NSFetchRequest, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSFetchRequestExpression", NSFetchRequestExpression, { module: "CoreData_d968214ecc684fb6", properties: {"contextExpression":3156970576181128,"isCountOnlyRequest":2198345791793890,"requestExpression":955562192158124} });
+registerSDKClass("NSFetchIndexDescription", NSFetchIndexDescription, { module: "CoreData_0e503aef608672fa", properties: {"elements":2972831586175064,"entity":3511506107301619,"name":3947070078325049,"partialIndexPredicate":3373659208258063} });
+registerSDKClass("NSFetchIndexElementDescription", NSFetchIndexElementDescription, { module: "CoreData_0e503aef608672fa", properties: {"isAscending":3491631412048329,"collationType":1247767257448053,"indexDescription":1599862772438374,"property":4360373197272757,"propertyName":330290117888752} });
+registerSDKClass("NSFetchRequest", NSFetchRequest, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSFetchRequestExpression", NSFetchRequestExpression, { module: "CoreData_0e503aef608672fa", properties: {"contextExpression":3156970576181128,"isCountOnlyRequest":2198345791793890,"requestExpression":955562192158124} });
 registerSDKProtocol("c:objc(pl)NSFetchRequestResult", {});
-registerSDKClass("NSIncrementalStore", NSIncrementalStore, { module: "CoreData_d968214ecc684fb6", properties: {}, methods: {"execute":{"id":3037202048159808},"loadMetadata":{"id":62173065803539},"managedObjectContextDidRegisterObjects":{"id":2856535528631251},"managedObjectContextDidUnregisterObjects":{"id":1990891070113322},"newObjectID":{"id":2804051446730583},"newValue":{"id":4400968520127459},"newValuesForObject":{"id":659601101334537},"obtainPermanentIDs":{"id":2008703960307828},"referenceObject":{"id":88729107985952}} });
-registerSDKClass("NSIncrementalStoreNode", NSIncrementalStoreNode, { module: "CoreData_d968214ecc684fb6", properties: {"objectID":2017612825933619,"version":1945864280425947}, methods: {"update":{"id":3533856460074449},"value":{"id":1832695147976429}} });
-registerSDKClass("NSLightweightMigrationStage", NSLightweightMigrationStage, { module: "CoreData_d968214ecc684fb6", properties: {"versionChecksums":3040253297983972} });
-registerSDKClass("NSManagedObject", NSManagedObject, { module: "CoreData_d968214ecc684fb6", properties: {"isDeleted":3581493203520840,"entity2423":413906464867490,"isFault":2280319297991027,"faultingState":3303781667260882,"hasChanges":3978003250489335,"hasPersistentChangedValues":3166816587752053,"isInserted":41483860888617,"managedObjectContext":2188163408271917,"objectID":4452020309313336,"isUpdated":2392288412613376}, methods: {"awakeFromFetch":{"id":3290971617846614},"awakeFromInsert":{"id":2773691162345026},"awake":{"id":1622444787647793},"changedValues":{"id":1205155024314285},"changedValuesForCurrentEvent":{"id":821737049227412},"committedValues":{"id":1174797772559012},"didAccessValue":{"id":1348811794762974},"didChangeValueForKey":{"id":2232913778383126},"didChangeValueForKeyWithSetMutationUsing":{"id":3776486462067471},"didSave":{"id":829685377113837},"didTurnIntoFault":{"id":2095752068982676},"hasFault":{"id":3950744915589547},"objectIDs":{"id":2713149139986247},"prepareForDeletion":{"id":561016144641542},"primitiveValue":{"id":2099952920464217},"setPrimitiveValue":{"id":2385680901013277},"setValue":{"id":3473673538302708},"validateForDelete":{"id":2726715586146506},"validateForInsert":{"id":4269953365408834},"validateForUpdate":{"id":3215187879704123},"validateValue":{"id":4439272714433983,"args":[null,0]},"value":{"id":3008285897942074},"willAccessValue":{"id":3092107571126084},"willChangeValueForKey":{"id":2056958596699122},"willChangeValueForKeyWithSetMutationUsing":{"id":4482718107820339},"willSave":{"id":2770982375906691},"willTurnIntoFault":{"id":2329603360511980},"subscript":{"id":231231335522069}} });
-registerSDKClass("NSManagedObjectContext", NSManagedObjectContext, { module: "CoreData_d968214ecc684fb6", properties: {"automaticallyMergesChangesFromParent":4476990242247156,"concurrencyType":508539369238100,"deletedObjects":2299077053378614,"hasChanges":914318071559019,"insertedObjects":3349463633595347,"mergePolicy":3203085820963727,"name":684485041510469,"parent":2195436784405176,"persistentStoreCoordinator":3496935655667301,"propagatesDeletesAtEndOfEvent":2474436168532244,"queryGenerationToken":4234019513623856,"registeredObjects":4006407773487252,"retainsRegisteredObjects":2098485298112549,"shouldDeleteInaccessibleFaults":253413603934873,"stalenessInterval":1231137955510418,"transactionAuthor":3060084077866720,"undoManager":1695427800526807,"updatedObjects":3149068657085392,"userInfo":3408388226161666}, methods: {"assign":{"id":4112878239308811},"count":{"id":111202561091920},"delete":{"id":2917773705305365},"detectConflicts":{"id":1302345187693855},"execute":{"id":1605121115919242},"existingObject":{"id":2373356575293389},"insert":{"id":602148291980444},"lock":{"id":496833521844861},"mergeChangesFromContextDidSave":{"id":3628500077118278},"registeredObject":{"id":735854645555131},"object":{"id":4280768433653671},"observeValue":{"id":270902752660769},"obtainPermanentIDs":{"id":2319168213943364},"perform":{"id":3250532759095777,"hints":[{"callback":{"out":[]}}]},"performAndWait":{"id":1155874941693137,"hints":[{"callback":{"out":[]}}]},"processPendingChanges":{"id":2623564671234177},"redo":{"id":2763191860444207},"refreshAllObjects":{"id":4481642703480767},"refresh":{"id":260326631861907},"reset":{"id":4453761339430894},"rollback":{"id":2369318423405762},"save":{"id":4175570078681910},"setQueryGenerationFrom":{"id":3672511972663322},"shouldHandleInaccessibleFault":{"id":1965553219903957},"tryLock":{"id":304051701247327},"undo":{"id":1148200910449940},"unlock":{"id":3125180488821482},"fetch":{"id":2765034853932807}} });
-registerSDKClass("CoreData.NSManagedObjectContext.DidMergeChangesAsyncMessage", NSManagedObjectContext_DidMergeChangesAsyncMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("CoreData.NSManagedObjectContext.DidMergeChangesMessage", NSManagedObjectContext_DidMergeChangesMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("CoreData.NSManagedObjectContext.DidSaveMessage", NSManagedObjectContext_DidSaveMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("CoreData.NSManagedObjectContext.DidSaveObjectIDsAsyncMessage", NSManagedObjectContext_DidSaveObjectIDsAsyncMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("CoreData.NSManagedObjectContext.DidSaveObjectIDsMessage", NSManagedObjectContext_DidSaveObjectIDsMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("CoreData.NSManagedObjectContext.ObjectsDidChangeMessage", NSManagedObjectContext_ObjectsDidChangeMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("CoreData.NSManagedObjectContext.WillSaveMessage", NSManagedObjectContext_WillSaveMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSManagedObjectID", NSManagedObjectID, { module: "CoreData_d968214ecc684fb6", properties: {"entity":4206534643759742,"persistentStore":1903496783786975,"isTemporaryID":3401194276967876}, methods: {"uriRepresentation":{"id":2910559561796385}} });
-registerSDKClass("NSManagedObjectModel", NSManagedObjectModel, { module: "CoreData_d968214ecc684fb6", properties: {"configurations":2839509016097864,"entities":512127395785735,"entitiesByName":2439112183267165,"entityVersionHashesByName":1266146469740135,"fetchRequestTemplatesByName":3867829640376096,"localizationDictionary":2285491330853586,"versionChecksum":1759483593553364,"versionIdentifiers":2636203627658266}, methods: {"entitiesForConfigurationName":{"id":1774369427228764},"fetchRequestFromTemplate":{"id":3044592907442793},"fetchRequestTemplate":{"id":2424043627908877},"isConfiguration":{"id":1658543748111941},"setEntities":{"id":4060508499540173},"setFetchRequestTemplate":{"id":311062507937060}} });
-registerSDKClass("NSManagedObjectModelReference", NSManagedObjectModelReference, { module: "CoreData_d968214ecc684fb6", properties: {"resolvedModel":172242456519464,"versionChecksum":1042531886039} });
-registerSDKClass("NSMappingModel", NSMappingModel, { module: "CoreData_d968214ecc684fb6", properties: {"entityMappings":843939153244517,"entityMappingsByName":3638764279848896} });
-registerSDKClass("NSMergeConflict", NSMergeConflict, { module: "CoreData_d968214ecc684fb6", properties: {"cachedSnapshot":3857596772619658,"newVersionNumber":3313020249724118,"objectSnapshot":2907060987047553,"oldVersionNumber":1080635819025215,"persistedSnapshot":3676066607568082,"sourceObject":2571874876985387} });
-registerSDKClass("NSMergePolicy", NSMergePolicy, { module: "CoreData_d968214ecc684fb6", properties: {"mergeType":584967059785632}, methods: {"resolveMergeConflicts":{"id":3693091525115680},"resolveConstraintConflicts":{"id":39142100260061},"resolveOptimisticLockingConflicts":{"id":1998574607454996}} });
-registerSDKClass("NSMigrationManager", NSMigrationManager, { module: "CoreData_d968214ecc684fb6", properties: {"currentEntityMapping":2667922753245142,"destinationContext":1954178483646613,"destinationModel":1729364646438411,"mappingModel":3600552915204531,"migrationProgress":4460791801802066,"sourceContext":2250137389018554,"sourceModel":2060276146800680,"userInfo":4245386175435333,"usesStoreSpecificMigrationManager":3899478502055503}, methods: {"associate":{"id":1902043753875733},"cancelMigrationWithError":{"id":2372551696041947},"destinationEntity":{"id":3065389274887807},"destinationInstances":{"id":535229243609665},"migrateStoreFromSourceTypeOptionsWithToDestinationURLDestinationTypeDestinationOptions":{"id":2925327383778752},"reset":{"id":3443385212796770},"sourceEntity":{"id":2869844364095354},"sourceInstances":{"id":10221332123700},"migrateStoreFromTypeOptionsMappingToTypeOptions":{"id":4316551073854577}} });
-registerSDKClass("NSPersistentContainer", NSPersistentContainer, { module: "CoreData_d968214ecc684fb6", properties: {"managedObjectModel":2960655394575407,"name":657478362706334,"persistentStoreCoordinator":4339941034651302,"persistentStoreDescriptions":2996786643035173,"viewContext":3882583031036772}, methods: {"loadPersistentStores":{"id":750894410587573,"hints":[{"callback":{"out":[]}}]},"newBackgroundContext":{"id":2337852057242552},"performBackgroundTask":{"id":1666508881340104,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("NSPersistentCloudKitContainer", NSPersistentCloudKitContainer, { module: "CoreData_d968214ecc684fb6", properties: {}, methods: {"canDeleteRecord":{"id":2684589299737929},"canModifyManagedObjects":{"id":2628510030262749},"canUpdateRecord":{"id":401274099139633},"initializeCloudKitSchema":{"id":1394846933195884}} });
-registerSDKClass("NSPersistentCloudKitContainerEvent", NSPersistentCloudKitContainer_Event, { module: "CoreData_d968214ecc684fb6", properties: {"endDate":341667625155042,"error":1911882206166401,"identifier":1332511051479449,"startDate":4294831694067435,"storeIdentifier":1658436035041401,"succeeded":380277888818644,"type":3010253617871551} });
-registerSDKClass("CoreData.NSPersistentCloudKitContainer.EventChangedMessage", NSPersistentCloudKitContainer_EventChangedMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSPersistentCloudKitContainerEventRequest", NSPersistentCloudKitContainerEventRequest, { module: "CoreData_d968214ecc684fb6", properties: {"resultType":4279085184044544} });
-registerSDKClass("NSPersistentCloudKitContainerEventResult", NSPersistentCloudKitContainerEventResult, { module: "CoreData_d968214ecc684fb6", properties: {"result":3833886495551933,"resultType":2540598257915912} });
-registerSDKClass("NSPersistentCloudKitContainerOptions", NSPersistentCloudKitContainerOptions, { module: "CoreData_d968214ecc684fb6", properties: {"containerIdentifier":1687772815412865} });
-registerSDKClass("NSPersistentHistoryChange", NSPersistentHistoryChange, { module: "CoreData_d968214ecc684fb6", properties: {"changeID":1069767223503751,"changeType":2687666252608626,"changedObjectID":1734399374277075,"tombstone":3952097360270822,"transaction":1886752428401105,"updatedProperties":3811592444717288} });
-registerSDKClass("NSPersistentHistoryChangeRequest", NSPersistentHistoryChangeRequest, { module: "CoreData_d968214ecc684fb6", properties: {"fetchRequest":3353173695999463,"resultType":1918261114565348,"token":4321228033013487} });
-registerSDKClass("NSPersistentHistoryResult", NSPersistentHistoryResult, { module: "CoreData_d968214ecc684fb6", properties: {"result":515039769958908,"resultType":2182496677900175} });
-registerSDKClass("NSPersistentHistoryToken", NSPersistentHistoryToken, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSPersistentHistoryTransaction", NSPersistentHistoryTransaction, { module: "CoreData_d968214ecc684fb6", properties: {"author":3374318569628096,"bundleID":831821313212692,"changes":1180528425277377,"contextName":717770293515716,"processID":1138630796244854,"storeID":4251584964184793,"timestamp":3824817366681988,"token":603247939687838,"transactionNumber":3071345633791340}, methods: {"objectIDNotification":{"id":2986877405261193}} });
-registerSDKClass("NSPersistentStoreCoordinator", NSPersistentStoreCoordinator, { module: "CoreData_d968214ecc684fb6", properties: {"managedObjectModel":2344004295173231,"name":854120349253892,"persistentStores":4129815673382344}, methods: {"url":{"id":528542366524700},"addPersistentStoreWithCompletionHandler":{"id":389743995974386,"hints":[null,{"callback":{"out":[]}}]},"addPersistentStoreOfTypeConfigurationNameAtOptions":{"id":3072322497994184},"currentPersistentHistoryToken":{"id":3848619692140419},"destroyPersistentStoreAtOfTypeOptions":{"id":572884449922746},"execute":{"id":1992957455212054},"finishDeferredLightweightMigration":{"id":2478470057367470},"finishDeferredLightweightMigrationTask":{"id":6013427489801},"lock":{"id":2105452254936180},"managedObjectIDForURIRepresentation":{"id":1673000421664192},"metadata":{"id":4389523147088004},"migratePersistentStoreToOptionsWithType":{"id":2888010057686277},"perform":{"id":889037424018130,"hints":[{"callback":{"out":[]}}]},"performAndWait":{"id":4115972193496419,"hints":[{"callback":{"out":[]}}]},"persistentStore":{"id":3264539607092891},"remove":{"id":1397566483506413},"replacePersistentStoreAtDestinationOptionsWithPersistentStoreFromSourceOptionsOfType":{"id":2198854613120090},"setMetadataFor":{"id":1812153477465422},"setURL":{"id":3313353472626473},"tryLock":{"id":3550690940296262},"unlock":{"id":3793162993809594},"addPersistentStoreTypeConfigurationAtOptions":{"id":4411764338267223},"destroyPersistentStoreAtTypeOptions":{"id":4498197707598163},"migratePersistentStoreToOptionsType":{"id":4456540973423924},"replacePersistentStoreAtDestinationOptionsWithPersistentStoreFromSourceOptionsType":{"id":3952072148974070},"managedObjectIDFor":{"id":4471537068643861}} });
-registerSDKClass("CoreData.NSPersistentStoreCoordinator.RemoteChangeMessage", NSPersistentStoreCoordinator_RemoteChangeMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("CoreData.NSPersistentStoreCoordinator.StoresDidChangeAsyncMessage", NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("CoreData.NSPersistentStoreCoordinator.StoresDidChangeMessage", NSPersistentStoreCoordinator_StoresDidChangeMessage, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSPersistentStoreDescription", NSPersistentStoreDescription, { module: "CoreData_d968214ecc684fb6", properties: {"url":2550796745971805,"cloudKitContainerOptions":411574656304643,"configuration":3332018681146813,"options":1997318612280192,"isReadOnly":1738309396374767,"shouldAddStoreAsynchronously":147752242624100,"shouldInferMappingModelAutomatically":753136261073425,"shouldMigrateStoreAutomatically":108289490445641,"sqlitePragmas":2602567097604874,"timeout":4245555029681695,"type":30484811056568}, methods: {"setOption":{"id":4473867927508199},"setValue":{"id":3356544523057612}} });
-registerSDKClass("NSPropertyMapping", NSPropertyMapping, { module: "CoreData_d968214ecc684fb6", properties: {"name":4339787560549560,"userInfo":3987952376749397,"valueExpression":256300388111363} });
-registerSDKClass("NSQueryGenerationToken", NSQueryGenerationToken, { module: "CoreData_d968214ecc684fb6", properties: {} });
-registerSDKClass("NSRelationshipDescription", NSRelationshipDescription, { module: "CoreData_d968214ecc684fb6", properties: {"deleteRule":460730602279418,"destinationEntity":1482940168577442,"inverseRelationship":3180004493523838,"maxCount":3847143122959790,"minCount":3104333667722064,"isOrdered":4036345316576744,"isToMany":2188932043673461,"versionHash":566311923782047} });
-registerSDKClass("NSSaveChangesRequest", NSSaveChangesRequest, { module: "CoreData_d968214ecc684fb6", properties: {"deletedObjects":4256282166246242,"insertedObjects":2871987660919149,"lockedObjects":1484790650183876,"updatedObjects":200298516075731} });
-registerSDKClass("NSStagedMigrationManager", NSStagedMigrationManager, { module: "CoreData_d968214ecc684fb6", properties: {"container":255598396223334,"stages":2349423528711469} });
+registerSDKClass("NSIncrementalStore", NSIncrementalStore, { module: "CoreData_0e503aef608672fa", properties: {}, methods: {"execute":{"id":3037202048159808},"loadMetadata":{"id":62173065803539},"managedObjectContextDidRegisterObjects":{"id":2856535528631251},"managedObjectContextDidUnregisterObjects":{"id":1990891070113322},"newObjectID":{"id":2804051446730583},"newValue":{"id":4400968520127459},"newValuesForObject":{"id":659601101334537},"obtainPermanentIDs":{"id":2008703960307828},"referenceObject":{"id":88729107985952}} });
+registerSDKClass("NSIncrementalStoreNode", NSIncrementalStoreNode, { module: "CoreData_0e503aef608672fa", properties: {"objectID":2017612825933619,"version":1945864280425947}, methods: {"update":{"id":3533856460074449},"value":{"id":1832695147976429}} });
+registerSDKClass("NSLightweightMigrationStage", NSLightweightMigrationStage, { module: "CoreData_0e503aef608672fa", properties: {"versionChecksums":3040253297983972} });
+registerSDKClass("NSManagedObject", NSManagedObject, { module: "CoreData_0e503aef608672fa", properties: {"isDeleted":3581493203520840,"entity2423":413906464867490,"isFault":2280319297991027,"faultingState":3303781667260882,"hasChanges":3978003250489335,"hasPersistentChangedValues":3166816587752053,"isInserted":41483860888617,"managedObjectContext":2188163408271917,"objectID":4452020309313336,"isUpdated":2392288412613376}, methods: {"awakeFromFetch":{"id":3290971617846614},"awakeFromInsert":{"id":2773691162345026},"awake":{"id":1622444787647793},"changedValues":{"id":1205155024314285},"changedValuesForCurrentEvent":{"id":821737049227412},"committedValues":{"id":1174797772559012},"didAccessValue":{"id":1348811794762974},"didChangeValueForKey":{"id":2232913778383126},"didChangeValueForKeyWithSetMutationUsing":{"id":3776486462067471},"didSave":{"id":829685377113837},"didTurnIntoFault":{"id":2095752068982676},"hasFault":{"id":3950744915589547},"objectIDs":{"id":2713149139986247},"prepareForDeletion":{"id":561016144641542},"primitiveValue":{"id":2099952920464217},"setPrimitiveValue":{"id":2385680901013277},"setValue":{"id":3473673538302708},"validateForDelete":{"id":2726715586146506},"validateForInsert":{"id":4269953365408834},"validateForUpdate":{"id":3215187879704123},"validateValue":{"id":4439272714433983,"args":[null,0]},"value":{"id":3008285897942074},"willAccessValue":{"id":3092107571126084},"willChangeValueForKey":{"id":2056958596699122},"willChangeValueForKeyWithSetMutationUsing":{"id":4482718107820339},"willSave":{"id":2770982375906691},"willTurnIntoFault":{"id":2329603360511980},"subscript":{"id":231231335522069}} });
+registerSDKClass("NSManagedObjectContext", NSManagedObjectContext, { module: "CoreData_0e503aef608672fa", properties: {"automaticallyMergesChangesFromParent":4476990242247156,"concurrencyType":508539369238100,"deletedObjects":2299077053378614,"hasChanges":914318071559019,"insertedObjects":3349463633595347,"mergePolicy":3203085820963727,"name":684485041510469,"parent":2195436784405176,"persistentStoreCoordinator":3496935655667301,"propagatesDeletesAtEndOfEvent":2474436168532244,"queryGenerationToken":4234019513623856,"registeredObjects":4006407773487252,"retainsRegisteredObjects":2098485298112549,"shouldDeleteInaccessibleFaults":253413603934873,"stalenessInterval":1231137955510418,"transactionAuthor":3060084077866720,"undoManager":1695427800526807,"updatedObjects":3149068657085392,"userInfo":3408388226161666}, methods: {"assign":{"id":4112878239308811},"count":{"id":111202561091920},"delete":{"id":2917773705305365},"detectConflicts":{"id":1302345187693855},"execute":{"id":1605121115919242},"existingObject":{"id":2373356575293389},"insert":{"id":602148291980444},"lock":{"id":496833521844861},"mergeChangesFromContextDidSave":{"id":3628500077118278},"registeredObject":{"id":735854645555131},"object":{"id":4280768433653671},"observeValue":{"id":270902752660769},"obtainPermanentIDs":{"id":2319168213943364},"perform":{"id":3250532759095777,"hints":[{"callback":{"out":[]}}]},"performAndWait":{"id":1155874941693137,"hints":[{"callback":{"out":[]}}]},"processPendingChanges":{"id":2623564671234177},"redo":{"id":2763191860444207},"refreshAllObjects":{"id":4481642703480767},"refresh":{"id":260326631861907},"reset":{"id":4453761339430894},"rollback":{"id":2369318423405762},"save":{"id":4175570078681910},"setQueryGenerationFrom":{"id":3672511972663322},"shouldHandleInaccessibleFault":{"id":1965553219903957},"tryLock":{"id":304051701247327},"undo":{"id":1148200910449940},"unlock":{"id":3125180488821482},"fetch":{"id":2765034853932807}} });
+registerSDKClass("CoreData.NSManagedObjectContext.DidMergeChangesAsyncMessage", NSManagedObjectContext_DidMergeChangesAsyncMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreData.NSManagedObjectContext.DidMergeChangesMessage", NSManagedObjectContext_DidMergeChangesMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreData.NSManagedObjectContext.DidSaveMessage", NSManagedObjectContext_DidSaveMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreData.NSManagedObjectContext.DidSaveObjectIDsAsyncMessage", NSManagedObjectContext_DidSaveObjectIDsAsyncMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreData.NSManagedObjectContext.DidSaveObjectIDsMessage", NSManagedObjectContext_DidSaveObjectIDsMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreData.NSManagedObjectContext.ObjectsDidChangeMessage", NSManagedObjectContext_ObjectsDidChangeMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreData.NSManagedObjectContext.WillSaveMessage", NSManagedObjectContext_WillSaveMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSManagedObjectID", NSManagedObjectID, { module: "CoreData_0e503aef608672fa", properties: {"entity":4206534643759742,"persistentStore":1903496783786975,"isTemporaryID":3401194276967876}, methods: {"uriRepresentation":{"id":2910559561796385}} });
+registerSDKClass("NSManagedObjectModel", NSManagedObjectModel, { module: "CoreData_0e503aef608672fa", properties: {"configurations":2839509016097864,"entities":512127395785735,"entitiesByName":2439112183267165,"entityVersionHashesByName":1266146469740135,"fetchRequestTemplatesByName":3867829640376096,"localizationDictionary":2285491330853586,"versionChecksum":1759483593553364,"versionIdentifiers":2636203627658266}, methods: {"entitiesForConfigurationName":{"id":1774369427228764},"fetchRequestFromTemplate":{"id":3044592907442793},"fetchRequestTemplate":{"id":2424043627908877},"isConfiguration":{"id":1658543748111941},"setEntities":{"id":4060508499540173},"setFetchRequestTemplate":{"id":311062507937060}} });
+registerSDKClass("NSManagedObjectModelReference", NSManagedObjectModelReference, { module: "CoreData_0e503aef608672fa", properties: {"resolvedModel":172242456519464,"versionChecksum":1042531886039} });
+registerSDKClass("NSMappingModel", NSMappingModel, { module: "CoreData_0e503aef608672fa", properties: {"entityMappings":843939153244517,"entityMappingsByName":3638764279848896} });
+registerSDKClass("NSMergeConflict", NSMergeConflict, { module: "CoreData_0e503aef608672fa", properties: {"cachedSnapshot":3857596772619658,"newVersionNumber":3313020249724118,"objectSnapshot":2907060987047553,"oldVersionNumber":1080635819025215,"persistedSnapshot":3676066607568082,"sourceObject":2571874876985387} });
+registerSDKClass("NSMergePolicy", NSMergePolicy, { module: "CoreData_0e503aef608672fa", properties: {"mergeType":584967059785632}, methods: {"resolveMergeConflicts":{"id":3693091525115680},"resolveConstraintConflicts":{"id":39142100260061},"resolveOptimisticLockingConflicts":{"id":1998574607454996}} });
+registerSDKClass("NSMigrationManager", NSMigrationManager, { module: "CoreData_0e503aef608672fa", properties: {"currentEntityMapping":2667922753245142,"destinationContext":1954178483646613,"destinationModel":1729364646438411,"mappingModel":3600552915204531,"migrationProgress":4460791801802066,"sourceContext":2250137389018554,"sourceModel":2060276146800680,"userInfo":4245386175435333,"usesStoreSpecificMigrationManager":3899478502055503}, methods: {"associate":{"id":1902043753875733},"cancelMigrationWithError":{"id":2372551696041947},"destinationEntity":{"id":3065389274887807},"destinationInstances":{"id":535229243609665},"migrateStoreFromSourceTypeOptionsWithToDestinationURLDestinationTypeDestinationOptions":{"id":2925327383778752},"reset":{"id":3443385212796770},"sourceEntity":{"id":2869844364095354},"sourceInstances":{"id":10221332123700},"migrateStoreFromTypeOptionsMappingToTypeOptions":{"id":4316551073854577}} });
+registerSDKClass("NSPersistentContainer", NSPersistentContainer, { module: "CoreData_0e503aef608672fa", properties: {"managedObjectModel":2960655394575407,"name":657478362706334,"persistentStoreCoordinator":4339941034651302,"persistentStoreDescriptions":2996786643035173,"viewContext":3882583031036772}, methods: {"loadPersistentStores":{"id":750894410587573,"hints":[{"callback":{"out":[]}}]},"newBackgroundContext":{"id":2337852057242552},"performBackgroundTask":{"id":1666508881340104,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("NSPersistentCloudKitContainer", NSPersistentCloudKitContainer, { module: "CoreData_0e503aef608672fa", properties: {}, methods: {"canDeleteRecord":{"id":2684589299737929},"canModifyManagedObjects":{"id":2628510030262749},"canUpdateRecord":{"id":401274099139633},"initializeCloudKitSchema":{"id":1394846933195884}} });
+registerSDKClass("NSPersistentCloudKitContainerEvent", NSPersistentCloudKitContainer_Event, { module: "CoreData_0e503aef608672fa", properties: {"endDate":341667625155042,"error":1911882206166401,"identifier":1332511051479449,"startDate":4294831694067435,"storeIdentifier":1658436035041401,"succeeded":380277888818644,"type":3010253617871551} });
+registerSDKClass("CoreData.NSPersistentCloudKitContainer.EventChangedMessage", NSPersistentCloudKitContainer_EventChangedMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSPersistentCloudKitContainerEventRequest", NSPersistentCloudKitContainerEventRequest, { module: "CoreData_0e503aef608672fa", properties: {"resultType":4279085184044544} });
+registerSDKClass("NSPersistentCloudKitContainerEventResult", NSPersistentCloudKitContainerEventResult, { module: "CoreData_0e503aef608672fa", properties: {"result":3833886495551933,"resultType":2540598257915912} });
+registerSDKClass("NSPersistentCloudKitContainerOptions", NSPersistentCloudKitContainerOptions, { module: "CoreData_0e503aef608672fa", properties: {"containerIdentifier":1687772815412865} });
+registerSDKClass("NSPersistentHistoryChange", NSPersistentHistoryChange, { module: "CoreData_0e503aef608672fa", properties: {"changeID":1069767223503751,"changeType":2687666252608626,"changedObjectID":1734399374277075,"tombstone":3952097360270822,"transaction":1886752428401105,"updatedProperties":3811592444717288} });
+registerSDKClass("NSPersistentHistoryChangeRequest", NSPersistentHistoryChangeRequest, { module: "CoreData_0e503aef608672fa", properties: {"fetchRequest":3353173695999463,"resultType":1918261114565348,"token":4321228033013487} });
+registerSDKClass("NSPersistentHistoryResult", NSPersistentHistoryResult, { module: "CoreData_0e503aef608672fa", properties: {"result":515039769958908,"resultType":2182496677900175} });
+registerSDKClass("NSPersistentHistoryToken", NSPersistentHistoryToken, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSPersistentHistoryTransaction", NSPersistentHistoryTransaction, { module: "CoreData_0e503aef608672fa", properties: {"author":3374318569628096,"bundleID":831821313212692,"changes":1180528425277377,"contextName":717770293515716,"processID":1138630796244854,"storeID":4251584964184793,"timestamp":3824817366681988,"token":603247939687838,"transactionNumber":3071345633791340}, methods: {"objectIDNotification":{"id":2986877405261193}} });
+registerSDKClass("NSPersistentStoreCoordinator", NSPersistentStoreCoordinator, { module: "CoreData_0e503aef608672fa", properties: {"managedObjectModel":2344004295173231,"name":854120349253892,"persistentStores":4129815673382344}, methods: {"url":{"id":528542366524700},"addPersistentStoreWithCompletionHandler":{"id":389743995974386,"hints":[null,{"callback":{"out":[]}}]},"addPersistentStoreOfTypeConfigurationNameAtOptions":{"id":3072322497994184},"currentPersistentHistoryToken":{"id":3848619692140419},"destroyPersistentStoreAtOfTypeOptions":{"id":572884449922746},"execute":{"id":1992957455212054},"finishDeferredLightweightMigration":{"id":2478470057367470},"finishDeferredLightweightMigrationTask":{"id":6013427489801},"lock":{"id":2105452254936180},"managedObjectIDForURIRepresentation":{"id":1673000421664192},"metadata":{"id":4389523147088004},"migratePersistentStoreToOptionsWithType":{"id":2888010057686277},"perform":{"id":889037424018130,"hints":[{"callback":{"out":[]}}]},"performAndWait":{"id":4115972193496419,"hints":[{"callback":{"out":[]}}]},"persistentStore":{"id":3264539607092891},"remove":{"id":1397566483506413},"replacePersistentStoreAtDestinationOptionsWithPersistentStoreFromSourceOptionsOfType":{"id":2198854613120090},"setMetadataFor":{"id":1812153477465422},"setURL":{"id":3313353472626473},"tryLock":{"id":3550690940296262},"unlock":{"id":3793162993809594},"addPersistentStoreTypeConfigurationAtOptions":{"id":4411764338267223},"destroyPersistentStoreAtTypeOptions":{"id":4498197707598163},"migratePersistentStoreToOptionsType":{"id":4456540973423924},"replacePersistentStoreAtDestinationOptionsWithPersistentStoreFromSourceOptionsType":{"id":3952072148974070},"managedObjectIDFor":{"id":4471537068643861}} });
+registerSDKClass("CoreData.NSPersistentStoreCoordinator.RemoteChangeMessage", NSPersistentStoreCoordinator_RemoteChangeMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreData.NSPersistentStoreCoordinator.StoresDidChangeAsyncMessage", NSPersistentStoreCoordinator_StoresDidChangeAsyncMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("CoreData.NSPersistentStoreCoordinator.StoresDidChangeMessage", NSPersistentStoreCoordinator_StoresDidChangeMessage, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSPersistentStoreDescription", NSPersistentStoreDescription, { module: "CoreData_0e503aef608672fa", properties: {"url":2550796745971805,"cloudKitContainerOptions":411574656304643,"configuration":3332018681146813,"options":1997318612280192,"isReadOnly":1738309396374767,"shouldAddStoreAsynchronously":147752242624100,"shouldInferMappingModelAutomatically":753136261073425,"shouldMigrateStoreAutomatically":108289490445641,"sqlitePragmas":2602567097604874,"timeout":4245555029681695,"type":30484811056568}, methods: {"setOption":{"id":4473867927508199},"setValue":{"id":3356544523057612}} });
+registerSDKClass("NSPropertyMapping", NSPropertyMapping, { module: "CoreData_0e503aef608672fa", properties: {"name":4339787560549560,"userInfo":3987952376749397,"valueExpression":256300388111363} });
+registerSDKClass("NSQueryGenerationToken", NSQueryGenerationToken, { module: "CoreData_0e503aef608672fa", properties: {} });
+registerSDKClass("NSRelationshipDescription", NSRelationshipDescription, { module: "CoreData_0e503aef608672fa", properties: {"deleteRule":460730602279418,"destinationEntity":1482940168577442,"inverseRelationship":3180004493523838,"maxCount":3847143122959790,"minCount":3104333667722064,"isOrdered":4036345316576744,"isToMany":2188932043673461,"versionHash":566311923782047} });
+registerSDKClass("NSSaveChangesRequest", NSSaveChangesRequest, { module: "CoreData_0e503aef608672fa", properties: {"deletedObjects":4256282166246242,"insertedObjects":2871987660919149,"lockedObjects":1484790650183876,"updatedObjects":200298516075731} });
+registerSDKClass("NSStagedMigrationManager", NSStagedMigrationManager, { module: "CoreData_0e503aef608672fa", properties: {"container":255598396223334,"stages":2349423528711469} });

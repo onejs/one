@@ -100,37 +100,37 @@ type $SDK77 = (CPTemplateApplicationScene) | null;
  */
 export class CPTemplate extends SDKHandle {
   /** init() */
-  static init(): Promise<CPTemplate> { return callSDKAsync<CPTemplate>("CarPlay_d968214ecc684fb6", 4154522152510165, undefined, []); }
+  static init(): Promise<CPTemplate> { return callSDKAsync<CPTemplate>("CarPlay_0e503aef608672fa", 4154522152510165, undefined, []); }
   /**
    * var showsTabBadge: Bool { get set }
    * @availability iOS 14.0+
    */
-  get showsTabBadge(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 622415864853462, this, []); }
-  setShowsTabBadge(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1549458095041068, this, [value]); }
+  get showsTabBadge(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 622415864853462, this, []); }
+  setShowsTabBadge(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1549458095041068, this, [value]); }
   /**
    * var tabImage: UIImage? { get set }
    * @availability iOS 14.0+
    */
-  get tabImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 929821758662074, this, []); }
-  setTabImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3133959182510545, this, [value]); }
+  get tabImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 929821758662074, this, []); }
+  setTabImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3133959182510545, this, [value]); }
   /**
    * var tabSystemItem: UITabBarItem.SystemItem { get set }
    * @availability iOS 14.0+
    */
-  get tabSystemItem(): Promise<_UIKit_UITabBarItem_SystemItem> { return callSDKAsync<_UIKit_UITabBarItem_SystemItem>("CarPlay_d968214ecc684fb6", 2359666151561552, this, []); }
-  setTabSystemItem(value: _UIKit_UITabBarItem_SystemItem): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1364897048395141, this, [value]); }
+  get tabSystemItem(): Promise<_UIKit_UITabBarItem_SystemItem> { return callSDKAsync<_UIKit_UITabBarItem_SystemItem>("CarPlay_0e503aef608672fa", 2359666151561552, this, []); }
+  setTabSystemItem(value: _UIKit_UITabBarItem_SystemItem): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1364897048395141, this, [value]); }
   /**
    * var tabTitle: String? { get set }
    * @availability iOS 14.0+
    */
-  get tabTitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 877963487047204, this, []); }
-  setTabTitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1572345235904543, this, [value]); }
+  get tabTitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 877963487047204, this, []); }
+  setTabTitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1572345235904543, this, [value]); }
   /**
    * var userInfo: Any? { get set }
    * @availability iOS 12.0+
    */
-  get userInfo(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("CarPlay_d968214ecc684fb6", 2683832853942984, this, []); }
-  setUserInfo(value?: (unknown) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4086735816529307, this, [value]); }
+  get userInfo(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("CarPlay_0e503aef608672fa", 2683832853942984, this, []); }
+  setUserInfo(value?: (unknown) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4086735816529307, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true };
 }
@@ -144,22 +144,22 @@ export class CPActionSheetTemplate extends (CPTemplate as unknown as Omit<typeof
    * init(title: String?, message: String?, actions: [CPAlertAction])
    * @availability iOS 12.0+
    */
-  static init(title: (string) | null, message: (string) | null, actions: Array<CPAlertAction>): Promise<CPActionSheetTemplate> { return callSDKAsync<CPActionSheetTemplate>("CarPlay_d968214ecc684fb6", 58748401928588, undefined, [title, message, actions]); }
+  static init(title: (string) | null, message: (string) | null, actions: Array<CPAlertAction>): Promise<CPActionSheetTemplate> { return callSDKAsync<CPActionSheetTemplate>("CarPlay_0e503aef608672fa", 58748401928588, undefined, [title, message, actions]); }
   /**
    * var actions: [CPAlertAction] { get }
    * @availability iOS 12.0+
    */
-  get actions(): Promise<Array<CPAlertAction>> { return callSDKAsync<Array<CPAlertAction>>("CarPlay_d968214ecc684fb6", 2027276132386019, this, []); }
+  get actions(): Promise<Array<CPAlertAction>> { return callSDKAsync<Array<CPAlertAction>>("CarPlay_0e503aef608672fa", 2027276132386019, this, []); }
   /**
    * var message: String? { get }
    * @availability iOS 12.0+
    */
-  get message(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 4107155582529753, this, []); }
+  get message(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 4107155582529753, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 12.0+
    */
-  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 4236698154701135, this, []); }
+  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 4236698154701135, this, []); }
   declare readonly $type: { "c:objc(cs)CPActionSheetTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "actions": true; "message": true; "title": true };
 }
@@ -173,32 +173,32 @@ export class CPAlertAction extends SDKHandle {
    * init(title: String, color: UIColor, handler: @escaping CPAlertActionHandler)
    * @availability iOS 16.0+
    */
-  static initTitleColorHandler(title: string, color: _UIKit_UIColor, handler: $SDK0): CPAlertAction { return callSDK<CPAlertAction>("CarPlay_d968214ecc684fb6", 2953382120601621, undefined, [title, color, handler], [null,null,{"callback":{"out":[]}}]); }
+  static initTitleColorHandler(title: string, color: _UIKit_UIColor, handler: $SDK0): CPAlertAction { return callSDK<CPAlertAction>("CarPlay_0e503aef608672fa", 2953382120601621, undefined, [title, color, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(title: String, style: CPAlertAction.Style, handler: @escaping CPAlertActionHandler)
    * @availability iOS 12.0+
    */
-  static initTitleStyleHandler(title: string, style: CPAlertAction_Style, handler: $SDK0): CPAlertAction { return callSDK<CPAlertAction>("CarPlay_d968214ecc684fb6", 179826688424464, undefined, [title, style, handler], [null,null,{"callback":{"out":[]}}]); }
+  static initTitleStyleHandler(title: string, style: CPAlertAction_Style, handler: $SDK0): CPAlertAction { return callSDK<CPAlertAction>("CarPlay_0e503aef608672fa", 179826688424464, undefined, [title, style, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * @NSCopying var color: UIColor? { get }
    * @availability iOS 16.0+
    */
-  get color(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("CarPlay_d968214ecc684fb6", 384021523696703, this, []); }
+  get color(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("CarPlay_0e503aef608672fa", 384021523696703, this, []); }
   /**
    * var handler: CPAlertActionHandler { get }
    * @availability iOS 12.0+
    */
-  get handler(): $SDK1 { return callSDK<$SDK1>("CarPlay_d968214ecc684fb6", 2929157029343686, this, []); }
+  get handler(): $SDK1 { return callSDK<$SDK1>("CarPlay_0e503aef608672fa", 2929157029343686, this, []); }
   /**
    * var style: CPAlertAction.Style { get }
    * @availability iOS 12.0+
    */
-  get style(): CPAlertAction_Style { return callSDK<CPAlertAction_Style>("CarPlay_d968214ecc684fb6", 336832710293503, this, []); }
+  get style(): CPAlertAction_Style { return callSDK<CPAlertAction_Style>("CarPlay_0e503aef608672fa", 336832710293503, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 12.0+
    */
-  get title(): string { return callSDK<string>("CarPlay_d968214ecc684fb6", 3044954241400457, this, []); }
+  get title(): string { return callSDK<string>("CarPlay_0e503aef608672fa", 3044954241400457, this, []); }
   declare readonly $type: { "c:objc(cs)CPAlertAction": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "color": true; "style": true; "title": true };
 }
@@ -214,7 +214,7 @@ export const CPAlertAction_Style = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (CPAlertAction_Style) | null { return callSDK<(CPAlertAction_Style) | null>("CarPlay_d968214ecc684fb6", 4104772497816673, undefined, [rawValue]); }
+  init(rawValue: number): (CPAlertAction_Style) | null { return callSDK<(CPAlertAction_Style) | null>("CarPlay_0e503aef608672fa", 4104772497816673, undefined, [rawValue]); }
 };
 
 /** typealias CPAlertActionHandler = (CPAlertAction) -> Void */
@@ -229,22 +229,22 @@ export class CPAlertTemplate extends (CPTemplate as unknown as Omit<typeof CPTem
    * class var maximumActionCount: Int { get }
    * @availability iOS 14.0+
    */
-  static get maximumActionCount(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 638099555105552, undefined, []); }
+  static get maximumActionCount(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 638099555105552, undefined, []); }
   /**
    * init(titleVariants: [String], actions: [CPAlertAction])
    * @availability iOS 12.0+
    */
-  static init(titleVariants: Array<string>, actions: Array<CPAlertAction>): Promise<CPAlertTemplate> { return callSDKAsync<CPAlertTemplate>("CarPlay_d968214ecc684fb6", 422094686821195, undefined, [titleVariants, actions]); }
+  static init(titleVariants: Array<string>, actions: Array<CPAlertAction>): Promise<CPAlertTemplate> { return callSDKAsync<CPAlertTemplate>("CarPlay_0e503aef608672fa", 422094686821195, undefined, [titleVariants, actions]); }
   /**
    * var actions: [CPAlertAction] { get }
    * @availability iOS 12.0+
    */
-  get actions(): Promise<Array<CPAlertAction>> { return callSDKAsync<Array<CPAlertAction>>("CarPlay_d968214ecc684fb6", 80606091209706, this, []); }
+  get actions(): Promise<Array<CPAlertAction>> { return callSDKAsync<Array<CPAlertAction>>("CarPlay_0e503aef608672fa", 80606091209706, this, []); }
   /**
    * var titleVariants: [String] { get }
    * @availability iOS 12.0+
    */
-  get titleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_d968214ecc684fb6", 1273218298538313, this, []); }
+  get titleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_0e503aef608672fa", 1273218298538313, this, []); }
   declare readonly $type: { "c:objc(cs)CPAlertTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "actions": true; "titleVariants": true };
 }
@@ -312,7 +312,7 @@ export const CPAssistantCellActionType = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (CPAssistantCellActionType) | null { return callSDK<(CPAssistantCellActionType) | null>("CarPlay_d968214ecc684fb6", 1742347543478116, undefined, [rawValue]); }
+  init(rawValue: number): (CPAssistantCellActionType) | null { return callSDK<(CPAssistantCellActionType) | null>("CarPlay_0e503aef608672fa", 1742347543478116, undefined, [rawValue]); }
 };
 
 /**
@@ -324,22 +324,22 @@ export class CPAssistantCellConfiguration extends SDKHandle {
    * init(position: CPListItem.AssistantCellPosition, visibility: CPListItem.AssistantCellVisibility, assistantAction: CPAssistantCellActionType)
    * @availability iOS 15.0+
    */
-  static init(position: CPListItem_AssistantCellPosition, visibility: CPListItem_AssistantCellVisibility, assistantAction: CPAssistantCellActionType): CPAssistantCellConfiguration { return callSDK<CPAssistantCellConfiguration>("CarPlay_d968214ecc684fb6", 4382572184383926, undefined, [position, visibility, assistantAction]); }
+  static init(position: CPListItem_AssistantCellPosition, visibility: CPListItem_AssistantCellVisibility, assistantAction: CPAssistantCellActionType): CPAssistantCellConfiguration { return callSDK<CPAssistantCellConfiguration>("CarPlay_0e503aef608672fa", 4382572184383926, undefined, [position, visibility, assistantAction]); }
   /**
    * var assistantAction: CPAssistantCellActionType { get }
    * @availability iOS 15.0+
    */
-  get assistantAction(): CPAssistantCellActionType { return callSDK<CPAssistantCellActionType>("CarPlay_d968214ecc684fb6", 4014013502820117, this, []); }
+  get assistantAction(): CPAssistantCellActionType { return callSDK<CPAssistantCellActionType>("CarPlay_0e503aef608672fa", 4014013502820117, this, []); }
   /**
    * var position: CPListItem.AssistantCellPosition { get }
    * @availability iOS 15.0+
    */
-  get position(): CPListItem_AssistantCellPosition { return callSDK<CPListItem_AssistantCellPosition>("CarPlay_d968214ecc684fb6", 2859817571149391, this, []); }
+  get position(): CPListItem_AssistantCellPosition { return callSDK<CPListItem_AssistantCellPosition>("CarPlay_0e503aef608672fa", 2859817571149391, this, []); }
   /**
    * var visibility: CPListItem.AssistantCellVisibility { get }
    * @availability iOS 15.0+
    */
-  get visibility(): CPListItem_AssistantCellVisibility { return callSDK<CPListItem_AssistantCellVisibility>("CarPlay_d968214ecc684fb6", 1976693771596979, this, []); }
+  get visibility(): CPListItem_AssistantCellVisibility { return callSDK<CPListItem_AssistantCellVisibility>("CarPlay_0e503aef608672fa", 1976693771596979, this, []); }
   declare readonly $type: { "c:objc(cs)CPAssistantCellConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "assistantAction": true; "position": true; "visibility": true };
 }
@@ -353,42 +353,42 @@ export class CPBarButton extends SDKHandle {
    * init(image: UIImage, handler: CPBarButtonHandler? = nil)
    * @availability iOS 14.0+
    */
-  static initImageHandler(image: _UIKit_UIImage, handler?: $SDK5): CPBarButton { return callSDK<CPBarButton>("CarPlay_d968214ecc684fb6", 2202185320847938, undefined, [image, handler], [null,{"callback":{"out":[]}}]); }
+  static initImageHandler(image: _UIKit_UIImage, handler?: $SDK5): CPBarButton { return callSDK<CPBarButton>("CarPlay_0e503aef608672fa", 2202185320847938, undefined, [image, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(title: String, handler: CPBarButtonHandler? = nil)
    * @availability iOS 14.0+
    */
-  static initTitleHandler(title: string, handler?: $SDK5): CPBarButton { return callSDK<CPBarButton>("CarPlay_d968214ecc684fb6", 2097762394734064, undefined, [title, handler], [null,{"callback":{"out":[]}}]); }
+  static initTitleHandler(title: string, handler?: $SDK5): CPBarButton { return callSDK<CPBarButton>("CarPlay_0e503aef608672fa", 2097762394734064, undefined, [title, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * var buttonStyle: CPBarButtonStyle { get set }
    * @availability iOS 14.0+
    */
-  get buttonStyle(): CPBarButtonStyle { return callSDK<CPBarButtonStyle>("CarPlay_d968214ecc684fb6", 1835508210776991, this, []); }
-  set buttonStyle(value: CPBarButtonStyle) { callSDK<void>("CarPlay_d968214ecc684fb6", 1523088184365160, this, [value]); }
+  get buttonStyle(): CPBarButtonStyle { return callSDK<CPBarButtonStyle>("CarPlay_0e503aef608672fa", 1835508210776991, this, []); }
+  set buttonStyle(value: CPBarButtonStyle) { callSDK<void>("CarPlay_0e503aef608672fa", 1523088184365160, this, [value]); }
   /**
    * var buttonType: CPBarButton.Type { get }
    * @availability iOS 12.0+
    * @deprecated iOS 14.0
    */
-  get buttonType(): CPBarButton_Type { return callSDK<CPBarButton_Type>("CarPlay_d968214ecc684fb6", 2672046724216309, this, []); }
+  get buttonType(): CPBarButton_Type { return callSDK<CPBarButton_Type>("CarPlay_0e503aef608672fa", 2672046724216309, this, []); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 12.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 891627123808214, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 420526836317855, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 891627123808214, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 420526836317855, this, [value]); }
   /**
    * var image: UIImage? { get set }
    * @availability iOS 12.0+
    */
-  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 2785964266292292, this, []); }
-  set image(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 937322133535402, this, [value]); }
+  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 2785964266292292, this, []); }
+  set image(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 937322133535402, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 12.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 4375045554132670, this, []); }
-  set title(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 4502851077440697, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 4375045554132670, this, []); }
+  set title(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 4502851077440697, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPBarButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "buttonStyle": true; "buttonType": true; "isEnabled": true; "image": true; "title": true };
 }
@@ -421,7 +421,7 @@ export const CPBarButtonStyle = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (CPBarButtonStyle) | null { return callSDK<(CPBarButtonStyle) | null>("CarPlay_d968214ecc684fb6", 3267549803317508, undefined, [rawValue]); }
+  init(rawValue: number): (CPBarButtonStyle) | null { return callSDK<(CPBarButtonStyle) | null>("CarPlay_0e503aef608672fa", 3267549803317508, undefined, [rawValue]); }
 };
 
 /**
@@ -433,24 +433,24 @@ export class CPButton extends SDKHandle {
    * init(image: UIImage, handler: ((CPButton) -> Void)? = nil)
    * @availability iOS 14.0+
    */
-  static init(image: _UIKit_UIImage, handler?: $SDK7): CPButton { return callSDK<CPButton>("CarPlay_d968214ecc684fb6", 258653734050008, undefined, [image, handler], [null,{"callback":{"out":[]}}]); }
+  static init(image: _UIKit_UIImage, handler?: $SDK7): CPButton { return callSDK<CPButton>("CarPlay_0e503aef608672fa", 258653734050008, undefined, [image, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 14.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 628577304508968, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 1874609351854590, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 628577304508968, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 1874609351854590, this, [value]); }
   /**
    * @NSCopying var image: UIImage? { get }
    * @availability iOS 14.0+
    */
-  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 1649050495814292, this, []); }
+  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 1649050495814292, this, []); }
   /**
    * var title: String? { get set }
    * @availability iOS 14.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2986850775790436, this, []); }
-  set title(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1746713254958218, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2986850775790436, this, []); }
+  set title(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1746713254958218, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "image": true; "title": true };
 }
@@ -464,22 +464,22 @@ export class CPChargingStationConnection extends SDKHandle {
    * init(connector: CPChargingStationConnection.Connector, voltage: Measurement<UnitElectricPotentialDifference>, power: Measurement<UnitPower>)
    * @availability iOS 27.0+
    */
-  static init(connector: CPChargingStationConnection_Connector, voltage: $SDK8, power: $SDK9): CPChargingStationConnection { return callSDK<CPChargingStationConnection>("CarPlay_d968214ecc684fb6", 2281518856123570, undefined, [connector, voltage, power]); }
+  static init(connector: CPChargingStationConnection_Connector, voltage: $SDK8, power: $SDK9): CPChargingStationConnection { return callSDK<CPChargingStationConnection>("CarPlay_0e503aef608672fa", 2281518856123570, undefined, [connector, voltage, power]); }
   /**
    * var connector: CPChargingStationConnection.Connector { get }
    * @availability iOS 27.0+
    */
-  get connector(): CPChargingStationConnection_Connector { return callSDK<CPChargingStationConnection_Connector>("CarPlay_d968214ecc684fb6", 2288524366212068, this, []); }
+  get connector(): CPChargingStationConnection_Connector { return callSDK<CPChargingStationConnection_Connector>("CarPlay_0e503aef608672fa", 2288524366212068, this, []); }
   /**
    * var power: Measurement<UnitPower> { get }
    * @availability iOS 27.0+
    */
-  get power(): $SDK9 { return callSDK<$SDK9>("CarPlay_d968214ecc684fb6", 3245533472209557, this, []); }
+  get power(): $SDK9 { return callSDK<$SDK9>("CarPlay_0e503aef608672fa", 3245533472209557, this, []); }
   /**
    * var voltage: Measurement<UnitElectricPotentialDifference> { get }
    * @availability iOS 27.0+
    */
-  get voltage(): $SDK8 { return callSDK<$SDK8>("CarPlay_d968214ecc684fb6", 230430637394654, this, []); }
+  get voltage(): $SDK8 { return callSDK<$SDK8>("CarPlay_0e503aef608672fa", 230430637394654, this, []); }
   declare readonly $type: { "c:objc(cs)CPChargingStationConnection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "connector": true; "power": true; "voltage": true };
 }
@@ -489,7 +489,7 @@ export type CPChargingStationConnection_Connector = "ccs1" | "ccs2" | "j1772" | 
 
 export const CPChargingStationConnection_Connector = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CPChargingStationConnection_Connector) | null { return callSDK<(CPChargingStationConnection_Connector) | null>("CarPlay_d968214ecc684fb6", 798679217643108, undefined, [rawValue]); }
+  init(rawValue: number): (CPChargingStationConnection_Connector) | null { return callSDK<(CPChargingStationConnection_Connector) | null>("CarPlay_0e503aef608672fa", 798679217643108, undefined, [rawValue]); }
 };
 
 /**
@@ -501,37 +501,37 @@ export class CPContact extends SDKHandle {
    * init(name: String, image: UIImage)
    * @availability iOS 14.0+
    */
-  static init(name: string, image: _UIKit_UIImage): CPContact { return callSDK<CPContact>("CarPlay_d968214ecc684fb6", 3665069299838752, undefined, [name, image]); }
+  static init(name: string, image: _UIKit_UIImage): CPContact { return callSDK<CPContact>("CarPlay_0e503aef608672fa", 3665069299838752, undefined, [name, image]); }
   /**
    * var actions: [CPButton]? { get set }
    * @availability iOS 14.0+
    */
-  get actions(): (Array<CPButton>) | null { return callSDK<(Array<CPButton>) | null>("CarPlay_d968214ecc684fb6", 2346198109456517, this, []); }
-  set actions(value: (Array<CPButton>) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1648386203521022, this, [value]); }
+  get actions(): (Array<CPButton>) | null { return callSDK<(Array<CPButton>) | null>("CarPlay_0e503aef608672fa", 2346198109456517, this, []); }
+  set actions(value: (Array<CPButton>) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1648386203521022, this, [value]); }
   /**
    * var image: UIImage { get set }
    * @availability iOS 14.0+
    */
-  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_d968214ecc684fb6", 3269741168011870, this, []); }
-  set image(value: _UIKit_UIImage) { callSDK<void>("CarPlay_d968214ecc684fb6", 2220643440160598, this, [value]); }
+  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_0e503aef608672fa", 3269741168011870, this, []); }
+  set image(value: _UIKit_UIImage) { callSDK<void>("CarPlay_0e503aef608672fa", 2220643440160598, this, [value]); }
   /**
    * var informativeText: String? { get set }
    * @availability iOS 14.0+
    */
-  get informativeText(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 1075144990717448, this, []); }
-  set informativeText(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 2329541254245747, this, [value]); }
+  get informativeText(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 1075144990717448, this, []); }
+  set informativeText(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 2329541254245747, this, [value]); }
   /**
    * var name: String { get set }
    * @availability iOS 14.0+
    */
-  get name(): string { return callSDK<string>("CarPlay_d968214ecc684fb6", 825634211893095, this, []); }
-  set name(value: string) { callSDK<void>("CarPlay_d968214ecc684fb6", 2577957985499832, this, [value]); }
+  get name(): string { return callSDK<string>("CarPlay_0e503aef608672fa", 825634211893095, this, []); }
+  set name(value: string) { callSDK<void>("CarPlay_0e503aef608672fa", 2577957985499832, this, [value]); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 14.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 563968555207352, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 3414684362475107, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 563968555207352, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 3414684362475107, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPContact": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "image": true; "informativeText": true; "name": true; "subtitle": true };
 }
@@ -545,7 +545,7 @@ export class CPContactCallButton extends (CPButton as unknown as Omit<typeof CPB
    * init(handler: ((CPButton) -> Void)? = nil)
    * @availability iOS 14.0+
    */
-  static init(handler?: $SDK7): CPContactCallButton { return callSDK<CPContactCallButton>("CarPlay_d968214ecc684fb6", 3619946510074241, undefined, [handler], [{"callback":{"out":[]}}]); }
+  static init(handler?: $SDK7): CPContactCallButton { return callSDK<CPContactCallButton>("CarPlay_0e503aef608672fa", 3619946510074241, undefined, [handler], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CPContactCallButton": true; "c:objc(cs)CPButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "image": true; "title": true };
 }
@@ -559,7 +559,7 @@ export class CPContactDirectionsButton extends (CPButton as unknown as Omit<type
    * init(handler: ((CPButton) -> Void)? = nil)
    * @availability iOS 14.0+
    */
-  static init(handler?: $SDK7): CPContactDirectionsButton { return callSDK<CPContactDirectionsButton>("CarPlay_d968214ecc684fb6", 342396006602985, undefined, [handler], [{"callback":{"out":[]}}]); }
+  static init(handler?: $SDK7): CPContactDirectionsButton { return callSDK<CPContactDirectionsButton>("CarPlay_0e503aef608672fa", 342396006602985, undefined, [handler], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CPContactDirectionsButton": true; "c:objc(cs)CPButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "image": true; "title": true };
 }
@@ -573,12 +573,12 @@ export class CPContactMessageButton extends (CPButton as unknown as Omit<typeof 
    * init(phoneOrEmail: String)
    * @availability iOS 14.0+
    */
-  static init(phoneOrEmail: string): CPContactMessageButton { return callSDK<CPContactMessageButton>("CarPlay_d968214ecc684fb6", 3666793872735369, undefined, [phoneOrEmail]); }
+  static init(phoneOrEmail: string): CPContactMessageButton { return callSDK<CPContactMessageButton>("CarPlay_0e503aef608672fa", 3666793872735369, undefined, [phoneOrEmail]); }
   /**
    * var phoneOrEmail: String { get }
    * @availability iOS 14.0+
    */
-  get phoneOrEmail(): string { return callSDK<string>("CarPlay_d968214ecc684fb6", 3257362000928602, this, []); }
+  get phoneOrEmail(): string { return callSDK<string>("CarPlay_0e503aef608672fa", 3257362000928602, this, []); }
   declare readonly $type: { "c:objc(cs)CPContactMessageButton": true; "c:objc(cs)CPButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "image": true; "title": true; "phoneOrEmail": true };
 }
@@ -592,13 +592,13 @@ export class CPContactTemplate extends (CPTemplate as unknown as Omit<typeof CPT
    * init(contact: CPContact)
    * @availability iOS 14.0+
    */
-  static init(contact: CPContact): Promise<CPContactTemplate> { return callSDKAsync<CPContactTemplate>("CarPlay_d968214ecc684fb6", 2847263842625967, undefined, [contact]); }
+  static init(contact: CPContact): Promise<CPContactTemplate> { return callSDKAsync<CPContactTemplate>("CarPlay_0e503aef608672fa", 2847263842625967, undefined, [contact]); }
   /**
    * var contact: CPContact { get set }
    * @availability iOS 14.0+
    */
-  get contact(): Promise<CPContact> { return callSDKAsync<CPContact>("CarPlay_d968214ecc684fb6", 1031103336462757, this, []); }
-  setContact(value: CPContact): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 686075222804394, this, [value]); }
+  get contact(): Promise<CPContact> { return callSDKAsync<CPContact>("CarPlay_0e503aef608672fa", 1031103336462757, this, []); }
+  setContact(value: CPContact): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 686075222804394, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPContactTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "contact": true };
 }
@@ -614,17 +614,17 @@ export const CPContentStyle = {
    * static var dark: CPContentStyle { get }
    * @availability iOS 13.0+
    */
-  get dark(): CPContentStyle { return callSDK<CPContentStyle>("CarPlay_d968214ecc684fb6", 1016241091581031, undefined, []); },
+  get dark(): CPContentStyle { return callSDK<CPContentStyle>("CarPlay_0e503aef608672fa", 1016241091581031, undefined, []); },
   /**
    * static var light: CPContentStyle { get }
    * @availability iOS 13.0+
    */
-  get light(): CPContentStyle { return callSDK<CPContentStyle>("CarPlay_d968214ecc684fb6", 2040783160387562, undefined, []); },
+  get light(): CPContentStyle { return callSDK<CPContentStyle>("CarPlay_0e503aef608672fa", 2040783160387562, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): CPContentStyle { return callSDK<CPContentStyle>("CarPlay_d968214ecc684fb6", 2209283714796177, undefined, [rawValue]); }
+  init(rawValue: number): CPContentStyle { return callSDK<CPContentStyle>("CarPlay_0e503aef608672fa", 2209283714796177, undefined, [rawValue]); }
 };
 
 /**
@@ -636,22 +636,22 @@ export class CPDashboardButton extends SDKHandle {
    * init(titleVariants: [String], subtitleVariants: [String], image: UIImage, handler: ((CPDashboardButton) -> Void)? = nil)
    * @availability iOS 13.4+
    */
-  static init(titleVariants: Array<string>, subtitleVariants: Array<string>, image: _UIKit_UIImage, handler?: (((arg0: CPDashboardButton) => void)) | null): CPDashboardButton { return callSDK<CPDashboardButton>("CarPlay_d968214ecc684fb6", 3399889744036079, undefined, [titleVariants, subtitleVariants, image, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  static init(titleVariants: Array<string>, subtitleVariants: Array<string>, image: _UIKit_UIImage, handler?: (((arg0: CPDashboardButton) => void)) | null): CPDashboardButton { return callSDK<CPDashboardButton>("CarPlay_0e503aef608672fa", 3399889744036079, undefined, [titleVariants, subtitleVariants, image, handler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * var image: UIImage { get }
    * @availability iOS 13.4+
    */
-  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_d968214ecc684fb6", 1635160273668566, this, []); }
+  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_0e503aef608672fa", 1635160273668566, this, []); }
   /**
    * var subtitleVariants: [String] { get }
    * @availability iOS 13.4+
    */
-  get subtitleVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 2489569269336618, this, []); }
+  get subtitleVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 2489569269336618, this, []); }
   /**
    * var titleVariants: [String] { get }
    * @availability iOS 13.4+
    */
-  get titleVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 383157808125240, this, []); }
+  get titleVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 383157808125240, this, []); }
   declare readonly $type: { "c:objc(cs)CPDashboardButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "image": true; "subtitleVariants": true; "titleVariants": true };
 }
@@ -665,8 +665,8 @@ export class CPDashboardController extends SDKHandle {
    * var shortcutButtons: [CPDashboardButton] { get set }
    * @availability iOS 13.4+
    */
-  get shortcutButtons(): Array<CPDashboardButton> { return callSDK<Array<CPDashboardButton>>("CarPlay_d968214ecc684fb6", 3942727554068487, this, []); }
-  set shortcutButtons(value: Array<CPDashboardButton>) { callSDK<void>("CarPlay_d968214ecc684fb6", 58454205129352, this, [value]); }
+  get shortcutButtons(): Array<CPDashboardButton> { return callSDK<Array<CPDashboardButton>>("CarPlay_0e503aef608672fa", 3942727554068487, this, []); }
+  set shortcutButtons(value: Array<CPDashboardButton>) { callSDK<void>("CarPlay_0e503aef608672fa", 58454205129352, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPDashboardController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "shortcutButtons": true };
 }
@@ -680,43 +680,43 @@ export class CPGridButton extends SDKHandle {
    * convenience init(titleVariants: [String], image: UIImage, handler: ((CPGridButton) -> Void)? = nil)
    * @availability iOS 12.0+
    */
-  static initTitleVariantsImageHandler(titleVariants: Array<string>, image: _UIKit_UIImage, handler?: $SDK13): CPGridButton { return callSDK<CPGridButton>("CarPlay_d968214ecc684fb6", 2383466012520304, undefined, [titleVariants, image, handler], [null,null,{"callback":{"out":[]}}]); }
+  static initTitleVariantsImageHandler(titleVariants: Array<string>, image: _UIKit_UIImage, handler?: $SDK13): CPGridButton { return callSDK<CPGridButton>("CarPlay_0e503aef608672fa", 2383466012520304, undefined, [titleVariants, image, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(titleVariants: [String], image: UIImage, messageConfiguration: CPMessageGridItemConfiguration?, handler: ((CPGridButton) -> Void)? = nil)
    * @availability iOS 26.0+
    */
-  static initTitleVariantsImageMessageConfigurationHandler(titleVariants: Array<string>, image: _UIKit_UIImage, messageConfiguration?: $SDK14, handler?: $SDK13): CPGridButton { return callSDK<CPGridButton>("CarPlay_d968214ecc684fb6", 2406334821122542, undefined, [titleVariants, image, messageConfiguration, handler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initTitleVariantsImageMessageConfigurationHandler(titleVariants: Array<string>, image: _UIKit_UIImage, messageConfiguration?: $SDK14, handler?: $SDK13): CPGridButton { return callSDK<CPGridButton>("CarPlay_0e503aef608672fa", 2406334821122542, undefined, [titleVariants, image, messageConfiguration, handler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func updateImage(_ image: UIImage)
    * @availability iOS 26.0+
    */
-  updateImage(image: _UIKit_UIImage): void { return callSDK<void>("CarPlay_d968214ecc684fb6", 4224659942272812, this, [image]); }
+  updateImage(image: _UIKit_UIImage): void { return callSDK<void>("CarPlay_0e503aef608672fa", 4224659942272812, this, [image]); }
   /**
    * func updateTitleVariants(_ titleVariants: [String])
    * @availability iOS 26.0+
    */
-  updateTitleVariants(titleVariants: Array<string>): void { return callSDK<void>("CarPlay_d968214ecc684fb6", 1335341271092947, this, [titleVariants]); }
+  updateTitleVariants(titleVariants: Array<string>): void { return callSDK<void>("CarPlay_0e503aef608672fa", 1335341271092947, this, [titleVariants]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 12.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 1627690631586240, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 2664204302955563, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 1627690631586240, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 2664204302955563, this, [value]); }
   /**
    * var image: UIImage { get }
    * @availability iOS 12.0+
    */
-  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_d968214ecc684fb6", 191774765606233, this, []); }
+  get image(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_0e503aef608672fa", 191774765606233, this, []); }
   /**
    * var messageConfiguration: CPMessageGridItemConfiguration? { get }
    * @availability iOS 26.0+
    */
-  get messageConfiguration(): $SDK14 { return callSDK<$SDK14>("CarPlay_d968214ecc684fb6", 1490794868917581, this, []); }
+  get messageConfiguration(): $SDK14 { return callSDK<$SDK14>("CarPlay_0e503aef608672fa", 1490794868917581, this, []); }
   /**
    * var titleVariants: [String] { get }
    * @availability iOS 12.0+
    */
-  get titleVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 774892039687797, this, []); }
+  get titleVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 774892039687797, this, []); }
   declare readonly $type: { "c:objc(cs)CPGridButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "image": true; "messageConfiguration": true; "titleVariants": true };
 }
@@ -730,32 +730,32 @@ export class CPGridTemplate extends (CPTemplate as unknown as Omit<typeof CPTemp
    * class var maximumGridButtonImageSize: CGSize { get }
    * @availability iOS 26.0+
    */
-  static get maximumGridButtonImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 1355250744462167, undefined, []); }
+  static get maximumGridButtonImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 1355250744462167, undefined, []); }
   /**
    * init(title: String?, gridButtons: [CPGridButton])
    * @availability iOS 12.0+
    */
-  static init(title: (string) | null, gridButtons: Array<CPGridButton>): Promise<CPGridTemplate> { return callSDKAsync<CPGridTemplate>("CarPlay_d968214ecc684fb6", 100123872804873, undefined, [title, gridButtons]); }
+  static init(title: (string) | null, gridButtons: Array<CPGridButton>): Promise<CPGridTemplate> { return callSDKAsync<CPGridTemplate>("CarPlay_0e503aef608672fa", 100123872804873, undefined, [title, gridButtons]); }
   /**
    * func updateGridButtons(_ gridButtons: [CPGridButton])
    * @availability iOS 15.0+
    */
-  updateGridButtons(gridButtons: Array<CPGridButton>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3103022579877754, this, [gridButtons]); }
+  updateGridButtons(gridButtons: Array<CPGridButton>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3103022579877754, this, [gridButtons]); }
   /**
    * func updateTitle(_ title: String)
    * @availability iOS 15.0+
    */
-  updateTitle(title: string): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1287654250528159, this, [title]); }
+  updateTitle(title: string): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1287654250528159, this, [title]); }
   /**
    * var gridButtons: [CPGridButton] { get }
    * @availability iOS 12.0+
    */
-  get gridButtons(): Promise<Array<CPGridButton>> { return callSDKAsync<Array<CPGridButton>>("CarPlay_d968214ecc684fb6", 4107448213325626, this, []); }
+  get gridButtons(): Promise<Array<CPGridButton>> { return callSDKAsync<Array<CPGridButton>>("CarPlay_0e503aef608672fa", 4107448213325626, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 12.0+
    */
-  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_d968214ecc684fb6", 4283755299830259, this, []); }
+  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_0e503aef608672fa", 4283755299830259, this, []); }
   declare readonly $type: { "c:objc(cs)CPGridTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "gridButtons": true; "title": true };
 }
@@ -769,37 +769,37 @@ export class CPImageOverlay extends SDKHandle {
    * init(image: UIImage, alignment: CPImageOverlay.Alignment)
    * @availability iOS 26.4+
    */
-  static initImageAlignment(image: _UIKit_UIImage, alignment: CPImageOverlay_Alignment): Promise<CPImageOverlay> { return callSDKAsync<CPImageOverlay>("CarPlay_d968214ecc684fb6", 652436415577154, undefined, [image, alignment]); }
+  static initImageAlignment(image: _UIKit_UIImage, alignment: CPImageOverlay_Alignment): Promise<CPImageOverlay> { return callSDKAsync<CPImageOverlay>("CarPlay_0e503aef608672fa", 652436415577154, undefined, [image, alignment]); }
   /**
    * init(text: String, textColor: UIColor, backgroundColor: UIColor, alignment: CPImageOverlay.Alignment)
    * @availability iOS 26.4+
    */
-  static initTextTextColorBackgroundColorAlignment(text: string, textColor: _UIKit_UIColor, backgroundColor: _UIKit_UIColor, alignment: CPImageOverlay_Alignment): Promise<CPImageOverlay> { return callSDKAsync<CPImageOverlay>("CarPlay_d968214ecc684fb6", 2304956811026463, undefined, [text, textColor, backgroundColor, alignment]); }
+  static initTextTextColorBackgroundColorAlignment(text: string, textColor: _UIKit_UIColor, backgroundColor: _UIKit_UIColor, alignment: CPImageOverlay_Alignment): Promise<CPImageOverlay> { return callSDKAsync<CPImageOverlay>("CarPlay_0e503aef608672fa", 2304956811026463, undefined, [text, textColor, backgroundColor, alignment]); }
   /**
    * var alignment: CPImageOverlay.Alignment { get }
    * @availability iOS 26.4+
    */
-  get alignment(): Promise<CPImageOverlay_Alignment> { return callSDKAsync<CPImageOverlay_Alignment>("CarPlay_d968214ecc684fb6", 3339860244516665, this, []); }
+  get alignment(): Promise<CPImageOverlay_Alignment> { return callSDKAsync<CPImageOverlay_Alignment>("CarPlay_0e503aef608672fa", 3339860244516665, this, []); }
   /**
    * var backgroundColor: UIColor? { get }
    * @availability iOS 26.4+
    */
-  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("CarPlay_d968214ecc684fb6", 3658065863291786, this, []); }
+  get backgroundColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("CarPlay_0e503aef608672fa", 3658065863291786, this, []); }
   /**
    * var image: UIImage? { get }
    * @availability iOS 26.4+
    */
-  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 3386414761489847, this, []); }
+  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 3386414761489847, this, []); }
   /**
    * var text: String? { get }
    * @availability iOS 26.4+
    */
-  get text(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 2522972549646816, this, []); }
+  get text(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 2522972549646816, this, []); }
   /**
    * var textColor: UIColor? { get }
    * @availability iOS 26.4+
    */
-  get textColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("CarPlay_d968214ecc684fb6", 1865139257944497, this, []); }
+  get textColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("CarPlay_0e503aef608672fa", 1865139257944497, this, []); }
   declare readonly $type: { "c:objc(cs)CPImageOverlay": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "alignment": true; "backgroundColor": true; "image": true; "text": true; "textColor": true };
 }
@@ -815,7 +815,7 @@ export const CPImageOverlay_Alignment = {
    * init?(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): Promise<(CPImageOverlay_Alignment) | null> { return callSDKAsync<(CPImageOverlay_Alignment) | null>("CarPlay_d968214ecc684fb6", 109637771981569, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(CPImageOverlay_Alignment) | null> { return callSDKAsync<(CPImageOverlay_Alignment) | null>("CarPlay_0e503aef608672fa", 109637771981569, undefined, [rawValue]); }
 };
 
 /**
@@ -827,17 +827,17 @@ export class CPImageSet extends SDKHandle {
    * init(lightContentImage lightImage: UIImage, darkContentImage darkImage: UIImage)
    * @availability iOS 12.0+
    */
-  static init(lightImage: _UIKit_UIImage, darkImage: _UIKit_UIImage): CPImageSet { return callSDK<CPImageSet>("CarPlay_d968214ecc684fb6", 3843255982286708, undefined, [lightImage, darkImage]); }
+  static init(lightImage: _UIKit_UIImage, darkImage: _UIKit_UIImage): CPImageSet { return callSDK<CPImageSet>("CarPlay_0e503aef608672fa", 3843255982286708, undefined, [lightImage, darkImage]); }
   /**
    * var darkContentImage: UIImage { get }
    * @availability iOS 12.0+
    */
-  get darkContentImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_d968214ecc684fb6", 852757654897150, this, []); }
+  get darkContentImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_0e503aef608672fa", 852757654897150, this, []); }
   /**
    * var lightContentImage: UIImage { get }
    * @availability iOS 12.0+
    */
-  get lightContentImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_d968214ecc684fb6", 4447529775288871, this, []); }
+  get lightContentImage(): _UIKit_UIImage { return callSDK<_UIKit_UIImage>("CarPlay_0e503aef608672fa", 4447529775288871, this, []); }
   declare readonly $type: { "c:objc(cs)CPImageSet": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "darkContentImage": true; "lightContentImage": true };
 }
@@ -851,17 +851,17 @@ export class CPInformationItem extends SDKHandle {
    * init(title: String?, detail: String?)
    * @availability iOS 14.0+
    */
-  static init(title?: (string) | null, detail?: (string) | null): CPInformationItem { return callSDK<CPInformationItem>("CarPlay_d968214ecc684fb6", 4362047762794003, undefined, [title, detail]); }
+  static init(title?: (string) | null, detail?: (string) | null): CPInformationItem { return callSDK<CPInformationItem>("CarPlay_0e503aef608672fa", 4362047762794003, undefined, [title, detail]); }
   /**
    * var detail: String? { get }
    * @availability iOS 14.0+
    */
-  get detail(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 1871517972248326, this, []); }
+  get detail(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 1871517972248326, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 14.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 3457765306726320, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 3457765306726320, this, []); }
   declare readonly $type: { "c:objc(cs)CPInformationItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "detail": true; "title": true };
 }
@@ -875,17 +875,17 @@ export class CPInformationRatingItem extends (CPInformationItem as unknown as Om
    * init(rating: NSNumber?, maximumRating: NSNumber?, title: String?, detail: String?)
    * @availability iOS 14.0+
    */
-  static init(rating?: $SDK16, maximumRating?: $SDK16, title?: (string) | null, detail?: (string) | null): CPInformationRatingItem { return callSDK<CPInformationRatingItem>("CarPlay_d968214ecc684fb6", 345137910842599, undefined, [rating, maximumRating, title, detail]); }
+  static init(rating?: $SDK16, maximumRating?: $SDK16, title?: (string) | null, detail?: (string) | null): CPInformationRatingItem { return callSDK<CPInformationRatingItem>("CarPlay_0e503aef608672fa", 345137910842599, undefined, [rating, maximumRating, title, detail]); }
   /**
    * var maximumRating: NSNumber? { get }
    * @availability iOS 14.0+
    */
-  get maximumRating(): $SDK16 { return callSDK<$SDK16>("CarPlay_d968214ecc684fb6", 3754777262305727, this, []); }
+  get maximumRating(): $SDK16 { return callSDK<$SDK16>("CarPlay_0e503aef608672fa", 3754777262305727, this, []); }
   /**
    * var rating: NSNumber? { get }
    * @availability iOS 14.0+
    */
-  get rating(): $SDK16 { return callSDK<$SDK16>("CarPlay_d968214ecc684fb6", 2861228257169908, this, []); }
+  get rating(): $SDK16 { return callSDK<$SDK16>("CarPlay_0e503aef608672fa", 2861228257169908, this, []); }
   declare readonly $type: { "c:objc(cs)CPInformationRatingItem": true; "c:objc(cs)CPInformationItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "detail": true; "title": true; "maximumRating": true; "rating": true };
 }
@@ -899,30 +899,30 @@ export class CPInformationTemplate extends (CPTemplate as unknown as Omit<typeof
    * init(title: String, layout: CPInformationTemplateLayout, items: [CPInformationItem], actions: [CPTextButton])
    * @availability iOS 14.0+
    */
-  static init(title: string, layout: CPInformationTemplateLayout, items: $SDK17, actions: Array<CPTextButton>): Promise<CPInformationTemplate> { return callSDKAsync<CPInformationTemplate>("CarPlay_d968214ecc684fb6", 2508109599377072, undefined, [title, layout, items, actions]); }
+  static init(title: string, layout: CPInformationTemplateLayout, items: $SDK17, actions: Array<CPTextButton>): Promise<CPInformationTemplate> { return callSDKAsync<CPInformationTemplate>("CarPlay_0e503aef608672fa", 2508109599377072, undefined, [title, layout, items, actions]); }
   /**
    * var actions: [CPTextButton] { get set }
    * @availability iOS 14.0+
    */
-  get actions(): Promise<Array<CPTextButton>> { return callSDKAsync<Array<CPTextButton>>("CarPlay_d968214ecc684fb6", 365629024680457, this, []); }
-  setActions(value: Array<CPTextButton>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4104119969174819, this, [value]); }
+  get actions(): Promise<Array<CPTextButton>> { return callSDKAsync<Array<CPTextButton>>("CarPlay_0e503aef608672fa", 365629024680457, this, []); }
+  setActions(value: Array<CPTextButton>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4104119969174819, this, [value]); }
   /**
    * var items: [CPInformationItem] { get set }
    * @availability iOS 14.0+
    */
-  get items(): Promise<$SDK17> { return callSDKAsync<$SDK17>("CarPlay_d968214ecc684fb6", 3363485478123748, this, []); }
-  setItems(value: $SDK17): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2717606364101585, this, [value]); }
+  get items(): Promise<$SDK17> { return callSDKAsync<$SDK17>("CarPlay_0e503aef608672fa", 3363485478123748, this, []); }
+  setItems(value: $SDK17): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2717606364101585, this, [value]); }
   /**
    * var layout: CPInformationTemplateLayout { get }
    * @availability iOS 14.0+
    */
-  get layout(): Promise<CPInformationTemplateLayout> { return callSDKAsync<CPInformationTemplateLayout>("CarPlay_d968214ecc684fb6", 512213522132680, this, []); }
+  get layout(): Promise<CPInformationTemplateLayout> { return callSDKAsync<CPInformationTemplateLayout>("CarPlay_0e503aef608672fa", 512213522132680, this, []); }
   /**
    * var title: String { get set }
    * @availability iOS 14.0+
    */
-  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_d968214ecc684fb6", 617641711453164, this, []); }
-  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4234092232406364, this, [value]); }
+  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_0e503aef608672fa", 617641711453164, this, []); }
+  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4234092232406364, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPInformationTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "actions": true; "items": true; "layout": true; "title": true };
 }
@@ -938,7 +938,7 @@ export const CPInformationTemplateLayout = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (CPInformationTemplateLayout) | null { return callSDK<(CPInformationTemplateLayout) | null>("CarPlay_d968214ecc684fb6", 3606805871783045, undefined, [rawValue]); }
+  init(rawValue: number): (CPInformationTemplateLayout) | null { return callSDK<(CPInformationTemplateLayout) | null>("CarPlay_0e503aef608672fa", 3606805871783045, undefined, [rawValue]); }
 };
 
 /**
@@ -950,35 +950,35 @@ export class CPInstrumentClusterController extends SDKHandle {
    * var attributedInactiveDescriptionVariants: [NSAttributedString] { get set }
    * @availability iOS 15.4+
    */
-  get attributedInactiveDescriptionVariants(): $SDK18 { return callSDK<$SDK18>("CarPlay_d968214ecc684fb6", 1282976369819003, this, []); }
-  set attributedInactiveDescriptionVariants(value: $SDK18) { callSDK<void>("CarPlay_d968214ecc684fb6", 2271382077636420, this, [value]); }
+  get attributedInactiveDescriptionVariants(): $SDK18 { return callSDK<$SDK18>("CarPlay_0e503aef608672fa", 1282976369819003, this, []); }
+  set attributedInactiveDescriptionVariants(value: $SDK18) { callSDK<void>("CarPlay_0e503aef608672fa", 2271382077636420, this, [value]); }
   /**
    * var compassSetting: CPInstrumentClusterSetting { get }
    * @availability iOS 15.4+
    */
-  get compassSetting(): CPInstrumentClusterSetting { return callSDK<CPInstrumentClusterSetting>("CarPlay_d968214ecc684fb6", 2710959718410804, this, []); }
+  get compassSetting(): CPInstrumentClusterSetting { return callSDK<CPInstrumentClusterSetting>("CarPlay_0e503aef608672fa", 2710959718410804, this, []); }
   /**
    * weak var delegate: (any CPInstrumentClusterControllerDelegate)? { get set }
    * @availability iOS 15.4+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 1501536500996012, this, []); }
-  set delegate(value: (Implements<CPInstrumentClusterControllerDelegate> | SDKHandle) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 2723401927277290, this, [value], [{"protocol":"c:objc(pl)CPInstrumentClusterControllerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 1501536500996012, this, []); }
+  set delegate(value: (Implements<CPInstrumentClusterControllerDelegate> | SDKHandle) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 2723401927277290, this, [value], [{"protocol":"c:objc(pl)CPInstrumentClusterControllerDelegate"}]); }
   /**
    * var inactiveDescriptionVariants: [String] { get set }
    * @availability iOS 15.4+
    */
-  get inactiveDescriptionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 2104731936354482, this, []); }
-  set inactiveDescriptionVariants(value: Array<string>) { callSDK<void>("CarPlay_d968214ecc684fb6", 885504643011952, this, [value]); }
+  get inactiveDescriptionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 2104731936354482, this, []); }
+  set inactiveDescriptionVariants(value: Array<string>) { callSDK<void>("CarPlay_0e503aef608672fa", 885504643011952, this, [value]); }
   /**
    * var instrumentClusterWindow: UIWindow? { get }
    * @availability iOS 15.4+
    */
-  get instrumentClusterWindow(): (_UIKit_UIWindow) | null { return callSDK<(_UIKit_UIWindow) | null>("CarPlay_d968214ecc684fb6", 3565026765896904, this, []); }
+  get instrumentClusterWindow(): (_UIKit_UIWindow) | null { return callSDK<(_UIKit_UIWindow) | null>("CarPlay_0e503aef608672fa", 3565026765896904, this, []); }
   /**
    * var speedLimitSetting: CPInstrumentClusterSetting { get }
    * @availability iOS 15.4+
    */
-  get speedLimitSetting(): CPInstrumentClusterSetting { return callSDK<CPInstrumentClusterSetting>("CarPlay_d968214ecc684fb6", 3252534026156466, this, []); }
+  get speedLimitSetting(): CPInstrumentClusterSetting { return callSDK<CPInstrumentClusterSetting>("CarPlay_0e503aef608672fa", 3252534026156466, this, []); }
   declare readonly $type: { "c:objc(cs)CPInstrumentClusterController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributedInactiveDescriptionVariants": true; "compassSetting": true; "delegate": true; "inactiveDescriptionVariants": true; "instrumentClusterWindow": true; "speedLimitSetting": true };
 }
@@ -1031,7 +1031,7 @@ export const CPInstrumentClusterSetting = {
    * init?(rawValue: UInt)
    * @availability iOS 15.4+
    */
-  init(rawValue: number): (CPInstrumentClusterSetting) | null { return callSDK<(CPInstrumentClusterSetting) | null>("CarPlay_d968214ecc684fb6", 3976354380010980, undefined, [rawValue]); }
+  init(rawValue: number): (CPInstrumentClusterSetting) | null { return callSDK<(CPInstrumentClusterSetting) | null>("CarPlay_0e503aef608672fa", 3976354380010980, undefined, [rawValue]); }
 };
 
 /**
@@ -1043,84 +1043,84 @@ export class CPInterfaceController extends SDKHandle {
    * func dismissTemplate(animated: Bool) async throws -> Bool
    * @availability iOS 14.0+
    */
-  dismissTemplate(animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3391116016092996, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
+  dismissTemplate(animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3391116016092996, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func hideOverlayTemplate(animated: Bool) async throws -> Bool
    * @availability iOS 27.0+
    */
-  hideOverlayTemplate(animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1347202640879895, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
+  hideOverlayTemplate(animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1347202640879895, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func popTemplate(animated: Bool) async throws -> Bool
    * @availability iOS 14.0+
    */
-  popTemplate(animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4387575568795923, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
+  popTemplate(animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4387575568795923, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func popToRootTemplate(animated: Bool) async throws -> Bool
    * @availability iOS 14.0+
    */
-  popToRootTemplate(animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 363183666333673, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
+  popToRootTemplate(animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 363183666333673, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func pop(to targetTemplate: CPTemplate, animated: Bool) async throws -> Bool
    * @availability iOS 14.0+
    */
-  pop(targetTemplate: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4476542732531503, this, [targetTemplate, animated, completion], [null,null,{"callback":{"out":[]}}]); }
+  pop(targetTemplate: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4476542732531503, this, [targetTemplate, animated, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func presentTemplate(_ templateToPresent: CPTemplate, animated: Bool) async throws -> Bool
    * @availability iOS 14.0+
    */
-  presentTemplate(templateToPresent: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1392815003982780, this, [templateToPresent, animated, completion], [null,null,{"callback":{"out":[]}}]); }
+  presentTemplate(templateToPresent: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1392815003982780, this, [templateToPresent, animated, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func pushTemplate(_ templateToPush: CPTemplate, animated: Bool) async throws -> Bool
    * @availability iOS 14.0+
    */
-  pushTemplate(templateToPush: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1866310545134959, this, [templateToPush, animated, completion], [null,null,{"callback":{"out":[]}}]); }
+  pushTemplate(templateToPush: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1866310545134959, this, [templateToPush, animated, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func setRootTemplate(_ rootTemplate: CPTemplate, animated: Bool) async throws -> Bool
    * @availability iOS 14.0+
    */
-  setRootTemplate(rootTemplate: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1147872376516499, this, [rootTemplate, animated, completion], [null,null,{"callback":{"out":[]}}]); }
+  setRootTemplate(rootTemplate: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1147872376516499, this, [rootTemplate, animated, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func showOverlayTemplate(_ templateToShow: CPTemplate, animated: Bool) async throws -> Bool
    * @availability iOS 27.0+
    */
-  showOverlayTemplate(templateToShow: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 467085613316569, this, [templateToShow, animated, completion], [null,null,{"callback":{"out":[]}}]); }
+  showOverlayTemplate(templateToShow: CPTemplate, animated: boolean, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 467085613316569, this, [templateToShow, animated, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var carTraitCollection: UITraitCollection { get }
    * @availability iOS 14.0+
    */
-  get carTraitCollection(): Promise<_UIKit_UITraitCollection> { return callSDKAsync<_UIKit_UITraitCollection>("CarPlay_d968214ecc684fb6", 1406123063938389, this, []); }
+  get carTraitCollection(): Promise<_UIKit_UITraitCollection> { return callSDKAsync<_UIKit_UITraitCollection>("CarPlay_0e503aef608672fa", 1406123063938389, this, []); }
   /**
    * weak var delegate: (any CPInterfaceControllerDelegate)? { get set }
    * @availability iOS 12.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 3673213638927759, this, []); }
-  setDelegate(value?: (Implements<CPInterfaceControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 785522858532148, this, [value], [{"protocol":"c:objc(pl)CPInterfaceControllerDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 3673213638927759, this, []); }
+  setDelegate(value?: (Implements<CPInterfaceControllerDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 785522858532148, this, [value], [{"protocol":"c:objc(pl)CPInterfaceControllerDelegate"}]); }
   /**
    * var prefersDarkUserInterfaceStyle: Bool { get set }
    * @availability iOS 13.0+
    */
-  get prefersDarkUserInterfaceStyle(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 2598709979970120, this, []); }
-  setPrefersDarkUserInterfaceStyle(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1808072896319210, this, [value]); }
+  get prefersDarkUserInterfaceStyle(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 2598709979970120, this, []); }
+  setPrefersDarkUserInterfaceStyle(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1808072896319210, this, [value]); }
   /**
    * var presentedTemplate: CPTemplate? { get }
    * @availability iOS 12.0+
    */
-  get presentedTemplate(): Promise<(CPTemplate) | null> { return callSDKAsync<(CPTemplate) | null>("CarPlay_d968214ecc684fb6", 3393778503645023, this, []); }
+  get presentedTemplate(): Promise<(CPTemplate) | null> { return callSDKAsync<(CPTemplate) | null>("CarPlay_0e503aef608672fa", 3393778503645023, this, []); }
   /**
    * var rootTemplate: CPTemplate { get }
    * @availability iOS 12.0+
    */
-  get rootTemplate(): Promise<CPTemplate> { return callSDKAsync<CPTemplate>("CarPlay_d968214ecc684fb6", 2499344744319906, this, []); }
+  get rootTemplate(): Promise<CPTemplate> { return callSDKAsync<CPTemplate>("CarPlay_0e503aef608672fa", 2499344744319906, this, []); }
   /**
    * var templates: [CPTemplate] { get }
    * @availability iOS 12.0+
    */
-  get templates(): Promise<Array<CPTemplate>> { return callSDKAsync<Array<CPTemplate>>("CarPlay_d968214ecc684fb6", 4185520328874655, this, []); }
+  get templates(): Promise<Array<CPTemplate>> { return callSDKAsync<Array<CPTemplate>>("CarPlay_0e503aef608672fa", 4185520328874655, this, []); }
   /**
    * var topTemplate: CPTemplate? { get }
    * @availability iOS 12.0+
    */
-  get topTemplate(): Promise<(CPTemplate) | null> { return callSDKAsync<(CPTemplate) | null>("CarPlay_d968214ecc684fb6", 1050321273050070, this, []); }
+  get topTemplate(): Promise<(CPTemplate) | null> { return callSDKAsync<(CPTemplate) | null>("CarPlay_0e503aef608672fa", 1050321273050070, this, []); }
   declare readonly $type: { "c:objc(cs)CPInterfaceController": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "carTraitCollection": true; "delegate": true; "prefersDarkUserInterfaceStyle": true; "presentedTemplate": true; "rootTemplate": true; "templates": true; "topTemplate": true };
 }
@@ -1163,7 +1163,7 @@ export const CPJunctionType = {
    * init?(rawValue: UInt)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (CPJunctionType) | null { return callSDK<(CPJunctionType) | null>("CarPlay_d968214ecc684fb6", 3440280751744192, undefined, [rawValue]); }
+  init(rawValue: number): (CPJunctionType) | null { return callSDK<(CPJunctionType) | null>("CarPlay_0e503aef608672fa", 3440280751744192, undefined, [rawValue]); }
 };
 
 /**
@@ -1176,47 +1176,47 @@ export class CPLane extends SDKHandle {
    * @availability iOS 17.4+
    * @deprecated iOS 18.0
    */
-  static init(): CPLane { return callSDK<CPLane>("CarPlay_d968214ecc684fb6", 2257160833307903, undefined, []); }
+  static init(): CPLane { return callSDK<CPLane>("CarPlay_0e503aef608672fa", 2257160833307903, undefined, []); }
   /**
    * init(angles: [Measurement<UnitAngle>])
    * @availability iOS 18.0+
    */
-  static initAngles(angles: $SDK23): CPLane { return callSDK<CPLane>("CarPlay_d968214ecc684fb6", 1319302348939170, undefined, [angles]); }
+  static initAngles(angles: $SDK23): CPLane { return callSDK<CPLane>("CarPlay_0e503aef608672fa", 1319302348939170, undefined, [angles]); }
   /**
    * init(angles: [Measurement<UnitAngle>], highlightedAngle: Measurement<UnitAngle>, isPreferred preferred: Bool)
    * @availability iOS 18.0+
    */
-  static initAnglesHighlightedAngleIsPreferred(angles: $SDK23, highlightedAngle: $SDK24, preferred: boolean): CPLane { return callSDK<CPLane>("CarPlay_d968214ecc684fb6", 350027322193540, undefined, [angles, highlightedAngle, preferred]); }
+  static initAnglesHighlightedAngleIsPreferred(angles: $SDK23, highlightedAngle: $SDK24, preferred: boolean): CPLane { return callSDK<CPLane>("CarPlay_0e503aef608672fa", 350027322193540, undefined, [angles, highlightedAngle, preferred]); }
   /**
    * var angles: [Measurement<UnitAngle>] { get }
    * @availability iOS 18.0+
    */
-  get angles(): $SDK23 { return callSDK<$SDK23>("CarPlay_d968214ecc684fb6", 2602438494275877, this, []); }
+  get angles(): $SDK23 { return callSDK<$SDK23>("CarPlay_0e503aef608672fa", 2602438494275877, this, []); }
   /**
    * var highlightedAngle: Measurement<UnitAngle>? { get }
    * @availability iOS 18.0+
    */
-  get highlightedAngle(): $SDK25 { return callSDK<$SDK25>("CarPlay_d968214ecc684fb6", 3932225550776369, this, []); }
+  get highlightedAngle(): $SDK25 { return callSDK<$SDK25>("CarPlay_0e503aef608672fa", 3932225550776369, this, []); }
   /**
    * var primaryAngle: Measurement<UnitAngle> { get set }
    * @availability iOS 17.4+
    * @deprecated iOS 18.0
    */
-  get primaryAngle(): $SDK24 { return callSDK<$SDK24>("CarPlay_d968214ecc684fb6", 4335541518955662, this, []); }
-  set primaryAngle(value: $SDK24) { callSDK<void>("CarPlay_d968214ecc684fb6", 4315880087999240, this, [value]); }
+  get primaryAngle(): $SDK24 { return callSDK<$SDK24>("CarPlay_0e503aef608672fa", 4335541518955662, this, []); }
+  set primaryAngle(value: $SDK24) { callSDK<void>("CarPlay_0e503aef608672fa", 4315880087999240, this, [value]); }
   /**
    * var secondaryAngles: [Measurement<UnitAngle>] { get set }
    * @availability iOS 17.4+
    * @deprecated iOS 18.0
    */
-  get secondaryAngles(): $SDK23 { return callSDK<$SDK23>("CarPlay_d968214ecc684fb6", 646633784071342, this, []); }
-  set secondaryAngles(value: $SDK23) { callSDK<void>("CarPlay_d968214ecc684fb6", 2346796283180509, this, [value]); }
+  get secondaryAngles(): $SDK23 { return callSDK<$SDK23>("CarPlay_0e503aef608672fa", 646633784071342, this, []); }
+  set secondaryAngles(value: $SDK23) { callSDK<void>("CarPlay_0e503aef608672fa", 2346796283180509, this, [value]); }
   /**
    * var status: CPLaneStatus { get set }
    * @availability iOS 17.4+
    */
-  get status(): CPLaneStatus { return callSDK<CPLaneStatus>("CarPlay_d968214ecc684fb6", 2506406087844807, this, []); }
-  set status(value: CPLaneStatus) { callSDK<void>("CarPlay_d968214ecc684fb6", 3522287490389754, this, [value]); }
+  get status(): CPLaneStatus { return callSDK<CPLaneStatus>("CarPlay_0e503aef608672fa", 2506406087844807, this, []); }
+  set status(value: CPLaneStatus) { callSDK<void>("CarPlay_0e503aef608672fa", 3522287490389754, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPLane": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "angles": true; "highlightedAngle": true; "primaryAngle": true; "secondaryAngles": true; "status": true };
 }
@@ -1227,19 +1227,19 @@ export class CPLane extends SDKHandle {
  */
 export class CPLaneGuidance extends SDKHandle {
   /** init() */
-  static init(): CPLaneGuidance { return callSDK<CPLaneGuidance>("CarPlay_d968214ecc684fb6", 2387856679603648, undefined, []); }
+  static init(): CPLaneGuidance { return callSDK<CPLaneGuidance>("CarPlay_0e503aef608672fa", 2387856679603648, undefined, []); }
   /**
    * var instructionVariants: [String] { get set }
    * @availability iOS 17.4+
    */
-  get instructionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 96434834919363, this, []); }
-  set instructionVariants(value: Array<string>) { callSDK<void>("CarPlay_d968214ecc684fb6", 1093833493631299, this, [value]); }
+  get instructionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 96434834919363, this, []); }
+  set instructionVariants(value: Array<string>) { callSDK<void>("CarPlay_0e503aef608672fa", 1093833493631299, this, [value]); }
   /**
    * var lanes: [CPLane] { get set }
    * @availability iOS 17.4+
    */
-  get lanes(): Array<CPLane> { return callSDK<Array<CPLane>>("CarPlay_d968214ecc684fb6", 2449747129433414, this, []); }
-  set lanes(value: Array<CPLane>) { callSDK<void>("CarPlay_d968214ecc684fb6", 3872191301332447, this, [value]); }
+  get lanes(): Array<CPLane> { return callSDK<Array<CPLane>>("CarPlay_0e503aef608672fa", 2449747129433414, this, []); }
+  set lanes(value: Array<CPLane>) { callSDK<void>("CarPlay_0e503aef608672fa", 3872191301332447, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPLaneGuidance": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "instructionVariants": true; "lanes": true };
 }
@@ -1255,7 +1255,7 @@ export const CPLaneStatus = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (CPLaneStatus) | null { return callSDK<(CPLaneStatus) | null>("CarPlay_d968214ecc684fb6", 1686512952004212, undefined, [rawValue]); }
+  init(rawValue: number): (CPLaneStatus) | null { return callSDK<(CPLaneStatus) | null>("CarPlay_0e503aef608672fa", 1686512952004212, undefined, [rawValue]); }
 };
 
 /**
@@ -1269,17 +1269,17 @@ export const CPLimitableUserInterface = {
    * static var keyboard: CPLimitableUserInterface { get }
    * @availability iOS 12.0+
    */
-  get keyboard(): CPLimitableUserInterface { return callSDK<CPLimitableUserInterface>("CarPlay_d968214ecc684fb6", 1016599241459185, undefined, []); },
+  get keyboard(): CPLimitableUserInterface { return callSDK<CPLimitableUserInterface>("CarPlay_0e503aef608672fa", 1016599241459185, undefined, []); },
   /**
    * static var lists: CPLimitableUserInterface { get }
    * @availability iOS 12.0+
    */
-  get lists(): CPLimitableUserInterface { return callSDK<CPLimitableUserInterface>("CarPlay_d968214ecc684fb6", 1487793967575928, undefined, []); },
+  get lists(): CPLimitableUserInterface { return callSDK<CPLimitableUserInterface>("CarPlay_0e503aef608672fa", 1487793967575928, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): CPLimitableUserInterface { return callSDK<CPLimitableUserInterface>("CarPlay_d968214ecc684fb6", 934328118351356, undefined, [rawValue]); }
+  init(rawValue: number): CPLimitableUserInterface { return callSDK<CPLimitableUserInterface>("CarPlay_0e503aef608672fa", 934328118351356, undefined, [rawValue]); }
 };
 
 /**
@@ -1292,101 +1292,101 @@ export class CPListImageRowItem extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 26.0
    */
-  static get maximumImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 146494925968829, undefined, []); }
+  static get maximumImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 146494925968829, undefined, []); }
   /**
    * init(text: String?, cardElements elements: [CPListImageRowItemCardElement], allowsMultipleLines: Bool)
    * @availability iOS 26.0+
    */
-  static initTextCardElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemCardElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_d968214ecc684fb6", 3520677869448388, undefined, [text, elements, allowsMultipleLines]); }
+  static initTextCardElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemCardElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_0e503aef608672fa", 3520677869448388, undefined, [text, elements, allowsMultipleLines]); }
   /**
    * init(text: String?, condensedElements elements: [CPListImageRowItemCondensedElement], allowsMultipleLines: Bool)
    * @availability iOS 26.0+
    */
-  static initTextCondensedElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemCondensedElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_d968214ecc684fb6", 2419473590344896, undefined, [text, elements, allowsMultipleLines]); }
+  static initTextCondensedElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemCondensedElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_0e503aef608672fa", 2419473590344896, undefined, [text, elements, allowsMultipleLines]); }
   /**
    * init(text: String?, elements: [CPListImageRowItemRowElement], allowsMultipleLines: Bool)
    * @availability iOS 26.0+
    */
-  static initTextElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemRowElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_d968214ecc684fb6", 3328422720927022, undefined, [text, elements, allowsMultipleLines]); }
+  static initTextElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemRowElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_0e503aef608672fa", 3328422720927022, undefined, [text, elements, allowsMultipleLines]); }
   /**
    * init(text: String?, gridElements elements: [CPListImageRowItemGridElement], allowsMultipleLines: Bool)
    * @availability iOS 26.0+
    */
-  static initTextGridElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemGridElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_d968214ecc684fb6", 576207668144708, undefined, [text, elements, allowsMultipleLines]); }
+  static initTextGridElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemGridElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_0e503aef608672fa", 576207668144708, undefined, [text, elements, allowsMultipleLines]); }
   /**
    * init(text: String?, imageGridElements elements: [CPListImageRowItemImageGridElement], allowsMultipleLines: Bool)
    * @availability iOS 26.0+
    */
-  static initTextImageGridElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemImageGridElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_d968214ecc684fb6", 3938021456169387, undefined, [text, elements, allowsMultipleLines]); }
+  static initTextImageGridElementsAllowsMultipleLines(text: (string) | null, elements: Array<CPListImageRowItemImageGridElement>, allowsMultipleLines: boolean): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_0e503aef608672fa", 3938021456169387, undefined, [text, elements, allowsMultipleLines]); }
   /**
    * init(text: String, images: [UIImage])
    * @availability iOS 14.0+
    * @deprecated iOS 26.0
    */
-  static initTextImages(text: string, images: Array<_UIKit_UIImage>): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_d968214ecc684fb6", 3126380880437549, undefined, [text, images]); }
+  static initTextImages(text: string, images: Array<_UIKit_UIImage>): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_0e503aef608672fa", 3126380880437549, undefined, [text, images]); }
   /**
    * init(text: String, images: [UIImage], imageTitles: [String])
    * @availability iOS 17.4+
    * @deprecated iOS 26.0
    */
-  static initTextImagesImageTitles(text: string, images: Array<_UIKit_UIImage>, imageTitles: Array<string>): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_d968214ecc684fb6", 1818686326162923, undefined, [text, images, imageTitles]); }
+  static initTextImagesImageTitles(text: string, images: Array<_UIKit_UIImage>, imageTitles: Array<string>): Promise<CPListImageRowItem> { return callSDKAsync<CPListImageRowItem>("CarPlay_0e503aef608672fa", 1818686326162923, undefined, [text, images, imageTitles]); }
   /**
    * func update(_ gridImages: [UIImage])
    * @availability iOS 14.0+
    * @deprecated iOS 26.0
    */
-  update(gridImages: Array<_UIKit_UIImage>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 453113787695913, this, [gridImages]); }
+  update(gridImages: Array<_UIKit_UIImage>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 453113787695913, this, [gridImages]); }
   /**
    * var allowsMultipleLines: Bool { get }
    * @availability iOS 26.0+
    */
-  get allowsMultipleLines(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1776549557528579, this, []); }
+  get allowsMultipleLines(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1776549557528579, this, []); }
   /**
    * var elements: [CPListImageRowItemElement] { get set }
    * @availability iOS 26.0+
    */
-  get elements(): Promise<$SDK31> { return callSDKAsync<$SDK31>("CarPlay_d968214ecc684fb6", 3245560389538441, this, []); }
-  setElements(value: $SDK31): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1692804796634723, this, [value]); }
+  get elements(): Promise<$SDK31> { return callSDKAsync<$SDK31>("CarPlay_0e503aef608672fa", 3245560389538441, this, []); }
+  setElements(value: $SDK31): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1692804796634723, this, [value]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 15.0+
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1309372422102829, this, []); }
-  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3356942071033844, this, [value]); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1309372422102829, this, []); }
+  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3356942071033844, this, [value]); }
   /**
    * var gridImages: [UIImage] { get }
    * @availability iOS 14.0+
    * @deprecated iOS 26.0
    */
-  get gridImages(): Promise<Array<_UIKit_UIImage>> { return callSDKAsync<Array<_UIKit_UIImage>>("CarPlay_d968214ecc684fb6", 1037410649080204, this, []); }
+  get gridImages(): Promise<Array<_UIKit_UIImage>> { return callSDKAsync<Array<_UIKit_UIImage>>("CarPlay_0e503aef608672fa", 1037410649080204, this, []); }
   /**
    * var handler: ((any CPSelectableListItem, @escaping () -> Void) -> Void)? { get set }
    * @availability iOS 14.0+
    */
-  get handler(): Promise<$SDK32> { return callSDKAsync<$SDK32>("CarPlay_d968214ecc684fb6", 2048594651176823, this, []); }
+  get handler(): Promise<$SDK32> { return callSDKAsync<$SDK32>("CarPlay_0e503aef608672fa", 2048594651176823, this, []); }
   /**
    * var imageTitles: [String] { get }
    * @availability iOS 17.4+
    * @deprecated iOS 26.0
    */
-  get imageTitles(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_d968214ecc684fb6", 329491277836633, this, []); }
+  get imageTitles(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_0e503aef608672fa", 329491277836633, this, []); }
   /**
    * var listImageRowHandler: ((CPListImageRowItem, Int, @escaping () -> Void) -> Void)? { get set }
    * @availability iOS 14.0+
    */
-  get listImageRowHandler(): Promise<(((arg0: CPListImageRowItem, arg1: number, arg2: (() => void)) => Promise<void>)) | null> { return callSDKAsync<(((arg0: CPListImageRowItem, arg1: number, arg2: (() => void)) => Promise<void>)) | null>("CarPlay_d968214ecc684fb6", 1757623924980776, this, []); }
+  get listImageRowHandler(): Promise<(((arg0: CPListImageRowItem, arg1: number, arg2: (() => void)) => Promise<void>)) | null> { return callSDKAsync<(((arg0: CPListImageRowItem, arg1: number, arg2: (() => void)) => Promise<void>)) | null>("CarPlay_0e503aef608672fa", 1757623924980776, this, []); }
   /**
    * var text: String? { get set }
    * @availability iOS 14.0+
    */
-  get text(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 3921115398326857, this, []); }
-  setText(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3601532538826492, this, [value]); }
+  get text(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 3921115398326857, this, []); }
+  setText(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3601532538826492, this, [value]); }
   /**
    * var userInfo: Any? { get set }
    * @availability iOS 14.0+
    */
-  get userInfo(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("CarPlay_d968214ecc684fb6", 242351889895250, this, []); }
-  setUserInfo(value?: (unknown) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4183911912131230, this, [value]); }
+  get userInfo(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("CarPlay_0e503aef608672fa", 242351889895250, this, []); }
+  setUserInfo(value?: (unknown) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4183911912131230, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPListImageRowItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowsMultipleLines": true; "elements": true; "isEnabled": true; "gridImages": true; "imageTitles": true; "text": true; "userInfo": true };
 }
@@ -1400,25 +1400,25 @@ export class CPListImageRowItemElement extends SDKHandle {
    * class var maximumImageSize: CGSize { get }
    * @availability iOS 26.0+
    */
-  static get maximumImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 2019184719389739, undefined, []); }
+  static get maximumImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 2019184719389739, undefined, []); }
   /**
    * var accessibilityLabel: String? { get set }
    * @availability iOS 26.4+
    */
-  get accessibilityLabel(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 3997275036923768, this, []); }
-  setAccessibilityLabel(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3321223471918134, this, [value]); }
+  get accessibilityLabel(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 3997275036923768, this, []); }
+  setAccessibilityLabel(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3321223471918134, this, [value]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1459648699175433, this, []); }
-  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3199762107612671, this, [value]); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1459648699175433, this, []); }
+  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3199762107612671, this, [value]); }
   /**
    * @NSCopying var image: UIImage { get set }
    * @availability iOS 26.0+
    */
-  get image(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("CarPlay_d968214ecc684fb6", 3500208336871064, this, []); }
-  setImage(value: _UIKit_UIImage): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 834971540058496, this, [value]); }
+  get image(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("CarPlay_0e503aef608672fa", 3500208336871064, this, []); }
+  setImage(value: _UIKit_UIImage): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 834971540058496, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPListImageRowItemElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessibilityLabel": true; "isEnabled": true; "image": true };
 }
@@ -1432,51 +1432,51 @@ export class CPListImageRowItemCardElement extends (CPListImageRowItemElement as
    * class var maximumFullHeightImageSize: CGSize { get }
    * @availability iOS 26.0+
    */
-  static get maximumFullHeightImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 2539470364436649, undefined, []); }
+  static get maximumFullHeightImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 2539470364436649, undefined, []); }
   /**
    * class var maximumImageSize: CGSize { get }
    * @availability iOS 26.0+
    */
-  static get maximumImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 2673794503352100, undefined, []); }
+  static get maximumImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 2673794503352100, undefined, []); }
   /**
    * init(image: UIImage, showsImageFullHeight: Bool, title: String?, subtitle: String?, tintColor: UIColor?)
    * @availability iOS 26.0+
    */
-  static initImageShowsImageFullHeightTitleSubtitleTintColor(image: _UIKit_UIImage, showsImageFullHeight: boolean, title?: (string) | null, subtitle?: (string) | null, tintColor?: (_UIKit_UIColor) | null): Promise<CPListImageRowItemCardElement> { return callSDKAsync<CPListImageRowItemCardElement>("CarPlay_d968214ecc684fb6", 3740073515838561, undefined, [image, showsImageFullHeight, title, subtitle, tintColor]); }
+  static initImageShowsImageFullHeightTitleSubtitleTintColor(image: _UIKit_UIImage, showsImageFullHeight: boolean, title?: (string) | null, subtitle?: (string) | null, tintColor?: (_UIKit_UIColor) | null): Promise<CPListImageRowItemCardElement> { return callSDKAsync<CPListImageRowItemCardElement>("CarPlay_0e503aef608672fa", 3740073515838561, undefined, [image, showsImageFullHeight, title, subtitle, tintColor]); }
   /**
    * init(thumbnail: CPThumbnailImage, title: String?, subtitle: String?, tintColor: UIColor?)
    * @availability iOS 26.4+
    */
-  static initThumbnailTitleSubtitleTintColor(thumbnail: CPThumbnailImage, title?: (string) | null, subtitle?: (string) | null, tintColor?: (_UIKit_UIColor) | null): Promise<CPListImageRowItemCardElement> { return callSDKAsync<CPListImageRowItemCardElement>("CarPlay_d968214ecc684fb6", 1693022032810274, undefined, [thumbnail, title, subtitle, tintColor]); }
+  static initThumbnailTitleSubtitleTintColor(thumbnail: CPThumbnailImage, title?: (string) | null, subtitle?: (string) | null, tintColor?: (_UIKit_UIColor) | null): Promise<CPListImageRowItemCardElement> { return callSDKAsync<CPListImageRowItemCardElement>("CarPlay_0e503aef608672fa", 1693022032810274, undefined, [thumbnail, title, subtitle, tintColor]); }
   /**
    * var showsImageFullHeight: Bool { get }
    * @availability iOS 26.0+
    */
-  get showsImageFullHeight(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1237433217443816, this, []); }
+  get showsImageFullHeight(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1237433217443816, this, []); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 26.0+
    */
-  get subtitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 4045128831030762, this, []); }
-  setSubtitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3144080464214324, this, [value]); }
+  get subtitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 4045128831030762, this, []); }
+  setSubtitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3144080464214324, this, [value]); }
   /**
    * var thumbnail: CPThumbnailImage? { get set }
    * @availability iOS 26.4+
    */
-  get thumbnail(): Promise<(CPThumbnailImage) | null> { return callSDKAsync<(CPThumbnailImage) | null>("CarPlay_d968214ecc684fb6", 3439054031089951, this, []); }
-  setThumbnail(value?: (CPThumbnailImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4154205424521487, this, [value]); }
+  get thumbnail(): Promise<(CPThumbnailImage) | null> { return callSDKAsync<(CPThumbnailImage) | null>("CarPlay_0e503aef608672fa", 3439054031089951, this, []); }
+  setThumbnail(value?: (CPThumbnailImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4154205424521487, this, [value]); }
   /**
    * @NSCopying var tintColor: UIColor? { get set }
    * @availability iOS 26.0+
    */
-  get tintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("CarPlay_d968214ecc684fb6", 339997650690665, this, []); }
-  setTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1405170785876636, this, [value]); }
+  get tintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("CarPlay_0e503aef608672fa", 339997650690665, this, []); }
+  setTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1405170785876636, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 26.0+
    */
-  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_d968214ecc684fb6", 2201911591211000, this, []); }
-  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1111786712287134, this, [value]); }
+  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_0e503aef608672fa", 2201911591211000, this, []); }
+  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1111786712287134, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPListImageRowItemCardElement": true; "c:objc(cs)CPListImageRowItemElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessibilityLabel": true; "isEnabled": true; "image": true; "showsImageFullHeight": true; "subtitle": true; "thumbnail": true; "tintColor": true; "title": true };
 }
@@ -1490,30 +1490,30 @@ export class CPListImageRowItemCondensedElement extends CPListImageRowItemElemen
    * init(image: UIImage, imageShape: CPListImageRowItemCondensedElement.Shape, title: String, subtitle: String?, accessorySymbolName: String?)
    * @availability iOS 26.0+
    */
-  static init(image: _UIKit_UIImage, imageShape: CPListImageRowItemCondensedElement_Shape, title: string, subtitle?: (string) | null, accessorySymbolName?: (string) | null): Promise<CPListImageRowItemCondensedElement> { return callSDKAsync<CPListImageRowItemCondensedElement>("CarPlay_d968214ecc684fb6", 553285456415694, undefined, [image, imageShape, title, subtitle, accessorySymbolName]); }
+  static init(image: _UIKit_UIImage, imageShape: CPListImageRowItemCondensedElement_Shape, title: string, subtitle?: (string) | null, accessorySymbolName?: (string) | null): Promise<CPListImageRowItemCondensedElement> { return callSDKAsync<CPListImageRowItemCondensedElement>("CarPlay_0e503aef608672fa", 553285456415694, undefined, [image, imageShape, title, subtitle, accessorySymbolName]); }
   /**
    * var accessorySymbolName: String? { get set }
    * @availability iOS 26.0+
    */
-  get accessorySymbolName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 600200605268372, this, []); }
-  setAccessorySymbolName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3457411809788856, this, [value]); }
+  get accessorySymbolName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 600200605268372, this, []); }
+  setAccessorySymbolName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3457411809788856, this, [value]); }
   /**
    * var imageShape: CPListImageRowItemCondensedElement.Shape { get }
    * @availability iOS 26.0+
    */
-  get imageShape(): Promise<CPListImageRowItemCondensedElement_Shape> { return callSDKAsync<CPListImageRowItemCondensedElement_Shape>("CarPlay_d968214ecc684fb6", 2289398134293162, this, []); }
+  get imageShape(): Promise<CPListImageRowItemCondensedElement_Shape> { return callSDKAsync<CPListImageRowItemCondensedElement_Shape>("CarPlay_0e503aef608672fa", 2289398134293162, this, []); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 26.0+
    */
-  get subtitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 1771054575566292, this, []); }
-  setSubtitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2785867958981675, this, [value]); }
+  get subtitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 1771054575566292, this, []); }
+  setSubtitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2785867958981675, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 26.0+
    */
-  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_d968214ecc684fb6", 4267346628774601, this, []); }
-  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1029330318839476, this, [value]); }
+  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_0e503aef608672fa", 4267346628774601, this, []); }
+  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1029330318839476, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPListImageRowItemCondensedElement": true; "c:objc(cs)CPListImageRowItemElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessibilityLabel": true; "isEnabled": true; "image": true; "accessorySymbolName": true; "imageShape": true; "subtitle": true; "title": true };
 }
@@ -1529,7 +1529,7 @@ export const CPListImageRowItemCondensedElement_Shape = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): Promise<(CPListImageRowItemCondensedElement_Shape) | null> { return callSDKAsync<(CPListImageRowItemCondensedElement_Shape) | null>("CarPlay_d968214ecc684fb6", 1200558962913415, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(CPListImageRowItemCondensedElement_Shape) | null> { return callSDKAsync<(CPListImageRowItemCondensedElement_Shape) | null>("CarPlay_0e503aef608672fa", 1200558962913415, undefined, [rawValue]); }
 };
 
 /**
@@ -1541,7 +1541,7 @@ export class CPListImageRowItemGridElement extends CPListImageRowItemElement {
    * init(image: UIImage)
    * @availability iOS 26.0+
    */
-  static init(image: _UIKit_UIImage): Promise<CPListImageRowItemGridElement> { return callSDKAsync<CPListImageRowItemGridElement>("CarPlay_d968214ecc684fb6", 1101800221581821, undefined, [image]); }
+  static init(image: _UIKit_UIImage): Promise<CPListImageRowItemGridElement> { return callSDKAsync<CPListImageRowItemGridElement>("CarPlay_0e503aef608672fa", 1101800221581821, undefined, [image]); }
   declare readonly $type: { "c:objc(cs)CPListImageRowItemGridElement": true; "c:objc(cs)CPListImageRowItemElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessibilityLabel": true; "isEnabled": true; "image": true };
 }
@@ -1555,24 +1555,24 @@ export class CPListImageRowItemImageGridElement extends CPListImageRowItemElemen
    * init(image: UIImage, imageShape: CPListImageRowItemImageGridElement.Shape, title: String, accessorySymbolName: String?)
    * @availability iOS 26.0+
    */
-  static init(image: _UIKit_UIImage, imageShape: CPListImageRowItemImageGridElement_Shape, title: string, accessorySymbolName?: (string) | null): Promise<CPListImageRowItemImageGridElement> { return callSDKAsync<CPListImageRowItemImageGridElement>("CarPlay_d968214ecc684fb6", 2047136722132067, undefined, [image, imageShape, title, accessorySymbolName]); }
+  static init(image: _UIKit_UIImage, imageShape: CPListImageRowItemImageGridElement_Shape, title: string, accessorySymbolName?: (string) | null): Promise<CPListImageRowItemImageGridElement> { return callSDKAsync<CPListImageRowItemImageGridElement>("CarPlay_0e503aef608672fa", 2047136722132067, undefined, [image, imageShape, title, accessorySymbolName]); }
   /**
    * var accessorySymbolName: String? { get set }
    * @availability iOS 26.0+
    */
-  get accessorySymbolName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 1380219743492143, this, []); }
-  setAccessorySymbolName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1480149517224592, this, [value]); }
+  get accessorySymbolName(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 1380219743492143, this, []); }
+  setAccessorySymbolName(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1480149517224592, this, [value]); }
   /**
    * var imageShape: CPListImageRowItemImageGridElement.Shape { get }
    * @availability iOS 26.0+
    */
-  get imageShape(): Promise<CPListImageRowItemImageGridElement_Shape> { return callSDKAsync<CPListImageRowItemImageGridElement_Shape>("CarPlay_d968214ecc684fb6", 2261730109152760, this, []); }
+  get imageShape(): Promise<CPListImageRowItemImageGridElement_Shape> { return callSDKAsync<CPListImageRowItemImageGridElement_Shape>("CarPlay_0e503aef608672fa", 2261730109152760, this, []); }
   /**
    * var title: String { get set }
    * @availability iOS 26.0+
    */
-  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_d968214ecc684fb6", 1372255176777173, this, []); }
-  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1732517041089956, this, [value]); }
+  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_0e503aef608672fa", 1372255176777173, this, []); }
+  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1732517041089956, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPListImageRowItemImageGridElement": true; "c:objc(cs)CPListImageRowItemElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessibilityLabel": true; "isEnabled": true; "image": true; "accessorySymbolName": true; "imageShape": true; "title": true };
 }
@@ -1588,7 +1588,7 @@ export const CPListImageRowItemImageGridElement_Shape = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): Promise<(CPListImageRowItemImageGridElement_Shape) | null> { return callSDKAsync<(CPListImageRowItemImageGridElement_Shape) | null>("CarPlay_d968214ecc684fb6", 2077352179104784, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(CPListImageRowItemImageGridElement_Shape) | null> { return callSDKAsync<(CPListImageRowItemImageGridElement_Shape) | null>("CarPlay_0e503aef608672fa", 2077352179104784, undefined, [rawValue]); }
 };
 
 /**
@@ -1600,19 +1600,19 @@ export class CPListImageRowItemRowElement extends CPListImageRowItemElement {
    * init(image: UIImage, title: String?, subtitle: String?)
    * @availability iOS 26.0+
    */
-  static init(image: _UIKit_UIImage, title?: (string) | null, subtitle?: (string) | null): Promise<CPListImageRowItemRowElement> { return callSDKAsync<CPListImageRowItemRowElement>("CarPlay_d968214ecc684fb6", 4315841816065317, undefined, [image, title, subtitle]); }
+  static init(image: _UIKit_UIImage, title?: (string) | null, subtitle?: (string) | null): Promise<CPListImageRowItemRowElement> { return callSDKAsync<CPListImageRowItemRowElement>("CarPlay_0e503aef608672fa", 4315841816065317, undefined, [image, title, subtitle]); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 26.0+
    */
-  get subtitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 2906591350362776, this, []); }
-  setSubtitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1790481480876068, this, [value]); }
+  get subtitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 2906591350362776, this, []); }
+  setSubtitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1790481480876068, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 26.0+
    */
-  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 3496272904410151, this, []); }
-  setTitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1614616170931695, this, [value]); }
+  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 3496272904410151, this, []); }
+  setTitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1614616170931695, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPListImageRowItemRowElement": true; "c:objc(cs)CPListImageRowItemElement": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessibilityLabel": true; "isEnabled": true; "image": true; "subtitle": true; "title": true };
 }
@@ -1626,128 +1626,128 @@ export class CPListItem extends SDKHandle {
    * class var maximumImageSize: CGSize { get }
    * @availability iOS 14.0+
    */
-  static get maximumImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 2894169615478501, undefined, []); }
+  static get maximumImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 2894169615478501, undefined, []); }
   /**
    * init(text: String?, detailText: String?)
    * @availability iOS 12.0+
    */
-  static initTextDetailText(text?: (string) | null, detailText?: (string) | null): Promise<CPListItem> { return callSDKAsync<CPListItem>("CarPlay_d968214ecc684fb6", 914885494186455, undefined, [text, detailText]); }
+  static initTextDetailText(text?: (string) | null, detailText?: (string) | null): Promise<CPListItem> { return callSDKAsync<CPListItem>("CarPlay_0e503aef608672fa", 914885494186455, undefined, [text, detailText]); }
   /**
    * init(text: String?, detailText: String?, image: UIImage?)
    * @availability iOS 12.0+
    */
-  static initTextDetailTextImage(text?: (string) | null, detailText?: (string) | null, image?: (_UIKit_UIImage) | null): Promise<CPListItem> { return callSDKAsync<CPListItem>("CarPlay_d968214ecc684fb6", 2453500221778217, undefined, [text, detailText, image]); }
+  static initTextDetailTextImage(text?: (string) | null, detailText?: (string) | null, image?: (_UIKit_UIImage) | null): Promise<CPListItem> { return callSDKAsync<CPListItem>("CarPlay_0e503aef608672fa", 2453500221778217, undefined, [text, detailText, image]); }
   /**
    * init(text: String?, detailText: String?, image: UIImage?, accessoryImage: UIImage?, accessoryType: CPListItemAccessoryType)
    * @availability iOS 14.0+
    */
-  static initTextDetailTextImageAccessoryImageAccessoryType(text: (string) | null, detailText: (string) | null, image: (_UIKit_UIImage) | null, accessoryImage: (_UIKit_UIImage) | null, accessoryType: CPListItemAccessoryType): Promise<CPListItem> { return callSDKAsync<CPListItem>("CarPlay_d968214ecc684fb6", 3794714706342714, undefined, [text, detailText, image, accessoryImage, accessoryType]); }
+  static initTextDetailTextImageAccessoryImageAccessoryType(text: (string) | null, detailText: (string) | null, image: (_UIKit_UIImage) | null, accessoryImage: (_UIKit_UIImage) | null, accessoryType: CPListItemAccessoryType): Promise<CPListItem> { return callSDKAsync<CPListItem>("CarPlay_0e503aef608672fa", 3794714706342714, undefined, [text, detailText, image, accessoryImage, accessoryType]); }
   /**
    * init(text: String?, detailText: String?, image: UIImage?, showsDisclosureIndicator: Bool)
    * @availability iOS 12.0+
    * @deprecated iOS 14.0
    */
-  static initTextDetailTextImageShowsDisclosureIndicator(text: (string) | null, detailText: (string) | null, image: (_UIKit_UIImage) | null, showsDisclosureIndicator: boolean): Promise<CPListItem> { return callSDKAsync<CPListItem>("CarPlay_d968214ecc684fb6", 3380786643723337, undefined, [text, detailText, image, showsDisclosureIndicator]); }
+  static initTextDetailTextImageShowsDisclosureIndicator(text: (string) | null, detailText: (string) | null, image: (_UIKit_UIImage) | null, showsDisclosureIndicator: boolean): Promise<CPListItem> { return callSDKAsync<CPListItem>("CarPlay_0e503aef608672fa", 3380786643723337, undefined, [text, detailText, image, showsDisclosureIndicator]); }
   /**
    * func setAccessoryImage(_ accessoryImage: UIImage?)
    * @availability iOS 14.0+
    */
-  setAccessoryImage(accessoryImage?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2888188030518180, this, [accessoryImage]); }
+  setAccessoryImage(accessoryImage?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2888188030518180, this, [accessoryImage]); }
   /**
    * func setDetailText(_ detailText: String?)
    * @availability iOS 14.0+
    */
-  setDetailText(detailText?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3549584483485005, this, [detailText]); }
+  setDetailText(detailText?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3549584483485005, this, [detailText]); }
   /**
    * func setImage(_ image: UIImage?)
    * @availability iOS 14.0+
    */
-  setImage(image?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2599884565825857, this, [image]); }
+  setImage(image?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2599884565825857, this, [image]); }
   /**
    * func setText(_ text: String)
    * @availability iOS 14.0+
    */
-  setText(text: string): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2749952113038442, this, [text]); }
+  setText(text: string): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2749952113038442, this, [text]); }
   /**
    * var accessoryImage: UIImage? { get }
    * @availability iOS 12.0+
    */
-  get accessoryImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 1479643697076820, this, []); }
+  get accessoryImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 1479643697076820, this, []); }
   /**
    * var accessoryType: CPListItemAccessoryType { get set }
    * @availability iOS 14.0+
    */
-  get accessoryType(): Promise<CPListItemAccessoryType> { return callSDKAsync<CPListItemAccessoryType>("CarPlay_d968214ecc684fb6", 2352387474162855, this, []); }
-  setAccessoryType(value: CPListItemAccessoryType): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2499425962726305, this, [value]); }
+  get accessoryType(): Promise<CPListItemAccessoryType> { return callSDKAsync<CPListItemAccessoryType>("CarPlay_0e503aef608672fa", 2352387474162855, this, []); }
+  setAccessoryType(value: CPListItemAccessoryType): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2499425962726305, this, [value]); }
   /**
    * var detailText: String? { get }
    * @availability iOS 12.0+
    */
-  get detailText(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 1588174914899570, this, []); }
+  get detailText(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 1588174914899570, this, []); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 15.0+
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 2999637299618730, this, []); }
-  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2821823579870618, this, [value]); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 2999637299618730, this, []); }
+  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2821823579870618, this, [value]); }
   /**
    * var isExplicitContent: Bool { get set }
    * @availability iOS 14.0+
    */
-  get isExplicitContent(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1823771490490152, this, []); }
-  setIsExplicitContent(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 45907554733940, this, [value]); }
+  get isExplicitContent(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1823771490490152, this, []); }
+  setIsExplicitContent(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 45907554733940, this, [value]); }
   /**
    * var handler: ((any CPSelectableListItem, @escaping () -> Void) -> Void)? { get set }
    * @availability iOS 14.0+
    */
-  get handler(): Promise<$SDK32> { return callSDKAsync<$SDK32>("CarPlay_d968214ecc684fb6", 3231099043962485, this, []); }
+  get handler(): Promise<$SDK32> { return callSDKAsync<$SDK32>("CarPlay_0e503aef608672fa", 3231099043962485, this, []); }
   /**
    * var image: UIImage? { get }
    * @availability iOS 12.0+
    */
-  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 3112814835002573, this, []); }
+  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 3112814835002573, this, []); }
   /**
    * var playbackProgress: CGFloat { get set }
    * @availability iOS 14.0+
    */
-  get playbackProgress(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 613359535978177, this, []); }
-  setPlaybackProgress(value: number): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3717306046448611, this, [value]); }
+  get playbackProgress(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 613359535978177, this, []); }
+  setPlaybackProgress(value: number): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3717306046448611, this, [value]); }
   /**
    * var isPlaying: Bool { get set }
    * @availability iOS 14.0+
    */
-  get isPlaying(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1071373183319452, this, []); }
-  setIsPlaying(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4491435742310757, this, [value]); }
+  get isPlaying(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1071373183319452, this, []); }
+  setIsPlaying(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4491435742310757, this, [value]); }
   /**
    * var playingIndicatorLocation: CPListItemPlayingIndicatorLocation { get set }
    * @availability iOS 14.0+
    */
-  get playingIndicatorLocation(): Promise<CPListItemPlayingIndicatorLocation> { return callSDKAsync<CPListItemPlayingIndicatorLocation>("CarPlay_d968214ecc684fb6", 204022579320678, this, []); }
-  setPlayingIndicatorLocation(value: CPListItemPlayingIndicatorLocation): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 907746808168942, this, [value]); }
+  get playingIndicatorLocation(): Promise<CPListItemPlayingIndicatorLocation> { return callSDKAsync<CPListItemPlayingIndicatorLocation>("CarPlay_0e503aef608672fa", 204022579320678, this, []); }
+  setPlayingIndicatorLocation(value: CPListItemPlayingIndicatorLocation): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 907746808168942, this, [value]); }
   /**
    * var showsDisclosureIndicator: Bool { get }
    * @availability iOS 12.0+
    * @deprecated iOS 14.0
    */
-  get showsDisclosureIndicator(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1203705129341895, this, []); }
+  get showsDisclosureIndicator(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1203705129341895, this, []); }
   /**
    * var showsExplicitLabel: Bool { get set }
    * @availability iOS 14.0+
    * @deprecated iOS 14.0
    */
-  get showsExplicitLabel(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1643750319480957, this, []); }
-  setShowsExplicitLabel(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1567899640699877, this, [value]); }
+  get showsExplicitLabel(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1643750319480957, this, []); }
+  setShowsExplicitLabel(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1567899640699877, this, [value]); }
   /**
    * var text: String? { get }
    * @availability iOS 12.0+
    */
-  get text(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 2582857992672949, this, []); }
+  get text(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 2582857992672949, this, []); }
   /**
    * var userInfo: Any? { get set }
    * @availability iOS 12.0+
    */
-  get userInfo(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("CarPlay_d968214ecc684fb6", 2521878878469135, this, []); }
-  setUserInfo(value?: (unknown) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1543014578423726, this, [value]); }
+  get userInfo(): Promise<(unknown) | null> { return callSDKAsync<(unknown) | null>("CarPlay_0e503aef608672fa", 2521878878469135, this, []); }
+  setUserInfo(value?: (unknown) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1543014578423726, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPListItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessoryImage": true; "accessoryType": true; "detailText": true; "isEnabled": true; "isExplicitContent": true; "image": true; "playbackProgress": true; "isPlaying": true; "playingIndicatorLocation": true; "showsDisclosureIndicator": true; "showsExplicitLabel": true; "text": true; "userInfo": true };
 }
@@ -1763,7 +1763,7 @@ export const CPListItem_AssistantCellPosition = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): Promise<(CPListItem_AssistantCellPosition) | null> { return callSDKAsync<(CPListItem_AssistantCellPosition) | null>("CarPlay_d968214ecc684fb6", 4080272916791719, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(CPListItem_AssistantCellPosition) | null> { return callSDKAsync<(CPListItem_AssistantCellPosition) | null>("CarPlay_0e503aef608672fa", 4080272916791719, undefined, [rawValue]); }
 };
 
 /**
@@ -1777,7 +1777,7 @@ export const CPListItem_AssistantCellVisibility = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): Promise<(CPListItem_AssistantCellVisibility) | null> { return callSDKAsync<(CPListItem_AssistantCellVisibility) | null>("CarPlay_d968214ecc684fb6", 2398687591151622, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(CPListItem_AssistantCellVisibility) | null> { return callSDKAsync<(CPListItem_AssistantCellVisibility) | null>("CarPlay_0e503aef608672fa", 2398687591151622, undefined, [rawValue]); }
 };
 
 /**
@@ -1791,7 +1791,7 @@ export const CPListItemAccessoryType = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (CPListItemAccessoryType) | null { return callSDK<(CPListItemAccessoryType) | null>("CarPlay_d968214ecc684fb6", 1646824603664550, undefined, [rawValue]); }
+  init(rawValue: number): (CPListItemAccessoryType) | null { return callSDK<(CPListItemAccessoryType) | null>("CarPlay_0e503aef608672fa", 1646824603664550, undefined, [rawValue]); }
 };
 
 /**
@@ -1805,7 +1805,7 @@ export const CPListItemPlayingIndicatorLocation = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (CPListItemPlayingIndicatorLocation) | null { return callSDK<(CPListItemPlayingIndicatorLocation) | null>("CarPlay_d968214ecc684fb6", 2641230928888666, undefined, [rawValue]); }
+  init(rawValue: number): (CPListItemPlayingIndicatorLocation) | null { return callSDK<(CPListItemPlayingIndicatorLocation) | null>("CarPlay_0e503aef608672fa", 2641230928888666, undefined, [rawValue]); }
 };
 
 /**
@@ -1817,68 +1817,68 @@ export class CPListSection extends SDKHandle {
    * func index(of item: any CPListTemplateItem) -> Int
    * @availability iOS 12.0+
    */
-  index(item: SDKHandle): number { return callSDK<number>("CarPlay_d968214ecc684fb6", 10845863039457, this, [item]); }
+  index(item: SDKHandle): number { return callSDK<number>("CarPlay_0e503aef608672fa", 10845863039457, this, [item]); }
   /**
    * init(items: [any CPListTemplateItem], header: String, headerSubtitle: String?, headerImage: UIImage?, headerButton: CPButton?, sectionIndexTitle: String?)
    * @availability iOS 15.0+
    */
-  static initItemsHeaderHeaderSubtitleHeaderImageHeaderButtonSectionIndexTitle(items: Array<SDKHandle>, header: string, headerSubtitle?: (string) | null, headerImage?: (_UIKit_UIImage) | null, headerButton?: (CPButton) | null, sectionIndexTitle?: (string) | null): CPListSection { return callSDK<CPListSection>("CarPlay_d968214ecc684fb6", 2571858049161834, undefined, [items, header, headerSubtitle, headerImage, headerButton, sectionIndexTitle]); }
+  static initItemsHeaderHeaderSubtitleHeaderImageHeaderButtonSectionIndexTitle(items: Array<SDKHandle>, header: string, headerSubtitle?: (string) | null, headerImage?: (_UIKit_UIImage) | null, headerButton?: (CPButton) | null, sectionIndexTitle?: (string) | null): CPListSection { return callSDK<CPListSection>("CarPlay_0e503aef608672fa", 2571858049161834, undefined, [items, header, headerSubtitle, headerImage, headerButton, sectionIndexTitle]); }
   /**
    * func item(at index: Int) -> any CPListTemplateItem
    * @availability iOS 12.0+
    */
-  item(index: number): SDKHandle { return callSDK<SDKHandle>("CarPlay_d968214ecc684fb6", 1754889942402580, this, [index]); }
+  item(index: number): SDKHandle { return callSDK<SDKHandle>("CarPlay_0e503aef608672fa", 1754889942402580, this, [index]); }
   /**
    * var header: String? { get }
    * @availability iOS 12.0+
    */
-  get header(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2858120122916624, this, []); }
+  get header(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2858120122916624, this, []); }
   /**
    * @NSCopying var headerButton: CPButton? { get }
    * @availability iOS 15.0+
    */
-  get headerButton(): (CPButton) | null { return callSDK<(CPButton) | null>("CarPlay_d968214ecc684fb6", 1122291194117572, this, []); }
+  get headerButton(): (CPButton) | null { return callSDK<(CPButton) | null>("CarPlay_0e503aef608672fa", 1122291194117572, this, []); }
   /**
    * @NSCopying var headerImage: UIImage? { get set }
    * @availability iOS 15.0+
    */
-  get headerImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 3590548642292986, this, []); }
-  set headerImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 3802507951255956, this, [value]); }
+  get headerImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 3590548642292986, this, []); }
+  set headerImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 3802507951255956, this, [value]); }
   /**
    * var headerSubtitle: String? { get }
    * @availability iOS 15.0+
    */
-  get headerSubtitle(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 1880241841686735, this, []); }
+  get headerSubtitle(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 1880241841686735, this, []); }
   /**
    * var items: [any CPListTemplateItem] { get }
    * @availability iOS 12.0+
    */
-  get items(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("CarPlay_d968214ecc684fb6", 4193453846723863, this, []); }
+  get items(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("CarPlay_0e503aef608672fa", 4193453846723863, this, []); }
   /**
    * var sectionIndexTitle: String? { get }
    * @availability iOS 12.0+
    */
-  get sectionIndexTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 3842126360794477, this, []); }
+  get sectionIndexTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 3842126360794477, this, []); }
   /**
    * convenience init(items: [any CPListTemplateItem], header: String?, sectionIndexTitle: String?)
    * @availability iOS 14.0+
    */
-  static initItemsHeaderSectionIndexTitle(items: Array<SDKHandle>, header?: (string) | null, sectionIndexTitle?: (string) | null): CPListSection { return callSDK<CPListSection>("CarPlay_d968214ecc684fb6", 117345220324678, undefined, [items, header, sectionIndexTitle]); }
+  static initItemsHeaderSectionIndexTitle(items: Array<SDKHandle>, header?: (string) | null, sectionIndexTitle?: (string) | null): CPListSection { return callSDK<CPListSection>("CarPlay_0e503aef608672fa", 117345220324678, undefined, [items, header, sectionIndexTitle]); }
   /**
    * convenience init(items: [CPListItem], header: String?, sectionIndexTitle: String?)
    * @availability iOS 12.0+
    */
-  static initItemsHeaderSectionIndexTitle52736(items: Array<CPListItem>, header?: (string) | null, sectionIndexTitle?: (string) | null): CPListSection { return callSDK<CPListSection>("CarPlay_d968214ecc684fb6", 317803381506741, undefined, [items, header, sectionIndexTitle]); }
+  static initItemsHeaderSectionIndexTitle52736(items: Array<CPListItem>, header?: (string) | null, sectionIndexTitle?: (string) | null): CPListSection { return callSDK<CPListSection>("CarPlay_0e503aef608672fa", 317803381506741, undefined, [items, header, sectionIndexTitle]); }
   /**
    * convenience init(items: [any CPListTemplateItem])
    * @availability iOS 14.0+
    */
-  static initItems(items: Array<SDKHandle>): CPListSection { return callSDK<CPListSection>("CarPlay_d968214ecc684fb6", 1312071147425073, undefined, [items]); }
+  static initItems(items: Array<SDKHandle>): CPListSection { return callSDK<CPListSection>("CarPlay_0e503aef608672fa", 1312071147425073, undefined, [items]); }
   /**
    * convenience init(items: [CPListItem])
    * @availability iOS 12.0+
    */
-  static initItems71363(items: Array<CPListItem>): CPListSection { return callSDK<CPListSection>("CarPlay_d968214ecc684fb6", 1605570072975161, undefined, [items]); }
+  static initItems71363(items: Array<CPListItem>): CPListSection { return callSDK<CPListSection>("CarPlay_0e503aef608672fa", 1605570072975161, undefined, [items]); }
   declare readonly $type: { "c:objc(cs)CPListSection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "header": true; "headerButton": true; "headerImage": true; "headerSubtitle": true; "items": true; "sectionIndexTitle": true };
 }
@@ -1892,115 +1892,115 @@ export class CPListTemplate extends CPTemplate {
    * class var maximumGridButtonImageSize: CGSize { get }
    * @availability iOS 26.0+
    */
-  static get maximumGridButtonImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 4022294616260095, undefined, []); }
+  static get maximumGridButtonImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 4022294616260095, undefined, []); }
   /**
    * class var maximumHeaderGridButtonCount: Int { get }
    * @availability iOS 26.0+
    */
-  static get maximumHeaderGridButtonCount(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 1255111460850911, undefined, []); }
+  static get maximumHeaderGridButtonCount(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 1255111460850911, undefined, []); }
   /**
    * class var maximumItemCount: Int { get }
    * @availability iOS 14.0+
    */
-  static get maximumItemCount(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 279233478043901, undefined, []); }
+  static get maximumItemCount(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 279233478043901, undefined, []); }
   /**
    * class var maximumSectionCount: Int { get }
    * @availability iOS 14.0+
    */
-  static get maximumSectionCount(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 3177928094235123, undefined, []); }
+  static get maximumSectionCount(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 3177928094235123, undefined, []); }
   /**
    * func indexPath(for item: any CPListTemplateItem) -> IndexPath?
    * @availability iOS 14.0+
    */
-  indexPath(item: SDKHandle): Promise<(_Foundation_IndexPath) | null> { return callSDKAsync<(_Foundation_IndexPath) | null>("CarPlay_d968214ecc684fb6", 2301928976302584, this, [item]); }
+  indexPath(item: SDKHandle): Promise<(_Foundation_IndexPath) | null> { return callSDKAsync<(_Foundation_IndexPath) | null>("CarPlay_0e503aef608672fa", 2301928976302584, this, [item]); }
   /**
    * init(title: String?, listHeader: CPListTemplateDetailsHeader?, sections: [CPListSection], assistantCellConfiguration: CPAssistantCellConfiguration?)
    * @availability iOS 26.4+
    */
-  static initTitleListHeaderSectionsAssistantCellConfiguration(title: (string) | null, listHeader: $SDK36, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK37): Promise<CPListTemplate> { return callSDKAsync<CPListTemplate>("CarPlay_d968214ecc684fb6", 1197728586134850, undefined, [title, listHeader, sections, assistantCellConfiguration]); }
+  static initTitleListHeaderSectionsAssistantCellConfiguration(title: (string) | null, listHeader: $SDK36, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK37): Promise<CPListTemplate> { return callSDKAsync<CPListTemplate>("CarPlay_0e503aef608672fa", 1197728586134850, undefined, [title, listHeader, sections, assistantCellConfiguration]); }
   /**
    * init(title: String?, sections: [CPListSection])
    * @availability iOS 12.0+
    */
-  static initTitleSections(title: (string) | null, sections: Array<CPListSection>): Promise<CPListTemplate> { return callSDKAsync<CPListTemplate>("CarPlay_d968214ecc684fb6", 4028119531280854, undefined, [title, sections]); }
+  static initTitleSections(title: (string) | null, sections: Array<CPListSection>): Promise<CPListTemplate> { return callSDKAsync<CPListTemplate>("CarPlay_0e503aef608672fa", 4028119531280854, undefined, [title, sections]); }
   /**
    * init(title: String?, sections: [CPListSection], assistantCellConfiguration: CPAssistantCellConfiguration?)
    * @availability iOS 15.0+
    */
-  static initTitleSectionsAssistantCellConfiguration(title: (string) | null, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK37): Promise<CPListTemplate> { return callSDKAsync<CPListTemplate>("CarPlay_d968214ecc684fb6", 741326968560054, undefined, [title, sections, assistantCellConfiguration]); }
+  static initTitleSectionsAssistantCellConfiguration(title: (string) | null, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK37): Promise<CPListTemplate> { return callSDKAsync<CPListTemplate>("CarPlay_0e503aef608672fa", 741326968560054, undefined, [title, sections, assistantCellConfiguration]); }
   /**
    * init(title: String?, sections: [CPListSection], assistantCellConfiguration: CPAssistantCellConfiguration?, headerGridButtons: [CPGridButton]?)
    * @availability iOS 26.0+
    */
-  static initTitleSectionsAssistantCellConfigurationHeaderGridButtons(title: (string) | null, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK37, headerGridButtons?: $SDK38): Promise<CPListTemplate> { return callSDKAsync<CPListTemplate>("CarPlay_d968214ecc684fb6", 493108901180059, undefined, [title, sections, assistantCellConfiguration, headerGridButtons]); }
+  static initTitleSectionsAssistantCellConfigurationHeaderGridButtons(title: (string) | null, sections: Array<CPListSection>, assistantCellConfiguration?: $SDK37, headerGridButtons?: $SDK38): Promise<CPListTemplate> { return callSDKAsync<CPListTemplate>("CarPlay_0e503aef608672fa", 493108901180059, undefined, [title, sections, assistantCellConfiguration, headerGridButtons]); }
   /**
    * func updateSections(_ sections: [CPListSection])
    * @availability iOS 12.0+
    */
-  updateSections(sections: Array<CPListSection>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1781826861772599, this, [sections]); }
+  updateSections(sections: Array<CPListSection>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1781826861772599, this, [sections]); }
   /**
    * var assistantCellConfiguration: CPAssistantCellConfiguration? { get set }
    * @availability iOS 15.0+
    */
-  get assistantCellConfiguration(): Promise<$SDK37> { return callSDKAsync<$SDK37>("CarPlay_d968214ecc684fb6", 4253995406960012, this, []); }
-  setAssistantCellConfiguration(value?: $SDK37): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3268694315211033, this, [value]); }
+  get assistantCellConfiguration(): Promise<$SDK37> { return callSDKAsync<$SDK37>("CarPlay_0e503aef608672fa", 4253995406960012, this, []); }
+  setAssistantCellConfiguration(value?: $SDK37): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3268694315211033, this, [value]); }
   /**
    * weak var delegate: (any CPListTemplateDelegate)? { get set }
    * @availability iOS 12.0+
    * @deprecated iOS 14.0
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 1420097332875226, this, []); }
-  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1969942483246381, this, [value]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 1420097332875226, this, []); }
+  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1969942483246381, this, [value]); }
   /**
    * var emptyViewSubtitleVariants: [String] { get set }
    * @availability iOS 14.0+
    */
-  get emptyViewSubtitleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_d968214ecc684fb6", 3676324894820927, this, []); }
-  setEmptyViewSubtitleVariants(value: Array<string>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1070139272319369, this, [value]); }
+  get emptyViewSubtitleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_0e503aef608672fa", 3676324894820927, this, []); }
+  setEmptyViewSubtitleVariants(value: Array<string>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1070139272319369, this, [value]); }
   /**
    * var emptyViewTitleVariants: [String] { get set }
    * @availability iOS 14.0+
    */
-  get emptyViewTitleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_d968214ecc684fb6", 353423132513215, this, []); }
-  setEmptyViewTitleVariants(value: Array<string>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1119284719662393, this, [value]); }
+  get emptyViewTitleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_0e503aef608672fa", 353423132513215, this, []); }
+  setEmptyViewTitleVariants(value: Array<string>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1119284719662393, this, [value]); }
   /**
    * var headerGridButtons: [CPGridButton]? { get set }
    * @availability iOS 26.0+
    */
-  get headerGridButtons(): Promise<$SDK38> { return callSDKAsync<$SDK38>("CarPlay_d968214ecc684fb6", 2473420723105922, this, []); }
-  setHeaderGridButtons(value?: $SDK38): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3301100994023031, this, [value]); }
+  get headerGridButtons(): Promise<$SDK38> { return callSDKAsync<$SDK38>("CarPlay_0e503aef608672fa", 2473420723105922, this, []); }
+  setHeaderGridButtons(value?: $SDK38): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3301100994023031, this, [value]); }
   /**
    * var itemCount: Int { get }
    * @availability iOS 14.0+
    */
-  get itemCount(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 2273099301031904, this, []); }
+  get itemCount(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 2273099301031904, this, []); }
   /**
    * var listHeader: CPListTemplateDetailsHeader? { get set }
    * @availability iOS 26.4+
    */
-  get listHeader(): Promise<$SDK36> { return callSDKAsync<$SDK36>("CarPlay_d968214ecc684fb6", 2174845124067990, this, []); }
-  setListHeader(value?: $SDK36): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3663074727732894, this, [value]); }
+  get listHeader(): Promise<$SDK36> { return callSDKAsync<$SDK36>("CarPlay_0e503aef608672fa", 2174845124067990, this, []); }
+  setListHeader(value?: $SDK36): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3663074727732894, this, [value]); }
   /**
    * var sectionCount: Int { get }
    * @availability iOS 14.0+
    */
-  get sectionCount(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 4010311749484148, this, []); }
+  get sectionCount(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 4010311749484148, this, []); }
   /**
    * var sections: [CPListSection] { get }
    * @availability iOS 12.0+
    */
-  get sections(): Promise<Array<CPListSection>> { return callSDKAsync<Array<CPListSection>>("CarPlay_d968214ecc684fb6", 4219145175247726, this, []); }
+  get sections(): Promise<Array<CPListSection>> { return callSDKAsync<Array<CPListSection>>("CarPlay_0e503aef608672fa", 4219145175247726, this, []); }
   /**
    * var showsSpinnerWhileEmpty: Bool { get set }
    * @availability iOS 18.4+
    */
-  get showsSpinnerWhileEmpty(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1046108932081642, this, []); }
-  setShowsSpinnerWhileEmpty(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4169399498348369, this, [value]); }
+  get showsSpinnerWhileEmpty(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1046108932081642, this, []); }
+  setShowsSpinnerWhileEmpty(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4169399498348369, this, [value]); }
   /**
    * var title: String? { get }
    * @availability iOS 12.0+
    */
-  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 1543505400318978, this, []); }
+  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 1543505400318978, this, []); }
   declare readonly $type: { "c:objc(cs)CPListTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "assistantCellConfiguration": true; "delegate": true; "emptyViewSubtitleVariants": true; "emptyViewTitleVariants": true; "headerGridButtons": true; "itemCount": true; "listHeader": true; "sectionCount": true; "sections": true; "showsSpinnerWhileEmpty": true; "title": true };
 }
@@ -2028,58 +2028,58 @@ export class CPListTemplateDetailsHeader extends SDKHandle {
    * class var maximumActionButtonCount: Int { get }
    * @availability iOS 26.4+
    */
-  static get maximumActionButtonCount(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 3315366401550178, undefined, []); }
+  static get maximumActionButtonCount(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 3315366401550178, undefined, []); }
   /**
    * class var maximumActionButtonSize: CGSize { get }
    * @availability iOS 26.4+
    */
-  static get maximumActionButtonSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 3522144819490046, undefined, []); }
+  static get maximumActionButtonSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 3522144819490046, undefined, []); }
   /**
    * init(thumbnail: CPThumbnailImage, title: String?, subtitle: String?, actionButtons actionButton: [CPButton])
    * @availability iOS 26.4+
    */
-  static initThumbnailTitleSubtitleActionButtons(thumbnail: CPThumbnailImage, title: (string) | null, subtitle: (string) | null, actionButton: Array<CPButton>): Promise<CPListTemplateDetailsHeader> { return callSDKAsync<CPListTemplateDetailsHeader>("CarPlay_d968214ecc684fb6", 2224763212158500, undefined, [thumbnail, title, subtitle, actionButton]); }
+  static initThumbnailTitleSubtitleActionButtons(thumbnail: CPThumbnailImage, title: (string) | null, subtitle: (string) | null, actionButton: Array<CPButton>): Promise<CPListTemplateDetailsHeader> { return callSDKAsync<CPListTemplateDetailsHeader>("CarPlay_0e503aef608672fa", 2224763212158500, undefined, [thumbnail, title, subtitle, actionButton]); }
   /**
    * init(thumbnail: CPThumbnailImage, title: String?, subtitle: String?, bodyVariants: [NSAttributedString], actionButtons: [CPButton])
    * @availability iOS 26.4+
    */
-  static initThumbnailTitleSubtitleBodyVariantsActionButtons(thumbnail: CPThumbnailImage, title: (string) | null, subtitle: (string) | null, bodyVariants: $SDK18, actionButtons: Array<CPButton>): Promise<CPListTemplateDetailsHeader> { return callSDKAsync<CPListTemplateDetailsHeader>("CarPlay_d968214ecc684fb6", 3991721676749938, undefined, [thumbnail, title, subtitle, bodyVariants, actionButtons]); }
+  static initThumbnailTitleSubtitleBodyVariantsActionButtons(thumbnail: CPThumbnailImage, title: (string) | null, subtitle: (string) | null, bodyVariants: $SDK18, actionButtons: Array<CPButton>): Promise<CPListTemplateDetailsHeader> { return callSDKAsync<CPListTemplateDetailsHeader>("CarPlay_0e503aef608672fa", 3991721676749938, undefined, [thumbnail, title, subtitle, bodyVariants, actionButtons]); }
   /**
    * var actionButtons: [CPButton] { get set }
    * @availability iOS 26.4+
    */
-  get actionButtons(): Promise<Array<CPButton>> { return callSDKAsync<Array<CPButton>>("CarPlay_d968214ecc684fb6", 1689119181519518, this, []); }
-  setActionButtons(value: Array<CPButton>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2105793596707661, this, [value]); }
+  get actionButtons(): Promise<Array<CPButton>> { return callSDKAsync<Array<CPButton>>("CarPlay_0e503aef608672fa", 1689119181519518, this, []); }
+  setActionButtons(value: Array<CPButton>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2105793596707661, this, [value]); }
   /**
    * var wantsAdaptiveBackgroundStyle: Bool { get set }
    * @availability iOS 26.4+
    */
-  get wantsAdaptiveBackgroundStyle(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 909166217886451, this, []); }
-  setWantsAdaptiveBackgroundStyle(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4015186571189575, this, [value]); }
+  get wantsAdaptiveBackgroundStyle(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 909166217886451, this, []); }
+  setWantsAdaptiveBackgroundStyle(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4015186571189575, this, [value]); }
   /**
    * var bodyVariants: [NSAttributedString] { get set }
    * @availability iOS 26.4+
    */
-  get bodyVariants(): Promise<$SDK18> { return callSDKAsync<$SDK18>("CarPlay_d968214ecc684fb6", 2818852227007865, this, []); }
-  setBodyVariants(value: $SDK18): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 336000512486428, this, [value]); }
+  get bodyVariants(): Promise<$SDK18> { return callSDKAsync<$SDK18>("CarPlay_0e503aef608672fa", 2818852227007865, this, []); }
+  setBodyVariants(value: $SDK18): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 336000512486428, this, [value]); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 26.4+
    */
-  get subtitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 1382385078751026, this, []); }
-  setSubtitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 106853332127926, this, [value]); }
+  get subtitle(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 1382385078751026, this, []); }
+  setSubtitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 106853332127926, this, [value]); }
   /**
    * var thumbnail: CPThumbnailImage { get set }
    * @availability iOS 26.4+
    */
-  get thumbnail(): Promise<CPThumbnailImage> { return callSDKAsync<CPThumbnailImage>("CarPlay_d968214ecc684fb6", 2001148050485331, this, []); }
-  setThumbnail(value: CPThumbnailImage): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1927506478888880, this, [value]); }
+  get thumbnail(): Promise<CPThumbnailImage> { return callSDKAsync<CPThumbnailImage>("CarPlay_0e503aef608672fa", 2001148050485331, this, []); }
+  setThumbnail(value: CPThumbnailImage): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1927506478888880, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 26.4+
    */
-  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 2485129486623267, this, []); }
-  setTitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 855803874930791, this, [value]); }
+  get title(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 2485129486623267, this, []); }
+  setTitle(value?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 855803874930791, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPListTemplateDetailsHeader": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actionButtons": true; "wantsAdaptiveBackgroundStyle": true; "bodyVariants": true; "subtitle": true; "thumbnail": true; "title": true };
 }
@@ -2101,30 +2101,30 @@ export class CPLocationCoordinate3D extends SDKHandle {
    * var altitude: CLLocationDistance
    * @availability iOS 26.4+
    */
-  get altitude(): number { return callSDK<number>("CarPlay_d968214ecc684fb6", 2327844224687827, this, []); }
-  set altitude(value: number) { callSDK<void>("CarPlay_d968214ecc684fb6", 3815624782455277, this, [value]); }
+  get altitude(): number { return callSDK<number>("CarPlay_0e503aef608672fa", 2327844224687827, this, []); }
+  set altitude(value: number) { callSDK<void>("CarPlay_0e503aef608672fa", 3815624782455277, this, [value]); }
   /**
    * var latitude: CLLocationDegrees
    * @availability iOS 26.4+
    */
-  get latitude(): number { return callSDK<number>("CarPlay_d968214ecc684fb6", 326090092149638, this, []); }
-  set latitude(value: number) { callSDK<void>("CarPlay_d968214ecc684fb6", 3790029961795705, this, [value]); }
+  get latitude(): number { return callSDK<number>("CarPlay_0e503aef608672fa", 326090092149638, this, []); }
+  set latitude(value: number) { callSDK<void>("CarPlay_0e503aef608672fa", 3790029961795705, this, [value]); }
   /**
    * var longitude: CLLocationDegrees
    * @availability iOS 26.4+
    */
-  get longitude(): number { return callSDK<number>("CarPlay_d968214ecc684fb6", 570533009165435, this, []); }
-  set longitude(value: number) { callSDK<void>("CarPlay_d968214ecc684fb6", 1056883146208774, this, [value]); }
+  get longitude(): number { return callSDK<number>("CarPlay_0e503aef608672fa", 570533009165435, this, []); }
+  set longitude(value: number) { callSDK<void>("CarPlay_0e503aef608672fa", 1056883146208774, this, [value]); }
   /**
    * init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, altitude: CLLocationDistance)
    * @availability iOS 26.4+
    */
-  static initLatitudeLongitudeAltitude(latitude: number, longitude: number, altitude: number): CPLocationCoordinate3D { return callSDK<CPLocationCoordinate3D>("CarPlay_d968214ecc684fb6", 1171385627658228, undefined, [latitude, longitude, altitude]); }
+  static initLatitudeLongitudeAltitude(latitude: number, longitude: number, altitude: number): CPLocationCoordinate3D { return callSDK<CPLocationCoordinate3D>("CarPlay_0e503aef608672fa", 1171385627658228, undefined, [latitude, longitude, altitude]); }
   /**
    * init()
    * @availability iOS 26.4+
    */
-  static init(): CPLocationCoordinate3D { return callSDK<CPLocationCoordinate3D>("CarPlay_d968214ecc684fb6", 1114995493237089, undefined, []); }
+  static init(): CPLocationCoordinate3D { return callSDK<CPLocationCoordinate3D>("CarPlay_0e503aef608672fa", 1114995493237089, undefined, []); }
   declare readonly $type: { "c:@SA@CPLocationCoordinate3D": true };
 }
 
@@ -2134,146 +2134,146 @@ export class CPLocationCoordinate3D extends SDKHandle {
  */
 export class CPManeuver extends SDKHandle {
   /** init() */
-  static init(): CPManeuver { return callSDK<CPManeuver>("CarPlay_d968214ecc684fb6", 156883542036988, undefined, []); }
+  static init(): CPManeuver { return callSDK<CPManeuver>("CarPlay_0e503aef608672fa", 156883542036988, undefined, []); }
   /**
    * var attributedInstructionVariants: [NSAttributedString] { get set }
    * @availability iOS 12.0+
    */
-  get attributedInstructionVariants(): $SDK18 { return callSDK<$SDK18>("CarPlay_d968214ecc684fb6", 4423418529416580, this, []); }
-  set attributedInstructionVariants(value: $SDK18) { callSDK<void>("CarPlay_d968214ecc684fb6", 2361650344052748, this, [value]); }
+  get attributedInstructionVariants(): $SDK18 { return callSDK<$SDK18>("CarPlay_0e503aef608672fa", 4423418529416580, this, []); }
+  set attributedInstructionVariants(value: $SDK18) { callSDK<void>("CarPlay_0e503aef608672fa", 2361650344052748, this, [value]); }
   /**
    * var cardBackgroundColor: UIColor? { get set }
    * @availability iOS 15.4+
    */
-  get cardBackgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("CarPlay_d968214ecc684fb6", 1523331421429851, this, []); }
-  set cardBackgroundColor(value: (_UIKit_UIColor) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 533784787939301, this, [value]); }
+  get cardBackgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("CarPlay_0e503aef608672fa", 1523331421429851, this, []); }
+  set cardBackgroundColor(value: (_UIKit_UIColor) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 533784787939301, this, [value]); }
   /**
    * var dashboardAttributedInstructionVariants: [NSAttributedString] { get set }
    * @availability iOS 14.0+
    */
-  get dashboardAttributedInstructionVariants(): $SDK18 { return callSDK<$SDK18>("CarPlay_d968214ecc684fb6", 2679987109825266, this, []); }
-  set dashboardAttributedInstructionVariants(value: $SDK18) { callSDK<void>("CarPlay_d968214ecc684fb6", 886990934083120, this, [value]); }
+  get dashboardAttributedInstructionVariants(): $SDK18 { return callSDK<$SDK18>("CarPlay_0e503aef608672fa", 2679987109825266, this, []); }
+  set dashboardAttributedInstructionVariants(value: $SDK18) { callSDK<void>("CarPlay_0e503aef608672fa", 886990934083120, this, [value]); }
   /**
    * var dashboardInstructionVariants: [String] { get set }
    * @availability iOS 14.0+
    */
-  get dashboardInstructionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 3303943061879561, this, []); }
-  set dashboardInstructionVariants(value: Array<string>) { callSDK<void>("CarPlay_d968214ecc684fb6", 4481761956296601, this, [value]); }
+  get dashboardInstructionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 3303943061879561, this, []); }
+  set dashboardInstructionVariants(value: Array<string>) { callSDK<void>("CarPlay_0e503aef608672fa", 4481761956296601, this, [value]); }
   /**
    * var dashboardJunctionImage: UIImage? { get set }
    * @availability iOS 14.0+
    */
-  get dashboardJunctionImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 516421999519943, this, []); }
-  set dashboardJunctionImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1606805383572333, this, [value]); }
+  get dashboardJunctionImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 516421999519943, this, []); }
+  set dashboardJunctionImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1606805383572333, this, [value]); }
   /**
    * var dashboardSymbolImage: UIImage? { get set }
    * @availability iOS 14.0+
    */
-  get dashboardSymbolImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 3611910077516157, this, []); }
-  set dashboardSymbolImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 2585423196684271, this, [value]); }
+  get dashboardSymbolImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 3611910077516157, this, []); }
+  set dashboardSymbolImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 2585423196684271, this, [value]); }
   /**
    * var highwayExitLabel: String { get set }
    * @availability iOS 17.4+
    */
-  get highwayExitLabel(): string { return callSDK<string>("CarPlay_d968214ecc684fb6", 2550531282986222, this, []); }
-  set highwayExitLabel(value: string) { callSDK<void>("CarPlay_d968214ecc684fb6", 44619518122200, this, [value]); }
+  get highwayExitLabel(): string { return callSDK<string>("CarPlay_0e503aef608672fa", 2550531282986222, this, []); }
+  set highwayExitLabel(value: string) { callSDK<void>("CarPlay_0e503aef608672fa", 44619518122200, this, [value]); }
   /**
    * var initialTravelEstimates: CPTravelEstimates? { get set }
    * @availability iOS 12.0+
    */
-  get initialTravelEstimates(): $SDK39 { return callSDK<$SDK39>("CarPlay_d968214ecc684fb6", 2929910862202805, this, []); }
-  set initialTravelEstimates(value: $SDK39) { callSDK<void>("CarPlay_d968214ecc684fb6", 746735067465722, this, [value]); }
+  get initialTravelEstimates(): $SDK39 { return callSDK<$SDK39>("CarPlay_0e503aef608672fa", 2929910862202805, this, []); }
+  set initialTravelEstimates(value: $SDK39) { callSDK<void>("CarPlay_0e503aef608672fa", 746735067465722, this, [value]); }
   /**
    * var instructionVariants: [String] { get set }
    * @availability iOS 12.0+
    */
-  get instructionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 2786856337877049, this, []); }
-  set instructionVariants(value: Array<string>) { callSDK<void>("CarPlay_d968214ecc684fb6", 1443821023553323, this, [value]); }
+  get instructionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 2786856337877049, this, []); }
+  set instructionVariants(value: Array<string>) { callSDK<void>("CarPlay_0e503aef608672fa", 1443821023553323, this, [value]); }
   /**
    * var junctionElementAngles: Set<Measurement<UnitAngle>>? { get set }
    * @availability iOS 17.4+
    */
-  get junctionElementAngles(): $SDK40 { return callSDK<$SDK40>("CarPlay_d968214ecc684fb6", 692418893963312, this, []); }
-  set junctionElementAngles(value: $SDK40) { callSDK<void>("CarPlay_d968214ecc684fb6", 2714378433519381, this, [value]); }
+  get junctionElementAngles(): $SDK40 { return callSDK<$SDK40>("CarPlay_0e503aef608672fa", 692418893963312, this, []); }
+  set junctionElementAngles(value: $SDK40) { callSDK<void>("CarPlay_0e503aef608672fa", 2714378433519381, this, [value]); }
   /**
    * var junctionExitAngle: Measurement<UnitAngle>? { get set }
    * @availability iOS 17.4+
    */
-  get junctionExitAngle(): $SDK25 { return callSDK<$SDK25>("CarPlay_d968214ecc684fb6", 2726987060949353, this, []); }
-  set junctionExitAngle(value: $SDK25) { callSDK<void>("CarPlay_d968214ecc684fb6", 1582008169020021, this, [value]); }
+  get junctionExitAngle(): $SDK25 { return callSDK<$SDK25>("CarPlay_0e503aef608672fa", 2726987060949353, this, []); }
+  set junctionExitAngle(value: $SDK25) { callSDK<void>("CarPlay_0e503aef608672fa", 1582008169020021, this, [value]); }
   /**
    * var junctionImage: UIImage? { get set }
    * @availability iOS 12.0+
    */
-  get junctionImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 4272832764973552, this, []); }
-  set junctionImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 3961336293102882, this, [value]); }
+  get junctionImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 4272832764973552, this, []); }
+  set junctionImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 3961336293102882, this, [value]); }
   /**
    * var junctionType: CPJunctionType { get set }
    * @availability iOS 17.4+
    */
-  get junctionType(): CPJunctionType { return callSDK<CPJunctionType>("CarPlay_d968214ecc684fb6", 2687267408008366, this, []); }
-  set junctionType(value: CPJunctionType) { callSDK<void>("CarPlay_d968214ecc684fb6", 4238136534828841, this, [value]); }
+  get junctionType(): CPJunctionType { return callSDK<CPJunctionType>("CarPlay_0e503aef608672fa", 2687267408008366, this, []); }
+  set junctionType(value: CPJunctionType) { callSDK<void>("CarPlay_0e503aef608672fa", 4238136534828841, this, [value]); }
   /**
    * unowned(unsafe) var linkedLaneGuidance: CPLaneGuidance { get set }
    * @availability iOS 17.4+
    */
-  get linkedLaneGuidance(): CPLaneGuidance { return callSDK<CPLaneGuidance>("CarPlay_d968214ecc684fb6", 1527050876755578, this, []); }
-  set linkedLaneGuidance(value: CPLaneGuidance) { callSDK<void>("CarPlay_d968214ecc684fb6", 39585249499659, this, [value]); }
+  get linkedLaneGuidance(): CPLaneGuidance { return callSDK<CPLaneGuidance>("CarPlay_0e503aef608672fa", 1527050876755578, this, []); }
+  set linkedLaneGuidance(value: CPLaneGuidance) { callSDK<void>("CarPlay_0e503aef608672fa", 39585249499659, this, [value]); }
   /**
    * var maneuverType: CPManeuverType { get set }
    * @availability iOS 17.4+
    */
-  get maneuverType(): CPManeuverType { return callSDK<CPManeuverType>("CarPlay_d968214ecc684fb6", 2400090962877013, this, []); }
-  set maneuverType(value: CPManeuverType) { callSDK<void>("CarPlay_d968214ecc684fb6", 4458582703784075, this, [value]); }
+  get maneuverType(): CPManeuverType { return callSDK<CPManeuverType>("CarPlay_0e503aef608672fa", 2400090962877013, this, []); }
+  set maneuverType(value: CPManeuverType) { callSDK<void>("CarPlay_0e503aef608672fa", 4458582703784075, this, [value]); }
   /**
    * var notificationAttributedInstructionVariants: [NSAttributedString] { get set }
    * @availability iOS 14.0+
    */
-  get notificationAttributedInstructionVariants(): $SDK18 { return callSDK<$SDK18>("CarPlay_d968214ecc684fb6", 550617806583144, this, []); }
-  set notificationAttributedInstructionVariants(value: $SDK18) { callSDK<void>("CarPlay_d968214ecc684fb6", 3582780987062609, this, [value]); }
+  get notificationAttributedInstructionVariants(): $SDK18 { return callSDK<$SDK18>("CarPlay_0e503aef608672fa", 550617806583144, this, []); }
+  set notificationAttributedInstructionVariants(value: $SDK18) { callSDK<void>("CarPlay_0e503aef608672fa", 3582780987062609, this, [value]); }
   /**
    * var notificationInstructionVariants: [String] { get set }
    * @availability iOS 14.0+
    */
-  get notificationInstructionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 3248821170130731, this, []); }
-  set notificationInstructionVariants(value: Array<string>) { callSDK<void>("CarPlay_d968214ecc684fb6", 1378957649061080, this, [value]); }
+  get notificationInstructionVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 3248821170130731, this, []); }
+  set notificationInstructionVariants(value: Array<string>) { callSDK<void>("CarPlay_0e503aef608672fa", 1378957649061080, this, [value]); }
   /**
    * var notificationSymbolImage: UIImage? { get set }
    * @availability iOS 14.0+
    */
-  get notificationSymbolImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 2422184995624789, this, []); }
-  set notificationSymbolImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 4174356419870646, this, [value]); }
+  get notificationSymbolImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 2422184995624789, this, []); }
+  set notificationSymbolImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 4174356419870646, this, [value]); }
   /**
    * var roadFollowingManeuverVariants: [String]? { get set }
    * @availability iOS 17.4+
    */
-  get roadFollowingManeuverVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_d968214ecc684fb6", 68346208124196, this, []); }
-  set roadFollowingManeuverVariants(value: (Array<string>) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1340319000040802, this, [value]); }
+  get roadFollowingManeuverVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_0e503aef608672fa", 68346208124196, this, []); }
+  set roadFollowingManeuverVariants(value: (Array<string>) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1340319000040802, this, [value]); }
   /**
    * var symbolImage: UIImage? { get set }
    * @availability iOS 12.0+
    */
-  get symbolImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 727331749196441, this, []); }
-  set symbolImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1423607213275143, this, [value]); }
+  get symbolImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 727331749196441, this, []); }
+  set symbolImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1423607213275143, this, [value]); }
   /**
    * var symbolSet: CPImageSet? { get set }
    * @availability iOS 12.0+
    * @deprecated iOS 13.0
    */
-  get symbolSet(): (CPImageSet) | null { return callSDK<(CPImageSet) | null>("CarPlay_d968214ecc684fb6", 2174876705411175, this, []); }
-  set symbolSet(value: (CPImageSet) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1121488481007428, this, [value]); }
+  get symbolSet(): (CPImageSet) | null { return callSDK<(CPImageSet) | null>("CarPlay_0e503aef608672fa", 2174876705411175, this, []); }
+  set symbolSet(value: (CPImageSet) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1121488481007428, this, [value]); }
   /**
    * var trafficSide: CPTrafficSide { get set }
    * @availability iOS 17.4+
    */
-  get trafficSide(): CPTrafficSide { return callSDK<CPTrafficSide>("CarPlay_d968214ecc684fb6", 3179549292859035, this, []); }
-  set trafficSide(value: CPTrafficSide) { callSDK<void>("CarPlay_d968214ecc684fb6", 3854470091533544, this, [value]); }
+  get trafficSide(): CPTrafficSide { return callSDK<CPTrafficSide>("CarPlay_0e503aef608672fa", 3179549292859035, this, []); }
+  set trafficSide(value: CPTrafficSide) { callSDK<void>("CarPlay_0e503aef608672fa", 3854470091533544, this, [value]); }
   /**
    * var userInfo: Any? { get set }
    * @availability iOS 12.0+
    */
-  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_d968214ecc684fb6", 4474136122253366, this, []); }
-  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 2298500266356991, this, [value]); }
+  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_0e503aef608672fa", 4474136122253366, this, []); }
+  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 2298500266356991, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPManeuver": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributedInstructionVariants": true; "cardBackgroundColor": true; "dashboardAttributedInstructionVariants": true; "dashboardInstructionVariants": true; "dashboardJunctionImage": true; "dashboardSymbolImage": true; "highwayExitLabel": true; "initialTravelEstimates": true; "instructionVariants": true; "junctionElementAngles": true; "junctionExitAngle": true; "junctionImage": true; "junctionType": true; "linkedLaneGuidance": true; "maneuverType": true; "notificationAttributedInstructionVariants": true; "notificationInstructionVariants": true; "notificationSymbolImage": true; "roadFollowingManeuverVariants": true; "symbolImage": true; "symbolSet": true; "trafficSide": true; "userInfo": true };
 }
@@ -2289,27 +2289,27 @@ export const CPManeuverDisplayStyle = {
    * static var instructionOnly: CPManeuverDisplayStyle { get }
    * @availability iOS 12.0+
    */
-  get instructionOnly(): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_d968214ecc684fb6", 224926503476860, undefined, []); },
+  get instructionOnly(): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_0e503aef608672fa", 224926503476860, undefined, []); },
   /**
    * static var leadingSymbol: CPManeuverDisplayStyle { get }
    * @availability iOS 12.0+
    */
-  get leadingSymbol(): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_d968214ecc684fb6", 1978892997355894, undefined, []); },
+  get leadingSymbol(): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_0e503aef608672fa", 1978892997355894, undefined, []); },
   /**
    * static var symbolOnly: CPManeuverDisplayStyle { get }
    * @availability iOS 12.0+
    */
-  get symbolOnly(): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_d968214ecc684fb6", 96899362099069, undefined, []); },
+  get symbolOnly(): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_0e503aef608672fa", 96899362099069, undefined, []); },
   /**
    * static var trailingSymbol: CPManeuverDisplayStyle { get }
    * @availability iOS 12.0+
    */
-  get trailingSymbol(): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_d968214ecc684fb6", 4148759935178684, undefined, []); },
+  get trailingSymbol(): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_0e503aef608672fa", 4148759935178684, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_d968214ecc684fb6", 731678632653587, undefined, [rawValue]); }
+  init(rawValue: number): CPManeuverDisplayStyle { return callSDK<CPManeuverDisplayStyle>("CarPlay_0e503aef608672fa", 731678632653587, undefined, [rawValue]); }
 };
 
 /**
@@ -2323,7 +2323,7 @@ export const CPManeuverState = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (CPManeuverState) | null { return callSDK<(CPManeuverState) | null>("CarPlay_d968214ecc684fb6", 1769154914462730, undefined, [rawValue]); }
+  init(rawValue: number): (CPManeuverState) | null { return callSDK<(CPManeuverState) | null>("CarPlay_0e503aef608672fa", 1769154914462730, undefined, [rawValue]); }
 };
 
 /**
@@ -2337,7 +2337,7 @@ export const CPManeuverType = {
    * init?(rawValue: UInt)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (CPManeuverType) | null { return callSDK<(CPManeuverType) | null>("CarPlay_d968214ecc684fb6", 1230997273270284, undefined, [rawValue]); }
+  init(rawValue: number): (CPManeuverType) | null { return callSDK<(CPManeuverType) | null>("CarPlay_0e503aef608672fa", 1230997273270284, undefined, [rawValue]); }
 };
 
 /**
@@ -2349,31 +2349,31 @@ export class CPMapButton extends SDKHandle {
    * init(handler: ((CPMapButton) -> Void)? = nil)
    * @availability iOS 12.0+
    */
-  static init(handler?: (((arg0: CPMapButton) => void)) | null): Promise<CPMapButton> { return callSDKAsync<CPMapButton>("CarPlay_d968214ecc684fb6", 972033109923083, undefined, [handler], [{"callback":{"out":[]}}]); }
+  static init(handler?: (((arg0: CPMapButton) => void)) | null): Promise<CPMapButton> { return callSDKAsync<CPMapButton>("CarPlay_0e503aef608672fa", 972033109923083, undefined, [handler], [{"callback":{"out":[]}}]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 12.0+
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 3952908785871663, this, []); }
-  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1047326212954106, this, [value]); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 3952908785871663, this, []); }
+  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1047326212954106, this, [value]); }
   /**
    * var focusedImage: UIImage? { get set }
    * @availability iOS 12.0+
    */
-  get focusedImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 1966273546634855, this, []); }
-  setFocusedImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1461005419351966, this, [value]); }
+  get focusedImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 1966273546634855, this, []); }
+  setFocusedImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1461005419351966, this, [value]); }
   /**
    * var isHidden: Bool { get set }
    * @availability iOS 12.0+
    */
-  get isHidden(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 2155463627165296, this, []); }
-  setIsHidden(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3588055565962212, this, [value]); }
+  get isHidden(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 2155463627165296, this, []); }
+  setIsHidden(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3588055565962212, this, [value]); }
   /**
    * var image: UIImage? { get set }
    * @availability iOS 12.0+
    */
-  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 3563970725830311, this, []); }
-  setImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2237276023663429, this, [value]); }
+  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 3563970725830311, this, []); }
+  setImage(value?: (_UIKit_UIImage) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2237276023663429, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPMapButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "focusedImage": true; "isHidden": true; "image": true };
 }
@@ -2387,15 +2387,15 @@ export class CPPanel extends SDKHandle {
    * class var maximumPanelItemsCount: Int { get }
    * @availability iOS 27.0+
    */
-  static get maximumPanelItemsCount(): number { return callSDK<number>("CarPlay_d968214ecc684fb6", 3651801062349363, undefined, []); }
+  static get maximumPanelItemsCount(): number { return callSDK<number>("CarPlay_0e503aef608672fa", 3651801062349363, undefined, []); }
   /** init() */
-  static init(): CPPanel { return callSDK<CPPanel>("CarPlay_d968214ecc684fb6", 1109966628767855, undefined, []); }
+  static init(): CPPanel { return callSDK<CPPanel>("CarPlay_0e503aef608672fa", 1109966628767855, undefined, []); }
   /**
    * var showsCloseButton: Bool { get set }
    * @availability iOS 27.0+
    */
-  get showsCloseButton(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 1187942491983554, this, []); }
-  set showsCloseButton(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 927286476669768, this, [value]); }
+  get showsCloseButton(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 1187942491983554, this, []); }
+  set showsCloseButton(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 927286476669768, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPPanel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsCloseButton": true };
 }
@@ -2409,29 +2409,29 @@ export class CPMapPanel extends (CPPanel as unknown as Omit<typeof CPPanel, "ini
    * init(title: String?, sections: [CPMapPanelSection], buttonConfiguration: CPMapPanelButtonConfiguration?)
    * @availability iOS 27.0+
    */
-  static init(title: (string) | null, sections: $SDK42, buttonConfiguration?: $SDK43): CPMapPanel { return callSDK<CPMapPanel>("CarPlay_d968214ecc684fb6", 3794201558456790, undefined, [title, sections, buttonConfiguration]); }
+  static init(title: (string) | null, sections: $SDK42, buttonConfiguration?: $SDK43): CPMapPanel { return callSDK<CPMapPanel>("CarPlay_0e503aef608672fa", 3794201558456790, undefined, [title, sections, buttonConfiguration]); }
   /**
    * var buttonConfiguration: CPMapPanelButtonConfiguration? { get }
    * @availability iOS 27.0+
    */
-  get buttonConfiguration(): $SDK43 { return callSDK<$SDK43>("CarPlay_d968214ecc684fb6", 4288572808045281, this, []); }
+  get buttonConfiguration(): $SDK43 { return callSDK<$SDK43>("CarPlay_0e503aef608672fa", 4288572808045281, this, []); }
   /**
    * weak var delegate: (any CPMapPanel.Delegate)? { get set }
    * @availability iOS 27.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 1648722510291653, this, []); }
-  set delegate(value: (Implements<CPMapPanel_Delegate> | SDKHandle) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 2549977318436528, this, [value], [{"protocol":"c:objc(pl)CPMapPanelDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 1648722510291653, this, []); }
+  set delegate(value: (Implements<CPMapPanel_Delegate> | SDKHandle) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 2549977318436528, this, [value], [{"protocol":"c:objc(pl)CPMapPanelDelegate"}]); }
   /**
    * var sections: [CPMapPanelSection] { get set }
    * @availability iOS 27.0+
    */
-  get sections(): $SDK42 { return callSDK<$SDK42>("CarPlay_d968214ecc684fb6", 2359732366293077, this, []); }
-  set sections(value: $SDK42) { callSDK<void>("CarPlay_d968214ecc684fb6", 3211767711510148, this, [value]); }
+  get sections(): $SDK42 { return callSDK<$SDK42>("CarPlay_0e503aef608672fa", 2359732366293077, this, []); }
+  set sections(value: $SDK42) { callSDK<void>("CarPlay_0e503aef608672fa", 3211767711510148, this, [value]); }
   /**
    * var title: String? { get }
    * @availability iOS 27.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 1239012247920451, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 1239012247920451, this, []); }
   declare readonly $type: { "c:objc(cs)CPMapPanel": true; "c:objc(cs)CPPanel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsCloseButton": true; "buttonConfiguration": true; "delegate": true; "sections": true; "title": true };
 }
@@ -2462,17 +2462,17 @@ export class CPPanelButtonConfiguration extends SDKHandle {
    * init(primaryAction: CPTextButton, secondaryAction: CPTextButton?)
    * @availability iOS 27.0+
    */
-  static init(primaryAction: CPTextButton, secondaryAction?: (CPTextButton) | null): CPPanelButtonConfiguration { return callSDK<CPPanelButtonConfiguration>("CarPlay_d968214ecc684fb6", 2641259140046126, undefined, [primaryAction, secondaryAction]); }
+  static init(primaryAction: CPTextButton, secondaryAction?: (CPTextButton) | null): CPPanelButtonConfiguration { return callSDK<CPPanelButtonConfiguration>("CarPlay_0e503aef608672fa", 2641259140046126, undefined, [primaryAction, secondaryAction]); }
   /**
    * @NSCopying var primaryAction: CPTextButton { get }
    * @availability iOS 27.0+
    */
-  get primaryAction(): CPTextButton { return callSDK<CPTextButton>("CarPlay_d968214ecc684fb6", 4472935608710059, this, []); }
+  get primaryAction(): CPTextButton { return callSDK<CPTextButton>("CarPlay_0e503aef608672fa", 4472935608710059, this, []); }
   /**
    * @NSCopying var secondaryAction: CPTextButton? { get }
    * @availability iOS 27.0+
    */
-  get secondaryAction(): (CPTextButton) | null { return callSDK<(CPTextButton) | null>("CarPlay_d968214ecc684fb6", 3072005977455298, this, []); }
+  get secondaryAction(): (CPTextButton) | null { return callSDK<(CPTextButton) | null>("CarPlay_0e503aef608672fa", 3072005977455298, this, []); }
   declare readonly $type: { "c:objc(cs)CPPanelButtonConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "primaryAction": true; "secondaryAction": true };
 }
@@ -2486,18 +2486,18 @@ export class CPMapPanelButtonConfiguration extends (CPPanelButtonConfiguration a
    * init(primaryAction: CPTextButton, secondaryButton: CPButton?, travelEstimates: CPTravelEstimates)
    * @availability iOS 27.0+
    */
-  static init(primaryAction: CPTextButton, secondaryButton: (CPButton) | null, travelEstimates: CPTravelEstimates): CPMapPanelButtonConfiguration { return callSDK<CPMapPanelButtonConfiguration>("CarPlay_d968214ecc684fb6", 2053114649075654, undefined, [primaryAction, secondaryButton, travelEstimates]); }
+  static init(primaryAction: CPTextButton, secondaryButton: (CPButton) | null, travelEstimates: CPTravelEstimates): CPMapPanelButtonConfiguration { return callSDK<CPMapPanelButtonConfiguration>("CarPlay_0e503aef608672fa", 2053114649075654, undefined, [primaryAction, secondaryButton, travelEstimates]); }
   /**
    * @NSCopying var secondaryButton: CPButton? { get }
    * @availability iOS 27.0+
    */
-  get secondaryButton(): (CPButton) | null { return callSDK<(CPButton) | null>("CarPlay_d968214ecc684fb6", 3564463679214873, this, []); }
+  get secondaryButton(): (CPButton) | null { return callSDK<(CPButton) | null>("CarPlay_0e503aef608672fa", 3564463679214873, this, []); }
   /**
    * @NSCopying var travelEstimates: CPTravelEstimates? { get set }
    * @availability iOS 27.0+
    */
-  get travelEstimates(): $SDK39 { return callSDK<$SDK39>("CarPlay_d968214ecc684fb6", 1666010388702830, this, []); }
-  set travelEstimates(value: $SDK39) { callSDK<void>("CarPlay_d968214ecc684fb6", 1601976343326887, this, [value]); }
+  get travelEstimates(): $SDK39 { return callSDK<$SDK39>("CarPlay_0e503aef608672fa", 1666010388702830, this, []); }
+  set travelEstimates(value: $SDK39) { callSDK<void>("CarPlay_0e503aef608672fa", 1601976343326887, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPMapPanelButtonConfiguration": true; "c:objc(cs)CPPanelButtonConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "primaryAction": true; "secondaryAction": true; "secondaryButton": true; "travelEstimates": true };
 }
@@ -2511,30 +2511,30 @@ export class CPPanelItem extends SDKHandle {
    * init(gridButtons: [CPGridButton])
    * @availability iOS 27.0+
    */
-  static initGridButtons(gridButtons: Array<CPGridButton>): CPPanelItem { return callSDK<CPPanelItem>("CarPlay_d968214ecc684fb6", 3664850932819078, undefined, [gridButtons]); }
+  static initGridButtons(gridButtons: Array<CPGridButton>): CPPanelItem { return callSDK<CPPanelItem>("CarPlay_0e503aef608672fa", 3664850932819078, undefined, [gridButtons]); }
   /**
    * init(listItem: CPListItem)
    * @availability iOS 27.0+
    */
-  static initListItem(listItem: CPListItem): CPPanelItem { return callSDK<CPPanelItem>("CarPlay_d968214ecc684fb6", 3198171369302256, undefined, [listItem]); }
+  static initListItem(listItem: CPListItem): CPPanelItem { return callSDK<CPPanelItem>("CarPlay_0e503aef608672fa", 3198171369302256, undefined, [listItem]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 27.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 2212485302994829, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 4069577955023436, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 2212485302994829, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 4069577955023436, this, [value]); }
   /**
    * var showsBottomSeparator: Bool { get set }
    * @availability iOS 27.0+
    */
-  get showsBottomSeparator(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 1595408088602205, this, []); }
-  set showsBottomSeparator(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 3988783492900633, this, [value]); }
+  get showsBottomSeparator(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 1595408088602205, this, []); }
+  set showsBottomSeparator(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 3988783492900633, this, [value]); }
   /**
    * var userInfo: Any? { get set }
    * @availability iOS 27.0+
    */
-  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_d968214ecc684fb6", 1633110496225214, this, []); }
-  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1159958158628101, this, [value]); }
+  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_0e503aef608672fa", 1633110496225214, this, []); }
+  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1159958158628101, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPPanelItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "showsBottomSeparator": true; "userInfo": true };
 }
@@ -2548,32 +2548,32 @@ export class CPMapPanelItem extends CPPanelItem {
    * init(chargingStationConnection: CPChargingStationConnection, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
    * @availability iOS 27.0+
    */
-  static initChargingStationConnectionHandler(chargingStationConnection: CPChargingStationConnection, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_d968214ecc684fb6", 1440449816269727, undefined, [chargingStationConnection, handler], [null,{"callback":{"out":[]}}]); }
+  static initChargingStationConnectionHandler(chargingStationConnection: CPChargingStationConnection, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_0e503aef608672fa", 1440449816269727, undefined, [chargingStationConnection, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(mapTemplateWaypoint: CPMapTemplateWaypoint, image: UIImage?, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
    * @availability iOS 27.0+
    */
-  static initMapTemplateWaypointImageHandler(mapTemplateWaypoint: CPMapTemplateWaypoint, image?: (_UIKit_UIImage) | null, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_d968214ecc684fb6", 2994732922842286, undefined, [mapTemplateWaypoint, image, handler], [null,null,{"callback":{"out":[]}}]); }
+  static initMapTemplateWaypointImageHandler(mapTemplateWaypoint: CPMapTemplateWaypoint, image?: (_UIKit_UIImage) | null, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_0e503aef608672fa", 2994732922842286, undefined, [mapTemplateWaypoint, image, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * init(routeChoice: CPRouteChoice, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
    * @availability iOS 27.0+
    */
-  static initRouteChoiceHandler(routeChoice: CPRouteChoice, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_d968214ecc684fb6", 3762797169095401, undefined, [routeChoice, handler], [null,{"callback":{"out":[]}}]); }
+  static initRouteChoiceHandler(routeChoice: CPRouteChoice, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_0e503aef608672fa", 3762797169095401, undefined, [routeChoice, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(routeDetails: [CPRouteDetail], handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
    * @availability iOS 27.0+
    */
-  static initRouteDetailsHandler(routeDetails: Array<CPRouteDetail>, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_d968214ecc684fb6", 1425496056768406, undefined, [routeDetails, handler], [null,{"callback":{"out":[]}}]); }
+  static initRouteDetailsHandler(routeDetails: Array<CPRouteDetail>, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_0e503aef608672fa", 1425496056768406, undefined, [routeDetails, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(travelEstimates: CPTravelEstimates, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
    * @availability iOS 27.0+
    */
-  static initTravelEstimatesHandler(travelEstimates: CPTravelEstimates, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_d968214ecc684fb6", 2707238581827617, undefined, [travelEstimates, handler], [null,{"callback":{"out":[]}}]); }
+  static initTravelEstimatesHandler(travelEstimates: CPTravelEstimates, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_0e503aef608672fa", 2707238581827617, undefined, [travelEstimates, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * init(trip: CPTrip, handler: ((CPMapPanelItem, @escaping () -> Void) -> Void)? = nil)
    * @availability iOS 27.0+
    */
-  static initTripHandler(trip: CPTrip, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_d968214ecc684fb6", 4091641808404841, undefined, [trip, handler], [null,{"callback":{"out":[]}}]); }
+  static initTripHandler(trip: CPTrip, handler?: $SDK45): CPMapPanelItem { return callSDK<CPMapPanelItem>("CarPlay_0e503aef608672fa", 4091641808404841, undefined, [trip, handler], [null,{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)CPMapPanelItem": true; "c:objc(cs)CPPanelItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "showsBottomSeparator": true; "userInfo": true };
 }
@@ -2587,19 +2587,19 @@ export class CPMapPanelSection extends SDKHandle {
    * init(title: String?, items: [CPMapPanelItem])
    * @availability iOS 27.0+
    */
-  static init(title: (string) | null, items: Array<CPMapPanelItem>): CPMapPanelSection { return callSDK<CPMapPanelSection>("CarPlay_d968214ecc684fb6", 4204741084166172, undefined, [title, items]); }
+  static init(title: (string) | null, items: Array<CPMapPanelItem>): CPMapPanelSection { return callSDK<CPMapPanelSection>("CarPlay_0e503aef608672fa", 4204741084166172, undefined, [title, items]); }
   /**
    * var items: [CPMapPanelItem] { get set }
    * @availability iOS 27.0+
    */
-  get items(): Array<CPMapPanelItem> { return callSDK<Array<CPMapPanelItem>>("CarPlay_d968214ecc684fb6", 268773435168, this, []); }
-  set items(value: Array<CPMapPanelItem>) { callSDK<void>("CarPlay_d968214ecc684fb6", 2233209879677320, this, [value]); }
+  get items(): Array<CPMapPanelItem> { return callSDK<Array<CPMapPanelItem>>("CarPlay_0e503aef608672fa", 268773435168, this, []); }
+  set items(value: Array<CPMapPanelItem>) { callSDK<void>("CarPlay_0e503aef608672fa", 2233209879677320, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 27.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2414166442517548, this, []); }
-  set title(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 848460917632592, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2414166442517548, this, []); }
+  set title(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 848460917632592, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPMapPanelSection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "items": true; "title": true };
 }
@@ -2613,125 +2613,125 @@ export class CPMapTemplate extends (CPTemplate as unknown as Omit<typeof CPTempl
    * func dismissNavigationAlert(animated: Bool) async -> Bool
    * @availability iOS 12.0+
    */
-  dismissNavigationAlert(animated: boolean, completion: ((arg0: boolean) => void)): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4321837278747183, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
+  dismissNavigationAlert(animated: boolean, completion: ((arg0: boolean) => void)): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4321837278747183, this, [animated, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func dismissPanningInterface(animated: Bool)
    * @availability iOS 12.0+
    */
-  dismissPanningInterface(animated: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2087708593631111, this, [animated]); }
+  dismissPanningInterface(animated: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2087708593631111, this, [animated]); }
   /**
    * func hidePanel() async throws -> Bool
    * @availability iOS 27.0+
    */
-  hidePanel(completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3413427580481340, this, [completion], [{"callback":{"out":[]}}]); }
+  hidePanel(completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3413427580481340, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func hideTripPreviews()
    * @availability iOS 12.0+
    */
-  hideTripPreviews(): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 989902380712895, this, []); }
+  hideTripPreviews(): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 989902380712895, this, []); }
   /** init() */
-  static init(): Promise<CPMapTemplate> { return callSDKAsync<CPMapTemplate>("CarPlay_d968214ecc684fb6", 3867899696292229, undefined, []); }
+  static init(): Promise<CPMapTemplate> { return callSDKAsync<CPMapTemplate>("CarPlay_0e503aef608672fa", 3867899696292229, undefined, []); }
   /**
    * func popPanel() async throws -> Bool
    * @availability iOS 27.0+
    */
-  popPanel(completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1495106724438261, this, [completion], [{"callback":{"out":[]}}]); }
+  popPanel(completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1495106724438261, this, [completion], [{"callback":{"out":[]}}]); }
   /**
    * func present(navigationAlert: CPNavigationAlert, animated: Bool)
    * @availability iOS 12.0+
    */
-  present(navigationAlert: CPNavigationAlert, animated: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1828681395906650, this, [navigationAlert, animated]); }
+  present(navigationAlert: CPNavigationAlert, animated: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1828681395906650, this, [navigationAlert, animated]); }
   /**
    * func pushPanel(_ panel: CPMapPanel) async throws -> Bool
    * @availability iOS 27.0+
    */
-  pushPanel(panel: CPMapPanel, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1318807145414696, this, [panel, completion], [null,{"callback":{"out":[]}}]); }
+  pushPanel(panel: CPMapPanel, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1318807145414696, this, [panel, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func showPanel(_ panel: CPMapPanel) async throws -> Bool
    * @availability iOS 27.0+
    */
-  showPanel(panel: CPMapPanel, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3860542740463079, this, [panel, completion], [null,{"callback":{"out":[]}}]); }
+  showPanel(panel: CPMapPanel, completion?: $SDK21): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3860542740463079, this, [panel, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func showPanningInterface(animated: Bool)
    * @availability iOS 12.0+
    */
-  showPanningInterface(animated: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3158484032636031, this, [animated]); }
+  showPanningInterface(animated: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3158484032636031, this, [animated]); }
   /**
    * func showRouteChoicesPreview(for tripPreview: CPTrip, textConfiguration: CPTripPreviewTextConfiguration?)
    * @availability iOS 12.0+
    */
-  showRouteChoicesPreview(tripPreview: CPTrip, textConfiguration?: $SDK47): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 624112930216233, this, [tripPreview, textConfiguration]); }
+  showRouteChoicesPreview(tripPreview: CPTrip, textConfiguration?: $SDK47): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 624112930216233, this, [tripPreview, textConfiguration]); }
   /**
    * func showTripPreviews(_ tripPreviews: [CPTrip], selectedTrip: CPTrip?, textConfiguration: CPTripPreviewTextConfiguration?)
    * @availability iOS 14.0+
    */
-  showTripPreviewsSelectedTripTextConfiguration(tripPreviews: Array<CPTrip>, selectedTrip?: (CPTrip) | null, textConfiguration?: $SDK47): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3641693258291144, this, [tripPreviews, selectedTrip, textConfiguration]); }
+  showTripPreviewsSelectedTripTextConfiguration(tripPreviews: Array<CPTrip>, selectedTrip?: (CPTrip) | null, textConfiguration?: $SDK47): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3641693258291144, this, [tripPreviews, selectedTrip, textConfiguration]); }
   /**
    * func showTripPreviews(_ tripPreviews: [CPTrip], textConfiguration: CPTripPreviewTextConfiguration?)
    * @availability iOS 12.0+
    */
-  showTripPreviewsTextConfiguration(tripPreviews: Array<CPTrip>, textConfiguration?: $SDK47): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3095380932065225, this, [tripPreviews, textConfiguration]); }
+  showTripPreviewsTextConfiguration(tripPreviews: Array<CPTrip>, textConfiguration?: $SDK47): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3095380932065225, this, [tripPreviews, textConfiguration]); }
   /**
    * func startNavigationSession(for trip: CPTrip) -> CPNavigationSession
    * @availability iOS 12.0+
    */
-  startNavigationSession(trip: CPTrip): Promise<CPNavigationSession> { return callSDKAsync<CPNavigationSession>("CarPlay_d968214ecc684fb6", 2525164476232358, this, [trip]); }
+  startNavigationSession(trip: CPTrip): Promise<CPNavigationSession> { return callSDKAsync<CPNavigationSession>("CarPlay_0e503aef608672fa", 2525164476232358, this, [trip]); }
   /**
    * func updateEstimates(_ estimates: CPTravelEstimates, for trip: CPTrip)
    * @availability iOS 12.0+
    */
-  updateEstimates(estimates: CPTravelEstimates, trip: CPTrip): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2450246927591677, this, [estimates, trip]); }
+  updateEstimates(estimates: CPTravelEstimates, trip: CPTrip): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2450246927591677, this, [estimates, trip]); }
   /**
    * func update(_ estimates: CPTravelEstimates, for trip: CPTrip, with timeRemainingColor: CPTimeRemainingColor)
    * @availability iOS 12.0+
    */
-  update(estimates: CPTravelEstimates, trip: CPTrip, timeRemainingColor: CPTimeRemainingColor): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1182856264235180, this, [estimates, trip, timeRemainingColor]); }
+  update(estimates: CPTravelEstimates, trip: CPTrip, timeRemainingColor: CPTimeRemainingColor): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1182856264235180, this, [estimates, trip, timeRemainingColor]); }
   /**
    * var automaticallyHidesNavigationBar: Bool { get set }
    * @availability iOS 12.0+
    */
-  get automaticallyHidesNavigationBar(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 4375839254418703, this, []); }
-  setAutomaticallyHidesNavigationBar(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3673065773568236, this, [value]); }
+  get automaticallyHidesNavigationBar(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 4375839254418703, this, []); }
+  setAutomaticallyHidesNavigationBar(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3673065773568236, this, [value]); }
   /**
    * var currentNavigationAlert: CPNavigationAlert? { get }
    * @availability iOS 12.0+
    */
-  get currentNavigationAlert(): Promise<(CPNavigationAlert) | null> { return callSDKAsync<(CPNavigationAlert) | null>("CarPlay_d968214ecc684fb6", 2058842303255894, this, []); }
+  get currentNavigationAlert(): Promise<(CPNavigationAlert) | null> { return callSDKAsync<(CPNavigationAlert) | null>("CarPlay_0e503aef608672fa", 2058842303255894, this, []); }
   /**
    * var guidanceBackgroundColor: UIColor { get set }
    * @availability iOS 12.0+
    */
-  get guidanceBackgroundColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CarPlay_d968214ecc684fb6", 3294710969385131, this, []); }
-  setGuidanceBackgroundColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2230033031444946, this, [value]); }
+  get guidanceBackgroundColor(): Promise<_UIKit_UIColor> { return callSDKAsync<_UIKit_UIColor>("CarPlay_0e503aef608672fa", 3294710969385131, this, []); }
+  setGuidanceBackgroundColor(value: _UIKit_UIColor): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2230033031444946, this, [value]); }
   /**
    * var hidesButtonsWithNavigationBar: Bool { get set }
    * @availability iOS 12.0+
    */
-  get hidesButtonsWithNavigationBar(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 3840532507079126, this, []); }
-  setHidesButtonsWithNavigationBar(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2197324890532113, this, [value]); }
+  get hidesButtonsWithNavigationBar(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 3840532507079126, this, []); }
+  setHidesButtonsWithNavigationBar(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2197324890532113, this, [value]); }
   /**
    * var mapButtons: [CPMapButton] { get set }
    * @availability iOS 12.0+
    */
-  get mapButtons(): Promise<Array<CPMapButton>> { return callSDKAsync<Array<CPMapButton>>("CarPlay_d968214ecc684fb6", 3578709783599999, this, []); }
-  setMapButtons(value: Array<CPMapButton>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3693167806445558, this, [value]); }
+  get mapButtons(): Promise<Array<CPMapButton>> { return callSDKAsync<Array<CPMapButton>>("CarPlay_0e503aef608672fa", 3578709783599999, this, []); }
+  setMapButtons(value: Array<CPMapButton>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3693167806445558, this, [value]); }
   /**
    * weak var mapDelegate: (any CPMapTemplateDelegate)? { get set }
    * @availability iOS 12.0+
    */
-  get mapDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 92742196068836, this, []); }
-  setMapDelegate(value?: (Implements<CPMapTemplateDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1102074790258244, this, [value], [{"protocol":"c:objc(pl)CPMapTemplateDelegate"}]); }
+  get mapDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 92742196068836, this, []); }
+  setMapDelegate(value?: (Implements<CPMapTemplateDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1102074790258244, this, [value], [{"protocol":"c:objc(pl)CPMapTemplateDelegate"}]); }
   /**
    * var isPanningInterfaceVisible: Bool { get }
    * @availability iOS 12.0+
    */
-  get isPanningInterfaceVisible(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1747292497268262, this, []); }
+  get isPanningInterfaceVisible(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1747292497268262, this, []); }
   /**
    * var tripEstimateStyle: CPTripEstimateStyle { get set }
    * @availability iOS 12.0+
    */
-  get tripEstimateStyle(): Promise<CPTripEstimateStyle> { return callSDKAsync<CPTripEstimateStyle>("CarPlay_d968214ecc684fb6", 3558144751393564, this, []); }
-  setTripEstimateStyle(value: CPTripEstimateStyle): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2005743133049948, this, [value]); }
+  get tripEstimateStyle(): Promise<CPTripEstimateStyle> { return callSDKAsync<CPTripEstimateStyle>("CarPlay_0e503aef608672fa", 3558144751393564, this, []); }
+  setTripEstimateStyle(value: CPTripEstimateStyle): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2005743133049948, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPMapTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "automaticallyHidesNavigationBar": true; "currentNavigationAlert": true; "guidanceBackgroundColor": true; "hidesButtonsWithNavigationBar": true; "mapButtons": true; "mapDelegate": true; "isPanningInterfaceVisible": true; "tripEstimateStyle": true };
 }
@@ -2747,27 +2747,27 @@ export const CPMapTemplate_PanDirection = {
    * static var down: CPMapTemplate.PanDirection { get }
    * @availability iOS 12.0+
    */
-  get down(): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_d968214ecc684fb6", 2605898442292724, undefined, []); },
+  get down(): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_0e503aef608672fa", 2605898442292724, undefined, []); },
   /**
    * static var left: CPMapTemplate.PanDirection { get }
    * @availability iOS 12.0+
    */
-  get left(): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_d968214ecc684fb6", 2390475420395473, undefined, []); },
+  get left(): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_0e503aef608672fa", 2390475420395473, undefined, []); },
   /**
    * static var right: CPMapTemplate.PanDirection { get }
    * @availability iOS 12.0+
    */
-  get right(): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_d968214ecc684fb6", 3677920435631239, undefined, []); },
+  get right(): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_0e503aef608672fa", 3677920435631239, undefined, []); },
   /**
    * static var up: CPMapTemplate.PanDirection { get }
    * @availability iOS 12.0+
    */
-  get up(): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_d968214ecc684fb6", 2222099719324963, undefined, []); },
+  get up(): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_0e503aef608672fa", 2222099719324963, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_d968214ecc684fb6", 4253991149206963, undefined, [rawValue]); }
+  init(rawValue: number): Promise<CPMapTemplate_PanDirection> { return callSDKAsync<CPMapTemplate_PanDirection>("CarPlay_0e503aef608672fa", 4253991149206963, undefined, [rawValue]); }
 };
 
 /**
@@ -2956,19 +2956,19 @@ export class CPMapTemplateWaypoint extends SDKHandle {
    * init(waypoint: CPNavigationWaypoint, travelEstimates: CPTravelEstimates)
    * @availability iOS 26.4+
    */
-  static init(waypoint: CPNavigationWaypoint, travelEstimates: CPTravelEstimates): CPMapTemplateWaypoint { return callSDK<CPMapTemplateWaypoint>("CarPlay_d968214ecc684fb6", 2019935060132242, undefined, [waypoint, travelEstimates]); }
+  static init(waypoint: CPNavigationWaypoint, travelEstimates: CPTravelEstimates): CPMapTemplateWaypoint { return callSDK<CPMapTemplateWaypoint>("CarPlay_0e503aef608672fa", 2019935060132242, undefined, [waypoint, travelEstimates]); }
   /**
    * var travelEstimates: CPTravelEstimates { get set }
    * @availability iOS 26.4+
    */
-  get travelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_d968214ecc684fb6", 1684947261695725, this, []); }
-  set travelEstimates(value: CPTravelEstimates) { callSDK<void>("CarPlay_d968214ecc684fb6", 1589519559921883, this, [value]); }
+  get travelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_0e503aef608672fa", 1684947261695725, this, []); }
+  set travelEstimates(value: CPTravelEstimates) { callSDK<void>("CarPlay_0e503aef608672fa", 1589519559921883, this, [value]); }
   /**
    * var waypoint: CPNavigationWaypoint { get set }
    * @availability iOS 26.4+
    */
-  get waypoint(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_d968214ecc684fb6", 1286245323037081, this, []); }
-  set waypoint(value: CPNavigationWaypoint) { callSDK<void>("CarPlay_d968214ecc684fb6", 3044732293857511, this, [value]); }
+  get waypoint(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_0e503aef608672fa", 1286245323037081, this, []); }
+  set waypoint(value: CPNavigationWaypoint) { callSDK<void>("CarPlay_0e503aef608672fa", 3044732293857511, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPMapTemplateWaypoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "travelEstimates": true; "waypoint": true };
 }
@@ -2982,12 +2982,12 @@ export class CPMessageComposeBarButton extends CPBarButton {
    * init()
    * @availability iOS 14.0+
    */
-  static init(): CPMessageComposeBarButton { return callSDK<CPMessageComposeBarButton>("CarPlay_d968214ecc684fb6", 620268998703482, undefined, []); }
+  static init(): CPMessageComposeBarButton { return callSDK<CPMessageComposeBarButton>("CarPlay_0e503aef608672fa", 620268998703482, undefined, []); }
   /**
    * init(image: UIImage)
    * @availability iOS 14.0+
    */
-  static initImage(image: _UIKit_UIImage): CPMessageComposeBarButton { return callSDK<CPMessageComposeBarButton>("CarPlay_d968214ecc684fb6", 2014793524023566, undefined, [image]); }
+  static initImage(image: _UIKit_UIImage): CPMessageComposeBarButton { return callSDK<CPMessageComposeBarButton>("CarPlay_0e503aef608672fa", 2014793524023566, undefined, [image]); }
   declare readonly $type: { "c:objc(cs)CPMessageComposeBarButton": true; "c:objc(cs)CPBarButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "buttonStyle": true; "buttonType": true; "isEnabled": true; "image": true; "title": true };
 }
@@ -3001,18 +3001,18 @@ export class CPMessageGridItemConfiguration extends SDKHandle {
    * init(conversationIdentifier: String, unread: Bool)
    * @availability iOS 26.0+
    */
-  static init(conversationIdentifier: string, unread: boolean): CPMessageGridItemConfiguration { return callSDK<CPMessageGridItemConfiguration>("CarPlay_d968214ecc684fb6", 4132432846897534, undefined, [conversationIdentifier, unread]); }
+  static init(conversationIdentifier: string, unread: boolean): CPMessageGridItemConfiguration { return callSDK<CPMessageGridItemConfiguration>("CarPlay_0e503aef608672fa", 4132432846897534, undefined, [conversationIdentifier, unread]); }
   /**
    * var conversationIdentifier: String { get }
    * @availability iOS 26.0+
    */
-  get conversationIdentifier(): string { return callSDK<string>("CarPlay_d968214ecc684fb6", 4150346422565133, this, []); }
+  get conversationIdentifier(): string { return callSDK<string>("CarPlay_0e503aef608672fa", 4150346422565133, this, []); }
   /**
    * var isUnread: Bool { get set }
    * @availability iOS 26.0+
    */
-  get isUnread(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 347984674690300, this, []); }
-  set isUnread(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 4295438097587734, this, [value]); }
+  get isUnread(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 347984674690300, this, []); }
+  set isUnread(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 4295438097587734, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPMessageGridItemConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "conversationIdentifier": true; "isUnread": true };
 }
@@ -3022,7 +3022,7 @@ export type CPMessageLeadingItem = "none" | "pin" | "star";
 
 export const CPMessageLeadingItem = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CPMessageLeadingItem) | null { return callSDK<(CPMessageLeadingItem) | null>("CarPlay_d968214ecc684fb6", 3628744361417301, undefined, [rawValue]); }
+  init(rawValue: number): (CPMessageLeadingItem) | null { return callSDK<(CPMessageLeadingItem) | null>("CarPlay_0e503aef608672fa", 3628744361417301, undefined, [rawValue]); }
 };
 
 /**
@@ -3034,72 +3034,72 @@ export class CPMessageListItem extends SDKHandle {
    * init(conversationIdentifier: String, text: String, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration: CPMessageListItemTrailingConfiguration?, detailText: String?, trailingText: String?)
    * @availability iOS 14.0+
    */
-  static initConversationIdentifierTextLeadingConfigurationTrailingConfigurationDetailTextTrailingText(conversationIdentifier: string, text: string, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration?: $SDK51, detailText?: (string) | null, trailingText?: (string) | null): CPMessageListItem { return callSDK<CPMessageListItem>("CarPlay_d968214ecc684fb6", 1447106897354643, undefined, [conversationIdentifier, text, leadingConfiguration, trailingConfiguration, detailText, trailingText]); }
+  static initConversationIdentifierTextLeadingConfigurationTrailingConfigurationDetailTextTrailingText(conversationIdentifier: string, text: string, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration?: $SDK51, detailText?: (string) | null, trailingText?: (string) | null): CPMessageListItem { return callSDK<CPMessageListItem>("CarPlay_0e503aef608672fa", 1447106897354643, undefined, [conversationIdentifier, text, leadingConfiguration, trailingConfiguration, detailText, trailingText]); }
   /**
    * init(fullName: String, phoneOrEmailAddress: String, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration: CPMessageListItemTrailingConfiguration?, detailText: String?, trailingText: String?)
    * @availability iOS 14.0+
    */
-  static initFullNamePhoneOrEmailAddressLeadingConfigurationTrailingConfigurationDetailTextTrailingText(fullName: string, phoneOrEmailAddress: string, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration?: $SDK51, detailText?: (string) | null, trailingText?: (string) | null): CPMessageListItem { return callSDK<CPMessageListItem>("CarPlay_d968214ecc684fb6", 4070735937461215, undefined, [fullName, phoneOrEmailAddress, leadingConfiguration, trailingConfiguration, detailText, trailingText]); }
+  static initFullNamePhoneOrEmailAddressLeadingConfigurationTrailingConfigurationDetailTextTrailingText(fullName: string, phoneOrEmailAddress: string, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration?: $SDK51, detailText?: (string) | null, trailingText?: (string) | null): CPMessageListItem { return callSDK<CPMessageListItem>("CarPlay_0e503aef608672fa", 4070735937461215, undefined, [fullName, phoneOrEmailAddress, leadingConfiguration, trailingConfiguration, detailText, trailingText]); }
   /**
    * var conversationIdentifier: String? { get set }
    * @availability iOS 14.0+
    */
-  get conversationIdentifier(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2133371931799374, this, []); }
-  set conversationIdentifier(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 4299449166650024, this, [value]); }
+  get conversationIdentifier(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2133371931799374, this, []); }
+  set conversationIdentifier(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 4299449166650024, this, [value]); }
   /**
    * var detailText: String? { get set }
    * @availability iOS 14.0+
    */
-  get detailText(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2523717046651792, this, []); }
-  set detailText(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1345157410717025, this, [value]); }
+  get detailText(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2523717046651792, this, []); }
+  set detailText(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1345157410717025, this, [value]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 15.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 2316662409098632, this, []); }
-  set isEnabled(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 3870352692696814, this, [value]); }
+  get isEnabled(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 2316662409098632, this, []); }
+  set isEnabled(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 3870352692696814, this, [value]); }
   /**
    * var leadingConfiguration: CPMessageListItemLeadingConfiguration { get set }
    * @availability iOS 14.0+
    */
-  get leadingConfiguration(): CPMessageListItemLeadingConfiguration { return callSDK<CPMessageListItemLeadingConfiguration>("CarPlay_d968214ecc684fb6", 4389842360970354, this, []); }
-  set leadingConfiguration(value: CPMessageListItemLeadingConfiguration) { callSDK<void>("CarPlay_d968214ecc684fb6", 1004319598841508, this, [value]); }
+  get leadingConfiguration(): CPMessageListItemLeadingConfiguration { return callSDK<CPMessageListItemLeadingConfiguration>("CarPlay_0e503aef608672fa", 4389842360970354, this, []); }
+  set leadingConfiguration(value: CPMessageListItemLeadingConfiguration) { callSDK<void>("CarPlay_0e503aef608672fa", 1004319598841508, this, [value]); }
   /**
    * @NSCopying var leadingDetailTextImage: UIImage? { get set }
    * @availability iOS 26.0+
    */
-  get leadingDetailTextImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 1335743215281954, this, []); }
-  set leadingDetailTextImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 4204159669886309, this, [value]); }
+  get leadingDetailTextImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 1335743215281954, this, []); }
+  set leadingDetailTextImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 4204159669886309, this, [value]); }
   /**
    * var phoneOrEmailAddress: String? { get set }
    * @availability iOS 14.0+
    */
-  get phoneOrEmailAddress(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2189951078109655, this, []); }
-  set phoneOrEmailAddress(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 826668458184401, this, [value]); }
+  get phoneOrEmailAddress(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2189951078109655, this, []); }
+  set phoneOrEmailAddress(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 826668458184401, this, [value]); }
   /**
    * var text: String? { get set }
    * @availability iOS 14.0+
    */
-  get text(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 4350757495622704, this, []); }
-  set text(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 966050722604828, this, [value]); }
+  get text(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 4350757495622704, this, []); }
+  set text(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 966050722604828, this, [value]); }
   /**
    * var trailingConfiguration: CPMessageListItemTrailingConfiguration? { get set }
    * @availability iOS 14.0+
    */
-  get trailingConfiguration(): $SDK51 { return callSDK<$SDK51>("CarPlay_d968214ecc684fb6", 3101822526300952, this, []); }
-  set trailingConfiguration(value: $SDK51) { callSDK<void>("CarPlay_d968214ecc684fb6", 3326105527839931, this, [value]); }
+  get trailingConfiguration(): $SDK51 { return callSDK<$SDK51>("CarPlay_0e503aef608672fa", 3101822526300952, this, []); }
+  set trailingConfiguration(value: $SDK51) { callSDK<void>("CarPlay_0e503aef608672fa", 3326105527839931, this, [value]); }
   /**
    * var trailingText: String? { get set }
    * @availability iOS 14.0+
    */
-  get trailingText(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 1287704084010718, this, []); }
-  set trailingText(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 3397993511156831, this, [value]); }
+  get trailingText(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 1287704084010718, this, []); }
+  set trailingText(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 3397993511156831, this, [value]); }
   /**
    * var userInfo: Any? { get set }
    * @availability iOS 14.0+
    */
-  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_d968214ecc684fb6", 2786536675644841, this, []); }
-  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 253156192810994, this, [value]); }
+  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_0e503aef608672fa", 2786536675644841, this, []); }
+  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 253156192810994, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPMessageListItem": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "conversationIdentifier": true; "detailText": true; "isEnabled": true; "leadingConfiguration": true; "leadingDetailTextImage": true; "phoneOrEmailAddress": true; "text": true; "trailingConfiguration": true; "trailingText": true; "userInfo": true };
 }
@@ -3113,22 +3113,22 @@ export class CPMessageListItemLeadingConfiguration extends SDKHandle {
    * init(leadingItem: CPMessageLeadingItem, leadingImage: UIImage?, unread: Bool)
    * @availability iOS 14.0+
    */
-  static init(leadingItem: CPMessageLeadingItem, leadingImage: (_UIKit_UIImage) | null, unread: boolean): CPMessageListItemLeadingConfiguration { return callSDK<CPMessageListItemLeadingConfiguration>("CarPlay_d968214ecc684fb6", 1166150368660227, undefined, [leadingItem, leadingImage, unread]); }
+  static init(leadingItem: CPMessageLeadingItem, leadingImage: (_UIKit_UIImage) | null, unread: boolean): CPMessageListItemLeadingConfiguration { return callSDK<CPMessageListItemLeadingConfiguration>("CarPlay_0e503aef608672fa", 1166150368660227, undefined, [leadingItem, leadingImage, unread]); }
   /**
    * var leadingImage: UIImage? { get }
    * @availability iOS 14.0+
    */
-  get leadingImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 1225199119560546, this, []); }
+  get leadingImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 1225199119560546, this, []); }
   /**
    * var leadingItem: CPMessageLeadingItem { get }
    * @availability iOS 14.0+
    */
-  get leadingItem(): CPMessageLeadingItem { return callSDK<CPMessageLeadingItem>("CarPlay_d968214ecc684fb6", 499453815999252, this, []); }
+  get leadingItem(): CPMessageLeadingItem { return callSDK<CPMessageLeadingItem>("CarPlay_0e503aef608672fa", 499453815999252, this, []); }
   /**
    * var isUnread: Bool { get }
    * @availability iOS 14.0+
    */
-  get isUnread(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 4354212359217456, this, []); }
+  get isUnread(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 4354212359217456, this, []); }
   declare readonly $type: { "c:objc(cs)CPMessageListItemLeadingConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "leadingImage": true; "leadingItem": true; "isUnread": true };
 }
@@ -3142,17 +3142,17 @@ export class CPMessageListItemTrailingConfiguration extends SDKHandle {
    * init(trailingItem: CPMessageTrailingItem, trailingImage: UIImage?)
    * @availability iOS 14.0+
    */
-  static init(trailingItem: CPMessageTrailingItem, trailingImage?: (_UIKit_UIImage) | null): CPMessageListItemTrailingConfiguration { return callSDK<CPMessageListItemTrailingConfiguration>("CarPlay_d968214ecc684fb6", 2097620188038876, undefined, [trailingItem, trailingImage]); }
+  static init(trailingItem: CPMessageTrailingItem, trailingImage?: (_UIKit_UIImage) | null): CPMessageListItemTrailingConfiguration { return callSDK<CPMessageListItemTrailingConfiguration>("CarPlay_0e503aef608672fa", 2097620188038876, undefined, [trailingItem, trailingImage]); }
   /**
    * var trailingImage: UIImage? { get }
    * @availability iOS 14.0+
    */
-  get trailingImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 3495025222733140, this, []); }
+  get trailingImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 3495025222733140, this, []); }
   /**
    * var trailingItem: CPMessageTrailingItem { get }
    * @availability iOS 14.0+
    */
-  get trailingItem(): CPMessageTrailingItem { return callSDK<CPMessageTrailingItem>("CarPlay_d968214ecc684fb6", 3583458272943687, this, []); }
+  get trailingItem(): CPMessageTrailingItem { return callSDK<CPMessageTrailingItem>("CarPlay_0e503aef608672fa", 3583458272943687, this, []); }
   declare readonly $type: { "c:objc(cs)CPMessageListItemTrailingConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "trailingImage": true; "trailingItem": true };
 }
@@ -3162,7 +3162,7 @@ export type CPMessageTrailingItem = "none" | "mute";
 
 export const CPMessageTrailingItem = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (CPMessageTrailingItem) | null { return callSDK<(CPMessageTrailingItem) | null>("CarPlay_d968214ecc684fb6", 4253607926547282, undefined, [rawValue]); }
+  init(rawValue: number): (CPMessageTrailingItem) | null { return callSDK<(CPMessageTrailingItem) | null>("CarPlay_0e503aef608672fa", 4253607926547282, undefined, [rawValue]); }
 };
 
 /**
@@ -3174,27 +3174,27 @@ export class CPMultiStopCardConfiguration extends SDKHandle {
    * init(title: String?, buttons: [CPTextButton])
    * @availability iOS 27.0+
    */
-  static initTitleButtons(title: (string) | null, buttons: Array<CPTextButton>): CPMultiStopCardConfiguration { return callSDK<CPMultiStopCardConfiguration>("CarPlay_d968214ecc684fb6", 1313955332190878, undefined, [title, buttons]); }
+  static initTitleButtons(title: (string) | null, buttons: Array<CPTextButton>): CPMultiStopCardConfiguration { return callSDK<CPMultiStopCardConfiguration>("CarPlay_0e503aef608672fa", 1313955332190878, undefined, [title, buttons]); }
   /**
    * init(title: String?, buttons: [CPTextButton], image: UIImage?)
    * @availability iOS 27.0+
    */
-  static initTitleButtonsImage(title: (string) | null, buttons: Array<CPTextButton>, image?: (_UIKit_UIImage) | null): CPMultiStopCardConfiguration { return callSDK<CPMultiStopCardConfiguration>("CarPlay_d968214ecc684fb6", 3412145486928418, undefined, [title, buttons, image]); }
+  static initTitleButtonsImage(title: (string) | null, buttons: Array<CPTextButton>, image?: (_UIKit_UIImage) | null): CPMultiStopCardConfiguration { return callSDK<CPMultiStopCardConfiguration>("CarPlay_0e503aef608672fa", 3412145486928418, undefined, [title, buttons, image]); }
   /**
    * var buttons: [CPTextButton] { get }
    * @availability iOS 27.0+
    */
-  get buttons(): Array<CPTextButton> { return callSDK<Array<CPTextButton>>("CarPlay_d968214ecc684fb6", 1594460722017779, this, []); }
+  get buttons(): Array<CPTextButton> { return callSDK<Array<CPTextButton>>("CarPlay_0e503aef608672fa", 1594460722017779, this, []); }
   /**
    * @NSCopying var image: UIImage? { get }
    * @availability iOS 27.0+
    */
-  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 1494379418876194, this, []); }
+  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 1494379418876194, this, []); }
   /**
    * var title: String? { get }
    * @availability iOS 27.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2223050302698212, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2223050302698212, this, []); }
   declare readonly $type: { "c:objc(cs)CPMultiStopCardConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "buttons": true; "image": true; "title": true };
 }
@@ -3208,99 +3208,99 @@ export class CPNavigationAlert extends SDKHandle {
    * class var maximumActionsCount: Int { get }
    * @availability iOS 27.0+
    */
-  static get maximumActionsCount(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 2243779501464409, undefined, []); }
+  static get maximumActionsCount(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 2243779501464409, undefined, []); }
   /**
    * class var maximumAlertImageSize: CGSize { get }
    * @availability iOS 27.0+
    */
-  static get maximumAlertImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 4193697992328502, undefined, []); }
+  static get maximumAlertImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 4193697992328502, undefined, []); }
   /**
    * class var maximumAvatarImageSize: CGSize { get }
    * @availability iOS 27.0+
    */
-  static get maximumAvatarImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 1076217704740838, undefined, []); }
+  static get maximumAvatarImageSize(): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 1076217704740838, undefined, []); }
   /**
    * init(titleVariants: [String], subtitleVariants: [String], avatarImage: UIImage?, alert alertImage: UIImage?, actions: [CPAlertAction], duration: TimeInterval)
    * @availability iOS 27.0+
    */
-  static initTitleVariantsSubtitleVariantsAvatarImageAlertActionsDuration(titleVariants: Array<string>, subtitleVariants: Array<string>, avatarImage: (_UIKit_UIImage) | null, alertImage: (_UIKit_UIImage) | null, actions: Array<CPAlertAction>, duration: number): Promise<CPNavigationAlert> { return callSDKAsync<CPNavigationAlert>("CarPlay_d968214ecc684fb6", 1751443437853847, undefined, [titleVariants, subtitleVariants, avatarImage, alertImage, actions, duration]); }
+  static initTitleVariantsSubtitleVariantsAvatarImageAlertActionsDuration(titleVariants: Array<string>, subtitleVariants: Array<string>, avatarImage: (_UIKit_UIImage) | null, alertImage: (_UIKit_UIImage) | null, actions: Array<CPAlertAction>, duration: number): Promise<CPNavigationAlert> { return callSDKAsync<CPNavigationAlert>("CarPlay_0e503aef608672fa", 1751443437853847, undefined, [titleVariants, subtitleVariants, avatarImage, alertImage, actions, duration]); }
   /**
    * init(titleVariants: [String], subtitleVariants: [String]?, image: UIImage?, primaryAction: CPAlertAction, secondaryAction: CPAlertAction?, duration: TimeInterval)
    * @availability iOS 12.0+
    */
-  static initTitleVariantsSubtitleVariantsImagePrimaryActionSecondaryActionDuration(titleVariants: Array<string>, subtitleVariants: (Array<string>) | null, image: (_UIKit_UIImage) | null, primaryAction: CPAlertAction, secondaryAction: (CPAlertAction) | null, duration: number): Promise<CPNavigationAlert> { return callSDKAsync<CPNavigationAlert>("CarPlay_d968214ecc684fb6", 3449433447999900, undefined, [titleVariants, subtitleVariants, image, primaryAction, secondaryAction, duration]); }
+  static initTitleVariantsSubtitleVariantsImagePrimaryActionSecondaryActionDuration(titleVariants: Array<string>, subtitleVariants: (Array<string>) | null, image: (_UIKit_UIImage) | null, primaryAction: CPAlertAction, secondaryAction: (CPAlertAction) | null, duration: number): Promise<CPNavigationAlert> { return callSDKAsync<CPNavigationAlert>("CarPlay_0e503aef608672fa", 3449433447999900, undefined, [titleVariants, subtitleVariants, image, primaryAction, secondaryAction, duration]); }
   /**
    * init(titleVariants: [String], subtitleVariants: [String]?, imageSet: CPImageSet?, primaryAction: CPAlertAction, secondaryAction: CPAlertAction?, duration: TimeInterval)
    * @availability iOS 12.0+
    * @deprecated iOS 13.0
    */
-  static initTitleVariantsSubtitleVariantsImageSetPrimaryActionSecondaryActionDuration(titleVariants: Array<string>, subtitleVariants: (Array<string>) | null, imageSet: (CPImageSet) | null, primaryAction: CPAlertAction, secondaryAction: (CPAlertAction) | null, duration: number): Promise<CPNavigationAlert> { return callSDKAsync<CPNavigationAlert>("CarPlay_d968214ecc684fb6", 2598499251614575, undefined, [titleVariants, subtitleVariants, imageSet, primaryAction, secondaryAction, duration]); }
+  static initTitleVariantsSubtitleVariantsImageSetPrimaryActionSecondaryActionDuration(titleVariants: Array<string>, subtitleVariants: (Array<string>) | null, imageSet: (CPImageSet) | null, primaryAction: CPAlertAction, secondaryAction: (CPAlertAction) | null, duration: number): Promise<CPNavigationAlert> { return callSDKAsync<CPNavigationAlert>("CarPlay_0e503aef608672fa", 2598499251614575, undefined, [titleVariants, subtitleVariants, imageSet, primaryAction, secondaryAction, duration]); }
   /**
    * func updateTitleVariants(_ newTitleVariants: [String], subtitleVariants newSubtitleVariants: [String])
    * @availability iOS 12.0+
    */
-  updateTitleVariantsSubtitleVariants(newTitleVariants: Array<string>, newSubtitleVariants: Array<string>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4144321647894092, this, [newTitleVariants, newSubtitleVariants]); }
+  updateTitleVariantsSubtitleVariants(newTitleVariants: Array<string>, newSubtitleVariants: Array<string>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4144321647894092, this, [newTitleVariants, newSubtitleVariants]); }
   /**
    * func updateTitleVariants(_ newTitleVariants: [String], subtitleVariants newSubtitleVariants: [String], avatarImage: UIImage?, alert alertImage: UIImage?, actions: [CPAlertAction], duration: TimeInterval)
    * @availability iOS 27.0+
    */
-  updateTitleVariantsSubtitleVariantsAvatarImageAlertActionsDuration(newTitleVariants: Array<string>, newSubtitleVariants: Array<string>, avatarImage: (_UIKit_UIImage) | null, alertImage: (_UIKit_UIImage) | null, actions: Array<CPAlertAction>, duration: number): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2584352278491325, this, [newTitleVariants, newSubtitleVariants, avatarImage, alertImage, actions, duration]); }
+  updateTitleVariantsSubtitleVariantsAvatarImageAlertActionsDuration(newTitleVariants: Array<string>, newSubtitleVariants: Array<string>, avatarImage: (_UIKit_UIImage) | null, alertImage: (_UIKit_UIImage) | null, actions: Array<CPAlertAction>, duration: number): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2584352278491325, this, [newTitleVariants, newSubtitleVariants, avatarImage, alertImage, actions, duration]); }
   /**
    * var actions: [CPAlertAction] { get }
    * @availability iOS 27.0+
    */
-  get actions(): Promise<Array<CPAlertAction>> { return callSDKAsync<Array<CPAlertAction>>("CarPlay_d968214ecc684fb6", 2763657740223232, this, []); }
+  get actions(): Promise<Array<CPAlertAction>> { return callSDKAsync<Array<CPAlertAction>>("CarPlay_0e503aef608672fa", 2763657740223232, this, []); }
   /**
    * @NSCopying var alertImage: UIImage? { get }
    * @availability iOS 27.0+
    */
-  get alertImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 2595035309442093, this, []); }
+  get alertImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 2595035309442093, this, []); }
   /**
    * @NSCopying var avatarImage: UIImage? { get }
    * @availability iOS 27.0+
    */
-  get avatarImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 3812373595413601, this, []); }
+  get avatarImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 3812373595413601, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 12.0+
    */
-  get duration(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 137661655784359, this, []); }
+  get duration(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 137661655784359, this, []); }
   /**
    * @NSCopying var image: UIImage? { get }
    * @availability iOS 12.0+
    */
-  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 2827660647945023, this, []); }
+  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 2827660647945023, this, []); }
   /**
    * @NSCopying var imageSet: CPImageSet? { get }
    * @availability iOS 12.0+
    */
-  get imageSet(): Promise<(CPImageSet) | null> { return callSDKAsync<(CPImageSet) | null>("CarPlay_d968214ecc684fb6", 4248383856177955, this, []); }
+  get imageSet(): Promise<(CPImageSet) | null> { return callSDKAsync<(CPImageSet) | null>("CarPlay_0e503aef608672fa", 4248383856177955, this, []); }
   /**
    * var primaryAction: CPAlertAction { get }
    * @availability iOS 12.0+
    */
-  get primaryAction(): Promise<CPAlertAction> { return callSDKAsync<CPAlertAction>("CarPlay_d968214ecc684fb6", 867253124624164, this, []); }
+  get primaryAction(): Promise<CPAlertAction> { return callSDKAsync<CPAlertAction>("CarPlay_0e503aef608672fa", 867253124624164, this, []); }
   /**
    * var secondaryAction: CPAlertAction? { get }
    * @availability iOS 12.0+
    */
-  get secondaryAction(): Promise<(CPAlertAction) | null> { return callSDKAsync<(CPAlertAction) | null>("CarPlay_d968214ecc684fb6", 3892358134011560, this, []); }
+  get secondaryAction(): Promise<(CPAlertAction) | null> { return callSDKAsync<(CPAlertAction) | null>("CarPlay_0e503aef608672fa", 3892358134011560, this, []); }
   /**
    * var showsCloseButton: Bool { get set }
    * @availability iOS 27.0+
    */
-  get showsCloseButton(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 4433741955508653, this, []); }
-  setShowsCloseButton(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2120736734941969, this, [value]); }
+  get showsCloseButton(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 4433741955508653, this, []); }
+  setShowsCloseButton(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2120736734941969, this, [value]); }
   /**
    * var subtitleVariants: [String] { get }
    * @availability iOS 12.0+
    */
-  get subtitleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_d968214ecc684fb6", 2511136282802993, this, []); }
+  get subtitleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_0e503aef608672fa", 2511136282802993, this, []); }
   /**
    * var titleVariants: [String] { get }
    * @availability iOS 12.0+
    */
-  get titleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_d968214ecc684fb6", 1948100905222337, this, []); }
+  get titleVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_0e503aef608672fa", 1948100905222337, this, []); }
   declare readonly $type: { "c:objc(cs)CPNavigationAlert": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actions": true; "alertImage": true; "avatarImage": true; "duration": true; "image": true; "imageSet": true; "primaryAction": true; "secondaryAction": true; "showsCloseButton": true; "subtitleVariants": true; "titleVariants": true };
 }
@@ -3316,7 +3316,7 @@ export const CPNavigationAlert_DismissalContext = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): Promise<(CPNavigationAlert_DismissalContext) | null> { return callSDKAsync<(CPNavigationAlert_DismissalContext) | null>("CarPlay_d968214ecc684fb6", 2331528617134309, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(CPNavigationAlert_DismissalContext) | null> { return callSDKAsync<(CPNavigationAlert_DismissalContext) | null>("CarPlay_0e503aef608672fa", 2331528617134309, undefined, [rawValue]); }
 };
 
 /**
@@ -3328,113 +3328,113 @@ export class CPNavigationSession extends SDKHandle {
    * func add(_ laneGuidances: [CPLaneGuidance])
    * @availability iOS 17.4+
    */
-  add(laneGuidances: Array<CPLaneGuidance>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2454020752272309, this, [laneGuidances]); }
+  add(laneGuidances: Array<CPLaneGuidance>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2454020752272309, this, [laneGuidances]); }
   /**
    * func add(_ maneuvers: [CPManeuver])
    * @availability iOS 17.4+
    */
-  add56920(maneuvers: Array<CPManeuver>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2716436743352869, this, [maneuvers]); }
+  add56920(maneuvers: Array<CPManeuver>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2716436743352869, this, [maneuvers]); }
   /**
    * func addRouteSegments(_ routeSegments: [CPRouteSegment])
    * @availability iOS 26.4+
    */
-  addRouteSegments(routeSegments: Array<CPRouteSegment>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2426887357005507, this, [routeSegments]); }
+  addRouteSegments(routeSegments: Array<CPRouteSegment>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2426887357005507, this, [routeSegments]); }
   /**
    * func cancelTrip()
    * @availability iOS 12.0+
    */
-  cancelTrip(): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 150572360842151, this, []); }
+  cancelTrip(): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 150572360842151, this, []); }
   /**
    * func finishTrip()
    * @availability iOS 12.0+
    */
-  finishTrip(): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4089011314724282, this, []); }
+  finishTrip(): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4089011314724282, this, []); }
   /**
    * func pauseTrip(for reason: CPNavigationSession.PauseReason, description: String?)
    * @availability iOS 12.0+
    */
-  pauseTripForDescription(reason: CPNavigationSession_PauseReason, description?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1873695995703360, this, [reason, description]); }
+  pauseTripForDescription(reason: CPNavigationSession_PauseReason, description?: (string) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1873695995703360, this, [reason, description]); }
   /**
    * func pauseTrip(for reason: CPNavigationSession.PauseReason, description: String?, turnCardColor: UIColor?)
    * @availability iOS 15.4+
    */
-  pauseTripForDescriptionTurnCardColor(reason: CPNavigationSession_PauseReason, description?: (string) | null, turnCardColor?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3207340475099672, this, [reason, description, turnCardColor]); }
+  pauseTripForDescriptionTurnCardColor(reason: CPNavigationSession_PauseReason, description?: (string) | null, turnCardColor?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3207340475099672, this, [reason, description, turnCardColor]); }
   /**
    * func resumeNavigation(updatedTrip trip: CPTrip, routeSegments: [CPRouteSegment], currentSegment: CPRouteSegment, rerouteReason: CPRerouteReason)
    * @availability iOS 27.0+
    */
-  resumeNavigation(trip: CPTrip, routeSegments: Array<CPRouteSegment>, currentSegment: CPRouteSegment, rerouteReason: CPRerouteReason): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 823679232924380, this, [trip, routeSegments, currentSegment, rerouteReason]); }
+  resumeNavigation(trip: CPTrip, routeSegments: Array<CPRouteSegment>, currentSegment: CPRouteSegment, rerouteReason: CPRerouteReason): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 823679232924380, this, [trip, routeSegments, currentSegment, rerouteReason]); }
   /**
    * func resumeTrip(updatedRouteInformation routeInformation: CPRouteInformation)
    * @availability iOS 17.4+
    */
-  resumeTripUpdatedRouteInformation(routeInformation: CPRouteInformation): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1429518435305484, this, [routeInformation]); }
+  resumeTripUpdatedRouteInformation(routeInformation: CPRouteInformation): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1429518435305484, this, [routeInformation]); }
   /**
    * func resumeTrip(updatedRouteSegments routeSegments: [CPRouteSegment], currentSegment: CPRouteSegment, rerouteReason: CPRerouteReason)
    * @availability iOS 26.4+
    */
-  resumeTripUpdatedRouteSegmentsCurrentSegmentRerouteReason(routeSegments: Array<CPRouteSegment>, currentSegment: CPRouteSegment, rerouteReason: CPRerouteReason): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2858259437135924, this, [routeSegments, currentSegment, rerouteReason]); }
+  resumeTripUpdatedRouteSegmentsCurrentSegmentRerouteReason(routeSegments: Array<CPRouteSegment>, currentSegment: CPRouteSegment, rerouteReason: CPRerouteReason): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2858259437135924, this, [routeSegments, currentSegment, rerouteReason]); }
   /**
    * func updateEstimates(_ estimates: CPTravelEstimates, for maneuver: CPManeuver)
    * @availability iOS 12.0+
    */
-  updateEstimates(estimates: CPTravelEstimates, maneuver: CPManeuver): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4290122034701157, this, [estimates, maneuver]); }
+  updateEstimates(estimates: CPTravelEstimates, maneuver: CPManeuver): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4290122034701157, this, [estimates, maneuver]); }
   /**
    * @NSCopying var currentLaneGuidance: CPLaneGuidance? { get set }
    * @availability iOS 17.4+
    */
-  get currentLaneGuidance(): Promise<(CPLaneGuidance) | null> { return callSDKAsync<(CPLaneGuidance) | null>("CarPlay_d968214ecc684fb6", 1268543774119277, this, []); }
-  setCurrentLaneGuidance(value?: (CPLaneGuidance) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3395434708505189, this, [value]); }
+  get currentLaneGuidance(): Promise<(CPLaneGuidance) | null> { return callSDKAsync<(CPLaneGuidance) | null>("CarPlay_0e503aef608672fa", 1268543774119277, this, []); }
+  setCurrentLaneGuidance(value?: (CPLaneGuidance) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3395434708505189, this, [value]); }
   /**
    * var currentRoadNameVariants: [String] { get set }
    * @availability iOS 17.4+
    */
-  get currentRoadNameVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_d968214ecc684fb6", 798292778934978, this, []); }
-  setCurrentRoadNameVariants(value: Array<string>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1426001935800970, this, [value]); }
+  get currentRoadNameVariants(): Promise<Array<string>> { return callSDKAsync<Array<string>>("CarPlay_0e503aef608672fa", 798292778934978, this, []); }
+  setCurrentRoadNameVariants(value: Array<string>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1426001935800970, this, [value]); }
   /**
    * var currentSegment: CPRouteSegment { get set }
    * @availability iOS 26.4+
    */
-  get currentSegment(): Promise<CPRouteSegment> { return callSDKAsync<CPRouteSegment>("CarPlay_d968214ecc684fb6", 4080095848606026, this, []); }
-  setCurrentSegment(value: CPRouteSegment): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3976895614702844, this, [value]); }
+  get currentSegment(): Promise<CPRouteSegment> { return callSDKAsync<CPRouteSegment>("CarPlay_0e503aef608672fa", 4080095848606026, this, []); }
+  setCurrentSegment(value: CPRouteSegment): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3976895614702844, this, [value]); }
   /**
    * var maneuverState: CPManeuverState { get set }
    * @availability iOS 17.4+
    */
-  get maneuverState(): Promise<CPManeuverState> { return callSDKAsync<CPManeuverState>("CarPlay_d968214ecc684fb6", 1906972550188584, this, []); }
-  setManeuverState(value: CPManeuverState): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2701872643426750, this, [value]); }
+  get maneuverState(): Promise<CPManeuverState> { return callSDKAsync<CPManeuverState>("CarPlay_0e503aef608672fa", 1906972550188584, this, []); }
+  setManeuverState(value: CPManeuverState): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2701872643426750, this, [value]); }
   /**
    * var optionsPanel: CPMapPanel? { get set }
    * @availability iOS 27.0+
    */
-  get optionsPanel(): Promise<(CPMapPanel) | null> { return callSDKAsync<(CPMapPanel) | null>("CarPlay_d968214ecc684fb6", 1389417619253734, this, []); }
-  setOptionsPanel(value?: (CPMapPanel) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1321921166578024, this, [value]); }
+  get optionsPanel(): Promise<(CPMapPanel) | null> { return callSDKAsync<(CPMapPanel) | null>("CarPlay_0e503aef608672fa", 1389417619253734, this, []); }
+  setOptionsPanel(value?: (CPMapPanel) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1321921166578024, this, [value]); }
   /**
    * var routeSegments: [CPRouteSegment] { get }
    * @availability iOS 26.4+
    */
-  get routeSegments(): Promise<Array<CPRouteSegment>> { return callSDKAsync<Array<CPRouteSegment>>("CarPlay_d968214ecc684fb6", 3559528681608215, this, []); }
+  get routeSegments(): Promise<Array<CPRouteSegment>> { return callSDKAsync<Array<CPRouteSegment>>("CarPlay_0e503aef608672fa", 3559528681608215, this, []); }
   /**
    * var isRouteSharingEnabled: Bool { get }
    * @availability iOS 27.0+
    */
-  get isRouteSharingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 3416040440149389, this, []); }
+  get isRouteSharingEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 3416040440149389, this, []); }
   /**
    * var isRouteSharingSupported: Bool { get }
    * @availability iOS 27.0+
    */
-  get isRouteSharingSupported(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 3531014661141873, this, []); }
+  get isRouteSharingSupported(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 3531014661141873, this, []); }
   /**
    * var trip: CPTrip { get }
    * @availability iOS 12.0+
    */
-  get trip(): Promise<CPTrip> { return callSDKAsync<CPTrip>("CarPlay_d968214ecc684fb6", 4229300066355647, this, []); }
+  get trip(): Promise<CPTrip> { return callSDKAsync<CPTrip>("CarPlay_0e503aef608672fa", 4229300066355647, this, []); }
   /**
    * var upcomingManeuvers: [CPManeuver] { get set }
    * @availability iOS 12.0+
    */
-  get upcomingManeuvers(): Promise<Array<CPManeuver>> { return callSDKAsync<Array<CPManeuver>>("CarPlay_d968214ecc684fb6", 1053523525604282, this, []); }
-  setUpcomingManeuvers(value: Array<CPManeuver>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 724903761446794, this, [value]); }
+  get upcomingManeuvers(): Promise<Array<CPManeuver>> { return callSDKAsync<Array<CPManeuver>>("CarPlay_0e503aef608672fa", 1053523525604282, this, []); }
+  setUpcomingManeuvers(value: Array<CPManeuver>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 724903761446794, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPNavigationSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentLaneGuidance": true; "currentRoadNameVariants": true; "currentSegment": true; "maneuverState": true; "optionsPanel": true; "routeSegments": true; "isRouteSharingEnabled": true; "isRouteSharingSupported": true; "trip": true; "upcomingManeuvers": true };
 }
@@ -3450,7 +3450,7 @@ export const CPNavigationSession_PauseReason = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): Promise<(CPNavigationSession_PauseReason) | null> { return callSDKAsync<(CPNavigationSession_PauseReason) | null>("CarPlay_d968214ecc684fb6", 2842891221896671, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(CPNavigationSession_PauseReason) | null> { return callSDKAsync<(CPNavigationSession_PauseReason) | null>("CarPlay_0e503aef608672fa", 2842891221896671, undefined, [rawValue]); }
 };
 
 /**
@@ -3463,58 +3463,58 @@ export class CPNavigationWaypoint extends SDKHandle {
    * @availability iOS 26.4+
    * @deprecated iOS 27.0
    */
-  get address(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 739002223284857, this, []); }
+  get address(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 739002223284857, this, []); }
   /**
    * var addressVariants: [String] { get }
    * @availability iOS 27.0+
    */
-  get addressVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 2188056995710413, this, []); }
+  get addressVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 2188056995710413, this, []); }
   /**
    * var centerPoint: CPLocationCoordinate3D { get }
    * @availability iOS 26.4+
    */
-  get centerPoint(): CPLocationCoordinate3D { return callSDK<CPLocationCoordinate3D>("CarPlay_d968214ecc684fb6", 1467886726290876, this, []); }
+  get centerPoint(): CPLocationCoordinate3D { return callSDK<CPLocationCoordinate3D>("CarPlay_0e503aef608672fa", 1467886726290876, this, []); }
   /**
    * var locationThreshold: Measurement<UnitLength>? { get }
    * @availability iOS 26.4+
    */
-  get locationThreshold(): $SDK52 { return callSDK<$SDK52>("CarPlay_d968214ecc684fb6", 4062258245023485, this, []); }
+  get locationThreshold(): $SDK52 { return callSDK<$SDK52>("CarPlay_0e503aef608672fa", 4062258245023485, this, []); }
   /**
    * var name: String? { get }
    * @availability iOS 26.4+
    * @deprecated iOS 27.0
    */
-  get name(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 1186228148910853, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 1186228148910853, this, []); }
   /**
    * var nameVariants: [String] { get }
    * @availability iOS 27.0+
    */
-  get nameVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 3290165911342717, this, []); }
+  get nameVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 3290165911342717, this, []); }
   /**
    * var timeZone: TimeZone? { get }
    * @availability iOS 26.4+
    */
-  get timeZone(): $SDK53 { return callSDK<$SDK53>("CarPlay_d968214ecc684fb6", 2922367698507775, this, []); }
+  get timeZone(): $SDK53 { return callSDK<$SDK53>("CarPlay_0e503aef608672fa", 2922367698507775, this, []); }
   /**
    * convenience init(centerPoint: CPLocationCoordinate3D, locationThreshold: Measurement<UnitLength>?, nameVariants: [String], addressVariants: [String], entryPoints: [CPLocationCoordinate3D], timeZone: TimeZone?)
    * @availability iOS 26.4+
    */
-  static initCenterPointLocationThresholdNameVariantsAddressVariantsEntryPointsTimeZone(centerPoint: CPLocationCoordinate3D, locationThreshold: $SDK52, nameVariants: Array<string>, addressVariants: Array<string>, entryPoints: $SDK54, timeZone?: $SDK53): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_d968214ecc684fb6", 916925269758012, undefined, [centerPoint, locationThreshold, nameVariants, addressVariants, entryPoints, timeZone]); }
+  static initCenterPointLocationThresholdNameVariantsAddressVariantsEntryPointsTimeZone(centerPoint: CPLocationCoordinate3D, locationThreshold: $SDK52, nameVariants: Array<string>, addressVariants: Array<string>, entryPoints: $SDK54, timeZone?: $SDK53): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_0e503aef608672fa", 916925269758012, undefined, [centerPoint, locationThreshold, nameVariants, addressVariants, entryPoints, timeZone]); }
   /**
    * convenience init(centerPoint: CPLocationCoordinate3D, locationThreshold: Measurement<UnitLength>?, name: String?, address: String?, entryPoints: [CPLocationCoordinate3D], timeZone: TimeZone?)
    * @availability iOS 26.4+
    */
-  static initCenterPointLocationThresholdNameAddressEntryPointsTimeZone(centerPoint: CPLocationCoordinate3D, locationThreshold: $SDK52, name: (string) | null, address: (string) | null, entryPoints: $SDK54, timeZone?: $SDK53): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_d968214ecc684fb6", 2238382165607669, undefined, [centerPoint, locationThreshold, name, address, entryPoints, timeZone]); }
+  static initCenterPointLocationThresholdNameAddressEntryPointsTimeZone(centerPoint: CPLocationCoordinate3D, locationThreshold: $SDK52, name: (string) | null, address: (string) | null, entryPoints: $SDK54, timeZone?: $SDK53): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_0e503aef608672fa", 2238382165607669, undefined, [centerPoint, locationThreshold, name, address, entryPoints, timeZone]); }
   /**
    * var entryPoints: [CPLocationCoordinate3D] { get }
    * @availability iOS 26.4+
    */
-  get entryPoints(): $SDK54 { return callSDK<$SDK54>("CarPlay_d968214ecc684fb6", 3815183655338057, this, []); }
+  get entryPoints(): $SDK54 { return callSDK<$SDK54>("CarPlay_0e503aef608672fa", 3815183655338057, this, []); }
   /**
    * convenience init(mapItem: MKMapItem, locationThreshold: Measurement<UnitLength>?, entryPoints: [CPLocationCoordinate3D])
    * @availability iOS 26.4+
    */
-  static initMapItemLocationThresholdEntryPoints(mapItem: _MapKit_MKMapItem, locationThreshold: $SDK52, entryPoints: $SDK54): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_d968214ecc684fb6", 2057893124476077, undefined, [mapItem, locationThreshold, entryPoints]); }
+  static initMapItemLocationThresholdEntryPoints(mapItem: _MapKit_MKMapItem, locationThreshold: $SDK52, entryPoints: $SDK54): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_0e503aef608672fa", 2057893124476077, undefined, [mapItem, locationThreshold, entryPoints]); }
   declare readonly $type: { "c:objc(cs)CPNavigationWaypoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "address": true; "addressVariants": true; "centerPoint": true; "locationThreshold": true; "name": true; "nameVariants": true; "timeZone": true };
 }
@@ -3528,19 +3528,19 @@ export class CPNowPlayingButton extends SDKHandle {
    * init(handler: ((CPNowPlayingButton) -> Void)? = nil)
    * @availability iOS 14.0+
    */
-  static init(handler?: $SDK55): Promise<CPNowPlayingButton> { return callSDKAsync<CPNowPlayingButton>("CarPlay_d968214ecc684fb6", 703464747381363, undefined, [handler], [{"callback":{"out":[]}}]); }
+  static init(handler?: $SDK55): Promise<CPNowPlayingButton> { return callSDKAsync<CPNowPlayingButton>("CarPlay_0e503aef608672fa", 703464747381363, undefined, [handler], [{"callback":{"out":[]}}]); }
   /**
    * var isEnabled: Bool { get set }
    * @availability iOS 14.0+
    */
-  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1809238191368239, this, []); }
-  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1818748907725982, this, [value]); }
+  get isEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1809238191368239, this, []); }
+  setIsEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1818748907725982, this, [value]); }
   /**
    * var isSelected: Bool { get set }
    * @availability iOS 14.0+
    */
-  get isSelected(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1663043296822022, this, []); }
-  setIsSelected(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2465676512051249, this, [value]); }
+  get isSelected(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1663043296822022, this, []); }
+  setIsSelected(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2465676512051249, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPNowPlayingButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isSelected": true };
 }
@@ -3563,12 +3563,12 @@ export class CPNowPlayingImageButton extends (CPNowPlayingButton as unknown as O
    * init(image: UIImage, handler: ((CPNowPlayingButton) -> Void)? = nil)
    * @availability iOS 14.0+
    */
-  static init(image: _UIKit_UIImage, handler?: $SDK55): Promise<CPNowPlayingImageButton> { return callSDKAsync<CPNowPlayingImageButton>("CarPlay_d968214ecc684fb6", 3752667720191424, undefined, [image, handler], [null,{"callback":{"out":[]}}]); }
+  static init(image: _UIKit_UIImage, handler?: $SDK55): Promise<CPNowPlayingImageButton> { return callSDKAsync<CPNowPlayingImageButton>("CarPlay_0e503aef608672fa", 3752667720191424, undefined, [image, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * var image: UIImage? { get }
    * @availability iOS 14.0+
    */
-  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 251896862470554, this, []); }
+  get image(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 251896862470554, this, []); }
   declare readonly $type: { "c:objc(cs)CPNowPlayingImageButton": true; "c:objc(cs)CPNowPlayingButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isSelected": true; "image": true };
 }
@@ -3582,9 +3582,9 @@ export class CPNowPlayingMode extends SDKHandle {
    * class var `default`: CPNowPlayingMode { get }
    * @availability iOS 18.4+
    */
-  static get default(): Promise<CPNowPlayingMode> { return callSDKAsync<CPNowPlayingMode>("CarPlay_d968214ecc684fb6", 3932290371973292, undefined, []); }
+  static get default(): Promise<CPNowPlayingMode> { return callSDKAsync<CPNowPlayingMode>("CarPlay_0e503aef608672fa", 3932290371973292, undefined, []); }
   /** init() */
-  static init(): Promise<CPNowPlayingMode> { return callSDKAsync<CPNowPlayingMode>("CarPlay_d968214ecc684fb6", 4019149945860244, undefined, []); }
+  static init(): Promise<CPNowPlayingMode> { return callSDKAsync<CPNowPlayingMode>("CarPlay_0e503aef608672fa", 4019149945860244, undefined, []); }
   declare readonly $type: { "c:objc(cs)CPNowPlayingMode": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3597,27 +3597,27 @@ export class CPNowPlayingModeSports extends (CPNowPlayingMode as unknown as Omit
    * init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus: CPNowPlayingSportsEventStatus?, backgroundArtwork: UIImage?)
    * @availability iOS 18.4+
    */
-  static init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK56, backgroundArtwork?: (_UIKit_UIImage) | null): Promise<CPNowPlayingModeSports> { return callSDKAsync<CPNowPlayingModeSports>("CarPlay_d968214ecc684fb6", 2810397465694456, undefined, [leftTeam, rightTeam, eventStatus, backgroundArtwork]); }
+  static init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK56, backgroundArtwork?: (_UIKit_UIImage) | null): Promise<CPNowPlayingModeSports> { return callSDKAsync<CPNowPlayingModeSports>("CarPlay_0e503aef608672fa", 2810397465694456, undefined, [leftTeam, rightTeam, eventStatus, backgroundArtwork]); }
   /**
    * @NSCopying var backgroundArtwork: UIImage? { get }
    * @availability iOS 18.4+
    */
-  get backgroundArtwork(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 1995186218622153, this, []); }
+  get backgroundArtwork(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 1995186218622153, this, []); }
   /**
    * var eventStatus: CPNowPlayingSportsEventStatus? { get }
    * @availability iOS 18.4+
    */
-  get eventStatus(): Promise<$SDK56> { return callSDKAsync<$SDK56>("CarPlay_d968214ecc684fb6", 3643857227371654, this, []); }
+  get eventStatus(): Promise<$SDK56> { return callSDKAsync<$SDK56>("CarPlay_0e503aef608672fa", 3643857227371654, this, []); }
   /**
    * var leftTeam: CPNowPlayingSportsTeam { get }
    * @availability iOS 18.4+
    */
-  get leftTeam(): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_d968214ecc684fb6", 584740745163222, this, []); }
+  get leftTeam(): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_0e503aef608672fa", 584740745163222, this, []); }
   /**
    * var rightTeam: CPNowPlayingSportsTeam { get }
    * @availability iOS 18.4+
    */
-  get rightTeam(): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_d968214ecc684fb6", 899799182936491, this, []); }
+  get rightTeam(): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_0e503aef608672fa", 899799182936491, this, []); }
   declare readonly $type: { "c:objc(cs)CPNowPlayingModeSports": true; "c:objc(cs)CPNowPlayingMode": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backgroundArtwork": true; "eventStatus": true; "leftTeam": true; "rightTeam": true };
 }
@@ -3667,27 +3667,27 @@ export class CPNowPlayingSportsClock extends SDKHandle {
    * init(elapsedTime: TimeInterval, paused: Bool)
    * @availability iOS 18.4+
    */
-  static initElapsedTimePaused(elapsedTime: number, paused: boolean): Promise<CPNowPlayingSportsClock> { return callSDKAsync<CPNowPlayingSportsClock>("CarPlay_d968214ecc684fb6", 1616865430658949, undefined, [elapsedTime, paused]); }
+  static initElapsedTimePaused(elapsedTime: number, paused: boolean): Promise<CPNowPlayingSportsClock> { return callSDKAsync<CPNowPlayingSportsClock>("CarPlay_0e503aef608672fa", 1616865430658949, undefined, [elapsedTime, paused]); }
   /**
    * init(timeRemaining: TimeInterval, paused: Bool)
    * @availability iOS 18.4+
    */
-  static initTimeRemainingPaused(timeRemaining: number, paused: boolean): Promise<CPNowPlayingSportsClock> { return callSDKAsync<CPNowPlayingSportsClock>("CarPlay_d968214ecc684fb6", 3001907721667846, undefined, [timeRemaining, paused]); }
+  static initTimeRemainingPaused(timeRemaining: number, paused: boolean): Promise<CPNowPlayingSportsClock> { return callSDKAsync<CPNowPlayingSportsClock>("CarPlay_0e503aef608672fa", 3001907721667846, undefined, [timeRemaining, paused]); }
   /**
    * var countsUp: Bool { get }
    * @availability iOS 18.4+
    */
-  get countsUp(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 3524957442093291, this, []); }
+  get countsUp(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 3524957442093291, this, []); }
   /**
    * var isPaused: Bool { get }
    * @availability iOS 18.4+
    */
-  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 3315456053905986, this, []); }
+  get isPaused(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 3315456053905986, this, []); }
   /**
    * var timeValue: TimeInterval { get }
    * @availability iOS 18.4+
    */
-  get timeValue(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 3950312774847766, this, []); }
+  get timeValue(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 3950312774847766, this, []); }
   declare readonly $type: { "c:objc(cs)CPNowPlayingSportsClock": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "countsUp": true; "isPaused": true; "timeValue": true };
 }
@@ -3701,22 +3701,22 @@ export class CPNowPlayingSportsEventStatus extends SDKHandle {
    * init(eventStatusText: [String]?, eventStatusImage: UIImage?, eventClock: CPNowPlayingSportsClock?)
    * @availability iOS 18.4+
    */
-  static init(eventStatusText?: (Array<string>) | null, eventStatusImage?: (_UIKit_UIImage) | null, eventClock?: $SDK57): Promise<CPNowPlayingSportsEventStatus> { return callSDKAsync<CPNowPlayingSportsEventStatus>("CarPlay_d968214ecc684fb6", 1395769787376236, undefined, [eventStatusText, eventStatusImage, eventClock]); }
+  static init(eventStatusText?: (Array<string>) | null, eventStatusImage?: (_UIKit_UIImage) | null, eventClock?: $SDK57): Promise<CPNowPlayingSportsEventStatus> { return callSDKAsync<CPNowPlayingSportsEventStatus>("CarPlay_0e503aef608672fa", 1395769787376236, undefined, [eventStatusText, eventStatusImage, eventClock]); }
   /**
    * @NSCopying var eventClock: CPNowPlayingSportsClock? { get }
    * @availability iOS 18.4+
    */
-  get eventClock(): Promise<$SDK57> { return callSDKAsync<$SDK57>("CarPlay_d968214ecc684fb6", 1729622252556408, this, []); }
+  get eventClock(): Promise<$SDK57> { return callSDKAsync<$SDK57>("CarPlay_0e503aef608672fa", 1729622252556408, this, []); }
   /**
    * @NSCopying var eventStatusImage: UIImage? { get }
    * @availability iOS 18.4+
    */
-  get eventStatusImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 2163694243282947, this, []); }
+  get eventStatusImage(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 2163694243282947, this, []); }
   /**
    * var eventStatusText: [String]? { get }
    * @availability iOS 18.4+
    */
-  get eventStatusText(): Promise<(Array<string>) | null> { return callSDKAsync<(Array<string>) | null>("CarPlay_d968214ecc684fb6", 1352797260604195, this, []); }
+  get eventStatusText(): Promise<(Array<string>) | null> { return callSDKAsync<(Array<string>) | null>("CarPlay_0e503aef608672fa", 1352797260604195, this, []); }
   declare readonly $type: { "c:objc(cs)CPNowPlayingSportsEventStatus": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "eventClock": true; "eventStatusImage": true; "eventStatusText": true };
 }
@@ -3730,37 +3730,37 @@ export class CPNowPlayingSportsTeam extends SDKHandle {
    * init(name: String, logo: CPNowPlayingSportsTeamLogo, teamStandings: String?, eventScore: String, possessionIndicator: UIImage?, favorite: Bool)
    * @availability iOS 18.4+
    */
-  static init(name: string, logo: CPNowPlayingSportsTeamLogo, teamStandings: (string) | null, eventScore: string, possessionIndicator: (_UIKit_UIImage) | null, favorite: boolean): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_d968214ecc684fb6", 4343546067131035, undefined, [name, logo, teamStandings, eventScore, possessionIndicator, favorite]); }
+  static init(name: string, logo: CPNowPlayingSportsTeamLogo, teamStandings: (string) | null, eventScore: string, possessionIndicator: (_UIKit_UIImage) | null, favorite: boolean): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_0e503aef608672fa", 4343546067131035, undefined, [name, logo, teamStandings, eventScore, possessionIndicator, favorite]); }
   /**
    * var eventScore: String { get }
    * @availability iOS 18.4+
    */
-  get eventScore(): Promise<string> { return callSDKAsync<string>("CarPlay_d968214ecc684fb6", 2945340012008921, this, []); }
+  get eventScore(): Promise<string> { return callSDKAsync<string>("CarPlay_0e503aef608672fa", 2945340012008921, this, []); }
   /**
    * var isFavorite: Bool { get }
    * @availability iOS 18.4+
    */
-  get isFavorite(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 1736711812641656, this, []); }
+  get isFavorite(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 1736711812641656, this, []); }
   /**
    * @NSCopying var logo: CPNowPlayingSportsTeamLogo { get }
    * @availability iOS 18.4+
    */
-  get logo(): Promise<CPNowPlayingSportsTeamLogo> { return callSDKAsync<CPNowPlayingSportsTeamLogo>("CarPlay_d968214ecc684fb6", 439669402846764, this, []); }
+  get logo(): Promise<CPNowPlayingSportsTeamLogo> { return callSDKAsync<CPNowPlayingSportsTeamLogo>("CarPlay_0e503aef608672fa", 439669402846764, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 18.4+
    */
-  get name(): Promise<string> { return callSDKAsync<string>("CarPlay_d968214ecc684fb6", 4294003232028697, this, []); }
+  get name(): Promise<string> { return callSDKAsync<string>("CarPlay_0e503aef608672fa", 4294003232028697, this, []); }
   /**
    * @NSCopying var possessionIndicator: UIImage? { get }
    * @availability iOS 18.4+
    */
-  get possessionIndicator(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 4045521273029026, this, []); }
+  get possessionIndicator(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 4045521273029026, this, []); }
   /**
    * var teamStandings: String? { get }
    * @availability iOS 18.4+
    */
-  get teamStandings(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 3269220430194093, this, []); }
+  get teamStandings(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 3269220430194093, this, []); }
   declare readonly $type: { "c:objc(cs)CPNowPlayingSportsTeam": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "eventScore": true; "isFavorite": true; "logo": true; "name": true; "possessionIndicator": true; "teamStandings": true };
 }
@@ -3774,22 +3774,22 @@ export class CPNowPlayingSportsTeamLogo extends SDKHandle {
    * init(teamInitials: String)
    * @availability iOS 18.4+
    */
-  static initTeamInitials(teamInitials: string): Promise<CPNowPlayingSportsTeamLogo> { return callSDKAsync<CPNowPlayingSportsTeamLogo>("CarPlay_d968214ecc684fb6", 583127180221113, undefined, [teamInitials]); }
+  static initTeamInitials(teamInitials: string): Promise<CPNowPlayingSportsTeamLogo> { return callSDKAsync<CPNowPlayingSportsTeamLogo>("CarPlay_0e503aef608672fa", 583127180221113, undefined, [teamInitials]); }
   /**
    * init(teamLogo: UIImage)
    * @availability iOS 18.4+
    */
-  static initTeamLogo(teamLogo: _UIKit_UIImage): Promise<CPNowPlayingSportsTeamLogo> { return callSDKAsync<CPNowPlayingSportsTeamLogo>("CarPlay_d968214ecc684fb6", 3182607472814434, undefined, [teamLogo]); }
+  static initTeamLogo(teamLogo: _UIKit_UIImage): Promise<CPNowPlayingSportsTeamLogo> { return callSDKAsync<CPNowPlayingSportsTeamLogo>("CarPlay_0e503aef608672fa", 3182607472814434, undefined, [teamLogo]); }
   /**
    * var initials: String? { get }
    * @availability iOS 18.4+
    */
-  get initials(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 1565403967076329, this, []); }
+  get initials(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 1565403967076329, this, []); }
   /**
    * @NSCopying var logo: UIImage? { get }
    * @availability iOS 18.4+
    */
-  get logo(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 463348458074818, this, []); }
+  get logo(): Promise<(_UIKit_UIImage) | null> { return callSDKAsync<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 463348458074818, this, []); }
   declare readonly $type: { "c:objc(cs)CPNowPlayingSportsTeamLogo": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "initials": true; "logo": true };
 }
@@ -3803,57 +3803,57 @@ export class CPNowPlayingTemplate extends CPTemplate {
    * class var shared: CPNowPlayingTemplate { get }
    * @availability iOS 14.0+
    */
-  static get shared(): Promise<CPNowPlayingTemplate> { return callSDKAsync<CPNowPlayingTemplate>("CarPlay_d968214ecc684fb6", 520517171984499, undefined, []); }
+  static get shared(): Promise<CPNowPlayingTemplate> { return callSDKAsync<CPNowPlayingTemplate>("CarPlay_0e503aef608672fa", 520517171984499, undefined, []); }
   /**
    * func add(_ observer: any CPNowPlayingTemplateObserver)
    * @availability iOS 14.0+
    */
-  add(observer: $SDK58): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 796718289412147, this, [observer], [{"protocol":"c:objc(pl)CPNowPlayingTemplateObserver"}]); }
+  add(observer: $SDK58): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 796718289412147, this, [observer], [{"protocol":"c:objc(pl)CPNowPlayingTemplateObserver"}]); }
   /**
    * func remove(_ observer: any CPNowPlayingTemplateObserver)
    * @availability iOS 14.0+
    */
-  remove(observer: $SDK58): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1248925594292096, this, [observer], [{"protocol":"c:objc(pl)CPNowPlayingTemplateObserver"}]); }
+  remove(observer: $SDK58): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1248925594292096, this, [observer], [{"protocol":"c:objc(pl)CPNowPlayingTemplateObserver"}]); }
   /**
    * func updateNowPlayingButtons(_ nowPlayingButtons: [CPNowPlayingButton])
    * @availability iOS 14.0+
    */
-  updateNowPlayingButtons(nowPlayingButtons: Array<CPNowPlayingButton>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2467828855430247, this, [nowPlayingButtons]); }
+  updateNowPlayingButtons(nowPlayingButtons: Array<CPNowPlayingButton>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2467828855430247, this, [nowPlayingButtons]); }
   /**
    * var isAlbumArtistButtonEnabled: Bool { get set }
    * @availability iOS 14.0+
    */
-  get isAlbumArtistButtonEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 24166237239128, this, []); }
-  setIsAlbumArtistButtonEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2593126891682509, this, [value]); }
+  get isAlbumArtistButtonEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 24166237239128, this, []); }
+  setIsAlbumArtistButtonEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2593126891682509, this, [value]); }
   /**
    * var allowsMiniPlayer: Bool { get set }
    * @availability iOS 27.0+
    */
-  get allowsMiniPlayer(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 2057781554871280, this, []); }
-  setAllowsMiniPlayer(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4085375843519990, this, [value]); }
+  get allowsMiniPlayer(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 2057781554871280, this, []); }
+  setAllowsMiniPlayer(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4085375843519990, this, [value]); }
   /**
    * var nowPlayingButtons: [CPNowPlayingButton] { get }
    * @availability iOS 14.0+
    */
-  get nowPlayingButtons(): Promise<Array<CPNowPlayingButton>> { return callSDKAsync<Array<CPNowPlayingButton>>("CarPlay_d968214ecc684fb6", 327375160369394, this, []); }
+  get nowPlayingButtons(): Promise<Array<CPNowPlayingButton>> { return callSDKAsync<Array<CPNowPlayingButton>>("CarPlay_0e503aef608672fa", 327375160369394, this, []); }
   /**
    * var nowPlayingMode: CPNowPlayingMode? { get set }
    * @availability iOS 18.4+
    */
-  get nowPlayingMode(): Promise<(CPNowPlayingMode) | null> { return callSDKAsync<(CPNowPlayingMode) | null>("CarPlay_d968214ecc684fb6", 2778648571324782, this, []); }
-  setNowPlayingMode(value?: (CPNowPlayingMode) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 571943692495502, this, [value]); }
+  get nowPlayingMode(): Promise<(CPNowPlayingMode) | null> { return callSDKAsync<(CPNowPlayingMode) | null>("CarPlay_0e503aef608672fa", 2778648571324782, this, []); }
+  setNowPlayingMode(value?: (CPNowPlayingMode) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 571943692495502, this, [value]); }
   /**
    * var isUpNextButtonEnabled: Bool { get set }
    * @availability iOS 14.0+
    */
-  get isUpNextButtonEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_d968214ecc684fb6", 207208099740437, this, []); }
-  setIsUpNextButtonEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4001098846336809, this, [value]); }
+  get isUpNextButtonEnabled(): Promise<boolean> { return callSDKAsync<boolean>("CarPlay_0e503aef608672fa", 207208099740437, this, []); }
+  setIsUpNextButtonEnabled(value: boolean): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4001098846336809, this, [value]); }
   /**
    * var upNextTitle: String { get set }
    * @availability iOS 14.0+
    */
-  get upNextTitle(): Promise<string> { return callSDKAsync<string>("CarPlay_d968214ecc684fb6", 1310140983237245, this, []); }
-  setUpNextTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 549163077127784, this, [value]); }
+  get upNextTitle(): Promise<string> { return callSDKAsync<string>("CarPlay_0e503aef608672fa", 1310140983237245, this, []); }
+  setUpNextTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 549163077127784, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPNowPlayingTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "isAlbumArtistButtonEnabled": true; "allowsMiniPlayer": true; "nowPlayingButtons": true; "nowPlayingMode": true; "isUpNextButtonEnabled": true; "upNextTitle": true };
 }
@@ -3892,27 +3892,27 @@ export class CPPlaybackConfiguration extends SDKHandle {
    * init(preferredPresentation: CPPlaybackConfiguration.Presentation, playbackAction: CPPlaybackConfiguration.Action, elapsedTime: CMTime, duration: CMTime)
    * @availability iOS 26.4+
    */
-  static init(preferredPresentation: CPPlaybackConfiguration_Presentation, playbackAction: CPPlaybackConfiguration_Action, elapsedTime: _CoreMedia_CMTime, duration: _CoreMedia_CMTime): Promise<CPPlaybackConfiguration> { return callSDKAsync<CPPlaybackConfiguration>("CarPlay_d968214ecc684fb6", 4080666938579223, undefined, [preferredPresentation, playbackAction, elapsedTime, duration]); }
+  static init(preferredPresentation: CPPlaybackConfiguration_Presentation, playbackAction: CPPlaybackConfiguration_Action, elapsedTime: _CoreMedia_CMTime, duration: _CoreMedia_CMTime): Promise<CPPlaybackConfiguration> { return callSDKAsync<CPPlaybackConfiguration>("CarPlay_0e503aef608672fa", 4080666938579223, undefined, [preferredPresentation, playbackAction, elapsedTime, duration]); }
   /**
    * var duration: CMTime { get }
    * @availability iOS 26.4+
    */
-  get duration(): Promise<_CoreMedia_CMTime> { return callSDKAsync<_CoreMedia_CMTime>("CarPlay_d968214ecc684fb6", 3493350697485455, this, []); }
+  get duration(): Promise<_CoreMedia_CMTime> { return callSDKAsync<_CoreMedia_CMTime>("CarPlay_0e503aef608672fa", 3493350697485455, this, []); }
   /**
    * var elapsedTime: CMTime { get }
    * @availability iOS 26.4+
    */
-  get elapsedTime(): Promise<_CoreMedia_CMTime> { return callSDKAsync<_CoreMedia_CMTime>("CarPlay_d968214ecc684fb6", 1248825991869729, this, []); }
+  get elapsedTime(): Promise<_CoreMedia_CMTime> { return callSDKAsync<_CoreMedia_CMTime>("CarPlay_0e503aef608672fa", 1248825991869729, this, []); }
   /**
    * var playbackAction: CPPlaybackConfiguration.Action { get }
    * @availability iOS 26.4+
    */
-  get playbackAction(): Promise<CPPlaybackConfiguration_Action> { return callSDKAsync<CPPlaybackConfiguration_Action>("CarPlay_d968214ecc684fb6", 1346725371483970, this, []); }
+  get playbackAction(): Promise<CPPlaybackConfiguration_Action> { return callSDKAsync<CPPlaybackConfiguration_Action>("CarPlay_0e503aef608672fa", 1346725371483970, this, []); }
   /**
    * var preferredPresentation: CPPlaybackConfiguration.Presentation { get }
    * @availability iOS 26.4+
    */
-  get preferredPresentation(): Promise<CPPlaybackConfiguration_Presentation> { return callSDKAsync<CPPlaybackConfiguration_Presentation>("CarPlay_d968214ecc684fb6", 4217576240675677, this, []); }
+  get preferredPresentation(): Promise<CPPlaybackConfiguration_Presentation> { return callSDKAsync<CPPlaybackConfiguration_Presentation>("CarPlay_0e503aef608672fa", 4217576240675677, this, []); }
   declare readonly $type: { "c:objc(cs)CPPlaybackConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "elapsedTime": true; "playbackAction": true; "preferredPresentation": true };
 }
@@ -3928,7 +3928,7 @@ export const CPPlaybackConfiguration_Action = {
    * init?(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): Promise<(CPPlaybackConfiguration_Action) | null> { return callSDKAsync<(CPPlaybackConfiguration_Action) | null>("CarPlay_d968214ecc684fb6", 347100762223056, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(CPPlaybackConfiguration_Action) | null> { return callSDKAsync<(CPPlaybackConfiguration_Action) | null>("CarPlay_0e503aef608672fa", 347100762223056, undefined, [rawValue]); }
 };
 
 /**
@@ -3942,7 +3942,7 @@ export const CPPlaybackConfiguration_Presentation = {
    * init?(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): Promise<(CPPlaybackConfiguration_Presentation) | null> { return callSDKAsync<(CPPlaybackConfiguration_Presentation) | null>("CarPlay_d968214ecc684fb6", 2052409195561140, undefined, [rawValue]); }
+  init(rawValue: number): Promise<(CPPlaybackConfiguration_Presentation) | null> { return callSDKAsync<(CPPlaybackConfiguration_Presentation) | null>("CarPlay_0e503aef608672fa", 2052409195561140, undefined, [rawValue]); }
 };
 
 /**
@@ -3954,94 +3954,94 @@ export class CPPointOfInterest extends SDKHandle {
    * class var pinImageSize: CGSize { get }
    * @availability iOS 16.0+
    */
-  static get pinImageSize(): $SDK15 { return callSDK<$SDK15>("CarPlay_d968214ecc684fb6", 255853843817726, undefined, []); }
+  static get pinImageSize(): $SDK15 { return callSDK<$SDK15>("CarPlay_0e503aef608672fa", 255853843817726, undefined, []); }
   /**
    * class var selectedPinImageSize: CGSize { get }
    * @availability iOS 16.0+
    */
-  static get selectedPinImageSize(): $SDK15 { return callSDK<$SDK15>("CarPlay_d968214ecc684fb6", 808514882755744, undefined, []); }
+  static get selectedPinImageSize(): $SDK15 { return callSDK<$SDK15>("CarPlay_0e503aef608672fa", 808514882755744, undefined, []); }
   /**
    * convenience init(location: MKMapItem, title: String, subtitle: String?, summary: String?, detailTitle: String?, detailSubtitle: String?, detailSummary: String?, pinImage: UIImage?)
    * @availability iOS 14.0+
    */
-  static initLocationTitleSubtitleSummaryDetailTitleDetailSubtitleDetailSummaryPinImage(location: _MapKit_MKMapItem, title: string, subtitle?: (string) | null, summary?: (string) | null, detailTitle?: (string) | null, detailSubtitle?: (string) | null, detailSummary?: (string) | null, pinImage?: (_UIKit_UIImage) | null): CPPointOfInterest { return callSDK<CPPointOfInterest>("CarPlay_d968214ecc684fb6", 1321581699327218, undefined, [location, title, subtitle, summary, detailTitle, detailSubtitle, detailSummary, pinImage]); }
+  static initLocationTitleSubtitleSummaryDetailTitleDetailSubtitleDetailSummaryPinImage(location: _MapKit_MKMapItem, title: string, subtitle?: (string) | null, summary?: (string) | null, detailTitle?: (string) | null, detailSubtitle?: (string) | null, detailSummary?: (string) | null, pinImage?: (_UIKit_UIImage) | null): CPPointOfInterest { return callSDK<CPPointOfInterest>("CarPlay_0e503aef608672fa", 1321581699327218, undefined, [location, title, subtitle, summary, detailTitle, detailSubtitle, detailSummary, pinImage]); }
   /**
    * init(location: MKMapItem, title: String, subtitle: String?, summary: String?, detailTitle: String?, detailSubtitle: String?, detailSummary: String?, pinImage: UIImage?, selectedPinImage: UIImage?)
    * @availability iOS 16.0+
    */
-  static initLocationTitleSubtitleSummaryDetailTitleDetailSubtitleDetailSummaryPinImageSelectedPinImage(location: _MapKit_MKMapItem, title: string, subtitle?: (string) | null, summary?: (string) | null, detailTitle?: (string) | null, detailSubtitle?: (string) | null, detailSummary?: (string) | null, pinImage?: (_UIKit_UIImage) | null, selectedPinImage?: (_UIKit_UIImage) | null): CPPointOfInterest { return callSDK<CPPointOfInterest>("CarPlay_d968214ecc684fb6", 21369942768435, undefined, [location, title, subtitle, summary, detailTitle, detailSubtitle, detailSummary, pinImage, selectedPinImage]); }
+  static initLocationTitleSubtitleSummaryDetailTitleDetailSubtitleDetailSummaryPinImageSelectedPinImage(location: _MapKit_MKMapItem, title: string, subtitle?: (string) | null, summary?: (string) | null, detailTitle?: (string) | null, detailSubtitle?: (string) | null, detailSummary?: (string) | null, pinImage?: (_UIKit_UIImage) | null, selectedPinImage?: (_UIKit_UIImage) | null): CPPointOfInterest { return callSDK<CPPointOfInterest>("CarPlay_0e503aef608672fa", 21369942768435, undefined, [location, title, subtitle, summary, detailTitle, detailSubtitle, detailSummary, pinImage, selectedPinImage]); }
   /**
    * var detailSubtitle: String? { get set }
    * @availability iOS 14.0+
    */
-  get detailSubtitle(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2121182543181179, this, []); }
-  set detailSubtitle(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 2414968718232011, this, [value]); }
+  get detailSubtitle(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2121182543181179, this, []); }
+  set detailSubtitle(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 2414968718232011, this, [value]); }
   /**
    * var detailSummary: String? { get set }
    * @availability iOS 14.0+
    */
-  get detailSummary(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 3153497495047864, this, []); }
-  set detailSummary(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 4115703326411484, this, [value]); }
+  get detailSummary(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 3153497495047864, this, []); }
+  set detailSummary(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 4115703326411484, this, [value]); }
   /**
    * var detailTitle: String? { get set }
    * @availability iOS 14.0+
    */
-  get detailTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2210999488486110, this, []); }
-  set detailTitle(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 4051314299472546, this, [value]); }
+  get detailTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2210999488486110, this, []); }
+  set detailTitle(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 4051314299472546, this, [value]); }
   /**
    * var location: MKMapItem { get set }
    * @availability iOS 14.0+
    */
-  get location(): _MapKit_MKMapItem { return callSDK<_MapKit_MKMapItem>("CarPlay_d968214ecc684fb6", 1434550874276998, this, []); }
-  set location(value: _MapKit_MKMapItem) { callSDK<void>("CarPlay_d968214ecc684fb6", 897853765385053, this, [value]); }
+  get location(): _MapKit_MKMapItem { return callSDK<_MapKit_MKMapItem>("CarPlay_0e503aef608672fa", 1434550874276998, this, []); }
+  set location(value: _MapKit_MKMapItem) { callSDK<void>("CarPlay_0e503aef608672fa", 897853765385053, this, [value]); }
   /**
    * var pinImage: UIImage? { get set }
    * @availability iOS 14.0+
    */
-  get pinImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 2346774374160436, this, []); }
-  set pinImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1701463806463094, this, [value]); }
+  get pinImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 2346774374160436, this, []); }
+  set pinImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1701463806463094, this, [value]); }
   /**
    * var primaryButton: CPTextButton? { get set }
    * @availability iOS 14.0+
    */
-  get primaryButton(): (CPTextButton) | null { return callSDK<(CPTextButton) | null>("CarPlay_d968214ecc684fb6", 3900315293514149, this, []); }
-  set primaryButton(value: (CPTextButton) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1893044934080080, this, [value]); }
+  get primaryButton(): (CPTextButton) | null { return callSDK<(CPTextButton) | null>("CarPlay_0e503aef608672fa", 3900315293514149, this, []); }
+  set primaryButton(value: (CPTextButton) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1893044934080080, this, [value]); }
   /**
    * var secondaryButton: CPTextButton? { get set }
    * @availability iOS 14.0+
    */
-  get secondaryButton(): (CPTextButton) | null { return callSDK<(CPTextButton) | null>("CarPlay_d968214ecc684fb6", 1071174861923156, this, []); }
-  set secondaryButton(value: (CPTextButton) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 3584447381345527, this, [value]); }
+  get secondaryButton(): (CPTextButton) | null { return callSDK<(CPTextButton) | null>("CarPlay_0e503aef608672fa", 1071174861923156, this, []); }
+  set secondaryButton(value: (CPTextButton) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 3584447381345527, this, [value]); }
   /**
    * var selectedPinImage: UIImage? { get set }
    * @availability iOS 16.0+
    */
-  get selectedPinImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 1719521020139917, this, []); }
-  set selectedPinImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 2269877588903615, this, [value]); }
+  get selectedPinImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 1719521020139917, this, []); }
+  set selectedPinImage(value: (_UIKit_UIImage) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 2269877588903615, this, [value]); }
   /**
    * var subtitle: String? { get set }
    * @availability iOS 14.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 269190172434568, this, []); }
-  set subtitle(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 1577983965737498, this, [value]); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 269190172434568, this, []); }
+  set subtitle(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 1577983965737498, this, [value]); }
   /**
    * var summary: String? { get set }
    * @availability iOS 14.0+
    */
-  get summary(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 4361801252636688, this, []); }
-  set summary(value: (string) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 3837655476005212, this, [value]); }
+  get summary(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 4361801252636688, this, []); }
+  set summary(value: (string) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 3837655476005212, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 14.0+
    */
-  get title(): string { return callSDK<string>("CarPlay_d968214ecc684fb6", 2071557532923568, this, []); }
-  set title(value: string) { callSDK<void>("CarPlay_d968214ecc684fb6", 414244941049696, this, [value]); }
+  get title(): string { return callSDK<string>("CarPlay_0e503aef608672fa", 2071557532923568, this, []); }
+  set title(value: string) { callSDK<void>("CarPlay_0e503aef608672fa", 414244941049696, this, [value]); }
   /**
    * var userInfo: Any? { get set }
    * @availability iOS 14.0+
    */
-  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_d968214ecc684fb6", 1613502964178281, this, []); }
-  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 4350916322434908, this, [value]); }
+  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_0e503aef608672fa", 1613502964178281, this, []); }
+  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 4350916322434908, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPPointOfInterest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "detailSubtitle": true; "detailSummary": true; "detailTitle": true; "location": true; "pinImage": true; "primaryButton": true; "secondaryButton": true; "selectedPinImage": true; "subtitle": true; "summary": true; "title": true; "userInfo": true };
 }
@@ -4055,35 +4055,35 @@ export class CPPointOfInterestTemplate extends (CPTemplate as unknown as Omit<ty
    * init(title: String, pointsOfInterest: [CPPointOfInterest], selectedIndex: Int)
    * @availability iOS 14.0+
    */
-  static init(title: string, pointsOfInterest: $SDK61, selectedIndex: number): Promise<CPPointOfInterestTemplate> { return callSDKAsync<CPPointOfInterestTemplate>("CarPlay_d968214ecc684fb6", 4194427626425521, undefined, [title, pointsOfInterest, selectedIndex]); }
+  static init(title: string, pointsOfInterest: $SDK61, selectedIndex: number): Promise<CPPointOfInterestTemplate> { return callSDKAsync<CPPointOfInterestTemplate>("CarPlay_0e503aef608672fa", 4194427626425521, undefined, [title, pointsOfInterest, selectedIndex]); }
   /**
    * func setPointsOfInterest(_ pointsOfInterest: [CPPointOfInterest], selectedIndex: Int)
    * @availability iOS 14.0+
    */
-  setPointsOfInterest(pointsOfInterest: $SDK61, selectedIndex: number): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1983447060439108, this, [pointsOfInterest, selectedIndex]); }
+  setPointsOfInterest(pointsOfInterest: $SDK61, selectedIndex: number): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1983447060439108, this, [pointsOfInterest, selectedIndex]); }
   /**
    * weak var pointOfInterestDelegate: (any CPPointOfInterestTemplateDelegate)? { get set }
    * @availability iOS 14.0+
    */
-  get pointOfInterestDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 4000330392142897, this, []); }
-  setPointOfInterestDelegate(value?: (Implements<CPPointOfInterestTemplateDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1041906707369447, this, [value], [{"protocol":"c:objc(pl)CPPointOfInterestTemplateDelegate"}]); }
+  get pointOfInterestDelegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 4000330392142897, this, []); }
+  setPointOfInterestDelegate(value?: (Implements<CPPointOfInterestTemplateDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1041906707369447, this, [value], [{"protocol":"c:objc(pl)CPPointOfInterestTemplateDelegate"}]); }
   /**
    * var pointsOfInterest: [CPPointOfInterest] { get }
    * @availability iOS 14.0+
    */
-  get pointsOfInterest(): Promise<$SDK61> { return callSDKAsync<$SDK61>("CarPlay_d968214ecc684fb6", 3815304690046560, this, []); }
+  get pointsOfInterest(): Promise<$SDK61> { return callSDKAsync<$SDK61>("CarPlay_0e503aef608672fa", 3815304690046560, this, []); }
   /**
    * var selectedIndex: Int { get set }
    * @availability iOS 14.0+
    */
-  get selectedIndex(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 3730199835059794, this, []); }
-  setSelectedIndex(value: number): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 315611894218181, this, [value]); }
+  get selectedIndex(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 3730199835059794, this, []); }
+  setSelectedIndex(value: number): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 315611894218181, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 14.0+
    */
-  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_d968214ecc684fb6", 2301200957666713, this, []); }
-  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1454147239073637, this, [value]); }
+  get title(): Promise<string> { return callSDKAsync<string>("CarPlay_0e503aef608672fa", 2301200957666713, this, []); }
+  setTitle(value: string): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1454147239073637, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPPointOfInterestTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "pointOfInterestDelegate": true; "pointsOfInterest": true; "selectedIndex": true; "title": true };
 }
@@ -4116,7 +4116,7 @@ export const CPRerouteReason = {
    * init?(rawValue: Int)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): (CPRerouteReason) | null { return callSDK<(CPRerouteReason) | null>("CarPlay_d968214ecc684fb6", 2508905515015841, undefined, [rawValue]); }
+  init(rawValue: number): (CPRerouteReason) | null { return callSDK<(CPRerouteReason) | null>("CarPlay_0e503aef608672fa", 2508905515015841, undefined, [rawValue]); }
 };
 
 /**
@@ -4128,38 +4128,38 @@ export class CPRouteChoice extends SDKHandle {
    * init(summaryVariants: [String], additionalInformationVariants: [String], selectionSummaryVariants: [String])
    * @availability iOS 12.0+
    */
-  static initSummaryVariantsAdditionalInformationVariantsSelectionSummaryVariants(summaryVariants: Array<string>, additionalInformationVariants: Array<string>, selectionSummaryVariants: Array<string>): CPRouteChoice { return callSDK<CPRouteChoice>("CarPlay_d968214ecc684fb6", 2289418844524965, undefined, [summaryVariants, additionalInformationVariants, selectionSummaryVariants]); }
+  static initSummaryVariantsAdditionalInformationVariantsSelectionSummaryVariants(summaryVariants: Array<string>, additionalInformationVariants: Array<string>, selectionSummaryVariants: Array<string>): CPRouteChoice { return callSDK<CPRouteChoice>("CarPlay_0e503aef608672fa", 2289418844524965, undefined, [summaryVariants, additionalInformationVariants, selectionSummaryVariants]); }
   /**
    * init(summaryVariants: [String], additionalInformationVariants: [String], selectionSummaryVariants: [String], travelEstimates: CPTravelEstimates?)
    * @availability iOS 27.0+
    */
-  static initSummaryVariantsAdditionalInformationVariantsSelectionSummaryVariantsTravelEstimates(summaryVariants: Array<string>, additionalInformationVariants: Array<string>, selectionSummaryVariants: Array<string>, travelEstimates?: $SDK39): CPRouteChoice { return callSDK<CPRouteChoice>("CarPlay_d968214ecc684fb6", 2160365905336012, undefined, [summaryVariants, additionalInformationVariants, selectionSummaryVariants, travelEstimates]); }
+  static initSummaryVariantsAdditionalInformationVariantsSelectionSummaryVariantsTravelEstimates(summaryVariants: Array<string>, additionalInformationVariants: Array<string>, selectionSummaryVariants: Array<string>, travelEstimates?: $SDK39): CPRouteChoice { return callSDK<CPRouteChoice>("CarPlay_0e503aef608672fa", 2160365905336012, undefined, [summaryVariants, additionalInformationVariants, selectionSummaryVariants, travelEstimates]); }
   /**
    * var additionalInformationVariants: [String]? { get }
    * @availability iOS 12.0+
    */
-  get additionalInformationVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_d968214ecc684fb6", 2591109358910592, this, []); }
+  get additionalInformationVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_0e503aef608672fa", 2591109358910592, this, []); }
   /**
    * var selectionSummaryVariants: [String]? { get }
    * @availability iOS 12.0+
    */
-  get selectionSummaryVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_d968214ecc684fb6", 1073618173484662, this, []); }
+  get selectionSummaryVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_0e503aef608672fa", 1073618173484662, this, []); }
   /**
    * var summaryVariants: [String] { get }
    * @availability iOS 12.0+
    */
-  get summaryVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_d968214ecc684fb6", 4121100141967931, this, []); }
+  get summaryVariants(): Array<string> { return callSDK<Array<string>>("CarPlay_0e503aef608672fa", 4121100141967931, this, []); }
   /**
    * var travelEstimates: CPTravelEstimates? { get }
    * @availability iOS 27.0+
    */
-  get travelEstimates(): $SDK39 { return callSDK<$SDK39>("CarPlay_d968214ecc684fb6", 885145940232016, this, []); }
+  get travelEstimates(): $SDK39 { return callSDK<$SDK39>("CarPlay_0e503aef608672fa", 885145940232016, this, []); }
   /**
    * var userInfo: Any? { get set }
    * @availability iOS 12.0+
    */
-  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_d968214ecc684fb6", 3965543919924208, this, []); }
-  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 907059410306532, this, [value]); }
+  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_0e503aef608672fa", 3965543919924208, this, []); }
+  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 907059410306532, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPRouteChoice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "additionalInformationVariants": true; "selectionSummaryVariants": true; "summaryVariants": true; "travelEstimates": true; "userInfo": true };
 }
@@ -4173,88 +4173,88 @@ export class CPRouteDetail extends SDKHandle {
    * convenience init(batteryLevel: Double)
    * @availability iOS 27.0+
    */
-  static initBatteryLevel(batteryLevel: number): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 3812823983376196, undefined, [batteryLevel]); }
+  static initBatteryLevel(batteryLevel: number): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 3812823983376196, undefined, [batteryLevel]); }
   /**
    * convenience init(carbonFootprint: Measurement<UnitMass>)
    * @availability iOS 27.0+
    */
-  static initCarbonFootprint(carbonFootprint: $SDK63): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 502152308609991, undefined, [carbonFootprint]); }
+  static initCarbonFootprint(carbonFootprint: $SDK63): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 502152308609991, undefined, [carbonFootprint]); }
   /**
    * convenience init(ecoScore value: Double)
    * @availability iOS 27.0+
    */
-  static initEcoScore(value: number): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 3133682766553664, undefined, [value]); }
+  static initEcoScore(value: number): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 3133682766553664, undefined, [value]); }
   /**
    * convenience init(emissions: Measurement<UnitMass>)
    * @availability iOS 27.0+
    */
-  static initEmissions(emissions: $SDK63): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 1900890841604651, undefined, [emissions]); }
+  static initEmissions(emissions: $SDK63): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 1900890841604651, undefined, [emissions]); }
   /**
    * convenience init(fuelEnergy: Measurement<UnitEnergy>)
    * @availability iOS 27.0+
    */
-  static initFuelEnergy(fuelEnergy: $SDK64): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 3286032877032968, undefined, [fuelEnergy]); }
+  static initFuelEnergy(fuelEnergy: $SDK64): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 3286032877032968, undefined, [fuelEnergy]); }
   /**
    * convenience init(fuelLevel: Measurement<UnitVolume>)
    * @availability iOS 27.0+
    */
-  static initFuelLevel(fuelLevel: _Foundation_Measurement<_Foundation_UnitVolume>): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 228139641179412, undefined, [fuelLevel]); }
+  static initFuelLevel(fuelLevel: _Foundation_Measurement<_Foundation_UnitVolume>): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 228139641179412, undefined, [fuelLevel]); }
   /**
    * convenience init(fuelMass: Measurement<UnitMass>)
    * @availability iOS 27.0+
    */
-  static initFuelMass(fuelMass: $SDK63): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 665844308102850, undefined, [fuelMass]); }
+  static initFuelMass(fuelMass: $SDK63): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 665844308102850, undefined, [fuelMass]); }
   /**
    * convenience init(hov hovInfo: String)
    * @availability iOS 27.0+
    */
-  static initHov(hovInfo: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 1790205112294800, undefined, [hovInfo]); }
+  static initHov(hovInfo: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 1790205112294800, undefined, [hovInfo]); }
   /**
    * convenience init(info: String)
    * @availability iOS 27.0+
    */
-  static initInfo(info: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 385071066853297, undefined, [info]); }
+  static initInfo(info: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 385071066853297, undefined, [info]); }
   /**
    * convenience init(kilowattHours: Measurement<UnitEnergy>)
    * @availability iOS 27.0+
    */
-  static initKilowattHours(kilowattHours: $SDK64): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 1482690783635342, undefined, [kilowattHours]); }
+  static initKilowattHours(kilowattHours: $SDK64): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 1482690783635342, undefined, [kilowattHours]); }
   /**
    * convenience init(parking: String)
    * @availability iOS 27.0+
    */
-  static initParking(parking: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 3371445045247690, undefined, [parking]); }
+  static initParking(parking: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 3371445045247690, undefined, [parking]); }
   /**
    * convenience init(rating: Double)
    * @availability iOS 27.0+
    */
-  static initRating(rating: number): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 2779927080573062, undefined, [rating]); }
+  static initRating(rating: number): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 2779927080573062, undefined, [rating]); }
   /**
    * convenience init(symbolName: String, value: String)
    * @availability iOS 27.0+
    */
-  static initSymbolNameValue(symbolName: string, value: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 1365599825211714, undefined, [symbolName, value]); }
+  static initSymbolNameValue(symbolName: string, value: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 1365599825211714, undefined, [symbolName, value]); }
   /**
    * convenience init(tollAmount value: Double, locale: Locale)
    * @availability iOS 27.0+
    */
-  static initTollAmountLocale(value: number, locale: _Foundation_Locale): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 1964209043896599, undefined, [value, locale]); }
+  static initTollAmountLocale(value: number, locale: _Foundation_Locale): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 1964209043896599, undefined, [value, locale]); }
   /**
    * convenience init(trafficLights: Int)
    * @availability iOS 27.0+
    */
-  static initTrafficLights(trafficLights: number): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 1811634306029012, undefined, [trafficLights]); }
+  static initTrafficLights(trafficLights: number): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 1811634306029012, undefined, [trafficLights]); }
   /**
    * convenience init(warning: String)
    * @availability iOS 27.0+
    */
-  static initWarning(warning: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_d968214ecc684fb6", 4367142078762755, undefined, [warning]); }
+  static initWarning(warning: string): Promise<CPRouteDetail> { return callSDKAsync<CPRouteDetail>("CarPlay_0e503aef608672fa", 4367142078762755, undefined, [warning]); }
   /**
    * var symbolTintColor: UIColor? { get set }
    * @availability iOS 27.0+
    */
-  get symbolTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("CarPlay_d968214ecc684fb6", 247744056458915, this, []); }
-  setSymbolTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3148866996215139, this, [value]); }
+  get symbolTintColor(): Promise<(_UIKit_UIColor) | null> { return callSDKAsync<(_UIKit_UIColor) | null>("CarPlay_0e503aef608672fa", 247744056458915, this, []); }
+  setSymbolTintColor(value?: (_UIKit_UIColor) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3148866996215139, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPRouteDetail": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "symbolTintColor": true };
 }
@@ -4268,37 +4268,37 @@ export class CPRouteInformation extends SDKHandle {
    * init(maneuvers: [CPManeuver], laneGuidances: [CPLaneGuidance], currentManeuvers: [CPManeuver], currentLaneGuidance: CPLaneGuidance, trip tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates)
    * @availability iOS 17.4+
    */
-  static init(maneuvers: Array<CPManeuver>, laneGuidances: Array<CPLaneGuidance>, currentManeuvers: Array<CPManeuver>, currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates): CPRouteInformation { return callSDK<CPRouteInformation>("CarPlay_d968214ecc684fb6", 696286707766356, undefined, [maneuvers, laneGuidances, currentManeuvers, currentLaneGuidance, tripTravelEstimates, maneuverTravelEstimates]); }
+  static init(maneuvers: Array<CPManeuver>, laneGuidances: Array<CPLaneGuidance>, currentManeuvers: Array<CPManeuver>, currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates): CPRouteInformation { return callSDK<CPRouteInformation>("CarPlay_0e503aef608672fa", 696286707766356, undefined, [maneuvers, laneGuidances, currentManeuvers, currentLaneGuidance, tripTravelEstimates, maneuverTravelEstimates]); }
   /**
    * @NSCopying var currentLaneGuidance: CPLaneGuidance { get }
    * @availability iOS 17.4+
    */
-  get currentLaneGuidance(): CPLaneGuidance { return callSDK<CPLaneGuidance>("CarPlay_d968214ecc684fb6", 3361137947571772, this, []); }
+  get currentLaneGuidance(): CPLaneGuidance { return callSDK<CPLaneGuidance>("CarPlay_0e503aef608672fa", 3361137947571772, this, []); }
   /**
    * var currentManeuvers: [CPManeuver] { get }
    * @availability iOS 17.4+
    */
-  get currentManeuvers(): Array<CPManeuver> { return callSDK<Array<CPManeuver>>("CarPlay_d968214ecc684fb6", 4237465919981118, this, []); }
+  get currentManeuvers(): Array<CPManeuver> { return callSDK<Array<CPManeuver>>("CarPlay_0e503aef608672fa", 4237465919981118, this, []); }
   /**
    * var laneGuidances: [CPLaneGuidance] { get }
    * @availability iOS 17.4+
    */
-  get laneGuidances(): Array<CPLaneGuidance> { return callSDK<Array<CPLaneGuidance>>("CarPlay_d968214ecc684fb6", 4376312945175512, this, []); }
+  get laneGuidances(): Array<CPLaneGuidance> { return callSDK<Array<CPLaneGuidance>>("CarPlay_0e503aef608672fa", 4376312945175512, this, []); }
   /**
    * @NSCopying var maneuverTravelEstimates: CPTravelEstimates { get }
    * @availability iOS 17.4+
    */
-  get maneuverTravelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_d968214ecc684fb6", 1448629340812117, this, []); }
+  get maneuverTravelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_0e503aef608672fa", 1448629340812117, this, []); }
   /**
    * var maneuvers: [CPManeuver] { get }
    * @availability iOS 17.4+
    */
-  get maneuvers(): Array<CPManeuver> { return callSDK<Array<CPManeuver>>("CarPlay_d968214ecc684fb6", 3032349561873908, this, []); }
+  get maneuvers(): Array<CPManeuver> { return callSDK<Array<CPManeuver>>("CarPlay_0e503aef608672fa", 3032349561873908, this, []); }
   /**
    * @NSCopying var tripTravelEstimates: CPTravelEstimates { get }
    * @availability iOS 17.4+
    */
-  get tripTravelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_d968214ecc684fb6", 2321150545199332, this, []); }
+  get tripTravelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_0e503aef608672fa", 2321150545199332, this, []); }
   declare readonly $type: { "c:objc(cs)CPRouteInformation": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentLaneGuidance": true; "currentManeuvers": true; "laneGuidances": true; "maneuverTravelEstimates": true; "maneuvers": true; "tripTravelEstimates": true };
 }
@@ -4312,57 +4312,57 @@ export class CPRouteSegment extends SDKHandle {
    * @NSCopying var currentLaneGuidance: CPLaneGuidance { get }
    * @availability iOS 26.4+
    */
-  get currentLaneGuidance(): CPLaneGuidance { return callSDK<CPLaneGuidance>("CarPlay_d968214ecc684fb6", 4373782117454536, this, []); }
+  get currentLaneGuidance(): CPLaneGuidance { return callSDK<CPLaneGuidance>("CarPlay_0e503aef608672fa", 4373782117454536, this, []); }
   /**
    * var currentManeuvers: [CPManeuver] { get }
    * @availability iOS 26.4+
    */
-  get currentManeuvers(): Array<CPManeuver> { return callSDK<Array<CPManeuver>>("CarPlay_d968214ecc684fb6", 2355788760561952, this, []); }
+  get currentManeuvers(): Array<CPManeuver> { return callSDK<Array<CPManeuver>>("CarPlay_0e503aef608672fa", 2355788760561952, this, []); }
   /**
    * var destination: CPNavigationWaypoint { get }
    * @availability iOS 26.4+
    */
-  get destination(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_d968214ecc684fb6", 2557578012988926, this, []); }
+  get destination(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_0e503aef608672fa", 2557578012988926, this, []); }
   /**
    * var identifier: UUID { get }
    * @availability iOS 26.4+
    */
-  get identifier(): string { return callSDK<string>("CarPlay_d968214ecc684fb6", 479713424493572, this, []); }
+  get identifier(): string { return callSDK<string>("CarPlay_0e503aef608672fa", 479713424493572, this, []); }
   /**
    * var laneGuidances: [CPLaneGuidance] { get }
    * @availability iOS 26.4+
    */
-  get laneGuidances(): Array<CPLaneGuidance> { return callSDK<Array<CPLaneGuidance>>("CarPlay_d968214ecc684fb6", 1198541148924805, this, []); }
+  get laneGuidances(): Array<CPLaneGuidance> { return callSDK<Array<CPLaneGuidance>>("CarPlay_0e503aef608672fa", 1198541148924805, this, []); }
   /**
    * @NSCopying var maneuverTravelEstimates: CPTravelEstimates { get }
    * @availability iOS 26.4+
    */
-  get maneuverTravelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_d968214ecc684fb6", 878987995074452, this, []); }
+  get maneuverTravelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_0e503aef608672fa", 878987995074452, this, []); }
   /**
    * var maneuvers: [CPManeuver] { get }
    * @availability iOS 26.4+
    */
-  get maneuvers(): Array<CPManeuver> { return callSDK<Array<CPManeuver>>("CarPlay_d968214ecc684fb6", 2092878499115916, this, []); }
+  get maneuvers(): Array<CPManeuver> { return callSDK<Array<CPManeuver>>("CarPlay_0e503aef608672fa", 2092878499115916, this, []); }
   /**
    * var origin: CPNavigationWaypoint { get }
    * @availability iOS 26.4+
    */
-  get origin(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_d968214ecc684fb6", 3658836062309583, this, []); }
+  get origin(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_0e503aef608672fa", 3658836062309583, this, []); }
   /**
    * @NSCopying var tripTravelEstimates: CPTravelEstimates { get }
    * @availability iOS 26.4+
    */
-  get tripTravelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_d968214ecc684fb6", 1228023022075112, this, []); }
+  get tripTravelEstimates(): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_0e503aef608672fa", 1228023022075112, this, []); }
   /**
    * var coordinates: [CPLocationCoordinate3D] { get }
    * @availability iOS 26.4+
    */
-  get coordinates(): $SDK54 { return callSDK<$SDK54>("CarPlay_d968214ecc684fb6", 1318556567977634, this, []); }
+  get coordinates(): $SDK54 { return callSDK<$SDK54>("CarPlay_0e503aef608672fa", 1318556567977634, this, []); }
   /**
    * convenience init(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, maneuvers: [CPManeuver], laneGuidances: [CPLaneGuidance], currentManeuvers: [CPManeuver], currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates, coordinates: [CPLocationCoordinate3D])
    * @availability iOS 26.4+
    */
-  static init(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, maneuvers: Array<CPManeuver>, laneGuidances: Array<CPLaneGuidance>, currentManeuvers: Array<CPManeuver>, currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates, coordinates: $SDK54): CPRouteSegment { return callSDK<CPRouteSegment>("CarPlay_d968214ecc684fb6", 1738968760109902, undefined, [origin, destination, maneuvers, laneGuidances, currentManeuvers, currentLaneGuidance, tripTravelEstimates, maneuverTravelEstimates, coordinates]); }
+  static init(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, maneuvers: Array<CPManeuver>, laneGuidances: Array<CPLaneGuidance>, currentManeuvers: Array<CPManeuver>, currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates, coordinates: $SDK54): CPRouteSegment { return callSDK<CPRouteSegment>("CarPlay_0e503aef608672fa", 1738968760109902, undefined, [origin, destination, maneuvers, laneGuidances, currentManeuvers, currentLaneGuidance, tripTravelEstimates, maneuverTravelEstimates, coordinates]); }
   declare readonly $type: { "c:objc(cs)CPRouteSegment": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "currentLaneGuidance": true; "currentManeuvers": true; "destination": true; "identifier": true; "laneGuidances": true; "maneuverTravelEstimates": true; "maneuvers": true; "origin": true; "tripTravelEstimates": true };
 }
@@ -4378,7 +4378,7 @@ export const CPRouteSource = {
    * init?(rawValue: UInt)
    * @availability iOS 26.4+
    */
-  init(rawValue: number): (CPRouteSource) | null { return callSDK<(CPRouteSource) | null>("CarPlay_d968214ecc684fb6", 1898890004288938, undefined, [rawValue]); }
+  init(rawValue: number): (CPRouteSource) | null { return callSDK<(CPRouteSource) | null>("CarPlay_0e503aef608672fa", 1898890004288938, undefined, [rawValue]); }
 };
 
 /**
@@ -4387,13 +4387,13 @@ export const CPRouteSource = {
  */
 export class CPSearchTemplate extends (CPTemplate as unknown as Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate)) {
   /** init() */
-  static init(): Promise<CPSearchTemplate> { return callSDKAsync<CPSearchTemplate>("CarPlay_d968214ecc684fb6", 2214304724067056, undefined, []); }
+  static init(): Promise<CPSearchTemplate> { return callSDKAsync<CPSearchTemplate>("CarPlay_0e503aef608672fa", 2214304724067056, undefined, []); }
   /**
    * weak var delegate: (any CPSearchTemplateDelegate)? { get set }
    * @availability iOS 12.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 631250115081927, this, []); }
-  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 1349657772797183, this, [value]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 631250115081927, this, []); }
+  setDelegate(value?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 1349657772797183, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPSearchTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "delegate": true };
 }
@@ -4437,28 +4437,28 @@ export class CPSessionConfiguration extends SDKHandle {
    * init(delegate: any CPSessionConfigurationDelegate)
    * @availability iOS 12.0+
    */
-  static init(delegate: Implements<CPSessionConfigurationDelegate> | SDKHandle): CPSessionConfiguration { return callSDK<CPSessionConfiguration>("CarPlay_d968214ecc684fb6", 1113568221739076, undefined, [delegate], [{"protocol":"c:objc(pl)CPSessionConfigurationDelegate"}]); }
+  static init(delegate: Implements<CPSessionConfigurationDelegate> | SDKHandle): CPSessionConfiguration { return callSDK<CPSessionConfiguration>("CarPlay_0e503aef608672fa", 1113568221739076, undefined, [delegate], [{"protocol":"c:objc(pl)CPSessionConfigurationDelegate"}]); }
   /**
    * var contentStyle: CPContentStyle { get }
    * @availability iOS 13.0+
    */
-  get contentStyle(): CPContentStyle { return callSDK<CPContentStyle>("CarPlay_d968214ecc684fb6", 4294735018995385, this, []); }
+  get contentStyle(): CPContentStyle { return callSDK<CPContentStyle>("CarPlay_0e503aef608672fa", 4294735018995385, this, []); }
   /**
    * weak var delegate: (any CPSessionConfigurationDelegate)? { get set }
    * @availability iOS 12.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 3913864095433984, this, []); }
-  set delegate(value: (Implements<CPSessionConfigurationDelegate> | SDKHandle) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 2792046763469781, this, [value], [{"protocol":"c:objc(pl)CPSessionConfigurationDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 3913864095433984, this, []); }
+  set delegate(value: (Implements<CPSessionConfigurationDelegate> | SDKHandle) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 2792046763469781, this, [value], [{"protocol":"c:objc(pl)CPSessionConfigurationDelegate"}]); }
   /**
    * var limitedUserInterfaces: CPLimitableUserInterface { get }
    * @availability iOS 12.0+
    */
-  get limitedUserInterfaces(): CPLimitableUserInterface { return callSDK<CPLimitableUserInterface>("CarPlay_d968214ecc684fb6", 4202857945856075, this, []); }
+  get limitedUserInterfaces(): CPLimitableUserInterface { return callSDK<CPLimitableUserInterface>("CarPlay_0e503aef608672fa", 4202857945856075, this, []); }
   /**
    * var supportsVideoPlayback: Bool { get }
    * @availability iOS 26.4+
    */
-  get supportsVideoPlayback(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 4306064830198847, this, []); }
+  get supportsVideoPlayback(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 4306064830198847, this, []); }
   declare readonly $type: { "c:objc(cs)CPSessionConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentStyle": true; "delegate": true; "limitedUserInterfaces": true; "supportsVideoPlayback": true };
 }
@@ -4489,22 +4489,22 @@ export class CPSportsOverlay extends SDKHandle {
    * init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus: CPNowPlayingSportsEventStatus?)
    * @availability iOS 26.4+
    */
-  static init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK56): Promise<CPSportsOverlay> { return callSDKAsync<CPSportsOverlay>("CarPlay_d968214ecc684fb6", 222141817312531, undefined, [leftTeam, rightTeam, eventStatus]); }
+  static init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK56): Promise<CPSportsOverlay> { return callSDKAsync<CPSportsOverlay>("CarPlay_0e503aef608672fa", 222141817312531, undefined, [leftTeam, rightTeam, eventStatus]); }
   /**
    * var eventStatus: CPNowPlayingSportsEventStatus? { get }
    * @availability iOS 26.4+
    */
-  get eventStatus(): Promise<$SDK56> { return callSDKAsync<$SDK56>("CarPlay_d968214ecc684fb6", 4152485586291664, this, []); }
+  get eventStatus(): Promise<$SDK56> { return callSDKAsync<$SDK56>("CarPlay_0e503aef608672fa", 4152485586291664, this, []); }
   /**
    * var leftTeam: CPNowPlayingSportsTeam { get }
    * @availability iOS 26.4+
    */
-  get leftTeam(): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_d968214ecc684fb6", 3358463193407664, this, []); }
+  get leftTeam(): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_0e503aef608672fa", 3358463193407664, this, []); }
   /**
    * var rightTeam: CPNowPlayingSportsTeam { get }
    * @availability iOS 26.4+
    */
-  get rightTeam(): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_d968214ecc684fb6", 591278301154170, this, []); }
+  get rightTeam(): Promise<CPNowPlayingSportsTeam> { return callSDKAsync<CPNowPlayingSportsTeam>("CarPlay_0e503aef608672fa", 591278301154170, this, []); }
   declare readonly $type: { "c:objc(cs)CPSportsOverlay": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "eventStatus": true; "leftTeam": true; "rightTeam": true };
 }
@@ -4518,43 +4518,43 @@ export class CPTabBarTemplate extends (CPTemplate as unknown as Omit<typeof CPTe
    * class var maximumTabCount: Int { get }
    * @availability iOS 14.0+
    */
-  static get maximumTabCount(): Promise<number> { return callSDKAsync<number>("CarPlay_d968214ecc684fb6", 1242702016590039, undefined, []); }
+  static get maximumTabCount(): Promise<number> { return callSDKAsync<number>("CarPlay_0e503aef608672fa", 1242702016590039, undefined, []); }
   /**
    * init(templates: [CPTemplate])
    * @availability iOS 14.0+
    */
-  static init(templates: Array<CPTemplate>): Promise<CPTabBarTemplate> { return callSDKAsync<CPTabBarTemplate>("CarPlay_d968214ecc684fb6", 867537107401531, undefined, [templates]); }
+  static init(templates: Array<CPTemplate>): Promise<CPTabBarTemplate> { return callSDKAsync<CPTabBarTemplate>("CarPlay_0e503aef608672fa", 867537107401531, undefined, [templates]); }
   /**
    * func select(_ newTemplate: CPTemplate)
    * @availability iOS 17.0+
    */
-  select(newTemplate: CPTemplate): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3125640692749182, this, [newTemplate]); }
+  select(newTemplate: CPTemplate): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3125640692749182, this, [newTemplate]); }
   /**
    * func selectTemplate(at index: Int)
    * @availability iOS 17.0+
    */
-  selectTemplate(index: number): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2311759867462460, this, [index]); }
+  selectTemplate(index: number): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2311759867462460, this, [index]); }
   /**
    * func updateTemplates(_ newTemplates: [CPTemplate])
    * @availability iOS 14.0+
    */
-  updateTemplates(newTemplates: Array<CPTemplate>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2272122856906056, this, [newTemplates]); }
+  updateTemplates(newTemplates: Array<CPTemplate>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2272122856906056, this, [newTemplates]); }
   /**
    * weak var delegate: (any CPTabBarTemplateDelegate)? { get set }
    * @availability iOS 14.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 358587743546300, this, []); }
-  setDelegate(value?: (Implements<CPTabBarTemplateDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 320378159342008, this, [value], [{"protocol":"c:objc(pl)CPTabBarTemplateDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 358587743546300, this, []); }
+  setDelegate(value?: (Implements<CPTabBarTemplateDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 320378159342008, this, [value], [{"protocol":"c:objc(pl)CPTabBarTemplateDelegate"}]); }
   /**
    * var selectedTemplate: CPTemplate? { get }
    * @availability iOS 14.0+
    */
-  get selectedTemplate(): Promise<(CPTemplate) | null> { return callSDKAsync<(CPTemplate) | null>("CarPlay_d968214ecc684fb6", 1665149722659735, this, []); }
+  get selectedTemplate(): Promise<(CPTemplate) | null> { return callSDKAsync<(CPTemplate) | null>("CarPlay_0e503aef608672fa", 1665149722659735, this, []); }
   /**
    * var templates: [CPTemplate] { get }
    * @availability iOS 14.0+
    */
-  get templates(): Promise<Array<CPTemplate>> { return callSDKAsync<Array<CPTemplate>>("CarPlay_d968214ecc684fb6", 1750653301042592, this, []); }
+  get templates(): Promise<Array<CPTemplate>> { return callSDKAsync<Array<CPTemplate>>("CarPlay_0e503aef608672fa", 1750653301042592, this, []); }
   declare readonly $type: { "c:objc(cs)CPTabBarTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "delegate": true; "selectedTemplate": true; "templates": true };
 }
@@ -4580,18 +4580,18 @@ export class CPTemplateApplicationDashboardScene extends SDKHandle {
    * var dashboardController: CPDashboardController { get }
    * @availability iOS 13.4+
    */
-  get dashboardController(): Promise<CPDashboardController> { return callSDKAsync<CPDashboardController>("CarPlay_d968214ecc684fb6", 2128336139398162, this, []); }
+  get dashboardController(): Promise<CPDashboardController> { return callSDKAsync<CPDashboardController>("CarPlay_0e503aef608672fa", 2128336139398162, this, []); }
   /**
    * var dashboardWindow: UIWindow { get }
    * @availability iOS 13.4+
    */
-  get dashboardWindow(): Promise<_UIKit_UIWindow> { return callSDKAsync<_UIKit_UIWindow>("CarPlay_d968214ecc684fb6", 4079698522822498, this, []); }
+  get dashboardWindow(): Promise<_UIKit_UIWindow> { return callSDKAsync<_UIKit_UIWindow>("CarPlay_0e503aef608672fa", 4079698522822498, this, []); }
   /**
    * var delegate: (any CPTemplateApplicationDashboardSceneDelegate)? { get set }
    * @availability iOS 13.4+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 4184027575914126, this, []); }
-  setDelegate(value?: (Implements<CPTemplateApplicationDashboardSceneDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 830639505832741, this, [value], [{"protocol":"c:objc(pl)CPTemplateApplicationDashboardSceneDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 4184027575914126, this, []); }
+  setDelegate(value?: (Implements<CPTemplateApplicationDashboardSceneDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 830639505832741, this, [value], [{"protocol":"c:objc(pl)CPTemplateApplicationDashboardSceneDelegate"}]); }
   declare readonly $type: { "c:objc(cs)CPTemplateApplicationDashboardScene": true; "c:objc(cs)UIScene": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dashboardController": true; "dashboardWindow": true; "delegate": true };
 }
@@ -4634,18 +4634,18 @@ export class CPTemplateApplicationInstrumentClusterScene extends SDKHandle {
    * var contentStyle: UIUserInterfaceStyle { get }
    * @availability iOS 15.4+
    */
-  get contentStyle(): Promise<_UIKit_UIUserInterfaceStyle> { return callSDKAsync<_UIKit_UIUserInterfaceStyle>("CarPlay_d968214ecc684fb6", 3079721852252006, this, []); }
+  get contentStyle(): Promise<_UIKit_UIUserInterfaceStyle> { return callSDKAsync<_UIKit_UIUserInterfaceStyle>("CarPlay_0e503aef608672fa", 3079721852252006, this, []); }
   /**
    * var delegate: (any CPTemplateApplicationInstrumentClusterSceneDelegate)? { get set }
    * @availability iOS 15.4+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 2169862996907348, this, []); }
-  setDelegate(value?: (Implements<CPTemplateApplicationInstrumentClusterSceneDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 113425971777759, this, [value], [{"protocol":"c:objc(pl)CPTemplateApplicationInstrumentClusterSceneDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 2169862996907348, this, []); }
+  setDelegate(value?: (Implements<CPTemplateApplicationInstrumentClusterSceneDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 113425971777759, this, [value], [{"protocol":"c:objc(pl)CPTemplateApplicationInstrumentClusterSceneDelegate"}]); }
   /**
    * var instrumentClusterController: CPInstrumentClusterController { get }
    * @availability iOS 15.4+
    */
-  get instrumentClusterController(): Promise<CPInstrumentClusterController> { return callSDKAsync<CPInstrumentClusterController>("CarPlay_d968214ecc684fb6", 2419545166647350, this, []); }
+  get instrumentClusterController(): Promise<CPInstrumentClusterController> { return callSDKAsync<CPInstrumentClusterController>("CarPlay_0e503aef608672fa", 2419545166647350, this, []); }
   declare readonly $type: { "c:objc(cs)CPTemplateApplicationInstrumentClusterScene": true; "c:objc(cs)UIScene": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentStyle": true; "delegate": true; "instrumentClusterController": true };
 }
@@ -4693,23 +4693,23 @@ export class CPTemplateApplicationScene extends SDKHandle {
    * var carWindow: CPWindow { get }
    * @availability iOS 13.0+
    */
-  get carWindow(): Promise<CPWindow> { return callSDKAsync<CPWindow>("CarPlay_d968214ecc684fb6", 2308386720311353, this, []); }
+  get carWindow(): Promise<CPWindow> { return callSDKAsync<CPWindow>("CarPlay_0e503aef608672fa", 2308386720311353, this, []); }
   /**
    * var contentStyle: UIUserInterfaceStyle { get }
    * @availability iOS 15.4+
    */
-  get contentStyle(): Promise<_UIKit_UIUserInterfaceStyle> { return callSDKAsync<_UIKit_UIUserInterfaceStyle>("CarPlay_d968214ecc684fb6", 27105573057701, this, []); }
+  get contentStyle(): Promise<_UIKit_UIUserInterfaceStyle> { return callSDKAsync<_UIKit_UIUserInterfaceStyle>("CarPlay_0e503aef608672fa", 27105573057701, this, []); }
   /**
    * var delegate: (any CPTemplateApplicationSceneDelegate)? { get set }
    * @availability iOS 13.0+
    */
-  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_d968214ecc684fb6", 504928232131207, this, []); }
-  setDelegate(value?: (Implements<CPTemplateApplicationSceneDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 4102207262594535, this, [value], [{"protocol":"c:objc(pl)CPTemplateApplicationSceneDelegate"}]); }
+  get delegate(): Promise<(SDKHandle) | null> { return callSDKAsync<(SDKHandle) | null>("CarPlay_0e503aef608672fa", 504928232131207, this, []); }
+  setDelegate(value?: (Implements<CPTemplateApplicationSceneDelegate> | SDKHandle) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 4102207262594535, this, [value], [{"protocol":"c:objc(pl)CPTemplateApplicationSceneDelegate"}]); }
   /**
    * var interfaceController: CPInterfaceController { get }
    * @availability iOS 13.0+
    */
-  get interfaceController(): Promise<CPInterfaceController> { return callSDKAsync<CPInterfaceController>("CarPlay_d968214ecc684fb6", 4161857621444480, this, []); }
+  get interfaceController(): Promise<CPInterfaceController> { return callSDKAsync<CPInterfaceController>("CarPlay_0e503aef608672fa", 4161857621444480, this, []); }
   declare readonly $type: { "c:objc(cs)CPTemplateApplicationScene": true; "c:objc(cs)UIScene": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "carWindow": true; "contentStyle": true; "delegate": true; "interfaceController": true };
 }
@@ -4772,19 +4772,19 @@ export class CPTextButton extends SDKHandle {
    * init(title: String, textStyle: CPTextButtonStyle, handler: ((CPTextButton) -> Void)? = nil)
    * @availability iOS 14.0+
    */
-  static init(title: string, textStyle: CPTextButtonStyle, handler?: (((arg0: CPTextButton) => void)) | null): CPTextButton { return callSDK<CPTextButton>("CarPlay_d968214ecc684fb6", 3868993461919232, undefined, [title, textStyle, handler], [null,null,{"callback":{"out":[]}}]); }
+  static init(title: string, textStyle: CPTextButtonStyle, handler?: (((arg0: CPTextButton) => void)) | null): CPTextButton { return callSDK<CPTextButton>("CarPlay_0e503aef608672fa", 3868993461919232, undefined, [title, textStyle, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var textStyle: CPTextButtonStyle { get set }
    * @availability iOS 14.0+
    */
-  get textStyle(): CPTextButtonStyle { return callSDK<CPTextButtonStyle>("CarPlay_d968214ecc684fb6", 334091075984478, this, []); }
-  set textStyle(value: CPTextButtonStyle) { callSDK<void>("CarPlay_d968214ecc684fb6", 2948620163141054, this, [value]); }
+  get textStyle(): CPTextButtonStyle { return callSDK<CPTextButtonStyle>("CarPlay_0e503aef608672fa", 334091075984478, this, []); }
+  set textStyle(value: CPTextButtonStyle) { callSDK<void>("CarPlay_0e503aef608672fa", 2948620163141054, this, [value]); }
   /**
    * var title: String { get set }
    * @availability iOS 14.0+
    */
-  get title(): string { return callSDK<string>("CarPlay_d968214ecc684fb6", 142538751593607, this, []); }
-  set title(value: string) { callSDK<void>("CarPlay_d968214ecc684fb6", 1848477813115168, this, [value]); }
+  get title(): string { return callSDK<string>("CarPlay_0e503aef608672fa", 142538751593607, this, []); }
+  set title(value: string) { callSDK<void>("CarPlay_0e503aef608672fa", 1848477813115168, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPTextButton": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "textStyle": true; "title": true };
 }
@@ -4800,7 +4800,7 @@ export const CPTextButtonStyle = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (CPTextButtonStyle) | null { return callSDK<(CPTextButtonStyle) | null>("CarPlay_d968214ecc684fb6", 1634068677655516, undefined, [rawValue]); }
+  init(rawValue: number): (CPTextButtonStyle) | null { return callSDK<(CPTextButtonStyle) | null>("CarPlay_0e503aef608672fa", 1634068677655516, undefined, [rawValue]); }
 };
 
 /**
@@ -4812,35 +4812,35 @@ export class CPThumbnailImage extends SDKHandle {
    * class func maximumImageSize(forAspectRatio aspectRatio: CGFloat) -> CGSize
    * @availability iOS 27.0+
    */
-  static maximumImageSize(aspectRatio: number): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_d968214ecc684fb6", 1471107965083856, undefined, [aspectRatio]); }
+  static maximumImageSize(aspectRatio: number): Promise<$SDK15> { return callSDKAsync<$SDK15>("CarPlay_0e503aef608672fa", 1471107965083856, undefined, [aspectRatio]); }
   /**
    * init(image: UIImage)
    * @availability iOS 26.4+
    */
-  static initImage(image: _UIKit_UIImage): Promise<CPThumbnailImage> { return callSDKAsync<CPThumbnailImage>("CarPlay_d968214ecc684fb6", 1618482473929580, undefined, [image]); }
+  static initImage(image: _UIKit_UIImage): Promise<CPThumbnailImage> { return callSDKAsync<CPThumbnailImage>("CarPlay_0e503aef608672fa", 1618482473929580, undefined, [image]); }
   /**
    * init(image: UIImage, imageOverlay: CPImageOverlay?, sportsOverlay: CPSportsOverlay?)
    * @availability iOS 26.4+
    */
-  static initImageImageOverlaySportsOverlay(image: _UIKit_UIImage, imageOverlay?: (CPImageOverlay) | null, sportsOverlay?: $SDK74): Promise<CPThumbnailImage> { return callSDKAsync<CPThumbnailImage>("CarPlay_d968214ecc684fb6", 1368660371147330, undefined, [image, imageOverlay, sportsOverlay]); }
+  static initImageImageOverlaySportsOverlay(image: _UIKit_UIImage, imageOverlay?: (CPImageOverlay) | null, sportsOverlay?: $SDK74): Promise<CPThumbnailImage> { return callSDKAsync<CPThumbnailImage>("CarPlay_0e503aef608672fa", 1368660371147330, undefined, [image, imageOverlay, sportsOverlay]); }
   /**
    * var image: UIImage { get set }
    * @availability iOS 26.4+
    */
-  get image(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("CarPlay_d968214ecc684fb6", 4344740117345153, this, []); }
-  setImage(value: _UIKit_UIImage): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2815455647727989, this, [value]); }
+  get image(): Promise<_UIKit_UIImage> { return callSDKAsync<_UIKit_UIImage>("CarPlay_0e503aef608672fa", 4344740117345153, this, []); }
+  setImage(value: _UIKit_UIImage): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2815455647727989, this, [value]); }
   /**
    * var imageOverlay: CPImageOverlay? { get set }
    * @availability iOS 26.4+
    */
-  get imageOverlay(): Promise<(CPImageOverlay) | null> { return callSDKAsync<(CPImageOverlay) | null>("CarPlay_d968214ecc684fb6", 3242694291944791, this, []); }
-  setImageOverlay(value?: (CPImageOverlay) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3506072181522290, this, [value]); }
+  get imageOverlay(): Promise<(CPImageOverlay) | null> { return callSDKAsync<(CPImageOverlay) | null>("CarPlay_0e503aef608672fa", 3242694291944791, this, []); }
+  setImageOverlay(value?: (CPImageOverlay) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3506072181522290, this, [value]); }
   /**
    * var sportsOverlay: CPSportsOverlay? { get set }
    * @availability iOS 26.4+
    */
-  get sportsOverlay(): Promise<$SDK74> { return callSDKAsync<$SDK74>("CarPlay_d968214ecc684fb6", 2242181260524778, this, []); }
-  setSportsOverlay(value?: $SDK74): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2129842243215334, this, [value]); }
+  get sportsOverlay(): Promise<$SDK74> { return callSDKAsync<$SDK74>("CarPlay_0e503aef608672fa", 2242181260524778, this, []); }
+  setSportsOverlay(value?: $SDK74): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2129842243215334, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPThumbnailImage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "image": true; "imageOverlay": true; "sportsOverlay": true };
 }
@@ -4856,7 +4856,7 @@ export const CPTimeRemainingColor = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (CPTimeRemainingColor) | null { return callSDK<(CPTimeRemainingColor) | null>("CarPlay_d968214ecc684fb6", 4071914573748651, undefined, [rawValue]); }
+  init(rawValue: number): (CPTimeRemainingColor) | null { return callSDK<(CPTimeRemainingColor) | null>("CarPlay_0e503aef608672fa", 4071914573748651, undefined, [rawValue]); }
 };
 
 /**
@@ -4870,7 +4870,7 @@ export const CPTrafficSide = {
    * init?(rawValue: UInt)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (CPTrafficSide) | null { return callSDK<(CPTrafficSide) | null>("CarPlay_d968214ecc684fb6", 3463466408633903, undefined, [rawValue]); }
+  init(rawValue: number): (CPTrafficSide) | null { return callSDK<(CPTrafficSide) | null>("CarPlay_0e503aef608672fa", 3463466408633903, undefined, [rawValue]); }
 };
 
 /**
@@ -4882,37 +4882,37 @@ export class CPTravelEstimates extends SDKHandle {
    * init(distanceRemaining: Measurement<UnitLength>, distanceRemainingToDisplay: Measurement<UnitLength>, timeRemaining time: TimeInterval)
    * @availability iOS 17.4+
    */
-  static initDistanceRemainingDistanceRemainingToDisplayTimeRemaining(distanceRemaining: $SDK75, distanceRemainingToDisplay: $SDK75, time: number): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_d968214ecc684fb6", 3539446272909273, undefined, [distanceRemaining, distanceRemainingToDisplay, time]); }
+  static initDistanceRemainingDistanceRemainingToDisplayTimeRemaining(distanceRemaining: $SDK75, distanceRemainingToDisplay: $SDK75, time: number): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_0e503aef608672fa", 3539446272909273, undefined, [distanceRemaining, distanceRemainingToDisplay, time]); }
   /**
    * init(distanceRemaining: Measurement<UnitLength>, distanceRemainingToDisplay: Measurement<UnitLength>, timeRemaining time: TimeInterval, routeDetails: [CPRouteDetail])
    * @availability iOS 27.0+
    */
-  static initDistanceRemainingDistanceRemainingToDisplayTimeRemainingRouteDetails(distanceRemaining: $SDK75, distanceRemainingToDisplay: $SDK75, time: number, routeDetails: Array<CPRouteDetail>): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_d968214ecc684fb6", 3543816778709239, undefined, [distanceRemaining, distanceRemainingToDisplay, time, routeDetails]); }
+  static initDistanceRemainingDistanceRemainingToDisplayTimeRemainingRouteDetails(distanceRemaining: $SDK75, distanceRemainingToDisplay: $SDK75, time: number, routeDetails: Array<CPRouteDetail>): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_0e503aef608672fa", 3543816778709239, undefined, [distanceRemaining, distanceRemainingToDisplay, time, routeDetails]); }
   /**
    * init(distanceRemaining distance: Measurement<UnitLength>, timeRemaining time: TimeInterval)
    * @availability iOS 12.0+
    */
-  static initDistanceRemainingTimeRemaining(distance: $SDK75, time: number): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_d968214ecc684fb6", 3664171471995502, undefined, [distance, time]); }
+  static initDistanceRemainingTimeRemaining(distance: $SDK75, time: number): CPTravelEstimates { return callSDK<CPTravelEstimates>("CarPlay_0e503aef608672fa", 3664171471995502, undefined, [distance, time]); }
   /**
    * var distanceRemaining: Measurement<UnitLength> { get }
    * @availability iOS 12.0+
    */
-  get distanceRemaining(): $SDK75 { return callSDK<$SDK75>("CarPlay_d968214ecc684fb6", 1341322717340516, this, []); }
+  get distanceRemaining(): $SDK75 { return callSDK<$SDK75>("CarPlay_0e503aef608672fa", 1341322717340516, this, []); }
   /**
    * var distanceRemainingToDisplay: Measurement<UnitLength> { get }
    * @availability iOS 17.4+
    */
-  get distanceRemainingToDisplay(): $SDK75 { return callSDK<$SDK75>("CarPlay_d968214ecc684fb6", 3236738619959336, this, []); }
+  get distanceRemainingToDisplay(): $SDK75 { return callSDK<$SDK75>("CarPlay_0e503aef608672fa", 3236738619959336, this, []); }
   /**
    * var routeDetails: [CPRouteDetail] { get }
    * @availability iOS 27.0+
    */
-  get routeDetails(): Array<CPRouteDetail> { return callSDK<Array<CPRouteDetail>>("CarPlay_d968214ecc684fb6", 1226415553896361, this, []); }
+  get routeDetails(): Array<CPRouteDetail> { return callSDK<Array<CPRouteDetail>>("CarPlay_0e503aef608672fa", 1226415553896361, this, []); }
   /**
    * var timeRemaining: TimeInterval { get }
    * @availability iOS 12.0+
    */
-  get timeRemaining(): number { return callSDK<number>("CarPlay_d968214ecc684fb6", 2251382241166265, this, []); }
+  get timeRemaining(): number { return callSDK<number>("CarPlay_0e503aef608672fa", 2251382241166265, this, []); }
   declare readonly $type: { "c:objc(cs)CPTravelEstimates": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "distanceRemaining": true; "distanceRemainingToDisplay": true; "routeDetails": true; "timeRemaining": true };
 }
@@ -4927,64 +4927,64 @@ export class CPTrip extends SDKHandle {
    * @availability iOS 12.0+
    * @deprecated iOS 26.4
    */
-  static initOriginDestinationRouteChoices(origin: _MapKit_MKMapItem, destination: _MapKit_MKMapItem, routeChoices: Array<CPRouteChoice>): CPTrip { return callSDK<CPTrip>("CarPlay_d968214ecc684fb6", 2293721082647052, undefined, [origin, destination, routeChoices]); }
+  static initOriginDestinationRouteChoices(origin: _MapKit_MKMapItem, destination: _MapKit_MKMapItem, routeChoices: Array<CPRouteChoice>): CPTrip { return callSDK<CPTrip>("CarPlay_0e503aef608672fa", 2293721082647052, undefined, [origin, destination, routeChoices]); }
   /**
    * init(originWaypoint origin: CPNavigationWaypoint, destinationWaypoint destination: CPNavigationWaypoint, routeChoices: [CPRouteChoice])
    * @availability iOS 26.4+
    */
-  static initOriginWaypointDestinationWaypointRouteChoices(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, routeChoices: Array<CPRouteChoice>): CPTrip { return callSDK<CPTrip>("CarPlay_d968214ecc684fb6", 2965555708392951, undefined, [origin, destination, routeChoices]); }
+  static initOriginWaypointDestinationWaypointRouteChoices(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, routeChoices: Array<CPRouteChoice>): CPTrip { return callSDK<CPTrip>("CarPlay_0e503aef608672fa", 2965555708392951, undefined, [origin, destination, routeChoices]); }
   /**
    * var destination: MKMapItem { get }
    * @availability iOS 12.0+
    * @deprecated iOS 26.4
    */
-  get destination(): _MapKit_MKMapItem { return callSDK<_MapKit_MKMapItem>("CarPlay_d968214ecc684fb6", 546614964027574, this, []); }
+  get destination(): _MapKit_MKMapItem { return callSDK<_MapKit_MKMapItem>("CarPlay_0e503aef608672fa", 546614964027574, this, []); }
   /**
    * var destinationNameVariants: [String]? { get set }
    * @availability iOS 17.4+
    * @deprecated iOS 27.0
    */
-  get destinationNameVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_d968214ecc684fb6", 1900807329273643, this, []); }
-  set destinationNameVariants(value: (Array<string>) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 2913860506918435, this, [value]); }
+  get destinationNameVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_0e503aef608672fa", 1900807329273643, this, []); }
+  set destinationNameVariants(value: (Array<string>) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 2913860506918435, this, [value]); }
   /**
    * var destinationWaypoint: CPNavigationWaypoint { get }
    * @availability iOS 26.4+
    */
-  get destinationWaypoint(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_d968214ecc684fb6", 3261985313875797, this, []); }
+  get destinationWaypoint(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_0e503aef608672fa", 3261985313875797, this, []); }
   /**
    * var hasShareableDestination: Bool { get set }
    * @availability iOS 26.1+
    */
-  get hasShareableDestination(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 365099067780044, this, []); }
-  set hasShareableDestination(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 2890106173149984, this, [value]); }
+  get hasShareableDestination(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 365099067780044, this, []); }
+  set hasShareableDestination(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 2890106173149984, this, [value]); }
   /**
    * var origin: MKMapItem { get }
    * @availability iOS 12.0+
    * @deprecated iOS 26.4
    */
-  get origin(): _MapKit_MKMapItem { return callSDK<_MapKit_MKMapItem>("CarPlay_d968214ecc684fb6", 3882939969371007, this, []); }
+  get origin(): _MapKit_MKMapItem { return callSDK<_MapKit_MKMapItem>("CarPlay_0e503aef608672fa", 3882939969371007, this, []); }
   /**
    * var originWaypoint: CPNavigationWaypoint { get }
    * @availability iOS 26.4+
    */
-  get originWaypoint(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_d968214ecc684fb6", 1456715396104925, this, []); }
+  get originWaypoint(): CPNavigationWaypoint { return callSDK<CPNavigationWaypoint>("CarPlay_0e503aef608672fa", 1456715396104925, this, []); }
   /**
    * var routeChoices: [CPRouteChoice] { get }
    * @availability iOS 12.0+
    */
-  get routeChoices(): Array<CPRouteChoice> { return callSDK<Array<CPRouteChoice>>("CarPlay_d968214ecc684fb6", 3339775839373149, this, []); }
+  get routeChoices(): Array<CPRouteChoice> { return callSDK<Array<CPRouteChoice>>("CarPlay_0e503aef608672fa", 3339775839373149, this, []); }
   /**
    * var routeSegmentsAvailableForRegion: Bool { get set }
    * @availability iOS 26.4+
    */
-  get routeSegmentsAvailableForRegion(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 2311975445849379, this, []); }
-  set routeSegmentsAvailableForRegion(value: boolean) { callSDK<void>("CarPlay_d968214ecc684fb6", 146433069273728, this, [value]); }
+  get routeSegmentsAvailableForRegion(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 2311975445849379, this, []); }
+  set routeSegmentsAvailableForRegion(value: boolean) { callSDK<void>("CarPlay_0e503aef608672fa", 146433069273728, this, [value]); }
   /**
    * var userInfo: Any? { get set }
    * @availability iOS 12.0+
    */
-  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_d968214ecc684fb6", 1330513701718637, this, []); }
-  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_d968214ecc684fb6", 979945673006318, this, [value]); }
+  get userInfo(): (unknown) | null { return callSDK<(unknown) | null>("CarPlay_0e503aef608672fa", 1330513701718637, this, []); }
+  set userInfo(value: (unknown) | null) { callSDK<void>("CarPlay_0e503aef608672fa", 979945673006318, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPTrip": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "destination": true; "destinationNameVariants": true; "destinationWaypoint": true; "hasShareableDestination": true; "origin": true; "originWaypoint": true; "routeChoices": true; "routeSegmentsAvailableForRegion": true; "userInfo": true };
 }
@@ -5000,7 +5000,7 @@ export const CPTripEstimateStyle = {
    * init?(rawValue: UInt)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (CPTripEstimateStyle) | null { return callSDK<(CPTripEstimateStyle) | null>("CarPlay_d968214ecc684fb6", 3532460192224130, undefined, [rawValue]); }
+  init(rawValue: number): (CPTripEstimateStyle) | null { return callSDK<(CPTripEstimateStyle) | null>("CarPlay_0e503aef608672fa", 3532460192224130, undefined, [rawValue]); }
 };
 
 /**
@@ -5012,22 +5012,22 @@ export class CPTripPreviewTextConfiguration extends SDKHandle {
    * init(startButtonTitle: String?, additionalRoutesButtonTitle: String?, overviewButtonTitle: String?)
    * @availability iOS 12.0+
    */
-  static init(startButtonTitle?: (string) | null, additionalRoutesButtonTitle?: (string) | null, overviewButtonTitle?: (string) | null): CPTripPreviewTextConfiguration { return callSDK<CPTripPreviewTextConfiguration>("CarPlay_d968214ecc684fb6", 895828500431974, undefined, [startButtonTitle, additionalRoutesButtonTitle, overviewButtonTitle]); }
+  static init(startButtonTitle?: (string) | null, additionalRoutesButtonTitle?: (string) | null, overviewButtonTitle?: (string) | null): CPTripPreviewTextConfiguration { return callSDK<CPTripPreviewTextConfiguration>("CarPlay_0e503aef608672fa", 895828500431974, undefined, [startButtonTitle, additionalRoutesButtonTitle, overviewButtonTitle]); }
   /**
    * var additionalRoutesButtonTitle: String? { get }
    * @availability iOS 12.0+
    */
-  get additionalRoutesButtonTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 1763641619456969, this, []); }
+  get additionalRoutesButtonTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 1763641619456969, this, []); }
   /**
    * var overviewButtonTitle: String? { get }
    * @availability iOS 12.0+
    */
-  get overviewButtonTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 2256362183394920, this, []); }
+  get overviewButtonTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 2256362183394920, this, []); }
   /**
    * var startButtonTitle: String? { get }
    * @availability iOS 12.0+
    */
-  get startButtonTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 998312857931046, this, []); }
+  get startButtonTitle(): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 998312857931046, this, []); }
   declare readonly $type: { "c:objc(cs)CPTripPreviewTextConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "additionalRoutesButtonTitle": true; "overviewButtonTitle": true; "startButtonTitle": true };
 }
@@ -5041,48 +5041,48 @@ export class CPVoiceControlState extends SDKHandle {
    * class var maximumActionButtonCount: Int { get }
    * @availability iOS 26.4+
    */
-  static get maximumActionButtonCount(): number { return callSDK<number>("CarPlay_d968214ecc684fb6", 2008998672670358, undefined, []); }
+  static get maximumActionButtonCount(): number { return callSDK<number>("CarPlay_0e503aef608672fa", 2008998672670358, undefined, []); }
   /**
    * init(identifier: String, titleVariants: [String]?, image: UIImage?, backgroundImage: UIImage?, repeats: Bool)
    * @availability iOS 27.0+
    */
-  static initIdentifierTitleVariantsImageBackgroundImageRepeats(identifier: string, titleVariants: (Array<string>) | null, image: (_UIKit_UIImage) | null, backgroundImage: (_UIKit_UIImage) | null, repeats: boolean): CPVoiceControlState { return callSDK<CPVoiceControlState>("CarPlay_d968214ecc684fb6", 1006704688798195, undefined, [identifier, titleVariants, image, backgroundImage, repeats]); }
+  static initIdentifierTitleVariantsImageBackgroundImageRepeats(identifier: string, titleVariants: (Array<string>) | null, image: (_UIKit_UIImage) | null, backgroundImage: (_UIKit_UIImage) | null, repeats: boolean): CPVoiceControlState { return callSDK<CPVoiceControlState>("CarPlay_0e503aef608672fa", 1006704688798195, undefined, [identifier, titleVariants, image, backgroundImage, repeats]); }
   /**
    * init(identifier: String, titleVariants: [String]?, image: UIImage?, repeats: Bool)
    * @availability iOS 12.0+
    */
-  static initIdentifierTitleVariantsImageRepeats(identifier: string, titleVariants: (Array<string>) | null, image: (_UIKit_UIImage) | null, repeats: boolean): CPVoiceControlState { return callSDK<CPVoiceControlState>("CarPlay_d968214ecc684fb6", 3721942611280226, undefined, [identifier, titleVariants, image, repeats]); }
+  static initIdentifierTitleVariantsImageRepeats(identifier: string, titleVariants: (Array<string>) | null, image: (_UIKit_UIImage) | null, repeats: boolean): CPVoiceControlState { return callSDK<CPVoiceControlState>("CarPlay_0e503aef608672fa", 3721942611280226, undefined, [identifier, titleVariants, image, repeats]); }
   /**
    * var actionButtons: [CPButton] { get set }
    * @availability iOS 26.4+
    */
-  get actionButtons(): Array<CPButton> { return callSDK<Array<CPButton>>("CarPlay_d968214ecc684fb6", 3576926987908025, this, []); }
-  set actionButtons(value: Array<CPButton>) { callSDK<void>("CarPlay_d968214ecc684fb6", 1855731177830478, this, [value]); }
+  get actionButtons(): Array<CPButton> { return callSDK<Array<CPButton>>("CarPlay_0e503aef608672fa", 3576926987908025, this, []); }
+  set actionButtons(value: Array<CPButton>) { callSDK<void>("CarPlay_0e503aef608672fa", 1855731177830478, this, [value]); }
   /**
    * var backgroundImage: UIImage? { get }
    * @availability iOS 27.0+
    */
-  get backgroundImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 1374897446926487, this, []); }
+  get backgroundImage(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 1374897446926487, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 12.0+
    */
-  get identifier(): string { return callSDK<string>("CarPlay_d968214ecc684fb6", 1648666175832910, this, []); }
+  get identifier(): string { return callSDK<string>("CarPlay_0e503aef608672fa", 1648666175832910, this, []); }
   /**
    * var image: UIImage? { get }
    * @availability iOS 12.0+
    */
-  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_d968214ecc684fb6", 3544489704361586, this, []); }
+  get image(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("CarPlay_0e503aef608672fa", 3544489704361586, this, []); }
   /**
    * var repeats: Bool { get }
    * @availability iOS 12.0+
    */
-  get repeats(): boolean { return callSDK<boolean>("CarPlay_d968214ecc684fb6", 226115544798890, this, []); }
+  get repeats(): boolean { return callSDK<boolean>("CarPlay_0e503aef608672fa", 226115544798890, this, []); }
   /**
    * var titleVariants: [String]? { get }
    * @availability iOS 12.0+
    */
-  get titleVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_d968214ecc684fb6", 1601744738924915, this, []); }
+  get titleVariants(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CarPlay_0e503aef608672fa", 1601744738924915, this, []); }
   declare readonly $type: { "c:objc(cs)CPVoiceControlState": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "actionButtons": true; "backgroundImage": true; "identifier": true; "image": true; "repeats": true; "titleVariants": true };
 }
@@ -5096,40 +5096,40 @@ export class CPVoiceControlTemplate extends (CPTemplate as unknown as Omit<typeo
    * func activateVoiceControlState(withIdentifier identifier: String)
    * @availability iOS 12.0+
    */
-  activateVoiceControlState(identifier: string): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3988409804776035, this, [identifier]); }
+  activateVoiceControlState(identifier: string): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3988409804776035, this, [identifier]); }
   /**
    * init(voiceControlStates: [CPVoiceControlState])
    * @availability iOS 12.0+
    */
-  static init(voiceControlStates: Array<CPVoiceControlState>): Promise<CPVoiceControlTemplate> { return callSDKAsync<CPVoiceControlTemplate>("CarPlay_d968214ecc684fb6", 2143744953747392, undefined, [voiceControlStates]); }
+  static init(voiceControlStates: Array<CPVoiceControlState>): Promise<CPVoiceControlTemplate> { return callSDKAsync<CPVoiceControlTemplate>("CarPlay_0e503aef608672fa", 2143744953747392, undefined, [voiceControlStates]); }
   /**
    * var activeStateIdentifier: String? { get }
    * @availability iOS 12.0+
    */
-  get activeStateIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_d968214ecc684fb6", 2510368416564358, this, []); }
+  get activeStateIdentifier(): Promise<(string) | null> { return callSDKAsync<(string) | null>("CarPlay_0e503aef608672fa", 2510368416564358, this, []); }
   /**
    * var backButton: CPBarButton? { get set }
    * @availability iOS 26.4+
    */
-  get backButton(): Promise<(CPBarButton) | null> { return callSDKAsync<(CPBarButton) | null>("CarPlay_d968214ecc684fb6", 2595765017454598, this, []); }
-  setBackButton(value?: (CPBarButton) | null): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 2834561286156624, this, [value]); }
+  get backButton(): Promise<(CPBarButton) | null> { return callSDKAsync<(CPBarButton) | null>("CarPlay_0e503aef608672fa", 2595765017454598, this, []); }
+  setBackButton(value?: (CPBarButton) | null): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 2834561286156624, this, [value]); }
   /**
    * var leadingNavigationBarButtons: [CPBarButton] { get set }
    * @availability iOS 26.4+
    */
-  get leadingNavigationBarButtons(): Promise<Array<CPBarButton>> { return callSDKAsync<Array<CPBarButton>>("CarPlay_d968214ecc684fb6", 654873647555772, this, []); }
-  setLeadingNavigationBarButtons(value: Array<CPBarButton>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3787999894589840, this, [value]); }
+  get leadingNavigationBarButtons(): Promise<Array<CPBarButton>> { return callSDKAsync<Array<CPBarButton>>("CarPlay_0e503aef608672fa", 654873647555772, this, []); }
+  setLeadingNavigationBarButtons(value: Array<CPBarButton>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3787999894589840, this, [value]); }
   /**
    * var trailingNavigationBarButtons: [CPBarButton] { get set }
    * @availability iOS 26.4+
    */
-  get trailingNavigationBarButtons(): Promise<Array<CPBarButton>> { return callSDKAsync<Array<CPBarButton>>("CarPlay_d968214ecc684fb6", 883829881228941, this, []); }
-  setTrailingNavigationBarButtons(value: Array<CPBarButton>): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 3244612849155620, this, [value]); }
+  get trailingNavigationBarButtons(): Promise<Array<CPBarButton>> { return callSDKAsync<Array<CPBarButton>>("CarPlay_0e503aef608672fa", 883829881228941, this, []); }
+  setTrailingNavigationBarButtons(value: Array<CPBarButton>): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 3244612849155620, this, [value]); }
   /**
    * var voiceControlStates: [CPVoiceControlState] { get }
    * @availability iOS 12.0+
    */
-  get voiceControlStates(): Promise<Array<CPVoiceControlState>> { return callSDKAsync<Array<CPVoiceControlState>>("CarPlay_d968214ecc684fb6", 1365700754093757, this, []); }
+  get voiceControlStates(): Promise<Array<CPVoiceControlState>> { return callSDKAsync<Array<CPVoiceControlState>>("CarPlay_0e503aef608672fa", 1365700754093757, this, []); }
   declare readonly $type: { "c:objc(cs)CPVoiceControlTemplate": true; "c:objc(cs)CPTemplate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "showsTabBadge": true; "tabImage": true; "tabSystemItem": true; "tabTitle": true; "userInfo": true; "activeStateIdentifier": true; "backButton": true; "leadingNavigationBarButtons": true; "trailingNavigationBarButtons": true; "voiceControlStates": true };
 }
@@ -5140,18 +5140,18 @@ export class CPVoiceControlTemplate extends (CPTemplate as unknown as Omit<typeo
  */
 export class CPWindow extends SDKHandle {
   /** init() */
-  static init(): Promise<CPWindow> { return callSDKAsync<CPWindow>("CarPlay_d968214ecc684fb6", 1531592475190925, undefined, []); }
+  static init(): Promise<CPWindow> { return callSDKAsync<CPWindow>("CarPlay_0e503aef608672fa", 1531592475190925, undefined, []); }
   /**
    * var mapButtonSafeAreaLayoutGuide: UILayoutGuide { get }
    * @availability iOS 12.0+
    */
-  get mapButtonSafeAreaLayoutGuide(): Promise<_UIKit_UILayoutGuide> { return callSDKAsync<_UIKit_UILayoutGuide>("CarPlay_d968214ecc684fb6", 2505625227120889, this, []); }
+  get mapButtonSafeAreaLayoutGuide(): Promise<_UIKit_UILayoutGuide> { return callSDKAsync<_UIKit_UILayoutGuide>("CarPlay_0e503aef608672fa", 2505625227120889, this, []); }
   /**
    * weak var templateApplicationScene: CPTemplateApplicationScene? { get set }
    * @availability iOS 12.0+
    */
-  get templateApplicationScene(): Promise<$SDK77> { return callSDKAsync<$SDK77>("CarPlay_d968214ecc684fb6", 3206420903668325, this, []); }
-  setTemplateApplicationScene(value?: $SDK77): Promise<void> { return callSDKAsync<void>("CarPlay_d968214ecc684fb6", 483709350460056, this, [value]); }
+  get templateApplicationScene(): Promise<$SDK77> { return callSDKAsync<$SDK77>("CarPlay_0e503aef608672fa", 3206420903668325, this, []); }
+  setTemplateApplicationScene(value?: $SDK77): Promise<void> { return callSDKAsync<void>("CarPlay_0e503aef608672fa", 483709350460056, this, [value]); }
   declare readonly $type: { "c:objc(cs)CPWindow": true; "c:objc(cs)UIWindow": true; "c:objc(cs)UIView": true; "c:objc(cs)UIResponder": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mapButtonSafeAreaLayoutGuide": true; "templateApplicationScene": true };
 }
@@ -5163,188 +5163,188 @@ export const UISceneSession_Role = {
    * static let CPTemplateApplicationDashboardSceneSessionRoleApplication: UISceneSession.Role
    * @availability iOS 13.4+
    */
-  get CPTemplateApplicationDashboardSceneSessionRoleApplication(): _UIKit_UISceneSession_Role { return callSDK<_UIKit_UISceneSession_Role>("CarPlay_d968214ecc684fb6", 4227583031002041, undefined, []); },
+  get CPTemplateApplicationDashboardSceneSessionRoleApplication(): _UIKit_UISceneSession_Role { return callSDK<_UIKit_UISceneSession_Role>("CarPlay_0e503aef608672fa", 4227583031002041, undefined, []); },
   /**
    * static let CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication: UISceneSession.Role
    * @availability iOS 15.4+
    */
-  get CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication(): _UIKit_UISceneSession_Role { return callSDK<_UIKit_UISceneSession_Role>("CarPlay_d968214ecc684fb6", 536976021809831, undefined, []); },
+  get CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication(): _UIKit_UISceneSession_Role { return callSDK<_UIKit_UISceneSession_Role>("CarPlay_0e503aef608672fa", 536976021809831, undefined, []); },
   /**
    * static let carTemplateApplication: UISceneSession.Role
    * @availability iOS 13.0+
    */
-  get carTemplateApplication(): _UIKit_UISceneSession_Role { return callSDK<_UIKit_UISceneSession_Role>("CarPlay_d968214ecc684fb6", 3063705792489542, undefined, []); }
+  get carTemplateApplication(): _UIKit_UISceneSession_Role { return callSDK<_UIKit_UISceneSession_Role>("CarPlay_0e503aef608672fa", 3063705792489542, undefined, []); }
 };
 
 /**
  * func NSStringFromCPJunctionType(_ junctionType: CPJunctionType) -> String!
  * @availability iOS 17.4+
  */
-export function NSStringFromCPJunctionType(junctionType: CPJunctionType): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 483006330939568, undefined, [junctionType]); }
+export function NSStringFromCPJunctionType(junctionType: CPJunctionType): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 483006330939568, undefined, [junctionType]); }
 
 /**
  * func NSStringFromCPLaneStatus(_ laneStatus: CPLaneStatus) -> String!
  * @availability iOS 17.4+
  */
-export function NSStringFromCPLaneStatus(laneStatus: CPLaneStatus): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 3096675780578174, undefined, [laneStatus]); }
+export function NSStringFromCPLaneStatus(laneStatus: CPLaneStatus): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 3096675780578174, undefined, [laneStatus]); }
 
 /**
  * func NSStringFromCPManeuverType(_ maneuverType: CPManeuverType) -> String!
  * @availability iOS 17.4+
  */
-export function NSStringFromCPManeuverType(maneuverType: CPManeuverType): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 3767517280447685, undefined, [maneuverType]); }
+export function NSStringFromCPManeuverType(maneuverType: CPManeuverType): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 3767517280447685, undefined, [maneuverType]); }
 
 /**
  * func NSStringFromCPRerouteReason(_ reason: CPRerouteReason) -> String!
  * @availability iOS 26.4+
  */
-export function NSStringFromCPRerouteReason(reason: CPRerouteReason): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 4397325292639360, undefined, [reason]); }
+export function NSStringFromCPRerouteReason(reason: CPRerouteReason): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 4397325292639360, undefined, [reason]); }
 
 /**
  * func NSStringFromCPTrafficSide(_ trafficSide: CPTrafficSide) -> String!
  * @availability iOS 17.4+
  */
-export function NSStringFromCPTrafficSide(trafficSide: CPTrafficSide): (string) | null { return callSDK<(string) | null>("CarPlay_d968214ecc684fb6", 1226983433593614, undefined, [trafficSide]); }
+export function NSStringFromCPTrafficSide(trafficSide: CPTrafficSide): (string) | null { return callSDK<(string) | null>("CarPlay_0e503aef608672fa", 1226983433593614, undefined, [trafficSide]); }
 
 /** let CPButtonMaximumImageSize: CGSize */
-export const CPButtonMaximumImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_d968214ecc684fb6", 734029920805519, undefined, []);
+export const CPButtonMaximumImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_0e503aef608672fa", 734029920805519, undefined, []);
 
 /**
  * let CPGridTemplateMaximumItems: Int
  * @availability iOS 15.0+
  */
-export const CPGridTemplateMaximumItems: number = callSDK<number>("CarPlay_d968214ecc684fb6", 2997695766787426, undefined, []);
+export const CPGridTemplateMaximumItems: number = callSDK<number>("CarPlay_0e503aef608672fa", 2997695766787426, undefined, []);
 
 /** let CPMaximumListSectionImageSize: CGSize */
-export const CPMaximumListSectionImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_d968214ecc684fb6", 3858756379680189, undefined, []);
+export const CPMaximumListSectionImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_0e503aef608672fa", 3858756379680189, undefined, []);
 
 /** let CPMaximumMessageItemImageSize: CGSize */
-export const CPMaximumMessageItemImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_d968214ecc684fb6", 1251028524975857, undefined, []);
+export const CPMaximumMessageItemImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_0e503aef608672fa", 1251028524975857, undefined, []);
 
 /** let CPMaximumMessageItemLeadingDetailTextImageSize: CGSize */
-export const CPMaximumMessageItemLeadingDetailTextImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_d968214ecc684fb6", 3415644842022412, undefined, []);
+export const CPMaximumMessageItemLeadingDetailTextImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_0e503aef608672fa", 3415644842022412, undefined, []);
 
 /** let CPMaximumNumberOfGridImages: Int */
-export const CPMaximumNumberOfGridImages: number = callSDK<number>("CarPlay_d968214ecc684fb6", 579657169834600, undefined, []);
+export const CPMaximumNumberOfGridImages: number = callSDK<number>("CarPlay_0e503aef608672fa", 579657169834600, undefined, []);
 
 /** var CPNavigationAlertMinimumDuration: TimeInterval { get } */
-export const CPNavigationAlertMinimumDuration: number = callSDK<number>("CarPlay_d968214ecc684fb6", 3289163575753981, undefined, []);
+export const CPNavigationAlertMinimumDuration: number = callSDK<number>("CarPlay_0e503aef608672fa", 3289163575753981, undefined, []);
 
 /** let CPNowPlayingButtonMaximumImageSize: CGSize */
-export const CPNowPlayingButtonMaximumImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_d968214ecc684fb6", 3295935660348095, undefined, []);
+export const CPNowPlayingButtonMaximumImageSize: $SDK15 = callSDK<$SDK15>("CarPlay_0e503aef608672fa", 3295935660348095, undefined, []);
 
 /** let CarPlayErrorDomain: String */
-export const CarPlayErrorDomain: string = callSDK<string>("CarPlay_d968214ecc684fb6", 863347591565739, undefined, []);
+export const CarPlayErrorDomain: string = callSDK<string>("CarPlay_0e503aef608672fa", 863347591565739, undefined, []);
 
-registerSDKClass("CPTemplate", CPTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"showsTabBadge":622415864853462,"tabImage":929821758662074,"tabSystemItem":2359666151561552,"tabTitle":877963487047204,"userInfo":2683832853942984} });
-registerSDKClass("CPActionSheetTemplate", CPActionSheetTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"actions":2027276132386019,"message":4107155582529753,"title":4236698154701135} });
-registerSDKClass("CPAlertAction", CPAlertAction, { module: "CarPlay_d968214ecc684fb6", properties: {"color":384021523696703,"style":336832710293503,"title":3044954241400457} });
-registerSDKClass("CPAlertTemplate", CPAlertTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"actions":80606091209706,"titleVariants":1273218298538313} });
+registerSDKClass("CPTemplate", CPTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"showsTabBadge":622415864853462,"tabImage":929821758662074,"tabSystemItem":2359666151561552,"tabTitle":877963487047204,"userInfo":2683832853942984} });
+registerSDKClass("CPActionSheetTemplate", CPActionSheetTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"actions":2027276132386019,"message":4107155582529753,"title":4236698154701135} });
+registerSDKClass("CPAlertAction", CPAlertAction, { module: "CarPlay_0e503aef608672fa", properties: {"color":384021523696703,"style":336832710293503,"title":3044954241400457} });
+registerSDKClass("CPAlertTemplate", CPAlertTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"actions":80606091209706,"titleVariants":1273218298538313} });
 registerSDKProtocol("c:objc(pl)CPApplicationDelegate", {"applicationDidFinishLaunching":"applicationDidFinishLaunching(_:)","applicationDidBecomeActive":"applicationDidBecomeActive(_:)","applicationWillResignActive":"applicationWillResignActive(_:)","applicationDidEnterBackground":"applicationDidEnterBackground(_:)","applicationWillEnterForeground":"applicationWillEnterForeground(_:)","applicationDidReceiveMemoryWarning":"applicationDidReceiveMemoryWarning(_:)","applicationWillTerminate":"applicationWillTerminate(_:)","applicationSignificantTimeChange":"applicationSignificantTimeChange(_:)","applicationWillChangeStatusBarOrientationDuration":"application(_:willChangeStatusBarOrientation:duration:)","applicationDidChangeStatusBarOrientation":"application(_:didChangeStatusBarOrientation:)","applicationWillChangeStatusBarFrame":"application(_:willChangeStatusBarFrame:)","applicationDidChangeStatusBarFrame":"application(_:didChangeStatusBarFrame:)","applicationDidRegister":"application(_:didRegister:)","applicationDidRegisterForRemoteNotificationsWithDeviceToken":"application(_:didRegisterForRemoteNotificationsWithDeviceToken:)","applicationDidFailToRegisterForRemoteNotificationsWithError":"application(_:didFailToRegisterForRemoteNotificationsWithError:)","applicationDidReceiveRemoteNotification":"application(_:didReceiveRemoteNotification:)","applicationDidReceive":"application(_:didReceive:)","applicationShouldRequestHealthAuthorization":"applicationShouldRequestHealthAuthorization(_:)","applicationProtectedDataWillBecomeUnavailable":"applicationProtectedDataWillBecomeUnavailable(_:)","applicationProtectedDataDidBecomeAvailable":"applicationProtectedDataDidBecomeAvailable(_:)","applicationWillEncodeRestorableStateWith":"application(_:willEncodeRestorableStateWith:)","applicationDidDecodeRestorableStateWith":"application(_:didDecodeRestorableStateWith:)","applicationDidFailToContinueUserActivityWithTypeError":"application(_:didFailToContinueUserActivityWithType:error:)","applicationDidUpdate":"application(_:didUpdate:)","applicationUserDidAcceptCloudKitShareWith":"application(_:userDidAcceptCloudKitShareWith:)","applicationDidDiscardSceneSessions":"application(_:didDiscardSceneSessions:)","applicationDidConnectCarInterfaceControllerTo":"application(_:didConnectCarInterfaceController:to:)","applicationDidDisconnectCarInterfaceControllerFrom":"application(_:didDisconnectCarInterfaceController:from:)","applicationDidSelect":"application(_:didSelect:)"});
-registerSDKClass("CPAssistantCellConfiguration", CPAssistantCellConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"assistantAction":4014013502820117,"position":2859817571149391,"visibility":1976693771596979} });
-registerSDKClass("CPBarButton", CPBarButton, { module: "CarPlay_d968214ecc684fb6", properties: {"buttonStyle":1835508210776991,"buttonType":2672046724216309,"isEnabled":891627123808214,"image":2785964266292292,"title":4375045554132670} });
+registerSDKClass("CPAssistantCellConfiguration", CPAssistantCellConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"assistantAction":4014013502820117,"position":2859817571149391,"visibility":1976693771596979} });
+registerSDKClass("CPBarButton", CPBarButton, { module: "CarPlay_0e503aef608672fa", properties: {"buttonStyle":1835508210776991,"buttonType":2672046724216309,"isEnabled":891627123808214,"image":2785964266292292,"title":4375045554132670} });
 registerSDKProtocol("c:objc(pl)CPBarButtonProviding", {});
-registerSDKClass("CPButton", CPButton, { module: "CarPlay_d968214ecc684fb6", properties: {"isEnabled":628577304508968,"image":1649050495814292,"title":2986850775790436} });
-registerSDKClass("CPChargingStationConnection", CPChargingStationConnection, { module: "CarPlay_d968214ecc684fb6", properties: {"connector":2288524366212068,"power":3245533472209557,"voltage":230430637394654} });
-registerSDKClass("CPContact", CPContact, { module: "CarPlay_d968214ecc684fb6", properties: {"actions":2346198109456517,"image":3269741168011870,"informativeText":1075144990717448,"name":825634211893095,"subtitle":563968555207352} });
-registerSDKClass("CPContactCallButton", CPContactCallButton, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPContactDirectionsButton", CPContactDirectionsButton, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPContactMessageButton", CPContactMessageButton, { module: "CarPlay_d968214ecc684fb6", properties: {"phoneOrEmail":3257362000928602} });
-registerSDKClass("CPContactTemplate", CPContactTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"contact":1031103336462757} });
-registerSDKClass("CPDashboardButton", CPDashboardButton, { module: "CarPlay_d968214ecc684fb6", properties: {"image":1635160273668566,"subtitleVariants":2489569269336618,"titleVariants":383157808125240} });
-registerSDKClass("CPDashboardController", CPDashboardController, { module: "CarPlay_d968214ecc684fb6", properties: {"shortcutButtons":3942727554068487} });
-registerSDKClass("CPGridButton", CPGridButton, { module: "CarPlay_d968214ecc684fb6", properties: {"isEnabled":1627690631586240,"image":191774765606233,"messageConfiguration":1490794868917581,"titleVariants":774892039687797}, methods: {"updateImage":{"id":4224659942272812},"updateTitleVariants":{"id":1335341271092947}} });
-registerSDKClass("CPGridTemplate", CPGridTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"gridButtons":4107448213325626,"title":4283755299830259}, methods: {"updateGridButtons":{"id":3103022579877754},"updateTitle":{"id":1287654250528159}} });
-registerSDKClass("CPImageOverlay", CPImageOverlay, { module: "CarPlay_d968214ecc684fb6", properties: {"alignment":3339860244516665,"backgroundColor":3658065863291786,"image":3386414761489847,"text":2522972549646816,"textColor":1865139257944497} });
-registerSDKClass("CPImageSet", CPImageSet, { module: "CarPlay_d968214ecc684fb6", properties: {"darkContentImage":852757654897150,"lightContentImage":4447529775288871} });
-registerSDKClass("CPInformationItem", CPInformationItem, { module: "CarPlay_d968214ecc684fb6", properties: {"detail":1871517972248326,"title":3457765306726320} });
-registerSDKClass("CPInformationRatingItem", CPInformationRatingItem, { module: "CarPlay_d968214ecc684fb6", properties: {"maximumRating":3754777262305727,"rating":2861228257169908} });
-registerSDKClass("CPInformationTemplate", CPInformationTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"actions":365629024680457,"items":3363485478123748,"layout":512213522132680,"title":617641711453164} });
-registerSDKClass("CPInstrumentClusterController", CPInstrumentClusterController, { module: "CarPlay_d968214ecc684fb6", properties: {"attributedInactiveDescriptionVariants":1282976369819003,"compassSetting":2710959718410804,"delegate":1501536500996012,"inactiveDescriptionVariants":2104731936354482,"instrumentClusterWindow":3565026765896904,"speedLimitSetting":3252534026156466} });
+registerSDKClass("CPButton", CPButton, { module: "CarPlay_0e503aef608672fa", properties: {"isEnabled":628577304508968,"image":1649050495814292,"title":2986850775790436} });
+registerSDKClass("CPChargingStationConnection", CPChargingStationConnection, { module: "CarPlay_0e503aef608672fa", properties: {"connector":2288524366212068,"power":3245533472209557,"voltage":230430637394654} });
+registerSDKClass("CPContact", CPContact, { module: "CarPlay_0e503aef608672fa", properties: {"actions":2346198109456517,"image":3269741168011870,"informativeText":1075144990717448,"name":825634211893095,"subtitle":563968555207352} });
+registerSDKClass("CPContactCallButton", CPContactCallButton, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPContactDirectionsButton", CPContactDirectionsButton, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPContactMessageButton", CPContactMessageButton, { module: "CarPlay_0e503aef608672fa", properties: {"phoneOrEmail":3257362000928602} });
+registerSDKClass("CPContactTemplate", CPContactTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"contact":1031103336462757} });
+registerSDKClass("CPDashboardButton", CPDashboardButton, { module: "CarPlay_0e503aef608672fa", properties: {"image":1635160273668566,"subtitleVariants":2489569269336618,"titleVariants":383157808125240} });
+registerSDKClass("CPDashboardController", CPDashboardController, { module: "CarPlay_0e503aef608672fa", properties: {"shortcutButtons":3942727554068487} });
+registerSDKClass("CPGridButton", CPGridButton, { module: "CarPlay_0e503aef608672fa", properties: {"isEnabled":1627690631586240,"image":191774765606233,"messageConfiguration":1490794868917581,"titleVariants":774892039687797}, methods: {"updateImage":{"id":4224659942272812},"updateTitleVariants":{"id":1335341271092947}} });
+registerSDKClass("CPGridTemplate", CPGridTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"gridButtons":4107448213325626,"title":4283755299830259}, methods: {"updateGridButtons":{"id":3103022579877754},"updateTitle":{"id":1287654250528159}} });
+registerSDKClass("CPImageOverlay", CPImageOverlay, { module: "CarPlay_0e503aef608672fa", properties: {"alignment":3339860244516665,"backgroundColor":3658065863291786,"image":3386414761489847,"text":2522972549646816,"textColor":1865139257944497} });
+registerSDKClass("CPImageSet", CPImageSet, { module: "CarPlay_0e503aef608672fa", properties: {"darkContentImage":852757654897150,"lightContentImage":4447529775288871} });
+registerSDKClass("CPInformationItem", CPInformationItem, { module: "CarPlay_0e503aef608672fa", properties: {"detail":1871517972248326,"title":3457765306726320} });
+registerSDKClass("CPInformationRatingItem", CPInformationRatingItem, { module: "CarPlay_0e503aef608672fa", properties: {"maximumRating":3754777262305727,"rating":2861228257169908} });
+registerSDKClass("CPInformationTemplate", CPInformationTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"actions":365629024680457,"items":3363485478123748,"layout":512213522132680,"title":617641711453164} });
+registerSDKClass("CPInstrumentClusterController", CPInstrumentClusterController, { module: "CarPlay_0e503aef608672fa", properties: {"attributedInactiveDescriptionVariants":1282976369819003,"compassSetting":2710959718410804,"delegate":1501536500996012,"inactiveDescriptionVariants":2104731936354482,"instrumentClusterWindow":3565026765896904,"speedLimitSetting":3252534026156466} });
 registerSDKProtocol("c:objc(pl)CPInstrumentClusterControllerDelegate", {"instrumentClusterControllerDidConnect":"instrumentClusterControllerDidConnect(_:)","instrumentClusterControllerDidDisconnectWindow":"instrumentClusterControllerDidDisconnectWindow(_:)","instrumentClusterControllerDidZoomIn":"instrumentClusterControllerDidZoom(in:)","instrumentClusterControllerDidZoomOut":"instrumentClusterControllerDidZoomOut(_:)","instrumentClusterControllerDidChangeCompassSetting":"instrumentClusterController(_:didChangeCompassSetting:)","instrumentClusterControllerDidChangeSpeedLimitSetting":"instrumentClusterController(_:didChangeSpeedLimitSetting:)"});
-registerSDKClass("CPInterfaceController", CPInterfaceController, { module: "CarPlay_d968214ecc684fb6", properties: {"carTraitCollection":1406123063938389,"delegate":3673213638927759,"prefersDarkUserInterfaceStyle":2598709979970120,"presentedTemplate":3393778503645023,"rootTemplate":2499344744319906,"templates":4185520328874655,"topTemplate":1050321273050070}, methods: {"dismissTemplate":{"id":3391116016092996,"hints":[null,{"callback":{"out":[]}}]},"hideOverlayTemplate":{"id":1347202640879895,"hints":[null,{"callback":{"out":[]}}]},"popTemplate":{"id":4387575568795923,"hints":[null,{"callback":{"out":[]}}]},"popToRootTemplate":{"id":363183666333673,"hints":[null,{"callback":{"out":[]}}]},"pop":{"id":4476542732531503,"hints":[null,null,{"callback":{"out":[]}}]},"presentTemplate":{"id":1392815003982780,"hints":[null,null,{"callback":{"out":[]}}]},"pushTemplate":{"id":1866310545134959,"hints":[null,null,{"callback":{"out":[]}}]},"setRootTemplate":{"id":1147872376516499,"hints":[null,null,{"callback":{"out":[]}}]},"showOverlayTemplate":{"id":467085613316569,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("CPInterfaceController", CPInterfaceController, { module: "CarPlay_0e503aef608672fa", properties: {"carTraitCollection":1406123063938389,"delegate":3673213638927759,"prefersDarkUserInterfaceStyle":2598709979970120,"presentedTemplate":3393778503645023,"rootTemplate":2499344744319906,"templates":4185520328874655,"topTemplate":1050321273050070}, methods: {"dismissTemplate":{"id":3391116016092996,"hints":[null,{"callback":{"out":[]}}]},"hideOverlayTemplate":{"id":1347202640879895,"hints":[null,{"callback":{"out":[]}}]},"popTemplate":{"id":4387575568795923,"hints":[null,{"callback":{"out":[]}}]},"popToRootTemplate":{"id":363183666333673,"hints":[null,{"callback":{"out":[]}}]},"pop":{"id":4476542732531503,"hints":[null,null,{"callback":{"out":[]}}]},"presentTemplate":{"id":1392815003982780,"hints":[null,null,{"callback":{"out":[]}}]},"pushTemplate":{"id":1866310545134959,"hints":[null,null,{"callback":{"out":[]}}]},"setRootTemplate":{"id":1147872376516499,"hints":[null,null,{"callback":{"out":[]}}]},"showOverlayTemplate":{"id":467085613316569,"hints":[null,null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)CPInterfaceControllerDelegate", {"templateWillAppearAnimated":"templateWillAppear(_:animated:)","templateDidAppearAnimated":"templateDidAppear(_:animated:)","templateWillDisappearAnimated":"templateWillDisappear(_:animated:)","templateDidDisappearAnimated":"templateDidDisappear(_:animated:)"});
-registerSDKClass("CPLane", CPLane, { module: "CarPlay_d968214ecc684fb6", properties: {"angles":2602438494275877,"highlightedAngle":3932225550776369,"primaryAngle":4335541518955662,"secondaryAngles":646633784071342,"status":2506406087844807} });
-registerSDKClass("CPLaneGuidance", CPLaneGuidance, { module: "CarPlay_d968214ecc684fb6", properties: {"instructionVariants":96434834919363,"lanes":2449747129433414} });
-registerSDKClass("CPListImageRowItem", CPListImageRowItem, { module: "CarPlay_d968214ecc684fb6", properties: {"allowsMultipleLines":1776549557528579,"elements":3245560389538441,"isEnabled":1309372422102829,"gridImages":1037410649080204,"imageTitles":329491277836633,"text":3921115398326857,"userInfo":242351889895250}, methods: {"update":{"id":453113787695913}} });
-registerSDKClass("CPListImageRowItemElement", CPListImageRowItemElement, { module: "CarPlay_d968214ecc684fb6", properties: {"accessibilityLabel":3997275036923768,"isEnabled":1459648699175433,"image":3500208336871064} });
-registerSDKClass("CPListImageRowItemCardElement", CPListImageRowItemCardElement, { module: "CarPlay_d968214ecc684fb6", properties: {"showsImageFullHeight":1237433217443816,"subtitle":4045128831030762,"thumbnail":3439054031089951,"tintColor":339997650690665,"title":2201911591211000} });
-registerSDKClass("CPListImageRowItemCondensedElement", CPListImageRowItemCondensedElement, { module: "CarPlay_d968214ecc684fb6", properties: {"accessorySymbolName":600200605268372,"imageShape":2289398134293162,"subtitle":1771054575566292,"title":4267346628774601} });
-registerSDKClass("CPListImageRowItemGridElement", CPListImageRowItemGridElement, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPListImageRowItemImageGridElement", CPListImageRowItemImageGridElement, { module: "CarPlay_d968214ecc684fb6", properties: {"accessorySymbolName":1380219743492143,"imageShape":2261730109152760,"title":1372255176777173} });
-registerSDKClass("CPListImageRowItemRowElement", CPListImageRowItemRowElement, { module: "CarPlay_d968214ecc684fb6", properties: {"subtitle":2906591350362776,"title":3496272904410151} });
-registerSDKClass("CPListItem", CPListItem, { module: "CarPlay_d968214ecc684fb6", properties: {"accessoryImage":1479643697076820,"accessoryType":2352387474162855,"detailText":1588174914899570,"isEnabled":2999637299618730,"isExplicitContent":1823771490490152,"image":3112814835002573,"playbackProgress":613359535978177,"isPlaying":1071373183319452,"playingIndicatorLocation":204022579320678,"showsDisclosureIndicator":1203705129341895,"showsExplicitLabel":1643750319480957,"text":2582857992672949,"userInfo":2521878878469135}, methods: {"setAccessoryImage":{"id":2888188030518180},"setDetailText":{"id":3549584483485005},"setImage":{"id":2599884565825857},"setText":{"id":2749952113038442}} });
-registerSDKClass("CPListSection", CPListSection, { module: "CarPlay_d968214ecc684fb6", properties: {"header":2858120122916624,"headerButton":1122291194117572,"headerImage":3590548642292986,"headerSubtitle":1880241841686735,"items":4193453846723863,"sectionIndexTitle":3842126360794477}, methods: {"index":{"id":10845863039457},"item":{"id":1754889942402580}} });
-registerSDKClass("CPListTemplate", CPListTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"assistantCellConfiguration":4253995406960012,"delegate":1420097332875226,"emptyViewSubtitleVariants":3676324894820927,"emptyViewTitleVariants":353423132513215,"headerGridButtons":2473420723105922,"itemCount":2273099301031904,"listHeader":2174845124067990,"sectionCount":4010311749484148,"sections":4219145175247726,"showsSpinnerWhileEmpty":1046108932081642,"title":1543505400318978}, methods: {"indexPath":{"id":2301928976302584},"updateSections":{"id":1781826861772599}} });
+registerSDKClass("CPLane", CPLane, { module: "CarPlay_0e503aef608672fa", properties: {"angles":2602438494275877,"highlightedAngle":3932225550776369,"primaryAngle":4335541518955662,"secondaryAngles":646633784071342,"status":2506406087844807} });
+registerSDKClass("CPLaneGuidance", CPLaneGuidance, { module: "CarPlay_0e503aef608672fa", properties: {"instructionVariants":96434834919363,"lanes":2449747129433414} });
+registerSDKClass("CPListImageRowItem", CPListImageRowItem, { module: "CarPlay_0e503aef608672fa", properties: {"allowsMultipleLines":1776549557528579,"elements":3245560389538441,"isEnabled":1309372422102829,"gridImages":1037410649080204,"imageTitles":329491277836633,"text":3921115398326857,"userInfo":242351889895250}, methods: {"update":{"id":453113787695913}} });
+registerSDKClass("CPListImageRowItemElement", CPListImageRowItemElement, { module: "CarPlay_0e503aef608672fa", properties: {"accessibilityLabel":3997275036923768,"isEnabled":1459648699175433,"image":3500208336871064} });
+registerSDKClass("CPListImageRowItemCardElement", CPListImageRowItemCardElement, { module: "CarPlay_0e503aef608672fa", properties: {"showsImageFullHeight":1237433217443816,"subtitle":4045128831030762,"thumbnail":3439054031089951,"tintColor":339997650690665,"title":2201911591211000} });
+registerSDKClass("CPListImageRowItemCondensedElement", CPListImageRowItemCondensedElement, { module: "CarPlay_0e503aef608672fa", properties: {"accessorySymbolName":600200605268372,"imageShape":2289398134293162,"subtitle":1771054575566292,"title":4267346628774601} });
+registerSDKClass("CPListImageRowItemGridElement", CPListImageRowItemGridElement, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPListImageRowItemImageGridElement", CPListImageRowItemImageGridElement, { module: "CarPlay_0e503aef608672fa", properties: {"accessorySymbolName":1380219743492143,"imageShape":2261730109152760,"title":1372255176777173} });
+registerSDKClass("CPListImageRowItemRowElement", CPListImageRowItemRowElement, { module: "CarPlay_0e503aef608672fa", properties: {"subtitle":2906591350362776,"title":3496272904410151} });
+registerSDKClass("CPListItem", CPListItem, { module: "CarPlay_0e503aef608672fa", properties: {"accessoryImage":1479643697076820,"accessoryType":2352387474162855,"detailText":1588174914899570,"isEnabled":2999637299618730,"isExplicitContent":1823771490490152,"image":3112814835002573,"playbackProgress":613359535978177,"isPlaying":1071373183319452,"playingIndicatorLocation":204022579320678,"showsDisclosureIndicator":1203705129341895,"showsExplicitLabel":1643750319480957,"text":2582857992672949,"userInfo":2521878878469135}, methods: {"setAccessoryImage":{"id":2888188030518180},"setDetailText":{"id":3549584483485005},"setImage":{"id":2599884565825857},"setText":{"id":2749952113038442}} });
+registerSDKClass("CPListSection", CPListSection, { module: "CarPlay_0e503aef608672fa", properties: {"header":2858120122916624,"headerButton":1122291194117572,"headerImage":3590548642292986,"headerSubtitle":1880241841686735,"items":4193453846723863,"sectionIndexTitle":3842126360794477}, methods: {"index":{"id":10845863039457},"item":{"id":1754889942402580}} });
+registerSDKClass("CPListTemplate", CPListTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"assistantCellConfiguration":4253995406960012,"delegate":1420097332875226,"emptyViewSubtitleVariants":3676324894820927,"emptyViewTitleVariants":353423132513215,"headerGridButtons":2473420723105922,"itemCount":2273099301031904,"listHeader":2174845124067990,"sectionCount":4010311749484148,"sections":4219145175247726,"showsSpinnerWhileEmpty":1046108932081642,"title":1543505400318978}, methods: {"indexPath":{"id":2301928976302584},"updateSections":{"id":1781826861772599}} });
 registerSDKProtocol("c:objc(pl)CPListTemplateDelegate", {"listTemplateDidSelect":"listTemplate(_:didSelect:)"});
-registerSDKClass("CPListTemplateDetailsHeader", CPListTemplateDetailsHeader, { module: "CarPlay_d968214ecc684fb6", properties: {"actionButtons":1689119181519518,"wantsAdaptiveBackgroundStyle":909166217886451,"bodyVariants":2818852227007865,"subtitle":1382385078751026,"thumbnail":2001148050485331,"title":2485129486623267} });
+registerSDKClass("CPListTemplateDetailsHeader", CPListTemplateDetailsHeader, { module: "CarPlay_0e503aef608672fa", properties: {"actionButtons":1689119181519518,"wantsAdaptiveBackgroundStyle":909166217886451,"bodyVariants":2818852227007865,"subtitle":1382385078751026,"thumbnail":2001148050485331,"title":2485129486623267} });
 registerSDKProtocol("c:objc(pl)CPListTemplateItem", {});
-registerSDKClass("CarPlay.CPLocationCoordinate3D", CPLocationCoordinate3D, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPManeuver", CPManeuver, { module: "CarPlay_d968214ecc684fb6", properties: {"attributedInstructionVariants":4423418529416580,"cardBackgroundColor":1523331421429851,"dashboardAttributedInstructionVariants":2679987109825266,"dashboardInstructionVariants":3303943061879561,"dashboardJunctionImage":516421999519943,"dashboardSymbolImage":3611910077516157,"highwayExitLabel":2550531282986222,"initialTravelEstimates":2929910862202805,"instructionVariants":2786856337877049,"junctionElementAngles":692418893963312,"junctionExitAngle":2726987060949353,"junctionImage":4272832764973552,"junctionType":2687267408008366,"linkedLaneGuidance":1527050876755578,"maneuverType":2400090962877013,"notificationAttributedInstructionVariants":550617806583144,"notificationInstructionVariants":3248821170130731,"notificationSymbolImage":2422184995624789,"roadFollowingManeuverVariants":68346208124196,"symbolImage":727331749196441,"symbolSet":2174876705411175,"trafficSide":3179549292859035,"userInfo":4474136122253366} });
-registerSDKClass("CPMapButton", CPMapButton, { module: "CarPlay_d968214ecc684fb6", properties: {"isEnabled":3952908785871663,"focusedImage":1966273546634855,"isHidden":2155463627165296,"image":3563970725830311} });
-registerSDKClass("CPPanel", CPPanel, { module: "CarPlay_d968214ecc684fb6", properties: {"showsCloseButton":1187942491983554} });
-registerSDKClass("CPMapPanel", CPMapPanel, { module: "CarPlay_d968214ecc684fb6", properties: {"buttonConfiguration":4288572808045281,"delegate":1648722510291653,"sections":2359732366293077,"title":1239012247920451} });
+registerSDKClass("CarPlay.CPLocationCoordinate3D", CPLocationCoordinate3D, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPManeuver", CPManeuver, { module: "CarPlay_0e503aef608672fa", properties: {"attributedInstructionVariants":4423418529416580,"cardBackgroundColor":1523331421429851,"dashboardAttributedInstructionVariants":2679987109825266,"dashboardInstructionVariants":3303943061879561,"dashboardJunctionImage":516421999519943,"dashboardSymbolImage":3611910077516157,"highwayExitLabel":2550531282986222,"initialTravelEstimates":2929910862202805,"instructionVariants":2786856337877049,"junctionElementAngles":692418893963312,"junctionExitAngle":2726987060949353,"junctionImage":4272832764973552,"junctionType":2687267408008366,"linkedLaneGuidance":1527050876755578,"maneuverType":2400090962877013,"notificationAttributedInstructionVariants":550617806583144,"notificationInstructionVariants":3248821170130731,"notificationSymbolImage":2422184995624789,"roadFollowingManeuverVariants":68346208124196,"symbolImage":727331749196441,"symbolSet":2174876705411175,"trafficSide":3179549292859035,"userInfo":4474136122253366} });
+registerSDKClass("CPMapButton", CPMapButton, { module: "CarPlay_0e503aef608672fa", properties: {"isEnabled":3952908785871663,"focusedImage":1966273546634855,"isHidden":2155463627165296,"image":3563970725830311} });
+registerSDKClass("CPPanel", CPPanel, { module: "CarPlay_0e503aef608672fa", properties: {"showsCloseButton":1187942491983554} });
+registerSDKClass("CPMapPanel", CPMapPanel, { module: "CarPlay_0e503aef608672fa", properties: {"buttonConfiguration":4288572808045281,"delegate":1648722510291653,"sections":2359732366293077,"title":1239012247920451} });
 registerSDKProtocol("c:objc(pl)CPMapPanelDelegate", {"panelDidShow":"panelDidShow(_:)","panelDidHide":"panelDidHide(_:)"});
-registerSDKClass("CPPanelButtonConfiguration", CPPanelButtonConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"primaryAction":4472935608710059,"secondaryAction":3072005977455298} });
-registerSDKClass("CPMapPanelButtonConfiguration", CPMapPanelButtonConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"secondaryButton":3564463679214873,"travelEstimates":1666010388702830} });
-registerSDKClass("CPPanelItem", CPPanelItem, { module: "CarPlay_d968214ecc684fb6", properties: {"isEnabled":2212485302994829,"showsBottomSeparator":1595408088602205,"userInfo":1633110496225214} });
-registerSDKClass("CPMapPanelItem", CPMapPanelItem, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPMapPanelSection", CPMapPanelSection, { module: "CarPlay_d968214ecc684fb6", properties: {"items":268773435168,"title":2414166442517548} });
-registerSDKClass("CPMapTemplate", CPMapTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"automaticallyHidesNavigationBar":4375839254418703,"currentNavigationAlert":2058842303255894,"guidanceBackgroundColor":3294710969385131,"hidesButtonsWithNavigationBar":3840532507079126,"mapButtons":3578709783599999,"mapDelegate":92742196068836,"isPanningInterfaceVisible":1747292497268262,"tripEstimateStyle":3558144751393564}, methods: {"dismissNavigationAlert":{"id":4321837278747183,"hints":[null,{"callback":{"out":[]}}]},"dismissPanningInterface":{"id":2087708593631111},"hidePanel":{"id":3413427580481340,"hints":[{"callback":{"out":[]}}]},"hideTripPreviews":{"id":989902380712895},"popPanel":{"id":1495106724438261,"hints":[{"callback":{"out":[]}}]},"present":{"id":1828681395906650},"pushPanel":{"id":1318807145414696,"hints":[null,{"callback":{"out":[]}}]},"showPanel":{"id":3860542740463079,"hints":[null,{"callback":{"out":[]}}]},"showPanningInterface":{"id":3158484032636031},"showRouteChoicesPreview":{"id":624112930216233},"showTripPreviewsSelectedTripTextConfiguration":{"id":3641693258291144},"showTripPreviewsTextConfiguration":{"id":3095380932065225},"startNavigationSession":{"id":2525164476232358},"updateEstimates":{"id":2450246927591677},"update":{"id":1182856264235180}} });
+registerSDKClass("CPPanelButtonConfiguration", CPPanelButtonConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"primaryAction":4472935608710059,"secondaryAction":3072005977455298} });
+registerSDKClass("CPMapPanelButtonConfiguration", CPMapPanelButtonConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"secondaryButton":3564463679214873,"travelEstimates":1666010388702830} });
+registerSDKClass("CPPanelItem", CPPanelItem, { module: "CarPlay_0e503aef608672fa", properties: {"isEnabled":2212485302994829,"showsBottomSeparator":1595408088602205,"userInfo":1633110496225214} });
+registerSDKClass("CPMapPanelItem", CPMapPanelItem, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPMapPanelSection", CPMapPanelSection, { module: "CarPlay_0e503aef608672fa", properties: {"items":268773435168,"title":2414166442517548} });
+registerSDKClass("CPMapTemplate", CPMapTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"automaticallyHidesNavigationBar":4375839254418703,"currentNavigationAlert":2058842303255894,"guidanceBackgroundColor":3294710969385131,"hidesButtonsWithNavigationBar":3840532507079126,"mapButtons":3578709783599999,"mapDelegate":92742196068836,"isPanningInterfaceVisible":1747292497268262,"tripEstimateStyle":3558144751393564}, methods: {"dismissNavigationAlert":{"id":4321837278747183,"hints":[null,{"callback":{"out":[]}}]},"dismissPanningInterface":{"id":2087708593631111},"hidePanel":{"id":3413427580481340,"hints":[{"callback":{"out":[]}}]},"hideTripPreviews":{"id":989902380712895},"popPanel":{"id":1495106724438261,"hints":[{"callback":{"out":[]}}]},"present":{"id":1828681395906650},"pushPanel":{"id":1318807145414696,"hints":[null,{"callback":{"out":[]}}]},"showPanel":{"id":3860542740463079,"hints":[null,{"callback":{"out":[]}}]},"showPanningInterface":{"id":3158484032636031},"showRouteChoicesPreview":{"id":624112930216233},"showTripPreviewsSelectedTripTextConfiguration":{"id":3641693258291144},"showTripPreviewsTextConfiguration":{"id":3095380932065225},"startNavigationSession":{"id":2525164476232358},"updateEstimates":{"id":2450246927591677},"update":{"id":1182856264235180}} });
 registerSDKProtocol("c:objc(pl)CPMapTemplateDelegate", {"mapTemplateWaypointAcceptedForSegment":"mapTemplate(_:waypoint:accepted:forSegment:)","mapTemplateDidReceiveUpdatedRouteSource":"mapTemplate(_:didReceiveUpdatedRouteSource:)","mapTemplateDidReceiveRequestForDestination":"mapTemplate(_:didReceiveRequestForDestination:)","mapTemplateDidUpdateRouteSharingEnabled":"mapTemplate(_:didUpdateRouteSharingEnabled:)","mapTemplateDidRequestToRemove":"mapTemplate(_:didRequestToRemove:)","mapTemplateDidRequestToRemoveDestination":"mapTemplate(_:didRequestToRemoveDestination:)","mapTemplateWillShareDestinationFor":"mapTemplate(_:willShareDestinationFor:)","mapTemplateDidFailToShareDestinationForError":"mapTemplate(_:didFailToShareDestinationFor:error:)","mapTemplateDidShareDestinationFor":"mapTemplate(_:didShareDestinationFor:)","mapTemplateDidShowPanningInterface":"mapTemplateDidShowPanningInterface(_:)","mapTemplateWillDismissPanningInterface":"mapTemplateWillDismissPanningInterface(_:)","mapTemplateDidDismissPanningInterface":"mapTemplateDidDismissPanningInterface(_:)","mapTemplatePanBeganWith":"mapTemplate(_:panBeganWith:)","mapTemplatePanEndedWith":"mapTemplate(_:panEndedWith:)","mapTemplatePanWith":"mapTemplate(_:panWith:)","mapTemplateDidBeginPanGesture":"mapTemplateDidBeginPanGesture(_:)","mapTemplateDidUpdatePanGestureWithTranslationVelocity":"mapTemplate(_:didUpdatePanGestureWithTranslation:velocity:)","mapTemplateDidEndPanGestureWithVelocity":"mapTemplate(_:didEndPanGestureWithVelocity:)","mapTemplateDidBeginZoomGesture":"mapTemplateDidBeginZoomGesture(_:)","mapTemplateDidUpdateZoomGestureWithCenterScaleVelocity":"mapTemplate(_:didUpdateZoomGestureWithCenter:scale:velocity:)","mapTemplateDidEndZoomGestureWithVelocity":"mapTemplate(_:didEndZoomGestureWithVelocity:)","mapTemplateDidBeginRotationGesture":"mapTemplateDidBeginRotationGesture(_:)","mapTemplateDidRotateWithCenterRotationVelocity":"mapTemplate(_:didRotateWithCenter:rotation:velocity:)","mapTemplateRotationDidEndWithVelocity":"mapTemplate(_:rotationDidEndWithVelocity:)","mapTemplateDidBeginPitchGesture":"mapTemplateDidBeginPitchGesture(_:)","mapTemplatePitchWithCenter":"mapTemplate(_:pitchWithCenter:)","mapTemplatePitchEndedWithCenter":"mapTemplate(_:pitchEndedWithCenter:)","mapTemplateWillShow":"mapTemplate(_:willShow:)","mapTemplateDidShow":"mapTemplate(_:didShow:)","mapTemplateWillDismissDismissalContext":"mapTemplate(_:willDismiss:dismissalContext:)","mapTemplateDidDismissDismissalContext":"mapTemplate(_:didDismiss:dismissalContext:)","mapTemplateSelectedPreviewForUsing":"mapTemplate(_:selectedPreviewFor:using:)","mapTemplateStartedTripUsing":"mapTemplate(_:startedTrip:using:)","mapTemplateDidCancelNavigation":"mapTemplateDidCancelNavigation(_:)"});
-registerSDKClass("CPMapTemplateWaypoint", CPMapTemplateWaypoint, { module: "CarPlay_d968214ecc684fb6", properties: {"travelEstimates":1684947261695725,"waypoint":1286245323037081} });
-registerSDKClass("CPMessageComposeBarButton", CPMessageComposeBarButton, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPMessageGridItemConfiguration", CPMessageGridItemConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"conversationIdentifier":4150346422565133,"isUnread":347984674690300} });
-registerSDKClass("CPMessageListItem", CPMessageListItem, { module: "CarPlay_d968214ecc684fb6", properties: {"conversationIdentifier":2133371931799374,"detailText":2523717046651792,"isEnabled":2316662409098632,"leadingConfiguration":4389842360970354,"leadingDetailTextImage":1335743215281954,"phoneOrEmailAddress":2189951078109655,"text":4350757495622704,"trailingConfiguration":3101822526300952,"trailingText":1287704084010718,"userInfo":2786536675644841} });
-registerSDKClass("CPMessageListItemLeadingConfiguration", CPMessageListItemLeadingConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"leadingImage":1225199119560546,"leadingItem":499453815999252,"isUnread":4354212359217456} });
-registerSDKClass("CPMessageListItemTrailingConfiguration", CPMessageListItemTrailingConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"trailingImage":3495025222733140,"trailingItem":3583458272943687} });
-registerSDKClass("CPMultiStopCardConfiguration", CPMultiStopCardConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"buttons":1594460722017779,"image":1494379418876194,"title":2223050302698212} });
-registerSDKClass("CPNavigationAlert", CPNavigationAlert, { module: "CarPlay_d968214ecc684fb6", properties: {"actions":2763657740223232,"alertImage":2595035309442093,"avatarImage":3812373595413601,"duration":137661655784359,"image":2827660647945023,"imageSet":4248383856177955,"primaryAction":867253124624164,"secondaryAction":3892358134011560,"showsCloseButton":4433741955508653,"subtitleVariants":2511136282802993,"titleVariants":1948100905222337}, methods: {"updateTitleVariantsSubtitleVariants":{"id":4144321647894092},"updateTitleVariantsSubtitleVariantsAvatarImageAlertActionsDuration":{"id":2584352278491325}} });
-registerSDKClass("CPNavigationSession", CPNavigationSession, { module: "CarPlay_d968214ecc684fb6", properties: {"currentLaneGuidance":1268543774119277,"currentRoadNameVariants":798292778934978,"currentSegment":4080095848606026,"maneuverState":1906972550188584,"optionsPanel":1389417619253734,"routeSegments":3559528681608215,"isRouteSharingEnabled":3416040440149389,"isRouteSharingSupported":3531014661141873,"trip":4229300066355647,"upcomingManeuvers":1053523525604282}, methods: {"add":{"id":2454020752272309},"add56920":{"id":2716436743352869},"addRouteSegments":{"id":2426887357005507},"cancelTrip":{"id":150572360842151},"finishTrip":{"id":4089011314724282},"pauseTripForDescription":{"id":1873695995703360},"pauseTripForDescriptionTurnCardColor":{"id":3207340475099672},"resumeNavigation":{"id":823679232924380},"resumeTripUpdatedRouteInformation":{"id":1429518435305484},"resumeTripUpdatedRouteSegmentsCurrentSegmentRerouteReason":{"id":2858259437135924},"updateEstimates":{"id":4290122034701157}} });
-registerSDKClass("CPNavigationWaypoint", CPNavigationWaypoint, { module: "CarPlay_d968214ecc684fb6", properties: {"address":739002223284857,"addressVariants":2188056995710413,"centerPoint":1467886726290876,"locationThreshold":4062258245023485,"name":1186228148910853,"nameVariants":3290165911342717,"timeZone":2922367698507775} });
-registerSDKClass("CPNowPlayingButton", CPNowPlayingButton, { module: "CarPlay_d968214ecc684fb6", properties: {"isEnabled":1809238191368239,"isSelected":1663043296822022} });
-registerSDKClass("CPNowPlayingAddToLibraryButton", CPNowPlayingAddToLibraryButton, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPNowPlayingImageButton", CPNowPlayingImageButton, { module: "CarPlay_d968214ecc684fb6", properties: {"image":251896862470554} });
-registerSDKClass("CPNowPlayingMode", CPNowPlayingMode, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPNowPlayingModeSports", CPNowPlayingModeSports, { module: "CarPlay_d968214ecc684fb6", properties: {"backgroundArtwork":1995186218622153,"eventStatus":3643857227371654,"leftTeam":584740745163222,"rightTeam":899799182936491} });
-registerSDKClass("CPNowPlayingMoreButton", CPNowPlayingMoreButton, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPNowPlayingPlaybackRateButton", CPNowPlayingPlaybackRateButton, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPNowPlayingRepeatButton", CPNowPlayingRepeatButton, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPNowPlayingShuffleButton", CPNowPlayingShuffleButton, { module: "CarPlay_d968214ecc684fb6", properties: {} });
-registerSDKClass("CPNowPlayingSportsClock", CPNowPlayingSportsClock, { module: "CarPlay_d968214ecc684fb6", properties: {"countsUp":3524957442093291,"isPaused":3315456053905986,"timeValue":3950312774847766} });
-registerSDKClass("CPNowPlayingSportsEventStatus", CPNowPlayingSportsEventStatus, { module: "CarPlay_d968214ecc684fb6", properties: {"eventClock":1729622252556408,"eventStatusImage":2163694243282947,"eventStatusText":1352797260604195} });
-registerSDKClass("CPNowPlayingSportsTeam", CPNowPlayingSportsTeam, { module: "CarPlay_d968214ecc684fb6", properties: {"eventScore":2945340012008921,"isFavorite":1736711812641656,"logo":439669402846764,"name":4294003232028697,"possessionIndicator":4045521273029026,"teamStandings":3269220430194093} });
-registerSDKClass("CPNowPlayingSportsTeamLogo", CPNowPlayingSportsTeamLogo, { module: "CarPlay_d968214ecc684fb6", properties: {"initials":1565403967076329,"logo":463348458074818} });
-registerSDKClass("CPNowPlayingTemplate", CPNowPlayingTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"isAlbumArtistButtonEnabled":24166237239128,"allowsMiniPlayer":2057781554871280,"nowPlayingButtons":327375160369394,"nowPlayingMode":2778648571324782,"isUpNextButtonEnabled":207208099740437,"upNextTitle":1310140983237245}, methods: {"add":{"id":796718289412147,"hints":[{"protocol":"c:objc(pl)CPNowPlayingTemplateObserver"}]},"remove":{"id":1248925594292096,"hints":[{"protocol":"c:objc(pl)CPNowPlayingTemplateObserver"}]},"updateNowPlayingButtons":{"id":2467828855430247}} });
+registerSDKClass("CPMapTemplateWaypoint", CPMapTemplateWaypoint, { module: "CarPlay_0e503aef608672fa", properties: {"travelEstimates":1684947261695725,"waypoint":1286245323037081} });
+registerSDKClass("CPMessageComposeBarButton", CPMessageComposeBarButton, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPMessageGridItemConfiguration", CPMessageGridItemConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"conversationIdentifier":4150346422565133,"isUnread":347984674690300} });
+registerSDKClass("CPMessageListItem", CPMessageListItem, { module: "CarPlay_0e503aef608672fa", properties: {"conversationIdentifier":2133371931799374,"detailText":2523717046651792,"isEnabled":2316662409098632,"leadingConfiguration":4389842360970354,"leadingDetailTextImage":1335743215281954,"phoneOrEmailAddress":2189951078109655,"text":4350757495622704,"trailingConfiguration":3101822526300952,"trailingText":1287704084010718,"userInfo":2786536675644841} });
+registerSDKClass("CPMessageListItemLeadingConfiguration", CPMessageListItemLeadingConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"leadingImage":1225199119560546,"leadingItem":499453815999252,"isUnread":4354212359217456} });
+registerSDKClass("CPMessageListItemTrailingConfiguration", CPMessageListItemTrailingConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"trailingImage":3495025222733140,"trailingItem":3583458272943687} });
+registerSDKClass("CPMultiStopCardConfiguration", CPMultiStopCardConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"buttons":1594460722017779,"image":1494379418876194,"title":2223050302698212} });
+registerSDKClass("CPNavigationAlert", CPNavigationAlert, { module: "CarPlay_0e503aef608672fa", properties: {"actions":2763657740223232,"alertImage":2595035309442093,"avatarImage":3812373595413601,"duration":137661655784359,"image":2827660647945023,"imageSet":4248383856177955,"primaryAction":867253124624164,"secondaryAction":3892358134011560,"showsCloseButton":4433741955508653,"subtitleVariants":2511136282802993,"titleVariants":1948100905222337}, methods: {"updateTitleVariantsSubtitleVariants":{"id":4144321647894092},"updateTitleVariantsSubtitleVariantsAvatarImageAlertActionsDuration":{"id":2584352278491325}} });
+registerSDKClass("CPNavigationSession", CPNavigationSession, { module: "CarPlay_0e503aef608672fa", properties: {"currentLaneGuidance":1268543774119277,"currentRoadNameVariants":798292778934978,"currentSegment":4080095848606026,"maneuverState":1906972550188584,"optionsPanel":1389417619253734,"routeSegments":3559528681608215,"isRouteSharingEnabled":3416040440149389,"isRouteSharingSupported":3531014661141873,"trip":4229300066355647,"upcomingManeuvers":1053523525604282}, methods: {"add":{"id":2454020752272309},"add56920":{"id":2716436743352869},"addRouteSegments":{"id":2426887357005507},"cancelTrip":{"id":150572360842151},"finishTrip":{"id":4089011314724282},"pauseTripForDescription":{"id":1873695995703360},"pauseTripForDescriptionTurnCardColor":{"id":3207340475099672},"resumeNavigation":{"id":823679232924380},"resumeTripUpdatedRouteInformation":{"id":1429518435305484},"resumeTripUpdatedRouteSegmentsCurrentSegmentRerouteReason":{"id":2858259437135924},"updateEstimates":{"id":4290122034701157}} });
+registerSDKClass("CPNavigationWaypoint", CPNavigationWaypoint, { module: "CarPlay_0e503aef608672fa", properties: {"address":739002223284857,"addressVariants":2188056995710413,"centerPoint":1467886726290876,"locationThreshold":4062258245023485,"name":1186228148910853,"nameVariants":3290165911342717,"timeZone":2922367698507775} });
+registerSDKClass("CPNowPlayingButton", CPNowPlayingButton, { module: "CarPlay_0e503aef608672fa", properties: {"isEnabled":1809238191368239,"isSelected":1663043296822022} });
+registerSDKClass("CPNowPlayingAddToLibraryButton", CPNowPlayingAddToLibraryButton, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPNowPlayingImageButton", CPNowPlayingImageButton, { module: "CarPlay_0e503aef608672fa", properties: {"image":251896862470554} });
+registerSDKClass("CPNowPlayingMode", CPNowPlayingMode, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPNowPlayingModeSports", CPNowPlayingModeSports, { module: "CarPlay_0e503aef608672fa", properties: {"backgroundArtwork":1995186218622153,"eventStatus":3643857227371654,"leftTeam":584740745163222,"rightTeam":899799182936491} });
+registerSDKClass("CPNowPlayingMoreButton", CPNowPlayingMoreButton, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPNowPlayingPlaybackRateButton", CPNowPlayingPlaybackRateButton, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPNowPlayingRepeatButton", CPNowPlayingRepeatButton, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPNowPlayingShuffleButton", CPNowPlayingShuffleButton, { module: "CarPlay_0e503aef608672fa", properties: {} });
+registerSDKClass("CPNowPlayingSportsClock", CPNowPlayingSportsClock, { module: "CarPlay_0e503aef608672fa", properties: {"countsUp":3524957442093291,"isPaused":3315456053905986,"timeValue":3950312774847766} });
+registerSDKClass("CPNowPlayingSportsEventStatus", CPNowPlayingSportsEventStatus, { module: "CarPlay_0e503aef608672fa", properties: {"eventClock":1729622252556408,"eventStatusImage":2163694243282947,"eventStatusText":1352797260604195} });
+registerSDKClass("CPNowPlayingSportsTeam", CPNowPlayingSportsTeam, { module: "CarPlay_0e503aef608672fa", properties: {"eventScore":2945340012008921,"isFavorite":1736711812641656,"logo":439669402846764,"name":4294003232028697,"possessionIndicator":4045521273029026,"teamStandings":3269220430194093} });
+registerSDKClass("CPNowPlayingSportsTeamLogo", CPNowPlayingSportsTeamLogo, { module: "CarPlay_0e503aef608672fa", properties: {"initials":1565403967076329,"logo":463348458074818} });
+registerSDKClass("CPNowPlayingTemplate", CPNowPlayingTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"isAlbumArtistButtonEnabled":24166237239128,"allowsMiniPlayer":2057781554871280,"nowPlayingButtons":327375160369394,"nowPlayingMode":2778648571324782,"isUpNextButtonEnabled":207208099740437,"upNextTitle":1310140983237245}, methods: {"add":{"id":796718289412147,"hints":[{"protocol":"c:objc(pl)CPNowPlayingTemplateObserver"}]},"remove":{"id":1248925594292096,"hints":[{"protocol":"c:objc(pl)CPNowPlayingTemplateObserver"}]},"updateNowPlayingButtons":{"id":2467828855430247}} });
 registerSDKProtocol("c:objc(pl)CPNowPlayingTemplateObserver", {"nowPlayingTemplateUpNextButtonTapped":"nowPlayingTemplateUpNextButtonTapped(_:)","nowPlayingTemplateAlbumArtistButtonTapped":"nowPlayingTemplateAlbumArtistButtonTapped(_:)"});
 registerSDKProtocol("c:objc(pl)CPPlayableItem", {});
-registerSDKClass("CPPlaybackConfiguration", CPPlaybackConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"duration":3493350697485455,"elapsedTime":1248825991869729,"playbackAction":1346725371483970,"preferredPresentation":4217576240675677} });
-registerSDKClass("CPPointOfInterest", CPPointOfInterest, { module: "CarPlay_d968214ecc684fb6", properties: {"detailSubtitle":2121182543181179,"detailSummary":3153497495047864,"detailTitle":2210999488486110,"location":1434550874276998,"pinImage":2346774374160436,"primaryButton":3900315293514149,"secondaryButton":1071174861923156,"selectedPinImage":1719521020139917,"subtitle":269190172434568,"summary":4361801252636688,"title":2071557532923568,"userInfo":1613502964178281} });
-registerSDKClass("CPPointOfInterestTemplate", CPPointOfInterestTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"pointOfInterestDelegate":4000330392142897,"pointsOfInterest":3815304690046560,"selectedIndex":3730199835059794,"title":2301200957666713}, methods: {"setPointsOfInterest":{"id":1983447060439108}} });
+registerSDKClass("CPPlaybackConfiguration", CPPlaybackConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"duration":3493350697485455,"elapsedTime":1248825991869729,"playbackAction":1346725371483970,"preferredPresentation":4217576240675677} });
+registerSDKClass("CPPointOfInterest", CPPointOfInterest, { module: "CarPlay_0e503aef608672fa", properties: {"detailSubtitle":2121182543181179,"detailSummary":3153497495047864,"detailTitle":2210999488486110,"location":1434550874276998,"pinImage":2346774374160436,"primaryButton":3900315293514149,"secondaryButton":1071174861923156,"selectedPinImage":1719521020139917,"subtitle":269190172434568,"summary":4361801252636688,"title":2071557532923568,"userInfo":1613502964178281} });
+registerSDKClass("CPPointOfInterestTemplate", CPPointOfInterestTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"pointOfInterestDelegate":4000330392142897,"pointsOfInterest":3815304690046560,"selectedIndex":3730199835059794,"title":2301200957666713}, methods: {"setPointsOfInterest":{"id":1983447060439108}} });
 registerSDKProtocol("c:objc(pl)CPPointOfInterestTemplateDelegate", {"pointOfInterestTemplateDidChangeMapRegion":"pointOfInterestTemplate(_:didChangeMapRegion:)","pointOfInterestTemplateDidSelectPointOfInterest":"pointOfInterestTemplate(_:didSelectPointOfInterest:)"});
-registerSDKClass("CPRouteChoice", CPRouteChoice, { module: "CarPlay_d968214ecc684fb6", properties: {"additionalInformationVariants":2591109358910592,"selectionSummaryVariants":1073618173484662,"summaryVariants":4121100141967931,"travelEstimates":885145940232016,"userInfo":3965543919924208} });
-registerSDKClass("CPRouteDetail", CPRouteDetail, { module: "CarPlay_d968214ecc684fb6", properties: {"symbolTintColor":247744056458915} });
-registerSDKClass("CPRouteInformation", CPRouteInformation, { module: "CarPlay_d968214ecc684fb6", properties: {"currentLaneGuidance":3361137947571772,"currentManeuvers":4237465919981118,"laneGuidances":4376312945175512,"maneuverTravelEstimates":1448629340812117,"maneuvers":3032349561873908,"tripTravelEstimates":2321150545199332} });
-registerSDKClass("CPRouteSegment", CPRouteSegment, { module: "CarPlay_d968214ecc684fb6", properties: {"currentLaneGuidance":4373782117454536,"currentManeuvers":2355788760561952,"destination":2557578012988926,"identifier":479713424493572,"laneGuidances":1198541148924805,"maneuverTravelEstimates":878987995074452,"maneuvers":2092878499115916,"origin":3658836062309583,"tripTravelEstimates":1228023022075112} });
-registerSDKClass("CPSearchTemplate", CPSearchTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"delegate":631250115081927} });
+registerSDKClass("CPRouteChoice", CPRouteChoice, { module: "CarPlay_0e503aef608672fa", properties: {"additionalInformationVariants":2591109358910592,"selectionSummaryVariants":1073618173484662,"summaryVariants":4121100141967931,"travelEstimates":885145940232016,"userInfo":3965543919924208} });
+registerSDKClass("CPRouteDetail", CPRouteDetail, { module: "CarPlay_0e503aef608672fa", properties: {"symbolTintColor":247744056458915} });
+registerSDKClass("CPRouteInformation", CPRouteInformation, { module: "CarPlay_0e503aef608672fa", properties: {"currentLaneGuidance":3361137947571772,"currentManeuvers":4237465919981118,"laneGuidances":4376312945175512,"maneuverTravelEstimates":1448629340812117,"maneuvers":3032349561873908,"tripTravelEstimates":2321150545199332} });
+registerSDKClass("CPRouteSegment", CPRouteSegment, { module: "CarPlay_0e503aef608672fa", properties: {"currentLaneGuidance":4373782117454536,"currentManeuvers":2355788760561952,"destination":2557578012988926,"identifier":479713424493572,"laneGuidances":1198541148924805,"maneuverTravelEstimates":878987995074452,"maneuvers":2092878499115916,"origin":3658836062309583,"tripTravelEstimates":1228023022075112} });
+registerSDKClass("CPSearchTemplate", CPSearchTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"delegate":631250115081927} });
 registerSDKProtocol("c:objc(pl)CPSearchTemplateDelegate", {"searchTemplateUpdatedSearchText":"searchTemplate(_:updatedSearchText:)","searchTemplateSelectedResult":"searchTemplate(_:selectedResult:)","searchTemplateSearchButtonPressed":"searchTemplateSearchButtonPressed(_:)"});
 registerSDKProtocol("c:objc(pl)CPSelectableListItem", {});
-registerSDKClass("CPSessionConfiguration", CPSessionConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"contentStyle":4294735018995385,"delegate":3913864095433984,"limitedUserInterfaces":4202857945856075,"supportsVideoPlayback":4306064830198847} });
+registerSDKClass("CPSessionConfiguration", CPSessionConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"contentStyle":4294735018995385,"delegate":3913864095433984,"limitedUserInterfaces":4202857945856075,"supportsVideoPlayback":4306064830198847} });
 registerSDKProtocol("c:objc(pl)CPSessionConfigurationDelegate", {"sessionConfigurationLimitedUserInterfacesChanged":"sessionConfiguration(_:limitedUserInterfacesChanged:)","sessionConfigurationContentStyleChanged":"sessionConfiguration(_:contentStyleChanged:)"});
-registerSDKClass("CPSportsOverlay", CPSportsOverlay, { module: "CarPlay_d968214ecc684fb6", properties: {"eventStatus":4152485586291664,"leftTeam":3358463193407664,"rightTeam":591278301154170} });
-registerSDKClass("CPTabBarTemplate", CPTabBarTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"delegate":358587743546300,"selectedTemplate":1665149722659735,"templates":1750653301042592}, methods: {"select":{"id":3125640692749182},"selectTemplate":{"id":2311759867462460},"updateTemplates":{"id":2272122856906056}} });
+registerSDKClass("CPSportsOverlay", CPSportsOverlay, { module: "CarPlay_0e503aef608672fa", properties: {"eventStatus":4152485586291664,"leftTeam":3358463193407664,"rightTeam":591278301154170} });
+registerSDKClass("CPTabBarTemplate", CPTabBarTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"delegate":358587743546300,"selectedTemplate":1665149722659735,"templates":1750653301042592}, methods: {"select":{"id":3125640692749182},"selectTemplate":{"id":2311759867462460},"updateTemplates":{"id":2272122856906056}} });
 registerSDKProtocol("c:objc(pl)CPTabBarTemplateDelegate", {"tabBarTemplateDidSelect":"tabBarTemplate(_:didSelect:)"});
-registerSDKClass("CPTemplateApplicationDashboardScene", CPTemplateApplicationDashboardScene, { module: "CarPlay_d968214ecc684fb6", properties: {"dashboardController":2128336139398162,"dashboardWindow":4079698522822498,"delegate":4184027575914126} });
+registerSDKClass("CPTemplateApplicationDashboardScene", CPTemplateApplicationDashboardScene, { module: "CarPlay_0e503aef608672fa", properties: {"dashboardController":2128336139398162,"dashboardWindow":4079698522822498,"delegate":4184027575914126} });
 registerSDKProtocol("c:objc(pl)CPTemplateApplicationDashboardSceneDelegate", {"sceneWillConnectToOptions":"scene(_:willConnectTo:options:)","sceneDidDisconnect":"sceneDidDisconnect(_:)","sceneDidBecomeActive":"sceneDidBecomeActive(_:)","sceneWillResignActive":"sceneWillResignActive(_:)","sceneWillEnterForeground":"sceneWillEnterForeground(_:)","sceneDidEnterBackground":"sceneDidEnterBackground(_:)","sceneOpenURLContexts":"scene(_:openURLContexts:)","sceneRestoreInteractionStateWith":"scene(_:restoreInteractionStateWith:)","sceneWillContinueUserActivityWithType":"scene(_:willContinueUserActivityWithType:)","sceneContinue":"scene(_:continue:)","sceneDidFailToContinueUserActivityWithTypeError":"scene(_:didFailToContinueUserActivityWithType:error:)","sceneDidUpdate":"scene(_:didUpdate:)","templateApplicationDashboardSceneDidConnectTo":"templateApplicationDashboardScene(_:didConnect:to:)","templateApplicationDashboardSceneDidDisconnectFrom":"templateApplicationDashboardScene(_:didDisconnect:from:)"});
-registerSDKClass("CPTemplateApplicationInstrumentClusterScene", CPTemplateApplicationInstrumentClusterScene, { module: "CarPlay_d968214ecc684fb6", properties: {"contentStyle":3079721852252006,"delegate":2169862996907348,"instrumentClusterController":2419545166647350} });
+registerSDKClass("CPTemplateApplicationInstrumentClusterScene", CPTemplateApplicationInstrumentClusterScene, { module: "CarPlay_0e503aef608672fa", properties: {"contentStyle":3079721852252006,"delegate":2169862996907348,"instrumentClusterController":2419545166647350} });
 registerSDKProtocol("c:objc(pl)CPTemplateApplicationInstrumentClusterSceneDelegate", {"sceneWillConnectToOptions":"scene(_:willConnectTo:options:)","sceneDidDisconnect":"sceneDidDisconnect(_:)","sceneDidBecomeActive":"sceneDidBecomeActive(_:)","sceneWillResignActive":"sceneWillResignActive(_:)","sceneWillEnterForeground":"sceneWillEnterForeground(_:)","sceneDidEnterBackground":"sceneDidEnterBackground(_:)","sceneOpenURLContexts":"scene(_:openURLContexts:)","sceneRestoreInteractionStateWith":"scene(_:restoreInteractionStateWith:)","sceneWillContinueUserActivityWithType":"scene(_:willContinueUserActivityWithType:)","sceneContinue":"scene(_:continue:)","sceneDidFailToContinueUserActivityWithTypeError":"scene(_:didFailToContinueUserActivityWithType:error:)","sceneDidUpdate":"scene(_:didUpdate:)","templateApplicationInstrumentClusterSceneDidConnect":"templateApplicationInstrumentClusterScene(_:didConnect:)","templateApplicationInstrumentClusterSceneDidDisconnectInstrumentClusterController":"templateApplicationInstrumentClusterScene(_:didDisconnectInstrumentClusterController:)","contentStyleDidChange":"contentStyleDidChange(_:)"});
-registerSDKClass("CPTemplateApplicationScene", CPTemplateApplicationScene, { module: "CarPlay_d968214ecc684fb6", properties: {"carWindow":2308386720311353,"contentStyle":27105573057701,"delegate":504928232131207,"interfaceController":4161857621444480} });
+registerSDKClass("CPTemplateApplicationScene", CPTemplateApplicationScene, { module: "CarPlay_0e503aef608672fa", properties: {"carWindow":2308386720311353,"contentStyle":27105573057701,"delegate":504928232131207,"interfaceController":4161857621444480} });
 registerSDKProtocol("c:objc(pl)CPTemplateApplicationSceneDelegate", {"sceneWillConnectToOptions":"scene(_:willConnectTo:options:)","sceneDidDisconnect":"sceneDidDisconnect(_:)","sceneDidBecomeActive":"sceneDidBecomeActive(_:)","sceneWillResignActive":"sceneWillResignActive(_:)","sceneWillEnterForeground":"sceneWillEnterForeground(_:)","sceneDidEnterBackground":"sceneDidEnterBackground(_:)","sceneOpenURLContexts":"scene(_:openURLContexts:)","sceneRestoreInteractionStateWith":"scene(_:restoreInteractionStateWith:)","sceneWillContinueUserActivityWithType":"scene(_:willContinueUserActivityWithType:)","sceneContinue":"scene(_:continue:)","sceneDidFailToContinueUserActivityWithTypeError":"scene(_:didFailToContinueUserActivityWithType:error:)","sceneDidUpdate":"scene(_:didUpdate:)","templateApplicationSceneDidConnectTo":"templateApplicationScene(_:didConnect:to:)","templateApplicationSceneDidConnect":"templateApplicationScene(_:didConnect:)","templateApplicationSceneDidDisconnectFrom":"templateApplicationScene(_:didDisconnect:from:)","templateApplicationSceneDidDisconnectInterfaceController":"templateApplicationScene(_:didDisconnectInterfaceController:)","templateApplicationSceneDidSelect":"templateApplicationScene(_:didSelect:)","contentStyleDidChange":"contentStyleDidChange(_:)"});
-registerSDKClass("CPTextButton", CPTextButton, { module: "CarPlay_d968214ecc684fb6", properties: {"textStyle":334091075984478,"title":142538751593607} });
-registerSDKClass("CPThumbnailImage", CPThumbnailImage, { module: "CarPlay_d968214ecc684fb6", properties: {"image":4344740117345153,"imageOverlay":3242694291944791,"sportsOverlay":2242181260524778} });
-registerSDKClass("CPTravelEstimates", CPTravelEstimates, { module: "CarPlay_d968214ecc684fb6", properties: {"distanceRemaining":1341322717340516,"distanceRemainingToDisplay":3236738619959336,"routeDetails":1226415553896361,"timeRemaining":2251382241166265} });
-registerSDKClass("CPTrip", CPTrip, { module: "CarPlay_d968214ecc684fb6", properties: {"destination":546614964027574,"destinationNameVariants":1900807329273643,"destinationWaypoint":3261985313875797,"hasShareableDestination":365099067780044,"origin":3882939969371007,"originWaypoint":1456715396104925,"routeChoices":3339775839373149,"routeSegmentsAvailableForRegion":2311975445849379,"userInfo":1330513701718637} });
-registerSDKClass("CPTripPreviewTextConfiguration", CPTripPreviewTextConfiguration, { module: "CarPlay_d968214ecc684fb6", properties: {"additionalRoutesButtonTitle":1763641619456969,"overviewButtonTitle":2256362183394920,"startButtonTitle":998312857931046} });
-registerSDKClass("CPVoiceControlState", CPVoiceControlState, { module: "CarPlay_d968214ecc684fb6", properties: {"actionButtons":3576926987908025,"backgroundImage":1374897446926487,"identifier":1648666175832910,"image":3544489704361586,"repeats":226115544798890,"titleVariants":1601744738924915} });
-registerSDKClass("CPVoiceControlTemplate", CPVoiceControlTemplate, { module: "CarPlay_d968214ecc684fb6", properties: {"activeStateIdentifier":2510368416564358,"backButton":2595765017454598,"leadingNavigationBarButtons":654873647555772,"trailingNavigationBarButtons":883829881228941,"voiceControlStates":1365700754093757}, methods: {"activateVoiceControlState":{"id":3988409804776035}} });
-registerSDKClass("CPWindow", CPWindow, { module: "CarPlay_d968214ecc684fb6", properties: {"mapButtonSafeAreaLayoutGuide":2505625227120889,"templateApplicationScene":3206420903668325} });
+registerSDKClass("CPTextButton", CPTextButton, { module: "CarPlay_0e503aef608672fa", properties: {"textStyle":334091075984478,"title":142538751593607} });
+registerSDKClass("CPThumbnailImage", CPThumbnailImage, { module: "CarPlay_0e503aef608672fa", properties: {"image":4344740117345153,"imageOverlay":3242694291944791,"sportsOverlay":2242181260524778} });
+registerSDKClass("CPTravelEstimates", CPTravelEstimates, { module: "CarPlay_0e503aef608672fa", properties: {"distanceRemaining":1341322717340516,"distanceRemainingToDisplay":3236738619959336,"routeDetails":1226415553896361,"timeRemaining":2251382241166265} });
+registerSDKClass("CPTrip", CPTrip, { module: "CarPlay_0e503aef608672fa", properties: {"destination":546614964027574,"destinationNameVariants":1900807329273643,"destinationWaypoint":3261985313875797,"hasShareableDestination":365099067780044,"origin":3882939969371007,"originWaypoint":1456715396104925,"routeChoices":3339775839373149,"routeSegmentsAvailableForRegion":2311975445849379,"userInfo":1330513701718637} });
+registerSDKClass("CPTripPreviewTextConfiguration", CPTripPreviewTextConfiguration, { module: "CarPlay_0e503aef608672fa", properties: {"additionalRoutesButtonTitle":1763641619456969,"overviewButtonTitle":2256362183394920,"startButtonTitle":998312857931046} });
+registerSDKClass("CPVoiceControlState", CPVoiceControlState, { module: "CarPlay_0e503aef608672fa", properties: {"actionButtons":3576926987908025,"backgroundImage":1374897446926487,"identifier":1648666175832910,"image":3544489704361586,"repeats":226115544798890,"titleVariants":1601744738924915} });
+registerSDKClass("CPVoiceControlTemplate", CPVoiceControlTemplate, { module: "CarPlay_0e503aef608672fa", properties: {"activeStateIdentifier":2510368416564358,"backButton":2595765017454598,"leadingNavigationBarButtons":654873647555772,"trailingNavigationBarButtons":883829881228941,"voiceControlStates":1365700754093757}, methods: {"activateVoiceControlState":{"id":3988409804776035}} });
+registerSDKClass("CPWindow", CPWindow, { module: "CarPlay_0e503aef608672fa", properties: {"mapButtonSafeAreaLayoutGuide":2505625227120889,"templateApplicationScene":3206420903668325} });

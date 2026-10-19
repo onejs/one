@@ -27,19 +27,19 @@ export type CFHostClientCallBack = ((arg0: CFHost, arg1: CFHostInfoType, arg2: (
 /** struct CFHostClientContext */
 export class CFHostClientContext extends SDKHandle {
   /** var copyDescription: CFAllocatorCopyDescriptionCallBack? */
-  get copyDescription(): $SDK1 { return callSDK<$SDK1>("CFNetwork_d968214ecc684fb6", 120959950249867, this, []); }
+  get copyDescription(): $SDK1 { return callSDK<$SDK1>("CFNetwork_0e503aef608672fa", 120959950249867, this, []); }
   /** var info: UnsafeMutableRawPointer? */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CFNetwork_d968214ecc684fb6", 2529709916093323, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CFNetwork_d968214ecc684fb6", 201627308566000, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CFNetwork_0e503aef608672fa", 2529709916093323, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CFNetwork_0e503aef608672fa", 201627308566000, this, [value]); }
   /** var release: CFAllocatorReleaseCallBack? */
-  get release(): $SDK2 { return callSDK<$SDK2>("CFNetwork_d968214ecc684fb6", 4209438831997335, this, []); }
+  get release(): $SDK2 { return callSDK<$SDK2>("CFNetwork_0e503aef608672fa", 4209438831997335, this, []); }
   /** var retain: CFAllocatorRetainCallBack? */
-  get retain(): $SDK1 { return callSDK<$SDK1>("CFNetwork_d968214ecc684fb6", 4152326588721575, this, []); }
+  get retain(): $SDK1 { return callSDK<$SDK1>("CFNetwork_0e503aef608672fa", 4152326588721575, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 1509956624442717, this, []); }
-  set version(value: number) { callSDK<void>("CFNetwork_d968214ecc684fb6", 1485407199996562, this, [value]); }
+  get version(): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 1509956624442717, this, []); }
+  set version(value: number) { callSDK<void>("CFNetwork_0e503aef608672fa", 1485407199996562, this, [value]); }
   /** init() */
-  static init(): CFHostClientContext { return callSDK<CFHostClientContext>("CFNetwork_d968214ecc684fb6", 4336082435074443, undefined, []); }
+  static init(): CFHostClientContext { return callSDK<CFHostClientContext>("CFNetwork_0e503aef608672fa", 4336082435074443, undefined, []); }
   declare readonly $type: { "c:@S@CFHostClientContext": true };
 }
 
@@ -48,7 +48,7 @@ export type CFHostInfoType = "addresses" | "names" | "reachability";
 
 export const CFHostInfoType = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CFHostInfoType) | null { return callSDK<(CFHostInfoType) | null>("CFNetwork_d968214ecc684fb6", 547862121828034, undefined, [rawValue]); }
+  init(rawValue: number): (CFHostInfoType) | null { return callSDK<(CFHostInfoType) | null>("CFNetwork_0e503aef608672fa", 547862121828034, undefined, [rawValue]); }
 };
 
 /** class CFHTTPAuthentication */
@@ -86,7 +86,7 @@ export const CFNetDiagnosticStatusValues = {
    * @availability iOS 2.0+
    * @deprecated iOS 11.0
    */
-  init(rawValue: number): (CFNetDiagnosticStatusValues) | null { return callSDK<(CFNetDiagnosticStatusValues) | null>("CFNetwork_d968214ecc684fb6", 581687473233070, undefined, [rawValue]); }
+  init(rawValue: number): (CFNetDiagnosticStatusValues) | null { return callSDK<(CFNetDiagnosticStatusValues) | null>("CFNetwork_0e503aef608672fa", 581687473233070, undefined, [rawValue]); }
 };
 
 /** class CFNetService */
@@ -107,15 +107,15 @@ export type CFNetServiceBrowserFlags = Array<"moreComing" | "isDomain" | "isDefa
 
 export const CFNetServiceBrowserFlags = {
   /** static var isDefault: CFNetServiceBrowserFlags { get } */
-  get isDefault(): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_d968214ecc684fb6", 1066548943124653, undefined, []); },
+  get isDefault(): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_0e503aef608672fa", 1066548943124653, undefined, []); },
   /** static var isDomain: CFNetServiceBrowserFlags { get } */
-  get isDomain(): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_d968214ecc684fb6", 3600405462857727, undefined, []); },
+  get isDomain(): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_0e503aef608672fa", 3600405462857727, undefined, []); },
   /** static var moreComing: CFNetServiceBrowserFlags { get } */
-  get moreComing(): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_d968214ecc684fb6", 2729117547688541, undefined, []); },
+  get moreComing(): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_0e503aef608672fa", 2729117547688541, undefined, []); },
   /** static var remove: CFNetServiceBrowserFlags { get } */
-  get remove(): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_d968214ecc684fb6", 237796323796989, undefined, []); },
+  get remove(): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_0e503aef608672fa", 237796323796989, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_d968214ecc684fb6", 2006351274151755, undefined, [rawValue]); }
+  init(rawValue: number): CFNetServiceBrowserFlags { return callSDK<CFNetServiceBrowserFlags>("CFNetwork_0e503aef608672fa", 2006351274151755, undefined, [rawValue]); }
 };
 
 /** typealias CFNetServiceClientCallBack = (CFNetService, UnsafeMutablePointer<CFStreamError>?, UnsafeMutableRawPointer?) -> Void */
@@ -124,19 +124,19 @@ export type CFNetServiceClientCallBack = ((arg0: CFNetService, arg1: (SDKHandle)
 /** struct CFNetServiceClientContext */
 export class CFNetServiceClientContext extends SDKHandle {
   /** var copyDescription: CFAllocatorCopyDescriptionCallBack? */
-  get copyDescription(): $SDK1 { return callSDK<$SDK1>("CFNetwork_d968214ecc684fb6", 206733924925280, this, []); }
+  get copyDescription(): $SDK1 { return callSDK<$SDK1>("CFNetwork_0e503aef608672fa", 206733924925280, this, []); }
   /** var info: UnsafeMutableRawPointer? */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CFNetwork_d968214ecc684fb6", 363164374276249, this, []); }
-  set info(value: (SDKHandle) | null) { callSDK<void>("CFNetwork_d968214ecc684fb6", 2211495272517445, this, [value]); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CFNetwork_0e503aef608672fa", 363164374276249, this, []); }
+  set info(value: (SDKHandle) | null) { callSDK<void>("CFNetwork_0e503aef608672fa", 2211495272517445, this, [value]); }
   /** var release: CFAllocatorReleaseCallBack? */
-  get release(): $SDK2 { return callSDK<$SDK2>("CFNetwork_d968214ecc684fb6", 2394453089514763, this, []); }
+  get release(): $SDK2 { return callSDK<$SDK2>("CFNetwork_0e503aef608672fa", 2394453089514763, this, []); }
   /** var retain: CFAllocatorRetainCallBack? */
-  get retain(): $SDK1 { return callSDK<$SDK1>("CFNetwork_d968214ecc684fb6", 3792559901905314, this, []); }
+  get retain(): $SDK1 { return callSDK<$SDK1>("CFNetwork_0e503aef608672fa", 3792559901905314, this, []); }
   /** var version: CFIndex */
-  get version(): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 207442245741431, this, []); }
-  set version(value: number) { callSDK<void>("CFNetwork_d968214ecc684fb6", 2355052081256577, this, [value]); }
+  get version(): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 207442245741431, this, []); }
+  set version(value: number) { callSDK<void>("CFNetwork_0e503aef608672fa", 2355052081256577, this, [value]); }
   /** init() */
-  static init(): CFNetServiceClientContext { return callSDK<CFNetServiceClientContext>("CFNetwork_d968214ecc684fb6", 4227438366831391, undefined, []); }
+  static init(): CFNetServiceClientContext { return callSDK<CFNetServiceClientContext>("CFNetwork_0e503aef608672fa", 4227438366831391, undefined, []); }
   declare readonly $type: { "c:@S@CFNetServiceClientContext": true };
 }
 
@@ -153,7 +153,7 @@ export type CFNetServiceMonitorType = "TXT";
 
 export const CFNetServiceMonitorType = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CFNetServiceMonitorType) | null { return callSDK<(CFNetServiceMonitorType) | null>("CFNetwork_d968214ecc684fb6", 1895469000088023, undefined, [rawValue]); }
+  init(rawValue: number): (CFNetServiceMonitorType) | null { return callSDK<(CFNetServiceMonitorType) | null>("CFNetwork_0e503aef608672fa", 1895469000088023, undefined, [rawValue]); }
 };
 
 /** struct CFNetServiceRegisterFlags */
@@ -161,9 +161,9 @@ export type CFNetServiceRegisterFlags = Array<"noAutoRename">;
 
 export const CFNetServiceRegisterFlags = {
   /** static var noAutoRename: CFNetServiceRegisterFlags { get } */
-  get noAutoRename(): CFNetServiceRegisterFlags { return callSDK<CFNetServiceRegisterFlags>("CFNetwork_d968214ecc684fb6", 689400981141398, undefined, []); },
+  get noAutoRename(): CFNetServiceRegisterFlags { return callSDK<CFNetServiceRegisterFlags>("CFNetwork_0e503aef608672fa", 689400981141398, undefined, []); },
   /** init(rawValue: CFOptionFlags) */
-  init(rawValue: number): CFNetServiceRegisterFlags { return callSDK<CFNetServiceRegisterFlags>("CFNetwork_d968214ecc684fb6", 2531851036226648, undefined, [rawValue]); }
+  init(rawValue: number): CFNetServiceRegisterFlags { return callSDK<CFNetServiceRegisterFlags>("CFNetwork_0e503aef608672fa", 2531851036226648, undefined, [rawValue]); }
 };
 
 /** enum CFNetServicesError */
@@ -171,7 +171,7 @@ export type CFNetServicesError = "unknown" | "collision" | "notFound" | "inProgr
 
 export const CFNetServicesError = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CFNetServicesError) | null { return callSDK<(CFNetServicesError) | null>("CFNetwork_d968214ecc684fb6", 1960305904204472, undefined, [rawValue]); }
+  init(rawValue: number): (CFNetServicesError) | null { return callSDK<(CFNetServicesError) | null>("CFNetwork_0e503aef608672fa", 1960305904204472, undefined, [rawValue]); }
 };
 
 /** enum CFNetworkErrors */
@@ -179,7 +179,7 @@ export type CFNetworkErrors = "cfHostErrorHostNotFound" | "cfHostErrorUnknown" |
 
 export const CFNetworkErrors = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CFNetworkErrors) | null { return callSDK<(CFNetworkErrors) | null>("CFNetwork_d968214ecc684fb6", 1188968675764, undefined, [rawValue]); }
+  init(rawValue: number): (CFNetworkErrors) | null { return callSDK<(CFNetworkErrors) | null>("CFNetwork_0e503aef608672fa", 1188968675764, undefined, [rawValue]); }
 };
 
 /** typealias CFProxyAutoConfigurationResultCallback = (UnsafeMutableRawPointer, CFArray, CFError?) -> Void */
@@ -190,7 +190,7 @@ export type CFStreamErrorHTTP = "parseFailure" | "redirectionLoop" | "badURL";
 
 export const CFStreamErrorHTTP = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CFStreamErrorHTTP) | null { return callSDK<(CFStreamErrorHTTP) | null>("CFNetwork_d968214ecc684fb6", 3169759944711334, undefined, [rawValue]); }
+  init(rawValue: number): (CFStreamErrorHTTP) | null { return callSDK<(CFStreamErrorHTTP) | null>("CFNetwork_0e503aef608672fa", 3169759944711334, undefined, [rawValue]); }
 };
 
 /** enum CFStreamErrorHTTPAuthentication */
@@ -198,1306 +198,1306 @@ export type CFStreamErrorHTTPAuthentication = "typeUnsupported" | "badUserName" 
 
 export const CFStreamErrorHTTPAuthentication = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CFStreamErrorHTTPAuthentication) | null { return callSDK<(CFStreamErrorHTTPAuthentication) | null>("CFNetwork_d968214ecc684fb6", 1976729107904274, undefined, [rawValue]); }
+  init(rawValue: number): (CFStreamErrorHTTPAuthentication) | null { return callSDK<(CFStreamErrorHTTPAuthentication) | null>("CFNetwork_0e503aef608672fa", 1976729107904274, undefined, [rawValue]); }
 };
 
 /**
  * func CFHTTPAuthenticationAppliesToRequest(_ auth: CFHTTPAuthentication, _ request: CFHTTPMessage) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationAppliesToRequest(auth: CFHTTPAuthentication, request: CFHTTPMessage): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 3639344919451958, undefined, [auth, request]); }
+export function CFHTTPAuthenticationAppliesToRequest(auth: CFHTTPAuthentication, request: CFHTTPMessage): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 3639344919451958, undefined, [auth, request]); }
 
 /**
  * func CFHTTPAuthenticationCopyDomains(_ auth: CFHTTPAuthentication) -> Unmanaged<CFArray>
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationCopyDomains(auth: CFHTTPAuthentication): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CFNetwork_d968214ecc684fb6", 993145526741095, undefined, [auth]); }
+export function CFHTTPAuthenticationCopyDomains(auth: CFHTTPAuthentication): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CFNetwork_0e503aef608672fa", 993145526741095, undefined, [auth]); }
 
 /**
  * func CFHTTPAuthenticationCopyMethod(_ auth: CFHTTPAuthentication) -> Unmanaged<CFString>
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationCopyMethod(auth: CFHTTPAuthentication): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 632422214648259, undefined, [auth]); }
+export function CFHTTPAuthenticationCopyMethod(auth: CFHTTPAuthentication): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 632422214648259, undefined, [auth]); }
 
 /**
  * func CFHTTPAuthenticationCopyRealm(_ auth: CFHTTPAuthentication) -> Unmanaged<CFString>
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationCopyRealm(auth: CFHTTPAuthentication): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 993288383555763, undefined, [auth]); }
+export function CFHTTPAuthenticationCopyRealm(auth: CFHTTPAuthentication): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 993288383555763, undefined, [auth]); }
 
 /**
  * func CFHTTPAuthenticationCreateFromResponse(_ alloc: CFAllocator?, _ response: CFHTTPMessage) -> Unmanaged<CFHTTPAuthentication>
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationCreateFromResponse(alloc: $SDK7, response: CFHTTPMessage): CFHTTPAuthentication { return callSDK<CFHTTPAuthentication>("CFNetwork_d968214ecc684fb6", 3558652625318506, undefined, [alloc, response]); }
+export function CFHTTPAuthenticationCreateFromResponse(alloc: $SDK7, response: CFHTTPMessage): CFHTTPAuthentication { return callSDK<CFHTTPAuthentication>("CFNetwork_0e503aef608672fa", 3558652625318506, undefined, [alloc, response]); }
 
 /**
  * func CFHTTPAuthenticationGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationGetTypeID(): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 2777350802316667, undefined, []); }
+export function CFHTTPAuthenticationGetTypeID(): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 2777350802316667, undefined, []); }
 
 /**
  * func CFHTTPAuthenticationIsValid(_ auth: CFHTTPAuthentication, _ error: UnsafeMutablePointer<CFStreamError>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationIsValid(auth: CFHTTPAuthentication, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 982668505553665, undefined, [auth, error]); }
+export function CFHTTPAuthenticationIsValid(auth: CFHTTPAuthentication, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 982668505553665, undefined, [auth, error]); }
 
 /**
  * func CFHTTPAuthenticationRequiresAccountDomain(_ auth: CFHTTPAuthentication) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationRequiresAccountDomain(auth: CFHTTPAuthentication): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 1089805519559964, undefined, [auth]); }
+export function CFHTTPAuthenticationRequiresAccountDomain(auth: CFHTTPAuthentication): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 1089805519559964, undefined, [auth]); }
 
 /**
  * func CFHTTPAuthenticationRequiresOrderedRequests(_ auth: CFHTTPAuthentication) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationRequiresOrderedRequests(auth: CFHTTPAuthentication): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 1108391694113305, undefined, [auth]); }
+export function CFHTTPAuthenticationRequiresOrderedRequests(auth: CFHTTPAuthentication): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 1108391694113305, undefined, [auth]); }
 
 /**
  * func CFHTTPAuthenticationRequiresUserNameAndPassword(_ auth: CFHTTPAuthentication) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPAuthenticationRequiresUserNameAndPassword(auth: CFHTTPAuthentication): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 3661355313449097, undefined, [auth]); }
+export function CFHTTPAuthenticationRequiresUserNameAndPassword(auth: CFHTTPAuthentication): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 3661355313449097, undefined, [auth]); }
 
 /**
  * func CFHTTPMessageAddAuthentication(_ request: CFHTTPMessage, _ authenticationFailureResponse: CFHTTPMessage?, _ username: CFString, _ password: CFString, _ authenticationScheme: CFString?, _ forProxy: Bool) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageAddAuthentication(request: CFHTTPMessage, authenticationFailureResponse: (CFHTTPMessage) | null, username: _CoreFoundation_CFString, password: _CoreFoundation_CFString, authenticationScheme: $SDK8, forProxy: boolean): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 3187559454706279, undefined, [request, authenticationFailureResponse, username, password, authenticationScheme, forProxy]); }
+export function CFHTTPMessageAddAuthentication(request: CFHTTPMessage, authenticationFailureResponse: (CFHTTPMessage) | null, username: _CoreFoundation_CFString, password: _CoreFoundation_CFString, authenticationScheme: $SDK8, forProxy: boolean): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 3187559454706279, undefined, [request, authenticationFailureResponse, username, password, authenticationScheme, forProxy]); }
 
 /**
  * func CFHTTPMessageAppendBytes(_ message: CFHTTPMessage, _ newBytes: UnsafePointer<UInt8>, _ numBytes: CFIndex) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageAppendBytes(message: CFHTTPMessage, newBytes: SDKHandle, numBytes: number): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 2622023273832111, undefined, [message, newBytes, numBytes]); }
+export function CFHTTPMessageAppendBytes(message: CFHTTPMessage, newBytes: SDKHandle, numBytes: number): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 2622023273832111, undefined, [message, newBytes, numBytes]); }
 
 /**
  * func CFHTTPMessageApplyCredentialDictionary(_ request: CFHTTPMessage, _ auth: CFHTTPAuthentication, _ dict: CFDictionary, _ error: UnsafeMutablePointer<CFStreamError>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageApplyCredentialDictionary(request: CFHTTPMessage, auth: CFHTTPAuthentication, dict: _CoreFoundation_CFDictionary, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 639494652102437, undefined, [request, auth, dict, error]); }
+export function CFHTTPMessageApplyCredentialDictionary(request: CFHTTPMessage, auth: CFHTTPAuthentication, dict: _CoreFoundation_CFDictionary, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 639494652102437, undefined, [request, auth, dict, error]); }
 
 /**
  * func CFHTTPMessageApplyCredentials(_ request: CFHTTPMessage, _ auth: CFHTTPAuthentication, _ username: CFString?, _ password: CFString?, _ error: UnsafeMutablePointer<CFStreamError>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageApplyCredentials(request: CFHTTPMessage, auth: CFHTTPAuthentication, username?: $SDK8, password?: $SDK8, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 309924516915683, undefined, [request, auth, username, password, error]); }
+export function CFHTTPMessageApplyCredentials(request: CFHTTPMessage, auth: CFHTTPAuthentication, username?: $SDK8, password?: $SDK8, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 309924516915683, undefined, [request, auth, username, password, error]); }
 
 /**
  * func CFHTTPMessageCopyAllHeaderFields(_ message: CFHTTPMessage) -> Unmanaged<CFDictionary>?
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCopyAllHeaderFields(message: CFHTTPMessage): $SDK9 { return callSDK<$SDK9>("CFNetwork_d968214ecc684fb6", 3512790060275157, undefined, [message]); }
+export function CFHTTPMessageCopyAllHeaderFields(message: CFHTTPMessage): $SDK9 { return callSDK<$SDK9>("CFNetwork_0e503aef608672fa", 3512790060275157, undefined, [message]); }
 
 /**
  * func CFHTTPMessageCopyBody(_ message: CFHTTPMessage) -> Unmanaged<CFData>?
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCopyBody(message: CFHTTPMessage): $SDK10 { return callSDK<$SDK10>("CFNetwork_d968214ecc684fb6", 1521770959351038, undefined, [message]); }
+export function CFHTTPMessageCopyBody(message: CFHTTPMessage): $SDK10 { return callSDK<$SDK10>("CFNetwork_0e503aef608672fa", 1521770959351038, undefined, [message]); }
 
 /**
  * func CFHTTPMessageCopyHeaderFieldValue(_ message: CFHTTPMessage, _ headerField: CFString) -> Unmanaged<CFString>?
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCopyHeaderFieldValue(message: CFHTTPMessage, headerField: _CoreFoundation_CFString): $SDK8 { return callSDK<$SDK8>("CFNetwork_d968214ecc684fb6", 3693650148547694, undefined, [message, headerField]); }
+export function CFHTTPMessageCopyHeaderFieldValue(message: CFHTTPMessage, headerField: _CoreFoundation_CFString): $SDK8 { return callSDK<$SDK8>("CFNetwork_0e503aef608672fa", 3693650148547694, undefined, [message, headerField]); }
 
 /**
  * func CFHTTPMessageCopyRequestMethod(_ request: CFHTTPMessage) -> Unmanaged<CFString>?
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCopyRequestMethod(request: CFHTTPMessage): $SDK8 { return callSDK<$SDK8>("CFNetwork_d968214ecc684fb6", 3725119656593385, undefined, [request]); }
+export function CFHTTPMessageCopyRequestMethod(request: CFHTTPMessage): $SDK8 { return callSDK<$SDK8>("CFNetwork_0e503aef608672fa", 3725119656593385, undefined, [request]); }
 
 /**
  * func CFHTTPMessageCopyRequestURL(_ request: CFHTTPMessage) -> Unmanaged<CFURL>?
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCopyRequestURL(request: CFHTTPMessage): (_CoreFoundation_CFURL) | null { return callSDK<(_CoreFoundation_CFURL) | null>("CFNetwork_d968214ecc684fb6", 1529311844366100, undefined, [request]); }
+export function CFHTTPMessageCopyRequestURL(request: CFHTTPMessage): (_CoreFoundation_CFURL) | null { return callSDK<(_CoreFoundation_CFURL) | null>("CFNetwork_0e503aef608672fa", 1529311844366100, undefined, [request]); }
 
 /**
  * func CFHTTPMessageCopyResponseStatusLine(_ response: CFHTTPMessage) -> Unmanaged<CFString>?
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCopyResponseStatusLine(response: CFHTTPMessage): $SDK8 { return callSDK<$SDK8>("CFNetwork_d968214ecc684fb6", 2685061093604836, undefined, [response]); }
+export function CFHTTPMessageCopyResponseStatusLine(response: CFHTTPMessage): $SDK8 { return callSDK<$SDK8>("CFNetwork_0e503aef608672fa", 2685061093604836, undefined, [response]); }
 
 /**
  * func CFHTTPMessageCopySerializedMessage(_ message: CFHTTPMessage) -> Unmanaged<CFData>?
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCopySerializedMessage(message: CFHTTPMessage): $SDK10 { return callSDK<$SDK10>("CFNetwork_d968214ecc684fb6", 1874370593330400, undefined, [message]); }
+export function CFHTTPMessageCopySerializedMessage(message: CFHTTPMessage): $SDK10 { return callSDK<$SDK10>("CFNetwork_0e503aef608672fa", 1874370593330400, undefined, [message]); }
 
 /**
  * func CFHTTPMessageCopyVersion(_ message: CFHTTPMessage) -> Unmanaged<CFString>
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCopyVersion(message: CFHTTPMessage): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1974993190451120, undefined, [message]); }
+export function CFHTTPMessageCopyVersion(message: CFHTTPMessage): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1974993190451120, undefined, [message]); }
 
 /**
  * func CFHTTPMessageCreateCopy(_ alloc: CFAllocator?, _ message: CFHTTPMessage) -> Unmanaged<CFHTTPMessage>
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCreateCopy(alloc: $SDK7, message: CFHTTPMessage): CFHTTPMessage { return callSDK<CFHTTPMessage>("CFNetwork_d968214ecc684fb6", 2660627096602203, undefined, [alloc, message]); }
+export function CFHTTPMessageCreateCopy(alloc: $SDK7, message: CFHTTPMessage): CFHTTPMessage { return callSDK<CFHTTPMessage>("CFNetwork_0e503aef608672fa", 2660627096602203, undefined, [alloc, message]); }
 
 /**
  * func CFHTTPMessageCreateEmpty(_ alloc: CFAllocator?, _ isRequest: Bool) -> Unmanaged<CFHTTPMessage>
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCreateEmpty(alloc: $SDK7, isRequest: boolean): CFHTTPMessage { return callSDK<CFHTTPMessage>("CFNetwork_d968214ecc684fb6", 1989563177601276, undefined, [alloc, isRequest]); }
+export function CFHTTPMessageCreateEmpty(alloc: $SDK7, isRequest: boolean): CFHTTPMessage { return callSDK<CFHTTPMessage>("CFNetwork_0e503aef608672fa", 1989563177601276, undefined, [alloc, isRequest]); }
 
 /**
  * func CFHTTPMessageCreateRequest(_ alloc: CFAllocator?, _ requestMethod: CFString, _ url: CFURL, _ httpVersion: CFString) -> Unmanaged<CFHTTPMessage>
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCreateRequest(alloc: $SDK7, requestMethod: _CoreFoundation_CFString, url: _CoreFoundation_CFURL, httpVersion: _CoreFoundation_CFString): CFHTTPMessage { return callSDK<CFHTTPMessage>("CFNetwork_d968214ecc684fb6", 3498131962215242, undefined, [alloc, requestMethod, url, httpVersion]); }
+export function CFHTTPMessageCreateRequest(alloc: $SDK7, requestMethod: _CoreFoundation_CFString, url: _CoreFoundation_CFURL, httpVersion: _CoreFoundation_CFString): CFHTTPMessage { return callSDK<CFHTTPMessage>("CFNetwork_0e503aef608672fa", 3498131962215242, undefined, [alloc, requestMethod, url, httpVersion]); }
 
 /**
  * func CFHTTPMessageCreateResponse(_ alloc: CFAllocator?, _ statusCode: CFIndex, _ statusDescription: CFString?, _ httpVersion: CFString) -> Unmanaged<CFHTTPMessage>
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageCreateResponse(alloc: $SDK7, statusCode: number, statusDescription: $SDK8, httpVersion: _CoreFoundation_CFString): CFHTTPMessage { return callSDK<CFHTTPMessage>("CFNetwork_d968214ecc684fb6", 3084558658051540, undefined, [alloc, statusCode, statusDescription, httpVersion]); }
+export function CFHTTPMessageCreateResponse(alloc: $SDK7, statusCode: number, statusDescription: $SDK8, httpVersion: _CoreFoundation_CFString): CFHTTPMessage { return callSDK<CFHTTPMessage>("CFNetwork_0e503aef608672fa", 3084558658051540, undefined, [alloc, statusCode, statusDescription, httpVersion]); }
 
 /**
  * func CFHTTPMessageGetResponseStatusCode(_ response: CFHTTPMessage) -> CFIndex
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageGetResponseStatusCode(response: CFHTTPMessage): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 4415440949480429, undefined, [response]); }
+export function CFHTTPMessageGetResponseStatusCode(response: CFHTTPMessage): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 4415440949480429, undefined, [response]); }
 
 /**
  * func CFHTTPMessageGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageGetTypeID(): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 927001476207345, undefined, []); }
+export function CFHTTPMessageGetTypeID(): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 927001476207345, undefined, []); }
 
 /**
  * func CFHTTPMessageIsHeaderComplete(_ message: CFHTTPMessage) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageIsHeaderComplete(message: CFHTTPMessage): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 2257399752209973, undefined, [message]); }
+export function CFHTTPMessageIsHeaderComplete(message: CFHTTPMessage): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 2257399752209973, undefined, [message]); }
 
 /**
  * func CFHTTPMessageIsRequest(_ message: CFHTTPMessage) -> Bool
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageIsRequest(message: CFHTTPMessage): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 538276982336296, undefined, [message]); }
+export function CFHTTPMessageIsRequest(message: CFHTTPMessage): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 538276982336296, undefined, [message]); }
 
 /**
  * func CFHTTPMessageSetBody(_ message: CFHTTPMessage, _ bodyData: CFData)
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageSetBody(message: CFHTTPMessage, bodyData: _CoreFoundation_CFData): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 511649925863252, undefined, [message, bodyData]); }
+export function CFHTTPMessageSetBody(message: CFHTTPMessage, bodyData: _CoreFoundation_CFData): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 511649925863252, undefined, [message, bodyData]); }
 
 /**
  * func CFHTTPMessageSetHeaderFieldValue(_ message: CFHTTPMessage, _ headerField: CFString, _ value: CFString?)
  * @availability iOS 2.0+
  */
-export function CFHTTPMessageSetHeaderFieldValue(message: CFHTTPMessage, headerField: _CoreFoundation_CFString, value?: $SDK8): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 1943129412639087, undefined, [message, headerField, value]); }
+export function CFHTTPMessageSetHeaderFieldValue(message: CFHTTPMessage, headerField: _CoreFoundation_CFString, value?: $SDK8): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 1943129412639087, undefined, [message, headerField, value]); }
 
 /**
  * func CFHostCancelInfoResolution(_ theHost: CFHost, _ info: CFHostInfoType)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostCancelInfoResolution(theHost: CFHost, info: CFHostInfoType): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 4018977823340144, undefined, [theHost, info]); }
+export function CFHostCancelInfoResolution(theHost: CFHost, info: CFHostInfoType): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 4018977823340144, undefined, [theHost, info]); }
 
 /**
  * func CFHostCreateCopy(_ alloc: CFAllocator?, _ host: CFHost) -> Unmanaged<CFHost>
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostCreateCopy(alloc: $SDK7, host: CFHost): CFHost { return callSDK<CFHost>("CFNetwork_d968214ecc684fb6", 355505478891158, undefined, [alloc, host]); }
+export function CFHostCreateCopy(alloc: $SDK7, host: CFHost): CFHost { return callSDK<CFHost>("CFNetwork_0e503aef608672fa", 355505478891158, undefined, [alloc, host]); }
 
 /**
  * func CFHostCreateWithAddress(_ allocator: CFAllocator?, _ addr: CFData) -> Unmanaged<CFHost>
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostCreateWithAddress(allocator: $SDK7, addr: _CoreFoundation_CFData): CFHost { return callSDK<CFHost>("CFNetwork_d968214ecc684fb6", 320130353449463, undefined, [allocator, addr]); }
+export function CFHostCreateWithAddress(allocator: $SDK7, addr: _CoreFoundation_CFData): CFHost { return callSDK<CFHost>("CFNetwork_0e503aef608672fa", 320130353449463, undefined, [allocator, addr]); }
 
 /**
  * func CFHostCreateWithName(_ allocator: CFAllocator?, _ hostname: CFString) -> Unmanaged<CFHost>
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostCreateWithName(allocator: $SDK7, hostname: _CoreFoundation_CFString): CFHost { return callSDK<CFHost>("CFNetwork_d968214ecc684fb6", 4028011463843640, undefined, [allocator, hostname]); }
+export function CFHostCreateWithName(allocator: $SDK7, hostname: _CoreFoundation_CFString): CFHost { return callSDK<CFHost>("CFNetwork_0e503aef608672fa", 4028011463843640, undefined, [allocator, hostname]); }
 
 /**
  * func CFHostGetAddressing(_ theHost: CFHost, _ hasBeenResolved: UnsafeMutablePointer<DarwinBoolean>?) -> Unmanaged<CFArray>?
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostGetAddressing(theHost: CFHost): { $ret: $SDK12; $out: { "hasBeenResolved": boolean } } { return callSDK<{ $ret: $SDK12; $out: { "hasBeenResolved": boolean } }>("CFNetwork_d968214ecc684fb6", 3810320821020752, undefined, [theHost, null]); }
+export function CFHostGetAddressing(theHost: CFHost): { $ret: $SDK12; $out: { "hasBeenResolved": boolean } } { return callSDK<{ $ret: $SDK12; $out: { "hasBeenResolved": boolean } }>("CFNetwork_0e503aef608672fa", 3810320821020752, undefined, [theHost, null]); }
 
 /**
  * func CFHostGetNames(_ theHost: CFHost, _ hasBeenResolved: UnsafeMutablePointer<DarwinBoolean>?) -> Unmanaged<CFArray>?
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostGetNames(theHost: CFHost): { $ret: $SDK12; $out: { "hasBeenResolved": boolean } } { return callSDK<{ $ret: $SDK12; $out: { "hasBeenResolved": boolean } }>("CFNetwork_d968214ecc684fb6", 4104819917596285, undefined, [theHost, null]); }
+export function CFHostGetNames(theHost: CFHost): { $ret: $SDK12; $out: { "hasBeenResolved": boolean } } { return callSDK<{ $ret: $SDK12; $out: { "hasBeenResolved": boolean } }>("CFNetwork_0e503aef608672fa", 4104819917596285, undefined, [theHost, null]); }
 
 /**
  * func CFHostGetReachability(_ theHost: CFHost, _ hasBeenResolved: UnsafeMutablePointer<DarwinBoolean>?) -> Unmanaged<CFData>?
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostGetReachability(theHost: CFHost): { $ret: $SDK10; $out: { "hasBeenResolved": boolean } } { return callSDK<{ $ret: $SDK10; $out: { "hasBeenResolved": boolean } }>("CFNetwork_d968214ecc684fb6", 3507052299451336, undefined, [theHost, null]); }
+export function CFHostGetReachability(theHost: CFHost): { $ret: $SDK10; $out: { "hasBeenResolved": boolean } } { return callSDK<{ $ret: $SDK10; $out: { "hasBeenResolved": boolean } }>("CFNetwork_0e503aef608672fa", 3507052299451336, undefined, [theHost, null]); }
 
 /**
  * func CFHostGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostGetTypeID(): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 3624498722498974, undefined, []); }
+export function CFHostGetTypeID(): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 3624498722498974, undefined, []); }
 
 /**
  * func CFHostScheduleWithRunLoop(_ theHost: CFHost, _ runLoop: CFRunLoop, _ runLoopMode: CFString)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostScheduleWithRunLoop(theHost: CFHost, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 893058202166494, undefined, [theHost, runLoop, runLoopMode]); }
+export function CFHostScheduleWithRunLoop(theHost: CFHost, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 893058202166494, undefined, [theHost, runLoop, runLoopMode]); }
 
 /**
  * func CFHostStartInfoResolution(_ theHost: CFHost, _ info: CFHostInfoType, _ error: UnsafeMutablePointer<CFStreamError>?) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostStartInfoResolution(theHost: CFHost, info: CFHostInfoType, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 4216581178417998, undefined, [theHost, info, error]); }
+export function CFHostStartInfoResolution(theHost: CFHost, info: CFHostInfoType, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 4216581178417998, undefined, [theHost, info, error]); }
 
 /**
  * func CFHostUnscheduleFromRunLoop(_ theHost: CFHost, _ runLoop: CFRunLoop, _ runLoopMode: CFString)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFHostUnscheduleFromRunLoop(theHost: CFHost, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 671271243259582, undefined, [theHost, runLoop, runLoopMode]); }
+export function CFHostUnscheduleFromRunLoop(theHost: CFHost, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 671271243259582, undefined, [theHost, runLoop, runLoopMode]); }
 
 /**
  * func CFNetDiagnosticCreateWithStreams(_ alloc: CFAllocator?, _ readStream: CFReadStream?, _ writeStream: CFWriteStream?) -> Unmanaged<CFNetDiagnostic>
  * @availability iOS 2.0+
  * @deprecated iOS 11.0
  */
-export function CFNetDiagnosticCreateWithStreams(alloc?: $SDK7, readStream?: (_CoreFoundation_CFReadStream) | null, writeStream?: (_CoreFoundation_CFWriteStream) | null): CFNetDiagnostic { return callSDK<CFNetDiagnostic>("CFNetwork_d968214ecc684fb6", 4021091375143989, undefined, [alloc, readStream, writeStream]); }
+export function CFNetDiagnosticCreateWithStreams(alloc?: $SDK7, readStream?: (_CoreFoundation_CFReadStream) | null, writeStream?: (_CoreFoundation_CFWriteStream) | null): CFNetDiagnostic { return callSDK<CFNetDiagnostic>("CFNetwork_0e503aef608672fa", 4021091375143989, undefined, [alloc, readStream, writeStream]); }
 
 /**
  * func CFNetDiagnosticCreateWithURL(_ alloc: CFAllocator, _ url: CFURL) -> Unmanaged<CFNetDiagnostic>
  * @availability iOS 2.0+
  * @deprecated iOS 11.0
  */
-export function CFNetDiagnosticCreateWithURL(alloc: _CoreFoundation_CFAllocator, url: _CoreFoundation_CFURL): CFNetDiagnostic { return callSDK<CFNetDiagnostic>("CFNetwork_d968214ecc684fb6", 3452020635597134, undefined, [alloc, url]); }
+export function CFNetDiagnosticCreateWithURL(alloc: _CoreFoundation_CFAllocator, url: _CoreFoundation_CFURL): CFNetDiagnostic { return callSDK<CFNetDiagnostic>("CFNetwork_0e503aef608672fa", 3452020635597134, undefined, [alloc, url]); }
 
 /**
  * func CFNetDiagnosticDiagnoseProblemInteractively(_ details: CFNetDiagnostic) -> CFNetDiagnosticStatus
  * @availability iOS 2.0+
  * @deprecated iOS 11.0
  */
-export function CFNetDiagnosticDiagnoseProblemInteractively(details: CFNetDiagnostic): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 3655454299293666, undefined, [details]); }
+export function CFNetDiagnosticDiagnoseProblemInteractively(details: CFNetDiagnostic): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 3655454299293666, undefined, [details]); }
 
 /**
  * func CFNetDiagnosticSetName(_ details: CFNetDiagnostic, _ name: CFString)
  * @availability iOS 2.0+
  * @deprecated iOS 11.0
  */
-export function CFNetDiagnosticSetName(details: CFNetDiagnostic, name: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 2916031820622574, undefined, [details, name]); }
+export function CFNetDiagnosticSetName(details: CFNetDiagnostic, name: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 2916031820622574, undefined, [details, name]); }
 
 /**
  * func CFNetServiceBrowserGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceBrowserGetTypeID(): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 4489239069020901, undefined, []); }
+export function CFNetServiceBrowserGetTypeID(): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 4489239069020901, undefined, []); }
 
 /**
  * func CFNetServiceBrowserInvalidate(_ browser: CFNetServiceBrowser)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceBrowserInvalidate(browser: CFNetServiceBrowser): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 674335792021378, undefined, [browser]); }
+export function CFNetServiceBrowserInvalidate(browser: CFNetServiceBrowser): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 674335792021378, undefined, [browser]); }
 
 /**
  * func CFNetServiceBrowserScheduleWithRunLoop(_ browser: CFNetServiceBrowser, _ runLoop: CFRunLoop, _ runLoopMode: CFString)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceBrowserScheduleWithRunLoop(browser: CFNetServiceBrowser, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 4057500530104311, undefined, [browser, runLoop, runLoopMode]); }
+export function CFNetServiceBrowserScheduleWithRunLoop(browser: CFNetServiceBrowser, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 4057500530104311, undefined, [browser, runLoop, runLoopMode]); }
 
 /**
  * func CFNetServiceBrowserSearchForDomains(_ browser: CFNetServiceBrowser, _ registrationDomains: Bool, _ error: UnsafeMutablePointer<CFStreamError>?) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceBrowserSearchForDomains(browser: CFNetServiceBrowser, registrationDomains: boolean, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 3241497118936905, undefined, [browser, registrationDomains, error]); }
+export function CFNetServiceBrowserSearchForDomains(browser: CFNetServiceBrowser, registrationDomains: boolean, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 3241497118936905, undefined, [browser, registrationDomains, error]); }
 
 /**
  * func CFNetServiceBrowserSearchForServices(_ browser: CFNetServiceBrowser, _ domain: CFString, _ serviceType: CFString, _ error: UnsafeMutablePointer<CFStreamError>?) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceBrowserSearchForServices(browser: CFNetServiceBrowser, domain: _CoreFoundation_CFString, serviceType: _CoreFoundation_CFString, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 2768946752617057, undefined, [browser, domain, serviceType, error]); }
+export function CFNetServiceBrowserSearchForServices(browser: CFNetServiceBrowser, domain: _CoreFoundation_CFString, serviceType: _CoreFoundation_CFString, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 2768946752617057, undefined, [browser, domain, serviceType, error]); }
 
 /**
  * func CFNetServiceBrowserStopSearch(_ browser: CFNetServiceBrowser, _ error: UnsafeMutablePointer<CFStreamError>?)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceBrowserStopSearch(browser: CFNetServiceBrowser, error?: (SDKHandle) | null): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 3545475720836365, undefined, [browser, error]); }
+export function CFNetServiceBrowserStopSearch(browser: CFNetServiceBrowser, error?: (SDKHandle) | null): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 3545475720836365, undefined, [browser, error]); }
 
 /**
  * func CFNetServiceBrowserUnscheduleFromRunLoop(_ browser: CFNetServiceBrowser, _ runLoop: CFRunLoop, _ runLoopMode: CFString)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceBrowserUnscheduleFromRunLoop(browser: CFNetServiceBrowser, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 4053171412953394, undefined, [browser, runLoop, runLoopMode]); }
+export function CFNetServiceBrowserUnscheduleFromRunLoop(browser: CFNetServiceBrowser, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 4053171412953394, undefined, [browser, runLoop, runLoopMode]); }
 
 /**
  * func CFNetServiceCancel(_ theService: CFNetService)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceCancel(theService: CFNetService): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 2165436891362143, undefined, [theService]); }
+export function CFNetServiceCancel(theService: CFNetService): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 2165436891362143, undefined, [theService]); }
 
 /**
  * func CFNetServiceCreate(_ alloc: CFAllocator?, _ domain: CFString, _ serviceType: CFString, _ name: CFString, _ port: Int32) -> Unmanaged<CFNetService>
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceCreate(alloc: $SDK7, domain: _CoreFoundation_CFString, serviceType: _CoreFoundation_CFString, name: _CoreFoundation_CFString, port: number): CFNetService { return callSDK<CFNetService>("CFNetwork_d968214ecc684fb6", 2103930995486899, undefined, [alloc, domain, serviceType, name, port]); }
+export function CFNetServiceCreate(alloc: $SDK7, domain: _CoreFoundation_CFString, serviceType: _CoreFoundation_CFString, name: _CoreFoundation_CFString, port: number): CFNetService { return callSDK<CFNetService>("CFNetwork_0e503aef608672fa", 2103930995486899, undefined, [alloc, domain, serviceType, name, port]); }
 
 /**
  * func CFNetServiceCreateCopy(_ alloc: CFAllocator?, _ service: CFNetService) -> Unmanaged<CFNetService>
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceCreateCopy(alloc: $SDK7, service: CFNetService): CFNetService { return callSDK<CFNetService>("CFNetwork_d968214ecc684fb6", 1648219844349705, undefined, [alloc, service]); }
+export function CFNetServiceCreateCopy(alloc: $SDK7, service: CFNetService): CFNetService { return callSDK<CFNetService>("CFNetwork_0e503aef608672fa", 1648219844349705, undefined, [alloc, service]); }
 
 /**
  * func CFNetServiceCreateDictionaryWithTXTData(_ alloc: CFAllocator?, _ txtRecord: CFData) -> Unmanaged<CFDictionary>?
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceCreateDictionaryWithTXTData(alloc: $SDK7, txtRecord: _CoreFoundation_CFData): $SDK9 { return callSDK<$SDK9>("CFNetwork_d968214ecc684fb6", 1397855870075740, undefined, [alloc, txtRecord]); }
+export function CFNetServiceCreateDictionaryWithTXTData(alloc: $SDK7, txtRecord: _CoreFoundation_CFData): $SDK9 { return callSDK<$SDK9>("CFNetwork_0e503aef608672fa", 1397855870075740, undefined, [alloc, txtRecord]); }
 
 /**
  * func CFNetServiceCreateTXTDataWithDictionary(_ alloc: CFAllocator?, _ keyValuePairs: CFDictionary) -> Unmanaged<CFData>?
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceCreateTXTDataWithDictionary(alloc: $SDK7, keyValuePairs: _CoreFoundation_CFDictionary): $SDK10 { return callSDK<$SDK10>("CFNetwork_d968214ecc684fb6", 1309403448571747, undefined, [alloc, keyValuePairs]); }
+export function CFNetServiceCreateTXTDataWithDictionary(alloc: $SDK7, keyValuePairs: _CoreFoundation_CFDictionary): $SDK10 { return callSDK<$SDK10>("CFNetwork_0e503aef608672fa", 1309403448571747, undefined, [alloc, keyValuePairs]); }
 
 /**
  * func CFNetServiceGetAddressing(_ theService: CFNetService) -> Unmanaged<CFArray>?
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceGetAddressing(theService: CFNetService): $SDK12 { return callSDK<$SDK12>("CFNetwork_d968214ecc684fb6", 2637773586062018, undefined, [theService]); }
+export function CFNetServiceGetAddressing(theService: CFNetService): $SDK12 { return callSDK<$SDK12>("CFNetwork_0e503aef608672fa", 2637773586062018, undefined, [theService]); }
 
 /**
  * func CFNetServiceGetDomain(_ theService: CFNetService) -> Unmanaged<CFString>
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceGetDomain(theService: CFNetService): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2689762225266683, undefined, [theService]); }
+export function CFNetServiceGetDomain(theService: CFNetService): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2689762225266683, undefined, [theService]); }
 
 /**
  * func CFNetServiceGetName(_ theService: CFNetService) -> Unmanaged<CFString>
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceGetName(theService: CFNetService): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 988521000742932, undefined, [theService]); }
+export function CFNetServiceGetName(theService: CFNetService): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 988521000742932, undefined, [theService]); }
 
 /**
  * func CFNetServiceGetPortNumber(_ theService: CFNetService) -> Int32
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceGetPortNumber(theService: CFNetService): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 2810355453915775, undefined, [theService]); }
+export function CFNetServiceGetPortNumber(theService: CFNetService): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 2810355453915775, undefined, [theService]); }
 
 /**
  * func CFNetServiceGetTXTData(_ theService: CFNetService) -> Unmanaged<CFData>?
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceGetTXTData(theService: CFNetService): $SDK10 { return callSDK<$SDK10>("CFNetwork_d968214ecc684fb6", 3537068368709869, undefined, [theService]); }
+export function CFNetServiceGetTXTData(theService: CFNetService): $SDK10 { return callSDK<$SDK10>("CFNetwork_0e503aef608672fa", 3537068368709869, undefined, [theService]); }
 
 /**
  * func CFNetServiceGetTargetHost(_ theService: CFNetService) -> Unmanaged<CFString>?
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceGetTargetHost(theService: CFNetService): $SDK8 { return callSDK<$SDK8>("CFNetwork_d968214ecc684fb6", 3773117248860120, undefined, [theService]); }
+export function CFNetServiceGetTargetHost(theService: CFNetService): $SDK8 { return callSDK<$SDK8>("CFNetwork_0e503aef608672fa", 3773117248860120, undefined, [theService]); }
 
 /**
  * func CFNetServiceGetType(_ theService: CFNetService) -> Unmanaged<CFString>
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceGetType(theService: CFNetService): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2013531471466695, undefined, [theService]); }
+export function CFNetServiceGetType(theService: CFNetService): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2013531471466695, undefined, [theService]); }
 
 /**
  * func CFNetServiceGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceGetTypeID(): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 3768895327391771, undefined, []); }
+export function CFNetServiceGetTypeID(): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 3768895327391771, undefined, []); }
 
 /**
  * func CFNetServiceMonitorGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceMonitorGetTypeID(): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 2559327789127069, undefined, []); }
+export function CFNetServiceMonitorGetTypeID(): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 2559327789127069, undefined, []); }
 
 /**
  * func CFNetServiceMonitorInvalidate(_ monitor: CFNetServiceMonitor)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceMonitorInvalidate(monitor: CFNetServiceMonitor): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 720883679064094, undefined, [monitor]); }
+export function CFNetServiceMonitorInvalidate(monitor: CFNetServiceMonitor): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 720883679064094, undefined, [monitor]); }
 
 /**
  * func CFNetServiceMonitorScheduleWithRunLoop(_ monitor: CFNetServiceMonitor, _ runLoop: CFRunLoop, _ runLoopMode: CFString)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceMonitorScheduleWithRunLoop(monitor: CFNetServiceMonitor, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 2847257111138595, undefined, [monitor, runLoop, runLoopMode]); }
+export function CFNetServiceMonitorScheduleWithRunLoop(monitor: CFNetServiceMonitor, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 2847257111138595, undefined, [monitor, runLoop, runLoopMode]); }
 
 /**
  * func CFNetServiceMonitorStart(_ monitor: CFNetServiceMonitor, _ recordType: CFNetServiceMonitorType, _ error: UnsafeMutablePointer<CFStreamError>?) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceMonitorStart(monitor: CFNetServiceMonitor, recordType: CFNetServiceMonitorType, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 2467968661308117, undefined, [monitor, recordType, error]); }
+export function CFNetServiceMonitorStart(monitor: CFNetServiceMonitor, recordType: CFNetServiceMonitorType, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 2467968661308117, undefined, [monitor, recordType, error]); }
 
 /**
  * func CFNetServiceMonitorStop(_ monitor: CFNetServiceMonitor, _ error: UnsafeMutablePointer<CFStreamError>?)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceMonitorStop(monitor: CFNetServiceMonitor, error?: (SDKHandle) | null): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 2061263440661760, undefined, [monitor, error]); }
+export function CFNetServiceMonitorStop(monitor: CFNetServiceMonitor, error?: (SDKHandle) | null): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 2061263440661760, undefined, [monitor, error]); }
 
 /**
  * func CFNetServiceMonitorUnscheduleFromRunLoop(_ monitor: CFNetServiceMonitor, _ runLoop: CFRunLoop, _ runLoopMode: CFString)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceMonitorUnscheduleFromRunLoop(monitor: CFNetServiceMonitor, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 3627279933950317, undefined, [monitor, runLoop, runLoopMode]); }
+export function CFNetServiceMonitorUnscheduleFromRunLoop(monitor: CFNetServiceMonitor, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 3627279933950317, undefined, [monitor, runLoop, runLoopMode]); }
 
 /**
  * func CFNetServiceRegisterWithOptions(_ theService: CFNetService, _ options: CFOptionFlags, _ error: UnsafeMutablePointer<CFStreamError>?) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceRegisterWithOptions(theService: CFNetService, options: number, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 1209426955060037, undefined, [theService, options, error]); }
+export function CFNetServiceRegisterWithOptions(theService: CFNetService, options: number, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 1209426955060037, undefined, [theService, options, error]); }
 
 /**
  * func CFNetServiceResolveWithTimeout(_ theService: CFNetService, _ timeout: CFTimeInterval, _ error: UnsafeMutablePointer<CFStreamError>?) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceResolveWithTimeout(theService: CFNetService, timeout: number, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 1491070148875537, undefined, [theService, timeout, error]); }
+export function CFNetServiceResolveWithTimeout(theService: CFNetService, timeout: number, error?: (SDKHandle) | null): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 1491070148875537, undefined, [theService, timeout, error]); }
 
 /**
  * func CFNetServiceScheduleWithRunLoop(_ theService: CFNetService, _ runLoop: CFRunLoop, _ runLoopMode: CFString)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceScheduleWithRunLoop(theService: CFNetService, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 465426577848442, undefined, [theService, runLoop, runLoopMode]); }
+export function CFNetServiceScheduleWithRunLoop(theService: CFNetService, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 465426577848442, undefined, [theService, runLoop, runLoopMode]); }
 
 /**
  * func CFNetServiceSetTXTData(_ theService: CFNetService, _ txtRecord: CFData) -> Bool
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceSetTXTData(theService: CFNetService, txtRecord: _CoreFoundation_CFData): boolean { return callSDK<boolean>("CFNetwork_d968214ecc684fb6", 4291932073958826, undefined, [theService, txtRecord]); }
+export function CFNetServiceSetTXTData(theService: CFNetService, txtRecord: _CoreFoundation_CFData): boolean { return callSDK<boolean>("CFNetwork_0e503aef608672fa", 4291932073958826, undefined, [theService, txtRecord]); }
 
 /**
  * func CFNetServiceUnscheduleFromRunLoop(_ theService: CFNetService, _ runLoop: CFRunLoop, _ runLoopMode: CFString)
  * @availability iOS 2.0+
  * @deprecated iOS 100000.0
  */
-export function CFNetServiceUnscheduleFromRunLoop(theService: CFNetService, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_d968214ecc684fb6", 94616570181437, undefined, [theService, runLoop, runLoopMode]); }
+export function CFNetServiceUnscheduleFromRunLoop(theService: CFNetService, runLoop: _CoreFoundation_CFRunLoop, runLoopMode: _CoreFoundation_CFString): void { return callSDK<void>("CFNetwork_0e503aef608672fa", 94616570181437, undefined, [theService, runLoop, runLoopMode]); }
 
 /**
  * func CFNetworkCopyProxiesForAutoConfigurationScript(_ proxyAutoConfigurationScript: CFString, _ targetURL: CFURL, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Unmanaged<CFArray>?
  * @availability iOS 2.0+
  */
-export function CFNetworkCopyProxiesForAutoConfigurationScript(proxyAutoConfigurationScript: _CoreFoundation_CFString, targetURL: _CoreFoundation_CFURL): { $ret: $SDK12; $out: { "error": (_CoreFoundation_CFError) | null } } { return callSDK<{ $ret: $SDK12; $out: { "error": (_CoreFoundation_CFError) | null } }>("CFNetwork_d968214ecc684fb6", 2122783417155500, undefined, [proxyAutoConfigurationScript, targetURL, null]); }
+export function CFNetworkCopyProxiesForAutoConfigurationScript(proxyAutoConfigurationScript: _CoreFoundation_CFString, targetURL: _CoreFoundation_CFURL): { $ret: $SDK12; $out: { "error": (_CoreFoundation_CFError) | null } } { return callSDK<{ $ret: $SDK12; $out: { "error": (_CoreFoundation_CFError) | null } }>("CFNetwork_0e503aef608672fa", 2122783417155500, undefined, [proxyAutoConfigurationScript, targetURL, null]); }
 
 /**
  * func CFNetworkCopyProxiesForURL(_ url: CFURL, _ proxySettings: CFDictionary) -> Unmanaged<CFArray>
  * @availability iOS 2.0+
  */
-export function CFNetworkCopyProxiesForURL(url: _CoreFoundation_CFURL, proxySettings: _CoreFoundation_CFDictionary): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CFNetwork_d968214ecc684fb6", 3659496151425557, undefined, [url, proxySettings]); }
+export function CFNetworkCopyProxiesForURL(url: _CoreFoundation_CFURL, proxySettings: _CoreFoundation_CFDictionary): _CoreFoundation_CFArray { return callSDK<_CoreFoundation_CFArray>("CFNetwork_0e503aef608672fa", 3659496151425557, undefined, [url, proxySettings]); }
 
 /**
  * func CFNetworkCopySystemProxySettings() -> Unmanaged<CFDictionary>?
  * @availability iOS 2.0+
  */
-export function CFNetworkCopySystemProxySettings(): $SDK9 { return callSDK<$SDK9>("CFNetwork_d968214ecc684fb6", 3628644150185223, undefined, []); }
+export function CFNetworkCopySystemProxySettings(): $SDK9 { return callSDK<$SDK9>("CFNetwork_0e503aef608672fa", 3628644150185223, undefined, []); }
 
 /**
  * func CFReadStreamCreateForHTTPRequest(_ alloc: CFAllocator?, _ request: CFHTTPMessage) -> Unmanaged<CFReadStream>
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function CFReadStreamCreateForHTTPRequest(alloc: $SDK7, request: CFHTTPMessage): _CoreFoundation_CFReadStream { return callSDK<_CoreFoundation_CFReadStream>("CFNetwork_d968214ecc684fb6", 1033268520286474, undefined, [alloc, request]); }
+export function CFReadStreamCreateForHTTPRequest(alloc: $SDK7, request: CFHTTPMessage): _CoreFoundation_CFReadStream { return callSDK<_CoreFoundation_CFReadStream>("CFNetwork_0e503aef608672fa", 1033268520286474, undefined, [alloc, request]); }
 
 /**
  * func CFReadStreamCreateForStreamedHTTPRequest(_ alloc: CFAllocator?, _ requestHeaders: CFHTTPMessage, _ requestBody: CFReadStream) -> Unmanaged<CFReadStream>
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function CFReadStreamCreateForStreamedHTTPRequest(alloc: $SDK7, requestHeaders: CFHTTPMessage, requestBody: _CoreFoundation_CFReadStream): _CoreFoundation_CFReadStream { return callSDK<_CoreFoundation_CFReadStream>("CFNetwork_d968214ecc684fb6", 3606164541759657, undefined, [alloc, requestHeaders, requestBody]); }
+export function CFReadStreamCreateForStreamedHTTPRequest(alloc: $SDK7, requestHeaders: CFHTTPMessage, requestBody: _CoreFoundation_CFReadStream): _CoreFoundation_CFReadStream { return callSDK<_CoreFoundation_CFReadStream>("CFNetwork_0e503aef608672fa", 3606164541759657, undefined, [alloc, requestHeaders, requestBody]); }
 
 /**
  * func CFReadStreamCreateWithFTPURL(_ alloc: CFAllocator?, _ ftpURL: CFURL) -> Unmanaged<CFReadStream>
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function CFReadStreamCreateWithFTPURL(alloc: $SDK7, ftpURL: _CoreFoundation_CFURL): _CoreFoundation_CFReadStream { return callSDK<_CoreFoundation_CFReadStream>("CFNetwork_d968214ecc684fb6", 3867378810520247, undefined, [alloc, ftpURL]); }
+export function CFReadStreamCreateWithFTPURL(alloc: $SDK7, ftpURL: _CoreFoundation_CFURL): _CoreFoundation_CFReadStream { return callSDK<_CoreFoundation_CFReadStream>("CFNetwork_0e503aef608672fa", 3867378810520247, undefined, [alloc, ftpURL]); }
 
 /** func CFSocketStreamSOCKSGetError(_ error: UnsafePointer<CFStreamError>) -> Int32 */
-export function CFSocketStreamSOCKSGetError(error: SDKHandle): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 1397895604459196, undefined, [error]); }
+export function CFSocketStreamSOCKSGetError(error: SDKHandle): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 1397895604459196, undefined, [error]); }
 
 /** func CFSocketStreamSOCKSGetErrorSubdomain(_ error: UnsafePointer<CFStreamError>) -> Int32 */
-export function CFSocketStreamSOCKSGetErrorSubdomain(error: SDKHandle): number { return callSDK<number>("CFNetwork_d968214ecc684fb6", 3355377745301011, undefined, [error]); }
+export function CFSocketStreamSOCKSGetErrorSubdomain(error: SDKHandle): number { return callSDK<number>("CFNetwork_0e503aef608672fa", 3355377745301011, undefined, [error]); }
 
 /**
  * func CFWriteStreamCreateWithFTPURL(_ alloc: CFAllocator?, _ ftpURL: CFURL) -> Unmanaged<CFWriteStream>
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export function CFWriteStreamCreateWithFTPURL(alloc: $SDK7, ftpURL: _CoreFoundation_CFURL): _CoreFoundation_CFWriteStream { return callSDK<_CoreFoundation_CFWriteStream>("CFNetwork_d968214ecc684fb6", 3592347668973040, undefined, [alloc, ftpURL]); }
+export function CFWriteStreamCreateWithFTPURL(alloc: $SDK7, ftpURL: _CoreFoundation_CFURL): _CoreFoundation_CFWriteStream { return callSDK<_CoreFoundation_CFWriteStream>("CFNetwork_0e503aef608672fa", 3592347668973040, undefined, [alloc, ftpURL]); }
 
 /** var kCFStreamErrorSOCKS4IdConflict: Int { get } */
-export const kCFStreamErrorSOCKS4IdConflict: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 734547613587940, undefined, []);
+export const kCFStreamErrorSOCKS4IdConflict: number = callSDK<number>("CFNetwork_0e503aef608672fa", 734547613587940, undefined, []);
 
 /** var kCFStreamErrorSOCKS4IdentdFailed: Int { get } */
-export const kCFStreamErrorSOCKS4IdentdFailed: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 3824776881552232, undefined, []);
+export const kCFStreamErrorSOCKS4IdentdFailed: number = callSDK<number>("CFNetwork_0e503aef608672fa", 3824776881552232, undefined, []);
 
 /** var kCFStreamErrorSOCKS4RequestFailed: Int { get } */
-export const kCFStreamErrorSOCKS4RequestFailed: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 1273378488197376, undefined, []);
+export const kCFStreamErrorSOCKS4RequestFailed: number = callSDK<number>("CFNetwork_0e503aef608672fa", 1273378488197376, undefined, []);
 
 /** var kCFStreamErrorSOCKS5BadResponseAddr: Int { get } */
-export const kCFStreamErrorSOCKS5BadResponseAddr: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 639295955171618, undefined, []);
+export const kCFStreamErrorSOCKS5BadResponseAddr: number = callSDK<number>("CFNetwork_0e503aef608672fa", 639295955171618, undefined, []);
 
 /** var kCFStreamErrorSOCKS5BadState: Int { get } */
-export const kCFStreamErrorSOCKS5BadState: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 1858353248133379, undefined, []);
+export const kCFStreamErrorSOCKS5BadState: number = callSDK<number>("CFNetwork_0e503aef608672fa", 1858353248133379, undefined, []);
 
 /** var kCFStreamErrorSOCKSUnknownClientVersion: Int { get } */
-export const kCFStreamErrorSOCKSUnknownClientVersion: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 763624952099519, undefined, []);
+export const kCFStreamErrorSOCKSUnknownClientVersion: number = callSDK<number>("CFNetwork_0e503aef608672fa", 763624952099519, undefined, []);
 
 /** var kCFStreamErrorSOCKS4SubDomainResponse: Int { get } */
-export const kCFStreamErrorSOCKS4SubDomainResponse: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 1005084217231064, undefined, []);
+export const kCFStreamErrorSOCKS4SubDomainResponse: number = callSDK<number>("CFNetwork_0e503aef608672fa", 1005084217231064, undefined, []);
 
 /** var kCFStreamErrorSOCKS5SubDomainMethod: Int { get } */
-export const kCFStreamErrorSOCKS5SubDomainMethod: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 2129490294191593, undefined, []);
+export const kCFStreamErrorSOCKS5SubDomainMethod: number = callSDK<number>("CFNetwork_0e503aef608672fa", 2129490294191593, undefined, []);
 
 /** var kCFStreamErrorSOCKS5SubDomainResponse: Int { get } */
-export const kCFStreamErrorSOCKS5SubDomainResponse: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 981032369647615, undefined, []);
+export const kCFStreamErrorSOCKS5SubDomainResponse: number = callSDK<number>("CFNetwork_0e503aef608672fa", 981032369647615, undefined, []);
 
 /** var kCFStreamErrorSOCKS5SubDomainUserPass: Int { get } */
-export const kCFStreamErrorSOCKS5SubDomainUserPass: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 3600126492317561, undefined, []);
+export const kCFStreamErrorSOCKS5SubDomainUserPass: number = callSDK<number>("CFNetwork_0e503aef608672fa", 3600126492317561, undefined, []);
 
 /** var kCFStreamErrorSOCKSSubDomainNone: Int { get } */
-export const kCFStreamErrorSOCKSSubDomainNone: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 1170817394996469, undefined, []);
+export const kCFStreamErrorSOCKSSubDomainNone: number = callSDK<number>("CFNetwork_0e503aef608672fa", 1170817394996469, undefined, []);
 
 /** var kCFStreamErrorSOCKSSubDomainVersionCode: Int { get } */
-export const kCFStreamErrorSOCKSSubDomainVersionCode: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 79128981079509, undefined, []);
+export const kCFStreamErrorSOCKSSubDomainVersionCode: number = callSDK<number>("CFNetwork_0e503aef608672fa", 79128981079509, undefined, []);
 
 /** var kSOCKS5NoAcceptableMethod: Int { get } */
-export const kSOCKS5NoAcceptableMethod: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 2731457647891586, undefined, []);
+export const kSOCKS5NoAcceptableMethod: number = callSDK<number>("CFNetwork_0e503aef608672fa", 2731457647891586, undefined, []);
 
 /**
  * let kCFDNSServiceFailureKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFDNSServiceFailureKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2556304100174697, undefined, []);
+export const kCFDNSServiceFailureKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2556304100174697, undefined, []);
 
 /**
  * let kCFErrorDomainCFNetwork: CFString
  * @availability iOS 2.0+
  */
-export const kCFErrorDomainCFNetwork: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1773787193398282, undefined, []);
+export const kCFErrorDomainCFNetwork: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1773787193398282, undefined, []);
 
 /**
  * let kCFErrorDomainWinSock: CFString
  * @availability iOS 2.0+
  */
-export const kCFErrorDomainWinSock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3560191593489573, undefined, []);
+export const kCFErrorDomainWinSock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3560191593489573, undefined, []);
 
 /**
  * let kCFFTPResourceGroup: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFFTPResourceGroup: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1221103892250958, undefined, []);
+export const kCFFTPResourceGroup: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1221103892250958, undefined, []);
 
 /**
  * let kCFFTPResourceLink: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFFTPResourceLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1509083599589661, undefined, []);
+export const kCFFTPResourceLink: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1509083599589661, undefined, []);
 
 /**
  * let kCFFTPResourceModDate: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFFTPResourceModDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1423945260168143, undefined, []);
+export const kCFFTPResourceModDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1423945260168143, undefined, []);
 
 /**
  * let kCFFTPResourceMode: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFFTPResourceMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1475568120173445, undefined, []);
+export const kCFFTPResourceMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1475568120173445, undefined, []);
 
 /**
  * let kCFFTPResourceName: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFFTPResourceName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4490765189341943, undefined, []);
+export const kCFFTPResourceName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4490765189341943, undefined, []);
 
 /**
  * let kCFFTPResourceOwner: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFFTPResourceOwner: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1485389665217809, undefined, []);
+export const kCFFTPResourceOwner: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1485389665217809, undefined, []);
 
 /**
  * let kCFFTPResourceSize: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFFTPResourceSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2151956252948279, undefined, []);
+export const kCFFTPResourceSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2151956252948279, undefined, []);
 
 /**
  * let kCFFTPResourceType: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFFTPResourceType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2005107724564877, undefined, []);
+export const kCFFTPResourceType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2005107724564877, undefined, []);
 
 /**
  * let kCFFTPStatusCodeKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFFTPStatusCodeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3653496028304483, undefined, []);
+export const kCFFTPStatusCodeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3653496028304483, undefined, []);
 
 /**
  * let kCFGetAddrInfoFailureKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFGetAddrInfoFailureKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4303664557386693, undefined, []);
+export const kCFGetAddrInfoFailureKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4303664557386693, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationAccountDomain: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPAuthenticationAccountDomain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 607858236950564, undefined, []);
+export const kCFHTTPAuthenticationAccountDomain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 607858236950564, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationPassword: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPAuthenticationPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4401112091963397, undefined, []);
+export const kCFHTTPAuthenticationPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4401112091963397, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationSchemeBasic: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPAuthenticationSchemeBasic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3804147403403274, undefined, []);
+export const kCFHTTPAuthenticationSchemeBasic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3804147403403274, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationSchemeDigest: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPAuthenticationSchemeDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 179247946679400, undefined, []);
+export const kCFHTTPAuthenticationSchemeDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 179247946679400, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationSchemeKerberos: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPAuthenticationSchemeKerberos: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 390250000842724, undefined, []);
+export const kCFHTTPAuthenticationSchemeKerberos: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 390250000842724, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationSchemeNTLM: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPAuthenticationSchemeNTLM: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 193905251137765, undefined, []);
+export const kCFHTTPAuthenticationSchemeNTLM: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 193905251137765, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationSchemeNegotiate2: CFString
  * @availability iOS 3.0+
  */
-export const kCFHTTPAuthenticationSchemeNegotiate2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1115850539078051, undefined, []);
+export const kCFHTTPAuthenticationSchemeNegotiate2: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1115850539078051, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationSchemeNegotiate: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPAuthenticationSchemeNegotiate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2444474597901734, undefined, []);
+export const kCFHTTPAuthenticationSchemeNegotiate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2444474597901734, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationSchemeXMobileMeAuthToken: CFString
  * @availability iOS 4.3+
  */
-export const kCFHTTPAuthenticationSchemeXMobileMeAuthToken: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4454516083817831, undefined, []);
+export const kCFHTTPAuthenticationSchemeXMobileMeAuthToken: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4454516083817831, undefined, []);
 
 /**
  * let kCFHTTPAuthenticationUsername: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPAuthenticationUsername: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2136207898220009, undefined, []);
+export const kCFHTTPAuthenticationUsername: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2136207898220009, undefined, []);
 
 /**
  * let kCFHTTPVersion1_0: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPVersion1_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2675297461531812, undefined, []);
+export const kCFHTTPVersion1_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2675297461531812, undefined, []);
 
 /**
  * let kCFHTTPVersion1_1: CFString
  * @availability iOS 2.0+
  */
-export const kCFHTTPVersion1_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1551323198382996, undefined, []);
+export const kCFHTTPVersion1_1: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1551323198382996, undefined, []);
 
 /**
  * let kCFHTTPVersion2_0: CFString
  * @availability iOS 8.0+
  */
-export const kCFHTTPVersion2_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4160945685446905, undefined, []);
+export const kCFHTTPVersion2_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4160945685446905, undefined, []);
 
 /**
  * let kCFHTTPVersion3_0: CFString
  * @availability iOS 13.0+
  */
-export const kCFHTTPVersion3_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 522791919433094, undefined, []);
+export const kCFHTTPVersion3_0: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 522791919433094, undefined, []);
 
 /**
  * let kCFNetworkProxiesHTTPEnable: CFString
  * @availability iOS 2.0+
  */
-export const kCFNetworkProxiesHTTPEnable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2278193917517202, undefined, []);
+export const kCFNetworkProxiesHTTPEnable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2278193917517202, undefined, []);
 
 /**
  * let kCFNetworkProxiesHTTPPort: CFString
  * @availability iOS 2.0+
  */
-export const kCFNetworkProxiesHTTPPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1335663389684763, undefined, []);
+export const kCFNetworkProxiesHTTPPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1335663389684763, undefined, []);
 
 /**
  * let kCFNetworkProxiesHTTPProxy: CFString
  * @availability iOS 2.0+
  */
-export const kCFNetworkProxiesHTTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 113939971510921, undefined, []);
+export const kCFNetworkProxiesHTTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 113939971510921, undefined, []);
 
 /**
  * let kCFNetworkProxiesProxyAutoConfigEnable: CFString
  * @availability iOS 2.0+
  */
-export const kCFNetworkProxiesProxyAutoConfigEnable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2742545286491723, undefined, []);
+export const kCFNetworkProxiesProxyAutoConfigEnable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2742545286491723, undefined, []);
 
 /**
  * let kCFNetworkProxiesProxyAutoConfigJavaScript: CFString
  * @availability iOS 3.0+
  */
-export const kCFNetworkProxiesProxyAutoConfigJavaScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2054288021480181, undefined, []);
+export const kCFNetworkProxiesProxyAutoConfigJavaScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2054288021480181, undefined, []);
 
 /**
  * let kCFNetworkProxiesProxyAutoConfigURLString: CFString
  * @availability iOS 2.0+
  */
-export const kCFNetworkProxiesProxyAutoConfigURLString: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 662545820694239, undefined, []);
+export const kCFNetworkProxiesProxyAutoConfigURLString: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 662545820694239, undefined, []);
 
 /**
  * let kCFProxyAutoConfigurationHTTPResponseKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyAutoConfigurationHTTPResponseKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 288081268983256, undefined, []);
+export const kCFProxyAutoConfigurationHTTPResponseKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 288081268983256, undefined, []);
 
 /**
  * let kCFProxyAutoConfigurationJavaScriptKey: CFString
  * @availability iOS 3.0+
  */
-export const kCFProxyAutoConfigurationJavaScriptKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2474935432542424, undefined, []);
+export const kCFProxyAutoConfigurationJavaScriptKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2474935432542424, undefined, []);
 
 /**
  * let kCFProxyAutoConfigurationURLKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyAutoConfigurationURLKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 448843647339702, undefined, []);
+export const kCFProxyAutoConfigurationURLKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 448843647339702, undefined, []);
 
 /**
  * let kCFProxyHostNameKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyHostNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2509751413713955, undefined, []);
+export const kCFProxyHostNameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2509751413713955, undefined, []);
 
 /**
  * let kCFProxyPasswordKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyPasswordKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1326339634640267, undefined, []);
+export const kCFProxyPasswordKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1326339634640267, undefined, []);
 
 /**
  * let kCFProxyPortNumberKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyPortNumberKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1939124353134388, undefined, []);
+export const kCFProxyPortNumberKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1939124353134388, undefined, []);
 
 /**
  * let kCFProxyTypeAutoConfigurationJavaScript: CFString
  * @availability iOS 3.0+
  */
-export const kCFProxyTypeAutoConfigurationJavaScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1795027532303380, undefined, []);
+export const kCFProxyTypeAutoConfigurationJavaScript: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1795027532303380, undefined, []);
 
 /**
  * let kCFProxyTypeAutoConfigurationURL: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyTypeAutoConfigurationURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3648120928094691, undefined, []);
+export const kCFProxyTypeAutoConfigurationURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3648120928094691, undefined, []);
 
 /**
  * let kCFProxyTypeFTP: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyTypeFTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4379861700573927, undefined, []);
+export const kCFProxyTypeFTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4379861700573927, undefined, []);
 
 /**
  * let kCFProxyTypeHTTP: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyTypeHTTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2525041732477940, undefined, []);
+export const kCFProxyTypeHTTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2525041732477940, undefined, []);
 
 /**
  * let kCFProxyTypeHTTPS: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyTypeHTTPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1283029678499130, undefined, []);
+export const kCFProxyTypeHTTPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1283029678499130, undefined, []);
 
 /**
  * let kCFProxyTypeKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyTypeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1576549408586891, undefined, []);
+export const kCFProxyTypeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1576549408586891, undefined, []);
 
 /**
  * let kCFProxyTypeNone: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyTypeNone: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 331726997817516, undefined, []);
+export const kCFProxyTypeNone: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 331726997817516, undefined, []);
 
 /**
  * let kCFProxyTypeSOCKS: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyTypeSOCKS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2942010376349731, undefined, []);
+export const kCFProxyTypeSOCKS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2942010376349731, undefined, []);
 
 /**
  * let kCFProxyUsernameKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFProxyUsernameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1756609759604823, undefined, []);
+export const kCFProxyUsernameKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1756609759604823, undefined, []);
 
 /**
  * let kCFSOCKSNegotiationMethodKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFSOCKSNegotiationMethodKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3617479247159480, undefined, []);
+export const kCFSOCKSNegotiationMethodKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3617479247159480, undefined, []);
 
 /**
  * let kCFSOCKSStatusCodeKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFSOCKSStatusCodeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3789595731508929, undefined, []);
+export const kCFSOCKSStatusCodeKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3789595731508929, undefined, []);
 
 /**
  * let kCFSOCKSVersionKey: CFString
  * @availability iOS 2.0+
  */
-export const kCFSOCKSVersionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2984632270391810, undefined, []);
+export const kCFSOCKSVersionKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2984632270391810, undefined, []);
 
 /**
  * let kCFStreamErrorDomainFTP: Int32
  * @availability iOS 2.0+
  */
-export const kCFStreamErrorDomainFTP: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 3922884682872873, undefined, []);
+export const kCFStreamErrorDomainFTP: number = callSDK<number>("CFNetwork_0e503aef608672fa", 3922884682872873, undefined, []);
 
 /**
  * let kCFStreamErrorDomainHTTP: Int32
  * @availability iOS 2.0+
  */
-export const kCFStreamErrorDomainHTTP: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 1590541347792965, undefined, []);
+export const kCFStreamErrorDomainHTTP: number = callSDK<number>("CFNetwork_0e503aef608672fa", 1590541347792965, undefined, []);
 
 /**
  * let kCFStreamErrorDomainMach: Int32
  * @availability iOS 2.0+
  */
-export const kCFStreamErrorDomainMach: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 4287038417635306, undefined, []);
+export const kCFStreamErrorDomainMach: number = callSDK<number>("CFNetwork_0e503aef608672fa", 4287038417635306, undefined, []);
 
 /**
  * let kCFStreamErrorDomainNetDB: Int32
  * @availability iOS 2.0+
  */
-export const kCFStreamErrorDomainNetDB: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 1748195368394026, undefined, []);
+export const kCFStreamErrorDomainNetDB: number = callSDK<number>("CFNetwork_0e503aef608672fa", 1748195368394026, undefined, []);
 
 /**
  * let kCFStreamErrorDomainNetServices: Int32
  * @availability iOS 2.0+
  */
-export const kCFStreamErrorDomainNetServices: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 1651932475750801, undefined, []);
+export const kCFStreamErrorDomainNetServices: number = callSDK<number>("CFNetwork_0e503aef608672fa", 1651932475750801, undefined, []);
 
 /**
  * let kCFStreamErrorDomainSystemConfiguration: Int32
  * @availability iOS 2.0+
  */
-export const kCFStreamErrorDomainSystemConfiguration: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 61007159056307, undefined, []);
+export const kCFStreamErrorDomainSystemConfiguration: number = callSDK<number>("CFNetwork_0e503aef608672fa", 61007159056307, undefined, []);
 
 /**
  * let kCFStreamErrorDomainWinSock: CFIndex
  * @availability iOS 2.0+
  */
-export const kCFStreamErrorDomainWinSock: number = callSDK<number>("CFNetwork_d968214ecc684fb6", 2595500016745316, undefined, []);
+export const kCFStreamErrorDomainWinSock: number = callSDK<number>("CFNetwork_0e503aef608672fa", 2595500016745316, undefined, []);
 
 /**
  * let kCFStreamNetworkServiceType: CFString
  * @availability iOS 4.0+
  */
-export const kCFStreamNetworkServiceType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1929154034465482, undefined, []);
+export const kCFStreamNetworkServiceType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1929154034465482, undefined, []);
 
 /**
  * let kCFStreamNetworkServiceTypeAVStreaming: CFString
  * @availability iOS 6.0+
  */
-export const kCFStreamNetworkServiceTypeAVStreaming: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 836977356530765, undefined, []);
+export const kCFStreamNetworkServiceTypeAVStreaming: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 836977356530765, undefined, []);
 
 /**
  * let kCFStreamNetworkServiceTypeBackground: CFString
  * @availability iOS 5.0+
  */
-export const kCFStreamNetworkServiceTypeBackground: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3824037845207656, undefined, []);
+export const kCFStreamNetworkServiceTypeBackground: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3824037845207656, undefined, []);
 
 /**
  * let kCFStreamNetworkServiceTypeCallSignaling: CFString
  * @availability iOS 10.0+
  */
-export const kCFStreamNetworkServiceTypeCallSignaling: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1759859070416773, undefined, []);
+export const kCFStreamNetworkServiceTypeCallSignaling: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1759859070416773, undefined, []);
 
 /**
  * let kCFStreamNetworkServiceTypeResponsiveAV: CFString
  * @availability iOS 6.0+
  */
-export const kCFStreamNetworkServiceTypeResponsiveAV: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 736855141288560, undefined, []);
+export const kCFStreamNetworkServiceTypeResponsiveAV: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 736855141288560, undefined, []);
 
 /**
  * let kCFStreamNetworkServiceTypeResponsiveData: CFString
  * @availability iOS 6.0+
  */
-export const kCFStreamNetworkServiceTypeResponsiveData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3990134861759202, undefined, []);
+export const kCFStreamNetworkServiceTypeResponsiveData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3990134861759202, undefined, []);
 
 /**
  * let kCFStreamNetworkServiceTypeVideo: CFString
  * @availability iOS 5.0+
  */
-export const kCFStreamNetworkServiceTypeVideo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4337995550598341, undefined, []);
+export const kCFStreamNetworkServiceTypeVideo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4337995550598341, undefined, []);
 
 /**
  * let kCFStreamNetworkServiceTypeVoIP: CFString
  * @availability iOS 4.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamNetworkServiceTypeVoIP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3308193377381199, undefined, []);
+export const kCFStreamNetworkServiceTypeVoIP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3308193377381199, undefined, []);
 
 /**
  * let kCFStreamNetworkServiceTypeVoice: CFString
  * @availability iOS 5.0+
  */
-export const kCFStreamNetworkServiceTypeVoice: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 772722214570169, undefined, []);
+export const kCFStreamNetworkServiceTypeVoice: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 772722214570169, undefined, []);
 
 /**
  * let kCFStreamPropertyAllowConstrainedNetworkAccess: CFString
  * @availability iOS 13.0+
  */
-export const kCFStreamPropertyAllowConstrainedNetworkAccess: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1108433090129436, undefined, []);
+export const kCFStreamPropertyAllowConstrainedNetworkAccess: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1108433090129436, undefined, []);
 
 /**
  * let kCFStreamPropertyAllowExpensiveNetworkAccess: CFString
  * @availability iOS 13.0+
  */
-export const kCFStreamPropertyAllowExpensiveNetworkAccess: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2241562723959218, undefined, []);
+export const kCFStreamPropertyAllowExpensiveNetworkAccess: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2241562723959218, undefined, []);
 
 /**
  * let kCFStreamPropertyConnectionIsCellular: CFString
  * @availability iOS 6.0+
  */
-export const kCFStreamPropertyConnectionIsCellular: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 241434685819827, undefined, []);
+export const kCFStreamPropertyConnectionIsCellular: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 241434685819827, undefined, []);
 
 /**
  * let kCFStreamPropertyConnectionIsExpensive: CFString
  * @availability iOS 13.0+
  */
-export const kCFStreamPropertyConnectionIsExpensive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1527426581098749, undefined, []);
+export const kCFStreamPropertyConnectionIsExpensive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1527426581098749, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPAttemptPersistentConnection: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPAttemptPersistentConnection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2319700696521233, undefined, []);
+export const kCFStreamPropertyFTPAttemptPersistentConnection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2319700696521233, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPFetchResourceInfo: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPFetchResourceInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3563591630796070, undefined, []);
+export const kCFStreamPropertyFTPFetchResourceInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3563591630796070, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPFileTransferOffset: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPFileTransferOffset: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 803682195282731, undefined, []);
+export const kCFStreamPropertyFTPFileTransferOffset: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 803682195282731, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPPassword: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1881001367835051, undefined, []);
+export const kCFStreamPropertyFTPPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1881001367835051, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPProxy: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3923170585467609, undefined, []);
+export const kCFStreamPropertyFTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3923170585467609, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPProxyHost: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPProxyHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3407908110423022, undefined, []);
+export const kCFStreamPropertyFTPProxyHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3407908110423022, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPProxyPassword: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPProxyPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3149058161353898, undefined, []);
+export const kCFStreamPropertyFTPProxyPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3149058161353898, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPProxyPort: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPProxyPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2766821815594531, undefined, []);
+export const kCFStreamPropertyFTPProxyPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2766821815594531, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPProxyUser: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPProxyUser: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2981917440921123, undefined, []);
+export const kCFStreamPropertyFTPProxyUser: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2981917440921123, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPResourceSize: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPResourceSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3850953982557498, undefined, []);
+export const kCFStreamPropertyFTPResourceSize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3850953982557498, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPUsePassiveMode: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPUsePassiveMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4252109157664005, undefined, []);
+export const kCFStreamPropertyFTPUsePassiveMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4252109157664005, undefined, []);
 
 /**
  * let kCFStreamPropertyFTPUserName: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyFTPUserName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4465691618148988, undefined, []);
+export const kCFStreamPropertyFTPUserName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4465691618148988, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPAttemptPersistentConnection: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPAttemptPersistentConnection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 721220448580075, undefined, []);
+export const kCFStreamPropertyHTTPAttemptPersistentConnection: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 721220448580075, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPFinalRequest: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPFinalRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2956866417854130, undefined, []);
+export const kCFStreamPropertyHTTPFinalRequest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2956866417854130, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPFinalURL: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPFinalURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1111391195208140, undefined, []);
+export const kCFStreamPropertyHTTPFinalURL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1111391195208140, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPProxy: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 124641580917690, undefined, []);
+export const kCFStreamPropertyHTTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 124641580917690, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPProxyHost: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPProxyHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1677321070022923, undefined, []);
+export const kCFStreamPropertyHTTPProxyHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1677321070022923, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPProxyPort: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPProxyPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2239689912910405, undefined, []);
+export const kCFStreamPropertyHTTPProxyPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2239689912910405, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPRequestBytesWrittenCount: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPRequestBytesWrittenCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2191650335803055, undefined, []);
+export const kCFStreamPropertyHTTPRequestBytesWrittenCount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2191650335803055, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPResponseHeader: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPResponseHeader: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3785683724007497, undefined, []);
+export const kCFStreamPropertyHTTPResponseHeader: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3785683724007497, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPSProxyHost: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPSProxyHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1517525645038903, undefined, []);
+export const kCFStreamPropertyHTTPSProxyHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1517525645038903, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPSProxyPort: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPSProxyPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1067026851043702, undefined, []);
+export const kCFStreamPropertyHTTPSProxyPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1067026851043702, undefined, []);
 
 /**
  * let kCFStreamPropertyHTTPShouldAutoredirect: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export const kCFStreamPropertyHTTPShouldAutoredirect: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3020686745526794, undefined, []);
+export const kCFStreamPropertyHTTPShouldAutoredirect: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3020686745526794, undefined, []);
 
 /**
  * let kCFStreamPropertyNoCellular: CFString
  * @availability iOS 5.0+
  */
-export const kCFStreamPropertyNoCellular: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4278516655266053, undefined, []);
+export const kCFStreamPropertyNoCellular: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4278516655266053, undefined, []);
 
 /**
  * let kCFStreamPropertyProxyLocalBypass: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertyProxyLocalBypass: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3821750341929224, undefined, []);
+export const kCFStreamPropertyProxyLocalBypass: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3821750341929224, undefined, []);
 
 /**
  * let kCFStreamPropertySSLContext: CFString
  * @availability iOS 5.0+
  */
-export const kCFStreamPropertySSLContext: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 940730186942256, undefined, []);
+export const kCFStreamPropertySSLContext: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 940730186942256, undefined, []);
 
 /**
  * let kCFStreamPropertySSLPeerTrust: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySSLPeerTrust: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1324424037460290, undefined, []);
+export const kCFStreamPropertySSLPeerTrust: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1324424037460290, undefined, []);
 
 /**
  * let kCFStreamPropertySSLSettings: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySSLSettings: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 663930856213288, undefined, []);
+export const kCFStreamPropertySSLSettings: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 663930856213288, undefined, []);
 
 /**
  * let kCFStreamPropertySocketExtendedBackgroundIdleMode: CFString
  * @availability iOS 9.0+
  */
-export const kCFStreamPropertySocketExtendedBackgroundIdleMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2179816187353793, undefined, []);
+export const kCFStreamPropertySocketExtendedBackgroundIdleMode: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2179816187353793, undefined, []);
 
 /**
  * let kCFStreamPropertySocketRemoteHost: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySocketRemoteHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 2021210080138037, undefined, []);
+export const kCFStreamPropertySocketRemoteHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 2021210080138037, undefined, []);
 
 /**
  * let kCFStreamPropertySocketRemoteNetService: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamPropertySocketRemoteNetService: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1254973271964353, undefined, []);
+export const kCFStreamPropertySocketRemoteNetService: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1254973271964353, undefined, []);
 
 /**
  * let kCFStreamSSLCertificates: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSSLCertificates: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3148582175586339, undefined, []);
+export const kCFStreamSSLCertificates: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3148582175586339, undefined, []);
 
 /**
  * let kCFStreamSSLIsServer: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSSLIsServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 3145540842281599, undefined, []);
+export const kCFStreamSSLIsServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 3145540842281599, undefined, []);
 
 /**
  * let kCFStreamSSLLevel: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSSLLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1571390960155981, undefined, []);
+export const kCFStreamSSLLevel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1571390960155981, undefined, []);
 
 /**
  * let kCFStreamSSLPeerName: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSSLPeerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1560573258414750, undefined, []);
+export const kCFStreamSSLPeerName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1560573258414750, undefined, []);
 
 /**
  * let kCFStreamSSLValidatesCertificateChain: CFString
  * @availability iOS 2.0+
  */
-export const kCFStreamSSLValidatesCertificateChain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 4301877865175050, undefined, []);
+export const kCFStreamSSLValidatesCertificateChain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 4301877865175050, undefined, []);
 
 /**
  * let kCFURLErrorFailingURLErrorKey: CFString
  * @availability iOS 2.2+
  */
-export const kCFURLErrorFailingURLErrorKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 630514289039240, undefined, []);
+export const kCFURLErrorFailingURLErrorKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 630514289039240, undefined, []);
 
 /**
  * let kCFURLErrorFailingURLStringErrorKey: CFString
  * @availability iOS 2.2+
  */
-export const kCFURLErrorFailingURLStringErrorKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_d968214ecc684fb6", 1414845573610372, undefined, []);
+export const kCFURLErrorFailingURLStringErrorKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CFNetwork_0e503aef608672fa", 1414845573610372, undefined, []);
 
-registerSDKClass("CFNetwork.CFHost", CFHost, { module: "CFNetwork_d968214ecc684fb6", properties: {} });
-registerSDKClass("CFNetwork.CFHostClientContext", CFHostClientContext, { module: "CFNetwork_d968214ecc684fb6", properties: {} });
-registerSDKClass("CFNetwork.CFHTTPAuthentication", CFHTTPAuthentication, { module: "CFNetwork_d968214ecc684fb6", properties: {} });
-registerSDKClass("CFNetwork.CFHTTPMessage", CFHTTPMessage, { module: "CFNetwork_d968214ecc684fb6", properties: {} });
-registerSDKClass("CFNetwork.CFNetDiagnostic", CFNetDiagnostic, { module: "CFNetwork_d968214ecc684fb6", properties: {} });
-registerSDKClass("CFNetwork.CFNetService", CFNetService, { module: "CFNetwork_d968214ecc684fb6", properties: {} });
-registerSDKClass("CFNetwork.CFNetServiceBrowser", CFNetServiceBrowser, { module: "CFNetwork_d968214ecc684fb6", properties: {} });
-registerSDKClass("CFNetwork.CFNetServiceClientContext", CFNetServiceClientContext, { module: "CFNetwork_d968214ecc684fb6", properties: {} });
-registerSDKClass("CFNetwork.CFNetServiceMonitor", CFNetServiceMonitor, { module: "CFNetwork_d968214ecc684fb6", properties: {} });
+registerSDKClass("CFNetwork.CFHost", CFHost, { module: "CFNetwork_0e503aef608672fa", properties: {} });
+registerSDKClass("CFNetwork.CFHostClientContext", CFHostClientContext, { module: "CFNetwork_0e503aef608672fa", properties: {} });
+registerSDKClass("CFNetwork.CFHTTPAuthentication", CFHTTPAuthentication, { module: "CFNetwork_0e503aef608672fa", properties: {} });
+registerSDKClass("CFNetwork.CFHTTPMessage", CFHTTPMessage, { module: "CFNetwork_0e503aef608672fa", properties: {} });
+registerSDKClass("CFNetwork.CFNetDiagnostic", CFNetDiagnostic, { module: "CFNetwork_0e503aef608672fa", properties: {} });
+registerSDKClass("CFNetwork.CFNetService", CFNetService, { module: "CFNetwork_0e503aef608672fa", properties: {} });
+registerSDKClass("CFNetwork.CFNetServiceBrowser", CFNetServiceBrowser, { module: "CFNetwork_0e503aef608672fa", properties: {} });
+registerSDKClass("CFNetwork.CFNetServiceClientContext", CFNetServiceClientContext, { module: "CFNetwork_0e503aef608672fa", properties: {} });
+registerSDKClass("CFNetwork.CFNetServiceMonitor", CFNetServiceMonitor, { module: "CFNetwork_0e503aef608672fa", properties: {} });

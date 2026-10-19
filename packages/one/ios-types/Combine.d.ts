@@ -2,16 +2,15 @@
 import { SDKHandle, type Implements, type NativeError } from 'one/ios-runtime';
 import type { Timer_TimerPublisher as _Foundation_Timer_TimerPublisher } from "one/ios/Foundation";
 type $SDK3 = Subscribers_Completion<NativeError>;
-type $SDK6 = Implements<Cancellable> | SDKHandle;
-type $SDK13 = Result_Publisher<boolean, NativeError>;
-type $SDK15 = Result_Publisher<unknown, NativeError>;
-type $SDK17 = Optional_Publisher<unknown>;
-type $SDK19 = ((arg0: unknown, arg1: unknown) => unknown);
-type $SDK23 = [SDKHandle, SDKHandle, SDKHandle];
-type $SDK24 = [SDKHandle, SDKHandle, SDKHandle, SDKHandle];
-type $SDK27 = Record<unknown, NativeError>;
-type $SDK29 = Record_Recording<unknown, NativeError>;
-type $SDK30 = Subscribers_Completion<unknown>;
+type $SDK8 = Implements<Cancellable> | SDKHandle;
+type $SDK16 = Result_Publisher<boolean, NativeError>;
+type $SDK18 = Result_Publisher<unknown, NativeError>;
+type $SDK20 = Optional_Publisher<unknown>;
+type $SDK22 = ((arg0: unknown, arg1: unknown) => unknown);
+type $SDK39 = [SDKHandle, SDKHandle, SDKHandle];
+type $SDK41 = [SDKHandle, SDKHandle, SDKHandle, SDKHandle];
+type $SDK106 = Record<unknown, NativeError>;
+type $SDK108 = Record_Recording<unknown, NativeError>;
 /**
  * final class AnyCancellable
  * @availability iOS 13.0+
@@ -133,7 +132,7 @@ export declare class AsyncPublisher<P = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine14AsyncPublisherV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: AsyncPublisher_Element<unknown>;
 }
 /**
  * typealias AsyncIterator = AsyncPublisher<P>.Iterator
@@ -167,7 +166,7 @@ export declare class AsyncThrowingPublisher<P = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine22AsyncThrowingPublisherV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: AsyncThrowingPublisher_Element<unknown>;
 }
 /**
  * typealias AsyncIterator = AsyncThrowingPublisher<P>.Iterator
@@ -242,7 +241,7 @@ export interface ConnectablePublisher {
      * func connect() -> any Cancellable
      * @availability iOS 13.0+
      */
-    "connect"?: () => $SDK6;
+    "connect"?: () => $SDK8;
 }
 /**
  * final class CurrentValueSubject<Output, Failure> where Failure : Error
@@ -294,7 +293,7 @@ export declare class Deferred<DeferredPublisher = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine8DeferredV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Deferred_Output<unknown>;
 }
 /**
  * typealias Failure = DeferredPublisher.Failure
@@ -523,7 +522,7 @@ export declare class Just<Output = unknown> extends SDKHandle {
      * func tryContains(where predicate: (Output) throws -> Bool) -> Result<Bool, any Error>.Publisher
      * @availability iOS 13.0+
      */
-    tryContains(predicate: ((arg0: unknown) => boolean)): $SDK13;
+    tryContains(predicate: ((arg0: unknown) => boolean)): $SDK16;
     /**
      * func ignoreOutput() -> Empty<Output, Just<Output>.Failure>
      * @availability iOS 13.0+
@@ -543,12 +542,12 @@ export declare class Just<Output = unknown> extends SDKHandle {
      * func tryAllSatisfy(_ predicate: (Output) throws -> Bool) -> Result<Bool, any Error>.Publisher
      * @availability iOS 13.0+
      */
-    tryAllSatisfy(predicate: ((arg0: unknown) => boolean)): $SDK13;
+    tryAllSatisfy(predicate: ((arg0: unknown) => boolean)): $SDK16;
     /**
      * func tryRemoveDuplicates(by predicate: (Output, Output) throws -> Bool) -> Result<Output, any Error>.Publisher
      * @availability iOS 13.0+
      */
-    tryRemoveDuplicates(predicate: ((arg0: unknown, arg1: unknown) => boolean)): $SDK15;
+    tryRemoveDuplicates(predicate: ((arg0: unknown, arg1: unknown) => boolean)): $SDK18;
     /**
      * func last() -> Just<Output>
      * @availability iOS 13.0+
@@ -573,12 +572,12 @@ export declare class Just<Output = unknown> extends SDKHandle {
      * func output(at index: Int) -> Optional<Output>.Publisher
      * @availability iOS 13.0+
      */
-    outputAt(index: number): $SDK17;
+    outputAt(index: number): $SDK20;
     /**
      * func output<R>(in range: R) -> Optional<Output>.Publisher where R : RangeExpression, R.Bound == Int
      * @availability iOS 13.0+
      */
-    outputIn(range: SDKHandle): $SDK17;
+    outputIn(range: SDKHandle): $SDK20;
     /**
      * let output: Output
      * @availability iOS 13.0+
@@ -588,12 +587,12 @@ export declare class Just<Output = unknown> extends SDKHandle {
      * func prefix(_ maxLength: Int) -> Optional<Output>.Publisher
      * @availability iOS 13.0+
      */
-    prefix(maxLength: number): $SDK17;
+    prefix(maxLength: number): $SDK20;
     /**
      * func tryMap<T>(_ transform: (Output) throws -> T) -> Result<T, any Error>.Publisher
      * @availability iOS 13.0+
      */
-    tryMap(transform: ((arg0: unknown) => unknown)): $SDK15;
+    tryMap(transform: ((arg0: unknown) => unknown)): $SDK18;
     /**
      * func collect() -> Just<[Output]>
      * @availability iOS 13.0+
@@ -603,17 +602,17 @@ export declare class Just<Output = unknown> extends SDKHandle {
      * func tryScan<T>(_ initialResult: T, _ nextPartialResult: (T, Output) throws -> T) -> Result<T, any Error>.Publisher
      * @availability iOS 13.0+
      */
-    tryScan(initialResult: unknown, nextPartialResult: $SDK19): $SDK15;
+    tryScan(initialResult: unknown, nextPartialResult: $SDK22): $SDK18;
     /**
      * func dropFirst(_ count: Int = 1) -> Optional<Output>.Publisher
      * @availability iOS 13.0+
      */
-    dropFirst(count?: number): $SDK17;
+    dropFirst(count?: number): $SDK20;
     /**
      * func tryReduce<T>(_ initialResult: T, _ nextPartialResult: (T, Output) throws -> T) -> Result<T, any Error>.Publisher
      * @availability iOS 13.0+
      */
-    tryReduce(initialResult: unknown, nextPartialResult: $SDK19): $SDK15;
+    tryReduce(initialResult: unknown, nextPartialResult: $SDK22): $SDK18;
     /**
      * func removeDuplicates() -> Just<Output>
      * @availability iOS 13.0+
@@ -683,7 +682,7 @@ export declare class Optional_Publisher<Wrapped = unknown> extends SDKHandle {
     readonly $type: {
         "s:Sq7CombineE9PublisherV": true;
     };
-    readonly $element: unknown;
+    readonly $element: Optional_Publisher_Output<unknown>;
 }
 /**
  * typealias Failure = Never
@@ -757,7 +756,7 @@ export declare class Published_Publisher<Value = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine9PublishedV9PublisherV": true;
     };
-    readonly $element: unknown;
+    readonly $element: Published_Publisher_Output<unknown>;
 }
 /**
  * typealias Failure = Never
@@ -797,7 +796,7 @@ export declare class Publishers_AllSatisfy<Upstream = unknown> extends SDKHandle
     readonly $type: {
         "s:7Combine10PublishersO10AllSatisfyV": true;
     };
-    readonly $element: boolean;
+    readonly $element: Publishers_AllSatisfy_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -817,7 +816,7 @@ export declare class Publishers_AssertNoFailure<Upstream = unknown> extends SDKH
     readonly $type: {
         "s:7Combine10PublishersO15AssertNoFailureV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_AssertNoFailure_Output<unknown>;
 }
 /**
  * typealias Failure = Never
@@ -847,7 +846,7 @@ export declare class Publishers_Autoconnect<Upstream = unknown> extends SDKHandl
     readonly $type: {
         "s:7Combine10PublishersO11AutoconnectC": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Autoconnect_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -867,7 +866,7 @@ export declare class Publishers_Breakpoint<Upstream = unknown> extends SDKHandle
     readonly $type: {
         "s:7Combine10PublishersO10BreakpointV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Breakpoint_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -887,7 +886,7 @@ export declare class Publishers_Buffer<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO6BufferV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Buffer_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -916,7 +915,7 @@ export declare class Publishers_Catch<Upstream = unknown, NewPublisher = unknown
     readonly $type: {
         "s:7Combine10PublishersO5CatchV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Catch_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = NewPublisher.Failure
@@ -936,7 +935,7 @@ export declare class Publishers_Collect<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO7CollectV": true;
     };
-    readonly $element: Array<SDKHandle>;
+    readonly $element: Publishers_Collect_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -956,7 +955,7 @@ export declare class Publishers_CollectByCount<Upstream = unknown> extends SDKHa
     readonly $type: {
         "s:7Combine10PublishersO14CollectByCountV": true;
     };
-    readonly $element: Array<SDKHandle>;
+    readonly $element: Publishers_CollectByCount_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -976,7 +975,7 @@ export declare class Publishers_CollectByTime<Upstream = unknown, Context = unkn
     readonly $type: {
         "s:7Combine10PublishersO13CollectByTimeV": true;
     };
-    readonly $element: Array<SDKHandle>;
+    readonly $element: Publishers_CollectByTime_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -996,7 +995,7 @@ export declare class Publishers_CombineLatest<A = unknown, B = unknown> extends 
     readonly $type: {
         "s:7Combine10PublishersO0A6LatestV": true;
     };
-    readonly $element: [SDKHandle, SDKHandle];
+    readonly $element: Publishers_CombineLatest_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1016,7 +1015,7 @@ export declare class Publishers_CombineLatest3<A = unknown, B = unknown, C = unk
     readonly $type: {
         "s:7Combine10PublishersO0A7Latest3V": true;
     };
-    readonly $element: $SDK23;
+    readonly $element: Publishers_CombineLatest3_Output<unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1027,7 +1026,7 @@ export type Publishers_CombineLatest3_Failure<A = unknown, B = unknown, C = unkn
  * typealias Output = (A.Output, B.Output, C.Output)
  * @availability iOS 13.0+
  */
-export type Publishers_CombineLatest3_Output<A = unknown, B = unknown, C = unknown> = $SDK23;
+export type Publishers_CombineLatest3_Output<A = unknown, B = unknown, C = unknown> = $SDK39;
 /**
  * struct CombineLatest4<A, B, C, D> where A : Publisher, B : Publisher, C : Publisher, D : Publisher, A.Failure == B.Failure, B.Failure == C.Failure, C.Failure == D.Failure
  * @availability iOS 13.0+
@@ -1036,7 +1035,7 @@ export declare class Publishers_CombineLatest4<A = unknown, B = unknown, C = unk
     readonly $type: {
         "s:7Combine10PublishersO0A7Latest4V": true;
     };
-    readonly $element: $SDK24;
+    readonly $element: Publishers_CombineLatest4_Output<unknown, unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1047,7 +1046,7 @@ export type Publishers_CombineLatest4_Failure<A = unknown, B = unknown, C = unkn
  * typealias Output = (A.Output, B.Output, C.Output, D.Output)
  * @availability iOS 13.0+
  */
-export type Publishers_CombineLatest4_Output<A = unknown, B = unknown, C = unknown, D = unknown> = $SDK24;
+export type Publishers_CombineLatest4_Output<A = unknown, B = unknown, C = unknown, D = unknown> = $SDK41;
 /**
  * struct CompactMap<Upstream, Output> where Upstream : Publisher
  * @availability iOS 13.0+
@@ -1071,7 +1070,7 @@ export declare class Publishers_Comparison<Upstream = unknown> extends SDKHandle
     readonly $type: {
         "s:7Combine10PublishersO10ComparisonV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Comparison_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1091,7 +1090,7 @@ export declare class Publishers_Concatenate<Prefix = unknown, Suffix = unknown> 
     readonly $type: {
         "s:7Combine10PublishersO11ConcatenateV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Concatenate_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Suffix.Failure
@@ -1111,7 +1110,7 @@ export declare class Publishers_Contains<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO8ContainsV": true;
     };
-    readonly $element: boolean;
+    readonly $element: Publishers_Contains_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1131,7 +1130,7 @@ export declare class Publishers_ContainsWhere<Upstream = unknown> extends SDKHan
     readonly $type: {
         "s:7Combine10PublishersO13ContainsWhereV": true;
     };
-    readonly $element: boolean;
+    readonly $element: Publishers_ContainsWhere_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1151,7 +1150,7 @@ export declare class Publishers_Count<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO5CountV": true;
     };
-    readonly $element: number;
+    readonly $element: Publishers_Count_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1171,7 +1170,7 @@ export declare class Publishers_Debounce<Upstream = unknown, Context = unknown> 
     readonly $type: {
         "s:7Combine10PublishersO8DebounceV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Debounce_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1206,7 +1205,7 @@ export declare class Publishers_Delay<Upstream = unknown, Context = unknown> ext
     readonly $type: {
         "s:7Combine10PublishersO5DelayV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Delay_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1226,7 +1225,7 @@ export declare class Publishers_Drop<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO4DropV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Drop_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1246,7 +1245,7 @@ export declare class Publishers_DropUntilOutput<Upstream = unknown, Other = unkn
     readonly $type: {
         "s:7Combine10PublishersO15DropUntilOutputV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_DropUntilOutput_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1266,7 +1265,7 @@ export declare class Publishers_DropWhile<Upstream = unknown> extends SDKHandle 
     readonly $type: {
         "s:7Combine10PublishersO9DropWhileV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_DropWhile_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1286,7 +1285,7 @@ export declare class Publishers_Encode<Upstream = unknown, Coder = unknown> exte
     readonly $type: {
         "s:7Combine10PublishersO6EncodeV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Encode_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Error
@@ -1306,7 +1305,7 @@ export declare class Publishers_Filter<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO6FilterV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Filter_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1326,7 +1325,7 @@ export declare class Publishers_First<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO5FirstV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_First_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1346,7 +1345,7 @@ export declare class Publishers_FirstWhere<Upstream = unknown> extends SDKHandle
     readonly $type: {
         "s:7Combine10PublishersO10FirstWhereV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_FirstWhere_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1366,7 +1365,7 @@ export declare class Publishers_FlatMap<NewPublisher = unknown, Upstream = unkno
     readonly $type: {
         "s:7Combine10PublishersO7FlatMapV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_FlatMap_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1386,7 +1385,7 @@ export declare class Publishers_HandleEvents<Upstream = unknown> extends SDKHand
     readonly $type: {
         "s:7Combine10PublishersO12HandleEventsV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_HandleEvents_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1406,7 +1405,7 @@ export declare class Publishers_IgnoreOutput<Upstream = unknown> extends SDKHand
     readonly $type: {
         "s:7Combine10PublishersO12IgnoreOutputV": true;
     };
-    readonly $element: never;
+    readonly $element: Publishers_IgnoreOutput_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1426,7 +1425,7 @@ export declare class Publishers_Last<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO4LastV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Last_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1446,7 +1445,7 @@ export declare class Publishers_LastWhere<Upstream = unknown> extends SDKHandle 
     readonly $type: {
         "s:7Combine10PublishersO9LastWhereV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_LastWhere_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1466,7 +1465,7 @@ export declare class Publishers_MakeConnectable<Upstream = unknown> extends SDKH
     readonly $type: {
         "s:7Combine10PublishersO15MakeConnectableV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_MakeConnectable_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1501,7 +1500,7 @@ export declare class Publishers_MapError<Upstream = unknown, Failure = unknown> 
     readonly $type: {
         "s:7Combine10PublishersO8MapErrorV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_MapError_Output<unknown, unknown>;
 }
 /**
  * typealias Output = Upstream.Output
@@ -1531,7 +1530,7 @@ export declare class Publishers_MapKeyPath2<Upstream = unknown, Output0 = unknow
     readonly $type: {
         "s:7Combine10PublishersO11MapKeyPath2V": true;
     };
-    readonly $element: [unknown, unknown];
+    readonly $element: Publishers_MapKeyPath2_Output<unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1551,7 +1550,7 @@ export declare class Publishers_MapKeyPath3<Upstream = unknown, Output0 = unknow
     readonly $type: {
         "s:7Combine10PublishersO11MapKeyPath3V": true;
     };
-    readonly $element: [unknown, unknown, unknown];
+    readonly $element: Publishers_MapKeyPath3_Output<unknown, unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1571,7 +1570,7 @@ export declare class Publishers_MeasureInterval<Upstream = unknown, Context = un
     readonly $type: {
         "s:7Combine10PublishersO15MeasureIntervalV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_MeasureInterval_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1591,7 +1590,7 @@ export declare class Publishers_Merge<A = unknown, B = unknown> extends SDKHandl
     readonly $type: {
         "s:7Combine10PublishersO5MergeV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Merge_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1611,7 +1610,7 @@ export declare class Publishers_Merge3<A = unknown, B = unknown, C = unknown> ex
     readonly $type: {
         "s:7Combine10PublishersO6Merge3V": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Merge3_Output<unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1631,7 +1630,7 @@ export declare class Publishers_Merge4<A = unknown, B = unknown, C = unknown, D 
     readonly $type: {
         "s:7Combine10PublishersO6Merge4V": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Merge4_Output<unknown, unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1651,7 +1650,7 @@ export declare class Publishers_Merge5<A = unknown, B = unknown, C = unknown, D 
     readonly $type: {
         "s:7Combine10PublishersO6Merge5V": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Merge5_Output<unknown, unknown, unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1671,7 +1670,7 @@ export declare class Publishers_Merge6<A = unknown, B = unknown, C = unknown, D 
     readonly $type: {
         "s:7Combine10PublishersO6Merge6V": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Merge6_Output<unknown, unknown, unknown, unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1691,7 +1690,7 @@ export declare class Publishers_Merge7<A = unknown, B = unknown, C = unknown, D 
     readonly $type: {
         "s:7Combine10PublishersO6Merge7V": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Merge7_Output<unknown, unknown, unknown, unknown, unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1711,7 +1710,7 @@ export declare class Publishers_Merge8<A = unknown, B = unknown, C = unknown, D 
     readonly $type: {
         "s:7Combine10PublishersO6Merge8V": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Merge8_Output<unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -1731,7 +1730,7 @@ export declare class Publishers_MergeMany<Upstream = unknown> extends SDKHandle 
     readonly $type: {
         "s:7Combine10PublishersO9MergeManyV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_MergeMany_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1751,7 +1750,7 @@ export declare class Publishers_Multicast<Upstream = unknown, SubjectType = unkn
     readonly $type: {
         "s:7Combine10PublishersO9MulticastC": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Multicast_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1771,7 +1770,7 @@ export declare class Publishers_Output<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO6OutputV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Output_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1796,7 +1795,7 @@ export declare class Publishers_PrefixUntilOutput<Upstream = unknown, Other = un
     readonly $type: {
         "s:7Combine10PublishersO17PrefixUntilOutputV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_PrefixUntilOutput_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1816,7 +1815,7 @@ export declare class Publishers_PrefixWhile<Upstream = unknown> extends SDKHandl
     readonly $type: {
         "s:7Combine10PublishersO11PrefixWhileV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_PrefixWhile_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1836,7 +1835,7 @@ export declare class Publishers_Print<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO5PrintV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Print_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1856,7 +1855,7 @@ export declare class Publishers_ReceiveOn<Upstream = unknown, Context = unknown>
     readonly $type: {
         "s:7Combine10PublishersO9ReceiveOnV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_ReceiveOn_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1891,7 +1890,7 @@ export declare class Publishers_RemoveDuplicates<Upstream = unknown> extends SDK
     readonly $type: {
         "s:7Combine10PublishersO16RemoveDuplicatesV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_RemoveDuplicates_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1911,7 +1910,7 @@ export declare class Publishers_ReplaceEmpty<Upstream = unknown> extends SDKHand
     readonly $type: {
         "s:7Combine10PublishersO12ReplaceEmptyV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_ReplaceEmpty_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1931,7 +1930,7 @@ export declare class Publishers_ReplaceError<Upstream = unknown> extends SDKHand
     readonly $type: {
         "s:7Combine10PublishersO12ReplaceErrorV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_ReplaceError_Output<unknown>;
 }
 /**
  * typealias Failure = Never
@@ -1951,7 +1950,7 @@ export declare class Publishers_Retry<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO5RetryV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Retry_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1992,11 +1991,11 @@ export declare class Publishers_Sequence<Elements = unknown, Failure = unknown> 
      * func contains(_ output: Elements.Element) -> Result<Bool, Failure>.Publisher
      * @availability iOS 13.0+
      */
-    contains(output: number): $SDK13;
+    contains(output: number): $SDK16;
     readonly $type: {
         "s:7Combine10PublishersO8SequenceV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Sequence_Output<unknown, unknown>;
 }
 /**
  * typealias Output = Elements.Element
@@ -2011,7 +2010,7 @@ export declare class Publishers_SetFailureType<Upstream = unknown, Failure = unk
     readonly $type: {
         "s:7Combine10PublishersO14SetFailureTypeV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_SetFailureType_Output<unknown, unknown>;
 }
 /**
  * typealias Output = Upstream.Output
@@ -2026,7 +2025,7 @@ export declare class Publishers_Share<Upstream = unknown> extends SDKHandle {
     readonly $type: {
         "s:7Combine10PublishersO5ShareC": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Share_Output<unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -2046,7 +2045,7 @@ export declare class Publishers_SubscribeOn<Upstream = unknown, Context = unknow
     readonly $type: {
         "s:7Combine10PublishersO11SubscribeOnV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_SubscribeOn_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -2066,7 +2065,7 @@ export declare class Publishers_SwitchToLatest<P = unknown, Upstream = unknown> 
     readonly $type: {
         "s:7Combine10PublishersO14SwitchToLatestV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_SwitchToLatest_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = P.Failure
@@ -2086,7 +2085,7 @@ export declare class Publishers_Throttle<Upstream = unknown, Context = unknown> 
     readonly $type: {
         "s:7Combine10PublishersO8ThrottleV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Throttle_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -2115,7 +2114,7 @@ export declare class Publishers_Timeout<Upstream = unknown, Context = unknown> e
     readonly $type: {
         "s:7Combine10PublishersO7TimeoutV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_Timeout_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -2135,7 +2134,7 @@ export declare class Publishers_TryAllSatisfy<Upstream = unknown> extends SDKHan
     readonly $type: {
         "s:7Combine10PublishersO13TryAllSatisfyV": true;
     };
-    readonly $element: boolean;
+    readonly $element: Publishers_TryAllSatisfy_Output<unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2155,7 +2154,7 @@ export declare class Publishers_TryCatch<Upstream = unknown, NewPublisher = unkn
     readonly $type: {
         "s:7Combine10PublishersO8TryCatchV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_TryCatch_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2190,7 +2189,7 @@ export declare class Publishers_TryComparison<Upstream = unknown> extends SDKHan
     readonly $type: {
         "s:7Combine10PublishersO13TryComparisonV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_TryComparison_Output<unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2210,7 +2209,7 @@ export declare class Publishers_TryContainsWhere<Upstream = unknown> extends SDK
     readonly $type: {
         "s:7Combine10PublishersO16TryContainsWhereV": true;
     };
-    readonly $element: boolean;
+    readonly $element: Publishers_TryContainsWhere_Output<unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2230,7 +2229,7 @@ export declare class Publishers_TryDropWhile<Upstream = unknown> extends SDKHand
     readonly $type: {
         "s:7Combine10PublishersO12TryDropWhileV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_TryDropWhile_Output<unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2250,7 +2249,7 @@ export declare class Publishers_TryFilter<Upstream = unknown> extends SDKHandle 
     readonly $type: {
         "s:7Combine10PublishersO9TryFilterV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_TryFilter_Output<unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2270,7 +2269,7 @@ export declare class Publishers_TryFirstWhere<Upstream = unknown> extends SDKHan
     readonly $type: {
         "s:7Combine10PublishersO13TryFirstWhereV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_TryFirstWhere_Output<unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2290,7 +2289,7 @@ export declare class Publishers_TryLastWhere<Upstream = unknown> extends SDKHand
     readonly $type: {
         "s:7Combine10PublishersO12TryLastWhereV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_TryLastWhere_Output<unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2325,7 +2324,7 @@ export declare class Publishers_TryPrefixWhile<Upstream = unknown> extends SDKHa
     readonly $type: {
         "s:7Combine10PublishersO14TryPrefixWhileV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_TryPrefixWhile_Output<unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2360,7 +2359,7 @@ export declare class Publishers_TryRemoveDuplicates<Upstream = unknown> extends 
     readonly $type: {
         "s:7Combine10PublishersO19TryRemoveDuplicatesV": true;
     };
-    readonly $element: SDKHandle;
+    readonly $element: Publishers_TryRemoveDuplicates_Output<unknown>;
 }
 /**
  * typealias Failure = Error
@@ -2395,7 +2394,7 @@ export declare class Publishers_Zip<A = unknown, B = unknown> extends SDKHandle 
     readonly $type: {
         "s:7Combine10PublishersO3ZipV": true;
     };
-    readonly $element: [SDKHandle, SDKHandle];
+    readonly $element: Publishers_Zip_Output<unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -2415,7 +2414,7 @@ export declare class Publishers_Zip3<A = unknown, B = unknown, C = unknown> exte
     readonly $type: {
         "s:7Combine10PublishersO4Zip3V": true;
     };
-    readonly $element: $SDK23;
+    readonly $element: Publishers_Zip3_Output<unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -2426,7 +2425,7 @@ export type Publishers_Zip3_Failure<A = unknown, B = unknown, C = unknown> = SDK
  * typealias Output = (A.Output, B.Output, C.Output)
  * @availability iOS 13.0+
  */
-export type Publishers_Zip3_Output<A = unknown, B = unknown, C = unknown> = $SDK23;
+export type Publishers_Zip3_Output<A = unknown, B = unknown, C = unknown> = $SDK39;
 /**
  * struct Zip4<A, B, C, D> where A : Publisher, B : Publisher, C : Publisher, D : Publisher, A.Failure == B.Failure, B.Failure == C.Failure, C.Failure == D.Failure
  * @availability iOS 13.0+
@@ -2435,7 +2434,7 @@ export declare class Publishers_Zip4<A = unknown, B = unknown, C = unknown, D = 
     readonly $type: {
         "s:7Combine10PublishersO4Zip4V": true;
     };
-    readonly $element: $SDK24;
+    readonly $element: Publishers_Zip4_Output<unknown, unknown, unknown, unknown>;
 }
 /**
  * typealias Failure = A.Failure
@@ -2446,7 +2445,7 @@ export type Publishers_Zip4_Failure<A = unknown, B = unknown, C = unknown, D = u
  * typealias Output = (A.Output, B.Output, C.Output, D.Output)
  * @availability iOS 13.0+
  */
-export type Publishers_Zip4_Output<A = unknown, B = unknown, C = unknown, D = unknown> = $SDK24;
+export type Publishers_Zip4_Output<A = unknown, B = unknown, C = unknown, D = unknown> = $SDK41;
 /**
  * struct Record<Output, Failure> where Failure : Error
  * @availability iOS 13.0+
@@ -2456,22 +2455,22 @@ export declare class Record<Output = unknown, Failure = unknown> extends SDKHand
      * init(output: [Output], completion: Subscribers.Completion<Failure>)
      * @availability iOS 13.0+
      */
-    static initOutputCompletion(output: Array<unknown>, completion: $SDK3): $SDK27;
+    static initOutputCompletion(output: Array<unknown>, completion: $SDK3): $SDK106;
     /**
      * init(record: (inout Record<Output, Failure>.Recording) -> Void)
      * @availability iOS 13.0+
      */
-    static initRecord(record: ((arg0: Record_Recording<unknown, NativeError>) => void)): $SDK27;
+    static initRecord(record: ((arg0: Record_Recording<unknown, NativeError>) => void)): $SDK106;
     /**
      * let recording: Record<Output, Failure>.Recording
      * @availability iOS 13.0+
      */
-    get recording(): $SDK29;
+    get recording(): $SDK108;
     /**
      * init(recording: Record<Output, Failure>.Recording)
      * @availability iOS 13.0+
      */
-    static initRecording(recording: $SDK29): $SDK27;
+    static initRecording(recording: $SDK108): $SDK106;
     readonly $type: {
         "s:7Combine6RecordV": true;
     };
@@ -2491,7 +2490,7 @@ export declare class Record_Recording<Output = unknown, Failure = unknown> exten
      * init(output: [Output], completion: Subscribers.Completion<Failure> = .finished)
      * @availability iOS 13.0+
      */
-    static initOutputCompletion(output: Array<unknown>, completion?: $SDK3): $SDK29;
+    static initOutputCompletion(output: Array<unknown>, completion?: $SDK3): $SDK108;
     /**
      * var output: [Output] { get }
      * @availability iOS 13.0+
@@ -2506,12 +2505,12 @@ export declare class Record_Recording<Output = unknown, Failure = unknown> exten
      * mutating func receive(_ input: Record<Output, Failure>.Recording.Input)
      * @availability iOS 13.0+
      */
-    receive(input: $SDK29): void;
+    receive(input: $SDK108): void;
     /**
      * init()
      * @availability iOS 13.0+
      */
-    static init(): $SDK29;
+    static init(): $SDK108;
     readonly $type: {
         "s:7Combine6RecordV9RecordingV": true;
     };
@@ -2529,7 +2528,7 @@ export declare class Result_Publisher<Success = unknown, Failure = unknown> exte
     readonly $type: {
         "s:s6ResultO7CombineE9PublisherV": true;
     };
-    readonly $element: unknown;
+    readonly $element: Result_Publisher_Output<unknown, unknown>;
 }
 /**
  * typealias Output = Success
@@ -2555,7 +2554,7 @@ export interface Scheduler {
      * func schedule(after date: Self.SchedulerTimeType, interval: Self.SchedulerTimeType.Stride, tolerance: Self.SchedulerTimeType.Stride, options: Self.SchedulerOptions?, _ action: @escaping () -> Void) -> any Cancellable
      * @availability iOS 13.0+
      */
-    "scheduleAfterIntervalToleranceOptions"?: (arg0: unknown, arg1: unknown, arg2: unknown, arg3: (unknown) | null, arg4: (() => Promise<void>)) => $SDK6;
+    "scheduleAfterIntervalToleranceOptions"?: (arg0: unknown, arg1: unknown, arg2: unknown, arg3: (unknown) | null, arg4: (() => Promise<void>)) => $SDK8;
 }
 /**
  * protocol SchedulerTimeIntervalConvertible
@@ -2602,7 +2601,7 @@ export interface Subject {
      * func send(completion: Subscribers.Completion<Self.Failure>)
      * @availability iOS 13.0+
      */
-    "sendCompletion"?: (arg0: $SDK30) => void;
+    "sendCompletion"?: (arg0: Subscribers_Completion<unknown>) => void;
     /**
      * func send(subscription: any Subscription)
      * @availability iOS 13.0+
@@ -2628,7 +2627,7 @@ export interface Subscriber {
      * func receive(completion: Subscribers.Completion<Self.Failure>)
      * @availability iOS 13.0+
      */
-    "receiveCompletion"?: (arg0: $SDK30) => void;
+    "receiveCompletion"?: (arg0: Subscribers_Completion<unknown>) => void;
 }
 /**
  * enum Subscribers

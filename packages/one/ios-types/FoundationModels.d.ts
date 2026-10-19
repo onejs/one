@@ -35,11 +35,11 @@ type $SDK32 = LanguageModelSession_Response<number>;
 type $SDK33 = LanguageModelSession_Response<unknown>;
 type $SDK34 = LanguageModelSession_Response<GeneratedContent>;
 type $SDK35 = LanguageModelSession_DynamicProfileModifierContent<unknown>;
-type $SDK37 = LanguageModelSession_ResponseStream_Snapshot<unknown>;
-type $SDK39 = Array<_Foundation_Locale_Language>;
-type $SDK40 = (PrivateCloudComputeLanguageModel_QuotaUsage_LimitIncreaseSuggestion) | null;
-type $SDK42 = Array<Transcript_Segment>;
-type $SDK43 = (Transcript_ResponseFormat) | null;
+type $SDK39 = LanguageModelSession_ResponseStream_Snapshot<unknown>;
+type $SDK40 = Array<_Foundation_Locale_Language>;
+type $SDK41 = (PrivateCloudComputeLanguageModel_QuotaUsage_LimitIncreaseSuggestion) | null;
+type $SDK43 = Array<Transcript_Segment>;
+type $SDK44 = (Transcript_ResponseFormat) | null;
 /**
  * struct AnyDynamicInstructions
  * @availability iOS 27.0+
@@ -2580,7 +2580,7 @@ export declare class LanguageModelSession_ResponseStream<Content = unknown> exte
     readonly $type: {
         "s:16FoundationModels20LanguageModelSessionC14ResponseStreamV": true;
     };
-    readonly $element: $SDK37;
+    readonly $element: LanguageModelSession_ResponseStream_Element<unknown>;
 }
 /**
  * struct AsyncIterator
@@ -2600,12 +2600,12 @@ export declare class LanguageModelSession_ResponseStream_AsyncIterator<Content =
  * typealias Element = LanguageModelSession.ResponseStream<Content>.Snapshot
  * @availability iOS 26.0+
  */
-export type LanguageModelSession_ResponseStream_AsyncIterator_Element<Content = unknown> = $SDK37;
+export type LanguageModelSession_ResponseStream_AsyncIterator_Element<Content = unknown> = $SDK39;
 /**
  * typealias Element = LanguageModelSession.ResponseStream<Content>.Snapshot
  * @availability iOS 26.0+
  */
-export type LanguageModelSession_ResponseStream_Element<Content = unknown> = $SDK37;
+export type LanguageModelSession_ResponseStream_Element<Content = unknown> = $SDK39;
 /**
  * struct Snapshot
  * @availability iOS 26.0+
@@ -2857,7 +2857,7 @@ export declare class PrivateCloudComputeLanguageModel extends SDKHandle {
      * nonisolated(nonsending) final var supportedLanguages: Set<Locale.Language> { get async throws }
      * @availability iOS 27.0+
      */
-    get supportedLanguages(): Promise<$SDK39>;
+    get supportedLanguages(): Promise<$SDK40>;
     /**
      * final var executorConfiguration: PrivateCloudComputeLanguageModel.Executor.Configuration { get }
      * @availability iOS 27.0+
@@ -2947,13 +2947,13 @@ export declare class PrivateCloudComputeLanguageModel_Error_QuotaLimitReached ex
      * init(limitIncreaseSuggestion: PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion? = nil, resetDate: Date? = nil, debugDescription: String)
      * @availability iOS 27.0+
      */
-    static init(limitIncreaseSuggestion: $SDK40, resetDate: $SDK16, debugDescription: string): PrivateCloudComputeLanguageModel_Error_QuotaLimitReached;
+    static init(limitIncreaseSuggestion: $SDK41, resetDate: $SDK16, debugDescription: string): PrivateCloudComputeLanguageModel_Error_QuotaLimitReached;
     /**
      * var limitIncreaseSuggestion: PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion?
      * @availability iOS 27.0+
      */
-    get limitIncreaseSuggestion(): $SDK40;
-    set limitIncreaseSuggestion(value: $SDK40);
+    get limitIncreaseSuggestion(): $SDK41;
+    set limitIncreaseSuggestion(value: $SDK41);
     /**
      * var resetDate: Date?
      * @availability iOS 27.0+
@@ -3036,8 +3036,8 @@ export declare class PrivateCloudComputeLanguageModel_QuotaUsage extends SDKHand
      * var limitIncreaseSuggestion: PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion?
      * @availability iOS 27.0+
      */
-    get limitIncreaseSuggestion(): $SDK40;
-    set limitIncreaseSuggestion(value: $SDK40);
+    get limitIncreaseSuggestion(): $SDK41;
+    set limitIncreaseSuggestion(value: $SDK41);
     /**
      * var status: PrivateCloudComputeLanguageModel.QuotaUsage.Status
      * @availability iOS 27.0+
@@ -3254,7 +3254,7 @@ export declare class SystemLanguageModel extends SDKHandle {
      * final var supportedLanguages: Set<Locale.Language> { get }
      * @availability iOS 26.0+
      */
-    get supportedLanguages(): $SDK39;
+    get supportedLanguages(): $SDK40;
     /**
      * final var executorConfiguration: SystemLanguageModel.Executor.Configuration { get }
      * @availability iOS 27.0+
@@ -3811,7 +3811,7 @@ export declare class Transcript_Instructions extends SDKHandle {
      * init(id: String = UUID().uuidString, segments: [Transcript.Segment], toolDefinitions: [Transcript.ToolDefinition])
      * @availability iOS 26.0+
      */
-    static init(id: string, segments: $SDK42, toolDefinitions: $SDK21): Transcript_Instructions;
+    static init(id: string, segments: $SDK43, toolDefinitions: $SDK21): Transcript_Instructions;
     /**
      * var id: String
      * @availability iOS 26.0+
@@ -3822,8 +3822,8 @@ export declare class Transcript_Instructions extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 26.0+
      */
-    get segments(): $SDK42;
-    set segments(value: $SDK42);
+    get segments(): $SDK43;
+    set segments(value: $SDK43);
     readonly $type: {
         "s:16FoundationModels10TranscriptV12InstructionsV": true;
     };
@@ -3858,18 +3858,18 @@ export declare class Transcript_Prompt extends SDKHandle {
      * var responseFormat: Transcript.ResponseFormat?
      * @availability iOS 26.0+
      */
-    get responseFormat(): $SDK43;
-    set responseFormat(value: $SDK43);
+    get responseFormat(): $SDK44;
+    set responseFormat(value: $SDK44);
     /**
      * init(id: String = UUID().uuidString, metadata: [String : any ConvertibleToGeneratedContent] = [:], segments: [Transcript.Segment], options: GenerationOptions = GenerationOptions(), responseFormat: Transcript.ResponseFormat? = nil, contextOptions: ContextOptions = ContextOptions())
      * @availability iOS 27.0+
      */
-    static initIdMetadataSegmentsOptionsResponseFormatContextOptions(id: string, metadata: $SDK15, segments: $SDK42, options?: GenerationOptions, responseFormat?: $SDK43, contextOptions?: ContextOptions): Transcript_Prompt;
+    static initIdMetadataSegmentsOptionsResponseFormatContextOptions(id: string, metadata: $SDK15, segments: $SDK43, options?: GenerationOptions, responseFormat?: $SDK44, contextOptions?: ContextOptions): Transcript_Prompt;
     /**
      * init(id: String = UUID().uuidString, segments: [Transcript.Segment], options: GenerationOptions = GenerationOptions(), responseFormat: Transcript.ResponseFormat? = nil)
      * @availability iOS 26.0+
      */
-    static initIdSegmentsOptionsResponseFormat(id: string, segments: $SDK42, options?: GenerationOptions, responseFormat?: $SDK43): Transcript_Prompt;
+    static initIdSegmentsOptionsResponseFormat(id: string, segments: $SDK43, options?: GenerationOptions, responseFormat?: $SDK44): Transcript_Prompt;
     /**
      * var id: String
      * @availability iOS 26.0+
@@ -3892,8 +3892,8 @@ export declare class Transcript_Prompt extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 26.0+
      */
-    get segments(): $SDK42;
-    set segments(value: $SDK42);
+    get segments(): $SDK43;
+    set segments(value: $SDK43);
     readonly $type: {
         "s:16FoundationModels10TranscriptV6PromptV": true;
     };
@@ -3917,7 +3917,7 @@ export declare class Transcript_Reasoning extends SDKHandle {
      * init(id: String = UUID().uuidString, metadata: [String : any ConvertibleToGeneratedContent] = [:], segments: [Transcript.Segment], signature: Data? = nil)
      * @availability iOS 27.0+
      */
-    static init(id: string, metadata: $SDK15, segments: $SDK42, signature?: (ArrayBuffer) | null): Transcript_Reasoning;
+    static init(id: string, metadata: $SDK15, segments: $SDK43, signature?: (ArrayBuffer) | null): Transcript_Reasoning;
     /**
      * var id: String
      * @availability iOS 27.0+
@@ -3934,8 +3934,8 @@ export declare class Transcript_Reasoning extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 27.0+
      */
-    get segments(): $SDK42;
-    set segments(value: $SDK42);
+    get segments(): $SDK43;
+    set segments(value: $SDK43);
     /**
      * var signature: Data?
      * @availability iOS 27.0+
@@ -3965,12 +3965,12 @@ export declare class Transcript_Response extends SDKHandle {
      * init(id: String = UUID().uuidString, assetIDs: [String], segments: [Transcript.Segment])
      * @availability iOS 26.0+
      */
-    static initIdAssetIDsSegments(id: string, assetIDs: Array<string>, segments: $SDK42): Transcript_Response;
+    static initIdAssetIDsSegments(id: string, assetIDs: Array<string>, segments: $SDK43): Transcript_Response;
     /**
      * init(id: String = UUID().uuidString, metadata: [String : any ConvertibleToGeneratedContent] = [:], segments: [Transcript.Segment])
      * @availability iOS 27.0+
      */
-    static initIdMetadataSegments(id: string, metadata: $SDK15, segments: $SDK42): Transcript_Response;
+    static initIdMetadataSegments(id: string, metadata: $SDK15, segments: $SDK43): Transcript_Response;
     /**
      * var id: String
      * @availability iOS 26.0+
@@ -3993,8 +3993,8 @@ export declare class Transcript_Response extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 26.0+
      */
-    get segments(): $SDK42;
-    set segments(value: $SDK42);
+    get segments(): $SDK43;
+    set segments(value: $SDK43);
     readonly $type: {
         "s:16FoundationModels10TranscriptV8ResponseV": true;
     };
@@ -4332,7 +4332,7 @@ export declare class Transcript_ToolOutput extends SDKHandle {
      * init(id: String, toolName: String, segments: [Transcript.Segment])
      * @availability iOS 26.0+
      */
-    static init(id: string, toolName: string, segments: $SDK42): Transcript_ToolOutput;
+    static init(id: string, toolName: string, segments: $SDK43): Transcript_ToolOutput;
     /**
      * var id: String
      * @availability iOS 26.0+
@@ -4343,8 +4343,8 @@ export declare class Transcript_ToolOutput extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 26.0+
      */
-    get segments(): $SDK42;
-    set segments(value: $SDK42);
+    get segments(): $SDK43;
+    set segments(value: $SDK43);
     /**
      * var toolName: String
      * @availability iOS 26.0+

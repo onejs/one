@@ -7673,7 +7673,7 @@ export declare class KeyframeTrackContentBuilder_Conditional<Value = unknown, Co
  * typealias Body = KeyframeTrackContentBuilder<KeyframeTrackContentBuilder<Value>.Conditional<ConditionalValue, First, Second>.Value>.Conditional<ConditionalValue, First, Second>
  * @availability iOS 17.0+
  */
-export type KeyframeTrackContentBuilder_Conditional_Body<Value = unknown, ConditionalValue = unknown, First = unknown, Second = unknown> = KeyframeTrackContentBuilder_Conditional<unknown, unknown, unknown, unknown>;
+export type KeyframeTrackContentBuilder_Conditional_Body<Value = unknown, ConditionalValue = unknown, First = unknown, Second = unknown> = KeyframeTrackContentBuilder_Conditional<KeyframeTrackContentBuilder_Conditional<unknown, unknown, unknown, unknown>, unknown, unknown, unknown>;
 /**
  * typealias Value = ConditionalValue
  * @availability iOS 17.0+

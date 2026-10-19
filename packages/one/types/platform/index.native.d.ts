@@ -3,6 +3,7 @@ import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffec
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
 import { Page, Pager } from './Pager.native';
 import { UIKitView } from './UIKitView.native';
+import { collectionCellSource, tableCellSource, UIKitContent } from './UIKitContent.native';
 import { Popover } from './Popover.native';
 import { NavigationStack, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
@@ -211,6 +212,9 @@ export declare const Swift: {
     DisclosureGroup: typeof DisclosureGroup;
     Divider: typeof Divider;
     UIKitView: typeof UIKitView;
+    UIKitContent: typeof UIKitContent;
+    collectionCellSource: typeof collectionCellSource;
+    tableCellSource: typeof tableCellSource;
     Link: typeof Link;
     Group: typeof Group;
     GroupBox: typeof GroupBox;

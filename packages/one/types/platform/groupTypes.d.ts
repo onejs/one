@@ -6,6 +6,7 @@ import type { SFSymbolName } from './generated/sfSymbolNames';
 import type { ControlGroupStyle } from './generated/swiftui';
 import type { OneNativeStyle } from './generated/controlTypes';
 import type { ViewSlotConfiguration } from './generated/viewSlots';
+import type { UICollectionViewDiffableDataSource, UITableViewDiffableDataSource, UIView } from 'one/ios/UIKit';
 export declare const swipeActionsEdges: readonly ['leading', 'trailing'];
 export type SwipeActionsEdge = (typeof swipeActionsEdges)[number];
 export interface ControlGroupProps extends ViewProps {
@@ -25,6 +26,15 @@ export interface DisclosureGroupProps extends ViewProps {
 }
 export interface UIKitViewProps extends ViewProps {
     view: SDKHandle;
+}
+export type UIKitContentSource = UICollectionViewDiffableDataSource<number, number> | UITableViewDiffableDataSource<number, number>;
+export interface UIKitContentProps extends ViewProps {
+    children: ReactNode;
+    onView?: (view: UIView) => void;
+    source?: UIKitContentSource;
+    item?: number;
+    height?: number;
+    estimatedHeight?: number;
 }
 export interface DividerProps extends ViewProps {
     swiftStyle?: OneNativeStyle;

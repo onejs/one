@@ -73,162 +73,162 @@ export class Album extends SDKHandle {
    * var artistName: String { get }
    * @availability iOS 15.0+
    */
-  get artistName(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1549282219480705, this, []); }
+  get artistName(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1549282219480705, this, []); }
   /**
    * var genreNames: [String] { get }
    * @availability iOS 15.0+
    */
-  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_d968214ecc684fb6", 861852910871074, this, []); }
+  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_0e503aef608672fa", 861852910871074, this, []); }
   /**
    * var isComplete: Bool? { get }
    * @availability iOS 15.0+
    */
-  get isComplete(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_d968214ecc684fb6", 3385841353246450, this, []); }
+  get isComplete(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_0e503aef608672fa", 3385841353246450, this, []); }
   /**
    * var trackCount: Int { get }
    * @availability iOS 15.0+
    */
-  get trackCount(): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 158220157892296, this, []); }
+  get trackCount(): number { return callSDK<number>("MusicKit_0e503aef608672fa", 158220157892296, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3501767588173325, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3501767588173325, this, []); }
   /**
    * var releaseDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 1923959175561131, this, []); }
+  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 1923959175561131, this, []); }
   /**
    * var recordLabels: MusicItemCollection<RecordLabel>? { get }
    * @availability iOS 15.0+
    */
-  get recordLabels(): (MusicItemCollection<RecordLabel>) | null { return callSDK<(MusicItemCollection<RecordLabel>) | null>("MusicKit_d968214ecc684fb6", 3554760902407209, this, []); }
+  get recordLabels(): (MusicItemCollection<RecordLabel>) | null { return callSDK<(MusicItemCollection<RecordLabel>) | null>("MusicKit_0e503aef608672fa", 3554760902407209, this, []); }
   /**
    * var audioVariants: [AudioVariant]? { get }
    * @availability iOS 16.0+
    */
-  get audioVariants(): $SDK2 { return callSDK<$SDK2>("MusicKit_d968214ecc684fb6", 2454302851884422, this, []); }
+  get audioVariants(): $SDK2 { return callSDK<$SDK2>("MusicKit_0e503aef608672fa", 2454302851884422, this, []); }
   /**
    * var contentRating: ContentRating? { get }
    * @availability iOS 15.0+
    */
-  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_d968214ecc684fb6", 1436364819952685, this, []); }
+  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_0e503aef608672fa", 1436364819952685, this, []); }
   /**
    * var isCompilation: Bool? { get }
    * @availability iOS 15.0+
    */
-  get isCompilation(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_d968214ecc684fb6", 1384869353372538, this, []); }
+  get isCompilation(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_0e503aef608672fa", 1384869353372538, this, []); }
   /**
    * var otherVersions: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get otherVersions(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 3194373929252794, this, []); }
+  get otherVersions(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 3194373929252794, this, []); }
   /**
    * var relatedAlbums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get relatedAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 1159294772739996, this, []); }
+  get relatedAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 1159294772739996, this, []); }
   /**
    * var relatedVideos: MusicItemCollection<MusicVideo>? { get }
    * @availability iOS 15.0+
    */
-  get relatedVideos(): $SDK4 { return callSDK<$SDK4>("MusicKit_d968214ecc684fb6", 1211313042069841, this, []); }
+  get relatedVideos(): $SDK4 { return callSDK<$SDK4>("MusicKit_0e503aef608672fa", 1211313042069841, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 15.0+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 3566974942324776, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 3566974942324776, this, []); }
   /**
    * var lastPlayedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 4120729737414264, this, []); }
+  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 4120729737414264, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 15.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 2256684000228068, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 2256684000228068, this, []); }
   /**
    * var recordLabelName: String? { get }
    * @availability iOS 15.0+
    */
-  get recordLabelName(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3914296995828446, this, []); }
+  get recordLabelName(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3914296995828446, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3958903782021355, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3958903782021355, this, []); }
   /**
    * var libraryAddedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 4231592288229461, this, []); }
+  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 4231592288229461, this, []); }
   /**
    * var isAppleDigitalMaster: Bool? { get }
    * @availability iOS 16.0+
    */
-  get isAppleDigitalMaster(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_d968214ecc684fb6", 856009944588070, this, []); }
+  get isAppleDigitalMaster(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_0e503aef608672fa", 856009944588070, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 2164057279510239, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 2164057279510239, this, []); }
   /**
    * var upc: String? { get }
    * @availability iOS 15.0+
    */
-  get upc(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3527282579665371, this, []); }
+  get upc(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3527282579665371, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3059419762074043, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3059419762074043, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 15.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2532782222597105, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2532782222597105, this, []); }
   /**
    * var genres: MusicItemCollection<Genre>? { get }
    * @availability iOS 15.0+
    */
-  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_d968214ecc684fb6", 1700219992722020, this, []); }
+  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_0e503aef608672fa", 1700219992722020, this, []); }
   /**
    * var tracks: MusicItemCollection<Track>? { get }
    * @availability iOS 15.0+
    */
-  get tracks(): $SDK6 { return callSDK<$SDK6>("MusicKit_d968214ecc684fb6", 3045529105433577, this, []); }
+  get tracks(): $SDK6 { return callSDK<$SDK6>("MusicKit_0e503aef608672fa", 3045529105433577, this, []); }
   /**
    * var artists: MusicItemCollection<Artist>? { get }
    * @availability iOS 15.0+
    */
-  get artists(): $SDK7 { return callSDK<$SDK7>("MusicKit_d968214ecc684fb6", 1089602225024663, this, []); }
+  get artists(): $SDK7 { return callSDK<$SDK7>("MusicKit_0e503aef608672fa", 1089602225024663, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 2572244715546578, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 2572244715546578, this, []); }
   /**
    * var isSingle: Bool? { get }
    * @availability iOS 15.0+
    */
-  get isSingle(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_d968214ecc684fb6", 3111807390572241, this, []); }
+  get isSingle(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_0e503aef608672fa", 3111807390572241, this, []); }
   /**
    * var appearsOn: MusicItemCollection<Playlist>? { get }
    * @availability iOS 15.0+
    */
-  get appearsOn(): $SDK8 { return callSDK<$SDK8>("MusicKit_d968214ecc684fb6", 3252877230361711, this, []); }
+  get appearsOn(): $SDK8 { return callSDK<$SDK8>("MusicKit_0e503aef608672fa", 3252877230361711, this, []); }
   /**
    * var artistURL: URL? { get }
    * @availability iOS 15.0+
    */
-  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2460579566748099, this, []); }
+  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2460579566748099, this, []); }
   /**
    * var copyright: String? { get }
    * @availability iOS 15.0+
    */
-  get copyright(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2159377575765752, this, []); }
+  get copyright(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2159377575765752, this, []); }
   declare readonly $type: { "s:8MusicKit5AlbumV": true };
 }
 
@@ -281,68 +281,68 @@ export class MusicPlayer extends SDKHandle {
    * func endSeeking()
    * @availability iOS 15.0+
    */
-  endSeeking(): void { return callSDK<void>("MusicKit_d968214ecc684fb6", 542780129041019, this, []); }
+  endSeeking(): void { return callSDK<void>("MusicKit_0e503aef608672fa", 542780129041019, this, []); }
   /**
    * var playbackTime: TimeInterval { get set }
    * @availability iOS 15.0+
    */
-  get playbackTime(): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 3335744044862220, this, []); }
-  set playbackTime(value: number) { callSDK<void>("MusicKit_d968214ecc684fb6", 1492321376305615, this, [value]); }
+  get playbackTime(): number { return callSDK<number>("MusicKit_0e503aef608672fa", 3335744044862220, this, []); }
+  set playbackTime(value: number) { callSDK<void>("MusicKit_0e503aef608672fa", 1492321376305615, this, [value]); }
   /**
    * func prepareToPlay() async throws
    * @availability iOS 15.0+
    */
-  prepareToPlay(): Promise<void> { return callSDKAsync<void>("MusicKit_d968214ecc684fb6", 2986979761900480, this, []); }
+  prepareToPlay(): Promise<void> { return callSDKAsync<void>("MusicKit_0e503aef608672fa", 2986979761900480, this, []); }
   /**
    * func skipToNextEntry() async throws
    * @availability iOS 15.0+
    */
-  skipToNextEntry(): Promise<void> { return callSDKAsync<void>("MusicKit_d968214ecc684fb6", 2487235945040987, this, []); }
+  skipToNextEntry(): Promise<void> { return callSDKAsync<void>("MusicKit_0e503aef608672fa", 2487235945040987, this, []); }
   /**
    * var isPreparedToPlay: Bool { get }
    * @availability iOS 15.0+
    */
-  get isPreparedToPlay(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 2341811903661889, this, []); }
+  get isPreparedToPlay(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 2341811903661889, this, []); }
   /**
    * func beginSeekingForward()
    * @availability iOS 15.0+
    */
-  beginSeekingForward(): void { return callSDK<void>("MusicKit_d968214ecc684fb6", 2145252518583074, this, []); }
+  beginSeekingForward(): void { return callSDK<void>("MusicKit_0e503aef608672fa", 2145252518583074, this, []); }
   /**
    * func restartCurrentEntry()
    * @availability iOS 15.0+
    */
-  restartCurrentEntry(): void { return callSDK<void>("MusicKit_d968214ecc684fb6", 2169361255413331, this, []); }
+  restartCurrentEntry(): void { return callSDK<void>("MusicKit_0e503aef608672fa", 2169361255413331, this, []); }
   /**
    * func skipToPreviousEntry() async throws
    * @availability iOS 15.0+
    */
-  skipToPreviousEntry(): Promise<void> { return callSDKAsync<void>("MusicKit_d968214ecc684fb6", 3467511204752497, this, []); }
+  skipToPreviousEntry(): Promise<void> { return callSDKAsync<void>("MusicKit_0e503aef608672fa", 3467511204752497, this, []); }
   /**
    * func beginSeekingBackward()
    * @availability iOS 15.0+
    */
-  beginSeekingBackward(): void { return callSDK<void>("MusicKit_d968214ecc684fb6", 2336042068187473, this, []); }
+  beginSeekingBackward(): void { return callSDK<void>("MusicKit_0e503aef608672fa", 2336042068187473, this, []); }
   /**
    * func play() async throws
    * @availability iOS 15.0+
    */
-  play(): Promise<void> { return callSDKAsync<void>("MusicKit_d968214ecc684fb6", 1999097045475615, this, []); }
+  play(): Promise<void> { return callSDKAsync<void>("MusicKit_0e503aef608672fa", 1999097045475615, this, []); }
   /**
    * func stop()
    * @availability iOS 15.0+
    */
-  stop(): void { return callSDK<void>("MusicKit_d968214ecc684fb6", 2518018567656852, this, []); }
+  stop(): void { return callSDK<void>("MusicKit_0e503aef608672fa", 2518018567656852, this, []); }
   /**
    * func pause()
    * @availability iOS 15.0+
    */
-  pause(): void { return callSDK<void>("MusicKit_d968214ecc684fb6", 3168965589164436, this, []); }
+  pause(): void { return callSDK<void>("MusicKit_0e503aef608672fa", 3168965589164436, this, []); }
   /**
    * final let state: MusicPlayer.State
    * @availability iOS 15.0+
    */
-  get state(): MusicPlayer_State { return callSDK<MusicPlayer_State>("MusicKit_d968214ecc684fb6", 206596006909182, this, []); }
+  get state(): MusicPlayer_State { return callSDK<MusicPlayer_State>("MusicKit_0e503aef608672fa", 206596006909182, this, []); }
   declare readonly $type: { "s:8MusicKit0A6PlayerC": true };
 }
 
@@ -355,19 +355,19 @@ export class ApplicationMusicPlayer extends MusicPlayer {
    * var transition: MusicPlayer.Transition { get set }
    * @availability iOS 18.0+
    */
-  get transition(): MusicPlayer_Transition { return callSDK<MusicPlayer_Transition>("MusicKit_d968214ecc684fb6", 3574119589670247, this, []); }
-  set transition(value: MusicPlayer_Transition) { callSDK<void>("MusicKit_d968214ecc684fb6", 3968179469990028, this, [value]); }
+  get transition(): MusicPlayer_Transition { return callSDK<MusicPlayer_Transition>("MusicKit_0e503aef608672fa", 3574119589670247, this, []); }
+  set transition(value: MusicPlayer_Transition) { callSDK<void>("MusicKit_0e503aef608672fa", 3968179469990028, this, [value]); }
   /**
    * var queue: ApplicationMusicPlayer.Queue { get set }
    * @availability iOS 15.0+
    */
-  get queue(): ApplicationMusicPlayer_Queue { return callSDK<ApplicationMusicPlayer_Queue>("MusicKit_d968214ecc684fb6", 2450467135279882, this, []); }
-  set queue(value: ApplicationMusicPlayer_Queue) { callSDK<void>("MusicKit_d968214ecc684fb6", 3311453427896196, this, [value]); }
+  get queue(): ApplicationMusicPlayer_Queue { return callSDK<ApplicationMusicPlayer_Queue>("MusicKit_0e503aef608672fa", 2450467135279882, this, []); }
+  set queue(value: ApplicationMusicPlayer_Queue) { callSDK<void>("MusicKit_0e503aef608672fa", 3311453427896196, this, [value]); }
   /**
    * static let shared: ApplicationMusicPlayer
    * @availability iOS 15.0+
    */
-  static get shared(): ApplicationMusicPlayer { return callSDK<ApplicationMusicPlayer>("MusicKit_d968214ecc684fb6", 627228396654611, undefined, []); }
+  static get shared(): ApplicationMusicPlayer { return callSDK<ApplicationMusicPlayer>("MusicKit_0e503aef608672fa", 627228396654611, undefined, []); }
   declare readonly $type: { "s:8MusicKit011ApplicationA6PlayerC": true; "s:8MusicKit0A6PlayerC": true };
 }
 
@@ -380,44 +380,44 @@ export class MusicPlayer_Queue extends SDKHandle {
    * var currentEntry: MusicPlayer.Queue.Entry? { get set }
    * @availability iOS 15.0+
    */
-  get currentEntry(): $SDK9 { return callSDK<$SDK9>("MusicKit_d968214ecc684fb6", 4449695860060133, this, []); }
-  set currentEntry(value: $SDK9) { callSDK<void>("MusicKit_d968214ecc684fb6", 4404281283815954, this, [value]); }
+  get currentEntry(): $SDK9 { return callSDK<$SDK9>("MusicKit_0e503aef608672fa", 4449695860060133, this, []); }
+  set currentEntry(value: $SDK9) { callSDK<void>("MusicKit_0e503aef608672fa", 4404281283815954, this, [value]); }
   /**
    * var objectWillChange: AnyPublisher<Void, Never> { get }
    * @availability iOS 15.0+
    */
-  get objectWillChange(): $SDK10 { return callSDK<$SDK10>("MusicKit_d968214ecc684fb6", 4460153642034217, this, []); }
+  get objectWillChange(): $SDK10 { return callSDK<$SDK10>("MusicKit_0e503aef608672fa", 4460153642034217, this, []); }
   /**
    * var affectsListeningHistory: Bool { get set }
    * @availability iOS 26.4+
    */
-  get affectsListeningHistory(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 671391122654245, this, []); }
-  set affectsListeningHistory(value: boolean) { callSDK<void>("MusicKit_d968214ecc684fb6", 3274249602745651, this, [value]); }
+  get affectsListeningHistory(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 671391122654245, this, []); }
+  set affectsListeningHistory(value: boolean) { callSDK<void>("MusicKit_0e503aef608672fa", 3274249602745651, this, [value]); }
   /**
    * required init(album: Album, startingAt startTrack: Track)
    * @availability iOS 16.4+
    */
-  static initAlbumStartingAt(album: Album, startTrack: Track): MusicPlayer_Queue { return callSDK<MusicPlayer_Queue>("MusicKit_d968214ecc684fb6", 951311214588143, undefined, [album, startTrack]); }
+  static initAlbumStartingAt(album: Album, startTrack: Track): MusicPlayer_Queue { return callSDK<MusicPlayer_Queue>("MusicKit_0e503aef608672fa", 951311214588143, undefined, [album, startTrack]); }
   /**
    * func insert(_ entry: MusicPlayer.Queue.Entry, position: MusicPlayer.Queue.EntryInsertionPosition) async throws
    * @availability iOS 15.0+
    */
-  insertPosition(entry: MusicPlayer_Queue_Entry, position: MusicPlayer_Queue_EntryInsertionPosition): Promise<void> { return callSDKAsync<void>("MusicKit_d968214ecc684fb6", 1291624473791911, this, [entry, position]); }
+  insertPosition(entry: MusicPlayer_Queue_Entry, position: MusicPlayer_Queue_EntryInsertionPosition): Promise<void> { return callSDKAsync<void>("MusicKit_0e503aef608672fa", 1291624473791911, this, [entry, position]); }
   /**
    * func insert<S>(_ entries: S, position: MusicPlayer.Queue.EntryInsertionPosition) async throws where S : Sequence, S.Element == MusicPlayer.Queue.Entry
    * @availability iOS 15.0+
    */
-  insertPosition19337(entries: $SDK11, position: MusicPlayer_Queue_EntryInsertionPosition): Promise<void> { return callSDKAsync<void>("MusicKit_d968214ecc684fb6", 4473674201209755, this, [entries, position]); }
+  insertPosition19337(entries: $SDK11, position: MusicPlayer_Queue_EntryInsertionPosition): Promise<void> { return callSDKAsync<void>("MusicKit_0e503aef608672fa", 4473674201209755, this, [entries, position]); }
   /**
    * required init(playlist: Playlist, startingAt startPlaylistEntry: Playlist.Entry)
    * @availability iOS 16.4+
    */
-  static initPlaylistStartingAt(playlist: Playlist, startPlaylistEntry: Playlist_Entry): MusicPlayer_Queue { return callSDK<MusicPlayer_Queue>("MusicKit_d968214ecc684fb6", 3833494206730708, undefined, [playlist, startPlaylistEntry]); }
+  static initPlaylistStartingAt(playlist: Playlist, startPlaylistEntry: Playlist_Entry): MusicPlayer_Queue { return callSDK<MusicPlayer_Queue>("MusicKit_0e503aef608672fa", 3833494206730708, undefined, [playlist, startPlaylistEntry]); }
   /**
    * required init<S>(_ entries: S, startingAt startEntry: S.Element? = nil) where S : Sequence, S.Element == MusicPlayer.Queue.Entry
    * @availability iOS 15.0+
    */
-  static initStartingAt(entries: $SDK11, startEntry?: $SDK9): MusicPlayer_Queue { return callSDK<MusicPlayer_Queue>("MusicKit_d968214ecc684fb6", 3833091375176667, undefined, [entries, startEntry]); }
+  static initStartingAt(entries: $SDK11, startEntry?: $SDK9): MusicPlayer_Queue { return callSDK<MusicPlayer_Queue>("MusicKit_0e503aef608672fa", 3833091375176667, undefined, [entries, startEntry]); }
   declare readonly $type: { "s:8MusicKit0A6PlayerC5QueueC": true };
   declare readonly $observable: { "currentEntry": true; "objectWillChange": true; "affectsListeningHistory": true };
 }
@@ -431,23 +431,23 @@ export class ApplicationMusicPlayer_Queue extends (MusicPlayer_Queue as unknown 
    * required init(album: Album, startingAt startTrack: Track)
    * @availability iOS 16.4+
    */
-  static initAlbumStartingAt(album: Album, startTrack: Track): ApplicationMusicPlayer_Queue { return callSDK<ApplicationMusicPlayer_Queue>("MusicKit_d968214ecc684fb6", 3471715239832351, undefined, [album, startTrack]); }
+  static initAlbumStartingAt(album: Album, startTrack: Track): ApplicationMusicPlayer_Queue { return callSDK<ApplicationMusicPlayer_Queue>("MusicKit_0e503aef608672fa", 3471715239832351, undefined, [album, startTrack]); }
   /**
    * var entries: ApplicationMusicPlayer.Queue.Entries { get set }
    * @availability iOS 15.0+
    */
-  get entries(): ApplicationMusicPlayer_Queue_Entries { return callSDK<ApplicationMusicPlayer_Queue_Entries>("MusicKit_d968214ecc684fb6", 446527347072552, this, []); }
-  set entries(value: ApplicationMusicPlayer_Queue_Entries) { callSDK<void>("MusicKit_d968214ecc684fb6", 1032481519979867, this, [value]); }
+  get entries(): ApplicationMusicPlayer_Queue_Entries { return callSDK<ApplicationMusicPlayer_Queue_Entries>("MusicKit_0e503aef608672fa", 446527347072552, this, []); }
+  set entries(value: ApplicationMusicPlayer_Queue_Entries) { callSDK<void>("MusicKit_0e503aef608672fa", 1032481519979867, this, [value]); }
   /**
    * required init(playlist: Playlist, startingAt startPlaylistEntry: Playlist.Entry)
    * @availability iOS 16.4+
    */
-  static initPlaylistStartingAt(playlist: Playlist, startPlaylistEntry: Playlist_Entry): ApplicationMusicPlayer_Queue { return callSDK<ApplicationMusicPlayer_Queue>("MusicKit_d968214ecc684fb6", 3774618242287342, undefined, [playlist, startPlaylistEntry]); }
+  static initPlaylistStartingAt(playlist: Playlist, startPlaylistEntry: Playlist_Entry): ApplicationMusicPlayer_Queue { return callSDK<ApplicationMusicPlayer_Queue>("MusicKit_0e503aef608672fa", 3774618242287342, undefined, [playlist, startPlaylistEntry]); }
   /**
    * required init<S>(_ entries: S, startingAt startEntry: S.Element? = nil) where S : Sequence, S.Element == MusicPlayer.Queue.Entry
    * @availability iOS 15.0+
    */
-  static initStartingAt(entries: $SDK11, startEntry?: $SDK9): ApplicationMusicPlayer_Queue { return callSDK<ApplicationMusicPlayer_Queue>("MusicKit_d968214ecc684fb6", 3865124510540507, undefined, [entries, startEntry]); }
+  static initStartingAt(entries: $SDK11, startEntry?: $SDK9): ApplicationMusicPlayer_Queue { return callSDK<ApplicationMusicPlayer_Queue>("MusicKit_0e503aef608672fa", 3865124510540507, undefined, [entries, startEntry]); }
   declare readonly $type: { "s:8MusicKit011ApplicationA6PlayerC5QueueC": true; "s:8MusicKit0A6PlayerC5QueueC": true };
   declare readonly $observable: { "currentEntry": true; "objectWillChange": true; "affectsListeningHistory": true; "entries": true };
 }
@@ -461,77 +461,77 @@ export class ApplicationMusicPlayer_Queue_Entries extends SDKHandle {
    * var startIndex: ApplicationMusicPlayer.Queue.Entries.Index { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): SDKHandle { return callSDK<SDKHandle>("MusicKit_d968214ecc684fb6", 2421721076348300, this, []); }
+  get startIndex(): SDKHandle { return callSDK<SDKHandle>("MusicKit_0e503aef608672fa", 2421721076348300, this, []); }
   /**
    * func makeIterator() -> ApplicationMusicPlayer.Queue.Entries.Iterator
    * @availability iOS 15.0+
    */
-  makeIterator(): SDKHandle { return callSDK<SDKHandle>("MusicKit_d968214ecc684fb6", 3167188200564075, this, []); }
+  makeIterator(): SDKHandle { return callSDK<SDKHandle>("MusicKit_0e503aef608672fa", 3167188200564075, this, []); }
   /**
    * mutating func replaceSubrange<C>(_ subrange: Range<ApplicationMusicPlayer.Queue.Entries.Index>, with newElements: C) where C : Collection, C.Element == MusicPlayer.Queue.Entry
    * @availability iOS 15.0+
    */
-  replaceSubrange(subrange: SDKHandle, newElements: $SDK11): void { return callSDK<void>("MusicKit_d968214ecc684fb6", 4161863367884339, this, [subrange, newElements]); }
+  replaceSubrange(subrange: SDKHandle, newElements: $SDK11): void { return callSDK<void>("MusicKit_0e503aef608672fa", 4161863367884339, this, [subrange, newElements]); }
   /**
    * func index(after i: ApplicationMusicPlayer.Queue.Entries.Index) -> ApplicationMusicPlayer.Queue.Entries.Index
    * @availability iOS 15.0+
    */
-  indexAfter(i: SDKHandle): SDKHandle { return callSDK<SDKHandle>("MusicKit_d968214ecc684fb6", 3209037290243505, this, [i]); }
+  indexAfter(i: SDKHandle): SDKHandle { return callSDK<SDKHandle>("MusicKit_0e503aef608672fa", 3209037290243505, this, [i]); }
   /**
    * func index(before i: ApplicationMusicPlayer.Queue.Entries.Index) -> ApplicationMusicPlayer.Queue.Entries.Index
    * @availability iOS 15.0+
    */
-  indexBefore(i: SDKHandle): SDKHandle { return callSDK<SDKHandle>("MusicKit_d968214ecc684fb6", 871973817484179, this, [i]); }
+  indexBefore(i: SDKHandle): SDKHandle { return callSDK<SDKHandle>("MusicKit_0e503aef608672fa", 871973817484179, this, [i]); }
   /**
    * func index(_ i: ApplicationMusicPlayer.Queue.Entries.Index, offsetBy distance: Int, limitedBy limit: ApplicationMusicPlayer.Queue.Entries.Index) -> ApplicationMusicPlayer.Queue.Entries.Index?
    * @availability iOS 15.0+
    */
-  indexOffsetByLimitedBy(i: SDKHandle, distance: number, limit: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MusicKit_d968214ecc684fb6", 2341783873279683, this, [i, distance, limit]); }
+  indexOffsetByLimitedBy(i: SDKHandle, distance: number, limit: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MusicKit_0e503aef608672fa", 2341783873279683, this, [i, distance, limit]); }
   /**
    * func index(_ i: ApplicationMusicPlayer.Queue.Entries.Index, offsetBy distance: Int) -> ApplicationMusicPlayer.Queue.Entries.Index
    * @availability iOS 15.0+
    */
-  indexOffsetBy(i: SDKHandle, distance: number): SDKHandle { return callSDK<SDKHandle>("MusicKit_d968214ecc684fb6", 4374141862210634, this, [i, distance]); }
+  indexOffsetBy(i: SDKHandle, distance: number): SDKHandle { return callSDK<SDKHandle>("MusicKit_0e503aef608672fa", 4374141862210634, this, [i, distance]); }
   /**
    * var indices: ApplicationMusicPlayer.Queue.Entries.Indices { get }
    * @availability iOS 15.0+
    */
-  get indices(): SDKHandle { return callSDK<SDKHandle>("MusicKit_d968214ecc684fb6", 991199620408442, this, []); }
+  get indices(): SDKHandle { return callSDK<SDKHandle>("MusicKit_0e503aef608672fa", 991199620408442, this, []); }
   /**
    * func distance(from start: ApplicationMusicPlayer.Queue.Entries.Index, to end: ApplicationMusicPlayer.Queue.Entries.Index) -> Int
    * @availability iOS 15.0+
    */
-  distance(start: SDKHandle, end: SDKHandle): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 3653495276570865, this, [start, end]); }
+  distance(start: SDKHandle, end: SDKHandle): number { return callSDK<number>("MusicKit_0e503aef608672fa", 3653495276570865, this, [start, end]); }
   /**
    * var endIndex: ApplicationMusicPlayer.Queue.Entries.Index { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): SDKHandle { return callSDK<SDKHandle>("MusicKit_d968214ecc684fb6", 3239717081703265, this, []); }
+  get endIndex(): SDKHandle { return callSDK<SDKHandle>("MusicKit_0e503aef608672fa", 3239717081703265, this, []); }
   /**
    * func formIndex(after i: inout ApplicationMusicPlayer.Queue.Entries.Index)
    * @availability iOS 15.0+
    */
-  formIndexAfter(i: SDKHandle): { $ret: null; $out: { "i": SDKHandle } } { return callSDK<{ $ret: null; $out: { "i": SDKHandle } }>("MusicKit_d968214ecc684fb6", 1803963408611259, this, [i]); }
+  formIndexAfter(i: SDKHandle): { $ret: null; $out: { "i": SDKHandle } } { return callSDK<{ $ret: null; $out: { "i": SDKHandle } }>("MusicKit_0e503aef608672fa", 1803963408611259, this, [i]); }
   /**
    * func formIndex(before i: inout ApplicationMusicPlayer.Queue.Entries.Index)
    * @availability iOS 15.0+
    */
-  formIndexBefore(i: SDKHandle): { $ret: null; $out: { "i": SDKHandle } } { return callSDK<{ $ret: null; $out: { "i": SDKHandle } }>("MusicKit_d968214ecc684fb6", 3337192194691639, this, [i]); }
+  formIndexBefore(i: SDKHandle): { $ret: null; $out: { "i": SDKHandle } } { return callSDK<{ $ret: null; $out: { "i": SDKHandle } }>("MusicKit_0e503aef608672fa", 3337192194691639, this, [i]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): ApplicationMusicPlayer_Queue_Entries { return callSDK<ApplicationMusicPlayer_Queue_Entries>("MusicKit_d968214ecc684fb6", 1430262606127703, undefined, []); }
+  static init(): ApplicationMusicPlayer_Queue_Entries { return callSDK<ApplicationMusicPlayer_Queue_Entries>("MusicKit_0e503aef608672fa", 1430262606127703, undefined, []); }
   /**
    * subscript(position: ApplicationMusicPlayer.Queue.Entries.Index) -> ApplicationMusicPlayer.Queue.Entries.Element { get set }
    * @availability iOS 15.0+
    */
-  subscript(position: SDKHandle): MusicPlayer_Queue_Entry { return callSDK<MusicPlayer_Queue_Entry>("MusicKit_d968214ecc684fb6", 3027196690833510, this, [position]); }
+  subscript(position: SDKHandle): MusicPlayer_Queue_Entry { return callSDK<MusicPlayer_Queue_Entry>("MusicKit_0e503aef608672fa", 3027196690833510, this, [position]); }
   /**
    * subscript(bounds: Range<ApplicationMusicPlayer.Queue.Entries.Index>) -> ApplicationMusicPlayer.Queue.Entries.SubSequence { get set }
    * @availability iOS 15.0+
    */
-  subscript45748(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("MusicKit_d968214ecc684fb6", 2136869088516069, this, [bounds]); }
+  subscript45748(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("MusicKit_0e503aef608672fa", 2136869088516069, this, [bounds]); }
   declare readonly $type: { "s:8MusicKit011ApplicationA6PlayerC5QueueC7EntriesV": true };
 }
 
@@ -580,127 +580,127 @@ export class Artist extends SDKHandle {
    * var topMusicVideos: MusicItemCollection<MusicVideo>? { get }
    * @availability iOS 15.0+
    */
-  get topMusicVideos(): $SDK4 { return callSDK<$SDK4>("MusicKit_d968214ecc684fb6", 1489758691744351, this, []); }
+  get topMusicVideos(): $SDK4 { return callSDK<$SDK4>("MusicKit_0e503aef608672fa", 1489758691744351, this, []); }
   /**
    * var fullAlbums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get fullAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 975388303883834, this, []); }
+  get fullAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 975388303883834, this, []); }
   /**
    * var genreNames: [String]? { get }
    * @availability iOS 15.0+
    */
-  get genreNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MusicKit_d968214ecc684fb6", 1765989634632095, this, []); }
+  get genreNames(): (Array<string>) | null { return callSDK<(Array<string>) | null>("MusicKit_0e503aef608672fa", 1765989634632095, this, []); }
   /**
    * var liveAlbums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get liveAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 169366624542231, this, []); }
+  get liveAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 169366624542231, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 869758803877423, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 869758803877423, this, []); }
   /**
    * var musicVideos: MusicItemCollection<MusicVideo>? { get }
    * @availability iOS 15.0+
    */
-  get musicVideos(): $SDK4 { return callSDK<$SDK4>("MusicKit_d968214ecc684fb6", 2086373089188014, this, []); }
+  get musicVideos(): $SDK4 { return callSDK<$SDK4>("MusicKit_0e503aef608672fa", 2086373089188014, this, []); }
   /**
    * var latestRelease: Album? { get }
    * @availability iOS 15.0+
    */
-  get latestRelease(): (Album) | null { return callSDK<(Album) | null>("MusicKit_d968214ecc684fb6", 1482854306582739, this, []); }
+  get latestRelease(): (Album) | null { return callSDK<(Album) | null>("MusicKit_0e503aef608672fa", 1482854306582739, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 15.0+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 3632076385902041, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 3632076385902041, this, []); }
   /**
    * var featuredAlbums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get featuredAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 2387199639363509, this, []); }
+  get featuredAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 2387199639363509, this, []); }
   /**
    * var similarArtists: MusicItemCollection<Artist>? { get }
    * @availability iOS 15.0+
    */
-  get similarArtists(): $SDK7 { return callSDK<$SDK7>("MusicKit_d968214ecc684fb6", 609925175459056, this, []); }
+  get similarArtists(): $SDK7 { return callSDK<$SDK7>("MusicKit_0e503aef608672fa", 609925175459056, this, []); }
   /**
    * var appearsOnAlbums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get appearsOnAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 3702426202814770, this, []); }
+  get appearsOnAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 3702426202814770, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 355783600813090, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 355783600813090, this, []); }
   /**
    * var libraryAddedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 1877542815387955, this, []); }
+  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 1877542815387955, this, []); }
   /**
    * var compilationAlbums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get compilationAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 1129407574400730, this, []); }
+  get compilationAlbums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 1129407574400730, this, []); }
   /**
    * var featuredPlaylists: MusicItemCollection<Playlist>? { get }
    * @availability iOS 15.0+
    */
-  get featuredPlaylists(): $SDK8 { return callSDK<$SDK8>("MusicKit_d968214ecc684fb6", 3095433035705599, this, []); }
+  get featuredPlaylists(): $SDK8 { return callSDK<$SDK8>("MusicKit_0e503aef608672fa", 3095433035705599, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 3924249376151229, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 3924249376151229, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 570244056153932, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 570244056153932, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1281210010471197, this, []); }
+  get name(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1281210010471197, this, []); }
   /**
    * var albums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get albums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 3471117741194719, this, []); }
+  get albums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 3471117741194719, this, []); }
   /**
    * var genres: MusicItemCollection<Genre>? { get }
    * @availability iOS 15.0+
    */
-  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_d968214ecc684fb6", 388853032845728, this, []); }
+  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_0e503aef608672fa", 388853032845728, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 2148353642337690, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 2148353642337690, this, []); }
   /**
    * var singles: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get singles(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 3153865500154134, this, []); }
+  get singles(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 3153865500154134, this, []); }
   /**
    * var station: Station? { get }
    * @availability iOS 15.0+
    */
-  get station(): (Station) | null { return callSDK<(Station) | null>("MusicKit_d968214ecc684fb6", 145344000160175, this, []); }
+  get station(): (Station) | null { return callSDK<(Station) | null>("MusicKit_0e503aef608672fa", 145344000160175, this, []); }
   /**
    * var topSongs: MusicItemCollection<Song>? { get }
    * @availability iOS 15.0+
    */
-  get topSongs(): $SDK12 { return callSDK<$SDK12>("MusicKit_d968214ecc684fb6", 2486306955362922, this, []); }
+  get topSongs(): $SDK12 { return callSDK<$SDK12>("MusicKit_0e503aef608672fa", 2486306955362922, this, []); }
   /**
    * var playlists: MusicItemCollection<Playlist>? { get }
    * @availability iOS 15.0+
    */
-  get playlists(): $SDK8 { return callSDK<$SDK8>("MusicKit_d968214ecc684fb6", 161922767597564, this, []); }
+  get playlists(): $SDK8 { return callSDK<$SDK8>("MusicKit_0e503aef608672fa", 161922767597564, this, []); }
   declare readonly $type: { "s:8MusicKit6ArtistV": true };
 }
 
@@ -745,57 +745,57 @@ export class Artwork extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3872579137901458, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3872579137901458, this, []); }
   /**
    * let maximumWidth: Int
    * @availability iOS 15.0+
    */
-  get maximumWidth(): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 1396645658468619, this, []); }
+  get maximumWidth(): number { return callSDK<number>("MusicKit_0e503aef608672fa", 1396645658468619, this, []); }
   /**
    * let alternateText: String?
    * @availability iOS 15.0+
    */
-  get alternateText(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3393839742872185, this, []); }
+  get alternateText(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3393839742872185, this, []); }
   /**
    * let maximumHeight: Int
    * @availability iOS 15.0+
    */
-  get maximumHeight(): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 4269950876206415, this, []); }
+  get maximumHeight(): number { return callSDK<number>("MusicKit_0e503aef608672fa", 4269950876206415, this, []); }
   /**
    * let backgroundColor: CGColor?
    * @availability iOS 15.0+
    */
-  get backgroundColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_d968214ecc684fb6", 2489398454234010, this, []); }
+  get backgroundColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_0e503aef608672fa", 2489398454234010, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 979823114084097, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 979823114084097, this, []); }
   /**
    * let primaryTextColor: CGColor?
    * @availability iOS 15.0+
    */
-  get primaryTextColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_d968214ecc684fb6", 398647640118579, this, []); }
+  get primaryTextColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_0e503aef608672fa", 398647640118579, this, []); }
   /**
    * let tertiaryTextColor: CGColor?
    * @availability iOS 15.0+
    */
-  get tertiaryTextColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_d968214ecc684fb6", 831452534081675, this, []); }
+  get tertiaryTextColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_0e503aef608672fa", 831452534081675, this, []); }
   /**
    * let secondaryTextColor: CGColor?
    * @availability iOS 15.0+
    */
-  get secondaryTextColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_d968214ecc684fb6", 495763277883646, this, []); }
+  get secondaryTextColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_0e503aef608672fa", 495763277883646, this, []); }
   /**
    * let quaternaryTextColor: CGColor?
    * @availability iOS 15.0+
    */
-  get quaternaryTextColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_d968214ecc684fb6", 3036680209544160, this, []); }
+  get quaternaryTextColor(): $SDK13 { return callSDK<$SDK13>("MusicKit_0e503aef608672fa", 3036680209544160, this, []); }
   /**
    * func url(width: Int, height: Int) -> URL?
    * @availability iOS 15.0+
    */
-  url(width: number, height: number): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1882156703342542, this, [width, height]); }
+  url(width: number, height: number): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1882156703342542, this, [width, height]); }
   declare readonly $type: { "s:8MusicKit7ArtworkV": true };
 }
 
@@ -810,12 +810,12 @@ export const AudioVariant = {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: AudioVariant): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2240909620757803, $self, []); },
+  getDescription($self: AudioVariant): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2240909620757803, $self, []); },
   /**
    * static var allCases: [AudioVariant] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): Array<AudioVariant> { return callSDK<Array<AudioVariant>>("MusicKit_d968214ecc684fb6", 2488255331969284, undefined, []); }
+  get allCases(): Array<AudioVariant> { return callSDK<Array<AudioVariant>>("MusicKit_0e503aef608672fa", 2488255331969284, undefined, []); }
 };
 
 /**
@@ -839,47 +839,47 @@ export class Curator extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.4+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3461191345222076, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3461191345222076, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 15.4+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 1796007359295750, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 1796007359295750, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.4+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2231441306202826, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2231441306202826, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.4+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 2146034417468704, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 2146034417468704, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.4+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1094277176470275, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1094277176470275, this, []); }
   /**
    * var kind: Curator.Kind { get }
    * @availability iOS 15.4+
    */
-  get kind(): Curator_Kind { return callSDK<Curator_Kind>("MusicKit_d968214ecc684fb6", 1378449403182648, this, []); }
+  get kind(): Curator_Kind { return callSDK<Curator_Kind>("MusicKit_0e503aef608672fa", 1378449403182648, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 15.4+
    */
-  get name(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1713605061049834, this, []); }
+  get name(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1713605061049834, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.4+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 1452208963239312, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 1452208963239312, this, []); }
   /**
    * var playlists: MusicItemCollection<Playlist>? { get }
    * @availability iOS 15.4+
    */
-  get playlists(): $SDK8 { return callSDK<$SDK8>("MusicKit_d968214ecc684fb6", 32311253515379, this, []); }
+  get playlists(): $SDK8 { return callSDK<$SDK8>("MusicKit_0e503aef608672fa", 32311253515379, this, []); }
   declare readonly $type: { "s:8MusicKit7CuratorV": true };
 }
 
@@ -918,12 +918,12 @@ export class MusicUserTokenProvider extends SDKHandle {
    * func userToken(for developerToken: String, options: MusicTokenRequestOptions) async throws -> String
    * @availability iOS 15.0+
    */
-  userToken(developerToken: string, options: MusicTokenRequestOptions): Promise<string> { return callSDKAsync<string>("MusicKit_d968214ecc684fb6", 548277151721887, this, [developerToken, options]); }
+  userToken(developerToken: string, options: MusicTokenRequestOptions): Promise<string> { return callSDKAsync<string>("MusicKit_0e503aef608672fa", 548277151721887, this, [developerToken, options]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): MusicUserTokenProvider { return callSDK<MusicUserTokenProvider>("MusicKit_d968214ecc684fb6", 2322308195629038, undefined, []); }
+  static init(): MusicUserTokenProvider { return callSDK<MusicUserTokenProvider>("MusicKit_0e503aef608672fa", 2322308195629038, undefined, []); }
   declare readonly $type: { "s:8MusicKit0A17UserTokenProviderC": true };
 }
 
@@ -936,12 +936,12 @@ export class DefaultMusicTokenProvider extends (MusicUserTokenProvider as unknow
    * func developerToken(options: MusicTokenRequestOptions) async throws -> String
    * @availability iOS 15.0+
    */
-  developerToken(options: MusicTokenRequestOptions): Promise<string> { return callSDKAsync<string>("MusicKit_d968214ecc684fb6", 816959032564141, this, [options]); }
+  developerToken(options: MusicTokenRequestOptions): Promise<string> { return callSDKAsync<string>("MusicKit_0e503aef608672fa", 816959032564141, this, [options]); }
   /**
    * override init()
    * @availability iOS 15.0+
    */
-  static init(): DefaultMusicTokenProvider { return callSDK<DefaultMusicTokenProvider>("MusicKit_d968214ecc684fb6", 3748156394412693, undefined, []); }
+  static init(): DefaultMusicTokenProvider { return callSDK<DefaultMusicTokenProvider>("MusicKit_0e503aef608672fa", 3748156394412693, undefined, []); }
   declare readonly $type: { "s:8MusicKit07DefaultA13TokenProviderC": true; "s:8MusicKit0A17UserTokenProviderC": true };
 }
 
@@ -954,32 +954,32 @@ export class EditorialNotes extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2769615659982095, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2769615659982095, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1232784707036420, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1232784707036420, this, []); }
   /**
    * let name: String?
    * @availability iOS 15.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2394403556185340, this, []); }
+  get name(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2394403556185340, this, []); }
   /**
    * let short: String?
    * @availability iOS 15.0+
    */
-  get short(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1525666348771311, this, []); }
+  get short(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1525666348771311, this, []); }
   /**
    * let tagline: String?
    * @availability iOS 15.0+
    */
-  get tagline(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 110317154304019, this, []); }
+  get tagline(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 110317154304019, this, []); }
   /**
    * let standard: String?
    * @availability iOS 15.0+
    */
-  get standard(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1377308417327561, this, []); }
+  get standard(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1377308417327561, this, []); }
   declare readonly $type: { "s:8MusicKit14EditorialNotesV": true };
 }
 
@@ -1000,32 +1000,32 @@ export class Genre extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2509117826320605, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2509117826320605, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3608422871890657, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3608422871890657, this, []); }
   /**
    * var libraryAddedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 1223043524828450, this, []); }
+  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 1223043524828450, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 1515941334784523, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 1515941334784523, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 535666177400072, this, []); }
+  get name(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 535666177400072, this, []); }
   /**
    * var parent: Genre? { get }
    * @availability iOS 15.0+
    */
-  get parent(): (Genre) | null { return callSDK<(Genre) | null>("MusicKit_d968214ecc684fb6", 339072593972710, this, []); }
+  get parent(): (Genre) | null { return callSDK<(Genre) | null>("MusicKit_0e503aef608672fa", 339072593972710, this, []); }
   declare readonly $type: { "s:8MusicKit5GenreV": true };
 }
 
@@ -1198,257 +1198,257 @@ export class PartialMusicProperty<Root = unknown> extends AnyMusicProperty {
    * static let moreInGenre: MusicRelationshipProperty<MusicVideo, MusicVideo>
    * @availability iOS 15.0+
    */
-  static get moreInGenre(): $SDK14 { return callSDK<$SDK14>("MusicKit_d968214ecc684fb6", 2861637929676271, undefined, []); }
+  static get moreInGenre(): $SDK14 { return callSDK<$SDK14>("MusicKit_0e503aef608672fa", 2861637929676271, undefined, []); }
   /**
    * static let moreByArtist: MusicRelationshipProperty<MusicVideo, MusicVideo>
    * @availability iOS 15.0+
    */
-  static get moreByArtist(): $SDK14 { return callSDK<$SDK14>("MusicKit_d968214ecc684fb6", 949139097965394, undefined, []); }
+  static get moreByArtist(): $SDK14 { return callSDK<$SDK14>("MusicKit_0e503aef608672fa", 949139097965394, undefined, []); }
   /**
    * static let songs: MusicRelationshipProperty<MusicVideo, Song>
    * @availability iOS 15.0+
    */
-  static get songs(): MusicRelationshipProperty<MusicVideo, Song> { return callSDK<MusicRelationshipProperty<MusicVideo, Song>>("MusicKit_d968214ecc684fb6", 4288889098432228, undefined, []); }
+  static get songs(): MusicRelationshipProperty<MusicVideo, Song> { return callSDK<MusicRelationshipProperty<MusicVideo, Song>>("MusicKit_0e503aef608672fa", 4288889098432228, undefined, []); }
   /**
    * static let albums: MusicRelationshipProperty<MusicVideo, Album>
    * @availability iOS 15.0+
    */
-  static get albums(): MusicRelationshipProperty<MusicVideo, Album> { return callSDK<MusicRelationshipProperty<MusicVideo, Album>>("MusicKit_d968214ecc684fb6", 3365496305825592, undefined, []); }
+  static get albums(): MusicRelationshipProperty<MusicVideo, Album> { return callSDK<MusicRelationshipProperty<MusicVideo, Album>>("MusicKit_0e503aef608672fa", 3365496305825592, undefined, []); }
   /**
    * static let genres: MusicRelationshipProperty<MusicVideo, Genre>
    * @availability iOS 15.0+
    */
-  static get genres(): MusicRelationshipProperty<MusicVideo, Genre> { return callSDK<MusicRelationshipProperty<MusicVideo, Genre>>("MusicKit_d968214ecc684fb6", 3209105121523795, undefined, []); }
+  static get genres(): MusicRelationshipProperty<MusicVideo, Genre> { return callSDK<MusicRelationshipProperty<MusicVideo, Genre>>("MusicKit_0e503aef608672fa", 3209105121523795, undefined, []); }
   /**
    * static let artists: MusicRelationshipProperty<MusicVideo, Artist>
    * @availability iOS 15.0+
    */
-  static get artists(): MusicRelationshipProperty<MusicVideo, Artist> { return callSDK<MusicRelationshipProperty<MusicVideo, Artist>>("MusicKit_d968214ecc684fb6", 2510528624923459, undefined, []); }
+  static get artists(): MusicRelationshipProperty<MusicVideo, Artist> { return callSDK<MusicRelationshipProperty<MusicVideo, Artist>>("MusicKit_0e503aef608672fa", 2510528624923459, undefined, []); }
   /**
    * static var artistURL: MusicExtendedAttributeProperty<MusicVideo, URL> { get }
    * @availability iOS 15.0+
    */
-  static get artistURL(): MusicExtendedAttributeProperty<MusicVideo, string> { return callSDK<MusicExtendedAttributeProperty<MusicVideo, string>>("MusicKit_d968214ecc684fb6", 4024410975838095, undefined, []); }
+  static get artistURL(): MusicExtendedAttributeProperty<MusicVideo, string> { return callSDK<MusicExtendedAttributeProperty<MusicVideo, string>>("MusicKit_0e503aef608672fa", 4024410975838095, undefined, []); }
   /**
    * static var topReleases: MusicRelationshipProperty<RecordLabel, Album> { get }
    * @availability iOS 15.0+
    */
-  static get topReleases(): $SDK20 { return callSDK<$SDK20>("MusicKit_d968214ecc684fb6", 143722240372551, undefined, []); }
+  static get topReleases(): $SDK20 { return callSDK<$SDK20>("MusicKit_0e503aef608672fa", 143722240372551, undefined, []); }
   /**
    * static var latestReleases: MusicRelationshipProperty<RecordLabel, Album> { get }
    * @availability iOS 15.0+
    */
-  static get latestReleases(): $SDK20 { return callSDK<$SDK20>("MusicKit_d968214ecc684fb6", 2575098988619109, undefined, []); }
+  static get latestReleases(): $SDK20 { return callSDK<$SDK20>("MusicKit_0e503aef608672fa", 2575098988619109, undefined, []); }
   /**
    * static let musicVideos: MusicRelationshipProperty<Song, MusicVideo>
    * @availability iOS 15.0+
    */
-  static get musicVideos(): MusicRelationshipProperty<Song, MusicVideo> { return callSDK<MusicRelationshipProperty<Song, MusicVideo>>("MusicKit_d968214ecc684fb6", 1991389035997380, undefined, []); }
+  static get musicVideos(): MusicRelationshipProperty<Song, MusicVideo> { return callSDK<MusicRelationshipProperty<Song, MusicVideo>>("MusicKit_0e503aef608672fa", 1991389035997380, undefined, []); }
   /**
    * static let audioVariants: MusicExtendedAttributeProperty<Song, [AudioVariant]>
    * @availability iOS 16.0+
    */
-  static get audioVariants(): MusicExtendedAttributeProperty<Song, Array<AudioVariant>> { return callSDK<MusicExtendedAttributeProperty<Song, Array<AudioVariant>>>("MusicKit_d968214ecc684fb6", 2949567567695763, undefined, []); }
+  static get audioVariants(): MusicExtendedAttributeProperty<Song, Array<AudioVariant>> { return callSDK<MusicExtendedAttributeProperty<Song, Array<AudioVariant>>>("MusicKit_0e503aef608672fa", 2949567567695763, undefined, []); }
   /**
    * static let albums: MusicRelationshipProperty<Song, Album>
    * @availability iOS 15.0+
    */
-  static get albums21855(): MusicRelationshipProperty<Song, Album> { return callSDK<MusicRelationshipProperty<Song, Album>>("MusicKit_d968214ecc684fb6", 3533142654974368, undefined, []); }
+  static get albums21855(): MusicRelationshipProperty<Song, Album> { return callSDK<MusicRelationshipProperty<Song, Album>>("MusicKit_0e503aef608672fa", 3533142654974368, undefined, []); }
   /**
    * static let genres: MusicRelationshipProperty<Song, Genre>
    * @availability iOS 15.0+
    */
-  static get genres24911(): MusicRelationshipProperty<Song, Genre> { return callSDK<MusicRelationshipProperty<Song, Genre>>("MusicKit_d968214ecc684fb6", 3904319483100983, undefined, []); }
+  static get genres24911(): MusicRelationshipProperty<Song, Genre> { return callSDK<MusicRelationshipProperty<Song, Genre>>("MusicKit_0e503aef608672fa", 3904319483100983, undefined, []); }
   /**
    * static let artists: MusicRelationshipProperty<Song, Artist>
    * @availability iOS 15.0+
    */
-  static get artists81815(): $SDK25 { return callSDK<$SDK25>("MusicKit_d968214ecc684fb6", 3380388416092815, undefined, []); }
+  static get artists81815(): $SDK25 { return callSDK<$SDK25>("MusicKit_0e503aef608672fa", 3380388416092815, undefined, []); }
   /**
    * static let station: MusicRelationshipProperty<Song, Station>
    * @availability iOS 15.0+
    */
-  static get station(): MusicRelationshipProperty<Song, Station> { return callSDK<MusicRelationshipProperty<Song, Station>>("MusicKit_d968214ecc684fb6", 3870077820954358, undefined, []); }
+  static get station(): MusicRelationshipProperty<Song, Station> { return callSDK<MusicRelationshipProperty<Song, Station>>("MusicKit_0e503aef608672fa", 3870077820954358, undefined, []); }
   /**
    * static var artistURL: MusicExtendedAttributeProperty<Song, URL> { get }
    * @availability iOS 15.0+
    */
-  static get artistURL46360(): MusicExtendedAttributeProperty<Song, string> { return callSDK<MusicExtendedAttributeProperty<Song, string>>("MusicKit_d968214ecc684fb6", 2112475700916476, undefined, []); }
+  static get artistURL46360(): MusicExtendedAttributeProperty<Song, string> { return callSDK<MusicExtendedAttributeProperty<Song, string>>("MusicKit_0e503aef608672fa", 2112475700916476, undefined, []); }
   /**
    * static let composers: MusicRelationshipProperty<Song, Artist>
    * @availability iOS 15.0+
    */
-  static get composers(): $SDK25 { return callSDK<$SDK25>("MusicKit_d968214ecc684fb6", 4426607497562643, undefined, []); }
+  static get composers(): $SDK25 { return callSDK<$SDK25>("MusicKit_0e503aef608672fa", 4426607497562643, undefined, []); }
   /**
    * static let recordLabels: MusicRelationshipProperty<Album, RecordLabel>
    * @availability iOS 15.0+
    */
-  static get recordLabels(): MusicRelationshipProperty<Album, RecordLabel> { return callSDK<MusicRelationshipProperty<Album, RecordLabel>>("MusicKit_d968214ecc684fb6", 3683417638929379, undefined, []); }
+  static get recordLabels(): MusicRelationshipProperty<Album, RecordLabel> { return callSDK<MusicRelationshipProperty<Album, RecordLabel>>("MusicKit_0e503aef608672fa", 3683417638929379, undefined, []); }
   /**
    * static let audioVariants: MusicExtendedAttributeProperty<Album, [AudioVariant]>
    * @availability iOS 16.0+
    */
-  static get audioVariants78766(): MusicExtendedAttributeProperty<Album, Array<AudioVariant>> { return callSDK<MusicExtendedAttributeProperty<Album, Array<AudioVariant>>>("MusicKit_d968214ecc684fb6", 3856876717632558, undefined, []); }
+  static get audioVariants78766(): MusicExtendedAttributeProperty<Album, Array<AudioVariant>> { return callSDK<MusicExtendedAttributeProperty<Album, Array<AudioVariant>>>("MusicKit_0e503aef608672fa", 3856876717632558, undefined, []); }
   /**
    * static let otherVersions: MusicRelationshipProperty<Album, Album>
    * @availability iOS 15.0+
    */
-  static get otherVersions(): $SDK30 { return callSDK<$SDK30>("MusicKit_d968214ecc684fb6", 1004903594935844, undefined, []); }
+  static get otherVersions(): $SDK30 { return callSDK<$SDK30>("MusicKit_0e503aef608672fa", 1004903594935844, undefined, []); }
   /**
    * static let relatedAlbums: MusicRelationshipProperty<Album, Album>
    * @availability iOS 15.0+
    */
-  static get relatedAlbums(): $SDK30 { return callSDK<$SDK30>("MusicKit_d968214ecc684fb6", 3155939080373735, undefined, []); }
+  static get relatedAlbums(): $SDK30 { return callSDK<$SDK30>("MusicKit_0e503aef608672fa", 3155939080373735, undefined, []); }
   /**
    * static let relatedVideos: MusicRelationshipProperty<Album, MusicVideo>
    * @availability iOS 15.0+
    */
-  static get relatedVideos(): MusicRelationshipProperty<Album, MusicVideo> { return callSDK<MusicRelationshipProperty<Album, MusicVideo>>("MusicKit_d968214ecc684fb6", 3199660371344537, undefined, []); }
+  static get relatedVideos(): MusicRelationshipProperty<Album, MusicVideo> { return callSDK<MusicRelationshipProperty<Album, MusicVideo>>("MusicKit_0e503aef608672fa", 3199660371344537, undefined, []); }
   /**
    * static let genres: MusicRelationshipProperty<Album, Genre>
    * @availability iOS 15.0+
    */
-  static get genres44382(): MusicRelationshipProperty<Album, Genre> { return callSDK<MusicRelationshipProperty<Album, Genre>>("MusicKit_d968214ecc684fb6", 2208107239947241, undefined, []); }
+  static get genres44382(): MusicRelationshipProperty<Album, Genre> { return callSDK<MusicRelationshipProperty<Album, Genre>>("MusicKit_0e503aef608672fa", 2208107239947241, undefined, []); }
   /**
    * static let tracks: MusicRelationshipProperty<Album, Track>
    * @availability iOS 15.0+
    */
-  static get tracks(): MusicRelationshipProperty<Album, Track> { return callSDK<MusicRelationshipProperty<Album, Track>>("MusicKit_d968214ecc684fb6", 3690270483517130, undefined, []); }
+  static get tracks(): MusicRelationshipProperty<Album, Track> { return callSDK<MusicRelationshipProperty<Album, Track>>("MusicKit_0e503aef608672fa", 3690270483517130, undefined, []); }
   /**
    * static let artists: MusicRelationshipProperty<Album, Artist>
    * @availability iOS 15.0+
    */
-  static get artists87718(): MusicRelationshipProperty<Album, Artist> { return callSDK<MusicRelationshipProperty<Album, Artist>>("MusicKit_d968214ecc684fb6", 1805361589917099, undefined, []); }
+  static get artists87718(): MusicRelationshipProperty<Album, Artist> { return callSDK<MusicRelationshipProperty<Album, Artist>>("MusicKit_0e503aef608672fa", 1805361589917099, undefined, []); }
   /**
    * static let appearsOn: MusicRelationshipProperty<Album, Playlist>
    * @availability iOS 15.0+
    */
-  static get appearsOn(): MusicRelationshipProperty<Album, Playlist> { return callSDK<MusicRelationshipProperty<Album, Playlist>>("MusicKit_d968214ecc684fb6", 569847724325565, undefined, []); }
+  static get appearsOn(): MusicRelationshipProperty<Album, Playlist> { return callSDK<MusicRelationshipProperty<Album, Playlist>>("MusicKit_0e503aef608672fa", 569847724325565, undefined, []); }
   /**
    * static var artistURL: MusicExtendedAttributeProperty<Album, URL> { get }
    * @availability iOS 15.0+
    */
-  static get artistURL54785(): MusicExtendedAttributeProperty<Album, string> { return callSDK<MusicExtendedAttributeProperty<Album, string>>("MusicKit_d968214ecc684fb6", 4046085656486097, undefined, []); }
+  static get artistURL54785(): MusicExtendedAttributeProperty<Album, string> { return callSDK<MusicExtendedAttributeProperty<Album, string>>("MusicKit_0e503aef608672fa", 4046085656486097, undefined, []); }
   /**
    * static let topMusicVideos: MusicRelationshipProperty<Artist, MusicVideo>
    * @availability iOS 15.0+
    */
-  static get topMusicVideos(): $SDK37 { return callSDK<$SDK37>("MusicKit_d968214ecc684fb6", 1296720865063251, undefined, []); }
+  static get topMusicVideos(): $SDK37 { return callSDK<$SDK37>("MusicKit_0e503aef608672fa", 1296720865063251, undefined, []); }
   /**
    * static let fullAlbums: MusicRelationshipProperty<Artist, Album>
    * @availability iOS 15.0+
    */
-  static get fullAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_d968214ecc684fb6", 3491756957509375, undefined, []); }
+  static get fullAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_0e503aef608672fa", 3491756957509375, undefined, []); }
   /**
    * static let liveAlbums: MusicRelationshipProperty<Artist, Album>
    * @availability iOS 15.0+
    */
-  static get liveAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_d968214ecc684fb6", 1628516462781174, undefined, []); }
+  static get liveAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_0e503aef608672fa", 1628516462781174, undefined, []); }
   /**
    * static let musicVideos: MusicRelationshipProperty<Artist, MusicVideo>
    * @availability iOS 15.0+
    */
-  static get musicVideos97853(): $SDK37 { return callSDK<$SDK37>("MusicKit_d968214ecc684fb6", 990378856140906, undefined, []); }
+  static get musicVideos97853(): $SDK37 { return callSDK<$SDK37>("MusicKit_0e503aef608672fa", 990378856140906, undefined, []); }
   /**
    * static let latestRelease: MusicRelationshipProperty<Artist, Album>
    * @availability iOS 15.0+
    */
-  static get latestRelease(): $SDK38 { return callSDK<$SDK38>("MusicKit_d968214ecc684fb6", 490083965080529, undefined, []); }
+  static get latestRelease(): $SDK38 { return callSDK<$SDK38>("MusicKit_0e503aef608672fa", 490083965080529, undefined, []); }
   /**
    * static let featuredAlbums: MusicRelationshipProperty<Artist, Album>
    * @availability iOS 15.0+
    */
-  static get featuredAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_d968214ecc684fb6", 3451686352274910, undefined, []); }
+  static get featuredAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_0e503aef608672fa", 3451686352274910, undefined, []); }
   /**
    * static let similarArtists: MusicRelationshipProperty<Artist, Artist>
    * @availability iOS 15.0+
    */
-  static get similarArtists(): MusicRelationshipProperty<Artist, Artist> { return callSDK<MusicRelationshipProperty<Artist, Artist>>("MusicKit_d968214ecc684fb6", 2499753274025275, undefined, []); }
+  static get similarArtists(): MusicRelationshipProperty<Artist, Artist> { return callSDK<MusicRelationshipProperty<Artist, Artist>>("MusicKit_0e503aef608672fa", 2499753274025275, undefined, []); }
   /**
    * static let appearsOnAlbums: MusicRelationshipProperty<Artist, Album>
    * @availability iOS 15.0+
    */
-  static get appearsOnAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_d968214ecc684fb6", 3910820311414626, undefined, []); }
+  static get appearsOnAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_0e503aef608672fa", 3910820311414626, undefined, []); }
   /**
    * static let compilationAlbums: MusicRelationshipProperty<Artist, Album>
    * @availability iOS 15.0+
    */
-  static get compilationAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_d968214ecc684fb6", 82382677721071, undefined, []); }
+  static get compilationAlbums(): $SDK38 { return callSDK<$SDK38>("MusicKit_0e503aef608672fa", 82382677721071, undefined, []); }
   /**
    * static let featuredPlaylists: MusicRelationshipProperty<Artist, Playlist>
    * @availability iOS 15.0+
    */
-  static get featuredPlaylists(): $SDK40 { return callSDK<$SDK40>("MusicKit_d968214ecc684fb6", 343336757553544, undefined, []); }
+  static get featuredPlaylists(): $SDK40 { return callSDK<$SDK40>("MusicKit_0e503aef608672fa", 343336757553544, undefined, []); }
   /**
    * static let albums: MusicRelationshipProperty<Artist, Album>
    * @availability iOS 15.0+
    */
-  static get albums25743(): $SDK38 { return callSDK<$SDK38>("MusicKit_d968214ecc684fb6", 2984276702044710, undefined, []); }
+  static get albums25743(): $SDK38 { return callSDK<$SDK38>("MusicKit_0e503aef608672fa", 2984276702044710, undefined, []); }
   /**
    * static let genres: MusicRelationshipProperty<Artist, Genre>
    * @availability iOS 15.0+
    */
-  static get genres2815(): MusicRelationshipProperty<Artist, Genre> { return callSDK<MusicRelationshipProperty<Artist, Genre>>("MusicKit_d968214ecc684fb6", 2938313658671371, undefined, []); }
+  static get genres2815(): MusicRelationshipProperty<Artist, Genre> { return callSDK<MusicRelationshipProperty<Artist, Genre>>("MusicKit_0e503aef608672fa", 2938313658671371, undefined, []); }
   /**
    * static let singles: MusicRelationshipProperty<Artist, Album>
    * @availability iOS 15.0+
    */
-  static get singles(): $SDK38 { return callSDK<$SDK38>("MusicKit_d968214ecc684fb6", 670658634576440, undefined, []); }
+  static get singles(): $SDK38 { return callSDK<$SDK38>("MusicKit_0e503aef608672fa", 670658634576440, undefined, []); }
   /**
    * static let station: MusicRelationshipProperty<Artist, Station>
    * @availability iOS 15.0+
    */
-  static get station25427(): MusicRelationshipProperty<Artist, Station> { return callSDK<MusicRelationshipProperty<Artist, Station>>("MusicKit_d968214ecc684fb6", 4374948308456627, undefined, []); }
+  static get station25427(): MusicRelationshipProperty<Artist, Station> { return callSDK<MusicRelationshipProperty<Artist, Station>>("MusicKit_0e503aef608672fa", 4374948308456627, undefined, []); }
   /**
    * static let topSongs: MusicRelationshipProperty<Artist, Song>
    * @availability iOS 15.0+
    */
-  static get topSongs(): MusicRelationshipProperty<Artist, Song> { return callSDK<MusicRelationshipProperty<Artist, Song>>("MusicKit_d968214ecc684fb6", 1898730453017661, undefined, []); }
+  static get topSongs(): MusicRelationshipProperty<Artist, Song> { return callSDK<MusicRelationshipProperty<Artist, Song>>("MusicKit_0e503aef608672fa", 1898730453017661, undefined, []); }
   /**
    * static let playlists: MusicRelationshipProperty<Artist, Playlist>
    * @availability iOS 15.0+
    */
-  static get playlists(): $SDK40 { return callSDK<$SDK40>("MusicKit_d968214ecc684fb6", 1732527423842764, undefined, []); }
+  static get playlists(): $SDK40 { return callSDK<$SDK40>("MusicKit_0e503aef608672fa", 1732527423842764, undefined, []); }
   /**
    * static let playlists: MusicRelationshipProperty<Curator, Playlist>
    * @availability iOS 15.4+
    */
-  static get playlists77177(): MusicRelationshipProperty<Curator, Playlist> { return callSDK<MusicRelationshipProperty<Curator, Playlist>>("MusicKit_d968214ecc684fb6", 1539662182235859, undefined, []); }
+  static get playlists77177(): MusicRelationshipProperty<Curator, Playlist> { return callSDK<MusicRelationshipProperty<Curator, Playlist>>("MusicKit_0e503aef608672fa", 1539662182235859, undefined, []); }
   /**
    * static let moreByCurator: MusicRelationshipProperty<Playlist, Playlist>
    * @availability iOS 15.0+
    */
-  static get moreByCurator(): MusicRelationshipProperty<Playlist, Playlist> { return callSDK<MusicRelationshipProperty<Playlist, Playlist>>("MusicKit_d968214ecc684fb6", 342241840157666, undefined, []); }
+  static get moreByCurator(): MusicRelationshipProperty<Playlist, Playlist> { return callSDK<MusicRelationshipProperty<Playlist, Playlist>>("MusicKit_0e503aef608672fa", 342241840157666, undefined, []); }
   /**
    * static let featuredArtists: MusicRelationshipProperty<Playlist, Artist>
    * @availability iOS 15.0+
    */
-  static get featuredArtists(): MusicRelationshipProperty<Playlist, Artist> { return callSDK<MusicRelationshipProperty<Playlist, Artist>>("MusicKit_d968214ecc684fb6", 244736356494487, undefined, []); }
+  static get featuredArtists(): MusicRelationshipProperty<Playlist, Artist> { return callSDK<MusicRelationshipProperty<Playlist, Artist>>("MusicKit_0e503aef608672fa", 244736356494487, undefined, []); }
   /**
    * static let tracks: MusicRelationshipProperty<Playlist, Track>
    * @availability iOS 15.0+
    */
-  static get tracks46457(): MusicRelationshipProperty<Playlist, Track> { return callSDK<MusicRelationshipProperty<Playlist, Track>>("MusicKit_d968214ecc684fb6", 1469454701738716, undefined, []); }
+  static get tracks46457(): MusicRelationshipProperty<Playlist, Track> { return callSDK<MusicRelationshipProperty<Playlist, Track>>("MusicKit_0e503aef608672fa", 1469454701738716, undefined, []); }
   /**
    * static let curator: MusicRelationshipProperty<Playlist, Curator>
    * @availability iOS 16.0+
    */
-  static get curator(): MusicRelationshipProperty<Playlist, Curator> { return callSDK<MusicRelationshipProperty<Playlist, Curator>>("MusicKit_d968214ecc684fb6", 3672591847292323, undefined, []); }
+  static get curator(): MusicRelationshipProperty<Playlist, Curator> { return callSDK<MusicRelationshipProperty<Playlist, Curator>>("MusicKit_0e503aef608672fa", 3672591847292323, undefined, []); }
   /**
    * static let entries: MusicRelationshipProperty<Playlist, Playlist.Entry>
    * @availability iOS 16.0+
    */
-  static get entries(): MusicRelationshipProperty<Playlist, Playlist_Entry> { return callSDK<MusicRelationshipProperty<Playlist, Playlist_Entry>>("MusicKit_d968214ecc684fb6", 495436349884549, undefined, []); }
+  static get entries(): MusicRelationshipProperty<Playlist, Playlist_Entry> { return callSDK<MusicRelationshipProperty<Playlist, Playlist_Entry>>("MusicKit_0e503aef608672fa", 495436349884549, undefined, []); }
   /**
    * static let radioShow: MusicRelationshipProperty<Playlist, RadioShow>
    * @availability iOS 16.0+
    */
-  static get radioShow(): MusicRelationshipProperty<Playlist, RadioShow> { return callSDK<MusicRelationshipProperty<Playlist, RadioShow>>("MusicKit_d968214ecc684fb6", 4322875255970257, undefined, []); }
+  static get radioShow(): MusicRelationshipProperty<Playlist, RadioShow> { return callSDK<MusicRelationshipProperty<Playlist, RadioShow>>("MusicKit_0e503aef608672fa", 4322875255970257, undefined, []); }
   /**
    * static let playlists: MusicRelationshipProperty<RadioShow, Playlist>
    * @availability iOS 15.4+
    */
-  static get playlists53095(): MusicRelationshipProperty<RadioShow, Playlist> { return callSDK<MusicRelationshipProperty<RadioShow, Playlist>>("MusicKit_d968214ecc684fb6", 3103192596492746, undefined, []); }
+  static get playlists53095(): MusicRelationshipProperty<RadioShow, Playlist> { return callSDK<MusicRelationshipProperty<RadioShow, Playlist>>("MusicKit_0e503aef608672fa", 3103192596492746, undefined, []); }
   declare readonly $type: { "s:8MusicKit07PartialA8PropertyC": true; "s:8MusicKit03AnyA8PropertyC": true };
 }
 
@@ -1461,7 +1461,7 @@ export class MusicAttributeProperty<Root = unknown, Value = unknown> extends Par
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3267532531669824, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3267532531669824, this, []); }
   declare readonly $type: { "s:8MusicKit0A17AttributePropertyC": true; "s:8MusicKit07PartialA8PropertyC": true; "s:8MusicKit03AnyA8PropertyC": true };
 }
 
@@ -1474,12 +1474,12 @@ export class MusicAuthorization extends SDKHandle {
    * static var currentStatus: MusicAuthorization.Status { get }
    * @availability iOS 15.0+
    */
-  static get currentStatus(): MusicAuthorization_Status { return callSDK<MusicAuthorization_Status>("MusicKit_d968214ecc684fb6", 562768024618020, undefined, []); }
+  static get currentStatus(): MusicAuthorization_Status { return callSDK<MusicAuthorization_Status>("MusicKit_0e503aef608672fa", 562768024618020, undefined, []); }
   /**
    * static func request() async -> MusicAuthorization.Status
    * @availability iOS 15.0+
    */
-  static request(): Promise<MusicAuthorization_Status> { return callSDKAsync<MusicAuthorization_Status>("MusicKit_d968214ecc684fb6", 1280895502300895, undefined, []); }
+  static request(): Promise<MusicAuthorization_Status> { return callSDKAsync<MusicAuthorization_Status>("MusicKit_0e503aef608672fa", 1280895502300895, undefined, []); }
   declare readonly $type: { "s:8MusicKit0A13AuthorizationV": true };
 }
 
@@ -1494,17 +1494,17 @@ export const MusicAuthorization_Status = {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  getDescription($self: MusicAuthorization_Status): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2217391079647407, $self, []); },
+  getDescription($self: MusicAuthorization_Status): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2217391079647407, $self, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): (MusicAuthorization_Status) | null { return callSDK<(MusicAuthorization_Status) | null>("MusicKit_d968214ecc684fb6", 4296179344229295, undefined, [rawValue]); },
+  init(rawValue: string): (MusicAuthorization_Status) | null { return callSDK<(MusicAuthorization_Status) | null>("MusicKit_0e503aef608672fa", 4296179344229295, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: MusicAuthorization_Status): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1682456513386769, $self, []); }
+  getRawValue($self: MusicAuthorization_Status): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1682456513386769, $self, []); }
 };
 
 /**
@@ -1538,12 +1538,12 @@ export const MusicCatalogChartKind = {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  getDescription($self: MusicCatalogChartKind): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3044914767289207, $self, []); },
+  getDescription($self: MusicCatalogChartKind): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3044914767289207, $self, []); },
   /**
    * nonisolated static var allCases: [MusicCatalogChartKind] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): $SDK52 { return callSDK<$SDK52>("MusicKit_d968214ecc684fb6", 1789177243602057, undefined, []); }
+  get allCases(): $SDK52 { return callSDK<$SDK52>("MusicKit_0e503aef608672fa", 1789177243602057, undefined, []); }
 };
 
 /**
@@ -1569,29 +1569,29 @@ export class MusicCatalogChartsRequest extends SDKHandle {
    * var genre: Genre? { get }
    * @availability iOS 16.0+
    */
-  get genre(): (Genre) | null { return callSDK<(Genre) | null>("MusicKit_d968214ecc684fb6", 2905277496423041, this, []); }
+  get genre(): (Genre) | null { return callSDK<(Genre) | null>("MusicKit_0e503aef608672fa", 2905277496423041, this, []); }
   /**
    * var kinds: [MusicCatalogChartKind] { get }
    * @availability iOS 16.0+
    */
-  get kinds(): $SDK52 { return callSDK<$SDK52>("MusicKit_d968214ecc684fb6", 3136954085560492, this, []); }
+  get kinds(): $SDK52 { return callSDK<$SDK52>("MusicKit_0e503aef608672fa", 3136954085560492, this, []); }
   /**
    * var limit: Int?
    * @availability iOS 16.0+
    */
-  get limit(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2464274736030906, this, []); }
-  set limit(value: (number) | null) { callSDK<void>("MusicKit_d968214ecc684fb6", 3133374769769698, this, [value]); }
+  get limit(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2464274736030906, this, []); }
+  set limit(value: (number) | null) { callSDK<void>("MusicKit_0e503aef608672fa", 3133374769769698, this, [value]); }
   /**
    * var offset: Int?
    * @availability iOS 16.0+
    */
-  get offset(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2162519731316676, this, []); }
-  set offset(value: (number) | null) { callSDK<void>("MusicKit_d968214ecc684fb6", 655401150831012, this, [value]); }
+  get offset(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2162519731316676, this, []); }
+  set offset(value: (number) | null) { callSDK<void>("MusicKit_0e503aef608672fa", 655401150831012, this, [value]); }
   /**
    * func response() async throws -> MusicCatalogChartsResponse
    * @availability iOS 16.0+
    */
-  response(): Promise<MusicCatalogChartsResponse> { return callSDKAsync<MusicCatalogChartsResponse>("MusicKit_d968214ecc684fb6", 3463880015973697, this, []); }
+  response(): Promise<MusicCatalogChartsResponse> { return callSDKAsync<MusicCatalogChartsResponse>("MusicKit_0e503aef608672fa", 3463880015973697, this, []); }
   declare readonly $type: { "s:8MusicKit0A20CatalogChartsRequestV": true };
 }
 
@@ -1604,32 +1604,32 @@ export class MusicCatalogChartsResponse extends SDKHandle {
    * let musicVideoCharts: [MusicCatalogChart<MusicVideo>]
    * @availability iOS 16.0+
    */
-  get musicVideoCharts(): Array<MusicCatalogChart<MusicVideo>> { return callSDK<Array<MusicCatalogChart<MusicVideo>>>("MusicKit_d968214ecc684fb6", 1320295322294920, this, []); }
+  get musicVideoCharts(): Array<MusicCatalogChart<MusicVideo>> { return callSDK<Array<MusicCatalogChart<MusicVideo>>>("MusicKit_0e503aef608672fa", 1320295322294920, this, []); }
   /**
    * let songCharts: [MusicCatalogChart<Song>]
    * @availability iOS 16.0+
    */
-  get songCharts(): Array<MusicCatalogChart<Song>> { return callSDK<Array<MusicCatalogChart<Song>>>("MusicKit_d968214ecc684fb6", 1968599242389677, this, []); }
+  get songCharts(): Array<MusicCatalogChart<Song>> { return callSDK<Array<MusicCatalogChart<Song>>>("MusicKit_0e503aef608672fa", 1968599242389677, this, []); }
   /**
    * let albumCharts: [MusicCatalogChart<Album>]
    * @availability iOS 16.0+
    */
-  get albumCharts(): Array<MusicCatalogChart<Album>> { return callSDK<Array<MusicCatalogChart<Album>>>("MusicKit_d968214ecc684fb6", 2355577497436394, this, []); }
+  get albumCharts(): Array<MusicCatalogChart<Album>> { return callSDK<Array<MusicCatalogChart<Album>>>("MusicKit_0e503aef608672fa", 2355577497436394, this, []); }
   /**
    * let playlistCharts: [MusicCatalogChart<Playlist>]
    * @availability iOS 16.0+
    */
-  get playlistCharts(): Array<MusicCatalogChart<Playlist>> { return callSDK<Array<MusicCatalogChart<Playlist>>>("MusicKit_d968214ecc684fb6", 2017250507622493, this, []); }
+  get playlistCharts(): Array<MusicCatalogChart<Playlist>> { return callSDK<Array<MusicCatalogChart<Playlist>>>("MusicKit_0e503aef608672fa", 2017250507622493, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3215504172835535, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3215504172835535, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2835255955056230, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2835255955056230, this, []); }
   declare readonly $type: { "s:8MusicKit0A21CatalogChartsResponseV": true };
 }
 
@@ -1650,12 +1650,12 @@ export class MusicCatalogResourceRequestOption extends SDKHandle {
    * var description: String { get }
    * @availability iOS 26.4+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3030286287871578, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3030286287871578, this, []); }
   /**
    * static let findEquivalents: MusicCatalogResourceRequestOption
    * @availability iOS 26.4+
    */
-  static get findEquivalents(): MusicCatalogResourceRequestOption { return callSDK<MusicCatalogResourceRequestOption>("MusicKit_d968214ecc684fb6", 3255534092132687, undefined, []); }
+  static get findEquivalents(): MusicCatalogResourceRequestOption { return callSDK<MusicCatalogResourceRequestOption>("MusicKit_0e503aef608672fa", 3255534092132687, undefined, []); }
   declare readonly $type: { "s:8MusicKit0A28CatalogResourceRequestOptionV": true };
 }
 
@@ -1684,30 +1684,30 @@ export class MusicCatalogSearchRequest extends SDKHandle {
    * var includeTopResults: Bool
    * @availability iOS 16.0+
    */
-  get includeTopResults(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 2702009956307682, this, []); }
-  set includeTopResults(value: boolean) { callSDK<void>("MusicKit_d968214ecc684fb6", 4018731205026457, this, [value]); }
+  get includeTopResults(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 2702009956307682, this, []); }
+  set includeTopResults(value: boolean) { callSDK<void>("MusicKit_0e503aef608672fa", 4018731205026457, this, [value]); }
   /**
    * let term: String
    * @availability iOS 15.0+
    */
-  get term(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3034449865358417, this, []); }
+  get term(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3034449865358417, this, []); }
   /**
    * var limit: Int?
    * @availability iOS 15.0+
    */
-  get limit(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 3286868619090966, this, []); }
-  set limit(value: (number) | null) { callSDK<void>("MusicKit_d968214ecc684fb6", 3251688329148282, this, [value]); }
+  get limit(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 3286868619090966, this, []); }
+  set limit(value: (number) | null) { callSDK<void>("MusicKit_0e503aef608672fa", 3251688329148282, this, [value]); }
   /**
    * var offset: Int?
    * @availability iOS 15.0+
    */
-  get offset(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2316135664213523, this, []); }
-  set offset(value: (number) | null) { callSDK<void>("MusicKit_d968214ecc684fb6", 2889062780278287, this, [value]); }
+  get offset(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2316135664213523, this, []); }
+  set offset(value: (number) | null) { callSDK<void>("MusicKit_0e503aef608672fa", 2889062780278287, this, [value]); }
   /**
    * func response() async throws -> MusicCatalogSearchResponse
    * @availability iOS 15.0+
    */
-  response(): Promise<MusicCatalogSearchResponse> { return callSDKAsync<MusicCatalogSearchResponse>("MusicKit_d968214ecc684fb6", 2418482809687803, this, []); }
+  response(): Promise<MusicCatalogSearchResponse> { return callSDKAsync<MusicCatalogSearchResponse>("MusicKit_0e503aef608672fa", 2418482809687803, this, []); }
   declare readonly $type: { "s:8MusicKit0A20CatalogSearchRequestV": true };
 }
 
@@ -1720,62 +1720,62 @@ export class MusicCatalogSearchResponse extends SDKHandle {
    * let radioShows: MusicItemCollection<RadioShow>
    * @availability iOS 15.4+
    */
-  get radioShows(): MusicItemCollection<RadioShow> { return callSDK<MusicItemCollection<RadioShow>>("MusicKit_d968214ecc684fb6", 1529940793414600, this, []); }
+  get radioShows(): MusicItemCollection<RadioShow> { return callSDK<MusicItemCollection<RadioShow>>("MusicKit_0e503aef608672fa", 1529940793414600, this, []); }
   /**
    * let topResults: MusicItemCollection<MusicCatalogSearchResponse.TopResult>
    * @availability iOS 16.0+
    */
-  get topResults(): $SDK58 { return callSDK<$SDK58>("MusicKit_d968214ecc684fb6", 3248308169234601, this, []); }
+  get topResults(): $SDK58 { return callSDK<$SDK58>("MusicKit_0e503aef608672fa", 3248308169234601, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2743640792025593, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2743640792025593, this, []); }
   /**
    * let musicVideos: MusicItemCollection<MusicVideo>
    * @availability iOS 15.4+
    */
-  get musicVideos(): $SDK59 { return callSDK<$SDK59>("MusicKit_d968214ecc684fb6", 3178865602072348, this, []); }
+  get musicVideos(): $SDK59 { return callSDK<$SDK59>("MusicKit_0e503aef608672fa", 3178865602072348, this, []); }
   /**
    * let recordLabels: MusicItemCollection<RecordLabel>
    * @availability iOS 15.0+
    */
-  get recordLabels(): MusicItemCollection<RecordLabel> { return callSDK<MusicItemCollection<RecordLabel>>("MusicKit_d968214ecc684fb6", 2817406872636281, this, []); }
+  get recordLabels(): MusicItemCollection<RecordLabel> { return callSDK<MusicItemCollection<RecordLabel>>("MusicKit_0e503aef608672fa", 2817406872636281, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 122752454160137, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 122752454160137, this, []); }
   /**
    * let songs: MusicItemCollection<Song>
    * @availability iOS 15.0+
    */
-  get songs(): MusicItemCollection<Song> { return callSDK<MusicItemCollection<Song>>("MusicKit_d968214ecc684fb6", 3874229547807918, this, []); }
+  get songs(): MusicItemCollection<Song> { return callSDK<MusicItemCollection<Song>>("MusicKit_0e503aef608672fa", 3874229547807918, this, []); }
   /**
    * let albums: MusicItemCollection<Album>
    * @availability iOS 15.0+
    */
-  get albums(): $SDK62 { return callSDK<$SDK62>("MusicKit_d968214ecc684fb6", 4062058722368085, this, []); }
+  get albums(): $SDK62 { return callSDK<$SDK62>("MusicKit_0e503aef608672fa", 4062058722368085, this, []); }
   /**
    * let artists: MusicItemCollection<Artist>
    * @availability iOS 15.0+
    */
-  get artists(): MusicItemCollection<Artist> { return callSDK<MusicItemCollection<Artist>>("MusicKit_d968214ecc684fb6", 2112230166919055, this, []); }
+  get artists(): MusicItemCollection<Artist> { return callSDK<MusicItemCollection<Artist>>("MusicKit_0e503aef608672fa", 2112230166919055, this, []); }
   /**
    * let curators: MusicItemCollection<Curator>
    * @availability iOS 15.4+
    */
-  get curators(): MusicItemCollection<Curator> { return callSDK<MusicItemCollection<Curator>>("MusicKit_d968214ecc684fb6", 1693990581887509, this, []); }
+  get curators(): MusicItemCollection<Curator> { return callSDK<MusicItemCollection<Curator>>("MusicKit_0e503aef608672fa", 1693990581887509, this, []); }
   /**
    * let stations: MusicItemCollection<Station>
    * @availability iOS 15.0+
    */
-  get stations(): MusicItemCollection<Station> { return callSDK<MusicItemCollection<Station>>("MusicKit_d968214ecc684fb6", 93747294113365, this, []); }
+  get stations(): MusicItemCollection<Station> { return callSDK<MusicItemCollection<Station>>("MusicKit_0e503aef608672fa", 93747294113365, this, []); }
   /**
    * let playlists: MusicItemCollection<Playlist>
    * @availability iOS 15.0+
    */
-  get playlists(): $SDK66 { return callSDK<$SDK66>("MusicKit_d968214ecc684fb6", 823605724645677, this, []); }
+  get playlists(): $SDK66 { return callSDK<$SDK66>("MusicKit_0e503aef608672fa", 823605724645677, this, []); }
   declare readonly $type: { "s:8MusicKit0A21CatalogSearchResponseV": true };
 }
 
@@ -1788,27 +1788,27 @@ export class MusicCatalogSearchResponse_TopResult extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2987747547081098, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2987747547081098, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3157695473467268, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3157695473467268, this, []); }
   /**
    * var id: MusicItemID { get }
    * @availability iOS 16.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 2428544068746529, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 2428544068746529, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 16.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2716744552364918, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2716744552364918, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 16.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 464881213934842, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 464881213934842, this, []); }
   declare readonly $type: { "s:8MusicKit0A21CatalogSearchResponseV9TopResultO": true };
 }
 
@@ -1827,23 +1827,23 @@ export class MusicCatalogSearchSuggestionsRequest extends SDKHandle {
    * init(term: String, includingTopResultsOfTypes types: [any MusicCatalogSearchable.Type] = [])
    * @availability iOS 16.0+
    */
-  static init(term: string): MusicCatalogSearchSuggestionsRequest { return callSDK<MusicCatalogSearchSuggestionsRequest>("MusicKit_d968214ecc684fb6", 402398431434199, undefined, [term]); }
+  static init(term: string): MusicCatalogSearchSuggestionsRequest { return callSDK<MusicCatalogSearchSuggestionsRequest>("MusicKit_0e503aef608672fa", 402398431434199, undefined, [term]); }
   /**
    * let term: String
    * @availability iOS 16.0+
    */
-  get term(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3137373245801004, this, []); }
+  get term(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3137373245801004, this, []); }
   /**
    * var limit: Int?
    * @availability iOS 16.0+
    */
-  get limit(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 405874115537981, this, []); }
-  set limit(value: (number) | null) { callSDK<void>("MusicKit_d968214ecc684fb6", 3373582401024661, this, [value]); }
+  get limit(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 405874115537981, this, []); }
+  set limit(value: (number) | null) { callSDK<void>("MusicKit_0e503aef608672fa", 3373582401024661, this, [value]); }
   /**
    * func response() async throws -> MusicCatalogSearchSuggestionsResponse
    * @availability iOS 16.0+
    */
-  response(): Promise<MusicCatalogSearchSuggestionsResponse> { return callSDKAsync<MusicCatalogSearchSuggestionsResponse>("MusicKit_d968214ecc684fb6", 1880904425054893, this, []); }
+  response(): Promise<MusicCatalogSearchSuggestionsResponse> { return callSDKAsync<MusicCatalogSearchSuggestionsResponse>("MusicKit_0e503aef608672fa", 1880904425054893, this, []); }
   declare readonly $type: { "s:8MusicKit0A31CatalogSearchSuggestionsRequestV": true };
 }
 
@@ -1856,22 +1856,22 @@ export class MusicCatalogSearchSuggestionsResponse extends SDKHandle {
    * let topResults: MusicItemCollection<MusicCatalogSearchSuggestionsResponse.TopResult>
    * @availability iOS 16.0+
    */
-  get topResults(): $SDK58 { return callSDK<$SDK58>("MusicKit_d968214ecc684fb6", 3970890510834538, this, []); }
+  get topResults(): $SDK58 { return callSDK<$SDK58>("MusicKit_0e503aef608672fa", 3970890510834538, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 411631657207488, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 411631657207488, this, []); }
   /**
    * let suggestions: [MusicCatalogSearchSuggestionsResponse.Suggestion]
    * @availability iOS 16.0+
    */
-  get suggestions(): Array<MusicCatalogSearchSuggestionsResponse_Suggestion> { return callSDK<Array<MusicCatalogSearchSuggestionsResponse_Suggestion>>("MusicKit_d968214ecc684fb6", 2803799445114153, this, []); }
+  get suggestions(): Array<MusicCatalogSearchSuggestionsResponse_Suggestion> { return callSDK<Array<MusicCatalogSearchSuggestionsResponse_Suggestion>>("MusicKit_0e503aef608672fa", 2803799445114153, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 4104025568795181, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 4104025568795181, this, []); }
   declare readonly $type: { "s:8MusicKit0A32CatalogSearchSuggestionsResponseV": true };
 }
 
@@ -1884,27 +1884,27 @@ export class MusicCatalogSearchSuggestionsResponse_Suggestion extends SDKHandle 
    * let searchTerm: String
    * @availability iOS 16.0+
    */
-  get searchTerm(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3388176412667395, this, []); }
+  get searchTerm(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3388176412667395, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3335253392057577, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3335253392057577, this, []); }
   /**
    * let displayTerm: String
    * @availability iOS 16.0+
    */
-  get displayTerm(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3173489858935674, this, []); }
+  get displayTerm(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3173489858935674, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 4185318129373092, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 4185318129373092, this, []); }
   /**
    * var id: String { get }
    * @availability iOS 16.0+
    */
-  get id(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2473660119356076, this, []); }
+  get id(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2473660119356076, this, []); }
   declare readonly $type: { "s:8MusicKit0A32CatalogSearchSuggestionsResponseV10SuggestionV": true };
 }
 
@@ -1937,33 +1937,33 @@ export class MusicDataRequest extends SDKHandle {
    * let urlRequest: URLRequest
    * @availability iOS 15.0+
    */
-  get urlRequest(): _Foundation_URLRequest { return callSDK<_Foundation_URLRequest>("MusicKit_d968214ecc684fb6", 3277872749747989, this, []); }
+  get urlRequest(): _Foundation_URLRequest { return callSDK<_Foundation_URLRequest>("MusicKit_0e503aef608672fa", 3277872749747989, this, []); }
   /**
    * init(urlRequest: URLRequest)
    * @availability iOS 15.0+
    */
-  static init(urlRequest: _Foundation_URLRequest): MusicDataRequest { return callSDK<MusicDataRequest>("MusicKit_d968214ecc684fb6", 3519567735938336, undefined, [urlRequest]); }
+  static init(urlRequest: _Foundation_URLRequest): MusicDataRequest { return callSDK<MusicDataRequest>("MusicKit_0e503aef608672fa", 3519567735938336, undefined, [urlRequest]); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3925163575852197, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3925163575852197, this, []); }
   /**
    * static var tokenProvider: any MusicUserTokenProvider & MusicDeveloperTokenProvider
    * @availability iOS 15.0+
    */
-  static get tokenProvider(): $SDK68 { return callSDK<$SDK68>("MusicKit_d968214ecc684fb6", 853859709036442, undefined, []); }
-  static set tokenProvider(value: $SDK68) { callSDK<void>("MusicKit_d968214ecc684fb6", 2873191581195435, undefined, [value]); }
+  static get tokenProvider(): $SDK68 { return callSDK<$SDK68>("MusicKit_0e503aef608672fa", 853859709036442, undefined, []); }
+  static set tokenProvider(value: $SDK68) { callSDK<void>("MusicKit_0e503aef608672fa", 2873191581195435, undefined, [value]); }
   /**
    * static var currentCountryCode: String { get async throws }
    * @availability iOS 15.0+
    */
-  static get currentCountryCode(): Promise<string> { return callSDKAsync<string>("MusicKit_d968214ecc684fb6", 1552189661771116, undefined, []); }
+  static get currentCountryCode(): Promise<string> { return callSDKAsync<string>("MusicKit_0e503aef608672fa", 1552189661771116, undefined, []); }
   /**
    * func response() async throws -> MusicDataResponse
    * @availability iOS 15.0+
    */
-  response(): Promise<MusicDataResponse> { return callSDKAsync<MusicDataResponse>("MusicKit_d968214ecc684fb6", 4368930944060044, this, []); }
+  response(): Promise<MusicDataResponse> { return callSDKAsync<MusicDataResponse>("MusicKit_0e503aef608672fa", 4368930944060044, this, []); }
   declare readonly $type: { "s:8MusicKit0A11DataRequestV": true };
 }
 
@@ -1976,42 +1976,42 @@ export class MusicDataRequest_Error extends SDKHandle {
    * let detailText: String
    * @availability iOS 15.0+
    */
-  get detailText(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3045081712378583, this, []); }
+  get detailText(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3045081712378583, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3313330540113895, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3313330540113895, this, []); }
   /**
    * let originalResponse: MusicDataResponse
    * @availability iOS 15.0+
    */
-  get originalResponse(): MusicDataResponse { return callSDK<MusicDataResponse>("MusicKit_d968214ecc684fb6", 1500393813738265, this, []); }
+  get originalResponse(): MusicDataResponse { return callSDK<MusicDataResponse>("MusicKit_0e503aef608672fa", 1500393813738265, this, []); }
   /**
    * let id: String
    * @availability iOS 15.0+
    */
-  get id(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3768102925959711, this, []); }
+  get id(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3768102925959711, this, []); }
   /**
    * let code: Int
    * @availability iOS 15.0+
    */
-  get code(): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 1559052466956800, this, []); }
+  get code(): number { return callSDK<number>("MusicKit_0e503aef608672fa", 1559052466956800, this, []); }
   /**
    * let title: String
    * @availability iOS 15.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3515834111103906, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3515834111103906, this, []); }
   /**
    * let source: MusicDataRequest.Error.Source?
    * @availability iOS 15.0+
    */
-  get source(): (MusicDataRequest_Error_Source) | null { return callSDK<(MusicDataRequest_Error_Source) | null>("MusicKit_d968214ecc684fb6", 150567072968155, this, []); }
+  get source(): (MusicDataRequest_Error_Source) | null { return callSDK<(MusicDataRequest_Error_Source) | null>("MusicKit_0e503aef608672fa", 150567072968155, this, []); }
   /**
    * let status: Int
    * @availability iOS 15.0+
    */
-  get status(): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 2703126273482024, this, []); }
+  get status(): number { return callSDK<number>("MusicKit_0e503aef608672fa", 2703126273482024, this, []); }
   declare readonly $type: { "s:8MusicKit0A11DataRequestV5ErrorV": true };
 }
 
@@ -2024,7 +2024,7 @@ export class MusicDataRequest_Error_Source extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1969289743238450, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1969289743238450, this, []); }
   declare readonly $type: { "s:8MusicKit0A11DataRequestV5ErrorV6SourceO": true };
 }
 
@@ -2037,22 +2037,22 @@ export class MusicDataResponse extends SDKHandle {
    * let urlResponse: HTTPURLResponse
    * @availability iOS 15.0+
    */
-  get urlResponse(): _Foundation_HTTPURLResponse { return callSDK<_Foundation_HTTPURLResponse>("MusicKit_d968214ecc684fb6", 1634222220975202, this, []); }
+  get urlResponse(): _Foundation_HTTPURLResponse { return callSDK<_Foundation_HTTPURLResponse>("MusicKit_0e503aef608672fa", 1634222220975202, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1543341808914633, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1543341808914633, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 473159847307783, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 473159847307783, this, []); }
   /**
    * let data: Data
    * @availability iOS 15.0+
    */
-  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("MusicKit_d968214ecc684fb6", 3903392736060458, this, []); }
+  get data(): ArrayBuffer { return callSDK<ArrayBuffer>("MusicKit_0e503aef608672fa", 3903392736060458, this, []); }
   declare readonly $type: { "s:8MusicKit0A12DataResponseV": true };
 }
 
@@ -2085,7 +2085,7 @@ export class MusicExtendedAttributeProperty<Root = unknown, Value = unknown> ext
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3448137608275601, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3448137608275601, this, []); }
   declare readonly $type: { "s:8MusicKit0A25ExtendedAttributePropertyC": true; "s:8MusicKit07PartialA13AsyncPropertyC": true; "s:8MusicKit07PartialA8PropertyC": true; "s:8MusicKit03AnyA8PropertyC": true };
 }
 
@@ -2152,27 +2152,27 @@ export const MusicItemID = {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  getDescription($self: MusicItemID): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1676435264637758, $self, []); },
+  getDescription($self: MusicItemID): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1676435264637758, $self, []); },
   /**
    * init(stringLiteral value: String)
    * @availability iOS 15.0+
    */
-  initStringLiteral(value: string): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 2948376870224063, undefined, [value]); },
+  initStringLiteral(value: string): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 2948376870224063, undefined, [value]); },
   /**
    * init(rawValue: String)
    * @availability iOS 15.0+
    */
-  initRawValue(rawValue: string): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 3327626218278827, undefined, [rawValue]); },
+  initRawValue(rawValue: string): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 3327626218278827, undefined, [rawValue]); },
   /**
    * let rawValue: String
    * @availability iOS 15.0+
    */
-  getRawValue($self: MusicItemID): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 4472885783362034, $self, []); },
+  getRawValue($self: MusicItemID): string { return callSDK<string>("MusicKit_0e503aef608672fa", 4472885783362034, $self, []); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 4049699470602213, undefined, [rawValue]); }
+  init(rawValue: string): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 4049699470602213, undefined, [rawValue]); }
 };
 
 /**
@@ -2208,17 +2208,17 @@ export class MusicLibrary extends SDKHandle {
    * @discardableResult func createPlaylist(name: String, description: String? = nil, authorDisplayName: String? = nil) async throws -> Playlist
    * @availability iOS 16.0+
    */
-  createPlaylist(name: string, description?: (string) | null, authorDisplayName?: (string) | null): Promise<Playlist> { return callSDKAsync<Playlist>("MusicKit_d968214ecc684fb6", 588331369368116, this, [name, description, authorDisplayName]); }
+  createPlaylist(name: string, description?: (string) | null, authorDisplayName?: (string) | null): Promise<Playlist> { return callSDKAsync<Playlist>("MusicKit_0e503aef608672fa", 588331369368116, this, [name, description, authorDisplayName]); }
   /**
    * @discardableResult func edit(_ playlist: Playlist, name: String? = nil, description: String? = nil, authorDisplayName: String? = nil) async throws -> Playlist
    * @availability iOS 16.0+
    */
-  edit(playlist: Playlist, name?: (string) | null, description?: (string) | null, authorDisplayName?: (string) | null): Promise<Playlist> { return callSDKAsync<Playlist>("MusicKit_d968214ecc684fb6", 3965598129832075, this, [playlist, name, description, authorDisplayName]); }
+  edit(playlist: Playlist, name?: (string) | null, description?: (string) | null, authorDisplayName?: (string) | null): Promise<Playlist> { return callSDKAsync<Playlist>("MusicKit_0e503aef608672fa", 3965598129832075, this, [playlist, name, description, authorDisplayName]); }
   /**
    * static let shared: MusicLibrary
    * @availability iOS 16.0+
    */
-  static get shared(): MusicLibrary { return callSDK<MusicLibrary>("MusicKit_d968214ecc684fb6", 1389394272787686, undefined, []); }
+  static get shared(): MusicLibrary { return callSDK<MusicLibrary>("MusicKit_0e503aef608672fa", 1389394272787686, undefined, []); }
   declare readonly $type: { "s:8MusicKit0A7LibraryC": true };
 }
 
@@ -2233,37 +2233,37 @@ export const MusicLibrary_Error = {
    * var helpAnchor: String? { get }
    * @availability iOS 16.1+
    */
-  getHelpAnchor($self: MusicLibrary_Error): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 384362540880165, $self, []); },
+  getHelpAnchor($self: MusicLibrary_Error): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 384362540880165, $self, []); },
   /**
    * var description: String { get }
    * @availability iOS 16.1+
    */
-  getDescription($self: MusicLibrary_Error): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2909316105821218, $self, []); },
+  getDescription($self: MusicLibrary_Error): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2909316105821218, $self, []); },
   /**
    * var failureReason: String? { get }
    * @availability iOS 16.1+
    */
-  getFailureReason($self: MusicLibrary_Error): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 179524626499102, $self, []); },
+  getFailureReason($self: MusicLibrary_Error): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 179524626499102, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 16.1+
    */
-  getErrorDescription($self: MusicLibrary_Error): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3635649956944745, $self, []); },
+  getErrorDescription($self: MusicLibrary_Error): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3635649956944745, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 16.1+
    */
-  getRecoverySuggestion($self: MusicLibrary_Error): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2904657276387238, $self, []); },
+  getRecoverySuggestion($self: MusicLibrary_Error): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2904657276387238, $self, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 16.1+
    */
-  init(rawValue: string): (MusicLibrary_Error) | null { return callSDK<(MusicLibrary_Error) | null>("MusicKit_d968214ecc684fb6", 2371208328499560, undefined, [rawValue]); },
+  init(rawValue: string): (MusicLibrary_Error) | null { return callSDK<(MusicLibrary_Error) | null>("MusicKit_0e503aef608672fa", 2371208328499560, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 16.1+
    */
-  getRawValue($self: MusicLibrary_Error): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2148550931174148, $self, []); }
+  getRawValue($self: MusicLibrary_Error): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2148550931174148, $self, []); }
 };
 
 /**
@@ -2337,24 +2337,24 @@ export class MusicLibrarySearchRequest extends SDKHandle {
    * var includeTopResults: Bool
    * @availability iOS 16.0+
    */
-  get includeTopResults(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 2546820737319460, this, []); }
-  set includeTopResults(value: boolean) { callSDK<void>("MusicKit_d968214ecc684fb6", 4319060036595940, this, [value]); }
+  get includeTopResults(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 2546820737319460, this, []); }
+  set includeTopResults(value: boolean) { callSDK<void>("MusicKit_0e503aef608672fa", 4319060036595940, this, [value]); }
   /**
    * let term: String
    * @availability iOS 16.0+
    */
-  get term(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1319033085998990, this, []); }
+  get term(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1319033085998990, this, []); }
   /**
    * var limit: Int
    * @availability iOS 16.0+
    */
-  get limit(): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 2498018398070233, this, []); }
-  set limit(value: number) { callSDK<void>("MusicKit_d968214ecc684fb6", 1013921574202470, this, [value]); }
+  get limit(): number { return callSDK<number>("MusicKit_0e503aef608672fa", 2498018398070233, this, []); }
+  set limit(value: number) { callSDK<void>("MusicKit_0e503aef608672fa", 1013921574202470, this, [value]); }
   /**
    * func response() async throws -> MusicLibrarySearchResponse
    * @availability iOS 16.0+
    */
-  response(): Promise<MusicLibrarySearchResponse> { return callSDKAsync<MusicLibrarySearchResponse>("MusicKit_d968214ecc684fb6", 666852692290201, this, []); }
+  response(): Promise<MusicLibrarySearchResponse> { return callSDKAsync<MusicLibrarySearchResponse>("MusicKit_0e503aef608672fa", 666852692290201, this, []); }
   declare readonly $type: { "s:8MusicKit0A20LibrarySearchRequestV": true };
 }
 
@@ -2367,42 +2367,42 @@ export class MusicLibrarySearchResponse extends SDKHandle {
    * let topResults: MusicItemCollection<MusicLibrarySearchResponse.TopResult>
    * @availability iOS 16.0+
    */
-  get topResults(): MusicItemCollection<MusicLibrarySearchResponse_TopResult> { return callSDK<MusicItemCollection<MusicLibrarySearchResponse_TopResult>>("MusicKit_d968214ecc684fb6", 3568181780675471, this, []); }
+  get topResults(): MusicItemCollection<MusicLibrarySearchResponse_TopResult> { return callSDK<MusicItemCollection<MusicLibrarySearchResponse_TopResult>>("MusicKit_0e503aef608672fa", 3568181780675471, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1349794958807495, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1349794958807495, this, []); }
   /**
    * let musicVideos: MusicItemCollection<MusicVideo>
    * @availability iOS 16.0+
    */
-  get musicVideos(): $SDK59 { return callSDK<$SDK59>("MusicKit_d968214ecc684fb6", 3404006303790546, this, []); }
+  get musicVideos(): $SDK59 { return callSDK<$SDK59>("MusicKit_0e503aef608672fa", 3404006303790546, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2526133619110656, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2526133619110656, this, []); }
   /**
    * let songs: MusicItemCollection<Song>
    * @availability iOS 16.0+
    */
-  get songs(): MusicItemCollection<Song> { return callSDK<MusicItemCollection<Song>>("MusicKit_d968214ecc684fb6", 3657425582093719, this, []); }
+  get songs(): MusicItemCollection<Song> { return callSDK<MusicItemCollection<Song>>("MusicKit_0e503aef608672fa", 3657425582093719, this, []); }
   /**
    * let albums: MusicItemCollection<Album>
    * @availability iOS 16.0+
    */
-  get albums(): $SDK62 { return callSDK<$SDK62>("MusicKit_d968214ecc684fb6", 1904589898658518, this, []); }
+  get albums(): $SDK62 { return callSDK<$SDK62>("MusicKit_0e503aef608672fa", 1904589898658518, this, []); }
   /**
    * let artists: MusicItemCollection<Artist>
    * @availability iOS 16.0+
    */
-  get artists(): MusicItemCollection<Artist> { return callSDK<MusicItemCollection<Artist>>("MusicKit_d968214ecc684fb6", 229665085334495, this, []); }
+  get artists(): MusicItemCollection<Artist> { return callSDK<MusicItemCollection<Artist>>("MusicKit_0e503aef608672fa", 229665085334495, this, []); }
   /**
    * let playlists: MusicItemCollection<Playlist>
    * @availability iOS 16.0+
    */
-  get playlists(): $SDK66 { return callSDK<$SDK66>("MusicKit_d968214ecc684fb6", 1504873889652248, this, []); }
+  get playlists(): $SDK66 { return callSDK<$SDK66>("MusicKit_0e503aef608672fa", 1504873889652248, this, []); }
   declare readonly $type: { "s:8MusicKit0A21LibrarySearchResponseV": true };
 }
 
@@ -2415,27 +2415,27 @@ export class MusicLibrarySearchResponse_TopResult extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2271276545481390, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2271276545481390, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2263019919759666, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2263019919759666, this, []); }
   /**
    * var id: MusicItemID { get }
    * @availability iOS 16.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 3834186878588943, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 3834186878588943, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 16.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1314605508105489, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1314605508105489, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 16.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 3871407367678389, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 3871407367678389, this, []); }
   declare readonly $type: { "s:8MusicKit0A21LibrarySearchResponseV9TopResultO": true };
 }
 
@@ -2492,52 +2492,52 @@ export class MusicPersonalRecommendation extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 22158458713592, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 22158458713592, this, []); }
   /**
    * let nextRefreshDate: Date?
    * @availability iOS 16.0+
    */
-  get nextRefreshDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 2735140015301424, this, []); }
+  get nextRefreshDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 2735140015301424, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3246411889630323, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3246411889630323, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 16.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 1831802888621765, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 1831802888621765, this, []); }
   /**
    * var items: MusicItemCollection<MusicPersonalRecommendation.Item> { get }
    * @availability iOS 16.0+
    */
-  get items(): MusicItemCollection<MusicPersonalRecommendation_Item> { return callSDK<MusicItemCollection<MusicPersonalRecommendation_Item>>("MusicKit_d968214ecc684fb6", 1483307096801955, this, []); }
+  get items(): MusicItemCollection<MusicPersonalRecommendation_Item> { return callSDK<MusicItemCollection<MusicPersonalRecommendation_Item>>("MusicKit_0e503aef608672fa", 1483307096801955, this, []); }
   /**
    * let title: String?
    * @availability iOS 16.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1518199958616829, this, []); }
+  get title(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1518199958616829, this, []); }
   /**
    * var albums: MusicItemCollection<Album> { get }
    * @availability iOS 16.0+
    */
-  get albums(): $SDK62 { return callSDK<$SDK62>("MusicKit_d968214ecc684fb6", 3764677880273069, this, []); }
+  get albums(): $SDK62 { return callSDK<$SDK62>("MusicKit_0e503aef608672fa", 3764677880273069, this, []); }
   /**
    * let reason: String?
    * @availability iOS 16.0+
    */
-  get reason(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 4032926936444937, this, []); }
+  get reason(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 4032926936444937, this, []); }
   /**
    * var stations: MusicItemCollection<Station> { get }
    * @availability iOS 16.0+
    */
-  get stations(): MusicItemCollection<Station> { return callSDK<MusicItemCollection<Station>>("MusicKit_d968214ecc684fb6", 3941099877064350, this, []); }
+  get stations(): MusicItemCollection<Station> { return callSDK<MusicItemCollection<Station>>("MusicKit_0e503aef608672fa", 3941099877064350, this, []); }
   /**
    * var playlists: MusicItemCollection<Playlist> { get }
    * @availability iOS 16.0+
    */
-  get playlists(): $SDK66 { return callSDK<$SDK66>("MusicKit_d968214ecc684fb6", 169246330306550, this, []); }
+  get playlists(): $SDK66 { return callSDK<$SDK66>("MusicKit_0e503aef608672fa", 169246330306550, this, []); }
   declare readonly $type: { "s:8MusicKit0A22PersonalRecommendationV": true };
 }
 
@@ -2556,32 +2556,32 @@ export class MusicPersonalRecommendation_Item extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1659271431594673, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1659271431594673, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2947960252094904, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2947960252094904, this, []); }
   /**
    * var id: MusicItemID { get }
    * @availability iOS 16.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 2050728963840321, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 2050728963840321, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 16.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1542721302028326, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1542721302028326, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 16.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 2907820366603095, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 2907820366603095, this, []); }
   /**
    * var subtitle: String? { get }
    * @availability iOS 16.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3240868505721039, this, []); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3240868505721039, this, []); }
   declare readonly $type: { "s:8MusicKit0A22PersonalRecommendationV4ItemO": true };
 }
 
@@ -2608,29 +2608,29 @@ export class MusicPersonalRecommendationsRequest extends SDKHandle {
    * init<S>(refreshing recommendations: S) where S : Sequence, S.Element == MusicPersonalRecommendation
    * @availability iOS 16.0+
    */
-  static initRefreshing(recommendations: Array<MusicPersonalRecommendation>): MusicPersonalRecommendationsRequest { return callSDK<MusicPersonalRecommendationsRequest>("MusicKit_d968214ecc684fb6", 1294686567781611, undefined, [recommendations]); }
+  static initRefreshing(recommendations: Array<MusicPersonalRecommendation>): MusicPersonalRecommendationsRequest { return callSDK<MusicPersonalRecommendationsRequest>("MusicKit_0e503aef608672fa", 1294686567781611, undefined, [recommendations]); }
   /**
    * var limit: Int?
    * @availability iOS 16.0+
    */
-  get limit(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2003661090871054, this, []); }
-  set limit(value: (number) | null) { callSDK<void>("MusicKit_d968214ecc684fb6", 965489581360985, this, [value]); }
+  get limit(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2003661090871054, this, []); }
+  set limit(value: (number) | null) { callSDK<void>("MusicKit_0e503aef608672fa", 965489581360985, this, [value]); }
   /**
    * var offset: Int?
    * @availability iOS 16.0+
    */
-  get offset(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 1090636492721406, this, []); }
-  set offset(value: (number) | null) { callSDK<void>("MusicKit_d968214ecc684fb6", 1895915282876633, this, [value]); }
+  get offset(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 1090636492721406, this, []); }
+  set offset(value: (number) | null) { callSDK<void>("MusicKit_0e503aef608672fa", 1895915282876633, this, [value]); }
   /**
    * func response() async throws -> MusicPersonalRecommendationsResponse
    * @availability iOS 16.0+
    */
-  response(): Promise<MusicPersonalRecommendationsResponse> { return callSDKAsync<MusicPersonalRecommendationsResponse>("MusicKit_d968214ecc684fb6", 3910991869630992, this, []); }
+  response(): Promise<MusicPersonalRecommendationsResponse> { return callSDKAsync<MusicPersonalRecommendationsResponse>("MusicKit_0e503aef608672fa", 3910991869630992, this, []); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): MusicPersonalRecommendationsRequest { return callSDK<MusicPersonalRecommendationsRequest>("MusicKit_d968214ecc684fb6", 3761542905064936, undefined, []); }
+  static init(): MusicPersonalRecommendationsRequest { return callSDK<MusicPersonalRecommendationsRequest>("MusicKit_0e503aef608672fa", 3761542905064936, undefined, []); }
   declare readonly $type: { "s:8MusicKit0A30PersonalRecommendationsRequestV": true };
 }
 
@@ -2643,17 +2643,17 @@ export class MusicPersonalRecommendationsResponse extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2654174454644820, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2654174454644820, this, []); }
   /**
    * let recommendations: MusicItemCollection<MusicPersonalRecommendation>
    * @availability iOS 16.0+
    */
-  get recommendations(): MusicItemCollection<MusicPersonalRecommendation> { return callSDK<MusicItemCollection<MusicPersonalRecommendation>>("MusicKit_d968214ecc684fb6", 416536492573196, this, []); }
+  get recommendations(): MusicItemCollection<MusicPersonalRecommendation> { return callSDK<MusicItemCollection<MusicPersonalRecommendation>>("MusicKit_0e503aef608672fa", 416536492573196, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3983859902077567, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3983859902077567, this, []); }
   declare readonly $type: { "s:8MusicKit0A31PersonalRecommendationsResponseV": true };
 }
 
@@ -2678,57 +2678,57 @@ export class MusicPlayer_Queue_Entry extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3761728979874189, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3761728979874189, this, []); }
   /**
    * var isTransient: Bool { get }
    * @availability iOS 15.0+
    */
-  get isTransient(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 4219181074743901, this, []); }
+  get isTransient(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 4219181074743901, this, []); }
   /**
    * var transientItem: (any PlayableMusicItem)? { get }
    * @availability iOS 15.0+
    */
-  get transientItem(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MusicKit_d968214ecc684fb6", 2053285714490257, this, []); }
+  get transientItem(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MusicKit_0e503aef608672fa", 2053285714490257, this, []); }
   /**
    * let id: String
    * @availability iOS 15.0+
    */
-  get id(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2731794867824786, this, []); }
+  get id(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2731794867824786, this, []); }
   /**
    * var item: MusicPlayer.Queue.Entry.Item? { get }
    * @availability iOS 15.0+
    */
-  get item(): (MusicPlayer_Queue_Entry_Item) | null { return callSDK<(MusicPlayer_Queue_Entry_Item) | null>("MusicKit_d968214ecc684fb6", 929427029318156, this, []); }
+  get item(): (MusicPlayer_Queue_Entry_Item) | null { return callSDK<(MusicPlayer_Queue_Entry_Item) | null>("MusicKit_0e503aef608672fa", 929427029318156, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 15.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3125254615994842, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3125254615994842, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 2722822674982526, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 2722822674982526, this, []); }
   /**
    * var endTime: TimeInterval? { get }
    * @availability iOS 15.0+
    */
-  get endTime(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2357067374027041, this, []); }
+  get endTime(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2357067374027041, this, []); }
   /**
    * var subtitle: String? { get }
    * @availability iOS 15.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3760222194841935, this, []); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3760222194841935, this, []); }
   /**
    * var startTime: TimeInterval? { get }
    * @availability iOS 15.0+
    */
-  get startTime(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2269676044096815, this, []); }
+  get startTime(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2269676044096815, this, []); }
   /**
    * init(_ playableMusicItem: any PlayableMusicItem, startTime: TimeInterval? = nil, endTime: TimeInterval? = nil)
    * @availability iOS 15.0+
    */
-  static init(playableMusicItem: SDKHandle, startTime?: (number) | null, endTime?: (number) | null): MusicPlayer_Queue_Entry { return callSDK<MusicPlayer_Queue_Entry>("MusicKit_d968214ecc684fb6", 24591220093358, undefined, [playableMusicItem, startTime, endTime]); }
+  static init(playableMusicItem: SDKHandle, startTime?: (number) | null, endTime?: (number) | null): MusicPlayer_Queue_Entry { return callSDK<MusicPlayer_Queue_Entry>("MusicKit_0e503aef608672fa", 24591220093358, undefined, [playableMusicItem, startTime, endTime]); }
   declare readonly $type: { "s:8MusicKit0A6PlayerC5QueueC5EntryV": true };
 }
 
@@ -2747,22 +2747,22 @@ export class MusicPlayer_Queue_Entry_Item extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 4398938495988223, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 4398938495988223, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 15.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 185084291378074, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 185084291378074, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 4005993555477559, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 4005993555477559, this, []); }
   /**
    * var id: MusicItemID { get }
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 3289491750016705, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 3289491750016705, this, []); }
   declare readonly $type: { "s:8MusicKit0A6PlayerC5QueueC5EntryV4ItemO": true };
 }
 
@@ -2805,35 +2805,35 @@ export class MusicPlayer_State extends SDKHandle {
    * var repeatMode: MusicPlayer.RepeatMode? { get set }
    * @availability iOS 15.0+
    */
-  get repeatMode(): $SDK75 { return callSDK<$SDK75>("MusicKit_d968214ecc684fb6", 496291431461877, this, []); }
-  set repeatMode(value: $SDK75) { callSDK<void>("MusicKit_d968214ecc684fb6", 655337154742559, this, [value]); }
+  get repeatMode(): $SDK75 { return callSDK<$SDK75>("MusicKit_0e503aef608672fa", 496291431461877, this, []); }
+  set repeatMode(value: $SDK75) { callSDK<void>("MusicKit_0e503aef608672fa", 655337154742559, this, [value]); }
   /**
    * var shuffleMode: MusicPlayer.ShuffleMode? { get set }
    * @availability iOS 15.0+
    */
-  get shuffleMode(): $SDK76 { return callSDK<$SDK76>("MusicKit_d968214ecc684fb6", 2991244604657594, this, []); }
-  set shuffleMode(value: $SDK76) { callSDK<void>("MusicKit_d968214ecc684fb6", 4165577282185221, this, [value]); }
+  get shuffleMode(): $SDK76 { return callSDK<$SDK76>("MusicKit_0e503aef608672fa", 2991244604657594, this, []); }
+  set shuffleMode(value: $SDK76) { callSDK<void>("MusicKit_0e503aef608672fa", 4165577282185221, this, [value]); }
   /**
    * var audioVariant: AudioVariant? { get }
    * @availability iOS 16.0+
    */
-  get audioVariant(): (AudioVariant) | null { return callSDK<(AudioVariant) | null>("MusicKit_d968214ecc684fb6", 516036809087906, this, []); }
+  get audioVariant(): (AudioVariant) | null { return callSDK<(AudioVariant) | null>("MusicKit_0e503aef608672fa", 516036809087906, this, []); }
   /**
    * var playbackRate: Float { get set }
    * @availability iOS 15.0+
    */
-  get playbackRate(): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 4162536725631380, this, []); }
-  set playbackRate(value: number) { callSDK<void>("MusicKit_d968214ecc684fb6", 1730420467340166, this, [value]); }
+  get playbackRate(): number { return callSDK<number>("MusicKit_0e503aef608672fa", 4162536725631380, this, []); }
+  set playbackRate(value: number) { callSDK<void>("MusicKit_0e503aef608672fa", 1730420467340166, this, [value]); }
   /**
    * var playbackStatus: MusicPlayer.PlaybackStatus { get }
    * @availability iOS 15.0+
    */
-  get playbackStatus(): MusicPlayer_PlaybackStatus { return callSDK<MusicPlayer_PlaybackStatus>("MusicKit_d968214ecc684fb6", 2959584030243288, this, []); }
+  get playbackStatus(): MusicPlayer_PlaybackStatus { return callSDK<MusicPlayer_PlaybackStatus>("MusicKit_0e503aef608672fa", 2959584030243288, this, []); }
   /**
    * var objectWillChange: AnyPublisher<Void, Never> { get }
    * @availability iOS 15.0+
    */
-  get objectWillChange(): $SDK10 { return callSDK<$SDK10>("MusicKit_d968214ecc684fb6", 1389563461321198, this, []); }
+  get objectWillChange(): $SDK10 { return callSDK<$SDK10>("MusicKit_0e503aef608672fa", 1389563461321198, this, []); }
   declare readonly $type: { "s:8MusicKit0A6PlayerC5StateC": true };
   declare readonly $observable: { "repeatMode": true; "shuffleMode": true; "audioVariant": true; "playbackRate": true; "playbackStatus": true; "objectWillChange": true };
 }
@@ -2853,17 +2853,17 @@ export class MusicPlayer_Transition extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3438819606940733, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3438819606940733, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 18.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3708399910137744, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3708399910137744, this, []); }
   /**
    * static func crossfade(duration: TimeInterval?) -> MusicPlayer.Transition
    * @availability iOS 18.0+
    */
-  static crossfade(duration?: (number) | null): MusicPlayer_Transition { return callSDK<MusicPlayer_Transition>("MusicKit_d968214ecc684fb6", 2644898659941167, undefined, [duration]); }
+  static crossfade(duration?: (number) | null): MusicPlayer_Transition { return callSDK<MusicPlayer_Transition>("MusicKit_0e503aef608672fa", 2644898659941167, undefined, [duration]); }
   declare readonly $type: { "s:8MusicKit0A6PlayerC10TransitionO": true };
 }
 
@@ -2876,17 +2876,17 @@ export class MusicPlayer_Transition_CrossfadeOptions extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1391792703435082, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1391792703435082, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 18.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1166269337616619, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1166269337616619, this, []); }
   /**
    * init(duration: TimeInterval? = nil)
    * @availability iOS 18.0+
    */
-  static init(duration?: (number) | null): MusicPlayer_Transition_CrossfadeOptions { return callSDK<MusicPlayer_Transition_CrossfadeOptions>("MusicKit_d968214ecc684fb6", 4003409241939668, undefined, [duration]); }
+  static init(duration?: (number) | null): MusicPlayer_Transition_CrossfadeOptions { return callSDK<MusicPlayer_Transition_CrossfadeOptions>("MusicKit_0e503aef608672fa", 4003409241939668, undefined, [duration]); }
   declare readonly $type: { "s:8MusicKit0A6PlayerC10TransitionO16CrossfadeOptionsV": true };
 }
 
@@ -2926,7 +2926,7 @@ export const MusicPropertySource = {
    * static var allCases: [MusicPropertySource] { get }
    * @availability iOS 16.0+
    */
-  get allCases(): Array<MusicPropertySource> { return callSDK<Array<MusicPropertySource>>("MusicKit_d968214ecc684fb6", 1356573526333124, undefined, []); }
+  get allCases(): Array<MusicPropertySource> { return callSDK<Array<MusicPropertySource>>("MusicKit_0e503aef608672fa", 1356573526333124, undefined, []); }
 };
 
 /**
@@ -2988,32 +2988,32 @@ export class MusicSubscription extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3466321655431797, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3466321655431797, this, []); }
   /**
    * let canBecomeSubscriber: Bool
    * @availability iOS 15.0+
    */
-  get canBecomeSubscriber(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 2133821679536356, this, []); }
+  get canBecomeSubscriber(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 2133821679536356, this, []); }
   /**
    * static var subscriptionUpdates: MusicSubscription.Updates { get }
    * @availability iOS 15.0+
    */
-  static get subscriptionUpdates(): MusicSubscription_Updates { return callSDK<MusicSubscription_Updates>("MusicKit_d968214ecc684fb6", 116526851555332, undefined, []); }
+  static get subscriptionUpdates(): MusicSubscription_Updates { return callSDK<MusicSubscription_Updates>("MusicKit_0e503aef608672fa", 116526851555332, undefined, []); }
   /**
    * let canPlayCatalogContent: Bool
    * @availability iOS 15.0+
    */
-  get canPlayCatalogContent(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 2151802936594583, this, []); }
+  get canPlayCatalogContent(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 2151802936594583, this, []); }
   /**
    * let hasCloudLibraryEnabled: Bool
    * @availability iOS 15.0+
    */
-  get hasCloudLibraryEnabled(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 2868318083259017, this, []); }
+  get hasCloudLibraryEnabled(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 2868318083259017, this, []); }
   /**
    * static var current: MusicSubscription { get async throws }
    * @availability iOS 15.0+
    */
-  static get current(): Promise<MusicSubscription> { return callSDKAsync<MusicSubscription>("MusicKit_d968214ecc684fb6", 2297564225830628, undefined, []); }
+  static get current(): Promise<MusicSubscription> { return callSDKAsync<MusicSubscription>("MusicKit_0e503aef608672fa", 2297564225830628, undefined, []); }
   declare readonly $type: { "s:8MusicKit0A12SubscriptionV": true };
 }
 
@@ -3028,37 +3028,37 @@ export const MusicSubscription_Error = {
    * var helpAnchor: String? { get }
    * @availability iOS 15.0+
    */
-  getHelpAnchor($self: MusicSubscription_Error): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3658172606061344, $self, []); },
+  getHelpAnchor($self: MusicSubscription_Error): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3658172606061344, $self, []); },
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  getDescription($self: MusicSubscription_Error): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 4078549984982019, $self, []); },
+  getDescription($self: MusicSubscription_Error): string { return callSDK<string>("MusicKit_0e503aef608672fa", 4078549984982019, $self, []); },
   /**
    * var failureReason: String? { get }
    * @availability iOS 15.0+
    */
-  getFailureReason($self: MusicSubscription_Error): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3057788705780473, $self, []); },
+  getFailureReason($self: MusicSubscription_Error): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3057788705780473, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 15.0+
    */
-  getErrorDescription($self: MusicSubscription_Error): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2257580882883353, $self, []); },
+  getErrorDescription($self: MusicSubscription_Error): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2257580882883353, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 15.0+
    */
-  getRecoverySuggestion($self: MusicSubscription_Error): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2551635932531136, $self, []); },
+  getRecoverySuggestion($self: MusicSubscription_Error): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2551635932531136, $self, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): (MusicSubscription_Error) | null { return callSDK<(MusicSubscription_Error) | null>("MusicKit_d968214ecc684fb6", 3144938664724526, undefined, [rawValue]); },
+  init(rawValue: string): (MusicSubscription_Error) | null { return callSDK<(MusicSubscription_Error) | null>("MusicKit_0e503aef608672fa", 3144938664724526, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: MusicSubscription_Error): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 430239661765668, $self, []); }
+  getRawValue($self: MusicSubscription_Error): string { return callSDK<string>("MusicKit_0e503aef608672fa", 430239661765668, $self, []); }
 };
 
 /**
@@ -3076,7 +3076,7 @@ export class MusicSubscription_Updates extends SDKHandle {
    * func makeAsyncIterator() -> MusicSubscription.Updates.Iterator
    * @availability iOS 15.0+
    */
-  makeAsyncIterator(): MusicSubscription_Updates_Iterator { return callSDK<MusicSubscription_Updates_Iterator>("MusicKit_d968214ecc684fb6", 686998347080242, this, []); }
+  makeAsyncIterator(): MusicSubscription_Updates_Iterator { return callSDK<MusicSubscription_Updates_Iterator>("MusicKit_0e503aef608672fa", 686998347080242, this, []); }
   declare readonly $type: { "s:8MusicKit0A12SubscriptionV7UpdatesV": true };
   declare readonly $element: MusicSubscription;
 }
@@ -3102,7 +3102,7 @@ export class MusicSubscription_Updates_Iterator extends SDKHandle {
    * mutating func next() async -> MusicSubscription?
    * @availability iOS 15.0+
    */
-  next(): Promise<(MusicSubscription) | null> { return callSDKAsync<(MusicSubscription) | null>("MusicKit_d968214ecc684fb6", 4131189838917931, this, []); }
+  next(): Promise<(MusicSubscription) | null> { return callSDKAsync<(MusicSubscription) | null>("MusicKit_0e503aef608672fa", 4131189838917931, this, []); }
   declare readonly $type: { "s:8MusicKit0A12SubscriptionV7UpdatesV8IteratorV": true };
 }
 
@@ -3129,37 +3129,37 @@ export const MusicTokenRequestError = {
    * var helpAnchor: String? { get }
    * @availability iOS 15.0+
    */
-  getHelpAnchor($self: MusicTokenRequestError): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2544005781795882, $self, []); },
+  getHelpAnchor($self: MusicTokenRequestError): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2544005781795882, $self, []); },
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  getDescription($self: MusicTokenRequestError): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2549748313374056, $self, []); },
+  getDescription($self: MusicTokenRequestError): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2549748313374056, $self, []); },
   /**
    * var failureReason: String? { get }
    * @availability iOS 15.0+
    */
-  getFailureReason($self: MusicTokenRequestError): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 901265795944932, $self, []); },
+  getFailureReason($self: MusicTokenRequestError): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 901265795944932, $self, []); },
   /**
    * var errorDescription: String? { get }
    * @availability iOS 15.0+
    */
-  getErrorDescription($self: MusicTokenRequestError): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 4232665033296668, $self, []); },
+  getErrorDescription($self: MusicTokenRequestError): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 4232665033296668, $self, []); },
   /**
    * var recoverySuggestion: String? { get }
    * @availability iOS 15.0+
    */
-  getRecoverySuggestion($self: MusicTokenRequestError): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2387984208808179, $self, []); },
+  getRecoverySuggestion($self: MusicTokenRequestError): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2387984208808179, $self, []); },
   /**
    * init?(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): (MusicTokenRequestError) | null { return callSDK<(MusicTokenRequestError) | null>("MusicKit_d968214ecc684fb6", 4403554192761945, undefined, [rawValue]); },
+  init(rawValue: string): (MusicTokenRequestError) | null { return callSDK<(MusicTokenRequestError) | null>("MusicKit_0e503aef608672fa", 4403554192761945, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: MusicTokenRequestError): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 36482987585302, $self, []); }
+  getRawValue($self: MusicTokenRequestError): string { return callSDK<string>("MusicKit_0e503aef608672fa", 36482987585302, $self, []); }
 };
 
 /**
@@ -3179,17 +3179,17 @@ export const MusicTokenRequestOptions = {
    * static let ignoreCache: MusicTokenRequestOptions
    * @availability iOS 15.0+
    */
-  get ignoreCache(): MusicTokenRequestOptions { return callSDK<MusicTokenRequestOptions>("MusicKit_d968214ecc684fb6", 2450921217291567, undefined, []); },
+  get ignoreCache(): MusicTokenRequestOptions { return callSDK<MusicTokenRequestOptions>("MusicKit_0e503aef608672fa", 2450921217291567, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): MusicTokenRequestOptions { return callSDK<MusicTokenRequestOptions>("MusicKit_d968214ecc684fb6", 3686302186526917, undefined, [rawValue]); },
+  init(rawValue: number): MusicTokenRequestOptions { return callSDK<MusicTokenRequestOptions>("MusicKit_0e503aef608672fa", 3686302186526917, undefined, [rawValue]); },
   /**
    * let rawValue: Int
    * @availability iOS 15.0+
    */
-  getRawValue($self: MusicTokenRequestOptions): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 2593427817828318, $self, []); }
+  getRawValue($self: MusicTokenRequestOptions): number { return callSDK<number>("MusicKit_0e503aef608672fa", 2593427817828318, $self, []); }
 };
 
 /**
@@ -3219,167 +3219,167 @@ export class MusicVideo extends SDKHandle {
    * var albumTitle: String? { get }
    * @availability iOS 15.0+
    */
-  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2897007963163332, this, []); }
+  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2897007963163332, this, []); }
   /**
    * var artistName: String { get }
    * @availability iOS 15.0+
    */
-  get artistName(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2774814443010741, this, []); }
+  get artistName(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2774814443010741, this, []); }
   /**
    * var genreNames: [String] { get }
    * @availability iOS 15.0+
    */
-  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_d968214ecc684fb6", 3681483818074646, this, []); }
+  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_0e503aef608672fa", 3681483818074646, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 248563614960187, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 248563614960187, this, []); }
   /**
    * var moreInGenre: MusicItemCollection<MusicVideo>? { get }
    * @availability iOS 15.0+
    */
-  get moreInGenre(): $SDK4 { return callSDK<$SDK4>("MusicKit_d968214ecc684fb6", 467628321494883, this, []); }
+  get moreInGenre(): $SDK4 { return callSDK<$SDK4>("MusicKit_0e503aef608672fa", 467628321494883, this, []); }
   /**
    * var releaseDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 3001273083634745, this, []); }
+  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 3001273083634745, this, []); }
   /**
    * var trackNumber: Int? { get }
    * @availability iOS 15.0+
    */
-  get trackNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 442806379727758, this, []); }
+  get trackNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 442806379727758, this, []); }
   /**
    * var moreByArtist: MusicItemCollection<MusicVideo>? { get }
    * @availability iOS 15.0+
    */
-  get moreByArtist(): $SDK4 { return callSDK<$SDK4>("MusicKit_d968214ecc684fb6", 2716462168646029, this, []); }
+  get moreByArtist(): $SDK4 { return callSDK<$SDK4>("MusicKit_0e503aef608672fa", 2716462168646029, this, []); }
   /**
    * var contentRating: ContentRating? { get }
    * @availability iOS 15.0+
    */
-  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_d968214ecc684fb6", 1500230829222938, this, []); }
+  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_0e503aef608672fa", 1500230829222938, this, []); }
   /**
    * var previewAssets: [PreviewAsset]? { get }
    * @availability iOS 15.0+
    */
-  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_d968214ecc684fb6", 1874434928513775, this, []); }
+  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_0e503aef608672fa", 1874434928513775, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 15.0+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 2398474685368984, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 2398474685368984, this, []); }
   /**
    * var lastPlayedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 3037606237890283, this, []); }
+  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 3037606237890283, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 15.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 113735856801578, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 113735856801578, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1547657946853402, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1547657946853402, this, []); }
   /**
    * var libraryAddedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 252731881668920, this, []); }
+  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 252731881668920, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 154729226430842, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 154729226430842, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3951790829128835, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3951790829128835, this, []); }
   /**
    * var isrc: String? { get }
    * @availability iOS 15.0+
    */
-  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3043395897348552, this, []); }
+  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3043395897348552, this, []); }
   /**
    * var has4K: Bool? { get }
    * @availability iOS 15.0+
    */
-  get has4K(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_d968214ecc684fb6", 266537647107142, this, []); }
+  get has4K(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_0e503aef608672fa", 266537647107142, this, []); }
   /**
    * var songs: MusicItemCollection<Song>? { get }
    * @availability iOS 15.0+
    */
-  get songs(): $SDK12 { return callSDK<$SDK12>("MusicKit_d968214ecc684fb6", 1966998981373751, this, []); }
+  get songs(): $SDK12 { return callSDK<$SDK12>("MusicKit_0e503aef608672fa", 1966998981373751, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 15.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2263878567678836, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2263878567678836, this, []); }
   /**
    * var albums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get albums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 423120959223396, this, []); }
+  get albums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 423120959223396, this, []); }
   /**
    * var genres: MusicItemCollection<Genre>? { get }
    * @availability iOS 15.0+
    */
-  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_d968214ecc684fb6", 773577255121291, this, []); }
+  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_0e503aef608672fa", 773577255121291, this, []); }
   /**
    * var hasHDR: Bool? { get }
    * @availability iOS 15.0+
    */
-  get hasHDR(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_d968214ecc684fb6", 1995884727261669, this, []); }
+  get hasHDR(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_0e503aef608672fa", 1995884727261669, this, []); }
   /**
    * var artists: MusicItemCollection<Artist>? { get }
    * @availability iOS 15.0+
    */
-  get artists(): $SDK7 { return callSDK<$SDK7>("MusicKit_d968214ecc684fb6", 1300667805928583, this, []); }
+  get artists(): $SDK7 { return callSDK<$SDK7>("MusicKit_0e503aef608672fa", 1300667805928583, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 875536354756259, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 875536354756259, this, []); }
   /**
    * var endTime: TimeInterval? { get }
    * @availability iOS 26.4+
    */
-  get endTime(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 1555604381970365, this, []); }
+  get endTime(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 1555604381970365, this, []); }
   /**
    * var duration: TimeInterval? { get }
    * @availability iOS 15.0+
    */
-  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 1726919261879818, this, []); }
+  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 1726919261879818, this, []); }
   /**
    * var workName: String? { get }
    * @availability iOS 15.0+
    */
-  get workName(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 595484777661209, this, []); }
+  get workName(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 595484777661209, this, []); }
   /**
    * var artistURL: URL? { get }
    * @availability iOS 15.0+
    */
-  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3538978565412227, this, []); }
+  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3538978565412227, this, []); }
   /**
    * var isPreview: Bool { get }
    * @availability iOS 15.0+
    */
-  get isPreview(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 4198491656565253, this, []); }
+  get isPreview(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 4198491656565253, this, []); }
   /**
    * var playCount: Int? { get }
    * @availability iOS 16.0+
    */
-  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 784610120764912, this, []); }
+  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 784610120764912, this, []); }
   /**
    * var startTime: TimeInterval? { get }
    * @availability iOS 26.4+
    */
-  get startTime(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 3732424440048574, this, []); }
+  get startTime(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 3732424440048574, this, []); }
   declare readonly $type: { "s:8MusicKit0A5VideoV": true };
 }
 
@@ -3432,107 +3432,107 @@ export class Playlist extends SDKHandle {
    * var curatorName: String? { get }
    * @availability iOS 15.0+
    */
-  get curatorName(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2857226319722587, this, []); }
+  get curatorName(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2857226319722587, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 987978061711563, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 987978061711563, this, []); }
   /**
    * var moreByCurator: MusicItemCollection<Playlist>? { get }
    * @availability iOS 15.0+
    */
-  get moreByCurator(): $SDK8 { return callSDK<$SDK8>("MusicKit_d968214ecc684fb6", 1025193065501108, this, []); }
+  get moreByCurator(): $SDK8 { return callSDK<$SDK8>("MusicKit_0e503aef608672fa", 1025193065501108, this, []); }
   /**
    * var lastPlayedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 3695622344494255, this, []); }
+  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 3695622344494255, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 15.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 3499990665868896, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 3499990665868896, this, []); }
   /**
    * var featuredArtists: MusicItemCollection<Artist>? { get }
    * @availability iOS 15.0+
    */
-  get featuredArtists(): $SDK7 { return callSDK<$SDK7>("MusicKit_d968214ecc684fb6", 1569873089736615, this, []); }
+  get featuredArtists(): $SDK7 { return callSDK<$SDK7>("MusicKit_0e503aef608672fa", 1569873089736615, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 973380960618015, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 973380960618015, this, []); }
   /**
    * var lastModifiedDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get lastModifiedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 948496523665544, this, []); }
+  get lastModifiedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 948496523665544, this, []); }
   /**
    * var libraryAddedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 393888942380226, this, []); }
+  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 393888942380226, this, []); }
   /**
    * var shortDescription: String? { get }
    * @availability iOS 15.0+
    */
-  get shortDescription(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3020382622265557, this, []); }
+  get shortDescription(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3020382622265557, this, []); }
   /**
    * var standardDescription: String? { get }
    * @availability iOS 15.0+
    */
-  get standardDescription(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1828453112081387, this, []); }
+  get standardDescription(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1828453112081387, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 4165252018899242, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 4165252018899242, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2966256412518896, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2966256412518896, this, []); }
   /**
    * var kind: Playlist.Kind? { get }
    * @availability iOS 15.0+
    */
-  get kind(): (Playlist_Kind) | null { return callSDK<(Playlist_Kind) | null>("MusicKit_d968214ecc684fb6", 2826927194325950, this, []); }
+  get kind(): (Playlist_Kind) | null { return callSDK<(Playlist_Kind) | null>("MusicKit_0e503aef608672fa", 2826927194325950, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2434388888647781, this, []); }
+  get name(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2434388888647781, this, []); }
   /**
    * var tracks: MusicItemCollection<Track>? { get }
    * @availability iOS 15.0+
    */
-  get tracks(): $SDK6 { return callSDK<$SDK6>("MusicKit_d968214ecc684fb6", 984403496527415, this, []); }
+  get tracks(): $SDK6 { return callSDK<$SDK6>("MusicKit_0e503aef608672fa", 984403496527415, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 3326836899142951, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 3326836899142951, this, []); }
   /**
    * var curator: Curator? { get }
    * @availability iOS 16.0+
    */
-  get curator(): (Curator) | null { return callSDK<(Curator) | null>("MusicKit_d968214ecc684fb6", 1185212006262752, this, []); }
+  get curator(): (Curator) | null { return callSDK<(Curator) | null>("MusicKit_0e503aef608672fa", 1185212006262752, this, []); }
   /**
    * var entries: MusicItemCollection<Playlist.Entry>? { get }
    * @availability iOS 16.0+
    */
-  get entries(): (MusicItemCollection<Playlist_Entry>) | null { return callSDK<(MusicItemCollection<Playlist_Entry>) | null>("MusicKit_d968214ecc684fb6", 3219611275933637, this, []); }
+  get entries(): (MusicItemCollection<Playlist_Entry>) | null { return callSDK<(MusicItemCollection<Playlist_Entry>) | null>("MusicKit_0e503aef608672fa", 3219611275933637, this, []); }
   /**
    * var isChart: Bool? { get }
    * @availability iOS 15.0+
    */
-  get isChart(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_d968214ecc684fb6", 655400385486287, this, []); }
+  get isChart(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_0e503aef608672fa", 655400385486287, this, []); }
   /**
    * var radioShow: RadioShow? { get }
    * @availability iOS 16.0+
    */
-  get radioShow(): (RadioShow) | null { return callSDK<(RadioShow) | null>("MusicKit_d968214ecc684fb6", 4271122796612675, this, []); }
+  get radioShow(): (RadioShow) | null { return callSDK<(RadioShow) | null>("MusicKit_0e503aef608672fa", 4271122796612675, this, []); }
   declare readonly $type: { "s:8MusicKit8PlaylistV": true };
 }
 
@@ -3545,112 +3545,112 @@ export class Playlist_Entry extends SDKHandle {
    * var albumTitle: String? { get }
    * @availability iOS 16.0+
    */
-  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2507688676273888, this, []); }
+  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2507688676273888, this, []); }
   /**
    * var artistName: String { get }
    * @availability iOS 16.0+
    */
-  get artistName(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3058196860940708, this, []); }
+  get artistName(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3058196860940708, this, []); }
   /**
    * var genreNames: [String] { get }
    * @availability iOS 16.0+
    */
-  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_d968214ecc684fb6", 3587852721919741, this, []); }
+  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_0e503aef608672fa", 3587852721919741, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 4490501684794830, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 4490501684794830, this, []); }
   /**
    * var releaseDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 2339548734112128, this, []); }
+  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 2339548734112128, this, []); }
   /**
    * var contentRating: ContentRating? { get }
    * @availability iOS 16.0+
    */
-  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_d968214ecc684fb6", 706697366637740, this, []); }
+  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_0e503aef608672fa", 706697366637740, this, []); }
   /**
    * var previewAssets: [PreviewAsset]? { get }
    * @availability iOS 16.0+
    */
-  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_d968214ecc684fb6", 938920433599548, this, []); }
+  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_0e503aef608672fa", 938920433599548, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 16.0+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 2830804090804382, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 2830804090804382, this, []); }
   /**
    * var lastPlayedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 247901751349270, this, []); }
+  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 247901751349270, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 16.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 2367956484698280, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 2367956484698280, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1586783913646589, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1586783913646589, this, []); }
   /**
    * var libraryAddedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 2616368872175280, this, []); }
+  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 2616368872175280, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 16.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 2169348952435102, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 2169348952435102, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 16.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2383851364840550, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2383851364840550, this, []); }
   /**
    * var isrc: String? { get }
    * @availability iOS 16.0+
    */
-  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 933726405494629, this, []); }
+  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 933726405494629, this, []); }
   /**
    * var item: Playlist.Entry.Item? { get }
    * @availability iOS 16.0+
    */
-  get item(): (Playlist_Entry_Item) | null { return callSDK<(Playlist_Entry_Item) | null>("MusicKit_d968214ecc684fb6", 3231123415619653, this, []); }
+  get item(): (Playlist_Entry_Item) | null { return callSDK<(Playlist_Entry_Item) | null>("MusicKit_0e503aef608672fa", 3231123415619653, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 16.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3844825831783481, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3844825831783481, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 16.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 2482603940163409, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 2482603940163409, this, []); }
   /**
    * var duration: TimeInterval? { get }
    * @availability iOS 16.0+
    */
-  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 3939016387115126, this, []); }
+  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 3939016387115126, this, []); }
   /**
    * var position: Int { get }
    * @availability iOS 16.0+
    */
-  get position(): number { return callSDK<number>("MusicKit_d968214ecc684fb6", 2103066044471144, this, []); }
+  get position(): number { return callSDK<number>("MusicKit_0e503aef608672fa", 2103066044471144, this, []); }
   /**
    * var artistURL: URL? { get }
    * @availability iOS 16.0+
    */
-  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2370216057164946, this, []); }
+  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2370216057164946, this, []); }
   /**
    * var playCount: Int? { get }
    * @availability iOS 16.0+
    */
-  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 320309891506376, this, []); }
+  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 320309891506376, this, []); }
   declare readonly $type: { "s:8MusicKit8PlaylistV5EntryV": true };
 }
 
@@ -3669,102 +3669,102 @@ export class Playlist_Entry_Item extends SDKHandle {
    * var albumTitle: String? { get }
    * @availability iOS 16.0+
    */
-  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2248862048409423, this, []); }
+  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2248862048409423, this, []); }
   /**
    * var artistName: String { get }
    * @availability iOS 16.0+
    */
-  get artistName(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 3006656054749299, this, []); }
+  get artistName(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 3006656054749299, this, []); }
   /**
    * var genreNames: [String] { get }
    * @availability iOS 16.0+
    */
-  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_d968214ecc684fb6", 2503090595479890, this, []); }
+  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_0e503aef608672fa", 2503090595479890, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1536243223589591, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1536243223589591, this, []); }
   /**
    * var releaseDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 1795279048085734, this, []); }
+  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 1795279048085734, this, []); }
   /**
    * var contentRating: ContentRating? { get }
    * @availability iOS 16.0+
    */
-  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_d968214ecc684fb6", 807609611851682, this, []); }
+  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_0e503aef608672fa", 807609611851682, this, []); }
   /**
    * var previewAssets: [PreviewAsset]? { get }
    * @availability iOS 16.0+
    */
-  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_d968214ecc684fb6", 816054270369337, this, []); }
+  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_0e503aef608672fa", 816054270369337, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 16.0+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 147705944101838, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 147705944101838, this, []); }
   /**
    * var lastPlayedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 1264194536610304, this, []); }
+  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 1264194536610304, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 16.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 263480115358343, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 263480115358343, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 296450419133441, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 296450419133441, this, []); }
   /**
    * var libraryAddedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 244843646886320, this, []); }
+  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 244843646886320, this, []); }
   /**
    * var id: MusicItemID { get }
    * @availability iOS 16.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 3744904630796377, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 3744904630796377, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 16.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2211129006580085, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2211129006580085, this, []); }
   /**
    * var isrc: String? { get }
    * @availability iOS 16.0+
    */
-  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 4344318220331266, this, []); }
+  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 4344318220331266, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 16.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2399938543852782, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2399938543852782, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 16.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 2923969572760458, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 2923969572760458, this, []); }
   /**
    * var duration: TimeInterval? { get }
    * @availability iOS 16.0+
    */
-  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2802596777597539, this, []); }
+  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2802596777597539, this, []); }
   /**
    * var artistURL: URL? { get }
    * @availability iOS 16.0+
    */
-  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 133801093036287, this, []); }
+  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 133801093036287, this, []); }
   /**
    * var playCount: Int? { get }
    * @availability iOS 16.0+
    */
-  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2735760778660313, this, []); }
+  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2735760778660313, this, []); }
   declare readonly $type: { "s:8MusicKit8PlaylistV5EntryV4ItemO": true };
 }
 
@@ -3841,27 +3841,27 @@ export class PreviewAsset extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2039334168225393, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2039334168225393, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 431217448451896, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 431217448451896, this, []); }
   /**
    * let url: URL?
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1551245750408540, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1551245750408540, this, []); }
   /**
    * let hlsURL: URL?
    * @availability iOS 15.0+
    */
-  get hlsURL(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1692186457761602, this, []); }
+  get hlsURL(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1692186457761602, this, []); }
   /**
    * let artwork: Artwork?
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 362415353679288, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 362415353679288, this, []); }
   declare readonly $type: { "s:8MusicKit12PreviewAssetV": true };
 }
 
@@ -3874,47 +3874,47 @@ export class RadioShow extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.4+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1910428915342747, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1910428915342747, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 15.4+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 2382996860477072, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 2382996860477072, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.4+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 775582396595658, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 775582396595658, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.4+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 813106126726933, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 813106126726933, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.4+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3057573839735675, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3057573839735675, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 15.4+
    */
-  get name(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 546691601682160, this, []); }
+  get name(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 546691601682160, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.4+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 2710116446187091, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 2710116446187091, this, []); }
   /**
    * var hostName: String? { get }
    * @availability iOS 15.4+
    */
-  get hostName(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 4066839009933435, this, []); }
+  get hostName(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 4066839009933435, this, []); }
   /**
    * var playlists: MusicItemCollection<Playlist>? { get }
    * @availability iOS 15.4+
    */
-  get playlists(): $SDK8 { return callSDK<$SDK8>("MusicKit_d968214ecc684fb6", 180296674694485, this, []); }
+  get playlists(): $SDK8 { return callSDK<$SDK8>("MusicKit_0e503aef608672fa", 180296674694485, this, []); }
   declare readonly $type: { "s:8MusicKit9RadioShowV": true };
 }
 
@@ -3947,37 +3947,37 @@ export class RecentlyPlayedMusicItem extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1967279742777002, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1967279742777002, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 16.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 1551225217025991, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 1551225217025991, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 16.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1495318123097259, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1495318123097259, this, []); }
   /**
    * var id: MusicItemID { get }
    * @availability iOS 16.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 1634024119157356, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 1634024119157356, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 16.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1639379288033969, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1639379288033969, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 16.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 4354120493130180, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 4354120493130180, this, []); }
   /**
    * var subtitle: String? { get }
    * @availability iOS 16.0+
    */
-  get subtitle(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3664387388366883, this, []); }
+  get subtitle(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3664387388366883, this, []); }
   declare readonly $type: { "s:8MusicKit014RecentlyPlayedA4ItemO": true };
 }
 
@@ -3996,52 +3996,52 @@ export class RecordLabel extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2806781927833494, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2806781927833494, this, []); }
   /**
    * var topReleases: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get topReleases(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 1725180367488751, this, []); }
+  get topReleases(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 1725180367488751, this, []); }
   /**
    * var latestReleases: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get latestReleases(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 3214033829937215, this, []); }
+  get latestReleases(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 3214033829937215, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 814400739369128, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 814400739369128, this, []); }
   /**
    * var shortDescription: String? { get }
    * @availability iOS 15.0+
    */
-  get shortDescription(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 739760278699978, this, []); }
+  get shortDescription(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 739760278699978, this, []); }
   /**
    * var standardDescription: String? { get }
    * @availability iOS 15.0+
    */
-  get standardDescription(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 802685444561556, this, []); }
+  get standardDescription(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 802685444561556, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 636287739777557, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 636287739777557, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3564972533731838, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3564972533731838, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1442930750970600, this, []); }
+  get name(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1442930750970600, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 3307261401129514, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 3307261401129514, this, []); }
   declare readonly $type: { "s:8MusicKit11RecordLabelV": true };
 }
 
@@ -4074,197 +4074,197 @@ export class Song extends SDKHandle {
    * var albumTitle: String? { get }
    * @availability iOS 15.0+
    */
-  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 879847264101590, this, []); }
+  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 879847264101590, this, []); }
   /**
    * var artistName: String { get }
    * @availability iOS 15.0+
    */
-  get artistName(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1900937070959095, this, []); }
+  get artistName(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1900937070959095, this, []); }
   /**
    * var discNumber: Int? { get }
    * @availability iOS 15.0+
    */
-  get discNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 1510173543878729, this, []); }
+  get discNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 1510173543878729, this, []); }
   /**
    * var genreNames: [String] { get }
    * @availability iOS 15.0+
    */
-  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_d968214ecc684fb6", 586377165821597, this, []); }
+  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_0e503aef608672fa", 586377165821597, this, []); }
   /**
    * var attribution: String? { get }
    * @availability iOS 15.0+
    */
-  get attribution(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3409420452399418, this, []); }
+  get attribution(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3409420452399418, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 851354814836260, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 851354814836260, this, []); }
   /**
    * var musicVideos: MusicItemCollection<MusicVideo>? { get }
    * @availability iOS 15.0+
    */
-  get musicVideos(): $SDK4 { return callSDK<$SDK4>("MusicKit_d968214ecc684fb6", 2954559502690593, this, []); }
+  get musicVideos(): $SDK4 { return callSDK<$SDK4>("MusicKit_0e503aef608672fa", 2954559502690593, this, []); }
   /**
    * var releaseDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 1828392530598313, this, []); }
+  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 1828392530598313, this, []); }
   /**
    * var trackNumber: Int? { get }
    * @availability iOS 15.0+
    */
-  get trackNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2398517081731260, this, []); }
+  get trackNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2398517081731260, this, []); }
   /**
    * var composerName: String? { get }
    * @availability iOS 15.0+
    */
-  get composerName(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2274283707950212, this, []); }
+  get composerName(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2274283707950212, this, []); }
   /**
    * var movementName: String? { get }
    * @availability iOS 15.0+
    */
-  get movementName(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3709297755759449, this, []); }
+  get movementName(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3709297755759449, this, []); }
   /**
    * var audioVariants: [AudioVariant]? { get }
    * @availability iOS 16.0+
    */
-  get audioVariants(): $SDK2 { return callSDK<$SDK2>("MusicKit_d968214ecc684fb6", 3768987520044956, this, []); }
+  get audioVariants(): $SDK2 { return callSDK<$SDK2>("MusicKit_0e503aef608672fa", 3768987520044956, this, []); }
   /**
    * var contentRating: ContentRating? { get }
    * @availability iOS 15.0+
    */
-  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_d968214ecc684fb6", 2083918363846903, this, []); }
+  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_0e503aef608672fa", 2083918363846903, this, []); }
   /**
    * var movementCount: Int? { get }
    * @availability iOS 15.0+
    */
-  get movementCount(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2031242445077397, this, []); }
+  get movementCount(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2031242445077397, this, []); }
   /**
    * var previewAssets: [PreviewAsset]? { get }
    * @availability iOS 15.0+
    */
-  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_d968214ecc684fb6", 3513066288369299, this, []); }
+  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_0e503aef608672fa", 3513066288369299, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 15.0+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 617256084634545, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 617256084634545, this, []); }
   /**
    * var lastPlayedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 107024766966444, this, []); }
+  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 107024766966444, this, []); }
   /**
    * var movementNumber: Int? { get }
    * @availability iOS 15.0+
    */
-  get movementNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 3284121214977879, this, []); }
+  get movementNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 3284121214977879, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 15.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 4130836318097492, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 4130836318097492, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 659388727446588, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 659388727446588, this, []); }
   /**
    * var libraryAddedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 1952793280373249, this, []); }
+  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 1952793280373249, this, []); }
   /**
    * var isAppleDigitalMaster: Bool? { get }
    * @availability iOS 16.0+
    */
-  get isAppleDigitalMaster(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_d968214ecc684fb6", 2617051174586724, this, []); }
+  get isAppleDigitalMaster(): (boolean) | null { return callSDK<(boolean) | null>("MusicKit_0e503aef608672fa", 2617051174586724, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 1104293802020422, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 1104293802020422, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1608477994337850, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1608477994337850, this, []); }
   /**
    * var isrc: String? { get }
    * @availability iOS 15.0+
    */
-  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 589258684399622, this, []); }
+  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 589258684399622, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 15.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1903740548903522, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1903740548903522, this, []); }
   /**
    * var albums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get albums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 2393778855229400, this, []); }
+  get albums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 2393778855229400, this, []); }
   /**
    * var genres: MusicItemCollection<Genre>? { get }
    * @availability iOS 15.0+
    */
-  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_d968214ecc684fb6", 3955397008831962, this, []); }
+  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_0e503aef608672fa", 3955397008831962, this, []); }
   /**
    * var artists: MusicItemCollection<Artist>? { get }
    * @availability iOS 15.0+
    */
-  get artists(): $SDK7 { return callSDK<$SDK7>("MusicKit_d968214ecc684fb6", 2251096142231084, this, []); }
+  get artists(): $SDK7 { return callSDK<$SDK7>("MusicKit_0e503aef608672fa", 2251096142231084, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 306435923062380, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 306435923062380, this, []); }
   /**
    * var endTime: TimeInterval? { get }
    * @availability iOS 26.4+
    */
-  get endTime(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 1125722623406004, this, []); }
+  get endTime(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 1125722623406004, this, []); }
   /**
    * var station: Station? { get }
    * @availability iOS 15.0+
    */
-  get station(): (Station) | null { return callSDK<(Station) | null>("MusicKit_d968214ecc684fb6", 2333641502954605, this, []); }
+  get station(): (Station) | null { return callSDK<(Station) | null>("MusicKit_0e503aef608672fa", 2333641502954605, this, []); }
   /**
    * var duration: TimeInterval? { get }
    * @availability iOS 15.0+
    */
-  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 794509256472206, this, []); }
+  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 794509256472206, this, []); }
   /**
    * var workName: String? { get }
    * @availability iOS 15.0+
    */
-  get workName(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 965248197021897, this, []); }
+  get workName(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 965248197021897, this, []); }
   /**
    * var artistURL: URL? { get }
    * @availability iOS 15.0+
    */
-  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3714204310934254, this, []); }
+  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3714204310934254, this, []); }
   /**
    * var composers: MusicItemCollection<Artist>? { get }
    * @availability iOS 15.0+
    */
-  get composers(): $SDK7 { return callSDK<$SDK7>("MusicKit_d968214ecc684fb6", 3769267518623522, this, []); }
+  get composers(): $SDK7 { return callSDK<$SDK7>("MusicKit_0e503aef608672fa", 3769267518623522, this, []); }
   /**
    * var hasLyrics: Bool { get }
    * @availability iOS 15.0+
    */
-  get hasLyrics(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 2178243326714921, this, []); }
+  get hasLyrics(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 2178243326714921, this, []); }
   /**
    * var playCount: Int? { get }
    * @availability iOS 16.0+
    */
-  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 519244243569302, this, []); }
+  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 519244243569302, this, []); }
   /**
    * var startTime: TimeInterval? { get }
    * @availability iOS 26.4+
    */
-  get startTime(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2686603873653046, this, []); }
+  get startTime(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2686603873653046, this, []); }
   declare readonly $type: { "s:8MusicKit4SongV": true };
 }
 
@@ -4309,67 +4309,67 @@ export class Station extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2535168245233100, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2535168245233100, this, []); }
   /**
    * var contentRating: ContentRating? { get }
    * @availability iOS 15.0+
    */
-  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_d968214ecc684fb6", 277574887340861, this, []); }
+  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_0e503aef608672fa", 277574887340861, this, []); }
   /**
    * var episodeNumber: Int? { get }
    * @availability iOS 15.0+
    */
-  get episodeNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 803349937101615, this, []); }
+  get episodeNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 803349937101615, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 15.0+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 1065765298971821, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 1065765298971821, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 15.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 36779971057106, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 36779971057106, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2309896308894773, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2309896308894773, this, []); }
   /**
    * var stationProviderName: String? { get }
    * @availability iOS 15.0+
    */
-  get stationProviderName(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 3993030205015485, this, []); }
+  get stationProviderName(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 3993030205015485, this, []); }
   /**
    * let id: MusicItemID
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 1513060377631723, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 1513060377631723, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2011236142131908, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2011236142131908, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 1026513697374095, this, []); }
+  get name(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 1026513697374095, this, []); }
   /**
    * var isLive: Bool { get }
    * @availability iOS 15.0+
    */
-  get isLive(): boolean { return callSDK<boolean>("MusicKit_d968214ecc684fb6", 1974212030027242, this, []); }
+  get isLive(): boolean { return callSDK<boolean>("MusicKit_0e503aef608672fa", 1974212030027242, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 1076099442875372, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 1076099442875372, this, []); }
   /**
    * var duration: TimeInterval? { get }
    * @availability iOS 15.0+
    */
-  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 3679035660069363, this, []); }
+  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 3679035660069363, this, []); }
   declare readonly $type: { "s:8MusicKit7StationV": true };
 }
 
@@ -4402,13 +4402,13 @@ export class SystemMusicPlayer extends MusicPlayer {
    * var queue: MusicPlayer.Queue { get set }
    * @availability iOS 15.0+
    */
-  get queue(): MusicPlayer_Queue { return callSDK<MusicPlayer_Queue>("MusicKit_d968214ecc684fb6", 4335414148331411, this, []); }
-  set queue(value: MusicPlayer_Queue) { callSDK<void>("MusicKit_d968214ecc684fb6", 4030135837363993, this, [value]); }
+  get queue(): MusicPlayer_Queue { return callSDK<MusicPlayer_Queue>("MusicKit_0e503aef608672fa", 4335414148331411, this, []); }
+  set queue(value: MusicPlayer_Queue) { callSDK<void>("MusicKit_0e503aef608672fa", 4030135837363993, this, [value]); }
   /**
    * static let shared: SystemMusicPlayer
    * @availability iOS 15.0+
    */
-  static get shared(): SystemMusicPlayer { return callSDK<SystemMusicPlayer>("MusicKit_d968214ecc684fb6", 19637729317732, undefined, []); }
+  static get shared(): SystemMusicPlayer { return callSDK<SystemMusicPlayer>("MusicKit_0e503aef608672fa", 19637729317732, undefined, []); }
   declare readonly $type: { "s:8MusicKit06SystemA6PlayerC": true; "s:8MusicKit0A6PlayerC": true };
 }
 
@@ -4421,12 +4421,12 @@ export class TitledSection extends SDKHandle {
    * var id: MusicItemID { get }
    * @availability iOS 16.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 3828258581712986, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 3828258581712986, this, []); }
   /**
    * let title: String
    * @availability iOS 16.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 4066709925795527, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 4066709925795527, this, []); }
   declare readonly $type: { "s:8MusicKit13TitledSectionV": true };
 }
 
@@ -4445,142 +4445,142 @@ export class Track extends SDKHandle {
    * var albumTitle: String? { get }
    * @availability iOS 15.0+
    */
-  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 512996831244148, this, []); }
+  get albumTitle(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 512996831244148, this, []); }
   /**
    * var artistName: String { get }
    * @availability iOS 15.0+
    */
-  get artistName(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2512859280426398, this, []); }
+  get artistName(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2512859280426398, this, []); }
   /**
    * var discNumber: Int? { get }
    * @availability iOS 15.0+
    */
-  get discNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 173907695889169, this, []); }
+  get discNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 173907695889169, this, []); }
   /**
    * var genreNames: [String] { get }
    * @availability iOS 15.0+
    */
-  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_d968214ecc684fb6", 742443575759975, this, []); }
+  get genreNames(): Array<string> { return callSDK<Array<string>>("MusicKit_0e503aef608672fa", 742443575759975, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2717851116446759, this, []); }
+  get description(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2717851116446759, this, []); }
   /**
    * var releaseDate: Date? { get }
    * @availability iOS 15.0+
    */
-  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 3385433900845120, this, []); }
+  get releaseDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 3385433900845120, this, []); }
   /**
    * var trackNumber: Int? { get }
    * @availability iOS 15.0+
    */
-  get trackNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 4003313654464144, this, []); }
+  get trackNumber(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 4003313654464144, this, []); }
   /**
    * var contentRating: ContentRating? { get }
    * @availability iOS 15.0+
    */
-  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_d968214ecc684fb6", 3124195181046154, this, []); }
+  get contentRating(): (ContentRating) | null { return callSDK<(ContentRating) | null>("MusicKit_0e503aef608672fa", 3124195181046154, this, []); }
   /**
    * var previewAssets: [PreviewAsset]? { get }
    * @availability iOS 15.0+
    */
-  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_d968214ecc684fb6", 311302592123392, this, []); }
+  get previewAssets(): $SDK82 { return callSDK<$SDK82>("MusicKit_0e503aef608672fa", 311302592123392, this, []); }
   /**
    * var editorialNotes: EditorialNotes? { get }
    * @availability iOS 15.0+
    */
-  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_d968214ecc684fb6", 4501759850228193, this, []); }
+  get editorialNotes(): (EditorialNotes) | null { return callSDK<(EditorialNotes) | null>("MusicKit_0e503aef608672fa", 4501759850228193, this, []); }
   /**
    * var lastPlayedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 2844093546978265, this, []); }
+  get lastPlayedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 2844093546978265, this, []); }
   /**
    * var playParameters: PlayParameters? { get }
    * @availability iOS 15.0+
    */
-  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_d968214ecc684fb6", 3174573577601617, this, []); }
+  get playParameters(): (PlayParameters) | null { return callSDK<(PlayParameters) | null>("MusicKit_0e503aef608672fa", 3174573577601617, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2857179667459330, this, []); }
+  get debugDescription(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2857179667459330, this, []); }
   /**
    * var libraryAddedDate: Date? { get }
    * @availability iOS 16.0+
    */
-  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_d968214ecc684fb6", 261569442245817, this, []); }
+  get libraryAddedDate(): $SDK0 { return callSDK<$SDK0>("MusicKit_0e503aef608672fa", 261569442245817, this, []); }
   /**
    * var id: MusicItemID { get }
    * @availability iOS 15.0+
    */
-  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_d968214ecc684fb6", 3222989326434965, this, []); }
+  get id(): MusicItemID { return callSDK<MusicItemID>("MusicKit_0e503aef608672fa", 3222989326434965, this, []); }
   /**
    * var url: URL? { get }
    * @availability iOS 15.0+
    */
-  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2876424406027221, this, []); }
+  get url(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2876424406027221, this, []); }
   /**
    * var isrc: String? { get }
    * @availability iOS 15.0+
    */
-  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 2400858968643619, this, []); }
+  get isrc(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 2400858968643619, this, []); }
   /**
    * var title: String { get }
    * @availability iOS 15.0+
    */
-  get title(): string { return callSDK<string>("MusicKit_d968214ecc684fb6", 2775424726613811, this, []); }
+  get title(): string { return callSDK<string>("MusicKit_0e503aef608672fa", 2775424726613811, this, []); }
   /**
    * var albums: MusicItemCollection<Album>? { get }
    * @availability iOS 15.0+
    */
-  get albums(): $SDK3 { return callSDK<$SDK3>("MusicKit_d968214ecc684fb6", 3530429851073943, this, []); }
+  get albums(): $SDK3 { return callSDK<$SDK3>("MusicKit_0e503aef608672fa", 3530429851073943, this, []); }
   /**
    * var genres: MusicItemCollection<Genre>? { get }
    * @availability iOS 15.0+
    */
-  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_d968214ecc684fb6", 4105253089863912, this, []); }
+  get genres(): $SDK5 { return callSDK<$SDK5>("MusicKit_0e503aef608672fa", 4105253089863912, this, []); }
   /**
    * var artists: MusicItemCollection<Artist>? { get }
    * @availability iOS 15.0+
    */
-  get artists(): $SDK7 { return callSDK<$SDK7>("MusicKit_d968214ecc684fb6", 1885978137076357, this, []); }
+  get artists(): $SDK7 { return callSDK<$SDK7>("MusicKit_0e503aef608672fa", 1885978137076357, this, []); }
   /**
    * var artwork: Artwork? { get }
    * @availability iOS 15.0+
    */
-  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_d968214ecc684fb6", 2089013630078587, this, []); }
+  get artwork(): (Artwork) | null { return callSDK<(Artwork) | null>("MusicKit_0e503aef608672fa", 2089013630078587, this, []); }
   /**
    * var endTime: TimeInterval? { get }
    * @availability iOS 26.4+
    */
-  get endTime(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2121149129370619, this, []); }
+  get endTime(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2121149129370619, this, []); }
   /**
    * var duration: TimeInterval? { get }
    * @availability iOS 15.0+
    */
-  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 2367875040863337, this, []); }
+  get duration(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 2367875040863337, this, []); }
   /**
    * var workName: String? { get }
    * @availability iOS 15.0+
    */
-  get workName(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1043628329630378, this, []); }
+  get workName(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1043628329630378, this, []); }
   /**
    * var artistURL: URL? { get }
    * @availability iOS 15.0+
    */
-  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_d968214ecc684fb6", 1649231981869481, this, []); }
+  get artistURL(): (string) | null { return callSDK<(string) | null>("MusicKit_0e503aef608672fa", 1649231981869481, this, []); }
   /**
    * var playCount: Int? { get }
    * @availability iOS 16.0+
    */
-  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 3618222247616155, this, []); }
+  get playCount(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 3618222247616155, this, []); }
   /**
    * var startTime: TimeInterval? { get }
    * @availability iOS 26.4+
    */
-  get startTime(): (number) | null { return callSDK<(number) | null>("MusicKit_d968214ecc684fb6", 1719333412698021, this, []); }
+  get startTime(): (number) | null { return callSDK<(number) | null>("MusicKit_0e503aef608672fa", 1719333412698021, this, []); }
   declare readonly $type: { "s:8MusicKit5TrackO": true };
 }
 
@@ -4602,24 +4602,24 @@ export type Track_LibraryFilter = SDKHandle;
  */
 export type Track_LibrarySortProperties = SDKHandle;
 
-registerSDKClass("MusicKit.Album", Album, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.Album", Album, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit11AlbumFilterP", {});
-registerSDKClass("MusicKit.AnyMusicProperty", AnyMusicProperty, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicPlayer", MusicPlayer, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"endSeeking":{"id":542780129041019},"prepareToPlay":{"id":2986979761900480},"skipToNextEntry":{"id":2487235945040987},"beginSeekingForward":{"id":2145252518583074},"restartCurrentEntry":{"id":2169361255413331},"skipToPreviousEntry":{"id":3467511204752497},"beginSeekingBackward":{"id":2336042068187473},"play":{"id":1999097045475615},"stop":{"id":2518018567656852},"pause":{"id":3168965589164436}} });
-registerSDKClass("MusicKit.ApplicationMusicPlayer", ApplicationMusicPlayer, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicPlayer.Queue", MusicPlayer_Queue, { module: "MusicKit_d968214ecc684fb6", properties: {"currentEntry":4449695860060133,"objectWillChange":4460153642034217,"affectsListeningHistory":671391122654245}, methods: {"insertPosition":{"id":1291624473791911},"insertPosition19337":{"id":4473674201209755}} });
-registerSDKClass("MusicKit.ApplicationMusicPlayer.Queue", ApplicationMusicPlayer_Queue, { module: "MusicKit_d968214ecc684fb6", properties: {"entries":446527347072552} });
-registerSDKClass("MusicKit.ApplicationMusicPlayer.Queue.Entries", ApplicationMusicPlayer_Queue_Entries, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"makeIterator":{"id":3167188200564075},"replaceSubrange":{"id":4161863367884339},"indexAfter":{"id":3209037290243505},"indexBefore":{"id":871973817484179},"indexOffsetByLimitedBy":{"id":2341783873279683},"indexOffsetBy":{"id":4374141862210634},"distance":{"id":3653495276570865},"formIndexAfter":{"id":1803963408611259},"formIndexBefore":{"id":3337192194691639},"subscript":{"id":3027196690833510},"subscript45748":{"id":2136869088516069}} });
-registerSDKClass("MusicKit.Artist", Artist, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.AnyMusicProperty", AnyMusicProperty, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicPlayer", MusicPlayer, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"endSeeking":{"id":542780129041019},"prepareToPlay":{"id":2986979761900480},"skipToNextEntry":{"id":2487235945040987},"beginSeekingForward":{"id":2145252518583074},"restartCurrentEntry":{"id":2169361255413331},"skipToPreviousEntry":{"id":3467511204752497},"beginSeekingBackward":{"id":2336042068187473},"play":{"id":1999097045475615},"stop":{"id":2518018567656852},"pause":{"id":3168965589164436}} });
+registerSDKClass("MusicKit.ApplicationMusicPlayer", ApplicationMusicPlayer, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicPlayer.Queue", MusicPlayer_Queue, { module: "MusicKit_0e503aef608672fa", properties: {"currentEntry":4449695860060133,"objectWillChange":4460153642034217,"affectsListeningHistory":671391122654245}, methods: {"insertPosition":{"id":1291624473791911},"insertPosition19337":{"id":4473674201209755}} });
+registerSDKClass("MusicKit.ApplicationMusicPlayer.Queue", ApplicationMusicPlayer_Queue, { module: "MusicKit_0e503aef608672fa", properties: {"entries":446527347072552} });
+registerSDKClass("MusicKit.ApplicationMusicPlayer.Queue.Entries", ApplicationMusicPlayer_Queue_Entries, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"makeIterator":{"id":3167188200564075},"replaceSubrange":{"id":4161863367884339},"indexAfter":{"id":3209037290243505},"indexBefore":{"id":871973817484179},"indexOffsetByLimitedBy":{"id":2341783873279683},"indexOffsetBy":{"id":4374141862210634},"distance":{"id":3653495276570865},"formIndexAfter":{"id":1803963408611259},"formIndexBefore":{"id":3337192194691639},"subscript":{"id":3027196690833510},"subscript45748":{"id":2136869088516069}} });
+registerSDKClass("MusicKit.Artist", Artist, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit12ArtistFilterP", {});
-registerSDKClass("MusicKit.Artwork", Artwork, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"url":{"id":1882156703342542}} });
-registerSDKClass("MusicKit.Curator", Curator, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.Artwork", Artwork, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"url":{"id":1882156703342542}} });
+registerSDKClass("MusicKit.Curator", Curator, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit13CuratorFilterP", {});
-registerSDKClass("MusicKit.MusicUserTokenProvider", MusicUserTokenProvider, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"userToken":{"id":548277151721887}} });
-registerSDKClass("MusicKit.DefaultMusicTokenProvider", DefaultMusicTokenProvider, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"developerToken":{"id":816959032564141}} });
-registerSDKClass("MusicKit.EditorialNotes", EditorialNotes, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicUserTokenProvider", MusicUserTokenProvider, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"userToken":{"id":548277151721887}} });
+registerSDKClass("MusicKit.DefaultMusicTokenProvider", DefaultMusicTokenProvider, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"developerToken":{"id":816959032564141}} });
+registerSDKClass("MusicKit.EditorialNotes", EditorialNotes, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit010FilterableA4ItemP", {});
-registerSDKClass("MusicKit.Genre", Genre, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.Genre", Genre, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit11GenreFilterP", {});
 registerSDKProtocol("s:8MusicKit18LibraryAlbumFilterP", {});
 registerSDKProtocol("s:8MusicKit26LibraryAlbumSortPropertiesP", {});
@@ -4637,85 +4637,85 @@ registerSDKProtocol("s:8MusicKit17LibrarySongFilterP", {});
 registerSDKProtocol("s:8MusicKit25LibrarySongSortPropertiesP", {});
 registerSDKProtocol("s:8MusicKit18LibraryTrackFilterP", {});
 registerSDKProtocol("s:8MusicKit26LibraryTrackSortPropertiesP", {});
-registerSDKClass("MusicKit.PartialMusicProperty", PartialMusicProperty, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicAttributeProperty", MusicAttributeProperty, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicAuthorization", MusicAuthorization, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicCatalogChart", MusicCatalogChart, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.PartialMusicProperty", PartialMusicProperty, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicAttributeProperty", MusicAttributeProperty, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicAuthorization", MusicAuthorization, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicCatalogChart", MusicCatalogChart, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A23CatalogChartRequestableP", {});
-registerSDKClass("MusicKit.MusicCatalogChartsRequest", MusicCatalogChartsRequest, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"response":{"id":3463880015973697}} });
-registerSDKClass("MusicKit.MusicCatalogChartsResponse", MusicCatalogChartsResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicCatalogResourceRequest", MusicCatalogResourceRequest, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicCatalogResourceRequestOption", MusicCatalogResourceRequestOption, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicCatalogResourceResponse", MusicCatalogResourceResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicCatalogChartsRequest", MusicCatalogChartsRequest, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"response":{"id":3463880015973697}} });
+registerSDKClass("MusicKit.MusicCatalogChartsResponse", MusicCatalogChartsResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicCatalogResourceRequest", MusicCatalogResourceRequest, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicCatalogResourceRequestOption", MusicCatalogResourceRequestOption, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicCatalogResourceResponse", MusicCatalogResourceResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A17CatalogSearchableP", {});
-registerSDKClass("MusicKit.MusicCatalogSearchRequest", MusicCatalogSearchRequest, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"response":{"id":2418482809687803}} });
-registerSDKClass("MusicKit.MusicCatalogSearchResponse", MusicCatalogSearchResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicCatalogSearchResponse.TopResult", MusicCatalogSearchResponse_TopResult, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicCatalogSearchSuggestionsRequest", MusicCatalogSearchSuggestionsRequest, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"response":{"id":1880904425054893}} });
-registerSDKClass("MusicKit.MusicCatalogSearchSuggestionsResponse", MusicCatalogSearchSuggestionsResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicCatalogSearchSuggestionsResponse.Suggestion", MusicCatalogSearchSuggestionsResponse_Suggestion, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicCatalogSearchRequest", MusicCatalogSearchRequest, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"response":{"id":2418482809687803}} });
+registerSDKClass("MusicKit.MusicCatalogSearchResponse", MusicCatalogSearchResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicCatalogSearchResponse.TopResult", MusicCatalogSearchResponse_TopResult, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicCatalogSearchSuggestionsRequest", MusicCatalogSearchSuggestionsRequest, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"response":{"id":1880904425054893}} });
+registerSDKClass("MusicKit.MusicCatalogSearchSuggestionsResponse", MusicCatalogSearchSuggestionsResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicCatalogSearchSuggestionsResponse.Suggestion", MusicCatalogSearchSuggestionsResponse_Suggestion, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A33CatalogTopLevelResourceRequestingP", {});
-registerSDKClass("MusicKit.MusicDataRequest", MusicDataRequest, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"response":{"id":4368930944060044}} });
-registerSDKClass("MusicKit.MusicDataRequest.Error", MusicDataRequest_Error, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicDataRequest.Error.Source", MusicDataRequest_Error_Source, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicDataResponse", MusicDataResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicDataRequest", MusicDataRequest, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"response":{"id":4368930944060044}} });
+registerSDKClass("MusicKit.MusicDataRequest.Error", MusicDataRequest_Error, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicDataRequest.Error.Source", MusicDataRequest_Error_Source, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicDataResponse", MusicDataResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A22DeveloperTokenProviderP", {"developerTokenOptions":"developerToken(options:)"});
-registerSDKClass("MusicKit.PartialMusicAsyncProperty", PartialMusicAsyncProperty, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicExtendedAttributeProperty", MusicExtendedAttributeProperty, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.PartialMusicAsyncProperty", PartialMusicAsyncProperty, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicExtendedAttributeProperty", MusicExtendedAttributeProperty, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A4ItemP", {});
-registerSDKClass("MusicKit.MusicItemCollection", MusicItemCollection, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicLibrary", MusicLibrary, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"createPlaylist":{"id":588331369368116},"edit":{"id":3965598129832075}} });
+registerSDKClass("MusicKit.MusicItemCollection", MusicItemCollection, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicLibrary", MusicLibrary, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"createPlaylist":{"id":588331369368116},"edit":{"id":3965598129832075}} });
 registerSDKProtocol("s:8MusicKit0A14LibraryAddableP", {});
-registerSDKClass("MusicKit.MusicLibraryRequest", MusicLibraryRequest, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicLibraryRequest", MusicLibraryRequest, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A18LibraryRequestableP", {});
 registerSDKProtocol("s:8MusicKit0A34LibraryRequestFilterValueEquatableP", {});
 registerSDKProtocol("s:8MusicKit0A45LibraryRequestFilterValueMembershipComparableP", {});
-registerSDKClass("MusicKit.MusicLibraryResponse", MusicLibraryResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicLibraryResponse", MusicLibraryResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A17LibrarySearchableP", {});
-registerSDKClass("MusicKit.MusicLibrarySearchRequest", MusicLibrarySearchRequest, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"response":{"id":666852692290201}} });
-registerSDKClass("MusicKit.MusicLibrarySearchResponse", MusicLibrarySearchResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicLibrarySearchResponse.TopResult", MusicLibrarySearchResponse_TopResult, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicLibrarySection", MusicLibrarySection, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicLibrarySectionedRequest", MusicLibrarySectionedRequest, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicLibrarySectionedResponse", MusicLibrarySectionedResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicLibrarySearchRequest", MusicLibrarySearchRequest, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"response":{"id":666852692290201}} });
+registerSDKClass("MusicKit.MusicLibrarySearchResponse", MusicLibrarySearchResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicLibrarySearchResponse.TopResult", MusicLibrarySearchResponse_TopResult, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicLibrarySection", MusicLibrarySection, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicLibrarySectionedRequest", MusicLibrarySectionedRequest, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicLibrarySectionedResponse", MusicLibrarySectionedResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A25LibrarySectionRequestableP", {});
-registerSDKClass("MusicKit.MusicPersonalRecommendation", MusicPersonalRecommendation, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicPersonalRecommendation.Item", MusicPersonalRecommendation_Item, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicPersonalRecommendation", MusicPersonalRecommendation, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicPersonalRecommendation.Item", MusicPersonalRecommendation_Item, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A26PersonalRecommendationItemP", {});
-registerSDKClass("MusicKit.MusicPersonalRecommendationsRequest", MusicPersonalRecommendationsRequest, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"response":{"id":3910991869630992}} });
-registerSDKClass("MusicKit.MusicPersonalRecommendationsResponse", MusicPersonalRecommendationsResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicPlayer.Queue.Entry", MusicPlayer_Queue_Entry, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicPlayer.Queue.Entry.Item", MusicPlayer_Queue_Entry_Item, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicPlayer.State", MusicPlayer_State, { module: "MusicKit_d968214ecc684fb6", properties: {"repeatMode":496291431461877,"shuffleMode":2991244604657594,"audioVariant":516036809087906,"playbackRate":4162536725631380,"playbackStatus":2959584030243288,"objectWillChange":1389563461321198} });
-registerSDKClass("MusicKit.MusicPlayer.Transition", MusicPlayer_Transition, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicPlayer.Transition.CrossfadeOptions", MusicPlayer_Transition_CrossfadeOptions, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicPersonalRecommendationsRequest", MusicPersonalRecommendationsRequest, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"response":{"id":3910991869630992}} });
+registerSDKClass("MusicKit.MusicPersonalRecommendationsResponse", MusicPersonalRecommendationsResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicPlayer.Queue.Entry", MusicPlayer_Queue_Entry, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicPlayer.Queue.Entry.Item", MusicPlayer_Queue_Entry_Item, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicPlayer.State", MusicPlayer_State, { module: "MusicKit_0e503aef608672fa", properties: {"repeatMode":496291431461877,"shuffleMode":2991244604657594,"audioVariant":516036809087906,"playbackRate":4162536725631380,"playbackStatus":2959584030243288,"objectWillChange":1389563461321198} });
+registerSDKClass("MusicKit.MusicPlayer.Transition", MusicPlayer_Transition, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicPlayer.Transition.CrossfadeOptions", MusicPlayer_Transition_CrossfadeOptions, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A15PlaylistAddableP", {});
 registerSDKProtocol("s:8MusicKit0A17PropertyContainerP", {"with":"with(_:)","withPreferredSource":"with(_:preferredSource:)"});
-registerSDKClass("MusicKit.MusicRecentlyPlayedRequest", MusicRecentlyPlayedRequest, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicRecentlyPlayedRequest", MusicRecentlyPlayedRequest, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A25RecentlyPlayedRequestableP", {});
-registerSDKClass("MusicKit.MusicRecentlyPlayedResponse", MusicRecentlyPlayedResponse, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicRelationshipProperty", MusicRelationshipProperty, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicSubscription", MusicSubscription, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.MusicSubscription.Updates", MusicSubscription_Updates, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"makeAsyncIterator":{"id":686998347080242}} });
-registerSDKClass("MusicKit.MusicSubscription.Updates.Iterator", MusicSubscription_Updates_Iterator, { module: "MusicKit_d968214ecc684fb6", properties: {}, methods: {"next":{"id":4131189838917931}} });
-registerSDKClass("MusicKit.MusicVideo", MusicVideo, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.MusicRecentlyPlayedResponse", MusicRecentlyPlayedResponse, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicRelationshipProperty", MusicRelationshipProperty, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicSubscription", MusicSubscription, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.MusicSubscription.Updates", MusicSubscription_Updates, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"makeAsyncIterator":{"id":686998347080242}} });
+registerSDKClass("MusicKit.MusicSubscription.Updates.Iterator", MusicSubscription_Updates_Iterator, { module: "MusicKit_0e503aef608672fa", properties: {}, methods: {"next":{"id":4131189838917931}} });
+registerSDKClass("MusicKit.MusicVideo", MusicVideo, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit0A11VideoFilterP", {});
 registerSDKProtocol("s:8MusicKit08PlayableA4ItemP", {});
-registerSDKClass("MusicKit.Playlist", Playlist, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.Playlist.Entry", Playlist_Entry, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.Playlist.Entry.Item", Playlist_Entry_Item, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.Playlist", Playlist, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.Playlist.Entry", Playlist_Entry, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.Playlist.Entry.Item", Playlist_Entry_Item, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit14PlaylistFilterP", {});
-registerSDKClass("MusicKit.PlayParameters", PlayParameters, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.PreviewAsset", PreviewAsset, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.RadioShow", RadioShow, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.PlayParameters", PlayParameters, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.PreviewAsset", PreviewAsset, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.RadioShow", RadioShow, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit15RadioShowFilterP", {});
-registerSDKClass("MusicKit.RecentlyPlayedMusicItem", RecentlyPlayedMusicItem, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.RecordLabel", RecordLabel, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.RecentlyPlayedMusicItem", RecentlyPlayedMusicItem, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.RecordLabel", RecordLabel, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit17RecordLabelFilterP", {});
-registerSDKClass("MusicKit.Song", Song, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.Song", Song, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit10SongFilterP", {});
-registerSDKClass("MusicKit.Station", Station, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.Station", Station, { module: "MusicKit_0e503aef608672fa", properties: {} });
 registerSDKProtocol("s:8MusicKit13StationFilterP", {});
-registerSDKClass("MusicKit.SystemMusicPlayer", SystemMusicPlayer, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.TitledSection", TitledSection, { module: "MusicKit_d968214ecc684fb6", properties: {} });
-registerSDKClass("MusicKit.Track", Track, { module: "MusicKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("MusicKit.SystemMusicPlayer", SystemMusicPlayer, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.TitledSection", TitledSection, { module: "MusicKit_0e503aef608672fa", properties: {} });
+registerSDKClass("MusicKit.Track", Track, { module: "MusicKit_0e503aef608672fa", properties: {} });

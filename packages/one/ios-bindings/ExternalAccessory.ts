@@ -16,64 +16,64 @@ type $SDK10 = Array<EAWiFiUnconfiguredAccessory>;
  */
 export class EAAccessory extends SDKHandle {
   /** init() */
-  static init(): EAAccessory { return callSDK<EAAccessory>("ExternalAccessory_d968214ecc684fb6", 3880281734777077, undefined, []); }
+  static init(): EAAccessory { return callSDK<EAAccessory>("ExternalAccessory_0e503aef608672fa", 3880281734777077, undefined, []); }
   /**
    * var isConnected: Bool { get }
    * @availability iOS 3.0+
    */
-  get isConnected(): boolean { return callSDK<boolean>("ExternalAccessory_d968214ecc684fb6", 268378307247731, this, []); }
+  get isConnected(): boolean { return callSDK<boolean>("ExternalAccessory_0e503aef608672fa", 268378307247731, this, []); }
   /**
    * var connectionID: Int { get }
    * @availability iOS 3.0+
    */
-  get connectionID(): number { return callSDK<number>("ExternalAccessory_d968214ecc684fb6", 4439630759689278, this, []); }
+  get connectionID(): number { return callSDK<number>("ExternalAccessory_0e503aef608672fa", 4439630759689278, this, []); }
   /**
    * unowned(unsafe) var delegate: (any EAAccessoryDelegate)? { get set }
    * @availability iOS 3.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ExternalAccessory_d968214ecc684fb6", 3925441023031478, this, []); }
-  set delegate(value: (Implements<EAAccessoryDelegate> | SDKHandle) | null) { callSDK<void>("ExternalAccessory_d968214ecc684fb6", 613710236034845, this, [value], [{"protocol":"c:objc(pl)EAAccessoryDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ExternalAccessory_0e503aef608672fa", 3925441023031478, this, []); }
+  set delegate(value: (Implements<EAAccessoryDelegate> | SDKHandle) | null) { callSDK<void>("ExternalAccessory_0e503aef608672fa", 613710236034845, this, [value], [{"protocol":"c:objc(pl)EAAccessoryDelegate"}]); }
   /**
    * var dockType: String { get }
    * @availability iOS 9.3+
    * @deprecated iOS 13.0
    */
-  get dockType(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 2424912584484099, this, []); }
+  get dockType(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 2424912584484099, this, []); }
   /**
    * var firmwareRevision: String { get }
    * @availability iOS 3.0+
    */
-  get firmwareRevision(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 4075993376116634, this, []); }
+  get firmwareRevision(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 4075993376116634, this, []); }
   /**
    * var hardwareRevision: String { get }
    * @availability iOS 3.0+
    */
-  get hardwareRevision(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 4175553471823319, this, []); }
+  get hardwareRevision(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 4175553471823319, this, []); }
   /**
    * var manufacturer: String { get }
    * @availability iOS 3.0+
    */
-  get manufacturer(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 1107055355379236, this, []); }
+  get manufacturer(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 1107055355379236, this, []); }
   /**
    * var modelNumber: String { get }
    * @availability iOS 3.0+
    */
-  get modelNumber(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 1248279837026082, this, []); }
+  get modelNumber(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 1248279837026082, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 3.0+
    */
-  get name(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 2776684590023367, this, []); }
+  get name(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 2776684590023367, this, []); }
   /**
    * var protocolStrings: [String] { get }
    * @availability iOS 3.0+
    */
-  get protocolStrings(): Array<string> { return callSDK<Array<string>>("ExternalAccessory_d968214ecc684fb6", 808226595117178, this, []); }
+  get protocolStrings(): Array<string> { return callSDK<Array<string>>("ExternalAccessory_0e503aef608672fa", 808226595117178, this, []); }
   /**
    * var serialNumber: String { get }
    * @availability iOS 3.0+
    */
-  get serialNumber(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 3412590641180218, this, []); }
+  get serialNumber(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 3412590641180218, this, []); }
   declare readonly $type: { "c:objc(cs)EAAccessory": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isConnected": true; "connectionID": true; "delegate": true; "dockType": true; "firmwareRevision": true; "hardwareRevision": true; "manufacturer": true; "modelNumber": true; "name": true; "protocolStrings": true; "serialNumber": true };
 }
@@ -96,29 +96,29 @@ export class EAAccessoryManager extends SDKHandle {
    * class func shared() -> EAAccessoryManager
    * @availability iOS 3.0+
    */
-  static shared(): EAAccessoryManager { return callSDK<EAAccessoryManager>("ExternalAccessory_d968214ecc684fb6", 2128056085362602, undefined, []); }
+  static shared(): EAAccessoryManager { return callSDK<EAAccessoryManager>("ExternalAccessory_0e503aef608672fa", 2128056085362602, undefined, []); }
   /** init() */
-  static init(): EAAccessoryManager { return callSDK<EAAccessoryManager>("ExternalAccessory_d968214ecc684fb6", 2815227126718637, undefined, []); }
+  static init(): EAAccessoryManager { return callSDK<EAAccessoryManager>("ExternalAccessory_0e503aef608672fa", 2815227126718637, undefined, []); }
   /**
    * func registerForLocalNotifications()
    * @availability iOS 3.0+
    */
-  registerForLocalNotifications(): void { return callSDK<void>("ExternalAccessory_d968214ecc684fb6", 3347018241034022, this, []); }
+  registerForLocalNotifications(): void { return callSDK<void>("ExternalAccessory_0e503aef608672fa", 3347018241034022, this, []); }
   /**
    * func showBluetoothAccessoryPicker(withNameFilter predicate: NSPredicate?) async throws
    * @availability iOS 6.0+
    */
-  showBluetoothAccessoryPicker(predicate?: $SDK1, completion?: (((arg0: (NativeError) | null) => void)) | null): void { return callSDK<void>("ExternalAccessory_d968214ecc684fb6", 1439406023143124, this, [predicate, completion], [null,{"callback":{"out":[]}}]); }
+  showBluetoothAccessoryPicker(predicate?: $SDK1, completion?: (((arg0: (NativeError) | null) => void)) | null): void { return callSDK<void>("ExternalAccessory_0e503aef608672fa", 1439406023143124, this, [predicate, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func unregisterForLocalNotifications()
    * @availability iOS 3.0+
    */
-  unregisterForLocalNotifications(): void { return callSDK<void>("ExternalAccessory_d968214ecc684fb6", 2937005222603241, this, []); }
+  unregisterForLocalNotifications(): void { return callSDK<void>("ExternalAccessory_0e503aef608672fa", 2937005222603241, this, []); }
   /**
    * var connectedAccessories: [EAAccessory] { get }
    * @availability iOS 3.0+
    */
-  get connectedAccessories(): Array<EAAccessory> { return callSDK<Array<EAAccessory>>("ExternalAccessory_d968214ecc684fb6", 3717229843483292, this, []); }
+  get connectedAccessories(): Array<EAAccessory> { return callSDK<Array<EAAccessory>>("ExternalAccessory_0e503aef608672fa", 3717229843483292, this, []); }
   declare readonly $type: { "c:objc(cs)EAAccessoryManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "connectedAccessories": true };
 }
@@ -132,34 +132,34 @@ export class EAAccessoryManager_AccessoryDidConnectMessage extends SDKHandle {
    * @MainActor static func makeMessage(_ notification: Notification) -> EAAccessoryManager.AccessoryDidConnectMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(EAAccessoryManager_AccessoryDidConnectMessage) | null> { return callSDKAsync<(EAAccessoryManager_AccessoryDidConnectMessage) | null>("ExternalAccessory_d968214ecc684fb6", 2136561335055641, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(EAAccessoryManager_AccessoryDidConnectMessage) | null> { return callSDKAsync<(EAAccessoryManager_AccessoryDidConnectMessage) | null>("ExternalAccessory_0e503aef608672fa", 2136561335055641, undefined, [notification]); }
   /**
    * var userSelected: Bool
    * @availability iOS 27.0+
    */
-  get userSelected(): boolean { return callSDK<boolean>("ExternalAccessory_d968214ecc684fb6", 3865556487196196, this, []); }
-  set userSelected(value: boolean) { callSDK<void>("ExternalAccessory_d968214ecc684fb6", 4014883437555406, this, [value]); }
+  get userSelected(): boolean { return callSDK<boolean>("ExternalAccessory_0e503aef608672fa", 3865556487196196, this, []); }
+  set userSelected(value: boolean) { callSDK<void>("ExternalAccessory_0e503aef608672fa", 4014883437555406, this, [value]); }
   /**
    * @MainActor static func makeNotification(_ message: EAAccessoryManager.AccessoryDidConnectMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: EAAccessoryManager_AccessoryDidConnectMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("ExternalAccessory_d968214ecc684fb6", 2742217165188581, undefined, [message]); }
+  static makeNotification(message: EAAccessoryManager_AccessoryDidConnectMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("ExternalAccessory_0e503aef608672fa", 2742217165188581, undefined, [message]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ExternalAccessory_d968214ecc684fb6", 535658189780975, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ExternalAccessory_0e503aef608672fa", 535658189780975, undefined, []); }
   /**
    * init(accessory: EAAccessory, userSelected: Bool = false)
    * @availability iOS 27.0+
    */
-  static init(accessory: EAAccessory, userSelected?: boolean): EAAccessoryManager_AccessoryDidConnectMessage { return callSDK<EAAccessoryManager_AccessoryDidConnectMessage>("ExternalAccessory_d968214ecc684fb6", 679824768374383, undefined, [accessory, userSelected]); }
+  static init(accessory: EAAccessory, userSelected?: boolean): EAAccessoryManager_AccessoryDidConnectMessage { return callSDK<EAAccessoryManager_AccessoryDidConnectMessage>("ExternalAccessory_0e503aef608672fa", 679824768374383, undefined, [accessory, userSelected]); }
   /**
    * var accessory: EAAccessory
    * @availability iOS 27.0+
    */
-  get accessory(): EAAccessory { return callSDK<EAAccessory>("ExternalAccessory_d968214ecc684fb6", 1049542338153017, this, []); }
-  set accessory(value: EAAccessory) { callSDK<void>("ExternalAccessory_d968214ecc684fb6", 4330626241868921, this, [value]); }
+  get accessory(): EAAccessory { return callSDK<EAAccessory>("ExternalAccessory_0e503aef608672fa", 1049542338153017, this, []); }
+  set accessory(value: EAAccessory) { callSDK<void>("ExternalAccessory_0e503aef608672fa", 4330626241868921, this, [value]); }
   declare readonly $type: { "s:So18EAAccessoryManagerC17ExternalAccessoryE0D17DidConnectMessageV": true };
 }
 
@@ -178,28 +178,28 @@ export class EAAccessoryManager_AccessoryDidDisconnectMessage extends SDKHandle 
    * @MainActor static func makeMessage(_ notification: Notification) -> EAAccessoryManager.AccessoryDidDisconnectMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(EAAccessoryManager_AccessoryDidDisconnectMessage) | null> { return callSDKAsync<(EAAccessoryManager_AccessoryDidDisconnectMessage) | null>("ExternalAccessory_d968214ecc684fb6", 91514918663765, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(EAAccessoryManager_AccessoryDidDisconnectMessage) | null> { return callSDKAsync<(EAAccessoryManager_AccessoryDidDisconnectMessage) | null>("ExternalAccessory_0e503aef608672fa", 91514918663765, undefined, [notification]); }
   /**
    * @MainActor static func makeNotification(_ message: EAAccessoryManager.AccessoryDidDisconnectMessage) -> Notification
    * @availability iOS 27.0+
    */
-  static makeNotification(message: EAAccessoryManager_AccessoryDidDisconnectMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("ExternalAccessory_d968214ecc684fb6", 3437745151030884, undefined, [message]); }
+  static makeNotification(message: EAAccessoryManager_AccessoryDidDisconnectMessage): Promise<_Foundation_Notification> { return callSDKAsync<_Foundation_Notification>("ExternalAccessory_0e503aef608672fa", 3437745151030884, undefined, [message]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ExternalAccessory_d968214ecc684fb6", 4426827059910196, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ExternalAccessory_0e503aef608672fa", 4426827059910196, undefined, []); }
   /**
    * init(accessory: EAAccessory)
    * @availability iOS 27.0+
    */
-  static init(accessory: EAAccessory): EAAccessoryManager_AccessoryDidDisconnectMessage { return callSDK<EAAccessoryManager_AccessoryDidDisconnectMessage>("ExternalAccessory_d968214ecc684fb6", 3475709258179202, undefined, [accessory]); }
+  static init(accessory: EAAccessory): EAAccessoryManager_AccessoryDidDisconnectMessage { return callSDK<EAAccessoryManager_AccessoryDidDisconnectMessage>("ExternalAccessory_0e503aef608672fa", 3475709258179202, undefined, [accessory]); }
   /**
    * var accessory: EAAccessory
    * @availability iOS 27.0+
    */
-  get accessory(): EAAccessory { return callSDK<EAAccessory>("ExternalAccessory_d968214ecc684fb6", 1547661503883997, this, []); }
-  set accessory(value: EAAccessory) { callSDK<void>("ExternalAccessory_d968214ecc684fb6", 2417874244481084, this, [value]); }
+  get accessory(): EAAccessory { return callSDK<EAAccessory>("ExternalAccessory_0e503aef608672fa", 1547661503883997, this, []); }
+  set accessory(value: EAAccessory) { callSDK<void>("ExternalAccessory_0e503aef608672fa", 2417874244481084, this, [value]); }
   declare readonly $type: { "s:So18EAAccessoryManagerC17ExternalAccessoryE0D20DidDisconnectMessageV": true };
 }
 
@@ -215,15 +215,15 @@ export type EABluetoothAccessoryPickerCompletion = ((arg0: (NativeError) | null)
 /** struct EABluetoothAccessoryPickerError */
 export class EABluetoothAccessoryPickerError extends SDKHandle {
   /** static var errorDomain: String { get } */
-  static get errorDomain(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 534751151952369, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 534751151952369, undefined, []); }
   /** static var resultFailed: EABluetoothAccessoryPickerError.Code { get } */
-  static get resultFailed(): EABluetoothAccessoryPickerError_Code { return callSDK<EABluetoothAccessoryPickerError_Code>("ExternalAccessory_d968214ecc684fb6", 4062360284830007, undefined, []); }
+  static get resultFailed(): EABluetoothAccessoryPickerError_Code { return callSDK<EABluetoothAccessoryPickerError_Code>("ExternalAccessory_0e503aef608672fa", 4062360284830007, undefined, []); }
   /** static var resultNotFound: EABluetoothAccessoryPickerError.Code { get } */
-  static get resultNotFound(): EABluetoothAccessoryPickerError_Code { return callSDK<EABluetoothAccessoryPickerError_Code>("ExternalAccessory_d968214ecc684fb6", 3382054583727020, undefined, []); }
+  static get resultNotFound(): EABluetoothAccessoryPickerError_Code { return callSDK<EABluetoothAccessoryPickerError_Code>("ExternalAccessory_0e503aef608672fa", 3382054583727020, undefined, []); }
   /** static var resultCancelled: EABluetoothAccessoryPickerError.Code { get } */
-  static get resultCancelled(): EABluetoothAccessoryPickerError_Code { return callSDK<EABluetoothAccessoryPickerError_Code>("ExternalAccessory_d968214ecc684fb6", 2459616088861477, undefined, []); }
+  static get resultCancelled(): EABluetoothAccessoryPickerError_Code { return callSDK<EABluetoothAccessoryPickerError_Code>("ExternalAccessory_0e503aef608672fa", 2459616088861477, undefined, []); }
   /** static var alreadyConnected: EABluetoothAccessoryPickerError.Code { get } */
-  static get alreadyConnected(): EABluetoothAccessoryPickerError_Code { return callSDK<EABluetoothAccessoryPickerError_Code>("ExternalAccessory_d968214ecc684fb6", 3392482769699035, undefined, []); }
+  static get alreadyConnected(): EABluetoothAccessoryPickerError_Code { return callSDK<EABluetoothAccessoryPickerError_Code>("ExternalAccessory_0e503aef608672fa", 3392482769699035, undefined, []); }
   declare readonly $type: { "s:SC35EABluetoothAccessoryPickerErrorCodeLeV": true };
 }
 
@@ -232,7 +232,7 @@ export type EABluetoothAccessoryPickerError_Code = "alreadyConnected" | "resultN
 
 export const EABluetoothAccessoryPickerError_Code = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EABluetoothAccessoryPickerError_Code) | null { return callSDK<(EABluetoothAccessoryPickerError_Code) | null>("ExternalAccessory_d968214ecc684fb6", 2718430043299468, undefined, [rawValue]); }
+  init(rawValue: number): (EABluetoothAccessoryPickerError_Code) | null { return callSDK<(EABluetoothAccessoryPickerError_Code) | null>("ExternalAccessory_0e503aef608672fa", 2718430043299468, undefined, [rawValue]); }
 };
 
 /**
@@ -244,27 +244,27 @@ export class EASession extends SDKHandle {
    * init?(accessory: EAAccessory, forProtocol protocolString: String)
    * @availability iOS 3.0+
    */
-  static init(accessory: EAAccessory, protocolString: string): (EASession) | null { return callSDK<(EASession) | null>("ExternalAccessory_d968214ecc684fb6", 4425989940128801, undefined, [accessory, protocolString]); }
+  static init(accessory: EAAccessory, protocolString: string): (EASession) | null { return callSDK<(EASession) | null>("ExternalAccessory_0e503aef608672fa", 4425989940128801, undefined, [accessory, protocolString]); }
   /**
    * var accessory: EAAccessory? { get }
    * @availability iOS 3.0+
    */
-  get accessory(): (EAAccessory) | null { return callSDK<(EAAccessory) | null>("ExternalAccessory_d968214ecc684fb6", 1340301746097928, this, []); }
+  get accessory(): (EAAccessory) | null { return callSDK<(EAAccessory) | null>("ExternalAccessory_0e503aef608672fa", 1340301746097928, this, []); }
   /**
    * var inputStream: InputStream? { get }
    * @availability iOS 3.0+
    */
-  get inputStream(): (_Foundation_InputStream) | null { return callSDK<(_Foundation_InputStream) | null>("ExternalAccessory_d968214ecc684fb6", 4258535525221891, this, []); }
+  get inputStream(): (_Foundation_InputStream) | null { return callSDK<(_Foundation_InputStream) | null>("ExternalAccessory_0e503aef608672fa", 4258535525221891, this, []); }
   /**
    * var outputStream: OutputStream? { get }
    * @availability iOS 3.0+
    */
-  get outputStream(): (_Foundation_OutputStream) | null { return callSDK<(_Foundation_OutputStream) | null>("ExternalAccessory_d968214ecc684fb6", 2062436643870651, this, []); }
+  get outputStream(): (_Foundation_OutputStream) | null { return callSDK<(_Foundation_OutputStream) | null>("ExternalAccessory_0e503aef608672fa", 2062436643870651, this, []); }
   /**
    * var protocolString: String? { get }
    * @availability iOS 3.0+
    */
-  get protocolString(): (string) | null { return callSDK<(string) | null>("ExternalAccessory_d968214ecc684fb6", 1090810366726565, this, []); }
+  get protocolString(): (string) | null { return callSDK<(string) | null>("ExternalAccessory_0e503aef608672fa", 1090810366726565, this, []); }
   declare readonly $type: { "c:objc(cs)EASession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessory": true; "inputStream": true; "outputStream": true; "protocolString": true };
 }
@@ -275,37 +275,37 @@ export class EASession extends SDKHandle {
  */
 export class EAWiFiUnconfiguredAccessory extends SDKHandle {
   /** init() */
-  static init(): EAWiFiUnconfiguredAccessory { return callSDK<EAWiFiUnconfiguredAccessory>("ExternalAccessory_d968214ecc684fb6", 242924937980503, undefined, []); }
+  static init(): EAWiFiUnconfiguredAccessory { return callSDK<EAWiFiUnconfiguredAccessory>("ExternalAccessory_0e503aef608672fa", 242924937980503, undefined, []); }
   /**
    * var macAddress: String { get }
    * @availability iOS 8.0+
    */
-  get macAddress(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 558710899563082, this, []); }
+  get macAddress(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 558710899563082, this, []); }
   /**
    * var manufacturer: String { get }
    * @availability iOS 8.0+
    */
-  get manufacturer(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 1153048872455843, this, []); }
+  get manufacturer(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 1153048872455843, this, []); }
   /**
    * var model: String { get }
    * @availability iOS 8.0+
    */
-  get model(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 1232102624429854, this, []); }
+  get model(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 1232102624429854, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 8.0+
    */
-  get name(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 1010475147874205, this, []); }
+  get name(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 1010475147874205, this, []); }
   /**
    * var properties: EAWiFiUnconfiguredAccessoryProperties { get }
    * @availability iOS 8.0+
    */
-  get properties(): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_d968214ecc684fb6", 3418492118389396, this, []); }
+  get properties(): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_0e503aef608672fa", 3418492118389396, this, []); }
   /**
    * var ssid: String { get }
    * @availability iOS 8.0+
    */
-  get ssid(): string { return callSDK<string>("ExternalAccessory_d968214ecc684fb6", 2665112725132254, this, []); }
+  get ssid(): string { return callSDK<string>("ExternalAccessory_0e503aef608672fa", 2665112725132254, this, []); }
   declare readonly $type: { "c:objc(cs)EAWiFiUnconfiguredAccessory": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "macAddress": true; "manufacturer": true; "model": true; "name": true; "properties": true; "ssid": true };
 }
@@ -319,33 +319,33 @@ export class EAWiFiUnconfiguredAccessoryBrowser extends SDKHandle {
    * func configureAccessory(_ accessory: EAWiFiUnconfiguredAccessory, withConfigurationUIOn viewController: UIViewController)
    * @availability iOS 8.0+
    */
-  configureAccessory(accessory: EAWiFiUnconfiguredAccessory, viewController: _UIKit_UIViewController): void { return callSDK<void>("ExternalAccessory_d968214ecc684fb6", 3237313144307898, this, [accessory, viewController]); }
+  configureAccessory(accessory: EAWiFiUnconfiguredAccessory, viewController: _UIKit_UIViewController): void { return callSDK<void>("ExternalAccessory_0e503aef608672fa", 3237313144307898, this, [accessory, viewController]); }
   /**
    * init(delegate: (any EAWiFiUnconfiguredAccessoryBrowserDelegate)?, queue: dispatch_queue_t?)
    * @availability iOS 8.0+
    */
-  static init(delegate?: $SDK8, queue?: (_Dispatch_DispatchQueue) | null): EAWiFiUnconfiguredAccessoryBrowser { return callSDK<EAWiFiUnconfiguredAccessoryBrowser>("ExternalAccessory_d968214ecc684fb6", 3168987076255631, undefined, [delegate, queue], [{"protocol":"c:objc(pl)EAWiFiUnconfiguredAccessoryBrowserDelegate"},null]); }
+  static init(delegate?: $SDK8, queue?: (_Dispatch_DispatchQueue) | null): EAWiFiUnconfiguredAccessoryBrowser { return callSDK<EAWiFiUnconfiguredAccessoryBrowser>("ExternalAccessory_0e503aef608672fa", 3168987076255631, undefined, [delegate, queue], [{"protocol":"c:objc(pl)EAWiFiUnconfiguredAccessoryBrowserDelegate"},null]); }
   /**
    * func startSearchingForUnconfiguredAccessories(matching predicate: NSPredicate?)
    * @availability iOS 8.0+
    */
-  startSearchingForUnconfiguredAccessories(predicate?: $SDK1): void { return callSDK<void>("ExternalAccessory_d968214ecc684fb6", 2933781668607682, this, [predicate]); }
+  startSearchingForUnconfiguredAccessories(predicate?: $SDK1): void { return callSDK<void>("ExternalAccessory_0e503aef608672fa", 2933781668607682, this, [predicate]); }
   /**
    * func stopSearchingForUnconfiguredAccessories()
    * @availability iOS 8.0+
    */
-  stopSearchingForUnconfiguredAccessories(): void { return callSDK<void>("ExternalAccessory_d968214ecc684fb6", 1916863773372863, this, []); }
+  stopSearchingForUnconfiguredAccessories(): void { return callSDK<void>("ExternalAccessory_0e503aef608672fa", 1916863773372863, this, []); }
   /**
    * weak var delegate: (any EAWiFiUnconfiguredAccessoryBrowserDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ExternalAccessory_d968214ecc684fb6", 2222645179651176, this, []); }
-  set delegate(value: $SDK8) { callSDK<void>("ExternalAccessory_d968214ecc684fb6", 1826619015392203, this, [value], [{"protocol":"c:objc(pl)EAWiFiUnconfiguredAccessoryBrowserDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ExternalAccessory_0e503aef608672fa", 2222645179651176, this, []); }
+  set delegate(value: $SDK8) { callSDK<void>("ExternalAccessory_0e503aef608672fa", 1826619015392203, this, [value], [{"protocol":"c:objc(pl)EAWiFiUnconfiguredAccessoryBrowserDelegate"}]); }
   /**
    * var unconfiguredAccessories: Set<EAWiFiUnconfiguredAccessory> { get }
    * @availability iOS 8.0+
    */
-  get unconfiguredAccessories(): $SDK10 { return callSDK<$SDK10>("ExternalAccessory_d968214ecc684fb6", 180167855019042, this, []); }
+  get unconfiguredAccessories(): $SDK10 { return callSDK<$SDK10>("ExternalAccessory_0e503aef608672fa", 180167855019042, this, []); }
   declare readonly $type: { "c:objc(cs)EAWiFiUnconfiguredAccessoryBrowser": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "unconfiguredAccessories": true };
 }
@@ -379,7 +379,7 @@ export type EAWiFiUnconfiguredAccessoryBrowserState = "wiFiUnavailable" | "stopp
 
 export const EAWiFiUnconfiguredAccessoryBrowserState = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EAWiFiUnconfiguredAccessoryBrowserState) | null { return callSDK<(EAWiFiUnconfiguredAccessoryBrowserState) | null>("ExternalAccessory_d968214ecc684fb6", 790961363781932, undefined, [rawValue]); }
+  init(rawValue: number): (EAWiFiUnconfiguredAccessoryBrowserState) | null { return callSDK<(EAWiFiUnconfiguredAccessoryBrowserState) | null>("ExternalAccessory_0e503aef608672fa", 790961363781932, undefined, [rawValue]); }
 };
 
 /** enum EAWiFiUnconfiguredAccessoryConfigurationStatus */
@@ -387,7 +387,7 @@ export type EAWiFiUnconfiguredAccessoryConfigurationStatus = "success" | "userCa
 
 export const EAWiFiUnconfiguredAccessoryConfigurationStatus = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (EAWiFiUnconfiguredAccessoryConfigurationStatus) | null { return callSDK<(EAWiFiUnconfiguredAccessoryConfigurationStatus) | null>("ExternalAccessory_d968214ecc684fb6", 435970798750926, undefined, [rawValue]); }
+  init(rawValue: number): (EAWiFiUnconfiguredAccessoryConfigurationStatus) | null { return callSDK<(EAWiFiUnconfiguredAccessoryConfigurationStatus) | null>("ExternalAccessory_0e503aef608672fa", 435970798750926, undefined, [rawValue]); }
 };
 
 /** struct EAWiFiUnconfiguredAccessoryProperties */
@@ -395,13 +395,13 @@ export type EAWiFiUnconfiguredAccessoryProperties = Array<"propertySupportsAirPl
 
 export const EAWiFiUnconfiguredAccessoryProperties = {
   /** static var propertySupportsAirPlay: EAWiFiUnconfiguredAccessoryProperties { get } */
-  get propertySupportsAirPlay(): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_d968214ecc684fb6", 2394844971811156, undefined, []); },
+  get propertySupportsAirPlay(): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_0e503aef608672fa", 2394844971811156, undefined, []); },
   /** static var propertySupportsAirPrint: EAWiFiUnconfiguredAccessoryProperties { get } */
-  get propertySupportsAirPrint(): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_d968214ecc684fb6", 1683850424414395, undefined, []); },
+  get propertySupportsAirPrint(): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_0e503aef608672fa", 1683850424414395, undefined, []); },
   /** static var propertySupportsHomeKit: EAWiFiUnconfiguredAccessoryProperties { get } */
-  get propertySupportsHomeKit(): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_d968214ecc684fb6", 2987063178346048, undefined, []); },
+  get propertySupportsHomeKit(): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_0e503aef608672fa", 2987063178346048, undefined, []); },
   /** init(rawValue: UInt) */
-  init(rawValue: number): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_d968214ecc684fb6", 3435299861333785, undefined, [rawValue]); }
+  init(rawValue: number): EAWiFiUnconfiguredAccessoryProperties { return callSDK<EAWiFiUnconfiguredAccessoryProperties>("ExternalAccessory_0e503aef608672fa", 3435299861333785, undefined, [rawValue]); }
 };
 
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
@@ -411,39 +411,39 @@ export const NSNotification_Name = {
    * static let EAAccessoryDidConnect: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get EAAccessoryDidConnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ExternalAccessory_d968214ecc684fb6", 1353097096617194, undefined, []); },
+  get EAAccessoryDidConnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ExternalAccessory_0e503aef608672fa", 1353097096617194, undefined, []); },
   /**
    * static let EAAccessoryDidDisconnect: NSNotification.Name
    * @availability iOS 3.0+
    */
-  get EAAccessoryDidDisconnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ExternalAccessory_d968214ecc684fb6", 250446948065671, undefined, []); }
+  get EAAccessoryDidDisconnect(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("ExternalAccessory_0e503aef608672fa", 250446948065671, undefined, []); }
 };
 
 /**
  * let EAAccessoryKey: String
  * @availability iOS 3.0+
  */
-export const EAAccessoryKey: string = callSDK<string>("ExternalAccessory_d968214ecc684fb6", 3353509198532598, undefined, []);
+export const EAAccessoryKey: string = callSDK<string>("ExternalAccessory_0e503aef608672fa", 3353509198532598, undefined, []);
 
 /**
  * let EAAccessorySelectedKey: String
  * @availability iOS 6.0+
  */
-export const EAAccessorySelectedKey: string = callSDK<string>("ExternalAccessory_d968214ecc684fb6", 484921933491256, undefined, []);
+export const EAAccessorySelectedKey: string = callSDK<string>("ExternalAccessory_0e503aef608672fa", 484921933491256, undefined, []);
 
 /** let EABluetoothAccessoryPickerErrorDomain: String */
-export const EABluetoothAccessoryPickerErrorDomain: string = callSDK<string>("ExternalAccessory_d968214ecc684fb6", 3798429764677378, undefined, []);
+export const EABluetoothAccessoryPickerErrorDomain: string = callSDK<string>("ExternalAccessory_0e503aef608672fa", 3798429764677378, undefined, []);
 
 /** var EAConnectionIDNone: Int { get } */
-export const EAConnectionIDNone: number = callSDK<number>("ExternalAccessory_d968214ecc684fb6", 4400631861140466, undefined, []);
+export const EAConnectionIDNone: number = callSDK<number>("ExternalAccessory_0e503aef608672fa", 4400631861140466, undefined, []);
 
-registerSDKClass("EAAccessory", EAAccessory, { module: "ExternalAccessory_d968214ecc684fb6", properties: {"isConnected":268378307247731,"connectionID":4439630759689278,"delegate":3925441023031478,"dockType":2424912584484099,"firmwareRevision":4075993376116634,"hardwareRevision":4175553471823319,"manufacturer":1107055355379236,"modelNumber":1248279837026082,"name":2776684590023367,"protocolStrings":808226595117178,"serialNumber":3412590641180218} });
+registerSDKClass("EAAccessory", EAAccessory, { module: "ExternalAccessory_0e503aef608672fa", properties: {"isConnected":268378307247731,"connectionID":4439630759689278,"delegate":3925441023031478,"dockType":2424912584484099,"firmwareRevision":4075993376116634,"hardwareRevision":4175553471823319,"manufacturer":1107055355379236,"modelNumber":1248279837026082,"name":2776684590023367,"protocolStrings":808226595117178,"serialNumber":3412590641180218} });
 registerSDKProtocol("c:objc(pl)EAAccessoryDelegate", {"accessoryDidDisconnect":"accessoryDidDisconnect(_:)"});
-registerSDKClass("EAAccessoryManager", EAAccessoryManager, { module: "ExternalAccessory_d968214ecc684fb6", properties: {"connectedAccessories":3717229843483292}, methods: {"registerForLocalNotifications":{"id":3347018241034022},"showBluetoothAccessoryPicker":{"id":1439406023143124,"hints":[null,{"callback":{"out":[]}}]},"unregisterForLocalNotifications":{"id":2937005222603241}} });
-registerSDKClass("ExternalAccessory.EAAccessoryManager.AccessoryDidConnectMessage", EAAccessoryManager_AccessoryDidConnectMessage, { module: "ExternalAccessory_d968214ecc684fb6", properties: {} });
-registerSDKClass("ExternalAccessory.EAAccessoryManager.AccessoryDidDisconnectMessage", EAAccessoryManager_AccessoryDidDisconnectMessage, { module: "ExternalAccessory_d968214ecc684fb6", properties: {} });
-registerSDKClass("ExternalAccessory.EABluetoothAccessoryPickerError", EABluetoothAccessoryPickerError, { module: "ExternalAccessory_d968214ecc684fb6", properties: {} });
-registerSDKClass("EASession", EASession, { module: "ExternalAccessory_d968214ecc684fb6", properties: {"accessory":1340301746097928,"inputStream":4258535525221891,"outputStream":2062436643870651,"protocolString":1090810366726565} });
-registerSDKClass("EAWiFiUnconfiguredAccessory", EAWiFiUnconfiguredAccessory, { module: "ExternalAccessory_d968214ecc684fb6", properties: {"macAddress":558710899563082,"manufacturer":1153048872455843,"model":1232102624429854,"name":1010475147874205,"properties":3418492118389396,"ssid":2665112725132254} });
-registerSDKClass("EAWiFiUnconfiguredAccessoryBrowser", EAWiFiUnconfiguredAccessoryBrowser, { module: "ExternalAccessory_d968214ecc684fb6", properties: {"delegate":2222645179651176,"unconfiguredAccessories":180167855019042}, methods: {"configureAccessory":{"id":3237313144307898},"startSearchingForUnconfiguredAccessories":{"id":2933781668607682},"stopSearchingForUnconfiguredAccessories":{"id":1916863773372863}} });
+registerSDKClass("EAAccessoryManager", EAAccessoryManager, { module: "ExternalAccessory_0e503aef608672fa", properties: {"connectedAccessories":3717229843483292}, methods: {"registerForLocalNotifications":{"id":3347018241034022},"showBluetoothAccessoryPicker":{"id":1439406023143124,"hints":[null,{"callback":{"out":[]}}]},"unregisterForLocalNotifications":{"id":2937005222603241}} });
+registerSDKClass("ExternalAccessory.EAAccessoryManager.AccessoryDidConnectMessage", EAAccessoryManager_AccessoryDidConnectMessage, { module: "ExternalAccessory_0e503aef608672fa", properties: {} });
+registerSDKClass("ExternalAccessory.EAAccessoryManager.AccessoryDidDisconnectMessage", EAAccessoryManager_AccessoryDidDisconnectMessage, { module: "ExternalAccessory_0e503aef608672fa", properties: {} });
+registerSDKClass("ExternalAccessory.EABluetoothAccessoryPickerError", EABluetoothAccessoryPickerError, { module: "ExternalAccessory_0e503aef608672fa", properties: {} });
+registerSDKClass("EASession", EASession, { module: "ExternalAccessory_0e503aef608672fa", properties: {"accessory":1340301746097928,"inputStream":4258535525221891,"outputStream":2062436643870651,"protocolString":1090810366726565} });
+registerSDKClass("EAWiFiUnconfiguredAccessory", EAWiFiUnconfiguredAccessory, { module: "ExternalAccessory_0e503aef608672fa", properties: {"macAddress":558710899563082,"manufacturer":1153048872455843,"model":1232102624429854,"name":1010475147874205,"properties":3418492118389396,"ssid":2665112725132254} });
+registerSDKClass("EAWiFiUnconfiguredAccessoryBrowser", EAWiFiUnconfiguredAccessoryBrowser, { module: "ExternalAccessory_0e503aef608672fa", properties: {"delegate":2222645179651176,"unconfiguredAccessories":180167855019042}, methods: {"configureAccessory":{"id":3237313144307898},"startSearchingForUnconfiguredAccessories":{"id":2933781668607682},"stopSearchingForUnconfiguredAccessories":{"id":1916863773372863}} });
 registerSDKProtocol("c:objc(pl)EAWiFiUnconfiguredAccessoryBrowserDelegate", {"accessoryBrowserDidUpdate":"accessoryBrowser(_:didUpdate:)","accessoryBrowserDidFindUnconfiguredAccessories":"accessoryBrowser(_:didFindUnconfiguredAccessories:)","accessoryBrowserDidRemoveUnconfiguredAccessories":"accessoryBrowser(_:didRemoveUnconfiguredAccessories:)","accessoryBrowserDidFinishConfiguringAccessoryWith":"accessoryBrowser(_:didFinishConfiguringAccessory:with:)"});

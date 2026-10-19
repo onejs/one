@@ -113,64 +113,64 @@ export const SecAccessControlCreateFlags = {
    * static var and: SecAccessControlCreateFlags { get }
    * @availability iOS 9.0+
    */
-  get and(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 732049806278128, undefined, []); },
+  get and(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 732049806278128, undefined, []); },
   /**
    * static var applicationPassword: SecAccessControlCreateFlags { get }
    * @availability iOS 9.0+
    */
-  get applicationPassword(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 848056063996755, undefined, []); },
+  get applicationPassword(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 848056063996755, undefined, []); },
   /**
    * static var biometryAny: SecAccessControlCreateFlags { get }
    * @availability iOS 11.3+
    */
-  get biometryAny(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 652323011670348, undefined, []); },
+  get biometryAny(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 652323011670348, undefined, []); },
   /**
    * static var biometryCurrentSet: SecAccessControlCreateFlags { get }
    * @availability iOS 11.3+
    */
-  get biometryCurrentSet(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 1137611226894808, undefined, []); },
+  get biometryCurrentSet(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 1137611226894808, undefined, []); },
   /**
    * static var companion: SecAccessControlCreateFlags { get }
    * @availability iOS 18.0+
    */
-  get companion(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 4179597955299567, undefined, []); },
+  get companion(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 4179597955299567, undefined, []); },
   /**
    * static var devicePasscode: SecAccessControlCreateFlags { get }
    * @availability iOS 9.0+
    */
-  get devicePasscode(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 1309432689592903, undefined, []); },
+  get devicePasscode(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 1309432689592903, undefined, []); },
   /**
    * static var or: SecAccessControlCreateFlags { get }
    * @availability iOS 9.0+
    */
-  get or(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 2475118019806860, undefined, []); },
+  get or(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 2475118019806860, undefined, []); },
   /**
    * static var privateKeyUsage: SecAccessControlCreateFlags { get }
    * @availability iOS 9.0+
    */
-  get privateKeyUsage(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 2324482960986290, undefined, []); },
+  get privateKeyUsage(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 2324482960986290, undefined, []); },
   /**
    * static var touchIDAny: SecAccessControlCreateFlags { get }
    * @availability iOS 9.0+
    * @deprecated iOS 11.3
    */
-  get touchIDAny(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 3499997550289721, undefined, []); },
+  get touchIDAny(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 3499997550289721, undefined, []); },
   /**
    * static var touchIDCurrentSet: SecAccessControlCreateFlags { get }
    * @availability iOS 9.0+
    * @deprecated iOS 11.3
    */
-  get touchIDCurrentSet(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 1225000144484731, undefined, []); },
+  get touchIDCurrentSet(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 1225000144484731, undefined, []); },
   /**
    * static var userPresence: SecAccessControlCreateFlags { get }
    * @availability iOS 8.0+
    */
-  get userPresence(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 278258905591472, undefined, []); },
+  get userPresence(): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 278258905591472, undefined, []); },
   /**
    * init(rawValue: CFOptionFlags)
    * @availability iOS 8.0+
    */
-  init(rawValue: number): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_d968214ecc684fb6", 416912418944169, undefined, [rawValue]); }
+  init(rawValue: number): SecAccessControlCreateFlags { return callSDK<SecAccessControlCreateFlags>("Security_0e503aef608672fa", 416912418944169, undefined, [rawValue]); }
 };
 
 /** class SecCertificate */
@@ -199,443 +199,443 @@ export const SecKeyAlgorithm = {
    * static let ecdhKeyExchangeCofactor: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeCofactor(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1546290364908009, undefined, []); },
+  get ecdhKeyExchangeCofactor(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1546290364908009, undefined, []); },
   /**
    * static let ecdhKeyExchangeCofactorX963SHA1: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeCofactorX963SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1503115199667485, undefined, []); },
+  get ecdhKeyExchangeCofactorX963SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1503115199667485, undefined, []); },
   /**
    * static let ecdhKeyExchangeCofactorX963SHA224: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeCofactorX963SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3740423931031617, undefined, []); },
+  get ecdhKeyExchangeCofactorX963SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3740423931031617, undefined, []); },
   /**
    * static let ecdhKeyExchangeCofactorX963SHA256: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeCofactorX963SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3046719214618120, undefined, []); },
+  get ecdhKeyExchangeCofactorX963SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3046719214618120, undefined, []); },
   /**
    * static let ecdhKeyExchangeCofactorX963SHA384: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeCofactorX963SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 872678722608495, undefined, []); },
+  get ecdhKeyExchangeCofactorX963SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 872678722608495, undefined, []); },
   /**
    * static let ecdhKeyExchangeCofactorX963SHA512: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeCofactorX963SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1244759181523599, undefined, []); },
+  get ecdhKeyExchangeCofactorX963SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1244759181523599, undefined, []); },
   /**
    * static let ecdhKeyExchangeStandard: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeStandard(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1896766277913314, undefined, []); },
+  get ecdhKeyExchangeStandard(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1896766277913314, undefined, []); },
   /**
    * static let ecdhKeyExchangeStandardX963SHA1: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeStandardX963SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2425039410610040, undefined, []); },
+  get ecdhKeyExchangeStandardX963SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2425039410610040, undefined, []); },
   /**
    * static let ecdhKeyExchangeStandardX963SHA224: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeStandardX963SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2267481243601062, undefined, []); },
+  get ecdhKeyExchangeStandardX963SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2267481243601062, undefined, []); },
   /**
    * static let ecdhKeyExchangeStandardX963SHA256: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeStandardX963SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4433791531965115, undefined, []); },
+  get ecdhKeyExchangeStandardX963SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4433791531965115, undefined, []); },
   /**
    * static let ecdhKeyExchangeStandardX963SHA384: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeStandardX963SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4399105204519880, undefined, []); },
+  get ecdhKeyExchangeStandardX963SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4399105204519880, undefined, []); },
   /**
    * static let ecdhKeyExchangeStandardX963SHA512: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdhKeyExchangeStandardX963SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3795918331579231, undefined, []); },
+  get ecdhKeyExchangeStandardX963SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3795918331579231, undefined, []); },
   /**
    * static let ecdsaSignatureDigestRFC4754: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureDigestRFC4754(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2913599298388224, undefined, []); },
+  get ecdsaSignatureDigestRFC4754(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2913599298388224, undefined, []); },
   /**
    * static let ecdsaSignatureDigestRFC4754SHA1: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureDigestRFC4754SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1968445410800796, undefined, []); },
+  get ecdsaSignatureDigestRFC4754SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1968445410800796, undefined, []); },
   /**
    * static let ecdsaSignatureDigestRFC4754SHA224: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureDigestRFC4754SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1469936308408663, undefined, []); },
+  get ecdsaSignatureDigestRFC4754SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1469936308408663, undefined, []); },
   /**
    * static let ecdsaSignatureDigestRFC4754SHA256: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureDigestRFC4754SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2565494931658178, undefined, []); },
+  get ecdsaSignatureDigestRFC4754SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2565494931658178, undefined, []); },
   /**
    * static let ecdsaSignatureDigestRFC4754SHA384: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureDigestRFC4754SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1180797716754594, undefined, []); },
+  get ecdsaSignatureDigestRFC4754SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1180797716754594, undefined, []); },
   /**
    * static let ecdsaSignatureDigestRFC4754SHA512: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureDigestRFC4754SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4286092465868566, undefined, []); },
+  get ecdsaSignatureDigestRFC4754SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4286092465868566, undefined, []); },
   /**
    * static let ecdsaSignatureDigestX962: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureDigestX962(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1221001391579317, undefined, []); },
+  get ecdsaSignatureDigestX962(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1221001391579317, undefined, []); },
   /**
    * static let ecdsaSignatureDigestX962SHA1: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureDigestX962SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1751425175203540, undefined, []); },
+  get ecdsaSignatureDigestX962SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1751425175203540, undefined, []); },
   /**
    * static let ecdsaSignatureDigestX962SHA224: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureDigestX962SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 180759131513662, undefined, []); },
+  get ecdsaSignatureDigestX962SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 180759131513662, undefined, []); },
   /**
    * static let ecdsaSignatureDigestX962SHA256: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureDigestX962SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 773504626484456, undefined, []); },
+  get ecdsaSignatureDigestX962SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 773504626484456, undefined, []); },
   /**
    * static let ecdsaSignatureDigestX962SHA384: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureDigestX962SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2854149963602165, undefined, []); },
+  get ecdsaSignatureDigestX962SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2854149963602165, undefined, []); },
   /**
    * static let ecdsaSignatureDigestX962SHA512: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureDigestX962SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3439942125315392, undefined, []); },
+  get ecdsaSignatureDigestX962SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3439942125315392, undefined, []); },
   /**
    * static let ecdsaSignatureMessageRFC4754SHA1: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureMessageRFC4754SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 924277841516143, undefined, []); },
+  get ecdsaSignatureMessageRFC4754SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 924277841516143, undefined, []); },
   /**
    * static let ecdsaSignatureMessageRFC4754SHA224: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureMessageRFC4754SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4413891015314169, undefined, []); },
+  get ecdsaSignatureMessageRFC4754SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4413891015314169, undefined, []); },
   /**
    * static let ecdsaSignatureMessageRFC4754SHA256: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureMessageRFC4754SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2827173519676280, undefined, []); },
+  get ecdsaSignatureMessageRFC4754SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2827173519676280, undefined, []); },
   /**
    * static let ecdsaSignatureMessageRFC4754SHA384: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureMessageRFC4754SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4493815194634565, undefined, []); },
+  get ecdsaSignatureMessageRFC4754SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4493815194634565, undefined, []); },
   /**
    * static let ecdsaSignatureMessageRFC4754SHA512: SecKeyAlgorithm
    * @availability iOS 17.0+
    */
-  get ecdsaSignatureMessageRFC4754SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3280760228387787, undefined, []); },
+  get ecdsaSignatureMessageRFC4754SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3280760228387787, undefined, []); },
   /**
    * static let ecdsaSignatureMessageX962SHA1: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureMessageX962SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3871088196443644, undefined, []); },
+  get ecdsaSignatureMessageX962SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3871088196443644, undefined, []); },
   /**
    * static let ecdsaSignatureMessageX962SHA224: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureMessageX962SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3977889150197332, undefined, []); },
+  get ecdsaSignatureMessageX962SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3977889150197332, undefined, []); },
   /**
    * static let ecdsaSignatureMessageX962SHA256: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureMessageX962SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 471270840407420, undefined, []); },
+  get ecdsaSignatureMessageX962SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 471270840407420, undefined, []); },
   /**
    * static let ecdsaSignatureMessageX962SHA384: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureMessageX962SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3141788735243119, undefined, []); },
+  get ecdsaSignatureMessageX962SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3141788735243119, undefined, []); },
   /**
    * static let ecdsaSignatureMessageX962SHA512: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get ecdsaSignatureMessageX962SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1054099808819994, undefined, []); },
+  get ecdsaSignatureMessageX962SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1054099808819994, undefined, []); },
   /**
    * static let ecdsaSignatureRFC4754: SecKeyAlgorithm
    * @availability iOS 10.0+
    * @deprecated iOS 17.0
    */
-  get ecdsaSignatureRFC4754(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4364629360324275, undefined, []); },
+  get ecdsaSignatureRFC4754(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4364629360324275, undefined, []); },
   /**
    * static let eciesEncryptionCofactorVariableIVX963SHA224AESGCM: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get eciesEncryptionCofactorVariableIVX963SHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2749952766750844, undefined, []); },
+  get eciesEncryptionCofactorVariableIVX963SHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2749952766750844, undefined, []); },
   /**
    * static let eciesEncryptionCofactorVariableIVX963SHA256AESGCM: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get eciesEncryptionCofactorVariableIVX963SHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4250531702690241, undefined, []); },
+  get eciesEncryptionCofactorVariableIVX963SHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4250531702690241, undefined, []); },
   /**
    * static let eciesEncryptionCofactorVariableIVX963SHA384AESGCM: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get eciesEncryptionCofactorVariableIVX963SHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4491385818067586, undefined, []); },
+  get eciesEncryptionCofactorVariableIVX963SHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4491385818067586, undefined, []); },
   /**
    * static let eciesEncryptionCofactorVariableIVX963SHA512AESGCM: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get eciesEncryptionCofactorVariableIVX963SHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3681067645949517, undefined, []); },
+  get eciesEncryptionCofactorVariableIVX963SHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3681067645949517, undefined, []); },
   /**
    * static let eciesEncryptionCofactorX963SHA1AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionCofactorX963SHA1AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3822137155829175, undefined, []); },
+  get eciesEncryptionCofactorX963SHA1AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3822137155829175, undefined, []); },
   /**
    * static let eciesEncryptionCofactorX963SHA224AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionCofactorX963SHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1891487459176665, undefined, []); },
+  get eciesEncryptionCofactorX963SHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1891487459176665, undefined, []); },
   /**
    * static let eciesEncryptionCofactorX963SHA256AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionCofactorX963SHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2583757093587162, undefined, []); },
+  get eciesEncryptionCofactorX963SHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2583757093587162, undefined, []); },
   /**
    * static let eciesEncryptionCofactorX963SHA384AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionCofactorX963SHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1388837146400921, undefined, []); },
+  get eciesEncryptionCofactorX963SHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1388837146400921, undefined, []); },
   /**
    * static let eciesEncryptionCofactorX963SHA512AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionCofactorX963SHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 446760956899766, undefined, []); },
+  get eciesEncryptionCofactorX963SHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 446760956899766, undefined, []); },
   /**
    * static let eciesEncryptionStandardVariableIVX963SHA224AESGCM: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get eciesEncryptionStandardVariableIVX963SHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2797814465366708, undefined, []); },
+  get eciesEncryptionStandardVariableIVX963SHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2797814465366708, undefined, []); },
   /**
    * static let eciesEncryptionStandardVariableIVX963SHA256AESGCM: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get eciesEncryptionStandardVariableIVX963SHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3085635729045176, undefined, []); },
+  get eciesEncryptionStandardVariableIVX963SHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3085635729045176, undefined, []); },
   /**
    * static let eciesEncryptionStandardVariableIVX963SHA384AESGCM: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get eciesEncryptionStandardVariableIVX963SHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2167916571038602, undefined, []); },
+  get eciesEncryptionStandardVariableIVX963SHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2167916571038602, undefined, []); },
   /**
    * static let eciesEncryptionStandardVariableIVX963SHA512AESGCM: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get eciesEncryptionStandardVariableIVX963SHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3843435033863732, undefined, []); },
+  get eciesEncryptionStandardVariableIVX963SHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3843435033863732, undefined, []); },
   /**
    * static let eciesEncryptionStandardX963SHA1AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionStandardX963SHA1AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2442095254342031, undefined, []); },
+  get eciesEncryptionStandardX963SHA1AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2442095254342031, undefined, []); },
   /**
    * static let eciesEncryptionStandardX963SHA224AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionStandardX963SHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3489872567651047, undefined, []); },
+  get eciesEncryptionStandardX963SHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3489872567651047, undefined, []); },
   /**
    * static let eciesEncryptionStandardX963SHA256AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionStandardX963SHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3779560831723337, undefined, []); },
+  get eciesEncryptionStandardX963SHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3779560831723337, undefined, []); },
   /**
    * static let eciesEncryptionStandardX963SHA384AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionStandardX963SHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2387328007749461, undefined, []); },
+  get eciesEncryptionStandardX963SHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2387328007749461, undefined, []); },
   /**
    * static let eciesEncryptionStandardX963SHA512AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get eciesEncryptionStandardX963SHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1142421689868220, undefined, []); },
+  get eciesEncryptionStandardX963SHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1142421689868220, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA1: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3273329044608092, undefined, []); },
+  get rsaEncryptionOAEPSHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3273329044608092, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA1AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA1AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2571730712546767, undefined, []); },
+  get rsaEncryptionOAEPSHA1AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2571730712546767, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA224: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2605674662259973, undefined, []); },
+  get rsaEncryptionOAEPSHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2605674662259973, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA224AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2903728628771870, undefined, []); },
+  get rsaEncryptionOAEPSHA224AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2903728628771870, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA256: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3049797496059197, undefined, []); },
+  get rsaEncryptionOAEPSHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3049797496059197, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA256AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 313437436916415, undefined, []); },
+  get rsaEncryptionOAEPSHA256AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 313437436916415, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA384: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 337545031829285, undefined, []); },
+  get rsaEncryptionOAEPSHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 337545031829285, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA384AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4267490481354312, undefined, []); },
+  get rsaEncryptionOAEPSHA384AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4267490481354312, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA512: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 898168728737519, undefined, []); },
+  get rsaEncryptionOAEPSHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 898168728737519, undefined, []); },
   /**
    * static let rsaEncryptionOAEPSHA512AESGCM: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionOAEPSHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 741944181014479, undefined, []); },
+  get rsaEncryptionOAEPSHA512AESGCM(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 741944181014479, undefined, []); },
   /**
    * static let rsaEncryptionPKCS1: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionPKCS1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1376498480732406, undefined, []); },
+  get rsaEncryptionPKCS1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1376498480732406, undefined, []); },
   /**
    * static let rsaEncryptionRaw: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaEncryptionRaw(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 466086998893575, undefined, []); },
+  get rsaEncryptionRaw(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 466086998893575, undefined, []); },
   /**
    * static let rsaSignatureDigestPKCS1v15Raw: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureDigestPKCS1v15Raw(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3121869544186899, undefined, []); },
+  get rsaSignatureDigestPKCS1v15Raw(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3121869544186899, undefined, []); },
   /**
    * static let rsaSignatureDigestPKCS1v15SHA1: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureDigestPKCS1v15SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3350513824398818, undefined, []); },
+  get rsaSignatureDigestPKCS1v15SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3350513824398818, undefined, []); },
   /**
    * static let rsaSignatureDigestPKCS1v15SHA224: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureDigestPKCS1v15SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1111257554801211, undefined, []); },
+  get rsaSignatureDigestPKCS1v15SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1111257554801211, undefined, []); },
   /**
    * static let rsaSignatureDigestPKCS1v15SHA256: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureDigestPKCS1v15SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1616709903516488, undefined, []); },
+  get rsaSignatureDigestPKCS1v15SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1616709903516488, undefined, []); },
   /**
    * static let rsaSignatureDigestPKCS1v15SHA384: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureDigestPKCS1v15SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3800963279710025, undefined, []); },
+  get rsaSignatureDigestPKCS1v15SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3800963279710025, undefined, []); },
   /**
    * static let rsaSignatureDigestPKCS1v15SHA512: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureDigestPKCS1v15SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2865243737959738, undefined, []); },
+  get rsaSignatureDigestPKCS1v15SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2865243737959738, undefined, []); },
   /**
    * static let rsaSignatureDigestPSSSHA1: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureDigestPSSSHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3237816440816067, undefined, []); },
+  get rsaSignatureDigestPSSSHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3237816440816067, undefined, []); },
   /**
    * static let rsaSignatureDigestPSSSHA224: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureDigestPSSSHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3080472209740695, undefined, []); },
+  get rsaSignatureDigestPSSSHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3080472209740695, undefined, []); },
   /**
    * static let rsaSignatureDigestPSSSHA256: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureDigestPSSSHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 413480416875064, undefined, []); },
+  get rsaSignatureDigestPSSSHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 413480416875064, undefined, []); },
   /**
    * static let rsaSignatureDigestPSSSHA384: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureDigestPSSSHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3262620279617835, undefined, []); },
+  get rsaSignatureDigestPSSSHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3262620279617835, undefined, []); },
   /**
    * static let rsaSignatureDigestPSSSHA512: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureDigestPSSSHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2651195173964381, undefined, []); },
+  get rsaSignatureDigestPSSSHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2651195173964381, undefined, []); },
   /**
    * static let rsaSignatureMessagePKCS1v15SHA1: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureMessagePKCS1v15SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3577133251942586, undefined, []); },
+  get rsaSignatureMessagePKCS1v15SHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3577133251942586, undefined, []); },
   /**
    * static let rsaSignatureMessagePKCS1v15SHA224: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureMessagePKCS1v15SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1119050555524163, undefined, []); },
+  get rsaSignatureMessagePKCS1v15SHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1119050555524163, undefined, []); },
   /**
    * static let rsaSignatureMessagePKCS1v15SHA256: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureMessagePKCS1v15SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3536535088290804, undefined, []); },
+  get rsaSignatureMessagePKCS1v15SHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3536535088290804, undefined, []); },
   /**
    * static let rsaSignatureMessagePKCS1v15SHA384: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureMessagePKCS1v15SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4439332672165454, undefined, []); },
+  get rsaSignatureMessagePKCS1v15SHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4439332672165454, undefined, []); },
   /**
    * static let rsaSignatureMessagePKCS1v15SHA512: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureMessagePKCS1v15SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 847036195388566, undefined, []); },
+  get rsaSignatureMessagePKCS1v15SHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 847036195388566, undefined, []); },
   /**
    * static let rsaSignatureMessagePSSSHA1: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureMessagePSSSHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 2327901203671932, undefined, []); },
+  get rsaSignatureMessagePSSSHA1(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 2327901203671932, undefined, []); },
   /**
    * static let rsaSignatureMessagePSSSHA224: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureMessagePSSSHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 705966934259256, undefined, []); },
+  get rsaSignatureMessagePSSSHA224(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 705966934259256, undefined, []); },
   /**
    * static let rsaSignatureMessagePSSSHA256: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureMessagePSSSHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3586221687487682, undefined, []); },
+  get rsaSignatureMessagePSSSHA256(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3586221687487682, undefined, []); },
   /**
    * static let rsaSignatureMessagePSSSHA384: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureMessagePSSSHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 7574399598726, undefined, []); },
+  get rsaSignatureMessagePSSSHA384(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 7574399598726, undefined, []); },
   /**
    * static let rsaSignatureMessagePSSSHA512: SecKeyAlgorithm
    * @availability iOS 11.0+
    */
-  get rsaSignatureMessagePSSSHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 4217307781805126, undefined, []); },
+  get rsaSignatureMessagePSSSHA512(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 4217307781805126, undefined, []); },
   /**
    * static let rsaSignatureRaw: SecKeyAlgorithm
    * @availability iOS 10.0+
    */
-  get rsaSignatureRaw(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 1260876801021790, undefined, []); },
+  get rsaSignatureRaw(): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 1260876801021790, undefined, []); },
   /**
    * init(rawValue: CFString)
    * @availability iOS 10.0+
    */
-  init(rawValue: _CoreFoundation_CFString): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_d968214ecc684fb6", 3480008121007993, undefined, [rawValue]); }
+  init(rawValue: _CoreFoundation_CFString): SecKeyAlgorithm { return callSDK<SecKeyAlgorithm>("Security_0e503aef608672fa", 3480008121007993, undefined, [rawValue]); }
 };
 
 /**
@@ -649,17 +649,17 @@ export const SecKeyKeyExchangeParameter = {
    * static let requestedSize: SecKeyKeyExchangeParameter
    * @availability iOS 10.0+
    */
-  get requestedSize(): SecKeyKeyExchangeParameter { return callSDK<SecKeyKeyExchangeParameter>("Security_d968214ecc684fb6", 11089177558533, undefined, []); },
+  get requestedSize(): SecKeyKeyExchangeParameter { return callSDK<SecKeyKeyExchangeParameter>("Security_0e503aef608672fa", 11089177558533, undefined, []); },
   /**
    * static let sharedInfo: SecKeyKeyExchangeParameter
    * @availability iOS 10.0+
    */
-  get sharedInfo(): SecKeyKeyExchangeParameter { return callSDK<SecKeyKeyExchangeParameter>("Security_d968214ecc684fb6", 73341332062463, undefined, []); },
+  get sharedInfo(): SecKeyKeyExchangeParameter { return callSDK<SecKeyKeyExchangeParameter>("Security_0e503aef608672fa", 73341332062463, undefined, []); },
   /**
    * init(rawValue: CFString)
    * @availability iOS 10.0+
    */
-  init(rawValue: _CoreFoundation_CFString): SecKeyKeyExchangeParameter { return callSDK<SecKeyKeyExchangeParameter>("Security_d968214ecc684fb6", 2190425665351353, undefined, [rawValue]); }
+  init(rawValue: _CoreFoundation_CFString): SecKeyKeyExchangeParameter { return callSDK<SecKeyKeyExchangeParameter>("Security_0e503aef608672fa", 2190425665351353, undefined, [rawValue]); }
 };
 
 /**
@@ -673,7 +673,7 @@ export const SecKeyOperationType = {
    * init?(rawValue: CFIndex)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (SecKeyOperationType) | null { return callSDK<(SecKeyOperationType) | null>("Security_d968214ecc684fb6", 3592780597815820, undefined, [rawValue]); }
+  init(rawValue: number): (SecKeyOperationType) | null { return callSDK<(SecKeyOperationType) | null>("Security_0e503aef608672fa", 3592780597815820, undefined, [rawValue]); }
 };
 
 /**
@@ -689,67 +689,67 @@ export const SecPadding = {
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get OAEP(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 4028666340347249, undefined, []); },
+  get OAEP(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 4028666340347249, undefined, []); },
   /**
    * static var PKCS1: SecPadding { get }
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get PKCS1(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 378424540319756, undefined, []); },
+  get PKCS1(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 378424540319756, undefined, []); },
   /**
    * static var PKCS1MD2: SecPadding { get }
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get PKCS1MD2(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 3797999367259556, undefined, []); },
+  get PKCS1MD2(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 3797999367259556, undefined, []); },
   /**
    * static var PKCS1MD5: SecPadding { get }
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get PKCS1MD5(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 1798204817911487, undefined, []); },
+  get PKCS1MD5(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 1798204817911487, undefined, []); },
   /**
    * static var PKCS1SHA1: SecPadding { get }
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get PKCS1SHA1(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 2493315152857605, undefined, []); },
+  get PKCS1SHA1(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 2493315152857605, undefined, []); },
   /**
    * static var PKCS1SHA224: SecPadding { get }
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get PKCS1SHA224(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 3443518371748240, undefined, []); },
+  get PKCS1SHA224(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 3443518371748240, undefined, []); },
   /**
    * static var PKCS1SHA256: SecPadding { get }
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get PKCS1SHA256(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 1781442359265014, undefined, []); },
+  get PKCS1SHA256(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 1781442359265014, undefined, []); },
   /**
    * static var PKCS1SHA384: SecPadding { get }
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get PKCS1SHA384(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 2724046944794312, undefined, []); },
+  get PKCS1SHA384(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 2724046944794312, undefined, []); },
   /**
    * static var PKCS1SHA512: SecPadding { get }
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get PKCS1SHA512(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 901493204284993, undefined, []); },
+  get PKCS1SHA512(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 901493204284993, undefined, []); },
   /**
    * static var sigRaw: SecPadding { get }
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  get sigRaw(): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 1615867434196591, undefined, []); },
+  get sigRaw(): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 1615867434196591, undefined, []); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 2.0+
    * @deprecated iOS 15.0
    */
-  init(rawValue: number): SecPadding { return callSDK<SecPadding>("Security_d968214ecc684fb6", 4083052220388708, undefined, [rawValue]); }
+  init(rawValue: number): SecPadding { return callSDK<SecPadding>("Security_0e503aef608672fa", 4083052220388708, undefined, [rawValue]); }
 };
 
 /** class SecPolicy */
@@ -773,7 +773,7 @@ export type SecTrustResultType = "invalid" | "proceed" | "deny" | "unspecified" 
 
 export const SecTrustResultType = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (SecTrustResultType) | null { return callSDK<(SecTrustResultType) | null>("Security_d968214ecc684fb6", 672493569820447, undefined, [rawValue]); }
+  init(rawValue: number): (SecTrustResultType) | null { return callSDK<(SecTrustResultType) | null>("Security_0e503aef608672fa", 672493569820447, undefined, [rawValue]); }
 };
 
 /** typealias SecTrustWithErrorCallback = (SecTrust, Bool, CFError?) -> Void */
@@ -793,7 +793,7 @@ export const SSLCiphersuiteGroup = {
    * init?(rawValue: Int32)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (SSLCiphersuiteGroup) | null { return callSDK<(SSLCiphersuiteGroup) | null>("Security_d968214ecc684fb6", 2328340171475419, undefined, [rawValue]); }
+  init(rawValue: number): (SSLCiphersuiteGroup) | null { return callSDK<(SSLCiphersuiteGroup) | null>("Security_0e503aef608672fa", 2328340171475419, undefined, [rawValue]); }
 };
 
 /** enum SSLProtocol */
@@ -801,7 +801,7 @@ export type SSLProtocol = "sslProtocolUnknown" | "tlsProtocol1" | "tlsProtocol11
 
 export const SSLProtocol = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (SSLProtocol) | null { return callSDK<(SSLProtocol) | null>("Security_d968214ecc684fb6", 1774870773660793, undefined, [rawValue]); }
+  init(rawValue: number): (SSLProtocol) | null { return callSDK<(SSLProtocol) | null>("Security_0e503aef608672fa", 1774870773660793, undefined, [rawValue]); }
 };
 
 /**
@@ -815,7 +815,7 @@ export const tls_ciphersuite_group_t = {
    * init?(rawValue: UInt16)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (tls_ciphersuite_group_t) | null { return callSDK<(tls_ciphersuite_group_t) | null>("Security_d968214ecc684fb6", 1828642435542775, undefined, [rawValue]); }
+  init(rawValue: number): (tls_ciphersuite_group_t) | null { return callSDK<(tls_ciphersuite_group_t) | null>("Security_0e503aef608672fa", 1828642435542775, undefined, [rawValue]); }
 };
 
 /** enum tls_ciphersuite_t */
@@ -823,7 +823,7 @@ export type tls_ciphersuite_t = "RSA_WITH_3DES_EDE_CBC_SHA" | "RSA_WITH_AES_128_
 
 export const tls_ciphersuite_t = {
   /** init?(rawValue: UInt16) */
-  init(rawValue: number): (tls_ciphersuite_t) | null { return callSDK<(tls_ciphersuite_t) | null>("Security_d968214ecc684fb6", 3689685466934324, undefined, [rawValue]); }
+  init(rawValue: number): (tls_ciphersuite_t) | null { return callSDK<(tls_ciphersuite_t) | null>("Security_0e503aef608672fa", 3689685466934324, undefined, [rawValue]); }
 };
 
 /**
@@ -837,3917 +837,3917 @@ export const tls_protocol_version_t = {
    * init?(rawValue: UInt16)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (tls_protocol_version_t) | null { return callSDK<(tls_protocol_version_t) | null>("Security_d968214ecc684fb6", 1803020352522252, undefined, [rawValue]); }
+  init(rawValue: number): (tls_protocol_version_t) | null { return callSDK<(tls_protocol_version_t) | null>("Security_0e503aef608672fa", 1803020352522252, undefined, [rawValue]); }
 };
 
 /**
  * func SecAccessControlCreateWithFlags(_ allocator: CFAllocator?, _ protection: CFTypeRef, _ flags: SecAccessControlCreateFlags, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> SecAccessControl?
  * @availability iOS 8.0+
  */
-export function SecAccessControlCreateWithFlags(allocator: $SDK11, protection: unknown, flags: SecAccessControlCreateFlags): { $ret: (SecAccessControl) | null; $out: { "error": $SDK10 } } { return callSDK<{ $ret: (SecAccessControl) | null; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 3509743472449224, undefined, [allocator, protection, flags, null]); }
+export function SecAccessControlCreateWithFlags(allocator: $SDK11, protection: unknown, flags: SecAccessControlCreateFlags): { $ret: (SecAccessControl) | null; $out: { "error": $SDK10 } } { return callSDK<{ $ret: (SecAccessControl) | null; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 3509743472449224, undefined, [allocator, protection, flags, null]); }
 
 /**
  * func SecAccessControlGetTypeID() -> CFTypeID
  * @availability iOS 8.0+
  */
-export function SecAccessControlGetTypeID(): number { return callSDK<number>("Security_d968214ecc684fb6", 581944155228631, undefined, []); }
+export function SecAccessControlGetTypeID(): number { return callSDK<number>("Security_0e503aef608672fa", 581944155228631, undefined, []); }
 
 /**
  * func SecAddSharedWebCredential(_ fqdn: CFString, _ account: CFString, _ password: CFString?, _ completionHandler: @escaping (CFError?) -> Void)
  * @availability iOS 8.0+
  * @deprecated iOS 26.2
  */
-export function SecAddSharedWebCredential(fqdn: _CoreFoundation_CFString, account: _CoreFoundation_CFString, password: $SDK12, completionHandler: ((arg0: (_CoreFoundation_CFError) | null) => void)): void { return callSDK<void>("Security_d968214ecc684fb6", 1159842496916126, undefined, [fqdn, account, password, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+export function SecAddSharedWebCredential(fqdn: _CoreFoundation_CFString, account: _CoreFoundation_CFString, password: $SDK12, completionHandler: ((arg0: (_CoreFoundation_CFError) | null) => void)): void { return callSDK<void>("Security_0e503aef608672fa", 1159842496916126, undefined, [fqdn, account, password, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func SecCertificateCopyCommonName(_ certificate: SecCertificate, _ commonName: UnsafeMutablePointer<CFString?>) -> OSStatus
  * @availability iOS 10.3+
  */
-export function SecCertificateCopyCommonName(certificate: SecCertificate): { $ret: number; $out: { "commonName": $SDK12 } } { return callSDK<{ $ret: number; $out: { "commonName": $SDK12 } }>("Security_d968214ecc684fb6", 3755198391598673, undefined, [certificate, null]); }
+export function SecCertificateCopyCommonName(certificate: SecCertificate): { $ret: number; $out: { "commonName": $SDK12 } } { return callSDK<{ $ret: number; $out: { "commonName": $SDK12 } }>("Security_0e503aef608672fa", 3755198391598673, undefined, [certificate, null]); }
 
 /**
  * func SecCertificateCopyData(_ certificate: SecCertificate) -> CFData
  * @availability iOS 2.0+
  */
-export function SecCertificateCopyData(certificate: SecCertificate): _CoreFoundation_CFData { return callSDK<_CoreFoundation_CFData>("Security_d968214ecc684fb6", 1609586272987185, undefined, [certificate]); }
+export function SecCertificateCopyData(certificate: SecCertificate): _CoreFoundation_CFData { return callSDK<_CoreFoundation_CFData>("Security_0e503aef608672fa", 1609586272987185, undefined, [certificate]); }
 
 /**
  * func SecCertificateCopyEmailAddresses(_ certificate: SecCertificate, _ emailAddresses: UnsafeMutablePointer<CFArray?>) -> OSStatus
  * @availability iOS 10.3+
  */
-export function SecCertificateCopyEmailAddresses(certificate: SecCertificate): { $ret: number; $out: { "emailAddresses": $SDK14 } } { return callSDK<{ $ret: number; $out: { "emailAddresses": $SDK14 } }>("Security_d968214ecc684fb6", 4084034908591294, undefined, [certificate, null]); }
+export function SecCertificateCopyEmailAddresses(certificate: SecCertificate): { $ret: number; $out: { "emailAddresses": $SDK14 } } { return callSDK<{ $ret: number; $out: { "emailAddresses": $SDK14 } }>("Security_0e503aef608672fa", 4084034908591294, undefined, [certificate, null]); }
 
 /**
  * func SecCertificateCopyKey(_ certificate: SecCertificate) -> SecKey?
  * @availability iOS 12.0+
  */
-export function SecCertificateCopyKey(certificate: SecCertificate): (SecKey) | null { return callSDK<(SecKey) | null>("Security_d968214ecc684fb6", 3293595009260939, undefined, [certificate]); }
+export function SecCertificateCopyKey(certificate: SecCertificate): (SecKey) | null { return callSDK<(SecKey) | null>("Security_0e503aef608672fa", 3293595009260939, undefined, [certificate]); }
 
 /**
  * func SecCertificateCopyNormalizedIssuerSequence(_ certificate: SecCertificate) -> CFData?
  * @availability iOS 10.3+
  */
-export function SecCertificateCopyNormalizedIssuerSequence(certificate: SecCertificate): $SDK15 { return callSDK<$SDK15>("Security_d968214ecc684fb6", 4464454454725493, undefined, [certificate]); }
+export function SecCertificateCopyNormalizedIssuerSequence(certificate: SecCertificate): $SDK15 { return callSDK<$SDK15>("Security_0e503aef608672fa", 4464454454725493, undefined, [certificate]); }
 
 /**
  * func SecCertificateCopyNormalizedSubjectSequence(_ certificate: SecCertificate) -> CFData?
  * @availability iOS 10.3+
  */
-export function SecCertificateCopyNormalizedSubjectSequence(certificate: SecCertificate): $SDK15 { return callSDK<$SDK15>("Security_d968214ecc684fb6", 494477470953926, undefined, [certificate]); }
+export function SecCertificateCopyNormalizedSubjectSequence(certificate: SecCertificate): $SDK15 { return callSDK<$SDK15>("Security_0e503aef608672fa", 494477470953926, undefined, [certificate]); }
 
 /**
  * func SecCertificateCopyNotValidAfterDate(_ certificate: SecCertificate) -> CFDate?
  * @availability iOS 18.0+
  */
-export function SecCertificateCopyNotValidAfterDate(certificate: SecCertificate): $SDK16 { return callSDK<$SDK16>("Security_d968214ecc684fb6", 2323343992902842, undefined, [certificate]); }
+export function SecCertificateCopyNotValidAfterDate(certificate: SecCertificate): $SDK16 { return callSDK<$SDK16>("Security_0e503aef608672fa", 2323343992902842, undefined, [certificate]); }
 
 /**
  * func SecCertificateCopyNotValidBeforeDate(_ certificate: SecCertificate) -> CFDate?
  * @availability iOS 18.0+
  */
-export function SecCertificateCopyNotValidBeforeDate(certificate: SecCertificate): $SDK16 { return callSDK<$SDK16>("Security_d968214ecc684fb6", 1963039625498160, undefined, [certificate]); }
+export function SecCertificateCopyNotValidBeforeDate(certificate: SecCertificate): $SDK16 { return callSDK<$SDK16>("Security_0e503aef608672fa", 1963039625498160, undefined, [certificate]); }
 
 /**
  * func SecCertificateCopyPublicKey(_ certificate: SecCertificate) -> SecKey?
  * @availability iOS 10.3+
  * @deprecated iOS 12.0
  */
-export function SecCertificateCopyPublicKey(certificate: SecCertificate): (SecKey) | null { return callSDK<(SecKey) | null>("Security_d968214ecc684fb6", 2553158234032216, undefined, [certificate]); }
+export function SecCertificateCopyPublicKey(certificate: SecCertificate): (SecKey) | null { return callSDK<(SecKey) | null>("Security_0e503aef608672fa", 2553158234032216, undefined, [certificate]); }
 
 /**
  * func SecCertificateCopySerialNumber(_ certificate: SecCertificate) -> CFData?
  * @availability iOS 10.3+
  * @deprecated iOS 11.0
  */
-export function SecCertificateCopySerialNumber(certificate: SecCertificate): $SDK15 { return callSDK<$SDK15>("Security_d968214ecc684fb6", 884186873625670, undefined, [certificate]); }
+export function SecCertificateCopySerialNumber(certificate: SecCertificate): $SDK15 { return callSDK<$SDK15>("Security_0e503aef608672fa", 884186873625670, undefined, [certificate]); }
 
 /**
  * func SecCertificateCopySerialNumberData(_ certificate: SecCertificate, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> CFData?
  * @availability iOS 11.0+
  */
-export function SecCertificateCopySerialNumberData(certificate: SecCertificate): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 3666793934575803, undefined, [certificate, null]); }
+export function SecCertificateCopySerialNumberData(certificate: SecCertificate): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 3666793934575803, undefined, [certificate, null]); }
 
 /**
  * func SecCertificateCopySubjectSummary(_ certificate: SecCertificate) -> CFString?
  * @availability iOS 2.0+
  */
-export function SecCertificateCopySubjectSummary(certificate: SecCertificate): $SDK12 { return callSDK<$SDK12>("Security_d968214ecc684fb6", 4099815657700934, undefined, [certificate]); }
+export function SecCertificateCopySubjectSummary(certificate: SecCertificate): $SDK12 { return callSDK<$SDK12>("Security_0e503aef608672fa", 4099815657700934, undefined, [certificate]); }
 
 /**
  * func SecCertificateCreateWithData(_ allocator: CFAllocator?, _ data: CFData) -> SecCertificate?
  * @availability iOS 2.0+
  */
-export function SecCertificateCreateWithData(allocator: $SDK11, data: _CoreFoundation_CFData): (SecCertificate) | null { return callSDK<(SecCertificate) | null>("Security_d968214ecc684fb6", 1841340829190359, undefined, [allocator, data]); }
+export function SecCertificateCreateWithData(allocator: $SDK11, data: _CoreFoundation_CFData): (SecCertificate) | null { return callSDK<(SecCertificate) | null>("Security_0e503aef608672fa", 1841340829190359, undefined, [allocator, data]); }
 
 /**
  * func SecCertificateGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  */
-export function SecCertificateGetTypeID(): number { return callSDK<number>("Security_d968214ecc684fb6", 3393502859434969, undefined, []); }
+export function SecCertificateGetTypeID(): number { return callSDK<number>("Security_0e503aef608672fa", 3393502859434969, undefined, []); }
 
 /**
  * func SecCopyErrorMessageString(_ status: OSStatus, _ reserved: UnsafeMutableRawPointer?) -> CFString?
  * @availability iOS 11.3+
  */
-export function SecCopyErrorMessageString(status: number, reserved?: (SDKHandle) | null): $SDK12 { return callSDK<$SDK12>("Security_d968214ecc684fb6", 452018179924292, undefined, [status, reserved]); }
+export function SecCopyErrorMessageString(status: number, reserved?: (SDKHandle) | null): $SDK12 { return callSDK<$SDK12>("Security_0e503aef608672fa", 452018179924292, undefined, [status, reserved]); }
 
 /**
  * func SecCreateSharedWebCredentialPassword() -> CFString?
  * @availability iOS 8.0+
  */
-export function SecCreateSharedWebCredentialPassword(): $SDK12 { return callSDK<$SDK12>("Security_d968214ecc684fb6", 3261241449377297, undefined, []); }
+export function SecCreateSharedWebCredentialPassword(): $SDK12 { return callSDK<$SDK12>("Security_0e503aef608672fa", 3261241449377297, undefined, []); }
 
 /**
  * func SecIdentityCopyCertificate(_ identityRef: SecIdentity, _ certificateRef: UnsafeMutablePointer<SecCertificate?>) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecIdentityCopyCertificate(identityRef: SecIdentity): { $ret: number; $out: { "certificateRef": (SecCertificate) | null } } { return callSDK<{ $ret: number; $out: { "certificateRef": (SecCertificate) | null } }>("Security_d968214ecc684fb6", 3842316261937570, undefined, [identityRef, null]); }
+export function SecIdentityCopyCertificate(identityRef: SecIdentity): { $ret: number; $out: { "certificateRef": (SecCertificate) | null } } { return callSDK<{ $ret: number; $out: { "certificateRef": (SecCertificate) | null } }>("Security_0e503aef608672fa", 3842316261937570, undefined, [identityRef, null]); }
 
 /**
  * func SecIdentityCopyPrivateKey(_ identityRef: SecIdentity, _ privateKeyRef: UnsafeMutablePointer<SecKey?>) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecIdentityCopyPrivateKey(identityRef: SecIdentity): { $ret: number; $out: { "privateKeyRef": (SecKey) | null } } { return callSDK<{ $ret: number; $out: { "privateKeyRef": (SecKey) | null } }>("Security_d968214ecc684fb6", 565407661477125, undefined, [identityRef, null]); }
+export function SecIdentityCopyPrivateKey(identityRef: SecIdentity): { $ret: number; $out: { "privateKeyRef": (SecKey) | null } } { return callSDK<{ $ret: number; $out: { "privateKeyRef": (SecKey) | null } }>("Security_0e503aef608672fa", 565407661477125, undefined, [identityRef, null]); }
 
 /**
  * func SecIdentityCreate(_ allocator: CFAllocator?, _ certificate: SecCertificate, _ privateKey: SecKey) -> SecIdentity?
  * @availability iOS 11.2+
  */
-export function SecIdentityCreate(allocator: $SDK11, certificate: SecCertificate, privateKey: SecKey): (SecIdentity) | null { return callSDK<(SecIdentity) | null>("Security_d968214ecc684fb6", 2627327718659385, undefined, [allocator, certificate, privateKey]); }
+export function SecIdentityCreate(allocator: $SDK11, certificate: SecCertificate, privateKey: SecKey): (SecIdentity) | null { return callSDK<(SecIdentity) | null>("Security_0e503aef608672fa", 2627327718659385, undefined, [allocator, certificate, privateKey]); }
 
 /**
  * func SecIdentityGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  */
-export function SecIdentityGetTypeID(): number { return callSDK<number>("Security_d968214ecc684fb6", 3641407947591563, undefined, []); }
+export function SecIdentityGetTypeID(): number { return callSDK<number>("Security_0e503aef608672fa", 3641407947591563, undefined, []); }
 
 /**
  * func SecItemAdd(_ attributes: CFDictionary, _ result: UnsafeMutablePointer<CFTypeRef?>?) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecItemAdd(attributes: _CoreFoundation_CFDictionary): { $ret: number; $out: { "result": (unknown) | null } } { return callSDK<{ $ret: number; $out: { "result": (unknown) | null } }>("Security_d968214ecc684fb6", 1093951535882875, undefined, [attributes, null]); }
+export function SecItemAdd(attributes: _CoreFoundation_CFDictionary): { $ret: number; $out: { "result": (unknown) | null } } { return callSDK<{ $ret: number; $out: { "result": (unknown) | null } }>("Security_0e503aef608672fa", 1093951535882875, undefined, [attributes, null]); }
 
 /**
  * func SecItemCopyMatching(_ query: CFDictionary, _ result: UnsafeMutablePointer<CFTypeRef?>?) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecItemCopyMatching(query: _CoreFoundation_CFDictionary): { $ret: number; $out: { "result": (unknown) | null } } { return callSDK<{ $ret: number; $out: { "result": (unknown) | null } }>("Security_d968214ecc684fb6", 3489027613783605, undefined, [query, null]); }
+export function SecItemCopyMatching(query: _CoreFoundation_CFDictionary): { $ret: number; $out: { "result": (unknown) | null } } { return callSDK<{ $ret: number; $out: { "result": (unknown) | null } }>("Security_0e503aef608672fa", 3489027613783605, undefined, [query, null]); }
 
 /**
  * func SecItemDelete(_ query: CFDictionary) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecItemDelete(query: _CoreFoundation_CFDictionary): number { return callSDK<number>("Security_d968214ecc684fb6", 679311040458342, undefined, [query]); }
+export function SecItemDelete(query: _CoreFoundation_CFDictionary): number { return callSDK<number>("Security_0e503aef608672fa", 679311040458342, undefined, [query]); }
 
 /**
  * func SecItemUpdate(_ query: CFDictionary, _ attributesToUpdate: CFDictionary) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecItemUpdate(query: _CoreFoundation_CFDictionary, attributesToUpdate: _CoreFoundation_CFDictionary): number { return callSDK<number>("Security_d968214ecc684fb6", 70292558332519, undefined, [query, attributesToUpdate]); }
+export function SecItemUpdate(query: _CoreFoundation_CFDictionary, attributesToUpdate: _CoreFoundation_CFDictionary): number { return callSDK<number>("Security_0e503aef608672fa", 70292558332519, undefined, [query, attributesToUpdate]); }
 
 /**
  * func SecKeyCopyAttributes(_ key: SecKey) -> CFDictionary?
  * @availability iOS 10.0+
  */
-export function SecKeyCopyAttributes(key: SecKey): $SDK17 { return callSDK<$SDK17>("Security_d968214ecc684fb6", 4337757347441735, undefined, [key]); }
+export function SecKeyCopyAttributes(key: SecKey): $SDK17 { return callSDK<$SDK17>("Security_0e503aef608672fa", 4337757347441735, undefined, [key]); }
 
 /**
  * func SecKeyCopyExternalRepresentation(_ key: SecKey, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> CFData?
  * @availability iOS 10.0+
  */
-export function SecKeyCopyExternalRepresentation(key: SecKey): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 1222803220379940, undefined, [key, null]); }
+export function SecKeyCopyExternalRepresentation(key: SecKey): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 1222803220379940, undefined, [key, null]); }
 
 /**
  * func SecKeyCopyKeyExchangeResult(_ privateKey: SecKey, _ algorithm: SecKeyAlgorithm, _ publicKey: SecKey, _ parameters: CFDictionary, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> CFData?
  * @availability iOS 10.0+
  */
-export function SecKeyCopyKeyExchangeResult(privateKey: SecKey, algorithm: SecKeyAlgorithm, publicKey: SecKey, parameters: _CoreFoundation_CFDictionary): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 1361725637742150, undefined, [privateKey, algorithm, publicKey, parameters, null]); }
+export function SecKeyCopyKeyExchangeResult(privateKey: SecKey, algorithm: SecKeyAlgorithm, publicKey: SecKey, parameters: _CoreFoundation_CFDictionary): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 1361725637742150, undefined, [privateKey, algorithm, publicKey, parameters, null]); }
 
 /**
  * func SecKeyCopyPublicKey(_ key: SecKey) -> SecKey?
  * @availability iOS 10.0+
  */
-export function SecKeyCopyPublicKey(key: SecKey): (SecKey) | null { return callSDK<(SecKey) | null>("Security_d968214ecc684fb6", 3816793442293297, undefined, [key]); }
+export function SecKeyCopyPublicKey(key: SecKey): (SecKey) | null { return callSDK<(SecKey) | null>("Security_0e503aef608672fa", 3816793442293297, undefined, [key]); }
 
 /**
  * func SecKeyCreateDecryptedData(_ key: SecKey, _ algorithm: SecKeyAlgorithm, _ ciphertext: CFData, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> CFData?
  * @availability iOS 10.0+
  */
-export function SecKeyCreateDecryptedData(key: SecKey, algorithm: SecKeyAlgorithm, ciphertext: _CoreFoundation_CFData): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 3812590920945806, undefined, [key, algorithm, ciphertext, null]); }
+export function SecKeyCreateDecryptedData(key: SecKey, algorithm: SecKeyAlgorithm, ciphertext: _CoreFoundation_CFData): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 3812590920945806, undefined, [key, algorithm, ciphertext, null]); }
 
 /**
  * func SecKeyCreateEncryptedData(_ key: SecKey, _ algorithm: SecKeyAlgorithm, _ plaintext: CFData, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> CFData?
  * @availability iOS 10.0+
  */
-export function SecKeyCreateEncryptedData(key: SecKey, algorithm: SecKeyAlgorithm, plaintext: _CoreFoundation_CFData): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 2155684868586292, undefined, [key, algorithm, plaintext, null]); }
+export function SecKeyCreateEncryptedData(key: SecKey, algorithm: SecKeyAlgorithm, plaintext: _CoreFoundation_CFData): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 2155684868586292, undefined, [key, algorithm, plaintext, null]); }
 
 /**
  * func SecKeyCreateRandomKey(_ parameters: CFDictionary, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> SecKey?
  * @availability iOS 10.0+
  */
-export function SecKeyCreateRandomKey(parameters: _CoreFoundation_CFDictionary): { $ret: (SecKey) | null; $out: { "error": $SDK10 } } { return callSDK<{ $ret: (SecKey) | null; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 1556594431770029, undefined, [parameters, null]); }
+export function SecKeyCreateRandomKey(parameters: _CoreFoundation_CFDictionary): { $ret: (SecKey) | null; $out: { "error": $SDK10 } } { return callSDK<{ $ret: (SecKey) | null; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 1556594431770029, undefined, [parameters, null]); }
 
 /**
  * func SecKeyCreateSignature(_ key: SecKey, _ algorithm: SecKeyAlgorithm, _ dataToSign: CFData, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> CFData?
  * @availability iOS 10.0+
  */
-export function SecKeyCreateSignature(key: SecKey, algorithm: SecKeyAlgorithm, dataToSign: _CoreFoundation_CFData): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 2445513278613671, undefined, [key, algorithm, dataToSign, null]); }
+export function SecKeyCreateSignature(key: SecKey, algorithm: SecKeyAlgorithm, dataToSign: _CoreFoundation_CFData): { $ret: $SDK15; $out: { "error": $SDK10 } } { return callSDK<{ $ret: $SDK15; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 2445513278613671, undefined, [key, algorithm, dataToSign, null]); }
 
 /**
  * func SecKeyCreateWithData(_ keyData: CFData, _ attributes: CFDictionary, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> SecKey?
  * @availability iOS 10.0+
  */
-export function SecKeyCreateWithData(keyData: _CoreFoundation_CFData, attributes: _CoreFoundation_CFDictionary): { $ret: (SecKey) | null; $out: { "error": $SDK10 } } { return callSDK<{ $ret: (SecKey) | null; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 4301138606238463, undefined, [keyData, attributes, null]); }
+export function SecKeyCreateWithData(keyData: _CoreFoundation_CFData, attributes: _CoreFoundation_CFDictionary): { $ret: (SecKey) | null; $out: { "error": $SDK10 } } { return callSDK<{ $ret: (SecKey) | null; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 4301138606238463, undefined, [keyData, attributes, null]); }
 
 /**
  * func SecKeyDecrypt(_ key: SecKey, _ padding: SecPadding, _ cipherText: UnsafePointer<UInt8>, _ cipherTextLen: Int, _ plainText: UnsafeMutablePointer<UInt8>, _ plainTextLen: UnsafeMutablePointer<Int>) -> OSStatus
  * @availability iOS 2.0+
  * @deprecated iOS 15.0
  */
-export function SecKeyDecrypt(key: SecKey, padding: SecPadding, cipherText: SDKHandle, cipherTextLen: number, plainText: SDKHandle, plainTextLen: SDKHandle): number { return callSDK<number>("Security_d968214ecc684fb6", 4497676187424836, undefined, [key, padding, cipherText, cipherTextLen, plainText, plainTextLen]); }
+export function SecKeyDecrypt(key: SecKey, padding: SecPadding, cipherText: SDKHandle, cipherTextLen: number, plainText: SDKHandle, plainTextLen: SDKHandle): number { return callSDK<number>("Security_0e503aef608672fa", 4497676187424836, undefined, [key, padding, cipherText, cipherTextLen, plainText, plainTextLen]); }
 
 /**
  * func SecKeyEncrypt(_ key: SecKey, _ padding: SecPadding, _ plainText: UnsafePointer<UInt8>, _ plainTextLen: Int, _ cipherText: UnsafeMutablePointer<UInt8>, _ cipherTextLen: UnsafeMutablePointer<Int>) -> OSStatus
  * @availability iOS 2.0+
  * @deprecated iOS 15.0
  */
-export function SecKeyEncrypt(key: SecKey, padding: SecPadding, plainText: SDKHandle, plainTextLen: number, cipherText: SDKHandle, cipherTextLen: SDKHandle): number { return callSDK<number>("Security_d968214ecc684fb6", 304966707511598, undefined, [key, padding, plainText, plainTextLen, cipherText, cipherTextLen]); }
+export function SecKeyEncrypt(key: SecKey, padding: SecPadding, plainText: SDKHandle, plainTextLen: number, cipherText: SDKHandle, cipherTextLen: SDKHandle): number { return callSDK<number>("Security_0e503aef608672fa", 304966707511598, undefined, [key, padding, plainText, plainTextLen, cipherText, cipherTextLen]); }
 
 /**
  * func SecKeyGeneratePair(_ parameters: CFDictionary, _ publicKey: UnsafeMutablePointer<SecKey?>?, _ privateKey: UnsafeMutablePointer<SecKey?>?) -> OSStatus
  * @availability iOS 2.0+
  * @deprecated iOS 15.0
  */
-export function SecKeyGeneratePair(parameters: _CoreFoundation_CFDictionary): { $ret: number; $out: { "publicKey": (SecKey) | null; "privateKey": (SecKey) | null } } { return callSDK<{ $ret: number; $out: { "publicKey": (SecKey) | null; "privateKey": (SecKey) | null } }>("Security_d968214ecc684fb6", 1747028439379345, undefined, [parameters, null, null]); }
+export function SecKeyGeneratePair(parameters: _CoreFoundation_CFDictionary): { $ret: number; $out: { "publicKey": (SecKey) | null; "privateKey": (SecKey) | null } } { return callSDK<{ $ret: number; $out: { "publicKey": (SecKey) | null; "privateKey": (SecKey) | null } }>("Security_0e503aef608672fa", 1747028439379345, undefined, [parameters, null, null]); }
 
 /**
  * func SecKeyGetBlockSize(_ key: SecKey) -> Int
  * @availability iOS 2.0+
  */
-export function SecKeyGetBlockSize(key: SecKey): number { return callSDK<number>("Security_d968214ecc684fb6", 3274830578821669, undefined, [key]); }
+export function SecKeyGetBlockSize(key: SecKey): number { return callSDK<number>("Security_0e503aef608672fa", 3274830578821669, undefined, [key]); }
 
 /**
  * func SecKeyGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  */
-export function SecKeyGetTypeID(): number { return callSDK<number>("Security_d968214ecc684fb6", 1910364653736841, undefined, []); }
+export function SecKeyGetTypeID(): number { return callSDK<number>("Security_0e503aef608672fa", 1910364653736841, undefined, []); }
 
 /**
  * func SecKeyIsAlgorithmSupported(_ key: SecKey, _ operation: SecKeyOperationType, _ algorithm: SecKeyAlgorithm) -> Bool
  * @availability iOS 10.0+
  */
-export function SecKeyIsAlgorithmSupported(key: SecKey, operation: SecKeyOperationType, algorithm: SecKeyAlgorithm): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 2564161855241719, undefined, [key, operation, algorithm]); }
+export function SecKeyIsAlgorithmSupported(key: SecKey, operation: SecKeyOperationType, algorithm: SecKeyAlgorithm): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 2564161855241719, undefined, [key, operation, algorithm]); }
 
 /**
  * func SecKeyRawSign(_ key: SecKey, _ padding: SecPadding, _ dataToSign: UnsafePointer<UInt8>, _ dataToSignLen: Int, _ sig: UnsafeMutablePointer<UInt8>, _ sigLen: UnsafeMutablePointer<Int>) -> OSStatus
  * @availability iOS 2.0+
  * @deprecated iOS 15.0
  */
-export function SecKeyRawSign(key: SecKey, padding: SecPadding, dataToSign: SDKHandle, dataToSignLen: number, sig: SDKHandle, sigLen: SDKHandle): number { return callSDK<number>("Security_d968214ecc684fb6", 3380407743226841, undefined, [key, padding, dataToSign, dataToSignLen, sig, sigLen]); }
+export function SecKeyRawSign(key: SecKey, padding: SecPadding, dataToSign: SDKHandle, dataToSignLen: number, sig: SDKHandle, sigLen: SDKHandle): number { return callSDK<number>("Security_0e503aef608672fa", 3380407743226841, undefined, [key, padding, dataToSign, dataToSignLen, sig, sigLen]); }
 
 /**
  * func SecKeyRawVerify(_ key: SecKey, _ padding: SecPadding, _ signedData: UnsafePointer<UInt8>, _ signedDataLen: Int, _ sig: UnsafePointer<UInt8>, _ sigLen: Int) -> OSStatus
  * @availability iOS 2.0+
  * @deprecated iOS 15.0
  */
-export function SecKeyRawVerify(key: SecKey, padding: SecPadding, signedData: SDKHandle, signedDataLen: number, sig: SDKHandle, sigLen: number): number { return callSDK<number>("Security_d968214ecc684fb6", 3514387674616236, undefined, [key, padding, signedData, signedDataLen, sig, sigLen]); }
+export function SecKeyRawVerify(key: SecKey, padding: SecPadding, signedData: SDKHandle, signedDataLen: number, sig: SDKHandle, sigLen: number): number { return callSDK<number>("Security_0e503aef608672fa", 3514387674616236, undefined, [key, padding, signedData, signedDataLen, sig, sigLen]); }
 
 /**
  * func SecKeyVerifySignature(_ key: SecKey, _ algorithm: SecKeyAlgorithm, _ signedData: CFData, _ signature: CFData, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?) -> Bool
  * @availability iOS 10.0+
  */
-export function SecKeyVerifySignature(key: SecKey, algorithm: SecKeyAlgorithm, signedData: _CoreFoundation_CFData, signature: _CoreFoundation_CFData): { $ret: boolean; $out: { "error": $SDK10 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 4029231558830938, undefined, [key, algorithm, signedData, signature, null]); }
+export function SecKeyVerifySignature(key: SecKey, algorithm: SecKeyAlgorithm, signedData: _CoreFoundation_CFData, signature: _CoreFoundation_CFData): { $ret: boolean; $out: { "error": $SDK10 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 4029231558830938, undefined, [key, algorithm, signedData, signature, null]); }
 
 /**
  * func SecPKCS12Import(_ pkcs12_data: CFData, _ options: CFDictionary, _ items: UnsafeMutablePointer<CFArray?>) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecPKCS12Import(pkcs12_data: _CoreFoundation_CFData, options: _CoreFoundation_CFDictionary): { $ret: number; $out: { "items": $SDK14 } } { return callSDK<{ $ret: number; $out: { "items": $SDK14 } }>("Security_d968214ecc684fb6", 3629095018214819, undefined, [pkcs12_data, options, null]); }
+export function SecPKCS12Import(pkcs12_data: _CoreFoundation_CFData, options: _CoreFoundation_CFDictionary): { $ret: number; $out: { "items": $SDK14 } } { return callSDK<{ $ret: number; $out: { "items": $SDK14 } }>("Security_0e503aef608672fa", 3629095018214819, undefined, [pkcs12_data, options, null]); }
 
 /**
  * func SecPolicyCopyProperties(_ policyRef: SecPolicy) -> CFDictionary?
  * @availability iOS 7.0+
  */
-export function SecPolicyCopyProperties(policyRef: SecPolicy): $SDK17 { return callSDK<$SDK17>("Security_d968214ecc684fb6", 4166380055869271, undefined, [policyRef]); }
+export function SecPolicyCopyProperties(policyRef: SecPolicy): $SDK17 { return callSDK<$SDK17>("Security_0e503aef608672fa", 4166380055869271, undefined, [policyRef]); }
 
 /**
  * func SecPolicyCreateBasicX509() -> SecPolicy
  * @availability iOS 2.0+
  */
-export function SecPolicyCreateBasicX509(): SecPolicy { return callSDK<SecPolicy>("Security_d968214ecc684fb6", 2262725544278620, undefined, []); }
+export function SecPolicyCreateBasicX509(): SecPolicy { return callSDK<SecPolicy>("Security_0e503aef608672fa", 2262725544278620, undefined, []); }
 
 /**
  * func SecPolicyCreateRevocation(_ revocationFlags: CFOptionFlags) -> SecPolicy?
  * @availability iOS 7.0+
  */
-export function SecPolicyCreateRevocation(revocationFlags: number): (SecPolicy) | null { return callSDK<(SecPolicy) | null>("Security_d968214ecc684fb6", 229427192230782, undefined, [revocationFlags]); }
+export function SecPolicyCreateRevocation(revocationFlags: number): (SecPolicy) | null { return callSDK<(SecPolicy) | null>("Security_0e503aef608672fa", 229427192230782, undefined, [revocationFlags]); }
 
 /**
  * func SecPolicyCreateSSL(_ server: Bool, _ hostname: CFString?) -> SecPolicy
  * @availability iOS 2.0+
  */
-export function SecPolicyCreateSSL(server: boolean, hostname?: $SDK12): SecPolicy { return callSDK<SecPolicy>("Security_d968214ecc684fb6", 4149974190338058, undefined, [server, hostname]); }
+export function SecPolicyCreateSSL(server: boolean, hostname?: $SDK12): SecPolicy { return callSDK<SecPolicy>("Security_0e503aef608672fa", 4149974190338058, undefined, [server, hostname]); }
 
 /**
  * func SecPolicyCreateWithProperties(_ policyIdentifier: CFTypeRef, _ properties: CFDictionary?) -> SecPolicy?
  * @availability iOS 7.0+
  */
-export function SecPolicyCreateWithProperties(policyIdentifier: unknown, properties?: $SDK17): (SecPolicy) | null { return callSDK<(SecPolicy) | null>("Security_d968214ecc684fb6", 1785854751293454, undefined, [policyIdentifier, properties]); }
+export function SecPolicyCreateWithProperties(policyIdentifier: unknown, properties?: $SDK17): (SecPolicy) | null { return callSDK<(SecPolicy) | null>("Security_0e503aef608672fa", 1785854751293454, undefined, [policyIdentifier, properties]); }
 
 /**
  * func SecPolicyGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  */
-export function SecPolicyGetTypeID(): number { return callSDK<number>("Security_d968214ecc684fb6", 1873076219534273, undefined, []); }
+export function SecPolicyGetTypeID(): number { return callSDK<number>("Security_0e503aef608672fa", 1873076219534273, undefined, []); }
 
 /**
  * func SecRandomCopyBytes(_ rnd: SecRandomRef?, _ count: Int, _ bytes: UnsafeMutableRawPointer) -> Int32
  * @availability iOS 2.0+
  */
-export function SecRandomCopyBytes(rnd: (SDKHandle) | null, count: number, bytes: SDKHandle): number { return callSDK<number>("Security_d968214ecc684fb6", 606733263187675, undefined, [rnd, count, bytes]); }
+export function SecRandomCopyBytes(rnd: (SDKHandle) | null, count: number, bytes: SDKHandle): number { return callSDK<number>("Security_0e503aef608672fa", 606733263187675, undefined, [rnd, count, bytes]); }
 
 /**
  * func SecRequestSharedWebCredential(_ fqdn: CFString?, _ account: CFString?, _ completionHandler: @escaping (CFArray?, CFError?) -> Void)
  * @availability iOS 8.0+
  * @deprecated iOS 14.0
  */
-export function SecRequestSharedWebCredential(fqdn: $SDK12, account: $SDK12, completionHandler: ((arg0: (_CoreFoundation_CFArray) | null, arg1: (_CoreFoundation_CFError) | null) => void)): void { return callSDK<void>("Security_d968214ecc684fb6", 3650664029891613, undefined, [fqdn, account, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+export function SecRequestSharedWebCredential(fqdn: $SDK12, account: $SDK12, completionHandler: ((arg0: (_CoreFoundation_CFArray) | null, arg1: (_CoreFoundation_CFError) | null) => void)): void { return callSDK<void>("Security_0e503aef608672fa", 3650664029891613, undefined, [fqdn, account, completionHandler], [null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func SecTrustCopyCertificateChain(_ trust: SecTrust) -> CFArray?
  * @availability iOS 15.0+
  */
-export function SecTrustCopyCertificateChain(trust: SecTrust): $SDK14 { return callSDK<$SDK14>("Security_d968214ecc684fb6", 3272635605385466, undefined, [trust]); }
+export function SecTrustCopyCertificateChain(trust: SecTrust): $SDK14 { return callSDK<$SDK14>("Security_0e503aef608672fa", 3272635605385466, undefined, [trust]); }
 
 /**
  * func SecTrustCopyCustomAnchorCertificates(_ trust: SecTrust, _ anchors: UnsafeMutablePointer<CFArray?>) -> OSStatus
  * @availability iOS 7.0+
  */
-export function SecTrustCopyCustomAnchorCertificates(trust: SecTrust): { $ret: number; $out: { "anchors": $SDK14 } } { return callSDK<{ $ret: number; $out: { "anchors": $SDK14 } }>("Security_d968214ecc684fb6", 2452041229751242, undefined, [trust, null]); }
+export function SecTrustCopyCustomAnchorCertificates(trust: SecTrust): { $ret: number; $out: { "anchors": $SDK14 } } { return callSDK<{ $ret: number; $out: { "anchors": $SDK14 } }>("Security_0e503aef608672fa", 2452041229751242, undefined, [trust, null]); }
 
 /**
  * func SecTrustCopyExceptions(_ trust: SecTrust) -> CFData?
  * @availability iOS 4.0+
  */
-export function SecTrustCopyExceptions(trust: SecTrust): $SDK15 { return callSDK<$SDK15>("Security_d968214ecc684fb6", 4444019756800285, undefined, [trust]); }
+export function SecTrustCopyExceptions(trust: SecTrust): $SDK15 { return callSDK<$SDK15>("Security_0e503aef608672fa", 4444019756800285, undefined, [trust]); }
 
 /**
  * func SecTrustCopyKey(_ trust: SecTrust) -> SecKey?
  * @availability iOS 14.0+
  */
-export function SecTrustCopyKey(trust: SecTrust): (SecKey) | null { return callSDK<(SecKey) | null>("Security_d968214ecc684fb6", 3569660610406098, undefined, [trust]); }
+export function SecTrustCopyKey(trust: SecTrust): (SecKey) | null { return callSDK<(SecKey) | null>("Security_0e503aef608672fa", 3569660610406098, undefined, [trust]); }
 
 /**
  * func SecTrustCopyPolicies(_ trust: SecTrust, _ policies: UnsafeMutablePointer<CFArray?>) -> OSStatus
  * @availability iOS 7.0+
  */
-export function SecTrustCopyPolicies(trust: SecTrust): { $ret: number; $out: { "policies": $SDK14 } } { return callSDK<{ $ret: number; $out: { "policies": $SDK14 } }>("Security_d968214ecc684fb6", 4293342337898642, undefined, [trust, null]); }
+export function SecTrustCopyPolicies(trust: SecTrust): { $ret: number; $out: { "policies": $SDK14 } } { return callSDK<{ $ret: number; $out: { "policies": $SDK14 } }>("Security_0e503aef608672fa", 4293342337898642, undefined, [trust, null]); }
 
 /**
  * func SecTrustCopyProperties(_ trust: SecTrust) -> CFArray?
  * @availability iOS 2.0+
  * @deprecated iOS 15.0
  */
-export function SecTrustCopyProperties(trust: SecTrust): $SDK14 { return callSDK<$SDK14>("Security_d968214ecc684fb6", 3456648700500170, undefined, [trust]); }
+export function SecTrustCopyProperties(trust: SecTrust): $SDK14 { return callSDK<$SDK14>("Security_0e503aef608672fa", 3456648700500170, undefined, [trust]); }
 
 /**
  * func SecTrustCopyPublicKey(_ trust: SecTrust) -> SecKey?
  * @availability iOS 2.0+
  * @deprecated iOS 14.0
  */
-export function SecTrustCopyPublicKey(trust: SecTrust): (SecKey) | null { return callSDK<(SecKey) | null>("Security_d968214ecc684fb6", 3606508569313931, undefined, [trust]); }
+export function SecTrustCopyPublicKey(trust: SecTrust): (SecKey) | null { return callSDK<(SecKey) | null>("Security_0e503aef608672fa", 3606508569313931, undefined, [trust]); }
 
 /**
  * func SecTrustCopyResult(_ trust: SecTrust) -> CFDictionary?
  * @availability iOS 7.0+
  */
-export function SecTrustCopyResult(trust: SecTrust): $SDK17 { return callSDK<$SDK17>("Security_d968214ecc684fb6", 2373904159282290, undefined, [trust]); }
+export function SecTrustCopyResult(trust: SecTrust): $SDK17 { return callSDK<$SDK17>("Security_0e503aef608672fa", 2373904159282290, undefined, [trust]); }
 
 /**
  * func SecTrustCreateWithCertificates(_ certificates: CFTypeRef, _ policies: CFTypeRef?, _ trust: UnsafeMutablePointer<SecTrust?>) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecTrustCreateWithCertificates(certificates: unknown, policies?: (unknown) | null): { $ret: number; $out: { "trust": (SecTrust) | null } } { return callSDK<{ $ret: number; $out: { "trust": (SecTrust) | null } }>("Security_d968214ecc684fb6", 4206969708706038, undefined, [certificates, policies, null]); }
+export function SecTrustCreateWithCertificates(certificates: unknown, policies?: (unknown) | null): { $ret: number; $out: { "trust": (SecTrust) | null } } { return callSDK<{ $ret: number; $out: { "trust": (SecTrust) | null } }>("Security_0e503aef608672fa", 4206969708706038, undefined, [certificates, policies, null]); }
 
 /**
  * func SecTrustEvaluate(_ trust: SecTrust, _ result: UnsafeMutablePointer<SecTrustResultType>) -> OSStatus
  * @availability iOS 2.0+
  * @deprecated iOS 13.0
  */
-export function SecTrustEvaluate(trust: SecTrust, result: SDKHandle): number { return callSDK<number>("Security_d968214ecc684fb6", 4236858429311274, undefined, [trust, result]); }
+export function SecTrustEvaluate(trust: SecTrust, result: SDKHandle): number { return callSDK<number>("Security_0e503aef608672fa", 4236858429311274, undefined, [trust, result]); }
 
 /**
  * func SecTrustEvaluateAsync(_ trust: SecTrust, _ queue: dispatch_queue_t?, _ result: @escaping SecTrustCallback) -> OSStatus
  * @availability iOS 7.0+
  * @deprecated iOS 13.0
  */
-export function SecTrustEvaluateAsync(trust: SecTrust, queue: (_Dispatch_DispatchQueue) | null, result: ((arg0: SecTrust, arg1: SecTrustResultType) => void)): number { return callSDK<number>("Security_d968214ecc684fb6", 275888364903242, undefined, [trust, queue, result], [null,null,{"callback":{"out":[]}}]); }
+export function SecTrustEvaluateAsync(trust: SecTrust, queue: (_Dispatch_DispatchQueue) | null, result: ((arg0: SecTrust, arg1: SecTrustResultType) => void)): number { return callSDK<number>("Security_0e503aef608672fa", 275888364903242, undefined, [trust, queue, result], [null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func SecTrustEvaluateAsyncWithError(_ trust: SecTrust, _ queue: dispatch_queue_t, _ result: @escaping SecTrustWithErrorCallback) -> OSStatus
  * @availability iOS 13.0+
  */
-export function SecTrustEvaluateAsyncWithError(trust: SecTrust, queue: _Dispatch_DispatchQueue, result: ((arg0: SecTrust, arg1: boolean, arg2: (_CoreFoundation_CFError) | null) => void)): number { return callSDK<number>("Security_d968214ecc684fb6", 2908040550221697, undefined, [trust, queue, result], [null,null,{"callback":{"out":[]}}]); }
+export function SecTrustEvaluateAsyncWithError(trust: SecTrust, queue: _Dispatch_DispatchQueue, result: ((arg0: SecTrust, arg1: boolean, arg2: (_CoreFoundation_CFError) | null) => void)): number { return callSDK<number>("Security_0e503aef608672fa", 2908040550221697, undefined, [trust, queue, result], [null,null,{"callback":{"out":[]}}]); }
 
 /**
  * func SecTrustEvaluateWithError(_ trust: SecTrust, _ error: UnsafeMutablePointer<CFError?>?) -> Bool
  * @availability iOS 12.0+
  */
-export function SecTrustEvaluateWithError(trust: SecTrust): { $ret: boolean; $out: { "error": $SDK10 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK10 } }>("Security_d968214ecc684fb6", 1110782588277766, undefined, [trust, null]); }
+export function SecTrustEvaluateWithError(trust: SecTrust): { $ret: boolean; $out: { "error": $SDK10 } } { return callSDK<{ $ret: boolean; $out: { "error": $SDK10 } }>("Security_0e503aef608672fa", 1110782588277766, undefined, [trust, null]); }
 
 /**
  * func SecTrustGetCertificateAtIndex(_ trust: SecTrust, _ ix: CFIndex) -> SecCertificate?
  * @availability iOS 2.0+
  * @deprecated iOS 15.0
  */
-export function SecTrustGetCertificateAtIndex(trust: SecTrust, ix: number): (SecCertificate) | null { return callSDK<(SecCertificate) | null>("Security_d968214ecc684fb6", 843444152041819, undefined, [trust, ix]); }
+export function SecTrustGetCertificateAtIndex(trust: SecTrust, ix: number): (SecCertificate) | null { return callSDK<(SecCertificate) | null>("Security_0e503aef608672fa", 843444152041819, undefined, [trust, ix]); }
 
 /**
  * func SecTrustGetCertificateCount(_ trust: SecTrust) -> CFIndex
  * @availability iOS 2.0+
  */
-export function SecTrustGetCertificateCount(trust: SecTrust): number { return callSDK<number>("Security_d968214ecc684fb6", 1506663443360777, undefined, [trust]); }
+export function SecTrustGetCertificateCount(trust: SecTrust): number { return callSDK<number>("Security_0e503aef608672fa", 1506663443360777, undefined, [trust]); }
 
 /**
  * func SecTrustGetNetworkFetchAllowed(_ trust: SecTrust, _ allowFetch: UnsafeMutablePointer<DarwinBoolean>) -> OSStatus
  * @availability iOS 7.0+
  */
-export function SecTrustGetNetworkFetchAllowed(trust: SecTrust): { $ret: number; $out: { "allowFetch": boolean } } { return callSDK<{ $ret: number; $out: { "allowFetch": boolean } }>("Security_d968214ecc684fb6", 2387366003814948, undefined, [trust, null]); }
+export function SecTrustGetNetworkFetchAllowed(trust: SecTrust): { $ret: number; $out: { "allowFetch": boolean } } { return callSDK<{ $ret: number; $out: { "allowFetch": boolean } }>("Security_0e503aef608672fa", 2387366003814948, undefined, [trust, null]); }
 
 /**
  * func SecTrustGetTrustResult(_ trust: SecTrust, _ result: UnsafeMutablePointer<SecTrustResultType>) -> OSStatus
  * @availability iOS 7.0+
  */
-export function SecTrustGetTrustResult(trust: SecTrust, result: SDKHandle): number { return callSDK<number>("Security_d968214ecc684fb6", 3323380461552921, undefined, [trust, result]); }
+export function SecTrustGetTrustResult(trust: SecTrust, result: SDKHandle): number { return callSDK<number>("Security_0e503aef608672fa", 3323380461552921, undefined, [trust, result]); }
 
 /**
  * func SecTrustGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  */
-export function SecTrustGetTypeID(): number { return callSDK<number>("Security_d968214ecc684fb6", 887397314748930, undefined, []); }
+export function SecTrustGetTypeID(): number { return callSDK<number>("Security_0e503aef608672fa", 887397314748930, undefined, []); }
 
 /**
  * func SecTrustGetVerifyTime(_ trust: SecTrust) -> CFAbsoluteTime
  * @availability iOS 2.0+
  */
-export function SecTrustGetVerifyTime(trust: SecTrust): number { return callSDK<number>("Security_d968214ecc684fb6", 4322615267817101, undefined, [trust]); }
+export function SecTrustGetVerifyTime(trust: SecTrust): number { return callSDK<number>("Security_0e503aef608672fa", 4322615267817101, undefined, [trust]); }
 
 /**
  * func SecTrustSetAnchorCertificates(_ trust: SecTrust, _ anchorCertificates: CFArray?) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecTrustSetAnchorCertificates(trust: SecTrust, anchorCertificates?: $SDK14): number { return callSDK<number>("Security_d968214ecc684fb6", 2212052800266264, undefined, [trust, anchorCertificates]); }
+export function SecTrustSetAnchorCertificates(trust: SecTrust, anchorCertificates?: $SDK14): number { return callSDK<number>("Security_0e503aef608672fa", 2212052800266264, undefined, [trust, anchorCertificates]); }
 
 /**
  * func SecTrustSetAnchorCertificatesOnly(_ trust: SecTrust, _ anchorCertificatesOnly: Bool) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecTrustSetAnchorCertificatesOnly(trust: SecTrust, anchorCertificatesOnly: boolean): number { return callSDK<number>("Security_d968214ecc684fb6", 2575325239138696, undefined, [trust, anchorCertificatesOnly]); }
+export function SecTrustSetAnchorCertificatesOnly(trust: SecTrust, anchorCertificatesOnly: boolean): number { return callSDK<number>("Security_0e503aef608672fa", 2575325239138696, undefined, [trust, anchorCertificatesOnly]); }
 
 /**
  * func SecTrustSetExceptions(_ trust: SecTrust, _ exceptions: CFData?) -> Bool
  * @availability iOS 4.0+
  */
-export function SecTrustSetExceptions(trust: SecTrust, exceptions?: $SDK15): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 428734004768208, undefined, [trust, exceptions]); }
+export function SecTrustSetExceptions(trust: SecTrust, exceptions?: $SDK15): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 428734004768208, undefined, [trust, exceptions]); }
 
 /**
  * func SecTrustSetNetworkFetchAllowed(_ trust: SecTrust, _ allowFetch: Bool) -> OSStatus
  * @availability iOS 7.0+
  */
-export function SecTrustSetNetworkFetchAllowed(trust: SecTrust, allowFetch: boolean): number { return callSDK<number>("Security_d968214ecc684fb6", 4015802759854156, undefined, [trust, allowFetch]); }
+export function SecTrustSetNetworkFetchAllowed(trust: SecTrust, allowFetch: boolean): number { return callSDK<number>("Security_0e503aef608672fa", 4015802759854156, undefined, [trust, allowFetch]); }
 
 /**
  * func SecTrustSetOCSPResponse(_ trust: SecTrust, _ responseData: CFTypeRef?) -> OSStatus
  * @availability iOS 7.0+
  */
-export function SecTrustSetOCSPResponse(trust: SecTrust, responseData?: (unknown) | null): number { return callSDK<number>("Security_d968214ecc684fb6", 2950008975314786, undefined, [trust, responseData]); }
+export function SecTrustSetOCSPResponse(trust: SecTrust, responseData?: (unknown) | null): number { return callSDK<number>("Security_0e503aef608672fa", 2950008975314786, undefined, [trust, responseData]); }
 
 /**
  * func SecTrustSetPolicies(_ trust: SecTrust, _ policies: CFTypeRef) -> OSStatus
  * @availability iOS 6.0+
  */
-export function SecTrustSetPolicies(trust: SecTrust, policies: unknown): number { return callSDK<number>("Security_d968214ecc684fb6", 3578071528513712, undefined, [trust, policies]); }
+export function SecTrustSetPolicies(trust: SecTrust, policies: unknown): number { return callSDK<number>("Security_0e503aef608672fa", 3578071528513712, undefined, [trust, policies]); }
 
 /**
  * func SecTrustSetSignedCertificateTimestamps(_ trust: SecTrust, _ sctArray: CFArray?) -> OSStatus
  * @availability iOS 12.1+
  */
-export function SecTrustSetSignedCertificateTimestamps(trust: SecTrust, sctArray?: $SDK14): number { return callSDK<number>("Security_d968214ecc684fb6", 2777437214302896, undefined, [trust, sctArray]); }
+export function SecTrustSetSignedCertificateTimestamps(trust: SecTrust, sctArray?: $SDK14): number { return callSDK<number>("Security_0e503aef608672fa", 2777437214302896, undefined, [trust, sctArray]); }
 
 /**
  * func SecTrustSetVerifyDate(_ trust: SecTrust, _ verifyDate: CFDate) -> OSStatus
  * @availability iOS 2.0+
  */
-export function SecTrustSetVerifyDate(trust: SecTrust, verifyDate: _CoreFoundation_CFDate): number { return callSDK<number>("Security_d968214ecc684fb6", 3617860758955980, undefined, [trust, verifyDate]); }
+export function SecTrustSetVerifyDate(trust: SecTrust, verifyDate: _CoreFoundation_CFDate): number { return callSDK<number>("Security_0e503aef608672fa", 3617860758955980, undefined, [trust, verifyDate]); }
 
 /**
  * func sec_certificate_copy_ref(_ certificate: sec_certificate_t) -> Unmanaged<SecCertificate>
  * @availability iOS 12.0+
  */
-export function sec_certificate_copy_ref(certificate: Implements<OS_sec_certificate> | SDKHandle): SDKHandle { return callSDK<SDKHandle>("Security_d968214ecc684fb6", 1462747055149840, undefined, [certificate], [{"protocol":"c:objc(pl)OS_sec_certificate"}]); }
+export function sec_certificate_copy_ref(certificate: Implements<OS_sec_certificate> | SDKHandle): SDKHandle { return callSDK<SDKHandle>("Security_0e503aef608672fa", 1462747055149840, undefined, [certificate], [{"protocol":"c:objc(pl)OS_sec_certificate"}]); }
 
 /**
  * func sec_certificate_create(_ certificate: SecCertificate) -> sec_certificate_t?
  * @availability iOS 12.0+
  */
-export function sec_certificate_create(certificate: SecCertificate): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 3186166649512814, undefined, [certificate]); }
+export function sec_certificate_create(certificate: SecCertificate): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 3186166649512814, undefined, [certificate]); }
 
 /**
  * func sec_identity_access_certificates(_ identity: sec_identity_t, _ handler: @escaping (sec_certificate_t) -> Void) -> Bool
  * @availability iOS 13.0+
  */
-export function sec_identity_access_certificates(identity: $SDK23, handler: $SDK24): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 4170059678712570, undefined, [identity, handler], [{"protocol":"c:objc(pl)OS_sec_identity"},{"callback":{"out":[]}}]); }
+export function sec_identity_access_certificates(identity: $SDK23, handler: $SDK24): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 4170059678712570, undefined, [identity, handler], [{"protocol":"c:objc(pl)OS_sec_identity"},{"callback":{"out":[]}}]); }
 
 /**
  * func sec_identity_copy_certificates_ref(_ identity: sec_identity_t) -> Unmanaged<CFArray>?
  * @availability iOS 12.0+
  */
-export function sec_identity_copy_certificates_ref(identity: $SDK23): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 3356099436412294, undefined, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
+export function sec_identity_copy_certificates_ref(identity: $SDK23): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 3356099436412294, undefined, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
 
 /**
  * func sec_identity_copy_ref(_ identity: sec_identity_t) -> Unmanaged<SecIdentity>?
  * @availability iOS 12.0+
  */
-export function sec_identity_copy_ref(identity: $SDK23): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 3401551814244216, undefined, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
+export function sec_identity_copy_ref(identity: $SDK23): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 3401551814244216, undefined, [identity], [{"protocol":"c:objc(pl)OS_sec_identity"}]); }
 
 /**
  * func sec_identity_create(_ identity: SecIdentity) -> sec_identity_t?
  * @availability iOS 12.0+
  */
-export function sec_identity_create(identity: SecIdentity): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 2084422228530691, undefined, [identity]); }
+export function sec_identity_create(identity: SecIdentity): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 2084422228530691, undefined, [identity]); }
 
 /**
  * func sec_identity_create_with_certificates(_ identity: SecIdentity, _ certificates: CFArray) -> sec_identity_t?
  * @availability iOS 12.0+
  */
-export function sec_identity_create_with_certificates(identity: SecIdentity, certificates: _CoreFoundation_CFArray): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 4359045875998605, undefined, [identity, certificates]); }
+export function sec_identity_create_with_certificates(identity: SecIdentity, certificates: _CoreFoundation_CFArray): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 4359045875998605, undefined, [identity, certificates]); }
 
 /**
  * func sec_protocol_metadata_access_distinguished_names(_ metadata: sec_protocol_metadata_t, _ handler: @escaping (dispatch_data_t) -> Void) -> Bool
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_access_distinguished_names(metadata: $SDK25, handler: $SDK24): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 2140833995997016, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
+export function sec_protocol_metadata_access_distinguished_names(metadata: $SDK25, handler: $SDK24): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 2140833995997016, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
 
 /**
  * func sec_protocol_metadata_access_ocsp_response(_ metadata: sec_protocol_metadata_t, _ handler: @escaping (dispatch_data_t) -> Void) -> Bool
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_access_ocsp_response(metadata: $SDK25, handler: $SDK24): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 2883897084496802, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
+export function sec_protocol_metadata_access_ocsp_response(metadata: $SDK25, handler: $SDK24): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 2883897084496802, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
 
 /**
  * func sec_protocol_metadata_access_peer_certificate_chain(_ metadata: sec_protocol_metadata_t, _ handler: @escaping (sec_certificate_t) -> Void) -> Bool
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_access_peer_certificate_chain(metadata: $SDK25, handler: $SDK24): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 3825339991927789, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
+export function sec_protocol_metadata_access_peer_certificate_chain(metadata: $SDK25, handler: $SDK24): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 3825339991927789, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
 
 /**
  * func sec_protocol_metadata_access_pre_shared_keys(_ metadata: sec_protocol_metadata_t, _ handler: @escaping (dispatch_data_t, dispatch_data_t) -> Void) -> Bool
  * @availability iOS 13.0+
  */
-export function sec_protocol_metadata_access_pre_shared_keys(metadata: $SDK25, handler: ((arg0: SDKHandle, arg1: SDKHandle) => void)): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 2031341042056307, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
+export function sec_protocol_metadata_access_pre_shared_keys(metadata: $SDK25, handler: ((arg0: SDKHandle, arg1: SDKHandle) => void)): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 2031341042056307, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
 
 /**
  * func sec_protocol_metadata_access_supported_signature_algorithms(_ metadata: sec_protocol_metadata_t, _ handler: @escaping (UInt16) -> Void) -> Bool
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_access_supported_signature_algorithms(metadata: $SDK25, handler: ((arg0: number) => void)): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 4005297914675964, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
+export function sec_protocol_metadata_access_supported_signature_algorithms(metadata: $SDK25, handler: ((arg0: number) => void)): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 4005297914675964, undefined, [metadata, handler], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"callback":{"out":[]}}]); }
 
 /**
  * func sec_protocol_metadata_challenge_parameters_are_equal(_ metadataA: sec_protocol_metadata_t, _ metadataB: sec_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_challenge_parameters_are_equal(metadataA: $SDK25, metadataB: $SDK25): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 3369087417321319, undefined, [metadataA, metadataB], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_challenge_parameters_are_equal(metadataA: $SDK25, metadataB: $SDK25): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 3369087417321319, undefined, [metadataA, metadataB], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_copy_negotiated_protocol(_ metadata: sec_protocol_metadata_t) -> UnsafePointer<CChar>?
  * @availability iOS 18.5+
  */
-export function sec_protocol_metadata_copy_negotiated_protocol(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 2861548802403978, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_copy_negotiated_protocol(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 2861548802403978, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_copy_peer_public_key(_ metadata: sec_protocol_metadata_t) -> dispatch_data_t?
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_copy_peer_public_key(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 1589953709162196, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_copy_peer_public_key(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 1589953709162196, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_copy_server_name(_ metadata: sec_protocol_metadata_t) -> UnsafePointer<CChar>?
  * @availability iOS 18.5+
  */
-export function sec_protocol_metadata_copy_server_name(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 1677572332852698, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_copy_server_name(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 1677572332852698, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_create_secret(_ metadata: sec_protocol_metadata_t, _ label_len: Int, _ label: UnsafePointer<CChar>, _ exporter_length: Int) -> dispatch_data_t?
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_create_secret(metadata: $SDK25, label_len: number, label: SDKHandle, exporter_length: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 3090007604884161, undefined, [metadata, label_len, label, exporter_length], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},null,null,null]); }
+export function sec_protocol_metadata_create_secret(metadata: $SDK25, label_len: number, label: SDKHandle, exporter_length: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 3090007604884161, undefined, [metadata, label_len, label, exporter_length], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},null,null,null]); }
 
 /**
  * func sec_protocol_metadata_create_secret_with_context(_ metadata: sec_protocol_metadata_t, _ label_len: Int, _ label: UnsafePointer<CChar>, _ context_len: Int, _ context: UnsafePointer<UInt8>, _ exporter_length: Int) -> dispatch_data_t?
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_create_secret_with_context(metadata: $SDK25, label_len: number, label: SDKHandle, context_len: number, context: SDKHandle, exporter_length: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 3071053825007800, undefined, [metadata, label_len, label, context_len, context, exporter_length], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},null,null,null,null,null]); }
+export function sec_protocol_metadata_create_secret_with_context(metadata: $SDK25, label_len: number, label: SDKHandle, context_len: number, context: SDKHandle, exporter_length: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 3071053825007800, undefined, [metadata, label_len, label, context_len, context, exporter_length], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},null,null,null,null,null]); }
 
 /**
  * func sec_protocol_metadata_get_early_data_accepted(_ metadata: sec_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_get_early_data_accepted(metadata: $SDK25): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 830649549075700, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_get_early_data_accepted(metadata: $SDK25): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 830649549075700, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_get_negotiated_ciphersuite(_ metadata: sec_protocol_metadata_t) -> SSLCipherSuite
  * @availability iOS 12.0+
  * @deprecated iOS 13.0
  */
-export function sec_protocol_metadata_get_negotiated_ciphersuite(metadata: $SDK25): number { return callSDK<number>("Security_d968214ecc684fb6", 2036398560088550, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_get_negotiated_ciphersuite(metadata: $SDK25): number { return callSDK<number>("Security_0e503aef608672fa", 2036398560088550, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_get_negotiated_protocol(_ metadata: sec_protocol_metadata_t) -> UnsafePointer<CChar>?
  * @availability iOS 12.0+
  * @deprecated iOS 18.5
  */
-export function sec_protocol_metadata_get_negotiated_protocol(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 2277894034868772, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_get_negotiated_protocol(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 2277894034868772, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_get_negotiated_protocol_version(_ metadata: sec_protocol_metadata_t) -> SSLProtocol
  * @availability iOS 12.0+
  * @deprecated iOS 13.0
  */
-export function sec_protocol_metadata_get_negotiated_protocol_version(metadata: $SDK25): SSLProtocol { return callSDK<SSLProtocol>("Security_d968214ecc684fb6", 3186324586821689, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_get_negotiated_protocol_version(metadata: $SDK25): SSLProtocol { return callSDK<SSLProtocol>("Security_0e503aef608672fa", 3186324586821689, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_get_negotiated_tls_ciphersuite(_ metadata: sec_protocol_metadata_t) -> tls_ciphersuite_t
  * @availability iOS 13.0+
  */
-export function sec_protocol_metadata_get_negotiated_tls_ciphersuite(metadata: $SDK25): tls_ciphersuite_t { return callSDK<tls_ciphersuite_t>("Security_d968214ecc684fb6", 224544690113753, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_get_negotiated_tls_ciphersuite(metadata: $SDK25): tls_ciphersuite_t { return callSDK<tls_ciphersuite_t>("Security_0e503aef608672fa", 224544690113753, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_get_negotiated_tls_protocol_version(_ metadata: sec_protocol_metadata_t) -> tls_protocol_version_t
  * @availability iOS 13.0+
  */
-export function sec_protocol_metadata_get_negotiated_tls_protocol_version(metadata: $SDK25): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_d968214ecc684fb6", 1364019256222548, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_get_negotiated_tls_protocol_version(metadata: $SDK25): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_0e503aef608672fa", 1364019256222548, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_get_server_name(_ metadata: sec_protocol_metadata_t) -> UnsafePointer<CChar>?
  * @availability iOS 12.0+
  * @deprecated iOS 18.5
  */
-export function sec_protocol_metadata_get_server_name(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 3082696419701961, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_get_server_name(metadata: $SDK25): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 3082696419701961, undefined, [metadata], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_metadata_peers_are_equal(_ metadataA: sec_protocol_metadata_t, _ metadataB: sec_protocol_metadata_t) -> Bool
  * @availability iOS 12.0+
  */
-export function sec_protocol_metadata_peers_are_equal(metadataA: $SDK25, metadataB: $SDK25): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 1822885672168205, undefined, [metadataA, metadataB], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
+export function sec_protocol_metadata_peers_are_equal(metadataA: $SDK25, metadataB: $SDK25): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 1822885672168205, undefined, [metadataA, metadataB], [{"protocol":"c:objc(pl)OS_sec_protocol_metadata"},{"protocol":"c:objc(pl)OS_sec_protocol_metadata"}]); }
 
 /**
  * func sec_protocol_options_add_pre_shared_key(_ options: sec_protocol_options_t, _ psk: dispatch_data_t, _ psk_identity: dispatch_data_t)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_add_pre_shared_key(options: $SDK28, psk: SDKHandle, psk_identity: SDKHandle): void { return callSDK<void>("Security_d968214ecc684fb6", 136714661595231, undefined, [options, psk, psk_identity], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null,null]); }
+export function sec_protocol_options_add_pre_shared_key(options: $SDK28, psk: SDKHandle, psk_identity: SDKHandle): void { return callSDK<void>("Security_0e503aef608672fa", 136714661595231, undefined, [options, psk, psk_identity], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null,null]); }
 
 /**
  * func sec_protocol_options_add_tls_application_protocol(_ options: sec_protocol_options_t, _ application_protocol: UnsafePointer<CChar>)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_add_tls_application_protocol(options: $SDK28, application_protocol: SDKHandle): void { return callSDK<void>("Security_d968214ecc684fb6", 2767147624270920, undefined, [options, application_protocol], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_add_tls_application_protocol(options: $SDK28, application_protocol: SDKHandle): void { return callSDK<void>("Security_0e503aef608672fa", 2767147624270920, undefined, [options, application_protocol], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_add_tls_ciphersuite(_ options: sec_protocol_options_t, _ ciphersuite: SSLCipherSuite)
  * @availability iOS 12.0+
  * @deprecated iOS 13.0
  */
-export function sec_protocol_options_add_tls_ciphersuite(options: $SDK28, ciphersuite: number): void { return callSDK<void>("Security_d968214ecc684fb6", 1201770323084038, undefined, [options, ciphersuite], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_add_tls_ciphersuite(options: $SDK28, ciphersuite: number): void { return callSDK<void>("Security_0e503aef608672fa", 1201770323084038, undefined, [options, ciphersuite], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_add_tls_ciphersuite_group(_ options: sec_protocol_options_t, _ group: SSLCiphersuiteGroup)
  * @availability iOS 12.0+
  * @deprecated iOS 13.0
  */
-export function sec_protocol_options_add_tls_ciphersuite_group(options: $SDK28, group: SSLCiphersuiteGroup): void { return callSDK<void>("Security_d968214ecc684fb6", 2578271643306975, undefined, [options, group], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_add_tls_ciphersuite_group(options: $SDK28, group: SSLCiphersuiteGroup): void { return callSDK<void>("Security_0e503aef608672fa", 2578271643306975, undefined, [options, group], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_append_tls_ciphersuite(_ options: sec_protocol_options_t, _ ciphersuite: tls_ciphersuite_t)
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_append_tls_ciphersuite(options: $SDK28, ciphersuite: tls_ciphersuite_t): void { return callSDK<void>("Security_d968214ecc684fb6", 143554206382281, undefined, [options, ciphersuite], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_append_tls_ciphersuite(options: $SDK28, ciphersuite: tls_ciphersuite_t): void { return callSDK<void>("Security_0e503aef608672fa", 143554206382281, undefined, [options, ciphersuite], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_append_tls_ciphersuite_group(_ options: sec_protocol_options_t, _ group: tls_ciphersuite_group_t)
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_append_tls_ciphersuite_group(options: $SDK28, group: tls_ciphersuite_group_t): void { return callSDK<void>("Security_d968214ecc684fb6", 2639438577615337, undefined, [options, group], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_append_tls_ciphersuite_group(options: $SDK28, group: tls_ciphersuite_group_t): void { return callSDK<void>("Security_0e503aef608672fa", 2639438577615337, undefined, [options, group], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_are_equal(_ optionsA: sec_protocol_options_t, _ optionsB: sec_protocol_options_t) -> Bool
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_are_equal(optionsA: $SDK28, optionsB: $SDK28): boolean { return callSDK<boolean>("Security_d968214ecc684fb6", 2829992785665207, undefined, [optionsA, optionsB], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"protocol":"c:objc(pl)OS_sec_protocol_options"}]); }
+export function sec_protocol_options_are_equal(optionsA: $SDK28, optionsB: $SDK28): boolean { return callSDK<boolean>("Security_0e503aef608672fa", 2829992785665207, undefined, [optionsA, optionsB], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"protocol":"c:objc(pl)OS_sec_protocol_options"}]); }
 
 /**
  * func sec_protocol_options_get_default_max_dtls_protocol_version() -> tls_protocol_version_t
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_get_default_max_dtls_protocol_version(): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_d968214ecc684fb6", 2323502455949451, undefined, []); }
+export function sec_protocol_options_get_default_max_dtls_protocol_version(): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_0e503aef608672fa", 2323502455949451, undefined, []); }
 
 /**
  * func sec_protocol_options_get_default_max_tls_protocol_version() -> tls_protocol_version_t
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_get_default_max_tls_protocol_version(): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_d968214ecc684fb6", 4270672630903996, undefined, []); }
+export function sec_protocol_options_get_default_max_tls_protocol_version(): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_0e503aef608672fa", 4270672630903996, undefined, []); }
 
 /**
  * func sec_protocol_options_get_default_min_dtls_protocol_version() -> tls_protocol_version_t
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_get_default_min_dtls_protocol_version(): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_d968214ecc684fb6", 2413793480422406, undefined, []); }
+export function sec_protocol_options_get_default_min_dtls_protocol_version(): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_0e503aef608672fa", 2413793480422406, undefined, []); }
 
 /**
  * func sec_protocol_options_get_default_min_tls_protocol_version() -> tls_protocol_version_t
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_get_default_min_tls_protocol_version(): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_d968214ecc684fb6", 4434927539837326, undefined, []); }
+export function sec_protocol_options_get_default_min_tls_protocol_version(): tls_protocol_version_t { return callSDK<tls_protocol_version_t>("Security_0e503aef608672fa", 4434927539837326, undefined, []); }
 
 /**
  * func sec_protocol_options_set_challenge_block(_ options: sec_protocol_options_t, _ challenge_block: @escaping sec_protocol_challenge_t, _ challenge_queue: dispatch_queue_t)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_challenge_block(options: $SDK28, challenge_block: ((arg0: SDKHandle, arg1: ((arg0: (Implements<OS_sec_identity> | SDKHandle) | null) => Promise<void>)) => void), challenge_queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Security_d968214ecc684fb6", 3323330427891547, undefined, [options, challenge_block, challenge_queue], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"callback":{"out":[]}},null]); }
+export function sec_protocol_options_set_challenge_block(options: $SDK28, challenge_block: ((arg0: SDKHandle, arg1: ((arg0: (Implements<OS_sec_identity> | SDKHandle) | null) => Promise<void>)) => void), challenge_queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Security_0e503aef608672fa", 3323330427891547, undefined, [options, challenge_block, challenge_queue], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"callback":{"out":[]}},null]); }
 
 /**
  * func sec_protocol_options_set_key_update_block(_ options: sec_protocol_options_t, _ key_update_block: @escaping sec_protocol_key_update_t, _ key_update_queue: dispatch_queue_t)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_key_update_block(options: $SDK28, key_update_block: ((arg0: SDKHandle, arg1: (() => Promise<void>)) => void), key_update_queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Security_d968214ecc684fb6", 4434902689682912, undefined, [options, key_update_block, key_update_queue], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"callback":{"out":[]}},null]); }
+export function sec_protocol_options_set_key_update_block(options: $SDK28, key_update_block: ((arg0: SDKHandle, arg1: (() => Promise<void>)) => void), key_update_queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Security_0e503aef608672fa", 4434902689682912, undefined, [options, key_update_block, key_update_queue], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"callback":{"out":[]}},null]); }
 
 /**
  * func sec_protocol_options_set_local_identity(_ options: sec_protocol_options_t, _ identity: sec_identity_t)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_local_identity(options: $SDK28, identity: $SDK23): void { return callSDK<void>("Security_d968214ecc684fb6", 1691793122414480, undefined, [options, identity], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"protocol":"c:objc(pl)OS_sec_identity"}]); }
+export function sec_protocol_options_set_local_identity(options: $SDK28, identity: $SDK23): void { return callSDK<void>("Security_0e503aef608672fa", 1691793122414480, undefined, [options, identity], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"protocol":"c:objc(pl)OS_sec_identity"}]); }
 
 /**
  * func sec_protocol_options_set_max_tls_protocol_version(_ options: sec_protocol_options_t, _ version: tls_protocol_version_t)
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_set_max_tls_protocol_version(options: $SDK28, version: tls_protocol_version_t): void { return callSDK<void>("Security_d968214ecc684fb6", 1477354944321432, undefined, [options, version], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_max_tls_protocol_version(options: $SDK28, version: tls_protocol_version_t): void { return callSDK<void>("Security_0e503aef608672fa", 1477354944321432, undefined, [options, version], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_min_tls_protocol_version(_ options: sec_protocol_options_t, _ version: tls_protocol_version_t)
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_set_min_tls_protocol_version(options: $SDK28, version: tls_protocol_version_t): void { return callSDK<void>("Security_d968214ecc684fb6", 486840761673622, undefined, [options, version], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_min_tls_protocol_version(options: $SDK28, version: tls_protocol_version_t): void { return callSDK<void>("Security_0e503aef608672fa", 486840761673622, undefined, [options, version], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_peer_authentication_required(_ options: sec_protocol_options_t, _ peer_authentication_required: Bool)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_peer_authentication_required(options: $SDK28, peer_authentication_required: boolean): void { return callSDK<void>("Security_d968214ecc684fb6", 4318408177442436, undefined, [options, peer_authentication_required], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_peer_authentication_required(options: $SDK28, peer_authentication_required: boolean): void { return callSDK<void>("Security_0e503aef608672fa", 4318408177442436, undefined, [options, peer_authentication_required], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_pre_shared_key_selection_block(_ options: sec_protocol_options_t, _ psk_selection_block: @escaping sec_protocol_pre_shared_key_selection_t, _ psk_selection_queue: dispatch_queue_t)
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_set_pre_shared_key_selection_block(options: $SDK28, psk_selection_block: ((arg0: SDKHandle, arg1: (SDKHandle) | null, arg2: ((arg0: (SDKHandle) | null) => Promise<void>)) => void), psk_selection_queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Security_d968214ecc684fb6", 4131722029986552, undefined, [options, psk_selection_block, psk_selection_queue], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"callback":{"out":[]}},null]); }
+export function sec_protocol_options_set_pre_shared_key_selection_block(options: $SDK28, psk_selection_block: ((arg0: SDKHandle, arg1: (SDKHandle) | null, arg2: ((arg0: (SDKHandle) | null) => Promise<void>)) => void), psk_selection_queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Security_0e503aef608672fa", 4131722029986552, undefined, [options, psk_selection_block, psk_selection_queue], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"callback":{"out":[]}},null]); }
 
 /**
  * func sec_protocol_options_set_tls_diffie_hellman_parameters(_ options: sec_protocol_options_t, _ params: dispatch_data_t)
  * @availability iOS 12.0+
  * @deprecated iOS 13.0
  */
-export function sec_protocol_options_set_tls_diffie_hellman_parameters(options: $SDK28, params: SDKHandle): void { return callSDK<void>("Security_d968214ecc684fb6", 3010854906016413, undefined, [options, params], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_diffie_hellman_parameters(options: $SDK28, params: SDKHandle): void { return callSDK<void>("Security_0e503aef608672fa", 3010854906016413, undefined, [options, params], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_false_start_enabled(_ options: sec_protocol_options_t, _ false_start_enabled: Bool)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_tls_false_start_enabled(options: $SDK28, false_start_enabled: boolean): void { return callSDK<void>("Security_d968214ecc684fb6", 4039730355483126, undefined, [options, false_start_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_false_start_enabled(options: $SDK28, false_start_enabled: boolean): void { return callSDK<void>("Security_0e503aef608672fa", 4039730355483126, undefined, [options, false_start_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_is_fallback_attempt(_ options: sec_protocol_options_t, _ is_fallback_attempt: Bool)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_tls_is_fallback_attempt(options: $SDK28, is_fallback_attempt: boolean): void { return callSDK<void>("Security_d968214ecc684fb6", 4081023381052803, undefined, [options, is_fallback_attempt], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_is_fallback_attempt(options: $SDK28, is_fallback_attempt: boolean): void { return callSDK<void>("Security_0e503aef608672fa", 4081023381052803, undefined, [options, is_fallback_attempt], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_max_version(_ options: sec_protocol_options_t, _ version: SSLProtocol)
  * @availability iOS 12.0+
  * @deprecated iOS 13.0
  */
-export function sec_protocol_options_set_tls_max_version(options: $SDK28, version: SSLProtocol): void { return callSDK<void>("Security_d968214ecc684fb6", 2648367751327786, undefined, [options, version], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_max_version(options: $SDK28, version: SSLProtocol): void { return callSDK<void>("Security_0e503aef608672fa", 2648367751327786, undefined, [options, version], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_min_version(_ options: sec_protocol_options_t, _ version: SSLProtocol)
  * @availability iOS 12.0+
  * @deprecated iOS 13.0
  */
-export function sec_protocol_options_set_tls_min_version(options: $SDK28, version: SSLProtocol): void { return callSDK<void>("Security_d968214ecc684fb6", 888140781891303, undefined, [options, version], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_min_version(options: $SDK28, version: SSLProtocol): void { return callSDK<void>("Security_0e503aef608672fa", 888140781891303, undefined, [options, version], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_ocsp_enabled(_ options: sec_protocol_options_t, _ ocsp_enabled: Bool)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_tls_ocsp_enabled(options: $SDK28, ocsp_enabled: boolean): void { return callSDK<void>("Security_d968214ecc684fb6", 1953272028691865, undefined, [options, ocsp_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_ocsp_enabled(options: $SDK28, ocsp_enabled: boolean): void { return callSDK<void>("Security_0e503aef608672fa", 1953272028691865, undefined, [options, ocsp_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_pre_shared_key_identity_hint(_ options: sec_protocol_options_t, _ psk_identity_hint: dispatch_data_t)
  * @availability iOS 13.0+
  */
-export function sec_protocol_options_set_tls_pre_shared_key_identity_hint(options: $SDK28, psk_identity_hint: SDKHandle): void { return callSDK<void>("Security_d968214ecc684fb6", 2178146116311559, undefined, [options, psk_identity_hint], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_pre_shared_key_identity_hint(options: $SDK28, psk_identity_hint: SDKHandle): void { return callSDK<void>("Security_0e503aef608672fa", 2178146116311559, undefined, [options, psk_identity_hint], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_renegotiation_enabled(_ options: sec_protocol_options_t, _ renegotiation_enabled: Bool)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_tls_renegotiation_enabled(options: $SDK28, renegotiation_enabled: boolean): void { return callSDK<void>("Security_d968214ecc684fb6", 2492411992199104, undefined, [options, renegotiation_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_renegotiation_enabled(options: $SDK28, renegotiation_enabled: boolean): void { return callSDK<void>("Security_0e503aef608672fa", 2492411992199104, undefined, [options, renegotiation_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_resumption_enabled(_ options: sec_protocol_options_t, _ resumption_enabled: Bool)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_tls_resumption_enabled(options: $SDK28, resumption_enabled: boolean): void { return callSDK<void>("Security_d968214ecc684fb6", 2920615902278189, undefined, [options, resumption_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_resumption_enabled(options: $SDK28, resumption_enabled: boolean): void { return callSDK<void>("Security_0e503aef608672fa", 2920615902278189, undefined, [options, resumption_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_sct_enabled(_ options: sec_protocol_options_t, _ sct_enabled: Bool)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_tls_sct_enabled(options: $SDK28, sct_enabled: boolean): void { return callSDK<void>("Security_d968214ecc684fb6", 2842576307943455, undefined, [options, sct_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_sct_enabled(options: $SDK28, sct_enabled: boolean): void { return callSDK<void>("Security_0e503aef608672fa", 2842576307943455, undefined, [options, sct_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_server_name(_ options: sec_protocol_options_t, _ server_name: UnsafePointer<CChar>)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_tls_server_name(options: $SDK28, server_name: SDKHandle): void { return callSDK<void>("Security_d968214ecc684fb6", 345285745955913, undefined, [options, server_name], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_server_name(options: $SDK28, server_name: SDKHandle): void { return callSDK<void>("Security_0e503aef608672fa", 345285745955913, undefined, [options, server_name], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_tls_tickets_enabled(_ options: sec_protocol_options_t, _ tickets_enabled: Bool)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_tls_tickets_enabled(options: $SDK28, tickets_enabled: boolean): void { return callSDK<void>("Security_d968214ecc684fb6", 1029717886223018, undefined, [options, tickets_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
+export function sec_protocol_options_set_tls_tickets_enabled(options: $SDK28, tickets_enabled: boolean): void { return callSDK<void>("Security_0e503aef608672fa", 1029717886223018, undefined, [options, tickets_enabled], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},null]); }
 
 /**
  * func sec_protocol_options_set_verify_block(_ options: sec_protocol_options_t, _ verify_block: @escaping sec_protocol_verify_t, _ verify_block_queue: dispatch_queue_t)
  * @availability iOS 12.0+
  */
-export function sec_protocol_options_set_verify_block(options: $SDK28, verify_block: ((arg0: SDKHandle, arg1: SDKHandle, arg2: ((arg0: boolean) => Promise<void>)) => void), verify_block_queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Security_d968214ecc684fb6", 1127889303811304, undefined, [options, verify_block, verify_block_queue], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"callback":{"out":[]}},null]); }
+export function sec_protocol_options_set_verify_block(options: $SDK28, verify_block: ((arg0: SDKHandle, arg1: SDKHandle, arg2: ((arg0: boolean) => Promise<void>)) => void), verify_block_queue: _Dispatch_DispatchQueue): void { return callSDK<void>("Security_0e503aef608672fa", 1127889303811304, undefined, [options, verify_block, verify_block_queue], [{"protocol":"c:objc(pl)OS_sec_protocol_options"},{"callback":{"out":[]}},null]); }
 
 /** func sec_release(_ obj: UnsafeMutableRawPointer!) */
-export function sec_release(obj?: (SDKHandle) | null): void { return callSDK<void>("Security_d968214ecc684fb6", 1773064568952674, undefined, [obj]); }
+export function sec_release(obj?: (SDKHandle) | null): void { return callSDK<void>("Security_0e503aef608672fa", 1773064568952674, undefined, [obj]); }
 
 /** func sec_retain(_ obj: UnsafeMutableRawPointer!) -> UnsafeMutableRawPointer! */
-export function sec_retain(obj?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 462628614439017, undefined, [obj]); }
+export function sec_retain(obj?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 462628614439017, undefined, [obj]); }
 
 /**
  * func sec_trust_copy_ref(_ trust: sec_trust_t) -> Unmanaged<SecTrust>
  * @availability iOS 12.0+
  */
-export function sec_trust_copy_ref(trust: Implements<OS_sec_trust> | SDKHandle): SDKHandle { return callSDK<SDKHandle>("Security_d968214ecc684fb6", 2760221278704900, undefined, [trust], [{"protocol":"c:objc(pl)OS_sec_trust"}]); }
+export function sec_trust_copy_ref(trust: Implements<OS_sec_trust> | SDKHandle): SDKHandle { return callSDK<SDKHandle>("Security_0e503aef608672fa", 2760221278704900, undefined, [trust], [{"protocol":"c:objc(pl)OS_sec_trust"}]); }
 
 /**
  * func sec_trust_create(_ trust: SecTrust) -> sec_trust_t?
  * @availability iOS 12.0+
  */
-export function sec_trust_create(trust: SecTrust): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_d968214ecc684fb6", 151167855205620, undefined, [trust]); }
+export function sec_trust_create(trust: SecTrust): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Security_0e503aef608672fa", 151167855205620, undefined, [trust]); }
 
 /** var SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2744081099823297, undefined, []);
+export const SSL_DHE_DSS_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2744081099823297, undefined, []);
 
 /** var SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 4098238779315066, undefined, []);
+export const SSL_DHE_DSS_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 4098238779315066, undefined, []);
 
 /** var SSL_DHE_DSS_WITH_DES_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DHE_DSS_WITH_DES_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1900720370743098, undefined, []);
+export const SSL_DHE_DSS_WITH_DES_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1900720370743098, undefined, []);
 
 /** var SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1951742925076560, undefined, []);
+export const SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1951742925076560, undefined, []);
 
 /** var SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2987466716061699, undefined, []);
+export const SSL_DHE_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2987466716061699, undefined, []);
 
 /** var SSL_DHE_RSA_WITH_DES_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DHE_RSA_WITH_DES_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3499410958228214, undefined, []);
+export const SSL_DHE_RSA_WITH_DES_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3499410958228214, undefined, []);
 
 /** var SSL_DH_DSS_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DH_DSS_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3311322466719132, undefined, []);
+export const SSL_DH_DSS_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3311322466719132, undefined, []);
 
 /** var SSL_DH_DSS_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DH_DSS_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2935460284669278, undefined, []);
+export const SSL_DH_DSS_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2935460284669278, undefined, []);
 
 /** var SSL_DH_DSS_WITH_DES_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DH_DSS_WITH_DES_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2057204089219180, undefined, []);
+export const SSL_DH_DSS_WITH_DES_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2057204089219180, undefined, []);
 
 /** var SSL_DH_RSA_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DH_RSA_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2419716268046271, undefined, []);
+export const SSL_DH_RSA_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2419716268046271, undefined, []);
 
 /** var SSL_DH_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DH_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3122333877983440, undefined, []);
+export const SSL_DH_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3122333877983440, undefined, []);
 
 /** var SSL_DH_RSA_WITH_DES_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DH_RSA_WITH_DES_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 903696899270902, undefined, []);
+export const SSL_DH_RSA_WITH_DES_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 903696899270902, undefined, []);
 
 /** var SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 42901966730244, undefined, []);
+export const SSL_DH_anon_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 42901966730244, undefined, []);
 
 /** var SSL_DH_anon_EXPORT_WITH_RC4_40_MD5: SSLCipherSuite { get } */
-export const SSL_DH_anon_EXPORT_WITH_RC4_40_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 4023859504720335, undefined, []);
+export const SSL_DH_anon_EXPORT_WITH_RC4_40_MD5: number = callSDK<number>("Security_0e503aef608672fa", 4023859504720335, undefined, []);
 
 /** var SSL_DH_anon_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DH_anon_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 703493168289331, undefined, []);
+export const SSL_DH_anon_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 703493168289331, undefined, []);
 
 /** var SSL_DH_anon_WITH_DES_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_DH_anon_WITH_DES_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 348296177076733, undefined, []);
+export const SSL_DH_anon_WITH_DES_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 348296177076733, undefined, []);
 
 /** var SSL_DH_anon_WITH_RC4_128_MD5: SSLCipherSuite { get } */
-export const SSL_DH_anon_WITH_RC4_128_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 2057334814716545, undefined, []);
+export const SSL_DH_anon_WITH_RC4_128_MD5: number = callSDK<number>("Security_0e503aef608672fa", 2057334814716545, undefined, []);
 
 /** var SSL_FORTEZZA_DMS_WITH_FORTEZZA_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_FORTEZZA_DMS_WITH_FORTEZZA_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2664183326158296, undefined, []);
+export const SSL_FORTEZZA_DMS_WITH_FORTEZZA_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2664183326158296, undefined, []);
 
 /** var SSL_FORTEZZA_DMS_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const SSL_FORTEZZA_DMS_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3747275528478920, undefined, []);
+export const SSL_FORTEZZA_DMS_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3747275528478920, undefined, []);
 
 /** var SSL_NO_SUCH_CIPHERSUITE: SSLCipherSuite { get } */
-export const SSL_NO_SUCH_CIPHERSUITE: number = callSDK<number>("Security_d968214ecc684fb6", 2890793031086915, undefined, []);
+export const SSL_NO_SUCH_CIPHERSUITE: number = callSDK<number>("Security_0e503aef608672fa", 2890793031086915, undefined, []);
 
 /** var SSL_NULL_WITH_NULL_NULL: SSLCipherSuite { get } */
-export const SSL_NULL_WITH_NULL_NULL: number = callSDK<number>("Security_d968214ecc684fb6", 2817263250578128, undefined, []);
+export const SSL_NULL_WITH_NULL_NULL: number = callSDK<number>("Security_0e503aef608672fa", 2817263250578128, undefined, []);
 
 /** var SSL_RSA_EXPORT_WITH_DES40_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_RSA_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2049804544307485, undefined, []);
+export const SSL_RSA_EXPORT_WITH_DES40_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2049804544307485, undefined, []);
 
 /** var SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5: SSLCipherSuite { get } */
-export const SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 4118864409126485, undefined, []);
+export const SSL_RSA_EXPORT_WITH_RC2_CBC_40_MD5: number = callSDK<number>("Security_0e503aef608672fa", 4118864409126485, undefined, []);
 
 /** var SSL_RSA_EXPORT_WITH_RC4_40_MD5: SSLCipherSuite { get } */
-export const SSL_RSA_EXPORT_WITH_RC4_40_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 3247658292071368, undefined, []);
+export const SSL_RSA_EXPORT_WITH_RC4_40_MD5: number = callSDK<number>("Security_0e503aef608672fa", 3247658292071368, undefined, []);
 
 /** var SSL_RSA_WITH_3DES_EDE_CBC_MD5: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_3DES_EDE_CBC_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 4277235616061925, undefined, []);
+export const SSL_RSA_WITH_3DES_EDE_CBC_MD5: number = callSDK<number>("Security_0e503aef608672fa", 4277235616061925, undefined, []);
 
 /** var SSL_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1508645565712921, undefined, []);
+export const SSL_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1508645565712921, undefined, []);
 
 /** var SSL_RSA_WITH_DES_CBC_MD5: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_DES_CBC_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 2866206500832578, undefined, []);
+export const SSL_RSA_WITH_DES_CBC_MD5: number = callSDK<number>("Security_0e503aef608672fa", 2866206500832578, undefined, []);
 
 /** var SSL_RSA_WITH_DES_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_DES_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1595947139221424, undefined, []);
+export const SSL_RSA_WITH_DES_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1595947139221424, undefined, []);
 
 /** var SSL_RSA_WITH_IDEA_CBC_MD5: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_IDEA_CBC_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 2627263066665494, undefined, []);
+export const SSL_RSA_WITH_IDEA_CBC_MD5: number = callSDK<number>("Security_0e503aef608672fa", 2627263066665494, undefined, []);
 
 /** var SSL_RSA_WITH_IDEA_CBC_SHA: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_IDEA_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 4351119500729238, undefined, []);
+export const SSL_RSA_WITH_IDEA_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 4351119500729238, undefined, []);
 
 /** var SSL_RSA_WITH_NULL_MD5: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_NULL_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 1188764923452650, undefined, []);
+export const SSL_RSA_WITH_NULL_MD5: number = callSDK<number>("Security_0e503aef608672fa", 1188764923452650, undefined, []);
 
 /** var SSL_RSA_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 228657655563885, undefined, []);
+export const SSL_RSA_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 228657655563885, undefined, []);
 
 /** var SSL_RSA_WITH_RC2_CBC_MD5: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_RC2_CBC_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 1863044515746925, undefined, []);
+export const SSL_RSA_WITH_RC2_CBC_MD5: number = callSDK<number>("Security_0e503aef608672fa", 1863044515746925, undefined, []);
 
 /** var SSL_RSA_WITH_RC4_128_MD5: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_RC4_128_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 3758119126531341, undefined, []);
+export const SSL_RSA_WITH_RC4_128_MD5: number = callSDK<number>("Security_0e503aef608672fa", 3758119126531341, undefined, []);
 
 /** var SSL_RSA_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const SSL_RSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 365706774656296, undefined, []);
+export const SSL_RSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 365706774656296, undefined, []);
 
 /** var TLS_AES_128_CCM_8_SHA256: SSLCipherSuite { get } */
-export const TLS_AES_128_CCM_8_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 4144264502984995, undefined, []);
+export const TLS_AES_128_CCM_8_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 4144264502984995, undefined, []);
 
 /** var TLS_AES_128_CCM_SHA256: SSLCipherSuite { get } */
-export const TLS_AES_128_CCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3758227063409251, undefined, []);
+export const TLS_AES_128_CCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3758227063409251, undefined, []);
 
 /** var TLS_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 837785037213242, undefined, []);
+export const TLS_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 837785037213242, undefined, []);
 
 /** var TLS_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 3109008780125078, undefined, []);
+export const TLS_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 3109008780125078, undefined, []);
 
 /** var TLS_CHACHA20_POLY1305_SHA256: SSLCipherSuite { get } */
-export const TLS_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 1825281252539678, undefined, []);
+export const TLS_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 1825281252539678, undefined, []);
 
 /** var TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1487583639992436, undefined, []);
+export const TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1487583639992436, undefined, []);
 
 /** var TLS_DHE_DSS_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DHE_DSS_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3726115082730477, undefined, []);
+export const TLS_DHE_DSS_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3726115082730477, undefined, []);
 
 /** var TLS_DHE_DSS_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_DSS_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1517752039742998, undefined, []);
+export const TLS_DHE_DSS_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1517752039742998, undefined, []);
 
 /** var TLS_DHE_DSS_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_DHE_DSS_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 2829241126512389, undefined, []);
+export const TLS_DHE_DSS_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 2829241126512389, undefined, []);
 
 /** var TLS_DHE_DSS_WITH_AES_256_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DHE_DSS_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 4175748811596912, undefined, []);
+export const TLS_DHE_DSS_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 4175748811596912, undefined, []);
 
 /** var TLS_DHE_DSS_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_DSS_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1155603821894391, undefined, []);
+export const TLS_DHE_DSS_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1155603821894391, undefined, []);
 
 /** var TLS_DHE_DSS_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_DHE_DSS_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 4408223017299498, undefined, []);
+export const TLS_DHE_DSS_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 4408223017299498, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3478544409115919, undefined, []);
+export const TLS_DHE_PSK_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3478544409115919, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 2299338415649586, undefined, []);
+export const TLS_DHE_PSK_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 2299338415649586, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1973413619691669, undefined, []);
+export const TLS_DHE_PSK_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1973413619691669, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3368237736352577, undefined, []);
+export const TLS_DHE_PSK_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3368237736352577, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_AES_256_CBC_SHA384: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 3143889738539474, undefined, []);
+export const TLS_DHE_PSK_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 3143889738539474, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 280283860094866, undefined, []);
+export const TLS_DHE_PSK_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 280283860094866, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 3194402324720820, undefined, []);
+export const TLS_DHE_PSK_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 3194402324720820, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_NULL_SHA256: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_NULL_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 626095343754917, undefined, []);
+export const TLS_DHE_PSK_WITH_NULL_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 626095343754917, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_NULL_SHA384: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_NULL_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 4474447706474603, undefined, []);
+export const TLS_DHE_PSK_WITH_NULL_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 4474447706474603, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1779335294154925, undefined, []);
+export const TLS_DHE_PSK_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1779335294154925, undefined, []);
 
 /** var TLS_DHE_PSK_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_PSK_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2239275120423231, undefined, []);
+export const TLS_DHE_PSK_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2239275120423231, undefined, []);
 
 /** var TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3897386508064934, undefined, []);
+export const TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3897386508064934, undefined, []);
 
 /** var TLS_DHE_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DHE_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3053608409488696, undefined, []);
+export const TLS_DHE_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3053608409488696, undefined, []);
 
 /** var TLS_DHE_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2487164819119674, undefined, []);
+export const TLS_DHE_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2487164819119674, undefined, []);
 
 /** var TLS_DHE_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_DHE_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 2566340280833099, undefined, []);
+export const TLS_DHE_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 2566340280833099, undefined, []);
 
 /** var TLS_DHE_RSA_WITH_AES_256_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DHE_RSA_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 348629936871495, undefined, []);
+export const TLS_DHE_RSA_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 348629936871495, undefined, []);
 
 /** var TLS_DHE_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DHE_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1342198227046434, undefined, []);
+export const TLS_DHE_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1342198227046434, undefined, []);
 
 /** var TLS_DHE_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_DHE_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 272163038411554, undefined, []);
+export const TLS_DHE_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 272163038411554, undefined, []);
 
 /** var TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1680217531991428, undefined, []);
+export const TLS_DH_DSS_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1680217531991428, undefined, []);
 
 /** var TLS_DH_DSS_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DH_DSS_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3054092091025083, undefined, []);
+export const TLS_DH_DSS_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3054092091025083, undefined, []);
 
 /** var TLS_DH_DSS_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DH_DSS_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2649962370928796, undefined, []);
+export const TLS_DH_DSS_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2649962370928796, undefined, []);
 
 /** var TLS_DH_DSS_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_DH_DSS_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3434834502307091, undefined, []);
+export const TLS_DH_DSS_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3434834502307091, undefined, []);
 
 /** var TLS_DH_DSS_WITH_AES_256_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DH_DSS_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 346735760593297, undefined, []);
+export const TLS_DH_DSS_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 346735760593297, undefined, []);
 
 /** var TLS_DH_DSS_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DH_DSS_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 4434776984904173, undefined, []);
+export const TLS_DH_DSS_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 4434776984904173, undefined, []);
 
 /** var TLS_DH_DSS_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_DH_DSS_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 3113012843871581, undefined, []);
+export const TLS_DH_DSS_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 3113012843871581, undefined, []);
 
 /** var TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 865866412421203, undefined, []);
+export const TLS_DH_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 865866412421203, undefined, []);
 
 /** var TLS_DH_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DH_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 764965588682112, undefined, []);
+export const TLS_DH_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 764965588682112, undefined, []);
 
 /** var TLS_DH_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DH_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2101067468691270, undefined, []);
+export const TLS_DH_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2101067468691270, undefined, []);
 
 /** var TLS_DH_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_DH_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 2683178681851920, undefined, []);
+export const TLS_DH_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 2683178681851920, undefined, []);
 
 /** var TLS_DH_RSA_WITH_AES_256_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DH_RSA_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 173876133027085, undefined, []);
+export const TLS_DH_RSA_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 173876133027085, undefined, []);
 
 /** var TLS_DH_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DH_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3739937097342711, undefined, []);
+export const TLS_DH_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3739937097342711, undefined, []);
 
 /** var TLS_DH_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_DH_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 1946126500773189, undefined, []);
+export const TLS_DH_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 1946126500773189, undefined, []);
 
 /** var TLS_DH_anon_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DH_anon_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1353086746552871, undefined, []);
+export const TLS_DH_anon_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1353086746552871, undefined, []);
 
 /** var TLS_DH_anon_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DH_anon_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 878338678333269, undefined, []);
+export const TLS_DH_anon_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 878338678333269, undefined, []);
 
 /** var TLS_DH_anon_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DH_anon_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1943771669809499, undefined, []);
+export const TLS_DH_anon_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1943771669809499, undefined, []);
 
 /** var TLS_DH_anon_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_DH_anon_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 1874036208030484, undefined, []);
+export const TLS_DH_anon_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 1874036208030484, undefined, []);
 
 /** var TLS_DH_anon_WITH_AES_256_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_DH_anon_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 756739924379368, undefined, []);
+export const TLS_DH_anon_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 756739924379368, undefined, []);
 
 /** var TLS_DH_anon_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_DH_anon_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1535963994715411, undefined, []);
+export const TLS_DH_anon_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1535963994715411, undefined, []);
 
 /** var TLS_DH_anon_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_DH_anon_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 3153110435834635, undefined, []);
+export const TLS_DH_anon_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 3153110435834635, undefined, []);
 
 /** var TLS_DH_anon_WITH_RC4_128_MD5: SSLCipherSuite { get } */
-export const TLS_DH_anon_WITH_RC4_128_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 3606489816788710, undefined, []);
+export const TLS_DH_anon_WITH_RC4_128_MD5: number = callSDK<number>("Security_0e503aef608672fa", 3606489816788710, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1980621563699510, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1980621563699510, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3404233338765368, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3404233338765368, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2586798582074641, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2586798582074641, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 913158805460699, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 913158805460699, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 1987089483614351, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 1987089483614351, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1806871916633640, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1806871916633640, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 2536288997907875, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 2536288997907875, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 1496145837613132, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 1496145837613132, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1249612276586951, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1249612276586951, undefined, []);
 
 /** var TLS_ECDHE_ECDSA_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_ECDSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3976313679154163, undefined, []);
+export const TLS_ECDHE_ECDSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3976313679154163, undefined, []);
 
 /** var TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3093013201633681, undefined, []);
+export const TLS_ECDHE_PSK_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3093013201633681, undefined, []);
 
 /** var TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 783731924460042, undefined, []);
+export const TLS_ECDHE_PSK_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 783731924460042, undefined, []);
 
 /** var TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 519878187482359, undefined, []);
+export const TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 519878187482359, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 938159805570533, undefined, []);
+export const TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 938159805570533, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 2586604149551170, undefined, []);
+export const TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 2586604149551170, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3171149131494619, undefined, []);
+export const TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3171149131494619, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 4283147442726755, undefined, []);
+export const TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 4283147442726755, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 2856946623383466, undefined, []);
+export const TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 2856946623383466, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 422779396238309, undefined, []);
+export const TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 422779396238309, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 3918069136331078, undefined, []);
+export const TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 3918069136331078, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 1774362980079121, undefined, []);
+export const TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 1774362980079121, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 644421792264955, undefined, []);
+export const TLS_ECDHE_RSA_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 644421792264955, undefined, []);
 
 /** var TLS_ECDHE_RSA_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const TLS_ECDHE_RSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2117597873438849, undefined, []);
+export const TLS_ECDHE_RSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2117597873438849, undefined, []);
 
 /** var TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 801437113463238, undefined, []);
+export const TLS_ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 801437113463238, undefined, []);
 
 /** var TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 1332563796962249, undefined, []);
+export const TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 1332563796962249, undefined, []);
 
 /** var TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 4335856979817379, undefined, []);
+export const TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 4335856979817379, undefined, []);
 
 /** var TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3161884752202261, undefined, []);
+export const TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3161884752202261, undefined, []);
 
 /** var TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384: SSLCipherSuite { get } */
-export const TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 1749341191432502, undefined, []);
+export const TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 1749341191432502, undefined, []);
 
 /** var TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2742791934597742, undefined, []);
+export const TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2742791934597742, undefined, []);
 
 /** var TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 3477149335747563, undefined, []);
+export const TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 3477149335747563, undefined, []);
 
 /** var TLS_ECDH_ECDSA_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_ECDSA_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3399555885706524, undefined, []);
+export const TLS_ECDH_ECDSA_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3399555885706524, undefined, []);
 
 /** var TLS_ECDH_ECDSA_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_ECDSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2039182507940193, undefined, []);
+export const TLS_ECDH_ECDSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2039182507940193, undefined, []);
 
 /** var TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1138612840835331, undefined, []);
+export const TLS_ECDH_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1138612840835331, undefined, []);
 
 /** var TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 4382848616561322, undefined, []);
+export const TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 4382848616561322, undefined, []);
 
 /** var TLS_ECDH_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2159852945831457, undefined, []);
+export const TLS_ECDH_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2159852945831457, undefined, []);
 
 /** var TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 1977733554004276, undefined, []);
+export const TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 1977733554004276, undefined, []);
 
 /** var TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384: SSLCipherSuite { get } */
-export const TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 1613052001283385, undefined, []);
+export const TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 1613052001283385, undefined, []);
 
 /** var TLS_ECDH_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2340170868073128, undefined, []);
+export const TLS_ECDH_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2340170868073128, undefined, []);
 
 /** var TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 1984071181380590, undefined, []);
+export const TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 1984071181380590, undefined, []);
 
 /** var TLS_ECDH_RSA_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_RSA_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3247888274175427, undefined, []);
+export const TLS_ECDH_RSA_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3247888274175427, undefined, []);
 
 /** var TLS_ECDH_RSA_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_RSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 176866849154507, undefined, []);
+export const TLS_ECDH_RSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 176866849154507, undefined, []);
 
 /** var TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 81864609072446, undefined, []);
+export const TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 81864609072446, undefined, []);
 
 /** var TLS_ECDH_anon_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_anon_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1633855395795914, undefined, []);
+export const TLS_ECDH_anon_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1633855395795914, undefined, []);
 
 /** var TLS_ECDH_anon_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_anon_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1774161901614473, undefined, []);
+export const TLS_ECDH_anon_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1774161901614473, undefined, []);
 
 /** var TLS_ECDH_anon_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_anon_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 483498767823537, undefined, []);
+export const TLS_ECDH_anon_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 483498767823537, undefined, []);
 
 /** var TLS_ECDH_anon_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const TLS_ECDH_anon_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3501011590165578, undefined, []);
+export const TLS_ECDH_anon_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3501011590165578, undefined, []);
 
 /** var TLS_EMPTY_RENEGOTIATION_INFO_SCSV: SSLCipherSuite { get } */
-export const TLS_EMPTY_RENEGOTIATION_INFO_SCSV: number = callSDK<number>("Security_d968214ecc684fb6", 1324117392601478, undefined, []);
+export const TLS_EMPTY_RENEGOTIATION_INFO_SCSV: number = callSDK<number>("Security_0e503aef608672fa", 1324117392601478, undefined, []);
 
 /** var TLS_NULL_WITH_NULL_NULL: SSLCipherSuite { get } */
-export const TLS_NULL_WITH_NULL_NULL: number = callSDK<number>("Security_d968214ecc684fb6", 3860234350335837, undefined, []);
+export const TLS_NULL_WITH_NULL_NULL: number = callSDK<number>("Security_0e503aef608672fa", 3860234350335837, undefined, []);
 
 /** var TLS_PSK_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2240749635644519, undefined, []);
+export const TLS_PSK_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2240749635644519, undefined, []);
 
 /** var TLS_PSK_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 4490911742647659, undefined, []);
+export const TLS_PSK_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 4490911742647659, undefined, []);
 
 /** var TLS_PSK_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3385136183714536, undefined, []);
+export const TLS_PSK_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3385136183714536, undefined, []);
 
 /** var TLS_PSK_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 2183965971829672, undefined, []);
+export const TLS_PSK_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 2183965971829672, undefined, []);
 
 /** var TLS_PSK_WITH_AES_256_CBC_SHA384: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 4240820061349366, undefined, []);
+export const TLS_PSK_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 4240820061349366, undefined, []);
 
 /** var TLS_PSK_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 979161487587787, undefined, []);
+export const TLS_PSK_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 979161487587787, undefined, []);
 
 /** var TLS_PSK_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 1846040756192719, undefined, []);
+export const TLS_PSK_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 1846040756192719, undefined, []);
 
 /** var TLS_PSK_WITH_CHACHA20_POLY1305_SHA256: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3946455197520063, undefined, []);
+export const TLS_PSK_WITH_CHACHA20_POLY1305_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3946455197520063, undefined, []);
 
 /** var TLS_PSK_WITH_NULL_SHA256: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_NULL_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 203170006384043, undefined, []);
+export const TLS_PSK_WITH_NULL_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 203170006384043, undefined, []);
 
 /** var TLS_PSK_WITH_NULL_SHA384: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_NULL_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 86593726661965, undefined, []);
+export const TLS_PSK_WITH_NULL_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 86593726661965, undefined, []);
 
 /** var TLS_PSK_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3013457001996727, undefined, []);
+export const TLS_PSK_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3013457001996727, undefined, []);
 
 /** var TLS_PSK_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const TLS_PSK_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1492476471879208, undefined, []);
+export const TLS_PSK_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1492476471879208, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3055469238836131, undefined, []);
+export const TLS_RSA_PSK_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3055469238836131, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 3321122563407807, undefined, []);
+export const TLS_RSA_PSK_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 3321122563407807, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2910583369156807, undefined, []);
+export const TLS_RSA_PSK_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2910583369156807, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 2427580318013050, undefined, []);
+export const TLS_RSA_PSK_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 2427580318013050, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_AES_256_CBC_SHA384: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 2909487380366092, undefined, []);
+export const TLS_RSA_PSK_WITH_AES_256_CBC_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 2909487380366092, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3107687074526264, undefined, []);
+export const TLS_RSA_PSK_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3107687074526264, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 675660519609412, undefined, []);
+export const TLS_RSA_PSK_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 675660519609412, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_NULL_SHA256: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_NULL_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 4373131437975797, undefined, []);
+export const TLS_RSA_PSK_WITH_NULL_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 4373131437975797, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_NULL_SHA384: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_NULL_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 1714176861364235, undefined, []);
+export const TLS_RSA_PSK_WITH_NULL_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 1714176861364235, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3389243791142873, undefined, []);
+export const TLS_RSA_PSK_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3389243791142873, undefined, []);
 
 /** var TLS_RSA_PSK_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_PSK_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3787392913824475, undefined, []);
+export const TLS_RSA_PSK_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3787392913824475, undefined, []);
 
 /** var TLS_RSA_WITH_3DES_EDE_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3851266487566469, undefined, []);
+export const TLS_RSA_WITH_3DES_EDE_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3851266487566469, undefined, []);
 
 /** var TLS_RSA_WITH_AES_128_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 2114047422535914, undefined, []);
+export const TLS_RSA_WITH_AES_128_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 2114047422535914, undefined, []);
 
 /** var TLS_RSA_WITH_AES_128_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 3472931259466571, undefined, []);
+export const TLS_RSA_WITH_AES_128_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 3472931259466571, undefined, []);
 
 /** var TLS_RSA_WITH_AES_128_GCM_SHA256: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 1398902021027465, undefined, []);
+export const TLS_RSA_WITH_AES_128_GCM_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 1398902021027465, undefined, []);
 
 /** var TLS_RSA_WITH_AES_256_CBC_SHA256: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 2267417270349922, undefined, []);
+export const TLS_RSA_WITH_AES_256_CBC_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 2267417270349922, undefined, []);
 
 /** var TLS_RSA_WITH_AES_256_CBC_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2997331829432728, undefined, []);
+export const TLS_RSA_WITH_AES_256_CBC_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2997331829432728, undefined, []);
 
 /** var TLS_RSA_WITH_AES_256_GCM_SHA384: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_d968214ecc684fb6", 4038324957431181, undefined, []);
+export const TLS_RSA_WITH_AES_256_GCM_SHA384: number = callSDK<number>("Security_0e503aef608672fa", 4038324957431181, undefined, []);
 
 /** var TLS_RSA_WITH_NULL_MD5: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_NULL_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 4148159049736448, undefined, []);
+export const TLS_RSA_WITH_NULL_MD5: number = callSDK<number>("Security_0e503aef608672fa", 4148159049736448, undefined, []);
 
 /** var TLS_RSA_WITH_NULL_SHA256: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_NULL_SHA256: number = callSDK<number>("Security_d968214ecc684fb6", 218889121941309, undefined, []);
+export const TLS_RSA_WITH_NULL_SHA256: number = callSDK<number>("Security_0e503aef608672fa", 218889121941309, undefined, []);
 
 /** var TLS_RSA_WITH_NULL_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_NULL_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 1055221402487542, undefined, []);
+export const TLS_RSA_WITH_NULL_SHA: number = callSDK<number>("Security_0e503aef608672fa", 1055221402487542, undefined, []);
 
 /** var TLS_RSA_WITH_RC4_128_MD5: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_RC4_128_MD5: number = callSDK<number>("Security_d968214ecc684fb6", 3758053621371455, undefined, []);
+export const TLS_RSA_WITH_RC4_128_MD5: number = callSDK<number>("Security_0e503aef608672fa", 3758053621371455, undefined, []);
 
 /** var TLS_RSA_WITH_RC4_128_SHA: SSLCipherSuite { get } */
-export const TLS_RSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_d968214ecc684fb6", 2904677835385333, undefined, []);
+export const TLS_RSA_WITH_RC4_128_SHA: number = callSDK<number>("Security_0e503aef608672fa", 2904677835385333, undefined, []);
 
 /** var errSSLATSCertificateHashAlgorithmViolation: OSStatus { get } */
-export const errSSLATSCertificateHashAlgorithmViolation: number = callSDK<number>("Security_d968214ecc684fb6", 3124662822261251, undefined, []);
+export const errSSLATSCertificateHashAlgorithmViolation: number = callSDK<number>("Security_0e503aef608672fa", 3124662822261251, undefined, []);
 
 /** var errSSLATSCertificateTrustViolation: OSStatus { get } */
-export const errSSLATSCertificateTrustViolation: number = callSDK<number>("Security_d968214ecc684fb6", 1737652233593084, undefined, []);
+export const errSSLATSCertificateTrustViolation: number = callSDK<number>("Security_0e503aef608672fa", 1737652233593084, undefined, []);
 
 /** var errSSLATSCiphersuiteViolation: OSStatus { get } */
-export const errSSLATSCiphersuiteViolation: number = callSDK<number>("Security_d968214ecc684fb6", 4205735215683989, undefined, []);
+export const errSSLATSCiphersuiteViolation: number = callSDK<number>("Security_0e503aef608672fa", 4205735215683989, undefined, []);
 
 /** var errSSLATSLeafCertificateHashAlgorithmViolation: OSStatus { get } */
-export const errSSLATSLeafCertificateHashAlgorithmViolation: number = callSDK<number>("Security_d968214ecc684fb6", 216693366761731, undefined, []);
+export const errSSLATSLeafCertificateHashAlgorithmViolation: number = callSDK<number>("Security_0e503aef608672fa", 216693366761731, undefined, []);
 
 /** var errSSLATSMinimumKeySizeViolation: OSStatus { get } */
-export const errSSLATSMinimumKeySizeViolation: number = callSDK<number>("Security_d968214ecc684fb6", 4383587960879117, undefined, []);
+export const errSSLATSMinimumKeySizeViolation: number = callSDK<number>("Security_0e503aef608672fa", 4383587960879117, undefined, []);
 
 /** var errSSLATSMinimumVersionViolation: OSStatus { get } */
-export const errSSLATSMinimumVersionViolation: number = callSDK<number>("Security_d968214ecc684fb6", 1763643788189734, undefined, []);
+export const errSSLATSMinimumVersionViolation: number = callSDK<number>("Security_0e503aef608672fa", 1763643788189734, undefined, []);
 
 /** var errSSLATSViolation: OSStatus { get } */
-export const errSSLATSViolation: number = callSDK<number>("Security_d968214ecc684fb6", 1191178757436446, undefined, []);
+export const errSSLATSViolation: number = callSDK<number>("Security_0e503aef608672fa", 1191178757436446, undefined, []);
 
 /** var errSSLBadCert: OSStatus { get } */
-export const errSSLBadCert: number = callSDK<number>("Security_d968214ecc684fb6", 4381315937231288, undefined, []);
+export const errSSLBadCert: number = callSDK<number>("Security_0e503aef608672fa", 4381315937231288, undefined, []);
 
 /** var errSSLBadCertificateStatusResponse: OSStatus { get } */
-export const errSSLBadCertificateStatusResponse: number = callSDK<number>("Security_d968214ecc684fb6", 1895603268900570, undefined, []);
+export const errSSLBadCertificateStatusResponse: number = callSDK<number>("Security_0e503aef608672fa", 1895603268900570, undefined, []);
 
 /** var errSSLBadCipherSuite: OSStatus { get } */
-export const errSSLBadCipherSuite: number = callSDK<number>("Security_d968214ecc684fb6", 1197565298760001, undefined, []);
+export const errSSLBadCipherSuite: number = callSDK<number>("Security_0e503aef608672fa", 1197565298760001, undefined, []);
 
 /** var errSSLBadConfiguration: OSStatus { get } */
-export const errSSLBadConfiguration: number = callSDK<number>("Security_d968214ecc684fb6", 3335549442950874, undefined, []);
+export const errSSLBadConfiguration: number = callSDK<number>("Security_0e503aef608672fa", 3335549442950874, undefined, []);
 
 /** var errSSLBadRecordMac: OSStatus { get } */
-export const errSSLBadRecordMac: number = callSDK<number>("Security_d968214ecc684fb6", 1576203339927672, undefined, []);
+export const errSSLBadRecordMac: number = callSDK<number>("Security_0e503aef608672fa", 1576203339927672, undefined, []);
 
 /** var errSSLBufferOverflow: OSStatus { get } */
-export const errSSLBufferOverflow: number = callSDK<number>("Security_d968214ecc684fb6", 1564147755841826, undefined, []);
+export const errSSLBufferOverflow: number = callSDK<number>("Security_0e503aef608672fa", 1564147755841826, undefined, []);
 
 /** var errSSLCertExpired: OSStatus { get } */
-export const errSSLCertExpired: number = callSDK<number>("Security_d968214ecc684fb6", 2838704568685289, undefined, []);
+export const errSSLCertExpired: number = callSDK<number>("Security_0e503aef608672fa", 2838704568685289, undefined, []);
 
 /** var errSSLCertNotYetValid: OSStatus { get } */
-export const errSSLCertNotYetValid: number = callSDK<number>("Security_d968214ecc684fb6", 923856694762394, undefined, []);
+export const errSSLCertNotYetValid: number = callSDK<number>("Security_0e503aef608672fa", 923856694762394, undefined, []);
 
 /** var errSSLCertificateRequired: OSStatus { get } */
-export const errSSLCertificateRequired: number = callSDK<number>("Security_d968214ecc684fb6", 3804444983607450, undefined, []);
+export const errSSLCertificateRequired: number = callSDK<number>("Security_0e503aef608672fa", 3804444983607450, undefined, []);
 
 /** var errSSLClientCertRequested: OSStatus { get } */
-export const errSSLClientCertRequested: number = callSDK<number>("Security_d968214ecc684fb6", 1344202872290135, undefined, []);
+export const errSSLClientCertRequested: number = callSDK<number>("Security_0e503aef608672fa", 1344202872290135, undefined, []);
 
 /** var errSSLClientHelloReceived: OSStatus { get } */
-export const errSSLClientHelloReceived: number = callSDK<number>("Security_d968214ecc684fb6", 1458925193210068, undefined, []);
+export const errSSLClientHelloReceived: number = callSDK<number>("Security_0e503aef608672fa", 1458925193210068, undefined, []);
 
 /** var errSSLClosedAbort: OSStatus { get } */
-export const errSSLClosedAbort: number = callSDK<number>("Security_d968214ecc684fb6", 2511301868374705, undefined, []);
+export const errSSLClosedAbort: number = callSDK<number>("Security_0e503aef608672fa", 2511301868374705, undefined, []);
 
 /** var errSSLClosedGraceful: OSStatus { get } */
-export const errSSLClosedGraceful: number = callSDK<number>("Security_d968214ecc684fb6", 3833737759983843, undefined, []);
+export const errSSLClosedGraceful: number = callSDK<number>("Security_0e503aef608672fa", 3833737759983843, undefined, []);
 
 /** var errSSLClosedNoNotify: OSStatus { get } */
-export const errSSLClosedNoNotify: number = callSDK<number>("Security_d968214ecc684fb6", 3303211174058009, undefined, []);
+export const errSSLClosedNoNotify: number = callSDK<number>("Security_0e503aef608672fa", 3303211174058009, undefined, []);
 
 /** var errSSLConfigurationFailed: OSStatus { get } */
-export const errSSLConfigurationFailed: number = callSDK<number>("Security_d968214ecc684fb6", 937602974148322, undefined, []);
+export const errSSLConfigurationFailed: number = callSDK<number>("Security_0e503aef608672fa", 937602974148322, undefined, []);
 
 /** var errSSLConnectionRefused: OSStatus { get } */
-export const errSSLConnectionRefused: number = callSDK<number>("Security_d968214ecc684fb6", 1341295213176364, undefined, []);
+export const errSSLConnectionRefused: number = callSDK<number>("Security_0e503aef608672fa", 1341295213176364, undefined, []);
 
 /** var errSSLCrypto: OSStatus { get } */
-export const errSSLCrypto: number = callSDK<number>("Security_d968214ecc684fb6", 391192282266459, undefined, []);
+export const errSSLCrypto: number = callSDK<number>("Security_0e503aef608672fa", 391192282266459, undefined, []);
 
 /** var errSSLDecodeError: OSStatus { get } */
-export const errSSLDecodeError: number = callSDK<number>("Security_d968214ecc684fb6", 3560296361190466, undefined, []);
+export const errSSLDecodeError: number = callSDK<number>("Security_0e503aef608672fa", 3560296361190466, undefined, []);
 
 /** var errSSLDecompressFail: OSStatus { get } */
-export const errSSLDecompressFail: number = callSDK<number>("Security_d968214ecc684fb6", 2340687362728297, undefined, []);
+export const errSSLDecompressFail: number = callSDK<number>("Security_0e503aef608672fa", 2340687362728297, undefined, []);
 
 /** var errSSLDecryptionFail: OSStatus { get } */
-export const errSSLDecryptionFail: number = callSDK<number>("Security_d968214ecc684fb6", 4279982848180150, undefined, []);
+export const errSSLDecryptionFail: number = callSDK<number>("Security_0e503aef608672fa", 4279982848180150, undefined, []);
 
 /** var errSSLEarlyDataRejected: OSStatus { get } */
-export const errSSLEarlyDataRejected: number = callSDK<number>("Security_d968214ecc684fb6", 1661636514567773, undefined, []);
+export const errSSLEarlyDataRejected: number = callSDK<number>("Security_0e503aef608672fa", 1661636514567773, undefined, []);
 
 /** var errSSLFatalAlert: OSStatus { get } */
-export const errSSLFatalAlert: number = callSDK<number>("Security_d968214ecc684fb6", 3764100498316562, undefined, []);
+export const errSSLFatalAlert: number = callSDK<number>("Security_0e503aef608672fa", 3764100498316562, undefined, []);
 
 /** var errSSLHandshakeFail: OSStatus { get } */
-export const errSSLHandshakeFail: number = callSDK<number>("Security_d968214ecc684fb6", 3971815204002585, undefined, []);
+export const errSSLHandshakeFail: number = callSDK<number>("Security_0e503aef608672fa", 3971815204002585, undefined, []);
 
 /** var errSSLHostNameMismatch: OSStatus { get } */
-export const errSSLHostNameMismatch: number = callSDK<number>("Security_d968214ecc684fb6", 794046881703698, undefined, []);
+export const errSSLHostNameMismatch: number = callSDK<number>("Security_0e503aef608672fa", 794046881703698, undefined, []);
 
 /** var errSSLIllegalParam: OSStatus { get } */
-export const errSSLIllegalParam: number = callSDK<number>("Security_d968214ecc684fb6", 1901177538985634, undefined, []);
+export const errSSLIllegalParam: number = callSDK<number>("Security_0e503aef608672fa", 1901177538985634, undefined, []);
 
 /** var errSSLInappropriateFallback: OSStatus { get } */
-export const errSSLInappropriateFallback: number = callSDK<number>("Security_d968214ecc684fb6", 3041288074566015, undefined, []);
+export const errSSLInappropriateFallback: number = callSDK<number>("Security_0e503aef608672fa", 3041288074566015, undefined, []);
 
 /** var errSSLInternal: OSStatus { get } */
-export const errSSLInternal: number = callSDK<number>("Security_d968214ecc684fb6", 2015528925291473, undefined, []);
+export const errSSLInternal: number = callSDK<number>("Security_0e503aef608672fa", 2015528925291473, undefined, []);
 
 /** var errSSLMissingExtension: OSStatus { get } */
-export const errSSLMissingExtension: number = callSDK<number>("Security_d968214ecc684fb6", 2606778860693186, undefined, []);
+export const errSSLMissingExtension: number = callSDK<number>("Security_0e503aef608672fa", 2606778860693186, undefined, []);
 
 /** var errSSLModuleAttach: OSStatus { get } */
-export const errSSLModuleAttach: number = callSDK<number>("Security_d968214ecc684fb6", 3110098415274562, undefined, []);
+export const errSSLModuleAttach: number = callSDK<number>("Security_0e503aef608672fa", 3110098415274562, undefined, []);
 
 /** var errSSLNegotiation: OSStatus { get } */
-export const errSSLNegotiation: number = callSDK<number>("Security_d968214ecc684fb6", 307764894103255, undefined, []);
+export const errSSLNegotiation: number = callSDK<number>("Security_0e503aef608672fa", 307764894103255, undefined, []);
 
 /** var errSSLNetworkTimeout: OSStatus { get } */
-export const errSSLNetworkTimeout: number = callSDK<number>("Security_d968214ecc684fb6", 3945327060654396, undefined, []);
+export const errSSLNetworkTimeout: number = callSDK<number>("Security_0e503aef608672fa", 3945327060654396, undefined, []);
 
 /** var errSSLNoRootCert: OSStatus { get } */
-export const errSSLNoRootCert: number = callSDK<number>("Security_d968214ecc684fb6", 986868038541088, undefined, []);
+export const errSSLNoRootCert: number = callSDK<number>("Security_0e503aef608672fa", 986868038541088, undefined, []);
 
 /** var errSSLPeerAccessDenied: OSStatus { get } */
-export const errSSLPeerAccessDenied: number = callSDK<number>("Security_d968214ecc684fb6", 4043864415851800, undefined, []);
+export const errSSLPeerAccessDenied: number = callSDK<number>("Security_0e503aef608672fa", 4043864415851800, undefined, []);
 
 /** var errSSLPeerAuthCompleted: OSStatus { get } */
-export const errSSLPeerAuthCompleted: number = callSDK<number>("Security_d968214ecc684fb6", 2074994129893028, undefined, []);
+export const errSSLPeerAuthCompleted: number = callSDK<number>("Security_0e503aef608672fa", 2074994129893028, undefined, []);
 
 /** var errSSLPeerBadCert: OSStatus { get } */
-export const errSSLPeerBadCert: number = callSDK<number>("Security_d968214ecc684fb6", 310517942694735, undefined, []);
+export const errSSLPeerBadCert: number = callSDK<number>("Security_0e503aef608672fa", 310517942694735, undefined, []);
 
 /** var errSSLPeerBadRecordMac: OSStatus { get } */
-export const errSSLPeerBadRecordMac: number = callSDK<number>("Security_d968214ecc684fb6", 2166882887837060, undefined, []);
+export const errSSLPeerBadRecordMac: number = callSDK<number>("Security_0e503aef608672fa", 2166882887837060, undefined, []);
 
 /** var errSSLPeerCertExpired: OSStatus { get } */
-export const errSSLPeerCertExpired: number = callSDK<number>("Security_d968214ecc684fb6", 3831771856418366, undefined, []);
+export const errSSLPeerCertExpired: number = callSDK<number>("Security_0e503aef608672fa", 3831771856418366, undefined, []);
 
 /** var errSSLPeerCertRevoked: OSStatus { get } */
-export const errSSLPeerCertRevoked: number = callSDK<number>("Security_d968214ecc684fb6", 353796073833214, undefined, []);
+export const errSSLPeerCertRevoked: number = callSDK<number>("Security_0e503aef608672fa", 353796073833214, undefined, []);
 
 /** var errSSLPeerCertUnknown: OSStatus { get } */
-export const errSSLPeerCertUnknown: number = callSDK<number>("Security_d968214ecc684fb6", 1414234712445921, undefined, []);
+export const errSSLPeerCertUnknown: number = callSDK<number>("Security_0e503aef608672fa", 1414234712445921, undefined, []);
 
 /** var errSSLPeerDecodeError: OSStatus { get } */
-export const errSSLPeerDecodeError: number = callSDK<number>("Security_d968214ecc684fb6", 4231128406561100, undefined, []);
+export const errSSLPeerDecodeError: number = callSDK<number>("Security_0e503aef608672fa", 4231128406561100, undefined, []);
 
 /** var errSSLPeerDecompressFail: OSStatus { get } */
-export const errSSLPeerDecompressFail: number = callSDK<number>("Security_d968214ecc684fb6", 4140760878836395, undefined, []);
+export const errSSLPeerDecompressFail: number = callSDK<number>("Security_0e503aef608672fa", 4140760878836395, undefined, []);
 
 /** var errSSLPeerDecryptError: OSStatus { get } */
-export const errSSLPeerDecryptError: number = callSDK<number>("Security_d968214ecc684fb6", 1960273345804666, undefined, []);
+export const errSSLPeerDecryptError: number = callSDK<number>("Security_0e503aef608672fa", 1960273345804666, undefined, []);
 
 /** var errSSLPeerDecryptionFail: OSStatus { get } */
-export const errSSLPeerDecryptionFail: number = callSDK<number>("Security_d968214ecc684fb6", 3800691954142894, undefined, []);
+export const errSSLPeerDecryptionFail: number = callSDK<number>("Security_0e503aef608672fa", 3800691954142894, undefined, []);
 
 /** var errSSLPeerExportRestriction: OSStatus { get } */
-export const errSSLPeerExportRestriction: number = callSDK<number>("Security_d968214ecc684fb6", 2577275622900044, undefined, []);
+export const errSSLPeerExportRestriction: number = callSDK<number>("Security_0e503aef608672fa", 2577275622900044, undefined, []);
 
 /** var errSSLPeerHandshakeFail: OSStatus { get } */
-export const errSSLPeerHandshakeFail: number = callSDK<number>("Security_d968214ecc684fb6", 3454501652121010, undefined, []);
+export const errSSLPeerHandshakeFail: number = callSDK<number>("Security_0e503aef608672fa", 3454501652121010, undefined, []);
 
 /** var errSSLPeerInsufficientSecurity: OSStatus { get } */
-export const errSSLPeerInsufficientSecurity: number = callSDK<number>("Security_d968214ecc684fb6", 244430180792991, undefined, []);
+export const errSSLPeerInsufficientSecurity: number = callSDK<number>("Security_0e503aef608672fa", 244430180792991, undefined, []);
 
 /** var errSSLPeerInternalError: OSStatus { get } */
-export const errSSLPeerInternalError: number = callSDK<number>("Security_d968214ecc684fb6", 348259657435288, undefined, []);
+export const errSSLPeerInternalError: number = callSDK<number>("Security_0e503aef608672fa", 348259657435288, undefined, []);
 
 /** var errSSLPeerNoRenegotiation: OSStatus { get } */
-export const errSSLPeerNoRenegotiation: number = callSDK<number>("Security_d968214ecc684fb6", 1998782992705622, undefined, []);
+export const errSSLPeerNoRenegotiation: number = callSDK<number>("Security_0e503aef608672fa", 1998782992705622, undefined, []);
 
 /** var errSSLPeerProtocolVersion: OSStatus { get } */
-export const errSSLPeerProtocolVersion: number = callSDK<number>("Security_d968214ecc684fb6", 2296964710328424, undefined, []);
+export const errSSLPeerProtocolVersion: number = callSDK<number>("Security_0e503aef608672fa", 2296964710328424, undefined, []);
 
 /** var errSSLPeerRecordOverflow: OSStatus { get } */
-export const errSSLPeerRecordOverflow: number = callSDK<number>("Security_d968214ecc684fb6", 219580901399017, undefined, []);
+export const errSSLPeerRecordOverflow: number = callSDK<number>("Security_0e503aef608672fa", 219580901399017, undefined, []);
 
 /** var errSSLPeerUnexpectedMsg: OSStatus { get } */
-export const errSSLPeerUnexpectedMsg: number = callSDK<number>("Security_d968214ecc684fb6", 232185519615954, undefined, []);
+export const errSSLPeerUnexpectedMsg: number = callSDK<number>("Security_0e503aef608672fa", 232185519615954, undefined, []);
 
 /** var errSSLPeerUnknownCA: OSStatus { get } */
-export const errSSLPeerUnknownCA: number = callSDK<number>("Security_d968214ecc684fb6", 1697351769743649, undefined, []);
+export const errSSLPeerUnknownCA: number = callSDK<number>("Security_0e503aef608672fa", 1697351769743649, undefined, []);
 
 /** var errSSLPeerUnsupportedCert: OSStatus { get } */
-export const errSSLPeerUnsupportedCert: number = callSDK<number>("Security_d968214ecc684fb6", 3917349104208912, undefined, []);
+export const errSSLPeerUnsupportedCert: number = callSDK<number>("Security_0e503aef608672fa", 3917349104208912, undefined, []);
 
 /** var errSSLPeerUserCancelled: OSStatus { get } */
-export const errSSLPeerUserCancelled: number = callSDK<number>("Security_d968214ecc684fb6", 3332637821465563, undefined, []);
+export const errSSLPeerUserCancelled: number = callSDK<number>("Security_0e503aef608672fa", 3332637821465563, undefined, []);
 
 /** var errSSLProtocol: OSStatus { get } */
-export const errSSLProtocol: number = callSDK<number>("Security_d968214ecc684fb6", 1631542511652266, undefined, []);
+export const errSSLProtocol: number = callSDK<number>("Security_0e503aef608672fa", 1631542511652266, undefined, []);
 
 /** var errSSLRecordOverflow: OSStatus { get } */
-export const errSSLRecordOverflow: number = callSDK<number>("Security_d968214ecc684fb6", 1305463115304289, undefined, []);
+export const errSSLRecordOverflow: number = callSDK<number>("Security_0e503aef608672fa", 1305463115304289, undefined, []);
 
 /** var errSSLSessionNotFound: OSStatus { get } */
-export const errSSLSessionNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 2218101611186062, undefined, []);
+export const errSSLSessionNotFound: number = callSDK<number>("Security_0e503aef608672fa", 2218101611186062, undefined, []);
 
 /** var errSSLTransportReset: OSStatus { get } */
-export const errSSLTransportReset: number = callSDK<number>("Security_d968214ecc684fb6", 3567668907154473, undefined, []);
+export const errSSLTransportReset: number = callSDK<number>("Security_0e503aef608672fa", 3567668907154473, undefined, []);
 
 /** var errSSLUnexpectedMessage: OSStatus { get } */
-export const errSSLUnexpectedMessage: number = callSDK<number>("Security_d968214ecc684fb6", 855751512179375, undefined, []);
+export const errSSLUnexpectedMessage: number = callSDK<number>("Security_0e503aef608672fa", 855751512179375, undefined, []);
 
 /** var errSSLUnexpectedRecord: OSStatus { get } */
-export const errSSLUnexpectedRecord: number = callSDK<number>("Security_d968214ecc684fb6", 3330318196469699, undefined, []);
+export const errSSLUnexpectedRecord: number = callSDK<number>("Security_0e503aef608672fa", 3330318196469699, undefined, []);
 
 /** var errSSLUnknownPSKIdentity: OSStatus { get } */
-export const errSSLUnknownPSKIdentity: number = callSDK<number>("Security_d968214ecc684fb6", 1063275564346191, undefined, []);
+export const errSSLUnknownPSKIdentity: number = callSDK<number>("Security_0e503aef608672fa", 1063275564346191, undefined, []);
 
 /** var errSSLUnknownRootCert: OSStatus { get } */
-export const errSSLUnknownRootCert: number = callSDK<number>("Security_d968214ecc684fb6", 2778811826168654, undefined, []);
+export const errSSLUnknownRootCert: number = callSDK<number>("Security_0e503aef608672fa", 2778811826168654, undefined, []);
 
 /** var errSSLUnrecognizedName: OSStatus { get } */
-export const errSSLUnrecognizedName: number = callSDK<number>("Security_d968214ecc684fb6", 309643701675928, undefined, []);
+export const errSSLUnrecognizedName: number = callSDK<number>("Security_0e503aef608672fa", 309643701675928, undefined, []);
 
 /** var errSSLUnsupportedExtension: OSStatus { get } */
-export const errSSLUnsupportedExtension: number = callSDK<number>("Security_d968214ecc684fb6", 1513266919998963, undefined, []);
+export const errSSLUnsupportedExtension: number = callSDK<number>("Security_0e503aef608672fa", 1513266919998963, undefined, []);
 
 /** var errSSLWeakPeerEphemeralDHKey: OSStatus { get } */
-export const errSSLWeakPeerEphemeralDHKey: number = callSDK<number>("Security_d968214ecc684fb6", 1803866120493043, undefined, []);
+export const errSSLWeakPeerEphemeralDHKey: number = callSDK<number>("Security_0e503aef608672fa", 1803866120493043, undefined, []);
 
 /** var errSSLWouldBlock: OSStatus { get } */
-export const errSSLWouldBlock: number = callSDK<number>("Security_d968214ecc684fb6", 539373614980851, undefined, []);
+export const errSSLWouldBlock: number = callSDK<number>("Security_0e503aef608672fa", 539373614980851, undefined, []);
 
 /** var errSSLXCertChainInvalid: OSStatus { get } */
-export const errSSLXCertChainInvalid: number = callSDK<number>("Security_d968214ecc684fb6", 1560902982528884, undefined, []);
+export const errSSLXCertChainInvalid: number = callSDK<number>("Security_0e503aef608672fa", 1560902982528884, undefined, []);
 
 /** var errSecACLAddFailed: OSStatus { get } */
-export const errSecACLAddFailed: number = callSDK<number>("Security_d968214ecc684fb6", 1168220494849426, undefined, []);
+export const errSecACLAddFailed: number = callSDK<number>("Security_0e503aef608672fa", 1168220494849426, undefined, []);
 
 /** var errSecACLChangeFailed: OSStatus { get } */
-export const errSecACLChangeFailed: number = callSDK<number>("Security_d968214ecc684fb6", 2109707644652945, undefined, []);
+export const errSecACLChangeFailed: number = callSDK<number>("Security_0e503aef608672fa", 2109707644652945, undefined, []);
 
 /** var errSecACLDeleteFailed: OSStatus { get } */
-export const errSecACLDeleteFailed: number = callSDK<number>("Security_d968214ecc684fb6", 2150746017993643, undefined, []);
+export const errSecACLDeleteFailed: number = callSDK<number>("Security_0e503aef608672fa", 2150746017993643, undefined, []);
 
 /** var errSecACLNotSimple: OSStatus { get } */
-export const errSecACLNotSimple: number = callSDK<number>("Security_d968214ecc684fb6", 3179592631355127, undefined, []);
+export const errSecACLNotSimple: number = callSDK<number>("Security_0e503aef608672fa", 3179592631355127, undefined, []);
 
 /** var errSecACLReplaceFailed: OSStatus { get } */
-export const errSecACLReplaceFailed: number = callSDK<number>("Security_d968214ecc684fb6", 2159757065217546, undefined, []);
+export const errSecACLReplaceFailed: number = callSDK<number>("Security_0e503aef608672fa", 2159757065217546, undefined, []);
 
 /** var errSecAddinLoadFailed: OSStatus { get } */
-export const errSecAddinLoadFailed: number = callSDK<number>("Security_d968214ecc684fb6", 1462909575076533, undefined, []);
+export const errSecAddinLoadFailed: number = callSDK<number>("Security_0e503aef608672fa", 1462909575076533, undefined, []);
 
 /** var errSecAddinUnloadFailed: OSStatus { get } */
-export const errSecAddinUnloadFailed: number = callSDK<number>("Security_d968214ecc684fb6", 2766344286675051, undefined, []);
+export const errSecAddinUnloadFailed: number = callSDK<number>("Security_0e503aef608672fa", 2766344286675051, undefined, []);
 
 /** var errSecAlgorithmMismatch: OSStatus { get } */
-export const errSecAlgorithmMismatch: number = callSDK<number>("Security_d968214ecc684fb6", 745606375058128, undefined, []);
+export const errSecAlgorithmMismatch: number = callSDK<number>("Security_0e503aef608672fa", 745606375058128, undefined, []);
 
 /** var errSecAllocate: OSStatus { get } */
-export const errSecAllocate: number = callSDK<number>("Security_d968214ecc684fb6", 4032238189367490, undefined, []);
+export const errSecAllocate: number = callSDK<number>("Security_0e503aef608672fa", 4032238189367490, undefined, []);
 
 /** var errSecAlreadyLoggedIn: OSStatus { get } */
-export const errSecAlreadyLoggedIn: number = callSDK<number>("Security_d968214ecc684fb6", 3712709414621118, undefined, []);
+export const errSecAlreadyLoggedIn: number = callSDK<number>("Security_0e503aef608672fa", 3712709414621118, undefined, []);
 
 /** var errSecAppleAddAppACLSubject: OSStatus { get } */
-export const errSecAppleAddAppACLSubject: number = callSDK<number>("Security_d968214ecc684fb6", 2365710113981940, undefined, []);
+export const errSecAppleAddAppACLSubject: number = callSDK<number>("Security_0e503aef608672fa", 2365710113981940, undefined, []);
 
 /** var errSecAppleInvalidKeyEndDate: OSStatus { get } */
-export const errSecAppleInvalidKeyEndDate: number = callSDK<number>("Security_d968214ecc684fb6", 4024858836847188, undefined, []);
+export const errSecAppleInvalidKeyEndDate: number = callSDK<number>("Security_0e503aef608672fa", 4024858836847188, undefined, []);
 
 /** var errSecAppleInvalidKeyStartDate: OSStatus { get } */
-export const errSecAppleInvalidKeyStartDate: number = callSDK<number>("Security_d968214ecc684fb6", 3357475763854945, undefined, []);
+export const errSecAppleInvalidKeyStartDate: number = callSDK<number>("Security_0e503aef608672fa", 3357475763854945, undefined, []);
 
 /** var errSecApplePublicKeyIncomplete: OSStatus { get } */
-export const errSecApplePublicKeyIncomplete: number = callSDK<number>("Security_d968214ecc684fb6", 4248932617976651, undefined, []);
+export const errSecApplePublicKeyIncomplete: number = callSDK<number>("Security_0e503aef608672fa", 4248932617976651, undefined, []);
 
 /** var errSecAppleSSLv2Rollback: OSStatus { get } */
-export const errSecAppleSSLv2Rollback: number = callSDK<number>("Security_d968214ecc684fb6", 1840704969585540, undefined, []);
+export const errSecAppleSSLv2Rollback: number = callSDK<number>("Security_0e503aef608672fa", 1840704969585540, undefined, []);
 
 /** var errSecAppleSignatureMismatch: OSStatus { get } */
-export const errSecAppleSignatureMismatch: number = callSDK<number>("Security_d968214ecc684fb6", 1015033761103334, undefined, []);
+export const errSecAppleSignatureMismatch: number = callSDK<number>("Security_0e503aef608672fa", 1015033761103334, undefined, []);
 
 /** var errSecAttachHandleBusy: OSStatus { get } */
-export const errSecAttachHandleBusy: number = callSDK<number>("Security_d968214ecc684fb6", 3357022216734593, undefined, []);
+export const errSecAttachHandleBusy: number = callSDK<number>("Security_0e503aef608672fa", 3357022216734593, undefined, []);
 
 /** var errSecAttributeNotInContext: OSStatus { get } */
-export const errSecAttributeNotInContext: number = callSDK<number>("Security_d968214ecc684fb6", 1285090204711331, undefined, []);
+export const errSecAttributeNotInContext: number = callSDK<number>("Security_0e503aef608672fa", 1285090204711331, undefined, []);
 
 /** var errSecAuthFailed: OSStatus { get } */
-export const errSecAuthFailed: number = callSDK<number>("Security_d968214ecc684fb6", 906214070001430, undefined, []);
+export const errSecAuthFailed: number = callSDK<number>("Security_0e503aef608672fa", 906214070001430, undefined, []);
 
 /** var errSecBadReq: OSStatus { get } */
-export const errSecBadReq: number = callSDK<number>("Security_d968214ecc684fb6", 3291145620415036, undefined, []);
+export const errSecBadReq: number = callSDK<number>("Security_0e503aef608672fa", 3291145620415036, undefined, []);
 
 /** var errSecBlockSizeMismatch: OSStatus { get } */
-export const errSecBlockSizeMismatch: number = callSDK<number>("Security_d968214ecc684fb6", 3810251555138186, undefined, []);
+export const errSecBlockSizeMismatch: number = callSDK<number>("Security_0e503aef608672fa", 3810251555138186, undefined, []);
 
 /** var errSecBufferTooSmall: OSStatus { get } */
-export const errSecBufferTooSmall: number = callSDK<number>("Security_d968214ecc684fb6", 2591840068761614, undefined, []);
+export const errSecBufferTooSmall: number = callSDK<number>("Security_0e503aef608672fa", 2591840068761614, undefined, []);
 
 /** var errSecCRLAlreadySigned: OSStatus { get } */
-export const errSecCRLAlreadySigned: number = callSDK<number>("Security_d968214ecc684fb6", 2859325305539289, undefined, []);
+export const errSecCRLAlreadySigned: number = callSDK<number>("Security_0e503aef608672fa", 2859325305539289, undefined, []);
 
 /** var errSecCRLBadURI: OSStatus { get } */
-export const errSecCRLBadURI: number = callSDK<number>("Security_d968214ecc684fb6", 484832639399530, undefined, []);
+export const errSecCRLBadURI: number = callSDK<number>("Security_0e503aef608672fa", 484832639399530, undefined, []);
 
 /** var errSecCRLExpired: OSStatus { get } */
-export const errSecCRLExpired: number = callSDK<number>("Security_d968214ecc684fb6", 3562136384643346, undefined, []);
+export const errSecCRLExpired: number = callSDK<number>("Security_0e503aef608672fa", 3562136384643346, undefined, []);
 
 /** var errSecCRLNotFound: OSStatus { get } */
-export const errSecCRLNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 4261260614650184, undefined, []);
+export const errSecCRLNotFound: number = callSDK<number>("Security_0e503aef608672fa", 4261260614650184, undefined, []);
 
 /** var errSecCRLNotTrusted: OSStatus { get } */
-export const errSecCRLNotTrusted: number = callSDK<number>("Security_d968214ecc684fb6", 3574530503337884, undefined, []);
+export const errSecCRLNotTrusted: number = callSDK<number>("Security_0e503aef608672fa", 3574530503337884, undefined, []);
 
 /** var errSecCRLNotValidYet: OSStatus { get } */
-export const errSecCRLNotValidYet: number = callSDK<number>("Security_d968214ecc684fb6", 1833475138688977, undefined, []);
+export const errSecCRLNotValidYet: number = callSDK<number>("Security_0e503aef608672fa", 1833475138688977, undefined, []);
 
 /** var errSecCRLPolicyFailed: OSStatus { get } */
-export const errSecCRLPolicyFailed: number = callSDK<number>("Security_d968214ecc684fb6", 3154235953160062, undefined, []);
+export const errSecCRLPolicyFailed: number = callSDK<number>("Security_0e503aef608672fa", 3154235953160062, undefined, []);
 
 /** var errSecCRLServerDown: OSStatus { get } */
-export const errSecCRLServerDown: number = callSDK<number>("Security_d968214ecc684fb6", 2813804735125772, undefined, []);
+export const errSecCRLServerDown: number = callSDK<number>("Security_0e503aef608672fa", 2813804735125772, undefined, []);
 
 /** var errSecCallbackFailed: OSStatus { get } */
-export const errSecCallbackFailed: number = callSDK<number>("Security_d968214ecc684fb6", 577148408026854, undefined, []);
+export const errSecCallbackFailed: number = callSDK<number>("Security_0e503aef608672fa", 577148408026854, undefined, []);
 
 /** var errSecCertificateCannotOperate: OSStatus { get } */
-export const errSecCertificateCannotOperate: number = callSDK<number>("Security_d968214ecc684fb6", 1197270257261748, undefined, []);
+export const errSecCertificateCannotOperate: number = callSDK<number>("Security_0e503aef608672fa", 1197270257261748, undefined, []);
 
 /** var errSecCertificateDuplicateExtension: OSStatus { get } */
-export const errSecCertificateDuplicateExtension: number = callSDK<number>("Security_d968214ecc684fb6", 3820738176902408, undefined, []);
+export const errSecCertificateDuplicateExtension: number = callSDK<number>("Security_0e503aef608672fa", 3820738176902408, undefined, []);
 
 /** var errSecCertificateExpired: OSStatus { get } */
-export const errSecCertificateExpired: number = callSDK<number>("Security_d968214ecc684fb6", 1622362019505517, undefined, []);
+export const errSecCertificateExpired: number = callSDK<number>("Security_0e503aef608672fa", 1622362019505517, undefined, []);
 
 /** var errSecCertificateIsCA: OSStatus { get } */
-export const errSecCertificateIsCA: number = callSDK<number>("Security_d968214ecc684fb6", 4454026992713891, undefined, []);
+export const errSecCertificateIsCA: number = callSDK<number>("Security_0e503aef608672fa", 4454026992713891, undefined, []);
 
 /** var errSecCertificateNameNotAllowed: OSStatus { get } */
-export const errSecCertificateNameNotAllowed: number = callSDK<number>("Security_d968214ecc684fb6", 777581176376284, undefined, []);
+export const errSecCertificateNameNotAllowed: number = callSDK<number>("Security_0e503aef608672fa", 777581176376284, undefined, []);
 
 /** var errSecCertificateNotValidYet: OSStatus { get } */
-export const errSecCertificateNotValidYet: number = callSDK<number>("Security_d968214ecc684fb6", 2625533676047591, undefined, []);
+export const errSecCertificateNotValidYet: number = callSDK<number>("Security_0e503aef608672fa", 2625533676047591, undefined, []);
 
 /** var errSecCertificatePolicyNotAllowed: OSStatus { get } */
-export const errSecCertificatePolicyNotAllowed: number = callSDK<number>("Security_d968214ecc684fb6", 2244030187485223, undefined, []);
+export const errSecCertificatePolicyNotAllowed: number = callSDK<number>("Security_0e503aef608672fa", 2244030187485223, undefined, []);
 
 /** var errSecCertificateRevoked: OSStatus { get } */
-export const errSecCertificateRevoked: number = callSDK<number>("Security_d968214ecc684fb6", 1734121330704564, undefined, []);
+export const errSecCertificateRevoked: number = callSDK<number>("Security_0e503aef608672fa", 1734121330704564, undefined, []);
 
 /** var errSecCertificateSuspended: OSStatus { get } */
-export const errSecCertificateSuspended: number = callSDK<number>("Security_d968214ecc684fb6", 1252177285606805, undefined, []);
+export const errSecCertificateSuspended: number = callSDK<number>("Security_0e503aef608672fa", 1252177285606805, undefined, []);
 
 /** var errSecCertificateValidityPeriodTooLong: OSStatus { get } */
-export const errSecCertificateValidityPeriodTooLong: number = callSDK<number>("Security_d968214ecc684fb6", 1514808136494633, undefined, []);
+export const errSecCertificateValidityPeriodTooLong: number = callSDK<number>("Security_0e503aef608672fa", 1514808136494633, undefined, []);
 
 /** var errSecCodeSigningBadCertChainLength: OSStatus { get } */
-export const errSecCodeSigningBadCertChainLength: number = callSDK<number>("Security_d968214ecc684fb6", 458411516238643, undefined, []);
+export const errSecCodeSigningBadCertChainLength: number = callSDK<number>("Security_0e503aef608672fa", 458411516238643, undefined, []);
 
 /** var errSecCodeSigningBadPathLengthConstraint: OSStatus { get } */
-export const errSecCodeSigningBadPathLengthConstraint: number = callSDK<number>("Security_d968214ecc684fb6", 1689247512733502, undefined, []);
+export const errSecCodeSigningBadPathLengthConstraint: number = callSDK<number>("Security_0e503aef608672fa", 1689247512733502, undefined, []);
 
 /** var errSecCodeSigningDevelopment: OSStatus { get } */
-export const errSecCodeSigningDevelopment: number = callSDK<number>("Security_d968214ecc684fb6", 4446579122577675, undefined, []);
+export const errSecCodeSigningDevelopment: number = callSDK<number>("Security_0e503aef608672fa", 4446579122577675, undefined, []);
 
 /** var errSecCodeSigningNoBasicConstraints: OSStatus { get } */
-export const errSecCodeSigningNoBasicConstraints: number = callSDK<number>("Security_d968214ecc684fb6", 93720257734155, undefined, []);
+export const errSecCodeSigningNoBasicConstraints: number = callSDK<number>("Security_0e503aef608672fa", 93720257734155, undefined, []);
 
 /** var errSecCodeSigningNoExtendedKeyUsage: OSStatus { get } */
-export const errSecCodeSigningNoExtendedKeyUsage: number = callSDK<number>("Security_d968214ecc684fb6", 1871732901806406, undefined, []);
+export const errSecCodeSigningNoExtendedKeyUsage: number = callSDK<number>("Security_0e503aef608672fa", 1871732901806406, undefined, []);
 
 /** var errSecConversionError: OSStatus { get } */
-export const errSecConversionError: number = callSDK<number>("Security_d968214ecc684fb6", 818727483568027, undefined, []);
+export const errSecConversionError: number = callSDK<number>("Security_0e503aef608672fa", 818727483568027, undefined, []);
 
 /** var errSecCoreFoundationUnknown: OSStatus { get } */
-export const errSecCoreFoundationUnknown: number = callSDK<number>("Security_d968214ecc684fb6", 1120159241818113, undefined, []);
+export const errSecCoreFoundationUnknown: number = callSDK<number>("Security_0e503aef608672fa", 1120159241818113, undefined, []);
 
 /** var errSecCreateChainFailed: OSStatus { get } */
-export const errSecCreateChainFailed: number = callSDK<number>("Security_d968214ecc684fb6", 4446202292519651, undefined, []);
+export const errSecCreateChainFailed: number = callSDK<number>("Security_0e503aef608672fa", 4446202292519651, undefined, []);
 
 /** var errSecDataNotAvailable: OSStatus { get } */
-export const errSecDataNotAvailable: number = callSDK<number>("Security_d968214ecc684fb6", 4049371378790420, undefined, []);
+export const errSecDataNotAvailable: number = callSDK<number>("Security_0e503aef608672fa", 4049371378790420, undefined, []);
 
 /** var errSecDataNotModifiable: OSStatus { get } */
-export const errSecDataNotModifiable: number = callSDK<number>("Security_d968214ecc684fb6", 2192434800225340, undefined, []);
+export const errSecDataNotModifiable: number = callSDK<number>("Security_0e503aef608672fa", 2192434800225340, undefined, []);
 
 /** var errSecDataTooLarge: OSStatus { get } */
-export const errSecDataTooLarge: number = callSDK<number>("Security_d968214ecc684fb6", 873399961695860, undefined, []);
+export const errSecDataTooLarge: number = callSDK<number>("Security_0e503aef608672fa", 873399961695860, undefined, []);
 
 /** var errSecDatabaseLocked: OSStatus { get } */
-export const errSecDatabaseLocked: number = callSDK<number>("Security_d968214ecc684fb6", 3987935906762611, undefined, []);
+export const errSecDatabaseLocked: number = callSDK<number>("Security_0e503aef608672fa", 3987935906762611, undefined, []);
 
 /** var errSecDatastoreIsOpen: OSStatus { get } */
-export const errSecDatastoreIsOpen: number = callSDK<number>("Security_d968214ecc684fb6", 3680081914263452, undefined, []);
+export const errSecDatastoreIsOpen: number = callSDK<number>("Security_0e503aef608672fa", 3680081914263452, undefined, []);
 
 /** var errSecDecode: OSStatus { get } */
-export const errSecDecode: number = callSDK<number>("Security_d968214ecc684fb6", 3400239912717187, undefined, []);
+export const errSecDecode: number = callSDK<number>("Security_0e503aef608672fa", 3400239912717187, undefined, []);
 
 /** var errSecDeviceError: OSStatus { get } */
-export const errSecDeviceError: number = callSDK<number>("Security_d968214ecc684fb6", 750538361737708, undefined, []);
+export const errSecDeviceError: number = callSDK<number>("Security_0e503aef608672fa", 750538361737708, undefined, []);
 
 /** var errSecDeviceFailed: OSStatus { get } */
-export const errSecDeviceFailed: number = callSDK<number>("Security_d968214ecc684fb6", 1273215122294651, undefined, []);
+export const errSecDeviceFailed: number = callSDK<number>("Security_0e503aef608672fa", 1273215122294651, undefined, []);
 
 /** var errSecDeviceReset: OSStatus { get } */
-export const errSecDeviceReset: number = callSDK<number>("Security_d968214ecc684fb6", 2251186900545312, undefined, []);
+export const errSecDeviceReset: number = callSDK<number>("Security_0e503aef608672fa", 2251186900545312, undefined, []);
 
 /** var errSecDeviceVerifyFailed: OSStatus { get } */
-export const errSecDeviceVerifyFailed: number = callSDK<number>("Security_d968214ecc684fb6", 2336215911657062, undefined, []);
+export const errSecDeviceVerifyFailed: number = callSDK<number>("Security_0e503aef608672fa", 2336215911657062, undefined, []);
 
 /** var errSecDiskFull: OSStatus { get } */
-export const errSecDiskFull: number = callSDK<number>("Security_d968214ecc684fb6", 4323212429148258, undefined, []);
+export const errSecDiskFull: number = callSDK<number>("Security_0e503aef608672fa", 4323212429148258, undefined, []);
 
 /** var errSecDskFull: OSStatus { get } */
-export const errSecDskFull: number = callSDK<number>("Security_d968214ecc684fb6", 3563061693397414, undefined, []);
+export const errSecDskFull: number = callSDK<number>("Security_0e503aef608672fa", 3563061693397414, undefined, []);
 
 /** var errSecDuplicateCallback: OSStatus { get } */
-export const errSecDuplicateCallback: number = callSDK<number>("Security_d968214ecc684fb6", 2424988078409261, undefined, []);
+export const errSecDuplicateCallback: number = callSDK<number>("Security_0e503aef608672fa", 2424988078409261, undefined, []);
 
 /** var errSecDuplicateItem: OSStatus { get } */
-export const errSecDuplicateItem: number = callSDK<number>("Security_d968214ecc684fb6", 3985431359069212, undefined, []);
+export const errSecDuplicateItem: number = callSDK<number>("Security_0e503aef608672fa", 3985431359069212, undefined, []);
 
 /** var errSecDuplicateKeychain: OSStatus { get } */
-export const errSecDuplicateKeychain: number = callSDK<number>("Security_d968214ecc684fb6", 4057944166302813, undefined, []);
+export const errSecDuplicateKeychain: number = callSDK<number>("Security_0e503aef608672fa", 4057944166302813, undefined, []);
 
 /** var errSecEMMLoadFailed: OSStatus { get } */
-export const errSecEMMLoadFailed: number = callSDK<number>("Security_d968214ecc684fb6", 1334760705898996, undefined, []);
+export const errSecEMMLoadFailed: number = callSDK<number>("Security_0e503aef608672fa", 1334760705898996, undefined, []);
 
 /** var errSecEMMUnloadFailed: OSStatus { get } */
-export const errSecEMMUnloadFailed: number = callSDK<number>("Security_d968214ecc684fb6", 3071090625773698, undefined, []);
+export const errSecEMMUnloadFailed: number = callSDK<number>("Security_0e503aef608672fa", 3071090625773698, undefined, []);
 
 /** var errSecEndOfData: OSStatus { get } */
-export const errSecEndOfData: number = callSDK<number>("Security_d968214ecc684fb6", 262100929603409, undefined, []);
+export const errSecEndOfData: number = callSDK<number>("Security_0e503aef608672fa", 262100929603409, undefined, []);
 
 /** var errSecEventNotificationCallbackNotFound: OSStatus { get } */
-export const errSecEventNotificationCallbackNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 3039284031654084, undefined, []);
+export const errSecEventNotificationCallbackNotFound: number = callSDK<number>("Security_0e503aef608672fa", 3039284031654084, undefined, []);
 
 /** var errSecExtendedKeyUsageNotCritical: OSStatus { get } */
-export const errSecExtendedKeyUsageNotCritical: number = callSDK<number>("Security_d968214ecc684fb6", 683560985736778, undefined, []);
+export const errSecExtendedKeyUsageNotCritical: number = callSDK<number>("Security_0e503aef608672fa", 683560985736778, undefined, []);
 
 /** var errSecFieldSpecifiedMultiple: OSStatus { get } */
-export const errSecFieldSpecifiedMultiple: number = callSDK<number>("Security_d968214ecc684fb6", 1189270645357806, undefined, []);
+export const errSecFieldSpecifiedMultiple: number = callSDK<number>("Security_0e503aef608672fa", 1189270645357806, undefined, []);
 
 /** var errSecFileTooBig: OSStatus { get } */
-export const errSecFileTooBig: number = callSDK<number>("Security_d968214ecc684fb6", 3684821282333112, undefined, []);
+export const errSecFileTooBig: number = callSDK<number>("Security_0e503aef608672fa", 3684821282333112, undefined, []);
 
 /** var errSecFunctionFailed: OSStatus { get } */
-export const errSecFunctionFailed: number = callSDK<number>("Security_d968214ecc684fb6", 1757572002317428, undefined, []);
+export const errSecFunctionFailed: number = callSDK<number>("Security_0e503aef608672fa", 1757572002317428, undefined, []);
 
 /** var errSecFunctionIntegrityFail: OSStatus { get } */
-export const errSecFunctionIntegrityFail: number = callSDK<number>("Security_d968214ecc684fb6", 3637448698546052, undefined, []);
+export const errSecFunctionIntegrityFail: number = callSDK<number>("Security_0e503aef608672fa", 3637448698546052, undefined, []);
 
 /** var errSecHostNameMismatch: OSStatus { get } */
-export const errSecHostNameMismatch: number = callSDK<number>("Security_d968214ecc684fb6", 2157981312061149, undefined, []);
+export const errSecHostNameMismatch: number = callSDK<number>("Security_0e503aef608672fa", 2157981312061149, undefined, []);
 
 /** var errSecIDPFailure: OSStatus { get } */
-export const errSecIDPFailure: number = callSDK<number>("Security_d968214ecc684fb6", 2631396281386008, undefined, []);
+export const errSecIDPFailure: number = callSDK<number>("Security_0e503aef608672fa", 2631396281386008, undefined, []);
 
 /** var errSecIO: OSStatus { get } */
-export const errSecIO: number = callSDK<number>("Security_d968214ecc684fb6", 2241882822748659, undefined, []);
+export const errSecIO: number = callSDK<number>("Security_0e503aef608672fa", 2241882822748659, undefined, []);
 
 /** var errSecInDarkWake: OSStatus { get } */
-export const errSecInDarkWake: number = callSDK<number>("Security_d968214ecc684fb6", 2440683539890878, undefined, []);
+export const errSecInDarkWake: number = callSDK<number>("Security_0e503aef608672fa", 2440683539890878, undefined, []);
 
 /** var errSecIncompatibleDatabaseBlob: OSStatus { get } */
-export const errSecIncompatibleDatabaseBlob: number = callSDK<number>("Security_d968214ecc684fb6", 3470915475530956, undefined, []);
+export const errSecIncompatibleDatabaseBlob: number = callSDK<number>("Security_0e503aef608672fa", 3470915475530956, undefined, []);
 
 /** var errSecIncompatibleFieldFormat: OSStatus { get } */
-export const errSecIncompatibleFieldFormat: number = callSDK<number>("Security_d968214ecc684fb6", 3458231062752078, undefined, []);
+export const errSecIncompatibleFieldFormat: number = callSDK<number>("Security_0e503aef608672fa", 3458231062752078, undefined, []);
 
 /** var errSecIncompatibleKeyBlob: OSStatus { get } */
-export const errSecIncompatibleKeyBlob: number = callSDK<number>("Security_d968214ecc684fb6", 4447735732255545, undefined, []);
+export const errSecIncompatibleKeyBlob: number = callSDK<number>("Security_0e503aef608672fa", 4447735732255545, undefined, []);
 
 /** var errSecIncompatibleVersion: OSStatus { get } */
-export const errSecIncompatibleVersion: number = callSDK<number>("Security_d968214ecc684fb6", 4073716442593850, undefined, []);
+export const errSecIncompatibleVersion: number = callSDK<number>("Security_0e503aef608672fa", 4073716442593850, undefined, []);
 
 /** var errSecIncompleteCertRevocationCheck: OSStatus { get } */
-export const errSecIncompleteCertRevocationCheck: number = callSDK<number>("Security_d968214ecc684fb6", 940207356029873, undefined, []);
+export const errSecIncompleteCertRevocationCheck: number = callSDK<number>("Security_0e503aef608672fa", 940207356029873, undefined, []);
 
 /** var errSecInputLengthError: OSStatus { get } */
-export const errSecInputLengthError: number = callSDK<number>("Security_d968214ecc684fb6", 777698946222473, undefined, []);
+export const errSecInputLengthError: number = callSDK<number>("Security_0e503aef608672fa", 777698946222473, undefined, []);
 
 /** var errSecInsufficientClientID: OSStatus { get } */
-export const errSecInsufficientClientID: number = callSDK<number>("Security_d968214ecc684fb6", 1697566117976992, undefined, []);
+export const errSecInsufficientClientID: number = callSDK<number>("Security_0e503aef608672fa", 1697566117976992, undefined, []);
 
 /** var errSecInsufficientCredentials: OSStatus { get } */
-export const errSecInsufficientCredentials: number = callSDK<number>("Security_d968214ecc684fb6", 2483933318085761, undefined, []);
+export const errSecInsufficientCredentials: number = callSDK<number>("Security_0e503aef608672fa", 2483933318085761, undefined, []);
 
 /** var errSecInteractionNotAllowed: OSStatus { get } */
-export const errSecInteractionNotAllowed: number = callSDK<number>("Security_d968214ecc684fb6", 1094675097483547, undefined, []);
+export const errSecInteractionNotAllowed: number = callSDK<number>("Security_0e503aef608672fa", 1094675097483547, undefined, []);
 
 /** var errSecInteractionRequired: OSStatus { get } */
-export const errSecInteractionRequired: number = callSDK<number>("Security_d968214ecc684fb6", 462481020164023, undefined, []);
+export const errSecInteractionRequired: number = callSDK<number>("Security_0e503aef608672fa", 462481020164023, undefined, []);
 
 /** var errSecInternalComponent: OSStatus { get } */
-export const errSecInternalComponent: number = callSDK<number>("Security_d968214ecc684fb6", 1699010025121527, undefined, []);
+export const errSecInternalComponent: number = callSDK<number>("Security_0e503aef608672fa", 1699010025121527, undefined, []);
 
 /** var errSecInternalError: OSStatus { get } */
-export const errSecInternalError: number = callSDK<number>("Security_d968214ecc684fb6", 707318339936106, undefined, []);
+export const errSecInternalError: number = callSDK<number>("Security_0e503aef608672fa", 707318339936106, undefined, []);
 
 /**
  * var errSecInvaldCRLAuthority: OSStatus { get }
  * @availability iOS 4.0+
  * @deprecated iOS 15.0
  */
-export const errSecInvaldCRLAuthority: number = callSDK<number>("Security_d968214ecc684fb6", 2382576512096309, undefined, []);
+export const errSecInvaldCRLAuthority: number = callSDK<number>("Security_0e503aef608672fa", 2382576512096309, undefined, []);
 
 /** var errSecInvalidACL: OSStatus { get } */
-export const errSecInvalidACL: number = callSDK<number>("Security_d968214ecc684fb6", 4205760641074559, undefined, []);
+export const errSecInvalidACL: number = callSDK<number>("Security_0e503aef608672fa", 4205760641074559, undefined, []);
 
 /** var errSecInvalidAccessCredentials: OSStatus { get } */
-export const errSecInvalidAccessCredentials: number = callSDK<number>("Security_d968214ecc684fb6", 4000629407163002, undefined, []);
+export const errSecInvalidAccessCredentials: number = callSDK<number>("Security_0e503aef608672fa", 4000629407163002, undefined, []);
 
 /** var errSecInvalidAccessRequest: OSStatus { get } */
-export const errSecInvalidAccessRequest: number = callSDK<number>("Security_d968214ecc684fb6", 2260893424363337, undefined, []);
+export const errSecInvalidAccessRequest: number = callSDK<number>("Security_0e503aef608672fa", 2260893424363337, undefined, []);
 
 /** var errSecInvalidAction: OSStatus { get } */
-export const errSecInvalidAction: number = callSDK<number>("Security_d968214ecc684fb6", 1197359103640973, undefined, []);
+export const errSecInvalidAction: number = callSDK<number>("Security_0e503aef608672fa", 1197359103640973, undefined, []);
 
 /** var errSecInvalidAddinFunctionTable: OSStatus { get } */
-export const errSecInvalidAddinFunctionTable: number = callSDK<number>("Security_d968214ecc684fb6", 4211620143912545, undefined, []);
+export const errSecInvalidAddinFunctionTable: number = callSDK<number>("Security_0e503aef608672fa", 4211620143912545, undefined, []);
 
 /** var errSecInvalidAlgorithm: OSStatus { get } */
-export const errSecInvalidAlgorithm: number = callSDK<number>("Security_d968214ecc684fb6", 3767443248691198, undefined, []);
+export const errSecInvalidAlgorithm: number = callSDK<number>("Security_0e503aef608672fa", 3767443248691198, undefined, []);
 
 /** var errSecInvalidAlgorithmParms: OSStatus { get } */
-export const errSecInvalidAlgorithmParms: number = callSDK<number>("Security_d968214ecc684fb6", 980851341979128, undefined, []);
+export const errSecInvalidAlgorithmParms: number = callSDK<number>("Security_0e503aef608672fa", 980851341979128, undefined, []);
 
 /** var errSecInvalidAttributeAccessCredentials: OSStatus { get } */
-export const errSecInvalidAttributeAccessCredentials: number = callSDK<number>("Security_d968214ecc684fb6", 3555120950065235, undefined, []);
+export const errSecInvalidAttributeAccessCredentials: number = callSDK<number>("Security_0e503aef608672fa", 3555120950065235, undefined, []);
 
 /** var errSecInvalidAttributeBase: OSStatus { get } */
-export const errSecInvalidAttributeBase: number = callSDK<number>("Security_d968214ecc684fb6", 258970912420007, undefined, []);
+export const errSecInvalidAttributeBase: number = callSDK<number>("Security_0e503aef608672fa", 258970912420007, undefined, []);
 
 /** var errSecInvalidAttributeBlockSize: OSStatus { get } */
-export const errSecInvalidAttributeBlockSize: number = callSDK<number>("Security_d968214ecc684fb6", 3061240728416931, undefined, []);
+export const errSecInvalidAttributeBlockSize: number = callSDK<number>("Security_0e503aef608672fa", 3061240728416931, undefined, []);
 
 /** var errSecInvalidAttributeDLDBHandle: OSStatus { get } */
-export const errSecInvalidAttributeDLDBHandle: number = callSDK<number>("Security_d968214ecc684fb6", 3176530078525714, undefined, []);
+export const errSecInvalidAttributeDLDBHandle: number = callSDK<number>("Security_0e503aef608672fa", 3176530078525714, undefined, []);
 
 /** var errSecInvalidAttributeEffectiveBits: OSStatus { get } */
-export const errSecInvalidAttributeEffectiveBits: number = callSDK<number>("Security_d968214ecc684fb6", 2477853651452537, undefined, []);
+export const errSecInvalidAttributeEffectiveBits: number = callSDK<number>("Security_0e503aef608672fa", 2477853651452537, undefined, []);
 
 /** var errSecInvalidAttributeEndDate: OSStatus { get } */
-export const errSecInvalidAttributeEndDate: number = callSDK<number>("Security_d968214ecc684fb6", 3378523441472625, undefined, []);
+export const errSecInvalidAttributeEndDate: number = callSDK<number>("Security_0e503aef608672fa", 3378523441472625, undefined, []);
 
 /** var errSecInvalidAttributeInitVector: OSStatus { get } */
-export const errSecInvalidAttributeInitVector: number = callSDK<number>("Security_d968214ecc684fb6", 2885937286086304, undefined, []);
+export const errSecInvalidAttributeInitVector: number = callSDK<number>("Security_0e503aef608672fa", 2885937286086304, undefined, []);
 
 /** var errSecInvalidAttributeIterationCount: OSStatus { get } */
-export const errSecInvalidAttributeIterationCount: number = callSDK<number>("Security_d968214ecc684fb6", 169953742954439, undefined, []);
+export const errSecInvalidAttributeIterationCount: number = callSDK<number>("Security_0e503aef608672fa", 169953742954439, undefined, []);
 
 /** var errSecInvalidAttributeKey: OSStatus { get } */
-export const errSecInvalidAttributeKey: number = callSDK<number>("Security_d968214ecc684fb6", 259902574266929, undefined, []);
+export const errSecInvalidAttributeKey: number = callSDK<number>("Security_0e503aef608672fa", 259902574266929, undefined, []);
 
 /** var errSecInvalidAttributeKeyLength: OSStatus { get } */
-export const errSecInvalidAttributeKeyLength: number = callSDK<number>("Security_d968214ecc684fb6", 2948141023485701, undefined, []);
+export const errSecInvalidAttributeKeyLength: number = callSDK<number>("Security_0e503aef608672fa", 2948141023485701, undefined, []);
 
 /** var errSecInvalidAttributeKeyType: OSStatus { get } */
-export const errSecInvalidAttributeKeyType: number = callSDK<number>("Security_d968214ecc684fb6", 3408730256785320, undefined, []);
+export const errSecInvalidAttributeKeyType: number = callSDK<number>("Security_0e503aef608672fa", 3408730256785320, undefined, []);
 
 /** var errSecInvalidAttributeLabel: OSStatus { get } */
-export const errSecInvalidAttributeLabel: number = callSDK<number>("Security_d968214ecc684fb6", 445370480686678, undefined, []);
+export const errSecInvalidAttributeLabel: number = callSDK<number>("Security_0e503aef608672fa", 445370480686678, undefined, []);
 
 /** var errSecInvalidAttributeMode: OSStatus { get } */
-export const errSecInvalidAttributeMode: number = callSDK<number>("Security_d968214ecc684fb6", 3336676107607254, undefined, []);
+export const errSecInvalidAttributeMode: number = callSDK<number>("Security_0e503aef608672fa", 3336676107607254, undefined, []);
 
 /** var errSecInvalidAttributeOutputSize: OSStatus { get } */
-export const errSecInvalidAttributeOutputSize: number = callSDK<number>("Security_d968214ecc684fb6", 2221269659217065, undefined, []);
+export const errSecInvalidAttributeOutputSize: number = callSDK<number>("Security_0e503aef608672fa", 2221269659217065, undefined, []);
 
 /** var errSecInvalidAttributePadding: OSStatus { get } */
-export const errSecInvalidAttributePadding: number = callSDK<number>("Security_d968214ecc684fb6", 2372871690497236, undefined, []);
+export const errSecInvalidAttributePadding: number = callSDK<number>("Security_0e503aef608672fa", 2372871690497236, undefined, []);
 
 /** var errSecInvalidAttributePassphrase: OSStatus { get } */
-export const errSecInvalidAttributePassphrase: number = callSDK<number>("Security_d968214ecc684fb6", 1796246593460255, undefined, []);
+export const errSecInvalidAttributePassphrase: number = callSDK<number>("Security_0e503aef608672fa", 1796246593460255, undefined, []);
 
 /** var errSecInvalidAttributePrime: OSStatus { get } */
-export const errSecInvalidAttributePrime: number = callSDK<number>("Security_d968214ecc684fb6", 2315693334369162, undefined, []);
+export const errSecInvalidAttributePrime: number = callSDK<number>("Security_0e503aef608672fa", 2315693334369162, undefined, []);
 
 /** var errSecInvalidAttributePrivateKeyFormat: OSStatus { get } */
-export const errSecInvalidAttributePrivateKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 4481157455752486, undefined, []);
+export const errSecInvalidAttributePrivateKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 4481157455752486, undefined, []);
 
 /** var errSecInvalidAttributePublicKeyFormat: OSStatus { get } */
-export const errSecInvalidAttributePublicKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 3981106044047005, undefined, []);
+export const errSecInvalidAttributePublicKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 3981106044047005, undefined, []);
 
 /** var errSecInvalidAttributeRandom: OSStatus { get } */
-export const errSecInvalidAttributeRandom: number = callSDK<number>("Security_d968214ecc684fb6", 942775645415017, undefined, []);
+export const errSecInvalidAttributeRandom: number = callSDK<number>("Security_0e503aef608672fa", 942775645415017, undefined, []);
 
 /** var errSecInvalidAttributeRounds: OSStatus { get } */
-export const errSecInvalidAttributeRounds: number = callSDK<number>("Security_d968214ecc684fb6", 2009320277394383, undefined, []);
+export const errSecInvalidAttributeRounds: number = callSDK<number>("Security_0e503aef608672fa", 2009320277394383, undefined, []);
 
 /** var errSecInvalidAttributeSalt: OSStatus { get } */
-export const errSecInvalidAttributeSalt: number = callSDK<number>("Security_d968214ecc684fb6", 3856885559855179, undefined, []);
+export const errSecInvalidAttributeSalt: number = callSDK<number>("Security_0e503aef608672fa", 3856885559855179, undefined, []);
 
 /** var errSecInvalidAttributeSeed: OSStatus { get } */
-export const errSecInvalidAttributeSeed: number = callSDK<number>("Security_d968214ecc684fb6", 1621985060369715, undefined, []);
+export const errSecInvalidAttributeSeed: number = callSDK<number>("Security_0e503aef608672fa", 1621985060369715, undefined, []);
 
 /** var errSecInvalidAttributeStartDate: OSStatus { get } */
-export const errSecInvalidAttributeStartDate: number = callSDK<number>("Security_d968214ecc684fb6", 3576786669624298, undefined, []);
+export const errSecInvalidAttributeStartDate: number = callSDK<number>("Security_0e503aef608672fa", 3576786669624298, undefined, []);
 
 /** var errSecInvalidAttributeSubprime: OSStatus { get } */
-export const errSecInvalidAttributeSubprime: number = callSDK<number>("Security_d968214ecc684fb6", 1118726486206088, undefined, []);
+export const errSecInvalidAttributeSubprime: number = callSDK<number>("Security_0e503aef608672fa", 1118726486206088, undefined, []);
 
 /** var errSecInvalidAttributeSymmetricKeyFormat: OSStatus { get } */
-export const errSecInvalidAttributeSymmetricKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 515295918249630, undefined, []);
+export const errSecInvalidAttributeSymmetricKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 515295918249630, undefined, []);
 
 /** var errSecInvalidAttributeVersion: OSStatus { get } */
-export const errSecInvalidAttributeVersion: number = callSDK<number>("Security_d968214ecc684fb6", 3389962404730768, undefined, []);
+export const errSecInvalidAttributeVersion: number = callSDK<number>("Security_0e503aef608672fa", 3389962404730768, undefined, []);
 
 /** var errSecInvalidAttributeWrappedKeyFormat: OSStatus { get } */
-export const errSecInvalidAttributeWrappedKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 861912961362005, undefined, []);
+export const errSecInvalidAttributeWrappedKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 861912961362005, undefined, []);
 
 /** var errSecInvalidAuthority: OSStatus { get } */
-export const errSecInvalidAuthority: number = callSDK<number>("Security_d968214ecc684fb6", 374678021384454, undefined, []);
+export const errSecInvalidAuthority: number = callSDK<number>("Security_0e503aef608672fa", 374678021384454, undefined, []);
 
 /** var errSecInvalidAuthorityKeyID: OSStatus { get } */
-export const errSecInvalidAuthorityKeyID: number = callSDK<number>("Security_d968214ecc684fb6", 473525792170337, undefined, []);
+export const errSecInvalidAuthorityKeyID: number = callSDK<number>("Security_0e503aef608672fa", 473525792170337, undefined, []);
 
 /** var errSecInvalidBaseACLs: OSStatus { get } */
-export const errSecInvalidBaseACLs: number = callSDK<number>("Security_d968214ecc684fb6", 3796948024624172, undefined, []);
+export const errSecInvalidBaseACLs: number = callSDK<number>("Security_0e503aef608672fa", 3796948024624172, undefined, []);
 
 /** var errSecInvalidBundleInfo: OSStatus { get } */
-export const errSecInvalidBundleInfo: number = callSDK<number>("Security_d968214ecc684fb6", 271540070537668, undefined, []);
+export const errSecInvalidBundleInfo: number = callSDK<number>("Security_0e503aef608672fa", 271540070537668, undefined, []);
 
 /** var errSecInvalidCRL: OSStatus { get } */
-export const errSecInvalidCRL: number = callSDK<number>("Security_d968214ecc684fb6", 2705480729550878, undefined, []);
+export const errSecInvalidCRL: number = callSDK<number>("Security_0e503aef608672fa", 2705480729550878, undefined, []);
 
 /** var errSecInvalidCRLAuthority: OSStatus { get } */
-export const errSecInvalidCRLAuthority: number = callSDK<number>("Security_d968214ecc684fb6", 842867168965338, undefined, []);
+export const errSecInvalidCRLAuthority: number = callSDK<number>("Security_0e503aef608672fa", 842867168965338, undefined, []);
 
 /** var errSecInvalidCRLEncoding: OSStatus { get } */
-export const errSecInvalidCRLEncoding: number = callSDK<number>("Security_d968214ecc684fb6", 2772902836932812, undefined, []);
+export const errSecInvalidCRLEncoding: number = callSDK<number>("Security_0e503aef608672fa", 2772902836932812, undefined, []);
 
 /** var errSecInvalidCRLGroup: OSStatus { get } */
-export const errSecInvalidCRLGroup: number = callSDK<number>("Security_d968214ecc684fb6", 2044057076483662, undefined, []);
+export const errSecInvalidCRLGroup: number = callSDK<number>("Security_0e503aef608672fa", 2044057076483662, undefined, []);
 
 /** var errSecInvalidCRLIndex: OSStatus { get } */
-export const errSecInvalidCRLIndex: number = callSDK<number>("Security_d968214ecc684fb6", 2903653411004362, undefined, []);
+export const errSecInvalidCRLIndex: number = callSDK<number>("Security_0e503aef608672fa", 2903653411004362, undefined, []);
 
 /** var errSecInvalidCRLType: OSStatus { get } */
-export const errSecInvalidCRLType: number = callSDK<number>("Security_d968214ecc684fb6", 404193167421300, undefined, []);
+export const errSecInvalidCRLType: number = callSDK<number>("Security_0e503aef608672fa", 404193167421300, undefined, []);
 
 /** var errSecInvalidCallback: OSStatus { get } */
-export const errSecInvalidCallback: number = callSDK<number>("Security_d968214ecc684fb6", 2302328910660364, undefined, []);
+export const errSecInvalidCallback: number = callSDK<number>("Security_0e503aef608672fa", 2302328910660364, undefined, []);
 
 /** var errSecInvalidCertAuthority: OSStatus { get } */
-export const errSecInvalidCertAuthority: number = callSDK<number>("Security_d968214ecc684fb6", 431356682210045, undefined, []);
+export const errSecInvalidCertAuthority: number = callSDK<number>("Security_0e503aef608672fa", 431356682210045, undefined, []);
 
 /** var errSecInvalidCertificateGroup: OSStatus { get } */
-export const errSecInvalidCertificateGroup: number = callSDK<number>("Security_d968214ecc684fb6", 127559843132599, undefined, []);
+export const errSecInvalidCertificateGroup: number = callSDK<number>("Security_0e503aef608672fa", 127559843132599, undefined, []);
 
 /** var errSecInvalidCertificateRef: OSStatus { get } */
-export const errSecInvalidCertificateRef: number = callSDK<number>("Security_d968214ecc684fb6", 1910927161420027, undefined, []);
+export const errSecInvalidCertificateRef: number = callSDK<number>("Security_0e503aef608672fa", 1910927161420027, undefined, []);
 
 /** var errSecInvalidContext: OSStatus { get } */
-export const errSecInvalidContext: number = callSDK<number>("Security_d968214ecc684fb6", 1792570157455242, undefined, []);
+export const errSecInvalidContext: number = callSDK<number>("Security_0e503aef608672fa", 1792570157455242, undefined, []);
 
 /** var errSecInvalidDBList: OSStatus { get } */
-export const errSecInvalidDBList: number = callSDK<number>("Security_d968214ecc684fb6", 1036184634160157, undefined, []);
+export const errSecInvalidDBList: number = callSDK<number>("Security_0e503aef608672fa", 1036184634160157, undefined, []);
 
 /** var errSecInvalidDBLocation: OSStatus { get } */
-export const errSecInvalidDBLocation: number = callSDK<number>("Security_d968214ecc684fb6", 1138810117188570, undefined, []);
+export const errSecInvalidDBLocation: number = callSDK<number>("Security_0e503aef608672fa", 1138810117188570, undefined, []);
 
 /** var errSecInvalidData: OSStatus { get } */
-export const errSecInvalidData: number = callSDK<number>("Security_d968214ecc684fb6", 258804884558049, undefined, []);
+export const errSecInvalidData: number = callSDK<number>("Security_0e503aef608672fa", 258804884558049, undefined, []);
 
 /** var errSecInvalidDatabaseBlob: OSStatus { get } */
-export const errSecInvalidDatabaseBlob: number = callSDK<number>("Security_d968214ecc684fb6", 3683857497430687, undefined, []);
+export const errSecInvalidDatabaseBlob: number = callSDK<number>("Security_0e503aef608672fa", 3683857497430687, undefined, []);
 
 /** var errSecInvalidDigestAlgorithm: OSStatus { get } */
-export const errSecInvalidDigestAlgorithm: number = callSDK<number>("Security_d968214ecc684fb6", 4187663933542344, undefined, []);
+export const errSecInvalidDigestAlgorithm: number = callSDK<number>("Security_0e503aef608672fa", 4187663933542344, undefined, []);
 
 /** var errSecInvalidEncoding: OSStatus { get } */
-export const errSecInvalidEncoding: number = callSDK<number>("Security_d968214ecc684fb6", 2837355110825348, undefined, []);
+export const errSecInvalidEncoding: number = callSDK<number>("Security_0e503aef608672fa", 2837355110825348, undefined, []);
 
 /** var errSecInvalidExtendedKeyUsage: OSStatus { get } */
-export const errSecInvalidExtendedKeyUsage: number = callSDK<number>("Security_d968214ecc684fb6", 856151305731567, undefined, []);
+export const errSecInvalidExtendedKeyUsage: number = callSDK<number>("Security_0e503aef608672fa", 856151305731567, undefined, []);
 
 /** var errSecInvalidFormType: OSStatus { get } */
-export const errSecInvalidFormType: number = callSDK<number>("Security_d968214ecc684fb6", 3274804898484761, undefined, []);
+export const errSecInvalidFormType: number = callSDK<number>("Security_0e503aef608672fa", 3274804898484761, undefined, []);
 
 /** var errSecInvalidGUID: OSStatus { get } */
-export const errSecInvalidGUID: number = callSDK<number>("Security_d968214ecc684fb6", 3827572751541701, undefined, []);
+export const errSecInvalidGUID: number = callSDK<number>("Security_0e503aef608672fa", 3827572751541701, undefined, []);
 
 /** var errSecInvalidHandle: OSStatus { get } */
-export const errSecInvalidHandle: number = callSDK<number>("Security_d968214ecc684fb6", 1588823293550223, undefined, []);
+export const errSecInvalidHandle: number = callSDK<number>("Security_0e503aef608672fa", 1588823293550223, undefined, []);
 
 /** var errSecInvalidHandleUsage: OSStatus { get } */
-export const errSecInvalidHandleUsage: number = callSDK<number>("Security_d968214ecc684fb6", 1474146337879758, undefined, []);
+export const errSecInvalidHandleUsage: number = callSDK<number>("Security_0e503aef608672fa", 1474146337879758, undefined, []);
 
 /** var errSecInvalidID: OSStatus { get } */
-export const errSecInvalidID: number = callSDK<number>("Security_d968214ecc684fb6", 4333812530903729, undefined, []);
+export const errSecInvalidID: number = callSDK<number>("Security_0e503aef608672fa", 4333812530903729, undefined, []);
 
 /** var errSecInvalidIDLinkage: OSStatus { get } */
-export const errSecInvalidIDLinkage: number = callSDK<number>("Security_d968214ecc684fb6", 4134264405797245, undefined, []);
+export const errSecInvalidIDLinkage: number = callSDK<number>("Security_0e503aef608672fa", 4134264405797245, undefined, []);
 
 /** var errSecInvalidIdentifier: OSStatus { get } */
-export const errSecInvalidIdentifier: number = callSDK<number>("Security_d968214ecc684fb6", 2170258420789670, undefined, []);
+export const errSecInvalidIdentifier: number = callSDK<number>("Security_0e503aef608672fa", 2170258420789670, undefined, []);
 
 /** var errSecInvalidIndex: OSStatus { get } */
-export const errSecInvalidIndex: number = callSDK<number>("Security_d968214ecc684fb6", 766390270188863, undefined, []);
+export const errSecInvalidIndex: number = callSDK<number>("Security_0e503aef608672fa", 766390270188863, undefined, []);
 
 /** var errSecInvalidIndexInfo: OSStatus { get } */
-export const errSecInvalidIndexInfo: number = callSDK<number>("Security_d968214ecc684fb6", 3126901333422211, undefined, []);
+export const errSecInvalidIndexInfo: number = callSDK<number>("Security_0e503aef608672fa", 3126901333422211, undefined, []);
 
 /** var errSecInvalidInputVector: OSStatus { get } */
-export const errSecInvalidInputVector: number = callSDK<number>("Security_d968214ecc684fb6", 4097066971009392, undefined, []);
+export const errSecInvalidInputVector: number = callSDK<number>("Security_0e503aef608672fa", 4097066971009392, undefined, []);
 
 /** var errSecInvalidItemRef: OSStatus { get } */
-export const errSecInvalidItemRef: number = callSDK<number>("Security_d968214ecc684fb6", 3425235604120572, undefined, []);
+export const errSecInvalidItemRef: number = callSDK<number>("Security_0e503aef608672fa", 3425235604120572, undefined, []);
 
 /** var errSecInvalidKeyAttributeMask: OSStatus { get } */
-export const errSecInvalidKeyAttributeMask: number = callSDK<number>("Security_d968214ecc684fb6", 1887387353840421, undefined, []);
+export const errSecInvalidKeyAttributeMask: number = callSDK<number>("Security_0e503aef608672fa", 1887387353840421, undefined, []);
 
 /** var errSecInvalidKeyBlob: OSStatus { get } */
-export const errSecInvalidKeyBlob: number = callSDK<number>("Security_d968214ecc684fb6", 1176231918035721, undefined, []);
+export const errSecInvalidKeyBlob: number = callSDK<number>("Security_0e503aef608672fa", 1176231918035721, undefined, []);
 
 /** var errSecInvalidKeyFormat: OSStatus { get } */
-export const errSecInvalidKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 2874506833778452, undefined, []);
+export const errSecInvalidKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 2874506833778452, undefined, []);
 
 /** var errSecInvalidKeyHierarchy: OSStatus { get } */
-export const errSecInvalidKeyHierarchy: number = callSDK<number>("Security_d968214ecc684fb6", 3033734982912260, undefined, []);
+export const errSecInvalidKeyHierarchy: number = callSDK<number>("Security_0e503aef608672fa", 3033734982912260, undefined, []);
 
 /** var errSecInvalidKeyLabel: OSStatus { get } */
-export const errSecInvalidKeyLabel: number = callSDK<number>("Security_d968214ecc684fb6", 390402379383060, undefined, []);
+export const errSecInvalidKeyLabel: number = callSDK<number>("Security_0e503aef608672fa", 390402379383060, undefined, []);
 
 /** var errSecInvalidKeyRef: OSStatus { get } */
-export const errSecInvalidKeyRef: number = callSDK<number>("Security_d968214ecc684fb6", 4092827918011509, undefined, []);
+export const errSecInvalidKeyRef: number = callSDK<number>("Security_0e503aef608672fa", 4092827918011509, undefined, []);
 
 /** var errSecInvalidKeyUsageForPolicy: OSStatus { get } */
-export const errSecInvalidKeyUsageForPolicy: number = callSDK<number>("Security_d968214ecc684fb6", 3218593903861964, undefined, []);
+export const errSecInvalidKeyUsageForPolicy: number = callSDK<number>("Security_0e503aef608672fa", 3218593903861964, undefined, []);
 
 /** var errSecInvalidKeyUsageMask: OSStatus { get } */
-export const errSecInvalidKeyUsageMask: number = callSDK<number>("Security_d968214ecc684fb6", 4335731076466747, undefined, []);
+export const errSecInvalidKeyUsageMask: number = callSDK<number>("Security_0e503aef608672fa", 4335731076466747, undefined, []);
 
 /** var errSecInvalidKeychain: OSStatus { get } */
-export const errSecInvalidKeychain: number = callSDK<number>("Security_d968214ecc684fb6", 2253299630152678, undefined, []);
+export const errSecInvalidKeychain: number = callSDK<number>("Security_0e503aef608672fa", 2253299630152678, undefined, []);
 
 /** var errSecInvalidLoginName: OSStatus { get } */
-export const errSecInvalidLoginName: number = callSDK<number>("Security_d968214ecc684fb6", 907345434671413, undefined, []);
+export const errSecInvalidLoginName: number = callSDK<number>("Security_0e503aef608672fa", 907345434671413, undefined, []);
 
 /** var errSecInvalidModifyMode: OSStatus { get } */
-export const errSecInvalidModifyMode: number = callSDK<number>("Security_d968214ecc684fb6", 2077856956608575, undefined, []);
+export const errSecInvalidModifyMode: number = callSDK<number>("Security_0e503aef608672fa", 2077856956608575, undefined, []);
 
 /** var errSecInvalidName: OSStatus { get } */
-export const errSecInvalidName: number = callSDK<number>("Security_d968214ecc684fb6", 2574256651680340, undefined, []);
+export const errSecInvalidName: number = callSDK<number>("Security_0e503aef608672fa", 2574256651680340, undefined, []);
 
 /** var errSecInvalidNetworkAddress: OSStatus { get } */
-export const errSecInvalidNetworkAddress: number = callSDK<number>("Security_d968214ecc684fb6", 3721797184936962, undefined, []);
+export const errSecInvalidNetworkAddress: number = callSDK<number>("Security_0e503aef608672fa", 3721797184936962, undefined, []);
 
 /** var errSecInvalidNewOwner: OSStatus { get } */
-export const errSecInvalidNewOwner: number = callSDK<number>("Security_d968214ecc684fb6", 3899142548732058, undefined, []);
+export const errSecInvalidNewOwner: number = callSDK<number>("Security_0e503aef608672fa", 3899142548732058, undefined, []);
 
 /** var errSecInvalidNumberOfFields: OSStatus { get } */
-export const errSecInvalidNumberOfFields: number = callSDK<number>("Security_d968214ecc684fb6", 3976315611265629, undefined, []);
+export const errSecInvalidNumberOfFields: number = callSDK<number>("Security_0e503aef608672fa", 3976315611265629, undefined, []);
 
 /** var errSecInvalidOutputVector: OSStatus { get } */
-export const errSecInvalidOutputVector: number = callSDK<number>("Security_d968214ecc684fb6", 1847444219185220, undefined, []);
+export const errSecInvalidOutputVector: number = callSDK<number>("Security_0e503aef608672fa", 1847444219185220, undefined, []);
 
 /** var errSecInvalidOwnerEdit: OSStatus { get } */
-export const errSecInvalidOwnerEdit: number = callSDK<number>("Security_d968214ecc684fb6", 2674306852090028, undefined, []);
+export const errSecInvalidOwnerEdit: number = callSDK<number>("Security_0e503aef608672fa", 2674306852090028, undefined, []);
 
 /** var errSecInvalidPVC: OSStatus { get } */
-export const errSecInvalidPVC: number = callSDK<number>("Security_d968214ecc684fb6", 2583009166660986, undefined, []);
+export const errSecInvalidPVC: number = callSDK<number>("Security_0e503aef608672fa", 2583009166660986, undefined, []);
 
 /** var errSecInvalidParsingModule: OSStatus { get } */
-export const errSecInvalidParsingModule: number = callSDK<number>("Security_d968214ecc684fb6", 109675311996883, undefined, []);
+export const errSecInvalidParsingModule: number = callSDK<number>("Security_0e503aef608672fa", 109675311996883, undefined, []);
 
 /** var errSecInvalidPassthroughID: OSStatus { get } */
-export const errSecInvalidPassthroughID: number = callSDK<number>("Security_d968214ecc684fb6", 3709596412547427, undefined, []);
+export const errSecInvalidPassthroughID: number = callSDK<number>("Security_0e503aef608672fa", 3709596412547427, undefined, []);
 
 /** var errSecInvalidPasswordRef: OSStatus { get } */
-export const errSecInvalidPasswordRef: number = callSDK<number>("Security_d968214ecc684fb6", 4083514609047782, undefined, []);
+export const errSecInvalidPasswordRef: number = callSDK<number>("Security_0e503aef608672fa", 4083514609047782, undefined, []);
 
 /** var errSecInvalidPointer: OSStatus { get } */
-export const errSecInvalidPointer: number = callSDK<number>("Security_d968214ecc684fb6", 1201049732412126, undefined, []);
+export const errSecInvalidPointer: number = callSDK<number>("Security_0e503aef608672fa", 1201049732412126, undefined, []);
 
 /** var errSecInvalidPolicyIdentifiers: OSStatus { get } */
-export const errSecInvalidPolicyIdentifiers: number = callSDK<number>("Security_d968214ecc684fb6", 668390818003732, undefined, []);
+export const errSecInvalidPolicyIdentifiers: number = callSDK<number>("Security_0e503aef608672fa", 668390818003732, undefined, []);
 
 /** var errSecInvalidPrefsDomain: OSStatus { get } */
-export const errSecInvalidPrefsDomain: number = callSDK<number>("Security_d968214ecc684fb6", 2630990396718025, undefined, []);
+export const errSecInvalidPrefsDomain: number = callSDK<number>("Security_0e503aef608672fa", 2630990396718025, undefined, []);
 
 /** var errSecInvalidQuery: OSStatus { get } */
-export const errSecInvalidQuery: number = callSDK<number>("Security_d968214ecc684fb6", 3674753993468264, undefined, []);
+export const errSecInvalidQuery: number = callSDK<number>("Security_0e503aef608672fa", 3674753993468264, undefined, []);
 
 /** var errSecInvalidReason: OSStatus { get } */
-export const errSecInvalidReason: number = callSDK<number>("Security_d968214ecc684fb6", 4114149026002441, undefined, []);
+export const errSecInvalidReason: number = callSDK<number>("Security_0e503aef608672fa", 4114149026002441, undefined, []);
 
 /** var errSecInvalidRecord: OSStatus { get } */
-export const errSecInvalidRecord: number = callSDK<number>("Security_d968214ecc684fb6", 2737943424835878, undefined, []);
+export const errSecInvalidRecord: number = callSDK<number>("Security_0e503aef608672fa", 2737943424835878, undefined, []);
 
 /** var errSecInvalidRequestInputs: OSStatus { get } */
-export const errSecInvalidRequestInputs: number = callSDK<number>("Security_d968214ecc684fb6", 2959730346727140, undefined, []);
+export const errSecInvalidRequestInputs: number = callSDK<number>("Security_0e503aef608672fa", 2959730346727140, undefined, []);
 
 /** var errSecInvalidRequestor: OSStatus { get } */
-export const errSecInvalidRequestor: number = callSDK<number>("Security_d968214ecc684fb6", 3500178431691884, undefined, []);
+export const errSecInvalidRequestor: number = callSDK<number>("Security_0e503aef608672fa", 3500178431691884, undefined, []);
 
 /** var errSecInvalidResponseVector: OSStatus { get } */
-export const errSecInvalidResponseVector: number = callSDK<number>("Security_d968214ecc684fb6", 4020695777375545, undefined, []);
+export const errSecInvalidResponseVector: number = callSDK<number>("Security_0e503aef608672fa", 4020695777375545, undefined, []);
 
 /** var errSecInvalidRoot: OSStatus { get } */
-export const errSecInvalidRoot: number = callSDK<number>("Security_d968214ecc684fb6", 4458870591349398, undefined, []);
+export const errSecInvalidRoot: number = callSDK<number>("Security_0e503aef608672fa", 4458870591349398, undefined, []);
 
 /** var errSecInvalidSampleValue: OSStatus { get } */
-export const errSecInvalidSampleValue: number = callSDK<number>("Security_d968214ecc684fb6", 454918786719489, undefined, []);
+export const errSecInvalidSampleValue: number = callSDK<number>("Security_0e503aef608672fa", 454918786719489, undefined, []);
 
 /** var errSecInvalidScope: OSStatus { get } */
-export const errSecInvalidScope: number = callSDK<number>("Security_d968214ecc684fb6", 843346729388071, undefined, []);
+export const errSecInvalidScope: number = callSDK<number>("Security_0e503aef608672fa", 843346729388071, undefined, []);
 
 /** var errSecInvalidSearchRef: OSStatus { get } */
-export const errSecInvalidSearchRef: number = callSDK<number>("Security_d968214ecc684fb6", 777738947754903, undefined, []);
+export const errSecInvalidSearchRef: number = callSDK<number>("Security_0e503aef608672fa", 777738947754903, undefined, []);
 
 /** var errSecInvalidServiceMask: OSStatus { get } */
-export const errSecInvalidServiceMask: number = callSDK<number>("Security_d968214ecc684fb6", 3795391933731480, undefined, []);
+export const errSecInvalidServiceMask: number = callSDK<number>("Security_0e503aef608672fa", 3795391933731480, undefined, []);
 
 /** var errSecInvalidSignature: OSStatus { get } */
-export const errSecInvalidSignature: number = callSDK<number>("Security_d968214ecc684fb6", 4286292260840191, undefined, []);
+export const errSecInvalidSignature: number = callSDK<number>("Security_0e503aef608672fa", 4286292260840191, undefined, []);
 
 /** var errSecInvalidStopOnPolicy: OSStatus { get } */
-export const errSecInvalidStopOnPolicy: number = callSDK<number>("Security_d968214ecc684fb6", 3760459687357149, undefined, []);
+export const errSecInvalidStopOnPolicy: number = callSDK<number>("Security_0e503aef608672fa", 3760459687357149, undefined, []);
 
 /** var errSecInvalidSubServiceID: OSStatus { get } */
-export const errSecInvalidSubServiceID: number = callSDK<number>("Security_d968214ecc684fb6", 4061473433620257, undefined, []);
+export const errSecInvalidSubServiceID: number = callSDK<number>("Security_0e503aef608672fa", 4061473433620257, undefined, []);
 
 /** var errSecInvalidSubjectKeyID: OSStatus { get } */
-export const errSecInvalidSubjectKeyID: number = callSDK<number>("Security_d968214ecc684fb6", 1997397548521410, undefined, []);
+export const errSecInvalidSubjectKeyID: number = callSDK<number>("Security_0e503aef608672fa", 1997397548521410, undefined, []);
 
 /** var errSecInvalidSubjectName: OSStatus { get } */
-export const errSecInvalidSubjectName: number = callSDK<number>("Security_d968214ecc684fb6", 2497381269824416, undefined, []);
+export const errSecInvalidSubjectName: number = callSDK<number>("Security_0e503aef608672fa", 2497381269824416, undefined, []);
 
 /** var errSecInvalidTimeString: OSStatus { get } */
-export const errSecInvalidTimeString: number = callSDK<number>("Security_d968214ecc684fb6", 3897168086008336, undefined, []);
+export const errSecInvalidTimeString: number = callSDK<number>("Security_0e503aef608672fa", 3897168086008336, undefined, []);
 
 /** var errSecInvalidTrustSetting: OSStatus { get } */
-export const errSecInvalidTrustSetting: number = callSDK<number>("Security_d968214ecc684fb6", 509810975475127, undefined, []);
+export const errSecInvalidTrustSetting: number = callSDK<number>("Security_0e503aef608672fa", 509810975475127, undefined, []);
 
 /** var errSecInvalidTrustSettings: OSStatus { get } */
-export const errSecInvalidTrustSettings: number = callSDK<number>("Security_d968214ecc684fb6", 845829821262181, undefined, []);
+export const errSecInvalidTrustSettings: number = callSDK<number>("Security_0e503aef608672fa", 845829821262181, undefined, []);
 
 /** var errSecInvalidTuple: OSStatus { get } */
-export const errSecInvalidTuple: number = callSDK<number>("Security_d968214ecc684fb6", 4344127405138126, undefined, []);
+export const errSecInvalidTuple: number = callSDK<number>("Security_0e503aef608672fa", 4344127405138126, undefined, []);
 
 /**
  * var errSecInvalidTupleCredendtials: OSStatus { get }
  * @availability iOS 4.0+
  * @deprecated iOS 15.0
  */
-export const errSecInvalidTupleCredendtials: number = callSDK<number>("Security_d968214ecc684fb6", 3882328126824691, undefined, []);
+export const errSecInvalidTupleCredendtials: number = callSDK<number>("Security_0e503aef608672fa", 3882328126824691, undefined, []);
 
 /** var errSecInvalidTupleCredentials: OSStatus { get } */
-export const errSecInvalidTupleCredentials: number = callSDK<number>("Security_d968214ecc684fb6", 947847926659167, undefined, []);
+export const errSecInvalidTupleCredentials: number = callSDK<number>("Security_0e503aef608672fa", 947847926659167, undefined, []);
 
 /** var errSecInvalidTupleGroup: OSStatus { get } */
-export const errSecInvalidTupleGroup: number = callSDK<number>("Security_d968214ecc684fb6", 2741899684804976, undefined, []);
+export const errSecInvalidTupleGroup: number = callSDK<number>("Security_0e503aef608672fa", 2741899684804976, undefined, []);
 
 /** var errSecInvalidValidityPeriod: OSStatus { get } */
-export const errSecInvalidValidityPeriod: number = callSDK<number>("Security_d968214ecc684fb6", 1069615566984130, undefined, []);
+export const errSecInvalidValidityPeriod: number = callSDK<number>("Security_0e503aef608672fa", 1069615566984130, undefined, []);
 
 /** var errSecInvalidValue: OSStatus { get } */
-export const errSecInvalidValue: number = callSDK<number>("Security_d968214ecc684fb6", 216411508183594, undefined, []);
+export const errSecInvalidValue: number = callSDK<number>("Security_0e503aef608672fa", 216411508183594, undefined, []);
 
 /** var errSecItemNotFound: OSStatus { get } */
-export const errSecItemNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 3007276553955363, undefined, []);
+export const errSecItemNotFound: number = callSDK<number>("Security_0e503aef608672fa", 3007276553955363, undefined, []);
 
 /** var errSecKeyBlobTypeIncorrect: OSStatus { get } */
-export const errSecKeyBlobTypeIncorrect: number = callSDK<number>("Security_d968214ecc684fb6", 3729402539529498, undefined, []);
+export const errSecKeyBlobTypeIncorrect: number = callSDK<number>("Security_0e503aef608672fa", 3729402539529498, undefined, []);
 
 /** var errSecKeyHeaderInconsistent: OSStatus { get } */
-export const errSecKeyHeaderInconsistent: number = callSDK<number>("Security_d968214ecc684fb6", 3729588048096673, undefined, []);
+export const errSecKeyHeaderInconsistent: number = callSDK<number>("Security_0e503aef608672fa", 3729588048096673, undefined, []);
 
 /** var errSecKeyIsSensitive: OSStatus { get } */
-export const errSecKeyIsSensitive: number = callSDK<number>("Security_d968214ecc684fb6", 3613842444080197, undefined, []);
+export const errSecKeyIsSensitive: number = callSDK<number>("Security_0e503aef608672fa", 3613842444080197, undefined, []);
 
 /** var errSecKeySizeNotAllowed: OSStatus { get } */
-export const errSecKeySizeNotAllowed: number = callSDK<number>("Security_d968214ecc684fb6", 1926831298519971, undefined, []);
+export const errSecKeySizeNotAllowed: number = callSDK<number>("Security_0e503aef608672fa", 1926831298519971, undefined, []);
 
 /** var errSecKeyUsageIncorrect: OSStatus { get } */
-export const errSecKeyUsageIncorrect: number = callSDK<number>("Security_d968214ecc684fb6", 633235796453089, undefined, []);
+export const errSecKeyUsageIncorrect: number = callSDK<number>("Security_0e503aef608672fa", 633235796453089, undefined, []);
 
 /** var errSecLibraryReferenceNotFound: OSStatus { get } */
-export const errSecLibraryReferenceNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 1923690307523774, undefined, []);
+export const errSecLibraryReferenceNotFound: number = callSDK<number>("Security_0e503aef608672fa", 1923690307523774, undefined, []);
 
 /** var errSecMDSError: OSStatus { get } */
-export const errSecMDSError: number = callSDK<number>("Security_d968214ecc684fb6", 3957479483209147, undefined, []);
+export const errSecMDSError: number = callSDK<number>("Security_0e503aef608672fa", 3957479483209147, undefined, []);
 
 /** var errSecMemoryError: OSStatus { get } */
-export const errSecMemoryError: number = callSDK<number>("Security_d968214ecc684fb6", 1682667797941677, undefined, []);
+export const errSecMemoryError: number = callSDK<number>("Security_0e503aef608672fa", 1682667797941677, undefined, []);
 
 /** var errSecMissingAlgorithmParms: OSStatus { get } */
-export const errSecMissingAlgorithmParms: number = callSDK<number>("Security_d968214ecc684fb6", 1697961222682954, undefined, []);
+export const errSecMissingAlgorithmParms: number = callSDK<number>("Security_0e503aef608672fa", 1697961222682954, undefined, []);
 
 /** var errSecMissingAttributeAccessCredentials: OSStatus { get } */
-export const errSecMissingAttributeAccessCredentials: number = callSDK<number>("Security_d968214ecc684fb6", 334449571041384, undefined, []);
+export const errSecMissingAttributeAccessCredentials: number = callSDK<number>("Security_0e503aef608672fa", 334449571041384, undefined, []);
 
 /** var errSecMissingAttributeBase: OSStatus { get } */
-export const errSecMissingAttributeBase: number = callSDK<number>("Security_d968214ecc684fb6", 2983636580543614, undefined, []);
+export const errSecMissingAttributeBase: number = callSDK<number>("Security_0e503aef608672fa", 2983636580543614, undefined, []);
 
 /** var errSecMissingAttributeBlockSize: OSStatus { get } */
-export const errSecMissingAttributeBlockSize: number = callSDK<number>("Security_d968214ecc684fb6", 802445891942802, undefined, []);
+export const errSecMissingAttributeBlockSize: number = callSDK<number>("Security_0e503aef608672fa", 802445891942802, undefined, []);
 
 /** var errSecMissingAttributeDLDBHandle: OSStatus { get } */
-export const errSecMissingAttributeDLDBHandle: number = callSDK<number>("Security_d968214ecc684fb6", 1120770124509441, undefined, []);
+export const errSecMissingAttributeDLDBHandle: number = callSDK<number>("Security_0e503aef608672fa", 1120770124509441, undefined, []);
 
 /** var errSecMissingAttributeEffectiveBits: OSStatus { get } */
-export const errSecMissingAttributeEffectiveBits: number = callSDK<number>("Security_d968214ecc684fb6", 1027572155388866, undefined, []);
+export const errSecMissingAttributeEffectiveBits: number = callSDK<number>("Security_0e503aef608672fa", 1027572155388866, undefined, []);
 
 /** var errSecMissingAttributeEndDate: OSStatus { get } */
-export const errSecMissingAttributeEndDate: number = callSDK<number>("Security_d968214ecc684fb6", 4312920858958500, undefined, []);
+export const errSecMissingAttributeEndDate: number = callSDK<number>("Security_0e503aef608672fa", 4312920858958500, undefined, []);
 
 /** var errSecMissingAttributeInitVector: OSStatus { get } */
-export const errSecMissingAttributeInitVector: number = callSDK<number>("Security_d968214ecc684fb6", 4052710992585906, undefined, []);
+export const errSecMissingAttributeInitVector: number = callSDK<number>("Security_0e503aef608672fa", 4052710992585906, undefined, []);
 
 /** var errSecMissingAttributeIterationCount: OSStatus { get } */
-export const errSecMissingAttributeIterationCount: number = callSDK<number>("Security_d968214ecc684fb6", 3889920308038572, undefined, []);
+export const errSecMissingAttributeIterationCount: number = callSDK<number>("Security_0e503aef608672fa", 3889920308038572, undefined, []);
 
 /** var errSecMissingAttributeKey: OSStatus { get } */
-export const errSecMissingAttributeKey: number = callSDK<number>("Security_d968214ecc684fb6", 2439671759778070, undefined, []);
+export const errSecMissingAttributeKey: number = callSDK<number>("Security_0e503aef608672fa", 2439671759778070, undefined, []);
 
 /** var errSecMissingAttributeKeyLength: OSStatus { get } */
-export const errSecMissingAttributeKeyLength: number = callSDK<number>("Security_d968214ecc684fb6", 1639351240672597, undefined, []);
+export const errSecMissingAttributeKeyLength: number = callSDK<number>("Security_0e503aef608672fa", 1639351240672597, undefined, []);
 
 /** var errSecMissingAttributeKeyType: OSStatus { get } */
-export const errSecMissingAttributeKeyType: number = callSDK<number>("Security_d968214ecc684fb6", 1648024682576441, undefined, []);
+export const errSecMissingAttributeKeyType: number = callSDK<number>("Security_0e503aef608672fa", 1648024682576441, undefined, []);
 
 /** var errSecMissingAttributeLabel: OSStatus { get } */
-export const errSecMissingAttributeLabel: number = callSDK<number>("Security_d968214ecc684fb6", 3258222685867755, undefined, []);
+export const errSecMissingAttributeLabel: number = callSDK<number>("Security_0e503aef608672fa", 3258222685867755, undefined, []);
 
 /** var errSecMissingAttributeMode: OSStatus { get } */
-export const errSecMissingAttributeMode: number = callSDK<number>("Security_d968214ecc684fb6", 458380148985122, undefined, []);
+export const errSecMissingAttributeMode: number = callSDK<number>("Security_0e503aef608672fa", 458380148985122, undefined, []);
 
 /** var errSecMissingAttributeOutputSize: OSStatus { get } */
-export const errSecMissingAttributeOutputSize: number = callSDK<number>("Security_d968214ecc684fb6", 804659159939762, undefined, []);
+export const errSecMissingAttributeOutputSize: number = callSDK<number>("Security_0e503aef608672fa", 804659159939762, undefined, []);
 
 /** var errSecMissingAttributePadding: OSStatus { get } */
-export const errSecMissingAttributePadding: number = callSDK<number>("Security_d968214ecc684fb6", 1973504604267165, undefined, []);
+export const errSecMissingAttributePadding: number = callSDK<number>("Security_0e503aef608672fa", 1973504604267165, undefined, []);
 
 /** var errSecMissingAttributePassphrase: OSStatus { get } */
-export const errSecMissingAttributePassphrase: number = callSDK<number>("Security_d968214ecc684fb6", 625416083298940, undefined, []);
+export const errSecMissingAttributePassphrase: number = callSDK<number>("Security_0e503aef608672fa", 625416083298940, undefined, []);
 
 /** var errSecMissingAttributePrime: OSStatus { get } */
-export const errSecMissingAttributePrime: number = callSDK<number>("Security_d968214ecc684fb6", 3960636275603095, undefined, []);
+export const errSecMissingAttributePrime: number = callSDK<number>("Security_0e503aef608672fa", 3960636275603095, undefined, []);
 
 /** var errSecMissingAttributePrivateKeyFormat: OSStatus { get } */
-export const errSecMissingAttributePrivateKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 2481396169061207, undefined, []);
+export const errSecMissingAttributePrivateKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 2481396169061207, undefined, []);
 
 /** var errSecMissingAttributePublicKeyFormat: OSStatus { get } */
-export const errSecMissingAttributePublicKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 1088603504938923, undefined, []);
+export const errSecMissingAttributePublicKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 1088603504938923, undefined, []);
 
 /** var errSecMissingAttributeRandom: OSStatus { get } */
-export const errSecMissingAttributeRandom: number = callSDK<number>("Security_d968214ecc684fb6", 4022567145283690, undefined, []);
+export const errSecMissingAttributeRandom: number = callSDK<number>("Security_0e503aef608672fa", 4022567145283690, undefined, []);
 
 /** var errSecMissingAttributeRounds: OSStatus { get } */
-export const errSecMissingAttributeRounds: number = callSDK<number>("Security_d968214ecc684fb6", 381067005936897, undefined, []);
+export const errSecMissingAttributeRounds: number = callSDK<number>("Security_0e503aef608672fa", 381067005936897, undefined, []);
 
 /** var errSecMissingAttributeSalt: OSStatus { get } */
-export const errSecMissingAttributeSalt: number = callSDK<number>("Security_d968214ecc684fb6", 127884209007987, undefined, []);
+export const errSecMissingAttributeSalt: number = callSDK<number>("Security_0e503aef608672fa", 127884209007987, undefined, []);
 
 /** var errSecMissingAttributeSeed: OSStatus { get } */
-export const errSecMissingAttributeSeed: number = callSDK<number>("Security_d968214ecc684fb6", 2522798921121259, undefined, []);
+export const errSecMissingAttributeSeed: number = callSDK<number>("Security_0e503aef608672fa", 2522798921121259, undefined, []);
 
 /** var errSecMissingAttributeStartDate: OSStatus { get } */
-export const errSecMissingAttributeStartDate: number = callSDK<number>("Security_d968214ecc684fb6", 2405305564660582, undefined, []);
+export const errSecMissingAttributeStartDate: number = callSDK<number>("Security_0e503aef608672fa", 2405305564660582, undefined, []);
 
 /** var errSecMissingAttributeSubprime: OSStatus { get } */
-export const errSecMissingAttributeSubprime: number = callSDK<number>("Security_d968214ecc684fb6", 3661034081448498, undefined, []);
+export const errSecMissingAttributeSubprime: number = callSDK<number>("Security_0e503aef608672fa", 3661034081448498, undefined, []);
 
 /** var errSecMissingAttributeSymmetricKeyFormat: OSStatus { get } */
-export const errSecMissingAttributeSymmetricKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 824410582384856, undefined, []);
+export const errSecMissingAttributeSymmetricKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 824410582384856, undefined, []);
 
 /** var errSecMissingAttributeVersion: OSStatus { get } */
-export const errSecMissingAttributeVersion: number = callSDK<number>("Security_d968214ecc684fb6", 2173559255065588, undefined, []);
+export const errSecMissingAttributeVersion: number = callSDK<number>("Security_0e503aef608672fa", 2173559255065588, undefined, []);
 
 /** var errSecMissingAttributeWrappedKeyFormat: OSStatus { get } */
-export const errSecMissingAttributeWrappedKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 174439812622715, undefined, []);
+export const errSecMissingAttributeWrappedKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 174439812622715, undefined, []);
 
 /** var errSecMissingEntitlement: OSStatus { get } */
-export const errSecMissingEntitlement: number = callSDK<number>("Security_d968214ecc684fb6", 3237413496592614, undefined, []);
+export const errSecMissingEntitlement: number = callSDK<number>("Security_0e503aef608672fa", 3237413496592614, undefined, []);
 
 /** var errSecMissingQualifiedCertStatement: OSStatus { get } */
-export const errSecMissingQualifiedCertStatement: number = callSDK<number>("Security_d968214ecc684fb6", 749885434320454, undefined, []);
+export const errSecMissingQualifiedCertStatement: number = callSDK<number>("Security_0e503aef608672fa", 749885434320454, undefined, []);
 
 /** var errSecMissingRequiredExtension: OSStatus { get } */
-export const errSecMissingRequiredExtension: number = callSDK<number>("Security_d968214ecc684fb6", 604929100104253, undefined, []);
+export const errSecMissingRequiredExtension: number = callSDK<number>("Security_0e503aef608672fa", 604929100104253, undefined, []);
 
 /** var errSecMissingValue: OSStatus { get } */
-export const errSecMissingValue: number = callSDK<number>("Security_d968214ecc684fb6", 4253830031394723, undefined, []);
+export const errSecMissingValue: number = callSDK<number>("Security_0e503aef608672fa", 4253830031394723, undefined, []);
 
 /** var errSecMobileMeCSRVerifyFailure: OSStatus { get } */
-export const errSecMobileMeCSRVerifyFailure: number = callSDK<number>("Security_d968214ecc684fb6", 4207819073120107, undefined, []);
+export const errSecMobileMeCSRVerifyFailure: number = callSDK<number>("Security_0e503aef608672fa", 4207819073120107, undefined, []);
 
 /** var errSecMobileMeFailedConsistencyCheck: OSStatus { get } */
-export const errSecMobileMeFailedConsistencyCheck: number = callSDK<number>("Security_d968214ecc684fb6", 812693061377946, undefined, []);
+export const errSecMobileMeFailedConsistencyCheck: number = callSDK<number>("Security_0e503aef608672fa", 812693061377946, undefined, []);
 
 /** var errSecMobileMeNoRequestPending: OSStatus { get } */
-export const errSecMobileMeNoRequestPending: number = callSDK<number>("Security_d968214ecc684fb6", 3421679696518407, undefined, []);
+export const errSecMobileMeNoRequestPending: number = callSDK<number>("Security_0e503aef608672fa", 3421679696518407, undefined, []);
 
 /** var errSecMobileMeRequestAlreadyPending: OSStatus { get } */
-export const errSecMobileMeRequestAlreadyPending: number = callSDK<number>("Security_d968214ecc684fb6", 2458336275780778, undefined, []);
+export const errSecMobileMeRequestAlreadyPending: number = callSDK<number>("Security_0e503aef608672fa", 2458336275780778, undefined, []);
 
 /** var errSecMobileMeRequestQueued: OSStatus { get } */
-export const errSecMobileMeRequestQueued: number = callSDK<number>("Security_d968214ecc684fb6", 2090011824727217, undefined, []);
+export const errSecMobileMeRequestQueued: number = callSDK<number>("Security_0e503aef608672fa", 2090011824727217, undefined, []);
 
 /** var errSecMobileMeRequestRedirected: OSStatus { get } */
-export const errSecMobileMeRequestRedirected: number = callSDK<number>("Security_d968214ecc684fb6", 2949154769850833, undefined, []);
+export const errSecMobileMeRequestRedirected: number = callSDK<number>("Security_0e503aef608672fa", 2949154769850833, undefined, []);
 
 /** var errSecMobileMeServerAlreadyExists: OSStatus { get } */
-export const errSecMobileMeServerAlreadyExists: number = callSDK<number>("Security_d968214ecc684fb6", 3998611484348981, undefined, []);
+export const errSecMobileMeServerAlreadyExists: number = callSDK<number>("Security_0e503aef608672fa", 3998611484348981, undefined, []);
 
 /** var errSecMobileMeServerError: OSStatus { get } */
-export const errSecMobileMeServerError: number = callSDK<number>("Security_d968214ecc684fb6", 2002344805428202, undefined, []);
+export const errSecMobileMeServerError: number = callSDK<number>("Security_0e503aef608672fa", 2002344805428202, undefined, []);
 
 /** var errSecMobileMeServerNotAvailable: OSStatus { get } */
-export const errSecMobileMeServerNotAvailable: number = callSDK<number>("Security_d968214ecc684fb6", 4366333522244166, undefined, []);
+export const errSecMobileMeServerNotAvailable: number = callSDK<number>("Security_0e503aef608672fa", 4366333522244166, undefined, []);
 
 /** var errSecMobileMeServerServiceErr: OSStatus { get } */
-export const errSecMobileMeServerServiceErr: number = callSDK<number>("Security_d968214ecc684fb6", 3046337034861079, undefined, []);
+export const errSecMobileMeServerServiceErr: number = callSDK<number>("Security_0e503aef608672fa", 3046337034861079, undefined, []);
 
 /** var errSecModuleManagerInitializeFailed: OSStatus { get } */
-export const errSecModuleManagerInitializeFailed: number = callSDK<number>("Security_d968214ecc684fb6", 281392426011334, undefined, []);
+export const errSecModuleManagerInitializeFailed: number = callSDK<number>("Security_0e503aef608672fa", 281392426011334, undefined, []);
 
 /** var errSecModuleManagerNotFound: OSStatus { get } */
-export const errSecModuleManagerNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 1591377143433952, undefined, []);
+export const errSecModuleManagerNotFound: number = callSDK<number>("Security_0e503aef608672fa", 1591377143433952, undefined, []);
 
 /** var errSecModuleManifestVerifyFailed: OSStatus { get } */
-export const errSecModuleManifestVerifyFailed: number = callSDK<number>("Security_d968214ecc684fb6", 1920287690519868, undefined, []);
+export const errSecModuleManifestVerifyFailed: number = callSDK<number>("Security_0e503aef608672fa", 1920287690519868, undefined, []);
 
 /** var errSecModuleNotLoaded: OSStatus { get } */
-export const errSecModuleNotLoaded: number = callSDK<number>("Security_d968214ecc684fb6", 2556678886455821, undefined, []);
+export const errSecModuleNotLoaded: number = callSDK<number>("Security_0e503aef608672fa", 2556678886455821, undefined, []);
 
 /** var errSecMultiplePrivKeys: OSStatus { get } */
-export const errSecMultiplePrivKeys: number = callSDK<number>("Security_d968214ecc684fb6", 2796321728024925, undefined, []);
+export const errSecMultiplePrivKeys: number = callSDK<number>("Security_0e503aef608672fa", 2796321728024925, undefined, []);
 
 /** var errSecMultipleValuesUnsupported: OSStatus { get } */
-export const errSecMultipleValuesUnsupported: number = callSDK<number>("Security_d968214ecc684fb6", 2009425852507951, undefined, []);
+export const errSecMultipleValuesUnsupported: number = callSDK<number>("Security_0e503aef608672fa", 2009425852507951, undefined, []);
 
 /** var errSecNetworkFailure: OSStatus { get } */
-export const errSecNetworkFailure: number = callSDK<number>("Security_d968214ecc684fb6", 2464364880282336, undefined, []);
+export const errSecNetworkFailure: number = callSDK<number>("Security_0e503aef608672fa", 2464364880282336, undefined, []);
 
 /** var errSecNoAccessForItem: OSStatus { get } */
-export const errSecNoAccessForItem: number = callSDK<number>("Security_d968214ecc684fb6", 700573197158672, undefined, []);
+export const errSecNoAccessForItem: number = callSDK<number>("Security_0e503aef608672fa", 700573197158672, undefined, []);
 
 /** var errSecNoBasicConstraints: OSStatus { get } */
-export const errSecNoBasicConstraints: number = callSDK<number>("Security_d968214ecc684fb6", 1913022182540655, undefined, []);
+export const errSecNoBasicConstraints: number = callSDK<number>("Security_0e503aef608672fa", 1913022182540655, undefined, []);
 
 /** var errSecNoBasicConstraintsCA: OSStatus { get } */
-export const errSecNoBasicConstraintsCA: number = callSDK<number>("Security_d968214ecc684fb6", 1382832223660176, undefined, []);
+export const errSecNoBasicConstraintsCA: number = callSDK<number>("Security_0e503aef608672fa", 1382832223660176, undefined, []);
 
 /** var errSecNoCertificateModule: OSStatus { get } */
-export const errSecNoCertificateModule: number = callSDK<number>("Security_d968214ecc684fb6", 1840765067426050, undefined, []);
+export const errSecNoCertificateModule: number = callSDK<number>("Security_0e503aef608672fa", 1840765067426050, undefined, []);
 
 /** var errSecNoDefaultAuthority: OSStatus { get } */
-export const errSecNoDefaultAuthority: number = callSDK<number>("Security_d968214ecc684fb6", 617979112499860, undefined, []);
+export const errSecNoDefaultAuthority: number = callSDK<number>("Security_0e503aef608672fa", 617979112499860, undefined, []);
 
 /** var errSecNoDefaultKeychain: OSStatus { get } */
-export const errSecNoDefaultKeychain: number = callSDK<number>("Security_d968214ecc684fb6", 632697285826760, undefined, []);
+export const errSecNoDefaultKeychain: number = callSDK<number>("Security_0e503aef608672fa", 632697285826760, undefined, []);
 
 /** var errSecNoFieldValues: OSStatus { get } */
-export const errSecNoFieldValues: number = callSDK<number>("Security_d968214ecc684fb6", 1211728339139001, undefined, []);
+export const errSecNoFieldValues: number = callSDK<number>("Security_0e503aef608672fa", 1211728339139001, undefined, []);
 
 /** var errSecNoPolicyModule: OSStatus { get } */
-export const errSecNoPolicyModule: number = callSDK<number>("Security_d968214ecc684fb6", 220037322999241, undefined, []);
+export const errSecNoPolicyModule: number = callSDK<number>("Security_0e503aef608672fa", 220037322999241, undefined, []);
 
 /** var errSecNoStorageModule: OSStatus { get } */
-export const errSecNoStorageModule: number = callSDK<number>("Security_d968214ecc684fb6", 434823303052000, undefined, []);
+export const errSecNoStorageModule: number = callSDK<number>("Security_0e503aef608672fa", 434823303052000, undefined, []);
 
 /** var errSecNoSuchAttr: OSStatus { get } */
-export const errSecNoSuchAttr: number = callSDK<number>("Security_d968214ecc684fb6", 2283958531794514, undefined, []);
+export const errSecNoSuchAttr: number = callSDK<number>("Security_0e503aef608672fa", 2283958531794514, undefined, []);
 
 /** var errSecNoSuchClass: OSStatus { get } */
-export const errSecNoSuchClass: number = callSDK<number>("Security_d968214ecc684fb6", 200677341820938, undefined, []);
+export const errSecNoSuchClass: number = callSDK<number>("Security_0e503aef608672fa", 200677341820938, undefined, []);
 
 /** var errSecNoSuchKeychain: OSStatus { get } */
-export const errSecNoSuchKeychain: number = callSDK<number>("Security_d968214ecc684fb6", 3782522000522847, undefined, []);
+export const errSecNoSuchKeychain: number = callSDK<number>("Security_0e503aef608672fa", 3782522000522847, undefined, []);
 
 /** var errSecNoTrustSettings: OSStatus { get } */
-export const errSecNoTrustSettings: number = callSDK<number>("Security_d968214ecc684fb6", 4114036497852012, undefined, []);
+export const errSecNoTrustSettings: number = callSDK<number>("Security_0e503aef608672fa", 4114036497852012, undefined, []);
 
 /** var errSecNotAvailable: OSStatus { get } */
-export const errSecNotAvailable: number = callSDK<number>("Security_d968214ecc684fb6", 1782821382091887, undefined, []);
+export const errSecNotAvailable: number = callSDK<number>("Security_0e503aef608672fa", 1782821382091887, undefined, []);
 
 /** var errSecNotInitialized: OSStatus { get } */
-export const errSecNotInitialized: number = callSDK<number>("Security_d968214ecc684fb6", 4403867362135661, undefined, []);
+export const errSecNotInitialized: number = callSDK<number>("Security_0e503aef608672fa", 4403867362135661, undefined, []);
 
 /** var errSecNotLoggedIn: OSStatus { get } */
-export const errSecNotLoggedIn: number = callSDK<number>("Security_d968214ecc684fb6", 2265468680207272, undefined, []);
+export const errSecNotLoggedIn: number = callSDK<number>("Security_0e503aef608672fa", 2265468680207272, undefined, []);
 
 /** var errSecNotSigner: OSStatus { get } */
-export const errSecNotSigner: number = callSDK<number>("Security_d968214ecc684fb6", 1705262453097527, undefined, []);
+export const errSecNotSigner: number = callSDK<number>("Security_0e503aef608672fa", 1705262453097527, undefined, []);
 
 /** var errSecNotTrusted: OSStatus { get } */
-export const errSecNotTrusted: number = callSDK<number>("Security_d968214ecc684fb6", 1474917135601751, undefined, []);
+export const errSecNotTrusted: number = callSDK<number>("Security_0e503aef608672fa", 1474917135601751, undefined, []);
 
 /** var errSecOCSPBadRequest: OSStatus { get } */
-export const errSecOCSPBadRequest: number = callSDK<number>("Security_d968214ecc684fb6", 4134868329551168, undefined, []);
+export const errSecOCSPBadRequest: number = callSDK<number>("Security_0e503aef608672fa", 4134868329551168, undefined, []);
 
 /** var errSecOCSPBadResponse: OSStatus { get } */
-export const errSecOCSPBadResponse: number = callSDK<number>("Security_d968214ecc684fb6", 3535780159507034, undefined, []);
+export const errSecOCSPBadResponse: number = callSDK<number>("Security_0e503aef608672fa", 3535780159507034, undefined, []);
 
 /** var errSecOCSPNoSigner: OSStatus { get } */
-export const errSecOCSPNoSigner: number = callSDK<number>("Security_d968214ecc684fb6", 3815978375763387, undefined, []);
+export const errSecOCSPNoSigner: number = callSDK<number>("Security_0e503aef608672fa", 3815978375763387, undefined, []);
 
 /** var errSecOCSPNotTrustedToAnchor: OSStatus { get } */
-export const errSecOCSPNotTrustedToAnchor: number = callSDK<number>("Security_d968214ecc684fb6", 3745649117726883, undefined, []);
+export const errSecOCSPNotTrustedToAnchor: number = callSDK<number>("Security_0e503aef608672fa", 3745649117726883, undefined, []);
 
 /** var errSecOCSPResponderInternalError: OSStatus { get } */
-export const errSecOCSPResponderInternalError: number = callSDK<number>("Security_d968214ecc684fb6", 3059570069770329, undefined, []);
+export const errSecOCSPResponderInternalError: number = callSDK<number>("Security_0e503aef608672fa", 3059570069770329, undefined, []);
 
 /** var errSecOCSPResponderMalformedReq: OSStatus { get } */
-export const errSecOCSPResponderMalformedReq: number = callSDK<number>("Security_d968214ecc684fb6", 2408366902222961, undefined, []);
+export const errSecOCSPResponderMalformedReq: number = callSDK<number>("Security_0e503aef608672fa", 2408366902222961, undefined, []);
 
 /** var errSecOCSPResponderSignatureRequired: OSStatus { get } */
-export const errSecOCSPResponderSignatureRequired: number = callSDK<number>("Security_d968214ecc684fb6", 3926996834033036, undefined, []);
+export const errSecOCSPResponderSignatureRequired: number = callSDK<number>("Security_0e503aef608672fa", 3926996834033036, undefined, []);
 
 /** var errSecOCSPResponderTryLater: OSStatus { get } */
-export const errSecOCSPResponderTryLater: number = callSDK<number>("Security_d968214ecc684fb6", 798042741474251, undefined, []);
+export const errSecOCSPResponderTryLater: number = callSDK<number>("Security_0e503aef608672fa", 798042741474251, undefined, []);
 
 /** var errSecOCSPResponderUnauthorized: OSStatus { get } */
-export const errSecOCSPResponderUnauthorized: number = callSDK<number>("Security_d968214ecc684fb6", 2436361526007200, undefined, []);
+export const errSecOCSPResponderUnauthorized: number = callSDK<number>("Security_0e503aef608672fa", 2436361526007200, undefined, []);
 
 /** var errSecOCSPResponseNonceMismatch: OSStatus { get } */
-export const errSecOCSPResponseNonceMismatch: number = callSDK<number>("Security_d968214ecc684fb6", 1293020198050860, undefined, []);
+export const errSecOCSPResponseNonceMismatch: number = callSDK<number>("Security_0e503aef608672fa", 1293020198050860, undefined, []);
 
 /** var errSecOCSPSignatureError: OSStatus { get } */
-export const errSecOCSPSignatureError: number = callSDK<number>("Security_d968214ecc684fb6", 703731570173245, undefined, []);
+export const errSecOCSPSignatureError: number = callSDK<number>("Security_0e503aef608672fa", 703731570173245, undefined, []);
 
 /** var errSecOCSPStatusUnrecognized: OSStatus { get } */
-export const errSecOCSPStatusUnrecognized: number = callSDK<number>("Security_d968214ecc684fb6", 2525495428376198, undefined, []);
+export const errSecOCSPStatusUnrecognized: number = callSDK<number>("Security_0e503aef608672fa", 2525495428376198, undefined, []);
 
 /** var errSecOCSPUnavailable: OSStatus { get } */
-export const errSecOCSPUnavailable: number = callSDK<number>("Security_d968214ecc684fb6", 1389364487214051, undefined, []);
+export const errSecOCSPUnavailable: number = callSDK<number>("Security_0e503aef608672fa", 1389364487214051, undefined, []);
 
 /** var errSecOpWr: OSStatus { get } */
-export const errSecOpWr: number = callSDK<number>("Security_d968214ecc684fb6", 3678595542754919, undefined, []);
+export const errSecOpWr: number = callSDK<number>("Security_0e503aef608672fa", 3678595542754919, undefined, []);
 
 /** var errSecOutputLengthError: OSStatus { get } */
-export const errSecOutputLengthError: number = callSDK<number>("Security_d968214ecc684fb6", 2956542045966204, undefined, []);
+export const errSecOutputLengthError: number = callSDK<number>("Security_0e503aef608672fa", 2956542045966204, undefined, []);
 
 /** var errSecPVCAlreadyConfigured: OSStatus { get } */
-export const errSecPVCAlreadyConfigured: number = callSDK<number>("Security_d968214ecc684fb6", 218162661200868, undefined, []);
+export const errSecPVCAlreadyConfigured: number = callSDK<number>("Security_0e503aef608672fa", 218162661200868, undefined, []);
 
 /** var errSecPVCReferentNotFound: OSStatus { get } */
-export const errSecPVCReferentNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 606988221788819, undefined, []);
+export const errSecPVCReferentNotFound: number = callSDK<number>("Security_0e503aef608672fa", 606988221788819, undefined, []);
 
 /** var errSecParam: OSStatus { get } */
-export const errSecParam: number = callSDK<number>("Security_d968214ecc684fb6", 302674587032240, undefined, []);
+export const errSecParam: number = callSDK<number>("Security_0e503aef608672fa", 302674587032240, undefined, []);
 
 /** var errSecPassphraseRequired: OSStatus { get } */
-export const errSecPassphraseRequired: number = callSDK<number>("Security_d968214ecc684fb6", 3153738480072391, undefined, []);
+export const errSecPassphraseRequired: number = callSDK<number>("Security_0e503aef608672fa", 3153738480072391, undefined, []);
 
 /** var errSecPathLengthConstraintExceeded: OSStatus { get } */
-export const errSecPathLengthConstraintExceeded: number = callSDK<number>("Security_d968214ecc684fb6", 1177363683539106, undefined, []);
+export const errSecPathLengthConstraintExceeded: number = callSDK<number>("Security_0e503aef608672fa", 1177363683539106, undefined, []);
 
 /** var errSecPkcs12VerifyFailure: OSStatus { get } */
-export const errSecPkcs12VerifyFailure: number = callSDK<number>("Security_d968214ecc684fb6", 1393884777354751, undefined, []);
+export const errSecPkcs12VerifyFailure: number = callSDK<number>("Security_0e503aef608672fa", 1393884777354751, undefined, []);
 
 /** var errSecPolicyNotFound: OSStatus { get } */
-export const errSecPolicyNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 3061713060565653, undefined, []);
+export const errSecPolicyNotFound: number = callSDK<number>("Security_0e503aef608672fa", 3061713060565653, undefined, []);
 
 /** var errSecPrivilegeNotGranted: OSStatus { get } */
-export const errSecPrivilegeNotGranted: number = callSDK<number>("Security_d968214ecc684fb6", 4245534468155495, undefined, []);
+export const errSecPrivilegeNotGranted: number = callSDK<number>("Security_0e503aef608672fa", 4245534468155495, undefined, []);
 
 /** var errSecPrivilegeNotSupported: OSStatus { get } */
-export const errSecPrivilegeNotSupported: number = callSDK<number>("Security_d968214ecc684fb6", 3509939085083018, undefined, []);
+export const errSecPrivilegeNotSupported: number = callSDK<number>("Security_0e503aef608672fa", 3509939085083018, undefined, []);
 
 /** var errSecPublicKeyInconsistent: OSStatus { get } */
-export const errSecPublicKeyInconsistent: number = callSDK<number>("Security_d968214ecc684fb6", 3251456039926141, undefined, []);
+export const errSecPublicKeyInconsistent: number = callSDK<number>("Security_0e503aef608672fa", 3251456039926141, undefined, []);
 
 /** var errSecQuerySizeUnknown: OSStatus { get } */
-export const errSecQuerySizeUnknown: number = callSDK<number>("Security_d968214ecc684fb6", 3112592961937342, undefined, []);
+export const errSecQuerySizeUnknown: number = callSDK<number>("Security_0e503aef608672fa", 3112592961937342, undefined, []);
 
 /** var errSecQuotaExceeded: OSStatus { get } */
-export const errSecQuotaExceeded: number = callSDK<number>("Security_d968214ecc684fb6", 4488407431840356, undefined, []);
+export const errSecQuotaExceeded: number = callSDK<number>("Security_0e503aef608672fa", 4488407431840356, undefined, []);
 
 /** var errSecReadOnly: OSStatus { get } */
-export const errSecReadOnly: number = callSDK<number>("Security_d968214ecc684fb6", 317039732811717, undefined, []);
+export const errSecReadOnly: number = callSDK<number>("Security_0e503aef608672fa", 317039732811717, undefined, []);
 
 /** var errSecReadOnlyAttr: OSStatus { get } */
-export const errSecReadOnlyAttr: number = callSDK<number>("Security_d968214ecc684fb6", 2534643046956992, undefined, []);
+export const errSecReadOnlyAttr: number = callSDK<number>("Security_0e503aef608672fa", 2534643046956992, undefined, []);
 
 /** var errSecRecordModified: OSStatus { get } */
-export const errSecRecordModified: number = callSDK<number>("Security_d968214ecc684fb6", 602983396665245, undefined, []);
+export const errSecRecordModified: number = callSDK<number>("Security_0e503aef608672fa", 602983396665245, undefined, []);
 
 /** var errSecRejectedForm: OSStatus { get } */
-export const errSecRejectedForm: number = callSDK<number>("Security_d968214ecc684fb6", 2673659159099525, undefined, []);
+export const errSecRejectedForm: number = callSDK<number>("Security_0e503aef608672fa", 2673659159099525, undefined, []);
 
 /** var errSecRequestDescriptor: OSStatus { get } */
-export const errSecRequestDescriptor: number = callSDK<number>("Security_d968214ecc684fb6", 720895067354219, undefined, []);
+export const errSecRequestDescriptor: number = callSDK<number>("Security_0e503aef608672fa", 720895067354219, undefined, []);
 
 /** var errSecRequestLost: OSStatus { get } */
-export const errSecRequestLost: number = callSDK<number>("Security_d968214ecc684fb6", 297269670509790, undefined, []);
+export const errSecRequestLost: number = callSDK<number>("Security_0e503aef608672fa", 297269670509790, undefined, []);
 
 /** var errSecRequestRejected: OSStatus { get } */
-export const errSecRequestRejected: number = callSDK<number>("Security_d968214ecc684fb6", 4125866993437911, undefined, []);
+export const errSecRequestRejected: number = callSDK<number>("Security_0e503aef608672fa", 4125866993437911, undefined, []);
 
 /** var errSecResourceSignBadCertChainLength: OSStatus { get } */
-export const errSecResourceSignBadCertChainLength: number = callSDK<number>("Security_d968214ecc684fb6", 4306278785571842, undefined, []);
+export const errSecResourceSignBadCertChainLength: number = callSDK<number>("Security_0e503aef608672fa", 4306278785571842, undefined, []);
 
 /** var errSecResourceSignBadExtKeyUsage: OSStatus { get } */
-export const errSecResourceSignBadExtKeyUsage: number = callSDK<number>("Security_d968214ecc684fb6", 1389496223423496, undefined, []);
+export const errSecResourceSignBadExtKeyUsage: number = callSDK<number>("Security_0e503aef608672fa", 1389496223423496, undefined, []);
 
 /** var errSecRestrictedAPI: OSStatus { get } */
-export const errSecRestrictedAPI: number = callSDK<number>("Security_d968214ecc684fb6", 3701043200594293, undefined, []);
+export const errSecRestrictedAPI: number = callSDK<number>("Security_0e503aef608672fa", 3701043200594293, undefined, []);
 
 /** var errSecSMIMEBadExtendedKeyUsage: OSStatus { get } */
-export const errSecSMIMEBadExtendedKeyUsage: number = callSDK<number>("Security_d968214ecc684fb6", 4244749027816294, undefined, []);
+export const errSecSMIMEBadExtendedKeyUsage: number = callSDK<number>("Security_0e503aef608672fa", 4244749027816294, undefined, []);
 
 /** var errSecSMIMEBadKeyUsage: OSStatus { get } */
-export const errSecSMIMEBadKeyUsage: number = callSDK<number>("Security_d968214ecc684fb6", 3637881679411197, undefined, []);
+export const errSecSMIMEBadKeyUsage: number = callSDK<number>("Security_0e503aef608672fa", 3637881679411197, undefined, []);
 
 /** var errSecSMIMEEmailAddressesNotFound: OSStatus { get } */
-export const errSecSMIMEEmailAddressesNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 719320538325242, undefined, []);
+export const errSecSMIMEEmailAddressesNotFound: number = callSDK<number>("Security_0e503aef608672fa", 719320538325242, undefined, []);
 
 /** var errSecSMIMEKeyUsageNotCritical: OSStatus { get } */
-export const errSecSMIMEKeyUsageNotCritical: number = callSDK<number>("Security_d968214ecc684fb6", 2184620652266776, undefined, []);
+export const errSecSMIMEKeyUsageNotCritical: number = callSDK<number>("Security_0e503aef608672fa", 2184620652266776, undefined, []);
 
 /** var errSecSMIMENoEmailAddress: OSStatus { get } */
-export const errSecSMIMENoEmailAddress: number = callSDK<number>("Security_d968214ecc684fb6", 1280608078792707, undefined, []);
+export const errSecSMIMENoEmailAddress: number = callSDK<number>("Security_0e503aef608672fa", 1280608078792707, undefined, []);
 
 /** var errSecSMIMESubjAltNameNotCritical: OSStatus { get } */
-export const errSecSMIMESubjAltNameNotCritical: number = callSDK<number>("Security_d968214ecc684fb6", 2757038054882630, undefined, []);
+export const errSecSMIMESubjAltNameNotCritical: number = callSDK<number>("Security_0e503aef608672fa", 2757038054882630, undefined, []);
 
 /** var errSecSSLBadExtendedKeyUsage: OSStatus { get } */
-export const errSecSSLBadExtendedKeyUsage: number = callSDK<number>("Security_d968214ecc684fb6", 1992625708808413, undefined, []);
+export const errSecSSLBadExtendedKeyUsage: number = callSDK<number>("Security_0e503aef608672fa", 1992625708808413, undefined, []);
 
 /** var errSecSelfCheckFailed: OSStatus { get } */
-export const errSecSelfCheckFailed: number = callSDK<number>("Security_d968214ecc684fb6", 2118124518745146, undefined, []);
+export const errSecSelfCheckFailed: number = callSDK<number>("Security_0e503aef608672fa", 2118124518745146, undefined, []);
 
 /** var errSecServiceNotAvailable: OSStatus { get } */
-export const errSecServiceNotAvailable: number = callSDK<number>("Security_d968214ecc684fb6", 2436223542028319, undefined, []);
+export const errSecServiceNotAvailable: number = callSDK<number>("Security_0e503aef608672fa", 2436223542028319, undefined, []);
 
 /** var errSecSigningTimeMissing: OSStatus { get } */
-export const errSecSigningTimeMissing: number = callSDK<number>("Security_d968214ecc684fb6", 3002662063003096, undefined, []);
+export const errSecSigningTimeMissing: number = callSDK<number>("Security_0e503aef608672fa", 3002662063003096, undefined, []);
 
 /** var errSecStagedOperationInProgress: OSStatus { get } */
-export const errSecStagedOperationInProgress: number = callSDK<number>("Security_d968214ecc684fb6", 4384282058326963, undefined, []);
+export const errSecStagedOperationInProgress: number = callSDK<number>("Security_0e503aef608672fa", 4384282058326963, undefined, []);
 
 /** var errSecStagedOperationNotStarted: OSStatus { get } */
-export const errSecStagedOperationNotStarted: number = callSDK<number>("Security_d968214ecc684fb6", 2942753886325607, undefined, []);
+export const errSecStagedOperationNotStarted: number = callSDK<number>("Security_0e503aef608672fa", 2942753886325607, undefined, []);
 
 /** var errSecSuccess: OSStatus { get } */
-export const errSecSuccess: number = callSDK<number>("Security_d968214ecc684fb6", 840769804959954, undefined, []);
+export const errSecSuccess: number = callSDK<number>("Security_0e503aef608672fa", 840769804959954, undefined, []);
 
 /** var errSecTagNotFound: OSStatus { get } */
-export const errSecTagNotFound: number = callSDK<number>("Security_d968214ecc684fb6", 2331954487570009, undefined, []);
+export const errSecTagNotFound: number = callSDK<number>("Security_0e503aef608672fa", 2331954487570009, undefined, []);
 
 /** var errSecTimestampAddInfoNotAvailable: OSStatus { get } */
-export const errSecTimestampAddInfoNotAvailable: number = callSDK<number>("Security_d968214ecc684fb6", 4101533413405098, undefined, []);
+export const errSecTimestampAddInfoNotAvailable: number = callSDK<number>("Security_0e503aef608672fa", 4101533413405098, undefined, []);
 
 /** var errSecTimestampBadAlg: OSStatus { get } */
-export const errSecTimestampBadAlg: number = callSDK<number>("Security_d968214ecc684fb6", 1985193710771083, undefined, []);
+export const errSecTimestampBadAlg: number = callSDK<number>("Security_0e503aef608672fa", 1985193710771083, undefined, []);
 
 /** var errSecTimestampBadDataFormat: OSStatus { get } */
-export const errSecTimestampBadDataFormat: number = callSDK<number>("Security_d968214ecc684fb6", 3462987891332637, undefined, []);
+export const errSecTimestampBadDataFormat: number = callSDK<number>("Security_0e503aef608672fa", 3462987891332637, undefined, []);
 
 /** var errSecTimestampBadRequest: OSStatus { get } */
-export const errSecTimestampBadRequest: number = callSDK<number>("Security_d968214ecc684fb6", 4324825131104533, undefined, []);
+export const errSecTimestampBadRequest: number = callSDK<number>("Security_0e503aef608672fa", 4324825131104533, undefined, []);
 
 /** var errSecTimestampInvalid: OSStatus { get } */
-export const errSecTimestampInvalid: number = callSDK<number>("Security_d968214ecc684fb6", 2952956364492248, undefined, []);
+export const errSecTimestampInvalid: number = callSDK<number>("Security_0e503aef608672fa", 2952956364492248, undefined, []);
 
 /** var errSecTimestampMissing: OSStatus { get } */
-export const errSecTimestampMissing: number = callSDK<number>("Security_d968214ecc684fb6", 3674419873277747, undefined, []);
+export const errSecTimestampMissing: number = callSDK<number>("Security_0e503aef608672fa", 3674419873277747, undefined, []);
 
 /** var errSecTimestampNotTrusted: OSStatus { get } */
-export const errSecTimestampNotTrusted: number = callSDK<number>("Security_d968214ecc684fb6", 3858482447702173, undefined, []);
+export const errSecTimestampNotTrusted: number = callSDK<number>("Security_0e503aef608672fa", 3858482447702173, undefined, []);
 
 /** var errSecTimestampRejection: OSStatus { get } */
-export const errSecTimestampRejection: number = callSDK<number>("Security_d968214ecc684fb6", 4350881736579384, undefined, []);
+export const errSecTimestampRejection: number = callSDK<number>("Security_0e503aef608672fa", 4350881736579384, undefined, []);
 
 /** var errSecTimestampRevocationNotification: OSStatus { get } */
-export const errSecTimestampRevocationNotification: number = callSDK<number>("Security_d968214ecc684fb6", 89544974483488, undefined, []);
+export const errSecTimestampRevocationNotification: number = callSDK<number>("Security_0e503aef608672fa", 89544974483488, undefined, []);
 
 /** var errSecTimestampRevocationWarning: OSStatus { get } */
-export const errSecTimestampRevocationWarning: number = callSDK<number>("Security_d968214ecc684fb6", 1409893604167556, undefined, []);
+export const errSecTimestampRevocationWarning: number = callSDK<number>("Security_0e503aef608672fa", 1409893604167556, undefined, []);
 
 /** var errSecTimestampServiceNotAvailable: OSStatus { get } */
-export const errSecTimestampServiceNotAvailable: number = callSDK<number>("Security_d968214ecc684fb6", 2995966992845075, undefined, []);
+export const errSecTimestampServiceNotAvailable: number = callSDK<number>("Security_0e503aef608672fa", 2995966992845075, undefined, []);
 
 /** var errSecTimestampSystemFailure: OSStatus { get } */
-export const errSecTimestampSystemFailure: number = callSDK<number>("Security_d968214ecc684fb6", 1846059608406648, undefined, []);
+export const errSecTimestampSystemFailure: number = callSDK<number>("Security_0e503aef608672fa", 1846059608406648, undefined, []);
 
 /** var errSecTimestampTimeNotAvailable: OSStatus { get } */
-export const errSecTimestampTimeNotAvailable: number = callSDK<number>("Security_d968214ecc684fb6", 3498180179143920, undefined, []);
+export const errSecTimestampTimeNotAvailable: number = callSDK<number>("Security_0e503aef608672fa", 3498180179143920, undefined, []);
 
 /** var errSecTimestampUnacceptedExtension: OSStatus { get } */
-export const errSecTimestampUnacceptedExtension: number = callSDK<number>("Security_d968214ecc684fb6", 3307248068245494, undefined, []);
+export const errSecTimestampUnacceptedExtension: number = callSDK<number>("Security_0e503aef608672fa", 3307248068245494, undefined, []);
 
 /** var errSecTimestampUnacceptedPolicy: OSStatus { get } */
-export const errSecTimestampUnacceptedPolicy: number = callSDK<number>("Security_d968214ecc684fb6", 725317151816376, undefined, []);
+export const errSecTimestampUnacceptedPolicy: number = callSDK<number>("Security_0e503aef608672fa", 725317151816376, undefined, []);
 
 /** var errSecTimestampWaiting: OSStatus { get } */
-export const errSecTimestampWaiting: number = callSDK<number>("Security_d968214ecc684fb6", 2573152138508157, undefined, []);
+export const errSecTimestampWaiting: number = callSDK<number>("Security_0e503aef608672fa", 2573152138508157, undefined, []);
 
 /** var errSecTrustNotAvailable: OSStatus { get } */
-export const errSecTrustNotAvailable: number = callSDK<number>("Security_d968214ecc684fb6", 486255618470345, undefined, []);
+export const errSecTrustNotAvailable: number = callSDK<number>("Security_0e503aef608672fa", 486255618470345, undefined, []);
 
 /** var errSecTrustSettingDeny: OSStatus { get } */
-export const errSecTrustSettingDeny: number = callSDK<number>("Security_d968214ecc684fb6", 2433525455282737, undefined, []);
+export const errSecTrustSettingDeny: number = callSDK<number>("Security_0e503aef608672fa", 2433525455282737, undefined, []);
 
 /** var errSecUnimplemented: OSStatus { get } */
-export const errSecUnimplemented: number = callSDK<number>("Security_d968214ecc684fb6", 3872835911718372, undefined, []);
+export const errSecUnimplemented: number = callSDK<number>("Security_0e503aef608672fa", 3872835911718372, undefined, []);
 
 /** var errSecUnknownCRLExtension: OSStatus { get } */
-export const errSecUnknownCRLExtension: number = callSDK<number>("Security_d968214ecc684fb6", 3049487050131967, undefined, []);
+export const errSecUnknownCRLExtension: number = callSDK<number>("Security_0e503aef608672fa", 3049487050131967, undefined, []);
 
 /** var errSecUnknownCertExtension: OSStatus { get } */
-export const errSecUnknownCertExtension: number = callSDK<number>("Security_d968214ecc684fb6", 3065012986325741, undefined, []);
+export const errSecUnknownCertExtension: number = callSDK<number>("Security_0e503aef608672fa", 3065012986325741, undefined, []);
 
 /** var errSecUnknownCriticalExtensionFlag: OSStatus { get } */
-export const errSecUnknownCriticalExtensionFlag: number = callSDK<number>("Security_d968214ecc684fb6", 3210788343926097, undefined, []);
+export const errSecUnknownCriticalExtensionFlag: number = callSDK<number>("Security_0e503aef608672fa", 3210788343926097, undefined, []);
 
 /** var errSecUnknownFormat: OSStatus { get } */
-export const errSecUnknownFormat: number = callSDK<number>("Security_d968214ecc684fb6", 274939648106751, undefined, []);
+export const errSecUnknownFormat: number = callSDK<number>("Security_0e503aef608672fa", 274939648106751, undefined, []);
 
 /** var errSecUnknownQualifiedCertStatement: OSStatus { get } */
-export const errSecUnknownQualifiedCertStatement: number = callSDK<number>("Security_d968214ecc684fb6", 1748289557025598, undefined, []);
+export const errSecUnknownQualifiedCertStatement: number = callSDK<number>("Security_0e503aef608672fa", 1748289557025598, undefined, []);
 
 /** var errSecUnknownTag: OSStatus { get } */
-export const errSecUnknownTag: number = callSDK<number>("Security_d968214ecc684fb6", 4379310465534294, undefined, []);
+export const errSecUnknownTag: number = callSDK<number>("Security_0e503aef608672fa", 4379310465534294, undefined, []);
 
 /** var errSecUnsupportedAddressType: OSStatus { get } */
-export const errSecUnsupportedAddressType: number = callSDK<number>("Security_d968214ecc684fb6", 2126010957918769, undefined, []);
+export const errSecUnsupportedAddressType: number = callSDK<number>("Security_0e503aef608672fa", 2126010957918769, undefined, []);
 
 /** var errSecUnsupportedFieldFormat: OSStatus { get } */
-export const errSecUnsupportedFieldFormat: number = callSDK<number>("Security_d968214ecc684fb6", 1770132845498801, undefined, []);
+export const errSecUnsupportedFieldFormat: number = callSDK<number>("Security_0e503aef608672fa", 1770132845498801, undefined, []);
 
 /** var errSecUnsupportedFormat: OSStatus { get } */
-export const errSecUnsupportedFormat: number = callSDK<number>("Security_d968214ecc684fb6", 1096563644437602, undefined, []);
+export const errSecUnsupportedFormat: number = callSDK<number>("Security_0e503aef608672fa", 1096563644437602, undefined, []);
 
 /** var errSecUnsupportedIndexInfo: OSStatus { get } */
-export const errSecUnsupportedIndexInfo: number = callSDK<number>("Security_d968214ecc684fb6", 1532456986876336, undefined, []);
+export const errSecUnsupportedIndexInfo: number = callSDK<number>("Security_0e503aef608672fa", 1532456986876336, undefined, []);
 
 /** var errSecUnsupportedKeyAttributeMask: OSStatus { get } */
-export const errSecUnsupportedKeyAttributeMask: number = callSDK<number>("Security_d968214ecc684fb6", 2229883357709276, undefined, []);
+export const errSecUnsupportedKeyAttributeMask: number = callSDK<number>("Security_0e503aef608672fa", 2229883357709276, undefined, []);
 
 /** var errSecUnsupportedKeyFormat: OSStatus { get } */
-export const errSecUnsupportedKeyFormat: number = callSDK<number>("Security_d968214ecc684fb6", 195029562555814, undefined, []);
+export const errSecUnsupportedKeyFormat: number = callSDK<number>("Security_0e503aef608672fa", 195029562555814, undefined, []);
 
 /** var errSecUnsupportedKeyLabel: OSStatus { get } */
-export const errSecUnsupportedKeyLabel: number = callSDK<number>("Security_d968214ecc684fb6", 1348269470548627, undefined, []);
+export const errSecUnsupportedKeyLabel: number = callSDK<number>("Security_0e503aef608672fa", 1348269470548627, undefined, []);
 
 /** var errSecUnsupportedKeySize: OSStatus { get } */
-export const errSecUnsupportedKeySize: number = callSDK<number>("Security_d968214ecc684fb6", 266278253346829, undefined, []);
+export const errSecUnsupportedKeySize: number = callSDK<number>("Security_0e503aef608672fa", 266278253346829, undefined, []);
 
 /** var errSecUnsupportedKeyUsageMask: OSStatus { get } */
-export const errSecUnsupportedKeyUsageMask: number = callSDK<number>("Security_d968214ecc684fb6", 4413861977512284, undefined, []);
+export const errSecUnsupportedKeyUsageMask: number = callSDK<number>("Security_0e503aef608672fa", 4413861977512284, undefined, []);
 
 /** var errSecUnsupportedLocality: OSStatus { get } */
-export const errSecUnsupportedLocality: number = callSDK<number>("Security_d968214ecc684fb6", 3665175913088126, undefined, []);
+export const errSecUnsupportedLocality: number = callSDK<number>("Security_0e503aef608672fa", 3665175913088126, undefined, []);
 
 /** var errSecUnsupportedNumAttributes: OSStatus { get } */
-export const errSecUnsupportedNumAttributes: number = callSDK<number>("Security_d968214ecc684fb6", 294322762076453, undefined, []);
+export const errSecUnsupportedNumAttributes: number = callSDK<number>("Security_0e503aef608672fa", 294322762076453, undefined, []);
 
 /** var errSecUnsupportedNumIndexes: OSStatus { get } */
-export const errSecUnsupportedNumIndexes: number = callSDK<number>("Security_d968214ecc684fb6", 502538142311205, undefined, []);
+export const errSecUnsupportedNumIndexes: number = callSDK<number>("Security_0e503aef608672fa", 502538142311205, undefined, []);
 
 /** var errSecUnsupportedNumRecordTypes: OSStatus { get } */
-export const errSecUnsupportedNumRecordTypes: number = callSDK<number>("Security_d968214ecc684fb6", 105412885260646, undefined, []);
+export const errSecUnsupportedNumRecordTypes: number = callSDK<number>("Security_0e503aef608672fa", 105412885260646, undefined, []);
 
 /** var errSecUnsupportedNumSelectionPreds: OSStatus { get } */
-export const errSecUnsupportedNumSelectionPreds: number = callSDK<number>("Security_d968214ecc684fb6", 141148847657086, undefined, []);
+export const errSecUnsupportedNumSelectionPreds: number = callSDK<number>("Security_0e503aef608672fa", 141148847657086, undefined, []);
 
 /** var errSecUnsupportedOperator: OSStatus { get } */
-export const errSecUnsupportedOperator: number = callSDK<number>("Security_d968214ecc684fb6", 137061444150866, undefined, []);
+export const errSecUnsupportedOperator: number = callSDK<number>("Security_0e503aef608672fa", 137061444150866, undefined, []);
 
 /** var errSecUnsupportedQueryLimits: OSStatus { get } */
-export const errSecUnsupportedQueryLimits: number = callSDK<number>("Security_d968214ecc684fb6", 459153517789663, undefined, []);
+export const errSecUnsupportedQueryLimits: number = callSDK<number>("Security_0e503aef608672fa", 459153517789663, undefined, []);
 
 /** var errSecUnsupportedService: OSStatus { get } */
-export const errSecUnsupportedService: number = callSDK<number>("Security_d968214ecc684fb6", 1856228621953233, undefined, []);
+export const errSecUnsupportedService: number = callSDK<number>("Security_0e503aef608672fa", 1856228621953233, undefined, []);
 
 /** var errSecUnsupportedVectorOfBuffers: OSStatus { get } */
-export const errSecUnsupportedVectorOfBuffers: number = callSDK<number>("Security_d968214ecc684fb6", 2653998202029637, undefined, []);
+export const errSecUnsupportedVectorOfBuffers: number = callSDK<number>("Security_0e503aef608672fa", 2653998202029637, undefined, []);
 
 /** var errSecUserCanceled: OSStatus { get } */
-export const errSecUserCanceled: number = callSDK<number>("Security_d968214ecc684fb6", 411160475453369, undefined, []);
+export const errSecUserCanceled: number = callSDK<number>("Security_0e503aef608672fa", 411160475453369, undefined, []);
 
 /** var errSecVerificationFailure: OSStatus { get } */
-export const errSecVerificationFailure: number = callSDK<number>("Security_d968214ecc684fb6", 1040838941639616, undefined, []);
+export const errSecVerificationFailure: number = callSDK<number>("Security_0e503aef608672fa", 1040838941639616, undefined, []);
 
 /** var errSecVerifyActionFailed: OSStatus { get } */
-export const errSecVerifyActionFailed: number = callSDK<number>("Security_d968214ecc684fb6", 2061218481918007, undefined, []);
+export const errSecVerifyActionFailed: number = callSDK<number>("Security_0e503aef608672fa", 2061218481918007, undefined, []);
 
 /** var errSecVerifyFailed: OSStatus { get } */
-export const errSecVerifyFailed: number = callSDK<number>("Security_d968214ecc684fb6", 4126566053425522, undefined, []);
+export const errSecVerifyFailed: number = callSDK<number>("Security_0e503aef608672fa", 4126566053425522, undefined, []);
 
 /** var errSecWrPerm: OSStatus { get } */
-export const errSecWrPerm: number = callSDK<number>("Security_d968214ecc684fb6", 2582150900470434, undefined, []);
+export const errSecWrPerm: number = callSDK<number>("Security_0e503aef608672fa", 2582150900470434, undefined, []);
 
 /** var errSecWrongSecVersion: OSStatus { get } */
-export const errSecWrongSecVersion: number = callSDK<number>("Security_d968214ecc684fb6", 1290072763577804, undefined, []);
+export const errSecWrongSecVersion: number = callSDK<number>("Security_0e503aef608672fa", 1290072763577804, undefined, []);
 
 /** var kSecRevocationCRLMethod: CFOptionFlags { get } */
-export const kSecRevocationCRLMethod: number = callSDK<number>("Security_d968214ecc684fb6", 3765473035158556, undefined, []);
+export const kSecRevocationCRLMethod: number = callSDK<number>("Security_0e503aef608672fa", 3765473035158556, undefined, []);
 
 /** var kSecRevocationNetworkAccessDisabled: CFOptionFlags { get } */
-export const kSecRevocationNetworkAccessDisabled: number = callSDK<number>("Security_d968214ecc684fb6", 3569293470762766, undefined, []);
+export const kSecRevocationNetworkAccessDisabled: number = callSDK<number>("Security_0e503aef608672fa", 3569293470762766, undefined, []);
 
 /** var kSecRevocationOCSPMethod: CFOptionFlags { get } */
-export const kSecRevocationOCSPMethod: number = callSDK<number>("Security_d968214ecc684fb6", 2333263655831012, undefined, []);
+export const kSecRevocationOCSPMethod: number = callSDK<number>("Security_0e503aef608672fa", 2333263655831012, undefined, []);
 
 /** var kSecRevocationPreferCRL: CFOptionFlags { get } */
-export const kSecRevocationPreferCRL: number = callSDK<number>("Security_d968214ecc684fb6", 2111021382557693, undefined, []);
+export const kSecRevocationPreferCRL: number = callSDK<number>("Security_0e503aef608672fa", 2111021382557693, undefined, []);
 
 /** var kSecRevocationRequirePositiveResponse: CFOptionFlags { get } */
-export const kSecRevocationRequirePositiveResponse: number = callSDK<number>("Security_d968214ecc684fb6", 1411229684583889, undefined, []);
+export const kSecRevocationRequirePositiveResponse: number = callSDK<number>("Security_0e503aef608672fa", 1411229684583889, undefined, []);
 
 /** var kSecRevocationUseAnyAvailableMethod: CFOptionFlags { get } */
-export const kSecRevocationUseAnyAvailableMethod: number = callSDK<number>("Security_d968214ecc684fb6", 441278360201106, undefined, []);
+export const kSecRevocationUseAnyAvailableMethod: number = callSDK<number>("Security_0e503aef608672fa", 441278360201106, undefined, []);
 
 /**
  * let kSecAttrAccessControl: CFString
  * @availability iOS 8.0+
  */
-export const kSecAttrAccessControl: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2843323093247750, undefined, []);
+export const kSecAttrAccessControl: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2843323093247750, undefined, []);
 
 /**
  * let kSecAttrAccessGroup: CFString
  * @availability iOS 3.0+
  */
-export const kSecAttrAccessGroup: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1731465301456136, undefined, []);
+export const kSecAttrAccessGroup: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1731465301456136, undefined, []);
 
 /**
  * let kSecAttrAccessGroupToken: CFString
  * @availability iOS 10.0+
  */
-export const kSecAttrAccessGroupToken: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3967674380444382, undefined, []);
+export const kSecAttrAccessGroupToken: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3967674380444382, undefined, []);
 
 /**
  * let kSecAttrAccessible: CFString
  * @availability iOS 4.0+
  */
-export const kSecAttrAccessible: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2795431084151226, undefined, []);
+export const kSecAttrAccessible: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2795431084151226, undefined, []);
 
 /**
  * let kSecAttrAccessibleAfterFirstUnlock: CFString
  * @availability iOS 4.0+
  */
-export const kSecAttrAccessibleAfterFirstUnlock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1369514856320208, undefined, []);
+export const kSecAttrAccessibleAfterFirstUnlock: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1369514856320208, undefined, []);
 
 /**
  * let kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly: CFString
  * @availability iOS 4.0+
  */
-export const kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1487411686944683, undefined, []);
+export const kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1487411686944683, undefined, []);
 
 /**
  * let kSecAttrAccessibleAlways: CFString
  * @availability iOS 4.0+
  * @deprecated iOS 12.0
  */
-export const kSecAttrAccessibleAlways: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1279137604812409, undefined, []);
+export const kSecAttrAccessibleAlways: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1279137604812409, undefined, []);
 
 /**
  * let kSecAttrAccessibleAlwaysThisDeviceOnly: CFString
  * @availability iOS 4.0+
  * @deprecated iOS 12.0
  */
-export const kSecAttrAccessibleAlwaysThisDeviceOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1039800873407356, undefined, []);
+export const kSecAttrAccessibleAlwaysThisDeviceOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1039800873407356, undefined, []);
 
 /**
  * let kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly: CFString
  * @availability iOS 8.0+
  */
-export const kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 113096733044886, undefined, []);
+export const kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 113096733044886, undefined, []);
 
 /**
  * let kSecAttrAccessibleWhenUnlocked: CFString
  * @availability iOS 4.0+
  */
-export const kSecAttrAccessibleWhenUnlocked: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4356296759290804, undefined, []);
+export const kSecAttrAccessibleWhenUnlocked: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4356296759290804, undefined, []);
 
 /**
  * let kSecAttrAccessibleWhenUnlockedThisDeviceOnly: CFString
  * @availability iOS 4.0+
  */
-export const kSecAttrAccessibleWhenUnlockedThisDeviceOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3920430691891791, undefined, []);
+export const kSecAttrAccessibleWhenUnlockedThisDeviceOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3920430691891791, undefined, []);
 
 /**
  * let kSecAttrAccount: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAccount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3258657349572360, undefined, []);
+export const kSecAttrAccount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3258657349572360, undefined, []);
 
 /**
  * let kSecAttrApplicationLabel: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrApplicationLabel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4107229284067471, undefined, []);
+export const kSecAttrApplicationLabel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4107229284067471, undefined, []);
 
 /**
  * let kSecAttrApplicationTag: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrApplicationTag: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1266454431988257, undefined, []);
+export const kSecAttrApplicationTag: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1266454431988257, undefined, []);
 
 /**
  * let kSecAttrAuthenticationType: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAuthenticationType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1917898742897174, undefined, []);
+export const kSecAttrAuthenticationType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1917898742897174, undefined, []);
 
 /**
  * let kSecAttrAuthenticationTypeDPA: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAuthenticationTypeDPA: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 231076601417923, undefined, []);
+export const kSecAttrAuthenticationTypeDPA: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 231076601417923, undefined, []);
 
 /**
  * let kSecAttrAuthenticationTypeDefault: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAuthenticationTypeDefault: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3005869762483991, undefined, []);
+export const kSecAttrAuthenticationTypeDefault: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3005869762483991, undefined, []);
 
 /**
  * let kSecAttrAuthenticationTypeHTMLForm: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAuthenticationTypeHTMLForm: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3230044960898203, undefined, []);
+export const kSecAttrAuthenticationTypeHTMLForm: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3230044960898203, undefined, []);
 
 /**
  * let kSecAttrAuthenticationTypeHTTPBasic: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAuthenticationTypeHTTPBasic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3674573181198088, undefined, []);
+export const kSecAttrAuthenticationTypeHTTPBasic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3674573181198088, undefined, []);
 
 /**
  * let kSecAttrAuthenticationTypeHTTPDigest: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAuthenticationTypeHTTPDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3261229084071787, undefined, []);
+export const kSecAttrAuthenticationTypeHTTPDigest: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3261229084071787, undefined, []);
 
 /**
  * let kSecAttrAuthenticationTypeMSN: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAuthenticationTypeMSN: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1371740589768377, undefined, []);
+export const kSecAttrAuthenticationTypeMSN: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1371740589768377, undefined, []);
 
 /**
  * let kSecAttrAuthenticationTypeNTLM: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAuthenticationTypeNTLM: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 874921888510188, undefined, []);
+export const kSecAttrAuthenticationTypeNTLM: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 874921888510188, undefined, []);
 
 /**
  * let kSecAttrAuthenticationTypeRPA: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrAuthenticationTypeRPA: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2937892470445867, undefined, []);
+export const kSecAttrAuthenticationTypeRPA: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2937892470445867, undefined, []);
 
 /**
  * let kSecAttrCanDecrypt: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCanDecrypt: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1742459461013188, undefined, []);
+export const kSecAttrCanDecrypt: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1742459461013188, undefined, []);
 
 /**
  * let kSecAttrCanDerive: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCanDerive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3779717474806313, undefined, []);
+export const kSecAttrCanDerive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3779717474806313, undefined, []);
 
 /**
  * let kSecAttrCanEncrypt: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCanEncrypt: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4103656826058556, undefined, []);
+export const kSecAttrCanEncrypt: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4103656826058556, undefined, []);
 
 /**
  * let kSecAttrCanSign: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCanSign: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3777083421497631, undefined, []);
+export const kSecAttrCanSign: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3777083421497631, undefined, []);
 
 /**
  * let kSecAttrCanUnwrap: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCanUnwrap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1624511256519618, undefined, []);
+export const kSecAttrCanUnwrap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1624511256519618, undefined, []);
 
 /**
  * let kSecAttrCanVerify: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCanVerify: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1375629161847151, undefined, []);
+export const kSecAttrCanVerify: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1375629161847151, undefined, []);
 
 /**
  * let kSecAttrCanWrap: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCanWrap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2148926801271866, undefined, []);
+export const kSecAttrCanWrap: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2148926801271866, undefined, []);
 
 /**
  * let kSecAttrCertificateEncoding: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCertificateEncoding: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2464901811979797, undefined, []);
+export const kSecAttrCertificateEncoding: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2464901811979797, undefined, []);
 
 /**
  * let kSecAttrCertificateType: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCertificateType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 424668913057795, undefined, []);
+export const kSecAttrCertificateType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 424668913057795, undefined, []);
 
 /**
  * let kSecAttrComment: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrComment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3121113236449261, undefined, []);
+export const kSecAttrComment: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3121113236449261, undefined, []);
 
 /**
  * let kSecAttrCreationDate: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCreationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2140934647730580, undefined, []);
+export const kSecAttrCreationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2140934647730580, undefined, []);
 
 /**
  * let kSecAttrCreator: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrCreator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2497223291399793, undefined, []);
+export const kSecAttrCreator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2497223291399793, undefined, []);
 
 /**
  * let kSecAttrDescription: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3901915806912277, undefined, []);
+export const kSecAttrDescription: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3901915806912277, undefined, []);
 
 /**
  * let kSecAttrEffectiveKeySize: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrEffectiveKeySize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 66973072803581, undefined, []);
+export const kSecAttrEffectiveKeySize: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 66973072803581, undefined, []);
 
 /**
  * let kSecAttrGeneric: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrGeneric: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1286195585306130, undefined, []);
+export const kSecAttrGeneric: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1286195585306130, undefined, []);
 
 /**
  * let kSecAttrIsExtractable: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrIsExtractable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 520905608163308, undefined, []);
+export const kSecAttrIsExtractable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 520905608163308, undefined, []);
 
 /**
  * let kSecAttrIsInvisible: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrIsInvisible: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2101782260227433, undefined, []);
+export const kSecAttrIsInvisible: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2101782260227433, undefined, []);
 
 /**
  * let kSecAttrIsNegative: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrIsNegative: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3425078494701782, undefined, []);
+export const kSecAttrIsNegative: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3425078494701782, undefined, []);
 
 /**
  * let kSecAttrIsPermanent: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrIsPermanent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3623672332785449, undefined, []);
+export const kSecAttrIsPermanent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3623672332785449, undefined, []);
 
 /**
  * let kSecAttrIsSensitive: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrIsSensitive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 670614465085048, undefined, []);
+export const kSecAttrIsSensitive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 670614465085048, undefined, []);
 
 /**
  * let kSecAttrIssuer: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrIssuer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3061022543084084, undefined, []);
+export const kSecAttrIssuer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3061022543084084, undefined, []);
 
 /**
  * let kSecAttrKeyClass: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrKeyClass: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1240488908632414, undefined, []);
+export const kSecAttrKeyClass: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1240488908632414, undefined, []);
 
 /**
  * let kSecAttrKeyClassPrivate: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrKeyClassPrivate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3019679644374326, undefined, []);
+export const kSecAttrKeyClassPrivate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3019679644374326, undefined, []);
 
 /**
  * let kSecAttrKeyClassPublic: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrKeyClassPublic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1591559295396316, undefined, []);
+export const kSecAttrKeyClassPublic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1591559295396316, undefined, []);
 
 /**
  * let kSecAttrKeyClassSymmetric: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrKeyClassSymmetric: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3288178008224678, undefined, []);
+export const kSecAttrKeyClassSymmetric: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3288178008224678, undefined, []);
 
 /**
  * let kSecAttrKeySizeInBits: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrKeySizeInBits: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4081964901559275, undefined, []);
+export const kSecAttrKeySizeInBits: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4081964901559275, undefined, []);
 
 /**
  * let kSecAttrKeyType: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrKeyType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3907521964470706, undefined, []);
+export const kSecAttrKeyType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3907521964470706, undefined, []);
 
 /**
  * let kSecAttrKeyTypeEC: CFString
  * @availability iOS 4.0+
  */
-export const kSecAttrKeyTypeEC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1489214408564344, undefined, []);
+export const kSecAttrKeyTypeEC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1489214408564344, undefined, []);
 
 /**
  * let kSecAttrKeyTypeECSECPrimeRandom: CFString
  * @availability iOS 10.0+
  */
-export const kSecAttrKeyTypeECSECPrimeRandom: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 952012690724230, undefined, []);
+export const kSecAttrKeyTypeECSECPrimeRandom: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 952012690724230, undefined, []);
 
 /**
  * let kSecAttrKeyTypeRSA: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrKeyTypeRSA: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3365540718712954, undefined, []);
+export const kSecAttrKeyTypeRSA: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3365540718712954, undefined, []);
 
 /**
  * let kSecAttrLabel: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrLabel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1822356297304634, undefined, []);
+export const kSecAttrLabel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1822356297304634, undefined, []);
 
 /**
  * let kSecAttrModificationDate: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrModificationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2399877172123418, undefined, []);
+export const kSecAttrModificationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2399877172123418, undefined, []);
 
 /**
  * let kSecAttrPath: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrPath: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3682970914574242, undefined, []);
+export const kSecAttrPath: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3682970914574242, undefined, []);
 
 /**
  * let kSecAttrPersistantReference: CFString
  * @availability iOS 11.0+
  */
-export const kSecAttrPersistantReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3246538392193650, undefined, []);
+export const kSecAttrPersistantReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3246538392193650, undefined, []);
 
 /**
  * let kSecAttrPersistentReference: CFString
  * @availability iOS 11.0+
  */
-export const kSecAttrPersistentReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1189865597580691, undefined, []);
+export const kSecAttrPersistentReference: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1189865597580691, undefined, []);
 
 /**
  * let kSecAttrPort: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1805910651384577, undefined, []);
+export const kSecAttrPort: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1805910651384577, undefined, []);
 
 /**
  * let kSecAttrProtocol: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocol: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 40765490159727, undefined, []);
+export const kSecAttrProtocol: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 40765490159727, undefined, []);
 
 /**
  * let kSecAttrProtocolAFP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolAFP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1580158129704191, undefined, []);
+export const kSecAttrProtocolAFP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1580158129704191, undefined, []);
 
 /**
  * let kSecAttrProtocolAppleTalk: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolAppleTalk: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2681323235448750, undefined, []);
+export const kSecAttrProtocolAppleTalk: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2681323235448750, undefined, []);
 
 /**
  * let kSecAttrProtocolDAAP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolDAAP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1660846986850083, undefined, []);
+export const kSecAttrProtocolDAAP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1660846986850083, undefined, []);
 
 /**
  * let kSecAttrProtocolEPPC: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolEPPC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1050389152686780, undefined, []);
+export const kSecAttrProtocolEPPC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1050389152686780, undefined, []);
 
 /**
  * let kSecAttrProtocolFTP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolFTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3357229273167738, undefined, []);
+export const kSecAttrProtocolFTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3357229273167738, undefined, []);
 
 /**
  * let kSecAttrProtocolFTPAccount: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolFTPAccount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2692276966429210, undefined, []);
+export const kSecAttrProtocolFTPAccount: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2692276966429210, undefined, []);
 
 /**
  * let kSecAttrProtocolFTPProxy: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolFTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3138911236427554, undefined, []);
+export const kSecAttrProtocolFTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3138911236427554, undefined, []);
 
 /**
  * let kSecAttrProtocolFTPS: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolFTPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4144032170744383, undefined, []);
+export const kSecAttrProtocolFTPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4144032170744383, undefined, []);
 
 /**
  * let kSecAttrProtocolHTTP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolHTTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2902503099221500, undefined, []);
+export const kSecAttrProtocolHTTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2902503099221500, undefined, []);
 
 /**
  * let kSecAttrProtocolHTTPProxy: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolHTTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1559953052289977, undefined, []);
+export const kSecAttrProtocolHTTPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1559953052289977, undefined, []);
 
 /**
  * let kSecAttrProtocolHTTPS: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolHTTPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3342117455951051, undefined, []);
+export const kSecAttrProtocolHTTPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3342117455951051, undefined, []);
 
 /**
  * let kSecAttrProtocolHTTPSProxy: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolHTTPSProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2336153063865769, undefined, []);
+export const kSecAttrProtocolHTTPSProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2336153063865769, undefined, []);
 
 /**
  * let kSecAttrProtocolIMAP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolIMAP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2894243429166573, undefined, []);
+export const kSecAttrProtocolIMAP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2894243429166573, undefined, []);
 
 /**
  * let kSecAttrProtocolIMAPS: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolIMAPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4259154177284200, undefined, []);
+export const kSecAttrProtocolIMAPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4259154177284200, undefined, []);
 
 /**
  * let kSecAttrProtocolIPP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolIPP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2176210864627164, undefined, []);
+export const kSecAttrProtocolIPP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2176210864627164, undefined, []);
 
 /**
  * let kSecAttrProtocolIRC: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolIRC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1968186470531178, undefined, []);
+export const kSecAttrProtocolIRC: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1968186470531178, undefined, []);
 
 /**
  * let kSecAttrProtocolIRCS: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolIRCS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1014983886708234, undefined, []);
+export const kSecAttrProtocolIRCS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1014983886708234, undefined, []);
 
 /**
  * let kSecAttrProtocolLDAP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolLDAP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4227591677129335, undefined, []);
+export const kSecAttrProtocolLDAP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4227591677129335, undefined, []);
 
 /**
  * let kSecAttrProtocolLDAPS: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolLDAPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2387883765605302, undefined, []);
+export const kSecAttrProtocolLDAPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2387883765605302, undefined, []);
 
 /**
  * let kSecAttrProtocolNNTP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolNNTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1257015370244840, undefined, []);
+export const kSecAttrProtocolNNTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1257015370244840, undefined, []);
 
 /**
  * let kSecAttrProtocolNNTPS: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolNNTPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3524136292965163, undefined, []);
+export const kSecAttrProtocolNNTPS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3524136292965163, undefined, []);
 
 /**
  * let kSecAttrProtocolPOP3: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolPOP3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2479467568305422, undefined, []);
+export const kSecAttrProtocolPOP3: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2479467568305422, undefined, []);
 
 /**
  * let kSecAttrProtocolPOP3S: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolPOP3S: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 984800219959800, undefined, []);
+export const kSecAttrProtocolPOP3S: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 984800219959800, undefined, []);
 
 /**
  * let kSecAttrProtocolRTSP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolRTSP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 332597720716637, undefined, []);
+export const kSecAttrProtocolRTSP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 332597720716637, undefined, []);
 
 /**
  * let kSecAttrProtocolRTSPProxy: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolRTSPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1192061485899934, undefined, []);
+export const kSecAttrProtocolRTSPProxy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1192061485899934, undefined, []);
 
 /**
  * let kSecAttrProtocolSMB: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolSMB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3572517602432088, undefined, []);
+export const kSecAttrProtocolSMB: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3572517602432088, undefined, []);
 
 /**
  * let kSecAttrProtocolSMTP: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolSMTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1560908704026164, undefined, []);
+export const kSecAttrProtocolSMTP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1560908704026164, undefined, []);
 
 /**
  * let kSecAttrProtocolSOCKS: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolSOCKS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1825101633007662, undefined, []);
+export const kSecAttrProtocolSOCKS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1825101633007662, undefined, []);
 
 /**
  * let kSecAttrProtocolSSH: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolSSH: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3091941190606978, undefined, []);
+export const kSecAttrProtocolSSH: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3091941190606978, undefined, []);
 
 /**
  * let kSecAttrProtocolTelnet: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolTelnet: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1711501446230253, undefined, []);
+export const kSecAttrProtocolTelnet: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1711501446230253, undefined, []);
 
 /**
  * let kSecAttrProtocolTelnetS: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrProtocolTelnetS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3517705314352798, undefined, []);
+export const kSecAttrProtocolTelnetS: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3517705314352798, undefined, []);
 
 /**
  * let kSecAttrPublicKeyHash: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrPublicKeyHash: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 595120328454208, undefined, []);
+export const kSecAttrPublicKeyHash: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 595120328454208, undefined, []);
 
 /**
  * let kSecAttrSecurityDomain: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrSecurityDomain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2247764189027733, undefined, []);
+export const kSecAttrSecurityDomain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2247764189027733, undefined, []);
 
 /**
  * let kSecAttrSerialNumber: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1390498047897810, undefined, []);
+export const kSecAttrSerialNumber: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1390498047897810, undefined, []);
 
 /**
  * let kSecAttrServer: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3677015692414920, undefined, []);
+export const kSecAttrServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3677015692414920, undefined, []);
 
 /**
  * let kSecAttrService: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrService: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1633790801129527, undefined, []);
+export const kSecAttrService: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1633790801129527, undefined, []);
 
 /**
  * let kSecAttrSubject: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrSubject: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 704270925497903, undefined, []);
+export const kSecAttrSubject: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 704270925497903, undefined, []);
 
 /**
  * let kSecAttrSubjectKeyID: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrSubjectKeyID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2107336973397800, undefined, []);
+export const kSecAttrSubjectKeyID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2107336973397800, undefined, []);
 
 /**
  * let kSecAttrSyncViewHint: CFString
  * @availability iOS 9.0+
  */
-export const kSecAttrSyncViewHint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4240213428712050, undefined, []);
+export const kSecAttrSyncViewHint: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4240213428712050, undefined, []);
 
 /**
  * let kSecAttrSynchronizable: CFString
  * @availability iOS 7.0+
  */
-export const kSecAttrSynchronizable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1599742516732322, undefined, []);
+export const kSecAttrSynchronizable: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1599742516732322, undefined, []);
 
 /**
  * let kSecAttrSynchronizableAny: CFString
  * @availability iOS 7.0+
  */
-export const kSecAttrSynchronizableAny: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4259205540859320, undefined, []);
+export const kSecAttrSynchronizableAny: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4259205540859320, undefined, []);
 
 /**
  * let kSecAttrTokenID: CFString
  * @availability iOS 9.0+
  */
-export const kSecAttrTokenID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2303631181227471, undefined, []);
+export const kSecAttrTokenID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2303631181227471, undefined, []);
 
 /**
  * let kSecAttrTokenIDSecureEnclave: CFString
  * @availability iOS 9.0+
  */
-export const kSecAttrTokenIDSecureEnclave: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3000103139151561, undefined, []);
+export const kSecAttrTokenIDSecureEnclave: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3000103139151561, undefined, []);
 
 /**
  * let kSecAttrType: CFString
  * @availability iOS 2.0+
  */
-export const kSecAttrType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1527844539350400, undefined, []);
+export const kSecAttrType: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1527844539350400, undefined, []);
 
 /**
  * let kSecClass: CFString
  * @availability iOS 2.0+
  */
-export const kSecClass: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3629326747099120, undefined, []);
+export const kSecClass: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3629326747099120, undefined, []);
 
 /**
  * let kSecClassCertificate: CFString
  * @availability iOS 2.0+
  */
-export const kSecClassCertificate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3850350002770671, undefined, []);
+export const kSecClassCertificate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3850350002770671, undefined, []);
 
 /**
  * let kSecClassGenericPassword: CFString
  * @availability iOS 2.0+
  */
-export const kSecClassGenericPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 8657130184177, undefined, []);
+export const kSecClassGenericPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 8657130184177, undefined, []);
 
 /**
  * let kSecClassIdentity: CFString
  * @availability iOS 2.0+
  */
-export const kSecClassIdentity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2973369767631137, undefined, []);
+export const kSecClassIdentity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2973369767631137, undefined, []);
 
 /**
  * let kSecClassInternetPassword: CFString
  * @availability iOS 2.0+
  */
-export const kSecClassInternetPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2486267810075058, undefined, []);
+export const kSecClassInternetPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2486267810075058, undefined, []);
 
 /**
  * let kSecClassKey: CFString
  * @availability iOS 2.0+
  */
-export const kSecClassKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4141959481280911, undefined, []);
+export const kSecClassKey: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4141959481280911, undefined, []);
 
 /**
  * let kSecImportExportPassphrase: CFString
  * @availability iOS 2.0+
  */
-export const kSecImportExportPassphrase: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2455901045273259, undefined, []);
+export const kSecImportExportPassphrase: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2455901045273259, undefined, []);
 
 /**
  * let kSecImportItemCertChain: CFString
  * @availability iOS 2.0+
  */
-export const kSecImportItemCertChain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2142087597775984, undefined, []);
+export const kSecImportItemCertChain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2142087597775984, undefined, []);
 
 /**
  * let kSecImportItemIdentity: CFString
  * @availability iOS 2.0+
  */
-export const kSecImportItemIdentity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3878907252689179, undefined, []);
+export const kSecImportItemIdentity: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3878907252689179, undefined, []);
 
 /**
  * let kSecImportItemKeyID: CFString
  * @availability iOS 2.0+
  */
-export const kSecImportItemKeyID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1610376965949345, undefined, []);
+export const kSecImportItemKeyID: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1610376965949345, undefined, []);
 
 /**
  * let kSecImportItemLabel: CFString
  * @availability iOS 2.0+
  */
-export const kSecImportItemLabel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4003769519812380, undefined, []);
+export const kSecImportItemLabel: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4003769519812380, undefined, []);
 
 /**
  * let kSecImportItemTrust: CFString
  * @availability iOS 2.0+
  */
-export const kSecImportItemTrust: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3449403234796228, undefined, []);
+export const kSecImportItemTrust: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3449403234796228, undefined, []);
 
 /**
  * let kSecImportToMemoryOnly: CFString
  * @availability iOS 18.0+
  */
-export const kSecImportToMemoryOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 377637732976419, undefined, []);
+export const kSecImportToMemoryOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 377637732976419, undefined, []);
 
 /**
  * let kSecMatchCaseInsensitive: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchCaseInsensitive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2958032892606242, undefined, []);
+export const kSecMatchCaseInsensitive: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2958032892606242, undefined, []);
 
 /**
  * let kSecMatchEmailAddressIfPresent: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchEmailAddressIfPresent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2555366519063402, undefined, []);
+export const kSecMatchEmailAddressIfPresent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2555366519063402, undefined, []);
 
 /**
  * let kSecMatchHostOrSubdomainOfHost: CFString
  * @availability iOS 18.0+
  */
-export const kSecMatchHostOrSubdomainOfHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2113798221043518, undefined, []);
+export const kSecMatchHostOrSubdomainOfHost: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2113798221043518, undefined, []);
 
 /**
  * let kSecMatchIssuers: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchIssuers: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3671973357987456, undefined, []);
+export const kSecMatchIssuers: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3671973357987456, undefined, []);
 
 /**
  * let kSecMatchItemList: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchItemList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 550215054694303, undefined, []);
+export const kSecMatchItemList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 550215054694303, undefined, []);
 
 /**
  * let kSecMatchLimit: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1639201661764472, undefined, []);
+export const kSecMatchLimit: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1639201661764472, undefined, []);
 
 /**
  * let kSecMatchLimitAll: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchLimitAll: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3947252005763884, undefined, []);
+export const kSecMatchLimitAll: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3947252005763884, undefined, []);
 
 /**
  * let kSecMatchLimitOne: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchLimitOne: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3808946493634002, undefined, []);
+export const kSecMatchLimitOne: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3808946493634002, undefined, []);
 
 /**
  * let kSecMatchPolicy: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchPolicy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 176662453797677, undefined, []);
+export const kSecMatchPolicy: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 176662453797677, undefined, []);
 
 /**
  * let kSecMatchSearchList: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchSearchList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3707230400127495, undefined, []);
+export const kSecMatchSearchList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3707230400127495, undefined, []);
 
 /**
  * let kSecMatchSubjectContains: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchSubjectContains: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4188187840828529, undefined, []);
+export const kSecMatchSubjectContains: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4188187840828529, undefined, []);
 
 /**
  * let kSecMatchTrustedOnly: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchTrustedOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 883043238877241, undefined, []);
+export const kSecMatchTrustedOnly: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 883043238877241, undefined, []);
 
 /**
  * let kSecMatchValidOnDate: CFString
  * @availability iOS 2.0+
  */
-export const kSecMatchValidOnDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 526419195414264, undefined, []);
+export const kSecMatchValidOnDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 526419195414264, undefined, []);
 
 /**
  * let kSecPolicyAppleCodeSigning: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyAppleCodeSigning: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 362800289075575, undefined, []);
+export const kSecPolicyAppleCodeSigning: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 362800289075575, undefined, []);
 
 /**
  * let kSecPolicyAppleEAP: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyAppleEAP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3334735721480807, undefined, []);
+export const kSecPolicyAppleEAP: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3334735721480807, undefined, []);
 
 /**
  * let kSecPolicyAppleEAPClient: CFString
  * @availability iOS 18.4+
  */
-export const kSecPolicyAppleEAPClient: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 653201565555908, undefined, []);
+export const kSecPolicyAppleEAPClient: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 653201565555908, undefined, []);
 
 /**
  * let kSecPolicyAppleEAPServer: CFString
  * @availability iOS 18.4+
  */
-export const kSecPolicyAppleEAPServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 604834265314490, undefined, []);
+export const kSecPolicyAppleEAPServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 604834265314490, undefined, []);
 
 /**
  * let kSecPolicyAppleIDValidation: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyAppleIDValidation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2015563352571282, undefined, []);
+export const kSecPolicyAppleIDValidation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2015563352571282, undefined, []);
 
 /**
  * let kSecPolicyAppleIPSecClient: CFString
  * @availability iOS 18.4+
  */
-export const kSecPolicyAppleIPSecClient: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2607858483119407, undefined, []);
+export const kSecPolicyAppleIPSecClient: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2607858483119407, undefined, []);
 
 /**
  * let kSecPolicyAppleIPSecServer: CFString
  * @availability iOS 18.4+
  */
-export const kSecPolicyAppleIPSecServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 109052641463617, undefined, []);
+export const kSecPolicyAppleIPSecServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 109052641463617, undefined, []);
 
 /**
  * let kSecPolicyAppleIPsec: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyAppleIPsec: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 255209964771270, undefined, []);
+export const kSecPolicyAppleIPsec: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 255209964771270, undefined, []);
 
 /**
  * let kSecPolicyApplePassbookSigning: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyApplePassbookSigning: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1798979790043931, undefined, []);
+export const kSecPolicyApplePassbookSigning: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1798979790043931, undefined, []);
 
 /**
  * let kSecPolicyApplePayIssuerEncryption: CFString
  * @availability iOS 9.0+
  */
-export const kSecPolicyApplePayIssuerEncryption: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1619666723503642, undefined, []);
+export const kSecPolicyApplePayIssuerEncryption: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1619666723503642, undefined, []);
 
 /**
  * let kSecPolicyAppleRevocation: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyAppleRevocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 729669830893659, undefined, []);
+export const kSecPolicyAppleRevocation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 729669830893659, undefined, []);
 
 /**
  * let kSecPolicyAppleSMIME: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyAppleSMIME: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1276145820732710, undefined, []);
+export const kSecPolicyAppleSMIME: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1276145820732710, undefined, []);
 
 /**
  * let kSecPolicyAppleSSL: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyAppleSSL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1398593741949962, undefined, []);
+export const kSecPolicyAppleSSL: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1398593741949962, undefined, []);
 
 /**
  * let kSecPolicyAppleSSLClient: CFString
  * @availability iOS 18.4+
  */
-export const kSecPolicyAppleSSLClient: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2837784513171397, undefined, []);
+export const kSecPolicyAppleSSLClient: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2837784513171397, undefined, []);
 
 /**
  * let kSecPolicyAppleSSLServer: CFString
  * @availability iOS 18.4+
  */
-export const kSecPolicyAppleSSLServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3053076940241118, undefined, []);
+export const kSecPolicyAppleSSLServer: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3053076940241118, undefined, []);
 
 /**
  * let kSecPolicyAppleTimeStamping: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyAppleTimeStamping: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4305991274181427, undefined, []);
+export const kSecPolicyAppleTimeStamping: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4305991274181427, undefined, []);
 
 /**
  * let kSecPolicyAppleX509Basic: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyAppleX509Basic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1750194930821957, undefined, []);
+export const kSecPolicyAppleX509Basic: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1750194930821957, undefined, []);
 
 /**
  * let kSecPolicyClient: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyClient: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 841541330614490, undefined, []);
+export const kSecPolicyClient: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 841541330614490, undefined, []);
 
 /**
  * let kSecPolicyMacAppStoreReceipt: CFString
  * @availability iOS 9.0+
  */
-export const kSecPolicyMacAppStoreReceipt: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2264842583816544, undefined, []);
+export const kSecPolicyMacAppStoreReceipt: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2264842583816544, undefined, []);
 
 /**
  * let kSecPolicyName: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3227733377201780, undefined, []);
+export const kSecPolicyName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3227733377201780, undefined, []);
 
 /**
  * let kSecPolicyOid: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyOid: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1204157301897185, undefined, []);
+export const kSecPolicyOid: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1204157301897185, undefined, []);
 
 /**
  * let kSecPolicyRevocationFlags: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyRevocationFlags: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3356229965258678, undefined, []);
+export const kSecPolicyRevocationFlags: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3356229965258678, undefined, []);
 
 /**
  * let kSecPolicyTeamIdentifier: CFString
  * @availability iOS 7.0+
  */
-export const kSecPolicyTeamIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2264161820843440, undefined, []);
+export const kSecPolicyTeamIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2264161820843440, undefined, []);
 
 /**
  * let kSecPrivateKeyAttrs: CFString
  * @availability iOS 2.0+
  */
-export const kSecPrivateKeyAttrs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3456137281584530, undefined, []);
+export const kSecPrivateKeyAttrs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3456137281584530, undefined, []);
 
 /**
  * let kSecPropertyTypeError: CFString
  * @availability iOS 7.0+
  */
-export const kSecPropertyTypeError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 360793280976921, undefined, []);
+export const kSecPropertyTypeError: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 360793280976921, undefined, []);
 
 /**
  * let kSecPropertyTypeTitle: CFString
  * @availability iOS 7.0+
  */
-export const kSecPropertyTypeTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 242594507260013, undefined, []);
+export const kSecPropertyTypeTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 242594507260013, undefined, []);
 
 /**
  * let kSecPublicKeyAttrs: CFString
  * @availability iOS 2.0+
  */
-export const kSecPublicKeyAttrs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 265264075968274, undefined, []);
+export const kSecPublicKeyAttrs: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 265264075968274, undefined, []);
 
 /**
  * let kSecRandomDefault: SecRandomRef
  * @availability iOS 2.0+
  */
-export const kSecRandomDefault: SDKHandle = callSDK<SDKHandle>("Security_d968214ecc684fb6", 3004069695698831, undefined, []);
+export const kSecRandomDefault: SDKHandle = callSDK<SDKHandle>("Security_0e503aef608672fa", 3004069695698831, undefined, []);
 
 /**
  * let kSecReturnAttributes: CFString
  * @availability iOS 2.0+
  */
-export const kSecReturnAttributes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2553945883031515, undefined, []);
+export const kSecReturnAttributes: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2553945883031515, undefined, []);
 
 /**
  * let kSecReturnData: CFString
  * @availability iOS 2.0+
  */
-export const kSecReturnData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3941246525448676, undefined, []);
+export const kSecReturnData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3941246525448676, undefined, []);
 
 /**
  * let kSecReturnPersistentRef: CFString
  * @availability iOS 2.0+
  */
-export const kSecReturnPersistentRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1868151400138087, undefined, []);
+export const kSecReturnPersistentRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1868151400138087, undefined, []);
 
 /**
  * let kSecReturnRef: CFString
  * @availability iOS 2.0+
  */
-export const kSecReturnRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 563361007564020, undefined, []);
+export const kSecReturnRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 563361007564020, undefined, []);
 
 /**
  * let kSecSharedPassword: CFString
  * @availability iOS 8.0+
  */
-export const kSecSharedPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 333359180951555, undefined, []);
+export const kSecSharedPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 333359180951555, undefined, []);
 
 /**
  * let kSecTrustCertificateTransparency: CFString
  * @availability iOS 9.0+
  */
-export const kSecTrustCertificateTransparency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2337707205309907, undefined, []);
+export const kSecTrustCertificateTransparency: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2337707205309907, undefined, []);
 
 /**
  * let kSecTrustCertificateTransparencyWhiteList: CFString
  * @availability iOS 10.0+
  * @deprecated iOS 11.0
  */
-export const kSecTrustCertificateTransparencyWhiteList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 712539609519691, undefined, []);
+export const kSecTrustCertificateTransparencyWhiteList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 712539609519691, undefined, []);
 
 /**
  * let kSecTrustEvaluationDate: CFString
  * @availability iOS 7.0+
  */
-export const kSecTrustEvaluationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 922148938487326, undefined, []);
+export const kSecTrustEvaluationDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 922148938487326, undefined, []);
 
 /**
  * let kSecTrustExtendedValidation: CFString
  * @availability iOS 7.0+
  */
-export const kSecTrustExtendedValidation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2579986043877755, undefined, []);
+export const kSecTrustExtendedValidation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2579986043877755, undefined, []);
 
 /**
  * let kSecTrustOrganizationName: CFString
  * @availability iOS 7.0+
  */
-export const kSecTrustOrganizationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1914075813751992, undefined, []);
+export const kSecTrustOrganizationName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1914075813751992, undefined, []);
 
 /**
  * let kSecTrustQCStatements: CFString
  * @availability iOS 18.4+
  */
-export const kSecTrustQCStatements: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4045050021375793, undefined, []);
+export const kSecTrustQCStatements: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4045050021375793, undefined, []);
 
 /**
  * let kSecTrustQWACValidation: CFString
  * @availability iOS 18.4+
  */
-export const kSecTrustQWACValidation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1197353111029461, undefined, []);
+export const kSecTrustQWACValidation: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1197353111029461, undefined, []);
 
 /**
  * let kSecTrustResultValue: CFString
  * @availability iOS 7.0+
  */
-export const kSecTrustResultValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4430516779606461, undefined, []);
+export const kSecTrustResultValue: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4430516779606461, undefined, []);
 
 /**
  * let kSecTrustRevocationChecked: CFString
  * @availability iOS 7.0+
  */
-export const kSecTrustRevocationChecked: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3422513360867421, undefined, []);
+export const kSecTrustRevocationChecked: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3422513360867421, undefined, []);
 
 /**
  * let kSecTrustRevocationValidUntilDate: CFString
  * @availability iOS 7.0+
  */
-export const kSecTrustRevocationValidUntilDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4035174489235462, undefined, []);
+export const kSecTrustRevocationValidUntilDate: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4035174489235462, undefined, []);
 
 /**
  * let kSecUseAuthenticationContext: CFString
  * @availability iOS 9.0+
  */
-export const kSecUseAuthenticationContext: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2717499378622911, undefined, []);
+export const kSecUseAuthenticationContext: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2717499378622911, undefined, []);
 
 /**
  * let kSecUseAuthenticationUI: CFString
  * @availability iOS 9.0+
  */
-export const kSecUseAuthenticationUI: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 766500727100937, undefined, []);
+export const kSecUseAuthenticationUI: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 766500727100937, undefined, []);
 
 /**
  * let kSecUseAuthenticationUIAllow: CFString
  * @availability iOS 9.0+
  * @deprecated iOS 14.0
  */
-export const kSecUseAuthenticationUIAllow: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 596668053904419, undefined, []);
+export const kSecUseAuthenticationUIAllow: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 596668053904419, undefined, []);
 
 /**
  * let kSecUseAuthenticationUIFail: CFString
  * @availability iOS 9.0+
  * @deprecated iOS 14.0
  */
-export const kSecUseAuthenticationUIFail: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 4405867312270524, undefined, []);
+export const kSecUseAuthenticationUIFail: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 4405867312270524, undefined, []);
 
 /**
  * let kSecUseAuthenticationUISkip: CFString
  * @availability iOS 9.0+
  */
-export const kSecUseAuthenticationUISkip: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 96334774152982, undefined, []);
+export const kSecUseAuthenticationUISkip: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 96334774152982, undefined, []);
 
 /**
  * let kSecUseDataProtectionKeychain: CFString
  * @availability iOS 13.0+
  */
-export const kSecUseDataProtectionKeychain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 1898003633422647, undefined, []);
+export const kSecUseDataProtectionKeychain: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 1898003633422647, undefined, []);
 
 /**
  * let kSecUseItemList: CFString
  * @availability iOS 2.0+
  * @deprecated iOS 12.0
  */
-export const kSecUseItemList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 259483706426084, undefined, []);
+export const kSecUseItemList: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 259483706426084, undefined, []);
 
 /**
  * let kSecUseNoAuthenticationUI: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 9.0
  */
-export const kSecUseNoAuthenticationUI: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 376340782600215, undefined, []);
+export const kSecUseNoAuthenticationUI: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 376340782600215, undefined, []);
 
 /**
  * let kSecUseOperationPrompt: CFString
  * @availability iOS 8.0+
  * @deprecated iOS 14.0
  */
-export const kSecUseOperationPrompt: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 25526412424170, undefined, []);
+export const kSecUseOperationPrompt: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 25526412424170, undefined, []);
 
 /**
  * let kSecValueData: CFString
  * @availability iOS 2.0+
  */
-export const kSecValueData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 2736181932408252, undefined, []);
+export const kSecValueData: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 2736181932408252, undefined, []);
 
 /**
  * let kSecValuePersistentRef: CFString
  * @availability iOS 2.0+
  */
-export const kSecValuePersistentRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 229669703166579, undefined, []);
+export const kSecValuePersistentRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 229669703166579, undefined, []);
 
 /**
  * let kSecValueRef: CFString
  * @availability iOS 2.0+
  */
-export const kSecValueRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_d968214ecc684fb6", 3908656794687442, undefined, []);
+export const kSecValueRef: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("Security_0e503aef608672fa", 3908656794687442, undefined, []);
 
 /** var SECURITY_TYPE_UNIFICATION: Int32 { get } */
-export const SECURITY_TYPE_UNIFICATION: number = callSDK<number>("Security_d968214ecc684fb6", 1708603223453095, undefined, []);
+export const SECURITY_TYPE_UNIFICATION: number = callSDK<number>("Security_0e503aef608672fa", 1708603223453095, undefined, []);
 
 /** var SEC_OS_IPHONE: Int32 { get } */
-export const SEC_OS_IPHONE: number = callSDK<number>("Security_d968214ecc684fb6", 4287950518804555, undefined, []);
+export const SEC_OS_IPHONE: number = callSDK<number>("Security_0e503aef608672fa", 4287950518804555, undefined, []);
 
 /** var SEC_OS_OSX: Int32 { get } */
-export const SEC_OS_OSX: number = callSDK<number>("Security_d968214ecc684fb6", 2135454244351610, undefined, []);
+export const SEC_OS_OSX: number = callSDK<number>("Security_0e503aef608672fa", 2135454244351610, undefined, []);
 
 /** var SEC_OS_OSX_INCLUDES: Bool { get } */
-export const SEC_OS_OSX_INCLUDES: boolean = callSDK<boolean>("Security_d968214ecc684fb6", 1033447733922491, undefined, []);
+export const SEC_OS_OSX_INCLUDES: boolean = callSDK<boolean>("Security_0e503aef608672fa", 1033447733922491, undefined, []);
 
 registerSDKProtocol("c:objc(pl)OS_sec_certificate", {});
 registerSDKProtocol("c:objc(pl)OS_sec_identity", {});
@@ -4755,9 +4755,9 @@ registerSDKProtocol("c:objc(pl)OS_sec_object", {});
 registerSDKProtocol("c:objc(pl)OS_sec_protocol_metadata", {});
 registerSDKProtocol("c:objc(pl)OS_sec_protocol_options", {});
 registerSDKProtocol("c:objc(pl)OS_sec_trust", {});
-registerSDKClass("Security.SecAccessControl", SecAccessControl, { module: "Security_d968214ecc684fb6", properties: {} });
-registerSDKClass("Security.SecCertificate", SecCertificate, { module: "Security_d968214ecc684fb6", properties: {} });
-registerSDKClass("Security.SecIdentity", SecIdentity, { module: "Security_d968214ecc684fb6", properties: {} });
-registerSDKClass("Security.SecKey", SecKey, { module: "Security_d968214ecc684fb6", properties: {} });
-registerSDKClass("Security.SecPolicy", SecPolicy, { module: "Security_d968214ecc684fb6", properties: {} });
-registerSDKClass("Security.SecTrust", SecTrust, { module: "Security_d968214ecc684fb6", properties: {} });
+registerSDKClass("Security.SecAccessControl", SecAccessControl, { module: "Security_0e503aef608672fa", properties: {} });
+registerSDKClass("Security.SecCertificate", SecCertificate, { module: "Security_0e503aef608672fa", properties: {} });
+registerSDKClass("Security.SecIdentity", SecIdentity, { module: "Security_0e503aef608672fa", properties: {} });
+registerSDKClass("Security.SecKey", SecKey, { module: "Security_0e503aef608672fa", properties: {} });
+registerSDKClass("Security.SecPolicy", SecPolicy, { module: "Security_0e503aef608672fa", properties: {} });
+registerSDKClass("Security.SecTrust", SecTrust, { module: "Security_0e503aef608672fa", properties: {} });
