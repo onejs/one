@@ -111,6 +111,8 @@ export type HostRecipe = {
   boundedHeight?: boolean
   // measured only while this Swift condition holds; `@prop` is the prop's model value
   measuredWhen?: string
+  // keeps screen safe areas while this model condition holds, and relayouts on a change.
+  screenInsetsWhen?: string
   // an initializer label that takes a Binding React controls: the value comes from
   // `prop` with the acknowledgedEvent and revision props, and a change the user makes
   // reaches React through `event`
@@ -1480,6 +1482,9 @@ ${cases.join('\n')}
         : []),
       ...(hasModel ? [`  private let model: ${short}Model`] : []),
       ...(environment ? ['  private let environment: OneNativeEnvironmentModel'] : []),
+      ...(recipe.screenInsetsWhen
+        ? [`  @nonobjc override var hostingScreenInsets: Bool { ${model(recipe.screenInsetsWhen)} }`]
+        : []),
       ...(scheme
         ? [
             '  private let bridge: OneNativeSchemeBridge',
@@ -1805,6 +1810,7 @@ ${
     ...(selection ? [`${selection.prop}: String`, `${selection.controlled}: Bool`] : []),
   ].join(', ')}) {
 ${[
+  ...(recipe.screenInsetsWhen ? ['    let previousScreenInsets = hostingScreenInsets'] : []),
   ...(recipe.builder
     ? [
         `    precondition([${[...(recipe.builder.optional ? [''] : []), ...recipe.builder.members].map((m) => JSON.stringify(m)).join(', ')}].contains(${recipe.builder.prop}), "invalid ${name} ${recipe.builder.prop}: \\(${recipe.builder.prop})")`,
@@ -1840,6 +1846,7 @@ ${[
         : `    if model.${prop} != ${prop} { model.${prop} = ${prop} }`
   ),
   ...(selection ? [`    model.configureSelection(${selection.prop}, controlled: ${selection.controlled})`] : []),
+  ...(recipe.screenInsetsWhen ? ['    if previousScreenInsets != hostingScreenInsets { setNeedsLayout() }'] : []),
 ].join('\n')}
   }
 ${binding || selection ? '\n  public override func setActive(_ active: Bool) { model.active = active }\n' : ''}`

@@ -89,7 +89,7 @@ export const containerComponents = [
   {
     name: 'OneNativeForm',
     publicName: 'Form',
-    host: { view: 'Form', children: 'content', initial: { sizing: '"fill"' }, measuredWhen: '@sizing == "content"', environment: true, layout: 'measured' },
+    host: { view: 'Form', children: 'content', initial: { sizing: '"fill"' }, measuredWhen: '@sizing == "content"', screenInsetsWhen: '@sizing == "fill"', environment: true, layout: 'measured' },
     props: { sizing: 'string', ...environmentProps },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     // scroll modifiers such as scrollContentBackground reach the Form through swiftStyle.

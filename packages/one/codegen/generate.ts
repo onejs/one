@@ -1040,6 +1040,8 @@ run(swiftc, [
   sdk,
   '-target',
   `arm64-apple-ios${MINIMUM_IOS}.0-simulator`,
+  // top-level UIKit content hosts use the fixed sdk runtime's error types.
+  join(root, 'ios/SDK/OneSDKRuntime.swift'),
   ...['ios', 'ios/Generated'].flatMap((dir) =>
     readdirSync(join(root, dir))
       .filter((file) => file.endsWith('.swift'))
