@@ -352,8 +352,11 @@ const sdkKinds = {
   layoutPriority: 'number',
   layoutValue: 'registeredValue',
   lineHeight: 'optionalEnum',
+  lineLimitWithClosedRange: 'record',
   lineLimitWithLimitAndReservesSpace: 'record',
   lineLimitWithOptionalInt: 'optionalNumber',
+  lineLimitWithPartialRangeFrom: 'record',
+  lineLimitWithPartialRangeThrough: 'record',
   lineSpacing: 'number',
   listItemTintWithOptionalColor: 'optionalEnum',
   listItemTintWithOptionalListItemTint: 'optionalEnum',
@@ -1812,9 +1815,36 @@ const sdkRecords: Record<
     },
     { field: 'isEnabled', kind: 'boolean', optional: false },
   ],
+  lineLimitWithClosedRange: [
+    {
+      field: 'limit',
+      kind: 'numericRange',
+      optional: false,
+      fields: [
+        { name: 'lower', type: 'Swift.Int', integer: true },
+        { name: 'upper', type: 'Swift.Int', integer: true },
+      ],
+    },
+  ],
   lineLimitWithLimitAndReservesSpace: [
     { field: 'limit', kind: 'number', optional: false },
     { field: 'reservesSpace', kind: 'boolean', optional: false },
+  ],
+  lineLimitWithPartialRangeFrom: [
+    {
+      field: 'limit',
+      kind: 'numericRange',
+      optional: false,
+      fields: [{ name: 'lower', type: 'Swift.Int', integer: true }],
+    },
+  ],
+  lineLimitWithPartialRangeThrough: [
+    {
+      field: 'limit',
+      kind: 'numericRange',
+      optional: false,
+      fields: [{ name: 'upper', type: 'Swift.Int', integer: true }],
+    },
   ],
   listRowInsets: [
     { field: 'edges', kind: 'enum', optional: false },
@@ -2435,6 +2465,30 @@ export function swiftStyleNative(
               })
             )
               throw new Error(name + '.' + argument.field + ' must be a numeric object')
+            return JSON.stringify(item)
+          }
+          if (argument.kind === 'numericRange') {
+            if (
+              !item ||
+              typeof item !== 'object' ||
+              Array.isArray(item) ||
+              Object.keys(item).length !== argument.fields!.length ||
+              argument.fields!.some((field) => {
+                const number = (item as Record<string, unknown>)[field.name]
+                return (
+                  typeof number !== 'number' ||
+                  !Number.isFinite(number) ||
+                  (field.integer && !Number.isSafeInteger(number))
+                )
+              })
+            )
+              throw new Error(name + '.' + argument.field + ' must be a numeric range')
+            if (argument.fields!.length === 2) {
+              const lower = (item as Record<string, number>).lower
+              const upper = (item as Record<string, number>).upper
+              if (lower > upper)
+                throw new Error(name + '.' + argument.field + ' must have lower <= upper')
+            }
             return JSON.stringify(item)
           }
           return argument.kind === 'stringArray' || argument.kind === 'stringSet'

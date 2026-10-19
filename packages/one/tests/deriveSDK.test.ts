@@ -153,6 +153,28 @@ describe('SDK modifier derivation', () => {
     ])
   })
 
+  it('keeps numeric range overloads beside scalar lineLimit variants', () => {
+    expect(deriveModifiers([
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.Int?' }]),
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.ClosedRange<Swift.Int>' }]),
+      method('lineLimit', 'SwiftUICore', [{ label: '_', name: 'limit', type: 'Swift.PartialRangeFrom<Swift.Int>' }]),
+    ], 27, [])).toEqual([
+      { name: 'lineLimitWithClosedRange', sdkName: 'lineLimit', module: 'SwiftUICore',
+        kind: 'record', type: '', ios: 0, aliasSuffix: 'ClosedRange',
+        arguments: [{ field: 'limit', label: '_', kind: 'numericRange',
+          type: 'Swift.ClosedRange<Swift.Int>', optional: false,
+          fields: [{ name: 'lower', label: 'lower', type: 'Swift.Int' },
+            { name: 'upper', label: 'upper', type: 'Swift.Int' }] }] },
+      { name: 'lineLimitWithOptionalInt', sdkName: 'lineLimit', module: 'SwiftUICore',
+        kind: 'optionalNumber', type: 'Swift.Int?', ios: 0 },
+      { name: 'lineLimitWithPartialRangeFrom', sdkName: 'lineLimit', module: 'SwiftUICore',
+        kind: 'record', type: '', ios: 0, aliasSuffix: 'PartialRangeFrom',
+        arguments: [{ field: 'limit', label: '_', kind: 'numericRange',
+          type: 'Swift.PartialRangeFrom<Swift.Int>', optional: false,
+          fields: [{ name: 'lower', label: 'lower', type: 'Swift.Int' }] }] },
+    ])
+  })
+
   it('derives a string backed SDK value from its public raw value initializer', () => {
     expect(deriveModifiers([
       method('previewDevice', 'SwiftUI', [{ label: '_', name: 'device', type: 'SwiftUI.PreviewDevice?' }]),

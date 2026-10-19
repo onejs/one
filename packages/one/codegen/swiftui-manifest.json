@@ -8110,6 +8110,36 @@
       ]
     },
     {
+      "name": "lineLimitWithClosedRange",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "aliasSuffix": "ClosedRange",
+      "arguments": [
+        {
+          "kind": "numericRange",
+          "type": "Swift.ClosedRange<Swift.Int>",
+          "optional": false,
+          "fields": [
+            {
+              "name": "lower",
+              "label": "lower",
+              "type": "Swift.Int"
+            },
+            {
+              "name": "upper",
+              "label": "upper",
+              "type": "Swift.Int"
+            }
+          ],
+          "field": "limit",
+          "label": "_"
+        }
+      ],
+      "sdkName": "lineLimit"
+    },
+    {
       "name": "lineLimitWithLimitAndReservesSpace",
       "module": "SwiftUICore",
       "kind": "record",
@@ -8139,6 +8169,56 @@
       "kind": "optionalNumber",
       "type": "Swift.Int?",
       "ios": 13,
+      "sdkName": "lineLimit"
+    },
+    {
+      "name": "lineLimitWithPartialRangeFrom",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "aliasSuffix": "PartialRangeFrom",
+      "arguments": [
+        {
+          "kind": "numericRange",
+          "type": "Swift.PartialRangeFrom<Swift.Int>",
+          "optional": false,
+          "fields": [
+            {
+              "name": "lower",
+              "label": "lower",
+              "type": "Swift.Int"
+            }
+          ],
+          "field": "limit",
+          "label": "_"
+        }
+      ],
+      "sdkName": "lineLimit"
+    },
+    {
+      "name": "lineLimitWithPartialRangeThrough",
+      "module": "SwiftUICore",
+      "kind": "record",
+      "type": "",
+      "ios": 16,
+      "aliasSuffix": "PartialRangeThrough",
+      "arguments": [
+        {
+          "kind": "numericRange",
+          "type": "Swift.PartialRangeThrough<Swift.Int>",
+          "optional": false,
+          "fields": [
+            {
+              "name": "upper",
+              "label": "upper",
+              "type": "Swift.Int"
+            }
+          ],
+          "field": "limit",
+          "label": "_"
+        }
+      ],
       "sdkName": "lineLimit"
     },
     {
