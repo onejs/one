@@ -65,6 +65,7 @@ const suites = [
   'background-tasks',
   'device-attestation',
   'gestures',
+  'swift-gestures',
   'screen-orientation',
   'screen-capture',
   'view-snapshot',
@@ -1044,6 +1045,8 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
     has(nodes, 'Availability: '),
   gestures: (nodes: Node[]) =>
     Boolean(id(nodes, 'one-native-gestures-box')) && has(nodes, 'Drag: '),
+  'swift-gestures': (nodes: Node[]) =>
+    Boolean(id(nodes, 'one-native-swift-gestures-screen')) && has(nodes, 'Changes: '),
   'screen-orientation': screenOrientationLoaded,
   'screen-capture': (nodes: Node[]) =>
     labels(nodes).some((label) => label.startsWith('Capture state: ')),
@@ -1194,6 +1197,7 @@ const suiteHome: Record<Suite, string> = {
   'background-tasks': 'nav-one-native-background-tasks',
   'device-attestation': 'nav-one-native-device-attestation',
   gestures: 'nav-one-native-gestures',
+  'swift-gestures': 'nav-one-native-swift-gestures',
   'screen-orientation': 'nav-one-native-screen-orientation',
   'screen-capture': 'nav-one-native-screen-capture',
   'view-snapshot': 'nav-one-native-view-snapshot',
@@ -4340,6 +4344,41 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       )
     )
     screenshot('device-attestation-availability.png')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
+  }
+  if (config.suite === 'swift-gestures') {
+    await wait('home screen mounted', () => true, true)
+    await dismissWarning(true)
+    await tapNav('nav-one-native-swift-gestures')
+    const targetFrame = (nodes: Node[]) => nodes.find((node) =>
+      node.AXUniqueId === 'one-native-swift-gestures-drag' &&
+      node.frame && [node.frame.x, node.frame.y, node.frame.width, node.frame.height].every(Number.isFinite) &&
+      node.frame.width >= 120 && node.frame.height >= 120
+    )?.frame
+    const initial = await wait('SwiftUI drag fixture starts without events', (nodes) =>
+      labels(nodes).includes('Changes: 0') && labels(nodes).includes('Ended: pending') &&
+      Boolean(targetFrame(nodes))
+    )
+    const frame = targetFrame(initial)!
+    screenshot('swift-gesture-before.png', initial)
+    const startX = Math.round(frame.x + frame.width / 4)
+    const endX = Math.round(frame.x + frame.width * 3 / 4)
+    const y = Math.round(frame.y + frame.height / 2)
+    axe([
+      'swipe', '--start-x', String(startX), '--start-y', String(y),
+      '--end-x', String(endX), '--end-y', String(y), '--duration', '0.7',
+    ], config.simulatorId)
+    const ended = await wait('SwiftUI drag reports changes and a complete end payload', (nodes) => {
+      const changes = labels(nodes).find((label) => /^Changes: \d+$/.test(label))
+      const report = labels(nodes).find((label) => label.startsWith('Ended: '))
+      const match = report && /^Ended: translation (-?\d+),(-?\d+) · velocity (-?\d+),(-?\d+) · predicted (-?\d+),(-?\d+)$/.exec(report)
+      if (!changes || Number(changes.slice('Changes: '.length)) <= 0 || !match) return false
+      const [dx, dy, vx, vy, predictedX, predictedY] = match.slice(1).map(Number)
+      return [dx, dy, vx, vy, predictedX, predictedY].every(Number.isFinite) &&
+        Math.abs(dx - (endX - startX)) <= 20 && Math.abs(dy) <= 20
+    })
+    screenshot('swift-gesture-ended.png', ended)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
