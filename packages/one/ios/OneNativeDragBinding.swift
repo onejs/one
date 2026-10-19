@@ -36,7 +36,8 @@ struct OneNativeDragBinding {
     }
     if let raw = record.fields["snap"] {
       guard let snap = raw as? [String: Any], let targets = snap["targets"] as? [NSNumber], !targets.isEmpty,
-        targets.allSatisfy({ $0.doubleValue.isFinite }), let animation = snap["animation"] else {
+        targets.allSatisfy({ $0.doubleValue.isFinite }), let animation = snap["animation"],
+        range.map({ range in targets.allSatisfy { range.contains($0.doubleValue) } }) ?? true else {
         preconditionFailure("invalid \(record.context).snap")
       }
       self.targets = targets.map(\.doubleValue)
