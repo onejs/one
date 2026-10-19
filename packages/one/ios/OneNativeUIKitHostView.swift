@@ -51,8 +51,10 @@ private struct OneNativeUIKitContent: View {
   var body: some View {
     if let controller = model.hosted as? UIViewController {
       OneNativeUIKitControllerRepresentable(controller: controller)
+        .id(ObjectIdentifier(controller))
     } else if let view = model.hosted as? UIView {
       OneNativeUIKitViewRepresentable(view: view)
+        .id(ObjectIdentifier(view))
     }
   }
 }
