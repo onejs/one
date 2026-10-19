@@ -3,7 +3,7 @@
 // option sets and raw-value constants their javascript form. swift infers each
 // argument's type from the call, so the table names types only to pick an
 // overload.
-import { Bridge, OBSERVABLE, cErrorOut, inUniverse, judge, outPointee, callbackOut, pickOf, type DeclarationInfo, type Generics } from './bridge'
+import { Bridge, OBSERVABLE, cErrorOut, inUniverse, judge, outPointee, callbackOut, pickOf, unmanagedReturn, type DeclarationInfo, type Generics } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
 import { parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
 import { emitProtocols } from './emit-protocols'
@@ -575,7 +575,13 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       ...hoisted,
     ]
     const effects = `${throws ? 'try ' : ''}${isAsync || main ? 'await ' : ''}`
-    const returned = returnType ? outputValue(returnType, 'r') : 'r'
+    // an Unmanaged result transfers ownership before crossing: +1 for Create and
+    // Copy, +0 for Get; anything else stays a handle
+    const unmanaged = returnType ? unmanagedReturn(returnType, base) : undefined
+    const taken = unmanaged
+      ? `r${returnType!.k === 'optional' ? '?' : ''}.take${unmanaged.retained ? 'Retained' : 'Unretained'}Value()`
+      : 'r'
+    const returned = returnType ? outputValue(unmanaged?.inner ?? returnType, unmanaged ? taken : 'r') : 'r'
     if (outs.length) {
       lines.push(returnsVoid ? `${effects}${call}` : `let r = ${effects}${call}`)
       if (syncCallbacks) lines.push('try c.checkCallbacks()')
@@ -586,7 +592,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       if (syncCallbacks) lines.push('try c.checkCallbacks()')
       if (mutating) lines.push(writeBack)
       lines.push('return c.void')
-    } else if (mutating || syncCallbacks || returnType && containsFunction(returnType)) {
+    } else if (unmanaged || mutating || syncCallbacks || returnType && containsFunction(returnType)) {
       lines.push(`let r = ${effects}${call}`)
       if (syncCallbacks) lines.push('try c.checkCallbacks()')
       if (mutating) lines.push(writeBack)

@@ -100,6 +100,17 @@ export function cErrorOut(written: SwiftType): SwiftType | undefined {
   if (!unmanaged || unmanaged.k !== 'named' || unmanaged.name.split('.').at(-1) !== 'CFError') return undefined
   return { k: 'optional', t: unmanaged, implicit: false }
 }
+// ownership of an Unmanaged result from its API's name: Create and Copy return
+// +1, Get returns +0; anything else has no premise and stays a handle
+export function unmanagedReturn(type: SwiftType, base: string): { inner: SwiftType; retained: boolean } | undefined {
+  const wrapped = type.k === 'optional' ? type.t : type
+  const pointee = wrapped.k === 'named' && wrapped.name.split('.').at(-1) === 'Unmanaged' ? wrapped.args[0] : undefined
+  if (!pointee || pointee.k !== 'named') return undefined
+  const inner = type.k === 'optional' ? { k: 'optional', t: pointee, implicit: false } as SwiftType : pointee
+  if (/Create|Copy/.test(base)) return { inner, retained: true }
+  if (/Get/.test(base)) return { inner, retained: false }
+  return undefined
+}
 // the c typealiases of the swift standard library, which no sdk framework declares
 const C_ALIASES: Record<string, string> = {
   CChar: 'Int8', CSignedChar: 'Int8', CUnsignedChar: 'UInt8', CShort: 'Int16', CUnsignedShort: 'UInt16',

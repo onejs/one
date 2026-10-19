@@ -6,6 +6,7 @@ import {
   cErrorOut,
   callbackOut,
   outPointee,
+  unmanagedReturn,
   type DeclarationInfo,
 } from './bridge'
 import { splitTitle, type Entry, type Skipped } from './emit'
@@ -403,7 +404,9 @@ class Facade {
     })
   }
   result(e: E) {
-    let result = e.returns ? this.type(this.concrete(e, e.returns)) : 'void'
+    const concrete = e.returns ? this.concrete(e, e.returns) : undefined
+    const unwrapped = (concrete && unmanagedReturn(concrete, e.name)?.inner) ?? concrete
+    let result = unwrapped ? this.type(unwrapped) : 'void'
     if (e.kind === 'init') {
       const info =
         e.receiver?.k === 'named'
