@@ -2703,6 +2703,9 @@ export declare class SKNode extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "entity": true;
+    };
 }
 export declare class SKTexture extends SDKHandle {
     /**

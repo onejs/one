@@ -888,6 +888,9 @@ export declare class VNDocumentCameraViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol VNDocumentCameraViewControllerDelegate : NSObjectProtocol

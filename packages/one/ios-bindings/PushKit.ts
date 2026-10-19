@@ -8,17 +8,17 @@ import type { DispatchQueue as _Dispatch_DispatchQueue } from "one/ios/Dispatch"
  */
 export class PKPushCredentials extends SDKHandle {
   /** init() */
-  static init(): PKPushCredentials { return callSDK<PKPushCredentials>("PushKit_067acaa3e5f56b46", 1037891419241580, undefined, []); }
+  static init(): PKPushCredentials { return callSDK<PKPushCredentials>("PushKit_d968214ecc684fb6", 1037891419241580, undefined, []); }
   /**
    * var token: Data { get }
    * @availability iOS 8.0+
    */
-  get token(): ArrayBuffer { return callSDK<ArrayBuffer>("PushKit_067acaa3e5f56b46", 282390744422786, this, []); }
+  get token(): ArrayBuffer { return callSDK<ArrayBuffer>("PushKit_d968214ecc684fb6", 282390744422786, this, []); }
   /**
    * var type: PKPushType { get }
    * @availability iOS 8.0+
    */
-  get type(): PKPushType { return callSDK<PKPushType>("PushKit_067acaa3e5f56b46", 1141080081179875, this, []); }
+  get type(): PKPushType { return callSDK<PKPushType>("PushKit_d968214ecc684fb6", 1141080081179875, this, []); }
   declare readonly $type: { "c:objc(cs)PKPushCredentials": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "token": true; "type": true };
 }
@@ -29,17 +29,17 @@ export class PKPushCredentials extends SDKHandle {
  */
 export class PKPushPayload extends SDKHandle {
   /** init() */
-  static init(): PKPushPayload { return callSDK<PKPushPayload>("PushKit_067acaa3e5f56b46", 1537877988239861, undefined, []); }
+  static init(): PKPushPayload { return callSDK<PKPushPayload>("PushKit_d968214ecc684fb6", 1537877988239861, undefined, []); }
   /**
    * var dictionaryPayload: [AnyHashable : Any] { get }
    * @availability iOS 8.0+
    */
-  get dictionaryPayload(): NativeMap<unknown, unknown> { return callSDK<NativeMap<unknown, unknown>>("PushKit_067acaa3e5f56b46", 3711066249688179, this, []); }
+  get dictionaryPayload(): NativeMap<unknown, unknown> { return callSDK<NativeMap<unknown, unknown>>("PushKit_d968214ecc684fb6", 3711066249688179, this, []); }
   /**
    * var type: PKPushType { get }
    * @availability iOS 8.0+
    */
-  get type(): PKPushType { return callSDK<PKPushType>("PushKit_067acaa3e5f56b46", 2381951603922415, this, []); }
+  get type(): PKPushType { return callSDK<PKPushType>("PushKit_d968214ecc684fb6", 2381951603922415, this, []); }
   declare readonly $type: { "c:objc(cs)PKPushPayload": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dictionaryPayload": true; "type": true };
 }
@@ -53,24 +53,24 @@ export class PKPushRegistry extends SDKHandle {
    * init(queue: dispatch_queue_t?)
    * @availability iOS 8.0+
    */
-  static init(queue?: (_Dispatch_DispatchQueue) | null): PKPushRegistry { return callSDK<PKPushRegistry>("PushKit_067acaa3e5f56b46", 4256892761645117, undefined, [queue]); }
+  static init(queue?: (_Dispatch_DispatchQueue) | null): PKPushRegistry { return callSDK<PKPushRegistry>("PushKit_d968214ecc684fb6", 4256892761645117, undefined, [queue]); }
   /**
    * func pushToken(for type: PKPushType) -> Data?
    * @availability iOS 8.0+
    */
-  pushToken(type: PKPushType): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PushKit_067acaa3e5f56b46", 1571261566580933, this, [type]); }
+  pushToken(type: PKPushType): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("PushKit_d968214ecc684fb6", 1571261566580933, this, [type]); }
   /**
    * weak var delegate: (any PKPushRegistryDelegate)? { get set }
    * @availability iOS 8.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PushKit_067acaa3e5f56b46", 3364643275397434, this, []); }
-  set delegate(value: (Implements<PKPushRegistryDelegate> | SDKHandle) | null) { callSDK<void>("PushKit_067acaa3e5f56b46", 1409409261711633, this, [value], [{"protocol":"c:objc(pl)PKPushRegistryDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("PushKit_d968214ecc684fb6", 3364643275397434, this, []); }
+  set delegate(value: (Implements<PKPushRegistryDelegate> | SDKHandle) | null) { callSDK<void>("PushKit_d968214ecc684fb6", 1409409261711633, this, [value], [{"protocol":"c:objc(pl)PKPushRegistryDelegate"}]); }
   /**
    * var desiredPushTypes: Set<PKPushType>? { get set }
    * @availability iOS 8.0+
    */
-  get desiredPushTypes(): (Array<PKPushType>) | null { return callSDK<(Array<PKPushType>) | null>("PushKit_067acaa3e5f56b46", 751871478286096, this, []); }
-  set desiredPushTypes(value: (Array<PKPushType>) | null) { callSDK<void>("PushKit_067acaa3e5f56b46", 4406644161106763, this, [value]); }
+  get desiredPushTypes(): (Array<PKPushType>) | null { return callSDK<(Array<PKPushType>) | null>("PushKit_d968214ecc684fb6", 751871478286096, this, []); }
+  set desiredPushTypes(value: (Array<PKPushType>) | null) { callSDK<void>("PushKit_d968214ecc684fb6", 4406644161106763, this, [value]); }
   declare readonly $type: { "c:objc(cs)PKPushRegistry": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true; "desiredPushTypes": true };
 }
@@ -104,19 +104,19 @@ export const PKPushType = {
    * @availability iOS 9.0+
    * @deprecated iOS 13.0
    */
-  get complication(): PKPushType { return callSDK<PKPushType>("PushKit_067acaa3e5f56b46", 505428221571354, undefined, []); },
+  get complication(): PKPushType { return callSDK<PKPushType>("PushKit_d968214ecc684fb6", 505428221571354, undefined, []); },
   /**
    * static let fileProvider: PKPushType
    * @availability iOS 11.0+
    */
-  get fileProvider(): PKPushType { return callSDK<PKPushType>("PushKit_067acaa3e5f56b46", 1030308450993804, undefined, []); },
+  get fileProvider(): PKPushType { return callSDK<PKPushType>("PushKit_d968214ecc684fb6", 1030308450993804, undefined, []); },
   /**
    * static let voIP: PKPushType
    * @availability iOS 9.0+
    */
-  get voIP(): PKPushType { return callSDK<PKPushType>("PushKit_067acaa3e5f56b46", 1832346634828491, undefined, []); },
+  get voIP(): PKPushType { return callSDK<PKPushType>("PushKit_d968214ecc684fb6", 1832346634828491, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): PKPushType { return callSDK<PKPushType>("PushKit_067acaa3e5f56b46", 1643460707844730, undefined, [rawValue]); }
+  init(rawValue: string): PKPushType { return callSDK<PKPushType>("PushKit_d968214ecc684fb6", 1643460707844730, undefined, [rawValue]); }
 };
 
 /**
@@ -125,18 +125,18 @@ export const PKPushType = {
  */
 export class PKVoIPPushMetadata extends SDKHandle {
   /** init() */
-  static init(): PKVoIPPushMetadata { return callSDK<PKVoIPPushMetadata>("PushKit_067acaa3e5f56b46", 1048510450878191, undefined, []); }
+  static init(): PKVoIPPushMetadata { return callSDK<PKVoIPPushMetadata>("PushKit_d968214ecc684fb6", 1048510450878191, undefined, []); }
   /**
    * var mustReport: Bool { get }
    * @availability iOS 26.4+
    */
-  get mustReport(): boolean { return callSDK<boolean>("PushKit_067acaa3e5f56b46", 2274670603664077, this, []); }
+  get mustReport(): boolean { return callSDK<boolean>("PushKit_d968214ecc684fb6", 2274670603664077, this, []); }
   declare readonly $type: { "c:objc(cs)PKVoIPPushMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "mustReport": true };
 }
 
-registerSDKClass("PKPushCredentials", PKPushCredentials, { module: "PushKit_067acaa3e5f56b46", properties: {"token":282390744422786,"type":1141080081179875} });
-registerSDKClass("PKPushPayload", PKPushPayload, { module: "PushKit_067acaa3e5f56b46", properties: {"dictionaryPayload":3711066249688179,"type":2381951603922415} });
-registerSDKClass("PKPushRegistry", PKPushRegistry, { module: "PushKit_067acaa3e5f56b46", properties: {"delegate":3364643275397434,"desiredPushTypes":751871478286096}, methods: {"pushToken":{"id":1571261566580933}} });
+registerSDKClass("PKPushCredentials", PKPushCredentials, { module: "PushKit_d968214ecc684fb6", properties: {"token":282390744422786,"type":1141080081179875} });
+registerSDKClass("PKPushPayload", PKPushPayload, { module: "PushKit_d968214ecc684fb6", properties: {"dictionaryPayload":3711066249688179,"type":2381951603922415} });
+registerSDKClass("PKPushRegistry", PKPushRegistry, { module: "PushKit_d968214ecc684fb6", properties: {"delegate":3364643275397434,"desiredPushTypes":751871478286096}, methods: {"pushToken":{"id":1571261566580933}} });
 registerSDKProtocol("c:objc(pl)PKPushRegistryDelegate", {"pushRegistryDidUpdateFor":"pushRegistry(_:didUpdate:for:)","pushRegistryDidReceiveIncomingPushWithFor":"pushRegistry(_:didReceiveIncomingPushWith:for:)","pushRegistryDidInvalidatePushTokenFor":"pushRegistry(_:didInvalidatePushTokenFor:)"});
-registerSDKClass("PKVoIPPushMetadata", PKVoIPPushMetadata, { module: "PushKit_067acaa3e5f56b46", properties: {"mustReport":2274670603664077} });
+registerSDKClass("PKVoIPPushMetadata", PKVoIPPushMetadata, { module: "PushKit_d968214ecc684fb6", properties: {"mustReport":2274670603664077} });

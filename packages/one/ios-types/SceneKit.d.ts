@@ -4998,6 +4998,9 @@ export declare class SCNReferenceNode extends SCNNode {
         "worldRight": true;
         "worldTransform": true;
         "worldUp": true;
+        "isLoaded": true;
+        "loadingPolicy": true;
+        "referenceURL": true;
     };
 }
 /** class SCNRenderer */
@@ -5965,6 +5968,16 @@ export declare class SCNView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowsCameraControl": true;
+        "antialiasingMode": true;
+        "cameraControlConfiguration": true;
+        "defaultCameraController": true;
+        "eaglContext": true;
+        "preferredFramesPerSecond": true;
+        "rendersContinuously": true;
+        "scene": true;
     };
 }
 /** struct Option */

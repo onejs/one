@@ -1013,6 +1013,9 @@ export declare class GKFriendRequestComposeViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "composeViewDelegate": true;
+    };
 }
 /**
  * protocol GKFriendRequestComposeViewControllerDelegate
@@ -1446,6 +1449,12 @@ export declare class GKGameCenterViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "gameCenterDelegate": true;
+        "leaderboardIdentifier": true;
+        "leaderboardTimeScope": true;
+        "viewState": true;
     };
 }
 /**
@@ -2998,6 +3007,13 @@ export declare class GKMatchmakerViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "canStartWithMinimumPlayers": true;
+        "isHosted": true;
+        "matchRequest": true;
+        "matchmakerDelegate": true;
+        "matchmakingMode": true;
+    };
 }
 /**
  * protocol GKMatchmakerViewControllerDelegate : NSObjectProtocol
@@ -3912,6 +3928,11 @@ export declare class GKTurnBasedMatchmakerViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "matchmakingMode": true;
+        "showExistingMatches": true;
+        "turnBasedMatchmakerDelegate": true;
     };
 }
 /**

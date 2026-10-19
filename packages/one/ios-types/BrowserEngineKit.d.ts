@@ -507,6 +507,9 @@ export declare class BEDragInteraction extends SDKHandle {
         "c:objc(cs)UIDragInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * @MainActor protocol BEDragInteractionDelegate : UIDragInteractionDelegate
@@ -782,6 +785,9 @@ export declare class BEScrollView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * @MainActor protocol BEScrollViewDelegate : UIScrollViewDelegate
@@ -829,6 +835,10 @@ export declare class BEScrollViewScrollUpdate extends SDKHandle {
     readonly $type: {
         "c:objc(cs)BEScrollViewScrollUpdate": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "phase": true;
+        "timestamp": true;
     };
 }
 /**
@@ -1482,6 +1492,12 @@ export declare class BETextInteraction extends SDKHandle {
         "c:objc(cs)BETextInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "contextMenuInteraction": true;
+        "contextMenuInteractionDelegate": true;
+        "delegate": true;
+        "textSelectionDisplayInteraction": true;
+    };
 }
 /**
  * protocol BETextInteractionDelegate
@@ -1650,6 +1666,10 @@ export declare class LayerHierarchy extends SDKHandle {
         "c:objc(cs)BELayerHierarchy": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "handle": true;
+        "layer": true;
+    };
 }
 /**
  * class LayerHierarchyHandle
@@ -1749,6 +1769,9 @@ export declare class LayerHierarchyHostingView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "handle": true;
     };
 }
 /**

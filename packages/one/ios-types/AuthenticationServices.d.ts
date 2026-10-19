@@ -280,6 +280,9 @@ export declare class ASAccountAuthenticationModificationViewController extends S
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "extensionContext": true;
+    };
 }
 /**
  * class ASAuthorization
@@ -525,6 +528,9 @@ export declare class ASAuthorizationAppleIDButton extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "cornerRadius": true;
     };
 }
 /**
@@ -2884,6 +2890,9 @@ export declare class ASCredentialProviderViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "extensionContext": true;
     };
 }
 /**

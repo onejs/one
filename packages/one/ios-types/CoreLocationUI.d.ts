@@ -38,6 +38,12 @@ export declare class CLLocationButton extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "cornerRadius": true;
+        "fontSize": true;
+        "icon": true;
+        "label": true;
+    };
 }
 /**
  * enum CLLocationButtonIcon

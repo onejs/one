@@ -29,12 +29,12 @@ export class NSDate extends SDKHandle {
    * convenience init(SRAbsoluteTime time: SRAbsoluteTime)
    * @availability iOS 14.0+
    */
-  static init(time: SRAbsoluteTime): _Foundation_NSDate { return callSDK<_Foundation_NSDate>("SensorKit_067acaa3e5f56b46", 3463584907329698, undefined, [time]); }
+  static init(time: SRAbsoluteTime): _Foundation_NSDate { return callSDK<_Foundation_NSDate>("SensorKit_d968214ecc684fb6", 3463584907329698, undefined, [time]); }
   /**
    * var srAbsoluteTime: SRAbsoluteTime { get }
    * @availability iOS 14.0+
    */
-  get srAbsoluteTime(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 1453649370823866, this, []); }
+  get srAbsoluteTime(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 1453649370823866, this, []); }
   declare readonly $type: { "c:objc(cs)NSDate": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "srAbsoluteTime": true };
 }
@@ -45,7 +45,7 @@ export class NSString extends SDKHandle {
    * @availability iOS 14.0+
    * @deprecated iOS 27.0
    */
-  sr_sensorForDeletionRecordsFromSensor(): (SRSensor) | null { return callSDK<(SRSensor) | null>("SensorKit_067acaa3e5f56b46", 2426600056066865, this, []); }
+  sr_sensorForDeletionRecordsFromSensor(): (SRSensor) | null { return callSDK<(SRSensor) | null>("SensorKit_d968214ecc684fb6", 2426600056066865, this, []); }
   declare readonly $type: { "c:objc(cs)NSString": true; "c:objc(cs)NSObject": true };
 }
 
@@ -60,22 +60,22 @@ export const SRAbsoluteTime = {
    * static func current() -> SRAbsoluteTime
    * @availability iOS 14.0+
    */
-  current(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 1124180880503157, undefined, []); },
+  current(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 1124180880503157, undefined, []); },
   /**
    * func toCFAbsoluteTime() -> CFAbsoluteTime
    * @availability iOS 14.0+
    */
-  toCFAbsoluteTime($self: SRAbsoluteTime): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1016633236111675, $self, []); },
+  toCFAbsoluteTime($self: SRAbsoluteTime): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1016633236111675, $self, []); },
   /**
    * init(rawValue: CFTimeInterval)
    * @availability iOS 14.0+
    */
-  initRawValue(rawValue: number): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 1320497552346, undefined, [rawValue]); },
+  initRawValue(rawValue: number): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 1320497552346, undefined, [rawValue]); },
   /**
    * init(_ rawValue: CFTimeInterval)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 776022645721310, undefined, [rawValue]); }
+  init(rawValue: number): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 776022645721310, undefined, [rawValue]); }
 };
 
 /**
@@ -87,7 +87,7 @@ export class SRAccelerometerSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRAccelerometerSensor { return callSDK<SRAccelerometerSensor>("SensorKit_067acaa3e5f56b46", 2957401740929039, undefined, []); }
+  static init(): SRAccelerometerSensor { return callSDK<SRAccelerometerSensor>("SensorKit_d968214ecc684fb6", 2957401740929039, undefined, []); }
   declare readonly $type: { "s:9SensorKit015SRAccelerometerA0V": true };
 }
 
@@ -106,27 +106,27 @@ export class SRAcousticSettings extends SDKHandle {
    * var accessibilitySettings: SRAcousticSettings.Accessibility { get }
    * @availability iOS 26.0+
    */
-  get accessibilitySettings(): SRAcousticSettings_Accessibility { return callSDK<SRAcousticSettings_Accessibility>("SensorKit_067acaa3e5f56b46", 361968664733940, this, []); }
+  get accessibilitySettings(): SRAcousticSettings_Accessibility { return callSDK<SRAcousticSettings_Accessibility>("SensorKit_d968214ecc684fb6", 361968664733940, this, []); }
   /**
    * var audioExposureSampleLifetime: SRAcousticSettings.SampleLifetime { get }
    * @availability iOS 26.0+
    */
-  get audioExposureSampleLifetime(): SRAcousticSettings_SampleLifetime { return callSDK<SRAcousticSettings_SampleLifetime>("SensorKit_067acaa3e5f56b46", 1459139071103846, this, []); }
+  get audioExposureSampleLifetime(): SRAcousticSettings_SampleLifetime { return callSDK<SRAcousticSettings_SampleLifetime>("SensorKit_d968214ecc684fb6", 1459139071103846, this, []); }
   /**
    * var isEnvironmentalSoundMeasurementsEnabled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isEnvironmentalSoundMeasurementsEnabled(): boolean { return callSDK<boolean>("SensorKit_067acaa3e5f56b46", 892944838326959, this, []); }
+  get isEnvironmentalSoundMeasurementsEnabled(): boolean { return callSDK<boolean>("SensorKit_d968214ecc684fb6", 892944838326959, this, []); }
   /**
    * var musicEQSettings: SRAcousticSettings.MusicEQ { get }
    * @availability iOS 26.0+
    */
-  get musicEQSettings(): SRAcousticSettings_MusicEQ { return callSDK<SRAcousticSettings_MusicEQ>("SensorKit_067acaa3e5f56b46", 1122027166725288, this, []); }
+  get musicEQSettings(): SRAcousticSettings_MusicEQ { return callSDK<SRAcousticSettings_MusicEQ>("SensorKit_d968214ecc684fb6", 1122027166725288, this, []); }
   /**
    * var headphoneSafetyAudioLevel: Double? { get }
    * @availability iOS 26.0+
    */
-  get headphoneSafetyAudioLevel(): (number) | null { return callSDK<(number) | null>("SensorKit_067acaa3e5f56b46", 2138967936539892, this, []); }
+  get headphoneSafetyAudioLevel(): (number) | null { return callSDK<(number) | null>("SensorKit_d968214ecc684fb6", 2138967936539892, this, []); }
   declare readonly $type: { "c:objc(cs)SRAcousticSettings": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessibilitySettings": true; "audioExposureSampleLifetime": true; "isEnvironmentalSoundMeasurementsEnabled": true; "musicEQSettings": true };
 }
@@ -137,27 +137,27 @@ export class SRAcousticSettings extends SDKHandle {
  */
 export class SRAcousticSettings_Accessibility extends SDKHandle {
   /** init() */
-  static init(): SRAcousticSettings_Accessibility { return callSDK<SRAcousticSettings_Accessibility>("SensorKit_067acaa3e5f56b46", 3860238187556636, undefined, []); }
+  static init(): SRAcousticSettings_Accessibility { return callSDK<SRAcousticSettings_Accessibility>("SensorKit_d968214ecc684fb6", 3860238187556636, undefined, []); }
   /**
    * var backgroundSounds: SRAcousticSettings.Accessibility.BackgroundSounds { get }
    * @availability iOS 26.0+
    */
-  get backgroundSounds(): SRAcousticSettings_Accessibility_BackgroundSounds { return callSDK<SRAcousticSettings_Accessibility_BackgroundSounds>("SensorKit_067acaa3e5f56b46", 1418870312259183, this, []); }
+  get backgroundSounds(): SRAcousticSettings_Accessibility_BackgroundSounds { return callSDK<SRAcousticSettings_Accessibility_BackgroundSounds>("SensorKit_d968214ecc684fb6", 1418870312259183, this, []); }
   /**
    * var headphoneAccommodations: SRAcousticSettings.Accessibility.HeadphoneAccommodations { get }
    * @availability iOS 26.0+
    */
-  get headphoneAccommodations(): SRAcousticSettings_Accessibility_HeadphoneAccommodations { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations>("SensorKit_067acaa3e5f56b46", 3647156993139623, this, []); }
+  get headphoneAccommodations(): SRAcousticSettings_Accessibility_HeadphoneAccommodations { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations>("SensorKit_d968214ecc684fb6", 3647156993139623, this, []); }
   /**
    * var leftRightBalance: Double { get }
    * @availability iOS 26.0+
    */
-  get leftRightBalance(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1892702439993152, this, []); }
+  get leftRightBalance(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1892702439993152, this, []); }
   /**
    * var isMonoAudioEnabled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isMonoAudioEnabled(): boolean { return callSDK<boolean>("SensorKit_067acaa3e5f56b46", 1194759619647057, this, []); }
+  get isMonoAudioEnabled(): boolean { return callSDK<boolean>("SensorKit_d968214ecc684fb6", 1194759619647057, this, []); }
   declare readonly $type: { "c:objc(cs)SRAcousticSettingsAccessibility": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backgroundSounds": true; "headphoneAccommodations": true; "leftRightBalance": true; "isMonoAudioEnabled": true };
 }
@@ -168,37 +168,37 @@ export class SRAcousticSettings_Accessibility extends SDKHandle {
  */
 export class SRAcousticSettings_Accessibility_BackgroundSounds extends SDKHandle {
   /** init() */
-  static init(): SRAcousticSettings_Accessibility_BackgroundSounds { return callSDK<SRAcousticSettings_Accessibility_BackgroundSounds>("SensorKit_067acaa3e5f56b46", 984399649940424, undefined, []); }
+  static init(): SRAcousticSettings_Accessibility_BackgroundSounds { return callSDK<SRAcousticSettings_Accessibility_BackgroundSounds>("SensorKit_d968214ecc684fb6", 984399649940424, undefined, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("SensorKit_067acaa3e5f56b46", 153552308222168, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("SensorKit_d968214ecc684fb6", 153552308222168, this, []); }
   /**
    * var isPlayWithMediaEnabled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isPlayWithMediaEnabled(): boolean { return callSDK<boolean>("SensorKit_067acaa3e5f56b46", 4469963903111135, this, []); }
+  get isPlayWithMediaEnabled(): boolean { return callSDK<boolean>("SensorKit_d968214ecc684fb6", 4469963903111135, this, []); }
   /**
    * var relativeVolume: Double { get }
    * @availability iOS 26.0+
    */
-  get relativeVolume(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1076347117058034, this, []); }
+  get relativeVolume(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1076347117058034, this, []); }
   /**
    * var relativeVolumeWithMedia: Double { get }
    * @availability iOS 26.0+
    */
-  get relativeVolumeWithMedia(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 4004491901846335, this, []); }
+  get relativeVolumeWithMedia(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 4004491901846335, this, []); }
   /**
    * var soundName: SRAcousticSettings.Accessibility.BackgroundSounds.Name { get }
    * @availability iOS 26.0+
    */
-  get soundName(): SRAcousticSettings_Accessibility_BackgroundSounds_Name { return callSDK<SRAcousticSettings_Accessibility_BackgroundSounds_Name>("SensorKit_067acaa3e5f56b46", 640923021105574, this, []); }
+  get soundName(): SRAcousticSettings_Accessibility_BackgroundSounds_Name { return callSDK<SRAcousticSettings_Accessibility_BackgroundSounds_Name>("SensorKit_d968214ecc684fb6", 640923021105574, this, []); }
   /**
    * var isStopOnLockEnabled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isStopOnLockEnabled(): boolean { return callSDK<boolean>("SensorKit_067acaa3e5f56b46", 4244161461084115, this, []); }
+  get isStopOnLockEnabled(): boolean { return callSDK<boolean>("SensorKit_d968214ecc684fb6", 4244161461084115, this, []); }
   declare readonly $type: { "c:objc(cs)SRAcousticSettingsAccessibilityBackgroundSounds": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "isPlayWithMediaEnabled": true; "relativeVolume": true; "relativeVolumeWithMedia": true; "soundName": true; "isStopOnLockEnabled": true };
 }
@@ -214,7 +214,7 @@ export const SRAcousticSettings_Accessibility_BackgroundSounds_Name = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (SRAcousticSettings_Accessibility_BackgroundSounds_Name) | null { return callSDK<(SRAcousticSettings_Accessibility_BackgroundSounds_Name) | null>("SensorKit_067acaa3e5f56b46", 1430185871872453, undefined, [rawValue]); }
+  init(rawValue: number): (SRAcousticSettings_Accessibility_BackgroundSounds_Name) | null { return callSDK<(SRAcousticSettings_Accessibility_BackgroundSounds_Name) | null>("SensorKit_d968214ecc684fb6", 1430185871872453, undefined, [rawValue]); }
 };
 
 /**
@@ -223,27 +223,27 @@ export const SRAcousticSettings_Accessibility_BackgroundSounds_Name = {
  */
 export class SRAcousticSettings_Accessibility_HeadphoneAccommodations extends SDKHandle {
   /** init() */
-  static init(): SRAcousticSettings_Accessibility_HeadphoneAccommodations { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations>("SensorKit_067acaa3e5f56b46", 4073976472822509, undefined, []); }
+  static init(): SRAcousticSettings_Accessibility_HeadphoneAccommodations { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations>("SensorKit_d968214ecc684fb6", 4073976472822509, undefined, []); }
   /**
    * var isEnabled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isEnabled(): boolean { return callSDK<boolean>("SensorKit_067acaa3e5f56b46", 4001610465823958, this, []); }
+  get isEnabled(): boolean { return callSDK<boolean>("SensorKit_d968214ecc684fb6", 4001610465823958, this, []); }
   /**
    * var mediaEnhanceApplication: SRAcousticSettings.Accessibility.HeadphoneAccommodations.MediaEnhanceApplication { get }
    * @availability iOS 26.0+
    */
-  get mediaEnhanceApplication(): SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceApplication { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceApplication>("SensorKit_067acaa3e5f56b46", 2717436414754074, this, []); }
+  get mediaEnhanceApplication(): SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceApplication { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceApplication>("SensorKit_d968214ecc684fb6", 2717436414754074, this, []); }
   /**
    * var mediaEnhanceBoosting: SRAcousticSettings.Accessibility.HeadphoneAccommodations.MediaEnhanceBoosting { get }
    * @availability iOS 26.0+
    */
-  get mediaEnhanceBoosting(): SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceBoosting { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceBoosting>("SensorKit_067acaa3e5f56b46", 3271577104521041, this, []); }
+  get mediaEnhanceBoosting(): SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceBoosting { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceBoosting>("SensorKit_d968214ecc684fb6", 3271577104521041, this, []); }
   /**
    * var mediaEnhanceTuning: SRAcousticSettings.Accessibility.HeadphoneAccommodations.MediaEnhanceTuning { get }
    * @availability iOS 26.0+
    */
-  get mediaEnhanceTuning(): SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceTuning { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceTuning>("SensorKit_067acaa3e5f56b46", 1528071761882499, this, []); }
+  get mediaEnhanceTuning(): SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceTuning { return callSDK<SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceTuning>("SensorKit_d968214ecc684fb6", 1528071761882499, this, []); }
   declare readonly $type: { "c:objc(cs)SRAcousticSettingsAccessibilityHeadphoneAccommodations": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isEnabled": true; "mediaEnhanceApplication": true; "mediaEnhanceBoosting": true; "mediaEnhanceTuning": true };
 }
@@ -259,7 +259,7 @@ export const SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhan
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceApplication) | null { return callSDK<(SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceApplication) | null>("SensorKit_067acaa3e5f56b46", 658248472687013, undefined, [rawValue]); }
+  init(rawValue: number): (SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceApplication) | null { return callSDK<(SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceApplication) | null>("SensorKit_d968214ecc684fb6", 658248472687013, undefined, [rawValue]); }
 };
 
 /**
@@ -273,7 +273,7 @@ export const SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhan
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceBoosting) | null { return callSDK<(SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceBoosting) | null>("SensorKit_067acaa3e5f56b46", 1446798290290332, undefined, [rawValue]); }
+  init(rawValue: number): (SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceBoosting) | null { return callSDK<(SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceBoosting) | null>("SensorKit_d968214ecc684fb6", 1446798290290332, undefined, [rawValue]); }
 };
 
 /**
@@ -287,7 +287,7 @@ export const SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhan
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceTuning) | null { return callSDK<(SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceTuning) | null>("SensorKit_067acaa3e5f56b46", 871326685334340, undefined, [rawValue]); }
+  init(rawValue: number): (SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceTuning) | null { return callSDK<(SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceTuning) | null>("SensorKit_d968214ecc684fb6", 871326685334340, undefined, [rawValue]); }
 };
 
 /**
@@ -296,17 +296,17 @@ export const SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhan
  */
 export class SRAcousticSettings_MusicEQ extends SDKHandle {
   /** init() */
-  static init(): SRAcousticSettings_MusicEQ { return callSDK<SRAcousticSettings_MusicEQ>("SensorKit_067acaa3e5f56b46", 128036414371522, undefined, []); }
+  static init(): SRAcousticSettings_MusicEQ { return callSDK<SRAcousticSettings_MusicEQ>("SensorKit_d968214ecc684fb6", 128036414371522, undefined, []); }
   /**
    * var isLateNightModeEnabled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isLateNightModeEnabled(): boolean { return callSDK<boolean>("SensorKit_067acaa3e5f56b46", 4389121406135788, this, []); }
+  get isLateNightModeEnabled(): boolean { return callSDK<boolean>("SensorKit_d968214ecc684fb6", 4389121406135788, this, []); }
   /**
    * var isSoundCheckEnabled: Bool { get }
    * @availability iOS 26.0+
    */
-  get isSoundCheckEnabled(): boolean { return callSDK<boolean>("SensorKit_067acaa3e5f56b46", 2446618511104401, this, []); }
+  get isSoundCheckEnabled(): boolean { return callSDK<boolean>("SensorKit_d968214ecc684fb6", 2446618511104401, this, []); }
   declare readonly $type: { "c:objc(cs)SRAcousticSettingsMusicEQ": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isLateNightModeEnabled": true; "isSoundCheckEnabled": true };
 }
@@ -322,7 +322,7 @@ export const SRAcousticSettings_SampleLifetime = {
    * init?(rawValue: Int)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): (SRAcousticSettings_SampleLifetime) | null { return callSDK<(SRAcousticSettings_SampleLifetime) | null>("SensorKit_067acaa3e5f56b46", 1370483392982742, undefined, [rawValue]); }
+  init(rawValue: number): (SRAcousticSettings_SampleLifetime) | null { return callSDK<(SRAcousticSettings_SampleLifetime) | null>("SensorKit_d968214ecc684fb6", 1370483392982742, undefined, [rawValue]); }
 };
 
 /**
@@ -334,7 +334,7 @@ export class SRAcousticSettingsSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRAcousticSettingsSensor { return callSDK<SRAcousticSettingsSensor>("SensorKit_067acaa3e5f56b46", 1953211797373697, undefined, []); }
+  static init(): SRAcousticSettingsSensor { return callSDK<SRAcousticSettingsSensor>("SensorKit_d968214ecc684fb6", 1953211797373697, undefined, []); }
   declare readonly $type: { "s:9SensorKit018SRAcousticSettingsA0V": true };
 }
 
@@ -350,22 +350,22 @@ export type SRAcousticSettingsSensor_Sample = SRAcousticSettings;
  */
 export class SRAmbientLightSample extends SDKHandle {
   /** init() */
-  static init(): SRAmbientLightSample { return callSDK<SRAmbientLightSample>("SensorKit_067acaa3e5f56b46", 468396357345193, undefined, []); }
+  static init(): SRAmbientLightSample { return callSDK<SRAmbientLightSample>("SensorKit_d968214ecc684fb6", 468396357345193, undefined, []); }
   /**
    * var chromaticity: SRAmbientLightSample.Chromaticity { get }
    * @availability iOS 14.0+
    */
-  get chromaticity(): SRAmbientLightSample_Chromaticity { return callSDK<SRAmbientLightSample_Chromaticity>("SensorKit_067acaa3e5f56b46", 2714620906144170, this, []); }
+  get chromaticity(): SRAmbientLightSample_Chromaticity { return callSDK<SRAmbientLightSample_Chromaticity>("SensorKit_d968214ecc684fb6", 2714620906144170, this, []); }
   /**
    * var lux: Measurement<UnitIlluminance> { get }
    * @availability iOS 14.0+
    */
-  get lux(): _Foundation_Measurement<_Foundation_UnitIlluminance> { return callSDK<_Foundation_Measurement<_Foundation_UnitIlluminance>>("SensorKit_067acaa3e5f56b46", 2408046541715983, this, []); }
+  get lux(): _Foundation_Measurement<_Foundation_UnitIlluminance> { return callSDK<_Foundation_Measurement<_Foundation_UnitIlluminance>>("SensorKit_d968214ecc684fb6", 2408046541715983, this, []); }
   /**
    * var placement: SRAmbientLightSample.SensorPlacement { get }
    * @availability iOS 14.0+
    */
-  get placement(): SRAmbientLightSample_SensorPlacement { return callSDK<SRAmbientLightSample_SensorPlacement>("SensorKit_067acaa3e5f56b46", 587573144241761, this, []); }
+  get placement(): SRAmbientLightSample_SensorPlacement { return callSDK<SRAmbientLightSample_SensorPlacement>("SensorKit_d968214ecc684fb6", 587573144241761, this, []); }
   declare readonly $type: { "c:objc(cs)SRAmbientLightSample": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "chromaticity": true; "lux": true; "placement": true };
 }
@@ -379,24 +379,24 @@ export class SRAmbientLightSample_Chromaticity extends SDKHandle {
    * var x: Float32
    * @availability iOS 14.0+
    */
-  get x(): SDKHandle { return callSDK<SDKHandle>("SensorKit_067acaa3e5f56b46", 928777573009160, this, []); }
-  set x(value: SDKHandle) { callSDK<void>("SensorKit_067acaa3e5f56b46", 3507503298250295, this, [value]); }
+  get x(): SDKHandle { return callSDK<SDKHandle>("SensorKit_d968214ecc684fb6", 928777573009160, this, []); }
+  set x(value: SDKHandle) { callSDK<void>("SensorKit_d968214ecc684fb6", 3507503298250295, this, [value]); }
   /**
    * var y: Float32
    * @availability iOS 14.0+
    */
-  get y(): SDKHandle { return callSDK<SDKHandle>("SensorKit_067acaa3e5f56b46", 3199832024103699, this, []); }
-  set y(value: SDKHandle) { callSDK<void>("SensorKit_067acaa3e5f56b46", 2335876502077802, this, [value]); }
+  get y(): SDKHandle { return callSDK<SDKHandle>("SensorKit_d968214ecc684fb6", 3199832024103699, this, []); }
+  set y(value: SDKHandle) { callSDK<void>("SensorKit_d968214ecc684fb6", 2335876502077802, this, [value]); }
   /**
    * init(x: Float32, y: Float32)
    * @availability iOS 14.0+
    */
-  static initXY(x: SDKHandle, y: SDKHandle): SRAmbientLightSample_Chromaticity { return callSDK<SRAmbientLightSample_Chromaticity>("SensorKit_067acaa3e5f56b46", 1574691927051775, undefined, [x, y]); }
+  static initXY(x: SDKHandle, y: SDKHandle): SRAmbientLightSample_Chromaticity { return callSDK<SRAmbientLightSample_Chromaticity>("SensorKit_d968214ecc684fb6", 1574691927051775, undefined, [x, y]); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): SRAmbientLightSample_Chromaticity { return callSDK<SRAmbientLightSample_Chromaticity>("SensorKit_067acaa3e5f56b46", 4125877866689133, undefined, []); }
+  static init(): SRAmbientLightSample_Chromaticity { return callSDK<SRAmbientLightSample_Chromaticity>("SensorKit_d968214ecc684fb6", 4125877866689133, undefined, []); }
   declare readonly $type: { "c:@SA@SRAmbientLightChromaticity": true };
 }
 
@@ -411,7 +411,7 @@ export const SRAmbientLightSample_SensorPlacement = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (SRAmbientLightSample_SensorPlacement) | null { return callSDK<(SRAmbientLightSample_SensorPlacement) | null>("SensorKit_067acaa3e5f56b46", 1039001097635577, undefined, [rawValue]); }
+  init(rawValue: number): (SRAmbientLightSample_SensorPlacement) | null { return callSDK<(SRAmbientLightSample_SensorPlacement) | null>("SensorKit_d968214ecc684fb6", 1039001097635577, undefined, [rawValue]); }
 };
 
 /**
@@ -423,7 +423,7 @@ export class SRAmbientLightSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRAmbientLightSensor { return callSDK<SRAmbientLightSensor>("SensorKit_067acaa3e5f56b46", 4450315932889673, undefined, []); }
+  static init(): SRAmbientLightSensor { return callSDK<SRAmbientLightSensor>("SensorKit_d968214ecc684fb6", 4450315932889673, undefined, []); }
   declare readonly $type: { "s:9SensorKit014SRAmbientLightA0V": true };
 }
 
@@ -442,7 +442,7 @@ export class SRAmbientPressureSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRAmbientPressureSensor { return callSDK<SRAmbientPressureSensor>("SensorKit_067acaa3e5f56b46", 1900375118853330, undefined, []); }
+  static init(): SRAmbientPressureSensor { return callSDK<SRAmbientPressureSensor>("SensorKit_d968214ecc684fb6", 1900375118853330, undefined, []); }
   declare readonly $type: { "s:9SensorKit017SRAmbientPressureA0V": true };
 }
 
@@ -461,12 +461,12 @@ export class SRAudioLevel extends SDKHandle {
    * var loudness: Double { get }
    * @availability iOS 17.0+
    */
-  get loudness(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2179318582783046, this, []); }
+  get loudness(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2179318582783046, this, []); }
   /**
    * var timeRange: CMTimeRange { get }
    * @availability iOS 17.0+
    */
-  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("SensorKit_067acaa3e5f56b46", 884706265739599, this, []); }
+  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("SensorKit_d968214ecc684fb6", 884706265739599, this, []); }
   declare readonly $type: { "c:objc(cs)SRAudioLevel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "loudness": true; "timeRange": true };
 }
@@ -482,7 +482,7 @@ export const SRAuthorizationStatus = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (SRAuthorizationStatus) | null { return callSDK<(SRAuthorizationStatus) | null>("SensorKit_067acaa3e5f56b46", 1158205619833961, undefined, [rawValue]); }
+  init(rawValue: number): (SRAuthorizationStatus) | null { return callSDK<(SRAuthorizationStatus) | null>("SensorKit_d968214ecc684fb6", 1158205619833961, undefined, [rawValue]); }
 };
 
 /**
@@ -504,7 +504,7 @@ export const SRDeletionReason = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (SRDeletionReason) | null { return callSDK<(SRDeletionReason) | null>("SensorKit_067acaa3e5f56b46", 2371620511280858, undefined, [rawValue]); }
+  init(rawValue: number): (SRDeletionReason) | null { return callSDK<(SRDeletionReason) | null>("SensorKit_d968214ecc684fb6", 2371620511280858, undefined, [rawValue]); }
 };
 
 /**
@@ -513,22 +513,22 @@ export const SRDeletionReason = {
  */
 export class SRDeletionRecord extends SDKHandle {
   /** init() */
-  static init(): SRDeletionRecord { return callSDK<SRDeletionRecord>("SensorKit_067acaa3e5f56b46", 3050806418130021, undefined, []); }
+  static init(): SRDeletionRecord { return callSDK<SRDeletionRecord>("SensorKit_d968214ecc684fb6", 3050806418130021, undefined, []); }
   /**
    * var endTime: SRAbsoluteTime { get }
    * @availability iOS 14.0+
    */
-  get endTime(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 4230171832520057, this, []); }
+  get endTime(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 4230171832520057, this, []); }
   /**
    * var reason: SRDeletionReason { get }
    * @availability iOS 14.0+
    */
-  get reason(): SRDeletionReason { return callSDK<SRDeletionReason>("SensorKit_067acaa3e5f56b46", 3189641655656009, this, []); }
+  get reason(): SRDeletionReason { return callSDK<SRDeletionReason>("SensorKit_d968214ecc684fb6", 3189641655656009, this, []); }
   /**
    * var startTime: SRAbsoluteTime { get }
    * @availability iOS 14.0+
    */
-  get startTime(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 341805070183497, this, []); }
+  get startTime(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 341805070183497, this, []); }
   declare readonly $type: { "c:objc(cs)SRDeletionRecord": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "endTime": true; "reason": true; "startTime": true };
 }
@@ -542,34 +542,34 @@ export class SRDevice extends SDKHandle {
    * class var current: SRDevice { get }
    * @availability iOS 14.0+
    */
-  static get current(): SRDevice { return callSDK<SRDevice>("SensorKit_067acaa3e5f56b46", 587215241956761, undefined, []); }
+  static get current(): SRDevice { return callSDK<SRDevice>("SensorKit_d968214ecc684fb6", 587215241956761, undefined, []); }
   /** init() */
-  static init(): SRDevice { return callSDK<SRDevice>("SensorKit_067acaa3e5f56b46", 1125694062347603, undefined, []); }
+  static init(): SRDevice { return callSDK<SRDevice>("SensorKit_d968214ecc684fb6", 1125694062347603, undefined, []); }
   /**
    * var model: String { get }
    * @availability iOS 14.0+
    */
-  get model(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 4350321548032289, this, []); }
+  get model(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 4350321548032289, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 14.0+
    */
-  get name(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 4480653115804161, this, []); }
+  get name(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 4480653115804161, this, []); }
   /**
    * var productType: String { get }
    * @availability iOS 17.0+
    */
-  get productType(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 1588499126876521, this, []); }
+  get productType(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 1588499126876521, this, []); }
   /**
    * var systemName: String { get }
    * @availability iOS 14.0+
    */
-  get systemName(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 4129075616928013, this, []); }
+  get systemName(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 4129075616928013, this, []); }
   /**
    * var systemVersion: String { get }
    * @availability iOS 14.0+
    */
-  get systemVersion(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 195881404811107, this, []); }
+  get systemVersion(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 195881404811107, this, []); }
   declare readonly $type: { "c:objc(cs)SRDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "model": true; "name": true; "productType": true; "systemName": true; "systemVersion": true };
 }
@@ -580,47 +580,47 @@ export class SRDevice extends SDKHandle {
  */
 export class SRDeviceUsageReport extends SDKHandle {
   /** init() */
-  static init(): SRDeviceUsageReport { return callSDK<SRDeviceUsageReport>("SensorKit_067acaa3e5f56b46", 2137834779224748, undefined, []); }
+  static init(): SRDeviceUsageReport { return callSDK<SRDeviceUsageReport>("SensorKit_d968214ecc684fb6", 2137834779224748, undefined, []); }
   /**
    * var applicationUsageByCategory: [SRDeviceUsageReport.CategoryKey : [SRDeviceUsageReport.ApplicationUsage]] { get }
    * @availability iOS 14.0+
    */
-  get applicationUsageByCategory(): NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_ApplicationUsage>> { return callSDK<NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_ApplicationUsage>>>("SensorKit_067acaa3e5f56b46", 1839581217696280, this, []); }
+  get applicationUsageByCategory(): NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_ApplicationUsage>> { return callSDK<NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_ApplicationUsage>>>("SensorKit_d968214ecc684fb6", 1839581217696280, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get duration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 567945513537843, this, []); }
+  get duration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 567945513537843, this, []); }
   /**
    * var notificationUsageByCategory: [SRDeviceUsageReport.CategoryKey : [SRDeviceUsageReport.NotificationUsage]] { get }
    * @availability iOS 14.0+
    */
-  get notificationUsageByCategory(): NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_NotificationUsage>> { return callSDK<NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_NotificationUsage>>>("SensorKit_067acaa3e5f56b46", 3740323679379406, this, []); }
+  get notificationUsageByCategory(): NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_NotificationUsage>> { return callSDK<NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_NotificationUsage>>>("SensorKit_d968214ecc684fb6", 3740323679379406, this, []); }
   /**
    * var totalScreenWakes: Int { get }
    * @availability iOS 14.0+
    */
-  get totalScreenWakes(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2985224308291839, this, []); }
+  get totalScreenWakes(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2985224308291839, this, []); }
   /**
    * var totalUnlockDuration: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get totalUnlockDuration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1528998315860578, this, []); }
+  get totalUnlockDuration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1528998315860578, this, []); }
   /**
    * var totalUnlocks: Int { get }
    * @availability iOS 14.0+
    */
-  get totalUnlocks(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1373447300025404, this, []); }
+  get totalUnlocks(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1373447300025404, this, []); }
   /**
    * var version: String { get }
    * @availability iOS 16.4+
    */
-  get version(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 943833248132862, this, []); }
+  get version(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 943833248132862, this, []); }
   /**
    * var webUsageByCategory: [SRDeviceUsageReport.CategoryKey : [SRDeviceUsageReport.WebUsage]] { get }
    * @availability iOS 14.0+
    */
-  get webUsageByCategory(): NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_WebUsage>> { return callSDK<NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_WebUsage>>>("SensorKit_067acaa3e5f56b46", 885105813393755, this, []); }
+  get webUsageByCategory(): NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_WebUsage>> { return callSDK<NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_WebUsage>>>("SensorKit_d968214ecc684fb6", 885105813393755, this, []); }
   declare readonly $type: { "c:objc(cs)SRDeviceUsageReport": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "applicationUsageByCategory": true; "duration": true; "notificationUsageByCategory": true; "totalScreenWakes": true; "totalUnlockDuration": true; "totalUnlocks": true; "version": true; "webUsageByCategory": true };
 }
@@ -631,37 +631,37 @@ export class SRDeviceUsageReport extends SDKHandle {
  */
 export class SRDeviceUsageReport_ApplicationUsage extends SDKHandle {
   /** init() */
-  static init(): SRDeviceUsageReport_ApplicationUsage { return callSDK<SRDeviceUsageReport_ApplicationUsage>("SensorKit_067acaa3e5f56b46", 3899393535776246, undefined, []); }
+  static init(): SRDeviceUsageReport_ApplicationUsage { return callSDK<SRDeviceUsageReport_ApplicationUsage>("SensorKit_d968214ecc684fb6", 3899393535776246, undefined, []); }
   /**
    * var bundleIdentifier: String? { get }
    * @availability iOS 14.0+
    */
-  get bundleIdentifier(): (string) | null { return callSDK<(string) | null>("SensorKit_067acaa3e5f56b46", 1475357000825749, this, []); }
+  get bundleIdentifier(): (string) | null { return callSDK<(string) | null>("SensorKit_d968214ecc684fb6", 1475357000825749, this, []); }
   /**
    * var relativeStartTime: TimeInterval { get }
    * @availability iOS 16.4+
    */
-  get relativeStartTime(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 331649563395852, this, []); }
+  get relativeStartTime(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 331649563395852, this, []); }
   /**
    * var reportApplicationIdentifier: String { get }
    * @availability iOS 15.0+
    */
-  get reportApplicationIdentifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 2211744809984116, this, []); }
+  get reportApplicationIdentifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 2211744809984116, this, []); }
   /**
    * var supplementalCategories: [SRSupplementalCategory] { get }
    * @availability iOS 16.4+
    */
-  get supplementalCategories(): Array<SRSupplementalCategory> { return callSDK<Array<SRSupplementalCategory>>("SensorKit_067acaa3e5f56b46", 438516130630139, this, []); }
+  get supplementalCategories(): Array<SRSupplementalCategory> { return callSDK<Array<SRSupplementalCategory>>("SensorKit_d968214ecc684fb6", 438516130630139, this, []); }
   /**
    * var textInputSessions: [SRTextInputSession] { get }
    * @availability iOS 15.0+
    */
-  get textInputSessions(): Array<SRTextInputSession> { return callSDK<Array<SRTextInputSession>>("SensorKit_067acaa3e5f56b46", 3318003250412205, this, []); }
+  get textInputSessions(): Array<SRTextInputSession> { return callSDK<Array<SRTextInputSession>>("SensorKit_d968214ecc684fb6", 3318003250412205, this, []); }
   /**
    * var usageTime: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get usageTime(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 925210018613348, this, []); }
+  get usageTime(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 925210018613348, this, []); }
   declare readonly $type: { "c:objc(cs)SRApplicationUsage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bundleIdentifier": true; "relativeStartTime": true; "reportApplicationIdentifier": true; "supplementalCategories": true; "textInputSessions": true; "usageTime": true };
 }
@@ -674,149 +674,149 @@ export const SRDeviceUsageReport_CategoryKey = {
    * static let books: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get books(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 2542900453345374, undefined, []); },
+  get books(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 2542900453345374, undefined, []); },
   /**
    * static let business: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get business(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 2385156139145775, undefined, []); },
+  get business(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 2385156139145775, undefined, []); },
   /**
    * static let catalogs: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get catalogs(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 1448662356389776, undefined, []); },
+  get catalogs(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 1448662356389776, undefined, []); },
   /**
    * static let developerTools: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get developerTools(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 4399436597578234, undefined, []); },
+  get developerTools(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 4399436597578234, undefined, []); },
   /**
    * static let education: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get education(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 414851124198829, undefined, []); },
+  get education(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 414851124198829, undefined, []); },
   /**
    * static let entertainment: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get entertainment(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 4438816332068712, undefined, []); },
+  get entertainment(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 4438816332068712, undefined, []); },
   /**
    * static let finance: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get finance(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 2630565704423372, undefined, []); },
+  get finance(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 2630565704423372, undefined, []); },
   /**
    * static let foodAndDrink: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get foodAndDrink(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 4249749741705033, undefined, []); },
+  get foodAndDrink(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 4249749741705033, undefined, []); },
   /**
    * static let games: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get games(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 901067054702997, undefined, []); },
+  get games(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 901067054702997, undefined, []); },
   /**
    * static let graphicsAndDesign: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get graphicsAndDesign(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 2189329386194206, undefined, []); },
+  get graphicsAndDesign(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 2189329386194206, undefined, []); },
   /**
    * static let healthAndFitness: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get healthAndFitness(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 1604230303938278, undefined, []); },
+  get healthAndFitness(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 1604230303938278, undefined, []); },
   /**
    * static let kids: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get kids(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 1717391139936237, undefined, []); },
+  get kids(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 1717391139936237, undefined, []); },
   /**
    * static let lifestyle: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get lifestyle(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 1841002267885002, undefined, []); },
+  get lifestyle(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 1841002267885002, undefined, []); },
   /**
    * static let medical: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get medical(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 2664189780359488, undefined, []); },
+  get medical(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 2664189780359488, undefined, []); },
   /**
    * static let miscellaneous: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get miscellaneous(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 4431061189794078, undefined, []); },
+  get miscellaneous(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 4431061189794078, undefined, []); },
   /**
    * static let music: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get music(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 3398962182140877, undefined, []); },
+  get music(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 3398962182140877, undefined, []); },
   /**
    * static let navigation: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get navigation(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 3824591718659102, undefined, []); },
+  get navigation(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 3824591718659102, undefined, []); },
   /**
    * static let news: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get news(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 3188151955078862, undefined, []); },
+  get news(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 3188151955078862, undefined, []); },
   /**
    * static let newsstand: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get newsstand(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 4130416330040106, undefined, []); },
+  get newsstand(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 4130416330040106, undefined, []); },
   /**
    * static let photoAndVideo: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get photoAndVideo(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 3417575078267141, undefined, []); },
+  get photoAndVideo(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 3417575078267141, undefined, []); },
   /**
    * static let productivity: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get productivity(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 4202985923758424, undefined, []); },
+  get productivity(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 4202985923758424, undefined, []); },
   /**
    * static let reference: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get reference(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 1940000902014678, undefined, []); },
+  get reference(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 1940000902014678, undefined, []); },
   /**
    * static let shopping: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get shopping(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 4166155115633622, undefined, []); },
+  get shopping(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 4166155115633622, undefined, []); },
   /**
    * static let socialNetworking: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get socialNetworking(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 3250763944520666, undefined, []); },
+  get socialNetworking(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 3250763944520666, undefined, []); },
   /**
    * static let sports: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get sports(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 206855484517245, undefined, []); },
+  get sports(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 206855484517245, undefined, []); },
   /**
    * static let stickers: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get stickers(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 3485045169453548, undefined, []); },
+  get stickers(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 3485045169453548, undefined, []); },
   /**
    * static let travel: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get travel(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 3907479883576141, undefined, []); },
+  get travel(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 3907479883576141, undefined, []); },
   /**
    * static let utilities: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get utilities(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 3629556749375243, undefined, []); },
+  get utilities(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 3629556749375243, undefined, []); },
   /**
    * static let weather: SRDeviceUsageReport.CategoryKey
    * @availability iOS 14.0+
    */
-  get weather(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 1928220133534591, undefined, []); },
+  get weather(): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 1928220133534591, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_067acaa3e5f56b46", 2762858093100981, undefined, [rawValue]); }
+  init(rawValue: string): SRDeviceUsageReport_CategoryKey { return callSDK<SRDeviceUsageReport_CategoryKey>("SensorKit_d968214ecc684fb6", 2762858093100981, undefined, [rawValue]); }
 };
 
 /**
@@ -825,17 +825,17 @@ export const SRDeviceUsageReport_CategoryKey = {
  */
 export class SRDeviceUsageReport_NotificationUsage extends SDKHandle {
   /** init() */
-  static init(): SRDeviceUsageReport_NotificationUsage { return callSDK<SRDeviceUsageReport_NotificationUsage>("SensorKit_067acaa3e5f56b46", 3780556458408147, undefined, []); }
+  static init(): SRDeviceUsageReport_NotificationUsage { return callSDK<SRDeviceUsageReport_NotificationUsage>("SensorKit_d968214ecc684fb6", 3780556458408147, undefined, []); }
   /**
    * var bundleIdentifier: String? { get }
    * @availability iOS 14.0+
    */
-  get bundleIdentifier(): (string) | null { return callSDK<(string) | null>("SensorKit_067acaa3e5f56b46", 2777163283960867, this, []); }
+  get bundleIdentifier(): (string) | null { return callSDK<(string) | null>("SensorKit_d968214ecc684fb6", 2777163283960867, this, []); }
   /**
    * var event: SRDeviceUsageReport.NotificationUsage.Event { get }
    * @availability iOS 14.0+
    */
-  get event(): SRDeviceUsageReport_NotificationUsage_Event { return callSDK<SRDeviceUsageReport_NotificationUsage_Event>("SensorKit_067acaa3e5f56b46", 2866213965046712, this, []); }
+  get event(): SRDeviceUsageReport_NotificationUsage_Event { return callSDK<SRDeviceUsageReport_NotificationUsage_Event>("SensorKit_d968214ecc684fb6", 2866213965046712, this, []); }
   declare readonly $type: { "c:objc(cs)SRNotificationUsage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bundleIdentifier": true; "event": true };
 }
@@ -851,7 +851,7 @@ export const SRDeviceUsageReport_NotificationUsage_Event = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (SRDeviceUsageReport_NotificationUsage_Event) | null { return callSDK<(SRDeviceUsageReport_NotificationUsage_Event) | null>("SensorKit_067acaa3e5f56b46", 1016357077469679, undefined, [rawValue]); }
+  init(rawValue: number): (SRDeviceUsageReport_NotificationUsage_Event) | null { return callSDK<(SRDeviceUsageReport_NotificationUsage_Event) | null>("SensorKit_d968214ecc684fb6", 1016357077469679, undefined, [rawValue]); }
 };
 
 /**
@@ -860,12 +860,12 @@ export const SRDeviceUsageReport_NotificationUsage_Event = {
  */
 export class SRDeviceUsageReport_WebUsage extends SDKHandle {
   /** init() */
-  static init(): SRDeviceUsageReport_WebUsage { return callSDK<SRDeviceUsageReport_WebUsage>("SensorKit_067acaa3e5f56b46", 2478913686666226, undefined, []); }
+  static init(): SRDeviceUsageReport_WebUsage { return callSDK<SRDeviceUsageReport_WebUsage>("SensorKit_d968214ecc684fb6", 2478913686666226, undefined, []); }
   /**
    * var totalUsageTime: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get totalUsageTime(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3880871279258565, this, []); }
+  get totalUsageTime(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3880871279258565, this, []); }
   declare readonly $type: { "c:objc(cs)SRWebUsage": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "totalUsageTime": true };
 }
@@ -879,7 +879,7 @@ export class SRDeviceUsageSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRDeviceUsageSensor { return callSDK<SRDeviceUsageSensor>("SensorKit_067acaa3e5f56b46", 2675617400791073, undefined, []); }
+  static init(): SRDeviceUsageSensor { return callSDK<SRDeviceUsageSensor>("SensorKit_d968214ecc684fb6", 2675617400791073, undefined, []); }
   declare readonly $type: { "s:9SensorKit013SRDeviceUsageA0V": true };
 }
 
@@ -898,12 +898,12 @@ export class SRElectrocardiogramData extends SDKHandle {
    * var flags: SRElectrocardiogramData.Flags { get }
    * @availability iOS 17.4+
    */
-  get flags(): SRElectrocardiogramData_Flags { return callSDK<SRElectrocardiogramData_Flags>("SensorKit_067acaa3e5f56b46", 4075959673241315, this, []); }
+  get flags(): SRElectrocardiogramData_Flags { return callSDK<SRElectrocardiogramData_Flags>("SensorKit_d968214ecc684fb6", 4075959673241315, this, []); }
   /**
    * var value: Measurement<UnitElectricPotentialDifference> { get }
    * @availability iOS 17.4+
    */
-  get value(): _Foundation_Measurement<_Foundation_UnitElectricPotentialDifference> { return callSDK<_Foundation_Measurement<_Foundation_UnitElectricPotentialDifference>>("SensorKit_067acaa3e5f56b46", 3635271554914602, this, []); }
+  get value(): _Foundation_Measurement<_Foundation_UnitElectricPotentialDifference> { return callSDK<_Foundation_Measurement<_Foundation_UnitElectricPotentialDifference>>("SensorKit_d968214ecc684fb6", 3635271554914602, this, []); }
   declare readonly $type: { "c:objc(cs)SRElectrocardiogramData": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "flags": true; "value": true };
 }
@@ -919,17 +919,17 @@ export const SRElectrocardiogramData_Flags = {
    * static var crownTouched: SRElectrocardiogramData.Flags { get }
    * @availability iOS 17.4+
    */
-  get crownTouched(): SRElectrocardiogramData_Flags { return callSDK<SRElectrocardiogramData_Flags>("SensorKit_067acaa3e5f56b46", 443059898288418, undefined, []); },
+  get crownTouched(): SRElectrocardiogramData_Flags { return callSDK<SRElectrocardiogramData_Flags>("SensorKit_d968214ecc684fb6", 443059898288418, undefined, []); },
   /**
    * static var signalInvalid: SRElectrocardiogramData.Flags { get }
    * @availability iOS 17.4+
    */
-  get signalInvalid(): SRElectrocardiogramData_Flags { return callSDK<SRElectrocardiogramData_Flags>("SensorKit_067acaa3e5f56b46", 978767819170278, undefined, []); },
+  get signalInvalid(): SRElectrocardiogramData_Flags { return callSDK<SRElectrocardiogramData_Flags>("SensorKit_d968214ecc684fb6", 978767819170278, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): SRElectrocardiogramData_Flags { return callSDK<SRElectrocardiogramData_Flags>("SensorKit_067acaa3e5f56b46", 3119527357685937, undefined, [rawValue]); }
+  init(rawValue: number): SRElectrocardiogramData_Flags { return callSDK<SRElectrocardiogramData_Flags>("SensorKit_d968214ecc684fb6", 3119527357685937, undefined, [rawValue]); }
 };
 
 /**
@@ -941,27 +941,27 @@ export class SRElectrocardiogramSample extends SDKHandle {
    * var data: [SRElectrocardiogramData] { get }
    * @availability iOS 17.4+
    */
-  get data(): Array<SRElectrocardiogramData> { return callSDK<Array<SRElectrocardiogramData>>("SensorKit_067acaa3e5f56b46", 4015476124159028, this, []); }
+  get data(): Array<SRElectrocardiogramData> { return callSDK<Array<SRElectrocardiogramData>>("SensorKit_d968214ecc684fb6", 4015476124159028, this, []); }
   /**
    * var date: Date { get }
    * @availability iOS 17.4+
    */
-  get date(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_067acaa3e5f56b46", 1678990991137104, this, []); }
+  get date(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_d968214ecc684fb6", 1678990991137104, this, []); }
   /**
    * var frequency: Measurement<UnitFrequency> { get }
    * @availability iOS 17.4+
    */
-  get frequency(): $SDK10 { return callSDK<$SDK10>("SensorKit_067acaa3e5f56b46", 2213330925756898, this, []); }
+  get frequency(): $SDK10 { return callSDK<$SDK10>("SensorKit_d968214ecc684fb6", 2213330925756898, this, []); }
   /**
    * var lead: SRElectrocardiogramSample.Lead { get }
    * @availability iOS 17.4+
    */
-  get lead(): SRElectrocardiogramSample_Lead { return callSDK<SRElectrocardiogramSample_Lead>("SensorKit_067acaa3e5f56b46", 1035418312383469, this, []); }
+  get lead(): SRElectrocardiogramSample_Lead { return callSDK<SRElectrocardiogramSample_Lead>("SensorKit_d968214ecc684fb6", 1035418312383469, this, []); }
   /**
    * var session: SRElectrocardiogramSession { get }
    * @availability iOS 17.4+
    */
-  get session(): SRElectrocardiogramSession { return callSDK<SRElectrocardiogramSession>("SensorKit_067acaa3e5f56b46", 3702978210842703, this, []); }
+  get session(): SRElectrocardiogramSession { return callSDK<SRElectrocardiogramSession>("SensorKit_d968214ecc684fb6", 3702978210842703, this, []); }
   declare readonly $type: { "c:objc(cs)SRElectrocardiogramSample": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "data": true; "date": true; "frequency": true; "lead": true; "session": true };
 }
@@ -977,7 +977,7 @@ export const SRElectrocardiogramSample_Lead = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (SRElectrocardiogramSample_Lead) | null { return callSDK<(SRElectrocardiogramSample_Lead) | null>("SensorKit_067acaa3e5f56b46", 1337199805803779, undefined, [rawValue]); }
+  init(rawValue: number): (SRElectrocardiogramSample_Lead) | null { return callSDK<(SRElectrocardiogramSample_Lead) | null>("SensorKit_d968214ecc684fb6", 1337199805803779, undefined, [rawValue]); }
 };
 
 /**
@@ -989,7 +989,7 @@ export class SRElectrocardiogramSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRElectrocardiogramSensor { return callSDK<SRElectrocardiogramSensor>("SensorKit_067acaa3e5f56b46", 497484062698111, undefined, []); }
+  static init(): SRElectrocardiogramSensor { return callSDK<SRElectrocardiogramSensor>("SensorKit_d968214ecc684fb6", 497484062698111, undefined, []); }
   declare readonly $type: { "s:9SensorKit019SRElectrocardiogramA0V": true };
 }
 
@@ -1008,17 +1008,17 @@ export class SRElectrocardiogramSession extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 17.4+
    */
-  get identifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 4454750759606624, this, []); }
+  get identifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 4454750759606624, this, []); }
   /**
    * var sessionGuidance: SRElectrocardiogramSession.SessionGuidance { get }
    * @availability iOS 17.4+
    */
-  get sessionGuidance(): SRElectrocardiogramSession_SessionGuidance { return callSDK<SRElectrocardiogramSession_SessionGuidance>("SensorKit_067acaa3e5f56b46", 4317124307196220, this, []); }
+  get sessionGuidance(): SRElectrocardiogramSession_SessionGuidance { return callSDK<SRElectrocardiogramSession_SessionGuidance>("SensorKit_d968214ecc684fb6", 4317124307196220, this, []); }
   /**
    * var state: SRElectrocardiogramSession.State { get }
    * @availability iOS 17.4+
    */
-  get state(): SRElectrocardiogramSession_State { return callSDK<SRElectrocardiogramSession_State>("SensorKit_067acaa3e5f56b46", 3770522929446116, this, []); }
+  get state(): SRElectrocardiogramSession_State { return callSDK<SRElectrocardiogramSession_State>("SensorKit_d968214ecc684fb6", 3770522929446116, this, []); }
   declare readonly $type: { "c:objc(cs)SRElectrocardiogramSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "sessionGuidance": true; "state": true };
 }
@@ -1034,7 +1034,7 @@ export const SRElectrocardiogramSession_SessionGuidance = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (SRElectrocardiogramSession_SessionGuidance) | null { return callSDK<(SRElectrocardiogramSession_SessionGuidance) | null>("SensorKit_067acaa3e5f56b46", 258905811925756, undefined, [rawValue]); }
+  init(rawValue: number): (SRElectrocardiogramSession_SessionGuidance) | null { return callSDK<(SRElectrocardiogramSession_SessionGuidance) | null>("SensorKit_d968214ecc684fb6", 258905811925756, undefined, [rawValue]); }
 };
 
 /**
@@ -1048,7 +1048,7 @@ export const SRElectrocardiogramSession_State = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (SRElectrocardiogramSession_State) | null { return callSDK<(SRElectrocardiogramSession_State) | null>("SensorKit_067acaa3e5f56b46", 1775641974060891, undefined, [rawValue]); }
+  init(rawValue: number): (SRElectrocardiogramSession_State) | null { return callSDK<(SRElectrocardiogramSession_State) | null>("SensorKit_d968214ecc684fb6", 1775641974060891, undefined, [rawValue]); }
 };
 
 /**
@@ -1060,32 +1060,32 @@ export class SRError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 14.0+
    */
-  static get errorDomain(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 2170587830941790, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 2170587830941790, undefined, []); }
   /**
    * static var promptDeclined: SRError.Code { get }
    * @availability iOS 14.0+
    */
-  static get promptDeclined(): SRError_Code { return callSDK<SRError_Code>("SensorKit_067acaa3e5f56b46", 2640798732523524, undefined, []); }
+  static get promptDeclined(): SRError_Code { return callSDK<SRError_Code>("SensorKit_d968214ecc684fb6", 2640798732523524, undefined, []); }
   /**
    * static var noAuthorization: SRError.Code { get }
    * @availability iOS 14.0+
    */
-  static get noAuthorization(): SRError_Code { return callSDK<SRError_Code>("SensorKit_067acaa3e5f56b46", 2677044941554364, undefined, []); }
+  static get noAuthorization(): SRError_Code { return callSDK<SRError_Code>("SensorKit_d968214ecc684fb6", 2677044941554364, undefined, []); }
   /**
    * static var dataInaccessible: SRError.Code { get }
    * @availability iOS 14.0+
    */
-  static get dataInaccessible(): SRError_Code { return callSDK<SRError_Code>("SensorKit_067acaa3e5f56b46", 3372292831132629, undefined, []); }
+  static get dataInaccessible(): SRError_Code { return callSDK<SRError_Code>("SensorKit_d968214ecc684fb6", 3372292831132629, undefined, []); }
   /**
    * static var invalidEntitlement: SRError.Code { get }
    * @availability iOS 14.0+
    */
-  static get invalidEntitlement(): SRError_Code { return callSDK<SRError_Code>("SensorKit_067acaa3e5f56b46", 259471237800857, undefined, []); }
+  static get invalidEntitlement(): SRError_Code { return callSDK<SRError_Code>("SensorKit_d968214ecc684fb6", 259471237800857, undefined, []); }
   /**
    * static var fetchRequestInvalid: SRError.Code { get }
    * @availability iOS 14.0+
    */
-  static get fetchRequestInvalid(): SRError_Code { return callSDK<SRError_Code>("SensorKit_067acaa3e5f56b46", 775327376212289, undefined, []); }
+  static get fetchRequestInvalid(): SRError_Code { return callSDK<SRError_Code>("SensorKit_d968214ecc684fb6", 775327376212289, undefined, []); }
   declare readonly $type: { "s:SC11SRErrorCodeLeV": true };
 }
 
@@ -1100,7 +1100,7 @@ export const SRError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (SRError_Code) | null { return callSDK<(SRError_Code) | null>("SensorKit_067acaa3e5f56b46", 4125600958475685, undefined, [rawValue]); }
+  init(rawValue: number): (SRError_Code) | null { return callSDK<(SRError_Code) | null>("SensorKit_d968214ecc684fb6", 4125600958475685, undefined, [rawValue]); }
 };
 
 /**
@@ -1112,27 +1112,27 @@ export class SRFaceMetrics extends SDKHandle {
    * var context: SRFaceMetrics.Context { get }
    * @availability iOS 17.0+
    */
-  get context(): SRFaceMetrics_Context { return callSDK<SRFaceMetrics_Context>("SensorKit_067acaa3e5f56b46", 480308864980740, this, []); }
+  get context(): SRFaceMetrics_Context { return callSDK<SRFaceMetrics_Context>("SensorKit_d968214ecc684fb6", 480308864980740, this, []); }
   /**
    * var partialFaceExpressions: [SRFaceMetricsExpression] { get }
    * @availability iOS 17.0+
    */
-  get partialFaceExpressions(): $SDK12 { return callSDK<$SDK12>("SensorKit_067acaa3e5f56b46", 2674362593492628, this, []); }
+  get partialFaceExpressions(): $SDK12 { return callSDK<$SDK12>("SensorKit_d968214ecc684fb6", 2674362593492628, this, []); }
   /**
    * var sessionIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  get sessionIdentifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 4422784354150127, this, []); }
+  get sessionIdentifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 4422784354150127, this, []); }
   /**
    * var version: String { get }
    * @availability iOS 17.0+
    */
-  get version(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 2517830534915937, this, []); }
+  get version(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 2517830534915937, this, []); }
   /**
    * var wholeFaceExpressions: [SRFaceMetricsExpression] { get }
    * @availability iOS 17.0+
    */
-  get wholeFaceExpressions(): $SDK12 { return callSDK<$SDK12>("SensorKit_067acaa3e5f56b46", 200970736164219, this, []); }
+  get wholeFaceExpressions(): $SDK12 { return callSDK<$SDK12>("SensorKit_d968214ecc684fb6", 200970736164219, this, []); }
   declare readonly $type: { "c:objc(cs)SRFaceMetrics": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "context": true; "partialFaceExpressions": true; "sessionIdentifier": true; "version": true; "wholeFaceExpressions": true };
 }
@@ -1148,17 +1148,17 @@ export const SRFaceMetrics_Context = {
    * static var deviceUnlock: SRFaceMetrics.Context { get }
    * @availability iOS 17.0+
    */
-  get deviceUnlock(): SRFaceMetrics_Context { return callSDK<SRFaceMetrics_Context>("SensorKit_067acaa3e5f56b46", 2127742643604769, undefined, []); },
+  get deviceUnlock(): SRFaceMetrics_Context { return callSDK<SRFaceMetrics_Context>("SensorKit_d968214ecc684fb6", 2127742643604769, undefined, []); },
   /**
    * static var messagingAppUsage: SRFaceMetrics.Context { get }
    * @availability iOS 17.0+
    */
-  get messagingAppUsage(): SRFaceMetrics_Context { return callSDK<SRFaceMetrics_Context>("SensorKit_067acaa3e5f56b46", 3695055398631776, undefined, []); },
+  get messagingAppUsage(): SRFaceMetrics_Context { return callSDK<SRFaceMetrics_Context>("SensorKit_d968214ecc684fb6", 3695055398631776, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): SRFaceMetrics_Context { return callSDK<SRFaceMetrics_Context>("SensorKit_067acaa3e5f56b46", 4150428014691541, undefined, [rawValue]); }
+  init(rawValue: number): SRFaceMetrics_Context { return callSDK<SRFaceMetrics_Context>("SensorKit_d968214ecc684fb6", 4150428014691541, undefined, [rawValue]); }
 };
 
 /**
@@ -1170,12 +1170,12 @@ export class SRFaceMetricsExpression extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 17.0+
    */
-  get identifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 1410521684023668, this, []); }
+  get identifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 1410521684023668, this, []); }
   /**
    * var value: Double { get }
    * @availability iOS 17.0+
    */
-  get value(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 4206447568798233, this, []); }
+  get value(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 4206447568798233, this, []); }
   declare readonly $type: { "c:objc(cs)SRFaceMetricsExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "value": true };
 }
@@ -1189,7 +1189,7 @@ export class SRFaceMetricsSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRFaceMetricsSensor { return callSDK<SRFaceMetricsSensor>("SensorKit_067acaa3e5f56b46", 2615083092720605, undefined, []); }
+  static init(): SRFaceMetricsSensor { return callSDK<SRFaceMetricsSensor>("SensorKit_d968214ecc684fb6", 2615083092720605, undefined, []); }
   declare readonly $type: { "s:9SensorKit013SRFaceMetricsA0V": true };
 }
 
@@ -1205,25 +1205,25 @@ export type SRFaceMetricsSensor_Sample = SRFaceMetrics;
  */
 export class SRFetchRequest extends SDKHandle {
   /** init() */
-  static init(): SRFetchRequest { return callSDK<SRFetchRequest>("SensorKit_067acaa3e5f56b46", 1153953027569445, undefined, []); }
+  static init(): SRFetchRequest { return callSDK<SRFetchRequest>("SensorKit_d968214ecc684fb6", 1153953027569445, undefined, []); }
   /**
    * var device: SRDevice { get set }
    * @availability iOS 14.0+
    */
-  get device(): SRDevice { return callSDK<SRDevice>("SensorKit_067acaa3e5f56b46", 923922451107702, this, []); }
-  set device(value: SRDevice) { callSDK<void>("SensorKit_067acaa3e5f56b46", 3181650245560353, this, [value]); }
+  get device(): SRDevice { return callSDK<SRDevice>("SensorKit_d968214ecc684fb6", 923922451107702, this, []); }
+  set device(value: SRDevice) { callSDK<void>("SensorKit_d968214ecc684fb6", 3181650245560353, this, [value]); }
   /**
    * var from: SRAbsoluteTime { get set }
    * @availability iOS 14.0+
    */
-  get from(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 3576647639121394, this, []); }
-  set from(value: SRAbsoluteTime) { callSDK<void>("SensorKit_067acaa3e5f56b46", 1198789185380876, this, [value]); }
+  get from(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 3576647639121394, this, []); }
+  set from(value: SRAbsoluteTime) { callSDK<void>("SensorKit_d968214ecc684fb6", 1198789185380876, this, [value]); }
   /**
    * var to: SRAbsoluteTime { get set }
    * @availability iOS 14.0+
    */
-  get to(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 3705393532558845, this, []); }
-  set to(value: SRAbsoluteTime) { callSDK<void>("SensorKit_067acaa3e5f56b46", 2568775271942215, this, [value]); }
+  get to(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 3705393532558845, this, []); }
+  set to(value: SRAbsoluteTime) { callSDK<void>("SensorKit_d968214ecc684fb6", 2568775271942215, this, [value]); }
   declare readonly $type: { "c:objc(cs)SRFetchRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "device": true; "from": true; "to": true };
 }
@@ -1237,17 +1237,17 @@ export class SRFetchResponse<Sample = unknown> extends SDKHandle {
    * var sourceDevice: SRSourceDevice? { get }
    * @availability iOS 27.0+
    */
-  get sourceDevice(): (SRSourceDevice) | null { return callSDK<(SRSourceDevice) | null>("SensorKit_067acaa3e5f56b46", 2138573435088063, this, []); }
+  get sourceDevice(): (SRSourceDevice) | null { return callSDK<(SRSourceDevice) | null>("SensorKit_d968214ecc684fb6", 2138573435088063, this, []); }
   /**
    * var sample: Result<Sample, any Error> { get }
    * @availability iOS 27.0+
    */
-  get sample(): SDKHandle { return callSDK<SDKHandle>("SensorKit_067acaa3e5f56b46", 2323286906294309, this, []); }
+  get sample(): SDKHandle { return callSDK<SDKHandle>("SensorKit_d968214ecc684fb6", 2323286906294309, this, []); }
   /**
    * var timestamp: SRAbsoluteTime { get }
    * @availability iOS 27.0+
    */
-  get timestamp(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 2899064234856839, this, []); }
+  get timestamp(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 2899064234856839, this, []); }
   declare readonly $type: { "s:9SensorKit15SRFetchResponseV": true };
 }
 
@@ -1260,17 +1260,17 @@ export class SRFetchResult<SampleType = unknown> extends SDKHandle {
    * @NSCopying var sample: SampleType { get }
    * @availability iOS 14.0+
    */
-  get sample(): SDKHandle { return callSDK<SDKHandle>("SensorKit_067acaa3e5f56b46", 3529288629001581, this, []); }
+  get sample(): SDKHandle { return callSDK<SDKHandle>("SensorKit_d968214ecc684fb6", 3529288629001581, this, []); }
   /**
    * var sourceDevice: SRSourceDevice? { get }
    * @availability iOS 27.0+
    */
-  get sourceDevice(): (SRSourceDevice) | null { return callSDK<(SRSourceDevice) | null>("SensorKit_067acaa3e5f56b46", 2331555130922673, this, []); }
+  get sourceDevice(): (SRSourceDevice) | null { return callSDK<(SRSourceDevice) | null>("SensorKit_d968214ecc684fb6", 2331555130922673, this, []); }
   /**
    * var timestamp: SRAbsoluteTime { get }
    * @availability iOS 14.0+
    */
-  get timestamp(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_067acaa3e5f56b46", 3262110921064717, this, []); }
+  get timestamp(): SRAbsoluteTime { return callSDK<SRAbsoluteTime>("SensorKit_d968214ecc684fb6", 3262110921064717, this, []); }
   declare readonly $type: { "c:objc(cs)SRFetchResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "sample": true; "sourceDevice": true; "timestamp": true };
 }
@@ -1284,7 +1284,7 @@ export class SRHeadphoneMotionSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRHeadphoneMotionSensor { return callSDK<SRHeadphoneMotionSensor>("SensorKit_067acaa3e5f56b46", 3326519825238996, undefined, []); }
+  static init(): SRHeadphoneMotionSensor { return callSDK<SRHeadphoneMotionSensor>("SensorKit_d968214ecc684fb6", 3326519825238996, undefined, []); }
   declare readonly $type: { "s:9SensorKit017SRHeadphoneMotionA0V": true };
 }
 
@@ -1303,37 +1303,37 @@ export class SRHeadphoneSettings extends SDKHandle {
    * var adaptiveAudioStrength: SRHeadphoneSettings.AdaptiveAudioStrength { get }
    * @availability iOS 27.0+
    */
-  get adaptiveAudioStrength(): SRHeadphoneSettings_AdaptiveAudioStrength { return callSDK<SRHeadphoneSettings_AdaptiveAudioStrength>("SensorKit_067acaa3e5f56b46", 1392690014418419, this, []); }
+  get adaptiveAudioStrength(): SRHeadphoneSettings_AdaptiveAudioStrength { return callSDK<SRHeadphoneSettings_AdaptiveAudioStrength>("SensorKit_d968214ecc684fb6", 1392690014418419, this, []); }
   /**
    * var conversationAwarenessEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get conversationAwarenessEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 3812231874862202, this, []); }
+  get conversationAwarenessEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 3812231874862202, this, []); }
   /**
    * var hearingAssistance: SRHeadphoneSettings.HearingAssistance? { get }
    * @availability iOS 27.0+
    */
-  get hearingAssistance(): (SRHeadphoneSettings_HearingAssistance) | null { return callSDK<(SRHeadphoneSettings_HearingAssistance) | null>("SensorKit_067acaa3e5f56b46", 188175857580732, this, []); }
+  get hearingAssistance(): (SRHeadphoneSettings_HearingAssistance) | null { return callSDK<(SRHeadphoneSettings_HearingAssistance) | null>("SensorKit_d968214ecc684fb6", 188175857580732, this, []); }
   /**
    * var listeningMode: SRHeadphoneSettings.ListeningMode { get }
    * @availability iOS 27.0+
    */
-  get listeningMode(): SRHeadphoneSettings_ListeningMode { return callSDK<SRHeadphoneSettings_ListeningMode>("SensorKit_067acaa3e5f56b46", 3974121721407993, this, []); }
+  get listeningMode(): SRHeadphoneSettings_ListeningMode { return callSDK<SRHeadphoneSettings_ListeningMode>("SensorKit_d968214ecc684fb6", 3974121721407993, this, []); }
   /**
    * var personalizedSpatialAudioEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get personalizedSpatialAudioEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 2673052061990876, this, []); }
+  get personalizedSpatialAudioEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 2673052061990876, this, []); }
   /**
    * var personalizedVolumeEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get personalizedVolumeEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 1122020310884690, this, []); }
+  get personalizedVolumeEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 1122020310884690, this, []); }
   /**
    * var spatialAudioEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get spatialAudioEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 1395171914643830, this, []); }
+  get spatialAudioEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 1395171914643830, this, []); }
   declare readonly $type: { "c:objc(cs)SRHeadphoneSettings": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "adaptiveAudioStrength": true; "conversationAwarenessEnabled": true; "hearingAssistance": true; "listeningMode": true; "personalizedSpatialAudioEnabled": true; "personalizedVolumeEnabled": true; "spatialAudioEnabled": true };
 }
@@ -1349,7 +1349,7 @@ export const SRHeadphoneSettings_AdaptiveAudioStrength = {
    * init?(rawValue: UInt32)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (SRHeadphoneSettings_AdaptiveAudioStrength) | null { return callSDK<(SRHeadphoneSettings_AdaptiveAudioStrength) | null>("SensorKit_067acaa3e5f56b46", 780274992741573, undefined, [rawValue]); }
+  init(rawValue: number): (SRHeadphoneSettings_AdaptiveAudioStrength) | null { return callSDK<(SRHeadphoneSettings_AdaptiveAudioStrength) | null>("SensorKit_d968214ecc684fb6", 780274992741573, undefined, [rawValue]); }
 };
 
 /**
@@ -1358,57 +1358,57 @@ export const SRHeadphoneSettings_AdaptiveAudioStrength = {
  */
 export class SRHeadphoneSettings_HearingAssistance extends SDKHandle {
   /** init() */
-  static init(): SRHeadphoneSettings_HearingAssistance { return callSDK<SRHeadphoneSettings_HearingAssistance>("SensorKit_067acaa3e5f56b46", 519674721048082, undefined, []); }
+  static init(): SRHeadphoneSettings_HearingAssistance { return callSDK<SRHeadphoneSettings_HearingAssistance>("SensorKit_d968214ecc684fb6", 519674721048082, undefined, []); }
   /**
    * var adjustMediaEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get adjustMediaEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 4407610046840083, this, []); }
+  get adjustMediaEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 4407610046840083, this, []); }
   /**
    * var adjustVoiceEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get adjustVoiceEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 3022056673404046, this, []); }
+  get adjustVoiceEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 3022056673404046, this, []); }
   /**
    * var ambientNoiseReduction: Double { get }
    * @availability iOS 27.0+
    */
-  get ambientNoiseReduction(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2342467610929299, this, []); }
+  get ambientNoiseReduction(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2342467610929299, this, []); }
   /**
    * var conversationBoostEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get conversationBoostEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 1193277858903737, this, []); }
+  get conversationBoostEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 1193277858903737, this, []); }
   /**
    * var hearingAidAmplification: Double { get }
    * @availability iOS 27.0+
    */
-  get hearingAidAmplification(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 374900843556985, this, []); }
+  get hearingAidAmplification(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 374900843556985, this, []); }
   /**
    * var hearingAidBalance: Double { get }
    * @availability iOS 27.0+
    */
-  get hearingAidBalance(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2307030137267485, this, []); }
+  get hearingAidBalance(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2307030137267485, this, []); }
   /**
    * var hearingAidEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get hearingAidEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 174247405468648, this, []); }
+  get hearingAidEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 174247405468648, this, []); }
   /**
    * var hearingAidTone: Double { get }
    * @availability iOS 27.0+
    */
-  get hearingAidTone(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1529518975556773, this, []); }
+  get hearingAidTone(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1529518975556773, this, []); }
   /**
    * var hearingProtectionEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get hearingProtectionEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 4251301952844571, this, []); }
+  get hearingProtectionEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 4251301952844571, this, []); }
   /**
    * var mediaAssistEnabled: SRHeadphoneSettings.SettingEnablement { get }
    * @availability iOS 27.0+
    */
-  get mediaAssistEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_067acaa3e5f56b46", 755839552508112, this, []); }
+  get mediaAssistEnabled(): SRHeadphoneSettings_SettingEnablement { return callSDK<SRHeadphoneSettings_SettingEnablement>("SensorKit_d968214ecc684fb6", 755839552508112, this, []); }
   declare readonly $type: { "c:objc(cs)SRHeadphoneSettingsHearingAssistance": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "adjustMediaEnabled": true; "adjustVoiceEnabled": true; "ambientNoiseReduction": true; "conversationBoostEnabled": true; "hearingAidAmplification": true; "hearingAidBalance": true; "hearingAidEnabled": true; "hearingAidTone": true; "hearingProtectionEnabled": true; "mediaAssistEnabled": true };
 }
@@ -1424,7 +1424,7 @@ export const SRHeadphoneSettings_ListeningMode = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (SRHeadphoneSettings_ListeningMode) | null { return callSDK<(SRHeadphoneSettings_ListeningMode) | null>("SensorKit_067acaa3e5f56b46", 3531429465364168, undefined, [rawValue]); }
+  init(rawValue: number): (SRHeadphoneSettings_ListeningMode) | null { return callSDK<(SRHeadphoneSettings_ListeningMode) | null>("SensorKit_d968214ecc684fb6", 3531429465364168, undefined, [rawValue]); }
 };
 
 /**
@@ -1438,7 +1438,7 @@ export const SRHeadphoneSettings_SettingEnablement = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (SRHeadphoneSettings_SettingEnablement) | null { return callSDK<(SRHeadphoneSettings_SettingEnablement) | null>("SensorKit_067acaa3e5f56b46", 4018145714356078, undefined, [rawValue]); }
+  init(rawValue: number): (SRHeadphoneSettings_SettingEnablement) | null { return callSDK<(SRHeadphoneSettings_SettingEnablement) | null>("SensorKit_d968214ecc684fb6", 4018145714356078, undefined, [rawValue]); }
 };
 
 /**
@@ -1450,7 +1450,7 @@ export class SRHeadphoneSettingsSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRHeadphoneSettingsSensor { return callSDK<SRHeadphoneSettingsSensor>("SensorKit_067acaa3e5f56b46", 3726329549762808, undefined, []); }
+  static init(): SRHeadphoneSettingsSensor { return callSDK<SRHeadphoneSettingsSensor>("SensorKit_d968214ecc684fb6", 3726329549762808, undefined, []); }
   declare readonly $type: { "s:9SensorKit019SRHeadphoneSettingsA0V": true };
 }
 
@@ -1469,7 +1469,7 @@ export class SRHeartRateSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRHeartRateSensor { return callSDK<SRHeartRateSensor>("SensorKit_067acaa3e5f56b46", 443992803864378, undefined, []); }
+  static init(): SRHeartRateSensor { return callSDK<SRHeartRateSensor>("SensorKit_d968214ecc684fb6", 443992803864378, undefined, []); }
   declare readonly $type: { "s:9SensorKit011SRHeartRateA0V": true };
 }
 
@@ -1488,404 +1488,404 @@ export class SRKeyboardMetrics extends SDKHandle {
    * func emojiCount(for category: SRKeyboardMetrics.SentimentCategory) -> Int
    * @availability iOS 15.0+
    */
-  emojiCount(category: SRKeyboardMetrics_SentimentCategory): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3928439859490336, this, [category]); }
+  emojiCount(category: SRKeyboardMetrics_SentimentCategory): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3928439859490336, this, [category]); }
   /** init() */
-  static init(): SRKeyboardMetrics { return callSDK<SRKeyboardMetrics>("SensorKit_067acaa3e5f56b46", 3432208180511307, undefined, []); }
+  static init(): SRKeyboardMetrics { return callSDK<SRKeyboardMetrics>("SensorKit_d968214ecc684fb6", 3432208180511307, undefined, []); }
   /**
    * func wordCount(for category: SRKeyboardMetrics.SentimentCategory) -> Int
    * @availability iOS 15.0+
    */
-  wordCount(category: SRKeyboardMetrics_SentimentCategory): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2223885434953393, this, [category]); }
+  wordCount(category: SRKeyboardMetrics_SentimentCategory): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2223885434953393, this, [category]); }
   /**
    * var anyTapToCharKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get anyTapToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 3461367558756366, this, []); }
+  get anyTapToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 3461367558756366, this, []); }
   /**
    * var anyTapToPlaneChangeKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get anyTapToPlaneChangeKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 4100585165107109, this, []); }
+  get anyTapToPlaneChangeKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 4100585165107109, this, []); }
   /**
    * var charKeyToAnyTapKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get charKeyToAnyTapKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 4379326364519807, this, []); }
+  get charKeyToAnyTapKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 4379326364519807, this, []); }
   /**
    * var charKeyToDelete: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get charKeyToDelete(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 2632598842681710, this, []); }
+  get charKeyToDelete(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 2632598842681710, this, []); }
   /**
    * var charKeyToPlaneChangeKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get charKeyToPlaneChangeKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 2204590773519500, this, []); }
+  get charKeyToPlaneChangeKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 2204590773519500, this, []); }
   /**
    * var charKeyToPrediction: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get charKeyToPrediction(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 4096174087339709, this, []); }
+  get charKeyToPrediction(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 4096174087339709, this, []); }
   /**
    * var charKeyToSpaceKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get charKeyToSpaceKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 2645313925467946, this, []); }
+  get charKeyToSpaceKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 2645313925467946, this, []); }
   /**
    * var deleteDownErrorDistance: SRKeyboardMetrics.ProbabilityMetric<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get deleteDownErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_067acaa3e5f56b46", 1341553186748134, this, []); }
+  get deleteDownErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_d968214ecc684fb6", 1341553186748134, this, []); }
   /**
    * var deleteToCharKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get deleteToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 2998410896402120, this, []); }
+  get deleteToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 2998410896402120, this, []); }
   /**
    * var deleteToDelete: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get deleteToDelete(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 4372862692710188, this, []); }
+  get deleteToDelete(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 4372862692710188, this, []); }
   /**
    * var deleteToDeletes: [SRKeyboardMetrics.ProbabilityMetric<UnitDuration>] { get }
    * @availability iOS 14.0+
    */
-  get deleteToDeletes(): $SDK17 { return callSDK<$SDK17>("SensorKit_067acaa3e5f56b46", 1092389203954789, this, []); }
+  get deleteToDeletes(): $SDK17 { return callSDK<$SDK17>("SensorKit_d968214ecc684fb6", 1092389203954789, this, []); }
   /**
    * var deleteToPath: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get deleteToPath(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 971717625454757, this, []); }
+  get deleteToPath(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 971717625454757, this, []); }
   /**
    * var deleteToPlaneChangeKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get deleteToPlaneChangeKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 1189328960164067, this, []); }
+  get deleteToPlaneChangeKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 1189328960164067, this, []); }
   /**
    * var deleteToShiftKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get deleteToShiftKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 739761316740000, this, []); }
+  get deleteToShiftKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 739761316740000, this, []); }
   /**
    * var deleteToSpaceKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get deleteToSpaceKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 324378790389724, this, []); }
+  get deleteToSpaceKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 324378790389724, this, []); }
   /**
    * var deleteTouchDownUp: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get deleteTouchDownUp(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 2982246006332148, this, []); }
+  get deleteTouchDownUp(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 2982246006332148, this, []); }
   /**
    * var deleteUpErrorDistance: SRKeyboardMetrics.ProbabilityMetric<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get deleteUpErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_067acaa3e5f56b46", 3032039049520262, this, []); }
+  get deleteUpErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_d968214ecc684fb6", 3032039049520262, this, []); }
   /**
    * var downErrorDistance: SRKeyboardMetrics.ProbabilityMetric<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get downErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_067acaa3e5f56b46", 1045607412210938, this, []); }
+  get downErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_d968214ecc684fb6", 1045607412210938, this, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get duration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 374444348875692, this, []); }
+  get duration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 374444348875692, this, []); }
   /**
    * var height: Measurement<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get height(): $SDK18 { return callSDK<$SDK18>("SensorKit_067acaa3e5f56b46", 2332769957375106, this, []); }
+  get height(): $SDK18 { return callSDK<$SDK18>("SensorKit_d968214ecc684fb6", 2332769957375106, this, []); }
   /**
    * var inputModes: [String] { get }
    * @availability iOS 15.0+
    */
-  get inputModes(): Array<string> { return callSDK<Array<string>>("SensorKit_067acaa3e5f56b46", 4424136091160943, this, []); }
+  get inputModes(): Array<string> { return callSDK<Array<string>>("SensorKit_d968214ecc684fb6", 4424136091160943, this, []); }
   /**
    * var keyboardIdentifier: String { get }
    * @availability iOS 14.0+
    */
-  get keyboardIdentifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 67581278644123, this, []); }
+  get keyboardIdentifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 67581278644123, this, []); }
   /**
    * var longWordDownErrorDistance: [SRKeyboardMetrics.ProbabilityMetric<UnitLength>] { get }
    * @availability iOS 14.0+
    */
-  get longWordDownErrorDistance(): $SDK19 { return callSDK<$SDK19>("SensorKit_067acaa3e5f56b46", 3357655497426992, this, []); }
+  get longWordDownErrorDistance(): $SDK19 { return callSDK<$SDK19>("SensorKit_d968214ecc684fb6", 3357655497426992, this, []); }
   /**
    * var longWordTouchDownDown: [SRKeyboardMetrics.ProbabilityMetric<UnitDuration>] { get }
    * @availability iOS 14.0+
    */
-  get longWordTouchDownDown(): $SDK17 { return callSDK<$SDK17>("SensorKit_067acaa3e5f56b46", 2624972595202864, this, []); }
+  get longWordTouchDownDown(): $SDK17 { return callSDK<$SDK17>("SensorKit_d968214ecc684fb6", 2624972595202864, this, []); }
   /**
    * var longWordTouchDownUp: [SRKeyboardMetrics.ProbabilityMetric<UnitDuration>] { get }
    * @availability iOS 14.0+
    */
-  get longWordTouchDownUp(): $SDK17 { return callSDK<$SDK17>("SensorKit_067acaa3e5f56b46", 4064041076425419, this, []); }
+  get longWordTouchDownUp(): $SDK17 { return callSDK<$SDK17>("SensorKit_d968214ecc684fb6", 4064041076425419, this, []); }
   /**
    * var longWordTouchUpDown: [SRKeyboardMetrics.ProbabilityMetric<UnitDuration>] { get }
    * @availability iOS 16.4+
    */
-  get longWordTouchUpDown(): $SDK17 { return callSDK<$SDK17>("SensorKit_067acaa3e5f56b46", 3420987679801836, this, []); }
+  get longWordTouchUpDown(): $SDK17 { return callSDK<$SDK17>("SensorKit_d968214ecc684fb6", 3420987679801836, this, []); }
   /**
    * var longWordUpErrorDistance: [SRKeyboardMetrics.ProbabilityMetric<UnitLength>] { get }
    * @availability iOS 14.0+
    */
-  get longWordUpErrorDistance(): $SDK19 { return callSDK<$SDK19>("SensorKit_067acaa3e5f56b46", 3135412764743167, this, []); }
+  get longWordUpErrorDistance(): $SDK19 { return callSDK<$SDK19>("SensorKit_d968214ecc684fb6", 3135412764743167, this, []); }
   /**
    * var pathErrorDistanceRatio: [NSNumber] { get }
    * @availability iOS 14.0+
    */
-  get pathErrorDistanceRatio(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("SensorKit_067acaa3e5f56b46", 53464514187565, this, []); }
+  get pathErrorDistanceRatio(): Array<_Foundation_NSNumber> { return callSDK<Array<_Foundation_NSNumber>>("SensorKit_d968214ecc684fb6", 53464514187565, this, []); }
   /**
    * var pathToDelete: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get pathToDelete(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 3381157449505921, this, []); }
+  get pathToDelete(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 3381157449505921, this, []); }
   /**
    * var pathToPath: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get pathToPath(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 420159310945616, this, []); }
+  get pathToPath(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 420159310945616, this, []); }
   /**
    * var pathToSpace: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get pathToSpace(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 549316291043229, this, []); }
+  get pathToSpace(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 549316291043229, this, []); }
   /**
    * var pathTypingSpeed: Double { get }
    * @availability iOS 15.0+
    */
-  get pathTypingSpeed(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2584223051158951, this, []); }
+  get pathTypingSpeed(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2584223051158951, this, []); }
   /**
    * var planeChangeKeyToCharKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get planeChangeKeyToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 908226523929100, this, []); }
+  get planeChangeKeyToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 908226523929100, this, []); }
   /**
    * var planeChangeToAnyTap: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get planeChangeToAnyTap(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 2280786132631403, this, []); }
+  get planeChangeToAnyTap(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 2280786132631403, this, []); }
   /**
    * var sessionIdentifiers: [String] { get }
    * @availability iOS 16.4+
    */
-  get sessionIdentifiers(): Array<string> { return callSDK<Array<string>>("SensorKit_067acaa3e5f56b46", 4355586116581196, this, []); }
+  get sessionIdentifiers(): Array<string> { return callSDK<Array<string>>("SensorKit_d968214ecc684fb6", 4355586116581196, this, []); }
   /**
    * var shortWordCharKeyDownErrorDistance: SRKeyboardMetrics.ProbabilityMetric<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get shortWordCharKeyDownErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_067acaa3e5f56b46", 2097999965589209, this, []); }
+  get shortWordCharKeyDownErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_d968214ecc684fb6", 2097999965589209, this, []); }
   /**
    * var shortWordCharKeyToCharKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get shortWordCharKeyToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 3092138750765579, this, []); }
+  get shortWordCharKeyToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 3092138750765579, this, []); }
   /**
    * var shortWordCharKeyTouchDownUp: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get shortWordCharKeyTouchDownUp(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 1835101179536747, this, []); }
+  get shortWordCharKeyTouchDownUp(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 1835101179536747, this, []); }
   /**
    * var shortWordCharKeyUpErrorDistance: SRKeyboardMetrics.ProbabilityMetric<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get shortWordCharKeyUpErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_067acaa3e5f56b46", 3871662448621582, this, []); }
+  get shortWordCharKeyUpErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_d968214ecc684fb6", 3871662448621582, this, []); }
   /**
    * var spaceDownErrorDistance: SRKeyboardMetrics.ProbabilityMetric<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get spaceDownErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_067acaa3e5f56b46", 2532694148722719, this, []); }
+  get spaceDownErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_d968214ecc684fb6", 2532694148722719, this, []); }
   /**
    * var spaceToCharKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get spaceToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 3808862693249332, this, []); }
+  get spaceToCharKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 3808862693249332, this, []); }
   /**
    * var spaceToDeleteKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get spaceToDeleteKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 4272067821074220, this, []); }
+  get spaceToDeleteKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 4272067821074220, this, []); }
   /**
    * var spaceToPath: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get spaceToPath(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 3116816416812916, this, []); }
+  get spaceToPath(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 3116816416812916, this, []); }
   /**
    * var spaceToPlaneChangeKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get spaceToPlaneChangeKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 1733939428538673, this, []); }
+  get spaceToPlaneChangeKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 1733939428538673, this, []); }
   /**
    * var spaceToPredictionKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get spaceToPredictionKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 3011859196801116, this, []); }
+  get spaceToPredictionKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 3011859196801116, this, []); }
   /**
    * var spaceToShiftKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get spaceToShiftKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 15920383931333, this, []); }
+  get spaceToShiftKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 15920383931333, this, []); }
   /**
    * var spaceToSpaceKey: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get spaceToSpaceKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 3568968982353129, this, []); }
+  get spaceToSpaceKey(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 3568968982353129, this, []); }
   /**
    * var spaceTouchDownUp: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get spaceTouchDownUp(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 3358063149979201, this, []); }
+  get spaceTouchDownUp(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 3358063149979201, this, []); }
   /**
    * var spaceUpErrorDistance: SRKeyboardMetrics.ProbabilityMetric<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get spaceUpErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_067acaa3e5f56b46", 3583489664141533, this, []); }
+  get spaceUpErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_d968214ecc684fb6", 3583489664141533, this, []); }
   /**
    * var totalAlteredWords: Int { get }
    * @availability iOS 14.0+
    */
-  get totalAlteredWords(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 335921773866362, this, []); }
+  get totalAlteredWords(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 335921773866362, this, []); }
   /**
    * var totalAutoCorrections: Int { get }
    * @availability iOS 14.0+
    */
-  get totalAutoCorrections(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1841747220275867, this, []); }
+  get totalAutoCorrections(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1841747220275867, this, []); }
   /**
    * var totalDeletes: Int { get }
    * @availability iOS 14.0+
    */
-  get totalDeletes(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1717637137842196, this, []); }
+  get totalDeletes(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1717637137842196, this, []); }
   /**
    * var totalDrags: Int { get }
    * @availability iOS 14.0+
    */
-  get totalDrags(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 332265659881757, this, []); }
+  get totalDrags(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 332265659881757, this, []); }
   /**
    * var totalEmojis: Int { get }
    * @availability iOS 14.0+
    */
-  get totalEmojis(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 4042728290371447, this, []); }
+  get totalEmojis(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 4042728290371447, this, []); }
   /**
    * var totalHitTestCorrections: Int { get }
    * @availability iOS 14.0+
    */
-  get totalHitTestCorrections(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 4188254155620518, this, []); }
+  get totalHitTestCorrections(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 4188254155620518, this, []); }
   /**
    * var totalInsertKeyCorrections: Int { get }
    * @availability iOS 14.0+
    */
-  get totalInsertKeyCorrections(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1817047743168190, this, []); }
+  get totalInsertKeyCorrections(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1817047743168190, this, []); }
   /**
    * var totalNearKeyCorrections: Int { get }
    * @availability iOS 14.0+
    */
-  get totalNearKeyCorrections(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 758768607291962, this, []); }
+  get totalNearKeyCorrections(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 758768607291962, this, []); }
   /**
    * var totalPathLength: Measurement<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get totalPathLength(): $SDK18 { return callSDK<$SDK18>("SensorKit_067acaa3e5f56b46", 1168127490121828, this, []); }
+  get totalPathLength(): $SDK18 { return callSDK<$SDK18>("SensorKit_d968214ecc684fb6", 1168127490121828, this, []); }
   /**
    * var totalPathPauses: Int { get }
    * @availability iOS 15.0+
    */
-  get totalPathPauses(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3587812272815046, this, []); }
+  get totalPathPauses(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3587812272815046, this, []); }
   /**
    * var totalPathTime: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get totalPathTime(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 4037853118639127, this, []); }
+  get totalPathTime(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 4037853118639127, this, []); }
   /**
    * var totalPaths: Int { get }
    * @availability iOS 14.0+
    */
-  get totalPaths(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3449592197717284, this, []); }
+  get totalPaths(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3449592197717284, this, []); }
   /**
    * var totalPauses: Int { get }
    * @availability iOS 15.0+
    */
-  get totalPauses(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 4440638082612263, this, []); }
+  get totalPauses(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 4440638082612263, this, []); }
   /**
    * var totalRetroCorrections: Int { get }
    * @availability iOS 14.0+
    */
-  get totalRetroCorrections(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3881462102234701, this, []); }
+  get totalRetroCorrections(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3881462102234701, this, []); }
   /**
    * var totalSkipTouchCorrections: Int { get }
    * @availability iOS 14.0+
    */
-  get totalSkipTouchCorrections(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 164992020465736, this, []); }
+  get totalSkipTouchCorrections(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 164992020465736, this, []); }
   /**
    * var totalSpaceCorrections: Int { get }
    * @availability iOS 14.0+
    */
-  get totalSpaceCorrections(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3780874625936192, this, []); }
+  get totalSpaceCorrections(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3780874625936192, this, []); }
   /**
    * var totalSubstitutionCorrections: Int { get }
    * @availability iOS 14.0+
    */
-  get totalSubstitutionCorrections(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 4042607247516884, this, []); }
+  get totalSubstitutionCorrections(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 4042607247516884, this, []); }
   /**
    * var totalTaps: Int { get }
    * @availability iOS 14.0+
    */
-  get totalTaps(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1913966720403821, this, []); }
+  get totalTaps(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1913966720403821, this, []); }
   /**
    * var totalTranspositionCorrections: Int { get }
    * @availability iOS 14.0+
    */
-  get totalTranspositionCorrections(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3846725210785825, this, []); }
+  get totalTranspositionCorrections(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3846725210785825, this, []); }
   /**
    * var totalTypingDuration: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get totalTypingDuration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3217353135310141, this, []); }
+  get totalTypingDuration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3217353135310141, this, []); }
   /**
    * var totalTypingEpisodes: Int { get }
    * @availability iOS 15.0+
    */
-  get totalTypingEpisodes(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 4156820677355596, this, []); }
+  get totalTypingEpisodes(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 4156820677355596, this, []); }
   /**
    * var totalWords: Int { get }
    * @availability iOS 14.0+
    */
-  get totalWords(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2005396922349339, this, []); }
+  get totalWords(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2005396922349339, this, []); }
   /**
    * var touchDownDown: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get touchDownDown(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 779226611405682, this, []); }
+  get touchDownDown(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 779226611405682, this, []); }
   /**
    * var touchDownUp: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 14.0+
    */
-  get touchDownUp(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 3954581643532598, this, []); }
+  get touchDownUp(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 3954581643532598, this, []); }
   /**
    * var touchUpDown: SRKeyboardMetrics.ProbabilityMetric<UnitDuration> { get }
    * @availability iOS 16.4+
    */
-  get touchUpDown(): $SDK15 { return callSDK<$SDK15>("SensorKit_067acaa3e5f56b46", 1357550754281960, this, []); }
+  get touchUpDown(): $SDK15 { return callSDK<$SDK15>("SensorKit_d968214ecc684fb6", 1357550754281960, this, []); }
   /**
    * var typingSpeed: Double { get }
    * @availability iOS 15.0+
    */
-  get typingSpeed(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3342159650989290, this, []); }
+  get typingSpeed(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3342159650989290, this, []); }
   /**
    * var upErrorDistance: SRKeyboardMetrics.ProbabilityMetric<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get upErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_067acaa3e5f56b46", 2828494594768498, this, []); }
+  get upErrorDistance(): $SDK16 { return callSDK<$SDK16>("SensorKit_d968214ecc684fb6", 2828494594768498, this, []); }
   /**
    * var version: String { get }
    * @availability iOS 14.0+
    */
-  get version(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 1957259278106607, this, []); }
+  get version(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 1957259278106607, this, []); }
   /**
    * var width: Measurement<UnitLength> { get }
    * @availability iOS 14.0+
    */
-  get width(): $SDK18 { return callSDK<$SDK18>("SensorKit_067acaa3e5f56b46", 2923281334595769, this, []); }
+  get width(): $SDK18 { return callSDK<$SDK18>("SensorKit_d968214ecc684fb6", 2923281334595769, this, []); }
   declare readonly $type: { "c:objc(cs)SRKeyboardMetrics": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "anyTapToCharKey": true; "anyTapToPlaneChangeKey": true; "charKeyToAnyTapKey": true; "charKeyToDelete": true; "charKeyToPlaneChangeKey": true; "charKeyToPrediction": true; "charKeyToSpaceKey": true; "deleteDownErrorDistance": true; "deleteToCharKey": true; "deleteToDelete": true; "deleteToDeletes": true; "deleteToPath": true; "deleteToPlaneChangeKey": true; "deleteToShiftKey": true; "deleteToSpaceKey": true; "deleteTouchDownUp": true; "deleteUpErrorDistance": true; "downErrorDistance": true; "duration": true; "height": true; "inputModes": true; "keyboardIdentifier": true; "longWordDownErrorDistance": true; "longWordTouchDownDown": true; "longWordTouchDownUp": true; "longWordTouchUpDown": true; "longWordUpErrorDistance": true; "pathErrorDistanceRatio": true; "pathToDelete": true; "pathToPath": true; "pathToSpace": true; "pathTypingSpeed": true; "planeChangeKeyToCharKey": true; "planeChangeToAnyTap": true; "sessionIdentifiers": true; "shortWordCharKeyDownErrorDistance": true; "shortWordCharKeyToCharKey": true; "shortWordCharKeyTouchDownUp": true; "shortWordCharKeyUpErrorDistance": true; "spaceDownErrorDistance": true; "spaceToCharKey": true; "spaceToDeleteKey": true; "spaceToPath": true; "spaceToPlaneChangeKey": true; "spaceToPredictionKey": true; "spaceToShiftKey": true; "spaceToSpaceKey": true; "spaceTouchDownUp": true; "spaceUpErrorDistance": true; "totalAlteredWords": true; "totalAutoCorrections": true; "totalDeletes": true; "totalDrags": true; "totalEmojis": true; "totalHitTestCorrections": true; "totalInsertKeyCorrections": true; "totalNearKeyCorrections": true; "totalPathLength": true; "totalPathPauses": true; "totalPathTime": true; "totalPaths": true; "totalPauses": true; "totalRetroCorrections": true; "totalSkipTouchCorrections": true; "totalSpaceCorrections": true; "totalSubstitutionCorrections": true; "totalTaps": true; "totalTranspositionCorrections": true; "totalTypingDuration": true; "totalTypingEpisodes": true; "totalWords": true; "touchDownDown": true; "touchDownUp": true; "touchUpDown": true; "typingSpeed": true; "upErrorDistance": true; "version": true; "width": true };
 }
@@ -1896,12 +1896,12 @@ export class SRKeyboardMetrics extends SDKHandle {
  */
 export class SRKeyboardMetrics_ProbabilityMetric<UnitType = unknown> extends SDKHandle {
   /** init() */
-  static init(): SRKeyboardMetrics_ProbabilityMetric<_Foundation_Unit> { return callSDK<SRKeyboardMetrics_ProbabilityMetric<_Foundation_Unit>>("SensorKit_067acaa3e5f56b46", 2687571080488742, undefined, []); }
+  static init(): SRKeyboardMetrics_ProbabilityMetric<_Foundation_Unit> { return callSDK<SRKeyboardMetrics_ProbabilityMetric<_Foundation_Unit>>("SensorKit_d968214ecc684fb6", 2687571080488742, undefined, []); }
   /**
    * var distributionSampleValues: [Measurement<UnitType>] { get }
    * @availability iOS 14.0+
    */
-  get distributionSampleValues(): Array<_Foundation_Measurement<_Foundation_Unit>> { return callSDK<Array<_Foundation_Measurement<_Foundation_Unit>>>("SensorKit_067acaa3e5f56b46", 2197023762856924, this, []); }
+  get distributionSampleValues(): Array<_Foundation_Measurement<_Foundation_Unit>> { return callSDK<Array<_Foundation_Measurement<_Foundation_Unit>>>("SensorKit_d968214ecc684fb6", 2197023762856924, this, []); }
   declare readonly $type: { "c:objc(cs)SRKeyboardProbabilityMetric": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "distributionSampleValues": true };
 }
@@ -1917,7 +1917,7 @@ export const SRKeyboardMetrics_SentimentCategory = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (SRKeyboardMetrics_SentimentCategory) | null { return callSDK<(SRKeyboardMetrics_SentimentCategory) | null>("SensorKit_067acaa3e5f56b46", 2911719205267609, undefined, [rawValue]); }
+  init(rawValue: number): (SRKeyboardMetrics_SentimentCategory) | null { return callSDK<(SRKeyboardMetrics_SentimentCategory) | null>("SensorKit_d968214ecc684fb6", 2911719205267609, undefined, [rawValue]); }
 };
 
 /**
@@ -1929,7 +1929,7 @@ export class SRKeyboardMetricsSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRKeyboardMetricsSensor { return callSDK<SRKeyboardMetricsSensor>("SensorKit_067acaa3e5f56b46", 1423798642014942, undefined, []); }
+  static init(): SRKeyboardMetricsSensor { return callSDK<SRKeyboardMetricsSensor>("SensorKit_d968214ecc684fb6", 1423798642014942, undefined, []); }
   declare readonly $type: { "s:9SensorKit017SRKeyboardMetricsA0V": true };
 }
 
@@ -1945,17 +1945,17 @@ export type SRKeyboardMetricsSensor_Sample = SRKeyboardMetrics;
  */
 export class SRMediaEvent extends SDKHandle {
   /** init() */
-  static init(): SRMediaEvent { return callSDK<SRMediaEvent>("SensorKit_067acaa3e5f56b46", 3175056991524873, undefined, []); }
+  static init(): SRMediaEvent { return callSDK<SRMediaEvent>("SensorKit_d968214ecc684fb6", 3175056991524873, undefined, []); }
   /**
    * var eventType: SRMediaEventType { get }
    * @availability iOS 16.4+
    */
-  get eventType(): SRMediaEventType { return callSDK<SRMediaEventType>("SensorKit_067acaa3e5f56b46", 4264333259443027, this, []); }
+  get eventType(): SRMediaEventType { return callSDK<SRMediaEventType>("SensorKit_d968214ecc684fb6", 4264333259443027, this, []); }
   /**
    * var mediaIdentifier: String { get }
    * @availability iOS 16.4+
    */
-  get mediaIdentifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 4204041934026813, this, []); }
+  get mediaIdentifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 4204041934026813, this, []); }
   declare readonly $type: { "c:objc(cs)SRMediaEvent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "eventType": true; "mediaIdentifier": true };
 }
@@ -1969,7 +1969,7 @@ export class SRMediaEventsSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRMediaEventsSensor { return callSDK<SRMediaEventsSensor>("SensorKit_067acaa3e5f56b46", 312912372785406, undefined, []); }
+  static init(): SRMediaEventsSensor { return callSDK<SRMediaEventsSensor>("SensorKit_d968214ecc684fb6", 312912372785406, undefined, []); }
   declare readonly $type: { "s:9SensorKit013SRMediaEventsA0V": true };
 }
 
@@ -1990,7 +1990,7 @@ export const SRMediaEventType = {
    * init?(rawValue: Int)
    * @availability iOS 16.4+
    */
-  init(rawValue: number): (SRMediaEventType) | null { return callSDK<(SRMediaEventType) | null>("SensorKit_067acaa3e5f56b46", 1547801852849872, undefined, [rawValue]); }
+  init(rawValue: number): (SRMediaEventType) | null { return callSDK<(SRMediaEventType) | null>("SensorKit_d968214ecc684fb6", 1547801852849872, undefined, [rawValue]); }
 };
 
 /**
@@ -1999,27 +1999,27 @@ export const SRMediaEventType = {
  */
 export class SRMessagesUsageReport extends SDKHandle {
   /** init() */
-  static init(): SRMessagesUsageReport { return callSDK<SRMessagesUsageReport>("SensorKit_067acaa3e5f56b46", 2206146653184164, undefined, []); }
+  static init(): SRMessagesUsageReport { return callSDK<SRMessagesUsageReport>("SensorKit_d968214ecc684fb6", 2206146653184164, undefined, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get duration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3469643600661909, this, []); }
+  get duration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3469643600661909, this, []); }
   /**
    * var totalIncomingMessages: Int { get }
    * @availability iOS 14.0+
    */
-  get totalIncomingMessages(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1322739283553516, this, []); }
+  get totalIncomingMessages(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1322739283553516, this, []); }
   /**
    * var totalOutgoingMessages: Int { get }
    * @availability iOS 14.0+
    */
-  get totalOutgoingMessages(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 254594062093872, this, []); }
+  get totalOutgoingMessages(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 254594062093872, this, []); }
   /**
    * var totalUniqueContacts: Int { get }
    * @availability iOS 14.0+
    */
-  get totalUniqueContacts(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1483419126699792, this, []); }
+  get totalUniqueContacts(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1483419126699792, this, []); }
   declare readonly $type: { "c:objc(cs)SRMessagesUsageReport": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "totalIncomingMessages": true; "totalOutgoingMessages": true; "totalUniqueContacts": true };
 }
@@ -2033,7 +2033,7 @@ export class SRMessagesUsageSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRMessagesUsageSensor { return callSDK<SRMessagesUsageSensor>("SensorKit_067acaa3e5f56b46", 3659560280227922, undefined, []); }
+  static init(): SRMessagesUsageSensor { return callSDK<SRMessagesUsageSensor>("SensorKit_d968214ecc684fb6", 3659560280227922, undefined, []); }
   declare readonly $type: { "s:9SensorKit015SRMessagesUsageA0V": true };
 }
 
@@ -2052,7 +2052,7 @@ export class SROdometerSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SROdometerSensor { return callSDK<SROdometerSensor>("SensorKit_067acaa3e5f56b46", 3740523488559461, undefined, []); }
+  static init(): SROdometerSensor { return callSDK<SROdometerSensor>("SensorKit_d968214ecc684fb6", 3740523488559461, undefined, []); }
   declare readonly $type: { "s:9SensorKit010SROdometerA0V": true };
 }
 
@@ -2071,7 +2071,7 @@ export class SROnWristStateSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SROnWristStateSensor { return callSDK<SROnWristStateSensor>("SensorKit_067acaa3e5f56b46", 1319386702487914, undefined, []); }
+  static init(): SROnWristStateSensor { return callSDK<SROnWristStateSensor>("SensorKit_d968214ecc684fb6", 1319386702487914, undefined, []); }
   declare readonly $type: { "s:9SensorKit014SROnWristStateA0V": true };
 }
 
@@ -2090,7 +2090,7 @@ export class SRPedometerDataSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRPedometerDataSensor { return callSDK<SRPedometerDataSensor>("SensorKit_067acaa3e5f56b46", 3699104810438308, undefined, []); }
+  static init(): SRPedometerDataSensor { return callSDK<SRPedometerDataSensor>("SensorKit_d968214ecc684fb6", 3699104810438308, undefined, []); }
   declare readonly $type: { "s:9SensorKit015SRPedometerDataA0V": true };
 }
 
@@ -2106,32 +2106,32 @@ export type SRPedometerDataSensor_Sample = _CoreMotion_CMPedometerData;
  */
 export class SRPhoneUsageReport extends SDKHandle {
   /** init() */
-  static init(): SRPhoneUsageReport { return callSDK<SRPhoneUsageReport>("SensorKit_067acaa3e5f56b46", 2107413679577219, undefined, []); }
+  static init(): SRPhoneUsageReport { return callSDK<SRPhoneUsageReport>("SensorKit_d968214ecc684fb6", 2107413679577219, undefined, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get duration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2822429609923164, this, []); }
+  get duration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2822429609923164, this, []); }
   /**
    * var totalIncomingCalls: Int { get }
    * @availability iOS 14.0+
    */
-  get totalIncomingCalls(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 604850279304806, this, []); }
+  get totalIncomingCalls(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 604850279304806, this, []); }
   /**
    * var totalOutgoingCalls: Int { get }
    * @availability iOS 14.0+
    */
-  get totalOutgoingCalls(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1394956115401470, this, []); }
+  get totalOutgoingCalls(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1394956115401470, this, []); }
   /**
    * var totalPhoneCallDuration: TimeInterval { get }
    * @availability iOS 14.0+
    */
-  get totalPhoneCallDuration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1944132012397503, this, []); }
+  get totalPhoneCallDuration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1944132012397503, this, []); }
   /**
    * var totalUniqueContacts: Int { get }
    * @availability iOS 14.0+
    */
-  get totalUniqueContacts(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2657319497322845, this, []); }
+  get totalUniqueContacts(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2657319497322845, this, []); }
   declare readonly $type: { "c:objc(cs)SRPhoneUsageReport": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "totalIncomingCalls": true; "totalOutgoingCalls": true; "totalPhoneCallDuration": true; "totalUniqueContacts": true };
 }
@@ -2145,7 +2145,7 @@ export class SRPhoneUsageSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRPhoneUsageSensor { return callSDK<SRPhoneUsageSensor>("SensorKit_067acaa3e5f56b46", 2315590212123316, undefined, []); }
+  static init(): SRPhoneUsageSensor { return callSDK<SRPhoneUsageSensor>("SensorKit_d968214ecc684fb6", 2315590212123316, undefined, []); }
   declare readonly $type: { "s:9SensorKit012SRPhoneUsageA0V": true };
 }
 
@@ -2164,27 +2164,27 @@ export class SRPhotoplethysmogramAccelerometerSample extends SDKHandle {
    * var nanosecondsSinceStart: Int64 { get }
    * @availability iOS 17.4+
    */
-  get nanosecondsSinceStart(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1215356593265064, this, []); }
+  get nanosecondsSinceStart(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1215356593265064, this, []); }
   /**
    * var samplingFrequency: Measurement<UnitFrequency> { get }
    * @availability iOS 17.4+
    */
-  get samplingFrequency(): $SDK10 { return callSDK<$SDK10>("SensorKit_067acaa3e5f56b46", 3107300517598065, this, []); }
+  get samplingFrequency(): $SDK10 { return callSDK<$SDK10>("SensorKit_d968214ecc684fb6", 3107300517598065, this, []); }
   /**
    * var x: Measurement<UnitAcceleration> { get }
    * @availability iOS 17.4+
    */
-  get x(): $SDK23 { return callSDK<$SDK23>("SensorKit_067acaa3e5f56b46", 554683158513857, this, []); }
+  get x(): $SDK23 { return callSDK<$SDK23>("SensorKit_d968214ecc684fb6", 554683158513857, this, []); }
   /**
    * var y: Measurement<UnitAcceleration> { get }
    * @availability iOS 17.4+
    */
-  get y(): $SDK23 { return callSDK<$SDK23>("SensorKit_067acaa3e5f56b46", 146505459366826, this, []); }
+  get y(): $SDK23 { return callSDK<$SDK23>("SensorKit_d968214ecc684fb6", 146505459366826, this, []); }
   /**
    * var z: Measurement<UnitAcceleration> { get }
    * @availability iOS 17.4+
    */
-  get z(): $SDK23 { return callSDK<$SDK23>("SensorKit_067acaa3e5f56b46", 4354779299509902, this, []); }
+  get z(): $SDK23 { return callSDK<$SDK23>("SensorKit_d968214ecc684fb6", 4354779299509902, this, []); }
   declare readonly $type: { "c:objc(cs)SRPhotoplethysmogramAccelerometerSample": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "nanosecondsSinceStart": true; "samplingFrequency": true; "x": true; "y": true; "z": true };
 }
@@ -2198,52 +2198,52 @@ export class SRPhotoplethysmogramOpticalSample extends SDKHandle {
    * var activePhotodiodeIndexes: IndexSet { get }
    * @availability iOS 17.4+
    */
-  get activePhotodiodeIndexes(): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("SensorKit_067acaa3e5f56b46", 2063898291113040, this, []); }
+  get activePhotodiodeIndexes(): _Foundation_IndexSet { return callSDK<_Foundation_IndexSet>("SensorKit_d968214ecc684fb6", 2063898291113040, this, []); }
   /**
    * var conditions: [SRPhotoplethysmogramOpticalSample.Condition] { get }
    * @availability iOS 17.4+
    */
-  get conditions(): Array<SRPhotoplethysmogramOpticalSample_Condition> { return callSDK<Array<SRPhotoplethysmogramOpticalSample_Condition>>("SensorKit_067acaa3e5f56b46", 2081030566679955, this, []); }
+  get conditions(): Array<SRPhotoplethysmogramOpticalSample_Condition> { return callSDK<Array<SRPhotoplethysmogramOpticalSample_Condition>>("SensorKit_d968214ecc684fb6", 2081030566679955, this, []); }
   /**
    * var effectiveWavelength: Measurement<UnitLength> { get }
    * @availability iOS 17.4+
    */
-  get effectiveWavelength(): $SDK18 { return callSDK<$SDK18>("SensorKit_067acaa3e5f56b46", 1396711523547531, this, []); }
+  get effectiveWavelength(): $SDK18 { return callSDK<$SDK18>("SensorKit_d968214ecc684fb6", 1396711523547531, this, []); }
   /**
    * var emitter: Int { get }
    * @availability iOS 17.4+
    */
-  get emitter(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1625690858633295, this, []); }
+  get emitter(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1625690858633295, this, []); }
   /**
    * var nanosecondsSinceStart: Int64 { get }
    * @availability iOS 17.4+
    */
-  get nanosecondsSinceStart(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2963414275089177, this, []); }
+  get nanosecondsSinceStart(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2963414275089177, this, []); }
   /**
    * var nominalWavelength: Measurement<UnitLength> { get }
    * @availability iOS 17.4+
    */
-  get nominalWavelength(): $SDK18 { return callSDK<$SDK18>("SensorKit_067acaa3e5f56b46", 16967557863916, this, []); }
+  get nominalWavelength(): $SDK18 { return callSDK<$SDK18>("SensorKit_d968214ecc684fb6", 16967557863916, this, []); }
   /**
    * var samplingFrequency: Measurement<UnitFrequency> { get }
    * @availability iOS 17.4+
    */
-  get samplingFrequency(): $SDK10 { return callSDK<$SDK10>("SensorKit_067acaa3e5f56b46", 3901159548153390, this, []); }
+  get samplingFrequency(): $SDK10 { return callSDK<$SDK10>("SensorKit_d968214ecc684fb6", 3901159548153390, this, []); }
   /**
    * var signalIdentifier: Int { get }
    * @availability iOS 17.4+
    */
-  get signalIdentifier(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 881498691086317, this, []); }
+  get signalIdentifier(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 881498691086317, this, []); }
   /**
    * var noiseTerms: SRPhotoplethysmogramOpticalSample.NoiseTerms? { get }
    * @availability iOS 17.4+
    */
-  get noiseTerms(): (SRPhotoplethysmogramOpticalSample_NoiseTerms) | null { return callSDK<(SRPhotoplethysmogramOpticalSample_NoiseTerms) | null>("SensorKit_067acaa3e5f56b46", 1018778699576919, this, []); }
+  get noiseTerms(): (SRPhotoplethysmogramOpticalSample_NoiseTerms) | null { return callSDK<(SRPhotoplethysmogramOpticalSample_NoiseTerms) | null>("SensorKit_d968214ecc684fb6", 1018778699576919, this, []); }
   /**
    * var normalizedReflectance: Double? { get }
    * @availability iOS 17.4+
    */
-  get normalizedReflectance(): (number) | null { return callSDK<(number) | null>("SensorKit_067acaa3e5f56b46", 3975245668396488, this, []); }
+  get normalizedReflectance(): (number) | null { return callSDK<(number) | null>("SensorKit_d968214ecc684fb6", 3975245668396488, this, []); }
   declare readonly $type: { "c:objc(cs)SRPhotoplethysmogramOpticalSample": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activePhotodiodeIndexes": true; "conditions": true; "effectiveWavelength": true; "emitter": true; "nanosecondsSinceStart": true; "nominalWavelength": true; "samplingFrequency": true; "signalIdentifier": true };
 }
@@ -2259,17 +2259,17 @@ export const SRPhotoplethysmogramOpticalSample_Condition = {
    * static let signalSaturation: SRPhotoplethysmogramOpticalSample.Condition
    * @availability iOS 17.4+
    */
-  get signalSaturation(): SRPhotoplethysmogramOpticalSample_Condition { return callSDK<SRPhotoplethysmogramOpticalSample_Condition>("SensorKit_067acaa3e5f56b46", 909121911266545, undefined, []); },
+  get signalSaturation(): SRPhotoplethysmogramOpticalSample_Condition { return callSDK<SRPhotoplethysmogramOpticalSample_Condition>("SensorKit_d968214ecc684fb6", 909121911266545, undefined, []); },
   /**
    * static let unreliableNoise: SRPhotoplethysmogramOpticalSample.Condition
    * @availability iOS 17.4+
    */
-  get unreliableNoise(): SRPhotoplethysmogramOpticalSample_Condition { return callSDK<SRPhotoplethysmogramOpticalSample_Condition>("SensorKit_067acaa3e5f56b46", 1965937981453962, undefined, []); },
+  get unreliableNoise(): SRPhotoplethysmogramOpticalSample_Condition { return callSDK<SRPhotoplethysmogramOpticalSample_Condition>("SensorKit_d968214ecc684fb6", 1965937981453962, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 17.4+
    */
-  init(rawValue: string): SRPhotoplethysmogramOpticalSample_Condition { return callSDK<SRPhotoplethysmogramOpticalSample_Condition>("SensorKit_067acaa3e5f56b46", 18470966463754, undefined, [rawValue]); }
+  init(rawValue: string): SRPhotoplethysmogramOpticalSample_Condition { return callSDK<SRPhotoplethysmogramOpticalSample_Condition>("SensorKit_d968214ecc684fb6", 18470966463754, undefined, [rawValue]); }
 };
 
 /**
@@ -2281,22 +2281,22 @@ export class SRPhotoplethysmogramOpticalSample_NoiseTerms extends SDKHandle {
    * let backgroundNoise: Double
    * @availability iOS 17.4+
    */
-  get backgroundNoise(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 4056555846474527, this, []); }
+  get backgroundNoise(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 4056555846474527, this, []); }
   /**
    * let backgroundNoiseOffset: Double
    * @availability iOS 17.4+
    */
-  get backgroundNoiseOffset(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3029162759281496, this, []); }
+  get backgroundNoiseOffset(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3029162759281496, this, []); }
   /**
    * let pinkNoise: Double
    * @availability iOS 17.4+
    */
-  get pinkNoise(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2988853741203724, this, []); }
+  get pinkNoise(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2988853741203724, this, []); }
   /**
    * let whiteNoise: Double
    * @availability iOS 17.4+
    */
-  get whiteNoise(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2386975414443567, this, []); }
+  get whiteNoise(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2386975414443567, this, []); }
   declare readonly $type: { "s:So33SRPhotoplethysmogramOpticalSampleC9SensorKitE10NoiseTermsV": true };
 }
 
@@ -2309,32 +2309,32 @@ export class SRPhotoplethysmogramSample extends SDKHandle {
    * var accelerometerSamples: [SRPhotoplethysmogramAccelerometerSample] { get }
    * @availability iOS 17.4+
    */
-  get accelerometerSamples(): Array<SRPhotoplethysmogramAccelerometerSample> { return callSDK<Array<SRPhotoplethysmogramAccelerometerSample>>("SensorKit_067acaa3e5f56b46", 2185316974744997, this, []); }
+  get accelerometerSamples(): Array<SRPhotoplethysmogramAccelerometerSample> { return callSDK<Array<SRPhotoplethysmogramAccelerometerSample>>("SensorKit_d968214ecc684fb6", 2185316974744997, this, []); }
   /**
    * var nanosecondsSinceStart: Int64 { get }
    * @availability iOS 17.4+
    */
-  get nanosecondsSinceStart(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 743034760628500, this, []); }
+  get nanosecondsSinceStart(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 743034760628500, this, []); }
   /**
    * var opticalSamples: [SRPhotoplethysmogramOpticalSample] { get }
    * @availability iOS 17.4+
    */
-  get opticalSamples(): Array<SRPhotoplethysmogramOpticalSample> { return callSDK<Array<SRPhotoplethysmogramOpticalSample>>("SensorKit_067acaa3e5f56b46", 4103690875061689, this, []); }
+  get opticalSamples(): Array<SRPhotoplethysmogramOpticalSample> { return callSDK<Array<SRPhotoplethysmogramOpticalSample>>("SensorKit_d968214ecc684fb6", 4103690875061689, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 17.4+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_067acaa3e5f56b46", 1266723893922482, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_d968214ecc684fb6", 1266723893922482, this, []); }
   /**
    * var temperature: Measurement<UnitTemperature>? { get }
    * @availability iOS 17.4+
    */
-  get temperature(): (_Foundation_Measurement<_Foundation_UnitTemperature>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitTemperature>) | null>("SensorKit_067acaa3e5f56b46", 1464122747523049, this, []); }
+  get temperature(): (_Foundation_Measurement<_Foundation_UnitTemperature>) | null { return callSDK<(_Foundation_Measurement<_Foundation_UnitTemperature>) | null>("SensorKit_d968214ecc684fb6", 1464122747523049, this, []); }
   /**
    * var usage: [SRPhotoplethysmogramSample.Usage] { get }
    * @availability iOS 17.4+
    */
-  get usage(): Array<SRPhotoplethysmogramSample_Usage> { return callSDK<Array<SRPhotoplethysmogramSample_Usage>>("SensorKit_067acaa3e5f56b46", 591048373628832, this, []); }
+  get usage(): Array<SRPhotoplethysmogramSample_Usage> { return callSDK<Array<SRPhotoplethysmogramSample_Usage>>("SensorKit_d968214ecc684fb6", 591048373628832, this, []); }
   declare readonly $type: { "c:objc(cs)SRPhotoplethysmogramSample": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accelerometerSamples": true; "nanosecondsSinceStart": true; "opticalSamples": true; "startDate": true; "temperature": true; "usage": true };
 }
@@ -2350,27 +2350,27 @@ export const SRPhotoplethysmogramSample_Usage = {
    * static let backgroundSystem: SRPhotoplethysmogramSample.Usage
    * @availability iOS 17.4+
    */
-  get backgroundSystem(): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_067acaa3e5f56b46", 3845298978577671, undefined, []); },
+  get backgroundSystem(): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_d968214ecc684fb6", 3845298978577671, undefined, []); },
   /**
    * static let deepBreathing: SRPhotoplethysmogramSample.Usage
    * @availability iOS 17.4+
    */
-  get deepBreathing(): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_067acaa3e5f56b46", 3421924597396782, undefined, []); },
+  get deepBreathing(): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_d968214ecc684fb6", 3421924597396782, undefined, []); },
   /**
    * static let foregroundBloodOxygen: SRPhotoplethysmogramSample.Usage
    * @availability iOS 17.4+
    */
-  get foregroundBloodOxygen(): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_067acaa3e5f56b46", 2868295062967282, undefined, []); },
+  get foregroundBloodOxygen(): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_d968214ecc684fb6", 2868295062967282, undefined, []); },
   /**
    * static let foregroundHeartRate: SRPhotoplethysmogramSample.Usage
    * @availability iOS 17.4+
    */
-  get foregroundHeartRate(): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_067acaa3e5f56b46", 1868051170658130, undefined, []); },
+  get foregroundHeartRate(): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_d968214ecc684fb6", 1868051170658130, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 17.4+
    */
-  init(rawValue: string): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_067acaa3e5f56b46", 3301208515478040, undefined, [rawValue]); }
+  init(rawValue: string): SRPhotoplethysmogramSample_Usage { return callSDK<SRPhotoplethysmogramSample_Usage>("SensorKit_d968214ecc684fb6", 3301208515478040, undefined, [rawValue]); }
 };
 
 /**
@@ -2382,7 +2382,7 @@ export class SRPhotoplethysmogramSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRPhotoplethysmogramSensor { return callSDK<SRPhotoplethysmogramSensor>("SensorKit_067acaa3e5f56b46", 2286112922059910, undefined, []); }
+  static init(): SRPhotoplethysmogramSensor { return callSDK<SRPhotoplethysmogramSensor>("SensorKit_d968214ecc684fb6", 2286112922059910, undefined, []); }
   declare readonly $type: { "s:9SensorKit020SRPhotoplethysmogramA0V": true };
 }
 
@@ -2409,7 +2409,7 @@ export class SRRotationRateSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRRotationRateSensor { return callSDK<SRRotationRateSensor>("SensorKit_067acaa3e5f56b46", 3964526462531575, undefined, []); }
+  static init(): SRRotationRateSensor { return callSDK<SRRotationRateSensor>("SensorKit_d968214ecc684fb6", 3964526462531575, undefined, []); }
   declare readonly $type: { "s:9SensorKit014SRRotationRateA0V": true };
 }
 
@@ -2430,127 +2430,127 @@ export const SRSensor = {
    * static let accelerometer: SRSensor
    * @availability iOS 14.0+
    */
-  get accelerometer(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 1544140750395167, undefined, []); },
+  get accelerometer(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 1544140750395167, undefined, []); },
   /**
    * static let acousticSettings: SRSensor
    * @availability iOS 26.0+
    */
-  get acousticSettings(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 2211368064698941, undefined, []); },
+  get acousticSettings(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 2211368064698941, undefined, []); },
   /**
    * static let ambientLightSensor: SRSensor
    * @availability iOS 14.0+
    */
-  get ambientLightSensor(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 1933981701173956, undefined, []); },
+  get ambientLightSensor(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 1933981701173956, undefined, []); },
   /**
    * static let ambientPressure: SRSensor
    * @availability iOS 15.4+
    */
-  get ambientPressure(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 3765240075352813, undefined, []); },
+  get ambientPressure(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 3765240075352813, undefined, []); },
   /**
    * static let deviceUsageReport: SRSensor
    * @availability iOS 14.0+
    */
-  get deviceUsageReport(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 1211306997084167, undefined, []); },
+  get deviceUsageReport(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 1211306997084167, undefined, []); },
   /**
    * static let electrocardiogram: SRSensor
    * @availability iOS 17.4+
    */
-  get electrocardiogram(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 800983724260669, undefined, []); },
+  get electrocardiogram(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 800983724260669, undefined, []); },
   /**
    * static let faceMetrics: SRSensor
    * @availability iOS 17.0+
    */
-  get faceMetrics(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 3618209863856949, undefined, []); },
+  get faceMetrics(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 3618209863856949, undefined, []); },
   /**
    * static let headphoneMotion: SRSensor
    * @availability iOS 27.0+
    */
-  get headphoneMotion(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 3950296607887023, undefined, []); },
+  get headphoneMotion(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 3950296607887023, undefined, []); },
   /**
    * static let headphoneSettings: SRSensor
    * @availability iOS 27.0+
    */
-  get headphoneSettings(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 246572712385688, undefined, []); },
+  get headphoneSettings(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 246572712385688, undefined, []); },
   /**
    * static let heartRate: SRSensor
    * @availability iOS 17.0+
    */
-  get heartRate(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 4137251197349615, undefined, []); },
+  get heartRate(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 4137251197349615, undefined, []); },
   /**
    * static let keyboardMetrics: SRSensor
    * @availability iOS 14.0+
    */
-  get keyboardMetrics(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 4405428716420260, undefined, []); },
+  get keyboardMetrics(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 4405428716420260, undefined, []); },
   /**
    * static let mediaEvents: SRSensor
    * @availability iOS 16.4+
    */
-  get mediaEvents(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 309035522436148, undefined, []); },
+  get mediaEvents(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 309035522436148, undefined, []); },
   /**
    * static let messagesUsageReport: SRSensor
    * @availability iOS 14.0+
    */
-  get messagesUsageReport(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 1488765509134378, undefined, []); },
+  get messagesUsageReport(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 1488765509134378, undefined, []); },
   /**
    * static let odometer: SRSensor
    * @availability iOS 17.0+
    */
-  get odometer(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 4112937170692541, undefined, []); },
+  get odometer(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 4112937170692541, undefined, []); },
   /**
    * static let onWristState: SRSensor
    * @availability iOS 14.0+
    */
-  get onWristState(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 3754773910818668, undefined, []); },
+  get onWristState(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 3754773910818668, undefined, []); },
   /**
    * static let pedometerData: SRSensor
    * @availability iOS 14.0+
    */
-  get pedometerData(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 3593048331322385, undefined, []); },
+  get pedometerData(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 3593048331322385, undefined, []); },
   /**
    * static let phoneUsageReport: SRSensor
    * @availability iOS 14.0+
    */
-  get phoneUsageReport(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 148196499478452, undefined, []); },
+  get phoneUsageReport(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 148196499478452, undefined, []); },
   /**
    * static let photoplethysmogram: SRSensor
    * @availability iOS 17.4+
    */
-  get photoplethysmogram(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 4286678898375806, undefined, []); },
+  get photoplethysmogram(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 4286678898375806, undefined, []); },
   /**
    * static let rotationRate: SRSensor
    * @availability iOS 14.0+
    */
-  get rotationRate(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 519401603436045, undefined, []); },
+  get rotationRate(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 519401603436045, undefined, []); },
   /**
    * static let siriSpeechMetrics: SRSensor
    * @availability iOS 15.0+
    */
-  get siriSpeechMetrics(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 3650481992004682, undefined, []); },
+  get siriSpeechMetrics(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 3650481992004682, undefined, []); },
   /**
    * static let sleepSessions: SRSensor
    * @availability iOS 26.0+
    */
-  get sleepSessions(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 582858498151569, undefined, []); },
+  get sleepSessions(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 582858498151569, undefined, []); },
   /**
    * static let telephonySpeechMetrics: SRSensor
    * @availability iOS 15.0+
    */
-  get telephonySpeechMetrics(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 2097973168586827, undefined, []); },
+  get telephonySpeechMetrics(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 2097973168586827, undefined, []); },
   /**
    * static let visits: SRSensor
    * @availability iOS 14.0+
    */
-  get visits(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 4499798561422983, undefined, []); },
+  get visits(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 4499798561422983, undefined, []); },
   /**
    * static let wristTemperature: SRSensor
    * @availability iOS 17.0+
    */
-  get wristTemperature(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 3375223527146083, undefined, []); },
+  get wristTemperature(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 3375223527146083, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 14.0+
    */
-  init(rawValue: string): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 4487255955688319, undefined, [rawValue]); }
+  init(rawValue: string): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 4487255955688319, undefined, [rawValue]); }
 };
 
 /**
@@ -2564,56 +2564,56 @@ export class SRSensorReader extends SDKHandle {
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  static requestAuthorization(sensors: Array<SRSensor>, completion: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("SensorKit_067acaa3e5f56b46", 899596595472994, undefined, [sensors, completion], [null,{"callback":{"out":[]}}]); }
+  static requestAuthorization(sensors: Array<SRSensor>, completion: ((arg0: (NativeError) | null) => void)): void { return callSDK<void>("SensorKit_d968214ecc684fb6", 899596595472994, undefined, [sensors, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func fetch(_ request: SRFetchRequest)
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  fetch(request: SRFetchRequest): void { return callSDK<void>("SensorKit_067acaa3e5f56b46", 357138548851468, this, [request]); }
+  fetch(request: SRFetchRequest): void { return callSDK<void>("SensorKit_d968214ecc684fb6", 357138548851468, this, [request]); }
   /**
    * func fetchDevices()
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  fetchDevices(): void { return callSDK<void>("SensorKit_067acaa3e5f56b46", 56401318218807, this, []); }
+  fetchDevices(): void { return callSDK<void>("SensorKit_d968214ecc684fb6", 56401318218807, this, []); }
   /**
    * init(sensor: SRSensor)
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  static init(sensor: SRSensor): SRSensorReader { return callSDK<SRSensorReader>("SensorKit_067acaa3e5f56b46", 2111020903774216, undefined, [sensor]); }
+  static init(sensor: SRSensor): SRSensorReader { return callSDK<SRSensorReader>("SensorKit_d968214ecc684fb6", 2111020903774216, undefined, [sensor]); }
   /**
    * func startRecording()
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  startRecording(): void { return callSDK<void>("SensorKit_067acaa3e5f56b46", 606161655845530, this, []); }
+  startRecording(): void { return callSDK<void>("SensorKit_d968214ecc684fb6", 606161655845530, this, []); }
   /**
    * func stopRecording()
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  stopRecording(): void { return callSDK<void>("SensorKit_067acaa3e5f56b46", 4043104849746788, this, []); }
+  stopRecording(): void { return callSDK<void>("SensorKit_d968214ecc684fb6", 4043104849746788, this, []); }
   /**
    * var authorizationStatus: SRAuthorizationStatus { get }
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  get authorizationStatus(): SRAuthorizationStatus { return callSDK<SRAuthorizationStatus>("SensorKit_067acaa3e5f56b46", 399045731340888, this, []); }
+  get authorizationStatus(): SRAuthorizationStatus { return callSDK<SRAuthorizationStatus>("SensorKit_d968214ecc684fb6", 399045731340888, this, []); }
   /**
    * weak var delegate: (any SRSensorReaderDelegate)? { get set }
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SensorKit_067acaa3e5f56b46", 3081154011293705, this, []); }
-  set delegate(value: (Implements<SRSensorReaderDelegate> | SDKHandle) | null) { callSDK<void>("SensorKit_067acaa3e5f56b46", 3954018290795312, this, [value], [{"protocol":"c:objc(pl)SRSensorReaderDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("SensorKit_d968214ecc684fb6", 3081154011293705, this, []); }
+  set delegate(value: (Implements<SRSensorReaderDelegate> | SDKHandle) | null) { callSDK<void>("SensorKit_d968214ecc684fb6", 3954018290795312, this, [value], [{"protocol":"c:objc(pl)SRSensorReaderDelegate"}]); }
   /**
    * var sensor: SRSensor { get }
    * @availability iOS 13.0+
    * @deprecated iOS 27.0
    */
-  get sensor(): SRSensor { return callSDK<SRSensor>("SensorKit_067acaa3e5f56b46", 1570019017102561, this, []); }
+  get sensor(): SRSensor { return callSDK<SRSensor>("SensorKit_d968214ecc684fb6", 1570019017102561, this, []); }
   declare readonly $type: { "c:objc(cs)SRSensorReader": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authorizationStatus": true; "delegate": true; "sensor": true };
 }
@@ -2689,7 +2689,7 @@ export class SRSiriSpeechMetricsSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRSiriSpeechMetricsSensor { return callSDK<SRSiriSpeechMetricsSensor>("SensorKit_067acaa3e5f56b46", 2093492636825704, undefined, []); }
+  static init(): SRSiriSpeechMetricsSensor { return callSDK<SRSiriSpeechMetricsSensor>("SensorKit_d968214ecc684fb6", 2093492636825704, undefined, []); }
   declare readonly $type: { "s:9SensorKit019SRSiriSpeechMetricsA0V": true };
 }
 
@@ -2708,17 +2708,17 @@ export class SRSleepSession extends SDKHandle {
    * var duration: TimeInterval { get }
    * @availability iOS 26.0+
    */
-  get duration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1262801249783705, this, []); }
+  get duration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1262801249783705, this, []); }
   /**
    * var identifier: String { get }
    * @availability iOS 26.0+
    */
-  get identifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 3883137176552681, this, []); }
+  get identifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 3883137176552681, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 26.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_067acaa3e5f56b46", 3654263075154805, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_d968214ecc684fb6", 3654263075154805, this, []); }
   declare readonly $type: { "c:objc(cs)SRSleepSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "identifier": true; "startDate": true };
 }
@@ -2732,7 +2732,7 @@ export class SRSleepSessionsSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRSleepSessionsSensor { return callSDK<SRSleepSessionsSensor>("SensorKit_067acaa3e5f56b46", 2418496740173029, undefined, []); }
+  static init(): SRSleepSessionsSensor { return callSDK<SRSleepSessionsSensor>("SensorKit_d968214ecc684fb6", 2418496740173029, undefined, []); }
   declare readonly $type: { "s:9SensorKit015SRSleepSessionsA0V": true };
 }
 
@@ -2751,27 +2751,27 @@ export class SRSourceDevice extends SDKHandle {
    * var firmwareVersion: String? { get }
    * @availability iOS 27.0+
    */
-  get firmwareVersion(): (string) | null { return callSDK<(string) | null>("SensorKit_067acaa3e5f56b46", 4343540571745672, this, []); }
+  get firmwareVersion(): (string) | null { return callSDK<(string) | null>("SensorKit_d968214ecc684fb6", 4343540571745672, this, []); }
   /**
    * var hardwareVersion: String? { get }
    * @availability iOS 27.0+
    */
-  get hardwareVersion(): (string) | null { return callSDK<(string) | null>("SensorKit_067acaa3e5f56b46", 1841886354245266, this, []); }
+  get hardwareVersion(): (string) | null { return callSDK<(string) | null>("SensorKit_d968214ecc684fb6", 1841886354245266, this, []); }
   /**
    * var localIdentifier: String { get }
    * @availability iOS 27.0+
    */
-  get localIdentifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 4361689667235252, this, []); }
+  get localIdentifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 4361689667235252, this, []); }
   /**
    * var manufacturer: String? { get }
    * @availability iOS 27.0+
    */
-  get manufacturer(): (string) | null { return callSDK<(string) | null>("SensorKit_067acaa3e5f56b46", 2610844753798625, this, []); }
+  get manufacturer(): (string) | null { return callSDK<(string) | null>("SensorKit_d968214ecc684fb6", 2610844753798625, this, []); }
   /**
    * var model: String? { get }
    * @availability iOS 27.0+
    */
-  get model(): (string) | null { return callSDK<(string) | null>("SensorKit_067acaa3e5f56b46", 616456537859483, this, []); }
+  get model(): (string) | null { return callSDK<(string) | null>("SensorKit_d968214ecc684fb6", 616456537859483, this, []); }
   declare readonly $type: { "c:objc(cs)SRSourceDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "firmwareVersion": true; "hardwareVersion": true; "localIdentifier": true; "manufacturer": true; "model": true };
 }
@@ -2785,37 +2785,37 @@ export class SRSpeechExpression extends SDKHandle {
    * var activation: Double { get }
    * @availability iOS 17.0+
    */
-  get activation(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3535533583771004, this, []); }
+  get activation(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3535533583771004, this, []); }
   /**
    * var confidence: Double { get }
    * @availability iOS 17.0+
    */
-  get confidence(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 2259157041550249, this, []); }
+  get confidence(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 2259157041550249, this, []); }
   /**
    * var dominance: Double { get }
    * @availability iOS 17.0+
    */
-  get dominance(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1410432853156792, this, []); }
+  get dominance(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1410432853156792, this, []); }
   /**
    * var mood: Double { get }
    * @availability iOS 17.0+
    */
-  get mood(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3223373837212756, this, []); }
+  get mood(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3223373837212756, this, []); }
   /**
    * var timeRange: CMTimeRange { get }
    * @availability iOS 17.0+
    */
-  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("SensorKit_067acaa3e5f56b46", 4051901813653550, this, []); }
+  get timeRange(): _CoreMedia_CMTimeRange { return callSDK<_CoreMedia_CMTimeRange>("SensorKit_d968214ecc684fb6", 4051901813653550, this, []); }
   /**
    * var valence: Double { get }
    * @availability iOS 17.0+
    */
-  get valence(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1303246215533997, this, []); }
+  get valence(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1303246215533997, this, []); }
   /**
    * var version: String { get }
    * @availability iOS 17.0+
    */
-  get version(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 4315596501767733, this, []); }
+  get version(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 4315596501767733, this, []); }
   declare readonly $type: { "c:objc(cs)SRSpeechExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activation": true; "confidence": true; "dominance": true; "mood": true; "timeRange": true; "valence": true; "version": true };
 }
@@ -2829,42 +2829,42 @@ export class SRSpeechMetrics extends SDKHandle {
    * var audioLevel: SRAudioLevel? { get }
    * @availability iOS 17.0+
    */
-  get audioLevel(): (SRAudioLevel) | null { return callSDK<(SRAudioLevel) | null>("SensorKit_067acaa3e5f56b46", 2023687262081255, this, []); }
+  get audioLevel(): (SRAudioLevel) | null { return callSDK<(SRAudioLevel) | null>("SensorKit_d968214ecc684fb6", 2023687262081255, this, []); }
   /**
    * var sessionFlags: SRSpeechMetrics.SessionFlags { get }
    * @availability iOS 17.0+
    */
-  get sessionFlags(): SRSpeechMetrics_SessionFlags { return callSDK<SRSpeechMetrics_SessionFlags>("SensorKit_067acaa3e5f56b46", 2196956338701255, this, []); }
+  get sessionFlags(): SRSpeechMetrics_SessionFlags { return callSDK<SRSpeechMetrics_SessionFlags>("SensorKit_d968214ecc684fb6", 2196956338701255, this, []); }
   /**
    * var sessionIdentifier: String { get }
    * @availability iOS 17.0+
    */
-  get sessionIdentifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 407133148023615, this, []); }
+  get sessionIdentifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 407133148023615, this, []); }
   /**
    * var soundClassification: SNClassificationResult? { get }
    * @availability iOS 17.0+
    */
-  get soundClassification(): (_SoundAnalysis_SNClassificationResult) | null { return callSDK<(_SoundAnalysis_SNClassificationResult) | null>("SensorKit_067acaa3e5f56b46", 3154450703476886, this, []); }
+  get soundClassification(): (_SoundAnalysis_SNClassificationResult) | null { return callSDK<(_SoundAnalysis_SNClassificationResult) | null>("SensorKit_d968214ecc684fb6", 3154450703476886, this, []); }
   /**
    * var speechExpression: SRSpeechExpression? { get }
    * @availability iOS 17.0+
    */
-  get speechExpression(): (SRSpeechExpression) | null { return callSDK<(SRSpeechExpression) | null>("SensorKit_067acaa3e5f56b46", 544263678650462, this, []); }
+  get speechExpression(): (SRSpeechExpression) | null { return callSDK<(SRSpeechExpression) | null>("SensorKit_d968214ecc684fb6", 544263678650462, this, []); }
   /**
    * var speechRecognition: SFSpeechRecognitionResult? { get }
    * @availability iOS 17.0+
    */
-  get speechRecognition(): (_Speech_SFSpeechRecognitionResult) | null { return callSDK<(_Speech_SFSpeechRecognitionResult) | null>("SensorKit_067acaa3e5f56b46", 1210508203279735, this, []); }
+  get speechRecognition(): (_Speech_SFSpeechRecognitionResult) | null { return callSDK<(_Speech_SFSpeechRecognitionResult) | null>("SensorKit_d968214ecc684fb6", 1210508203279735, this, []); }
   /**
    * var timeSinceAudioStart: TimeInterval { get }
    * @availability iOS 17.2+
    */
-  get timeSinceAudioStart(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1419351481701584, this, []); }
+  get timeSinceAudioStart(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1419351481701584, this, []); }
   /**
    * var timestamp: Date { get }
    * @availability iOS 17.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_067acaa3e5f56b46", 390133206338525, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_d968214ecc684fb6", 390133206338525, this, []); }
   declare readonly $type: { "c:objc(cs)SRSpeechMetrics": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "audioLevel": true; "sessionFlags": true; "sessionIdentifier": true; "soundClassification": true; "speechExpression": true; "speechRecognition": true; "timeSinceAudioStart": true; "timestamp": true };
 }
@@ -2880,12 +2880,12 @@ export const SRSpeechMetrics_SessionFlags = {
    * static var bypassVoiceProcessing: SRSpeechMetrics.SessionFlags { get }
    * @availability iOS 17.0+
    */
-  get bypassVoiceProcessing(): SRSpeechMetrics_SessionFlags { return callSDK<SRSpeechMetrics_SessionFlags>("SensorKit_067acaa3e5f56b46", 3027838127533627, undefined, []); },
+  get bypassVoiceProcessing(): SRSpeechMetrics_SessionFlags { return callSDK<SRSpeechMetrics_SessionFlags>("SensorKit_d968214ecc684fb6", 3027838127533627, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): SRSpeechMetrics_SessionFlags { return callSDK<SRSpeechMetrics_SessionFlags>("SensorKit_067acaa3e5f56b46", 523638417209984, undefined, [rawValue]); }
+  init(rawValue: number): SRSpeechMetrics_SessionFlags { return callSDK<SRSpeechMetrics_SessionFlags>("SensorKit_d968214ecc684fb6", 523638417209984, undefined, [rawValue]); }
 };
 
 /**
@@ -2897,7 +2897,7 @@ export class SRSupplementalCategory extends SDKHandle {
    * var identifier: String { get }
    * @availability iOS 16.4+
    */
-  get identifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 935194705322703, this, []); }
+  get identifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 935194705322703, this, []); }
   declare readonly $type: { "c:objc(cs)SRSupplementalCategory": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true };
 }
@@ -2911,7 +2911,7 @@ export class SRTelephonySpeechMetricsSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRTelephonySpeechMetricsSensor { return callSDK<SRTelephonySpeechMetricsSensor>("SensorKit_067acaa3e5f56b46", 148141925050715, undefined, []); }
+  static init(): SRTelephonySpeechMetricsSensor { return callSDK<SRTelephonySpeechMetricsSensor>("SensorKit_d968214ecc684fb6", 148141925050715, undefined, []); }
   declare readonly $type: { "s:9SensorKit024SRTelephonySpeechMetricsA0V": true };
 }
 
@@ -2927,22 +2927,22 @@ export type SRTelephonySpeechMetricsSensor_Sample = SRSpeechMetrics;
  */
 export class SRTextInputSession extends SDKHandle {
   /** init() */
-  static init(): SRTextInputSession { return callSDK<SRTextInputSession>("SensorKit_067acaa3e5f56b46", 1198076816063511, undefined, []); }
+  static init(): SRTextInputSession { return callSDK<SRTextInputSession>("SensorKit_d968214ecc684fb6", 1198076816063511, undefined, []); }
   /**
    * var duration: TimeInterval { get }
    * @availability iOS 15.0+
    */
-  get duration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 959361246317160, this, []); }
+  get duration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 959361246317160, this, []); }
   /**
    * var sessionIdentifier: String { get }
    * @availability iOS 16.4+
    */
-  get sessionIdentifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 2184926577850239, this, []); }
+  get sessionIdentifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 2184926577850239, this, []); }
   /**
    * var sessionType: SRTextInputSession.SessionType { get }
    * @availability iOS 15.0+
    */
-  get sessionType(): SRTextInputSession_SessionType { return callSDK<SRTextInputSession_SessionType>("SensorKit_067acaa3e5f56b46", 1393097462656373, this, []); }
+  get sessionType(): SRTextInputSession_SessionType { return callSDK<SRTextInputSession_SessionType>("SensorKit_d968214ecc684fb6", 1393097462656373, this, []); }
   declare readonly $type: { "c:objc(cs)SRTextInputSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "sessionIdentifier": true; "sessionType": true };
 }
@@ -2958,7 +2958,7 @@ export const SRTextInputSession_SessionType = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (SRTextInputSession_SessionType) | null { return callSDK<(SRTextInputSession_SessionType) | null>("SensorKit_067acaa3e5f56b46", 859613432549337, undefined, [rawValue]); }
+  init(rawValue: number): (SRTextInputSession_SessionType) | null { return callSDK<(SRTextInputSession_SessionType) | null>("SensorKit_d968214ecc684fb6", 859613432549337, undefined, [rawValue]); }
 };
 
 /**
@@ -2967,32 +2967,32 @@ export const SRTextInputSession_SessionType = {
  */
 export class SRVisit extends SDKHandle {
   /** init() */
-  static init(): SRVisit { return callSDK<SRVisit>("SensorKit_067acaa3e5f56b46", 1813798612139141, undefined, []); }
+  static init(): SRVisit { return callSDK<SRVisit>("SensorKit_d968214ecc684fb6", 1813798612139141, undefined, []); }
   /**
    * var arrivalDateInterval: DateInterval { get }
    * @availability iOS 14.0+
    */
-  get arrivalDateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("SensorKit_067acaa3e5f56b46", 1161189026164899, this, []); }
+  get arrivalDateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("SensorKit_d968214ecc684fb6", 1161189026164899, this, []); }
   /**
    * var departureDateInterval: DateInterval { get }
    * @availability iOS 14.0+
    */
-  get departureDateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("SensorKit_067acaa3e5f56b46", 3654181943382995, this, []); }
+  get departureDateInterval(): _Foundation_DateInterval { return callSDK<_Foundation_DateInterval>("SensorKit_d968214ecc684fb6", 3654181943382995, this, []); }
   /**
    * var distanceFromHome: CLLocationDistance { get }
    * @availability iOS 14.0+
    */
-  get distanceFromHome(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 3017181612884493, this, []); }
+  get distanceFromHome(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 3017181612884493, this, []); }
   /**
    * var identifier: UUID { get }
    * @availability iOS 14.0+
    */
-  get identifier(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 1291207504127947, this, []); }
+  get identifier(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 1291207504127947, this, []); }
   /**
    * var locationCategory: SRVisit.LocationCategory { get }
    * @availability iOS 14.0+
    */
-  get locationCategory(): SRVisit_LocationCategory { return callSDK<SRVisit_LocationCategory>("SensorKit_067acaa3e5f56b46", 3004778148606994, this, []); }
+  get locationCategory(): SRVisit_LocationCategory { return callSDK<SRVisit_LocationCategory>("SensorKit_d968214ecc684fb6", 3004778148606994, this, []); }
   declare readonly $type: { "c:objc(cs)SRVisit": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "arrivalDateInterval": true; "departureDateInterval": true; "distanceFromHome": true; "identifier": true; "locationCategory": true };
 }
@@ -3008,7 +3008,7 @@ export const SRVisit_LocationCategory = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (SRVisit_LocationCategory) | null { return callSDK<(SRVisit_LocationCategory) | null>("SensorKit_067acaa3e5f56b46", 3842242681086719, undefined, [rawValue]); }
+  init(rawValue: number): (SRVisit_LocationCategory) | null { return callSDK<(SRVisit_LocationCategory) | null>("SensorKit_d968214ecc684fb6", 3842242681086719, undefined, [rawValue]); }
 };
 
 /**
@@ -3020,7 +3020,7 @@ export class SRVisitsSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRVisitsSensor { return callSDK<SRVisitsSensor>("SensorKit_067acaa3e5f56b46", 261390064296286, undefined, []); }
+  static init(): SRVisitsSensor { return callSDK<SRVisitsSensor>("SensorKit_d968214ecc684fb6", 261390064296286, undefined, []); }
   declare readonly $type: { "s:9SensorKit08SRVisitsA0V": true };
 }
 
@@ -3036,32 +3036,32 @@ export type SRVisitsSensor_Sample = SRVisit;
  */
 export class SRWristDetection extends SDKHandle {
   /** init() */
-  static init(): SRWristDetection { return callSDK<SRWristDetection>("SensorKit_067acaa3e5f56b46", 1683731804519316, undefined, []); }
+  static init(): SRWristDetection { return callSDK<SRWristDetection>("SensorKit_d968214ecc684fb6", 1683731804519316, undefined, []); }
   /**
    * var crownOrientation: SRWristDetection.CrownOrientation { get }
    * @availability iOS 14.0+
    */
-  get crownOrientation(): SRWristDetection_CrownOrientation { return callSDK<SRWristDetection_CrownOrientation>("SensorKit_067acaa3e5f56b46", 1627026734857738, this, []); }
+  get crownOrientation(): SRWristDetection_CrownOrientation { return callSDK<SRWristDetection_CrownOrientation>("SensorKit_d968214ecc684fb6", 1627026734857738, this, []); }
   /**
    * var offWristDate: Date? { get }
    * @availability iOS 16.4+
    */
-  get offWristDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("SensorKit_067acaa3e5f56b46", 728719333490399, this, []); }
+  get offWristDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("SensorKit_d968214ecc684fb6", 728719333490399, this, []); }
   /**
    * var onWrist: Bool { get }
    * @availability iOS 14.0+
    */
-  get onWrist(): boolean { return callSDK<boolean>("SensorKit_067acaa3e5f56b46", 3238105240277052, this, []); }
+  get onWrist(): boolean { return callSDK<boolean>("SensorKit_d968214ecc684fb6", 3238105240277052, this, []); }
   /**
    * var onWristDate: Date? { get }
    * @availability iOS 16.4+
    */
-  get onWristDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("SensorKit_067acaa3e5f56b46", 4216701800401098, this, []); }
+  get onWristDate(): (globalThis.Date) | null { return callSDK<(globalThis.Date) | null>("SensorKit_d968214ecc684fb6", 4216701800401098, this, []); }
   /**
    * var wristLocation: SRWristDetection.WristLocation { get }
    * @availability iOS 14.0+
    */
-  get wristLocation(): SRWristDetection_WristLocation { return callSDK<SRWristDetection_WristLocation>("SensorKit_067acaa3e5f56b46", 198967953295811, this, []); }
+  get wristLocation(): SRWristDetection_WristLocation { return callSDK<SRWristDetection_WristLocation>("SensorKit_d968214ecc684fb6", 198967953295811, this, []); }
   declare readonly $type: { "c:objc(cs)SRWristDetection": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "crownOrientation": true; "offWristDate": true; "onWrist": true; "onWristDate": true; "wristLocation": true };
 }
@@ -3077,7 +3077,7 @@ export const SRWristDetection_CrownOrientation = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (SRWristDetection_CrownOrientation) | null { return callSDK<(SRWristDetection_CrownOrientation) | null>("SensorKit_067acaa3e5f56b46", 1009341408776121, undefined, [rawValue]); }
+  init(rawValue: number): (SRWristDetection_CrownOrientation) | null { return callSDK<(SRWristDetection_CrownOrientation) | null>("SensorKit_d968214ecc684fb6", 1009341408776121, undefined, [rawValue]); }
 };
 
 /**
@@ -3091,7 +3091,7 @@ export const SRWristDetection_WristLocation = {
    * init?(rawValue: Int)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (SRWristDetection_WristLocation) | null { return callSDK<(SRWristDetection_WristLocation) | null>("SensorKit_067acaa3e5f56b46", 4063832394934211, undefined, [rawValue]); }
+  init(rawValue: number): (SRWristDetection_WristLocation) | null { return callSDK<(SRWristDetection_WristLocation) | null>("SensorKit_d968214ecc684fb6", 4063832394934211, undefined, [rawValue]); }
 };
 
 /**
@@ -3103,22 +3103,22 @@ export class SRWristTemperature extends SDKHandle {
    * var condition: SRWristTemperature.Condition { get }
    * @availability iOS 17.0+
    */
-  get condition(): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_067acaa3e5f56b46", 2369107569429543, this, []); }
+  get condition(): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_d968214ecc684fb6", 2369107569429543, this, []); }
   /**
    * var errorEstimate: Measurement<UnitTemperature> { get }
    * @availability iOS 17.0+
    */
-  get errorEstimate(): $SDK38 { return callSDK<$SDK38>("SensorKit_067acaa3e5f56b46", 626270274475359, this, []); }
+  get errorEstimate(): $SDK38 { return callSDK<$SDK38>("SensorKit_d968214ecc684fb6", 626270274475359, this, []); }
   /**
    * var timestamp: Date { get }
    * @availability iOS 17.0+
    */
-  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_067acaa3e5f56b46", 1626693077495700, this, []); }
+  get timestamp(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_d968214ecc684fb6", 1626693077495700, this, []); }
   /**
    * var value: Measurement<UnitTemperature> { get }
    * @availability iOS 17.0+
    */
-  get value(): $SDK38 { return callSDK<$SDK38>("SensorKit_067acaa3e5f56b46", 81242872513277, this, []); }
+  get value(): $SDK38 { return callSDK<$SDK38>("SensorKit_d968214ecc684fb6", 81242872513277, this, []); }
   declare readonly $type: { "c:objc(cs)SRWristTemperature": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "condition": true; "errorEstimate": true; "timestamp": true; "value": true };
 }
@@ -3134,22 +3134,22 @@ export const SRWristTemperature_Condition = {
    * static var inMotion: SRWristTemperature.Condition { get }
    * @availability iOS 17.0+
    */
-  get inMotion(): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_067acaa3e5f56b46", 1573551174400148, undefined, []); },
+  get inMotion(): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_d968214ecc684fb6", 1573551174400148, undefined, []); },
   /**
    * static var offWrist: SRWristTemperature.Condition { get }
    * @availability iOS 17.0+
    */
-  get offWrist(): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_067acaa3e5f56b46", 3680225676980547, undefined, []); },
+  get offWrist(): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_d968214ecc684fb6", 3680225676980547, undefined, []); },
   /**
    * static var onCharger: SRWristTemperature.Condition { get }
    * @availability iOS 17.0+
    */
-  get onCharger(): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_067acaa3e5f56b46", 809260655431205, undefined, []); },
+  get onCharger(): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_d968214ecc684fb6", 809260655431205, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 17.0+
    */
-  init(rawValue: number): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_067acaa3e5f56b46", 3271539356285076, undefined, [rawValue]); }
+  init(rawValue: number): SRWristTemperature_Condition { return callSDK<SRWristTemperature_Condition>("SensorKit_d968214ecc684fb6", 3271539356285076, undefined, [rawValue]); }
 };
 
 /**
@@ -3161,7 +3161,7 @@ export class SRWristTemperatureSensor extends SDKHandle {
    * init()
    * @availability iOS 27.0+
    */
-  static init(): SRWristTemperatureSensor { return callSDK<SRWristTemperatureSensor>("SensorKit_067acaa3e5f56b46", 386373941740485, undefined, []); }
+  static init(): SRWristTemperatureSensor { return callSDK<SRWristTemperatureSensor>("SensorKit_d968214ecc684fb6", 386373941740485, undefined, []); }
   declare readonly $type: { "s:9SensorKit018SRWristTemperatureA0V": true };
 }
 
@@ -3180,22 +3180,22 @@ export class SRWristTemperatureSession extends SDKHandle {
    * var duration: TimeInterval { get }
    * @availability iOS 17.0+
    */
-  get duration(): number { return callSDK<number>("SensorKit_067acaa3e5f56b46", 1280339693842233, this, []); }
+  get duration(): number { return callSDK<number>("SensorKit_d968214ecc684fb6", 1280339693842233, this, []); }
   /**
    * var startDate: Date { get }
    * @availability iOS 17.0+
    */
-  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_067acaa3e5f56b46", 1247411050622917, this, []); }
+  get startDate(): globalThis.Date { return callSDK<globalThis.Date>("SensorKit_d968214ecc684fb6", 1247411050622917, this, []); }
   /**
    * var version: String { get }
    * @availability iOS 17.0+
    */
-  get version(): string { return callSDK<string>("SensorKit_067acaa3e5f56b46", 1863524545593515, this, []); }
+  get version(): string { return callSDK<string>("SensorKit_d968214ecc684fb6", 1863524545593515, this, []); }
   /**
    * var temperatures: some Sequence<SRWristTemperature> { get }
    * @availability iOS 17.0+
    */
-  get temperatures(): SDKHandle { return callSDK<SDKHandle>("SensorKit_067acaa3e5f56b46", 507632279260863, this, []); }
+  get temperatures(): SDKHandle { return callSDK<SDKHandle>("SensorKit_d968214ecc684fb6", 507632279260863, this, []); }
   declare readonly $type: { "c:objc(cs)SRWristTemperatureSession": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "duration": true; "startDate": true; "version": true };
 }
@@ -3204,79 +3204,79 @@ export class SRWristTemperatureSession extends SDKHandle {
  * let SRErrorDomain: String
  * @availability iOS 14.0+
  */
-export const SRErrorDomain: string = callSDK<string>("SensorKit_067acaa3e5f56b46", 2383581396613836, undefined, []);
+export const SRErrorDomain: string = callSDK<string>("SensorKit_d968214ecc684fb6", 2383581396613836, undefined, []);
 
-registerSDKClass("NSDate", NSDate, { module: "SensorKit_067acaa3e5f56b46", properties: {"srAbsoluteTime":1453649370823866} }, true);
-registerSDKClass("NSString", NSString, { module: "SensorKit_067acaa3e5f56b46", properties: {}, methods: {"sr_sensorForDeletionRecordsFromSensor":{"id":2426600056066865}} }, true);
-registerSDKClass("SensorKit.SRAccelerometerSensor", SRAccelerometerSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRAcousticSettings", SRAcousticSettings, { module: "SensorKit_067acaa3e5f56b46", properties: {"accessibilitySettings":361968664733940,"audioExposureSampleLifetime":1459139071103846,"isEnvironmentalSoundMeasurementsEnabled":892944838326959,"musicEQSettings":1122027166725288} });
-registerSDKClass("SRAcousticSettingsAccessibility", SRAcousticSettings_Accessibility, { module: "SensorKit_067acaa3e5f56b46", properties: {"backgroundSounds":1418870312259183,"headphoneAccommodations":3647156993139623,"leftRightBalance":1892702439993152,"isMonoAudioEnabled":1194759619647057} });
-registerSDKClass("SRAcousticSettingsAccessibilityBackgroundSounds", SRAcousticSettings_Accessibility_BackgroundSounds, { module: "SensorKit_067acaa3e5f56b46", properties: {"isEnabled":153552308222168,"isPlayWithMediaEnabled":4469963903111135,"relativeVolume":1076347117058034,"relativeVolumeWithMedia":4004491901846335,"soundName":640923021105574,"isStopOnLockEnabled":4244161461084115} });
-registerSDKClass("SRAcousticSettingsAccessibilityHeadphoneAccommodations", SRAcousticSettings_Accessibility_HeadphoneAccommodations, { module: "SensorKit_067acaa3e5f56b46", properties: {"isEnabled":4001610465823958,"mediaEnhanceApplication":2717436414754074,"mediaEnhanceBoosting":3271577104521041,"mediaEnhanceTuning":1528071761882499} });
-registerSDKClass("SRAcousticSettingsMusicEQ", SRAcousticSettings_MusicEQ, { module: "SensorKit_067acaa3e5f56b46", properties: {"isLateNightModeEnabled":4389121406135788,"isSoundCheckEnabled":2446618511104401} });
-registerSDKClass("SensorKit.SRAcousticSettingsSensor", SRAcousticSettingsSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRAmbientLightSample", SRAmbientLightSample, { module: "SensorKit_067acaa3e5f56b46", properties: {"chromaticity":2714620906144170,"lux":2408046541715983,"placement":587573144241761} });
-registerSDKClass("SensorKit.SRAmbientLightSample.Chromaticity", SRAmbientLightSample_Chromaticity, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SensorKit.SRAmbientLightSensor", SRAmbientLightSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SensorKit.SRAmbientPressureSensor", SRAmbientPressureSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRAudioLevel", SRAudioLevel, { module: "SensorKit_067acaa3e5f56b46", properties: {"loudness":2179318582783046,"timeRange":884706265739599} });
+registerSDKClass("NSDate", NSDate, { module: "SensorKit_d968214ecc684fb6", properties: {"srAbsoluteTime":1453649370823866} }, true);
+registerSDKClass("NSString", NSString, { module: "SensorKit_d968214ecc684fb6", properties: {}, methods: {"sr_sensorForDeletionRecordsFromSensor":{"id":2426600056066865}} }, true);
+registerSDKClass("SensorKit.SRAccelerometerSensor", SRAccelerometerSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRAcousticSettings", SRAcousticSettings, { module: "SensorKit_d968214ecc684fb6", properties: {"accessibilitySettings":361968664733940,"audioExposureSampleLifetime":1459139071103846,"isEnvironmentalSoundMeasurementsEnabled":892944838326959,"musicEQSettings":1122027166725288} });
+registerSDKClass("SRAcousticSettingsAccessibility", SRAcousticSettings_Accessibility, { module: "SensorKit_d968214ecc684fb6", properties: {"backgroundSounds":1418870312259183,"headphoneAccommodations":3647156993139623,"leftRightBalance":1892702439993152,"isMonoAudioEnabled":1194759619647057} });
+registerSDKClass("SRAcousticSettingsAccessibilityBackgroundSounds", SRAcousticSettings_Accessibility_BackgroundSounds, { module: "SensorKit_d968214ecc684fb6", properties: {"isEnabled":153552308222168,"isPlayWithMediaEnabled":4469963903111135,"relativeVolume":1076347117058034,"relativeVolumeWithMedia":4004491901846335,"soundName":640923021105574,"isStopOnLockEnabled":4244161461084115} });
+registerSDKClass("SRAcousticSettingsAccessibilityHeadphoneAccommodations", SRAcousticSettings_Accessibility_HeadphoneAccommodations, { module: "SensorKit_d968214ecc684fb6", properties: {"isEnabled":4001610465823958,"mediaEnhanceApplication":2717436414754074,"mediaEnhanceBoosting":3271577104521041,"mediaEnhanceTuning":1528071761882499} });
+registerSDKClass("SRAcousticSettingsMusicEQ", SRAcousticSettings_MusicEQ, { module: "SensorKit_d968214ecc684fb6", properties: {"isLateNightModeEnabled":4389121406135788,"isSoundCheckEnabled":2446618511104401} });
+registerSDKClass("SensorKit.SRAcousticSettingsSensor", SRAcousticSettingsSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRAmbientLightSample", SRAmbientLightSample, { module: "SensorKit_d968214ecc684fb6", properties: {"chromaticity":2714620906144170,"lux":2408046541715983,"placement":587573144241761} });
+registerSDKClass("SensorKit.SRAmbientLightSample.Chromaticity", SRAmbientLightSample_Chromaticity, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SensorKit.SRAmbientLightSensor", SRAmbientLightSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SensorKit.SRAmbientPressureSensor", SRAmbientPressureSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRAudioLevel", SRAudioLevel, { module: "SensorKit_d968214ecc684fb6", properties: {"loudness":2179318582783046,"timeRange":884706265739599} });
 registerSDKProtocol("s:9SensorKit06SRDataA0P", {});
-registerSDKClass("SRDeletionRecord", SRDeletionRecord, { module: "SensorKit_067acaa3e5f56b46", properties: {"endTime":4230171832520057,"reason":3189641655656009,"startTime":341805070183497} });
-registerSDKClass("SRDevice", SRDevice, { module: "SensorKit_067acaa3e5f56b46", properties: {"model":4350321548032289,"name":4480653115804161,"productType":1588499126876521,"systemName":4129075616928013,"systemVersion":195881404811107} });
-registerSDKClass("SRDeviceUsageReport", SRDeviceUsageReport, { module: "SensorKit_067acaa3e5f56b46", properties: {"applicationUsageByCategory":1839581217696280,"duration":567945513537843,"notificationUsageByCategory":3740323679379406,"totalScreenWakes":2985224308291839,"totalUnlockDuration":1528998315860578,"totalUnlocks":1373447300025404,"version":943833248132862,"webUsageByCategory":885105813393755} });
-registerSDKClass("SRApplicationUsage", SRDeviceUsageReport_ApplicationUsage, { module: "SensorKit_067acaa3e5f56b46", properties: {"bundleIdentifier":1475357000825749,"relativeStartTime":331649563395852,"reportApplicationIdentifier":2211744809984116,"supplementalCategories":438516130630139,"textInputSessions":3318003250412205,"usageTime":925210018613348} });
-registerSDKClass("SRNotificationUsage", SRDeviceUsageReport_NotificationUsage, { module: "SensorKit_067acaa3e5f56b46", properties: {"bundleIdentifier":2777163283960867,"event":2866213965046712} });
-registerSDKClass("SRWebUsage", SRDeviceUsageReport_WebUsage, { module: "SensorKit_067acaa3e5f56b46", properties: {"totalUsageTime":3880871279258565} });
-registerSDKClass("SensorKit.SRDeviceUsageSensor", SRDeviceUsageSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRElectrocardiogramData", SRElectrocardiogramData, { module: "SensorKit_067acaa3e5f56b46", properties: {"flags":4075959673241315,"value":3635271554914602} });
-registerSDKClass("SRElectrocardiogramSample", SRElectrocardiogramSample, { module: "SensorKit_067acaa3e5f56b46", properties: {"data":4015476124159028,"date":1678990991137104,"frequency":2213330925756898,"lead":1035418312383469,"session":3702978210842703} });
-registerSDKClass("SensorKit.SRElectrocardiogramSensor", SRElectrocardiogramSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRElectrocardiogramSession", SRElectrocardiogramSession, { module: "SensorKit_067acaa3e5f56b46", properties: {"identifier":4454750759606624,"sessionGuidance":4317124307196220,"state":3770522929446116} });
-registerSDKClass("SensorKit.SRError", SRError, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRFaceMetrics", SRFaceMetrics, { module: "SensorKit_067acaa3e5f56b46", properties: {"context":480308864980740,"partialFaceExpressions":2674362593492628,"sessionIdentifier":4422784354150127,"version":2517830534915937,"wholeFaceExpressions":200970736164219} });
-registerSDKClass("SRFaceMetricsExpression", SRFaceMetricsExpression, { module: "SensorKit_067acaa3e5f56b46", properties: {"identifier":1410521684023668,"value":4206447568798233} });
-registerSDKClass("SensorKit.SRFaceMetricsSensor", SRFaceMetricsSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRFetchRequest", SRFetchRequest, { module: "SensorKit_067acaa3e5f56b46", properties: {"device":923922451107702,"from":3576647639121394,"to":3705393532558845} });
-registerSDKClass("SensorKit.SRFetchResponse", SRFetchResponse, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRFetchResult", SRFetchResult, { module: "SensorKit_067acaa3e5f56b46", properties: {"sample":3529288629001581,"sourceDevice":2331555130922673,"timestamp":3262110921064717} });
-registerSDKClass("SensorKit.SRHeadphoneMotionSensor", SRHeadphoneMotionSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRHeadphoneSettings", SRHeadphoneSettings, { module: "SensorKit_067acaa3e5f56b46", properties: {"adaptiveAudioStrength":1392690014418419,"conversationAwarenessEnabled":3812231874862202,"hearingAssistance":188175857580732,"listeningMode":3974121721407993,"personalizedSpatialAudioEnabled":2673052061990876,"personalizedVolumeEnabled":1122020310884690,"spatialAudioEnabled":1395171914643830} });
-registerSDKClass("SRHeadphoneSettingsHearingAssistance", SRHeadphoneSettings_HearingAssistance, { module: "SensorKit_067acaa3e5f56b46", properties: {"adjustMediaEnabled":4407610046840083,"adjustVoiceEnabled":3022056673404046,"ambientNoiseReduction":2342467610929299,"conversationBoostEnabled":1193277858903737,"hearingAidAmplification":374900843556985,"hearingAidBalance":2307030137267485,"hearingAidEnabled":174247405468648,"hearingAidTone":1529518975556773,"hearingProtectionEnabled":4251301952844571,"mediaAssistEnabled":755839552508112} });
-registerSDKClass("SensorKit.SRHeadphoneSettingsSensor", SRHeadphoneSettingsSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SensorKit.SRHeartRateSensor", SRHeartRateSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRKeyboardMetrics", SRKeyboardMetrics, { module: "SensorKit_067acaa3e5f56b46", properties: {"anyTapToCharKey":3461367558756366,"anyTapToPlaneChangeKey":4100585165107109,"charKeyToAnyTapKey":4379326364519807,"charKeyToDelete":2632598842681710,"charKeyToPlaneChangeKey":2204590773519500,"charKeyToPrediction":4096174087339709,"charKeyToSpaceKey":2645313925467946,"deleteDownErrorDistance":1341553186748134,"deleteToCharKey":2998410896402120,"deleteToDelete":4372862692710188,"deleteToDeletes":1092389203954789,"deleteToPath":971717625454757,"deleteToPlaneChangeKey":1189328960164067,"deleteToShiftKey":739761316740000,"deleteToSpaceKey":324378790389724,"deleteTouchDownUp":2982246006332148,"deleteUpErrorDistance":3032039049520262,"downErrorDistance":1045607412210938,"duration":374444348875692,"height":2332769957375106,"inputModes":4424136091160943,"keyboardIdentifier":67581278644123,"longWordDownErrorDistance":3357655497426992,"longWordTouchDownDown":2624972595202864,"longWordTouchDownUp":4064041076425419,"longWordTouchUpDown":3420987679801836,"longWordUpErrorDistance":3135412764743167,"pathErrorDistanceRatio":53464514187565,"pathToDelete":3381157449505921,"pathToPath":420159310945616,"pathToSpace":549316291043229,"pathTypingSpeed":2584223051158951,"planeChangeKeyToCharKey":908226523929100,"planeChangeToAnyTap":2280786132631403,"sessionIdentifiers":4355586116581196,"shortWordCharKeyDownErrorDistance":2097999965589209,"shortWordCharKeyToCharKey":3092138750765579,"shortWordCharKeyTouchDownUp":1835101179536747,"shortWordCharKeyUpErrorDistance":3871662448621582,"spaceDownErrorDistance":2532694148722719,"spaceToCharKey":3808862693249332,"spaceToDeleteKey":4272067821074220,"spaceToPath":3116816416812916,"spaceToPlaneChangeKey":1733939428538673,"spaceToPredictionKey":3011859196801116,"spaceToShiftKey":15920383931333,"spaceToSpaceKey":3568968982353129,"spaceTouchDownUp":3358063149979201,"spaceUpErrorDistance":3583489664141533,"totalAlteredWords":335921773866362,"totalAutoCorrections":1841747220275867,"totalDeletes":1717637137842196,"totalDrags":332265659881757,"totalEmojis":4042728290371447,"totalHitTestCorrections":4188254155620518,"totalInsertKeyCorrections":1817047743168190,"totalNearKeyCorrections":758768607291962,"totalPathLength":1168127490121828,"totalPathPauses":3587812272815046,"totalPathTime":4037853118639127,"totalPaths":3449592197717284,"totalPauses":4440638082612263,"totalRetroCorrections":3881462102234701,"totalSkipTouchCorrections":164992020465736,"totalSpaceCorrections":3780874625936192,"totalSubstitutionCorrections":4042607247516884,"totalTaps":1913966720403821,"totalTranspositionCorrections":3846725210785825,"totalTypingDuration":3217353135310141,"totalTypingEpisodes":4156820677355596,"totalWords":2005396922349339,"touchDownDown":779226611405682,"touchDownUp":3954581643532598,"touchUpDown":1357550754281960,"typingSpeed":3342159650989290,"upErrorDistance":2828494594768498,"version":1957259278106607,"width":2923281334595769}, methods: {"emojiCount":{"id":3928439859490336},"wordCount":{"id":2223885434953393}} });
-registerSDKClass("SRKeyboardProbabilityMetric", SRKeyboardMetrics_ProbabilityMetric, { module: "SensorKit_067acaa3e5f56b46", properties: {"distributionSampleValues":2197023762856924} });
-registerSDKClass("SensorKit.SRKeyboardMetricsSensor", SRKeyboardMetricsSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRMediaEvent", SRMediaEvent, { module: "SensorKit_067acaa3e5f56b46", properties: {"eventType":4264333259443027,"mediaIdentifier":4204041934026813} });
-registerSDKClass("SensorKit.SRMediaEventsSensor", SRMediaEventsSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRMessagesUsageReport", SRMessagesUsageReport, { module: "SensorKit_067acaa3e5f56b46", properties: {"duration":3469643600661909,"totalIncomingMessages":1322739283553516,"totalOutgoingMessages":254594062093872,"totalUniqueContacts":1483419126699792} });
-registerSDKClass("SensorKit.SRMessagesUsageSensor", SRMessagesUsageSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SensorKit.SROdometerSensor", SROdometerSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SensorKit.SROnWristStateSensor", SROnWristStateSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SensorKit.SRPedometerDataSensor", SRPedometerDataSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRPhoneUsageReport", SRPhoneUsageReport, { module: "SensorKit_067acaa3e5f56b46", properties: {"duration":2822429609923164,"totalIncomingCalls":604850279304806,"totalOutgoingCalls":1394956115401470,"totalPhoneCallDuration":1944132012397503,"totalUniqueContacts":2657319497322845} });
-registerSDKClass("SensorKit.SRPhoneUsageSensor", SRPhoneUsageSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRPhotoplethysmogramAccelerometerSample", SRPhotoplethysmogramAccelerometerSample, { module: "SensorKit_067acaa3e5f56b46", properties: {"nanosecondsSinceStart":1215356593265064,"samplingFrequency":3107300517598065,"x":554683158513857,"y":146505459366826,"z":4354779299509902} });
-registerSDKClass("SRPhotoplethysmogramOpticalSample", SRPhotoplethysmogramOpticalSample, { module: "SensorKit_067acaa3e5f56b46", properties: {"activePhotodiodeIndexes":2063898291113040,"conditions":2081030566679955,"effectiveWavelength":1396711523547531,"emitter":1625690858633295,"nanosecondsSinceStart":2963414275089177,"nominalWavelength":16967557863916,"samplingFrequency":3901159548153390,"signalIdentifier":881498691086317} });
-registerSDKClass("SensorKit.SRPhotoplethysmogramOpticalSample.NoiseTerms", SRPhotoplethysmogramOpticalSample_NoiseTerms, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRPhotoplethysmogramSample", SRPhotoplethysmogramSample, { module: "SensorKit_067acaa3e5f56b46", properties: {"accelerometerSamples":2185316974744997,"nanosecondsSinceStart":743034760628500,"opticalSamples":4103690875061689,"startDate":1266723893922482,"temperature":1464122747523049,"usage":591048373628832} });
-registerSDKClass("SensorKit.SRPhotoplethysmogramSensor", SRPhotoplethysmogramSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SensorKit.SRReader", SRReader, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SensorKit.SRRotationRateSensor", SRRotationRateSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRSensorReader", SRSensorReader, { module: "SensorKit_067acaa3e5f56b46", properties: {"authorizationStatus":399045731340888,"delegate":3081154011293705,"sensor":1570019017102561}, methods: {"fetch":{"id":357138548851468},"fetchDevices":{"id":56401318218807},"startRecording":{"id":606161655845530},"stopRecording":{"id":4043104849746788}} });
+registerSDKClass("SRDeletionRecord", SRDeletionRecord, { module: "SensorKit_d968214ecc684fb6", properties: {"endTime":4230171832520057,"reason":3189641655656009,"startTime":341805070183497} });
+registerSDKClass("SRDevice", SRDevice, { module: "SensorKit_d968214ecc684fb6", properties: {"model":4350321548032289,"name":4480653115804161,"productType":1588499126876521,"systemName":4129075616928013,"systemVersion":195881404811107} });
+registerSDKClass("SRDeviceUsageReport", SRDeviceUsageReport, { module: "SensorKit_d968214ecc684fb6", properties: {"applicationUsageByCategory":1839581217696280,"duration":567945513537843,"notificationUsageByCategory":3740323679379406,"totalScreenWakes":2985224308291839,"totalUnlockDuration":1528998315860578,"totalUnlocks":1373447300025404,"version":943833248132862,"webUsageByCategory":885105813393755} });
+registerSDKClass("SRApplicationUsage", SRDeviceUsageReport_ApplicationUsage, { module: "SensorKit_d968214ecc684fb6", properties: {"bundleIdentifier":1475357000825749,"relativeStartTime":331649563395852,"reportApplicationIdentifier":2211744809984116,"supplementalCategories":438516130630139,"textInputSessions":3318003250412205,"usageTime":925210018613348} });
+registerSDKClass("SRNotificationUsage", SRDeviceUsageReport_NotificationUsage, { module: "SensorKit_d968214ecc684fb6", properties: {"bundleIdentifier":2777163283960867,"event":2866213965046712} });
+registerSDKClass("SRWebUsage", SRDeviceUsageReport_WebUsage, { module: "SensorKit_d968214ecc684fb6", properties: {"totalUsageTime":3880871279258565} });
+registerSDKClass("SensorKit.SRDeviceUsageSensor", SRDeviceUsageSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRElectrocardiogramData", SRElectrocardiogramData, { module: "SensorKit_d968214ecc684fb6", properties: {"flags":4075959673241315,"value":3635271554914602} });
+registerSDKClass("SRElectrocardiogramSample", SRElectrocardiogramSample, { module: "SensorKit_d968214ecc684fb6", properties: {"data":4015476124159028,"date":1678990991137104,"frequency":2213330925756898,"lead":1035418312383469,"session":3702978210842703} });
+registerSDKClass("SensorKit.SRElectrocardiogramSensor", SRElectrocardiogramSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRElectrocardiogramSession", SRElectrocardiogramSession, { module: "SensorKit_d968214ecc684fb6", properties: {"identifier":4454750759606624,"sessionGuidance":4317124307196220,"state":3770522929446116} });
+registerSDKClass("SensorKit.SRError", SRError, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRFaceMetrics", SRFaceMetrics, { module: "SensorKit_d968214ecc684fb6", properties: {"context":480308864980740,"partialFaceExpressions":2674362593492628,"sessionIdentifier":4422784354150127,"version":2517830534915937,"wholeFaceExpressions":200970736164219} });
+registerSDKClass("SRFaceMetricsExpression", SRFaceMetricsExpression, { module: "SensorKit_d968214ecc684fb6", properties: {"identifier":1410521684023668,"value":4206447568798233} });
+registerSDKClass("SensorKit.SRFaceMetricsSensor", SRFaceMetricsSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRFetchRequest", SRFetchRequest, { module: "SensorKit_d968214ecc684fb6", properties: {"device":923922451107702,"from":3576647639121394,"to":3705393532558845} });
+registerSDKClass("SensorKit.SRFetchResponse", SRFetchResponse, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRFetchResult", SRFetchResult, { module: "SensorKit_d968214ecc684fb6", properties: {"sample":3529288629001581,"sourceDevice":2331555130922673,"timestamp":3262110921064717} });
+registerSDKClass("SensorKit.SRHeadphoneMotionSensor", SRHeadphoneMotionSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRHeadphoneSettings", SRHeadphoneSettings, { module: "SensorKit_d968214ecc684fb6", properties: {"adaptiveAudioStrength":1392690014418419,"conversationAwarenessEnabled":3812231874862202,"hearingAssistance":188175857580732,"listeningMode":3974121721407993,"personalizedSpatialAudioEnabled":2673052061990876,"personalizedVolumeEnabled":1122020310884690,"spatialAudioEnabled":1395171914643830} });
+registerSDKClass("SRHeadphoneSettingsHearingAssistance", SRHeadphoneSettings_HearingAssistance, { module: "SensorKit_d968214ecc684fb6", properties: {"adjustMediaEnabled":4407610046840083,"adjustVoiceEnabled":3022056673404046,"ambientNoiseReduction":2342467610929299,"conversationBoostEnabled":1193277858903737,"hearingAidAmplification":374900843556985,"hearingAidBalance":2307030137267485,"hearingAidEnabled":174247405468648,"hearingAidTone":1529518975556773,"hearingProtectionEnabled":4251301952844571,"mediaAssistEnabled":755839552508112} });
+registerSDKClass("SensorKit.SRHeadphoneSettingsSensor", SRHeadphoneSettingsSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SensorKit.SRHeartRateSensor", SRHeartRateSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRKeyboardMetrics", SRKeyboardMetrics, { module: "SensorKit_d968214ecc684fb6", properties: {"anyTapToCharKey":3461367558756366,"anyTapToPlaneChangeKey":4100585165107109,"charKeyToAnyTapKey":4379326364519807,"charKeyToDelete":2632598842681710,"charKeyToPlaneChangeKey":2204590773519500,"charKeyToPrediction":4096174087339709,"charKeyToSpaceKey":2645313925467946,"deleteDownErrorDistance":1341553186748134,"deleteToCharKey":2998410896402120,"deleteToDelete":4372862692710188,"deleteToDeletes":1092389203954789,"deleteToPath":971717625454757,"deleteToPlaneChangeKey":1189328960164067,"deleteToShiftKey":739761316740000,"deleteToSpaceKey":324378790389724,"deleteTouchDownUp":2982246006332148,"deleteUpErrorDistance":3032039049520262,"downErrorDistance":1045607412210938,"duration":374444348875692,"height":2332769957375106,"inputModes":4424136091160943,"keyboardIdentifier":67581278644123,"longWordDownErrorDistance":3357655497426992,"longWordTouchDownDown":2624972595202864,"longWordTouchDownUp":4064041076425419,"longWordTouchUpDown":3420987679801836,"longWordUpErrorDistance":3135412764743167,"pathErrorDistanceRatio":53464514187565,"pathToDelete":3381157449505921,"pathToPath":420159310945616,"pathToSpace":549316291043229,"pathTypingSpeed":2584223051158951,"planeChangeKeyToCharKey":908226523929100,"planeChangeToAnyTap":2280786132631403,"sessionIdentifiers":4355586116581196,"shortWordCharKeyDownErrorDistance":2097999965589209,"shortWordCharKeyToCharKey":3092138750765579,"shortWordCharKeyTouchDownUp":1835101179536747,"shortWordCharKeyUpErrorDistance":3871662448621582,"spaceDownErrorDistance":2532694148722719,"spaceToCharKey":3808862693249332,"spaceToDeleteKey":4272067821074220,"spaceToPath":3116816416812916,"spaceToPlaneChangeKey":1733939428538673,"spaceToPredictionKey":3011859196801116,"spaceToShiftKey":15920383931333,"spaceToSpaceKey":3568968982353129,"spaceTouchDownUp":3358063149979201,"spaceUpErrorDistance":3583489664141533,"totalAlteredWords":335921773866362,"totalAutoCorrections":1841747220275867,"totalDeletes":1717637137842196,"totalDrags":332265659881757,"totalEmojis":4042728290371447,"totalHitTestCorrections":4188254155620518,"totalInsertKeyCorrections":1817047743168190,"totalNearKeyCorrections":758768607291962,"totalPathLength":1168127490121828,"totalPathPauses":3587812272815046,"totalPathTime":4037853118639127,"totalPaths":3449592197717284,"totalPauses":4440638082612263,"totalRetroCorrections":3881462102234701,"totalSkipTouchCorrections":164992020465736,"totalSpaceCorrections":3780874625936192,"totalSubstitutionCorrections":4042607247516884,"totalTaps":1913966720403821,"totalTranspositionCorrections":3846725210785825,"totalTypingDuration":3217353135310141,"totalTypingEpisodes":4156820677355596,"totalWords":2005396922349339,"touchDownDown":779226611405682,"touchDownUp":3954581643532598,"touchUpDown":1357550754281960,"typingSpeed":3342159650989290,"upErrorDistance":2828494594768498,"version":1957259278106607,"width":2923281334595769}, methods: {"emojiCount":{"id":3928439859490336},"wordCount":{"id":2223885434953393}} });
+registerSDKClass("SRKeyboardProbabilityMetric", SRKeyboardMetrics_ProbabilityMetric, { module: "SensorKit_d968214ecc684fb6", properties: {"distributionSampleValues":2197023762856924} });
+registerSDKClass("SensorKit.SRKeyboardMetricsSensor", SRKeyboardMetricsSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRMediaEvent", SRMediaEvent, { module: "SensorKit_d968214ecc684fb6", properties: {"eventType":4264333259443027,"mediaIdentifier":4204041934026813} });
+registerSDKClass("SensorKit.SRMediaEventsSensor", SRMediaEventsSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRMessagesUsageReport", SRMessagesUsageReport, { module: "SensorKit_d968214ecc684fb6", properties: {"duration":3469643600661909,"totalIncomingMessages":1322739283553516,"totalOutgoingMessages":254594062093872,"totalUniqueContacts":1483419126699792} });
+registerSDKClass("SensorKit.SRMessagesUsageSensor", SRMessagesUsageSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SensorKit.SROdometerSensor", SROdometerSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SensorKit.SROnWristStateSensor", SROnWristStateSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SensorKit.SRPedometerDataSensor", SRPedometerDataSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRPhoneUsageReport", SRPhoneUsageReport, { module: "SensorKit_d968214ecc684fb6", properties: {"duration":2822429609923164,"totalIncomingCalls":604850279304806,"totalOutgoingCalls":1394956115401470,"totalPhoneCallDuration":1944132012397503,"totalUniqueContacts":2657319497322845} });
+registerSDKClass("SensorKit.SRPhoneUsageSensor", SRPhoneUsageSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRPhotoplethysmogramAccelerometerSample", SRPhotoplethysmogramAccelerometerSample, { module: "SensorKit_d968214ecc684fb6", properties: {"nanosecondsSinceStart":1215356593265064,"samplingFrequency":3107300517598065,"x":554683158513857,"y":146505459366826,"z":4354779299509902} });
+registerSDKClass("SRPhotoplethysmogramOpticalSample", SRPhotoplethysmogramOpticalSample, { module: "SensorKit_d968214ecc684fb6", properties: {"activePhotodiodeIndexes":2063898291113040,"conditions":2081030566679955,"effectiveWavelength":1396711523547531,"emitter":1625690858633295,"nanosecondsSinceStart":2963414275089177,"nominalWavelength":16967557863916,"samplingFrequency":3901159548153390,"signalIdentifier":881498691086317} });
+registerSDKClass("SensorKit.SRPhotoplethysmogramOpticalSample.NoiseTerms", SRPhotoplethysmogramOpticalSample_NoiseTerms, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRPhotoplethysmogramSample", SRPhotoplethysmogramSample, { module: "SensorKit_d968214ecc684fb6", properties: {"accelerometerSamples":2185316974744997,"nanosecondsSinceStart":743034760628500,"opticalSamples":4103690875061689,"startDate":1266723893922482,"temperature":1464122747523049,"usage":591048373628832} });
+registerSDKClass("SensorKit.SRPhotoplethysmogramSensor", SRPhotoplethysmogramSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SensorKit.SRReader", SRReader, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SensorKit.SRRotationRateSensor", SRRotationRateSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRSensorReader", SRSensorReader, { module: "SensorKit_d968214ecc684fb6", properties: {"authorizationStatus":399045731340888,"delegate":3081154011293705,"sensor":1570019017102561}, methods: {"fetch":{"id":357138548851468},"fetchDevices":{"id":56401318218807},"startRecording":{"id":606161655845530},"stopRecording":{"id":4043104849746788}} });
 registerSDKProtocol("c:objc(pl)SRSensorReaderDelegate", {"sensorReaderDidCompleteFetch":"sensorReader(_:didCompleteFetch:)","sensorReaderFetchingFailedWithError":"sensorReader(_:fetching:failedWithError:)","sensorReaderDidChange":"sensorReader(_:didChange:)","sensorReaderWillStartRecording":"sensorReaderWillStartRecording(_:)","sensorReaderStartRecordingFailedWithError":"sensorReader(_:startRecordingFailedWithError:)","sensorReaderDidStopRecording":"sensorReaderDidStopRecording(_:)","sensorReaderStopRecordingFailedWithError":"sensorReader(_:stopRecordingFailedWithError:)","sensorReaderDidFetch":"sensorReader(_:didFetch:)","sensorReaderFetchDevicesDidFailWithError":"sensorReader(_:fetchDevicesDidFailWithError:)"});
-registerSDKClass("SensorKit.SRSiriSpeechMetricsSensor", SRSiriSpeechMetricsSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRSleepSession", SRSleepSession, { module: "SensorKit_067acaa3e5f56b46", properties: {"duration":1262801249783705,"identifier":3883137176552681,"startDate":3654263075154805} });
-registerSDKClass("SensorKit.SRSleepSessionsSensor", SRSleepSessionsSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRSourceDevice", SRSourceDevice, { module: "SensorKit_067acaa3e5f56b46", properties: {"firmwareVersion":4343540571745672,"hardwareVersion":1841886354245266,"localIdentifier":4361689667235252,"manufacturer":2610844753798625,"model":616456537859483} });
-registerSDKClass("SRSpeechExpression", SRSpeechExpression, { module: "SensorKit_067acaa3e5f56b46", properties: {"activation":3535533583771004,"confidence":2259157041550249,"dominance":1410432853156792,"mood":3223373837212756,"timeRange":4051901813653550,"valence":1303246215533997,"version":4315596501767733} });
-registerSDKClass("SRSpeechMetrics", SRSpeechMetrics, { module: "SensorKit_067acaa3e5f56b46", properties: {"audioLevel":2023687262081255,"sessionFlags":2196956338701255,"sessionIdentifier":407133148023615,"soundClassification":3154450703476886,"speechExpression":544263678650462,"speechRecognition":1210508203279735,"timeSinceAudioStart":1419351481701584,"timestamp":390133206338525} });
-registerSDKClass("SRSupplementalCategory", SRSupplementalCategory, { module: "SensorKit_067acaa3e5f56b46", properties: {"identifier":935194705322703} });
-registerSDKClass("SensorKit.SRTelephonySpeechMetricsSensor", SRTelephonySpeechMetricsSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRTextInputSession", SRTextInputSession, { module: "SensorKit_067acaa3e5f56b46", properties: {"duration":959361246317160,"sessionIdentifier":2184926577850239,"sessionType":1393097462656373} });
-registerSDKClass("SRVisit", SRVisit, { module: "SensorKit_067acaa3e5f56b46", properties: {"arrivalDateInterval":1161189026164899,"departureDateInterval":3654181943382995,"distanceFromHome":3017181612884493,"identifier":1291207504127947,"locationCategory":3004778148606994} });
-registerSDKClass("SensorKit.SRVisitsSensor", SRVisitsSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRWristDetection", SRWristDetection, { module: "SensorKit_067acaa3e5f56b46", properties: {"crownOrientation":1627026734857738,"offWristDate":728719333490399,"onWrist":3238105240277052,"onWristDate":4216701800401098,"wristLocation":198967953295811} });
-registerSDKClass("SRWristTemperature", SRWristTemperature, { module: "SensorKit_067acaa3e5f56b46", properties: {"condition":2369107569429543,"errorEstimate":626270274475359,"timestamp":1626693077495700,"value":81242872513277} });
-registerSDKClass("SensorKit.SRWristTemperatureSensor", SRWristTemperatureSensor, { module: "SensorKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SRWristTemperatureSession", SRWristTemperatureSession, { module: "SensorKit_067acaa3e5f56b46", properties: {"duration":1280339693842233,"startDate":1247411050622917,"version":1863524545593515} });
+registerSDKClass("SensorKit.SRSiriSpeechMetricsSensor", SRSiriSpeechMetricsSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRSleepSession", SRSleepSession, { module: "SensorKit_d968214ecc684fb6", properties: {"duration":1262801249783705,"identifier":3883137176552681,"startDate":3654263075154805} });
+registerSDKClass("SensorKit.SRSleepSessionsSensor", SRSleepSessionsSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRSourceDevice", SRSourceDevice, { module: "SensorKit_d968214ecc684fb6", properties: {"firmwareVersion":4343540571745672,"hardwareVersion":1841886354245266,"localIdentifier":4361689667235252,"manufacturer":2610844753798625,"model":616456537859483} });
+registerSDKClass("SRSpeechExpression", SRSpeechExpression, { module: "SensorKit_d968214ecc684fb6", properties: {"activation":3535533583771004,"confidence":2259157041550249,"dominance":1410432853156792,"mood":3223373837212756,"timeRange":4051901813653550,"valence":1303246215533997,"version":4315596501767733} });
+registerSDKClass("SRSpeechMetrics", SRSpeechMetrics, { module: "SensorKit_d968214ecc684fb6", properties: {"audioLevel":2023687262081255,"sessionFlags":2196956338701255,"sessionIdentifier":407133148023615,"soundClassification":3154450703476886,"speechExpression":544263678650462,"speechRecognition":1210508203279735,"timeSinceAudioStart":1419351481701584,"timestamp":390133206338525} });
+registerSDKClass("SRSupplementalCategory", SRSupplementalCategory, { module: "SensorKit_d968214ecc684fb6", properties: {"identifier":935194705322703} });
+registerSDKClass("SensorKit.SRTelephonySpeechMetricsSensor", SRTelephonySpeechMetricsSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRTextInputSession", SRTextInputSession, { module: "SensorKit_d968214ecc684fb6", properties: {"duration":959361246317160,"sessionIdentifier":2184926577850239,"sessionType":1393097462656373} });
+registerSDKClass("SRVisit", SRVisit, { module: "SensorKit_d968214ecc684fb6", properties: {"arrivalDateInterval":1161189026164899,"departureDateInterval":3654181943382995,"distanceFromHome":3017181612884493,"identifier":1291207504127947,"locationCategory":3004778148606994} });
+registerSDKClass("SensorKit.SRVisitsSensor", SRVisitsSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRWristDetection", SRWristDetection, { module: "SensorKit_d968214ecc684fb6", properties: {"crownOrientation":1627026734857738,"offWristDate":728719333490399,"onWrist":3238105240277052,"onWristDate":4216701800401098,"wristLocation":198967953295811} });
+registerSDKClass("SRWristTemperature", SRWristTemperature, { module: "SensorKit_d968214ecc684fb6", properties: {"condition":2369107569429543,"errorEstimate":626270274475359,"timestamp":1626693077495700,"value":81242872513277} });
+registerSDKClass("SensorKit.SRWristTemperatureSensor", SRWristTemperatureSensor, { module: "SensorKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("SRWristTemperatureSession", SRWristTemperatureSession, { module: "SensorKit_d968214ecc684fb6", properties: {"duration":1280339693842233,"startDate":1247411050622917,"version":1863524545593515} });

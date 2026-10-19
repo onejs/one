@@ -1362,6 +1362,18 @@ export declare class GLKView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "context": true;
+        "delegate": true;
+        "drawableColorFormat": true;
+        "drawableDepthFormat": true;
+        "drawableHeight": true;
+        "drawableMultisample": true;
+        "drawableStencilFormat": true;
+        "drawableWidth": true;
+        "enableSetNeedsDisplay": true;
+        "snapshot": true;
+    };
 }
 /**
  * class GLKViewController
@@ -1447,6 +1459,19 @@ export declare class GLKViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "framesDisplayed": true;
+        "framesPerSecond": true;
+        "pauseOnWillResignActive": true;
+        "isPaused": true;
+        "preferredFramesPerSecond": true;
+        "resumeOnDidBecomeActive": true;
+        "timeSinceFirstResume": true;
+        "timeSinceLastDraw": true;
+        "timeSinceLastResume": true;
+        "timeSinceLastUpdate": true;
     };
 }
 /** protocol GLKViewControllerDelegate : NSObjectProtocol */

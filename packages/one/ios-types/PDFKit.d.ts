@@ -2288,6 +2288,14 @@ export declare class PDFThumbnailView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "pdfView": true;
+        "backgroundColor": true;
+        "contentInset": true;
+        "layoutMode": true;
+        "selectedPages": true;
+        "thumbnailSize": true;
+    };
 }
 /**
  * class PDFView
@@ -2664,6 +2672,45 @@ export declare class PDFView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "autoScales": true;
+        "backgroundColor": true;
+        "canGoBack": true;
+        "canGoForward": true;
+        "canGoToFirstPage": true;
+        "canGoToLastPage": true;
+        "canGoToNextPage": true;
+        "canGoToPreviousPage": true;
+        "canZoomIn": true;
+        "canZoomOut": true;
+        "currentDestination": true;
+        "currentPage": true;
+        "currentSelection": true;
+        "delegate": true;
+        "displayBox": true;
+        "displayDirection": true;
+        "displayMode": true;
+        "displaysAsBook": true;
+        "displaysPageBreaks": true;
+        "displaysRTL": true;
+        "document": true;
+        "documentView": true;
+        "enableDataDetectors": true;
+        "findInteraction": true;
+        "isFindInteractionEnabled": true;
+        "highlightedSelections": true;
+        "isInMarkupMode": true;
+        "interpolationQuality": true;
+        "isUsingPageViewController": true;
+        "maxScaleFactor": true;
+        "minScaleFactor": true;
+        "pageBreakMargins": true;
+        "pageOverlayViewProvider": true;
+        "pageShadowsEnabled": true;
+        "scaleFactor": true;
+        "scaleFactorForSizeToFit": true;
+        "visiblePages": true;
     };
 }
 /** protocol PDFViewDelegate : NSObjectProtocol */

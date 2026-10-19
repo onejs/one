@@ -340,6 +340,13 @@ export declare class SFSafariViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "configuration": true;
+        "delegate": true;
+        "dismissButtonStyle": true;
+        "preferredBarTintColor": true;
+        "preferredControlTintColor": true;
+    };
 }
 /**
  * class ActivityButton
@@ -364,6 +371,10 @@ export declare class SFSafariViewController_ActivityButton extends SDKHandle {
     readonly $type: {
         "c:objc(cs)SFSafariViewControllerActivityButton": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "extensionIdentifier": true;
+        "templateImage": true;
     };
 }
 /**
@@ -400,6 +411,12 @@ export declare class SFSafariViewController_Configuration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)SFSafariViewControllerConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityButton": true;
+        "barCollapsingEnabled": true;
+        "entersReaderIfAvailable": true;
+        "eventAttribution": true;
     };
 }
 /**

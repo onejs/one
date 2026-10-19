@@ -180,6 +180,9 @@ export declare class SHLibrary extends SDKHandle {
     readonly $type: {
         "s:9ShazamKit9SHLibraryC": true;
     };
+    readonly $observable: {
+        "items": true;
+    };
 }
 /**
  * final class SHManagedSession
@@ -225,6 +228,7 @@ export declare class SHManagedSession extends SDKHandle {
         "s:9ShazamKit16SHManagedSessionC": true;
     };
     readonly $observable: {
+        "state": true;
         "results": true;
     };
 }

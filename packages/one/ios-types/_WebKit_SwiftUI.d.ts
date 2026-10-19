@@ -11,6 +11,9 @@ export declare class WebPage extends SDKHandle {
     readonly $type: {
         "s:6WebKit0A4PageC": true;
     };
+    readonly $observable: {
+        "themeColor": true;
+    };
 }
 export declare class WebPage_NavigationAction extends SDKHandle {
     /**

@@ -65,6 +65,16 @@ export declare class SWAttributionView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "backgroundStyle": true;
+        "displayContext": true;
+        "highlight": true;
+        "highlightMenu": true;
+        "horizontalAlignment": true;
+        "menuTitleForHideAction": true;
+        "preferredMaxLayoutWidth": true;
+        "supplementalMenu": true;
+    };
 }
 /**
  * enum BackgroundStyle
@@ -254,6 +264,17 @@ export declare class SWCollaborationView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activeParticipantCount": true;
+        "cloudSharingControllerDelegate": true;
+        "cloudSharingDelegate": true;
+        "delegate": true;
+        "headerImage": true;
+        "headerSubtitle": true;
+        "headerTitle": true;
+        "manageButtonTitle": true;
+        "pendingAccessRequestsCount": true;
     };
 }
 /**

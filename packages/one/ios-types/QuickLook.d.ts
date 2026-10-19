@@ -106,6 +106,12 @@ export declare class QLPreviewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "currentPreviewItem": true;
+        "currentPreviewItemIndex": true;
+        "dataSource": true;
+        "delegate": true;
+    };
 }
 /** @MainActor protocol QLPreviewControllerDataSource */
 export interface QLPreviewControllerDataSource {

@@ -48,37 +48,37 @@ export class CGAffineTransform extends SDKHandle {
    * func decomposed() -> CGAffineTransformComponents
    * @availability iOS 16.0+
    */
-  decomposed(): _CoreFoundation_CGAffineTransformComponents { return callSDK<_CoreFoundation_CGAffineTransformComponents>("CoreGraphics_067acaa3e5f56b46", 69232443113294, this, []); }
+  decomposed(): _CoreFoundation_CGAffineTransformComponents { return callSDK<_CoreFoundation_CGAffineTransformComponents>("CoreGraphics_d968214ecc684fb6", 69232443113294, this, []); }
   /** var isIdentity: Bool { get } */
-  get isIdentity(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2752810633379640, this, []); }
+  get isIdentity(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2752810633379640, this, []); }
   /** func translatedBy(x tx: CGFloat, y ty: CGFloat) -> CGAffineTransform */
-  translatedBy(tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 2421755749405684, this, [tx, ty]); }
+  translatedBy(tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 2421755749405684, this, [tx, ty]); }
   /** init(translationX tx: CGFloat, y ty: CGFloat) */
-  static initTranslationXY(tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 1935826238984409, undefined, [tx, ty]); }
+  static initTranslationXY(tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 1935826238984409, undefined, [tx, ty]); }
   /** func concatenating(_ t2: CGAffineTransform) -> CGAffineTransform */
-  concatenating(t2: _CoreFoundation_CGAffineTransform): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 1498569136279764, this, [t2]); }
+  concatenating(t2: _CoreFoundation_CGAffineTransform): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 1498569136279764, this, [t2]); }
   /** init(rotationAngle angle: CGFloat) */
-  static initRotationAngle(angle: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 4032858452906977, undefined, [angle]); }
+  static initRotationAngle(angle: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 4032858452906977, undefined, [angle]); }
   /** init(scaleX sx: CGFloat, y sy: CGFloat) */
-  static initScaleXY(sx: number, sy: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 2323149538215183, undefined, [sx, sy]); }
+  static initScaleXY(sx: number, sy: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 2323149538215183, undefined, [sx, sy]); }
   /** func rotated(by angle: CGFloat) -> CGAffineTransform */
-  rotated(angle: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 1328331993977720, this, [angle]); }
+  rotated(angle: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 1328331993977720, this, [angle]); }
   /**
    * static var identity: CGAffineTransform { get }
    * @availability iOS 7.0+
    */
-  static get identity(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 1184844000835052, undefined, []); }
+  static get identity(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 1184844000835052, undefined, []); }
   /** func inverted() -> CGAffineTransform */
-  inverted(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 3540666866824928, this, []); }
+  inverted(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 3540666866824928, this, []); }
   /** func scaledBy(x sx: CGFloat, y sy: CGFloat) -> CGAffineTransform */
-  scaledBy(sx: number, sy: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 2558123576101995, this, [sx, sy]); }
+  scaledBy(sx: number, sy: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 2558123576101995, this, [sx, sy]); }
   /** init(_ a: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ tx: CGFloat, _ ty: CGFloat) */
-  static init(a: number, b: number, c: number, d: number, tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 2396522444055450, undefined, [a, b, c, d, tx, ty]); }
+  static init(a: number, b: number, c: number, d: number, tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 2396522444055450, undefined, [a, b, c, d, tx, ty]); }
   /**
    * init(_ components: CGAffineTransformComponents)
    * @availability iOS 16.0+
    */
-  static init58803(components: _CoreFoundation_CGAffineTransformComponents): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 1430338698622010, undefined, [components]); }
+  static init58803(components: _CoreFoundation_CGAffineTransformComponents): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 1430338698622010, undefined, [components]); }
   declare readonly $type: { "c:@S@CGAffineTransform": true };
 }
 
@@ -97,200 +97,200 @@ export const CGBitmapInfo = {
    * @availability iOS 2.0+
    * @deprecated iOS 100000.0
    */
-  get byteOrder16Big(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 215352162306199, undefined, []); },
+  get byteOrder16Big(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 215352162306199, undefined, []); },
   /**
    * static var byteOrder16Little: CGBitmapInfo { get }
    * @availability iOS 2.0+
    * @deprecated iOS 100000.0
    */
-  get byteOrder16Little(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 1902935887471920, undefined, []); },
+  get byteOrder16Little(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 1902935887471920, undefined, []); },
   /**
    * static var byteOrder32Big: CGBitmapInfo { get }
    * @availability iOS 2.0+
    * @deprecated iOS 100000.0
    */
-  get byteOrder32Big(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 3851163296667087, undefined, []); },
+  get byteOrder32Big(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 3851163296667087, undefined, []); },
   /**
    * static var byteOrder32Little: CGBitmapInfo { get }
    * @availability iOS 2.0+
    * @deprecated iOS 100000.0
    */
-  get byteOrder32Little(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 4038762931087882, undefined, []); },
+  get byteOrder32Little(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 4038762931087882, undefined, []); },
   /**
    * static var byteOrderDefault: CGBitmapInfo { get }
    * @availability iOS 2.0+
    * @deprecated iOS 100000.0
    */
-  get byteOrderDefault(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 3289476773322393, undefined, []); },
+  get byteOrderDefault(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 3289476773322393, undefined, []); },
   /**
    * static var floatComponents: CGBitmapInfo { get }
    * @availability iOS 2.0+
    * @deprecated iOS 100000.0
    */
-  get floatComponents(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 1922726893983835, undefined, []); },
+  get floatComponents(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 1922726893983835, undefined, []); },
   /**
    * static var alphaInfoMask: CGBitmapInfo { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  get alphaInfoMask(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 959591934049111, undefined, []); },
+  get alphaInfoMask(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 959591934049111, undefined, []); },
   /**
    * static var floatInfoMask: CGBitmapInfo { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  get floatInfoMask(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 3024461261611283, undefined, []); },
+  get floatInfoMask(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 3024461261611283, undefined, []); },
   /**
    * func isDisjoint(with other: CGBitmapInfo) -> Bool
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  isDisjoint($self: CGBitmapInfo, other: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3834379317219204, $self, [other]); },
+  isDisjoint($self: CGBitmapInfo, other: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3834379317219204, $self, [other]); },
   /**
    * func isSuperset(of other: CGBitmapInfo) -> Bool
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  isSuperset($self: CGBitmapInfo, other: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1529085569127764, $self, [other]); },
+  isSuperset($self: CGBitmapInfo, other: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1529085569127764, $self, [other]); },
   /**
    * var pixelFormat: CGImagePixelFormatInfo { get set }
    * @availability iOS 12.0+
    */
-  getPixelFormat($self: CGBitmapInfo): CGImagePixelFormatInfo { return callSDK<CGImagePixelFormatInfo>("CoreGraphics_067acaa3e5f56b46", 2918780762790838, $self, []); },
-  setPixelFormat($self: CGBitmapInfo, value: CGImagePixelFormatInfo): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 995416810355755, $self, [value]); },
+  getPixelFormat($self: CGBitmapInfo): CGImagePixelFormatInfo { return callSDK<CGImagePixelFormatInfo>("CoreGraphics_d968214ecc684fb6", 2918780762790838, $self, []); },
+  setPixelFormat($self: CGBitmapInfo, value: CGImagePixelFormatInfo): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 995416810355755, $self, [value]); },
   /**
    * func subtracting(_ other: CGBitmapInfo) -> CGBitmapInfo
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  subtracting($self: CGBitmapInfo, other: CGBitmapInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 1252475320510575, $self, [other]); },
+  subtracting($self: CGBitmapInfo, other: CGBitmapInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 1252475320510575, $self, [other]); },
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 7.0+
    */
-  getCustomMirror($self: CGBitmapInfo): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 2109087309327390, $self, []); },
+  getCustomMirror($self: CGBitmapInfo): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 2109087309327390, $self, []); },
   /**
    * func intersection(_ other: CGBitmapInfo) -> CGBitmapInfo
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  intersection($self: CGBitmapInfo, other: CGBitmapInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 546641226229986, $self, [other]); },
+  intersection($self: CGBitmapInfo, other: CGBitmapInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 546641226229986, $self, [other]); },
   /**
    * static var byteOrderMask: CGBitmapInfo { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  get byteOrderMask(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 1210191110109932, undefined, []); },
+  get byteOrderMask(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 1210191110109932, undefined, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 7.0+
    */
-  getDebugDescription($self: CGBitmapInfo): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 2516028071454378, $self, []); },
+  getDebugDescription($self: CGBitmapInfo): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 2516028071454378, $self, []); },
   /**
    * mutating func formIntersection(_ other: CGBitmapInfo)
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  formIntersection($self: CGBitmapInfo, other: CGBitmapInfo): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3170016732282255, $self, [other]); },
+  formIntersection($self: CGBitmapInfo, other: CGBitmapInfo): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3170016732282255, $self, [other]); },
   /**
    * func symmetricDifference(_ other: CGBitmapInfo) -> CGBitmapInfo
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  symmetricDifference($self: CGBitmapInfo, other: CGBitmapInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 370231871689455, $self, [other]); },
+  symmetricDifference($self: CGBitmapInfo, other: CGBitmapInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 370231871689455, $self, [other]); },
   /**
    * mutating func formSymmetricDifference(_ other: CGBitmapInfo)
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  formSymmetricDifference($self: CGBitmapInfo, other: CGBitmapInfo): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3628860110957744, $self, [other]); },
+  formSymmetricDifference($self: CGBitmapInfo, other: CGBitmapInfo): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3628860110957744, $self, [other]); },
   /**
    * init(alpha: CGImageAlphaInfo = .none, component: CGImageComponentInfo = .integer, byteOrder: CGImageByteOrderInfo = .orderDefault, pixelFormat: CGImagePixelFormatInfo = .packed)
    * @availability iOS 12.0+
    */
-  initAlphaComponentByteOrderPixelFormat(alpha?: CGImageAlphaInfo, component?: CGImageComponentInfo, byteOrder?: CGImageByteOrderInfo, pixelFormat?: CGImagePixelFormatInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 3630346130594920, undefined, [alpha, component, byteOrder, pixelFormat]); },
+  initAlphaComponentByteOrderPixelFormat(alpha?: CGImageAlphaInfo, component?: CGImageComponentInfo, byteOrder?: CGImageByteOrderInfo, pixelFormat?: CGImagePixelFormatInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 3630346130594920, undefined, [alpha, component, byteOrder, pixelFormat]); },
   /**
    * init(alpha: CGImageAlphaInfo = .none, component: CGImageComponentInfo = .integer, byteOrder: CGImageByteOrderInfo = .orderDefault)
    * @availability iOS 7.0+
    */
-  initAlphaComponentByteOrder(alpha?: CGImageAlphaInfo, component?: CGImageComponentInfo, byteOrder?: CGImageByteOrderInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 2109424931069363, undefined, [alpha, component, byteOrder]); },
+  initAlphaComponentByteOrder(alpha?: CGImageAlphaInfo, component?: CGImageComponentInfo, byteOrder?: CGImageByteOrderInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 2109424931069363, undefined, [alpha, component, byteOrder]); },
   /**
    * var alpha: CGImageAlphaInfo { get set }
    * @availability iOS 7.0+
    */
-  getAlpha($self: CGBitmapInfo): CGImageAlphaInfo { return callSDK<CGImageAlphaInfo>("CoreGraphics_067acaa3e5f56b46", 3424671827760766, $self, []); },
-  setAlpha($self: CGBitmapInfo, value: CGImageAlphaInfo): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 876226349263837, $self, [value]); },
+  getAlpha($self: CGBitmapInfo): CGImageAlphaInfo { return callSDK<CGImageAlphaInfo>("CoreGraphics_d968214ecc684fb6", 3424671827760766, $self, []); },
+  setAlpha($self: CGBitmapInfo, value: CGImageAlphaInfo): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 876226349263837, $self, [value]); },
   /**
    * func union(_ other: CGBitmapInfo) -> CGBitmapInfo
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  union($self: CGBitmapInfo, other: CGBitmapInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 4044371151038370, $self, [other]); },
+  union($self: CGBitmapInfo, other: CGBitmapInfo): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 4044371151038370, $self, [other]); },
   /**
    * @discardableResult mutating func insert(_ newMember: CGBitmapInfo) -> (inserted: Bool, memberAfterInsert: CGBitmapInfo)
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  insert($self: CGBitmapInfo, newMember: CGBitmapInfo): { "inserted": boolean; "memberAfterInsert": CGBitmapInfo } { return callSDK<{ "inserted": boolean; "memberAfterInsert": CGBitmapInfo }>("CoreGraphics_067acaa3e5f56b46", 1637693444983889, $self, [newMember]); },
+  insert($self: CGBitmapInfo, newMember: CGBitmapInfo): { "inserted": boolean; "memberAfterInsert": CGBitmapInfo } { return callSDK<{ "inserted": boolean; "memberAfterInsert": CGBitmapInfo }>("CoreGraphics_d968214ecc684fb6", 1637693444983889, $self, [newMember]); },
   /**
    * @discardableResult mutating func remove(_ member: CGBitmapInfo) -> CGBitmapInfo?
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  remove($self: CGBitmapInfo, member: CGBitmapInfo): (CGBitmapInfo) | null { return callSDK<(CGBitmapInfo) | null>("CoreGraphics_067acaa3e5f56b46", 3869839020941463, $self, [member]); },
+  remove($self: CGBitmapInfo, member: CGBitmapInfo): (CGBitmapInfo) | null { return callSDK<(CGBitmapInfo) | null>("CoreGraphics_d968214ecc684fb6", 3869839020941463, $self, [member]); },
   /**
    * @discardableResult mutating func update(with newMember: CGBitmapInfo) -> CGBitmapInfo?
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  update($self: CGBitmapInfo, newMember: CGBitmapInfo): (CGBitmapInfo) | null { return callSDK<(CGBitmapInfo) | null>("CoreGraphics_067acaa3e5f56b46", 835319347108166, $self, [newMember]); },
+  update($self: CGBitmapInfo, newMember: CGBitmapInfo): (CGBitmapInfo) | null { return callSDK<(CGBitmapInfo) | null>("CoreGraphics_d968214ecc684fb6", 835319347108166, $self, [newMember]); },
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  getIsEmpty($self: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 994719877786470, $self, []); },
+  getIsEmpty($self: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 994719877786470, $self, []); },
   /**
    * func contains(_ member: CGBitmapInfo) -> Bool
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  contains($self: CGBitmapInfo, member: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1480263442061976, $self, [member]); },
+  contains($self: CGBitmapInfo, member: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1480263442061976, $self, [member]); },
   /**
    * func isSubset(of other: CGBitmapInfo) -> Bool
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  isSubset($self: CGBitmapInfo, other: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 311660045182169, $self, [other]); },
+  isSubset($self: CGBitmapInfo, other: CGBitmapInfo): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 311660045182169, $self, [other]); },
   /**
    * mutating func subtract(_ other: CGBitmapInfo)
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  subtract($self: CGBitmapInfo, other: CGBitmapInfo): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 183736281583682, $self, [other]); },
+  subtract($self: CGBitmapInfo, other: CGBitmapInfo): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 183736281583682, $self, [other]); },
   /**
    * var byteOrder: CGImageByteOrderInfo { get set }
    * @availability iOS 7.0+
    */
-  getByteOrder($self: CGBitmapInfo): CGImageByteOrderInfo { return callSDK<CGImageByteOrderInfo>("CoreGraphics_067acaa3e5f56b46", 3059732452188461, $self, []); },
-  setByteOrder($self: CGBitmapInfo, value: CGImageByteOrderInfo): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2377847679377429, $self, [value]); },
+  getByteOrder($self: CGBitmapInfo): CGImageByteOrderInfo { return callSDK<CGImageByteOrderInfo>("CoreGraphics_d968214ecc684fb6", 3059732452188461, $self, []); },
+  setByteOrder($self: CGBitmapInfo, value: CGImageByteOrderInfo): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2377847679377429, $self, [value]); },
   /**
    * var component: CGImageComponentInfo { get set }
    * @availability iOS 7.0+
    */
-  getComponent($self: CGBitmapInfo): CGImageComponentInfo { return callSDK<CGImageComponentInfo>("CoreGraphics_067acaa3e5f56b46", 1229679003036501, $self, []); },
-  setComponent($self: CGBitmapInfo, value: CGImageComponentInfo): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3317386432272117, $self, [value]); },
+  getComponent($self: CGBitmapInfo): CGImageComponentInfo { return callSDK<CGImageComponentInfo>("CoreGraphics_d968214ecc684fb6", 1229679003036501, $self, []); },
+  setComponent($self: CGBitmapInfo, value: CGImageComponentInfo): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3317386432272117, $self, [value]); },
   /**
    * mutating func formUnion(_ other: CGBitmapInfo)
    * @availability iOS 7.0+
    * @deprecated iOS 10000.0
    */
-  formUnion($self: CGBitmapInfo, other: CGBitmapInfo): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 124876962440661, $self, [other]); },
+  formUnion($self: CGBitmapInfo, other: CGBitmapInfo): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 124876962440661, $self, [other]); },
   /**
    * init(rawValue: UInt32)
    * @availability iOS 2.0+
    */
-  initRawValue(rawValue: number): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 1578017852618524, undefined, [rawValue]); }
+  initRawValue(rawValue: number): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 1578017852618524, undefined, [rawValue]); }
 };
 
 /** enum CGBitmapLayout */
@@ -298,7 +298,7 @@ export type CGBitmapLayout = "alphaOnly" | "gray" | "grayAlpha" | "rgba" | "argb
 
 export const CGBitmapLayout = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CGBitmapLayout) | null { return callSDK<(CGBitmapLayout) | null>("CoreGraphics_067acaa3e5f56b46", 4459355042908033, undefined, [rawValue]); }
+  init(rawValue: number): (CGBitmapLayout) | null { return callSDK<(CGBitmapLayout) | null>("CoreGraphics_d968214ecc684fb6", 4459355042908033, undefined, [rawValue]); }
 };
 
 /**
@@ -310,18 +310,18 @@ export class CGBitmapParameters extends SDKHandle {
    * var colorSpace: CGColorSpace { get set }
    * @availability iOS 26.0+
    */
-  get colorSpace(): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_067acaa3e5f56b46", 3390761526837929, this, []); }
-  set colorSpace(value: CGColorSpace) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3830397277445482, this, [value]); }
+  get colorSpace(): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_d968214ecc684fb6", 3390761526837929, this, []); }
+  set colorSpace(value: CGColorSpace) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3830397277445482, this, [value]); }
   /**
    * subscript<T>(dynamicMember keyPath: WritableKeyPath<__CGBitmapParameters, T>) -> T { get set }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember(keyPath: SDKHandle): unknown { return callSDK<unknown>("CoreGraphics_067acaa3e5f56b46", 3859234408420229, this, [keyPath]); }
+  subscriptDynamicMember(keyPath: SDKHandle): unknown { return callSDK<unknown>("CoreGraphics_d968214ecc684fb6", 3859234408420229, this, [keyPath]); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<__CGBitmapParameters, T>) -> T { get }
    * @availability iOS 26.0+
    */
-  subscriptDynamicMember56275(keyPath: SDKHandle): unknown { return callSDK<unknown>("CoreGraphics_067acaa3e5f56b46", 1935167449741040, this, [keyPath]); }
+  subscriptDynamicMember56275(keyPath: SDKHandle): unknown { return callSDK<unknown>("CoreGraphics_d968214ecc684fb6", 1935167449741040, this, [keyPath]); }
   declare readonly $type: { "s:12CoreGraphics18CGBitmapParametersV": true };
 }
 
@@ -330,7 +330,7 @@ export type CGBlendMode = "normal" | "multiply" | "screen" | "overlay" | "darken
 
 export const CGBlendMode = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGBlendMode) | null { return callSDK<(CGBlendMode) | null>("CoreGraphics_067acaa3e5f56b46", 2256154136602890, undefined, [rawValue]); }
+  init(rawValue: number): (CGBlendMode) | null { return callSDK<(CGBlendMode) | null>("CoreGraphics_d968214ecc684fb6", 2256154136602890, undefined, [rawValue]); }
 };
 
 /** class CGColor */
@@ -339,126 +339,126 @@ export class CGColor extends SDKHandle {
    * init?(colorSpace space: CGColorSpace, components: UnsafePointer<CGFloat>)
    * @availability iOS 2.0+
    */
-  static initColorSpaceComponents(space: CGColorSpace, components: $SDK2): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_067acaa3e5f56b46", 1044189506939010, undefined, [space, components]); }
+  static initColorSpaceComponents(space: CGColorSpace, components: $SDK2): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_d968214ecc684fb6", 1044189506939010, undefined, [space, components]); }
   /**
    * func copy() -> CGColor?
    * @availability iOS 2.0+
    */
-  copy(): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_067acaa3e5f56b46", 2771267744490633, this, []); }
+  copy(): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_d968214ecc684fb6", 2771267744490633, this, []); }
   /**
    * func converted(to _: CGColorSpace, intent: CGColorRenderingIntent, options: CFDictionary?) -> CGColor?
    * @availability iOS 9.0+
    */
-  converted(arg0: CGColorSpace, intent: CGColorRenderingIntent, options?: $SDK3): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_067acaa3e5f56b46", 3024985938064130, this, [arg0, intent, options]); }
+  converted(arg0: CGColorSpace, intent: CGColorRenderingIntent, options?: $SDK3): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_d968214ecc684fb6", 3024985938064130, this, [arg0, intent, options]); }
   /**
    * func copy(alpha: CGFloat) -> CGColor?
    * @availability iOS 2.0+
    */
-  copyAlpha(alpha: number): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_067acaa3e5f56b46", 3877131126278207, this, [alpha]); }
+  copyAlpha(alpha: number): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_d968214ecc684fb6", 3877131126278207, this, [alpha]); }
   /**
    * init(genericCMYKCyan cyan: CGFloat, magenta: CGFloat, yellow: CGFloat, black: CGFloat, alpha: CGFloat)
    * @availability iOS 13.0+
    */
-  static initGenericCMYKCyanMagentaYellowBlackAlpha(cyan: number, magenta: number, yellow: number, black: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_067acaa3e5f56b46", 681371077745765, undefined, [cyan, magenta, yellow, black, alpha]); }
+  static initGenericCMYKCyanMagentaYellowBlackAlpha(cyan: number, magenta: number, yellow: number, black: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_d968214ecc684fb6", 681371077745765, undefined, [cyan, magenta, yellow, black, alpha]); }
   /**
    * init(gray: CGFloat, alpha: CGFloat)
    * @availability iOS 13.0+
    */
-  static initGrayAlpha(gray: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_067acaa3e5f56b46", 3446738181254257, undefined, [gray, alpha]); }
+  static initGrayAlpha(gray: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_d968214ecc684fb6", 3446738181254257, undefined, [gray, alpha]); }
   /**
    * init(genericGrayGamma2_2Gray gray: CGFloat, alpha: CGFloat)
    * @availability iOS 13.0+
    */
-  static initGenericGrayGamma2_2GrayAlpha(gray: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_067acaa3e5f56b46", 496520155121878, undefined, [gray, alpha]); }
+  static initGenericGrayGamma2_2GrayAlpha(gray: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_d968214ecc684fb6", 496520155121878, undefined, [gray, alpha]); }
   /**
    * init(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
    * @availability iOS 13.0+
    */
-  static initRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_067acaa3e5f56b46", 3351871966735985, undefined, [red, green, blue, alpha]); }
+  static initRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_d968214ecc684fb6", 3351871966735985, undefined, [red, green, blue, alpha]); }
   /**
    * init(srgbRed red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
    * @availability iOS 13.0+
    */
-  static initSrgbRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_067acaa3e5f56b46", 72886903508348, undefined, [red, green, blue, alpha]); }
+  static initSrgbRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): CGColor { return callSDK<CGColor>("CoreGraphics_d968214ecc684fb6", 72886903508348, undefined, [red, green, blue, alpha]); }
   /**
    * init?(headroom: Float, colorSpace space: CGColorSpace, red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
    * @availability iOS 26.0+
    */
-  static initHeadroomColorSpaceRedGreenBlueAlpha(headroom: number, space: CGColorSpace, red: number, green: number, blue: number, alpha: number): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_067acaa3e5f56b46", 3298630371318741, undefined, [headroom, space, red, green, blue, alpha]); }
+  static initHeadroomColorSpaceRedGreenBlueAlpha(headroom: number, space: CGColorSpace, red: number, green: number, blue: number, alpha: number): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_d968214ecc684fb6", 3298630371318741, undefined, [headroom, space, red, green, blue, alpha]); }
   /**
    * init?(patternSpace space: CGColorSpace, pattern: CGPattern, components: UnsafePointer<CGFloat>)
    * @availability iOS 2.0+
    */
-  static initPatternSpacePatternComponents(space: CGColorSpace, pattern: CGPattern, components: $SDK2): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_067acaa3e5f56b46", 313576136530219, undefined, [space, pattern, components]); }
+  static initPatternSpacePatternComponents(space: CGColorSpace, pattern: CGPattern, components: $SDK2): (CGColor) | null { return callSDK<(CGColor) | null>("CoreGraphics_d968214ecc684fb6", 313576136530219, undefined, [space, pattern, components]); }
   /**
    * var alpha: CGFloat { get }
    * @availability iOS 2.0+
    */
-  get alpha(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3223436813536299, this, []); }
+  get alpha(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3223436813536299, this, []); }
   /**
    * var colorSpace: CGColorSpace? { get }
    * @availability iOS 2.0+
    */
-  get colorSpace(): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 4291547450687403, this, []); }
+  get colorSpace(): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 4291547450687403, this, []); }
   /**
    * var contentHeadroom: Float { get }
    * @availability iOS 26.0+
    */
-  get contentHeadroom(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1720854999318827, this, []); }
+  get contentHeadroom(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1720854999318827, this, []); }
   /**
    * var numberOfComponents: Int { get }
    * @availability iOS 2.0+
    */
-  get numberOfComponents(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3945144842206128, this, []); }
+  get numberOfComponents(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3945144842206128, this, []); }
   /**
    * var pattern: CGPattern? { get }
    * @availability iOS 2.0+
    */
-  get pattern(): (CGPattern) | null { return callSDK<(CGPattern) | null>("CoreGraphics_067acaa3e5f56b46", 441077266989950, this, []); }
+  get pattern(): (CGPattern) | null { return callSDK<(CGPattern) | null>("CoreGraphics_d968214ecc684fb6", 441077266989950, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3872789053339387, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3872789053339387, undefined, []); }
   /**
    * class let conversionBlackPointCompensation: CFString
    * @availability iOS 10.0+
    */
-  static get conversionBlackPointCompensation(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3459016082983353, undefined, []); }
+  static get conversionBlackPointCompensation(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3459016082983353, undefined, []); }
   /**
    * class let conversionTRCSize: CFString
    * @availability iOS 11.0+
    */
-  static get conversionTRCSize(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 839338551925127, undefined, []); }
+  static get conversionTRCSize(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 839338551925127, undefined, []); }
   /**
    * var components: [CGFloat]? { get }
    * @availability iOS 7.0+
    */
-  get components(): (Array<number>) | null { return callSDK<(Array<number>) | null>("CoreGraphics_067acaa3e5f56b46", 1763492073776058, this, []); }
+  get components(): (Array<number>) | null { return callSDK<(Array<number>) | null>("CoreGraphics_d968214ecc684fb6", 1763492073776058, this, []); }
   declare readonly $type: { "c:@T@CGColorRef": true };
 }
 
 /** struct CGColorBufferFormat */
 export class CGColorBufferFormat extends SDKHandle {
   /** var bitmapInfo: CGBitmapInfo */
-  get bitmapInfo(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 2990676156224243, this, []); }
-  set bitmapInfo(value: CGBitmapInfo) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2405700701252779, this, [value]); }
+  get bitmapInfo(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 2990676156224243, this, []); }
+  set bitmapInfo(value: CGBitmapInfo) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2405700701252779, this, [value]); }
   /** var bitsPerComponent: Int */
-  get bitsPerComponent(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3579175932290693, this, []); }
-  set bitsPerComponent(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3084370140471331, this, [value]); }
+  get bitsPerComponent(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3579175932290693, this, []); }
+  set bitsPerComponent(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3084370140471331, this, [value]); }
   /** var bitsPerPixel: Int */
-  get bitsPerPixel(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4213245555104704, this, []); }
-  set bitsPerPixel(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4144168439084392, this, [value]); }
+  get bitsPerPixel(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4213245555104704, this, []); }
+  set bitsPerPixel(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 4144168439084392, this, [value]); }
   /** var bytesPerRow: Int */
-  get bytesPerRow(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2411833688666968, this, []); }
-  set bytesPerRow(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2361174020399413, this, [value]); }
+  get bytesPerRow(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2411833688666968, this, []); }
+  set bytesPerRow(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2361174020399413, this, [value]); }
   /** var version: UInt32 */
-  get version(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1617238657658339, this, []); }
-  set version(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2986498219781825, this, [value]); }
+  get version(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1617238657658339, this, []); }
+  set version(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2986498219781825, this, [value]); }
   /** init(version: UInt32, bitmapInfo: CGBitmapInfo, bitsPerComponent: Int, bitsPerPixel: Int, bytesPerRow: Int) */
-  static initVersionBitmapInfoBitsPerComponentBitsPerPixelBytesPerRow(version: number, bitmapInfo: CGBitmapInfo, bitsPerComponent: number, bitsPerPixel: number, bytesPerRow: number): CGColorBufferFormat { return callSDK<CGColorBufferFormat>("CoreGraphics_067acaa3e5f56b46", 3484992221652489, undefined, [version, bitmapInfo, bitsPerComponent, bitsPerPixel, bytesPerRow]); }
+  static initVersionBitmapInfoBitsPerComponentBitsPerPixelBytesPerRow(version: number, bitmapInfo: CGBitmapInfo, bitsPerComponent: number, bitsPerPixel: number, bytesPerRow: number): CGColorBufferFormat { return callSDK<CGColorBufferFormat>("CoreGraphics_d968214ecc684fb6", 3484992221652489, undefined, [version, bitmapInfo, bitsPerComponent, bitsPerPixel, bytesPerRow]); }
   /** init() */
-  static init(): CGColorBufferFormat { return callSDK<CGColorBufferFormat>("CoreGraphics_067acaa3e5f56b46", 531461354238682, undefined, []); }
+  static init(): CGColorBufferFormat { return callSDK<CGColorBufferFormat>("CoreGraphics_d968214ecc684fb6", 531461354238682, undefined, []); }
   declare readonly $type: { "c:@SA@CGColorBufferFormat": true };
 }
 
@@ -468,24 +468,24 @@ export class CGColorConversionInfo extends SDKHandle {
    * func convert(width: Int, height: Int, to dst_data: UnsafeMutableRawPointer, format dst_format: CGColorBufferFormat, from src_data: UnsafeRawPointer, format src_format: CGColorBufferFormat, options: CFDictionary?) -> Bool
    * @availability iOS 18.0+
    */
-  convert(width: number, height: number, dst_data: SDKHandle, dst_format: CGColorBufferFormat, src_data: SDKHandle, src_format: CGColorBufferFormat, options?: $SDK3): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3874007724218214, this, [width, height, dst_data, dst_format, src_data, src_format, options]); }
+  convert(width: number, height: number, dst_data: SDKHandle, dst_format: CGColorBufferFormat, src_data: SDKHandle, src_format: CGColorBufferFormat, options?: $SDK3): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3874007724218214, this, [width, height, dst_data, dst_format, src_data, src_format, options]); }
   /**
    * init?(src: CGColorSpace, dst: CGColorSpace)
    * @availability iOS 10.0+
    */
-  static initSrcDst(src: CGColorSpace, dst: CGColorSpace): (CGColorConversionInfo) | null { return callSDK<(CGColorConversionInfo) | null>("CoreGraphics_067acaa3e5f56b46", 393208860901906, undefined, [src, dst]); }
+  static initSrcDst(src: CGColorSpace, dst: CGColorSpace): (CGColorConversionInfo) | null { return callSDK<(CGColorConversionInfo) | null>("CoreGraphics_d968214ecc684fb6", 393208860901906, undefined, [src, dst]); }
   /**
    * init?(src source: CGColorSpace, srcHeadroom source_headroom: Float, dst target: CGColorSpace, dstHeadroom target_headroom: Float, toneMapping method: CGToneMapping, options: CFDictionary?, _ error: UnsafeMutablePointer<Unmanaged<CFError>?>?)
    * @availability iOS 18.0+
    */
-  static initSrcSrcHeadroomDstDstHeadroomToneMappingOptions(source: CGColorSpace, source_headroom: number, target: CGColorSpace, target_headroom: number, method: CGToneMapping, options?: $SDK3): { $ret: (CGColorConversionInfo) | null; $out: { "error": (_CoreFoundation_CFError) | null } } { return callSDK<{ $ret: (CGColorConversionInfo) | null; $out: { "error": (_CoreFoundation_CFError) | null } }>("CoreGraphics_067acaa3e5f56b46", 2908307929475476, undefined, [source, source_headroom, target, target_headroom, method, options, null]); }
+  static initSrcSrcHeadroomDstDstHeadroomToneMappingOptions(source: CGColorSpace, source_headroom: number, target: CGColorSpace, target_headroom: number, method: CGToneMapping, options?: $SDK3): { $ret: (CGColorConversionInfo) | null; $out: { "error": (_CoreFoundation_CFError) | null } } { return callSDK<{ $ret: (CGColorConversionInfo) | null; $out: { "error": (_CoreFoundation_CFError) | null } }>("CoreGraphics_d968214ecc684fb6", 2908307929475476, undefined, [source, source_headroom, target, target_headroom, method, options, null]); }
   /**
    * init?(optionsSrc src: CGColorSpace, dst: CGColorSpace, options: CFDictionary?)
    * @availability iOS 13.0+
    */
-  static initOptionsSrcDstOptions(src: CGColorSpace, dst: CGColorSpace, options?: $SDK3): (CGColorConversionInfo) | null { return callSDK<(CGColorConversionInfo) | null>("CoreGraphics_067acaa3e5f56b46", 4399633300126401, undefined, [src, dst, options]); }
+  static initOptionsSrcDstOptions(src: CGColorSpace, dst: CGColorSpace, options?: $SDK3): (CGColorConversionInfo) | null { return callSDK<(CGColorConversionInfo) | null>("CoreGraphics_d968214ecc684fb6", 4399633300126401, undefined, [src, dst, options]); }
   /** class var typeID: CFTypeID { get } */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3224310119175375, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3224310119175375, undefined, []); }
   declare readonly $type: { "c:@T@CGColorConversionInfoRef": true };
 }
 
@@ -494,36 +494,36 @@ export type CGColorConversionInfoTransformType = "transformFromSpace" | "transfo
 
 export const CGColorConversionInfoTransformType = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CGColorConversionInfoTransformType) | null { return callSDK<(CGColorConversionInfoTransformType) | null>("CoreGraphics_067acaa3e5f56b46", 1871144842006897, undefined, [rawValue]); }
+  init(rawValue: number): (CGColorConversionInfoTransformType) | null { return callSDK<(CGColorConversionInfoTransformType) | null>("CoreGraphics_d968214ecc684fb6", 1871144842006897, undefined, [rawValue]); }
 };
 
 /** struct CGColorDataFormat */
 export class CGColorDataFormat extends SDKHandle {
   /** var bitmap_info: CGBitmapInfo */
-  get bitmap_info(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 1569954821652654, this, []); }
-  set bitmap_info(value: CGBitmapInfo) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3888823613135357, this, [value]); }
+  get bitmap_info(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 1569954821652654, this, []); }
+  set bitmap_info(value: CGBitmapInfo) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3888823613135357, this, [value]); }
   /** var bits_per_component: Int */
-  get bits_per_component(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3787300695989250, this, []); }
-  set bits_per_component(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2903266095693945, this, [value]); }
+  get bits_per_component(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3787300695989250, this, []); }
+  set bits_per_component(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2903266095693945, this, [value]); }
   /** var bytes_per_row: Int */
-  get bytes_per_row(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3057195883602865, this, []); }
-  set bytes_per_row(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 590743313396384, this, [value]); }
+  get bytes_per_row(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3057195883602865, this, []); }
+  set bytes_per_row(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 590743313396384, this, [value]); }
   /** var colorspace_info: Unmanaged<CFTypeRef>! */
-  get colorspace_info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_067acaa3e5f56b46", 3057192462273071, this, []); }
-  set colorspace_info(value: (SDKHandle) | null) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4395708047568116, this, [value]); }
+  get colorspace_info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_d968214ecc684fb6", 3057192462273071, this, []); }
+  set colorspace_info(value: (SDKHandle) | null) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 4395708047568116, this, [value]); }
   /** var decode: UnsafeMutablePointer<CGFloat>! */
-  get decode(): $SDK5 { return callSDK<$SDK5>("CoreGraphics_067acaa3e5f56b46", 3730509649620628, this, []); }
-  set decode(value: $SDK5) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3767774045736363, this, [value]); }
+  get decode(): $SDK5 { return callSDK<$SDK5>("CoreGraphics_d968214ecc684fb6", 3730509649620628, this, []); }
+  set decode(value: $SDK5) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3767774045736363, this, [value]); }
   /** var intent: CGColorRenderingIntent */
-  get intent(): CGColorRenderingIntent { return callSDK<CGColorRenderingIntent>("CoreGraphics_067acaa3e5f56b46", 1308919049628418, this, []); }
-  set intent(value: CGColorRenderingIntent) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1443978875431246, this, [value]); }
+  get intent(): CGColorRenderingIntent { return callSDK<CGColorRenderingIntent>("CoreGraphics_d968214ecc684fb6", 1308919049628418, this, []); }
+  set intent(value: CGColorRenderingIntent) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 1443978875431246, this, [value]); }
   /** var version: UInt32 */
-  get version(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1798346026471815, this, []); }
-  set version(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1333817568487782, this, [value]); }
+  get version(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1798346026471815, this, []); }
+  set version(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 1333817568487782, this, [value]); }
   /** init(version: UInt32, colorspace_info: Unmanaged<CFTypeRef>!, bitmap_info: CGBitmapInfo, bits_per_component: Int, bytes_per_row: Int, intent: CGColorRenderingIntent, decode: UnsafeMutablePointer<CGFloat>!) */
-  static initVersionColorspace_infoBitmap_infoBits_per_componentBytes_per_rowIntentDecode(version: number, colorspace_info: (SDKHandle) | null, bitmap_info: CGBitmapInfo, bits_per_component: number, bytes_per_row: number, intent: CGColorRenderingIntent, decode?: $SDK5): CGColorDataFormat { return callSDK<CGColorDataFormat>("CoreGraphics_067acaa3e5f56b46", 2830791477465063, undefined, [version, colorspace_info, bitmap_info, bits_per_component, bytes_per_row, intent, decode]); }
+  static initVersionColorspace_infoBitmap_infoBits_per_componentBytes_per_rowIntentDecode(version: number, colorspace_info: (SDKHandle) | null, bitmap_info: CGBitmapInfo, bits_per_component: number, bytes_per_row: number, intent: CGColorRenderingIntent, decode?: $SDK5): CGColorDataFormat { return callSDK<CGColorDataFormat>("CoreGraphics_d968214ecc684fb6", 2830791477465063, undefined, [version, colorspace_info, bitmap_info, bits_per_component, bytes_per_row, intent, decode]); }
   /** init() */
-  static init(): CGColorDataFormat { return callSDK<CGColorDataFormat>("CoreGraphics_067acaa3e5f56b46", 2945875455624043, undefined, []); }
+  static init(): CGColorDataFormat { return callSDK<CGColorDataFormat>("CoreGraphics_d968214ecc684fb6", 2945875455624043, undefined, []); }
   declare readonly $type: { "c:@SA@CGColorDataFormat": true };
 }
 
@@ -532,17 +532,17 @@ export type CGColorModel = Array<"gray" | "rgb" | "cmyk" | "lab" | "deviceN">;
 
 export const CGColorModel = {
   /** static var cmyk: CGColorModel { get } */
-  get cmyk(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_067acaa3e5f56b46", 2486294676001925, undefined, []); },
+  get cmyk(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_d968214ecc684fb6", 2486294676001925, undefined, []); },
   /** static var deviceN: CGColorModel { get } */
-  get deviceN(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_067acaa3e5f56b46", 2537730264074131, undefined, []); },
+  get deviceN(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_d968214ecc684fb6", 2537730264074131, undefined, []); },
   /** static var gray: CGColorModel { get } */
-  get gray(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_067acaa3e5f56b46", 3705854488884724, undefined, []); },
+  get gray(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_d968214ecc684fb6", 3705854488884724, undefined, []); },
   /** static var lab: CGColorModel { get } */
-  get lab(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_067acaa3e5f56b46", 276359005377339, undefined, []); },
+  get lab(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_d968214ecc684fb6", 276359005377339, undefined, []); },
   /** static var rgb: CGColorModel { get } */
-  get rgb(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_067acaa3e5f56b46", 2346012892487819, undefined, []); },
+  get rgb(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_d968214ecc684fb6", 2346012892487819, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_067acaa3e5f56b46", 3259627932721267, undefined, [rawValue]); }
+  init(rawValue: number): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_d968214ecc684fb6", 3259627932721267, undefined, [rawValue]); }
 };
 
 /** enum CGColorRenderingIntent */
@@ -550,7 +550,7 @@ export type CGColorRenderingIntent = "defaultIntent" | "absoluteColorimetric" | 
 
 export const CGColorRenderingIntent = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGColorRenderingIntent) | null { return callSDK<(CGColorRenderingIntent) | null>("CoreGraphics_067acaa3e5f56b46", 1017301872036190, undefined, [rawValue]); }
+  init(rawValue: number): (CGColorRenderingIntent) | null { return callSDK<(CGColorRenderingIntent) | null>("CoreGraphics_d968214ecc684fb6", 1017301872036190, undefined, [rawValue]); }
 };
 
 /** class CGColorSpace */
@@ -559,309 +559,309 @@ export class CGColorSpace extends SDKHandle {
    * func copyICCData() -> CFData?
    * @availability iOS 10.0+
    */
-  copyICCData(): $SDK6 { return callSDK<$SDK6>("CoreGraphics_067acaa3e5f56b46", 3150588604579859, this, []); }
+  copyICCData(): $SDK6 { return callSDK<$SDK6>("CoreGraphics_d968214ecc684fb6", 3150588604579859, this, []); }
   /**
    * var iccData: CFData? { get }
    * @availability iOS 2.0+
    * @deprecated iOS 11.0
    */
-  get iccData(): $SDK6 { return callSDK<$SDK6>("CoreGraphics_067acaa3e5f56b46", 2076947203819056, this, []); }
+  get iccData(): $SDK6 { return callSDK<$SDK6>("CoreGraphics_d968214ecc684fb6", 2076947203819056, this, []); }
   /**
    * var name: CFString? { get }
    * @availability iOS 10.0+
    */
-  get name(): $SDK7 { return callSDK<$SDK7>("CoreGraphics_067acaa3e5f56b46", 1324883216044557, this, []); }
+  get name(): $SDK7 { return callSDK<$SDK7>("CoreGraphics_d968214ecc684fb6", 1324883216044557, this, []); }
   /**
    * func copyPropertyList() -> CFPropertyList?
    * @availability iOS 10.0+
    */
-  copyPropertyList(): (unknown) | null { return callSDK<(unknown) | null>("CoreGraphics_067acaa3e5f56b46", 4437034977699612, this, []); }
+  copyPropertyList(): (unknown) | null { return callSDK<(unknown) | null>("CoreGraphics_d968214ecc684fb6", 4437034977699612, this, []); }
   /**
    * init?(calibratedGrayWhitePoint whitePoint: UnsafePointer<CGFloat>, blackPoint: UnsafePointer<CGFloat>?, gamma: CGFloat)
    * @availability iOS 2.0+
    */
-  static initCalibratedGrayWhitePointBlackPointGamma(whitePoint: $SDK2, blackPoint: $SDK5, gamma: number): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 3160361846987984, undefined, [whitePoint, blackPoint, gamma]); }
+  static initCalibratedGrayWhitePointBlackPointGamma(whitePoint: $SDK2, blackPoint: $SDK5, gamma: number): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 3160361846987984, undefined, [whitePoint, blackPoint, gamma]); }
   /**
    * init?(calibratedRGBWhitePoint whitePoint: UnsafePointer<CGFloat>, blackPoint: UnsafePointer<CGFloat>?, gamma: UnsafePointer<CGFloat>?, matrix: UnsafePointer<CGFloat>?)
    * @availability iOS 2.0+
    */
-  static initCalibratedRGBWhitePointBlackPointGammaMatrix(whitePoint: $SDK2, blackPoint?: $SDK5, gamma?: $SDK5, matrix?: $SDK5): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 3546292267116639, undefined, [whitePoint, blackPoint, gamma, matrix]); }
+  static initCalibratedRGBWhitePointBlackPointGammaMatrix(whitePoint: $SDK2, blackPoint?: $SDK5, gamma?: $SDK5, matrix?: $SDK5): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 3546292267116639, undefined, [whitePoint, blackPoint, gamma, matrix]); }
   /**
    * init?(iccBasedNComponents nComponents: Int, range: UnsafePointer<CGFloat>?, profile: CGDataProvider, alternate: CGColorSpace?)
    * @availability iOS 2.0+
    */
-  static initIccBasedNComponentsRangeProfileAlternate(nComponents: number, range: $SDK5, profile: CGDataProvider, alternate?: (CGColorSpace) | null): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 3386265810580804, undefined, [nComponents, range, profile, alternate]); }
+  static initIccBasedNComponentsRangeProfileAlternate(nComponents: number, range: $SDK5, profile: CGDataProvider, alternate?: (CGColorSpace) | null): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 3386265810580804, undefined, [nComponents, range, profile, alternate]); }
   /**
    * init?(indexedBaseSpace baseSpace: CGColorSpace, last lastIndex: Int, colorTable: UnsafePointer<UInt8>)
    * @availability iOS 2.0+
    */
-  static initIndexedBaseSpaceLastColorTable(baseSpace: CGColorSpace, lastIndex: number, colorTable: SDKHandle): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 3918030671221212, undefined, [baseSpace, lastIndex, colorTable]); }
+  static initIndexedBaseSpaceLastColorTable(baseSpace: CGColorSpace, lastIndex: number, colorTable: SDKHandle): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 3918030671221212, undefined, [baseSpace, lastIndex, colorTable]); }
   /**
    * init?(labWhitePoint whitePoint: UnsafePointer<CGFloat>, blackPoint: UnsafePointer<CGFloat>?, range: UnsafePointer<CGFloat>?)
    * @availability iOS 2.0+
    */
-  static initLabWhitePointBlackPointRange(whitePoint: $SDK2, blackPoint?: $SDK5, range?: $SDK5): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 2554781741029842, undefined, [whitePoint, blackPoint, range]); }
+  static initLabWhitePointBlackPointRange(whitePoint: $SDK2, blackPoint?: $SDK5, range?: $SDK5): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 2554781741029842, undefined, [whitePoint, blackPoint, range]); }
   /**
    * init?(patternBaseSpace baseSpace: CGColorSpace?)
    * @availability iOS 2.0+
    */
-  static initPatternBaseSpace(baseSpace?: (CGColorSpace) | null): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 4049702727370108, undefined, [baseSpace]); }
+  static initPatternBaseSpace(baseSpace?: (CGColorSpace) | null): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 4049702727370108, undefined, [baseSpace]); }
   /**
    * init?(iccData data: CFTypeRef)
    * @availability iOS 10.0+
    */
-  static initIccData(data: unknown): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 2358928432322724, undefined, [data]); }
+  static initIccData(data: unknown): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 2358928432322724, undefined, [data]); }
   /**
    * init?(iccProfileData data: CFData)
    * @availability iOS 2.0+
    * @deprecated iOS 11.0
    */
-  static initIccProfileData(data: _CoreFoundation_CFData): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 2308492551848349, undefined, [data]); }
+  static initIccProfileData(data: _CoreFoundation_CFData): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 2308492551848349, undefined, [data]); }
   /**
    * init?(name: CFString)
    * @availability iOS 2.0+
    */
-  static initName(name: _CoreFoundation_CFString): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 3210768448149104, undefined, [name]); }
+  static initName(name: _CoreFoundation_CFString): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 3210768448149104, undefined, [name]); }
   /**
    * init?(platformColorSpaceRef ref: UnsafeRawPointer)
    * @availability iOS 9.0+
    * @deprecated iOS 15.0
    */
-  static initPlatformColorSpaceRef(ref: SDKHandle): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 2093474648188376, undefined, [ref]); }
+  static initPlatformColorSpaceRef(ref: SDKHandle): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 2093474648188376, undefined, [ref]); }
   /**
    * init?(propertyListPlist plist: CFPropertyList)
    * @availability iOS 10.0+
    */
-  static initPropertyListPlist(plist: unknown): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 1084645130455181, undefined, [plist]); }
+  static initPropertyListPlist(plist: unknown): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 1084645130455181, undefined, [plist]); }
   /**
    * var baseColorSpace: CGColorSpace? { get }
    * @availability iOS 2.0+
    */
-  get baseColorSpace(): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 2859871292280283, this, []); }
+  get baseColorSpace(): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 2859871292280283, this, []); }
   /**
    * var model: CGColorSpaceModel { get }
    * @availability iOS 2.0+
    */
-  get model(): CGColorSpaceModel { return callSDK<CGColorSpaceModel>("CoreGraphics_067acaa3e5f56b46", 1975319955951852, this, []); }
+  get model(): CGColorSpaceModel { return callSDK<CGColorSpaceModel>("CoreGraphics_d968214ecc684fb6", 1975319955951852, this, []); }
   /**
    * var numberOfComponents: Int { get }
    * @availability iOS 2.0+
    */
-  get numberOfComponents(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3424906846560529, this, []); }
+  get numberOfComponents(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3424906846560529, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 679405319241072, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 679405319241072, undefined, []); }
   /**
    * func isHDR() -> Bool
    * @availability iOS 13.0+
    */
-  isHDR(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 319794699100198, this, []); }
+  isHDR(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 319794699100198, this, []); }
   /**
    * var isWideGamutRGB: Bool { get }
    * @availability iOS 10.0+
    */
-  get isWideGamutRGB(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3992857775677353, this, []); }
+  get isWideGamutRGB(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3992857775677353, this, []); }
   /**
    * var supportsOutput: Bool { get }
    * @availability iOS 10.0+
    */
-  get supportsOutput(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2733234260298723, this, []); }
+  get supportsOutput(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2733234260298723, this, []); }
   /**
    * class let acescgLinear: CFString
    * @availability iOS 9.0+
    */
-  static get acescgLinear(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 4293572355403758, undefined, []); }
+  static get acescgLinear(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 4293572355403758, undefined, []); }
   /**
    * class let adobeRGB1998: CFString
    * @availability iOS 9.0+
    */
-  static get adobeRGB1998(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2877339750720260, undefined, []); }
+  static get adobeRGB1998(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2877339750720260, undefined, []); }
   /**
    * class let coreMedia709: CFString
    * @availability iOS 18.0+
    */
-  static get coreMedia709(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2047283019398510, undefined, []); }
+  static get coreMedia709(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2047283019398510, undefined, []); }
   /**
    * class let dcip3: CFString
    * @availability iOS 9.0+
    */
-  static get dcip3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1279947773144731, undefined, []); }
+  static get dcip3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1279947773144731, undefined, []); }
   /**
    * class let displayP3: CFString
    * @availability iOS 9.3+
    */
-  static get displayP3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2710532311989523, undefined, []); }
+  static get displayP3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2710532311989523, undefined, []); }
   /**
    * class let displayP3_HLG: CFString
    * @availability iOS 12.6+
    */
-  static get displayP3_HLG(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 834115317168698, undefined, []); }
+  static get displayP3_HLG(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 834115317168698, undefined, []); }
   /**
    * class let displayP3_PQ: CFString
    * @availability iOS 13.4+
    */
-  static get displayP3_PQ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 18993937559850, undefined, []); }
+  static get displayP3_PQ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 18993937559850, undefined, []); }
   /**
    * class let displayP3_PQ_EOTF: CFString
    * @availability iOS 12.6+
    * @deprecated iOS 13.4
    */
-  static get displayP3_PQ_EOTF(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3994040256707244, undefined, []); }
+  static get displayP3_PQ_EOTF(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3994040256707244, undefined, []); }
   /**
    * class let extendedDisplayP3: CFString
    * @availability iOS 14.0+
    */
-  static get extendedDisplayP3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 455870254724528, undefined, []); }
+  static get extendedDisplayP3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 455870254724528, undefined, []); }
   /**
    * class let extendedGray: CFString
    * @availability iOS 10.0+
    */
-  static get extendedGray(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3572273414164834, undefined, []); }
+  static get extendedGray(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3572273414164834, undefined, []); }
   /**
    * class let extendedITUR_2020: CFString
    * @availability iOS 14.0+
    */
-  static get extendedITUR_2020(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1990874240364474, undefined, []); }
+  static get extendedITUR_2020(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1990874240364474, undefined, []); }
   /**
    * class let extendedLinearDisplayP3: CFString
    * @availability iOS 12.3+
    */
-  static get extendedLinearDisplayP3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2309776667017021, undefined, []); }
+  static get extendedLinearDisplayP3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2309776667017021, undefined, []); }
   /**
    * class let extendedLinearGray: CFString
    * @availability iOS 10.0+
    */
-  static get extendedLinearGray(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3411409167865236, undefined, []); }
+  static get extendedLinearGray(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3411409167865236, undefined, []); }
   /**
    * class let extendedLinearITUR_2020: CFString
    * @availability iOS 12.3+
    */
-  static get extendedLinearITUR_2020(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3028418572265109, undefined, []); }
+  static get extendedLinearITUR_2020(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3028418572265109, undefined, []); }
   /**
    * class let extendedLinearSRGB: CFString
    * @availability iOS 10.0+
    */
-  static get extendedLinearSRGB(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 4384348283813507, undefined, []); }
+  static get extendedLinearSRGB(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 4384348283813507, undefined, []); }
   /**
    * class let extendedSRGB: CFString
    * @availability iOS 10.0+
    */
-  static get extendedSRGB(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3640339328436496, undefined, []); }
+  static get extendedSRGB(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3640339328436496, undefined, []); }
   /**
    * class let genericCMYK: CFString
    * @availability iOS 9.0+
    */
-  static get genericCMYK(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1989495732974038, undefined, []); }
+  static get genericCMYK(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1989495732974038, undefined, []); }
   /**
    * class let genericGrayGamma2_2: CFString
    * @availability iOS 9.0+
    */
-  static get genericGrayGamma2_2(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1972301797975985, undefined, []); }
+  static get genericGrayGamma2_2(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1972301797975985, undefined, []); }
   /**
    * class let genericLab: CFString
    * @availability iOS 11.0+
    */
-  static get genericLab(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1987291362189056, undefined, []); }
+  static get genericLab(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1987291362189056, undefined, []); }
   /**
    * class let genericRGBLinear: CFString
    * @availability iOS 9.0+
    */
-  static get genericRGBLinear(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 22069798667918, undefined, []); }
+  static get genericRGBLinear(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 22069798667918, undefined, []); }
   /**
    * class let genericXYZ: CFString
    * @availability iOS 9.0+
    */
-  static get genericXYZ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 277972889538887, undefined, []); }
+  static get genericXYZ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 277972889538887, undefined, []); }
   /**
    * class let itur_2020: CFString
    * @availability iOS 9.0+
    */
-  static get itur_2020(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3856081629339510, undefined, []); }
+  static get itur_2020(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3856081629339510, undefined, []); }
   /**
    * class let itur_2020_HLG: CFString
    * @availability iOS 12.6+
    * @deprecated iOS 14.0
    */
-  static get itur_2020_HLG(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2068781494398399, undefined, []); }
+  static get itur_2020_HLG(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2068781494398399, undefined, []); }
   /**
    * class let itur_2020_PQ: CFString
    * @availability iOS 13.4+
    * @deprecated iOS 14.0
    */
-  static get itur_2020_PQ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 813303807930409, undefined, []); }
+  static get itur_2020_PQ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 813303807930409, undefined, []); }
   /**
    * class let itur_2020_PQ_EOTF: CFString
    * @availability iOS 12.6+
    * @deprecated iOS 13.4
    */
-  static get itur_2020_PQ_EOTF(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3589487588499362, undefined, []); }
+  static get itur_2020_PQ_EOTF(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3589487588499362, undefined, []); }
   /**
    * class let itur_2020_sRGBGamma: CFString
    * @availability iOS 15.1+
    */
-  static get itur_2020_sRGBGamma(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3247563570432631, undefined, []); }
+  static get itur_2020_sRGBGamma(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3247563570432631, undefined, []); }
   /**
    * class let itur_2100_HLG: CFString
    * @availability iOS 14.0+
    */
-  static get itur_2100_HLG(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3485236404996919, undefined, []); }
+  static get itur_2100_HLG(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3485236404996919, undefined, []); }
   /**
    * class let itur_2100_PQ: CFString
    * @availability iOS 14.0+
    */
-  static get itur_2100_PQ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2471314720738861, undefined, []); }
+  static get itur_2100_PQ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2471314720738861, undefined, []); }
   /**
    * class let itur_709: CFString
    * @availability iOS 9.0+
    */
-  static get itur_709(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3591323835931267, undefined, []); }
+  static get itur_709(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3591323835931267, undefined, []); }
   /**
    * class let itur_709_HLG: CFString
    * @availability iOS 15.1+
    */
-  static get itur_709_HLG(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 978133497598780, undefined, []); }
+  static get itur_709_HLG(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 978133497598780, undefined, []); }
   /**
    * class let itur_709_PQ: CFString
    * @availability iOS 15.1+
    */
-  static get itur_709_PQ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2271222155475411, undefined, []); }
+  static get itur_709_PQ(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2271222155475411, undefined, []); }
   /**
    * class let linearDisplayP3: CFString
    * @availability iOS 15.0+
    */
-  static get linearDisplayP3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 866459220665004, undefined, []); }
+  static get linearDisplayP3(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 866459220665004, undefined, []); }
   /**
    * class let linearGray: CFString
    * @availability iOS 10.0+
    */
-  static get linearGray(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3960797456599464, undefined, []); }
+  static get linearGray(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3960797456599464, undefined, []); }
   /**
    * class let linearITUR_2020: CFString
    * @availability iOS 15.0+
    */
-  static get linearITUR_2020(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3432283585985660, undefined, []); }
+  static get linearITUR_2020(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3432283585985660, undefined, []); }
   /**
    * class let linearSRGB: CFString
    * @availability iOS 10.0+
    */
-  static get linearSRGB(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2232699431545375, undefined, []); }
+  static get linearSRGB(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2232699431545375, undefined, []); }
   /**
    * class let rommrgb: CFString
    * @availability iOS 9.0+
    */
-  static get rommrgb(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3968825582783984, undefined, []); }
+  static get rommrgb(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3968825582783984, undefined, []); }
   /**
    * class let sRGB: CFString
    * @availability iOS 9.0+
    */
-  static get sRGB(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 4249494436472437, undefined, []); }
+  static get sRGB(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 4249494436472437, undefined, []); }
   /**
    * var colorTable: [UInt8]? { get }
    * @availability iOS 7.0+
    */
-  get colorTable(): (Array<number>) | null { return callSDK<(Array<number>) | null>("CoreGraphics_067acaa3e5f56b46", 3416768326363216, this, []); }
+  get colorTable(): (Array<number>) | null { return callSDK<(Array<number>) | null>("CoreGraphics_d968214ecc684fb6", 3416768326363216, this, []); }
   declare readonly $type: { "c:@T@CGColorSpaceRef": true };
 }
 
@@ -870,7 +870,7 @@ export type CGColorSpaceModel = "unknown" | "monochrome" | "rgb" | "cmyk" | "lab
 
 export const CGColorSpaceModel = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGColorSpaceModel) | null { return callSDK<(CGColorSpaceModel) | null>("CoreGraphics_067acaa3e5f56b46", 2203427879847889, undefined, [rawValue]); }
+  init(rawValue: number): (CGColorSpaceModel) | null { return callSDK<(CGColorSpaceModel) | null>("CoreGraphics_d968214ecc684fb6", 2203427879847889, undefined, [rawValue]); }
 };
 
 /** enum CGComponent */
@@ -878,30 +878,30 @@ export type CGComponent = "unknown" | "integer8Bit" | "integer10Bit" | "integer1
 
 export const CGComponent = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CGComponent) | null { return callSDK<(CGComponent) | null>("CoreGraphics_067acaa3e5f56b46", 2904966393262631, undefined, [rawValue]); }
+  init(rawValue: number): (CGComponent) | null { return callSDK<(CGComponent) | null>("CoreGraphics_d968214ecc684fb6", 2904966393262631, undefined, [rawValue]); }
 };
 
 /** struct CGContentInfo */
 export class CGContentInfo extends SDKHandle {
   /** var contentColorModels: CGColorModel */
-  get contentColorModels(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_067acaa3e5f56b46", 1872696319283745, this, []); }
-  set contentColorModels(value: CGColorModel) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3268679693771421, this, [value]); }
+  get contentColorModels(): CGColorModel { return callSDK<CGColorModel>("CoreGraphics_d968214ecc684fb6", 1872696319283745, this, []); }
+  set contentColorModels(value: CGColorModel) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3268679693771421, this, [value]); }
   /** var deepestImageComponent: CGComponent */
-  get deepestImageComponent(): CGComponent { return callSDK<CGComponent>("CoreGraphics_067acaa3e5f56b46", 2955735109132305, this, []); }
-  set deepestImageComponent(value: CGComponent) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3151834192931226, this, [value]); }
+  get deepestImageComponent(): CGComponent { return callSDK<CGComponent>("CoreGraphics_d968214ecc684fb6", 2955735109132305, this, []); }
+  set deepestImageComponent(value: CGComponent) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3151834192931226, this, [value]); }
   /** var hasTransparency: Bool */
-  get hasTransparency(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 261934048734501, this, []); }
-  set hasTransparency(value: boolean) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1047134718522765, this, [value]); }
+  get hasTransparency(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 261934048734501, this, []); }
+  set hasTransparency(value: boolean) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 1047134718522765, this, [value]); }
   /** var hasWideGamut: Bool */
-  get hasWideGamut(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3651813083699576, this, []); }
-  set hasWideGamut(value: boolean) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 555741231501871, this, [value]); }
+  get hasWideGamut(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3651813083699576, this, []); }
+  set hasWideGamut(value: boolean) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 555741231501871, this, [value]); }
   /** var largestContentHeadroom: Float */
-  get largestContentHeadroom(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1026723308557091, this, []); }
-  set largestContentHeadroom(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 264122914977240, this, [value]); }
+  get largestContentHeadroom(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1026723308557091, this, []); }
+  set largestContentHeadroom(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 264122914977240, this, [value]); }
   /** init(deepestImageComponent: CGComponent, contentColorModels: CGColorModel, hasWideGamut: Bool, hasTransparency: Bool, largestContentHeadroom: Float) */
-  static initDeepestImageComponentContentColorModelsHasWideGamutHasTransparencyLargestContentHeadroom(deepestImageComponent: CGComponent, contentColorModels: CGColorModel, hasWideGamut: boolean, hasTransparency: boolean, largestContentHeadroom: number): CGContentInfo { return callSDK<CGContentInfo>("CoreGraphics_067acaa3e5f56b46", 707284671030292, undefined, [deepestImageComponent, contentColorModels, hasWideGamut, hasTransparency, largestContentHeadroom]); }
+  static initDeepestImageComponentContentColorModelsHasWideGamutHasTransparencyLargestContentHeadroom(deepestImageComponent: CGComponent, contentColorModels: CGColorModel, hasWideGamut: boolean, hasTransparency: boolean, largestContentHeadroom: number): CGContentInfo { return callSDK<CGContentInfo>("CoreGraphics_d968214ecc684fb6", 707284671030292, undefined, [deepestImageComponent, contentColorModels, hasWideGamut, hasTransparency, largestContentHeadroom]); }
   /** init() */
-  static init(): CGContentInfo { return callSDK<CGContentInfo>("CoreGraphics_067acaa3e5f56b46", 2073671789367360, undefined, []); }
+  static init(): CGContentInfo { return callSDK<CGContentInfo>("CoreGraphics_d968214ecc684fb6", 2073671789367360, undefined, []); }
   declare readonly $type: { "c:@SA@CGContentInfo": true };
 }
 
@@ -914,7 +914,7 @@ export class CGContentToneMappingInfo extends SDKHandle {
    * var id: CGToneMapping { get }
    * @availability iOS 26.0+
    */
-  get id(): CGToneMapping { return callSDK<CGToneMapping>("CoreGraphics_067acaa3e5f56b46", 3242497283532174, this, []); }
+  get id(): CGToneMapping { return callSDK<CGToneMapping>("CoreGraphics_d968214ecc684fb6", 3242497283532174, this, []); }
   declare readonly $type: { "s:12CoreGraphics24CGContentToneMappingInfoO": true };
 }
 
@@ -927,24 +927,24 @@ export class CGContentToneMappingInfo_DefaultOptions extends SDKHandle {
    * var preferredDynamicRange: CGContentToneMappingInfo.DynamicRange
    * @availability iOS 26.0+
    */
-  get preferredDynamicRange(): CGContentToneMappingInfo_DynamicRange { return callSDK<CGContentToneMappingInfo_DynamicRange>("CoreGraphics_067acaa3e5f56b46", 1375134432595992, this, []); }
-  set preferredDynamicRange(value: CGContentToneMappingInfo_DynamicRange) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1168845676804371, this, [value]); }
+  get preferredDynamicRange(): CGContentToneMappingInfo_DynamicRange { return callSDK<CGContentToneMappingInfo_DynamicRange>("CoreGraphics_d968214ecc684fb6", 1375134432595992, this, []); }
+  set preferredDynamicRange(value: CGContentToneMappingInfo_DynamicRange) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 1168845676804371, this, [value]); }
   /**
    * init(contentAverageLightLevel: CGContentToneMappingInfo.LightLevel = .relative(0.0), preferredDynamicRange: CGContentToneMappingInfo.DynamicRange = .standard)
    * @availability iOS 26.0+
    */
-  static initContentAverageLightLevelPreferredDynamicRange(contentAverageLightLevel?: CGContentToneMappingInfo_LightLevel, preferredDynamicRange?: CGContentToneMappingInfo_DynamicRange): CGContentToneMappingInfo_DefaultOptions { return callSDK<CGContentToneMappingInfo_DefaultOptions>("CoreGraphics_067acaa3e5f56b46", 3727910996223243, undefined, [contentAverageLightLevel, preferredDynamicRange]); }
+  static initContentAverageLightLevelPreferredDynamicRange(contentAverageLightLevel?: CGContentToneMappingInfo_LightLevel, preferredDynamicRange?: CGContentToneMappingInfo_DynamicRange): CGContentToneMappingInfo_DefaultOptions { return callSDK<CGContentToneMappingInfo_DefaultOptions>("CoreGraphics_d968214ecc684fb6", 3727910996223243, undefined, [contentAverageLightLevel, preferredDynamicRange]); }
   /**
    * var contentAverageLightLevel: CGContentToneMappingInfo.LightLevel
    * @availability iOS 26.0+
    */
-  get contentAverageLightLevel(): CGContentToneMappingInfo_LightLevel { return callSDK<CGContentToneMappingInfo_LightLevel>("CoreGraphics_067acaa3e5f56b46", 3039866497976669, this, []); }
-  set contentAverageLightLevel(value: CGContentToneMappingInfo_LightLevel) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 940551915713715, this, [value]); }
+  get contentAverageLightLevel(): CGContentToneMappingInfo_LightLevel { return callSDK<CGContentToneMappingInfo_LightLevel>("CoreGraphics_d968214ecc684fb6", 3039866497976669, this, []); }
+  set contentAverageLightLevel(value: CGContentToneMappingInfo_LightLevel) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 940551915713715, this, [value]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): CGContentToneMappingInfo_DefaultOptions { return callSDK<CGContentToneMappingInfo_DefaultOptions>("CoreGraphics_067acaa3e5f56b46", 188731519377158, undefined, []); }
+  static init(): CGContentToneMappingInfo_DefaultOptions { return callSDK<CGContentToneMappingInfo_DefaultOptions>("CoreGraphics_d968214ecc684fb6", 188731519377158, undefined, []); }
   declare readonly $type: { "s:12CoreGraphics24CGContentToneMappingInfoO14DefaultOptionsV": true };
 }
 
@@ -963,36 +963,36 @@ export class CGContentToneMappingInfo_EXRGammaOptions extends SDKHandle {
    * init(defog: Float = 0.0, exposure: Float = 0.0, kneeHigh: Float = 5.0, kneeLow: Float = 0.0)
    * @availability iOS 26.0+
    */
-  static initDefogExposureKneeHighKneeLow(defog?: number, exposure?: number, kneeHigh?: number, kneeLow?: number): CGContentToneMappingInfo_EXRGammaOptions { return callSDK<CGContentToneMappingInfo_EXRGammaOptions>("CoreGraphics_067acaa3e5f56b46", 3076483367939941, undefined, [defog, exposure, kneeHigh, kneeLow]); }
+  static initDefogExposureKneeHighKneeLow(defog?: number, exposure?: number, kneeHigh?: number, kneeLow?: number): CGContentToneMappingInfo_EXRGammaOptions { return callSDK<CGContentToneMappingInfo_EXRGammaOptions>("CoreGraphics_d968214ecc684fb6", 3076483367939941, undefined, [defog, exposure, kneeHigh, kneeLow]); }
   /**
    * var defog: Float
    * @availability iOS 26.0+
    */
-  get defog(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4111280444637233, this, []); }
-  set defog(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3464708876809973, this, [value]); }
+  get defog(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4111280444637233, this, []); }
+  set defog(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3464708876809973, this, [value]); }
   /**
    * var kneeLow: Float
    * @availability iOS 26.0+
    */
-  get kneeLow(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4131888302130533, this, []); }
-  set kneeLow(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2099594280270974, this, [value]); }
+  get kneeLow(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4131888302130533, this, []); }
+  set kneeLow(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2099594280270974, this, [value]); }
   /**
    * var exposure: Float
    * @availability iOS 26.0+
    */
-  get exposure(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1533876359477118, this, []); }
-  set exposure(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4114313156821964, this, [value]); }
+  get exposure(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1533876359477118, this, []); }
+  set exposure(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 4114313156821964, this, [value]); }
   /**
    * var kneeHigh: Float
    * @availability iOS 26.0+
    */
-  get kneeHigh(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1482590934745690, this, []); }
-  set kneeHigh(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4013352727566216, this, [value]); }
+  get kneeHigh(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1482590934745690, this, []); }
+  set kneeHigh(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 4013352727566216, this, [value]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): CGContentToneMappingInfo_EXRGammaOptions { return callSDK<CGContentToneMappingInfo_EXRGammaOptions>("CoreGraphics_067acaa3e5f56b46", 207843427247902, undefined, []); }
+  static init(): CGContentToneMappingInfo_EXRGammaOptions { return callSDK<CGContentToneMappingInfo_EXRGammaOptions>("CoreGraphics_d968214ecc684fb6", 207843427247902, undefined, []); }
   declare readonly $type: { "s:12CoreGraphics24CGContentToneMappingInfoO15EXRGammaOptionsV": true };
 }
 
@@ -1011,36 +1011,36 @@ export class CGContentToneMappingInfo_ITURecommendedOptions extends SDKHandle {
    * var useBT1886ForCoreVideoGamma: Bool
    * @availability iOS 26.0+
    */
-  get useBT1886ForCoreVideoGamma(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 909587772441249, this, []); }
-  set useBT1886ForCoreVideoGamma(value: boolean) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1765629320754946, this, [value]); }
+  get useBT1886ForCoreVideoGamma(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 909587772441249, this, []); }
+  set useBT1886ForCoreVideoGamma(value: boolean) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 1765629320754946, this, [value]); }
   /**
    * init(skipBoostToHDR: Bool = true, use100nitsHLGOOTF: Bool = true, useBT1886ForCoreVideoGamma: Bool = true, useLegacyHDREcosystem: Bool = true)
    * @availability iOS 26.0+
    */
-  static initSkipBoostToHDRUse100nitsHLGOOTFUseBT1886ForCoreVideoGammaUseLegacyHDREcosystem(skipBoostToHDR?: boolean, use100nitsHLGOOTF?: boolean, useBT1886ForCoreVideoGamma?: boolean, useLegacyHDREcosystem?: boolean): CGContentToneMappingInfo_ITURecommendedOptions { return callSDK<CGContentToneMappingInfo_ITURecommendedOptions>("CoreGraphics_067acaa3e5f56b46", 2473964796945320, undefined, [skipBoostToHDR, use100nitsHLGOOTF, useBT1886ForCoreVideoGamma, useLegacyHDREcosystem]); }
+  static initSkipBoostToHDRUse100nitsHLGOOTFUseBT1886ForCoreVideoGammaUseLegacyHDREcosystem(skipBoostToHDR?: boolean, use100nitsHLGOOTF?: boolean, useBT1886ForCoreVideoGamma?: boolean, useLegacyHDREcosystem?: boolean): CGContentToneMappingInfo_ITURecommendedOptions { return callSDK<CGContentToneMappingInfo_ITURecommendedOptions>("CoreGraphics_d968214ecc684fb6", 2473964796945320, undefined, [skipBoostToHDR, use100nitsHLGOOTF, useBT1886ForCoreVideoGamma, useLegacyHDREcosystem]); }
   /**
    * var skipBoostToHDR: Bool
    * @availability iOS 26.0+
    */
-  get skipBoostToHDR(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1375997633838845, this, []); }
-  set skipBoostToHDR(value: boolean) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3716499415640500, this, [value]); }
+  get skipBoostToHDR(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1375997633838845, this, []); }
+  set skipBoostToHDR(value: boolean) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3716499415640500, this, [value]); }
   /**
    * var use100nitsHLGOOTF: Bool
    * @availability iOS 26.0+
    */
-  get use100nitsHLGOOTF(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2240733712554751, this, []); }
-  set use100nitsHLGOOTF(value: boolean) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2847712934298676, this, [value]); }
+  get use100nitsHLGOOTF(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2240733712554751, this, []); }
+  set use100nitsHLGOOTF(value: boolean) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2847712934298676, this, [value]); }
   /**
    * var useLegacyHDREcosystem: Bool
    * @availability iOS 26.0+
    */
-  get useLegacyHDREcosystem(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2810522644924598, this, []); }
-  set useLegacyHDREcosystem(value: boolean) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3477421027795623, this, [value]); }
+  get useLegacyHDREcosystem(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2810522644924598, this, []); }
+  set useLegacyHDREcosystem(value: boolean) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3477421027795623, this, [value]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): CGContentToneMappingInfo_ITURecommendedOptions { return callSDK<CGContentToneMappingInfo_ITURecommendedOptions>("CoreGraphics_067acaa3e5f56b46", 2441163538018223, undefined, []); }
+  static init(): CGContentToneMappingInfo_ITURecommendedOptions { return callSDK<CGContentToneMappingInfo_ITURecommendedOptions>("CoreGraphics_d968214ecc684fb6", 2441163538018223, undefined, []); }
   declare readonly $type: { "s:12CoreGraphics24CGContentToneMappingInfoO21ITURecommendedOptionsV": true };
 }
 
@@ -1058,694 +1058,694 @@ export class CGContext extends SDKHandle {
    * init?(data: UnsafeMutableRawPointer?, width: Int, height: Int, bitsPerComponent: Int, bytesPerRow: Int, space: CGColorSpace?, bitmapInfo: CGBitmapInfo)
    * @availability iOS 2.0+
    */
-  static initDataWidthHeightBitsPerComponentBytesPerRowSpaceBitmapInfo(data: (SDKHandle) | null, width: number, height: number, bitsPerComponent: number, bytesPerRow: number, space: (CGColorSpace) | null, bitmapInfo: CGBitmapInfo): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_067acaa3e5f56b46", 3878729847515406, undefined, [data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo]); }
+  static initDataWidthHeightBitsPerComponentBytesPerRowSpaceBitmapInfo(data: (SDKHandle) | null, width: number, height: number, bitsPerComponent: number, bytesPerRow: number, space: (CGColorSpace) | null, bitmapInfo: CGBitmapInfo): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_d968214ecc684fb6", 3878729847515406, undefined, [data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo]); }
   /**
    * func makeImage() -> CGImage?
    * @availability iOS 2.0+
    */
-  makeImage(): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 3979442122575627, this, []); }
+  makeImage(): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 3979442122575627, this, []); }
   /**
    * var alphaInfo: CGImageAlphaInfo { get }
    * @availability iOS 2.0+
    */
-  get alphaInfo(): CGImageAlphaInfo { return callSDK<CGImageAlphaInfo>("CoreGraphics_067acaa3e5f56b46", 2391177542558665, this, []); }
+  get alphaInfo(): CGImageAlphaInfo { return callSDK<CGImageAlphaInfo>("CoreGraphics_d968214ecc684fb6", 2391177542558665, this, []); }
   /**
    * var bitmapInfo: CGBitmapInfo { get }
    * @availability iOS 2.0+
    */
-  get bitmapInfo(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 32546043746835, this, []); }
+  get bitmapInfo(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 32546043746835, this, []); }
   /**
    * var bitsPerComponent: Int { get }
    * @availability iOS 2.0+
    */
-  get bitsPerComponent(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3081952354968801, this, []); }
+  get bitsPerComponent(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3081952354968801, this, []); }
   /**
    * var bitsPerPixel: Int { get }
    * @availability iOS 2.0+
    */
-  get bitsPerPixel(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1336861227134863, this, []); }
+  get bitsPerPixel(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1336861227134863, this, []); }
   /**
    * var bytesPerRow: Int { get }
    * @availability iOS 2.0+
    */
-  get bytesPerRow(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1940990556979049, this, []); }
+  get bytesPerRow(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1940990556979049, this, []); }
   /**
    * var colorSpace: CGColorSpace? { get }
    * @availability iOS 2.0+
    */
-  get colorSpace(): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 3311485819795426, this, []); }
+  get colorSpace(): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 3311485819795426, this, []); }
   /**
    * var data: UnsafeMutableRawPointer? { get }
    * @availability iOS 2.0+
    */
-  get data(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_067acaa3e5f56b46", 800725275350939, this, []); }
+  get data(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_d968214ecc684fb6", 800725275350939, this, []); }
   /**
    * var height: Int { get }
    * @availability iOS 2.0+
    */
-  get height(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1236794625603614, this, []); }
+  get height(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1236794625603614, this, []); }
   /**
    * var width: Int { get }
    * @availability iOS 2.0+
    */
-  get width(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2728288040893569, this, []); }
+  get width(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2728288040893569, this, []); }
   /**
    * func addEllipse(in rect: CGRect)
    * @availability iOS 2.0+
    */
-  addEllipse(rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4061026306368454, this, [rect]); }
+  addEllipse(rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4061026306368454, this, [rect]); }
   /**
    * func addPath(_ path: CGPath)
    * @availability iOS 2.0+
    */
-  addPath(path: CGPath): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2793689526918497, this, [path]); }
+  addPath(path: CGPath): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2793689526918497, this, [path]); }
   /**
    * func addRect(_ rect: CGRect)
    * @availability iOS 2.0+
    */
-  addRect(rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2951994413360860, this, [rect]); }
+  addRect(rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2951994413360860, this, [rect]); }
   /**
    * func beginPage(mediaBox: UnsafePointer<CGRect>?)
    * @availability iOS 2.0+
    */
-  beginPage(mediaBox?: $SDK5): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3811239562099021, this, [mediaBox]); }
+  beginPage(mediaBox?: $SDK5): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3811239562099021, this, [mediaBox]); }
   /**
    * func beginPath()
    * @availability iOS 2.0+
    */
-  beginPath(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 289940540200891, this, []); }
+  beginPath(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 289940540200891, this, []); }
   /**
    * func beginTransparencyLayer(auxiliaryInfo: CFDictionary?)
    * @availability iOS 2.0+
    */
-  beginTransparencyLayerAuxiliaryInfo(auxiliaryInfo?: $SDK3): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2077935481728199, this, [auxiliaryInfo]); }
+  beginTransparencyLayerAuxiliaryInfo(auxiliaryInfo?: $SDK3): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2077935481728199, this, [auxiliaryInfo]); }
   /**
    * func beginTransparencyLayer(in rect: CGRect, auxiliaryInfo auxInfo: CFDictionary?)
    * @availability iOS 2.0+
    */
-  beginTransparencyLayerInAuxiliaryInfo(rect: $SDK8, auxInfo?: $SDK3): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2948036597579820, this, [rect, auxInfo]); }
+  beginTransparencyLayerInAuxiliaryInfo(rect: $SDK8, auxInfo?: $SDK3): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2948036597579820, this, [rect, auxInfo]); }
   /**
    * func clear(_ rect: CGRect)
    * @availability iOS 2.0+
    */
-  clear(rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1550813209303903, this, [rect]); }
+  clear(rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1550813209303903, this, [rect]); }
   /**
    * func clip(to rect: CGRect, mask: CGImage)
    * @availability iOS 2.0+
    */
-  clipToMask(rect: $SDK8, mask: CGImage): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 202531421449733, this, [rect, mask]); }
+  clipToMask(rect: $SDK8, mask: CGImage): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 202531421449733, this, [rect, mask]); }
   /**
    * func clip(to rect: CGRect)
    * @availability iOS 2.0+
    */
-  clipTo(rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3657159093418677, this, [rect]); }
+  clipTo(rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3657159093418677, this, [rect]); }
   /**
    * func closePath()
    * @availability iOS 2.0+
    */
-  closePath(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2020242992953137, this, []); }
+  closePath(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2020242992953137, this, []); }
   /**
    * func concatenate(_ transform: CGAffineTransform)
    * @availability iOS 2.0+
    */
-  concatenate(transform: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2760921298002950, this, [transform]); }
+  concatenate(transform: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2760921298002950, this, [transform]); }
   /**
    * func convertToDeviceSpace(_ point: CGPoint) -> CGPoint
    * @availability iOS 2.0+
    */
-  convertToDeviceSpace(point: $SDK9): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 1116015302443931, this, [point]); }
+  convertToDeviceSpace(point: $SDK9): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 1116015302443931, this, [point]); }
   /**
    * func convertToUserSpace(_ point: CGPoint) -> CGPoint
    * @availability iOS 2.0+
    */
-  convertToUserSpace(point: $SDK9): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 1954031670968791, this, [point]); }
+  convertToUserSpace(point: $SDK9): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 1954031670968791, this, [point]); }
   /**
    * func convertToDeviceSpace(_ rect: CGRect) -> CGRect
    * @availability iOS 2.0+
    */
-  convertToDeviceSpace18191(rect: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 585825279824039, this, [rect]); }
+  convertToDeviceSpace18191(rect: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 585825279824039, this, [rect]); }
   /**
    * func convertToUserSpace(_ rect: CGRect) -> CGRect
    * @availability iOS 2.0+
    */
-  convertToUserSpace42604(rect: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 4085036109409528, this, [rect]); }
+  convertToUserSpace42604(rect: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 4085036109409528, this, [rect]); }
   /**
    * func convertToDeviceSpace(_ size: CGSize) -> CGSize
    * @availability iOS 2.0+
    */
-  convertToDeviceSpace39714(size: $SDK10): $SDK10 { return callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 145859561480853, this, [size]); }
+  convertToDeviceSpace39714(size: $SDK10): $SDK10 { return callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 145859561480853, this, [size]); }
   /**
    * func convertToUserSpace(_ size: CGSize) -> CGSize
    * @availability iOS 2.0+
    */
-  convertToUserSpace3229(size: $SDK10): $SDK10 { return callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 1793118878516550, this, [size]); }
+  convertToUserSpace3229(size: $SDK10): $SDK10 { return callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 1793118878516550, this, [size]); }
   /**
    * var path: CGPath? { get }
    * @availability iOS 2.0+
    */
-  get path(): (CGPath) | null { return callSDK<(CGPath) | null>("CoreGraphics_067acaa3e5f56b46", 763743669329557, this, []); }
+  get path(): (CGPath) | null { return callSDK<(CGPath) | null>("CoreGraphics_d968214ecc684fb6", 763743669329557, this, []); }
   /**
    * func drawLinearGradient(_ gradient: CGGradient, start startPoint: CGPoint, end endPoint: CGPoint, options: CGGradientDrawingOptions)
    * @availability iOS 2.0+
    */
-  drawLinearGradient(gradient: CGGradient, startPoint: $SDK9, endPoint: $SDK9, options: CGGradientDrawingOptions): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 751103944392899, this, [gradient, startPoint, endPoint, options]); }
+  drawLinearGradient(gradient: CGGradient, startPoint: $SDK9, endPoint: $SDK9, options: CGGradientDrawingOptions): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 751103944392899, this, [gradient, startPoint, endPoint, options]); }
   /**
    * func drawPDFPage(_ page: CGPDFPage)
    * @availability iOS 2.0+
    */
-  drawPDFPage(page: CGPDFPage): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1714791319150051, this, [page]); }
+  drawPDFPage(page: CGPDFPage): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1714791319150051, this, [page]); }
   /**
    * func drawPath(using mode: CGPathDrawingMode)
    * @availability iOS 2.0+
    */
-  drawPath(mode: CGPathDrawingMode): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1499554328803734, this, [mode]); }
+  drawPath(mode: CGPathDrawingMode): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1499554328803734, this, [mode]); }
   /**
    * func drawRadialGradient(_ gradient: CGGradient, startCenter: CGPoint, startRadius: CGFloat, endCenter: CGPoint, endRadius: CGFloat, options: CGGradientDrawingOptions)
    * @availability iOS 2.0+
    */
-  drawRadialGradient(gradient: CGGradient, startCenter: $SDK9, startRadius: number, endCenter: $SDK9, endRadius: number, options: CGGradientDrawingOptions): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 41685302086318, this, [gradient, startCenter, startRadius, endCenter, endRadius, options]); }
+  drawRadialGradient(gradient: CGGradient, startCenter: $SDK9, startRadius: number, endCenter: $SDK9, endRadius: number, options: CGGradientDrawingOptions): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 41685302086318, this, [gradient, startCenter, startRadius, endCenter, endRadius, options]); }
   /**
    * func drawShading(_ shading: CGShading)
    * @availability iOS 2.0+
    */
-  drawShading(shading: CGShading): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1709743467516915, this, [shading]); }
+  drawShading(shading: CGShading): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1709743467516915, this, [shading]); }
   /**
    * func endPage()
    * @availability iOS 2.0+
    */
-  endPage(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3211545821443206, this, []); }
+  endPage(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3211545821443206, this, []); }
   /**
    * func endTransparencyLayer()
    * @availability iOS 2.0+
    */
-  endTransparencyLayer(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3294979476827853, this, []); }
+  endTransparencyLayer(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3294979476827853, this, []); }
   /**
    * func fillEllipse(in rect: CGRect)
    * @availability iOS 2.0+
    */
-  fillEllipse(rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 103365616061072, this, [rect]); }
+  fillEllipse(rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 103365616061072, this, [rect]); }
   /**
    * func fill(_ rect: CGRect)
    * @availability iOS 2.0+
    */
-  fill(rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3059657859197435, this, [rect]); }
+  fill(rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3059657859197435, this, [rect]); }
   /**
    * func flush()
    * @availability iOS 2.0+
    */
-  flush(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1430873315433459, this, []); }
+  flush(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1430873315433459, this, []); }
   /**
    * var ctm: CGAffineTransform { get }
    * @availability iOS 2.0+
    */
-  get ctm(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 1305314196642572, this, []); }
+  get ctm(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 1305314196642572, this, []); }
   /**
    * var boundingBoxOfClipPath: CGRect { get }
    * @availability iOS 2.0+
    */
-  get boundingBoxOfClipPath(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2169116245108479, this, []); }
+  get boundingBoxOfClipPath(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2169116245108479, this, []); }
   /**
    * var interpolationQuality: CGInterpolationQuality { get set }
    * @availability iOS 2.0+
    */
-  get interpolationQuality(): CGInterpolationQuality { return callSDK<CGInterpolationQuality>("CoreGraphics_067acaa3e5f56b46", 3159242019456580, this, []); }
-  set interpolationQuality(value: CGInterpolationQuality) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1879563524767513, this, [value]); }
+  get interpolationQuality(): CGInterpolationQuality { return callSDK<CGInterpolationQuality>("CoreGraphics_d968214ecc684fb6", 3159242019456580, this, []); }
+  set interpolationQuality(value: CGInterpolationQuality) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 1879563524767513, this, [value]); }
   /**
    * var boundingBoxOfPath: CGRect { get }
    * @availability iOS 2.0+
    */
-  get boundingBoxOfPath(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 4431767814684141, this, []); }
+  get boundingBoxOfPath(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 4431767814684141, this, []); }
   /**
    * var currentPointOfPath: CGPoint { get }
    * @availability iOS 2.0+
    */
-  get currentPointOfPath(): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 2769008718789977, this, []); }
+  get currentPointOfPath(): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 2769008718789977, this, []); }
   /**
    * var textMatrix: CGAffineTransform { get set }
    * @availability iOS 2.0+
    */
-  get textMatrix(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 3681017915679039, this, []); }
-  set textMatrix(value: _CoreFoundation_CGAffineTransform) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3426237734216482, this, [value]); }
+  get textMatrix(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 3681017915679039, this, []); }
+  set textMatrix(value: _CoreFoundation_CGAffineTransform) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3426237734216482, this, [value]); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3948800651425695, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3948800651425695, undefined, []); }
   /**
    * var userSpaceToDeviceSpaceTransform: CGAffineTransform { get }
    * @availability iOS 2.0+
    */
-  get userSpaceToDeviceSpaceTransform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 4237762380836682, this, []); }
+  get userSpaceToDeviceSpaceTransform(): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 4237762380836682, this, []); }
   /**
    * var isPathEmpty: Bool { get }
    * @availability iOS 2.0+
    */
-  get isPathEmpty(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1583838580125962, this, []); }
+  get isPathEmpty(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1583838580125962, this, []); }
   /**
    * func pathContains(_ point: CGPoint, mode: CGPathDrawingMode) -> Bool
    * @availability iOS 2.0+
    */
-  pathContains(point: $SDK9, mode: CGPathDrawingMode): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3658338275169505, this, [point, mode]); }
+  pathContains(point: $SDK9, mode: CGPathDrawingMode): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3658338275169505, this, [point, mode]); }
   /**
    * func replacePathWithStrokedPath()
    * @availability iOS 2.0+
    */
-  replacePathWithStrokedPath(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2153658165296622, this, []); }
+  replacePathWithStrokedPath(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2153658165296622, this, []); }
   /** func resetClip() */
-  resetClip(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3552074708674952, this, []); }
+  resetClip(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3552074708674952, this, []); }
   /**
    * func restoreGState()
    * @availability iOS 2.0+
    */
-  restoreGState(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2362108830120981, this, []); }
+  restoreGState(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2362108830120981, this, []); }
   /**
    * func rotate(by angle: CGFloat)
    * @availability iOS 2.0+
    */
-  rotate(angle: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3628833557476762, this, [angle]); }
+  rotate(angle: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3628833557476762, this, [angle]); }
   /**
    * func saveGState()
    * @availability iOS 2.0+
    */
-  saveGState(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3129959619300555, this, []); }
+  saveGState(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3129959619300555, this, []); }
   /**
    * func scaleBy(x sx: CGFloat, y sy: CGFloat)
    * @availability iOS 2.0+
    */
-  scaleBy(sx: number, sy: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 321999121214493, this, [sx, sy]); }
+  scaleBy(sx: number, sy: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 321999121214493, this, [sx, sy]); }
   /**
    * func setAllowsAntialiasing(_ allowsAntialiasing: Bool)
    * @availability iOS 2.0+
    */
-  setAllowsAntialiasing(allowsAntialiasing: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2832127586707916, this, [allowsAntialiasing]); }
+  setAllowsAntialiasing(allowsAntialiasing: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2832127586707916, this, [allowsAntialiasing]); }
   /**
    * func setAllowsFontSmoothing(_ allowsFontSmoothing: Bool)
    * @availability iOS 2.0+
    */
-  setAllowsFontSmoothing(allowsFontSmoothing: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3851903688332, this, [allowsFontSmoothing]); }
+  setAllowsFontSmoothing(allowsFontSmoothing: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3851903688332, this, [allowsFontSmoothing]); }
   /**
    * func setAllowsFontSubpixelPositioning(_ allowsFontSubpixelPositioning: Bool)
    * @availability iOS 2.0+
    */
-  setAllowsFontSubpixelPositioning(allowsFontSubpixelPositioning: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2711065650844474, this, [allowsFontSubpixelPositioning]); }
+  setAllowsFontSubpixelPositioning(allowsFontSubpixelPositioning: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2711065650844474, this, [allowsFontSubpixelPositioning]); }
   /**
    * func setAllowsFontSubpixelQuantization(_ allowsFontSubpixelQuantization: Bool)
    * @availability iOS 2.0+
    */
-  setAllowsFontSubpixelQuantization(allowsFontSubpixelQuantization: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2118947345913247, this, [allowsFontSubpixelQuantization]); }
+  setAllowsFontSubpixelQuantization(allowsFontSubpixelQuantization: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2118947345913247, this, [allowsFontSubpixelQuantization]); }
   /**
    * func setAlpha(_ alpha: CGFloat)
    * @availability iOS 2.0+
    */
-  setAlpha(alpha: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1462809152555282, this, [alpha]); }
+  setAlpha(alpha: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1462809152555282, this, [alpha]); }
   /**
    * func setBlendMode(_ mode: CGBlendMode)
    * @availability iOS 2.0+
    */
-  setBlendMode(mode: CGBlendMode): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4020182139876622, this, [mode]); }
+  setBlendMode(mode: CGBlendMode): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4020182139876622, this, [mode]); }
   /**
    * func setFillColor(cyan: CGFloat, magenta: CGFloat, yellow: CGFloat, black: CGFloat, alpha: CGFloat)
    * @availability iOS 2.0+
    */
-  setFillColorCyanMagentaYellowBlackAlpha(cyan: number, magenta: number, yellow: number, black: number, alpha: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3160487775060883, this, [cyan, magenta, yellow, black, alpha]); }
+  setFillColorCyanMagentaYellowBlackAlpha(cyan: number, magenta: number, yellow: number, black: number, alpha: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3160487775060883, this, [cyan, magenta, yellow, black, alpha]); }
   /**
    * func setStrokeColor(cyan: CGFloat, magenta: CGFloat, yellow: CGFloat, black: CGFloat, alpha: CGFloat)
    * @availability iOS 2.0+
    */
-  setStrokeColorCyanMagentaYellowBlackAlpha(cyan: number, magenta: number, yellow: number, black: number, alpha: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3355786641302857, this, [cyan, magenta, yellow, black, alpha]); }
+  setStrokeColorCyanMagentaYellowBlackAlpha(cyan: number, magenta: number, yellow: number, black: number, alpha: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3355786641302857, this, [cyan, magenta, yellow, black, alpha]); }
   /**
    * func setCharacterSpacing(_ spacing: CGFloat)
    * @availability iOS 2.0+
    */
-  setCharacterSpacing(spacing: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1523056866118810, this, [spacing]); }
+  setCharacterSpacing(spacing: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1523056866118810, this, [spacing]); }
   /**
    * func setEDRTargetHeadroom(_ headroom: Float) -> Bool
    * @availability iOS 18.0+
    */
-  setEDRTargetHeadroom(headroom: number): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1012961059017298, this, [headroom]); }
+  setEDRTargetHeadroom(headroom: number): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1012961059017298, this, [headroom]); }
   /**
    * func setFillColor(_ components: UnsafePointer<CGFloat>)
    * @availability iOS 2.0+
    */
-  setFillColor(components: $SDK2): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1232099319320477, this, [components]); }
+  setFillColor(components: $SDK2): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1232099319320477, this, [components]); }
   /**
    * func setFillColorSpace(_ space: CGColorSpace)
    * @availability iOS 2.0+
    */
-  setFillColorSpace(space: CGColorSpace): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3590604794526946, this, [space]); }
+  setFillColorSpace(space: CGColorSpace): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3590604794526946, this, [space]); }
   /**
    * func setFillColor(_ color: CGColor)
    * @availability iOS 2.0+
    */
-  setFillColor49658(color: CGColor): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1859466035728351, this, [color]); }
+  setFillColor49658(color: CGColor): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1859466035728351, this, [color]); }
   /**
    * func setFillPattern(_ pattern: CGPattern, colorComponents components: UnsafePointer<CGFloat>)
    * @availability iOS 2.0+
    */
-  setFillPattern(pattern: CGPattern, components: $SDK2): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1251640031940046, this, [pattern, components]); }
+  setFillPattern(pattern: CGPattern, components: $SDK2): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1251640031940046, this, [pattern, components]); }
   /**
    * func setFlatness(_ flatness: CGFloat)
    * @availability iOS 2.0+
    */
-  setFlatness(flatness: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3156498815682184, this, [flatness]); }
+  setFlatness(flatness: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3156498815682184, this, [flatness]); }
   /**
    * func setFont(_ font: CGFont)
    * @availability iOS 2.0+
    */
-  setFont(font: CGFont): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1348486678486139, this, [font]); }
+  setFont(font: CGFont): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1348486678486139, this, [font]); }
   /**
    * func setFontSize(_ size: CGFloat)
    * @availability iOS 2.0+
    */
-  setFontSize(size: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2046828990831866, this, [size]); }
+  setFontSize(size: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2046828990831866, this, [size]); }
   /**
    * func setFillColor(gray: CGFloat, alpha: CGFloat)
    * @availability iOS 2.0+
    */
-  setFillColorGrayAlpha(gray: number, alpha: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1859886959606025, this, [gray, alpha]); }
+  setFillColorGrayAlpha(gray: number, alpha: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1859886959606025, this, [gray, alpha]); }
   /**
    * func setStrokeColor(gray: CGFloat, alpha: CGFloat)
    * @availability iOS 2.0+
    */
-  setStrokeColorGrayAlpha(gray: number, alpha: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4349019850517675, this, [gray, alpha]); }
+  setStrokeColorGrayAlpha(gray: number, alpha: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4349019850517675, this, [gray, alpha]); }
   /**
    * func setLineCap(_ cap: CGLineCap)
    * @availability iOS 2.0+
    */
-  setLineCap(cap: CGLineCap): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 165999459133359, this, [cap]); }
+  setLineCap(cap: CGLineCap): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 165999459133359, this, [cap]); }
   /**
    * func setLineJoin(_ join: CGLineJoin)
    * @availability iOS 2.0+
    */
-  setLineJoin(join: CGLineJoin): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2123383652642723, this, [join]); }
+  setLineJoin(join: CGLineJoin): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2123383652642723, this, [join]); }
   /**
    * func setLineWidth(_ width: CGFloat)
    * @availability iOS 2.0+
    */
-  setLineWidth(width: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 888845189416938, this, [width]); }
+  setLineWidth(width: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 888845189416938, this, [width]); }
   /**
    * func setMiterLimit(_ limit: CGFloat)
    * @availability iOS 2.0+
    */
-  setMiterLimit(limit: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 376902821331895, this, [limit]); }
+  setMiterLimit(limit: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 376902821331895, this, [limit]); }
   /**
    * func setPatternPhase(_ phase: CGSize)
    * @availability iOS 2.0+
    */
-  setPatternPhase(phase: $SDK10): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2814105797781140, this, [phase]); }
+  setPatternPhase(phase: $SDK10): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2814105797781140, this, [phase]); }
   /**
    * func setFillColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
    * @availability iOS 2.0+
    */
-  setFillColorRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1849936819142136, this, [red, green, blue, alpha]); }
+  setFillColorRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1849936819142136, this, [red, green, blue, alpha]); }
   /**
    * func setStrokeColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
    * @availability iOS 2.0+
    */
-  setStrokeColorRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1272518373340929, this, [red, green, blue, alpha]); }
+  setStrokeColorRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1272518373340929, this, [red, green, blue, alpha]); }
   /**
    * func setRenderingIntent(_ intent: CGColorRenderingIntent)
    * @availability iOS 2.0+
    */
-  setRenderingIntent(intent: CGColorRenderingIntent): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 841119033292716, this, [intent]); }
+  setRenderingIntent(intent: CGColorRenderingIntent): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 841119033292716, this, [intent]); }
   /**
    * func setShadow(offset: CGSize, blur: CGFloat)
    * @availability iOS 2.0+
    */
-  setShadowOffsetBlur(offset: $SDK10, blur: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4482773564739098, this, [offset, blur]); }
+  setShadowOffsetBlur(offset: $SDK10, blur: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4482773564739098, this, [offset, blur]); }
   /**
    * func setShadow(offset: CGSize, blur: CGFloat, color: CGColor?)
    * @availability iOS 2.0+
    */
-  setShadowOffsetBlurColor(offset: $SDK10, blur: number, color?: (CGColor) | null): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4291434776176439, this, [offset, blur, color]); }
+  setShadowOffsetBlurColor(offset: $SDK10, blur: number, color?: (CGColor) | null): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4291434776176439, this, [offset, blur, color]); }
   /**
    * func setShouldAntialias(_ shouldAntialias: Bool)
    * @availability iOS 2.0+
    */
-  setShouldAntialias(shouldAntialias: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3630583307013321, this, [shouldAntialias]); }
+  setShouldAntialias(shouldAntialias: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3630583307013321, this, [shouldAntialias]); }
   /**
    * func setShouldSmoothFonts(_ shouldSmoothFonts: Bool)
    * @availability iOS 2.0+
    */
-  setShouldSmoothFonts(shouldSmoothFonts: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3000654307427809, this, [shouldSmoothFonts]); }
+  setShouldSmoothFonts(shouldSmoothFonts: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3000654307427809, this, [shouldSmoothFonts]); }
   /**
    * func setShouldSubpixelPositionFonts(_ shouldSubpixelPositionFonts: Bool)
    * @availability iOS 2.0+
    */
-  setShouldSubpixelPositionFonts(shouldSubpixelPositionFonts: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2015260926789144, this, [shouldSubpixelPositionFonts]); }
+  setShouldSubpixelPositionFonts(shouldSubpixelPositionFonts: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2015260926789144, this, [shouldSubpixelPositionFonts]); }
   /**
    * func setShouldSubpixelQuantizeFonts(_ shouldSubpixelQuantizeFonts: Bool)
    * @availability iOS 2.0+
    */
-  setShouldSubpixelQuantizeFonts(shouldSubpixelQuantizeFonts: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1199402065221721, this, [shouldSubpixelQuantizeFonts]); }
+  setShouldSubpixelQuantizeFonts(shouldSubpixelQuantizeFonts: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1199402065221721, this, [shouldSubpixelQuantizeFonts]); }
   /**
    * func setStrokeColor(_ components: UnsafePointer<CGFloat>)
    * @availability iOS 2.0+
    */
-  setStrokeColor(components: $SDK2): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4063093730019424, this, [components]); }
+  setStrokeColor(components: $SDK2): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4063093730019424, this, [components]); }
   /**
    * func setStrokeColorSpace(_ space: CGColorSpace)
    * @availability iOS 2.0+
    */
-  setStrokeColorSpace(space: CGColorSpace): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4041818766662054, this, [space]); }
+  setStrokeColorSpace(space: CGColorSpace): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4041818766662054, this, [space]); }
   /**
    * func setStrokeColor(_ color: CGColor)
    * @availability iOS 2.0+
    */
-  setStrokeColor46187(color: CGColor): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2346873952248988, this, [color]); }
+  setStrokeColor46187(color: CGColor): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2346873952248988, this, [color]); }
   /**
    * func setStrokePattern(_ pattern: CGPattern, colorComponents components: UnsafePointer<CGFloat>)
    * @availability iOS 2.0+
    */
-  setStrokePattern(pattern: CGPattern, components: $SDK2): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3683309702467524, this, [pattern, components]); }
+  setStrokePattern(pattern: CGPattern, components: $SDK2): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3683309702467524, this, [pattern, components]); }
   /**
    * func setTextDrawingMode(_ mode: CGTextDrawingMode)
    * @availability iOS 2.0+
    */
-  setTextDrawingMode(mode: CGTextDrawingMode): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1603528009547902, this, [mode]); }
+  setTextDrawingMode(mode: CGTextDrawingMode): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1603528009547902, this, [mode]); }
   /**
    * func strokeEllipse(in rect: CGRect)
    * @availability iOS 2.0+
    */
-  strokeEllipse(rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1905871360520769, this, [rect]); }
+  strokeEllipse(rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1905871360520769, this, [rect]); }
   /**
    * func strokePath()
    * @availability iOS 2.0+
    */
-  strokePath(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2854290969710958, this, []); }
+  strokePath(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2854290969710958, this, []); }
   /**
    * func stroke(_ rect: CGRect)
    * @availability iOS 2.0+
    */
-  stroke(rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1277570888646064, this, [rect]); }
+  stroke(rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1277570888646064, this, [rect]); }
   /**
    * func stroke(_ rect: CGRect, width: CGFloat)
    * @availability iOS 2.0+
    */
-  strokeWidth(rect: $SDK8, width: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3436259388340355, this, [rect, width]); }
+  strokeWidth(rect: $SDK8, width: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3436259388340355, this, [rect, width]); }
   /**
    * func synchronize()
    * @availability iOS 2.0+
    */
-  synchronize(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 593572715855090, this, []); }
+  synchronize(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 593572715855090, this, []); }
   /**
    * func synchronizeAttributes()
    * @availability iOS 26.0+
    */
-  synchronizeAttributes(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1584873290809099, this, []); }
+  synchronizeAttributes(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1584873290809099, this, []); }
   /**
    * func translateBy(x tx: CGFloat, y ty: CGFloat)
    * @availability iOS 2.0+
    */
-  translateBy(tx: number, ty: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1536539662872178, this, [tx, ty]); }
+  translateBy(tx: number, ty: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1536539662872178, this, [tx, ty]); }
   /**
    * func addDestination(_ name: CFString, at point: CGPoint)
    * @availability iOS 2.0+
    */
-  addDestination(name: _CoreFoundation_CFString, point: $SDK9): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 45759650360425, this, [name, point]); }
+  addDestination(name: _CoreFoundation_CFString, point: $SDK9): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 45759650360425, this, [name, point]); }
   /**
    * func addDocumentMetadata(_ metadata: CFData?)
    * @availability iOS 4.0+
    */
-  addDocumentMetadata(metadata?: $SDK6): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4063796354444991, this, [metadata]); }
+  addDocumentMetadata(metadata?: $SDK6): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4063796354444991, this, [metadata]); }
   /**
    * func addStructureTreeRootChild(_ structureElement: CGPDFStructureElement) -> OSStatus
    * @availability iOS 27.0+
    */
-  addStructureTreeRootChild(structureElement: CGPDFStructureElement): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1148345958835848, this, [structureElement]); }
+  addStructureTreeRootChild(structureElement: CGPDFStructureElement): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1148345958835848, this, [structureElement]); }
   /**
    * func beginMarkedContentSequence(_ tagType: CGPDFTagType) -> CGPDFMarkedContentItem?
    * @availability iOS 27.0+
    */
-  beginMarkedContentSequence(tagType: CGPDFTagType): $SDK11 { return callSDK<$SDK11>("CoreGraphics_067acaa3e5f56b46", 2673271581231649, this, [tagType]); }
+  beginMarkedContentSequence(tagType: CGPDFTagType): $SDK11 { return callSDK<$SDK11>("CoreGraphics_d968214ecc684fb6", 2673271581231649, this, [tagType]); }
   /**
    * func beginNonStructuralMarkedContentSequence(_ tagType: CGPDFTagType)
    * @availability iOS 27.0+
    */
-  beginNonStructuralMarkedContentSequence(tagType: CGPDFTagType): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1931537765003001, this, [tagType]); }
+  beginNonStructuralMarkedContentSequence(tagType: CGPDFTagType): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1931537765003001, this, [tagType]); }
   /**
    * func beginObjectReference() -> CGPDFMarkedContentItem?
    * @availability iOS 27.0+
    */
-  beginObjectReference(): $SDK11 { return callSDK<$SDK11>("CoreGraphics_067acaa3e5f56b46", 1059825386760991, this, []); }
+  beginObjectReference(): $SDK11 { return callSDK<$SDK11>("CoreGraphics_d968214ecc684fb6", 1059825386760991, this, []); }
   /**
    * func beginPDFPage(_ pageInfo: CFDictionary?)
    * @availability iOS 2.0+
    */
-  beginPDFPage(pageInfo?: $SDK3): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1415384169684402, this, [pageInfo]); }
+  beginPDFPage(pageInfo?: $SDK3): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1415384169684402, this, [pageInfo]); }
   /**
    * func closePDF()
    * @availability iOS 2.0+
    */
-  closePDF(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2428565812294121, this, []); }
+  closePDF(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2428565812294121, this, []); }
   /**
    * init?(consumer: CGDataConsumer, mediaBox: UnsafePointer<CGRect>?, _ auxiliaryInfo: CFDictionary?)
    * @availability iOS 2.0+
    */
-  static initConsumerMediaBox(consumer: CGDataConsumer, mediaBox?: $SDK5, auxiliaryInfo?: $SDK3): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_067acaa3e5f56b46", 3060500631197213, undefined, [consumer, mediaBox, auxiliaryInfo]); }
+  static initConsumerMediaBox(consumer: CGDataConsumer, mediaBox?: $SDK5, auxiliaryInfo?: $SDK3): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_d968214ecc684fb6", 3060500631197213, undefined, [consumer, mediaBox, auxiliaryInfo]); }
   /**
    * init?(_ url: CFURL, mediaBox: UnsafePointer<CGRect>?, _ auxiliaryInfo: CFDictionary?)
    * @availability iOS 2.0+
    */
-  static initMediaBox(url: _CoreFoundation_CFURL, mediaBox?: $SDK5, auxiliaryInfo?: $SDK3): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_067acaa3e5f56b46", 1050432956653371, undefined, [url, mediaBox, auxiliaryInfo]); }
+  static initMediaBox(url: _CoreFoundation_CFURL, mediaBox?: $SDK5, auxiliaryInfo?: $SDK3): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_d968214ecc684fb6", 1050432956653371, undefined, [url, mediaBox, auxiliaryInfo]); }
   /**
    * func endMarkedContentSequence()
    * @availability iOS 27.0+
    */
-  endMarkedContentSequence(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4178139412784169, this, []); }
+  endMarkedContentSequence(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4178139412784169, this, []); }
   /**
    * func endObjectReference()
    * @availability iOS 27.0+
    */
-  endObjectReference(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4363721871258893, this, []); }
+  endObjectReference(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4363721871258893, this, []); }
   /**
    * func endPDFPage()
    * @availability iOS 2.0+
    */
-  endPDFPage(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3011537692852296, this, []); }
+  endPDFPage(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3011537692852296, this, []); }
   /**
    * func setDestination(_ name: CFString, for rect: CGRect)
    * @availability iOS 2.0+
    */
-  setDestination(name: _CoreFoundation_CFString, rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2780746157715256, this, [name, rect]); }
+  setDestination(name: _CoreFoundation_CFString, rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2780746157715256, this, [name, rect]); }
   /**
    * func setURL(_ url: CFURL, for rect: CGRect)
    * @availability iOS 2.0+
    */
-  setURL(url: _CoreFoundation_CFURL, rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1787232646141507, this, [url, rect]); }
+  setURL(url: _CoreFoundation_CFURL, rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1787232646141507, this, [url, rect]); }
   /**
    * init?(data: UnsafeMutableRawPointer?, width: Int, height: Int, bitsPerComponent: Int, bytesPerRow: Int, space: CGColorSpace, bitmapInfo: UInt32)
    * @availability iOS 2.0+
    * @deprecated iOS 100000.0
    */
-  static initDataWidthHeightBitsPerComponentBytesPerRowSpaceBitmapInfo91056(data: (SDKHandle) | null, width: number, height: number, bitsPerComponent: number, bytesPerRow: number, space: CGColorSpace, bitmapInfo: number): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_067acaa3e5f56b46", 2822865763573553, undefined, [data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo]); }
+  static initDataWidthHeightBitsPerComponentBytesPerRowSpaceBitmapInfo91056(data: (SDKHandle) | null, width: number, height: number, bitsPerComponent: number, bytesPerRow: number, space: CGColorSpace, bitmapInfo: number): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_d968214ecc684fb6", 2822865763573553, undefined, [data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo]); }
   /**
    * func showGlyphs(_ glyphs: [CGGlyph], at positions: [CGPoint])
    * @availability iOS 7.0+
    */
-  showGlyphs(glyphs: Array<number>, positions: $SDK12): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4265485343480600, this, [glyphs, positions]); }
+  showGlyphs(glyphs: Array<number>, positions: $SDK12): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4265485343480600, this, [glyphs, positions]); }
   /**
    * func setLineDash(phase: CGFloat, lengths: [CGFloat])
    * @availability iOS 7.0+
    */
-  setLineDash(phase: number, lengths: Array<number>): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1994782276659931, this, [phase, lengths]); }
+  setLineDash(phase: number, lengths: Array<number>): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1994782276659931, this, [phase, lengths]); }
   /**
    * func addQuadCurve(to end: CGPoint, control: CGPoint)
    * @availability iOS 7.0+
    */
-  addQuadCurve(end: $SDK9, control: $SDK9): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1316248737513358, this, [end, control]); }
+  addQuadCurve(end: $SDK9, control: $SDK9): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1316248737513358, this, [end, control]); }
   /**
    * var textPosition: CGPoint { get set }
    * @availability iOS 7.0+
    */
-  get textPosition(): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 44498496508479, this, []); }
-  set textPosition(value: $SDK9) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2720456520435660, this, [value]); }
+  get textPosition(): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 44498496508479, this, []); }
+  set textPosition(value: $SDK9) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2720456520435660, this, [value]); }
   /**
    * func strokeLineSegments(between points: [CGPoint])
    * @availability iOS 7.0+
    */
-  strokeLineSegments(points: $SDK12): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4442840741794903, this, [points]); }
+  strokeLineSegments(points: $SDK12): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4442840741794903, this, [points]); }
   /**
    * var contentToneMappingInfo: CGContentToneMappingInfo { get set }
    * @availability iOS 26.0+
    */
-  get contentToneMappingInfo(): CGContentToneMappingInfo { return callSDK<CGContentToneMappingInfo>("CoreGraphics_067acaa3e5f56b46", 3720961389412203, this, []); }
-  set contentToneMappingInfo(value: CGContentToneMappingInfo) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2697834259428059, this, [value]); }
+  get contentToneMappingInfo(): CGContentToneMappingInfo { return callSDK<CGContentToneMappingInfo>("CoreGraphics_d968214ecc684fb6", 3720961389412203, this, []); }
+  set contentToneMappingInfo(value: CGContentToneMappingInfo) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2697834259428059, this, [value]); }
   /**
    * func clip(to rects: [CGRect])
    * @availability iOS 7.0+
    */
-  clipTo99427(rects: $SDK13): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2012485012298089, this, [rects]); }
+  clipTo99427(rects: $SDK13): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2012485012298089, this, [rects]); }
   /**
    * func clip(using rule: CGPathFillRule = .winding)
    * @availability iOS 7.0+
    */
-  clipUsing(rule?: CGPathFillRule): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3363372928032589, this, [rule]); }
+  clipUsing(rule?: CGPathFillRule): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3363372928032589, this, [rule]); }
   /**
    * func draw(_ layer: CGLayer, at point: CGPoint)
    * @availability iOS 7.0+
    */
-  drawAt(layer: CGLayer, point: $SDK9): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1645503941315811, this, [layer, point]); }
+  drawAt(layer: CGLayer, point: $SDK9): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1645503941315811, this, [layer, point]); }
   /**
    * func draw(_ image: CGImage, in rect: CGRect, by toneMapping: CGToneMapping = .default, options: CFDictionary?) -> Bool
    * @availability iOS 18.0+
    */
-  drawInByOptions(image: CGImage, rect: $SDK8, toneMapping?: CGToneMapping, options?: $SDK3): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2671659200684925, this, [image, rect, toneMapping, options]); }
+  drawInByOptions(image: CGImage, rect: $SDK8, toneMapping?: CGToneMapping, options?: $SDK3): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2671659200684925, this, [image, rect, toneMapping, options]); }
   /**
    * func draw(_ image: CGImage, in rect: CGRect, byTiling: Bool = false)
    * @availability iOS 7.0+
    */
-  drawInByTiling(image: CGImage, rect: $SDK8, byTiling?: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4337966433128557, this, [image, rect, byTiling]); }
+  drawInByTiling(image: CGImage, rect: $SDK8, byTiling?: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4337966433128557, this, [image, rect, byTiling]); }
   /**
    * func draw(_ layer: CGLayer, in rect: CGRect)
    * @availability iOS 7.0+
    */
-  drawIn(layer: CGLayer, rect: $SDK8): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1813327025325803, this, [layer, rect]); }
+  drawIn(layer: CGLayer, rect: $SDK8): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1813327025325803, this, [layer, rect]); }
   /**
    * func fill(_ rects: [CGRect])
    * @availability iOS 7.0+
    */
-  fill95899(rects: $SDK13): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 828281727067045, this, [rects]); }
+  fill95899(rects: $SDK13): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 828281727067045, this, [rects]); }
   /**
    * func move(to point: CGPoint)
    * @availability iOS 7.0+
    */
-  move(point: $SDK9): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4305685327590121, this, [point]); }
+  move(point: $SDK9): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4305685327590121, this, [point]); }
   /**
    * func addArc(tangent1End: CGPoint, tangent2End: CGPoint, radius: CGFloat)
    * @availability iOS 7.0+
    */
-  addArcTangent1EndTangent2EndRadius(tangent1End: $SDK9, tangent2End: $SDK9, radius: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 390451047125789, this, [tangent1End, tangent2End, radius]); }
+  addArcTangent1EndTangent2EndRadius(tangent1End: $SDK9, tangent2End: $SDK9, radius: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 390451047125789, this, [tangent1End, tangent2End, radius]); }
   /**
    * func addArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool)
    * @availability iOS 7.0+
    */
-  addArcCenterRadiusStartAngleEndAngleClockwise(center: $SDK9, radius: number, startAngle: number, endAngle: number, clockwise: boolean): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 296020502395160, this, [center, radius, startAngle, endAngle, clockwise]); }
+  addArcCenterRadiusStartAngleEndAngleClockwise(center: $SDK9, radius: number, startAngle: number, endAngle: number, clockwise: boolean): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 296020502395160, this, [center, radius, startAngle, endAngle, clockwise]); }
   /**
    * func addLine(to point: CGPoint)
    * @availability iOS 7.0+
    */
-  addLine(point: $SDK9): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3642745512831398, this, [point]); }
+  addLine(point: $SDK9): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3642745512831398, this, [point]); }
   /**
    * func addCurve(to end: CGPoint, control1: CGPoint, control2: CGPoint)
    * @availability iOS 7.0+
    */
-  addCurve(end: $SDK9, control1: $SDK9, control2: $SDK9): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3768561415605908, this, [end, control1, control2]); }
+  addCurve(end: $SDK9, control1: $SDK9, control2: $SDK9): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3768561415605908, this, [end, control1, control2]); }
   /**
    * func addLines(between points: [CGPoint])
    * @availability iOS 7.0+
    */
-  addLines(points: $SDK12): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1401253348945336, this, [points]); }
+  addLines(points: $SDK12): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1401253348945336, this, [points]); }
   /**
    * func addRects(_ rects: [CGRect])
    * @availability iOS 7.0+
    */
-  addRects(rects: $SDK13): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2944839179786656, this, [rects]); }
+  addRects(rects: $SDK13): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2944839179786656, this, [rects]); }
   /**
    * func fillPath(using rule: CGPathFillRule = .winding)
    * @availability iOS 7.0+
    */
-  fillPath(rule?: CGPathFillRule): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1935402916309175, this, [rule]); }
+  fillPath(rule?: CGPathFillRule): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1935402916309175, this, [rule]); }
   declare readonly $type: { "c:@T@CGContextRef": true };
 }
 
@@ -1758,18 +1758,18 @@ export class CGContext_AuxiliaryInfo extends SDKHandle {
    * init(maximumBitDepth: CGComponent = .float16Bit)
    * @availability iOS 26.0+
    */
-  static initMaximumBitDepth(maximumBitDepth?: CGComponent): CGContext_AuxiliaryInfo { return callSDK<CGContext_AuxiliaryInfo>("CoreGraphics_067acaa3e5f56b46", 2158892986478573, undefined, [maximumBitDepth]); }
+  static initMaximumBitDepth(maximumBitDepth?: CGComponent): CGContext_AuxiliaryInfo { return callSDK<CGContext_AuxiliaryInfo>("CoreGraphics_d968214ecc684fb6", 2158892986478573, undefined, [maximumBitDepth]); }
   /**
    * var maximumBitDepth: CGComponent
    * @availability iOS 26.0+
    */
-  get maximumBitDepth(): CGComponent { return callSDK<CGComponent>("CoreGraphics_067acaa3e5f56b46", 1792402552866151, this, []); }
-  set maximumBitDepth(value: CGComponent) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 522435739889138, this, [value]); }
+  get maximumBitDepth(): CGComponent { return callSDK<CGComponent>("CoreGraphics_d968214ecc684fb6", 1792402552866151, this, []); }
+  set maximumBitDepth(value: CGComponent) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 522435739889138, this, [value]); }
   /**
    * init()
    * @availability iOS 26.0+
    */
-  static init(): CGContext_AuxiliaryInfo { return callSDK<CGContext_AuxiliaryInfo>("CoreGraphics_067acaa3e5f56b46", 1785845178079298, undefined, []); }
+  static init(): CGContext_AuxiliaryInfo { return callSDK<CGContext_AuxiliaryInfo>("CoreGraphics_d968214ecc684fb6", 1785845178079298, undefined, []); }
   declare readonly $type: { "s:So12CGContextRefa12CoreGraphicsE13AuxiliaryInfoV": true };
 }
 
@@ -1779,33 +1779,33 @@ export class CGDataConsumer extends SDKHandle {
    * init?(info: UnsafeMutableRawPointer?, cbks: UnsafePointer<CGDataConsumerCallbacks>)
    * @availability iOS 2.0+
    */
-  static initInfoCbks(info: (SDKHandle) | null, cbks: SDKHandle): (CGDataConsumer) | null { return callSDK<(CGDataConsumer) | null>("CoreGraphics_067acaa3e5f56b46", 2687124682500097, undefined, [info, cbks]); }
+  static initInfoCbks(info: (SDKHandle) | null, cbks: SDKHandle): (CGDataConsumer) | null { return callSDK<(CGDataConsumer) | null>("CoreGraphics_d968214ecc684fb6", 2687124682500097, undefined, [info, cbks]); }
   /**
    * init?(data: CFMutableData)
    * @availability iOS 2.0+
    */
-  static initData(data: _CoreFoundation_CFMutableData): (CGDataConsumer) | null { return callSDK<(CGDataConsumer) | null>("CoreGraphics_067acaa3e5f56b46", 1429231630376707, undefined, [data]); }
+  static initData(data: _CoreFoundation_CFMutableData): (CGDataConsumer) | null { return callSDK<(CGDataConsumer) | null>("CoreGraphics_d968214ecc684fb6", 1429231630376707, undefined, [data]); }
   /**
    * init?(url: CFURL)
    * @availability iOS 2.0+
    */
-  static initUrl(url: _CoreFoundation_CFURL): (CGDataConsumer) | null { return callSDK<(CGDataConsumer) | null>("CoreGraphics_067acaa3e5f56b46", 4364097316005709, undefined, [url]); }
+  static initUrl(url: _CoreFoundation_CFURL): (CGDataConsumer) | null { return callSDK<(CGDataConsumer) | null>("CoreGraphics_d968214ecc684fb6", 4364097316005709, undefined, [url]); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4166300815517886, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4166300815517886, undefined, []); }
   declare readonly $type: { "c:@T@CGDataConsumerRef": true };
 }
 
 /** struct CGDataConsumerCallbacks */
 export class CGDataConsumerCallbacks extends SDKHandle {
   /** var putBytes: CGDataConsumerPutBytesCallback? */
-  get putBytes(): $SDK14 { return callSDK<$SDK14>("CoreGraphics_067acaa3e5f56b46", 1940578944601538, this, []); }
+  get putBytes(): $SDK14 { return callSDK<$SDK14>("CoreGraphics_d968214ecc684fb6", 1940578944601538, this, []); }
   /** var releaseConsumer: CGDataConsumerReleaseInfoCallback? */
-  get releaseConsumer(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_067acaa3e5f56b46", 539030254359242, this, []); }
+  get releaseConsumer(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_d968214ecc684fb6", 539030254359242, this, []); }
   /** init() */
-  static init(): CGDataConsumerCallbacks { return callSDK<CGDataConsumerCallbacks>("CoreGraphics_067acaa3e5f56b46", 4477805508351338, undefined, []); }
+  static init(): CGDataConsumerCallbacks { return callSDK<CGDataConsumerCallbacks>("CoreGraphics_d968214ecc684fb6", 4477805508351338, undefined, []); }
   declare readonly $type: { "c:@S@CGDataConsumerCallbacks": true };
 }
 
@@ -1821,60 +1821,60 @@ export class CGDataProvider extends SDKHandle {
    * var data: CFData? { get }
    * @availability iOS 2.0+
    */
-  get data(): $SDK6 { return callSDK<$SDK6>("CoreGraphics_067acaa3e5f56b46", 491815685671617, this, []); }
+  get data(): $SDK6 { return callSDK<$SDK6>("CoreGraphics_d968214ecc684fb6", 491815685671617, this, []); }
   /**
    * init?(directInfo info: UnsafeMutableRawPointer?, size: off_t, callbacks: UnsafePointer<CGDataProviderDirectCallbacks>)
    * @availability iOS 2.0+
    */
-  static initDirectInfoSizeCallbacks(info: (SDKHandle) | null, size: SDKHandle, callbacks: SDKHandle): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_067acaa3e5f56b46", 2257472480851961, undefined, [info, size, callbacks]); }
+  static initDirectInfoSizeCallbacks(info: (SDKHandle) | null, size: SDKHandle, callbacks: SDKHandle): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_d968214ecc684fb6", 2257472480851961, undefined, [info, size, callbacks]); }
   /**
    * init?(sequentialInfo info: UnsafeMutableRawPointer?, callbacks: UnsafePointer<CGDataProviderSequentialCallbacks>)
    * @availability iOS 2.0+
    */
-  static initSequentialInfoCallbacks(info: (SDKHandle) | null, callbacks: SDKHandle): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_067acaa3e5f56b46", 2816690261732440, undefined, [info, callbacks]); }
+  static initSequentialInfoCallbacks(info: (SDKHandle) | null, callbacks: SDKHandle): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_d968214ecc684fb6", 2816690261732440, undefined, [info, callbacks]); }
   /**
    * init?(data: CFData)
    * @availability iOS 2.0+
    */
-  static initData(data: _CoreFoundation_CFData): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_067acaa3e5f56b46", 1369906363027223, undefined, [data]); }
+  static initData(data: _CoreFoundation_CFData): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_d968214ecc684fb6", 1369906363027223, undefined, [data]); }
   /**
    * init?(filename: UnsafePointer<CChar>)
    * @availability iOS 2.0+
    */
-  static initFilename(filename: SDKHandle): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_067acaa3e5f56b46", 2351240865813033, undefined, [filename]); }
+  static initFilename(filename: SDKHandle): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_d968214ecc684fb6", 2351240865813033, undefined, [filename]); }
   /**
    * init?(url: CFURL)
    * @availability iOS 2.0+
    */
-  static initUrl(url: _CoreFoundation_CFURL): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_067acaa3e5f56b46", 2789599279356531, undefined, [url]); }
+  static initUrl(url: _CoreFoundation_CFURL): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_d968214ecc684fb6", 2789599279356531, undefined, [url]); }
   /**
    * var info: UnsafeMutableRawPointer? { get }
    * @availability iOS 11.0+
    */
-  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_067acaa3e5f56b46", 4177535123935304, this, []); }
+  get info(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_d968214ecc684fb6", 4177535123935304, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2118401670003473, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2118401670003473, undefined, []); }
   declare readonly $type: { "c:@T@CGDataProviderRef": true };
 }
 
 /** struct CGDataProviderDirectCallbacks */
 export class CGDataProviderDirectCallbacks extends SDKHandle {
   /** var getBytePointer: CGDataProviderGetBytePointerCallback? */
-  get getBytePointer(): (((arg0: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("CoreGraphics_067acaa3e5f56b46", 2933999210636580, this, []); }
+  get getBytePointer(): (((arg0: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null { return callSDK<(((arg0: (SDKHandle) | null) => Promise<(SDKHandle) | null>)) | null>("CoreGraphics_d968214ecc684fb6", 2933999210636580, this, []); }
   /** var getBytesAtPosition: CGDataProviderGetBytesAtPositionCallback? */
-  get getBytesAtPosition(): (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: number) => Promise<number>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: number) => Promise<number>)) | null>("CoreGraphics_067acaa3e5f56b46", 2761915097911005, this, []); }
+  get getBytesAtPosition(): (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: number) => Promise<number>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: number) => Promise<number>)) | null>("CoreGraphics_d968214ecc684fb6", 2761915097911005, this, []); }
   /** var releaseBytePointer: CGDataProviderReleaseBytePointerCallback? */
-  get releaseBytePointer(): (((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>)) | null>("CoreGraphics_067acaa3e5f56b46", 916210478585012, this, []); }
+  get releaseBytePointer(): (((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>)) | null>("CoreGraphics_d968214ecc684fb6", 916210478585012, this, []); }
   /** var releaseInfo: CGDataProviderReleaseInfoCallback? */
-  get releaseInfo(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_067acaa3e5f56b46", 2539002341344742, this, []); }
+  get releaseInfo(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_d968214ecc684fb6", 2539002341344742, this, []); }
   /** var version: UInt32 */
-  get version(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1599209707584571, this, []); }
-  set version(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4386188261026261, this, [value]); }
+  get version(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1599209707584571, this, []); }
+  set version(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 4386188261026261, this, [value]); }
   /** init() */
-  static init(): CGDataProviderDirectCallbacks { return callSDK<CGDataProviderDirectCallbacks>("CoreGraphics_067acaa3e5f56b46", 928412734703326, undefined, []); }
+  static init(): CGDataProviderDirectCallbacks { return callSDK<CGDataProviderDirectCallbacks>("CoreGraphics_d968214ecc684fb6", 928412734703326, undefined, []); }
   declare readonly $type: { "c:@S@CGDataProviderDirectCallbacks": true };
 }
 
@@ -1902,18 +1902,18 @@ export type CGDataProviderRewindCallback = $SDK17;
 /** struct CGDataProviderSequentialCallbacks */
 export class CGDataProviderSequentialCallbacks extends SDKHandle {
   /** var getBytes: CGDataProviderGetBytesCallback? */
-  get getBytes(): $SDK14 { return callSDK<$SDK14>("CoreGraphics_067acaa3e5f56b46", 2680328601752851, this, []); }
+  get getBytes(): $SDK14 { return callSDK<$SDK14>("CoreGraphics_d968214ecc684fb6", 2680328601752851, this, []); }
   /** var releaseInfo: CGDataProviderReleaseInfoCallback? */
-  get releaseInfo(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_067acaa3e5f56b46", 1127437031599379, this, []); }
+  get releaseInfo(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_d968214ecc684fb6", 1127437031599379, this, []); }
   /** var rewind: CGDataProviderRewindCallback? */
-  get rewind(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_067acaa3e5f56b46", 4134282198250185, this, []); }
+  get rewind(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_d968214ecc684fb6", 4134282198250185, this, []); }
   /** var skipForward: CGDataProviderSkipForwardCallback? */
-  get skipForward(): (((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<SDKHandle>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<SDKHandle>)) | null>("CoreGraphics_067acaa3e5f56b46", 2004129922736189, this, []); }
+  get skipForward(): (((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<SDKHandle>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<SDKHandle>)) | null>("CoreGraphics_d968214ecc684fb6", 2004129922736189, this, []); }
   /** var version: UInt32 */
-  get version(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1948043025714193, this, []); }
-  set version(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1835361256677196, this, [value]); }
+  get version(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1948043025714193, this, []); }
+  set version(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 1835361256677196, this, [value]); }
   /** init() */
-  static init(): CGDataProviderSequentialCallbacks { return callSDK<CGDataProviderSequentialCallbacks>("CoreGraphics_067acaa3e5f56b46", 3722685089953353, undefined, []); }
+  static init(): CGDataProviderSequentialCallbacks { return callSDK<CGDataProviderSequentialCallbacks>("CoreGraphics_d968214ecc684fb6", 3722685089953353, undefined, []); }
   declare readonly $type: { "c:@S@CGDataProviderSequentialCallbacks": true };
 }
 
@@ -1925,7 +1925,7 @@ export type CGError = "success" | "failure" | "illegalArgument" | "invalidConnec
 
 export const CGError = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGError) | null { return callSDK<(CGError) | null>("CoreGraphics_067acaa3e5f56b46", 998232243986440, undefined, [rawValue]); }
+  init(rawValue: number): (CGError) | null { return callSDK<(CGError) | null>("CoreGraphics_d968214ecc684fb6", 998232243986440, undefined, [rawValue]); }
 };
 
 /** typealias CGErrorCallback = () -> Void */
@@ -1937,157 +1937,157 @@ export class CGFont extends SDKHandle {
    * func canCreatePostScriptSubset(_ format: CGFontPostScriptFormat) -> Bool
    * @availability iOS 2.0+
    */
-  canCreatePostScriptSubset(format: CGFontPostScriptFormat): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2266496044423522, this, [format]); }
+  canCreatePostScriptSubset(format: CGFontPostScriptFormat): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2266496044423522, this, [format]); }
   /**
    * var fullName: CFString? { get }
    * @availability iOS 2.0+
    */
-  get fullName(): $SDK7 { return callSDK<$SDK7>("CoreGraphics_067acaa3e5f56b46", 3980767451756369, this, []); }
+  get fullName(): $SDK7 { return callSDK<$SDK7>("CoreGraphics_d968214ecc684fb6", 3980767451756369, this, []); }
   /**
    * func name(for glyph: CGGlyph) -> CFString?
    * @availability iOS 2.0+
    */
-  name(glyph: number): $SDK7 { return callSDK<$SDK7>("CoreGraphics_067acaa3e5f56b46", 1567851431558469, this, [glyph]); }
+  name(glyph: number): $SDK7 { return callSDK<$SDK7>("CoreGraphics_d968214ecc684fb6", 1567851431558469, this, [glyph]); }
   /**
    * var postScriptName: CFString? { get }
    * @availability iOS 2.0+
    */
-  get postScriptName(): $SDK7 { return callSDK<$SDK7>("CoreGraphics_067acaa3e5f56b46", 4003303930093060, this, []); }
+  get postScriptName(): $SDK7 { return callSDK<$SDK7>("CoreGraphics_d968214ecc684fb6", 4003303930093060, this, []); }
   /**
    * func table(for tag: UInt32) -> CFData?
    * @availability iOS 2.0+
    */
-  table(tag: number): $SDK6 { return callSDK<$SDK6>("CoreGraphics_067acaa3e5f56b46", 3721951647171882, this, [tag]); }
+  table(tag: number): $SDK6 { return callSDK<$SDK6>("CoreGraphics_d968214ecc684fb6", 3721951647171882, this, [tag]); }
   /**
    * var tableTags: CFArray? { get }
    * @availability iOS 2.0+
    */
-  get tableTags(): $SDK27 { return callSDK<$SDK27>("CoreGraphics_067acaa3e5f56b46", 4251459015659145, this, []); }
+  get tableTags(): $SDK27 { return callSDK<$SDK27>("CoreGraphics_d968214ecc684fb6", 4251459015659145, this, []); }
   /**
    * var variationAxes: CFArray? { get }
    * @availability iOS 2.0+
    */
-  get variationAxes(): $SDK27 { return callSDK<$SDK27>("CoreGraphics_067acaa3e5f56b46", 4005907407414408, this, []); }
+  get variationAxes(): $SDK27 { return callSDK<$SDK27>("CoreGraphics_d968214ecc684fb6", 4005907407414408, this, []); }
   /**
    * var variations: CFDictionary? { get }
    * @availability iOS 2.0+
    */
-  get variations(): $SDK3 { return callSDK<$SDK3>("CoreGraphics_067acaa3e5f56b46", 1723339153745711, this, []); }
+  get variations(): $SDK3 { return callSDK<$SDK3>("CoreGraphics_d968214ecc684fb6", 1723339153745711, this, []); }
   /**
    * func copy(withVariations variations: CFDictionary?) -> CGFont?
    * @availability iOS 2.0+
    */
-  copy(variations?: $SDK3): (CGFont) | null { return callSDK<(CGFont) | null>("CoreGraphics_067acaa3e5f56b46", 3373933509719759, this, [variations]); }
+  copy(variations?: $SDK3): (CGFont) | null { return callSDK<(CGFont) | null>("CoreGraphics_d968214ecc684fb6", 3373933509719759, this, [variations]); }
   /**
    * func createPostScriptEncoding(encoding: UnsafePointer<CGGlyph>?) -> CFData?
    * @availability iOS 2.0+
    */
-  createPostScriptEncoding(encoding?: (SDKHandle) | null): $SDK6 { return callSDK<$SDK6>("CoreGraphics_067acaa3e5f56b46", 2379819703397294, this, [encoding]); }
+  createPostScriptEncoding(encoding?: (SDKHandle) | null): $SDK6 { return callSDK<$SDK6>("CoreGraphics_d968214ecc684fb6", 2379819703397294, this, [encoding]); }
   /**
    * func createPostScriptSubset(subsetName: CFString, format: CGFontPostScriptFormat, glyphs: UnsafePointer<CGGlyph>?, count: Int, encoding: UnsafePointer<CGGlyph>?) -> CFData?
    * @availability iOS 2.0+
    */
-  createPostScriptSubset(subsetName: _CoreFoundation_CFString, format: CGFontPostScriptFormat, glyphs: (SDKHandle) | null, count: number, encoding?: (SDKHandle) | null): $SDK6 { return callSDK<$SDK6>("CoreGraphics_067acaa3e5f56b46", 1822729272318701, this, [subsetName, format, glyphs, count, encoding]); }
+  createPostScriptSubset(subsetName: _CoreFoundation_CFString, format: CGFontPostScriptFormat, glyphs: (SDKHandle) | null, count: number, encoding?: (SDKHandle) | null): $SDK6 { return callSDK<$SDK6>("CoreGraphics_d968214ecc684fb6", 1822729272318701, this, [subsetName, format, glyphs, count, encoding]); }
   /**
    * init?(_ provider: CGDataProvider)
    * @availability iOS 2.0+
    */
-  static init(provider: CGDataProvider): (CGFont) | null { return callSDK<(CGFont) | null>("CoreGraphics_067acaa3e5f56b46", 593658309456041, undefined, [provider]); }
+  static init(provider: CGDataProvider): (CGFont) | null { return callSDK<(CGFont) | null>("CoreGraphics_d968214ecc684fb6", 593658309456041, undefined, [provider]); }
   /**
    * init?(_ name: CFString)
    * @availability iOS 2.0+
    */
-  static init52239(name: _CoreFoundation_CFString): (CGFont) | null { return callSDK<(CGFont) | null>("CoreGraphics_067acaa3e5f56b46", 3888763093583079, undefined, [name]); }
+  static init52239(name: _CoreFoundation_CFString): (CGFont) | null { return callSDK<(CGFont) | null>("CoreGraphics_d968214ecc684fb6", 3888763093583079, undefined, [name]); }
   /**
    * var ascent: Int32 { get }
    * @availability iOS 2.0+
    */
-  get ascent(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3369168691453037, this, []); }
+  get ascent(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3369168691453037, this, []); }
   /**
    * var capHeight: Int32 { get }
    * @availability iOS 2.0+
    */
-  get capHeight(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2246610681266282, this, []); }
+  get capHeight(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2246610681266282, this, []); }
   /**
    * var descent: Int32 { get }
    * @availability iOS 2.0+
    */
-  get descent(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3736470381151643, this, []); }
+  get descent(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3736470381151643, this, []); }
   /**
    * var fontBBox: CGRect { get }
    * @availability iOS 2.0+
    */
-  get fontBBox(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 4040641266987786, this, []); }
+  get fontBBox(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 4040641266987786, this, []); }
   /**
    * func getGlyphAdvances(glyphs: UnsafePointer<CGGlyph>, count: Int, advances: UnsafeMutablePointer<Int32>) -> Bool
    * @availability iOS 2.0+
    */
-  getGlyphAdvances(glyphs: SDKHandle, count: number, advances: SDKHandle): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2226473303760741, this, [glyphs, count, advances]); }
+  getGlyphAdvances(glyphs: SDKHandle, count: number, advances: SDKHandle): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2226473303760741, this, [glyphs, count, advances]); }
   /**
    * func getGlyphBBoxes(glyphs: UnsafePointer<CGGlyph>, count: Int, bboxes: UnsafeMutablePointer<CGRect>) -> Bool
    * @availability iOS 2.0+
    */
-  getGlyphBBoxes(glyphs: SDKHandle, count: number, bboxes: $SDK2): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1701501208458088, this, [glyphs, count, bboxes]); }
+  getGlyphBBoxes(glyphs: SDKHandle, count: number, bboxes: $SDK2): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1701501208458088, this, [glyphs, count, bboxes]); }
   /**
    * func getGlyphWithGlyphName(name: CFString) -> CGGlyph
    * @availability iOS 2.0+
    */
-  getGlyphWithGlyphName(name: _CoreFoundation_CFString): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2397723717203184, this, [name]); }
+  getGlyphWithGlyphName(name: _CoreFoundation_CFString): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2397723717203184, this, [name]); }
   /**
    * var italicAngle: CGFloat { get }
    * @availability iOS 2.0+
    */
-  get italicAngle(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2383614557600599, this, []); }
+  get italicAngle(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2383614557600599, this, []); }
   /**
    * var leading: Int32 { get }
    * @availability iOS 2.0+
    */
-  get leading(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1339129040541575, this, []); }
+  get leading(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1339129040541575, this, []); }
   /**
    * var numberOfGlyphs: Int { get }
    * @availability iOS 2.0+
    */
-  get numberOfGlyphs(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1434782181868187, this, []); }
+  get numberOfGlyphs(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1434782181868187, this, []); }
   /**
    * var stemV: CGFloat { get }
    * @availability iOS 2.0+
    */
-  get stemV(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2692938557156178, this, []); }
+  get stemV(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2692938557156178, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2722792297094620, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2722792297094620, undefined, []); }
   /**
    * var unitsPerEm: Int32 { get }
    * @availability iOS 2.0+
    */
-  get unitsPerEm(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3854151217838922, this, []); }
+  get unitsPerEm(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3854151217838922, this, []); }
   /**
    * var xHeight: Int32 { get }
    * @availability iOS 2.0+
    */
-  get xHeight(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4470673534168220, this, []); }
+  get xHeight(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4470673534168220, this, []); }
   /**
    * class let variationAxisDefaultValue: CFString
    * @availability iOS 2.0+
    */
-  static get variationAxisDefaultValue(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1526805724982233, undefined, []); }
+  static get variationAxisDefaultValue(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1526805724982233, undefined, []); }
   /**
    * class let variationAxisMaxValue: CFString
    * @availability iOS 2.0+
    */
-  static get variationAxisMaxValue(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1638359834885675, undefined, []); }
+  static get variationAxisMaxValue(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1638359834885675, undefined, []); }
   /**
    * class let variationAxisMinValue: CFString
    * @availability iOS 2.0+
    */
-  static get variationAxisMinValue(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1437534502006022, undefined, []); }
+  static get variationAxisMinValue(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1437534502006022, undefined, []); }
   /**
    * class let variationAxisName: CFString
    * @availability iOS 2.0+
    */
-  static get variationAxisName(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2834296679767501, undefined, []); }
+  static get variationAxisName(): _CoreFoundation_CFString { return callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2834296679767501, undefined, []); }
   declare readonly $type: { "c:@T@CGFontRef": true };
 }
 
@@ -2099,7 +2099,7 @@ export type CGFontPostScriptFormat = "type1" | "type3" | "type42";
 
 export const CGFontPostScriptFormat = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGFontPostScriptFormat) | null { return callSDK<(CGFontPostScriptFormat) | null>("CoreGraphics_067acaa3e5f56b46", 2349399497692460, undefined, [rawValue]); }
+  init(rawValue: number): (CGFontPostScriptFormat) | null { return callSDK<(CGFontPostScriptFormat) | null>("CoreGraphics_d968214ecc684fb6", 2349399497692460, undefined, [rawValue]); }
 };
 
 /** class CGFunction */
@@ -2108,26 +2108,26 @@ export class CGFunction extends SDKHandle {
    * init?(info: UnsafeMutableRawPointer?, domainDimension: Int, domain: UnsafePointer<CGFloat>?, rangeDimension: Int, range: UnsafePointer<CGFloat>?, callbacks: UnsafePointer<CGFunctionCallbacks>)
    * @availability iOS 2.0+
    */
-  static init(info: (SDKHandle) | null, domainDimension: number, domain: $SDK5, rangeDimension: number, range: $SDK5, callbacks: SDKHandle): (CGFunction) | null { return callSDK<(CGFunction) | null>("CoreGraphics_067acaa3e5f56b46", 4057660844280723, undefined, [info, domainDimension, domain, rangeDimension, range, callbacks]); }
+  static init(info: (SDKHandle) | null, domainDimension: number, domain: $SDK5, rangeDimension: number, range: $SDK5, callbacks: SDKHandle): (CGFunction) | null { return callSDK<(CGFunction) | null>("CoreGraphics_d968214ecc684fb6", 4057660844280723, undefined, [info, domainDimension, domain, rangeDimension, range, callbacks]); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2594243058415302, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2594243058415302, undefined, []); }
   declare readonly $type: { "c:@T@CGFunctionRef": true };
 }
 
 /** struct CGFunctionCallbacks */
 export class CGFunctionCallbacks extends SDKHandle {
   /** var evaluate: CGFunctionEvaluateCallback? */
-  get evaluate(): (((arg0: (SDKHandle) | null, arg1: "animatableData" | SDKHandle, arg2: "animatableData" | SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: "animatableData" | SDKHandle, arg2: "animatableData" | SDKHandle) => Promise<void>)) | null>("CoreGraphics_067acaa3e5f56b46", 1865518283135277, this, []); }
+  get evaluate(): (((arg0: (SDKHandle) | null, arg1: "animatableData" | SDKHandle, arg2: "animatableData" | SDKHandle) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: "animatableData" | SDKHandle, arg2: "animatableData" | SDKHandle) => Promise<void>)) | null>("CoreGraphics_d968214ecc684fb6", 1865518283135277, this, []); }
   /** var releaseInfo: CGFunctionReleaseInfoCallback? */
-  get releaseInfo(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_067acaa3e5f56b46", 3418840171478583, this, []); }
+  get releaseInfo(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_d968214ecc684fb6", 3418840171478583, this, []); }
   /** var version: UInt32 */
-  get version(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3527238545963492, this, []); }
-  set version(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 431004605828148, this, [value]); }
+  get version(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3527238545963492, this, []); }
+  set version(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 431004605828148, this, [value]); }
   /** init() */
-  static init(): CGFunctionCallbacks { return callSDK<CGFunctionCallbacks>("CoreGraphics_067acaa3e5f56b46", 841977808336016, undefined, []); }
+  static init(): CGFunctionCallbacks { return callSDK<CGFunctionCallbacks>("CoreGraphics_d968214ecc684fb6", 841977808336016, undefined, []); }
   declare readonly $type: { "c:@S@CGFunctionCallbacks": true };
 }
 
@@ -2145,7 +2145,7 @@ export type CGGlyphDeprecatedEnum = "min" | "max";
 
 export const CGGlyphDeprecatedEnum = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGGlyphDeprecatedEnum) | null { return callSDK<(CGGlyphDeprecatedEnum) | null>("CoreGraphics_067acaa3e5f56b46", 1633772408603703, undefined, [rawValue]); }
+  init(rawValue: number): (CGGlyphDeprecatedEnum) | null { return callSDK<(CGGlyphDeprecatedEnum) | null>("CoreGraphics_d968214ecc684fb6", 1633772408603703, undefined, [rawValue]); }
 };
 
 /** class CGGradient */
@@ -2154,27 +2154,27 @@ export class CGGradient extends SDKHandle {
    * init?(colorSpace space: CGColorSpace, colorComponents components: UnsafePointer<CGFloat>, locations: UnsafePointer<CGFloat>?, count: Int)
    * @availability iOS 2.0+
    */
-  static initColorSpaceColorComponentsLocationsCount(space: CGColorSpace, components: $SDK2, locations: $SDK5, count: number): (CGGradient) | null { return callSDK<(CGGradient) | null>("CoreGraphics_067acaa3e5f56b46", 3815716404309602, undefined, [space, components, locations, count]); }
+  static initColorSpaceColorComponentsLocationsCount(space: CGColorSpace, components: $SDK2, locations: $SDK5, count: number): (CGGradient) | null { return callSDK<(CGGradient) | null>("CoreGraphics_d968214ecc684fb6", 3815716404309602, undefined, [space, components, locations, count]); }
   /**
    * init?(colorsSpace space: CGColorSpace?, colors: CFArray, locations: UnsafePointer<CGFloat>?)
    * @availability iOS 2.0+
    */
-  static initColorsSpaceColorsLocations(space: (CGColorSpace) | null, colors: _CoreFoundation_CFArray, locations?: $SDK5): (CGGradient) | null { return callSDK<(CGGradient) | null>("CoreGraphics_067acaa3e5f56b46", 3740256413429720, undefined, [space, colors, locations]); }
+  static initColorsSpaceColorsLocations(space: (CGColorSpace) | null, colors: _CoreFoundation_CFArray, locations?: $SDK5): (CGGradient) | null { return callSDK<(CGGradient) | null>("CoreGraphics_d968214ecc684fb6", 3740256413429720, undefined, [space, colors, locations]); }
   /**
    * init?(headroom: Float, colorSpace space: CGColorSpace, colorComponents components: UnsafePointer<CGFloat>, locations: UnsafePointer<CGFloat>?, count: Int)
    * @availability iOS 26.0+
    */
-  static initHeadroomColorSpaceColorComponentsLocationsCount(headroom: number, space: CGColorSpace, components: $SDK2, locations: $SDK5, count: number): (CGGradient) | null { return callSDK<(CGGradient) | null>("CoreGraphics_067acaa3e5f56b46", 3074316453589124, undefined, [headroom, space, components, locations, count]); }
+  static initHeadroomColorSpaceColorComponentsLocationsCount(headroom: number, space: CGColorSpace, components: $SDK2, locations: $SDK5, count: number): (CGGradient) | null { return callSDK<(CGGradient) | null>("CoreGraphics_d968214ecc684fb6", 3074316453589124, undefined, [headroom, space, components, locations, count]); }
   /**
    * var contentHeadroom: Float { get }
    * @availability iOS 26.0+
    */
-  get contentHeadroom(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 812992127463078, this, []); }
+  get contentHeadroom(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 812992127463078, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1420103686748515, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1420103686748515, undefined, []); }
   declare readonly $type: { "c:@T@CGGradientRef": true };
 }
 
@@ -2183,11 +2183,11 @@ export type CGGradientDrawingOptions = Array<"drawsBeforeStartLocation" | "draws
 
 export const CGGradientDrawingOptions = {
   /** static var drawsAfterEndLocation: CGGradientDrawingOptions { get } */
-  get drawsAfterEndLocation(): CGGradientDrawingOptions { return callSDK<CGGradientDrawingOptions>("CoreGraphics_067acaa3e5f56b46", 526748342702304, undefined, []); },
+  get drawsAfterEndLocation(): CGGradientDrawingOptions { return callSDK<CGGradientDrawingOptions>("CoreGraphics_d968214ecc684fb6", 526748342702304, undefined, []); },
   /** static var drawsBeforeStartLocation: CGGradientDrawingOptions { get } */
-  get drawsBeforeStartLocation(): CGGradientDrawingOptions { return callSDK<CGGradientDrawingOptions>("CoreGraphics_067acaa3e5f56b46", 3681653241513289, undefined, []); },
+  get drawsBeforeStartLocation(): CGGradientDrawingOptions { return callSDK<CGGradientDrawingOptions>("CoreGraphics_d968214ecc684fb6", 3681653241513289, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): CGGradientDrawingOptions { return callSDK<CGGradientDrawingOptions>("CoreGraphics_067acaa3e5f56b46", 2692232912824124, undefined, [rawValue]); }
+  init(rawValue: number): CGGradientDrawingOptions { return callSDK<CGGradientDrawingOptions>("CoreGraphics_d968214ecc684fb6", 2692232912824124, undefined, [rawValue]); }
 };
 
 /** class CGImage */
@@ -2196,177 +2196,177 @@ export class CGImage extends SDKHandle {
    * var calculatedContentAverageLightLevel: Float { get }
    * @availability iOS 26.0+
    */
-  get calculatedContentAverageLightLevel(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3809091870784327, this, []); }
+  get calculatedContentAverageLightLevel(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3809091870784327, this, []); }
   /**
    * var calculatedContentHeadroom: Float { get }
    * @availability iOS 26.0+
    */
-  get calculatedContentHeadroom(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1040129150316922, this, []); }
+  get calculatedContentHeadroom(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1040129150316922, this, []); }
   /**
    * var containsImageSpecificToneMappingMetadata: Bool { get }
    * @availability iOS 18.0+
    */
-  get containsImageSpecificToneMappingMetadata(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 77142829716662, this, []); }
+  get containsImageSpecificToneMappingMetadata(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 77142829716662, this, []); }
   /**
    * init?(width: Int, height: Int, bitsPerComponent: Int, bitsPerPixel: Int, bytesPerRow: Int, space: CGColorSpace, bitmapInfo: CGBitmapInfo, provider: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool, intent: CGColorRenderingIntent)
    * @availability iOS 2.0+
    */
-  static initWidthHeightBitsPerComponentBitsPerPixelBytesPerRowSpaceBitmapInfoProviderDecodeShouldInterpolateIntent(width: number, height: number, bitsPerComponent: number, bitsPerPixel: number, bytesPerRow: number, space: CGColorSpace, bitmapInfo: CGBitmapInfo, provider: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean, intent: CGColorRenderingIntent): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 533414476556996, undefined, [width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent]); }
+  static initWidthHeightBitsPerComponentBitsPerPixelBytesPerRowSpaceBitmapInfoProviderDecodeShouldInterpolateIntent(width: number, height: number, bitsPerComponent: number, bitsPerPixel: number, bytesPerRow: number, space: CGColorSpace, bitmapInfo: CGBitmapInfo, provider: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean, intent: CGColorRenderingIntent): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 533414476556996, undefined, [width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent]); }
   /**
    * func copy() -> CGImage?
    * @availability iOS 2.0+
    */
-  copy(): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 1033860006681967, this, []); }
+  copy(): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 1033860006681967, this, []); }
   /**
    * func copyWithCalculatedHDRStats() -> CGImage?
    * @availability iOS 26.0+
    */
-  copyWithCalculatedHDRStats(): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 494182012378495, this, []); }
+  copyWithCalculatedHDRStats(): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 494182012378495, this, []); }
   /**
    * func copy(colorSpace space: CGColorSpace) -> CGImage?
    * @availability iOS 2.0+
    */
-  copyColorSpace(space: CGColorSpace): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 11965294772654, this, [space]); }
+  copyColorSpace(space: CGColorSpace): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 11965294772654, this, [space]); }
   /**
    * func copy(contentAverageLightLevel avll: Float) -> CGImage?
    * @availability iOS 26.0+
    */
-  copyContentAverageLightLevel(avll: number): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 2341449770714483, this, [avll]); }
+  copyContentAverageLightLevel(avll: number): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 2341449770714483, this, [avll]); }
   /**
    * init?(headroom: Float, width: Int, height: Int, bitsPerComponent: Int, bitsPerPixel: Int, bytesPerRow: Int, space: CGColorSpace, bitmapInfo: CGBitmapInfo, provider: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool, intent: CGColorRenderingIntent)
    * @availability iOS 18.0+
    */
-  static initHeadroomWidthHeightBitsPerComponentBitsPerPixelBytesPerRowSpaceBitmapInfoProviderDecodeShouldInterpolateIntent(headroom: number, width: number, height: number, bitsPerComponent: number, bitsPerPixel: number, bytesPerRow: number, space: CGColorSpace, bitmapInfo: CGBitmapInfo, provider: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean, intent: CGColorRenderingIntent): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 1293288891089533, undefined, [headroom, width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent]); }
+  static initHeadroomWidthHeightBitsPerComponentBitsPerPixelBytesPerRowSpaceBitmapInfoProviderDecodeShouldInterpolateIntent(headroom: number, width: number, height: number, bitsPerComponent: number, bitsPerPixel: number, bytesPerRow: number, space: CGColorSpace, bitmapInfo: CGBitmapInfo, provider: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean, intent: CGColorRenderingIntent): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 1293288891089533, undefined, [headroom, width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent]); }
   /**
    * func cropping(to rect: CGRect) -> CGImage?
    * @availability iOS 2.0+
    */
-  cropping(rect: $SDK8): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 581401001686486, this, [rect]); }
+  cropping(rect: $SDK8): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 581401001686486, this, [rect]); }
   /**
    * init?(jpegDataProviderSource source: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool, intent: CGColorRenderingIntent)
    * @availability iOS 2.0+
    */
-  static initJpegDataProviderSourceDecodeShouldInterpolateIntent(source: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean, intent: CGColorRenderingIntent): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 18288954225648, undefined, [source, decode, shouldInterpolate, intent]); }
+  static initJpegDataProviderSourceDecodeShouldInterpolateIntent(source: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean, intent: CGColorRenderingIntent): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 18288954225648, undefined, [source, decode, shouldInterpolate, intent]); }
   /**
    * func masking(_ mask: CGImage) -> CGImage?
    * @availability iOS 2.0+
    */
-  masking(mask: CGImage): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 510509898976412, this, [mask]); }
+  masking(mask: CGImage): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 510509898976412, this, [mask]); }
   /**
    * init?(pngDataProviderSource source: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool, intent: CGColorRenderingIntent)
    * @availability iOS 2.0+
    */
-  static initPngDataProviderSourceDecodeShouldInterpolateIntent(source: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean, intent: CGColorRenderingIntent): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 2161696152502383, undefined, [source, decode, shouldInterpolate, intent]); }
+  static initPngDataProviderSourceDecodeShouldInterpolateIntent(source: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean, intent: CGColorRenderingIntent): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 2161696152502383, undefined, [source, decode, shouldInterpolate, intent]); }
   /**
    * var alphaInfo: CGImageAlphaInfo { get }
    * @availability iOS 2.0+
    */
-  get alphaInfo(): CGImageAlphaInfo { return callSDK<CGImageAlphaInfo>("CoreGraphics_067acaa3e5f56b46", 1324976299270517, this, []); }
+  get alphaInfo(): CGImageAlphaInfo { return callSDK<CGImageAlphaInfo>("CoreGraphics_d968214ecc684fb6", 1324976299270517, this, []); }
   /**
    * var bitmapInfo: CGBitmapInfo { get }
    * @availability iOS 2.0+
    */
-  get bitmapInfo(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 4023725295314428, this, []); }
+  get bitmapInfo(): CGBitmapInfo { return callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 4023725295314428, this, []); }
   /**
    * var bitsPerComponent: Int { get }
    * @availability iOS 2.0+
    */
-  get bitsPerComponent(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4286040742506379, this, []); }
+  get bitsPerComponent(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4286040742506379, this, []); }
   /**
    * var bitsPerPixel: Int { get }
    * @availability iOS 2.0+
    */
-  get bitsPerPixel(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 596655102886482, this, []); }
+  get bitsPerPixel(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 596655102886482, this, []); }
   /**
    * var byteOrderInfo: CGImageByteOrderInfo { get }
    * @availability iOS 12.0+
    */
-  get byteOrderInfo(): CGImageByteOrderInfo { return callSDK<CGImageByteOrderInfo>("CoreGraphics_067acaa3e5f56b46", 2305374473053109, this, []); }
+  get byteOrderInfo(): CGImageByteOrderInfo { return callSDK<CGImageByteOrderInfo>("CoreGraphics_d968214ecc684fb6", 2305374473053109, this, []); }
   /**
    * var bytesPerRow: Int { get }
    * @availability iOS 2.0+
    */
-  get bytesPerRow(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1547375666410939, this, []); }
+  get bytesPerRow(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1547375666410939, this, []); }
   /**
    * var colorSpace: CGColorSpace? { get }
    * @availability iOS 2.0+
    */
-  get colorSpace(): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 1906612546246840, this, []); }
+  get colorSpace(): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 1906612546246840, this, []); }
   /**
    * var contentAverageLightLevel: Float { get }
    * @availability iOS 26.0+
    */
-  get contentAverageLightLevel(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2105892873324430, this, []); }
+  get contentAverageLightLevel(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2105892873324430, this, []); }
   /**
    * var contentHeadroom: Float { get }
    * @availability iOS 18.0+
    */
-  get contentHeadroom(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 801740838398881, this, []); }
+  get contentHeadroom(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 801740838398881, this, []); }
   /**
    * var dataProvider: CGDataProvider? { get }
    * @availability iOS 2.0+
    */
-  get dataProvider(): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_067acaa3e5f56b46", 2965836141661600, this, []); }
+  get dataProvider(): (CGDataProvider) | null { return callSDK<(CGDataProvider) | null>("CoreGraphics_d968214ecc684fb6", 2965836141661600, this, []); }
   /**
    * var decode: UnsafePointer<CGFloat>? { get }
    * @availability iOS 2.0+
    */
-  get decode(): $SDK5 { return callSDK<$SDK5>("CoreGraphics_067acaa3e5f56b46", 1973062816171581, this, []); }
+  get decode(): $SDK5 { return callSDK<$SDK5>("CoreGraphics_d968214ecc684fb6", 1973062816171581, this, []); }
   /**
    * var height: Int { get }
    * @availability iOS 2.0+
    */
-  get height(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 452098310200216, this, []); }
+  get height(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 452098310200216, this, []); }
   /**
    * var pixelFormatInfo: CGImagePixelFormatInfo { get }
    * @availability iOS 12.0+
    */
-  get pixelFormatInfo(): CGImagePixelFormatInfo { return callSDK<CGImagePixelFormatInfo>("CoreGraphics_067acaa3e5f56b46", 2754951795193445, this, []); }
+  get pixelFormatInfo(): CGImagePixelFormatInfo { return callSDK<CGImagePixelFormatInfo>("CoreGraphics_d968214ecc684fb6", 2754951795193445, this, []); }
   /**
    * var renderingIntent: CGColorRenderingIntent { get }
    * @availability iOS 2.0+
    */
-  get renderingIntent(): CGColorRenderingIntent { return callSDK<CGColorRenderingIntent>("CoreGraphics_067acaa3e5f56b46", 2281203399119528, this, []); }
+  get renderingIntent(): CGColorRenderingIntent { return callSDK<CGColorRenderingIntent>("CoreGraphics_d968214ecc684fb6", 2281203399119528, this, []); }
   /**
    * var shouldInterpolate: Bool { get }
    * @availability iOS 2.0+
    */
-  get shouldInterpolate(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2795949439320322, this, []); }
+  get shouldInterpolate(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2795949439320322, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1922240840050537, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1922240840050537, undefined, []); }
   /**
    * var utType: CFString? { get }
    * @availability iOS 9.0+
    */
-  get utType(): $SDK7 { return callSDK<$SDK7>("CoreGraphics_067acaa3e5f56b46", 3248800601462931, this, []); }
+  get utType(): $SDK7 { return callSDK<$SDK7>("CoreGraphics_d968214ecc684fb6", 3248800601462931, this, []); }
   /**
    * var width: Int { get }
    * @availability iOS 2.0+
    */
-  get width(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3244846057286163, this, []); }
+  get width(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3244846057286163, this, []); }
   /**
    * var isMask: Bool { get }
    * @availability iOS 2.0+
    */
-  get isMask(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2663228109924419, this, []); }
+  get isMask(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2663228109924419, this, []); }
   /**
    * init?(maskWidth width: Int, height: Int, bitsPerComponent: Int, bitsPerPixel: Int, bytesPerRow: Int, provider: CGDataProvider, decode: UnsafePointer<CGFloat>?, shouldInterpolate: Bool)
    * @availability iOS 2.0+
    */
-  static initMaskWidthHeightBitsPerComponentBitsPerPixelBytesPerRowProviderDecodeShouldInterpolate(width: number, height: number, bitsPerComponent: number, bitsPerPixel: number, bytesPerRow: number, provider: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 1807962732586501, undefined, [width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, provider, decode, shouldInterpolate]); }
+  static initMaskWidthHeightBitsPerComponentBitsPerPixelBytesPerRowProviderDecodeShouldInterpolate(width: number, height: number, bitsPerComponent: number, bitsPerPixel: number, bytesPerRow: number, provider: CGDataProvider, decode: $SDK5, shouldInterpolate: boolean): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 1807962732586501, undefined, [width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, provider, decode, shouldInterpolate]); }
   /**
    * var shouldToneMap: Bool { get }
    * @availability iOS 18.0+
    */
-  get shouldToneMap(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2323660604358484, this, []); }
+  get shouldToneMap(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2323660604358484, this, []); }
   /**
    * func copy(maskingColorComponents components: [CGFloat]) -> CGImage?
    * @availability iOS 7.0+
    */
-  copyMaskingColorComponents(components: Array<number>): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 2972989951692911, this, [components]); }
+  copyMaskingColorComponents(components: Array<number>): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 2972989951692911, this, [components]); }
   declare readonly $type: { "c:@T@CGImageRef": true };
 }
 
@@ -2378,14 +2378,14 @@ export const CGImageAlphaInfo = {
    * var debugDescription: String { get }
    * @availability iOS 7.0+
    */
-  getDebugDescription($self: CGImageAlphaInfo): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 2703636081741534, $self, []); },
+  getDebugDescription($self: CGImageAlphaInfo): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 2703636081741534, $self, []); },
   /**
    * static let allCases: [CGImageAlphaInfo]
    * @availability iOS 26.0+
    */
-  get allCases(): Array<CGImageAlphaInfo> { return callSDK<Array<CGImageAlphaInfo>>("CoreGraphics_067acaa3e5f56b46", 520965245186116, undefined, []); },
+  get allCases(): Array<CGImageAlphaInfo> { return callSDK<Array<CGImageAlphaInfo>>("CoreGraphics_d968214ecc684fb6", 520965245186116, undefined, []); },
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (CGImageAlphaInfo) | null { return callSDK<(CGImageAlphaInfo) | null>("CoreGraphics_067acaa3e5f56b46", 1098122264034124, undefined, [rawValue]); }
+  init(rawValue: number): (CGImageAlphaInfo) | null { return callSDK<(CGImageAlphaInfo) | null>("CoreGraphics_d968214ecc684fb6", 1098122264034124, undefined, [rawValue]); }
 };
 
 /**
@@ -2405,27 +2405,27 @@ export const CGImageByteOrderInfo = {
    * static var order16Host: CGImageByteOrderInfo { get }
    * @availability iOS 2.0+
    */
-  get order16Host(): CGImageByteOrderInfo { return callSDK<CGImageByteOrderInfo>("CoreGraphics_067acaa3e5f56b46", 3695077429214635, undefined, []); },
+  get order16Host(): CGImageByteOrderInfo { return callSDK<CGImageByteOrderInfo>("CoreGraphics_d968214ecc684fb6", 3695077429214635, undefined, []); },
   /**
    * static var order32Host: CGImageByteOrderInfo { get }
    * @availability iOS 2.0+
    */
-  get order32Host(): CGImageByteOrderInfo { return callSDK<CGImageByteOrderInfo>("CoreGraphics_067acaa3e5f56b46", 1530695635149995, undefined, []); },
+  get order32Host(): CGImageByteOrderInfo { return callSDK<CGImageByteOrderInfo>("CoreGraphics_d968214ecc684fb6", 1530695635149995, undefined, []); },
   /**
    * var debugDescription: String { get }
    * @availability iOS 7.0+
    */
-  getDebugDescription($self: CGImageByteOrderInfo): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 3693675046516969, $self, []); },
+  getDebugDescription($self: CGImageByteOrderInfo): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 3693675046516969, $self, []); },
   /**
    * static let allCases: [CGImageByteOrderInfo]
    * @availability iOS 26.0+
    */
-  get allCases(): Array<CGImageByteOrderInfo> { return callSDK<Array<CGImageByteOrderInfo>>("CoreGraphics_067acaa3e5f56b46", 1539509787816165, undefined, []); },
+  get allCases(): Array<CGImageByteOrderInfo> { return callSDK<Array<CGImageByteOrderInfo>>("CoreGraphics_d968214ecc684fb6", 1539509787816165, undefined, []); },
   /**
    * init?(rawValue: UInt32)
    * @availability iOS 2.0+
    */
-  init(rawValue: number): (CGImageByteOrderInfo) | null { return callSDK<(CGImageByteOrderInfo) | null>("CoreGraphics_067acaa3e5f56b46", 1492894779269906, undefined, [rawValue]); }
+  init(rawValue: number): (CGImageByteOrderInfo) | null { return callSDK<(CGImageByteOrderInfo) | null>("CoreGraphics_d968214ecc684fb6", 1492894779269906, undefined, [rawValue]); }
 };
 
 /**
@@ -2445,17 +2445,17 @@ export const CGImageComponentInfo = {
    * var debugDescription: String { get }
    * @availability iOS 7.0+
    */
-  getDebugDescription($self: CGImageComponentInfo): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 141318374462262, $self, []); },
+  getDebugDescription($self: CGImageComponentInfo): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 141318374462262, $self, []); },
   /**
    * static let allCases: [CGImageComponentInfo]
    * @availability iOS 26.0+
    */
-  get allCases(): Array<CGImageComponentInfo> { return callSDK<Array<CGImageComponentInfo>>("CoreGraphics_067acaa3e5f56b46", 3843497401767340, undefined, []); },
+  get allCases(): Array<CGImageComponentInfo> { return callSDK<Array<CGImageComponentInfo>>("CoreGraphics_d968214ecc684fb6", 3843497401767340, undefined, []); },
   /**
    * init?(rawValue: UInt32)
    * @availability iOS 2.0+
    */
-  init(rawValue: number): (CGImageComponentInfo) | null { return callSDK<(CGImageComponentInfo) | null>("CoreGraphics_067acaa3e5f56b46", 3483126357342296, undefined, [rawValue]); }
+  init(rawValue: number): (CGImageComponentInfo) | null { return callSDK<(CGImageComponentInfo) | null>("CoreGraphics_d968214ecc684fb6", 3483126357342296, undefined, [rawValue]); }
 };
 
 /**
@@ -2475,17 +2475,17 @@ export const CGImagePixelFormatInfo = {
    * var debugDescription: String { get }
    * @availability iOS 12.0+
    */
-  getDebugDescription($self: CGImagePixelFormatInfo): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 4103258652797689, $self, []); },
+  getDebugDescription($self: CGImagePixelFormatInfo): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 4103258652797689, $self, []); },
   /**
    * static let allCases: [CGImagePixelFormatInfo]
    * @availability iOS 26.0+
    */
-  get allCases(): Array<CGImagePixelFormatInfo> { return callSDK<Array<CGImagePixelFormatInfo>>("CoreGraphics_067acaa3e5f56b46", 3466932254610955, undefined, []); },
+  get allCases(): Array<CGImagePixelFormatInfo> { return callSDK<Array<CGImagePixelFormatInfo>>("CoreGraphics_d968214ecc684fb6", 3466932254610955, undefined, []); },
   /**
    * init?(rawValue: UInt32)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (CGImagePixelFormatInfo) | null { return callSDK<(CGImagePixelFormatInfo) | null>("CoreGraphics_067acaa3e5f56b46", 738901036738320, undefined, [rawValue]); }
+  init(rawValue: number): (CGImagePixelFormatInfo) | null { return callSDK<(CGImagePixelFormatInfo) | null>("CoreGraphics_d968214ecc684fb6", 738901036738320, undefined, [rawValue]); }
 };
 
 /**
@@ -2502,9 +2502,9 @@ export const CGInterpolationQuality = {
    * var debugDescription: String { get }
    * @availability iOS 27.0+
    */
-  getDebugDescription($self: CGInterpolationQuality): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 3743985729894326, $self, []); },
+  getDebugDescription($self: CGInterpolationQuality): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 3743985729894326, $self, []); },
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGInterpolationQuality) | null { return callSDK<(CGInterpolationQuality) | null>("CoreGraphics_067acaa3e5f56b46", 3662039790445113, undefined, [rawValue]); }
+  init(rawValue: number): (CGInterpolationQuality) | null { return callSDK<(CGInterpolationQuality) | null>("CoreGraphics_d968214ecc684fb6", 3662039790445113, undefined, [rawValue]); }
 };
 
 /** class CGLayer */
@@ -2513,22 +2513,22 @@ export class CGLayer extends SDKHandle {
    * init?(_ context: CGContext, size: CGSize, auxiliaryInfo: CFDictionary?)
    * @availability iOS 2.0+
    */
-  static init(context: CGContext, size: $SDK10, auxiliaryInfo?: $SDK3): (CGLayer) | null { return callSDK<(CGLayer) | null>("CoreGraphics_067acaa3e5f56b46", 1319616397548107, undefined, [context, size, auxiliaryInfo]); }
+  static init(context: CGContext, size: $SDK10, auxiliaryInfo?: $SDK3): (CGLayer) | null { return callSDK<(CGLayer) | null>("CoreGraphics_d968214ecc684fb6", 1319616397548107, undefined, [context, size, auxiliaryInfo]); }
   /**
    * var context: CGContext? { get }
    * @availability iOS 2.0+
    */
-  get context(): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_067acaa3e5f56b46", 3507670381246234, this, []); }
+  get context(): (CGContext) | null { return callSDK<(CGContext) | null>("CoreGraphics_d968214ecc684fb6", 3507670381246234, this, []); }
   /**
    * var size: CGSize { get }
    * @availability iOS 2.0+
    */
-  get size(): $SDK10 { return callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 2331824201483994, this, []); }
+  get size(): $SDK10 { return callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 2331824201483994, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4318298881312124, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4318298881312124, undefined, []); }
   declare readonly $type: { "c:@T@CGLayerRef": true };
 }
 
@@ -2537,7 +2537,7 @@ export type CGLineCap = "butt" | "round" | "square";
 
 export const CGLineCap = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGLineCap) | null { return callSDK<(CGLineCap) | null>("CoreGraphics_067acaa3e5f56b46", 2313212510741380, undefined, [rawValue]); }
+  init(rawValue: number): (CGLineCap) | null { return callSDK<(CGLineCap) | null>("CoreGraphics_d968214ecc684fb6", 2313212510741380, undefined, [rawValue]); }
 };
 
 /** enum CGLineJoin */
@@ -2545,7 +2545,7 @@ export type CGLineJoin = "miter" | "round" | "bevel";
 
 export const CGLineJoin = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGLineJoin) | null { return callSDK<(CGLineJoin) | null>("CoreGraphics_067acaa3e5f56b46", 2193046796944844, undefined, [rawValue]); }
+  init(rawValue: number): (CGLineJoin) | null { return callSDK<(CGLineJoin) | null>("CoreGraphics_d968214ecc684fb6", 2193046796944844, undefined, [rawValue]); }
 };
 
 /** class CGPath */
@@ -2554,137 +2554,137 @@ export class CGPath extends SDKHandle {
    * func applyWithBlock(_ block: (UnsafePointer<CGPathElement>) -> Void)
    * @availability iOS 11.0+
    */
-  applyWithBlock(block: ((arg0: SDKHandle) => void)): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2122764219052891, this, [block], [{"callback":{"out":[]}}]); }
+  applyWithBlock(block: ((arg0: SDKHandle) => void)): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2122764219052891, this, [block], [{"callback":{"out":[]}}]); }
   /**
    * func copy() -> CGPath?
    * @availability iOS 2.0+
    */
-  copy(): (CGPath) | null { return callSDK<(CGPath) | null>("CoreGraphics_067acaa3e5f56b46", 3588918424661693, this, []); }
+  copy(): (CGPath) | null { return callSDK<(CGPath) | null>("CoreGraphics_d968214ecc684fb6", 3588918424661693, this, []); }
   /**
    * func copy(using transform: UnsafePointer<CGAffineTransform>?) -> CGPath?
    * @availability iOS 5.0+
    */
-  copyUsing(transform?: (SDKHandle) | null): (CGPath) | null { return callSDK<(CGPath) | null>("CoreGraphics_067acaa3e5f56b46", 1567197829887969, this, [transform]); }
+  copyUsing(transform?: (SDKHandle) | null): (CGPath) | null { return callSDK<(CGPath) | null>("CoreGraphics_d968214ecc684fb6", 1567197829887969, this, [transform]); }
   /**
    * func mutableCopy() -> CGMutablePath?
    * @availability iOS 2.0+
    */
-  mutableCopy(): (CGMutablePath) | null { return callSDK<(CGMutablePath) | null>("CoreGraphics_067acaa3e5f56b46", 242794508288571, this, []); }
+  mutableCopy(): (CGMutablePath) | null { return callSDK<(CGMutablePath) | null>("CoreGraphics_d968214ecc684fb6", 242794508288571, this, []); }
   /**
    * func mutableCopy(using transform: UnsafePointer<CGAffineTransform>?) -> CGMutablePath?
    * @availability iOS 5.0+
    */
-  mutableCopyUsing(transform?: (SDKHandle) | null): (CGMutablePath) | null { return callSDK<(CGMutablePath) | null>("CoreGraphics_067acaa3e5f56b46", 4369227865864433, this, [transform]); }
+  mutableCopyUsing(transform?: (SDKHandle) | null): (CGMutablePath) | null { return callSDK<(CGMutablePath) | null>("CoreGraphics_d968214ecc684fb6", 4369227865864433, this, [transform]); }
   /**
    * init(ellipseIn rect: CGRect, transform: UnsafePointer<CGAffineTransform>?)
    * @availability iOS 5.0+
    */
-  static initEllipseInTransform(rect: $SDK8, transform?: (SDKHandle) | null): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 4290309622939406, undefined, [rect, transform]); }
+  static initEllipseInTransform(rect: $SDK8, transform?: (SDKHandle) | null): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 4290309622939406, undefined, [rect, transform]); }
   /**
    * init(rect: CGRect, transform: UnsafePointer<CGAffineTransform>?)
    * @availability iOS 4.0+
    */
-  static initRectTransform(rect: $SDK8, transform?: (SDKHandle) | null): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 1536883264658773, undefined, [rect, transform]); }
+  static initRectTransform(rect: $SDK8, transform?: (SDKHandle) | null): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 1536883264658773, undefined, [rect, transform]); }
   /**
    * init(roundedRect rect: CGRect, cornerWidth: CGFloat, cornerHeight: CGFloat, transform: UnsafePointer<CGAffineTransform>?)
    * @availability iOS 7.0+
    */
-  static initRoundedRectCornerWidthCornerHeightTransform(rect: $SDK8, cornerWidth: number, cornerHeight: number, transform?: (SDKHandle) | null): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 2285810849018106, undefined, [rect, cornerWidth, cornerHeight, transform]); }
+  static initRoundedRectCornerWidthCornerHeightTransform(rect: $SDK8, cornerWidth: number, cornerHeight: number, transform?: (SDKHandle) | null): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 2285810849018106, undefined, [rect, cornerWidth, cornerHeight, transform]); }
   /**
    * var boundingBox: CGRect { get }
    * @availability iOS 2.0+
    */
-  get boundingBox(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 4258018687636615, this, []); }
+  get boundingBox(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 4258018687636615, this, []); }
   /**
    * var currentPoint: CGPoint { get }
    * @availability iOS 2.0+
    */
-  get currentPoint(): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 402394764504039, this, []); }
+  get currentPoint(): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 402394764504039, this, []); }
   /**
    * var boundingBoxOfPath: CGRect { get }
    * @availability iOS 4.0+
    */
-  get boundingBoxOfPath(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 44679093907150, this, []); }
+  get boundingBoxOfPath(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 44679093907150, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1182020700289375, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1182020700289375, undefined, []); }
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 2.0+
    */
-  get isEmpty(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 841681311815031, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 841681311815031, this, []); }
   /**
    * func isRect(_ rect: UnsafeMutablePointer<CGRect>?) -> Bool
    * @availability iOS 2.0+
    */
-  isRect(rect?: $SDK5): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2638077495200705, this, [rect]); }
+  isRect(rect?: $SDK5): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2638077495200705, this, [rect]); }
   /**
    * func intersects(_ other: CGPath, using rule: CGPathFillRule = .winding) -> Bool
    * @availability iOS 16.0+
    */
-  intersects(other: CGPath, rule?: CGPathFillRule): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3532211071233693, this, [other, rule]); }
+  intersects(other: CGPath, rule?: CGPathFillRule): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3532211071233693, this, [other, rule]); }
   /**
    * func normalized(using rule: CGPathFillRule = .winding) -> CGPath
    * @availability iOS 16.0+
    */
-  normalized(rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 4417818922599227, this, [rule]); }
+  normalized(rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 4417818922599227, this, [rule]); }
   /**
    * func subtracting(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
    * @availability iOS 16.0+
    */
-  subtracting(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 100020940098102, this, [other, rule]); }
+  subtracting(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 100020940098102, this, [other, rule]); }
   /**
    * func intersection(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
    * @availability iOS 16.0+
    */
-  intersection(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 1812625534962210, this, [other, rule]); }
+  intersection(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 1812625534962210, this, [other, rule]); }
   /**
    * func lineSubtracting(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
    * @availability iOS 16.0+
    */
-  lineSubtracting(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 1863509361803876, this, [other, rule]); }
+  lineSubtracting(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 1863509361803876, this, [other, rule]); }
   /**
    * func lineIntersection(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
    * @availability iOS 16.0+
    */
-  lineIntersection(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 3657040747256480, this, [other, rule]); }
+  lineIntersection(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 3657040747256480, this, [other, rule]); }
   /**
    * func componentsSeparated(using rule: CGPathFillRule = .winding) -> [CGPath]
    * @availability iOS 16.0+
    */
-  componentsSeparated(rule?: CGPathFillRule): Array<CGPath> { return callSDK<Array<CGPath>>("CoreGraphics_067acaa3e5f56b46", 3414986042668721, this, [rule]); }
+  componentsSeparated(rule?: CGPathFillRule): Array<CGPath> { return callSDK<Array<CGPath>>("CoreGraphics_d968214ecc684fb6", 3414986042668721, this, [rule]); }
   /**
    * func symmetricDifference(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
    * @availability iOS 16.0+
    */
-  symmetricDifference(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 3099272791017667, this, [other, rule]); }
+  symmetricDifference(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 3099272791017667, this, [other, rule]); }
   /**
    * func copy(dashingWithPhase phase: CGFloat, lengths: [CGFloat], transform: CGAffineTransform = .identity) -> CGPath
    * @availability iOS 7.0+
    */
-  copyDashingWithPhaseLengthsTransform(phase: number, lengths: Array<number>, transform?: _CoreFoundation_CGAffineTransform): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 2766912849871260, this, [phase, lengths, transform]); }
+  copyDashingWithPhaseLengthsTransform(phase: number, lengths: Array<number>, transform?: _CoreFoundation_CGAffineTransform): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 2766912849871260, this, [phase, lengths, transform]); }
   /**
    * func copy(strokingWithWidth lineWidth: CGFloat, lineCap: CGLineCap, lineJoin: CGLineJoin, miterLimit: CGFloat, transform: CGAffineTransform = .identity) -> CGPath
    * @availability iOS 7.0+
    */
-  copyStrokingWithWidthLineCapLineJoinMiterLimitTransform(lineWidth: number, lineCap: CGLineCap, lineJoin: CGLineJoin, miterLimit: number, transform?: _CoreFoundation_CGAffineTransform): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 564413091197942, this, [lineWidth, lineCap, lineJoin, miterLimit, transform]); }
+  copyStrokingWithWidthLineCapLineJoinMiterLimitTransform(lineWidth: number, lineCap: CGLineCap, lineJoin: CGLineJoin, miterLimit: number, transform?: _CoreFoundation_CGAffineTransform): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 564413091197942, this, [lineWidth, lineCap, lineJoin, miterLimit, transform]); }
   /**
    * func union(_ other: CGPath, using rule: CGPathFillRule = .winding) -> CGPath
    * @availability iOS 16.0+
    */
-  union(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 4476230351609165, this, [other, rule]); }
+  union(other: CGPath, rule?: CGPathFillRule): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 4476230351609165, this, [other, rule]); }
   /**
    * func contains(_ point: CGPoint, using rule: CGPathFillRule = .winding, transform: CGAffineTransform = .identity) -> Bool
    * @availability iOS 7.0+
    */
-  contains(point: $SDK9, rule?: CGPathFillRule, transform?: _CoreFoundation_CGAffineTransform): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3033239314754728, this, [point, rule, transform]); }
+  contains(point: $SDK9, rule?: CGPathFillRule, transform?: _CoreFoundation_CGAffineTransform): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3033239314754728, this, [point, rule, transform]); }
   /**
    * func flattened(threshold: CGFloat) -> CGPath
    * @availability iOS 16.0+
    */
-  flattened(threshold: number): CGPath { return callSDK<CGPath>("CoreGraphics_067acaa3e5f56b46", 713695623694563, this, [threshold]); }
+  flattened(threshold: number): CGPath { return callSDK<CGPath>("CoreGraphics_d968214ecc684fb6", 713695623694563, this, [threshold]); }
   declare readonly $type: { "c:@T@CGPathRef": true };
 }
 
@@ -2694,77 +2694,77 @@ export class CGMutablePath extends CGPath {
    * func closeSubpath()
    * @availability iOS 2.0+
    */
-  closeSubpath(): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 752098700104354, this, []); }
+  closeSubpath(): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 752098700104354, this, []); }
   /**
    * init()
    * @availability iOS 2.0+
    */
-  static init(): CGMutablePath { return callSDK<CGMutablePath>("CoreGraphics_067acaa3e5f56b46", 4433030076864492, undefined, []); }
+  static init(): CGMutablePath { return callSDK<CGMutablePath>("CoreGraphics_d968214ecc684fb6", 4433030076864492, undefined, []); }
   /**
    * func addPath(_ path: CGPath, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addPath(path: CGPath, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2376036895475995, this, [path, transform]); }
+  addPath(path: CGPath, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2376036895475995, this, [path, transform]); }
   /**
    * func addEllipse(in rect: CGRect, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addEllipse(rect: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 413337399125132, this, [rect, transform]); }
+  addEllipse(rect: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 413337399125132, this, [rect, transform]); }
   /**
    * func addQuadCurve(to end: CGPoint, control: CGPoint, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addQuadCurve(end: $SDK9, control: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1400075504023608, this, [end, control, transform]); }
+  addQuadCurve(end: $SDK9, control: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1400075504023608, this, [end, control, transform]); }
   /**
    * func addRelativeArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, delta: CGFloat, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addRelativeArc(center: $SDK9, radius: number, startAngle: number, delta: number, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 381229126063859, this, [center, radius, startAngle, delta, transform]); }
+  addRelativeArc(center: $SDK9, radius: number, startAngle: number, delta: number, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 381229126063859, this, [center, radius, startAngle, delta, transform]); }
   /**
    * func addRoundedRect(in rect: CGRect, cornerWidth: CGFloat, cornerHeight: CGFloat, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addRoundedRect(rect: $SDK8, cornerWidth: number, cornerHeight: number, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1384059705992631, this, [rect, cornerWidth, cornerHeight, transform]); }
+  addRoundedRect(rect: $SDK8, cornerWidth: number, cornerHeight: number, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1384059705992631, this, [rect, cornerWidth, cornerHeight, transform]); }
   /**
    * func move(to point: CGPoint, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  move(point: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1907229836436030, this, [point, transform]); }
+  move(point: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1907229836436030, this, [point, transform]); }
   /**
    * func addArc(tangent1End: CGPoint, tangent2End: CGPoint, radius: CGFloat, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addArcTangent1EndTangent2EndRadiusTransform(tangent1End: $SDK9, tangent2End: $SDK9, radius: number, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3558706260380970, this, [tangent1End, tangent2End, radius, transform]); }
+  addArcTangent1EndTangent2EndRadiusTransform(tangent1End: $SDK9, tangent2End: $SDK9, radius: number, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3558706260380970, this, [tangent1End, tangent2End, radius, transform]); }
   /**
    * func addArc(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat, clockwise: Bool, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addArcCenterRadiusStartAngleEndAngleClockwiseTransform(center: $SDK9, radius: number, startAngle: number, endAngle: number, clockwise: boolean, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2565078178617086, this, [center, radius, startAngle, endAngle, clockwise, transform]); }
+  addArcCenterRadiusStartAngleEndAngleClockwiseTransform(center: $SDK9, radius: number, startAngle: number, endAngle: number, clockwise: boolean, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2565078178617086, this, [center, radius, startAngle, endAngle, clockwise, transform]); }
   /**
    * func addLine(to point: CGPoint, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addLine(point: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3460982988673361, this, [point, transform]); }
+  addLine(point: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3460982988673361, this, [point, transform]); }
   /**
    * func addRect(_ rect: CGRect, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addRect(rect: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2268268839832680, this, [rect, transform]); }
+  addRect(rect: $SDK8, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2268268839832680, this, [rect, transform]); }
   /**
    * func addCurve(to end: CGPoint, control1: CGPoint, control2: CGPoint, transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addCurve(end: $SDK9, control1: $SDK9, control2: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 34260144661321, this, [end, control1, control2, transform]); }
+  addCurve(end: $SDK9, control1: $SDK9, control2: $SDK9, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 34260144661321, this, [end, control1, control2, transform]); }
   /**
    * func addLines(between points: [CGPoint], transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addLines(points: $SDK12, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1697049626802685, this, [points, transform]); }
+  addLines(points: $SDK12, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1697049626802685, this, [points, transform]); }
   /**
    * func addRects(_ rects: [CGRect], transform: CGAffineTransform = .identity)
    * @availability iOS 7.0+
    */
-  addRects(rects: $SDK13, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3211750739986144, this, [rects, transform]); }
+  addRects(rects: $SDK13, transform?: _CoreFoundation_CGAffineTransform): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3211750739986144, this, [rects, transform]); }
   declare readonly $type: { "c:@T@CGMutablePathRef": true; "c:@T@CGPathRef": true };
 }
 
@@ -2779,19 +2779,19 @@ export type CGPathDrawingMode = "fill" | "eoFill" | "stroke" | "fillStroke" | "e
 
 export const CGPathDrawingMode = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGPathDrawingMode) | null { return callSDK<(CGPathDrawingMode) | null>("CoreGraphics_067acaa3e5f56b46", 3996450394422948, undefined, [rawValue]); }
+  init(rawValue: number): (CGPathDrawingMode) | null { return callSDK<(CGPathDrawingMode) | null>("CoreGraphics_d968214ecc684fb6", 3996450394422948, undefined, [rawValue]); }
 };
 
 /** struct CGPathElement */
 export class CGPathElement extends SDKHandle {
   /** var points: UnsafeMutablePointer<CGPoint> */
-  get points(): $SDK2 { return callSDK<$SDK2>("CoreGraphics_067acaa3e5f56b46", 562200891930622, this, []); }
-  set points(value: $SDK2) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2587310355406308, this, [value]); }
+  get points(): $SDK2 { return callSDK<$SDK2>("CoreGraphics_d968214ecc684fb6", 562200891930622, this, []); }
+  set points(value: $SDK2) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2587310355406308, this, [value]); }
   /** var type: CGPathElementType */
-  get type(): CGPathElementType { return callSDK<CGPathElementType>("CoreGraphics_067acaa3e5f56b46", 2886562717320757, this, []); }
-  set type(value: CGPathElementType) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 632147148613414, this, [value]); }
+  get type(): CGPathElementType { return callSDK<CGPathElementType>("CoreGraphics_d968214ecc684fb6", 2886562717320757, this, []); }
+  set type(value: CGPathElementType) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 632147148613414, this, [value]); }
   /** init(type: CGPathElementType, points: UnsafeMutablePointer<CGPoint>) */
-  static init(type: CGPathElementType, points: $SDK2): CGPathElement { return callSDK<CGPathElement>("CoreGraphics_067acaa3e5f56b46", 735089933330438, undefined, [type, points]); }
+  static init(type: CGPathElementType, points: $SDK2): CGPathElement { return callSDK<CGPathElement>("CoreGraphics_d968214ecc684fb6", 735089933330438, undefined, [type, points]); }
   declare readonly $type: { "c:@S@CGPathElement": true };
 }
 
@@ -2800,7 +2800,7 @@ export type CGPathElementType = "moveToPoint" | "addLineToPoint" | "addQuadCurve
 
 export const CGPathElementType = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGPathElementType) | null { return callSDK<(CGPathElementType) | null>("CoreGraphics_067acaa3e5f56b46", 1124064901117038, undefined, [rawValue]); }
+  init(rawValue: number): (CGPathElementType) | null { return callSDK<(CGPathElementType) | null>("CoreGraphics_d968214ecc684fb6", 1124064901117038, undefined, [rawValue]); }
 };
 
 /**
@@ -2814,12 +2814,12 @@ export const CGPathFillRule = {
    * init?(rawValue: Int)
    * @availability iOS 7.0+
    */
-  init(rawValue: number): (CGPathFillRule) | null { return callSDK<(CGPathFillRule) | null>("CoreGraphics_067acaa3e5f56b46", 2041226680078309, undefined, [rawValue]); },
+  init(rawValue: number): (CGPathFillRule) | null { return callSDK<(CGPathFillRule) | null>("CoreGraphics_d968214ecc684fb6", 2041226680078309, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 7.0+
    */
-  getRawValue($self: CGPathFillRule): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 955590642561875, $self, []); }
+  getRawValue($self: CGPathFillRule): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 955590642561875, $self, []); }
 };
 
 /**
@@ -2834,26 +2834,26 @@ export class CGPattern extends SDKHandle {
    * init?(info: UnsafeMutableRawPointer?, bounds: CGRect, matrix: CGAffineTransform, xStep: CGFloat, yStep: CGFloat, tiling: CGPatternTiling, isColored: Bool, callbacks: UnsafePointer<CGPatternCallbacks>)
    * @availability iOS 2.0+
    */
-  static init(info: (SDKHandle) | null, bounds: $SDK8, matrix: _CoreFoundation_CGAffineTransform, xStep: number, yStep: number, tiling: CGPatternTiling, isColored: boolean, callbacks: SDKHandle): (CGPattern) | null { return callSDK<(CGPattern) | null>("CoreGraphics_067acaa3e5f56b46", 1544695663242148, undefined, [info, bounds, matrix, xStep, yStep, tiling, isColored, callbacks]); }
+  static init(info: (SDKHandle) | null, bounds: $SDK8, matrix: _CoreFoundation_CGAffineTransform, xStep: number, yStep: number, tiling: CGPatternTiling, isColored: boolean, callbacks: SDKHandle): (CGPattern) | null { return callSDK<(CGPattern) | null>("CoreGraphics_d968214ecc684fb6", 1544695663242148, undefined, [info, bounds, matrix, xStep, yStep, tiling, isColored, callbacks]); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2834665556856278, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2834665556856278, undefined, []); }
   declare readonly $type: { "c:@T@CGPatternRef": true };
 }
 
 /** struct CGPatternCallbacks */
 export class CGPatternCallbacks extends SDKHandle {
   /** var drawPattern: CGPatternDrawPatternCallback? */
-  get drawPattern(): (((arg0: (SDKHandle) | null, arg1: CGContext) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: CGContext) => Promise<void>)) | null>("CoreGraphics_067acaa3e5f56b46", 3088954053227474, this, []); }
+  get drawPattern(): (((arg0: (SDKHandle) | null, arg1: CGContext) => Promise<void>)) | null { return callSDK<(((arg0: (SDKHandle) | null, arg1: CGContext) => Promise<void>)) | null>("CoreGraphics_d968214ecc684fb6", 3088954053227474, this, []); }
   /** var releaseInfo: CGPatternReleaseInfoCallback? */
-  get releaseInfo(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_067acaa3e5f56b46", 1780305122219134, this, []); }
+  get releaseInfo(): $SDK15 { return callSDK<$SDK15>("CoreGraphics_d968214ecc684fb6", 1780305122219134, this, []); }
   /** var version: UInt32 */
-  get version(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4319627573113927, this, []); }
-  set version(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 996152607478255, this, [value]); }
+  get version(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4319627573113927, this, []); }
+  set version(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 996152607478255, this, [value]); }
   /** init() */
-  static init(): CGPatternCallbacks { return callSDK<CGPatternCallbacks>("CoreGraphics_067acaa3e5f56b46", 192986077927737, undefined, []); }
+  static init(): CGPatternCallbacks { return callSDK<CGPatternCallbacks>("CoreGraphics_d968214ecc684fb6", 192986077927737, undefined, []); }
   declare readonly $type: { "c:@S@CGPatternCallbacks": true };
 }
 
@@ -2868,7 +2868,7 @@ export type CGPatternTiling = "noDistortion" | "constantSpacingMinimalDistortion
 
 export const CGPatternTiling = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGPatternTiling) | null { return callSDK<(CGPatternTiling) | null>("CoreGraphics_067acaa3e5f56b46", 2151855396120987, undefined, [rawValue]); }
+  init(rawValue: number): (CGPatternTiling) | null { return callSDK<(CGPatternTiling) | null>("CoreGraphics_d968214ecc684fb6", 2151855396120987, undefined, [rawValue]); }
 };
 
 /** struct CGPDFAccessPermissions */
@@ -2876,23 +2876,23 @@ export type CGPDFAccessPermissions = Array<"allowsLowQualityPrinting" | "allowsH
 
 export const CGPDFAccessPermissions = {
   /** static var allowsCommenting: CGPDFAccessPermissions { get } */
-  get allowsCommenting(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 1891618443165307, undefined, []); },
+  get allowsCommenting(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 1891618443165307, undefined, []); },
   /** static var allowsContentAccessibility: CGPDFAccessPermissions { get } */
-  get allowsContentAccessibility(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 1262069173251796, undefined, []); },
+  get allowsContentAccessibility(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 1262069173251796, undefined, []); },
   /** static var allowsContentCopying: CGPDFAccessPermissions { get } */
-  get allowsContentCopying(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 2817257293729755, undefined, []); },
+  get allowsContentCopying(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 2817257293729755, undefined, []); },
   /** static var allowsDocumentAssembly: CGPDFAccessPermissions { get } */
-  get allowsDocumentAssembly(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 351937036301650, undefined, []); },
+  get allowsDocumentAssembly(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 351937036301650, undefined, []); },
   /** static var allowsDocumentChanges: CGPDFAccessPermissions { get } */
-  get allowsDocumentChanges(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 1299143774260143, undefined, []); },
+  get allowsDocumentChanges(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 1299143774260143, undefined, []); },
   /** static var allowsFormFieldEntry: CGPDFAccessPermissions { get } */
-  get allowsFormFieldEntry(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 2212097257638964, undefined, []); },
+  get allowsFormFieldEntry(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 2212097257638964, undefined, []); },
   /** static var allowsHighQualityPrinting: CGPDFAccessPermissions { get } */
-  get allowsHighQualityPrinting(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 212522268193934, undefined, []); },
+  get allowsHighQualityPrinting(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 212522268193934, undefined, []); },
   /** static var allowsLowQualityPrinting: CGPDFAccessPermissions { get } */
-  get allowsLowQualityPrinting(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 1099085122881773, undefined, []); },
+  get allowsLowQualityPrinting(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 1099085122881773, undefined, []); },
   /** init(rawValue: UInt32) */
-  init(rawValue: number): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 688695356207256, undefined, [rawValue]); }
+  init(rawValue: number): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 688695356207256, undefined, [rawValue]); }
 };
 
 /** typealias CGPDFArrayApplierBlock = (Int, CGPDFObjectRef, UnsafeMutableRawPointer?) -> Bool */
@@ -2903,9 +2903,9 @@ export type CGPDFArrayRef = (number & {});
 
 export const CGPDFArrayRef = {
   /** init(rawValue: OpaquePointer) */
-  initRawValue(rawValue: SDKHandle): CGPDFArrayRef { return callSDK<CGPDFArrayRef>("CoreGraphics_067acaa3e5f56b46", 1958437002660613, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): CGPDFArrayRef { return callSDK<CGPDFArrayRef>("CoreGraphics_d968214ecc684fb6", 1958437002660613, undefined, [rawValue]); },
   /** init(_ rawValue: OpaquePointer) */
-  init(rawValue: SDKHandle): CGPDFArrayRef { return callSDK<CGPDFArrayRef>("CoreGraphics_067acaa3e5f56b46", 1943093081002803, undefined, [rawValue]); }
+  init(rawValue: SDKHandle): CGPDFArrayRef { return callSDK<CGPDFArrayRef>("CoreGraphics_d968214ecc684fb6", 1943093081002803, undefined, [rawValue]); }
 };
 
 /** typealias CGPDFBoolean = UInt8 */
@@ -2916,7 +2916,7 @@ export type CGPDFBox = "mediaBox" | "cropBox" | "bleedBox" | "trimBox" | "artBox
 
 export const CGPDFBox = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGPDFBox) | null { return callSDK<(CGPDFBox) | null>("CoreGraphics_067acaa3e5f56b46", 1379244355745483, undefined, [rawValue]); }
+  init(rawValue: number): (CGPDFBox) | null { return callSDK<(CGPDFBox) | null>("CoreGraphics_d968214ecc684fb6", 1379244355745483, undefined, [rawValue]); }
 };
 
 /** typealias CGPDFContentStreamRef = OpaquePointer */
@@ -2927,7 +2927,7 @@ export type CGPDFDataFormat = "raw" | "jpegEncoded" | "JPEG2000";
 
 export const CGPDFDataFormat = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGPDFDataFormat) | null { return callSDK<(CGPDFDataFormat) | null>("CoreGraphics_067acaa3e5f56b46", 764785928764895, undefined, [rawValue]); }
+  init(rawValue: number): (CGPDFDataFormat) | null { return callSDK<(CGPDFDataFormat) | null>("CoreGraphics_d968214ecc684fb6", 764785928764895, undefined, [rawValue]); }
 };
 
 /** typealias CGPDFDictionaryApplierBlock = (UnsafePointer<CChar>, CGPDFObjectRef, UnsafeMutableRawPointer?) -> Bool */
@@ -2941,9 +2941,9 @@ export type CGPDFDictionaryRef = (number & {});
 
 export const CGPDFDictionaryRef = {
   /** init(rawValue: OpaquePointer) */
-  initRawValue(rawValue: SDKHandle): CGPDFDictionaryRef { return callSDK<CGPDFDictionaryRef>("CoreGraphics_067acaa3e5f56b46", 3556914169386908, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): CGPDFDictionaryRef { return callSDK<CGPDFDictionaryRef>("CoreGraphics_d968214ecc684fb6", 3556914169386908, undefined, [rawValue]); },
   /** init(_ rawValue: OpaquePointer) */
-  init(rawValue: SDKHandle): CGPDFDictionaryRef { return callSDK<CGPDFDictionaryRef>("CoreGraphics_067acaa3e5f56b46", 4139420664554191, undefined, [rawValue]); }
+  init(rawValue: SDKHandle): CGPDFDictionaryRef { return callSDK<CGPDFDictionaryRef>("CoreGraphics_d968214ecc684fb6", 4139420664554191, undefined, [rawValue]); }
 };
 
 /** class CGPDFDocument */
@@ -2952,82 +2952,82 @@ export class CGPDFDocument extends SDKHandle {
    * var allowsCopying: Bool { get }
    * @availability iOS 2.0+
    */
-  get allowsCopying(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3031518244452467, this, []); }
+  get allowsCopying(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3031518244452467, this, []); }
   /**
    * var allowsPrinting: Bool { get }
    * @availability iOS 2.0+
    */
-  get allowsPrinting(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 214635246335364, this, []); }
+  get allowsPrinting(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 214635246335364, this, []); }
   /**
    * init?(_ provider: CGDataProvider)
    * @availability iOS 2.0+
    */
-  static init(provider: CGDataProvider): (CGPDFDocument) | null { return callSDK<(CGPDFDocument) | null>("CoreGraphics_067acaa3e5f56b46", 4396031689322000, undefined, [provider]); }
+  static init(provider: CGDataProvider): (CGPDFDocument) | null { return callSDK<(CGPDFDocument) | null>("CoreGraphics_d968214ecc684fb6", 4396031689322000, undefined, [provider]); }
   /**
    * init?(_ url: CFURL)
    * @availability iOS 2.0+
    */
-  static init39260(url: _CoreFoundation_CFURL): (CGPDFDocument) | null { return callSDK<(CGPDFDocument) | null>("CoreGraphics_067acaa3e5f56b46", 1803293965795303, undefined, [url]); }
+  static init39260(url: _CoreFoundation_CFURL): (CGPDFDocument) | null { return callSDK<(CGPDFDocument) | null>("CoreGraphics_d968214ecc684fb6", 1803293965795303, undefined, [url]); }
   /**
    * var accessPermissions: CGPDFAccessPermissions { get }
    * @availability iOS 11.0+
    */
-  get accessPermissions(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_067acaa3e5f56b46", 949609776552102, this, []); }
+  get accessPermissions(): CGPDFAccessPermissions { return callSDK<CGPDFAccessPermissions>("CoreGraphics_d968214ecc684fb6", 949609776552102, this, []); }
   /**
    * var catalog: CGPDFDictionaryRef? { get }
    * @availability iOS 2.0+
    */
-  get catalog(): $SDK40 { return callSDK<$SDK40>("CoreGraphics_067acaa3e5f56b46", 1029801997532294, this, []); }
+  get catalog(): $SDK40 { return callSDK<$SDK40>("CoreGraphics_d968214ecc684fb6", 1029801997532294, this, []); }
   /**
    * var fileIdentifier: CGPDFArrayRef? { get }
    * @availability iOS 2.0+
    */
-  get fileIdentifier(): (CGPDFArrayRef) | null { return callSDK<(CGPDFArrayRef) | null>("CoreGraphics_067acaa3e5f56b46", 1160391211548818, this, []); }
+  get fileIdentifier(): (CGPDFArrayRef) | null { return callSDK<(CGPDFArrayRef) | null>("CoreGraphics_d968214ecc684fb6", 1160391211548818, this, []); }
   /**
    * var info: CGPDFDictionaryRef? { get }
    * @availability iOS 2.0+
    */
-  get info(): $SDK40 { return callSDK<$SDK40>("CoreGraphics_067acaa3e5f56b46", 2117330951429059, this, []); }
+  get info(): $SDK40 { return callSDK<$SDK40>("CoreGraphics_d968214ecc684fb6", 2117330951429059, this, []); }
   /**
    * var numberOfPages: Int { get }
    * @availability iOS 2.0+
    */
-  get numberOfPages(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2545023857644654, this, []); }
+  get numberOfPages(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2545023857644654, this, []); }
   /**
    * var outline: CFDictionary? { get }
    * @availability iOS 11.0+
    */
-  get outline(): $SDK3 { return callSDK<$SDK3>("CoreGraphics_067acaa3e5f56b46", 158997286502509, this, []); }
+  get outline(): $SDK3 { return callSDK<$SDK3>("CoreGraphics_d968214ecc684fb6", 158997286502509, this, []); }
   /**
    * func page(at pageNumber: Int) -> CGPDFPage?
    * @availability iOS 2.0+
    */
-  page(pageNumber: number): (CGPDFPage) | null { return callSDK<(CGPDFPage) | null>("CoreGraphics_067acaa3e5f56b46", 1841494829955023, this, [pageNumber]); }
+  page(pageNumber: number): (CGPDFPage) | null { return callSDK<(CGPDFPage) | null>("CoreGraphics_d968214ecc684fb6", 1841494829955023, this, [pageNumber]); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2979546372721156, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2979546372721156, undefined, []); }
   /**
    * func getVersion(majorVersion: UnsafeMutablePointer<Int32>, minorVersion: UnsafeMutablePointer<Int32>)
    * @availability iOS 2.0+
    */
-  getVersion(majorVersion: SDKHandle, minorVersion: SDKHandle): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1318931545224099, this, [majorVersion, minorVersion]); }
+  getVersion(majorVersion: SDKHandle, minorVersion: SDKHandle): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1318931545224099, this, [majorVersion, minorVersion]); }
   /**
    * var isEncrypted: Bool { get }
    * @availability iOS 2.0+
    */
-  get isEncrypted(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 4216574065219484, this, []); }
+  get isEncrypted(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 4216574065219484, this, []); }
   /**
    * var isUnlocked: Bool { get }
    * @availability iOS 2.0+
    */
-  get isUnlocked(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3003222661785718, this, []); }
+  get isUnlocked(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3003222661785718, this, []); }
   /**
    * func unlockWithPassword(_ password: UnsafePointer<CChar>) -> Bool
    * @availability iOS 2.0+
    */
-  unlockWithPassword(password: SDKHandle): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3939420009385802, this, [password]); }
+  unlockWithPassword(password: SDKHandle): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3939420009385802, this, [password]); }
   declare readonly $type: { "c:@T@CGPDFDocumentRef": true };
 }
 
@@ -3047,9 +3047,9 @@ export type CGPDFObjectRef = (number & {});
 
 export const CGPDFObjectRef = {
   /** init(rawValue: OpaquePointer) */
-  initRawValue(rawValue: SDKHandle): CGPDFObjectRef { return callSDK<CGPDFObjectRef>("CoreGraphics_067acaa3e5f56b46", 1077375893955707, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): CGPDFObjectRef { return callSDK<CGPDFObjectRef>("CoreGraphics_d968214ecc684fb6", 1077375893955707, undefined, [rawValue]); },
   /** init(_ rawValue: OpaquePointer) */
-  init(rawValue: SDKHandle): CGPDFObjectRef { return callSDK<CGPDFObjectRef>("CoreGraphics_067acaa3e5f56b46", 1460465030842900, undefined, [rawValue]); }
+  init(rawValue: SDKHandle): CGPDFObjectRef { return callSDK<CGPDFObjectRef>("CoreGraphics_d968214ecc684fb6", 1460465030842900, undefined, [rawValue]); }
 };
 
 /** enum CGPDFObjectType */
@@ -3057,7 +3057,7 @@ export type CGPDFObjectType = "null" | "boolean" | "integer" | "real" | "name" |
 
 export const CGPDFObjectType = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGPDFObjectType) | null { return callSDK<(CGPDFObjectType) | null>("CoreGraphics_067acaa3e5f56b46", 3027573976457464, undefined, [rawValue]); }
+  init(rawValue: number): (CGPDFObjectType) | null { return callSDK<(CGPDFObjectType) | null>("CoreGraphics_d968214ecc684fb6", 3027573976457464, undefined, [rawValue]); }
 };
 
 /** typealias CGPDFOperatorCallback = (CGPDFScannerRef, UnsafeMutableRawPointer?) -> Void */
@@ -3072,37 +3072,37 @@ export class CGPDFPage extends SDKHandle {
    * func getBoxRect(_ box: CGPDFBox) -> CGRect
    * @availability iOS 2.0+
    */
-  getBoxRect(box: CGPDFBox): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2172932711698483, this, [box]); }
+  getBoxRect(box: CGPDFBox): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2172932711698483, this, [box]); }
   /**
    * var dictionary: CGPDFDictionaryRef? { get }
    * @availability iOS 2.0+
    */
-  get dictionary(): $SDK40 { return callSDK<$SDK40>("CoreGraphics_067acaa3e5f56b46", 3054671802938952, this, []); }
+  get dictionary(): $SDK40 { return callSDK<$SDK40>("CoreGraphics_d968214ecc684fb6", 3054671802938952, this, []); }
   /**
    * var document: CGPDFDocument? { get }
    * @availability iOS 2.0+
    */
-  get document(): (CGPDFDocument) | null { return callSDK<(CGPDFDocument) | null>("CoreGraphics_067acaa3e5f56b46", 4094233573310333, this, []); }
+  get document(): (CGPDFDocument) | null { return callSDK<(CGPDFDocument) | null>("CoreGraphics_d968214ecc684fb6", 4094233573310333, this, []); }
   /**
    * func getDrawingTransform(_ box: CGPDFBox, rect: CGRect, rotate: Int32, preserveAspectRatio: Bool) -> CGAffineTransform
    * @availability iOS 2.0+
    */
-  getDrawingTransform(box: CGPDFBox, rect: $SDK8, rotate: number, preserveAspectRatio: boolean): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 3818578704219788, this, [box, rect, rotate, preserveAspectRatio]); }
+  getDrawingTransform(box: CGPDFBox, rect: $SDK8, rotate: number, preserveAspectRatio: boolean): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 3818578704219788, this, [box, rect, rotate, preserveAspectRatio]); }
   /**
    * var pageNumber: Int { get }
    * @availability iOS 2.0+
    */
-  get pageNumber(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 27629308824639, this, []); }
+  get pageNumber(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 27629308824639, this, []); }
   /**
    * var rotationAngle: Int32 { get }
    * @availability iOS 2.0+
    */
-  get rotationAngle(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3049227983452855, this, []); }
+  get rotationAngle(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3049227983452855, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4394333042508073, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4394333042508073, undefined, []); }
   declare readonly $type: { "c:@T@CGPDFPageRef": true };
 }
 
@@ -3117,9 +3117,9 @@ export type CGPDFStreamRef = (number & {});
 
 export const CGPDFStreamRef = {
   /** init(rawValue: OpaquePointer) */
-  initRawValue(rawValue: SDKHandle): CGPDFStreamRef { return callSDK<CGPDFStreamRef>("CoreGraphics_067acaa3e5f56b46", 2410988761349909, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): CGPDFStreamRef { return callSDK<CGPDFStreamRef>("CoreGraphics_d968214ecc684fb6", 2410988761349909, undefined, [rawValue]); },
   /** init(_ rawValue: OpaquePointer) */
-  init(rawValue: SDKHandle): CGPDFStreamRef { return callSDK<CGPDFStreamRef>("CoreGraphics_067acaa3e5f56b46", 1810399358236720, undefined, [rawValue]); }
+  init(rawValue: SDKHandle): CGPDFStreamRef { return callSDK<CGPDFStreamRef>("CoreGraphics_d968214ecc684fb6", 1810399358236720, undefined, [rawValue]); }
 };
 
 /** struct CGPDFStringRef */
@@ -3127,9 +3127,9 @@ export type CGPDFStringRef = (number & {});
 
 export const CGPDFStringRef = {
   /** init(rawValue: OpaquePointer) */
-  initRawValue(rawValue: SDKHandle): CGPDFStringRef { return callSDK<CGPDFStringRef>("CoreGraphics_067acaa3e5f56b46", 2018418795831939, undefined, [rawValue]); },
+  initRawValue(rawValue: SDKHandle): CGPDFStringRef { return callSDK<CGPDFStringRef>("CoreGraphics_d968214ecc684fb6", 2018418795831939, undefined, [rawValue]); },
   /** init(_ rawValue: OpaquePointer) */
-  init(rawValue: SDKHandle): CGPDFStringRef { return callSDK<CGPDFStringRef>("CoreGraphics_067acaa3e5f56b46", 3256885674665448, undefined, [rawValue]); }
+  init(rawValue: SDKHandle): CGPDFStringRef { return callSDK<CGPDFStringRef>("CoreGraphics_d968214ecc684fb6", 3256885674665448, undefined, [rawValue]); }
 };
 
 /** class CGPDFStructureElement */
@@ -3138,17 +3138,17 @@ export class CGPDFStructureElement extends SDKHandle {
    * func addMarkedContentItem(_ markedContentItem: CGPDFMarkedContentItem) -> OSStatus
    * @availability iOS 27.0+
    */
-  addMarkedContentItem(markedContentItem: CGPDFMarkedContentItem): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4441006715941030, this, [markedContentItem]); }
+  addMarkedContentItem(markedContentItem: CGPDFMarkedContentItem): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4441006715941030, this, [markedContentItem]); }
   /**
    * func addChild(_ childStructureElement: CGPDFStructureElement) -> OSStatus
    * @availability iOS 27.0+
    */
-  addChild(childStructureElement: CGPDFStructureElement): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4055833948747701, this, [childStructureElement]); }
+  addChild(childStructureElement: CGPDFStructureElement): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4055833948747701, this, [childStructureElement]); }
   /**
    * init(tagType type: CGPDFTagType)
    * @availability iOS 27.0+
    */
-  static init(type: CGPDFTagType): CGPDFStructureElement { return callSDK<CGPDFStructureElement>("CoreGraphics_067acaa3e5f56b46", 3385950989884213, undefined, [type]); }
+  static init(type: CGPDFTagType): CGPDFStructureElement { return callSDK<CGPDFStructureElement>("CoreGraphics_d968214ecc684fb6", 3385950989884213, undefined, [type]); }
   declare readonly $type: { "c:@T@CGPDFStructureElementRef": true };
 }
 
@@ -3161,37 +3161,37 @@ export class CGPDFStructureElement_Attributes extends SDKHandle {
    * var actualText: String?
    * @availability iOS 27.0+
    */
-  get actualText(): (string) | null { return callSDK<(string) | null>("CoreGraphics_067acaa3e5f56b46", 4416820766104314, this, []); }
-  set actualText(value: (string) | null) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3885068123427411, this, [value]); }
+  get actualText(): (string) | null { return callSDK<(string) | null>("CoreGraphics_d968214ecc684fb6", 4416820766104314, this, []); }
+  set actualText(value: (string) | null) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3885068123427411, this, [value]); }
   /**
    * var expansionText: String?
    * @availability iOS 27.0+
    */
-  get expansionText(): (string) | null { return callSDK<(string) | null>("CoreGraphics_067acaa3e5f56b46", 3359250140736460, this, []); }
-  set expansionText(value: (string) | null) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 619555617064493, this, [value]); }
+  get expansionText(): (string) | null { return callSDK<(string) | null>("CoreGraphics_d968214ecc684fb6", 3359250140736460, this, []); }
+  set expansionText(value: (string) | null) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 619555617064493, this, [value]); }
   /**
    * var alternativeText: String?
    * @availability iOS 27.0+
    */
-  get alternativeText(): (string) | null { return callSDK<(string) | null>("CoreGraphics_067acaa3e5f56b46", 106868129874279, this, []); }
-  set alternativeText(value: (string) | null) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2476098116267179, this, [value]); }
+  get alternativeText(): (string) | null { return callSDK<(string) | null>("CoreGraphics_d968214ecc684fb6", 106868129874279, this, []); }
+  set alternativeText(value: (string) | null) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 2476098116267179, this, [value]); }
   /**
    * init(title: String? = nil, language: Locale.Language? = nil, alternativeText: String? = nil, expansionText: String? = nil, actualText: String? = nil)
    * @availability iOS 27.0+
    */
-  static init(title?: (string) | null, language?: $SDK42, alternativeText?: (string) | null, expansionText?: (string) | null, actualText?: (string) | null): CGPDFStructureElement_Attributes { return callSDK<CGPDFStructureElement_Attributes>("CoreGraphics_067acaa3e5f56b46", 2111940561343051, undefined, [title, language, alternativeText, expansionText, actualText]); }
+  static init(title?: (string) | null, language?: $SDK42, alternativeText?: (string) | null, expansionText?: (string) | null, actualText?: (string) | null): CGPDFStructureElement_Attributes { return callSDK<CGPDFStructureElement_Attributes>("CoreGraphics_d968214ecc684fb6", 2111940561343051, undefined, [title, language, alternativeText, expansionText, actualText]); }
   /**
    * var title: String?
    * @availability iOS 27.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("CoreGraphics_067acaa3e5f56b46", 687800423115846, this, []); }
-  set title(value: (string) | null) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3650055718091984, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("CoreGraphics_d968214ecc684fb6", 687800423115846, this, []); }
+  set title(value: (string) | null) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 3650055718091984, this, [value]); }
   /**
    * var language: Locale.Language?
    * @availability iOS 27.0+
    */
-  get language(): $SDK42 { return callSDK<$SDK42>("CoreGraphics_067acaa3e5f56b46", 1650216918044688, this, []); }
-  set language(value: $SDK42) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 921417233017495, this, [value]); }
+  get language(): $SDK42 { return callSDK<$SDK42>("CoreGraphics_d968214ecc684fb6", 1650216918044688, this, []); }
+  set language(value: $SDK42) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 921417233017495, this, [value]); }
   declare readonly $type: { "s:So24CGPDFStructureElementRefa12CoreGraphicsE10AttributesV": true };
 }
 
@@ -3203,24 +3203,24 @@ export const CGPDFTagProperty = {
    * static let actualText: CGPDFTagProperty
    * @availability iOS 13.0+
    */
-  get actualText(): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_067acaa3e5f56b46", 2827515637919729, undefined, []); },
+  get actualText(): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_d968214ecc684fb6", 2827515637919729, undefined, []); },
   /**
    * static let alternativeText: CGPDFTagProperty
    * @availability iOS 13.0+
    */
-  get alternativeText(): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_067acaa3e5f56b46", 1251933906662558, undefined, []); },
+  get alternativeText(): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_d968214ecc684fb6", 1251933906662558, undefined, []); },
   /**
    * static let languageText: CGPDFTagProperty
    * @availability iOS 13.0+
    */
-  get languageText(): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_067acaa3e5f56b46", 55337711639782, undefined, []); },
+  get languageText(): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_d968214ecc684fb6", 55337711639782, undefined, []); },
   /**
    * static let titleText: CGPDFTagProperty
    * @availability iOS 13.0+
    */
-  get titleText(): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_067acaa3e5f56b46", 418053332802498, undefined, []); },
+  get titleText(): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_d968214ecc684fb6", 418053332802498, undefined, []); },
   /** init(rawValue: CFString) */
-  init(rawValue: _CoreFoundation_CFString): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_067acaa3e5f56b46", 4385515749677536, undefined, [rawValue]); }
+  init(rawValue: _CoreFoundation_CFString): CGPDFTagProperty { return callSDK<CGPDFTagProperty>("CoreGraphics_d968214ecc684fb6", 4385515749677536, undefined, [rawValue]); }
 };
 
 /**
@@ -3234,12 +3234,12 @@ export const CGPDFTagType = {
    * var name: UnsafePointer<CChar> { get }
    * @availability iOS 13.0+
    */
-  getName($self: CGPDFTagType): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 83132674939583, $self, []); },
+  getName($self: CGPDFTagType): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 83132674939583, $self, []); },
   /**
    * init?(rawValue: Int32)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (CGPDFTagType) | null { return callSDK<(CGPDFTagType) | null>("CoreGraphics_067acaa3e5f56b46", 2943746433119176, undefined, [rawValue]); }
+  init(rawValue: number): (CGPDFTagType) | null { return callSDK<(CGPDFTagType) | null>("CoreGraphics_d968214ecc684fb6", 2943746433119176, undefined, [rawValue]); }
 };
 
 export class CGPoint extends SDKHandle {
@@ -3247,43 +3247,43 @@ export class CGPoint extends SDKHandle {
    * var customMirror: Mirror { get }
    * @availability iOS 7.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 2304513316345497, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 2304513316345497, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 7.0+
    */
-  get debugDescription(): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 2070647943189546, this, []); }
+  get debugDescription(): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 2070647943189546, this, []); }
   /**
    * init(x: Double, y: Double)
    * @availability iOS 7.0+
    */
-  static initXY(x: number, y: number): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 3975708048225552, undefined, [x, y]); }
+  static initXY(x: number, y: number): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 3975708048225552, undefined, [x, y]); }
   /**
    * init(x: Int, y: Int)
    * @availability iOS 7.0+
    */
-  static initXY88394(x: number, y: number): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 1980331592449836, undefined, [x, y]); }
+  static initXY88394(x: number, y: number): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 1980331592449836, undefined, [x, y]); }
   /**
    * init?(dictionaryRepresentation dict: CFDictionary)
    * @availability iOS 7.0+
    */
-  static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK9) | null { return callSDK<($SDK9) | null>("CoreGraphics_067acaa3e5f56b46", 361353745500460, undefined, [dict]); }
+  static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK9) | null { return callSDK<($SDK9) | null>("CoreGraphics_d968214ecc684fb6", 361353745500460, undefined, [dict]); }
   /** var dictionaryRepresentation: CFDictionary { get } */
-  get dictionaryRepresentation(): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_067acaa3e5f56b46", 2724032086410735, this, []); }
+  get dictionaryRepresentation(): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_d968214ecc684fb6", 2724032086410735, this, []); }
   /**
    * var customPlaygroundQuickLook: PlaygroundQuickLook { get }
    * @availability iOS 7.0+
    */
-  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 2268851590249194, this, []); }
+  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 2268851590249194, this, []); }
   /**
    * static var zero: CGPoint { get }
    * @availability iOS 7.0+
    */
-  static get zero(): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 2913004285212882, undefined, []); }
+  static get zero(): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 2913004285212882, undefined, []); }
   /** func equalTo(_ point2: CGPoint) -> Bool */
-  equalTo(point2: $SDK9): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2654678990730906, this, [point2]); }
+  equalTo(point2: $SDK9): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2654678990730906, this, [point2]); }
   /** func applying(_ t: CGAffineTransform) -> CGPoint */
-  applying(t: _CoreFoundation_CGAffineTransform): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 1152377089475976, this, [t]); }
+  applying(t: _CoreFoundation_CGAffineTransform): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 1152377089475976, this, [t]); }
   declare readonly $type: { "c:@S@CGPoint": true };
 }
 
@@ -3292,169 +3292,169 @@ export class CGRect extends SDKHandle {
    * func intersects(_ rect2: CGRect) -> Bool
    * @availability iOS 7.0+
    */
-  intersects(rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 739947050122612, this, [rect2]); }
+  intersects(rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 739947050122612, this, [rect2]); }
   /**
    * var isInfinite: Bool { get }
    * @availability iOS 7.0+
    */
-  get isInfinite(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1340492153337991, this, []); }
+  get isInfinite(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1340492153337991, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 7.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 817549831492432, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 817549831492432, this, []); }
   /**
    * func intersection(_ r2: CGRect) -> CGRect
    * @availability iOS 7.0+
    */
-  intersection(r2: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 1864627184643870, this, [r2]); }
+  intersection(r2: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 1864627184643870, this, [r2]); }
   /**
    * var standardized: CGRect { get }
    * @availability iOS 7.0+
    */
-  get standardized(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 3977756176094844, this, []); }
+  get standardized(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 3977756176094844, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 7.0+
    */
-  get debugDescription(): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 4387889681206312, this, []); }
+  get debugDescription(): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 4387889681206312, this, []); }
   /**
    * init(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat)
    * @availability iOS 7.0+
    */
-  static initXYWidthHeight(x: number, y: number, width: number, height: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2925234366931827, undefined, [x, y, width, height]); }
+  static initXYWidthHeight(x: number, y: number, width: number, height: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2925234366931827, undefined, [x, y, width, height]); }
   /**
    * init(x: Double, y: Double, width: Double, height: Double)
    * @availability iOS 7.0+
    */
-  static initXYWidthHeight39990(x: number, y: number, width: number, height: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 1818876845999087, undefined, [x, y, width, height]); }
+  static initXYWidthHeight39990(x: number, y: number, width: number, height: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 1818876845999087, undefined, [x, y, width, height]); }
   /**
    * init(x: Int, y: Int, width: Int, height: Int)
    * @availability iOS 7.0+
    */
-  static initXYWidthHeight53166(x: number, y: number, width: number, height: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 88707015610688, undefined, [x, y, width, height]); }
+  static initXYWidthHeight53166(x: number, y: number, width: number, height: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 88707015610688, undefined, [x, y, width, height]); }
   /**
    * init?(dictionaryRepresentation dict: CFDictionary)
    * @availability iOS 7.0+
    */
-  static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK8) | null { return callSDK<($SDK8) | null>("CoreGraphics_067acaa3e5f56b46", 1547710635171563, undefined, [dict]); }
+  static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK8) | null { return callSDK<($SDK8) | null>("CoreGraphics_d968214ecc684fb6", 1547710635171563, undefined, [dict]); }
   /**
    * var dictionaryRepresentation: CFDictionary { get }
    * @availability iOS 7.0+
    */
-  get dictionaryRepresentation(): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_067acaa3e5f56b46", 3917319042154502, this, []); }
+  get dictionaryRepresentation(): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_d968214ecc684fb6", 3917319042154502, this, []); }
   /**
    * var customPlaygroundQuickLook: PlaygroundQuickLook { get }
    * @availability iOS 7.0+
    */
-  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 2758008528850225, this, []); }
+  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 2758008528850225, this, []); }
   /**
    * var maxX: CGFloat { get }
    * @availability iOS 7.0+
    */
-  get maxX(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1291904012374881, this, []); }
+  get maxX(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1291904012374881, this, []); }
   /**
    * var maxY: CGFloat { get }
    * @availability iOS 7.0+
    */
-  get maxY(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3407256723888986, this, []); }
+  get maxY(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3407256723888986, this, []); }
   /**
    * var midX: CGFloat { get }
    * @availability iOS 7.0+
    */
-  get midX(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2080630204792491, this, []); }
+  get midX(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2080630204792491, this, []); }
   /**
    * var midY: CGFloat { get }
    * @availability iOS 7.0+
    */
-  get midY(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 536097057985306, this, []); }
+  get midY(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 536097057985306, this, []); }
   /**
    * var minX: CGFloat { get }
    * @availability iOS 7.0+
    */
-  get minX(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3769893061423609, this, []); }
+  get minX(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3769893061423609, this, []); }
   /**
    * var minY: CGFloat { get }
    * @availability iOS 7.0+
    */
-  get minY(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1421411344016077, this, []); }
+  get minY(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1421411344016077, this, []); }
   /**
    * static var null: CGRect { get }
    * @availability iOS 7.0+
    */
-  static get null(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2225823122557842, undefined, []); }
+  static get null(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2225823122557842, undefined, []); }
   /**
    * static var zero: CGRect { get }
    * @availability iOS 7.0+
    */
-  static get zero(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 84277181718989, undefined, []); }
+  static get zero(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 84277181718989, undefined, []); }
   /**
    * func union(_ r2: CGRect) -> CGRect
    * @availability iOS 7.0+
    */
-  union(r2: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2268766116526664, this, [r2]); }
+  union(r2: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2268766116526664, this, [r2]); }
   /**
    * var width: CGFloat { get }
    * @availability iOS 7.0+
    */
-  get width(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2531971528540565, this, []); }
+  get width(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2531971528540565, this, []); }
   /**
    * var height: CGFloat { get }
    * @availability iOS 7.0+
    */
-  get height(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1708565099192575, this, []); }
+  get height(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1708565099192575, this, []); }
   /**
    * var isNull: Bool { get }
    * @availability iOS 7.0+
    */
-  get isNull(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1971373931527014, this, []); }
+  get isNull(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1971373931527014, this, []); }
   /**
    * func divided(atDistance: CGFloat, from fromEdge: CGRectEdge) -> (slice: CGRect, remainder: CGRect)
    * @availability iOS 7.0+
    */
-  divided(atDistance: number, fromEdge: _CoreFoundation_CGRectEdge): { "slice": { x: number; y: number; width: number; height: number }; "remainder": { x: number; y: number; width: number; height: number } } { return callSDK<{ "slice": { x: number; y: number; width: number; height: number }; "remainder": { x: number; y: number; width: number; height: number } }>("CoreGraphics_067acaa3e5f56b46", 3270734625879029, this, [atDistance, fromEdge]); }
+  divided(atDistance: number, fromEdge: _CoreFoundation_CGRectEdge): { "slice": { x: number; y: number; width: number; height: number }; "remainder": { x: number; y: number; width: number; height: number } } { return callSDK<{ "slice": { x: number; y: number; width: number; height: number }; "remainder": { x: number; y: number; width: number; height: number } }>("CoreGraphics_d968214ecc684fb6", 3270734625879029, this, [atDistance, fromEdge]); }
   /**
    * func equalTo(_ rect2: CGRect) -> Bool
    * @availability iOS 7.0+
    */
-  equalTo(rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 4129537696747883, this, [rect2]); }
+  equalTo(rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 4129537696747883, this, [rect2]); }
   /**
    * func insetBy(dx: CGFloat, dy: CGFloat) -> CGRect
    * @availability iOS 7.0+
    */
-  insetBy(dx: number, dy: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 4177481330363732, this, [dx, dy]); }
+  insetBy(dx: number, dy: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 4177481330363732, this, [dx, dy]); }
   /**
    * var isEmpty: Bool { get }
    * @availability iOS 7.0+
    */
-  get isEmpty(): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2868155269215875, this, []); }
+  get isEmpty(): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2868155269215875, this, []); }
   /** func applying(_ t: CGAffineTransform) -> CGRect */
-  applying(t: _CoreFoundation_CGAffineTransform): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 4095932737121110, this, [t]); }
+  applying(t: _CoreFoundation_CGAffineTransform): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 4095932737121110, this, [t]); }
   /**
    * func contains(_ rect2: CGRect) -> Bool
    * @availability iOS 7.0+
    */
-  contains(rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2756976831820350, this, [rect2]); }
+  contains(rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2756976831820350, this, [rect2]); }
   /**
    * func contains(_ point: CGPoint) -> Bool
    * @availability iOS 7.0+
    */
-  contains5598(point: $SDK9): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1589042187194141, this, [point]); }
+  contains5598(point: $SDK9): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1589042187194141, this, [point]); }
   /**
    * static var infinite: CGRect { get }
    * @availability iOS 7.0+
    */
-  static get infinite(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2660074280935238, undefined, []); }
+  static get infinite(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2660074280935238, undefined, []); }
   /**
    * var integral: CGRect { get }
    * @availability iOS 7.0+
    */
-  get integral(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 3341767052767605, this, []); }
+  get integral(): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 3341767052767605, this, []); }
   /**
    * func offsetBy(dx: CGFloat, dy: CGFloat) -> CGRect
    * @availability iOS 7.0+
    */
-  offsetBy(dx: number, dy: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 979584145529257, this, [dx, dy]); }
+  offsetBy(dx: number, dy: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 979584145529257, this, [dx, dy]); }
   declare readonly $type: { "c:@S@CGRect": true };
 }
 
@@ -3486,32 +3486,32 @@ export class CGShading extends SDKHandle {
    * init?(axialSpace space: CGColorSpace, start: CGPoint, end: CGPoint, function: CGFunction, extendStart: Bool, extendEnd: Bool)
    * @availability iOS 2.0+
    */
-  static initAxialSpaceStartEndFunctionExtendStartExtendEnd(space: CGColorSpace, start: $SDK9, end: $SDK9, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null { return callSDK<(CGShading) | null>("CoreGraphics_067acaa3e5f56b46", 3312132805699311, undefined, [space, start, end, function_, extendStart, extendEnd]); }
+  static initAxialSpaceStartEndFunctionExtendStartExtendEnd(space: CGColorSpace, start: $SDK9, end: $SDK9, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null { return callSDK<(CGShading) | null>("CoreGraphics_d968214ecc684fb6", 3312132805699311, undefined, [space, start, end, function_, extendStart, extendEnd]); }
   /**
    * init?(axialHeadroom headroom: Float, space: CGColorSpace, start: CGPoint, end: CGPoint, function: CGFunction, extendStart: Bool, extendEnd: Bool)
    * @availability iOS 26.0+
    */
-  static initAxialHeadroomSpaceStartEndFunctionExtendStartExtendEnd(headroom: number, space: CGColorSpace, start: $SDK9, end: $SDK9, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null { return callSDK<(CGShading) | null>("CoreGraphics_067acaa3e5f56b46", 4097202093212950, undefined, [headroom, space, start, end, function_, extendStart, extendEnd]); }
+  static initAxialHeadroomSpaceStartEndFunctionExtendStartExtendEnd(headroom: number, space: CGColorSpace, start: $SDK9, end: $SDK9, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null { return callSDK<(CGShading) | null>("CoreGraphics_d968214ecc684fb6", 4097202093212950, undefined, [headroom, space, start, end, function_, extendStart, extendEnd]); }
   /**
    * init?(radialSpace space: CGColorSpace, start: CGPoint, startRadius: CGFloat, end: CGPoint, endRadius: CGFloat, function: CGFunction, extendStart: Bool, extendEnd: Bool)
    * @availability iOS 2.0+
    */
-  static initRadialSpaceStartStartRadiusEndEndRadiusFunctionExtendStartExtendEnd(space: CGColorSpace, start: $SDK9, startRadius: number, end: $SDK9, endRadius: number, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null { return callSDK<(CGShading) | null>("CoreGraphics_067acaa3e5f56b46", 4125212075475499, undefined, [space, start, startRadius, end, endRadius, function_, extendStart, extendEnd]); }
+  static initRadialSpaceStartStartRadiusEndEndRadiusFunctionExtendStartExtendEnd(space: CGColorSpace, start: $SDK9, startRadius: number, end: $SDK9, endRadius: number, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null { return callSDK<(CGShading) | null>("CoreGraphics_d968214ecc684fb6", 4125212075475499, undefined, [space, start, startRadius, end, endRadius, function_, extendStart, extendEnd]); }
   /**
    * init?(radialHeadroom headroom: Float, space: CGColorSpace, start: CGPoint, startRadius: CGFloat, end: CGPoint, endRadius: CGFloat, function: CGFunction, extendStart: Bool, extendEnd: Bool)
    * @availability iOS 26.0+
    */
-  static initRadialHeadroomSpaceStartStartRadiusEndEndRadiusFunctionExtendStartExtendEnd(headroom: number, space: CGColorSpace, start: $SDK9, startRadius: number, end: $SDK9, endRadius: number, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null { return callSDK<(CGShading) | null>("CoreGraphics_067acaa3e5f56b46", 2969628822325207, undefined, [headroom, space, start, startRadius, end, endRadius, function_, extendStart, extendEnd]); }
+  static initRadialHeadroomSpaceStartStartRadiusEndEndRadiusFunctionExtendStartExtendEnd(headroom: number, space: CGColorSpace, start: $SDK9, startRadius: number, end: $SDK9, endRadius: number, function_: CGFunction, extendStart: boolean, extendEnd: boolean): (CGShading) | null { return callSDK<(CGShading) | null>("CoreGraphics_d968214ecc684fb6", 2969628822325207, undefined, [headroom, space, start, startRadius, end, endRadius, function_, extendStart, extendEnd]); }
   /**
    * var contentHeadroom: Float { get }
    * @availability iOS 26.0+
    */
-  get contentHeadroom(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3406351237159460, this, []); }
+  get contentHeadroom(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3406351237159460, this, []); }
   /**
    * class var typeID: CFTypeID { get }
    * @availability iOS 2.0+
    */
-  static get typeID(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3564572187053654, undefined, []); }
+  static get typeID(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3564572187053654, undefined, []); }
   declare readonly $type: { "c:@T@CGShadingRef": true };
 }
 
@@ -3520,43 +3520,43 @@ export class CGSize extends SDKHandle {
    * var customMirror: Mirror { get }
    * @availability iOS 7.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 3785281380048785, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 3785281380048785, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 7.0+
    */
-  get debugDescription(): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 3727997890908970, this, []); }
+  get debugDescription(): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 3727997890908970, this, []); }
   /**
    * init?(dictionaryRepresentation dict: CFDictionary)
    * @availability iOS 7.0+
    */
-  static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK10) | null { return callSDK<($SDK10) | null>("CoreGraphics_067acaa3e5f56b46", 1206273382866383, undefined, [dict]); }
+  static initDictionaryRepresentation(dict: _CoreFoundation_CFDictionary): ($SDK10) | null { return callSDK<($SDK10) | null>("CoreGraphics_d968214ecc684fb6", 1206273382866383, undefined, [dict]); }
   /** var dictionaryRepresentation: CFDictionary { get } */
-  get dictionaryRepresentation(): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_067acaa3e5f56b46", 1065684316154703, this, []); }
+  get dictionaryRepresentation(): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_d968214ecc684fb6", 1065684316154703, this, []); }
   /**
    * var customPlaygroundQuickLook: PlaygroundQuickLook { get }
    * @availability iOS 7.0+
    */
-  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 2540924162961259, this, []); }
+  get customPlaygroundQuickLook(): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 2540924162961259, this, []); }
   /**
    * static var zero: CGSize { get }
    * @availability iOS 7.0+
    */
-  static get zero(): $SDK10 { return callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 2252490261687264, undefined, []); }
+  static get zero(): $SDK10 { return callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 2252490261687264, undefined, []); }
   /**
    * init(width: Double, height: Double)
    * @availability iOS 7.0+
    */
-  static initWidthHeight(width: number, height: number): $SDK10 { return callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 1519832318507091, undefined, [width, height]); }
+  static initWidthHeight(width: number, height: number): $SDK10 { return callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 1519832318507091, undefined, [width, height]); }
   /**
    * init(width: Int, height: Int)
    * @availability iOS 7.0+
    */
-  static initWidthHeight55777(width: number, height: number): $SDK10 { return callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 2417835346160748, undefined, [width, height]); }
+  static initWidthHeight55777(width: number, height: number): $SDK10 { return callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 2417835346160748, undefined, [width, height]); }
   /** func equalTo(_ size2: CGSize) -> Bool */
-  equalTo(size2: $SDK10): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1291835944354901, this, [size2]); }
+  equalTo(size2: $SDK10): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1291835944354901, this, [size2]); }
   /** func applying(_ t: CGAffineTransform) -> CGSize */
-  applying(t: _CoreFoundation_CGAffineTransform): $SDK10 { return callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 2883593042632820, this, [t]); }
+  applying(t: _CoreFoundation_CGAffineTransform): $SDK10 { return callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 2883593042632820, this, [t]); }
   declare readonly $type: { "c:@S@CGSize": true };
 }
 
@@ -3565,7 +3565,7 @@ export type CGTextDrawingMode = "fill" | "stroke" | "fillStroke" | "invisible" |
 
 export const CGTextDrawingMode = {
   /** init?(rawValue: Int32) */
-  init(rawValue: number): (CGTextDrawingMode) | null { return callSDK<(CGTextDrawingMode) | null>("CoreGraphics_067acaa3e5f56b46", 3385376571389941, undefined, [rawValue]); }
+  init(rawValue: number): (CGTextDrawingMode) | null { return callSDK<(CGTextDrawingMode) | null>("CoreGraphics_d968214ecc684fb6", 3385376571389941, undefined, [rawValue]); }
 };
 
 /**
@@ -3579,7 +3579,7 @@ export const CGToneMapping = {
    * init?(rawValue: UInt32)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (CGToneMapping) | null { return callSDK<(CGToneMapping) | null>("CoreGraphics_067acaa3e5f56b46", 2458179077233649, undefined, [rawValue]); }
+  init(rawValue: number): (CGToneMapping) | null { return callSDK<(CGToneMapping) | null>("CoreGraphics_d968214ecc684fb6", 2458179077233649, undefined, [rawValue]); }
 };
 
 export class CGVector extends SDKHandle {
@@ -3587,22 +3587,22 @@ export class CGVector extends SDKHandle {
    * var debugDescription: String { get }
    * @availability iOS 7.0+
    */
-  get debugDescription(): string { return callSDK<string>("CoreGraphics_067acaa3e5f56b46", 1331497477017400, this, []); }
+  get debugDescription(): string { return callSDK<string>("CoreGraphics_d968214ecc684fb6", 1331497477017400, this, []); }
   /**
    * init(dx: Double, dy: Double)
    * @availability iOS 7.0+
    */
-  static initDxDy(dx: number, dy: number): $SDK44 { return callSDK<$SDK44>("CoreGraphics_067acaa3e5f56b46", 1194448103118530, undefined, [dx, dy]); }
+  static initDxDy(dx: number, dy: number): $SDK44 { return callSDK<$SDK44>("CoreGraphics_d968214ecc684fb6", 1194448103118530, undefined, [dx, dy]); }
   /**
    * init(dx: Int, dy: Int)
    * @availability iOS 7.0+
    */
-  static initDxDy48840(dx: number, dy: number): $SDK44 { return callSDK<$SDK44>("CoreGraphics_067acaa3e5f56b46", 995841026816456, undefined, [dx, dy]); }
+  static initDxDy48840(dx: number, dy: number): $SDK44 { return callSDK<$SDK44>("CoreGraphics_d968214ecc684fb6", 995841026816456, undefined, [dx, dy]); }
   /**
    * static var zero: CGVector { get }
    * @availability iOS 7.0+
    */
-  static get zero(): $SDK44 { return callSDK<$SDK44>("CoreGraphics_067acaa3e5f56b46", 1033532843128124, undefined, []); }
+  static get zero(): $SDK44 { return callSDK<$SDK44>("CoreGraphics_d968214ecc684fb6", 1033532843128124, undefined, []); }
   declare readonly $type: { "c:@S@CGVector": true };
 }
 
@@ -3615,1312 +3615,1312 @@ export class ColorSyncProfile extends SDKHandle {
  * func CGAffineTransformConcat(_ t1: CGAffineTransform, _ t2: CGAffineTransform) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CGAffineTransformConcat(t1: _CoreFoundation_CGAffineTransform, t2: _CoreFoundation_CGAffineTransform): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 1519924339622143, undefined, [t1, t2]); }
+export function CGAffineTransformConcat(t1: _CoreFoundation_CGAffineTransform, t2: _CoreFoundation_CGAffineTransform): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 1519924339622143, undefined, [t1, t2]); }
 
 /**
  * func CGAffineTransformInvert(_ t: CGAffineTransform) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CGAffineTransformInvert(t: _CoreFoundation_CGAffineTransform): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 3006741954128195, undefined, [t]); }
+export function CGAffineTransformInvert(t: _CoreFoundation_CGAffineTransform): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 3006741954128195, undefined, [t]); }
 
 /**
  * func CGAffineTransformIsIdentity(_ t: CGAffineTransform) -> Bool
  * @availability iOS 2.0+
  */
-export function CGAffineTransformIsIdentity(t: _CoreFoundation_CGAffineTransform): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 132023983685750, undefined, [t]); }
+export function CGAffineTransformIsIdentity(t: _CoreFoundation_CGAffineTransform): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 132023983685750, undefined, [t]); }
 
 /**
  * func CGAffineTransformMake(_ a: CGFloat, _ b: CGFloat, _ c: CGFloat, _ d: CGFloat, _ tx: CGFloat, _ ty: CGFloat) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CGAffineTransformMake(a: number, b: number, c: number, d: number, tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 864855885802108, undefined, [a, b, c, d, tx, ty]); }
+export function CGAffineTransformMake(a: number, b: number, c: number, d: number, tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 864855885802108, undefined, [a, b, c, d, tx, ty]); }
 
 /**
  * func CGAffineTransformMakeRotation(_ angle: CGFloat) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CGAffineTransformMakeRotation(angle: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 894474752094436, undefined, [angle]); }
+export function CGAffineTransformMakeRotation(angle: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 894474752094436, undefined, [angle]); }
 
 /**
  * func CGAffineTransformMakeScale(_ sx: CGFloat, _ sy: CGFloat) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CGAffineTransformMakeScale(sx: number, sy: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 382789408707061, undefined, [sx, sy]); }
+export function CGAffineTransformMakeScale(sx: number, sy: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 382789408707061, undefined, [sx, sy]); }
 
 /**
  * func CGAffineTransformMakeTranslation(_ tx: CGFloat, _ ty: CGFloat) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CGAffineTransformMakeTranslation(tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 462832075969906, undefined, [tx, ty]); }
+export function CGAffineTransformMakeTranslation(tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 462832075969906, undefined, [tx, ty]); }
 
 /**
  * func CGAffineTransformRotate(_ t: CGAffineTransform, _ angle: CGFloat) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CGAffineTransformRotate(t: _CoreFoundation_CGAffineTransform, angle: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 3357346914415331, undefined, [t, angle]); }
+export function CGAffineTransformRotate(t: _CoreFoundation_CGAffineTransform, angle: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 3357346914415331, undefined, [t, angle]); }
 
 /**
  * func CGAffineTransformScale(_ t: CGAffineTransform, _ sx: CGFloat, _ sy: CGFloat) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CGAffineTransformScale(t: _CoreFoundation_CGAffineTransform, sx: number, sy: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 4037175999991519, undefined, [t, sx, sy]); }
+export function CGAffineTransformScale(t: _CoreFoundation_CGAffineTransform, sx: number, sy: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 4037175999991519, undefined, [t, sx, sy]); }
 
 /**
  * func CGAffineTransformTranslate(_ t: CGAffineTransform, _ tx: CGFloat, _ ty: CGFloat) -> CGAffineTransform
  * @availability iOS 2.0+
  */
-export function CGAffineTransformTranslate(t: _CoreFoundation_CGAffineTransform, tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 3877712208535647, undefined, [t, tx, ty]); }
+export function CGAffineTransformTranslate(t: _CoreFoundation_CGAffineTransform, tx: number, ty: number): _CoreFoundation_CGAffineTransform { return callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 3877712208535647, undefined, [t, tx, ty]); }
 
 /**
  * func CGColorSpaceCopyBaseColorSpace(_ space: CGColorSpace) -> CGColorSpace
  * @availability iOS 18.0+
  */
-export function CGColorSpaceCopyBaseColorSpace(space: CGColorSpace): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_067acaa3e5f56b46", 3117045105832569, undefined, [space]); }
+export function CGColorSpaceCopyBaseColorSpace(space: CGColorSpace): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_d968214ecc684fb6", 3117045105832569, undefined, [space]); }
 
 /**
  * func CGColorSpaceCreateCopyWithStandardRange(_ space: CGColorSpace) -> CGColorSpace
  * @availability iOS 16.0+
  */
-export function CGColorSpaceCreateCopyWithStandardRange(space: CGColorSpace): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_067acaa3e5f56b46", 3327169144881977, undefined, [space]); }
+export function CGColorSpaceCreateCopyWithStandardRange(space: CGColorSpace): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_d968214ecc684fb6", 3327169144881977, undefined, [space]); }
 
 /**
  * func CGColorSpaceCreateDeviceCMYK() -> CGColorSpace
  * @availability iOS 2.0+
  */
-export function CGColorSpaceCreateDeviceCMYK(): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_067acaa3e5f56b46", 2938964985438130, undefined, []); }
+export function CGColorSpaceCreateDeviceCMYK(): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_d968214ecc684fb6", 2938964985438130, undefined, []); }
 
 /**
  * func CGColorSpaceCreateDeviceGray() -> CGColorSpace
  * @availability iOS 2.0+
  */
-export function CGColorSpaceCreateDeviceGray(): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_067acaa3e5f56b46", 119577540805682, undefined, []); }
+export function CGColorSpaceCreateDeviceGray(): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_d968214ecc684fb6", 119577540805682, undefined, []); }
 
 /**
  * func CGColorSpaceCreateDeviceRGB() -> CGColorSpace
  * @availability iOS 2.0+
  */
-export function CGColorSpaceCreateDeviceRGB(): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_067acaa3e5f56b46", 840201386234472, undefined, []); }
+export function CGColorSpaceCreateDeviceRGB(): CGColorSpace { return callSDK<CGColorSpace>("CoreGraphics_d968214ecc684fb6", 840201386234472, undefined, []); }
 
 /**
  * func CGColorSpaceCreateExtended(_ space: CGColorSpace) -> CGColorSpace?
  * @availability iOS 14.0+
  */
-export function CGColorSpaceCreateExtended(space: CGColorSpace): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 1595357829413808, undefined, [space]); }
+export function CGColorSpaceCreateExtended(space: CGColorSpace): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 1595357829413808, undefined, [space]); }
 
 /**
  * func CGColorSpaceCreateExtendedLinearized(_ space: CGColorSpace) -> CGColorSpace?
  * @availability iOS 14.0+
  */
-export function CGColorSpaceCreateExtendedLinearized(space: CGColorSpace): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 1525257432464545, undefined, [space]); }
+export function CGColorSpaceCreateExtendedLinearized(space: CGColorSpace): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 1525257432464545, undefined, [space]); }
 
 /**
  * func CGColorSpaceCreateLinearized(_ space: CGColorSpace) -> CGColorSpace?
  * @availability iOS 14.0+
  */
-export function CGColorSpaceCreateLinearized(space: CGColorSpace): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 181815180308230, undefined, [space]); }
+export function CGColorSpaceCreateLinearized(space: CGColorSpace): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 181815180308230, undefined, [space]); }
 
 /**
  * func CGColorSpaceCreateWithColorSyncProfile(_: ColorSyncProfile?, _ options: CFDictionary?) -> CGColorSpace?
  * @availability iOS 15.0+
  */
-export function CGColorSpaceCreateWithColorSyncProfile(arg0?: (ColorSyncProfile) | null, options?: $SDK3): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_067acaa3e5f56b46", 176753001701955, undefined, [arg0, options]); }
+export function CGColorSpaceCreateWithColorSyncProfile(arg0?: (ColorSyncProfile) | null, options?: $SDK3): (CGColorSpace) | null { return callSDK<(CGColorSpace) | null>("CoreGraphics_d968214ecc684fb6", 176753001701955, undefined, [arg0, options]); }
 
 /**
  * func CGColorSpaceIsHLGBased(_ s: CGColorSpace) -> Bool
  * @availability iOS 15.0+
  */
-export function CGColorSpaceIsHLGBased(s: CGColorSpace): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3312789715856552, undefined, [s]); }
+export function CGColorSpaceIsHLGBased(s: CGColorSpace): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3312789715856552, undefined, [s]); }
 
 /**
  * func CGColorSpaceIsPQBased(_ s: CGColorSpace) -> Bool
  * @availability iOS 15.0+
  */
-export function CGColorSpaceIsPQBased(s: CGColorSpace): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1656829676613869, undefined, [s]); }
+export function CGColorSpaceIsPQBased(s: CGColorSpace): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1656829676613869, undefined, [s]); }
 
 /**
  * func CGColorSpaceUsesExtendedRange(_ space: CGColorSpace) -> Bool
  * @availability iOS 10.0+
  */
-export function CGColorSpaceUsesExtendedRange(space: CGColorSpace): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3067621156796920, undefined, [space]); }
+export function CGColorSpaceUsesExtendedRange(space: CGColorSpace): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3067621156796920, undefined, [space]); }
 
 /**
  * func CGColorSpaceUsesITUR_2100TF(_: CGColorSpace) -> Bool
  * @availability iOS 14.0+
  */
-export function CGColorSpaceUsesITUR_2100TF(arg0: CGColorSpace): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2498447878965033, undefined, [arg0]); }
+export function CGColorSpaceUsesITUR_2100TF(arg0: CGColorSpace): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2498447878965033, undefined, [arg0]); }
 
 /**
  * func CGContextDrawConicGradient(_ c: CGContext, _ gradient: CGGradient?, _ center: CGPoint, _ angle: CGFloat)
  * @availability iOS 17.0+
  */
-export function CGContextDrawConicGradient(c: CGContext, gradient: (CGGradient) | null, center: $SDK9, angle: number): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2849935806788803, undefined, [c, gradient, center, angle]); }
+export function CGContextDrawConicGradient(c: CGContext, gradient: (CGGradient) | null, center: $SDK9, angle: number): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2849935806788803, undefined, [c, gradient, center, angle]); }
 
 /**
  * func CGContextGetEDRTargetHeadroom(_ c: CGContext) -> Float
  * @availability iOS 18.0+
  */
-export function CGContextGetEDRTargetHeadroom(c: CGContext): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2219590666655768, undefined, [c]); }
+export function CGContextGetEDRTargetHeadroom(c: CGContext): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2219590666655768, undefined, [c]); }
 
 /** func CGConvertColorDataWithFormat(_ width: Int, _ height: Int, _ dst_data: UnsafeMutableRawPointer!, _ dst_format: CGColorDataFormat, _ src_data: UnsafeMutableRawPointer!, _ src_format: CGColorDataFormat, _ options: CFDictionary!) -> Bool */
-export function CGConvertColorDataWithFormat(width: number, height: number, dst_data: (SDKHandle) | null, dst_format: CGColorDataFormat, src_data: (SDKHandle) | null, src_format: CGColorDataFormat, options?: $SDK3): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2551993776982050, undefined, [width, height, dst_data, dst_format, src_data, src_format, options]); }
+export function CGConvertColorDataWithFormat(width: number, height: number, dst_data: (SDKHandle) | null, dst_format: CGColorDataFormat, src_data: (SDKHandle) | null, src_format: CGColorDataFormat, options?: $SDK3): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2551993776982050, undefined, [width, height, dst_data, dst_format, src_data, src_format, options]); }
 
 /**
  * func CGImageCreateCopyWithContentHeadroom(_ headroom: Float, _ image: CGImage) -> CGImage?
  * @availability iOS 18.0+
  */
-export function CGImageCreateCopyWithContentHeadroom(headroom: number, image: CGImage): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_067acaa3e5f56b46", 214981763170222, undefined, [headroom, image]); }
+export function CGImageCreateCopyWithContentHeadroom(headroom: number, image: CGImage): (CGImage) | null { return callSDK<(CGImage) | null>("CoreGraphics_d968214ecc684fb6", 214981763170222, undefined, [headroom, image]); }
 
 /**
  * func CGPDFArrayGetArray(_ array: CGPDFArrayRef, _ index: Int, _ value: UnsafeMutablePointer<CGPDFArrayRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetArray(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 4071669039259387, undefined, [array, index, null]); }
+export function CGPDFArrayGetArray(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } }>("CoreGraphics_d968214ecc684fb6", 4071669039259387, undefined, [array, index, null]); }
 
 /**
  * func CGPDFArrayGetBoolean(_ array: CGPDFArrayRef, _ index: Int, _ value: UnsafeMutablePointer<CGPDFBoolean>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetBoolean(array: CGPDFArrayRef, index: number, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 225858497953063, undefined, [array, index, value]); }
+export function CGPDFArrayGetBoolean(array: CGPDFArrayRef, index: number, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 225858497953063, undefined, [array, index, value]); }
 
 /**
  * func CGPDFArrayGetCount(_ array: CGPDFArrayRef) -> Int
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetCount(array: CGPDFArrayRef): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 836728894316601, undefined, [array]); }
+export function CGPDFArrayGetCount(array: CGPDFArrayRef): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 836728894316601, undefined, [array]); }
 
 /**
  * func CGPDFArrayGetDictionary(_ array: CGPDFArrayRef, _ index: Int, _ value: UnsafeMutablePointer<CGPDFDictionaryRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetDictionary(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": $SDK40 } } { return callSDK<{ $ret: boolean; $out: { "value": $SDK40 } }>("CoreGraphics_067acaa3e5f56b46", 3776410024626547, undefined, [array, index, null]); }
+export function CGPDFArrayGetDictionary(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": $SDK40 } } { return callSDK<{ $ret: boolean; $out: { "value": $SDK40 } }>("CoreGraphics_d968214ecc684fb6", 3776410024626547, undefined, [array, index, null]); }
 
 /**
  * func CGPDFArrayGetInteger(_ array: CGPDFArrayRef, _ index: Int, _ value: UnsafeMutablePointer<CGPDFInteger>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetInteger(array: CGPDFArrayRef, index: number, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 621641268126758, undefined, [array, index, value]); }
+export function CGPDFArrayGetInteger(array: CGPDFArrayRef, index: number, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 621641268126758, undefined, [array, index, value]); }
 
 /**
  * func CGPDFArrayGetName(_ array: CGPDFArrayRef, _ index: Int, _ value: UnsafeMutablePointer<UnsafePointer<CChar>?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetName(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreGraphics_067acaa3e5f56b46", 3595902596299953, undefined, [array, index, null]); }
+export function CGPDFArrayGetName(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreGraphics_d968214ecc684fb6", 3595902596299953, undefined, [array, index, null]); }
 
 /**
  * func CGPDFArrayGetNull(_ array: CGPDFArrayRef, _ index: Int) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetNull(array: CGPDFArrayRef, index: number): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1768139891079865, undefined, [array, index]); }
+export function CGPDFArrayGetNull(array: CGPDFArrayRef, index: number): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1768139891079865, undefined, [array, index]); }
 
 /**
  * func CGPDFArrayGetNumber(_ array: CGPDFArrayRef, _ index: Int, _ value: UnsafeMutablePointer<CGPDFReal>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetNumber(array: CGPDFArrayRef, index: number, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2683411445545941, undefined, [array, index, value]); }
+export function CGPDFArrayGetNumber(array: CGPDFArrayRef, index: number, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2683411445545941, undefined, [array, index, value]); }
 
 /**
  * func CGPDFArrayGetObject(_ array: CGPDFArrayRef, _ index: Int, _ value: UnsafeMutablePointer<CGPDFObjectRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetObject(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 4267203554151759, undefined, [array, index, null]); }
+export function CGPDFArrayGetObject(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } }>("CoreGraphics_d968214ecc684fb6", 4267203554151759, undefined, [array, index, null]); }
 
 /**
  * func CGPDFArrayGetStream(_ array: CGPDFArrayRef, _ index: Int, _ value: UnsafeMutablePointer<CGPDFStreamRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetStream(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 2357878547334609, undefined, [array, index, null]); }
+export function CGPDFArrayGetStream(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } }>("CoreGraphics_d968214ecc684fb6", 2357878547334609, undefined, [array, index, null]); }
 
 /**
  * func CGPDFArrayGetString(_ array: CGPDFArrayRef, _ index: Int, _ value: UnsafeMutablePointer<CGPDFStringRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFArrayGetString(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (CGPDFStringRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStringRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 2040297323479141, undefined, [array, index, null]); }
+export function CGPDFArrayGetString(array: CGPDFArrayRef, index: number): { $ret: boolean; $out: { "value": (CGPDFStringRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStringRef) | null } }>("CoreGraphics_d968214ecc684fb6", 2040297323479141, undefined, [array, index, null]); }
 
 /**
  * func CGPDFContentStreamCreateWithPage(_ page: CGPDFPage) -> CGPDFContentStreamRef
  * @availability iOS 2.0+
  */
-export function CGPDFContentStreamCreateWithPage(page: CGPDFPage): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 78668208072330, undefined, [page]); }
+export function CGPDFContentStreamCreateWithPage(page: CGPDFPage): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 78668208072330, undefined, [page]); }
 
 /**
  * func CGPDFContentStreamCreateWithStream(_ stream: CGPDFStreamRef, _ streamResources: CGPDFDictionaryRef, _ parent: CGPDFContentStreamRef) -> CGPDFContentStreamRef
  * @availability iOS 2.0+
  */
-export function CGPDFContentStreamCreateWithStream(stream: CGPDFStreamRef, streamResources: CGPDFDictionaryRef, parent: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 4498721599979745, undefined, [stream, streamResources, parent]); }
+export function CGPDFContentStreamCreateWithStream(stream: CGPDFStreamRef, streamResources: CGPDFDictionaryRef, parent: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 4498721599979745, undefined, [stream, streamResources, parent]); }
 
 /**
  * func CGPDFContentStreamGetResource(_ cs: CGPDFContentStreamRef, _ category: UnsafePointer<CChar>, _ name: UnsafePointer<CChar>) -> CGPDFObjectRef?
  * @availability iOS 2.0+
  */
-export function CGPDFContentStreamGetResource(cs: SDKHandle, category: SDKHandle, name: SDKHandle): (CGPDFObjectRef) | null { return callSDK<(CGPDFObjectRef) | null>("CoreGraphics_067acaa3e5f56b46", 1215741506476702, undefined, [cs, category, name]); }
+export function CGPDFContentStreamGetResource(cs: SDKHandle, category: SDKHandle, name: SDKHandle): (CGPDFObjectRef) | null { return callSDK<(CGPDFObjectRef) | null>("CoreGraphics_d968214ecc684fb6", 1215741506476702, undefined, [cs, category, name]); }
 
 /**
  * func CGPDFContentStreamGetStreams(_ cs: CGPDFContentStreamRef) -> CFArray?
  * @availability iOS 2.0+
  */
-export function CGPDFContentStreamGetStreams(cs: SDKHandle): $SDK27 { return callSDK<$SDK27>("CoreGraphics_067acaa3e5f56b46", 1308305284266524, undefined, [cs]); }
+export function CGPDFContentStreamGetStreams(cs: SDKHandle): $SDK27 { return callSDK<$SDK27>("CoreGraphics_d968214ecc684fb6", 1308305284266524, undefined, [cs]); }
 
 /**
  * func CGPDFContentStreamRelease(_ cs: CGPDFContentStreamRef)
  * @availability iOS 2.0+
  */
-export function CGPDFContentStreamRelease(cs: SDKHandle): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 252744998643951, undefined, [cs]); }
+export function CGPDFContentStreamRelease(cs: SDKHandle): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 252744998643951, undefined, [cs]); }
 
 /**
  * func CGPDFContentStreamRetain(_ cs: CGPDFContentStreamRef) -> CGPDFContentStreamRef
  * @availability iOS 2.0+
  */
-export function CGPDFContentStreamRetain(cs: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 4429915268583650, undefined, [cs]); }
+export function CGPDFContentStreamRetain(cs: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 4429915268583650, undefined, [cs]); }
 
 /**
  * func CGPDFContextBeginTag(_ context: CGContext, _ tagType: CGPDFTagType, _ tagProperties: CFDictionary)
  * @availability iOS 13.0+
  */
-export function CGPDFContextBeginTag(context: CGContext, tagType: CGPDFTagType, tagProperties: _CoreFoundation_CFDictionary): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3896657474893944, undefined, [context, tagType, tagProperties]); }
+export function CGPDFContextBeginTag(context: CGContext, tagType: CGPDFTagType, tagProperties: _CoreFoundation_CFDictionary): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3896657474893944, undefined, [context, tagType, tagProperties]); }
 
 /**
  * func CGPDFContextEndTag(_ context: CGContext)
  * @availability iOS 13.0+
  */
-export function CGPDFContextEndTag(context: CGContext): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 3008254027005800, undefined, [context]); }
+export function CGPDFContextEndTag(context: CGContext): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 3008254027005800, undefined, [context]); }
 
 /** func CGPDFContextSetIDTree(_ context: CGContext, _ IDTreeDictionary: CGPDFDictionaryRef) */
-export function CGPDFContextSetIDTree(context: CGContext, IDTreeDictionary: CGPDFDictionaryRef): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 4371013171428013, undefined, [context, IDTreeDictionary]); }
+export function CGPDFContextSetIDTree(context: CGContext, IDTreeDictionary: CGPDFDictionaryRef): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 4371013171428013, undefined, [context, IDTreeDictionary]); }
 
 /**
  * func CGPDFContextSetOutline(_ context: CGContext, _ outline: CFDictionary?)
  * @availability iOS 11.0+
  */
-export function CGPDFContextSetOutline(context: CGContext, outline?: $SDK3): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1232197420278918, undefined, [context, outline]); }
+export function CGPDFContextSetOutline(context: CGContext, outline?: $SDK3): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1232197420278918, undefined, [context, outline]); }
 
 /** func CGPDFContextSetPageTagStructureTree(_ context: CGContext, _ pageTagStructureTreeDictionary: CFDictionary) */
-export function CGPDFContextSetPageTagStructureTree(context: CGContext, pageTagStructureTreeDictionary: _CoreFoundation_CFDictionary): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 520031379165154, undefined, [context, pageTagStructureTreeDictionary]); }
+export function CGPDFContextSetPageTagStructureTree(context: CGContext, pageTagStructureTreeDictionary: _CoreFoundation_CFDictionary): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 520031379165154, undefined, [context, pageTagStructureTreeDictionary]); }
 
 /** func CGPDFContextSetParentTree(_ context: CGContext, _ parentTreeDictionary: CGPDFDictionaryRef) */
-export function CGPDFContextSetParentTree(context: CGContext, parentTreeDictionary: CGPDFDictionaryRef): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1253803316988636, undefined, [context, parentTreeDictionary]); }
+export function CGPDFContextSetParentTree(context: CGContext, parentTreeDictionary: CGPDFDictionaryRef): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 1253803316988636, undefined, [context, parentTreeDictionary]); }
 
 /**
  * func CGPDFDictionaryGetArray(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<CGPDFArrayRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetArray(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 2154394755545184, undefined, [dict, key, null]); }
+export function CGPDFDictionaryGetArray(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } }>("CoreGraphics_d968214ecc684fb6", 2154394755545184, undefined, [dict, key, null]); }
 
 /**
  * func CGPDFDictionaryGetBoolean(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<CGPDFBoolean>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetBoolean(dict: CGPDFDictionaryRef, key: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2060095456177875, undefined, [dict, key, value]); }
+export function CGPDFDictionaryGetBoolean(dict: CGPDFDictionaryRef, key: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2060095456177875, undefined, [dict, key, value]); }
 
 /**
  * func CGPDFDictionaryGetCount(_ dict: CGPDFDictionaryRef) -> Int
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetCount(dict: CGPDFDictionaryRef): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 907686169144917, undefined, [dict]); }
+export function CGPDFDictionaryGetCount(dict: CGPDFDictionaryRef): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 907686169144917, undefined, [dict]); }
 
 /**
  * func CGPDFDictionaryGetDictionary(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<CGPDFDictionaryRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetDictionary(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": $SDK40 } } { return callSDK<{ $ret: boolean; $out: { "value": $SDK40 } }>("CoreGraphics_067acaa3e5f56b46", 3117487200613414, undefined, [dict, key, null]); }
+export function CGPDFDictionaryGetDictionary(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": $SDK40 } } { return callSDK<{ $ret: boolean; $out: { "value": $SDK40 } }>("CoreGraphics_d968214ecc684fb6", 3117487200613414, undefined, [dict, key, null]); }
 
 /**
  * func CGPDFDictionaryGetInteger(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<CGPDFInteger>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetInteger(dict: CGPDFDictionaryRef, key: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3010971654234356, undefined, [dict, key, value]); }
+export function CGPDFDictionaryGetInteger(dict: CGPDFDictionaryRef, key: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3010971654234356, undefined, [dict, key, value]); }
 
 /**
  * func CGPDFDictionaryGetName(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<UnsafePointer<CChar>?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetName(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreGraphics_067acaa3e5f56b46", 2183808223154629, undefined, [dict, key, null]); }
+export function CGPDFDictionaryGetName(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreGraphics_d968214ecc684fb6", 2183808223154629, undefined, [dict, key, null]); }
 
 /**
  * func CGPDFDictionaryGetNumber(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<CGPDFReal>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetNumber(dict: CGPDFDictionaryRef, key: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2765081269775437, undefined, [dict, key, value]); }
+export function CGPDFDictionaryGetNumber(dict: CGPDFDictionaryRef, key: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2765081269775437, undefined, [dict, key, value]); }
 
 /**
  * func CGPDFDictionaryGetObject(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<CGPDFObjectRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetObject(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 2817697288806334, undefined, [dict, key, null]); }
+export function CGPDFDictionaryGetObject(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } }>("CoreGraphics_d968214ecc684fb6", 2817697288806334, undefined, [dict, key, null]); }
 
 /**
  * func CGPDFDictionaryGetStream(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<CGPDFStreamRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetStream(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 3578073550287426, undefined, [dict, key, null]); }
+export function CGPDFDictionaryGetStream(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } }>("CoreGraphics_d968214ecc684fb6", 3578073550287426, undefined, [dict, key, null]); }
 
 /**
  * func CGPDFDictionaryGetString(_ dict: CGPDFDictionaryRef, _ key: UnsafePointer<CChar>, _ value: UnsafeMutablePointer<CGPDFStringRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFDictionaryGetString(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFStringRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStringRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 2804256728287714, undefined, [dict, key, null]); }
+export function CGPDFDictionaryGetString(dict: CGPDFDictionaryRef, key: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFStringRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStringRef) | null } }>("CoreGraphics_d968214ecc684fb6", 2804256728287714, undefined, [dict, key, null]); }
 
 /**
  * func CGPDFObjectGetType(_ object: CGPDFObjectRef) -> CGPDFObjectType
  * @availability iOS 2.0+
  */
-export function CGPDFObjectGetType(object: CGPDFObjectRef): CGPDFObjectType { return callSDK<CGPDFObjectType>("CoreGraphics_067acaa3e5f56b46", 517513642740026, undefined, [object]); }
+export function CGPDFObjectGetType(object: CGPDFObjectRef): CGPDFObjectType { return callSDK<CGPDFObjectType>("CoreGraphics_d968214ecc684fb6", 517513642740026, undefined, [object]); }
 
 /**
  * func CGPDFObjectGetValue(_ object: CGPDFObjectRef, _ type: CGPDFObjectType, _ value: UnsafeMutableRawPointer?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFObjectGetValue(object: CGPDFObjectRef, type: CGPDFObjectType, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 710314590993419, undefined, [object, type, value]); }
+export function CGPDFObjectGetValue(object: CGPDFObjectRef, type: CGPDFObjectType, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 710314590993419, undefined, [object, type, value]); }
 
 /**
  * func CGPDFOperatorTableCreate() -> CGPDFOperatorTableRef?
  * @availability iOS 2.0+
  */
-export function CGPDFOperatorTableCreate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_067acaa3e5f56b46", 3634530231812972, undefined, []); }
+export function CGPDFOperatorTableCreate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_d968214ecc684fb6", 3634530231812972, undefined, []); }
 
 /**
  * func CGPDFOperatorTableRelease(_ table: CGPDFOperatorTableRef)
  * @availability iOS 2.0+
  */
-export function CGPDFOperatorTableRelease(table: SDKHandle): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2887890349804599, undefined, [table]); }
+export function CGPDFOperatorTableRelease(table: SDKHandle): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2887890349804599, undefined, [table]); }
 
 /**
  * func CGPDFOperatorTableRetain(_ table: CGPDFOperatorTableRef) -> CGPDFOperatorTableRef
  * @availability iOS 2.0+
  */
-export function CGPDFOperatorTableRetain(table: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 4324623954028708, undefined, [table]); }
+export function CGPDFOperatorTableRetain(table: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 4324623954028708, undefined, [table]); }
 
 /**
  * func CGPDFScannerCreate(_ cs: CGPDFContentStreamRef, _ table: CGPDFOperatorTableRef?, _ info: UnsafeMutableRawPointer?) -> CGPDFScannerRef
  * @availability iOS 2.0+
  */
-export function CGPDFScannerCreate(cs: SDKHandle, table?: (SDKHandle) | null, info?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 2757466511510574, undefined, [cs, table, info]); }
+export function CGPDFScannerCreate(cs: SDKHandle, table?: (SDKHandle) | null, info?: (SDKHandle) | null): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 2757466511510574, undefined, [cs, table, info]); }
 
 /**
  * func CGPDFScannerGetContentStream(_ scanner: CGPDFScannerRef) -> CGPDFContentStreamRef
  * @availability iOS 2.0+
  */
-export function CGPDFScannerGetContentStream(scanner: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 2849932082581512, undefined, [scanner]); }
+export function CGPDFScannerGetContentStream(scanner: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 2849932082581512, undefined, [scanner]); }
 
 /**
  * func CGPDFScannerPopArray(_ scanner: CGPDFScannerRef, _ value: UnsafeMutablePointer<CGPDFArrayRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerPopArray(scanner: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 2527855228115271, undefined, [scanner, null]); }
+export function CGPDFScannerPopArray(scanner: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFArrayRef) | null } }>("CoreGraphics_d968214ecc684fb6", 2527855228115271, undefined, [scanner, null]); }
 
 /**
  * func CGPDFScannerPopBoolean(_ scanner: CGPDFScannerRef, _ value: UnsafeMutablePointer<CGPDFBoolean>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerPopBoolean(scanner: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 202413593151483, undefined, [scanner, value]); }
+export function CGPDFScannerPopBoolean(scanner: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 202413593151483, undefined, [scanner, value]); }
 
 /**
  * func CGPDFScannerPopDictionary(_ scanner: CGPDFScannerRef, _ value: UnsafeMutablePointer<CGPDFDictionaryRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerPopDictionary(scanner: SDKHandle): { $ret: boolean; $out: { "value": $SDK40 } } { return callSDK<{ $ret: boolean; $out: { "value": $SDK40 } }>("CoreGraphics_067acaa3e5f56b46", 4358689599089358, undefined, [scanner, null]); }
+export function CGPDFScannerPopDictionary(scanner: SDKHandle): { $ret: boolean; $out: { "value": $SDK40 } } { return callSDK<{ $ret: boolean; $out: { "value": $SDK40 } }>("CoreGraphics_d968214ecc684fb6", 4358689599089358, undefined, [scanner, null]); }
 
 /**
  * func CGPDFScannerPopInteger(_ scanner: CGPDFScannerRef, _ value: UnsafeMutablePointer<CGPDFInteger>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerPopInteger(scanner: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2341070516408401, undefined, [scanner, value]); }
+export function CGPDFScannerPopInteger(scanner: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2341070516408401, undefined, [scanner, value]); }
 
 /**
  * func CGPDFScannerPopName(_ scanner: CGPDFScannerRef, _ value: UnsafeMutablePointer<UnsafePointer<CChar>?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerPopName(scanner: SDKHandle): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreGraphics_067acaa3e5f56b46", 461129184199257, undefined, [scanner, null]); }
+export function CGPDFScannerPopName(scanner: SDKHandle): { $ret: boolean; $out: { "value": (SDKHandle) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (SDKHandle) | null } }>("CoreGraphics_d968214ecc684fb6", 461129184199257, undefined, [scanner, null]); }
 
 /**
  * func CGPDFScannerPopNumber(_ scanner: CGPDFScannerRef, _ value: UnsafeMutablePointer<CGPDFReal>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerPopNumber(scanner: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 4062254990481886, undefined, [scanner, value]); }
+export function CGPDFScannerPopNumber(scanner: SDKHandle, value?: (SDKHandle) | null): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 4062254990481886, undefined, [scanner, value]); }
 
 /**
  * func CGPDFScannerPopObject(_ scanner: CGPDFScannerRef, _ value: UnsafeMutablePointer<CGPDFObjectRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerPopObject(scanner: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 3352073975631807, undefined, [scanner, null]); }
+export function CGPDFScannerPopObject(scanner: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFObjectRef) | null } }>("CoreGraphics_d968214ecc684fb6", 3352073975631807, undefined, [scanner, null]); }
 
 /**
  * func CGPDFScannerPopStream(_ scanner: CGPDFScannerRef, _ value: UnsafeMutablePointer<CGPDFStreamRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerPopStream(scanner: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 1611391981745327, undefined, [scanner, null]); }
+export function CGPDFScannerPopStream(scanner: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStreamRef) | null } }>("CoreGraphics_d968214ecc684fb6", 1611391981745327, undefined, [scanner, null]); }
 
 /**
  * func CGPDFScannerPopString(_ scanner: CGPDFScannerRef, _ value: UnsafeMutablePointer<CGPDFStringRef?>?) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerPopString(scanner: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFStringRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStringRef) | null } }>("CoreGraphics_067acaa3e5f56b46", 2026307142810977, undefined, [scanner, null]); }
+export function CGPDFScannerPopString(scanner: SDKHandle): { $ret: boolean; $out: { "value": (CGPDFStringRef) | null } } { return callSDK<{ $ret: boolean; $out: { "value": (CGPDFStringRef) | null } }>("CoreGraphics_d968214ecc684fb6", 2026307142810977, undefined, [scanner, null]); }
 
 /**
  * func CGPDFScannerRelease(_ scanner: CGPDFScannerRef)
  * @availability iOS 2.0+
  */
-export function CGPDFScannerRelease(scanner: SDKHandle): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2921244612723235, undefined, [scanner]); }
+export function CGPDFScannerRelease(scanner: SDKHandle): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2921244612723235, undefined, [scanner]); }
 
 /**
  * func CGPDFScannerRetain(_ scanner: CGPDFScannerRef) -> CGPDFScannerRef
  * @availability iOS 2.0+
  */
-export function CGPDFScannerRetain(scanner: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_067acaa3e5f56b46", 3472943508731046, undefined, [scanner]); }
+export function CGPDFScannerRetain(scanner: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreGraphics_d968214ecc684fb6", 3472943508731046, undefined, [scanner]); }
 
 /**
  * func CGPDFScannerScan(_ scanner: CGPDFScannerRef) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPDFScannerScan(scanner: SDKHandle): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2022940951512899, undefined, [scanner]); }
+export function CGPDFScannerScan(scanner: SDKHandle): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2022940951512899, undefined, [scanner]); }
 
 /** func CGPDFScannerStop(_ s: CGPDFScannerRef) */
-export function CGPDFScannerStop(s: SDKHandle): void { return callSDK<void>("CoreGraphics_067acaa3e5f56b46", 2580424887720823, undefined, [s]); }
+export function CGPDFScannerStop(s: SDKHandle): void { return callSDK<void>("CoreGraphics_d968214ecc684fb6", 2580424887720823, undefined, [s]); }
 
 /**
  * func CGPDFStreamCopyData(_ stream: CGPDFStreamRef, _ format: UnsafeMutablePointer<CGPDFDataFormat>) -> CFData?
  * @availability iOS 2.0+
  */
-export function CGPDFStreamCopyData(stream: CGPDFStreamRef, format: SDKHandle): $SDK6 { return callSDK<$SDK6>("CoreGraphics_067acaa3e5f56b46", 792179958594752, undefined, [stream, format]); }
+export function CGPDFStreamCopyData(stream: CGPDFStreamRef, format: SDKHandle): $SDK6 { return callSDK<$SDK6>("CoreGraphics_d968214ecc684fb6", 792179958594752, undefined, [stream, format]); }
 
 /**
  * func CGPDFStreamGetDictionary(_ stream: CGPDFStreamRef) -> CGPDFDictionaryRef?
  * @availability iOS 2.0+
  */
-export function CGPDFStreamGetDictionary(stream: CGPDFStreamRef): $SDK40 { return callSDK<$SDK40>("CoreGraphics_067acaa3e5f56b46", 3989523098440028, undefined, [stream]); }
+export function CGPDFStreamGetDictionary(stream: CGPDFStreamRef): $SDK40 { return callSDK<$SDK40>("CoreGraphics_d968214ecc684fb6", 3989523098440028, undefined, [stream]); }
 
 /**
  * func CGPDFStringCopyDate(_ string: CGPDFStringRef) -> CFDate?
  * @availability iOS 2.0+
  */
-export function CGPDFStringCopyDate(string: CGPDFStringRef): (_CoreFoundation_CFDate) | null { return callSDK<(_CoreFoundation_CFDate) | null>("CoreGraphics_067acaa3e5f56b46", 3007935483914793, undefined, [string]); }
+export function CGPDFStringCopyDate(string: CGPDFStringRef): (_CoreFoundation_CFDate) | null { return callSDK<(_CoreFoundation_CFDate) | null>("CoreGraphics_d968214ecc684fb6", 3007935483914793, undefined, [string]); }
 
 /**
  * func CGPDFStringCopyTextString(_ string: CGPDFStringRef) -> CFString?
  * @availability iOS 2.0+
  */
-export function CGPDFStringCopyTextString(string: CGPDFStringRef): $SDK7 { return callSDK<$SDK7>("CoreGraphics_067acaa3e5f56b46", 1075111739276501, undefined, [string]); }
+export function CGPDFStringCopyTextString(string: CGPDFStringRef): $SDK7 { return callSDK<$SDK7>("CoreGraphics_d968214ecc684fb6", 1075111739276501, undefined, [string]); }
 
 /**
  * func CGPDFStringGetBytePtr(_ string: CGPDFStringRef) -> UnsafePointer<UInt8>?
  * @availability iOS 2.0+
  */
-export function CGPDFStringGetBytePtr(string: CGPDFStringRef): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_067acaa3e5f56b46", 2094413580017958, undefined, [string]); }
+export function CGPDFStringGetBytePtr(string: CGPDFStringRef): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreGraphics_d968214ecc684fb6", 2094413580017958, undefined, [string]); }
 
 /**
  * func CGPDFStringGetLength(_ string: CGPDFStringRef) -> Int
  * @availability iOS 2.0+
  */
-export function CGPDFStringGetLength(string: CGPDFStringRef): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1056068333261885, undefined, [string]); }
+export function CGPDFStringGetLength(string: CGPDFStringRef): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1056068333261885, undefined, [string]); }
 
 /**
  * func CGPointApplyAffineTransform(_ point: CGPoint, _ t: CGAffineTransform) -> CGPoint
  * @availability iOS 2.0+
  */
-export function CGPointApplyAffineTransform(point: $SDK9, t: _CoreFoundation_CGAffineTransform): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 2223165661642207, undefined, [point, t]); }
+export function CGPointApplyAffineTransform(point: $SDK9, t: _CoreFoundation_CGAffineTransform): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 2223165661642207, undefined, [point, t]); }
 
 /**
  * func CGPointCreateDictionaryRepresentation(_ point: CGPoint) -> CFDictionary
  * @availability iOS 2.0+
  */
-export function CGPointCreateDictionaryRepresentation(point: $SDK9): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_067acaa3e5f56b46", 2598468107033689, undefined, [point]); }
+export function CGPointCreateDictionaryRepresentation(point: $SDK9): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_d968214ecc684fb6", 2598468107033689, undefined, [point]); }
 
 /**
  * func CGPointEqualToPoint(_ point1: CGPoint, _ point2: CGPoint) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPointEqualToPoint(point1: $SDK9, point2: $SDK9): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 85951554515321, undefined, [point1, point2]); }
+export function CGPointEqualToPoint(point1: $SDK9, point2: $SDK9): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 85951554515321, undefined, [point1, point2]); }
 
 /** func CGPointMake(_ x: CGFloat, _ y: CGFloat) -> CGPoint */
-export function CGPointMake(x: number, y: number): $SDK9 { return callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 931021210640382, undefined, [x, y]); }
+export function CGPointMake(x: number, y: number): $SDK9 { return callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 931021210640382, undefined, [x, y]); }
 
 /**
  * func CGPointMakeWithDictionaryRepresentation(_ dict: CFDictionary, _ point: UnsafeMutablePointer<CGPoint>) -> Bool
  * @availability iOS 2.0+
  */
-export function CGPointMakeWithDictionaryRepresentation(dict: _CoreFoundation_CFDictionary, point: $SDK2): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2325543251335344, undefined, [dict, point]); }
+export function CGPointMakeWithDictionaryRepresentation(dict: _CoreFoundation_CFDictionary, point: $SDK2): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2325543251335344, undefined, [dict, point]); }
 
 /**
  * func CGRectApplyAffineTransform(_ rect: CGRect, _ t: CGAffineTransform) -> CGRect
  * @availability iOS 2.0+
  */
-export function CGRectApplyAffineTransform(rect: $SDK8, t: _CoreFoundation_CGAffineTransform): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2924150087162547, undefined, [rect, t]); }
+export function CGRectApplyAffineTransform(rect: $SDK8, t: _CoreFoundation_CGAffineTransform): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2924150087162547, undefined, [rect, t]); }
 
 /**
  * func CGRectContainsPoint(_ rect: CGRect, _ point: CGPoint) -> Bool
  * @availability iOS 2.0+
  */
-export function CGRectContainsPoint(rect: $SDK8, point: $SDK9): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3965519088589320, undefined, [rect, point]); }
+export function CGRectContainsPoint(rect: $SDK8, point: $SDK9): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3965519088589320, undefined, [rect, point]); }
 
 /**
  * func CGRectContainsRect(_ rect1: CGRect, _ rect2: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export function CGRectContainsRect(rect1: $SDK8, rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3217603982962288, undefined, [rect1, rect2]); }
+export function CGRectContainsRect(rect1: $SDK8, rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3217603982962288, undefined, [rect1, rect2]); }
 
 /**
  * func CGRectCreateDictionaryRepresentation(_: CGRect) -> CFDictionary
  * @availability iOS 2.0+
  */
-export function CGRectCreateDictionaryRepresentation(arg0: $SDK8): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_067acaa3e5f56b46", 3210941145112008, undefined, [arg0]); }
+export function CGRectCreateDictionaryRepresentation(arg0: $SDK8): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_d968214ecc684fb6", 3210941145112008, undefined, [arg0]); }
 
 /**
  * func CGRectEqualToRect(_ rect1: CGRect, _ rect2: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export function CGRectEqualToRect(rect1: $SDK8, rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 636473197187781, undefined, [rect1, rect2]); }
+export function CGRectEqualToRect(rect1: $SDK8, rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 636473197187781, undefined, [rect1, rect2]); }
 
 /**
  * func CGRectGetHeight(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export function CGRectGetHeight(rect: $SDK8): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 474215040586087, undefined, [rect]); }
+export function CGRectGetHeight(rect: $SDK8): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 474215040586087, undefined, [rect]); }
 
 /**
  * func CGRectGetMaxX(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export function CGRectGetMaxX(rect: $SDK8): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1522191522321889, undefined, [rect]); }
+export function CGRectGetMaxX(rect: $SDK8): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1522191522321889, undefined, [rect]); }
 
 /**
  * func CGRectGetMaxY(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export function CGRectGetMaxY(rect: $SDK8): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 161751143814740, undefined, [rect]); }
+export function CGRectGetMaxY(rect: $SDK8): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 161751143814740, undefined, [rect]); }
 
 /**
  * func CGRectGetMidX(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export function CGRectGetMidX(rect: $SDK8): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1063170020003924, undefined, [rect]); }
+export function CGRectGetMidX(rect: $SDK8): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1063170020003924, undefined, [rect]); }
 
 /**
  * func CGRectGetMidY(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export function CGRectGetMidY(rect: $SDK8): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 955526084539, undefined, [rect]); }
+export function CGRectGetMidY(rect: $SDK8): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 955526084539, undefined, [rect]); }
 
 /**
  * func CGRectGetMinX(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export function CGRectGetMinX(rect: $SDK8): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3430746471019897, undefined, [rect]); }
+export function CGRectGetMinX(rect: $SDK8): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3430746471019897, undefined, [rect]); }
 
 /**
  * func CGRectGetMinY(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export function CGRectGetMinY(rect: $SDK8): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2248220038689721, undefined, [rect]); }
+export function CGRectGetMinY(rect: $SDK8): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2248220038689721, undefined, [rect]); }
 
 /**
  * func CGRectGetWidth(_ rect: CGRect) -> CGFloat
  * @availability iOS 2.0+
  */
-export function CGRectGetWidth(rect: $SDK8): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 42889975618, undefined, [rect]); }
+export function CGRectGetWidth(rect: $SDK8): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 42889975618, undefined, [rect]); }
 
 /**
  * func CGRectInset(_ rect: CGRect, _ dx: CGFloat, _ dy: CGFloat) -> CGRect
  * @availability iOS 2.0+
  */
-export function CGRectInset(rect: $SDK8, dx: number, dy: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 134194438906053, undefined, [rect, dx, dy]); }
+export function CGRectInset(rect: $SDK8, dx: number, dy: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 134194438906053, undefined, [rect, dx, dy]); }
 
 /**
  * func CGRectIntegral(_ rect: CGRect) -> CGRect
  * @availability iOS 2.0+
  */
-export function CGRectIntegral(rect: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2251323198484359, undefined, [rect]); }
+export function CGRectIntegral(rect: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2251323198484359, undefined, [rect]); }
 
 /**
  * func CGRectIntersection(_ r1: CGRect, _ r2: CGRect) -> CGRect
  * @availability iOS 2.0+
  */
-export function CGRectIntersection(r1: $SDK8, r2: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 4234760827952509, undefined, [r1, r2]); }
+export function CGRectIntersection(r1: $SDK8, r2: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 4234760827952509, undefined, [r1, r2]); }
 
 /**
  * func CGRectIntersectsRect(_ rect1: CGRect, _ rect2: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export function CGRectIntersectsRect(rect1: $SDK8, rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 1552463467654806, undefined, [rect1, rect2]); }
+export function CGRectIntersectsRect(rect1: $SDK8, rect2: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 1552463467654806, undefined, [rect1, rect2]); }
 
 /**
  * func CGRectIsEmpty(_ rect: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export function CGRectIsEmpty(rect: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3387968357081250, undefined, [rect]); }
+export function CGRectIsEmpty(rect: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3387968357081250, undefined, [rect]); }
 
 /**
  * func CGRectIsInfinite(_ rect: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export function CGRectIsInfinite(rect: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 137768666961349, undefined, [rect]); }
+export function CGRectIsInfinite(rect: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 137768666961349, undefined, [rect]); }
 
 /**
  * func CGRectIsNull(_ rect: CGRect) -> Bool
  * @availability iOS 2.0+
  */
-export function CGRectIsNull(rect: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2908310957545474, undefined, [rect]); }
+export function CGRectIsNull(rect: $SDK8): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2908310957545474, undefined, [rect]); }
 
 /** func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect */
-export function CGRectMake(x: number, y: number, width: number, height: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 1446390190205601, undefined, [x, y, width, height]); }
+export function CGRectMake(x: number, y: number, width: number, height: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 1446390190205601, undefined, [x, y, width, height]); }
 
 /**
  * func CGRectMakeWithDictionaryRepresentation(_ dict: CFDictionary, _ rect: UnsafeMutablePointer<CGRect>) -> Bool
  * @availability iOS 2.0+
  */
-export function CGRectMakeWithDictionaryRepresentation(dict: _CoreFoundation_CFDictionary, rect: $SDK2): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2412716908345618, undefined, [dict, rect]); }
+export function CGRectMakeWithDictionaryRepresentation(dict: _CoreFoundation_CFDictionary, rect: $SDK2): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2412716908345618, undefined, [dict, rect]); }
 
 /**
  * func CGRectOffset(_ rect: CGRect, _ dx: CGFloat, _ dy: CGFloat) -> CGRect
  * @availability iOS 2.0+
  */
-export function CGRectOffset(rect: $SDK8, dx: number, dy: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 800998825327993, undefined, [rect, dx, dy]); }
+export function CGRectOffset(rect: $SDK8, dx: number, dy: number): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 800998825327993, undefined, [rect, dx, dy]); }
 
 /**
  * func CGRectStandardize(_ rect: CGRect) -> CGRect
  * @availability iOS 2.0+
  */
-export function CGRectStandardize(rect: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2816496154198344, undefined, [rect]); }
+export function CGRectStandardize(rect: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2816496154198344, undefined, [rect]); }
 
 /**
  * func CGRectUnion(_ r1: CGRect, _ r2: CGRect) -> CGRect
  * @availability iOS 2.0+
  */
-export function CGRectUnion(r1: $SDK8, r2: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 2836722474876992, undefined, [r1, r2]); }
+export function CGRectUnion(r1: $SDK8, r2: $SDK8): $SDK8 { return callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 2836722474876992, undefined, [r1, r2]); }
 
 /**
  * func CGSizeApplyAffineTransform(_ size: CGSize, _ t: CGAffineTransform) -> CGSize
  * @availability iOS 2.0+
  */
-export function CGSizeApplyAffineTransform(size: $SDK10, t: _CoreFoundation_CGAffineTransform): $SDK10 { return callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 1715940269304052, undefined, [size, t]); }
+export function CGSizeApplyAffineTransform(size: $SDK10, t: _CoreFoundation_CGAffineTransform): $SDK10 { return callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 1715940269304052, undefined, [size, t]); }
 
 /**
  * func CGSizeCreateDictionaryRepresentation(_ size: CGSize) -> CFDictionary
  * @availability iOS 2.0+
  */
-export function CGSizeCreateDictionaryRepresentation(size: $SDK10): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_067acaa3e5f56b46", 197671796734558, undefined, [size]); }
+export function CGSizeCreateDictionaryRepresentation(size: $SDK10): _CoreFoundation_CFDictionary { return callSDK<_CoreFoundation_CFDictionary>("CoreGraphics_d968214ecc684fb6", 197671796734558, undefined, [size]); }
 
 /**
  * func CGSizeEqualToSize(_ size1: CGSize, _ size2: CGSize) -> Bool
  * @availability iOS 2.0+
  */
-export function CGSizeEqualToSize(size1: $SDK10, size2: $SDK10): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 2856496969537238, undefined, [size1, size2]); }
+export function CGSizeEqualToSize(size1: $SDK10, size2: $SDK10): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 2856496969537238, undefined, [size1, size2]); }
 
 /** func CGSizeMake(_ width: CGFloat, _ height: CGFloat) -> CGSize */
-export function CGSizeMake(width: number, height: number): $SDK10 { return callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 1346767636991793, undefined, [width, height]); }
+export function CGSizeMake(width: number, height: number): $SDK10 { return callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 1346767636991793, undefined, [width, height]); }
 
 /**
  * func CGSizeMakeWithDictionaryRepresentation(_ dict: CFDictionary, _ size: UnsafeMutablePointer<CGSize>) -> Bool
  * @availability iOS 2.0+
  */
-export function CGSizeMakeWithDictionaryRepresentation(dict: _CoreFoundation_CFDictionary, size: $SDK2): boolean { return callSDK<boolean>("CoreGraphics_067acaa3e5f56b46", 3705350089730052, undefined, [dict, size]); }
+export function CGSizeMakeWithDictionaryRepresentation(dict: _CoreFoundation_CFDictionary, size: $SDK2): boolean { return callSDK<boolean>("CoreGraphics_d968214ecc684fb6", 3705350089730052, undefined, [dict, size]); }
 
 /** func CGVectorMake(_ dx: CGFloat, _ dy: CGFloat) -> CGVector */
-export function CGVectorMake(dx: number, dy: number): $SDK44 { return callSDK<$SDK44>("CoreGraphics_067acaa3e5f56b46", 155002610831817, undefined, [dx, dy]); }
+export function CGVectorMake(dx: number, dy: number): $SDK44 { return callSDK<$SDK44>("CoreGraphics_d968214ecc684fb6", 155002610831817, undefined, [dx, dy]); }
 
 /**
  * func j0(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function j0(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2144883804576954, undefined, [x]); }
+export function j0(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2144883804576954, undefined, [x]); }
 
 /**
  * func j1(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function j1(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 83381974926179, undefined, [x]); }
+export function j1(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 83381974926179, undefined, [x]); }
 
 /**
  * func jn(_ n: Int, _ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function jn(n: number, x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2103948018890314, undefined, [n, x]); }
+export function jn(n: number, x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2103948018890314, undefined, [n, x]); }
 
 /**
  * func y0(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function y0(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 692066211560630, undefined, [x]); }
+export function y0(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 692066211560630, undefined, [x]); }
 
 /**
  * func y1(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function y1(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1539787796131451, undefined, [x]); }
+export function y1(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1539787796131451, undefined, [x]); }
 
 /**
  * func yn(_ n: Int, _ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function yn(n: number, x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3454537937976859, undefined, [n, x]); }
+export function yn(n: number, x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3454537937976859, undefined, [n, x]); }
 
 /**
  * func cos(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function cos(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1286211597912644, undefined, [x]); }
+export function cos(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1286211597912644, undefined, [x]); }
 
 /**
  * func erf(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function erf(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3520328184785994, undefined, [x]); }
+export function erf(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3520328184785994, undefined, [x]); }
 
 /**
  * func exp(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function exp(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2353229726260228, undefined, [x]); }
+export function exp(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2353229726260228, undefined, [x]); }
 
 /**
  * func log(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function log(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 837592063097501, undefined, [x]); }
+export function log(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 837592063097501, undefined, [x]); }
 
 /**
  * func pow(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function pow(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2119781042623090, undefined, [lhs, rhs]); }
+export function pow(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2119781042623090, undefined, [lhs, rhs]); }
 
 /**
  * func sin(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function sin(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 423040329043222, undefined, [x]); }
+export function sin(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 423040329043222, undefined, [x]); }
 
 /**
  * func tan(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function tan(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2088089203308555, undefined, [x]); }
+export function tan(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2088089203308555, undefined, [x]); }
 
 /**
  * func acos(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function acos(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1187909585221089, undefined, [x]); }
+export function acos(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1187909585221089, undefined, [x]); }
 
 /**
  * func asin(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function asin(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3722744763916374, undefined, [x]); }
+export function asin(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3722744763916374, undefined, [x]); }
 
 /**
  * func atan(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function atan(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1387533884365919, undefined, [x]); }
+export function atan(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1387533884365919, undefined, [x]); }
 
 /**
  * func cbrt(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function cbrt(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1711339849001331, undefined, [x]); }
+export function cbrt(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1711339849001331, undefined, [x]); }
 
 /**
  * func cosh(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function cosh(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2007019722374549, undefined, [x]); }
+export function cosh(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2007019722374549, undefined, [x]); }
 
 /**
  * func erfc(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function erfc(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3449732885285030, undefined, [x]); }
+export function erfc(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3449732885285030, undefined, [x]); }
 
 /**
  * func exp2(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function exp2(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4178787100307391, undefined, [x]); }
+export function exp2(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4178787100307391, undefined, [x]); }
 
 /**
  * func fdim(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function fdim(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3712683650230894, undefined, [lhs, rhs]); }
+export function fdim(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3712683650230894, undefined, [lhs, rhs]); }
 
 /**
  * func fmax(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function fmax(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3484990510187058, undefined, [lhs, rhs]); }
+export function fmax(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3484990510187058, undefined, [lhs, rhs]); }
 
 /**
  * func fmin(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function fmin(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2742260806546450, undefined, [lhs, rhs]); }
+export function fmin(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2742260806546450, undefined, [lhs, rhs]); }
 
 /**
  * func log2(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function log2(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1646423517013891, undefined, [x]); }
+export function log2(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1646423517013891, undefined, [x]); }
 
 /**
  * func logb(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function logb(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 507268408121508, undefined, [x]); }
+export function logb(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 507268408121508, undefined, [x]); }
 
 /**
  * func rint(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function rint(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1970325741468068, undefined, [x]); }
+export function rint(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1970325741468068, undefined, [x]); }
 
 /**
  * func sinh(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function sinh(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 772699490276596, undefined, [x]); }
+export function sinh(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 772699490276596, undefined, [x]); }
 
 /**
  * func tanh(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function tanh(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 351885055276693, undefined, [x]); }
+export function tanh(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 351885055276693, undefined, [x]); }
 
 /**
  * func acosh(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function acosh(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 4006323216037001, undefined, [x]); }
+export function acosh(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 4006323216037001, undefined, [x]); }
 
 /**
  * func asinh(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function asinh(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3339773783799385, undefined, [x]); }
+export function asinh(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3339773783799385, undefined, [x]); }
 
 /**
  * func atan2(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function atan2(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 3050518893026477, undefined, [lhs, rhs]); }
+export function atan2(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 3050518893026477, undefined, [lhs, rhs]); }
 
 /**
  * func atanh(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function atanh(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 794886351229949, undefined, [x]); }
+export function atanh(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 794886351229949, undefined, [x]); }
 
 /**
  * func expm1(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function expm1(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2320277058174141, undefined, [x]); }
+export function expm1(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2320277058174141, undefined, [x]); }
 
 /**
  * func hypot(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function hypot(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1259803813983579, undefined, [lhs, rhs]); }
+export function hypot(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1259803813983579, undefined, [lhs, rhs]); }
 
 /**
  * func ilogb(_ x: CGFloat) -> Int
  * @availability iOS 7.0+
  */
-export function ilogb(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 651248384147456, undefined, [x]); }
+export function ilogb(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 651248384147456, undefined, [x]); }
 
 /**
  * func ldexp(_ x: CGFloat, _ n: Int) -> CGFloat
  * @availability iOS 7.0+
  */
-export function ldexp(x: number, n: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2713205116792871, undefined, [x, n]); }
+export function ldexp(x: number, n: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2713205116792871, undefined, [x, n]); }
 
 /**
  * func log10(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function log10(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2275083607579030, undefined, [x]); }
+export function log10(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2275083607579030, undefined, [x]); }
 
 /**
  * func log1p(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function log1p(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1737430955345707, undefined, [x]); }
+export function log1p(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1737430955345707, undefined, [x]); }
 
 /**
  * func lgamma(_ x: CGFloat) -> (CGFloat, Int)
  * @availability iOS 7.0+
  */
-export function lgamma(x: number): [number, number] { return callSDK<[number, number]>("CoreGraphics_067acaa3e5f56b46", 515238445549591, undefined, [x]); }
+export function lgamma(x: number): [number, number] { return callSDK<[number, number]>("CoreGraphics_d968214ecc684fb6", 515238445549591, undefined, [x]); }
 
 /**
  * func remquo(_ x: CGFloat, _ y: CGFloat) -> (CGFloat, Int)
  * @availability iOS 7.0+
  */
-export function remquo(x: number, y: number): [number, number] { return callSDK<[number, number]>("CoreGraphics_067acaa3e5f56b46", 66140693254428, undefined, [x, y]); }
+export function remquo(x: number, y: number): [number, number] { return callSDK<[number, number]>("CoreGraphics_d968214ecc684fb6", 66140693254428, undefined, [x, y]); }
 
 /**
  * func tgamma(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function tgamma(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 2184960237464230, undefined, [x]); }
+export function tgamma(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 2184960237464230, undefined, [x]); }
 
 /**
  * func copysign(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function copysign(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1007150258371762, undefined, [lhs, rhs]); }
+export function copysign(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 1007150258371762, undefined, [lhs, rhs]); }
 
 /**
  * func nearbyint(_ x: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function nearbyint(x: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 678368037038200, undefined, [x]); }
+export function nearbyint(x: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 678368037038200, undefined, [x]); }
 
 /**
  * func nextafter(_ lhs: CGFloat, _ rhs: CGFloat) -> CGFloat
  * @availability iOS 7.0+
  */
-export function nextafter(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 910704837054466, undefined, [lhs, rhs]); }
+export function nextafter(lhs: number, rhs: number): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 910704837054466, undefined, [lhs, rhs]); }
 
 /**
  * let CGAffineTransformIdentity: CGAffineTransform
  * @availability iOS 2.0+
  */
-export const CGAffineTransformIdentity: _CoreFoundation_CGAffineTransform = callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_067acaa3e5f56b46", 2237227011387874, undefined, []);
+export const CGAffineTransformIdentity: _CoreFoundation_CGAffineTransform = callSDK<_CoreFoundation_CGAffineTransform>("CoreGraphics_d968214ecc684fb6", 2237227011387874, undefined, []);
 
 /**
  * let CGPointZero: CGPoint
  * @availability iOS 2.0+
  */
-export const CGPointZero: $SDK9 = callSDK<$SDK9>("CoreGraphics_067acaa3e5f56b46", 3965442929912893, undefined, []);
+export const CGPointZero: $SDK9 = callSDK<$SDK9>("CoreGraphics_d968214ecc684fb6", 3965442929912893, undefined, []);
 
 /**
  * let CGRectInfinite: CGRect
  * @availability iOS 2.0+
  */
-export const CGRectInfinite: $SDK8 = callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 954001976215840, undefined, []);
+export const CGRectInfinite: $SDK8 = callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 954001976215840, undefined, []);
 
 /**
  * let CGRectNull: CGRect
  * @availability iOS 2.0+
  */
-export const CGRectNull: $SDK8 = callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 3706878326102353, undefined, []);
+export const CGRectNull: $SDK8 = callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 3706878326102353, undefined, []);
 
 /**
  * let CGRectZero: CGRect
  * @availability iOS 2.0+
  */
-export const CGRectZero: $SDK8 = callSDK<$SDK8>("CoreGraphics_067acaa3e5f56b46", 1210794382855047, undefined, []);
+export const CGRectZero: $SDK8 = callSDK<$SDK8>("CoreGraphics_d968214ecc684fb6", 1210794382855047, undefined, []);
 
 /**
  * let CGSizeZero: CGSize
  * @availability iOS 2.0+
  */
-export const CGSizeZero: $SDK10 = callSDK<$SDK10>("CoreGraphics_067acaa3e5f56b46", 1367130019744665, undefined, []);
+export const CGSizeZero: $SDK10 = callSDK<$SDK10>("CoreGraphics_d968214ecc684fb6", 1367130019744665, undefined, []);
 
 /**
  * var kCGBitmapByteOrder16Host: CGBitmapInfo { get }
  * @deprecated iOS 100000.0
  */
-export const kCGBitmapByteOrder16Host: CGBitmapInfo = callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 2539633987893233, undefined, []);
+export const kCGBitmapByteOrder16Host: CGBitmapInfo = callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 2539633987893233, undefined, []);
 
 /**
  * var kCGBitmapByteOrder32Host: CGBitmapInfo { get }
  * @deprecated iOS 100000.0
  */
-export const kCGBitmapByteOrder32Host: CGBitmapInfo = callSDK<CGBitmapInfo>("CoreGraphics_067acaa3e5f56b46", 2047238505578001, undefined, []);
+export const kCGBitmapByteOrder32Host: CGBitmapInfo = callSDK<CGBitmapInfo>("CoreGraphics_d968214ecc684fb6", 2047238505578001, undefined, []);
 
 /** let kCGColorSpaceExtendedRange: CFString */
-export const kCGColorSpaceExtendedRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 884456210789014, undefined, []);
+export const kCGColorSpaceExtendedRange: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 884456210789014, undefined, []);
 
 /**
  * var kCGDefaultHDRImageContentHeadroom: Float
  * @availability iOS 18.0+
  */
 export const kCGDefaultHDRImageContentHeadroom = {
-  get value(): number { return callSDK<number>("CoreGraphics_067acaa3e5f56b46", 798765772475002, undefined, []); },
-  set value(value: number) { callSDK<void>("CoreGraphics_067acaa3e5f56b46", 1640071198971126, undefined, [value]); }
+  get value(): number { return callSDK<number>("CoreGraphics_d968214ecc684fb6", 798765772475002, undefined, []); },
+  set value(value: number) { callSDK<void>("CoreGraphics_d968214ecc684fb6", 1640071198971126, undefined, [value]); }
 };
 
 /**
  * let kCGEXRToneMappingGammaDefog: CFString
  * @availability iOS 18.0+
  */
-export const kCGEXRToneMappingGammaDefog: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2798183963081298, undefined, []);
+export const kCGEXRToneMappingGammaDefog: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2798183963081298, undefined, []);
 
 /**
  * let kCGEXRToneMappingGammaExposure: CFString
  * @availability iOS 18.0+
  */
-export const kCGEXRToneMappingGammaExposure: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3838118556873076, undefined, []);
+export const kCGEXRToneMappingGammaExposure: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3838118556873076, undefined, []);
 
 /**
  * let kCGEXRToneMappingGammaKneeHigh: CFString
  * @availability iOS 18.0+
  */
-export const kCGEXRToneMappingGammaKneeHigh: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1204455050963025, undefined, []);
+export const kCGEXRToneMappingGammaKneeHigh: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1204455050963025, undefined, []);
 
 /**
  * let kCGEXRToneMappingGammaKneeLow: CFString
  * @availability iOS 18.0+
  */
-export const kCGEXRToneMappingGammaKneeLow: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3126521904539854, undefined, []);
+export const kCGEXRToneMappingGammaKneeLow: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3126521904539854, undefined, []);
 
 /** var kCGFontIndexInvalid: CGFontIndex { get } */
-export const kCGFontIndexInvalid: number = callSDK<number>("CoreGraphics_067acaa3e5f56b46", 336373309994734, undefined, []);
+export const kCGFontIndexInvalid: number = callSDK<number>("CoreGraphics_d968214ecc684fb6", 336373309994734, undefined, []);
 
 /** var kCGFontIndexMax: CGFontIndex { get } */
-export const kCGFontIndexMax: number = callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1111973053094409, undefined, []);
+export const kCGFontIndexMax: number = callSDK<number>("CoreGraphics_d968214ecc684fb6", 1111973053094409, undefined, []);
 
 /** var kCGGlyphMax: CGFontIndex { get } */
-export const kCGGlyphMax: number = callSDK<number>("CoreGraphics_067acaa3e5f56b46", 1068853835005371, undefined, []);
+export const kCGGlyphMax: number = callSDK<number>("CoreGraphics_d968214ecc684fb6", 1068853835005371, undefined, []);
 
 /**
  * let kCGPDFContextAccessPermissions: CFString
  * @availability iOS 11.0+
  */
-export const kCGPDFContextAccessPermissions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1908498815590074, undefined, []);
+export const kCGPDFContextAccessPermissions: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1908498815590074, undefined, []);
 
 /**
  * let kCGPDFContextAllowsCopying: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextAllowsCopying: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1998087255308549, undefined, []);
+export const kCGPDFContextAllowsCopying: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1998087255308549, undefined, []);
 
 /**
  * let kCGPDFContextAllowsPrinting: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextAllowsPrinting: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2172450794826563, undefined, []);
+export const kCGPDFContextAllowsPrinting: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2172450794826563, undefined, []);
 
 /**
  * let kCGPDFContextArtBox: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextArtBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2704804175970357, undefined, []);
+export const kCGPDFContextArtBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2704804175970357, undefined, []);
 
 /**
  * let kCGPDFContextAuthor: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextAuthor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3851348263437432, undefined, []);
+export const kCGPDFContextAuthor: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3851348263437432, undefined, []);
 
 /**
  * let kCGPDFContextBleedBox: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextBleedBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1078848684358594, undefined, []);
+export const kCGPDFContextBleedBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1078848684358594, undefined, []);
 
 /**
  * let kCGPDFContextCreateLinearizedPDF: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFContextCreateLinearizedPDF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1693027739920518, undefined, []);
+export const kCGPDFContextCreateLinearizedPDF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1693027739920518, undefined, []);
 
 /**
  * let kCGPDFContextCreatePDFA: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFContextCreatePDFA: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3830475070270361, undefined, []);
+export const kCGPDFContextCreatePDFA: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3830475070270361, undefined, []);
 
 /**
  * let kCGPDFContextCreator: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextCreator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 130964905294279, undefined, []);
+export const kCGPDFContextCreator: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 130964905294279, undefined, []);
 
 /**
  * let kCGPDFContextCropBox: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextCropBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1800132219829049, undefined, []);
+export const kCGPDFContextCropBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1800132219829049, undefined, []);
 
 /**
  * let kCGPDFContextEncryptionKeyLength: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextEncryptionKeyLength: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 925416048281968, undefined, []);
+export const kCGPDFContextEncryptionKeyLength: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 925416048281968, undefined, []);
 
 /**
  * let kCGPDFContextKeywords: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextKeywords: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 4371429296001178, undefined, []);
+export const kCGPDFContextKeywords: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 4371429296001178, undefined, []);
 
 /**
  * let kCGPDFContextMediaBox: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextMediaBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1748590668411458, undefined, []);
+export const kCGPDFContextMediaBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1748590668411458, undefined, []);
 
 /**
  * let kCGPDFContextOutputIntent: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFContextOutputIntent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 560021882067214, undefined, []);
+export const kCGPDFContextOutputIntent: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 560021882067214, undefined, []);
 
 /**
  * let kCGPDFContextOutputIntents: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFContextOutputIntents: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 70641070288454, undefined, []);
+export const kCGPDFContextOutputIntents: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 70641070288454, undefined, []);
 
 /**
  * let kCGPDFContextOwnerPassword: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextOwnerPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 271976285038019, undefined, []);
+export const kCGPDFContextOwnerPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 271976285038019, undefined, []);
 
 /**
  * let kCGPDFContextSubject: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextSubject: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1943965765112565, undefined, []);
+export const kCGPDFContextSubject: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1943965765112565, undefined, []);
 
 /**
  * let kCGPDFContextTitle: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3473294929538447, undefined, []);
+export const kCGPDFContextTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3473294929538447, undefined, []);
 
 /**
  * let kCGPDFContextTrimBox: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextTrimBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3823239469517448, undefined, []);
+export const kCGPDFContextTrimBox: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3823239469517448, undefined, []);
 
 /**
  * let kCGPDFContextUserPassword: CFString
  * @availability iOS 2.0+
  */
-export const kCGPDFContextUserPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2134196824046418, undefined, []);
+export const kCGPDFContextUserPassword: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2134196824046418, undefined, []);
 
 /**
  * let kCGPDFOutlineChildren: CFString
  * @availability iOS 11.0+
  */
-export const kCGPDFOutlineChildren: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1662238428110085, undefined, []);
+export const kCGPDFOutlineChildren: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1662238428110085, undefined, []);
 
 /**
  * let kCGPDFOutlineDestination: CFString
  * @availability iOS 11.0+
  */
-export const kCGPDFOutlineDestination: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3344035786180256, undefined, []);
+export const kCGPDFOutlineDestination: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3344035786180256, undefined, []);
 
 /**
  * let kCGPDFOutlineDestinationRect: CFString
  * @availability iOS 11.0+
  */
-export const kCGPDFOutlineDestinationRect: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 894097468573172, undefined, []);
+export const kCGPDFOutlineDestinationRect: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 894097468573172, undefined, []);
 
 /**
  * let kCGPDFOutlineTitle: CFString
  * @availability iOS 11.0+
  */
-export const kCGPDFOutlineTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1999469861294724, undefined, []);
+export const kCGPDFOutlineTitle: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1999469861294724, undefined, []);
 
 /**
  * let kCGPDFXDestinationOutputProfile: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFXDestinationOutputProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3522826516517839, undefined, []);
+export const kCGPDFXDestinationOutputProfile: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3522826516517839, undefined, []);
 
 /**
  * let kCGPDFXInfo: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFXInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 2406670866707924, undefined, []);
+export const kCGPDFXInfo: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 2406670866707924, undefined, []);
 
 /**
  * let kCGPDFXOutputCondition: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFXOutputCondition: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1950163031671313, undefined, []);
+export const kCGPDFXOutputCondition: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1950163031671313, undefined, []);
 
 /**
  * let kCGPDFXOutputConditionIdentifier: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFXOutputConditionIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 903174231742431, undefined, []);
+export const kCGPDFXOutputConditionIdentifier: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 903174231742431, undefined, []);
 
 /**
  * let kCGPDFXOutputIntentSubtype: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFXOutputIntentSubtype: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 491002142034638, undefined, []);
+export const kCGPDFXOutputIntentSubtype: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 491002142034638, undefined, []);
 
 /**
  * let kCGPDFXRegistryName: CFString
  * @availability iOS 14.0+
  */
-export const kCGPDFXRegistryName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 1522291336285609, undefined, []);
+export const kCGPDFXRegistryName: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 1522291336285609, undefined, []);
 
 /**
  * let kCGSkipBoostToHDR: CFString
  * @availability iOS 18.0+
  */
-export const kCGSkipBoostToHDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 4405036520151747, undefined, []);
+export const kCGSkipBoostToHDR: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 4405036520151747, undefined, []);
 
 /**
  * let kCGUse100nitsHLGOOTF: CFString
  * @availability iOS 18.0+
  */
-export const kCGUse100nitsHLGOOTF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3732336621142586, undefined, []);
+export const kCGUse100nitsHLGOOTF: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3732336621142586, undefined, []);
 
 /**
  * let kCGUseBT1886ForCoreVideoGamma: CFString
  * @availability iOS 18.0+
  */
-export const kCGUseBT1886ForCoreVideoGamma: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 3597931509831123, undefined, []);
+export const kCGUseBT1886ForCoreVideoGamma: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 3597931509831123, undefined, []);
 
 /**
  * let kCGUseLegacyHDREcosystem: CFString
  * @availability iOS 18.1+
  */
-export const kCGUseLegacyHDREcosystem: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_067acaa3e5f56b46", 16546253314905, undefined, []);
+export const kCGUseLegacyHDREcosystem: _CoreFoundation_CFString = callSDK<_CoreFoundation_CFString>("CoreGraphics_d968214ecc684fb6", 16546253314905, undefined, []);
 
 /** var CG_HDR_BT_2100: Int32 { get } */
-export const CG_HDR_BT_2100: number = callSDK<number>("CoreGraphics_067acaa3e5f56b46", 193774658695662, undefined, []);
+export const CG_HDR_BT_2100: number = callSDK<number>("CoreGraphics_d968214ecc684fb6", 193774658695662, undefined, []);
 
-registerSDKClass("CoreFoundation.CGAffineTransform", CGAffineTransform, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"decomposed":{"id":69232443113294},"translatedBy":{"id":2421755749405684},"concatenating":{"id":1498569136279764},"rotated":{"id":1328331993977720},"inverted":{"id":3540666866824928},"scaledBy":{"id":2558123576101995}} }, true);
-registerSDKClass("CoreGraphics.CGBitmapParameters", CGBitmapParameters, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"subscriptDynamicMember":{"id":3859234408420229},"subscriptDynamicMember56275":{"id":1935167449741040}} });
-registerSDKClass("CoreGraphics.CGColor", CGColor, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"copy":{"id":2771267744490633},"converted":{"id":3024985938064130},"copyAlpha":{"id":3877131126278207}} });
-registerSDKClass("CoreGraphics.CGColorBufferFormat", CGColorBufferFormat, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGColorConversionInfo", CGColorConversionInfo, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"convert":{"id":3874007724218214}} });
-registerSDKClass("CoreGraphics.CGColorDataFormat", CGColorDataFormat, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGColorSpace", CGColorSpace, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"copyICCData":{"id":3150588604579859},"copyPropertyList":{"id":4437034977699612},"isHDR":{"id":319794699100198}} });
-registerSDKClass("CoreGraphics.CGContentInfo", CGContentInfo, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGContentToneMappingInfo", CGContentToneMappingInfo, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGContentToneMappingInfo.DefaultOptions", CGContentToneMappingInfo_DefaultOptions, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGContentToneMappingInfo.EXRGammaOptions", CGContentToneMappingInfo_EXRGammaOptions, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGContentToneMappingInfo.ITURecommendedOptions", CGContentToneMappingInfo_ITURecommendedOptions, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGContentToneMappingInfo.LightLevel", CGContentToneMappingInfo_LightLevel, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGContext", CGContext, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"makeImage":{"id":3979442122575627},"addEllipse":{"id":4061026306368454},"addPath":{"id":2793689526918497},"addRect":{"id":2951994413360860},"beginPage":{"id":3811239562099021},"beginPath":{"id":289940540200891},"beginTransparencyLayerAuxiliaryInfo":{"id":2077935481728199},"beginTransparencyLayerInAuxiliaryInfo":{"id":2948036597579820},"clear":{"id":1550813209303903},"clipToMask":{"id":202531421449733},"clipTo":{"id":3657159093418677},"closePath":{"id":2020242992953137},"concatenate":{"id":2760921298002950},"convertToDeviceSpace":{"id":1116015302443931},"convertToUserSpace":{"id":1954031670968791},"convertToDeviceSpace18191":{"id":585825279824039},"convertToUserSpace42604":{"id":4085036109409528},"convertToDeviceSpace39714":{"id":145859561480853},"convertToUserSpace3229":{"id":1793118878516550},"drawLinearGradient":{"id":751103944392899},"drawPDFPage":{"id":1714791319150051},"drawPath":{"id":1499554328803734},"drawRadialGradient":{"id":41685302086318},"drawShading":{"id":1709743467516915},"endPage":{"id":3211545821443206},"endTransparencyLayer":{"id":3294979476827853},"fillEllipse":{"id":103365616061072},"fill":{"id":3059657859197435},"flush":{"id":1430873315433459},"pathContains":{"id":3658338275169505},"replacePathWithStrokedPath":{"id":2153658165296622},"resetClip":{"id":3552074708674952},"restoreGState":{"id":2362108830120981},"rotate":{"id":3628833557476762},"saveGState":{"id":3129959619300555},"scaleBy":{"id":321999121214493},"setAllowsAntialiasing":{"id":2832127586707916},"setAllowsFontSmoothing":{"id":3851903688332},"setAllowsFontSubpixelPositioning":{"id":2711065650844474},"setAllowsFontSubpixelQuantization":{"id":2118947345913247},"setAlpha":{"id":1462809152555282},"setBlendMode":{"id":4020182139876622},"setFillColorCyanMagentaYellowBlackAlpha":{"id":3160487775060883},"setStrokeColorCyanMagentaYellowBlackAlpha":{"id":3355786641302857},"setCharacterSpacing":{"id":1523056866118810},"setEDRTargetHeadroom":{"id":1012961059017298},"setFillColor":{"id":1232099319320477},"setFillColorSpace":{"id":3590604794526946},"setFillColor49658":{"id":1859466035728351},"setFillPattern":{"id":1251640031940046},"setFlatness":{"id":3156498815682184},"setFont":{"id":1348486678486139},"setFontSize":{"id":2046828990831866},"setFillColorGrayAlpha":{"id":1859886959606025},"setStrokeColorGrayAlpha":{"id":4349019850517675},"setLineCap":{"id":165999459133359},"setLineJoin":{"id":2123383652642723},"setLineWidth":{"id":888845189416938},"setMiterLimit":{"id":376902821331895},"setPatternPhase":{"id":2814105797781140},"setFillColorRedGreenBlueAlpha":{"id":1849936819142136},"setStrokeColorRedGreenBlueAlpha":{"id":1272518373340929},"setRenderingIntent":{"id":841119033292716},"setShadowOffsetBlur":{"id":4482773564739098},"setShadowOffsetBlurColor":{"id":4291434776176439},"setShouldAntialias":{"id":3630583307013321},"setShouldSmoothFonts":{"id":3000654307427809},"setShouldSubpixelPositionFonts":{"id":2015260926789144},"setShouldSubpixelQuantizeFonts":{"id":1199402065221721},"setStrokeColor":{"id":4063093730019424},"setStrokeColorSpace":{"id":4041818766662054},"setStrokeColor46187":{"id":2346873952248988},"setStrokePattern":{"id":3683309702467524},"setTextDrawingMode":{"id":1603528009547902},"strokeEllipse":{"id":1905871360520769},"strokePath":{"id":2854290969710958},"stroke":{"id":1277570888646064},"strokeWidth":{"id":3436259388340355},"synchronize":{"id":593572715855090},"synchronizeAttributes":{"id":1584873290809099},"translateBy":{"id":1536539662872178},"addDestination":{"id":45759650360425},"addDocumentMetadata":{"id":4063796354444991},"addStructureTreeRootChild":{"id":1148345958835848},"beginMarkedContentSequence":{"id":2673271581231649},"beginNonStructuralMarkedContentSequence":{"id":1931537765003001},"beginObjectReference":{"id":1059825386760991},"beginPDFPage":{"id":1415384169684402},"closePDF":{"id":2428565812294121},"endMarkedContentSequence":{"id":4178139412784169},"endObjectReference":{"id":4363721871258893},"endPDFPage":{"id":3011537692852296},"setDestination":{"id":2780746157715256},"setURL":{"id":1787232646141507},"showGlyphs":{"id":4265485343480600},"setLineDash":{"id":1994782276659931},"addQuadCurve":{"id":1316248737513358},"strokeLineSegments":{"id":4442840741794903},"clipTo99427":{"id":2012485012298089},"clipUsing":{"id":3363372928032589},"drawAt":{"id":1645503941315811},"drawInByOptions":{"id":2671659200684925},"drawInByTiling":{"id":4337966433128557},"drawIn":{"id":1813327025325803},"fill95899":{"id":828281727067045},"move":{"id":4305685327590121},"addArcTangent1EndTangent2EndRadius":{"id":390451047125789},"addArcCenterRadiusStartAngleEndAngleClockwise":{"id":296020502395160},"addLine":{"id":3642745512831398},"addCurve":{"id":3768561415605908},"addLines":{"id":1401253348945336},"addRects":{"id":2944839179786656},"fillPath":{"id":1935402916309175}} });
-registerSDKClass("CoreGraphics.CGContext.AuxiliaryInfo", CGContext_AuxiliaryInfo, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGDataConsumer", CGDataConsumer, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGDataConsumerCallbacks", CGDataConsumerCallbacks, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGDataProvider", CGDataProvider, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGDataProviderDirectCallbacks", CGDataProviderDirectCallbacks, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGDataProviderSequentialCallbacks", CGDataProviderSequentialCallbacks, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGFont", CGFont, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"canCreatePostScriptSubset":{"id":2266496044423522},"name":{"id":1567851431558469},"table":{"id":3721951647171882},"copy":{"id":3373933509719759},"createPostScriptEncoding":{"id":2379819703397294},"createPostScriptSubset":{"id":1822729272318701},"getGlyphAdvances":{"id":2226473303760741},"getGlyphBBoxes":{"id":1701501208458088},"getGlyphWithGlyphName":{"id":2397723717203184}} });
-registerSDKClass("CoreGraphics.CGFunction", CGFunction, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGFunctionCallbacks", CGFunctionCallbacks, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGGradient", CGGradient, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGImage", CGImage, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"copy":{"id":1033860006681967},"copyWithCalculatedHDRStats":{"id":494182012378495},"copyColorSpace":{"id":11965294772654},"copyContentAverageLightLevel":{"id":2341449770714483},"cropping":{"id":581401001686486},"masking":{"id":510509898976412},"copyMaskingColorComponents":{"id":2972989951692911}} });
-registerSDKClass("CoreGraphics.CGLayer", CGLayer, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGPath", CGPath, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"applyWithBlock":{"id":2122764219052891,"hints":[{"callback":{"out":[]}}]},"copy":{"id":3588918424661693},"copyUsing":{"id":1567197829887969},"mutableCopy":{"id":242794508288571},"mutableCopyUsing":{"id":4369227865864433},"isRect":{"id":2638077495200705},"intersects":{"id":3532211071233693},"normalized":{"id":4417818922599227},"subtracting":{"id":100020940098102},"intersection":{"id":1812625534962210},"lineSubtracting":{"id":1863509361803876},"lineIntersection":{"id":3657040747256480},"componentsSeparated":{"id":3414986042668721},"symmetricDifference":{"id":3099272791017667},"copyDashingWithPhaseLengthsTransform":{"id":2766912849871260},"copyStrokingWithWidthLineCapLineJoinMiterLimitTransform":{"id":564413091197942},"union":{"id":4476230351609165},"contains":{"id":3033239314754728},"flattened":{"id":713695623694563}} });
-registerSDKClass("CoreGraphics.CGMutablePath", CGMutablePath, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"closeSubpath":{"id":752098700104354},"addPath":{"id":2376036895475995},"addEllipse":{"id":413337399125132},"addQuadCurve":{"id":1400075504023608},"addRelativeArc":{"id":381229126063859},"addRoundedRect":{"id":1384059705992631},"move":{"id":1907229836436030},"addArcTangent1EndTangent2EndRadiusTransform":{"id":3558706260380970},"addArcCenterRadiusStartAngleEndAngleClockwiseTransform":{"id":2565078178617086},"addLine":{"id":3460982988673361},"addRect":{"id":2268268839832680},"addCurve":{"id":34260144661321},"addLines":{"id":1697049626802685},"addRects":{"id":3211750739986144}} });
-registerSDKClass("CoreGraphics.CGPathElement", CGPathElement, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGPattern", CGPattern, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGPatternCallbacks", CGPatternCallbacks, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGPDFDocument", CGPDFDocument, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"page":{"id":1841494829955023},"getVersion":{"id":1318931545224099},"unlockWithPassword":{"id":3939420009385802}} });
-registerSDKClass("CoreGraphics.CGPDFMarkedContentItem", CGPDFMarkedContentItem, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreGraphics.CGPDFPage", CGPDFPage, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"getBoxRect":{"id":2172932711698483},"getDrawingTransform":{"id":3818578704219788}} });
-registerSDKClass("CoreGraphics.CGPDFStructureElement", CGPDFStructureElement, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"addMarkedContentItem":{"id":4441006715941030},"addChild":{"id":4055833948747701}} });
-registerSDKClass("CoreGraphics.CGPDFStructureElement.Attributes", CGPDFStructureElement_Attributes, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreFoundation.CGPoint", CGPoint, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"equalTo":{"id":2654678990730906},"applying":{"id":1152377089475976}} }, true);
-registerSDKClass("CoreFoundation.CGRect", CGRect, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"intersects":{"id":739947050122612},"intersection":{"id":1864627184643870},"union":{"id":2268766116526664},"divided":{"id":3270734625879029},"equalTo":{"id":4129537696747883},"insetBy":{"id":4177481330363732},"applying":{"id":4095932737121110},"contains":{"id":2756976831820350},"contains5598":{"id":1589042187194141},"offsetBy":{"id":979584145529257}} }, true);
-registerSDKClass("CoreGraphics.CGRenderingBufferProvider", CGRenderingBufferProvider, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreFoundation.CGAffineTransform", CGAffineTransform, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"decomposed":{"id":69232443113294},"translatedBy":{"id":2421755749405684},"concatenating":{"id":1498569136279764},"rotated":{"id":1328331993977720},"inverted":{"id":3540666866824928},"scaledBy":{"id":2558123576101995}} }, true);
+registerSDKClass("CoreGraphics.CGBitmapParameters", CGBitmapParameters, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"subscriptDynamicMember":{"id":3859234408420229},"subscriptDynamicMember56275":{"id":1935167449741040}} });
+registerSDKClass("CoreGraphics.CGColor", CGColor, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"copy":{"id":2771267744490633},"converted":{"id":3024985938064130},"copyAlpha":{"id":3877131126278207}} });
+registerSDKClass("CoreGraphics.CGColorBufferFormat", CGColorBufferFormat, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGColorConversionInfo", CGColorConversionInfo, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"convert":{"id":3874007724218214}} });
+registerSDKClass("CoreGraphics.CGColorDataFormat", CGColorDataFormat, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGColorSpace", CGColorSpace, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"copyICCData":{"id":3150588604579859},"copyPropertyList":{"id":4437034977699612},"isHDR":{"id":319794699100198}} });
+registerSDKClass("CoreGraphics.CGContentInfo", CGContentInfo, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGContentToneMappingInfo", CGContentToneMappingInfo, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGContentToneMappingInfo.DefaultOptions", CGContentToneMappingInfo_DefaultOptions, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGContentToneMappingInfo.EXRGammaOptions", CGContentToneMappingInfo_EXRGammaOptions, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGContentToneMappingInfo.ITURecommendedOptions", CGContentToneMappingInfo_ITURecommendedOptions, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGContentToneMappingInfo.LightLevel", CGContentToneMappingInfo_LightLevel, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGContext", CGContext, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"makeImage":{"id":3979442122575627},"addEllipse":{"id":4061026306368454},"addPath":{"id":2793689526918497},"addRect":{"id":2951994413360860},"beginPage":{"id":3811239562099021},"beginPath":{"id":289940540200891},"beginTransparencyLayerAuxiliaryInfo":{"id":2077935481728199},"beginTransparencyLayerInAuxiliaryInfo":{"id":2948036597579820},"clear":{"id":1550813209303903},"clipToMask":{"id":202531421449733},"clipTo":{"id":3657159093418677},"closePath":{"id":2020242992953137},"concatenate":{"id":2760921298002950},"convertToDeviceSpace":{"id":1116015302443931},"convertToUserSpace":{"id":1954031670968791},"convertToDeviceSpace18191":{"id":585825279824039},"convertToUserSpace42604":{"id":4085036109409528},"convertToDeviceSpace39714":{"id":145859561480853},"convertToUserSpace3229":{"id":1793118878516550},"drawLinearGradient":{"id":751103944392899},"drawPDFPage":{"id":1714791319150051},"drawPath":{"id":1499554328803734},"drawRadialGradient":{"id":41685302086318},"drawShading":{"id":1709743467516915},"endPage":{"id":3211545821443206},"endTransparencyLayer":{"id":3294979476827853},"fillEllipse":{"id":103365616061072},"fill":{"id":3059657859197435},"flush":{"id":1430873315433459},"pathContains":{"id":3658338275169505},"replacePathWithStrokedPath":{"id":2153658165296622},"resetClip":{"id":3552074708674952},"restoreGState":{"id":2362108830120981},"rotate":{"id":3628833557476762},"saveGState":{"id":3129959619300555},"scaleBy":{"id":321999121214493},"setAllowsAntialiasing":{"id":2832127586707916},"setAllowsFontSmoothing":{"id":3851903688332},"setAllowsFontSubpixelPositioning":{"id":2711065650844474},"setAllowsFontSubpixelQuantization":{"id":2118947345913247},"setAlpha":{"id":1462809152555282},"setBlendMode":{"id":4020182139876622},"setFillColorCyanMagentaYellowBlackAlpha":{"id":3160487775060883},"setStrokeColorCyanMagentaYellowBlackAlpha":{"id":3355786641302857},"setCharacterSpacing":{"id":1523056866118810},"setEDRTargetHeadroom":{"id":1012961059017298},"setFillColor":{"id":1232099319320477},"setFillColorSpace":{"id":3590604794526946},"setFillColor49658":{"id":1859466035728351},"setFillPattern":{"id":1251640031940046},"setFlatness":{"id":3156498815682184},"setFont":{"id":1348486678486139},"setFontSize":{"id":2046828990831866},"setFillColorGrayAlpha":{"id":1859886959606025},"setStrokeColorGrayAlpha":{"id":4349019850517675},"setLineCap":{"id":165999459133359},"setLineJoin":{"id":2123383652642723},"setLineWidth":{"id":888845189416938},"setMiterLimit":{"id":376902821331895},"setPatternPhase":{"id":2814105797781140},"setFillColorRedGreenBlueAlpha":{"id":1849936819142136},"setStrokeColorRedGreenBlueAlpha":{"id":1272518373340929},"setRenderingIntent":{"id":841119033292716},"setShadowOffsetBlur":{"id":4482773564739098},"setShadowOffsetBlurColor":{"id":4291434776176439},"setShouldAntialias":{"id":3630583307013321},"setShouldSmoothFonts":{"id":3000654307427809},"setShouldSubpixelPositionFonts":{"id":2015260926789144},"setShouldSubpixelQuantizeFonts":{"id":1199402065221721},"setStrokeColor":{"id":4063093730019424},"setStrokeColorSpace":{"id":4041818766662054},"setStrokeColor46187":{"id":2346873952248988},"setStrokePattern":{"id":3683309702467524},"setTextDrawingMode":{"id":1603528009547902},"strokeEllipse":{"id":1905871360520769},"strokePath":{"id":2854290969710958},"stroke":{"id":1277570888646064},"strokeWidth":{"id":3436259388340355},"synchronize":{"id":593572715855090},"synchronizeAttributes":{"id":1584873290809099},"translateBy":{"id":1536539662872178},"addDestination":{"id":45759650360425},"addDocumentMetadata":{"id":4063796354444991},"addStructureTreeRootChild":{"id":1148345958835848},"beginMarkedContentSequence":{"id":2673271581231649},"beginNonStructuralMarkedContentSequence":{"id":1931537765003001},"beginObjectReference":{"id":1059825386760991},"beginPDFPage":{"id":1415384169684402},"closePDF":{"id":2428565812294121},"endMarkedContentSequence":{"id":4178139412784169},"endObjectReference":{"id":4363721871258893},"endPDFPage":{"id":3011537692852296},"setDestination":{"id":2780746157715256},"setURL":{"id":1787232646141507},"showGlyphs":{"id":4265485343480600},"setLineDash":{"id":1994782276659931},"addQuadCurve":{"id":1316248737513358},"strokeLineSegments":{"id":4442840741794903},"clipTo99427":{"id":2012485012298089},"clipUsing":{"id":3363372928032589},"drawAt":{"id":1645503941315811},"drawInByOptions":{"id":2671659200684925},"drawInByTiling":{"id":4337966433128557},"drawIn":{"id":1813327025325803},"fill95899":{"id":828281727067045},"move":{"id":4305685327590121},"addArcTangent1EndTangent2EndRadius":{"id":390451047125789},"addArcCenterRadiusStartAngleEndAngleClockwise":{"id":296020502395160},"addLine":{"id":3642745512831398},"addCurve":{"id":3768561415605908},"addLines":{"id":1401253348945336},"addRects":{"id":2944839179786656},"fillPath":{"id":1935402916309175}} });
+registerSDKClass("CoreGraphics.CGContext.AuxiliaryInfo", CGContext_AuxiliaryInfo, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGDataConsumer", CGDataConsumer, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGDataConsumerCallbacks", CGDataConsumerCallbacks, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGDataProvider", CGDataProvider, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGDataProviderDirectCallbacks", CGDataProviderDirectCallbacks, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGDataProviderSequentialCallbacks", CGDataProviderSequentialCallbacks, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGFont", CGFont, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"canCreatePostScriptSubset":{"id":2266496044423522},"name":{"id":1567851431558469},"table":{"id":3721951647171882},"copy":{"id":3373933509719759},"createPostScriptEncoding":{"id":2379819703397294},"createPostScriptSubset":{"id":1822729272318701},"getGlyphAdvances":{"id":2226473303760741},"getGlyphBBoxes":{"id":1701501208458088},"getGlyphWithGlyphName":{"id":2397723717203184}} });
+registerSDKClass("CoreGraphics.CGFunction", CGFunction, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGFunctionCallbacks", CGFunctionCallbacks, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGGradient", CGGradient, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGImage", CGImage, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"copy":{"id":1033860006681967},"copyWithCalculatedHDRStats":{"id":494182012378495},"copyColorSpace":{"id":11965294772654},"copyContentAverageLightLevel":{"id":2341449770714483},"cropping":{"id":581401001686486},"masking":{"id":510509898976412},"copyMaskingColorComponents":{"id":2972989951692911}} });
+registerSDKClass("CoreGraphics.CGLayer", CGLayer, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGPath", CGPath, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"applyWithBlock":{"id":2122764219052891,"hints":[{"callback":{"out":[]}}]},"copy":{"id":3588918424661693},"copyUsing":{"id":1567197829887969},"mutableCopy":{"id":242794508288571},"mutableCopyUsing":{"id":4369227865864433},"isRect":{"id":2638077495200705},"intersects":{"id":3532211071233693},"normalized":{"id":4417818922599227},"subtracting":{"id":100020940098102},"intersection":{"id":1812625534962210},"lineSubtracting":{"id":1863509361803876},"lineIntersection":{"id":3657040747256480},"componentsSeparated":{"id":3414986042668721},"symmetricDifference":{"id":3099272791017667},"copyDashingWithPhaseLengthsTransform":{"id":2766912849871260},"copyStrokingWithWidthLineCapLineJoinMiterLimitTransform":{"id":564413091197942},"union":{"id":4476230351609165},"contains":{"id":3033239314754728},"flattened":{"id":713695623694563}} });
+registerSDKClass("CoreGraphics.CGMutablePath", CGMutablePath, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"closeSubpath":{"id":752098700104354},"addPath":{"id":2376036895475995},"addEllipse":{"id":413337399125132},"addQuadCurve":{"id":1400075504023608},"addRelativeArc":{"id":381229126063859},"addRoundedRect":{"id":1384059705992631},"move":{"id":1907229836436030},"addArcTangent1EndTangent2EndRadiusTransform":{"id":3558706260380970},"addArcCenterRadiusStartAngleEndAngleClockwiseTransform":{"id":2565078178617086},"addLine":{"id":3460982988673361},"addRect":{"id":2268268839832680},"addCurve":{"id":34260144661321},"addLines":{"id":1697049626802685},"addRects":{"id":3211750739986144}} });
+registerSDKClass("CoreGraphics.CGPathElement", CGPathElement, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGPattern", CGPattern, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGPatternCallbacks", CGPatternCallbacks, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGPDFDocument", CGPDFDocument, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"page":{"id":1841494829955023},"getVersion":{"id":1318931545224099},"unlockWithPassword":{"id":3939420009385802}} });
+registerSDKClass("CoreGraphics.CGPDFMarkedContentItem", CGPDFMarkedContentItem, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreGraphics.CGPDFPage", CGPDFPage, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"getBoxRect":{"id":2172932711698483},"getDrawingTransform":{"id":3818578704219788}} });
+registerSDKClass("CoreGraphics.CGPDFStructureElement", CGPDFStructureElement, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"addMarkedContentItem":{"id":4441006715941030},"addChild":{"id":4055833948747701}} });
+registerSDKClass("CoreGraphics.CGPDFStructureElement.Attributes", CGPDFStructureElement_Attributes, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreFoundation.CGPoint", CGPoint, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"equalTo":{"id":2654678990730906},"applying":{"id":1152377089475976}} }, true);
+registerSDKClass("CoreFoundation.CGRect", CGRect, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"intersects":{"id":739947050122612},"intersection":{"id":1864627184643870},"union":{"id":2268766116526664},"divided":{"id":3270734625879029},"equalTo":{"id":4129537696747883},"insetBy":{"id":4177481330363732},"applying":{"id":4095932737121110},"contains":{"id":2756976831820350},"contains5598":{"id":1589042187194141},"offsetBy":{"id":979584145529257}} }, true);
+registerSDKClass("CoreGraphics.CGRenderingBufferProvider", CGRenderingBufferProvider, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:So28CGRenderingBufferProviderRefa12CoreGraphicsE4InfoP", {"lock":"lock()","unlock":"unlock(_:)"});
-registerSDKClass("CoreGraphics.CGShading", CGShading, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreFoundation.CGSize", CGSize, { module: "CoreGraphics_067acaa3e5f56b46", properties: {}, methods: {"equalTo":{"id":1291835944354901},"applying":{"id":2883593042632820}} }, true);
-registerSDKClass("CoreFoundation.CGVector", CGVector, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} }, true);
-registerSDKClass("CoreGraphics.ColorSyncProfile", ColorSyncProfile, { module: "CoreGraphics_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreGraphics.CGShading", CGShading, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreFoundation.CGSize", CGSize, { module: "CoreGraphics_d968214ecc684fb6", properties: {}, methods: {"equalTo":{"id":1291835944354901},"applying":{"id":2883593042632820}} }, true);
+registerSDKClass("CoreFoundation.CGVector", CGVector, { module: "CoreGraphics_d968214ecc684fb6", properties: {} }, true);
+registerSDKClass("CoreGraphics.ColorSyncProfile", ColorSyncProfile, { module: "CoreGraphics_d968214ecc684fb6", properties: {} });

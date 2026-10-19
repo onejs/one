@@ -100,6 +100,9 @@ export declare class AUGenericViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "auAudioUnit": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency class AUGenericViewInternal
@@ -255,6 +258,9 @@ export declare class CAInterAppAudioSwitcherView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isShowingAppNames": true;
+    };
 }
 /**
  * class CAInterAppAudioTransportView
@@ -342,6 +348,18 @@ export declare class CAInterAppAudioTransportView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isConnected": true;
+        "currentTimeLabelFont": true;
+        "isEnabled": true;
+        "labelColor": true;
+        "pauseButtonColor": true;
+        "playButtonColor": true;
+        "isPlaying": true;
+        "recordButtonColor": true;
+        "isRecording": true;
+        "rewindButtonColor": true;
     };
 }
 export {};

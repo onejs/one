@@ -31,42 +31,42 @@ export class Account extends SDKHandle {
    * var assetAccount: AssetAccount? { get }
    * @availability iOS 17.4+
    */
-  get assetAccount(): (AssetAccount) | null { return callSDK<(AssetAccount) | null>("FinanceKit_067acaa3e5f56b46", 1761993411144784, this, []); }
+  get assetAccount(): (AssetAccount) | null { return callSDK<(AssetAccount) | null>("FinanceKit_d968214ecc684fb6", 1761993411144784, this, []); }
   /**
    * var liabilityAccount: LiabilityAccount? { get }
    * @availability iOS 17.4+
    */
-  get liabilityAccount(): (LiabilityAccount) | null { return callSDK<(LiabilityAccount) | null>("FinanceKit_067acaa3e5f56b46", 3329987919185575, this, []); }
+  get liabilityAccount(): (LiabilityAccount) | null { return callSDK<(LiabilityAccount) | null>("FinanceKit_d968214ecc684fb6", 3329987919185575, this, []); }
   /**
    * var displayName: String { get }
    * @availability iOS 17.4+
    */
-  get displayName(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 1142280660128856, this, []); }
+  get displayName(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 1142280660128856, this, []); }
   /**
    * var openingDate: Date? { get }
    * @availability iOS 18.0+
    */
-  get openingDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_067acaa3e5f56b46", 2283903383552390, this, []); }
+  get openingDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_d968214ecc684fb6", 2283903383552390, this, []); }
   /**
    * var currencyCode: String { get }
    * @availability iOS 17.4+
    */
-  get currencyCode(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 1216043041225944, this, []); }
+  get currencyCode(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 1216043041225944, this, []); }
   /**
    * var institutionName: String { get }
    * @availability iOS 17.4+
    */
-  get institutionName(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 1545740908795287, this, []); }
+  get institutionName(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 1545740908795287, this, []); }
   /**
    * var accountDescription: String? { get }
    * @availability iOS 17.4+
    */
-  get accountDescription(): (string) | null { return callSDK<(string) | null>("FinanceKit_067acaa3e5f56b46", 3860486799304807, this, []); }
+  get accountDescription(): (string) | null { return callSDK<(string) | null>("FinanceKit_d968214ecc684fb6", 3860486799304807, this, []); }
   /**
    * var id: UUID { get }
    * @availability iOS 17.4+
    */
-  get id(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 1077850008930003, this, []); }
+  get id(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 1077850008930003, this, []); }
   declare readonly $type: { "s:10FinanceKit7AccountO": true };
 }
 
@@ -85,32 +85,32 @@ export class AccountBalance extends SDKHandle {
    * let currentBalance: CurrentBalance
    * @availability iOS 17.4+
    */
-  get currentBalance(): CurrentBalance { return callSDK<CurrentBalance>("FinanceKit_067acaa3e5f56b46", 3825147308645496, this, []); }
+  get currentBalance(): CurrentBalance { return callSDK<CurrentBalance>("FinanceKit_d968214ecc684fb6", 3825147308645496, this, []); }
   /**
    * var currencyCode: String { get }
    * @availability iOS 17.4+
    */
-  get currencyCode(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 91872155196024, this, []); }
+  get currencyCode(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 91872155196024, this, []); }
   /**
    * let id: UUID
    * @availability iOS 17.4+
    */
-  get id(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 4446867112771859, this, []); }
+  get id(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 4446867112771859, this, []); }
   /**
    * var booked: Balance? { get }
    * @availability iOS 17.4+
    */
-  get booked(): (Balance) | null { return callSDK<(Balance) | null>("FinanceKit_067acaa3e5f56b46", 3952684037874888, this, []); }
+  get booked(): (Balance) | null { return callSDK<(Balance) | null>("FinanceKit_d968214ecc684fb6", 3952684037874888, this, []); }
   /**
    * let accountID: UUID
    * @availability iOS 17.4+
    */
-  get accountID(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 2106096726724391, this, []); }
+  get accountID(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 2106096726724391, this, []); }
   /**
    * var available: Balance? { get }
    * @availability iOS 17.4+
    */
-  get available(): (Balance) | null { return callSDK<(Balance) | null>("FinanceKit_067acaa3e5f56b46", 218167875983472, this, []); }
+  get available(): (Balance) | null { return callSDK<(Balance) | null>("FinanceKit_d968214ecc684fb6", 218167875983472, this, []); }
   declare readonly $type: { "s:10FinanceKit14AccountBalanceV": true };
 }
 
@@ -129,17 +129,17 @@ export class AccountBalanceQuery extends SDKHandle {
    * init(sortDescriptors: [SortDescriptor<AccountBalance>] = [], predicate: Predicate<AccountBalance>? = nil, limit: Int? = nil, offset: Int? = nil)
    * @availability iOS 17.4+
    */
-  static init(sortDescriptors?: Array<_Foundation_SortDescriptor<AccountBalance>>, predicate?: (_Foundation_Predicate<AccountBalance>) | null, limit?: (number) | null, offset?: (number) | null): AccountBalanceQuery { return callSDK<AccountBalanceQuery>("FinanceKit_067acaa3e5f56b46", 275196092052795, undefined, [sortDescriptors, predicate, limit, offset]); }
+  static init(sortDescriptors?: Array<_Foundation_SortDescriptor<AccountBalance>>, predicate?: (_Foundation_Predicate<AccountBalance>) | null, limit?: (number) | null, offset?: (number) | null): AccountBalanceQuery { return callSDK<AccountBalanceQuery>("FinanceKit_d968214ecc684fb6", 275196092052795, undefined, [sortDescriptors, predicate, limit, offset]); }
   /**
    * static func predicate(bookedSince startDate: Date, until endDate: Date? = nil) -> Predicate<AccountBalance>
    * @availability iOS 17.4+
    */
-  static predicateBookedSinceUntil(startDate: globalThis.Date, endDate?: $SDK1): $SDK4 { return callSDK<$SDK4>("FinanceKit_067acaa3e5f56b46", 843653204815255, undefined, [startDate, endDate]); }
+  static predicateBookedSinceUntil(startDate: globalThis.Date, endDate?: $SDK1): $SDK4 { return callSDK<$SDK4>("FinanceKit_d968214ecc684fb6", 843653204815255, undefined, [startDate, endDate]); }
   /**
    * static func predicate(availableSince startDate: Date, until endDate: Date? = nil) -> Predicate<AccountBalance>
    * @availability iOS 17.4+
    */
-  static predicateAvailableSinceUntil(startDate: globalThis.Date, endDate?: $SDK1): $SDK4 { return callSDK<$SDK4>("FinanceKit_067acaa3e5f56b46", 4346922887668774, undefined, [startDate, endDate]); }
+  static predicateAvailableSinceUntil(startDate: globalThis.Date, endDate?: $SDK1): $SDK4 { return callSDK<$SDK4>("FinanceKit_d968214ecc684fb6", 4346922887668774, undefined, [startDate, endDate]); }
   declare readonly $type: { "s:10FinanceKit19AccountBalanceQueryV": true };
 }
 
@@ -152,22 +152,22 @@ export class AccountCreditInformation extends SDKHandle {
    * let creditLimit: CurrencyAmount?
    * @availability iOS 17.4+
    */
-  get creditLimit(): (CurrencyAmount) | null { return callSDK<(CurrencyAmount) | null>("FinanceKit_067acaa3e5f56b46", 1951351243602183, this, []); }
+  get creditLimit(): (CurrencyAmount) | null { return callSDK<(CurrencyAmount) | null>("FinanceKit_d968214ecc684fb6", 1951351243602183, this, []); }
   /**
    * let nextPaymentDueDate: Date?
    * @availability iOS 17.4+
    */
-  get nextPaymentDueDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_067acaa3e5f56b46", 508299653737377, this, []); }
+  get nextPaymentDueDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_d968214ecc684fb6", 508299653737377, this, []); }
   /**
    * let overduePaymentAmount: CurrencyAmount?
    * @availability iOS 17.4+
    */
-  get overduePaymentAmount(): (CurrencyAmount) | null { return callSDK<(CurrencyAmount) | null>("FinanceKit_067acaa3e5f56b46", 2996503642485734, this, []); }
+  get overduePaymentAmount(): (CurrencyAmount) | null { return callSDK<(CurrencyAmount) | null>("FinanceKit_d968214ecc684fb6", 2996503642485734, this, []); }
   /**
    * let minimumNextPaymentAmount: CurrencyAmount?
    * @availability iOS 17.4+
    */
-  get minimumNextPaymentAmount(): (CurrencyAmount) | null { return callSDK<(CurrencyAmount) | null>("FinanceKit_067acaa3e5f56b46", 54527539892270, this, []); }
+  get minimumNextPaymentAmount(): (CurrencyAmount) | null { return callSDK<(CurrencyAmount) | null>("FinanceKit_d968214ecc684fb6", 54527539892270, this, []); }
   declare readonly $type: { "s:10FinanceKit24AccountCreditInformationV": true };
 }
 
@@ -180,7 +180,7 @@ export class AccountQuery extends SDKHandle {
    * init(sortDescriptors: [SortDescriptor<Account>] = [], predicate: Predicate<Account>? = nil, limit: Int? = nil, offset: Int? = nil)
    * @availability iOS 17.4+
    */
-  static init(sortDescriptors?: Array<_Foundation_SortDescriptor<Account>>, predicate?: (_Foundation_Predicate<Account>) | null, limit?: (number) | null, offset?: (number) | null): AccountQuery { return callSDK<AccountQuery>("FinanceKit_067acaa3e5f56b46", 544684521790655, undefined, [sortDescriptors, predicate, limit, offset]); }
+  static init(sortDescriptors?: Array<_Foundation_SortDescriptor<Account>>, predicate?: (_Foundation_Predicate<Account>) | null, limit?: (number) | null, offset?: (number) | null): AccountQuery { return callSDK<AccountQuery>("FinanceKit_d968214ecc684fb6", 544684521790655, undefined, [sortDescriptors, predicate, limit, offset]); }
   declare readonly $type: { "s:10FinanceKit12AccountQueryV": true };
 }
 
@@ -193,32 +193,32 @@ export class AssetAccount extends SDKHandle {
    * let displayName: String
    * @availability iOS 17.4+
    */
-  get displayName(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 1320507354083642, this, []); }
+  get displayName(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 1320507354083642, this, []); }
   /**
    * let openingDate: Date?
    * @availability iOS 18.0+
    */
-  get openingDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_067acaa3e5f56b46", 3769876891771026, this, []); }
+  get openingDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_d968214ecc684fb6", 3769876891771026, this, []); }
   /**
    * let currencyCode: String
    * @availability iOS 17.4+
    */
-  get currencyCode(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 36393930364840, this, []); }
+  get currencyCode(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 36393930364840, this, []); }
   /**
    * let institutionName: String
    * @availability iOS 17.4+
    */
-  get institutionName(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 372927590706502, this, []); }
+  get institutionName(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 372927590706502, this, []); }
   /**
    * let accountDescription: String?
    * @availability iOS 17.4+
    */
-  get accountDescription(): (string) | null { return callSDK<(string) | null>("FinanceKit_067acaa3e5f56b46", 1453073315649935, this, []); }
+  get accountDescription(): (string) | null { return callSDK<(string) | null>("FinanceKit_d968214ecc684fb6", 1453073315649935, this, []); }
   /**
    * let id: UUID
    * @availability iOS 17.4+
    */
-  get id(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 1991864639074445, this, []); }
+  get id(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 1991864639074445, this, []); }
   declare readonly $type: { "s:10FinanceKit12AssetAccountV": true };
 }
 
@@ -278,17 +278,17 @@ export class Balance extends SDKHandle {
    * let creditDebitIndicator: CreditDebitIndicator
    * @availability iOS 17.4+
    */
-  get creditDebitIndicator(): CreditDebitIndicator { return callSDK<CreditDebitIndicator>("FinanceKit_067acaa3e5f56b46", 3177369345991910, this, []); }
+  get creditDebitIndicator(): CreditDebitIndicator { return callSDK<CreditDebitIndicator>("FinanceKit_d968214ecc684fb6", 3177369345991910, this, []); }
   /**
    * let amount: CurrencyAmount
    * @availability iOS 17.4+
    */
-  get amount(): CurrencyAmount { return callSDK<CurrencyAmount>("FinanceKit_067acaa3e5f56b46", 3577943668846883, this, []); }
+  get amount(): CurrencyAmount { return callSDK<CurrencyAmount>("FinanceKit_d968214ecc684fb6", 3577943668846883, this, []); }
   /**
    * let asOfDate: Date
    * @availability iOS 17.4+
    */
-  get asOfDate(): globalThis.Date { return callSDK<globalThis.Date>("FinanceKit_067acaa3e5f56b46", 3947555177881479, this, []); }
+  get asOfDate(): globalThis.Date { return callSDK<globalThis.Date>("FinanceKit_d968214ecc684fb6", 3947555177881479, this, []); }
   declare readonly $type: { "s:10FinanceKit7BalanceV": true };
 }
 
@@ -303,17 +303,17 @@ export const CreditDebitIndicator = {
    * nonisolated static var allCases: [CreditDebitIndicator] { get }
    * @availability iOS 17.4+
    */
-  get allCases(): $SDK8 { return callSDK<$SDK8>("FinanceKit_067acaa3e5f56b46", 1022462524483026, undefined, []); },
+  get allCases(): $SDK8 { return callSDK<$SDK8>("FinanceKit_d968214ecc684fb6", 1022462524483026, undefined, []); },
   /**
    * init?(rawValue: Int16)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (CreditDebitIndicator) | null { return callSDK<(CreditDebitIndicator) | null>("FinanceKit_067acaa3e5f56b46", 272890600694820, undefined, [rawValue]); },
+  init(rawValue: number): (CreditDebitIndicator) | null { return callSDK<(CreditDebitIndicator) | null>("FinanceKit_d968214ecc684fb6", 272890600694820, undefined, [rawValue]); },
   /**
    * var rawValue: Int16 { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: CreditDebitIndicator): number { return callSDK<number>("FinanceKit_067acaa3e5f56b46", 4194906555281933, $self, []); }
+  getRawValue($self: CreditDebitIndicator): number { return callSDK<number>("FinanceKit_d968214ecc684fb6", 4194906555281933, $self, []); }
 };
 
 /**
@@ -337,12 +337,12 @@ export class CurrencyAmount extends SDKHandle {
    * let currencyCode: String
    * @availability iOS 17.4+
    */
-  get currencyCode(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 445929843192849, this, []); }
+  get currencyCode(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 445929843192849, this, []); }
   /**
    * let amount: Decimal
    * @availability iOS 17.4+
    */
-  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("FinanceKit_067acaa3e5f56b46", 1948128855649685, this, []); }
+  get amount(): _Foundation_Decimal { return callSDK<_Foundation_Decimal>("FinanceKit_d968214ecc684fb6", 1948128855649685, this, []); }
   declare readonly $type: { "s:10FinanceKit14CurrencyAmountV": true };
 }
 
@@ -363,27 +363,27 @@ export class FinanceError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 17.0+
    */
-  static get errorDomain(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 3622931475109656, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 3622931475109656, undefined, []); }
   /**
    * var errorUserInfo: [String : Any] { get }
    * @availability iOS 17.0+
    */
-  get errorUserInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("FinanceKit_067acaa3e5f56b46", 2291455695176391, this, []); }
+  get errorUserInfo(): Record<string, unknown> { return callSDK<Record<string, unknown>>("FinanceKit_d968214ecc684fb6", 2291455695176391, this, []); }
   /**
    * var failureReason: String? { get }
    * @availability iOS 17.0+
    */
-  get failureReason(): (string) | null { return callSDK<(string) | null>("FinanceKit_067acaa3e5f56b46", 667837108569727, this, []); }
+  get failureReason(): (string) | null { return callSDK<(string) | null>("FinanceKit_d968214ecc684fb6", 667837108569727, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("FinanceKit_067acaa3e5f56b46", 3822487405452396, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("FinanceKit_d968214ecc684fb6", 3822487405452396, this, []); }
   /**
    * var errorCode: Int { get }
    * @availability iOS 17.0+
    */
-  get errorCode(): number { return callSDK<number>("FinanceKit_067acaa3e5f56b46", 383285095117477, this, []); }
+  get errorCode(): number { return callSDK<number>("FinanceKit_d968214ecc684fb6", 383285095117477, this, []); }
   declare readonly $type: { "s:10FinanceKit0A5ErrorO": true };
 }
 
@@ -396,77 +396,77 @@ export class FinanceStore extends SDKHandle {
    * func transactions(query: TransactionQuery) async throws -> [Transaction]
    * @availability iOS 17.4+
    */
-  transactions(query: TransactionQuery): Promise<Array<Transaction>> { return callSDKAsync<Array<Transaction>>("FinanceKit_067acaa3e5f56b46", 2760129050762171, this, [query]); }
+  transactions(query: TransactionQuery): Promise<Array<Transaction>> { return callSDKAsync<Array<Transaction>>("FinanceKit_d968214ecc684fb6", 2760129050762171, this, [query]); }
   /**
    * func containsOrder(matching fqoid: FullyQualifiedOrderIdentifier, updatedDate: Date? = nil) async throws -> FinanceStore.ContainsOrderResult
    * @availability iOS 17.0+
    */
-  containsOrder(fqoid: FullyQualifiedOrderIdentifier, updatedDate?: $SDK1): Promise<FinanceStore_ContainsOrderResult> { return callSDKAsync<FinanceStore_ContainsOrderResult>("FinanceKit_067acaa3e5f56b46", 1510193936610939, this, [fqoid, updatedDate]); }
+  containsOrder(fqoid: FullyQualifiedOrderIdentifier, updatedDate?: $SDK1): Promise<FinanceStore_ContainsOrderResult> { return callSDKAsync<FinanceStore_ContainsOrderResult>("FinanceKit_d968214ecc684fb6", 1510193936610939, this, [fqoid, updatedDate]); }
   /**
    * func accountHistory(since token: FinanceStore.HistoryToken? = nil, isMonitoring: Bool = true) -> FinanceStore.History<Account>
    * @availability iOS 17.4+
    */
-  accountHistory(token?: $SDK10, isMonitoring?: boolean): FinanceStore_History<Account> { return callSDK<FinanceStore_History<Account>>("FinanceKit_067acaa3e5f56b46", 644135328177347, this, [token, isMonitoring]); }
+  accountHistory(token?: $SDK10, isMonitoring?: boolean): FinanceStore_History<Account> { return callSDK<FinanceStore_History<Account>>("FinanceKit_d968214ecc684fb6", 644135328177347, this, [token, isMonitoring]); }
   /**
    * func accountBalances(query: AccountBalanceQuery) async throws -> [AccountBalance]
    * @availability iOS 17.4+
    */
-  accountBalances(query: AccountBalanceQuery): Promise<Array<AccountBalance>> { return callSDKAsync<Array<AccountBalance>>("FinanceKit_067acaa3e5f56b46", 1818127274861156, this, [query]); }
+  accountBalances(query: AccountBalanceQuery): Promise<Array<AccountBalance>> { return callSDKAsync<Array<AccountBalance>>("FinanceKit_d968214ecc684fb6", 1818127274861156, this, [query]); }
   /**
    * static func isDataAvailable(_ type: FinanceStore.DataType) -> Bool
    * @availability iOS 17.0+
    */
-  static isDataAvailable(type: FinanceStore_DataType): boolean { return callSDK<boolean>("FinanceKit_067acaa3e5f56b46", 2945667812601336, undefined, [type]); }
+  static isDataAvailable(type: FinanceStore_DataType): boolean { return callSDK<boolean>("FinanceKit_d968214ecc684fb6", 2945667812601336, undefined, [type]); }
   /**
    * func transactionHistory(forAccountID accountID: UUID, since token: FinanceStore.HistoryToken? = nil, isMonitoring: Bool = true) -> FinanceStore.History<Transaction>
    * @availability iOS 17.4+
    */
-  transactionHistory(accountID: string, token?: $SDK10, isMonitoring?: boolean): FinanceStore_History<Transaction> { return callSDK<FinanceStore_History<Transaction>>("FinanceKit_067acaa3e5f56b46", 1576702185062250, this, [accountID, token, isMonitoring]); }
+  transactionHistory(accountID: string, token?: $SDK10, isMonitoring?: boolean): FinanceStore_History<Transaction> { return callSDK<FinanceStore_History<Transaction>>("FinanceKit_d968214ecc684fb6", 1576702185062250, this, [accountID, token, isMonitoring]); }
   /**
    * func authorizationStatus() async throws -> AuthorizationStatus
    * @availability iOS 17.4+
    */
-  authorizationStatus(): Promise<AuthorizationStatus> { return callSDKAsync<AuthorizationStatus>("FinanceKit_067acaa3e5f56b46", 377662128863202, this, []); }
+  authorizationStatus(): Promise<AuthorizationStatus> { return callSDKAsync<AuthorizationStatus>("FinanceKit_d968214ecc684fb6", 377662128863202, this, []); }
   /**
    * func requestAuthorization() async throws -> AuthorizationStatus
    * @availability iOS 17.4+
    */
-  requestAuthorization(): Promise<AuthorizationStatus> { return callSDKAsync<AuthorizationStatus>("FinanceKit_067acaa3e5f56b46", 3422659329409578, this, []); }
+  requestAuthorization(): Promise<AuthorizationStatus> { return callSDKAsync<AuthorizationStatus>("FinanceKit_d968214ecc684fb6", 3422659329409578, this, []); }
   /**
    * func accountBalanceHistory(forAccountID accountID: UUID, since token: FinanceStore.HistoryToken? = nil, isMonitoring: Bool = true) -> FinanceStore.History<AccountBalance>
    * @availability iOS 17.4+
    */
-  accountBalanceHistory(accountID: string, token?: $SDK10, isMonitoring?: boolean): FinanceStore_History<AccountBalance> { return callSDK<FinanceStore_History<AccountBalance>>("FinanceKit_067acaa3e5f56b46", 1589806122977870, this, [accountID, token, isMonitoring]); }
+  accountBalanceHistory(accountID: string, token?: $SDK10, isMonitoring?: boolean): FinanceStore_History<AccountBalance> { return callSDK<FinanceStore_History<AccountBalance>>("FinanceKit_d968214ecc684fb6", 1589806122977870, this, [accountID, token, isMonitoring]); }
   /**
    * func enableBackgroundDelivery(for types: [FinanceStore.BackgroundDataType], frequency: FinanceStore.UpdateFrequency)
    * @availability iOS 26.0+
    */
-  enableBackgroundDelivery(types: $SDK7, frequency: FinanceStore_UpdateFrequency): void { return callSDK<void>("FinanceKit_067acaa3e5f56b46", 981048230200406, this, [types, frequency]); }
+  enableBackgroundDelivery(types: $SDK7, frequency: FinanceStore_UpdateFrequency): void { return callSDK<void>("FinanceKit_d968214ecc684fb6", 981048230200406, this, [types, frequency]); }
   /**
    * func disableBackgroundDelivery(for types: [FinanceStore.BackgroundDataType])
    * @availability iOS 26.0+
    */
-  disableBackgroundDelivery(types: $SDK7): void { return callSDK<void>("FinanceKit_067acaa3e5f56b46", 3851916123761194, this, [types]); }
+  disableBackgroundDelivery(types: $SDK7): void { return callSDK<void>("FinanceKit_d968214ecc684fb6", 3851916123761194, this, [types]); }
   /**
    * func disableAllBackgroundDelivery()
    * @availability iOS 26.0+
    */
-  disableAllBackgroundDelivery(): void { return callSDK<void>("FinanceKit_067acaa3e5f56b46", 567913418648083, this, []); }
+  disableAllBackgroundDelivery(): void { return callSDK<void>("FinanceKit_d968214ecc684fb6", 567913418648083, this, []); }
   /**
    * static let shared: FinanceStore
    * @availability iOS 17.0+
    */
-  static get shared(): FinanceStore { return callSDK<FinanceStore>("FinanceKit_067acaa3e5f56b46", 2245637954610388, undefined, []); }
+  static get shared(): FinanceStore { return callSDK<FinanceStore>("FinanceKit_d968214ecc684fb6", 2245637954610388, undefined, []); }
   /**
    * func accounts(query: AccountQuery) async throws -> [Account]
    * @availability iOS 17.4+
    */
-  accounts(query: AccountQuery): Promise<Array<Account>> { return callSDKAsync<Array<Account>>("FinanceKit_067acaa3e5f56b46", 1792375161545274, this, [query]); }
+  accounts(query: AccountQuery): Promise<Array<Account>> { return callSDKAsync<Array<Account>>("FinanceKit_d968214ecc684fb6", 1792375161545274, this, [query]); }
   /**
    * func saveOrder(signedArchive: Data) async throws -> FinanceStore.SaveOrderResult
    * @availability iOS 17.0+
    */
-  saveOrder(signedArchive: ArrayBuffer): Promise<FinanceStore_SaveOrderResult> { return callSDKAsync<FinanceStore_SaveOrderResult>("FinanceKit_067acaa3e5f56b46", 3310452654722671, this, [signedArchive]); }
+  saveOrder(signedArchive: ArrayBuffer): Promise<FinanceStore_SaveOrderResult> { return callSDKAsync<FinanceStore_SaveOrderResult>("FinanceKit_d968214ecc684fb6", 3310452654722671, this, [signedArchive]); }
   declare readonly $type: { "s:10FinanceKit0A5StoreC": true };
 }
 
@@ -495,7 +495,7 @@ export const FinanceStore_ContainsOrderResult = {
    * nonisolated static var allCases: [FinanceStore.ContainsOrderResult] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): $SDK13 { return callSDK<$SDK13>("FinanceKit_067acaa3e5f56b46", 2649895547437612, undefined, []); }
+  get allCases(): $SDK13 { return callSDK<$SDK13>("FinanceKit_d968214ecc684fb6", 2649895547437612, undefined, []); }
 };
 
 /**
@@ -564,7 +564,7 @@ export const FinanceStore_SaveOrderResult = {
    * nonisolated static var allCases: [FinanceStore.SaveOrderResult] { get }
    * @availability iOS 17.0+
    */
-  get allCases(): $SDK16 { return callSDK<$SDK16>("FinanceKit_067acaa3e5f56b46", 287285913134561, undefined, []); }
+  get allCases(): $SDK16 { return callSDK<$SDK16>("FinanceKit_d968214ecc684fb6", 287285913134561, undefined, []); }
 };
 
 /**
@@ -588,24 +588,24 @@ export class FullyQualifiedOrderIdentifier extends SDKHandle {
    * var orderIdentifier: String
    * @availability iOS 17.0+
    */
-  get orderIdentifier(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 3557091049751942, this, []); }
-  set orderIdentifier(value: string) { callSDK<void>("FinanceKit_067acaa3e5f56b46", 556288373973680, this, [value]); }
+  get orderIdentifier(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 3557091049751942, this, []); }
+  set orderIdentifier(value: string) { callSDK<void>("FinanceKit_d968214ecc684fb6", 556288373973680, this, [value]); }
   /**
    * init(orderTypeIdentifier: String, orderIdentifier: String)
    * @availability iOS 17.0+
    */
-  static init(orderTypeIdentifier: string, orderIdentifier: string): FullyQualifiedOrderIdentifier { return callSDK<FullyQualifiedOrderIdentifier>("FinanceKit_067acaa3e5f56b46", 1345018927355021, undefined, [orderTypeIdentifier, orderIdentifier]); }
+  static init(orderTypeIdentifier: string, orderIdentifier: string): FullyQualifiedOrderIdentifier { return callSDK<FullyQualifiedOrderIdentifier>("FinanceKit_d968214ecc684fb6", 1345018927355021, undefined, [orderTypeIdentifier, orderIdentifier]); }
   /**
    * var orderTypeIdentifier: String
    * @availability iOS 17.0+
    */
-  get orderTypeIdentifier(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 3492759053382030, this, []); }
-  set orderTypeIdentifier(value: string) { callSDK<void>("FinanceKit_067acaa3e5f56b46", 2844566515911039, this, [value]); }
+  get orderTypeIdentifier(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 3492759053382030, this, []); }
+  set orderTypeIdentifier(value: string) { callSDK<void>("FinanceKit_d968214ecc684fb6", 2844566515911039, this, [value]); }
   /**
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 683129551157569, this, []); }
+  get description(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 683129551157569, this, []); }
   declare readonly $type: { "s:10FinanceKit29FullyQualifiedOrderIdentifierV": true };
 }
 
@@ -618,37 +618,37 @@ export class LiabilityAccount extends SDKHandle {
    * let displayName: String
    * @availability iOS 17.4+
    */
-  get displayName(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 3127402068534469, this, []); }
+  get displayName(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 3127402068534469, this, []); }
   /**
    * let openingDate: Date?
    * @availability iOS 18.0+
    */
-  get openingDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_067acaa3e5f56b46", 2657418831575214, this, []); }
+  get openingDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_d968214ecc684fb6", 2657418831575214, this, []); }
   /**
    * let currencyCode: String
    * @availability iOS 17.4+
    */
-  get currencyCode(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 2310802514281245, this, []); }
+  get currencyCode(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 2310802514281245, this, []); }
   /**
    * let institutionName: String
    * @availability iOS 17.4+
    */
-  get institutionName(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 1631526555391039, this, []); }
+  get institutionName(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 1631526555391039, this, []); }
   /**
    * let creditInformation: AccountCreditInformation
    * @availability iOS 17.4+
    */
-  get creditInformation(): AccountCreditInformation { return callSDK<AccountCreditInformation>("FinanceKit_067acaa3e5f56b46", 1898720308516326, this, []); }
+  get creditInformation(): AccountCreditInformation { return callSDK<AccountCreditInformation>("FinanceKit_d968214ecc684fb6", 1898720308516326, this, []); }
   /**
    * let accountDescription: String?
    * @availability iOS 17.4+
    */
-  get accountDescription(): (string) | null { return callSDK<(string) | null>("FinanceKit_067acaa3e5f56b46", 2914543684654041, this, []); }
+  get accountDescription(): (string) | null { return callSDK<(string) | null>("FinanceKit_d968214ecc684fb6", 2914543684654041, this, []); }
   /**
    * let id: UUID
    * @availability iOS 17.4+
    */
-  get id(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 4306691557666249, this, []); }
+  get id(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 4306691557666249, this, []); }
   declare readonly $type: { "s:10FinanceKit16LiabilityAccountV": true };
 }
 
@@ -669,22 +669,22 @@ export const MerchantCategoryCode = {
    * var description: String { get }
    * @availability iOS 17.4+
    */
-  getDescription($self: MerchantCategoryCode): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 2158196438379454, $self, []); },
+  getDescription($self: MerchantCategoryCode): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 2158196438379454, $self, []); },
   /**
    * init(rawValue: Int16)
    * @availability iOS 17.4+
    */
-  initRawValue(rawValue: number): MerchantCategoryCode { return callSDK<MerchantCategoryCode>("FinanceKit_067acaa3e5f56b46", 669552756458506, undefined, [rawValue]); },
+  initRawValue(rawValue: number): MerchantCategoryCode { return callSDK<MerchantCategoryCode>("FinanceKit_d968214ecc684fb6", 669552756458506, undefined, [rawValue]); },
   /**
    * let rawValue: Int16
    * @availability iOS 17.4+
    */
-  getRawValue($self: MerchantCategoryCode): number { return callSDK<number>("FinanceKit_067acaa3e5f56b46", 3171042373732686, $self, []); },
+  getRawValue($self: MerchantCategoryCode): number { return callSDK<number>("FinanceKit_d968214ecc684fb6", 3171042373732686, $self, []); },
   /**
    * init?(_ description: String)
    * @availability iOS 17.4+
    */
-  init(description: string): (MerchantCategoryCode) | null { return callSDK<(MerchantCategoryCode) | null>("FinanceKit_067acaa3e5f56b46", 2585539834660270, undefined, [description]); }
+  init(description: string): (MerchantCategoryCode) | null { return callSDK<(MerchantCategoryCode) | null>("FinanceKit_d968214ecc684fb6", 2585539834660270, undefined, [description]); }
 };
 
 /**
@@ -702,72 +702,72 @@ export class Transaction extends SDKHandle {
    * let originalTransactionDescription: String
    * @availability iOS 17.4+
    */
-  get originalTransactionDescription(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 3358344045888484, this, []); }
+  get originalTransactionDescription(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 3358344045888484, this, []); }
   /**
    * let postedDate: Date?
    * @availability iOS 17.4+
    */
-  get postedDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_067acaa3e5f56b46", 4441933512014355, this, []); }
+  get postedDate(): $SDK1 { return callSDK<$SDK1>("FinanceKit_d968214ecc684fb6", 4441933512014355, this, []); }
   /**
    * let merchantName: String?
    * @availability iOS 17.4+
    */
-  get merchantName(): (string) | null { return callSDK<(string) | null>("FinanceKit_067acaa3e5f56b46", 828601664408662, this, []); }
+  get merchantName(): (string) | null { return callSDK<(string) | null>("FinanceKit_d968214ecc684fb6", 828601664408662, this, []); }
   /**
    * let transactionDate: Date
    * @availability iOS 17.4+
    */
-  get transactionDate(): globalThis.Date { return callSDK<globalThis.Date>("FinanceKit_067acaa3e5f56b46", 3170131315485167, this, []); }
+  get transactionDate(): globalThis.Date { return callSDK<globalThis.Date>("FinanceKit_d968214ecc684fb6", 3170131315485167, this, []); }
   /**
    * let transactionType: TransactionType
    * @availability iOS 17.4+
    */
-  get transactionType(): TransactionType { return callSDK<TransactionType>("FinanceKit_067acaa3e5f56b46", 298385189630175, this, []); }
+  get transactionType(): TransactionType { return callSDK<TransactionType>("FinanceKit_d968214ecc684fb6", 298385189630175, this, []); }
   /**
    * let transactionAmount: CurrencyAmount
    * @availability iOS 17.4+
    */
-  get transactionAmount(): CurrencyAmount { return callSDK<CurrencyAmount>("FinanceKit_067acaa3e5f56b46", 3116328474144514, this, []); }
+  get transactionAmount(): CurrencyAmount { return callSDK<CurrencyAmount>("FinanceKit_d968214ecc684fb6", 3116328474144514, this, []); }
   /**
    * let creditDebitIndicator: CreditDebitIndicator
    * @availability iOS 17.4+
    */
-  get creditDebitIndicator(): CreditDebitIndicator { return callSDK<CreditDebitIndicator>("FinanceKit_067acaa3e5f56b46", 210886569337968, this, []); }
+  get creditDebitIndicator(): CreditDebitIndicator { return callSDK<CreditDebitIndicator>("FinanceKit_d968214ecc684fb6", 210886569337968, this, []); }
   /**
    * let merchantCategoryCode: MerchantCategoryCode?
    * @availability iOS 17.4+
    */
-  get merchantCategoryCode(): (MerchantCategoryCode) | null { return callSDK<(MerchantCategoryCode) | null>("FinanceKit_067acaa3e5f56b46", 3450094795724325, this, []); }
+  get merchantCategoryCode(): (MerchantCategoryCode) | null { return callSDK<(MerchantCategoryCode) | null>("FinanceKit_d968214ecc684fb6", 3450094795724325, this, []); }
   /**
    * let foreignCurrencyAmount: CurrencyAmount?
    * @availability iOS 17.4+
    */
-  get foreignCurrencyAmount(): (CurrencyAmount) | null { return callSDK<(CurrencyAmount) | null>("FinanceKit_067acaa3e5f56b46", 4083837614339186, this, []); }
+  get foreignCurrencyAmount(): (CurrencyAmount) | null { return callSDK<(CurrencyAmount) | null>("FinanceKit_d968214ecc684fb6", 4083837614339186, this, []); }
   /**
    * let transactionDescription: String
    * @availability iOS 17.4+
    */
-  get transactionDescription(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 2477645329278385, this, []); }
+  get transactionDescription(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 2477645329278385, this, []); }
   /**
    * let foreignCurrencyExchangeRate: Decimal?
    * @availability iOS 18.0+
    */
-  get foreignCurrencyExchangeRate(): (_Foundation_Decimal) | null { return callSDK<(_Foundation_Decimal) | null>("FinanceKit_067acaa3e5f56b46", 564419817602120, this, []); }
+  get foreignCurrencyExchangeRate(): (_Foundation_Decimal) | null { return callSDK<(_Foundation_Decimal) | null>("FinanceKit_d968214ecc684fb6", 564419817602120, this, []); }
   /**
    * let id: UUID
    * @availability iOS 17.4+
    */
-  get id(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 3953090790673221, this, []); }
+  get id(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 3953090790673221, this, []); }
   /**
    * let status: TransactionStatus
    * @availability iOS 17.4+
    */
-  get status(): TransactionStatus { return callSDK<TransactionStatus>("FinanceKit_067acaa3e5f56b46", 1199594697245325, this, []); }
+  get status(): TransactionStatus { return callSDK<TransactionStatus>("FinanceKit_d968214ecc684fb6", 1199594697245325, this, []); }
   /**
    * let accountID: UUID
    * @availability iOS 17.4+
    */
-  get accountID(): string { return callSDK<string>("FinanceKit_067acaa3e5f56b46", 3470492006495574, this, []); }
+  get accountID(): string { return callSDK<string>("FinanceKit_d968214ecc684fb6", 3470492006495574, this, []); }
   declare readonly $type: { "s:10FinanceKit11TransactionV": true };
 }
 
@@ -786,22 +786,22 @@ export class TransactionQuery extends SDKHandle {
    * init(sortDescriptors: [SortDescriptor<Transaction>] = [], predicate: Predicate<Transaction>? = nil, limit: Int? = nil, offset: Int? = nil)
    * @availability iOS 17.4+
    */
-  static init(sortDescriptors?: Array<_Foundation_SortDescriptor<Transaction>>, predicate?: (_Foundation_Predicate<Transaction>) | null, limit?: (number) | null, offset?: (number) | null): TransactionQuery { return callSDK<TransactionQuery>("FinanceKit_067acaa3e5f56b46", 3548343958363770, undefined, [sortDescriptors, predicate, limit, offset]); }
+  static init(sortDescriptors?: Array<_Foundation_SortDescriptor<Transaction>>, predicate?: (_Foundation_Predicate<Transaction>) | null, limit?: (number) | null, offset?: (number) | null): TransactionQuery { return callSDK<TransactionQuery>("FinanceKit_d968214ecc684fb6", 3548343958363770, undefined, [sortDescriptors, predicate, limit, offset]); }
   /**
    * static func predicate(forTransactionTypes transactionTypes: [TransactionType]) -> Predicate<Transaction>
    * @availability iOS 17.4+
    */
-  static predicateForTransactionTypes(transactionTypes: Array<TransactionType>): $SDK21 { return callSDK<$SDK21>("FinanceKit_067acaa3e5f56b46", 942901808521441, undefined, [transactionTypes]); }
+  static predicateForTransactionTypes(transactionTypes: Array<TransactionType>): $SDK21 { return callSDK<$SDK21>("FinanceKit_d968214ecc684fb6", 942901808521441, undefined, [transactionTypes]); }
   /**
    * static func predicate(forStatuses statuses: [TransactionStatus]) -> Predicate<Transaction>
    * @availability iOS 17.4+
    */
-  static predicateForStatuses(statuses: $SDK22): $SDK21 { return callSDK<$SDK21>("FinanceKit_067acaa3e5f56b46", 3212642098166245, undefined, [statuses]); }
+  static predicateForStatuses(statuses: $SDK22): $SDK21 { return callSDK<$SDK21>("FinanceKit_d968214ecc684fb6", 3212642098166245, undefined, [statuses]); }
   /**
    * static func predicate(forMerchantCategoryCodes merchantCategoryCodes: [MerchantCategoryCode]) -> Predicate<Transaction>
    * @availability iOS 17.4+
    */
-  static predicateForMerchantCategoryCodes(merchantCategoryCodes: Array<MerchantCategoryCode>): $SDK21 { return callSDK<$SDK21>("FinanceKit_067acaa3e5f56b46", 1571563547368439, undefined, [merchantCategoryCodes]); }
+  static predicateForMerchantCategoryCodes(merchantCategoryCodes: Array<MerchantCategoryCode>): $SDK21 { return callSDK<$SDK21>("FinanceKit_d968214ecc684fb6", 1571563547368439, undefined, [merchantCategoryCodes]); }
   declare readonly $type: { "s:10FinanceKit16TransactionQueryV": true };
 }
 
@@ -816,17 +816,17 @@ export const TransactionStatus = {
    * nonisolated static var allCases: [TransactionStatus] { get }
    * @availability iOS 17.4+
    */
-  get allCases(): $SDK22 { return callSDK<$SDK22>("FinanceKit_067acaa3e5f56b46", 3423844818729744, undefined, []); },
+  get allCases(): $SDK22 { return callSDK<$SDK22>("FinanceKit_d968214ecc684fb6", 3423844818729744, undefined, []); },
   /**
    * init?(rawValue: Int16)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (TransactionStatus) | null { return callSDK<(TransactionStatus) | null>("FinanceKit_067acaa3e5f56b46", 2640567085187885, undefined, [rawValue]); },
+  init(rawValue: number): (TransactionStatus) | null { return callSDK<(TransactionStatus) | null>("FinanceKit_d968214ecc684fb6", 2640567085187885, undefined, [rawValue]); },
   /**
    * var rawValue: Int16 { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: TransactionStatus): number { return callSDK<number>("FinanceKit_067acaa3e5f56b46", 1624628049947895, $self, []); }
+  getRawValue($self: TransactionStatus): number { return callSDK<number>("FinanceKit_d968214ecc684fb6", 1624628049947895, $self, []); }
 };
 
 /**
@@ -852,17 +852,17 @@ export const TransactionType = {
    * nonisolated static var allCases: [TransactionType] { get }
    * @availability iOS 17.4+
    */
-  get allCases(): Array<TransactionType> { return callSDK<Array<TransactionType>>("FinanceKit_067acaa3e5f56b46", 858247220732379, undefined, []); },
+  get allCases(): Array<TransactionType> { return callSDK<Array<TransactionType>>("FinanceKit_d968214ecc684fb6", 858247220732379, undefined, []); },
   /**
    * init?(rawValue: Int16)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (TransactionType) | null { return callSDK<(TransactionType) | null>("FinanceKit_067acaa3e5f56b46", 3466465334010084, undefined, [rawValue]); },
+  init(rawValue: number): (TransactionType) | null { return callSDK<(TransactionType) | null>("FinanceKit_d968214ecc684fb6", 3466465334010084, undefined, [rawValue]); },
   /**
    * var rawValue: Int16 { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: TransactionType): number { return callSDK<number>("FinanceKit_067acaa3e5f56b46", 1832117916620155, $self, []); }
+  getRawValue($self: TransactionType): number { return callSDK<number>("FinanceKit_d968214ecc684fb6", 1832117916620155, $self, []); }
 };
 
 /**
@@ -877,24 +877,24 @@ export type TransactionType_AllCases = Array<TransactionType>;
  */
 export type TransactionType_RawValue = number;
 
-registerSDKClass("FinanceKit.Account", Account, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.AccountBalance", AccountBalance, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.AccountBalanceQuery", AccountBalanceQuery, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.AccountCreditInformation", AccountCreditInformation, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.AccountQuery", AccountQuery, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.AssetAccount", AssetAccount, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("FinanceKit.Account", Account, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.AccountBalance", AccountBalance, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.AccountBalanceQuery", AccountBalanceQuery, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.AccountCreditInformation", AccountCreditInformation, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.AccountQuery", AccountQuery, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.AssetAccount", AssetAccount, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:10FinanceKit27BackgroundDeliveryExtensionP", {"didReceiveDataFor":"didReceiveData(for:)","willTerminate":"willTerminate()","init":"init()"});
 registerSDKProtocol("s:10FinanceKit36BackgroundDeliveryExtensionProvidingP", {"didReceiveDataFor":"didReceiveData(for:)","willTerminate":"willTerminate()"});
-registerSDKClass("FinanceKit.Balance", Balance, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.CurrencyAmount", CurrencyAmount, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.CurrentBalance", CurrentBalance, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.FinanceError", FinanceError, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.FinanceStore", FinanceStore, { module: "FinanceKit_067acaa3e5f56b46", properties: {}, methods: {"transactions":{"id":2760129050762171},"containsOrder":{"id":1510193936610939},"accountHistory":{"id":644135328177347},"accountBalances":{"id":1818127274861156},"transactionHistory":{"id":1576702185062250},"authorizationStatus":{"id":377662128863202},"requestAuthorization":{"id":3422659329409578},"accountBalanceHistory":{"id":1589806122977870},"enableBackgroundDelivery":{"id":981048230200406},"disableBackgroundDelivery":{"id":3851916123761194},"disableAllBackgroundDelivery":{"id":567913418648083},"accounts":{"id":1792375161545274},"saveOrder":{"id":3310452654722671}} });
-registerSDKClass("FinanceKit.FinanceStore.Changes", FinanceStore_Changes, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.FinanceStore.History", FinanceStore_History, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.FinanceStore.History.Iterator", FinanceStore_History_Iterator, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.FinanceStore.HistoryToken", FinanceStore_HistoryToken, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.FullyQualifiedOrderIdentifier", FullyQualifiedOrderIdentifier, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.LiabilityAccount", LiabilityAccount, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.Transaction", Transaction, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
-registerSDKClass("FinanceKit.TransactionQuery", TransactionQuery, { module: "FinanceKit_067acaa3e5f56b46", properties: {} });
+registerSDKClass("FinanceKit.Balance", Balance, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.CurrencyAmount", CurrencyAmount, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.CurrentBalance", CurrentBalance, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.FinanceError", FinanceError, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.FinanceStore", FinanceStore, { module: "FinanceKit_d968214ecc684fb6", properties: {}, methods: {"transactions":{"id":2760129050762171},"containsOrder":{"id":1510193936610939},"accountHistory":{"id":644135328177347},"accountBalances":{"id":1818127274861156},"transactionHistory":{"id":1576702185062250},"authorizationStatus":{"id":377662128863202},"requestAuthorization":{"id":3422659329409578},"accountBalanceHistory":{"id":1589806122977870},"enableBackgroundDelivery":{"id":981048230200406},"disableBackgroundDelivery":{"id":3851916123761194},"disableAllBackgroundDelivery":{"id":567913418648083},"accounts":{"id":1792375161545274},"saveOrder":{"id":3310452654722671}} });
+registerSDKClass("FinanceKit.FinanceStore.Changes", FinanceStore_Changes, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.FinanceStore.History", FinanceStore_History, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.FinanceStore.History.Iterator", FinanceStore_History_Iterator, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.FinanceStore.HistoryToken", FinanceStore_HistoryToken, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.FullyQualifiedOrderIdentifier", FullyQualifiedOrderIdentifier, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.LiabilityAccount", LiabilityAccount, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.Transaction", Transaction, { module: "FinanceKit_d968214ecc684fb6", properties: {} });
+registerSDKClass("FinanceKit.TransactionQuery", TransactionQuery, { module: "FinanceKit_d968214ecc684fb6", properties: {} });

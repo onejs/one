@@ -55,17 +55,17 @@ export class MLArrayBatchProvider extends SDKHandle {
    * init(dictionary: [String : [Any]]) throws
    * @availability iOS 12.0+
    */
-  static initDictionary(dictionary: Record<string, Array<unknown>>): MLArrayBatchProvider { return callSDK<MLArrayBatchProvider>("CoreML_067acaa3e5f56b46", 4240914312232038, undefined, [dictionary]); }
+  static initDictionary(dictionary: Record<string, Array<unknown>>): MLArrayBatchProvider { return callSDK<MLArrayBatchProvider>("CoreML_d968214ecc684fb6", 4240914312232038, undefined, [dictionary]); }
   /**
    * init(array: [any MLFeatureProvider])
    * @availability iOS 12.0+
    */
-  static initArray(array: Array<SDKHandle>): MLArrayBatchProvider { return callSDK<MLArrayBatchProvider>("CoreML_067acaa3e5f56b46", 2321131130234160, undefined, [array]); }
+  static initArray(array: Array<SDKHandle>): MLArrayBatchProvider { return callSDK<MLArrayBatchProvider>("CoreML_d968214ecc684fb6", 2321131130234160, undefined, [array]); }
   /**
    * var array: [any MLFeatureProvider] { get }
    * @availability iOS 12.0+
    */
-  get array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("CoreML_067acaa3e5f56b46", 400980395304401, this, []); }
+  get array(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("CoreML_d968214ecc684fb6", 400980395304401, this, []); }
   declare readonly $type: { "c:objc(cs)MLArrayBatchProvider": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "array": true };
 }
@@ -91,12 +91,12 @@ export class MLComputeDevice extends SDKHandle {
    * var description: String { get }
    * @availability iOS 17.0+
    */
-  get description(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 2267681610365031, this, []); }
+  get description(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 2267681610365031, this, []); }
   /**
    * static var allComputeDevices: [MLComputeDevice] { get }
    * @availability iOS 17.0+
    */
-  static get allComputeDevices(): Array<MLComputeDevice> { return callSDK<Array<MLComputeDevice>>("CoreML_067acaa3e5f56b46", 1817910876482586, undefined, []); }
+  static get allComputeDevices(): Array<MLComputeDevice> { return callSDK<Array<MLComputeDevice>>("CoreML_d968214ecc684fb6", 1817910876482586, undefined, []); }
   declare readonly $type: { "s:6CoreML15MLComputeDeviceO": true };
 }
 
@@ -117,32 +117,32 @@ export class MLComputePlan extends SDKHandle {
    * func deviceUsage(for layer: MLModelStructure.NeuralNetwork.Layer) -> MLComputePlan.DeviceUsage?
    * @availability iOS 17.4+
    */
-  deviceUsageFor(layer: MLModelStructure_NeuralNetwork_Layer): $SDK1 { return callSDK<$SDK1>("CoreML_067acaa3e5f56b46", 3411747756322772, this, [layer]); }
+  deviceUsageFor(layer: MLModelStructure_NeuralNetwork_Layer): $SDK1 { return callSDK<$SDK1>("CoreML_d968214ecc684fb6", 3411747756322772, this, [layer]); }
   /**
    * func deviceUsage(for operation: MLModelStructure.Program.Operation) -> MLComputePlan.DeviceUsage?
    * @availability iOS 17.4+
    */
-  deviceUsageFor32006(operation: MLModelStructure_Program_Operation): $SDK1 { return callSDK<$SDK1>("CoreML_067acaa3e5f56b46", 4499772664692540, this, [operation]); }
+  deviceUsageFor32006(operation: MLModelStructure_Program_Operation): $SDK1 { return callSDK<$SDK1>("CoreML_d968214ecc684fb6", 4499772664692540, this, [operation]); }
   /**
    * func estimatedCost(of operation: MLModelStructure.Program.Operation) -> MLComputePlan.Cost?
    * @availability iOS 17.4+
    */
-  estimatedCost(operation: MLModelStructure_Program_Operation): (MLComputePlan_Cost) | null { return callSDK<(MLComputePlan_Cost) | null>("CoreML_067acaa3e5f56b46", 3495866872208679, this, [operation]); }
+  estimatedCost(operation: MLModelStructure_Program_Operation): (MLComputePlan_Cost) | null { return callSDK<(MLComputePlan_Cost) | null>("CoreML_d968214ecc684fb6", 3495866872208679, this, [operation]); }
   /**
    * final let modelStructure: MLModelStructure
    * @availability iOS 17.4+
    */
-  get modelStructure(): MLModelStructure { return callSDK<MLModelStructure>("CoreML_067acaa3e5f56b46", 540723859642459, this, []); }
+  get modelStructure(): MLModelStructure { return callSDK<MLModelStructure>("CoreML_d968214ecc684fb6", 540723859642459, this, []); }
   /**
    * static func load(contentsOf url: URL, configuration: MLModelConfiguration) async throws -> MLComputePlan
    * @availability iOS 17.4+
    */
-  static loadContentsOfConfiguration(url: string, configuration: MLModelConfiguration): Promise<MLComputePlan> { return callSDKAsync<MLComputePlan>("CoreML_067acaa3e5f56b46", 525467398218482, undefined, [url, configuration]); }
+  static loadContentsOfConfiguration(url: string, configuration: MLModelConfiguration): Promise<MLComputePlan> { return callSDKAsync<MLComputePlan>("CoreML_d968214ecc684fb6", 525467398218482, undefined, [url, configuration]); }
   /**
    * static func load(asset: MLModelAsset, configuration: MLModelConfiguration) async throws -> MLComputePlan
    * @availability iOS 17.4+
    */
-  static loadAssetConfiguration(asset: MLModelAsset, configuration: MLModelConfiguration): Promise<MLComputePlan> { return callSDKAsync<MLComputePlan>("CoreML_067acaa3e5f56b46", 431559090982735, undefined, [asset, configuration]); }
+  static loadAssetConfiguration(asset: MLModelAsset, configuration: MLModelConfiguration): Promise<MLComputePlan> { return callSDKAsync<MLComputePlan>("CoreML_d968214ecc684fb6", 431559090982735, undefined, [asset, configuration]); }
   declare readonly $type: { "s:6CoreML13MLComputePlanC": true };
 }
 
@@ -155,7 +155,7 @@ export class MLComputePlan_Cost extends SDKHandle {
    * let weight: Double
    * @availability iOS 17.4+
    */
-  get weight(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 2619288362161233, this, []); }
+  get weight(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 2619288362161233, this, []); }
   declare readonly $type: { "s:6CoreML13MLComputePlanC4CostV": true };
 }
 
@@ -168,12 +168,12 @@ export class MLComputePlan_DeviceUsage extends SDKHandle {
    * let preferred: MLComputeDevice
    * @availability iOS 17.4+
    */
-  get preferred(): MLComputeDevice { return callSDK<MLComputeDevice>("CoreML_067acaa3e5f56b46", 567106075459424, this, []); }
+  get preferred(): MLComputeDevice { return callSDK<MLComputeDevice>("CoreML_d968214ecc684fb6", 567106075459424, this, []); }
   /**
    * let supported: [MLComputeDevice]
    * @availability iOS 17.4+
    */
-  get supported(): Array<MLComputeDevice> { return callSDK<Array<MLComputeDevice>>("CoreML_067acaa3e5f56b46", 3572554320082774, this, []); }
+  get supported(): Array<MLComputeDevice> { return callSDK<Array<MLComputeDevice>>("CoreML_d968214ecc684fb6", 3572554320082774, this, []); }
   declare readonly $type: { "s:6CoreML13MLComputePlanC11DeviceUsageV": true };
 }
 
@@ -186,27 +186,27 @@ export class MLComputePolicy extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 1645076182511595, this, []); }
+  get description(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 1645076182511595, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 1833963475207236, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 1833963475207236, this, []); }
   /**
    * static var cpuOnly: MLComputePolicy { get }
    * @availability iOS 18.0+
    */
-  static get cpuOnly(): MLComputePolicy { return callSDK<MLComputePolicy>("CoreML_067acaa3e5f56b46", 3691714040232878, undefined, []); }
+  static get cpuOnly(): MLComputePolicy { return callSDK<MLComputePolicy>("CoreML_d968214ecc684fb6", 3691714040232878, undefined, []); }
   /**
    * static var cpuAndGPU: MLComputePolicy { get }
    * @availability iOS 18.0+
    */
-  static get cpuAndGPU(): MLComputePolicy { return callSDK<MLComputePolicy>("CoreML_067acaa3e5f56b46", 2827395971452902, undefined, []); }
+  static get cpuAndGPU(): MLComputePolicy { return callSDK<MLComputePolicy>("CoreML_d968214ecc684fb6", 2827395971452902, undefined, []); }
   /**
    * init(_ computeUnits: MLComputeUnits)
    * @availability iOS 18.0+
    */
-  static init(computeUnits: MLComputeUnits): MLComputePolicy { return callSDK<MLComputePolicy>("CoreML_067acaa3e5f56b46", 4393626853658088, undefined, [computeUnits]); }
+  static init(computeUnits: MLComputeUnits): MLComputePolicy { return callSDK<MLComputePolicy>("CoreML_d968214ecc684fb6", 4393626853658088, undefined, [computeUnits]); }
   declare readonly $type: { "s:6CoreML15MLComputePolicyV": true };
 }
 
@@ -221,7 +221,7 @@ export const MLComputeUnits = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (MLComputeUnits) | null { return callSDK<(MLComputeUnits) | null>("CoreML_067acaa3e5f56b46", 3678673706932665, undefined, [rawValue]); }
+  init(rawValue: number): (MLComputeUnits) | null { return callSDK<(MLComputeUnits) | null>("CoreML_d968214ecc684fb6", 3678673706932665, undefined, [rawValue]); }
 };
 
 /**
@@ -287,12 +287,12 @@ export interface MLCustomModel {
  */
 export class MLDictionaryConstraint extends SDKHandle {
   /** init() */
-  static init(): MLDictionaryConstraint { return callSDK<MLDictionaryConstraint>("CoreML_067acaa3e5f56b46", 142926223588487, undefined, []); }
+  static init(): MLDictionaryConstraint { return callSDK<MLDictionaryConstraint>("CoreML_d968214ecc684fb6", 142926223588487, undefined, []); }
   /**
    * var keyType: MLFeatureType { get }
    * @availability iOS 11.0+
    */
-  get keyType(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_067acaa3e5f56b46", 1531048302208238, this, []); }
+  get keyType(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_d968214ecc684fb6", 1531048302208238, this, []); }
   declare readonly $type: { "c:objc(cs)MLDictionaryConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "keyType": true };
 }
@@ -306,17 +306,17 @@ export class MLDictionaryFeatureProvider extends SDKHandle {
    * init(dictionary: [String : Any]) throws
    * @availability iOS 11.0+
    */
-  static init(dictionary: Record<string, unknown>): MLDictionaryFeatureProvider { return callSDK<MLDictionaryFeatureProvider>("CoreML_067acaa3e5f56b46", 1601612141552798, undefined, [dictionary]); }
+  static init(dictionary: Record<string, unknown>): MLDictionaryFeatureProvider { return callSDK<MLDictionaryFeatureProvider>("CoreML_d968214ecc684fb6", 1601612141552798, undefined, [dictionary]); }
   /**
    * subscript(featureName: String) -> MLFeatureValue? { get }
    * @availability iOS 11.0+
    */
-  subscript(featureName: string): (MLFeatureValue) | null { return callSDK<(MLFeatureValue) | null>("CoreML_067acaa3e5f56b46", 1582349450601567, this, [featureName]); }
+  subscript(featureName: string): (MLFeatureValue) | null { return callSDK<(MLFeatureValue) | null>("CoreML_d968214ecc684fb6", 1582349450601567, this, [featureName]); }
   /**
    * var dictionary: [String : MLFeatureValue] { get }
    * @availability iOS 11.0+
    */
-  get dictionary(): Record<string, MLFeatureValue> { return callSDK<Record<string, MLFeatureValue>>("CoreML_067acaa3e5f56b46", 3456879554044172, this, []); }
+  get dictionary(): Record<string, MLFeatureValue> { return callSDK<Record<string, MLFeatureValue>>("CoreML_d968214ecc684fb6", 3456879554044172, this, []); }
   declare readonly $type: { "c:objc(cs)MLDictionaryFeatureProvider": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dictionary": true };
 }
@@ -327,52 +327,52 @@ export class MLDictionaryFeatureProvider extends SDKHandle {
  */
 export class MLFeatureDescription extends SDKHandle {
   /** init() */
-  static init(): MLFeatureDescription { return callSDK<MLFeatureDescription>("CoreML_067acaa3e5f56b46", 300469223102327, undefined, []); }
+  static init(): MLFeatureDescription { return callSDK<MLFeatureDescription>("CoreML_d968214ecc684fb6", 300469223102327, undefined, []); }
   /**
    * func isAllowedValue(_ value: MLFeatureValue) -> Bool
    * @availability iOS 11.0+
    */
-  isAllowedValue(value: MLFeatureValue): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 2263468522203215, this, [value]); }
+  isAllowedValue(value: MLFeatureValue): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 2263468522203215, this, [value]); }
   /**
    * var dictionaryConstraint: MLDictionaryConstraint? { get }
    * @availability iOS 11.0+
    */
-  get dictionaryConstraint(): (MLDictionaryConstraint) | null { return callSDK<(MLDictionaryConstraint) | null>("CoreML_067acaa3e5f56b46", 1107808976452332, this, []); }
+  get dictionaryConstraint(): (MLDictionaryConstraint) | null { return callSDK<(MLDictionaryConstraint) | null>("CoreML_d968214ecc684fb6", 1107808976452332, this, []); }
   /**
    * var imageConstraint: MLImageConstraint? { get }
    * @availability iOS 11.0+
    */
-  get imageConstraint(): (MLImageConstraint) | null { return callSDK<(MLImageConstraint) | null>("CoreML_067acaa3e5f56b46", 2317978656414595, this, []); }
+  get imageConstraint(): (MLImageConstraint) | null { return callSDK<(MLImageConstraint) | null>("CoreML_d968214ecc684fb6", 2317978656414595, this, []); }
   /**
    * var multiArrayConstraint: MLMultiArrayConstraint? { get }
    * @availability iOS 11.0+
    */
-  get multiArrayConstraint(): (MLMultiArrayConstraint) | null { return callSDK<(MLMultiArrayConstraint) | null>("CoreML_067acaa3e5f56b46", 3671263921438716, this, []); }
+  get multiArrayConstraint(): (MLMultiArrayConstraint) | null { return callSDK<(MLMultiArrayConstraint) | null>("CoreML_d968214ecc684fb6", 3671263921438716, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 11.0+
    */
-  get name(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 653791941075869, this, []); }
+  get name(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 653791941075869, this, []); }
   /**
    * var isOptional: Bool { get }
    * @availability iOS 11.0+
    */
-  get isOptional(): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 3409162969135216, this, []); }
+  get isOptional(): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 3409162969135216, this, []); }
   /**
    * var sequenceConstraint: MLSequenceConstraint? { get }
    * @availability iOS 12.0+
    */
-  get sequenceConstraint(): (MLSequenceConstraint) | null { return callSDK<(MLSequenceConstraint) | null>("CoreML_067acaa3e5f56b46", 1636283909812192, this, []); }
+  get sequenceConstraint(): (MLSequenceConstraint) | null { return callSDK<(MLSequenceConstraint) | null>("CoreML_d968214ecc684fb6", 1636283909812192, this, []); }
   /**
    * var stateConstraint: MLStateConstraint? { get }
    * @availability iOS 18.0+
    */
-  get stateConstraint(): (MLStateConstraint) | null { return callSDK<(MLStateConstraint) | null>("CoreML_067acaa3e5f56b46", 318507506078177, this, []); }
+  get stateConstraint(): (MLStateConstraint) | null { return callSDK<(MLStateConstraint) | null>("CoreML_d968214ecc684fb6", 318507506078177, this, []); }
   /**
    * var type: MLFeatureType { get }
    * @availability iOS 11.0+
    */
-  get type(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_067acaa3e5f56b46", 4309925675593539, this, []); }
+  get type(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_d968214ecc684fb6", 4309925675593539, this, []); }
   declare readonly $type: { "c:objc(cs)MLFeatureDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dictionaryConstraint": true; "imageConstraint": true; "multiArrayConstraint": true; "name": true; "isOptional": true; "sequenceConstraint": true; "stateConstraint": true; "type": true };
 }
@@ -400,7 +400,7 @@ export const MLFeatureType = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (MLFeatureType) | null { return callSDK<(MLFeatureType) | null>("CoreML_067acaa3e5f56b46", 3387521553323446, undefined, [rawValue]); }
+  init(rawValue: number): (MLFeatureType) | null { return callSDK<(MLFeatureType) | null>("CoreML_d968214ecc684fb6", 3387521553323446, undefined, [rawValue]); }
 };
 
 /**
@@ -412,147 +412,147 @@ export class MLFeatureValue extends SDKHandle {
    * convenience init(cgImage: CGImage, constraint: MLImageConstraint, options: [MLFeatureValue.ImageOption : Any]? = nil) throws
    * @availability iOS 13.0+
    */
-  static initCgImageConstraintOptions(cgImage: _CoreGraphics_CGImage, constraint: MLImageConstraint, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 1236891194185027, undefined, [cgImage, constraint, options]); }
+  static initCgImageConstraintOptions(cgImage: _CoreGraphics_CGImage, constraint: MLImageConstraint, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 1236891194185027, undefined, [cgImage, constraint, options]); }
   /**
    * convenience init(cgImage: CGImage, orientation: CGImagePropertyOrientation, constraint: MLImageConstraint, options: [MLFeatureValue.ImageOption : Any]? = nil) throws
    * @availability iOS 13.0+
    */
-  static initCgImageOrientationConstraintOptions(cgImage: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, constraint: MLImageConstraint, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 2813016565255735, undefined, [cgImage, orientation, constraint, options]); }
+  static initCgImageOrientationConstraintOptions(cgImage: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, constraint: MLImageConstraint, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 2813016565255735, undefined, [cgImage, orientation, constraint, options]); }
   /**
    * convenience init(cgImage: CGImage, orientation: CGImagePropertyOrientation, pixelsWide: Int, pixelsHigh: Int, pixelFormatType: OSType, options: [MLFeatureValue.ImageOption : Any]? = nil) throws
    * @availability iOS 13.0+
    */
-  static initCgImageOrientationPixelsWidePixelsHighPixelFormatTypeOptions(cgImage: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, pixelsWide: number, pixelsHigh: number, pixelFormatType: SDKHandle, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 1585248588582619, undefined, [cgImage, orientation, pixelsWide, pixelsHigh, pixelFormatType, options]); }
+  static initCgImageOrientationPixelsWidePixelsHighPixelFormatTypeOptions(cgImage: _CoreGraphics_CGImage, orientation: _ImageIO_CGImagePropertyOrientation, pixelsWide: number, pixelsHigh: number, pixelFormatType: SDKHandle, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 1585248588582619, undefined, [cgImage, orientation, pixelsWide, pixelsHigh, pixelFormatType, options]); }
   /**
    * convenience init(cgImage: CGImage, pixelsWide: Int, pixelsHigh: Int, pixelFormatType: OSType, options: [MLFeatureValue.ImageOption : Any]? = nil) throws
    * @availability iOS 13.0+
    */
-  static initCgImagePixelsWidePixelsHighPixelFormatTypeOptions(cgImage: _CoreGraphics_CGImage, pixelsWide: number, pixelsHigh: number, pixelFormatType: SDKHandle, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 3387813187151512, undefined, [cgImage, pixelsWide, pixelsHigh, pixelFormatType, options]); }
+  static initCgImagePixelsWidePixelsHighPixelFormatTypeOptions(cgImage: _CoreGraphics_CGImage, pixelsWide: number, pixelsHigh: number, pixelFormatType: SDKHandle, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 3387813187151512, undefined, [cgImage, pixelsWide, pixelsHigh, pixelFormatType, options]); }
   /**
    * convenience init(dictionary value: [AnyHashable : NSNumber]) throws
    * @availability iOS 11.0+
    */
-  static initDictionary(value: $SDK11): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 3114685633082914, undefined, [value]); }
+  static initDictionary(value: $SDK11): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 3114685633082914, undefined, [value]); }
   /**
    * convenience init(double value: Double)
    * @availability iOS 11.0+
    */
-  static initDouble(value: number): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 3137760877372529, undefined, [value]); }
+  static initDouble(value: number): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 3137760877372529, undefined, [value]); }
   /**
    * convenience init(imageAt url: URL, constraint: MLImageConstraint, options: [MLFeatureValue.ImageOption : Any]? = nil) throws
    * @availability iOS 13.0+
    */
-  static initImageAtConstraintOptions(url: string, constraint: MLImageConstraint, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 1900223659520592, undefined, [url, constraint, options]); }
+  static initImageAtConstraintOptions(url: string, constraint: MLImageConstraint, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 1900223659520592, undefined, [url, constraint, options]); }
   /**
    * convenience init(imageAt url: URL, orientation: CGImagePropertyOrientation, constraint: MLImageConstraint, options: [MLFeatureValue.ImageOption : Any]? = nil) throws
    * @availability iOS 13.0+
    */
-  static initImageAtOrientationConstraintOptions(url: string, orientation: _ImageIO_CGImagePropertyOrientation, constraint: MLImageConstraint, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 232054346639420, undefined, [url, orientation, constraint, options]); }
+  static initImageAtOrientationConstraintOptions(url: string, orientation: _ImageIO_CGImagePropertyOrientation, constraint: MLImageConstraint, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 232054346639420, undefined, [url, orientation, constraint, options]); }
   /**
    * convenience init(imageAt url: URL, orientation: CGImagePropertyOrientation, pixelsWide: Int, pixelsHigh: Int, pixelFormatType: OSType, options: [MLFeatureValue.ImageOption : Any]? = nil) throws
    * @availability iOS 13.0+
    */
-  static initImageAtOrientationPixelsWidePixelsHighPixelFormatTypeOptions(url: string, orientation: _ImageIO_CGImagePropertyOrientation, pixelsWide: number, pixelsHigh: number, pixelFormatType: SDKHandle, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 3282019407842261, undefined, [url, orientation, pixelsWide, pixelsHigh, pixelFormatType, options]); }
+  static initImageAtOrientationPixelsWidePixelsHighPixelFormatTypeOptions(url: string, orientation: _ImageIO_CGImagePropertyOrientation, pixelsWide: number, pixelsHigh: number, pixelFormatType: SDKHandle, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 3282019407842261, undefined, [url, orientation, pixelsWide, pixelsHigh, pixelFormatType, options]); }
   /**
    * convenience init(imageAt url: URL, pixelsWide: Int, pixelsHigh: Int, pixelFormatType: OSType, options: [MLFeatureValue.ImageOption : Any]? = nil) throws
    * @availability iOS 13.0+
    */
-  static initImageAtPixelsWidePixelsHighPixelFormatTypeOptions(url: string, pixelsWide: number, pixelsHigh: number, pixelFormatType: SDKHandle, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 740529046399878, undefined, [url, pixelsWide, pixelsHigh, pixelFormatType, options]); }
+  static initImageAtPixelsWidePixelsHighPixelFormatTypeOptions(url: string, pixelsWide: number, pixelsHigh: number, pixelFormatType: SDKHandle, options?: $SDK10): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 740529046399878, undefined, [url, pixelsWide, pixelsHigh, pixelFormatType, options]); }
   /**
    * convenience init(int64 value: Int64)
    * @availability iOS 11.0+
    */
-  static initInt64(value: number): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 51356320741184, undefined, [value]); }
+  static initInt64(value: number): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 51356320741184, undefined, [value]); }
   /**
    * convenience init(multiArray value: MLMultiArray)
    * @availability iOS 11.0+
    */
-  static initMultiArray(value: MLMultiArray): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 3007526732397209, undefined, [value]); }
+  static initMultiArray(value: MLMultiArray): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 3007526732397209, undefined, [value]); }
   /**
    * convenience init(pixelBuffer value: CVPixelBuffer)
    * @availability iOS 11.0+
    */
-  static initPixelBuffer(value: _CoreVideo_CVBuffer): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 1947995722563570, undefined, [value]); }
+  static initPixelBuffer(value: _CoreVideo_CVBuffer): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 1947995722563570, undefined, [value]); }
   /**
    * convenience init(sequence: MLSequence)
    * @availability iOS 12.0+
    */
-  static initSequence(sequence: MLSequence): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 207696334178472, undefined, [sequence]); }
+  static initSequence(sequence: MLSequence): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 207696334178472, undefined, [sequence]); }
   /**
    * convenience init(string value: String)
    * @availability iOS 11.0+
    */
-  static initString(value: string): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 2152562325537996, undefined, [value]); }
+  static initString(value: string): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 2152562325537996, undefined, [value]); }
   /**
    * convenience init(undefined type: MLFeatureType)
    * @availability iOS 11.0+
    */
-  static initUndefined(type: MLFeatureType): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 1071915008563916, undefined, [type]); }
+  static initUndefined(type: MLFeatureType): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 1071915008563916, undefined, [type]); }
   /**
    * func isEqual(to value: MLFeatureValue) -> Bool
    * @availability iOS 11.0+
    */
-  isEqual(value: MLFeatureValue): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 4312260470333294, this, [value]); }
+  isEqual(value: MLFeatureValue): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 4312260470333294, this, [value]); }
   /**
    * var dictionaryValue: [AnyHashable : NSNumber] { get }
    * @availability iOS 11.0+
    */
-  get dictionaryValue(): $SDK11 { return callSDK<$SDK11>("CoreML_067acaa3e5f56b46", 4069283403987688, this, []); }
+  get dictionaryValue(): $SDK11 { return callSDK<$SDK11>("CoreML_d968214ecc684fb6", 4069283403987688, this, []); }
   /**
    * var doubleValue: Double { get }
    * @availability iOS 11.0+
    */
-  get doubleValue(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 468500809877756, this, []); }
+  get doubleValue(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 468500809877756, this, []); }
   /**
    * var imageBufferValue: CVPixelBuffer? { get }
    * @availability iOS 11.0+
    */
-  get imageBufferValue(): (_CoreVideo_CVBuffer) | null { return callSDK<(_CoreVideo_CVBuffer) | null>("CoreML_067acaa3e5f56b46", 2156708436938645, this, []); }
+  get imageBufferValue(): (_CoreVideo_CVBuffer) | null { return callSDK<(_CoreVideo_CVBuffer) | null>("CoreML_d968214ecc684fb6", 2156708436938645, this, []); }
   /**
    * var int64Value: Int64 { get }
    * @availability iOS 11.0+
    */
-  get int64Value(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 2388701525912046, this, []); }
+  get int64Value(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 2388701525912046, this, []); }
   /**
    * var multiArrayValue: MLMultiArray? { get }
    * @availability iOS 11.0+
    */
-  get multiArrayValue(): (MLMultiArray) | null { return callSDK<(MLMultiArray) | null>("CoreML_067acaa3e5f56b46", 4050655106229942, this, []); }
+  get multiArrayValue(): (MLMultiArray) | null { return callSDK<(MLMultiArray) | null>("CoreML_d968214ecc684fb6", 4050655106229942, this, []); }
   /**
    * var sequenceValue: MLSequence? { get }
    * @availability iOS 12.0+
    */
-  get sequenceValue(): (MLSequence) | null { return callSDK<(MLSequence) | null>("CoreML_067acaa3e5f56b46", 2055292224591156, this, []); }
+  get sequenceValue(): (MLSequence) | null { return callSDK<(MLSequence) | null>("CoreML_d968214ecc684fb6", 2055292224591156, this, []); }
   /**
    * var stringValue: String { get }
    * @availability iOS 11.0+
    */
-  get stringValue(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 1532721499961357, this, []); }
+  get stringValue(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 1532721499961357, this, []); }
   /**
    * var type: MLFeatureType { get }
    * @availability iOS 11.0+
    */
-  get type(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_067acaa3e5f56b46", 743666057687123, this, []); }
+  get type(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_d968214ecc684fb6", 743666057687123, this, []); }
   /**
    * var isUndefined: Bool { get }
    * @availability iOS 11.0+
    */
-  get isUndefined(): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 849353803218498, this, []); }
+  get isUndefined(): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 849353803218498, this, []); }
   /**
    * func shapedArrayValue<Scalar>(of type: Scalar.Type) -> MLShapedArray<Scalar>? where Scalar : MLShapedArrayScalar
    * @availability iOS 15.0+
    */
-  shapedArrayValue(type: "Double" | "Float"): $SDK13 { return callSDK<$SDK13>("CoreML_067acaa3e5f56b46", 4215516116899388, this, [type]); }
+  shapedArrayValue(type: "Double" | "Float"): $SDK13 { return callSDK<$SDK13>("CoreML_d968214ecc684fb6", 4215516116899388, this, [type]); }
   /**
    * convenience init<Scalar>(shapedArray: MLShapedArray<Scalar>) where Scalar : MLShapedArrayScalar
    * @availability iOS 15.0+
    */
-  static initShapedArray(shapedArray: MLShapedArray<number>): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 560874908270558, undefined, [shapedArray]); }
+  static initShapedArray(shapedArray: MLShapedArray<number>): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 560874908270558, undefined, [shapedArray]); }
   /**
    * convenience init(_ value: MLSendableFeatureValue)
    * @availability iOS 18.0+
    */
-  static init(value: MLSendableFeatureValue): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_067acaa3e5f56b46", 4295080900593286, undefined, [value]); }
+  static init(value: MLSendableFeatureValue): MLFeatureValue { return callSDK<MLFeatureValue>("CoreML_d968214ecc684fb6", 4295080900593286, undefined, [value]); }
   declare readonly $type: { "c:objc(cs)MLFeatureValue": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dictionaryValue": true; "doubleValue": true; "imageBufferValue": true; "int64Value": true; "multiArrayValue": true; "sequenceValue": true; "stringValue": true; "type": true; "isUndefined": true };
 }
@@ -565,16 +565,16 @@ export const MLFeatureValue_ImageOption = {
    * static let cropAndScale: MLFeatureValue.ImageOption
    * @availability iOS 13.0+
    */
-  get cropAndScale(): MLFeatureValue_ImageOption { return callSDK<MLFeatureValue_ImageOption>("CoreML_067acaa3e5f56b46", 2820821128093650, undefined, []); },
+  get cropAndScale(): MLFeatureValue_ImageOption { return callSDK<MLFeatureValue_ImageOption>("CoreML_d968214ecc684fb6", 2820821128093650, undefined, []); },
   /**
    * static let cropRect: MLFeatureValue.ImageOption
    * @availability iOS 13.0+
    */
-  get cropRect(): MLFeatureValue_ImageOption { return callSDK<MLFeatureValue_ImageOption>("CoreML_067acaa3e5f56b46", 1491324845484750, undefined, []); },
+  get cropRect(): MLFeatureValue_ImageOption { return callSDK<MLFeatureValue_ImageOption>("CoreML_d968214ecc684fb6", 1491324845484750, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): MLFeatureValue_ImageOption { return callSDK<MLFeatureValue_ImageOption>("CoreML_067acaa3e5f56b46", 663214587118121, undefined, [rawValue]); },
+  initRawValue(rawValue: string): MLFeatureValue_ImageOption { return callSDK<MLFeatureValue_ImageOption>("CoreML_d968214ecc684fb6", 663214587118121, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): MLFeatureValue_ImageOption { return callSDK<MLFeatureValue_ImageOption>("CoreML_067acaa3e5f56b46", 3171124805457267, undefined, [rawValue]); }
+  init(rawValue: string): MLFeatureValue_ImageOption { return callSDK<MLFeatureValue_ImageOption>("CoreML_d968214ecc684fb6", 3171124805457267, undefined, [rawValue]); }
 };
 
 /**
@@ -586,7 +586,7 @@ export class MLGPUComputeDevice extends SDKHandle {
    * var metalDevice: (any MTLDevice)! { get }
    * @availability iOS 17.0+
    */
-  get metalDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreML_067acaa3e5f56b46", 3212653156662109, this, []); }
+  get metalDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreML_d968214ecc684fb6", 3212653156662109, this, []); }
   declare readonly $type: { "c:objc(cs)MLGPUComputeDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "metalDevice": true };
 }
@@ -600,22 +600,22 @@ export class MLImageConstraint extends SDKHandle {
    * var pixelFormatType: OSType { get }
    * @availability iOS 11.0+
    */
-  get pixelFormatType(): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 245894456640568, this, []); }
+  get pixelFormatType(): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 245894456640568, this, []); }
   /**
    * var pixelsHigh: Int { get }
    * @availability iOS 11.0+
    */
-  get pixelsHigh(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 463798282969953, this, []); }
+  get pixelsHigh(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 463798282969953, this, []); }
   /**
    * var pixelsWide: Int { get }
    * @availability iOS 11.0+
    */
-  get pixelsWide(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 718380024555340, this, []); }
+  get pixelsWide(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 718380024555340, this, []); }
   /**
    * var sizeConstraint: MLImageSizeConstraint { get }
    * @availability iOS 12.0+
    */
-  get sizeConstraint(): MLImageSizeConstraint { return callSDK<MLImageSizeConstraint>("CoreML_067acaa3e5f56b46", 4355785914833547, this, []); }
+  get sizeConstraint(): MLImageSizeConstraint { return callSDK<MLImageSizeConstraint>("CoreML_d968214ecc684fb6", 4355785914833547, this, []); }
   declare readonly $type: { "c:objc(cs)MLImageConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pixelFormatType": true; "pixelsHigh": true; "pixelsWide": true; "sizeConstraint": true };
 }
@@ -626,17 +626,17 @@ export class MLImageConstraint extends SDKHandle {
  */
 export class MLImageSize extends SDKHandle {
   /** init() */
-  static init(): MLImageSize { return callSDK<MLImageSize>("CoreML_067acaa3e5f56b46", 2803959060886242, undefined, []); }
+  static init(): MLImageSize { return callSDK<MLImageSize>("CoreML_d968214ecc684fb6", 2803959060886242, undefined, []); }
   /**
    * var pixelsHigh: Int { get }
    * @availability iOS 12.0+
    */
-  get pixelsHigh(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 2979279879904893, this, []); }
+  get pixelsHigh(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 2979279879904893, this, []); }
   /**
    * var pixelsWide: Int { get }
    * @availability iOS 12.0+
    */
-  get pixelsWide(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 2258445298826010, this, []); }
+  get pixelsWide(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 2258445298826010, this, []); }
   declare readonly $type: { "c:objc(cs)MLImageSize": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "pixelsHigh": true; "pixelsWide": true };
 }
@@ -647,27 +647,27 @@ export class MLImageSize extends SDKHandle {
  */
 export class MLImageSizeConstraint extends SDKHandle {
   /** init() */
-  static init(): MLImageSizeConstraint { return callSDK<MLImageSizeConstraint>("CoreML_067acaa3e5f56b46", 1095807332769142, undefined, []); }
+  static init(): MLImageSizeConstraint { return callSDK<MLImageSizeConstraint>("CoreML_d968214ecc684fb6", 1095807332769142, undefined, []); }
   /**
    * var enumeratedImageSizes: [MLImageSize] { get }
    * @availability iOS 12.0+
    */
-  get enumeratedImageSizes(): Array<MLImageSize> { return callSDK<Array<MLImageSize>>("CoreML_067acaa3e5f56b46", 1910631493966713, this, []); }
+  get enumeratedImageSizes(): Array<MLImageSize> { return callSDK<Array<MLImageSize>>("CoreML_d968214ecc684fb6", 1910631493966713, this, []); }
   /**
    * var pixelsHighRange: NSRange { get }
    * @availability iOS 12.0+
    */
-  get pixelsHighRange(): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 3942949470515810, this, []); }
+  get pixelsHighRange(): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 3942949470515810, this, []); }
   /**
    * var pixelsWideRange: NSRange { get }
    * @availability iOS 12.0+
    */
-  get pixelsWideRange(): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 937710314164109, this, []); }
+  get pixelsWideRange(): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 937710314164109, this, []); }
   /**
    * var type: MLImageSizeConstraintType { get }
    * @availability iOS 12.0+
    */
-  get type(): MLImageSizeConstraintType { return callSDK<MLImageSizeConstraintType>("CoreML_067acaa3e5f56b46", 2833293308582914, this, []); }
+  get type(): MLImageSizeConstraintType { return callSDK<MLImageSizeConstraintType>("CoreML_d968214ecc684fb6", 2833293308582914, this, []); }
   declare readonly $type: { "c:objc(cs)MLImageSizeConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "enumeratedImageSizes": true; "pixelsHighRange": true; "pixelsWideRange": true; "type": true };
 }
@@ -683,7 +683,7 @@ export const MLImageSizeConstraintType = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (MLImageSizeConstraintType) | null { return callSDK<(MLImageSizeConstraintType) | null>("CoreML_067acaa3e5f56b46", 121014475046122, undefined, [rawValue]); }
+  init(rawValue: number): (MLImageSizeConstraintType) | null { return callSDK<(MLImageSizeConstraintType) | null>("CoreML_d968214ecc684fb6", 121014475046122, undefined, [rawValue]); }
 };
 
 /**
@@ -695,12 +695,12 @@ export class MLKey extends SDKHandle {
    * var name: String { get }
    * @availability iOS 13.0+
    */
-  get name(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 2706500556997772, this, []); }
+  get name(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 2706500556997772, this, []); }
   /**
    * var scope: String? { get }
    * @availability iOS 13.0+
    */
-  get scope(): (string) | null { return callSDK<(string) | null>("CoreML_067acaa3e5f56b46", 1873824172757589, this, []); }
+  get scope(): (string) | null { return callSDK<(string) | null>("CoreML_d968214ecc684fb6", 1873824172757589, this, []); }
   declare readonly $type: { "c:objc(cs)MLKey": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "scope": true };
 }
@@ -714,17 +714,17 @@ export class MLMetricKey extends MLKey {
    * class var epochIndex: MLMetricKey { get }
    * @availability iOS 13.0+
    */
-  static get epochIndex(): MLMetricKey { return callSDK<MLMetricKey>("CoreML_067acaa3e5f56b46", 836443451619245, undefined, []); }
+  static get epochIndex(): MLMetricKey { return callSDK<MLMetricKey>("CoreML_d968214ecc684fb6", 836443451619245, undefined, []); }
   /**
    * class var lossValue: MLMetricKey { get }
    * @availability iOS 13.0+
    */
-  static get lossValue(): MLMetricKey { return callSDK<MLMetricKey>("CoreML_067acaa3e5f56b46", 4175527569415112, undefined, []); }
+  static get lossValue(): MLMetricKey { return callSDK<MLMetricKey>("CoreML_d968214ecc684fb6", 4175527569415112, undefined, []); }
   /**
    * class var miniBatchIndex: MLMetricKey { get }
    * @availability iOS 13.0+
    */
-  static get miniBatchIndex(): MLMetricKey { return callSDK<MLMetricKey>("CoreML_067acaa3e5f56b46", 707414065567782, undefined, []); }
+  static get miniBatchIndex(): MLMetricKey { return callSDK<MLMetricKey>("CoreML_d968214ecc684fb6", 707414065567782, undefined, []); }
   declare readonly $type: { "c:objc(cs)MLMetricKey": true; "c:objc(cs)MLKey": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "scope": true };
 }
@@ -738,123 +738,123 @@ export class MLModel extends SDKHandle {
    * class func compileModel(at modelURL: URL) async throws -> URL
    * @availability iOS 16.0+
    */
-  static compileModelAt(modelURL: string): Promise<string> { return callSDKAsync<string>("CoreML_067acaa3e5f56b46", 3887283835827844, undefined, [modelURL]); }
+  static compileModelAt(modelURL: string): Promise<string> { return callSDKAsync<string>("CoreML_d968214ecc684fb6", 3887283835827844, undefined, [modelURL]); }
   /**
    * class func compileModel(at modelURL: URL) throws -> URL
    * @availability iOS 11.0+
    * @deprecated iOS 100000.0
    */
-  static compileModelAt10374(modelURL: string): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 4180145157018671, undefined, [modelURL]); }
+  static compileModelAt10374(modelURL: string): string { return callSDK<string>("CoreML_d968214ecc684fb6", 4180145157018671, undefined, [modelURL]); }
   /**
    * class func load(asset: MLModelAsset, configuration: MLModelConfiguration) async throws -> MLModel
    * @availability iOS 16.0+
    */
-  static loadConfigurationCompletionHandler(asset: MLModelAsset, configuration: MLModelConfiguration, handler: ((arg0: (MLModel) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 2468424745535201, undefined, [asset, configuration, handler], [null,null,{"callback":{"out":[]}}]); }
+  static loadConfigurationCompletionHandler(asset: MLModelAsset, configuration: MLModelConfiguration, handler: ((arg0: (MLModel) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreML_d968214ecc684fb6", 2468424745535201, undefined, [asset, configuration, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * convenience init(contentsOf url: URL, configuration: MLModelConfiguration) throws
    * @availability iOS 12.0+
    */
-  static initContentsOfConfiguration(url: string, configuration: MLModelConfiguration): MLModel { return callSDK<MLModel>("CoreML_067acaa3e5f56b46", 3430285222539860, undefined, [url, configuration]); }
+  static initContentsOfConfiguration(url: string, configuration: MLModelConfiguration): MLModel { return callSDK<MLModel>("CoreML_d968214ecc684fb6", 3430285222539860, undefined, [url, configuration]); }
   /**
    * convenience init(contentsOf url: URL) throws
    * @availability iOS 11.0+
    */
-  static initContentsOf(url: string): MLModel { return callSDK<MLModel>("CoreML_067acaa3e5f56b46", 540956697459673, undefined, [url]); }
+  static initContentsOf(url: string): MLModel { return callSDK<MLModel>("CoreML_d968214ecc684fb6", 540956697459673, undefined, [url]); }
   /**
    * func parameterValue(for key: MLParameterKey) throws -> Any
    * @availability iOS 13.0+
    */
-  parameterValue(key: MLParameterKey): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 2106175820674271, this, [key]); }
+  parameterValue(key: MLParameterKey): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 2106175820674271, this, [key]); }
   /**
    * func prediction(from input: any MLFeatureProvider) throws -> any MLFeatureProvider
    * @availability iOS 11.0+
    */
-  predictionFrom(input: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 202286333010285, this, [input]); }
+  predictionFrom(input: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 202286333010285, this, [input]); }
   /**
    * func prediction(from input: any MLFeatureProvider, options: MLPredictionOptions) throws -> any MLFeatureProvider
    * @availability iOS 11.0+
    */
-  predictionFromOptions(input: SDKHandle, options: MLPredictionOptions): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 1358241730792777, this, [input, options]); }
+  predictionFromOptions(input: SDKHandle, options: MLPredictionOptions): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 1358241730792777, this, [input, options]); }
   /**
    * func prediction(from inputFeatures: any MLFeatureProvider, using state: MLState) throws -> any MLFeatureProvider
    * @availability iOS 18.0+
    */
-  predictionFromUsing(inputFeatures: SDKHandle, state: MLState): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 2648943181363880, this, [inputFeatures, state]); }
+  predictionFromUsing(inputFeatures: SDKHandle, state: MLState): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 2648943181363880, this, [inputFeatures, state]); }
   /**
    * func prediction(from inputFeatures: any MLFeatureProvider, using state: MLState, options: MLPredictionOptions) throws -> any MLFeatureProvider
    * @availability iOS 18.0+
    */
-  predictionFromUsingOptions(inputFeatures: SDKHandle, state: MLState, options: MLPredictionOptions): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 2750936315930175, this, [inputFeatures, state, options]); }
+  predictionFromUsingOptions(inputFeatures: SDKHandle, state: MLState, options: MLPredictionOptions): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 2750936315930175, this, [inputFeatures, state, options]); }
   /**
    * func predictions(fromBatch inputBatch: any MLBatchProvider) throws -> any MLBatchProvider
    * @availability iOS 12.0+
    */
-  predictionsFromBatch(inputBatch: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 1715982078957449, this, [inputBatch]); }
+  predictionsFromBatch(inputBatch: SDKHandle): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 1715982078957449, this, [inputBatch]); }
   /**
    * func predictions(from inputBatch: any MLBatchProvider, options: MLPredictionOptions) throws -> any MLBatchProvider
    * @availability iOS 12.0+
    */
-  predictionsFromOptions(inputBatch: SDKHandle, options: MLPredictionOptions): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 644939148376373, this, [inputBatch, options]); }
+  predictionsFromOptions(inputBatch: SDKHandle, options: MLPredictionOptions): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 644939148376373, this, [inputBatch, options]); }
   /**
    * var configuration: MLModelConfiguration { get }
    * @availability iOS 12.0+
    */
-  get configuration(): MLModelConfiguration { return callSDK<MLModelConfiguration>("CoreML_067acaa3e5f56b46", 3475013055216349, this, []); }
+  get configuration(): MLModelConfiguration { return callSDK<MLModelConfiguration>("CoreML_d968214ecc684fb6", 3475013055216349, this, []); }
   /**
    * var modelDescription: MLModelDescription { get }
    * @availability iOS 11.0+
    */
-  get modelDescription(): MLModelDescription { return callSDK<MLModelDescription>("CoreML_067acaa3e5f56b46", 1089057482595694, this, []); }
+  get modelDescription(): MLModelDescription { return callSDK<MLModelDescription>("CoreML_d968214ecc684fb6", 1089057482595694, this, []); }
   /**
    * func prediction(from input: any MLFeatureProvider, using state: MLState, options: MLPredictionOptions = MLPredictionOptions()) async throws -> any MLFeatureProvider
    * @availability iOS 18.0+
    */
-  predictionFromUsingOptions91549(input: SDKHandle, state: MLState, options?: MLPredictionOptions): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("CoreML_067acaa3e5f56b46", 4301365474464636, this, [input, state, options]); }
+  predictionFromUsingOptions91549(input: SDKHandle, state: MLState, options?: MLPredictionOptions): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("CoreML_d968214ecc684fb6", 4301365474464636, this, [input, state, options]); }
   /**
    * func prediction(from inputs: [String : MLTensor], using state: MLState) async throws -> [String : MLTensor]
    * @availability iOS 18.0+
    */
-  predictionFromUsing53525(inputs: $SDK15, state: MLState): Promise<$SDK15> { return callSDKAsync<$SDK15>("CoreML_067acaa3e5f56b46", 2885778306700201, this, [inputs, state]); }
+  predictionFromUsing53525(inputs: $SDK15, state: MLState): Promise<$SDK15> { return callSDKAsync<$SDK15>("CoreML_d968214ecc684fb6", 2885778306700201, this, [inputs, state]); }
   /**
    * func prediction(from input: any MLFeatureProvider, options: MLPredictionOptions = MLPredictionOptions()) async throws -> any MLFeatureProvider
    * @availability iOS 17.0+
    */
-  predictionFromOptions37517(input: SDKHandle, options?: MLPredictionOptions): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("CoreML_067acaa3e5f56b46", 3504601296536938, this, [input, options]); }
+  predictionFromOptions37517(input: SDKHandle, options?: MLPredictionOptions): Promise<SDKHandle> { return callSDKAsync<SDKHandle>("CoreML_d968214ecc684fb6", 3504601296536938, this, [input, options]); }
   /**
    * func prediction(from inputs: [String : MLTensor]) async throws -> [String : MLTensor]
    * @availability iOS 18.0+
    */
-  predictionFrom13483(inputs: $SDK15): Promise<$SDK15> { return callSDKAsync<$SDK15>("CoreML_067acaa3e5f56b46", 528704660233547, this, [inputs]); }
+  predictionFrom13483(inputs: $SDK15): Promise<$SDK15> { return callSDKAsync<$SDK15>("CoreML_d968214ecc684fb6", 528704660233547, this, [inputs]); }
   /**
    * class func compileModel(at url: URL) async throws -> URL
    * @availability iOS 16.0+
    */
-  static compileModelAt94960(url: string): Promise<string> { return callSDKAsync<string>("CoreML_067acaa3e5f56b46", 2442553826153034, undefined, [url]); }
+  static compileModelAt94960(url: string): Promise<string> { return callSDKAsync<string>("CoreML_d968214ecc684fb6", 2442553826153034, undefined, [url]); }
   /**
    * class func compileModel(at url: URL, completionHandler handler: @escaping (Result<URL, any Error>) -> Void)
    * @availability iOS 16.0+
    */
-  static compileModelAtCompletionHandler(url: string, handler: ((arg0: SDKHandle) => void)): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 3461128057997169, undefined, [url, handler], [null,{"callback":{"out":[]}}]); }
+  static compileModelAtCompletionHandler(url: string, handler: ((arg0: SDKHandle) => void)): void { return callSDK<void>("CoreML_d968214ecc684fb6", 3461128057997169, undefined, [url, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * static var availableComputeDevices: [MLComputeDevice] { get }
    * @availability iOS 17.0+
    */
-  static get availableComputeDevices(): Array<MLComputeDevice> { return callSDK<Array<MLComputeDevice>>("CoreML_067acaa3e5f56b46", 553316713618727, undefined, []); }
+  static get availableComputeDevices(): Array<MLComputeDevice> { return callSDK<Array<MLComputeDevice>>("CoreML_d968214ecc684fb6", 553316713618727, undefined, []); }
   /**
    * class func load(contentsOf url: URL, configuration: MLModelConfiguration = MLModelConfiguration(), completionHandler handler: @escaping (Result<MLModel, any Error>) -> Void)
    * @availability iOS 14.0+
    */
-  static loadContentsOfConfigurationCompletionHandler(url: string, configuration: MLModelConfiguration, handler: ((arg0: SDKHandle) => void)): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 2029344266315851, undefined, [url, configuration, handler], [null,null,{"callback":{"out":[]}}]); }
+  static loadContentsOfConfigurationCompletionHandler(url: string, configuration: MLModelConfiguration, handler: ((arg0: SDKHandle) => void)): void { return callSDK<void>("CoreML_d968214ecc684fb6", 2029344266315851, undefined, [url, configuration, handler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func load(contentsOf url: URL, configuration: MLModelConfiguration = MLModelConfiguration()) async throws -> MLModel
    * @availability iOS 15.0+
    */
-  static loadContentsOfConfiguration(url: string, configuration?: MLModelConfiguration): Promise<MLModel> { return callSDKAsync<MLModel>("CoreML_067acaa3e5f56b46", 3165246599012933, undefined, [url, configuration]); }
+  static loadContentsOfConfiguration(url: string, configuration?: MLModelConfiguration): Promise<MLModel> { return callSDKAsync<MLModel>("CoreML_d968214ecc684fb6", 3165246599012933, undefined, [url, configuration]); }
   /**
    * func makeState() -> MLState
    * @availability iOS 18.0+
    */
-  makeState(): MLState { return callSDK<MLState>("CoreML_067acaa3e5f56b46", 1640857529913813, this, []); }
+  makeState(): MLState { return callSDK<MLState>("CoreML_d968214ecc684fb6", 1640857529913813, this, []); }
   declare readonly $type: { "c:objc(cs)MLModel": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "configuration": true; "modelDescription": true };
 }
@@ -868,32 +868,32 @@ export class MLModelAsset extends SDKHandle {
    * convenience init(specification specificationData: Data, blobMapping: [URL : Data]) throws
    * @availability iOS 18.0+
    */
-  static initSpecificationBlobMapping(specificationData: ArrayBuffer, blobMapping: Record<string, ArrayBuffer>): MLModelAsset { return callSDK<MLModelAsset>("CoreML_067acaa3e5f56b46", 369053778597984, undefined, [specificationData, blobMapping]); }
+  static initSpecificationBlobMapping(specificationData: ArrayBuffer, blobMapping: Record<string, ArrayBuffer>): MLModelAsset { return callSDK<MLModelAsset>("CoreML_d968214ecc684fb6", 369053778597984, undefined, [specificationData, blobMapping]); }
   /**
    * convenience init(specification specificationData: Data) throws
    * @availability iOS 16.0+
    */
-  static initSpecification(specificationData: ArrayBuffer): MLModelAsset { return callSDK<MLModelAsset>("CoreML_067acaa3e5f56b46", 3620928081884853, undefined, [specificationData]); }
+  static initSpecification(specificationData: ArrayBuffer): MLModelAsset { return callSDK<MLModelAsset>("CoreML_d968214ecc684fb6", 3620928081884853, undefined, [specificationData]); }
   /**
    * convenience init(url compiledModelURL: URL) throws
    * @availability iOS 18.0+
    */
-  static initUrl(compiledModelURL: string): MLModelAsset { return callSDK<MLModelAsset>("CoreML_067acaa3e5f56b46", 3092320822890715, undefined, [compiledModelURL]); }
+  static initUrl(compiledModelURL: string): MLModelAsset { return callSDK<MLModelAsset>("CoreML_d968214ecc684fb6", 3092320822890715, undefined, [compiledModelURL]); }
   /**
    * var functionNames: [String] { get async throws }
    * @availability iOS 18.0+
    */
-  functionNames(handler: ((arg0: (Array<string>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 987767165564539, this, [handler], [{"callback":{"out":[]}}]); }
+  functionNames(handler: ((arg0: (Array<string>) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("CoreML_d968214ecc684fb6", 987767165564539, this, [handler], [{"callback":{"out":[]}}]); }
   /**
    * func modelDescription(of functionName: String) async throws -> MLModelDescription
    * @availability iOS 18.0+
    */
-  modelDescriptionOfFunctionNamedCompletionHandler(functionName: string, handler: $SDK19): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 1277096256127129, this, [functionName, handler], [null,{"callback":{"out":[]}}]); }
+  modelDescriptionOfFunctionNamedCompletionHandler(functionName: string, handler: $SDK19): void { return callSDK<void>("CoreML_d968214ecc684fb6", 1277096256127129, this, [functionName, handler], [null,{"callback":{"out":[]}}]); }
   /**
    * var modelDescription: MLModelDescription { get async throws }
    * @availability iOS 18.0+
    */
-  modelDescriptionCompletionHandler(handler: $SDK19): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 1595279547318156, this, [handler], [{"callback":{"out":[]}}]); }
+  modelDescriptionCompletionHandler(handler: $SDK19): void { return callSDK<void>("CoreML_d968214ecc684fb6", 1595279547318156, this, [handler], [{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)MLModelAsset": true; "c:objc(cs)NSObject": true };
 }
 
@@ -903,49 +903,49 @@ export class MLModelAsset extends SDKHandle {
  */
 export class MLModelConfiguration extends SDKHandle {
   /** init() */
-  static init(): MLModelConfiguration { return callSDK<MLModelConfiguration>("CoreML_067acaa3e5f56b46", 498494091479088, undefined, []); }
+  static init(): MLModelConfiguration { return callSDK<MLModelConfiguration>("CoreML_d968214ecc684fb6", 498494091479088, undefined, []); }
   /**
    * var allowLowPrecisionAccumulationOnGPU: Bool { get set }
    * @availability iOS 13.0+
    */
-  get allowLowPrecisionAccumulationOnGPU(): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 4445575047753547, this, []); }
-  set allowLowPrecisionAccumulationOnGPU(value: boolean) { callSDK<void>("CoreML_067acaa3e5f56b46", 87717844070848, this, [value]); }
+  get allowLowPrecisionAccumulationOnGPU(): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 4445575047753547, this, []); }
+  set allowLowPrecisionAccumulationOnGPU(value: boolean) { callSDK<void>("CoreML_d968214ecc684fb6", 87717844070848, this, [value]); }
   /**
    * var computeUnits: MLComputeUnits { get set }
    * @availability iOS 12.0+
    */
-  get computeUnits(): MLComputeUnits { return callSDK<MLComputeUnits>("CoreML_067acaa3e5f56b46", 3301444490969426, this, []); }
-  set computeUnits(value: MLComputeUnits) { callSDK<void>("CoreML_067acaa3e5f56b46", 1905297993328622, this, [value]); }
+  get computeUnits(): MLComputeUnits { return callSDK<MLComputeUnits>("CoreML_d968214ecc684fb6", 3301444490969426, this, []); }
+  set computeUnits(value: MLComputeUnits) { callSDK<void>("CoreML_d968214ecc684fb6", 1905297993328622, this, [value]); }
   /**
    * var functionName: String? { get set }
    * @availability iOS 18.0+
    */
-  get functionName(): (string) | null { return callSDK<(string) | null>("CoreML_067acaa3e5f56b46", 4436617569395746, this, []); }
-  set functionName(value: (string) | null) { callSDK<void>("CoreML_067acaa3e5f56b46", 4361928181202663, this, [value]); }
+  get functionName(): (string) | null { return callSDK<(string) | null>("CoreML_d968214ecc684fb6", 4436617569395746, this, []); }
+  set functionName(value: (string) | null) { callSDK<void>("CoreML_d968214ecc684fb6", 4361928181202663, this, [value]); }
   /**
    * var modelDisplayName: String? { get set }
    * @availability iOS 16.0+
    */
-  get modelDisplayName(): (string) | null { return callSDK<(string) | null>("CoreML_067acaa3e5f56b46", 4393391891861733, this, []); }
-  set modelDisplayName(value: (string) | null) { callSDK<void>("CoreML_067acaa3e5f56b46", 1243719864761098, this, [value]); }
+  get modelDisplayName(): (string) | null { return callSDK<(string) | null>("CoreML_d968214ecc684fb6", 4393391891861733, this, []); }
+  set modelDisplayName(value: (string) | null) { callSDK<void>("CoreML_d968214ecc684fb6", 1243719864761098, this, [value]); }
   /**
    * var parameters: [MLParameterKey : Any]? { get set }
    * @availability iOS 13.0+
    */
-  get parameters(): $SDK20 { return callSDK<$SDK20>("CoreML_067acaa3e5f56b46", 904831263419716, this, []); }
-  set parameters(value: $SDK20) { callSDK<void>("CoreML_067acaa3e5f56b46", 2400698724473406, this, [value]); }
+  get parameters(): $SDK20 { return callSDK<$SDK20>("CoreML_d968214ecc684fb6", 904831263419716, this, []); }
+  set parameters(value: $SDK20) { callSDK<void>("CoreML_d968214ecc684fb6", 2400698724473406, this, [value]); }
   /**
    * var preferredMetalDevice: (any MTLDevice)? { get set }
    * @availability iOS 13.0+
    */
-  get preferredMetalDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreML_067acaa3e5f56b46", 1066193783359520, this, []); }
-  set preferredMetalDevice(value: (SDKHandle) | null) { callSDK<void>("CoreML_067acaa3e5f56b46", 2334273231376207, this, [value]); }
+  get preferredMetalDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("CoreML_d968214ecc684fb6", 1066193783359520, this, []); }
+  set preferredMetalDevice(value: (SDKHandle) | null) { callSDK<void>("CoreML_d968214ecc684fb6", 2334273231376207, this, [value]); }
   /**
    * var optimizationHints: MLOptimizationHints { get set }
    * @availability iOS 17.4+
    */
-  get optimizationHints(): MLOptimizationHints { return callSDK<MLOptimizationHints>("CoreML_067acaa3e5f56b46", 1417854442623851, this, []); }
-  set optimizationHints(value: MLOptimizationHints) { callSDK<void>("CoreML_067acaa3e5f56b46", 4497834015403307, this, [value]); }
+  get optimizationHints(): MLOptimizationHints { return callSDK<MLOptimizationHints>("CoreML_d968214ecc684fb6", 1417854442623851, this, []); }
+  set optimizationHints(value: MLOptimizationHints) { callSDK<void>("CoreML_d968214ecc684fb6", 4497834015403307, this, [value]); }
   declare readonly $type: { "c:objc(cs)MLModelConfiguration": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "allowLowPrecisionAccumulationOnGPU": true; "computeUnits": true; "functionName": true; "modelDisplayName": true; "parameters": true; "preferredMetalDevice": true };
 }
@@ -956,57 +956,57 @@ export class MLModelConfiguration extends SDKHandle {
  */
 export class MLModelDescription extends SDKHandle {
   /** init() */
-  static init(): MLModelDescription { return callSDK<MLModelDescription>("CoreML_067acaa3e5f56b46", 639901977629569, undefined, []); }
+  static init(): MLModelDescription { return callSDK<MLModelDescription>("CoreML_d968214ecc684fb6", 639901977629569, undefined, []); }
   /**
    * var classLabels: [Any]? { get }
    * @availability iOS 14.0+
    */
-  get classLabels(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("CoreML_067acaa3e5f56b46", 1429499377559437, this, []); }
+  get classLabels(): (Array<unknown>) | null { return callSDK<(Array<unknown>) | null>("CoreML_d968214ecc684fb6", 1429499377559437, this, []); }
   /**
    * var inputDescriptionsByName: [String : MLFeatureDescription] { get }
    * @availability iOS 11.0+
    */
-  get inputDescriptionsByName(): $SDK21 { return callSDK<$SDK21>("CoreML_067acaa3e5f56b46", 3865136344159757, this, []); }
+  get inputDescriptionsByName(): $SDK21 { return callSDK<$SDK21>("CoreML_d968214ecc684fb6", 3865136344159757, this, []); }
   /**
    * var isUpdatable: Bool { get }
    * @availability iOS 13.0+
    */
-  get isUpdatable(): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 669523276228759, this, []); }
+  get isUpdatable(): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 669523276228759, this, []); }
   /**
    * var metadata: [MLModelMetadataKey : Any] { get }
    * @availability iOS 11.0+
    */
-  get metadata(): NativeMap<MLModelMetadataKey, unknown> { return callSDK<NativeMap<MLModelMetadataKey, unknown>>("CoreML_067acaa3e5f56b46", 419410595080009, this, []); }
+  get metadata(): NativeMap<MLModelMetadataKey, unknown> { return callSDK<NativeMap<MLModelMetadataKey, unknown>>("CoreML_d968214ecc684fb6", 419410595080009, this, []); }
   /**
    * var outputDescriptionsByName: [String : MLFeatureDescription] { get }
    * @availability iOS 11.0+
    */
-  get outputDescriptionsByName(): $SDK21 { return callSDK<$SDK21>("CoreML_067acaa3e5f56b46", 1019075340141333, this, []); }
+  get outputDescriptionsByName(): $SDK21 { return callSDK<$SDK21>("CoreML_d968214ecc684fb6", 1019075340141333, this, []); }
   /**
    * var parameterDescriptionsByKey: [MLParameterKey : MLParameterDescription] { get }
    * @availability iOS 13.0+
    */
-  get parameterDescriptionsByKey(): NativeMap<MLParameterKey, MLParameterDescription> { return callSDK<NativeMap<MLParameterKey, MLParameterDescription>>("CoreML_067acaa3e5f56b46", 144115094893888, this, []); }
+  get parameterDescriptionsByKey(): NativeMap<MLParameterKey, MLParameterDescription> { return callSDK<NativeMap<MLParameterKey, MLParameterDescription>>("CoreML_d968214ecc684fb6", 144115094893888, this, []); }
   /**
    * var predictedFeatureName: String? { get }
    * @availability iOS 11.0+
    */
-  get predictedFeatureName(): (string) | null { return callSDK<(string) | null>("CoreML_067acaa3e5f56b46", 3784512728289538, this, []); }
+  get predictedFeatureName(): (string) | null { return callSDK<(string) | null>("CoreML_d968214ecc684fb6", 3784512728289538, this, []); }
   /**
    * var predictedProbabilitiesName: String? { get }
    * @availability iOS 11.0+
    */
-  get predictedProbabilitiesName(): (string) | null { return callSDK<(string) | null>("CoreML_067acaa3e5f56b46", 4222409272631052, this, []); }
+  get predictedProbabilitiesName(): (string) | null { return callSDK<(string) | null>("CoreML_d968214ecc684fb6", 4222409272631052, this, []); }
   /**
    * var stateDescriptionsByName: [String : MLFeatureDescription] { get }
    * @availability iOS 18.0+
    */
-  get stateDescriptionsByName(): $SDK21 { return callSDK<$SDK21>("CoreML_067acaa3e5f56b46", 2773550705127312, this, []); }
+  get stateDescriptionsByName(): $SDK21 { return callSDK<$SDK21>("CoreML_d968214ecc684fb6", 2773550705127312, this, []); }
   /**
    * var trainingInputDescriptionsByName: [String : MLFeatureDescription] { get }
    * @availability iOS 13.0+
    */
-  get trainingInputDescriptionsByName(): $SDK21 { return callSDK<$SDK21>("CoreML_067acaa3e5f56b46", 290383158971481, this, []); }
+  get trainingInputDescriptionsByName(): $SDK21 { return callSDK<$SDK21>("CoreML_d968214ecc684fb6", 290383158971481, this, []); }
   declare readonly $type: { "c:objc(cs)MLModelDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "classLabels": true; "inputDescriptionsByName": true; "isUpdatable": true; "metadata": true; "outputDescriptionsByName": true; "parameterDescriptionsByKey": true; "predictedFeatureName": true; "predictedProbabilitiesName": true; "stateDescriptionsByName": true; "trainingInputDescriptionsByName": true };
 }
@@ -1020,62 +1020,62 @@ export class MLModelError extends SDKHandle {
    * static var parameters: MLModelError.Code { get }
    * @availability iOS 13.0+
    */
-  static get parameters(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 1822885531686659, undefined, []); }
+  static get parameters(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 1822885531686659, undefined, []); }
   /**
    * static var customLayer: MLModelError.Code { get }
    * @availability iOS 11.2+
    */
-  static get customLayer(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 842506707498053, undefined, []); }
+  static get customLayer(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 842506707498053, undefined, []); }
   /**
    * static var customModel: MLModelError.Code { get }
    * @availability iOS 12.0+
    */
-  static get customModel(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 2486348128572971, undefined, []); }
+  static get customModel(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 2486348128572971, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 11.0+
    */
-  static get errorDomain(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 806523045557946, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 806523045557946, undefined, []); }
   /**
    * static var featureType: MLModelError.Code { get }
    * @availability iOS 11.0+
    */
-  static get featureType(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 2535429216741529, undefined, []); }
+  static get featureType(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 2535429216741529, undefined, []); }
   /**
    * static var modelCollection: MLModelError.Code { get }
    * @availability iOS 14.0+
    */
-  static get modelCollection(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 3361598865006728, undefined, []); }
+  static get modelCollection(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 3361598865006728, undefined, []); }
   /**
    * static var modelDecryption: MLModelError.Code { get }
    * @availability iOS 14.0+
    */
-  static get modelDecryption(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 3267562595683176, undefined, []); }
+  static get modelDecryption(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 3267562595683176, undefined, []); }
   /**
    * static var predictionCancelled: MLModelError.Code { get }
    * @availability iOS 17.0+
    */
-  static get predictionCancelled(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 3857274960295140, undefined, []); }
+  static get predictionCancelled(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 3857274960295140, undefined, []); }
   /**
    * static var modelDecryptionKeyFetch: MLModelError.Code { get }
    * @availability iOS 14.0+
    */
-  static get modelDecryptionKeyFetch(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 2031695039737970, undefined, []); }
+  static get modelDecryptionKeyFetch(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 2031695039737970, undefined, []); }
   /**
    * static var io: MLModelError.Code { get }
    * @availability iOS 11.0+
    */
-  static get io(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 1515208235591272, undefined, []); }
+  static get io(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 1515208235591272, undefined, []); }
   /**
    * static var update: MLModelError.Code { get }
    * @availability iOS 13.0+
    */
-  static get update(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 1479940275590367, undefined, []); }
+  static get update(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 1479940275590367, undefined, []); }
   /**
    * static var generic: MLModelError.Code { get }
    * @availability iOS 11.0+
    */
-  static get generic(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_067acaa3e5f56b46", 2344236294023182, undefined, []); }
+  static get generic(): MLModelError_Code { return callSDK<MLModelError_Code>("CoreML_d968214ecc684fb6", 2344236294023182, undefined, []); }
   declare readonly $type: { "s:SC12MLModelErrorLeV": true };
 }
 
@@ -1090,7 +1090,7 @@ export const MLModelError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (MLModelError_Code) | null { return callSDK<(MLModelError_Code) | null>("CoreML_067acaa3e5f56b46", 1749140950639658, undefined, [rawValue]); }
+  init(rawValue: number): (MLModelError_Code) | null { return callSDK<(MLModelError_Code) | null>("CoreML_d968214ecc684fb6", 1749140950639658, undefined, [rawValue]); }
 };
 
 /** struct MLModelMetadataKey */
@@ -1101,29 +1101,29 @@ export const MLModelMetadataKey = {
    * static let author: MLModelMetadataKey
    * @availability iOS 11.0+
    */
-  get author(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_067acaa3e5f56b46", 3126673273955077, undefined, []); },
+  get author(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_d968214ecc684fb6", 3126673273955077, undefined, []); },
   /**
    * static let creatorDefinedKey: MLModelMetadataKey
    * @availability iOS 11.0+
    */
-  get creatorDefinedKey(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_067acaa3e5f56b46", 1316924889778119, undefined, []); },
+  get creatorDefinedKey(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_d968214ecc684fb6", 1316924889778119, undefined, []); },
   /**
    * static let description: MLModelMetadataKey
    * @availability iOS 11.0+
    */
-  get description(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_067acaa3e5f56b46", 4438661368325912, undefined, []); },
+  get description(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_d968214ecc684fb6", 4438661368325912, undefined, []); },
   /**
    * static let license: MLModelMetadataKey
    * @availability iOS 11.0+
    */
-  get license(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_067acaa3e5f56b46", 3341184155342100, undefined, []); },
+  get license(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_d968214ecc684fb6", 3341184155342100, undefined, []); },
   /**
    * static let versionString: MLModelMetadataKey
    * @availability iOS 11.0+
    */
-  get versionString(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_067acaa3e5f56b46", 2587653075653023, undefined, []); },
+  get versionString(): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_d968214ecc684fb6", 2587653075653023, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_067acaa3e5f56b46", 4384619831521497, undefined, [rawValue]); }
+  init(rawValue: string): MLModelMetadataKey { return callSDK<MLModelMetadataKey>("CoreML_d968214ecc684fb6", 4384619831521497, undefined, [rawValue]); }
 };
 
 /**
@@ -1135,12 +1135,12 @@ export class MLModelStructure extends SDKHandle {
    * static func load(contentsOf url: URL) async throws -> MLModelStructure
    * @availability iOS 17.4+
    */
-  static loadContentsOf(url: string): Promise<MLModelStructure> { return callSDKAsync<MLModelStructure>("CoreML_067acaa3e5f56b46", 4253186597347856, undefined, [url]); }
+  static loadContentsOf(url: string): Promise<MLModelStructure> { return callSDKAsync<MLModelStructure>("CoreML_d968214ecc684fb6", 4253186597347856, undefined, [url]); }
   /**
    * static func load(asset: MLModelAsset) async throws -> MLModelStructure
    * @availability iOS 17.4+
    */
-  static loadAsset(asset: MLModelAsset): Promise<MLModelStructure> { return callSDKAsync<MLModelStructure>("CoreML_067acaa3e5f56b46", 111921179929483, undefined, [asset]); }
+  static loadAsset(asset: MLModelAsset): Promise<MLModelStructure> { return callSDKAsync<MLModelStructure>("CoreML_d968214ecc684fb6", 111921179929483, undefined, [asset]); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO": true };
 }
 
@@ -1153,7 +1153,7 @@ export class MLModelStructure_NeuralNetwork extends SDKHandle {
    * let layers: [MLModelStructure.NeuralNetwork.Layer]
    * @availability iOS 17.4+
    */
-  get layers(): Array<MLModelStructure_NeuralNetwork_Layer> { return callSDK<Array<MLModelStructure_NeuralNetwork_Layer>>("CoreML_067acaa3e5f56b46", 2638386681536758, this, []); }
+  get layers(): Array<MLModelStructure_NeuralNetwork_Layer> { return callSDK<Array<MLModelStructure_NeuralNetwork_Layer>>("CoreML_d968214ecc684fb6", 2638386681536758, this, []); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO13NeuralNetworkV": true };
 }
 
@@ -1166,22 +1166,22 @@ export class MLModelStructure_NeuralNetwork_Layer extends SDKHandle {
    * let inputNames: [String]
    * @availability iOS 17.4+
    */
-  get inputNames(): Array<string> { return callSDK<Array<string>>("CoreML_067acaa3e5f56b46", 4006525957065087, this, []); }
+  get inputNames(): Array<string> { return callSDK<Array<string>>("CoreML_d968214ecc684fb6", 4006525957065087, this, []); }
   /**
    * let outputNames: [String]
    * @availability iOS 17.4+
    */
-  get outputNames(): Array<string> { return callSDK<Array<string>>("CoreML_067acaa3e5f56b46", 3928841872302994, this, []); }
+  get outputNames(): Array<string> { return callSDK<Array<string>>("CoreML_d968214ecc684fb6", 3928841872302994, this, []); }
   /**
    * let name: String
    * @availability iOS 17.4+
    */
-  get name(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 3948088314176746, this, []); }
+  get name(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 3948088314176746, this, []); }
   /**
    * let type: String
    * @availability iOS 17.4+
    */
-  get type(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 1496041037516968, this, []); }
+  get type(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 1496041037516968, this, []); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO13NeuralNetworkV5LayerV": true };
 }
 
@@ -1194,12 +1194,12 @@ export class MLModelStructure_Pipeline extends SDKHandle {
    * let subModelNames: [String]
    * @availability iOS 17.4+
    */
-  get subModelNames(): Array<string> { return callSDK<Array<string>>("CoreML_067acaa3e5f56b46", 4042582037662679, this, []); }
+  get subModelNames(): Array<string> { return callSDK<Array<string>>("CoreML_d968214ecc684fb6", 4042582037662679, this, []); }
   /**
    * let subModels: [MLModelStructure]
    * @availability iOS 17.4+
    */
-  get subModels(): Array<MLModelStructure> { return callSDK<Array<MLModelStructure>>("CoreML_067acaa3e5f56b46", 1356505320077157, this, []); }
+  get subModels(): Array<MLModelStructure> { return callSDK<Array<MLModelStructure>>("CoreML_d968214ecc684fb6", 1356505320077157, this, []); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO8PipelineV": true };
 }
 
@@ -1212,7 +1212,7 @@ export class MLModelStructure_Program extends SDKHandle {
    * let functions: [String : MLModelStructure.Program.Function]
    * @availability iOS 17.4+
    */
-  get functions(): Record<string, MLModelStructure_Program_Function> { return callSDK<Record<string, MLModelStructure_Program_Function>>("CoreML_067acaa3e5f56b46", 2029290522251025, this, []); }
+  get functions(): Record<string, MLModelStructure_Program_Function> { return callSDK<Record<string, MLModelStructure_Program_Function>>("CoreML_d968214ecc684fb6", 2029290522251025, this, []); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO7ProgramV": true };
 }
 
@@ -1225,7 +1225,7 @@ export class MLModelStructure_Program_Argument extends SDKHandle {
    * let bindings: [MLModelStructure.Program.Binding]
    * @availability iOS 17.4+
    */
-  get bindings(): Array<MLModelStructure_Program_Binding> { return callSDK<Array<MLModelStructure_Program_Binding>>("CoreML_067acaa3e5f56b46", 3961865583717581, this, []); }
+  get bindings(): Array<MLModelStructure_Program_Binding> { return callSDK<Array<MLModelStructure_Program_Binding>>("CoreML_d968214ecc684fb6", 3961865583717581, this, []); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO7ProgramV8ArgumentV": true };
 }
 
@@ -1246,17 +1246,17 @@ export class MLModelStructure_Program_Block extends SDKHandle {
    * let operations: [MLModelStructure.Program.Operation]
    * @availability iOS 17.4+
    */
-  get operations(): Array<MLModelStructure_Program_Operation> { return callSDK<Array<MLModelStructure_Program_Operation>>("CoreML_067acaa3e5f56b46", 3823783769206500, this, []); }
+  get operations(): Array<MLModelStructure_Program_Operation> { return callSDK<Array<MLModelStructure_Program_Operation>>("CoreML_d968214ecc684fb6", 3823783769206500, this, []); }
   /**
    * let outputNames: [String]
    * @availability iOS 17.4+
    */
-  get outputNames(): Array<string> { return callSDK<Array<string>>("CoreML_067acaa3e5f56b46", 3414040879585420, this, []); }
+  get outputNames(): Array<string> { return callSDK<Array<string>>("CoreML_d968214ecc684fb6", 3414040879585420, this, []); }
   /**
    * let inputs: [MLModelStructure.Program.NamedValueType]
    * @availability iOS 17.4+
    */
-  get inputs(): $SDK28 { return callSDK<$SDK28>("CoreML_067acaa3e5f56b46", 3153495296767756, this, []); }
+  get inputs(): $SDK28 { return callSDK<$SDK28>("CoreML_d968214ecc684fb6", 3153495296767756, this, []); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO7ProgramV5BlockV": true };
 }
 
@@ -1269,12 +1269,12 @@ export class MLModelStructure_Program_Function extends SDKHandle {
    * let block: MLModelStructure.Program.Block
    * @availability iOS 17.4+
    */
-  get block(): MLModelStructure_Program_Block { return callSDK<MLModelStructure_Program_Block>("CoreML_067acaa3e5f56b46", 530265177373138, this, []); }
+  get block(): MLModelStructure_Program_Block { return callSDK<MLModelStructure_Program_Block>("CoreML_d968214ecc684fb6", 530265177373138, this, []); }
   /**
    * let inputs: [MLModelStructure.Program.NamedValueType]
    * @availability iOS 17.4+
    */
-  get inputs(): $SDK28 { return callSDK<$SDK28>("CoreML_067acaa3e5f56b46", 263745091707832, this, []); }
+  get inputs(): $SDK28 { return callSDK<$SDK28>("CoreML_d968214ecc684fb6", 263745091707832, this, []); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO7ProgramV8FunctionV": true };
 }
 
@@ -1287,12 +1287,12 @@ export class MLModelStructure_Program_NamedValueType extends SDKHandle {
    * let name: String
    * @availability iOS 17.4+
    */
-  get name(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 2110151283153545, this, []); }
+  get name(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 2110151283153545, this, []); }
   /**
    * let type: MLModelStructure.Program.ValueType
    * @availability iOS 17.4+
    */
-  get type(): MLModelStructure_Program_ValueType { return callSDK<MLModelStructure_Program_ValueType>("CoreML_067acaa3e5f56b46", 72782340936023, this, []); }
+  get type(): MLModelStructure_Program_ValueType { return callSDK<MLModelStructure_Program_ValueType>("CoreML_d968214ecc684fb6", 72782340936023, this, []); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO7ProgramV14NamedValueTypeV": true };
 }
 
@@ -1305,22 +1305,22 @@ export class MLModelStructure_Program_Operation extends SDKHandle {
    * let operatorName: String
    * @availability iOS 17.4+
    */
-  get operatorName(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 4232771133127320, this, []); }
+  get operatorName(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 4232771133127320, this, []); }
   /**
    * let blocks: [MLModelStructure.Program.Block]
    * @availability iOS 17.4+
    */
-  get blocks(): Array<MLModelStructure_Program_Block> { return callSDK<Array<MLModelStructure_Program_Block>>("CoreML_067acaa3e5f56b46", 4244584620161829, this, []); }
+  get blocks(): Array<MLModelStructure_Program_Block> { return callSDK<Array<MLModelStructure_Program_Block>>("CoreML_d968214ecc684fb6", 4244584620161829, this, []); }
   /**
    * let inputs: [String : MLModelStructure.Program.Argument]
    * @availability iOS 17.4+
    */
-  get inputs(): Record<string, MLModelStructure_Program_Argument> { return callSDK<Record<string, MLModelStructure_Program_Argument>>("CoreML_067acaa3e5f56b46", 810466580234636, this, []); }
+  get inputs(): Record<string, MLModelStructure_Program_Argument> { return callSDK<Record<string, MLModelStructure_Program_Argument>>("CoreML_d968214ecc684fb6", 810466580234636, this, []); }
   /**
    * let outputs: [MLModelStructure.Program.NamedValueType]
    * @availability iOS 17.4+
    */
-  get outputs(): $SDK28 { return callSDK<$SDK28>("CoreML_067acaa3e5f56b46", 2925741469492471, this, []); }
+  get outputs(): $SDK28 { return callSDK<$SDK28>("CoreML_d968214ecc684fb6", 2925741469492471, this, []); }
   declare readonly $type: { "s:6CoreML16MLModelStructureO7ProgramV9OperationV": true };
 }
 
@@ -1349,86 +1349,86 @@ export class MLMultiArray extends SDKHandle {
    * convenience init(concatenating multiArrays: [MLMultiArray], axis: Int, dataType: MLMultiArrayDataType)
    * @availability iOS 14.0+
    */
-  static initConcatenatingAxisDataType(multiArrays: Array<MLMultiArray>, axis: number, dataType: MLMultiArrayDataType): MLMultiArray { return callSDK<MLMultiArray>("CoreML_067acaa3e5f56b46", 3507865610826787, undefined, [multiArrays, axis, dataType]); }
+  static initConcatenatingAxisDataType(multiArrays: Array<MLMultiArray>, axis: number, dataType: MLMultiArrayDataType): MLMultiArray { return callSDK<MLMultiArray>("CoreML_d968214ecc684fb6", 3507865610826787, undefined, [multiArrays, axis, dataType]); }
   /** init(dataPointer: UnsafeMutableRawPointer, shape: [NSNumber], dataType: MLMultiArrayDataType, strides: [NSNumber], deallocator: ((UnsafeMutableRawPointer) -> Void)? = nil) throws */
-  static initDataPointerShapeDataTypeStridesDeallocator(dataPointer: SDKHandle, shape: $SDK31, dataType: MLMultiArrayDataType, strides: $SDK31, deallocator?: (((arg0: SDKHandle) => void)) | null): MLMultiArray { return callSDK<MLMultiArray>("CoreML_067acaa3e5f56b46", 2667859379086309, undefined, [dataPointer, shape, dataType, strides, deallocator], [null,null,null,null,{"callback":{"out":[]}}]); }
+  static initDataPointerShapeDataTypeStridesDeallocator(dataPointer: SDKHandle, shape: $SDK31, dataType: MLMultiArrayDataType, strides: $SDK31, deallocator?: (((arg0: SDKHandle) => void)) | null): MLMultiArray { return callSDK<MLMultiArray>("CoreML_d968214ecc684fb6", 2667859379086309, undefined, [dataPointer, shape, dataType, strides, deallocator], [null,null,null,null,{"callback":{"out":[]}}]); }
   /**
    * init(pixelBuffer: CVPixelBuffer, shape: [NSNumber])
    * @availability iOS 16.0+
    */
-  static initPixelBufferShape(pixelBuffer: _CoreVideo_CVBuffer, shape: $SDK31): MLMultiArray { return callSDK<MLMultiArray>("CoreML_067acaa3e5f56b46", 935042521042653, undefined, [pixelBuffer, shape]); }
+  static initPixelBufferShape(pixelBuffer: _CoreVideo_CVBuffer, shape: $SDK31): MLMultiArray { return callSDK<MLMultiArray>("CoreML_d968214ecc684fb6", 935042521042653, undefined, [pixelBuffer, shape]); }
   /** init(shape: [NSNumber], dataType: MLMultiArrayDataType) throws */
-  static initShapeDataType(shape: $SDK31, dataType: MLMultiArrayDataType): MLMultiArray { return callSDK<MLMultiArray>("CoreML_067acaa3e5f56b46", 2134721275129424, undefined, [shape, dataType]); }
+  static initShapeDataType(shape: $SDK31, dataType: MLMultiArrayDataType): MLMultiArray { return callSDK<MLMultiArray>("CoreML_d968214ecc684fb6", 2134721275129424, undefined, [shape, dataType]); }
   /** subscript(idx: Int) -> NSNumber { get set } */
-  subscript(idx: number): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreML_067acaa3e5f56b46", 1513073850080485, this, [idx]); }
+  subscript(idx: number): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreML_d968214ecc684fb6", 1513073850080485, this, [idx]); }
   /** subscript(key: [NSNumber]) -> NSNumber { get set } */
-  subscript66708(key: $SDK31): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreML_067acaa3e5f56b46", 4289315298838677, this, [key]); }
+  subscript66708(key: $SDK31): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreML_d968214ecc684fb6", 4289315298838677, this, [key]); }
   /**
    * func transfer(to destinationMultiArray: MLMultiArray)
    * @availability iOS 18.0+
    */
-  transfer(destinationMultiArray: MLMultiArray): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 1108439983487935, this, [destinationMultiArray]); }
+  transfer(destinationMultiArray: MLMultiArray): void { return callSDK<void>("CoreML_d968214ecc684fb6", 1108439983487935, this, [destinationMultiArray]); }
   /**
    * var count: Int { get }
    * @availability iOS 11.0+
    */
-  get count(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 1243756876092657, this, []); }
+  get count(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 1243756876092657, this, []); }
   /**
    * var dataPointer: UnsafeMutableRawPointer { get }
    * @availability iOS 11.0+
    * @deprecated iOS 100000.0
    */
-  get dataPointer(): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 3738287559941148, this, []); }
+  get dataPointer(): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 3738287559941148, this, []); }
   /**
    * var dataType: MLMultiArrayDataType { get }
    * @availability iOS 11.0+
    */
-  get dataType(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_067acaa3e5f56b46", 4140384452647343, this, []); }
+  get dataType(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_d968214ecc684fb6", 4140384452647343, this, []); }
   /**
    * var pixelBuffer: CVPixelBuffer? { get }
    * @availability iOS 16.0+
    */
-  get pixelBuffer(): (_CoreVideo_CVBuffer) | null { return callSDK<(_CoreVideo_CVBuffer) | null>("CoreML_067acaa3e5f56b46", 3971694685308551, this, []); }
+  get pixelBuffer(): (_CoreVideo_CVBuffer) | null { return callSDK<(_CoreVideo_CVBuffer) | null>("CoreML_d968214ecc684fb6", 3971694685308551, this, []); }
   /**
    * var shape: [NSNumber] { get }
    * @availability iOS 11.0+
    */
-  get shape(): $SDK31 { return callSDK<$SDK31>("CoreML_067acaa3e5f56b46", 3642251946578949, this, []); }
+  get shape(): $SDK31 { return callSDK<$SDK31>("CoreML_d968214ecc684fb6", 3642251946578949, this, []); }
   /**
    * var strides: [NSNumber] { get }
    * @availability iOS 11.0+
    */
-  get strides(): $SDK31 { return callSDK<$SDK31>("CoreML_067acaa3e5f56b46", 1292275887881996, this, []); }
+  get strides(): $SDK31 { return callSDK<$SDK31>("CoreML_d968214ecc684fb6", 1292275887881996, this, []); }
   /**
    * func withUnsafeBytes<R>(_ body: (UnsafeRawBufferPointer) throws -> R) rethrows -> R
    * @availability iOS 15.4+
    */
-  withUnsafeBytes(body: ((arg0: ArrayBuffer) => unknown)): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 2809635086204193, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeBytes(body: ((arg0: ArrayBuffer) => unknown)): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 2809635086204193, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * func withUnsafeMutableBytes<R>(_ body: (UnsafeMutableRawBufferPointer, [Int]) throws -> R) rethrows -> R
    * @availability iOS 15.4+
    */
-  withUnsafeMutableBytes(body: ((arg0: ArrayBuffer, arg1: Array<number>) => unknown)): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 746864060470348, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeMutableBytes(body: ((arg0: ArrayBuffer, arg1: Array<number>) => unknown)): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 746864060470348, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * convenience init(shape: [Int], dataType: MLMultiArrayDataType, strides: [Int])
    * @availability iOS 18.0+
    */
-  static initShapeDataTypeStrides(shape: Array<number>, dataType: MLMultiArrayDataType, strides: Array<number>): MLMultiArray { return callSDK<MLMultiArray>("CoreML_067acaa3e5f56b46", 825493052233853, undefined, [shape, dataType, strides]); }
+  static initShapeDataTypeStrides(shape: Array<number>, dataType: MLMultiArrayDataType, strides: Array<number>): MLMultiArray { return callSDK<MLMultiArray>("CoreML_d968214ecc684fb6", 825493052233853, undefined, [shape, dataType, strides]); }
   /**
    * convenience init<C>(_ data: C) throws where C : Collection, C.Element == Double
    * @availability iOS 13.0+
    */
-  static init(data: Array<number>): MLMultiArray { return callSDK<MLMultiArray>("CoreML_067acaa3e5f56b46", 2938810130360188, undefined, [data]); }
+  static init(data: Array<number>): MLMultiArray { return callSDK<MLMultiArray>("CoreML_d968214ecc684fb6", 2938810130360188, undefined, [data]); }
   /**
    * convenience init<C>(_ data: C) throws where C : Collection, C.Element == Float
    * @availability iOS 13.0+
    */
-  static init98457(data: Array<number>): MLMultiArray { return callSDK<MLMultiArray>("CoreML_067acaa3e5f56b46", 2847366393946319, undefined, [data]); }
+  static init98457(data: Array<number>): MLMultiArray { return callSDK<MLMultiArray>("CoreML_d968214ecc684fb6", 2847366393946319, undefined, [data]); }
   /**
    * convenience init<C>(_ data: C) throws where C : Collection, C.Element : FixedWidthInteger
    * @availability iOS 13.0+
    */
-  static init99583(data: Array<number>): MLMultiArray { return callSDK<MLMultiArray>("CoreML_067acaa3e5f56b46", 1651287983125063, undefined, [data]); }
+  static init99583(data: Array<number>): MLMultiArray { return callSDK<MLMultiArray>("CoreML_d968214ecc684fb6", 1651287983125063, undefined, [data]); }
   declare readonly $type: { "c:objc(cs)MLMultiArray": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "count": true; "dataPointer": true; "dataType": true; "pixelBuffer": true; "shape": true; "strides": true };
 }
@@ -1439,22 +1439,22 @@ export class MLMultiArray extends SDKHandle {
  */
 export class MLMultiArrayConstraint extends SDKHandle {
   /** init() */
-  static init(): MLMultiArrayConstraint { return callSDK<MLMultiArrayConstraint>("CoreML_067acaa3e5f56b46", 1857569051215191, undefined, []); }
+  static init(): MLMultiArrayConstraint { return callSDK<MLMultiArrayConstraint>("CoreML_d968214ecc684fb6", 1857569051215191, undefined, []); }
   /**
    * var dataType: MLMultiArrayDataType { get }
    * @availability iOS 11.0+
    */
-  get dataType(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_067acaa3e5f56b46", 4142441248854410, this, []); }
+  get dataType(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_d968214ecc684fb6", 4142441248854410, this, []); }
   /**
    * var shape: [NSNumber] { get }
    * @availability iOS 11.0+
    */
-  get shape(): $SDK31 { return callSDK<$SDK31>("CoreML_067acaa3e5f56b46", 2266361225679567, this, []); }
+  get shape(): $SDK31 { return callSDK<$SDK31>("CoreML_d968214ecc684fb6", 2266361225679567, this, []); }
   /**
    * var shapeConstraint: MLMultiArrayShapeConstraint { get }
    * @availability iOS 12.0+
    */
-  get shapeConstraint(): MLMultiArrayShapeConstraint { return callSDK<MLMultiArrayShapeConstraint>("CoreML_067acaa3e5f56b46", 2748340028888393, this, []); }
+  get shapeConstraint(): MLMultiArrayShapeConstraint { return callSDK<MLMultiArrayShapeConstraint>("CoreML_d968214ecc684fb6", 2748340028888393, this, []); }
   declare readonly $type: { "c:objc(cs)MLMultiArrayConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "shape": true; "shapeConstraint": true };
 }
@@ -1470,17 +1470,17 @@ export const MLMultiArrayDataType = {
    * static var float64: MLMultiArrayDataType { get }
    * @availability iOS 14.0+
    */
-  get float64(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_067acaa3e5f56b46", 1189663010886424, undefined, []); },
+  get float64(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_d968214ecc684fb6", 1189663010886424, undefined, []); },
   /**
    * static var float: MLMultiArrayDataType { get }
    * @availability iOS 14.0+
    */
-  get float(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_067acaa3e5f56b46", 586903055007267, undefined, []); },
+  get float(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_d968214ecc684fb6", 586903055007267, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (MLMultiArrayDataType) | null { return callSDK<(MLMultiArrayDataType) | null>("CoreML_067acaa3e5f56b46", 1766067419164859, undefined, [rawValue]); }
+  init(rawValue: number): (MLMultiArrayDataType) | null { return callSDK<(MLMultiArrayDataType) | null>("CoreML_d968214ecc684fb6", 1766067419164859, undefined, [rawValue]); }
 };
 
 /**
@@ -1489,22 +1489,22 @@ export const MLMultiArrayDataType = {
  */
 export class MLMultiArrayShapeConstraint extends SDKHandle {
   /** init() */
-  static init(): MLMultiArrayShapeConstraint { return callSDK<MLMultiArrayShapeConstraint>("CoreML_067acaa3e5f56b46", 107012164161860, undefined, []); }
+  static init(): MLMultiArrayShapeConstraint { return callSDK<MLMultiArrayShapeConstraint>("CoreML_d968214ecc684fb6", 107012164161860, undefined, []); }
   /**
    * var enumeratedShapes: [[NSNumber]] { get }
    * @availability iOS 12.0+
    */
-  get enumeratedShapes(): $SDK3 { return callSDK<$SDK3>("CoreML_067acaa3e5f56b46", 2260491378248366, this, []); }
+  get enumeratedShapes(): $SDK3 { return callSDK<$SDK3>("CoreML_d968214ecc684fb6", 2260491378248366, this, []); }
   /**
    * var sizeRangeForDimension: [NSValue] { get }
    * @availability iOS 12.0+
    */
-  get sizeRangeForDimension(): Array<_Foundation_NSValue> { return callSDK<Array<_Foundation_NSValue>>("CoreML_067acaa3e5f56b46", 2601766758793594, this, []); }
+  get sizeRangeForDimension(): Array<_Foundation_NSValue> { return callSDK<Array<_Foundation_NSValue>>("CoreML_d968214ecc684fb6", 2601766758793594, this, []); }
   /**
    * var type: MLMultiArrayShapeConstraintType { get }
    * @availability iOS 12.0+
    */
-  get type(): MLMultiArrayShapeConstraintType { return callSDK<MLMultiArrayShapeConstraintType>("CoreML_067acaa3e5f56b46", 3528046478498696, this, []); }
+  get type(): MLMultiArrayShapeConstraintType { return callSDK<MLMultiArrayShapeConstraintType>("CoreML_d968214ecc684fb6", 3528046478498696, this, []); }
   declare readonly $type: { "c:objc(cs)MLMultiArrayShapeConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "enumeratedShapes": true; "sizeRangeForDimension": true; "type": true };
 }
@@ -1520,7 +1520,7 @@ export const MLMultiArrayShapeConstraintType = {
    * init?(rawValue: Int)
    * @availability iOS 12.0+
    */
-  init(rawValue: number): (MLMultiArrayShapeConstraintType) | null { return callSDK<(MLMultiArrayShapeConstraintType) | null>("CoreML_067acaa3e5f56b46", 838942031539111, undefined, [rawValue]); }
+  init(rawValue: number): (MLMultiArrayShapeConstraintType) | null { return callSDK<(MLMultiArrayShapeConstraintType) | null>("CoreML_d968214ecc684fb6", 838942031539111, undefined, [rawValue]); }
 };
 
 /**
@@ -1532,7 +1532,7 @@ export class MLNeuralEngineComputeDevice extends SDKHandle {
    * var totalCoreCount: Int { get }
    * @availability iOS 17.0+
    */
-  get totalCoreCount(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 3055291825092619, this, []); }
+  get totalCoreCount(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 3055291825092619, this, []); }
   declare readonly $type: { "c:objc(cs)MLNeuralEngineComputeDevice": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "totalCoreCount": true };
 }
@@ -1543,22 +1543,22 @@ export class MLNeuralEngineComputeDevice extends SDKHandle {
  */
 export class MLNumericConstraint extends SDKHandle {
   /** init() */
-  static init(): MLNumericConstraint { return callSDK<MLNumericConstraint>("CoreML_067acaa3e5f56b46", 3383705343755034, undefined, []); }
+  static init(): MLNumericConstraint { return callSDK<MLNumericConstraint>("CoreML_d968214ecc684fb6", 3383705343755034, undefined, []); }
   /**
    * var enumeratedNumbers: Set<NSNumber>? { get }
    * @availability iOS 13.0+
    */
-  get enumeratedNumbers(): (Array<_Foundation_NSNumber>) | null { return callSDK<(Array<_Foundation_NSNumber>) | null>("CoreML_067acaa3e5f56b46", 2976109792553092, this, []); }
+  get enumeratedNumbers(): (Array<_Foundation_NSNumber>) | null { return callSDK<(Array<_Foundation_NSNumber>) | null>("CoreML_d968214ecc684fb6", 2976109792553092, this, []); }
   /**
    * var maxNumber: NSNumber { get }
    * @availability iOS 13.0+
    */
-  get maxNumber(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreML_067acaa3e5f56b46", 1287675267133760, this, []); }
+  get maxNumber(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreML_d968214ecc684fb6", 1287675267133760, this, []); }
   /**
    * var minNumber: NSNumber { get }
    * @availability iOS 13.0+
    */
-  get minNumber(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreML_067acaa3e5f56b46", 286124236401318, this, []); }
+  get minNumber(): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("CoreML_d968214ecc684fb6", 286124236401318, this, []); }
   declare readonly $type: { "c:objc(cs)MLNumericConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "enumeratedNumbers": true; "maxNumber": true; "minNumber": true };
 }
@@ -1572,19 +1572,19 @@ export class MLOptimizationHints extends SDKHandle {
    * var reshapeFrequency: MLOptimizationHints.ReshapeFrequency
    * @availability iOS 17.4+
    */
-  get reshapeFrequency(): MLOptimizationHints_ReshapeFrequency { return callSDK<MLOptimizationHints_ReshapeFrequency>("CoreML_067acaa3e5f56b46", 1183693682304912, this, []); }
-  set reshapeFrequency(value: MLOptimizationHints_ReshapeFrequency) { callSDK<void>("CoreML_067acaa3e5f56b46", 3210312659776854, this, [value]); }
+  get reshapeFrequency(): MLOptimizationHints_ReshapeFrequency { return callSDK<MLOptimizationHints_ReshapeFrequency>("CoreML_d968214ecc684fb6", 1183693682304912, this, []); }
+  set reshapeFrequency(value: MLOptimizationHints_ReshapeFrequency) { callSDK<void>("CoreML_d968214ecc684fb6", 3210312659776854, this, [value]); }
   /**
    * var specializationStrategy: MLOptimizationHints.SpecializationStrategy
    * @availability iOS 18.0+
    */
-  get specializationStrategy(): MLOptimizationHints_SpecializationStrategy { return callSDK<MLOptimizationHints_SpecializationStrategy>("CoreML_067acaa3e5f56b46", 2757160620616931, this, []); }
-  set specializationStrategy(value: MLOptimizationHints_SpecializationStrategy) { callSDK<void>("CoreML_067acaa3e5f56b46", 1082807353200029, this, [value]); }
+  get specializationStrategy(): MLOptimizationHints_SpecializationStrategy { return callSDK<MLOptimizationHints_SpecializationStrategy>("CoreML_d968214ecc684fb6", 2757160620616931, this, []); }
+  set specializationStrategy(value: MLOptimizationHints_SpecializationStrategy) { callSDK<void>("CoreML_d968214ecc684fb6", 1082807353200029, this, [value]); }
   /**
    * init()
    * @availability iOS 17.4+
    */
-  static init(): MLOptimizationHints { return callSDK<MLOptimizationHints>("CoreML_067acaa3e5f56b46", 4048619845446553, undefined, []); }
+  static init(): MLOptimizationHints { return callSDK<MLOptimizationHints>("CoreML_d968214ecc684fb6", 4048619845446553, undefined, []); }
   declare readonly $type: { "s:6CoreML19MLOptimizationHintsV": true };
 }
 
@@ -1599,12 +1599,12 @@ export const MLOptimizationHints_ReshapeFrequency = {
    * init?(rawValue: Int)
    * @availability iOS 17.4+
    */
-  init(rawValue: number): (MLOptimizationHints_ReshapeFrequency) | null { return callSDK<(MLOptimizationHints_ReshapeFrequency) | null>("CoreML_067acaa3e5f56b46", 2616389094064546, undefined, [rawValue]); },
+  init(rawValue: number): (MLOptimizationHints_ReshapeFrequency) | null { return callSDK<(MLOptimizationHints_ReshapeFrequency) | null>("CoreML_d968214ecc684fb6", 2616389094064546, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 17.4+
    */
-  getRawValue($self: MLOptimizationHints_ReshapeFrequency): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 2990250432996698, $self, []); }
+  getRawValue($self: MLOptimizationHints_ReshapeFrequency): number { return callSDK<number>("CoreML_d968214ecc684fb6", 2990250432996698, $self, []); }
 };
 
 /**
@@ -1624,12 +1624,12 @@ export const MLOptimizationHints_SpecializationStrategy = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (MLOptimizationHints_SpecializationStrategy) | null { return callSDK<(MLOptimizationHints_SpecializationStrategy) | null>("CoreML_067acaa3e5f56b46", 2896349837681442, undefined, [rawValue]); },
+  init(rawValue: number): (MLOptimizationHints_SpecializationStrategy) | null { return callSDK<(MLOptimizationHints_SpecializationStrategy) | null>("CoreML_d968214ecc684fb6", 2896349837681442, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 18.0+
    */
-  getRawValue($self: MLOptimizationHints_SpecializationStrategy): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 3215712778719503, $self, []); }
+  getRawValue($self: MLOptimizationHints_SpecializationStrategy): number { return callSDK<number>("CoreML_d968214ecc684fb6", 3215712778719503, $self, []); }
 };
 
 /**
@@ -1644,22 +1644,22 @@ export type MLOptimizationHints_SpecializationStrategy_RawValue = number;
  */
 export class MLParameterDescription extends SDKHandle {
   /** init() */
-  static init(): MLParameterDescription { return callSDK<MLParameterDescription>("CoreML_067acaa3e5f56b46", 3403037018367371, undefined, []); }
+  static init(): MLParameterDescription { return callSDK<MLParameterDescription>("CoreML_d968214ecc684fb6", 3403037018367371, undefined, []); }
   /**
    * var defaultValue: Any { get }
    * @availability iOS 13.0+
    */
-  get defaultValue(): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 4251473618995157, this, []); }
+  get defaultValue(): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 4251473618995157, this, []); }
   /**
    * var key: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  get key(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 2793720926538196, this, []); }
+  get key(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 2793720926538196, this, []); }
   /**
    * var numericConstraint: MLNumericConstraint? { get }
    * @availability iOS 13.0+
    */
-  get numericConstraint(): (MLNumericConstraint) | null { return callSDK<(MLNumericConstraint) | null>("CoreML_067acaa3e5f56b46", 2568056004454224, this, []); }
+  get numericConstraint(): (MLNumericConstraint) | null { return callSDK<(MLNumericConstraint) | null>("CoreML_d968214ecc684fb6", 2568056004454224, this, []); }
   declare readonly $type: { "c:objc(cs)MLParameterDescription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "defaultValue": true; "key": true; "numericConstraint": true };
 }
@@ -1673,62 +1673,62 @@ export class MLParameterKey extends MLKey {
    * class var beta1: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get beta1(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 398541418860444, undefined, []); }
+  static get beta1(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 398541418860444, undefined, []); }
   /**
    * class var beta2: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get beta2(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 3942619952384156, undefined, []); }
+  static get beta2(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 3942619952384156, undefined, []); }
   /** class var biases: MLParameterKey { get } */
-  static get biases(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 1672317734735291, undefined, []); }
+  static get biases(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 1672317734735291, undefined, []); }
   /**
    * class var epochs: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get epochs(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 2169597041587054, undefined, []); }
+  static get epochs(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 2169597041587054, undefined, []); }
   /**
    * class var eps: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get eps(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 1733775042982140, undefined, []); }
+  static get eps(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 1733775042982140, undefined, []); }
   /**
    * class var learningRate: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get learningRate(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 2204480397108496, undefined, []); }
+  static get learningRate(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 2204480397108496, undefined, []); }
   /** class var linkedModelFileName: MLParameterKey { get } */
-  static get linkedModelFileName(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 1061557884420867, undefined, []); }
+  static get linkedModelFileName(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 1061557884420867, undefined, []); }
   /** class var linkedModelSearchPath: MLParameterKey { get } */
-  static get linkedModelSearchPath(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 1831705383525051, undefined, []); }
+  static get linkedModelSearchPath(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 1831705383525051, undefined, []); }
   /**
    * class var miniBatchSize: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get miniBatchSize(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 688490468901438, undefined, []); }
+  static get miniBatchSize(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 688490468901438, undefined, []); }
   /**
    * class var momentum: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get momentum(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 817459214729869, undefined, []); }
+  static get momentum(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 817459214729869, undefined, []); }
   /**
    * class var numberOfNeighbors: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get numberOfNeighbors(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 1370772881164266, undefined, []); }
+  static get numberOfNeighbors(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 1370772881164266, undefined, []); }
   /**
    * class var seed: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get seed(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 2469246039492139, undefined, []); }
+  static get seed(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 2469246039492139, undefined, []); }
   /**
    * class var shuffle: MLParameterKey { get }
    * @availability iOS 13.0+
    */
-  static get shuffle(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 2109656488779017, undefined, []); }
+  static get shuffle(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 2109656488779017, undefined, []); }
   /** class var weights: MLParameterKey { get } */
-  static get weights(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 4054557920588540, undefined, []); }
+  static get weights(): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 4054557920588540, undefined, []); }
   /** func scoped(to scope: String) -> MLParameterKey */
-  scoped(scope: string): MLParameterKey { return callSDK<MLParameterKey>("CoreML_067acaa3e5f56b46", 175664218200648, this, [scope]); }
+  scoped(scope: string): MLParameterKey { return callSDK<MLParameterKey>("CoreML_d968214ecc684fb6", 175664218200648, this, [scope]); }
   declare readonly $type: { "c:objc(cs)MLParameterKey": true; "c:objc(cs)MLKey": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "name": true; "scope": true };
 }
@@ -1739,20 +1739,20 @@ export class MLParameterKey extends MLKey {
  */
 export class MLPredictionOptions extends SDKHandle {
   /** init() */
-  static init(): MLPredictionOptions { return callSDK<MLPredictionOptions>("CoreML_067acaa3e5f56b46", 2519147224997213, undefined, []); }
+  static init(): MLPredictionOptions { return callSDK<MLPredictionOptions>("CoreML_d968214ecc684fb6", 2519147224997213, undefined, []); }
   /**
    * var outputBackings: [String : Any] { get set }
    * @availability iOS 16.0+
    */
-  get outputBackings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreML_067acaa3e5f56b46", 914513373008862, this, []); }
-  set outputBackings(value: Record<string, unknown>) { callSDK<void>("CoreML_067acaa3e5f56b46", 1159374184559695, this, [value]); }
+  get outputBackings(): Record<string, unknown> { return callSDK<Record<string, unknown>>("CoreML_d968214ecc684fb6", 914513373008862, this, []); }
+  set outputBackings(value: Record<string, unknown>) { callSDK<void>("CoreML_d968214ecc684fb6", 1159374184559695, this, [value]); }
   /**
    * var usesCPUOnly: Bool { get set }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get usesCPUOnly(): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 4502247293967753, this, []); }
-  set usesCPUOnly(value: boolean) { callSDK<void>("CoreML_067acaa3e5f56b46", 3576970997793219, this, [value]); }
+  get usesCPUOnly(): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 4502247293967753, this, []); }
+  set usesCPUOnly(value: boolean) { callSDK<void>("CoreML_d968214ecc684fb6", 3576970997793219, this, [value]); }
   declare readonly $type: { "c:objc(cs)MLPredictionOptions": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "outputBackings": true; "usesCPUOnly": true };
 }
@@ -1766,142 +1766,142 @@ export class MLSendableFeatureValue extends SDKHandle {
    * func shapedArrayValue<Scalar>(of type: Scalar.Type) -> MLShapedArray<Scalar>? where Scalar : MLShapedArrayScalar
    * @availability iOS 18.0+
    */
-  shapedArrayValue(type: "Double" | "Float"): $SDK13 { return callSDK<$SDK13>("CoreML_067acaa3e5f56b46", 4016283066799483, this, [type]); }
+  shapedArrayValue(type: "Double" | "Float"): $SDK13 { return callSDK<$SDK13>("CoreML_d968214ecc684fb6", 4016283066799483, this, [type]); }
   /**
    * var stringArrayValue: [String]? { get }
    * @availability iOS 18.0+
    */
-  get stringArrayValue(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreML_067acaa3e5f56b46", 1460614949202095, this, []); }
+  get stringArrayValue(): (Array<string>) | null { return callSDK<(Array<string>) | null>("CoreML_d968214ecc684fb6", 1460614949202095, this, []); }
   /**
    * var stringDictionaryValue: [String : Double]? { get }
    * @availability iOS 18.0+
    */
-  get stringDictionaryValue(): (Record<string, number>) | null { return callSDK<(Record<string, number>) | null>("CoreML_067acaa3e5f56b46", 3372735250056346, this, []); }
+  get stringDictionaryValue(): (Record<string, number>) | null { return callSDK<(Record<string, number>) | null>("CoreML_d968214ecc684fb6", 3372735250056346, this, []); }
   /**
    * var integerDictionaryValue: [Int : Double]? { get }
    * @availability iOS 18.0+
    */
-  get integerDictionaryValue(): (Record<number, number>) | null { return callSDK<(Record<number, number>) | null>("CoreML_067acaa3e5f56b46", 4266804423514284, this, []); }
+  get integerDictionaryValue(): (Record<number, number>) | null { return callSDK<(Record<number, number>) | null>("CoreML_d968214ecc684fb6", 4266804423514284, this, []); }
   /**
    * var floatValue: Float? { get }
    * @availability iOS 18.0+
    */
-  get floatValue(): (number) | null { return callSDK<(number) | null>("CoreML_067acaa3e5f56b46", 3650055774545304, this, []); }
+  get floatValue(): (number) | null { return callSDK<(number) | null>("CoreML_d968214ecc684fb6", 3650055774545304, this, []); }
   /**
    * var doubleValue: Double? { get }
    * @availability iOS 18.0+
    */
-  get doubleValue(): (number) | null { return callSDK<(number) | null>("CoreML_067acaa3e5f56b46", 1031731143432219, this, []); }
+  get doubleValue(): (number) | null { return callSDK<(number) | null>("CoreML_d968214ecc684fb6", 1031731143432219, this, []); }
   /**
    * var stringValue: String? { get }
    * @availability iOS 18.0+
    */
-  get stringValue(): (string) | null { return callSDK<(string) | null>("CoreML_067acaa3e5f56b46", 2211940643629094, this, []); }
+  get stringValue(): (string) | null { return callSDK<(string) | null>("CoreML_d968214ecc684fb6", 2211940643629094, this, []); }
   /**
    * var float16Value: Float16? { get }
    * @availability iOS 18.0+
    */
-  get float16Value(): (number) | null { return callSDK<(number) | null>("CoreML_067acaa3e5f56b46", 3810942264733383, this, []); }
+  get float16Value(): (number) | null { return callSDK<(number) | null>("CoreML_d968214ecc684fb6", 3810942264733383, this, []); }
   /**
    * var integerValue: Int? { get }
    * @availability iOS 18.0+
    */
-  get integerValue(): (number) | null { return callSDK<(number) | null>("CoreML_067acaa3e5f56b46", 4006989847729037, this, []); }
+  get integerValue(): (number) | null { return callSDK<(number) | null>("CoreML_d968214ecc684fb6", 4006989847729037, this, []); }
   /**
    * var isUndefined: Bool { get }
    * @availability iOS 18.0+
    */
-  get isUndefined(): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 16638680857475, this, []); }
+  get isUndefined(): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 16638680857475, this, []); }
   /**
    * var isShapedArray: Bool { get }
    * @availability iOS 18.0+
    */
-  get isShapedArray(): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 2893845714374671, this, []); }
+  get isShapedArray(): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 2893845714374671, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 18.0+
    */
-  get debugDescription(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 2663938934880312, this, []); }
+  get debugDescription(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 2663938934880312, this, []); }
   /**
    * var type: MLFeatureType { get }
    * @availability iOS 18.0+
    */
-  get type(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_067acaa3e5f56b46", 1813311634326613, this, []); }
+  get type(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_d968214ecc684fb6", 1813311634326613, this, []); }
   /**
    * var isScalar: Bool { get }
    * @availability iOS 18.0+
    */
-  get isScalar(): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 4328087702155708, this, []); }
+  get isScalar(): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 4328087702155708, this, []); }
   /**
    * init(undefined type: MLFeatureType)
    * @availability iOS 18.0+
    */
-  static initUndefined(type: MLFeatureType): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 3408602002333996, undefined, [type]); }
+  static initUndefined(type: MLFeatureType): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 3408602002333996, undefined, [type]); }
   /**
    * init(_ value: [Int : Int])
    * @availability iOS 18.0+
    */
-  static init(value: Record<number, number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 346912753133249, undefined, [value]); }
+  static init(value: Record<number, number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 346912753133249, undefined, [value]); }
   /**
    * init(_ value: [String : Double])
    * @availability iOS 18.0+
    */
-  static init43385(value: Record<string, number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 1668125168755713, undefined, [value]); }
+  static init43385(value: Record<string, number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 1668125168755713, undefined, [value]); }
   /**
    * init(_ value: [String : Int])
    * @availability iOS 18.0+
    */
-  static init23582(value: Record<string, number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 3350071144608937, undefined, [value]); }
+  static init23582(value: Record<string, number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 3350071144608937, undefined, [value]); }
   /**
    * init(_ value: [Int : Double])
    * @availability iOS 18.0+
    */
-  static init80083(value: Record<number, number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 3231461049331091, undefined, [value]); }
+  static init80083(value: Record<number, number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 3231461049331091, undefined, [value]); }
   /**
    * init(_ value: String)
    * @availability iOS 18.0+
    */
-  static init583(value: string): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 398225577473201, undefined, [value]); }
+  static init583(value: string): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 398225577473201, undefined, [value]); }
   /**
    * init(_ value: [String])
    * @availability iOS 18.0+
    */
-  static init52967(value: Array<string>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 2580622984837597, undefined, [value]); }
+  static init52967(value: Array<string>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 2580622984837597, undefined, [value]); }
   /**
    * init(_ value: Double)
    * @availability iOS 18.0+
    */
-  static init35792(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 2468457534198879, undefined, [value]); }
+  static init35792(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 2468457534198879, undefined, [value]); }
   /**
    * init(_ value: Float)
    * @availability iOS 18.0+
    */
-  static init63570(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 4411450839001622, undefined, [value]); }
+  static init63570(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 4411450839001622, undefined, [value]); }
   /**
    * init?(_ value: MLFeatureValue)
    * @availability iOS 18.0+
    */
-  static init76659(value: MLFeatureValue): (MLSendableFeatureValue) | null { return callSDK<(MLSendableFeatureValue) | null>("CoreML_067acaa3e5f56b46", 3641559086737768, undefined, [value]); }
+  static init76659(value: MLFeatureValue): (MLSendableFeatureValue) | null { return callSDK<(MLSendableFeatureValue) | null>("CoreML_d968214ecc684fb6", 3641559086737768, undefined, [value]); }
   /**
    * init(_ value: Int)
    * @availability iOS 18.0+
    */
-  static init22541(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 3568690438188808, undefined, [value]); }
+  static init22541(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 3568690438188808, undefined, [value]); }
   /**
    * init(_ value: Int32)
    * @availability iOS 18.0+
    */
-  static init89631(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 1448506353961402, undefined, [value]); }
+  static init89631(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 1448506353961402, undefined, [value]); }
   /**
    * init(_ value: Float16)
    * @availability iOS 18.0+
    */
-  static init63256(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 124055208263799, undefined, [value]); }
+  static init63256(value: number): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 124055208263799, undefined, [value]); }
   /**
    * init<Scalar>(_ value: MLShapedArray<Scalar>) where Scalar : MLShapedArrayScalar
    * @availability iOS 18.0+
    */
-  static init70181(value: MLShapedArray<number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_067acaa3e5f56b46", 1408696880862886, undefined, [value]); }
+  static init70181(value: MLShapedArray<number>): MLSendableFeatureValue { return callSDK<MLSendableFeatureValue>("CoreML_d968214ecc684fb6", 1408696880862886, undefined, [value]); }
   declare readonly $type: { "s:6CoreML22MLSendableFeatureValueV": true };
 }
 
@@ -1914,32 +1914,32 @@ export class MLSequence extends SDKHandle {
    * convenience init(empty type: MLFeatureType)
    * @availability iOS 12.0+
    */
-  static initEmpty(type: MLFeatureType): MLSequence { return callSDK<MLSequence>("CoreML_067acaa3e5f56b46", 3095466612468945, undefined, [type]); }
+  static initEmpty(type: MLFeatureType): MLSequence { return callSDK<MLSequence>("CoreML_d968214ecc684fb6", 3095466612468945, undefined, [type]); }
   /**
    * convenience init(int64s int64Values: [NSNumber])
    * @availability iOS 12.0+
    */
-  static initInt64s(int64Values: $SDK31): MLSequence { return callSDK<MLSequence>("CoreML_067acaa3e5f56b46", 4258142980773382, undefined, [int64Values]); }
+  static initInt64s(int64Values: $SDK31): MLSequence { return callSDK<MLSequence>("CoreML_d968214ecc684fb6", 4258142980773382, undefined, [int64Values]); }
   /**
    * convenience init(strings stringValues: [String])
    * @availability iOS 12.0+
    */
-  static initStrings(stringValues: Array<string>): MLSequence { return callSDK<MLSequence>("CoreML_067acaa3e5f56b46", 2810393510640767, undefined, [stringValues]); }
+  static initStrings(stringValues: Array<string>): MLSequence { return callSDK<MLSequence>("CoreML_d968214ecc684fb6", 2810393510640767, undefined, [stringValues]); }
   /**
    * var int64Values: [NSNumber] { get }
    * @availability iOS 12.0+
    */
-  get int64Values(): $SDK31 { return callSDK<$SDK31>("CoreML_067acaa3e5f56b46", 4351302718589367, this, []); }
+  get int64Values(): $SDK31 { return callSDK<$SDK31>("CoreML_d968214ecc684fb6", 4351302718589367, this, []); }
   /**
    * var stringValues: [String] { get }
    * @availability iOS 12.0+
    */
-  get stringValues(): Array<string> { return callSDK<Array<string>>("CoreML_067acaa3e5f56b46", 2238507813128656, this, []); }
+  get stringValues(): Array<string> { return callSDK<Array<string>>("CoreML_d968214ecc684fb6", 2238507813128656, this, []); }
   /**
    * var type: MLFeatureType { get }
    * @availability iOS 12.0+
    */
-  get type(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_067acaa3e5f56b46", 652991940072930, this, []); }
+  get type(): MLFeatureType { return callSDK<MLFeatureType>("CoreML_d968214ecc684fb6", 652991940072930, this, []); }
   declare readonly $type: { "c:objc(cs)MLSequence": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "int64Values": true; "stringValues": true; "type": true };
 }
@@ -1950,17 +1950,17 @@ export class MLSequence extends SDKHandle {
  */
 export class MLSequenceConstraint extends SDKHandle {
   /** init() */
-  static init(): MLSequenceConstraint { return callSDK<MLSequenceConstraint>("CoreML_067acaa3e5f56b46", 1893605524845888, undefined, []); }
+  static init(): MLSequenceConstraint { return callSDK<MLSequenceConstraint>("CoreML_d968214ecc684fb6", 1893605524845888, undefined, []); }
   /**
    * var countRange: NSRange { get }
    * @availability iOS 12.0+
    */
-  get countRange(): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 1479922690886648, this, []); }
+  get countRange(): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 1479922690886648, this, []); }
   /**
    * var valueDescription: MLFeatureDescription { get }
    * @availability iOS 12.0+
    */
-  get valueDescription(): MLFeatureDescription { return callSDK<MLFeatureDescription>("CoreML_067acaa3e5f56b46", 3551279934830692, this, []); }
+  get valueDescription(): MLFeatureDescription { return callSDK<MLFeatureDescription>("CoreML_d968214ecc684fb6", 3551279934830692, this, []); }
   declare readonly $type: { "c:objc(cs)MLSequenceConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "countRange": true; "valueDescription": true };
 }
@@ -1974,142 +1974,142 @@ export class MLShapedArray<Scalar = unknown> extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 3481995030869329, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 3481995030869329, this, []); }
   /**
    * func transposed(permutation axes: [Int]) -> MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  transposedPermutation(axes: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 656624551977929, this, [axes]); }
+  transposedPermutation(axes: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 656624551977929, this, [axes]); }
   /**
    * func transposed() -> MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  transposed(): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 1771430388941980, this, []); }
+  transposed(): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 1771430388941980, this, []); }
   /**
    * init(bytesNoCopy bytes: UnsafeRawPointer, shape: [Int], strides: [Int], deallocator: Data.Deallocator)
    * @availability iOS 15.0+
    */
-  static initBytesNoCopyShapeStridesDeallocator(bytes: SDKHandle, shape: Array<number>, strides: Array<number>, deallocator: _Foundation_Data_Deallocator): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 2142494424884756, undefined, [bytes, shape, strides, deallocator]); }
+  static initBytesNoCopyShapeStridesDeallocator(bytes: SDKHandle, shape: Array<number>, strides: Array<number>, deallocator: _Foundation_Data_Deallocator): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 2142494424884756, undefined, [bytes, shape, strides, deallocator]); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 76763296592083, this, []); }
+  get description(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 76763296592083, this, []); }
   /**
    * func changingLayout(to bufferLayout: MLShapedArrayBufferLayout) -> MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  changingLayout(bufferLayout: MLShapedArrayBufferLayout): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 4235493592945790, this, [bufferLayout]); }
+  changingLayout(bufferLayout: MLShapedArrayBufferLayout): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 4235493592945790, this, [bufferLayout]); }
   /**
    * func expandingShape(at axis: Int) -> MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  expandingShape(axis: number): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 980842241386367, this, [axis]); }
+  expandingShape(axis: number): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 980842241386367, this, [axis]); }
   /**
    * func squeezingShape() -> MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  squeezingShape(): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 86553924974297, this, []); }
+  squeezingShape(): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 86553924974297, this, []); }
   /**
    * init(unsafeUninitializedShape shape: [Int], initializingWith initializer: (inout UnsafeMutableBufferPointer<Scalar>, [Int]) throws -> Void) rethrows
    * @availability iOS 15.0+
    */
-  static initUnsafeUninitializedShapeInitializingWith(shape: Array<number>, initializer: $SDK40): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 944838964324487, undefined, [shape, initializer], [null,{"callback":{"out":[]}}], true); }
+  static initUnsafeUninitializedShapeInitializingWith(shape: Array<number>, initializer: $SDK40): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 944838964324487, undefined, [shape, initializer], [null,{"callback":{"out":[]}}], true); }
   /**
    * func withPixelBufferIfAvailable<R>(_ body: (CVPixelBuffer) throws -> R) rethrows -> R?
    * @availability iOS 18.0+
    */
-  withPixelBufferIfAvailable(body: $SDK41): (unknown) | null { return callSDK<(unknown) | null>("CoreML_067acaa3e5f56b46", 1170954262605871, this, [body], [{"callback":{"out":[]}}], true); }
+  withPixelBufferIfAvailable(body: $SDK41): (unknown) | null { return callSDK<(unknown) | null>("CoreML_d968214ecc684fb6", 1170954262605871, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * func withUnsafeShapedBufferPointer<R>(_ body: (UnsafeBufferPointer<Scalar>, [Int], [Int]) throws -> R) rethrows -> R
    * @availability iOS 15.0+
    */
-  withUnsafeShapedBufferPointer(body: $SDK42): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 234227224962612, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeShapedBufferPointer(body: $SDK42): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 234227224962612, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * mutating func withMutablePixelBufferIfAvailable<R>(_ body: (CVPixelBuffer) throws -> R) rethrows -> R?
    * @availability iOS 18.0+
    */
-  withMutablePixelBufferIfAvailable(body: $SDK41): (unknown) | null { return callSDK<(unknown) | null>("CoreML_067acaa3e5f56b46", 3623625382252603, this, [body], [{"callback":{"out":[]}}], true); }
+  withMutablePixelBufferIfAvailable(body: $SDK41): (unknown) | null { return callSDK<(unknown) | null>("CoreML_d968214ecc684fb6", 3623625382252603, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * mutating func withUnsafeMutableShapedBufferPointer<R>(using bufferLayout: MLShapedArrayBufferLayout, _ body: (inout UnsafeMutableBufferPointer<Scalar>, [Int], [Int]) throws -> R) rethrows -> R
    * @availability iOS 18.0+
    */
-  withUnsafeMutableShapedBufferPointerUsing(bufferLayout: MLShapedArrayBufferLayout, body: $SDK42): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 1871830959494989, this, [bufferLayout, body], [null,{"callback":{"out":[]}}], true); }
+  withUnsafeMutableShapedBufferPointerUsing(bufferLayout: MLShapedArrayBufferLayout, body: $SDK42): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 1871830959494989, this, [bufferLayout, body], [null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func withUnsafeMutableShapedBufferPointer<R>(_ body: (inout UnsafeMutableBufferPointer<Scalar>, [Int], [Int]) throws -> R) rethrows -> R
    * @availability iOS 15.0+
    */
-  withUnsafeMutableShapedBufferPointer(body: $SDK42): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 1832300609321750, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeMutableShapedBufferPointer(body: $SDK42): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 1832300609321750, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * init(data: Data, shape: [Int], strides: [Int])
    * @availability iOS 15.0+
    */
-  static initDataShapeStrides(data: ArrayBuffer, shape: Array<number>, strides: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 778633644666144, undefined, [data, shape, strides]); }
+  static initDataShapeStrides(data: ArrayBuffer, shape: Array<number>, strides: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 778633644666144, undefined, [data, shape, strides]); }
   /**
    * init(data: Data, shape: [Int])
    * @availability iOS 15.0+
    */
-  static initDataShape(data: ArrayBuffer, shape: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 2026428347380115, undefined, [data, shape]); }
+  static initDataShape(data: ArrayBuffer, shape: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 2026428347380115, undefined, [data, shape]); }
   /**
    * var shape: [Int] { get }
    * @availability iOS 15.0+
    */
-  get shape(): Array<number> { return callSDK<Array<number>>("CoreML_067acaa3e5f56b46", 3201178946379038, this, []); }
+  get shape(): Array<number> { return callSDK<Array<number>>("CoreML_d968214ecc684fb6", 3201178946379038, this, []); }
   /**
    * init(scalar: Scalar)
    * @availability iOS 15.0+
    */
-  static initScalar(scalar: number): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 246149906712117, undefined, [scalar]); }
+  static initScalar(scalar: number): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 246149906712117, undefined, [scalar]); }
   /**
    * var indices: Range<Int> { get }
    * @availability iOS 15.0+
    */
-  get indices(): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 3748188737302804, this, []); }
+  get indices(): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 3748188737302804, this, []); }
   /**
    * init<S>(scalars: S, shape: [Int]) where Scalar == S.Element, S : Sequence
    * @availability iOS 18.0+
    */
-  static initScalarsShape(scalars: Array<number>, shape: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 803129732617834, undefined, [scalars, shape]); }
+  static initScalarsShape(scalars: Array<number>, shape: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 803129732617834, undefined, [scalars, shape]); }
   /**
    * var strides: [Int] { get }
    * @availability iOS 15.0+
    */
-  get strides(): Array<number> { return callSDK<Array<number>>("CoreML_067acaa3e5f56b46", 3100260990098600, this, []); }
+  get strides(): Array<number> { return callSDK<Array<number>>("CoreML_d968214ecc684fb6", 3100260990098600, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 4416545980286191, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 4416545980286191, this, []); }
   /**
    * func reshaped(to newShape: [Int]) -> MLShapedArray<Scalar>
    * @availability iOS 18.0+
    */
-  reshaped(newShape: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 3132159968020386, this, [newShape]); }
+  reshaped(newShape: Array<number>): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 3132159968020386, this, [newShape]); }
   /**
    * subscript<C>(scalarAt indices: C) -> Scalar where C : Collection, C.Element == Int { get set }
    * @availability iOS 15.0+
    */
-  subscriptScalarAt(indices: Array<number>): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 2106244331805094, this, [indices]); }
+  subscriptScalarAt(indices: Array<number>): number { return callSDK<number>("CoreML_d968214ecc684fb6", 2106244331805094, this, [indices]); }
   /**
    * subscript(index: Int) -> MLShapedArraySlice<Scalar> { get set }
    * @availability iOS 15.0+
    */
-  subscript(index: number): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 3852400995456873, this, [index]); }
+  subscript(index: number): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 3852400995456873, this, [index]); }
   /**
    * subscript<C>(indices: C) -> MLShapedArraySlice<Scalar> where C : Collection, C.Element == Int { get set }
    * @availability iOS 15.0+
    */
-  subscript30778(indices: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 3843795096165695, this, [indices]); }
+  subscript30778(indices: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 3843795096165695, this, [indices]); }
   /**
    * subscript<C>(sliceRanges: C) -> MLShapedArraySlice<Scalar> where C : Collection, C.Element == Range<Int> { get set }
    * @availability iOS 15.0+
    */
-  subscript2169(sliceRanges: Array<SDKHandle>): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 3746201755566255, this, [sliceRanges]); }
+  subscript2169(sliceRanges: Array<SDKHandle>): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 3746201755566255, this, [sliceRanges]); }
   /**
    * init(_ multiArray: MLMultiArray)
    * @availability iOS 18.0+
    */
-  static init(multiArray: MLMultiArray): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_067acaa3e5f56b46", 831534552151905, undefined, [multiArray]); }
+  static init(multiArray: MLMultiArray): MLShapedArray<number> { return callSDK<MLShapedArray<number>>("CoreML_d968214ecc684fb6", 831534552151905, undefined, [multiArray]); }
   declare readonly $type: { "s:6CoreML13MLShapedArrayV": true };
 }
 
@@ -2223,117 +2223,117 @@ export class MLShapedArraySlice<Scalar = unknown> extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 1835064117038142, this, []); }
+  get startIndex(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 1835064117038142, this, []); }
   /**
    * func transposed(permutation axes: [Int]) -> MLShapedArraySlice<Scalar>
    * @availability iOS 18.0+
    */
-  transposedPermutation(axes: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 3650191521578598, this, [axes]); }
+  transposedPermutation(axes: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 3650191521578598, this, [axes]); }
   /**
    * func transposed() -> MLShapedArraySlice<Scalar>
    * @availability iOS 18.0+
    */
-  transposed(): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 411881302043623, this, []); }
+  transposed(): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 411881302043623, this, []); }
   /**
    * init(bytesNoCopy bytes: UnsafeRawPointer, shape: [Int], strides: [Int], deallocator: Data.Deallocator)
    * @availability iOS 15.0+
    */
-  static initBytesNoCopyShapeStridesDeallocator(bytes: SDKHandle, shape: Array<number>, strides: Array<number>, deallocator: _Foundation_Data_Deallocator): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 658058618085652, undefined, [bytes, shape, strides, deallocator]); }
+  static initBytesNoCopyShapeStridesDeallocator(bytes: SDKHandle, shape: Array<number>, strides: Array<number>, deallocator: _Foundation_Data_Deallocator): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 658058618085652, undefined, [bytes, shape, strides, deallocator]); }
   /**
    * func changingLayout(to bufferLayout: MLShapedArrayBufferLayout) -> MLShapedArraySlice<Scalar>
    * @availability iOS 18.0+
    */
-  changingLayout(bufferLayout: MLShapedArrayBufferLayout): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 3477899871499515, this, [bufferLayout]); }
+  changingLayout(bufferLayout: MLShapedArrayBufferLayout): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 3477899871499515, this, [bufferLayout]); }
   /**
    * func expandingShape(at axis: Int) -> MLShapedArraySlice<Scalar>
    * @availability iOS 18.0+
    */
-  expandingShape(axis: number): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 2445729753593445, this, [axis]); }
+  expandingShape(axis: number): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 2445729753593445, this, [axis]); }
   /**
    * func squeezingShape() -> MLShapedArraySlice<Scalar>
    * @availability iOS 18.0+
    */
-  squeezingShape(): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 3760853047819009, this, []); }
+  squeezingShape(): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 3760853047819009, this, []); }
   /**
    * init(unsafeUninitializedShape shape: [Int], initializingWith initializer: (inout UnsafeMutableBufferPointer<Scalar>, [Int]) throws -> Void) rethrows
    * @availability iOS 15.0+
    */
-  static initUnsafeUninitializedShapeInitializingWith(shape: Array<number>, initializer: $SDK40): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 4228410494030155, undefined, [shape, initializer], [null,{"callback":{"out":[]}}], true); }
+  static initUnsafeUninitializedShapeInitializingWith(shape: Array<number>, initializer: $SDK40): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 4228410494030155, undefined, [shape, initializer], [null,{"callback":{"out":[]}}], true); }
   /**
    * func withUnsafeShapedBufferPointer<R>(_ body: (UnsafeBufferPointer<Scalar>, [Int], [Int]) throws -> R) rethrows -> R
    * @availability iOS 15.0+
    */
-  withUnsafeShapedBufferPointer(body: $SDK42): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 658831041228539, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeShapedBufferPointer(body: $SDK42): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 658831041228539, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * mutating func withUnsafeMutableShapedBufferPointer<R>(using bufferLayout: MLShapedArrayBufferLayout, _ body: (inout UnsafeMutableBufferPointer<Scalar>, [Int], [Int]) throws -> R) rethrows -> R
    * @availability iOS 18.0+
    */
-  withUnsafeMutableShapedBufferPointerUsing(bufferLayout: MLShapedArrayBufferLayout, body: $SDK42): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 1757225008210302, this, [bufferLayout, body], [null,{"callback":{"out":[]}}], true); }
+  withUnsafeMutableShapedBufferPointerUsing(bufferLayout: MLShapedArrayBufferLayout, body: $SDK42): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 1757225008210302, this, [bufferLayout, body], [null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func withUnsafeMutableShapedBufferPointer<R>(_ body: (inout UnsafeMutableBufferPointer<Scalar>, [Int], [Int]) throws -> R) rethrows -> R
    * @availability iOS 15.0+
    */
-  withUnsafeMutableShapedBufferPointer(body: $SDK42): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 4139162679282474, this, [body], [{"callback":{"out":[]}}], true); }
+  withUnsafeMutableShapedBufferPointer(body: $SDK42): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 4139162679282474, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * init(data: Data, shape: [Int], strides: [Int])
    * @availability iOS 15.0+
    */
-  static initDataShapeStrides(data: ArrayBuffer, shape: Array<number>, strides: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 948339472608702, undefined, [data, shape, strides]); }
+  static initDataShapeStrides(data: ArrayBuffer, shape: Array<number>, strides: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 948339472608702, undefined, [data, shape, strides]); }
   /**
    * init(data: Data, shape: [Int])
    * @availability iOS 15.0+
    */
-  static initDataShape(data: ArrayBuffer, shape: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 1326948909108846, undefined, [data, shape]); }
+  static initDataShape(data: ArrayBuffer, shape: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 1326948909108846, undefined, [data, shape]); }
   /**
    * let shape: [Int]
    * @availability iOS 15.0+
    */
-  get shape(): Array<number> { return callSDK<Array<number>>("CoreML_067acaa3e5f56b46", 4143728395146390, this, []); }
+  get shape(): Array<number> { return callSDK<Array<number>>("CoreML_d968214ecc684fb6", 4143728395146390, this, []); }
   /**
    * init(scalar: Scalar)
    * @availability iOS 15.0+
    */
-  static initScalar(scalar: number): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 747171858223218, undefined, [scalar]); }
+  static initScalar(scalar: number): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 747171858223218, undefined, [scalar]); }
   /**
    * init<S>(scalars: S, shape: [Int]) where Scalar == S.Element, S : Sequence
    * @availability iOS 18.0+
    */
-  static initScalarsShape(scalars: Array<number>, shape: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 271675475559056, undefined, [scalars, shape]); }
+  static initScalarsShape(scalars: Array<number>, shape: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 271675475559056, undefined, [scalars, shape]); }
   /**
    * var strides: [Int] { get }
    * @availability iOS 15.0+
    */
-  get strides(): Array<number> { return callSDK<Array<number>>("CoreML_067acaa3e5f56b46", 2830520055765235, this, []); }
+  get strides(): Array<number> { return callSDK<Array<number>>("CoreML_d968214ecc684fb6", 2830520055765235, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 10856473320403, this, []); }
+  get endIndex(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 10856473320403, this, []); }
   /**
    * func reshaped(to newShape: [Int]) -> MLShapedArraySlice<Scalar>
    * @availability iOS 18.0+
    */
-  reshaped(newShape: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 494560089775023, this, [newShape]); }
+  reshaped(newShape: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 494560089775023, this, [newShape]); }
   /**
    * subscript<C>(scalarAt indices: C) -> Scalar where C : Collection, C.Element == Int { get set }
    * @availability iOS 15.0+
    */
-  subscriptScalarAt(indices: Array<number>): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 2448487513217955, this, [indices]); }
+  subscriptScalarAt(indices: Array<number>): number { return callSDK<number>("CoreML_d968214ecc684fb6", 2448487513217955, this, [indices]); }
   /**
    * init(_ multiArray: MLMultiArray)
    * @availability iOS 18.0+
    */
-  static init(multiArray: MLMultiArray): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 4228894058030989, undefined, [multiArray]); }
+  static init(multiArray: MLMultiArray): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 4228894058030989, undefined, [multiArray]); }
   /**
    * subscript<C>(indices: C) -> MLShapedArraySlice<Scalar> where C : Collection, C.Element == Int { get set }
    * @availability iOS 15.0+
    */
-  subscript(indices: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 4067288927466794, this, [indices]); }
+  subscript(indices: Array<number>): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 4067288927466794, this, [indices]); }
   /**
    * subscript<C>(sliceRanges: C) -> MLShapedArraySlice<Scalar> where C : Collection, C.Element == Range<Int> { get set }
    * @availability iOS 15.0+
    */
-  subscript96786(sliceRanges: Array<SDKHandle>): $SDK43 { return callSDK<$SDK43>("CoreML_067acaa3e5f56b46", 4416043233291966, this, [sliceRanges]); }
+  subscript96786(sliceRanges: Array<SDKHandle>): $SDK43 { return callSDK<$SDK43>("CoreML_d968214ecc684fb6", 4416043233291966, this, [sliceRanges]); }
   declare readonly $type: { "s:6CoreML18MLShapedArraySliceV": true };
 }
 
@@ -2382,7 +2382,7 @@ export class MLState extends SDKHandle {
    * func withMultiArray<R>(for stateName: String, _ body: (MLMultiArray) throws -> R) rethrows -> R
    * @availability iOS 18.0+
    */
-  withMultiArray(stateName: string, body: ((arg0: MLMultiArray) => unknown)): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 3489942441210166, this, [stateName, body], [null,{"callback":{"out":[]}}], true); }
+  withMultiArray(stateName: string, body: ((arg0: MLMultiArray) => unknown)): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 3489942441210166, this, [stateName, body], [null,{"callback":{"out":[]}}], true); }
   declare readonly $type: { "c:objc(cs)MLState": true; "c:objc(cs)NSObject": true };
 }
 
@@ -2392,17 +2392,17 @@ export class MLState extends SDKHandle {
  */
 export class MLStateConstraint extends SDKHandle {
   /** init() */
-  static init(): MLStateConstraint { return callSDK<MLStateConstraint>("CoreML_067acaa3e5f56b46", 2344710767344980, undefined, []); }
+  static init(): MLStateConstraint { return callSDK<MLStateConstraint>("CoreML_d968214ecc684fb6", 2344710767344980, undefined, []); }
   /**
    * var dataType: MLMultiArrayDataType { get }
    * @availability iOS 18.0+
    */
-  get dataType(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_067acaa3e5f56b46", 2835927024771977, this, []); }
+  get dataType(): MLMultiArrayDataType { return callSDK<MLMultiArrayDataType>("CoreML_d968214ecc684fb6", 2835927024771977, this, []); }
   /**
    * var bufferShape: [Int] { get }
    * @availability iOS 18.0+
    */
-  get bufferShape(): Array<number> { return callSDK<Array<number>>("CoreML_067acaa3e5f56b46", 1991175280118323, this, []); }
+  get bufferShape(): Array<number> { return callSDK<Array<number>>("CoreML_d968214ecc684fb6", 1991175280118323, this, []); }
   declare readonly $type: { "c:objc(cs)MLStateConstraint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true };
 }
@@ -2416,27 +2416,27 @@ export class MLTask extends SDKHandle {
    * func cancel()
    * @availability iOS 13.0+
    */
-  cancel(): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 1915962763500408, this, []); }
+  cancel(): void { return callSDK<void>("CoreML_d968214ecc684fb6", 1915962763500408, this, []); }
   /**
    * func resume()
    * @availability iOS 13.0+
    */
-  resume(): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 1939098691876682, this, []); }
+  resume(): void { return callSDK<void>("CoreML_d968214ecc684fb6", 1939098691876682, this, []); }
   /**
    * var error: (any Error)? { get }
    * @availability iOS 13.0+
    */
-  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("CoreML_067acaa3e5f56b46", 4091463555410574, this, []); }
+  get error(): (NativeError) | null { return callSDK<(NativeError) | null>("CoreML_d968214ecc684fb6", 4091463555410574, this, []); }
   /**
    * var state: MLTaskState { get }
    * @availability iOS 13.0+
    */
-  get state(): MLTaskState { return callSDK<MLTaskState>("CoreML_067acaa3e5f56b46", 2112040490148545, this, []); }
+  get state(): MLTaskState { return callSDK<MLTaskState>("CoreML_d968214ecc684fb6", 2112040490148545, this, []); }
   /**
    * var taskIdentifier: String { get }
    * @availability iOS 13.0+
    */
-  get taskIdentifier(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 3293884599167933, this, []); }
+  get taskIdentifier(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 3293884599167933, this, []); }
   declare readonly $type: { "c:objc(cs)MLTask": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "error": true; "state": true; "taskIdentifier": true };
 }
@@ -2452,7 +2452,7 @@ export const MLTaskState = {
    * init?(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): (MLTaskState) | null { return callSDK<(MLTaskState) | null>("CoreML_067acaa3e5f56b46", 279078193449882, undefined, [rawValue]); }
+  init(rawValue: number): (MLTaskState) | null { return callSDK<(MLTaskState) | null>("CoreML_d968214ecc684fb6", 279078193449882, undefined, [rawValue]); }
 };
 
 /**
@@ -2464,457 +2464,457 @@ export class MLTensor extends SDKHandle {
    * func reciprocal() -> MLTensor
    * @availability iOS 18.0+
    */
-  reciprocal(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2822834846453266, this, []); }
+  reciprocal(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2822834846453266, this, []); }
   /**
    * func squareRoot() -> MLTensor
    * @availability iOS 18.0+
    */
-  squareRoot(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 831431383209757, this, []); }
+  squareRoot(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 831431383209757, this, []); }
   /**
    * func transposed(permutation: [Int]) -> MLTensor
    * @availability iOS 18.0+
    */
-  transposedPermutation(permutation: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 168390205292560, this, [permutation]); }
+  transposedPermutation(permutation: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 168390205292560, this, [permutation]); }
   /**
    * func transposed() -> MLTensor
    * @availability iOS 18.0+
    */
-  transposed(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2139621644169421, this, []); }
+  transposed(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2139621644169421, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 1156982310260572, this, []); }
+  get description(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 1156982310260572, this, []); }
   /**
    * var scalarCount: Int { get }
    * @availability iOS 18.0+
    */
-  get scalarCount(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 219278658281681, this, []); }
+  get scalarCount(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 219278658281681, this, []); }
   /**
    * func concatenated(with other: MLTensor, alongAxis axis: Int = 0) -> MLTensor
    * @availability iOS 18.0+
    */
-  concatenated(other: MLTensor, axis?: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2201501350508630, this, [other, axis]); }
+  concatenated(other: MLTensor, axis?: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2201501350508630, this, [other, axis]); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 18.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreML_067acaa3e5f56b46", 2180478134353750, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("CoreML_d968214ecc684fb6", 2180478134353750, this, []); }
   /**
    * init(floatLiteral: Float)
    * @availability iOS 18.0+
    */
-  static initFloatLiteral(floatLiteral: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2664475364364390, undefined, [floatLiteral]); }
+  static initFloatLiteral(floatLiteral: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2664475364364390, undefined, [floatLiteral]); }
   /**
    * func cumulativeSum(alongAxis axis: Int = 0) -> MLTensor
    * @availability iOS 18.0+
    */
-  cumulativeSum(axis?: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4232330937525528, this, [axis]); }
+  cumulativeSum(axis?: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4232330937525528, this, [axis]); }
   /**
    * init(booleanLiteral: Bool)
    * @availability iOS 18.0+
    */
-  static initBooleanLiteral(booleanLiteral: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2083034038814982, undefined, [booleanLiteral]); }
+  static initBooleanLiteral(booleanLiteral: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2083034038814982, undefined, [booleanLiteral]); }
   /**
    * func expandingShape(at axes: [Int]) -> MLTensor
    * @availability iOS 18.0+
    */
-  expandingShape(axes: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3204485631174414, this, [axes]); }
+  expandingShape(axes: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3204485631174414, this, [axes]); }
   /**
    * init(integerLiteral: Int32)
    * @availability iOS 18.0+
    */
-  static initIntegerLiteral(integerLiteral: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3048110959961469, undefined, [integerLiteral]); }
+  static initIntegerLiteral(integerLiteral: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3048110959961469, undefined, [integerLiteral]); }
   /**
    * func squeezingShape(at axes: [Int]) -> MLTensor
    * @availability iOS 18.0+
    */
-  squeezingShapeAt(axes: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 251000231071373, this, [axes]); }
+  squeezingShapeAt(axes: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 251000231071373, this, [axes]); }
   /**
    * func squeezingShape() -> MLTensor
    * @availability iOS 18.0+
    */
-  squeezingShape(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2722213855166692, this, []); }
+  squeezingShape(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2722213855166692, this, []); }
   /**
    * init(linearSpaceFrom start: Float, through end: Float, count: Int)
    * @availability iOS 18.0+
    */
-  static initLinearSpaceFromThroughCount(start: number, end: number, count: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1042486430672237, undefined, [start, end, count]); }
+  static initLinearSpaceFromThroughCount(start: number, end: number, count: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1042486430672237, undefined, [start, end, count]); }
   /**
    * func cumulativeProduct(alongAxis axis: Int = 0) -> MLTensor
    * @availability iOS 18.0+
    */
-  cumulativeProduct(axis?: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4152776015160790, this, [axis]); }
+  cumulativeProduct(axis?: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4152776015160790, this, [axis]); }
   /**
    * func abs() -> MLTensor
    * @availability iOS 18.0+
    */
-  abs(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3695394032459855, this, []); }
+  abs(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3695394032459855, this, []); }
   /**
    * func all(keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  allKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4408578239123348, this, [keepRank]); }
+  allKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4408578239123348, this, [keepRank]); }
   /**
    * func all(alongAxes axes: [Int], keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  allAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3101694673032296, this, [axes, keepRank]); }
+  allAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3101694673032296, this, [axes, keepRank]); }
   /**
    * func any(keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  anyKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3808518854727875, this, [keepRank]); }
+  anyKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3808518854727875, this, [keepRank]); }
   /**
    * func any(alongAxes axes: [Int], keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  anyAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3585096378016104, this, [axes, keepRank]); }
+  anyAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3585096378016104, this, [axes, keepRank]); }
   /**
    * func cos() -> MLTensor
    * @availability iOS 18.0+
    */
-  cos(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2798234455832660, this, []); }
+  cos(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2798234455832660, this, []); }
   /**
    * func exp() -> MLTensor
    * @availability iOS 18.0+
    */
-  exp(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 855833966419626, this, []); }
+  exp(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 855833966419626, this, []); }
   /**
    * func log() -> MLTensor
    * @availability iOS 18.0+
    */
-  log(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4004066647561460, this, []); }
+  log(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4004066647561460, this, []); }
   /**
    * func max(keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  maxKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1487730612846606, this, [keepRank]); }
+  maxKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1487730612846606, this, [keepRank]); }
   /**
    * func max(alongAxes axes: [Int], keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  maxAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 347059013738533, this, [axes, keepRank]); }
+  maxAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 347059013738533, this, [axes, keepRank]); }
   /**
    * func min(keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  minKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 789995492176554, this, [keepRank]); }
+  minKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 789995492176554, this, [keepRank]); }
   /**
    * func min(alongAxes axes: [Int], keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  minAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1339564183501071, this, [axes, keepRank]); }
+  minAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1339564183501071, this, [axes, keepRank]); }
   /**
    * func pow(_ exponent: MLTensor) -> MLTensor
    * @availability iOS 18.0+
    */
-  pow(exponent: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1076608174354396, this, [exponent]); }
+  pow(exponent: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1076608174354396, this, [exponent]); }
   /**
    * func sin() -> MLTensor
    * @availability iOS 18.0+
    */
-  sin(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3369109747946495, this, []); }
+  sin(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3369109747946495, this, []); }
   /**
    * func sum(keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  sumKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3049526456909913, this, [keepRank]); }
+  sumKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3049526456909913, this, [keepRank]); }
   /**
    * func sum(alongAxes axes: [Int], keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  sumAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1519909768055414, this, [axes, keepRank]); }
+  sumAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1519909768055414, this, [axes, keepRank]); }
   /**
    * func tan() -> MLTensor
    * @availability iOS 18.0+
    */
-  tan(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1964625460712546, this, []); }
+  tan(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1964625460712546, this, []); }
   /**
    * func acos() -> MLTensor
    * @availability iOS 18.0+
    */
-  acos(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4318335364743814, this, []); }
+  acos(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4318335364743814, this, []); }
   /**
    * func asin() -> MLTensor
    * @availability iOS 18.0+
    */
-  asin(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3457842209388518, this, []); }
+  asin(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3457842209388518, this, []); }
   /**
    * func atan() -> MLTensor
    * @availability iOS 18.0+
    */
-  atan(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 479585714461851, this, []); }
+  atan(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 479585714461851, this, []); }
   /**
    * func cast<Scalar>(to scalarType: Scalar.Type) -> MLTensor where Scalar : MLTensorScalar
    * @availability iOS 18.0+
    */
-  castTo(scalarType: "Bool" | "Float"): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2913149214598267, this, [scalarType]); }
+  castTo(scalarType: "Bool" | "Float"): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2913149214598267, this, [scalarType]); }
   /**
    * func cast(like other: MLTensor) -> MLTensor
    * @availability iOS 18.0+
    */
-  castLike(other: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3991594770728128, this, [other]); }
+  castLike(other: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3991594770728128, this, [other]); }
   /**
    * func ceil() -> MLTensor
    * @availability iOS 18.0+
    */
-  ceil(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3370304340842369, this, []); }
+  ceil(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3370304340842369, this, []); }
   /**
    * func cosh() -> MLTensor
    * @availability iOS 18.0+
    */
-  cosh(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3461955114679263, this, []); }
+  cosh(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3461955114679263, this, []); }
   /**
    * func exp2() -> MLTensor
    * @availability iOS 18.0+
    */
-  exp2(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 568348366656272, this, []); }
+  exp2(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 568348366656272, this, []); }
   /**
    * func mean(keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  meanKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1478197152345196, this, [keepRank]); }
+  meanKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1478197152345196, this, [keepRank]); }
   /**
    * func mean(alongAxes axes: [Int], keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  meanAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1220717804968189, this, [axes, keepRank]); }
+  meanAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1220717804968189, this, [axes, keepRank]); }
   /**
    * var rank: Int { get }
    * @availability iOS 18.0+
    */
-  get rank(): number { return callSDK<number>("CoreML_067acaa3e5f56b46", 3262256784839913, this, []); }
+  get rank(): number { return callSDK<number>("CoreML_d968214ecc684fb6", 3262256784839913, this, []); }
   /**
    * func sign() -> MLTensor
    * @availability iOS 18.0+
    */
-  sign(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1322913612684504, this, []); }
+  sign(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1322913612684504, this, []); }
   /**
    * func sinh() -> MLTensor
    * @availability iOS 18.0+
    */
-  sinh(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 313285133981692, this, []); }
+  sinh(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 313285133981692, this, []); }
   /**
    * func tanh() -> MLTensor
    * @availability iOS 18.0+
    */
-  tanh(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3386939399078349, this, []); }
+  tanh(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3386939399078349, this, []); }
   /**
    * func topK(_ k: Int) -> (values: MLTensor, indices: MLTensor)
    * @availability iOS 18.0+
    */
-  topK(k: number): { "values": MLTensor; "indices": MLTensor } { return callSDK<{ "values": MLTensor; "indices": MLTensor }>("CoreML_067acaa3e5f56b46", 1098165783198216, this, [k]); }
+  topK(k: number): { "values": MLTensor; "indices": MLTensor } { return callSDK<{ "values": MLTensor; "indices": MLTensor }>("CoreML_d968214ecc684fb6", 1098165783198216, this, [k]); }
   /**
    * func acosh() -> MLTensor
    * @availability iOS 18.0+
    */
-  acosh(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2323729421904817, this, []); }
+  acosh(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2323729421904817, this, []); }
   /**
    * func asinh() -> MLTensor
    * @availability iOS 18.0+
    */
-  asinh(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4249421809287416, this, []); }
+  asinh(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4249421809287416, this, []); }
   /**
    * func atanh() -> MLTensor
    * @availability iOS 18.0+
    */
-  atanh(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3236509327856536, this, []); }
+  atanh(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3236509327856536, this, []); }
   /**
    * func floor() -> MLTensor
    * @availability iOS 18.0+
    */
-  floor(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3130075015282179, this, []); }
+  floor(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3130075015282179, this, []); }
   /**
    * func round() -> MLTensor
    * @availability iOS 18.0+
    */
-  round(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2515434093466695, this, []); }
+  round(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2515434093466695, this, []); }
   /**
    * func rsqrt() -> MLTensor
    * @availability iOS 18.0+
    */
-  rsqrt(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1543554675014051, this, []); }
+  rsqrt(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1543554675014051, this, []); }
   /**
    * var shape: [Int] { get }
    * @availability iOS 18.0+
    */
-  get shape(): Array<number> { return callSDK<Array<number>>("CoreML_067acaa3e5f56b46", 4287003350928254, this, []); }
+  get shape(): Array<number> { return callSDK<Array<number>>("CoreML_d968214ecc684fb6", 4287003350928254, this, []); }
   /**
    * func split(count: Int, alongAxis axis: Int = 0) -> [MLTensor]
    * @availability iOS 18.0+
    */
-  splitCountAlongAxis(count: number, axis?: number): Array<MLTensor> { return callSDK<Array<MLTensor>>("CoreML_067acaa3e5f56b46", 2868256513245360, this, [count, axis]); }
+  splitCountAlongAxis(count: number, axis?: number): Array<MLTensor> { return callSDK<Array<MLTensor>>("CoreML_d968214ecc684fb6", 2868256513245360, this, [count, axis]); }
   /**
    * func split(sizes: [Int], alongAxis axis: Int = 0) -> [MLTensor]
    * @availability iOS 18.0+
    */
-  splitSizesAlongAxis(sizes: Array<number>, axis?: number): Array<MLTensor> { return callSDK<Array<MLTensor>>("CoreML_067acaa3e5f56b46", 4021846393060765, this, [sizes, axis]); }
+  splitSizesAlongAxis(sizes: Array<number>, axis?: number): Array<MLTensor> { return callSDK<Array<MLTensor>>("CoreML_d968214ecc684fb6", 4021846393060765, this, [sizes, axis]); }
   /**
    * func tiled(multiples: [Int]) -> MLTensor
    * @availability iOS 18.0+
    */
-  tiled(multiples: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3008859636195650, this, [multiples]); }
+  tiled(multiples: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3008859636195650, this, [multiples]); }
   /**
    * func argmax(alongAxis axis: Int, keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  argmaxAlongAxisKeepRank(axis: number, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3940873417530763, this, [axis, keepRank]); }
+  argmaxAlongAxisKeepRank(axis: number, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3940873417530763, this, [axis, keepRank]); }
   /**
    * func argmax() -> MLTensor
    * @availability iOS 18.0+
    */
-  argmax(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 487016838048415, this, []); }
+  argmax(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 487016838048415, this, []); }
   /**
    * func argmin(alongAxis axis: Int, keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  argminAlongAxisKeepRank(axis: number, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 311524260108172, this, [axis, keepRank]); }
+  argminAlongAxisKeepRank(axis: number, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 311524260108172, this, [axis, keepRank]); }
   /**
    * func argmin() -> MLTensor
    * @availability iOS 18.0+
    */
-  argmin(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2148337821014111, this, []); }
+  argmin(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2148337821014111, this, []); }
   /**
    * func matmul(_ other: MLTensor) -> MLTensor
    * @availability iOS 18.0+
    */
-  matmul(other: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2544710013292704, this, [other]); }
+  matmul(other: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2544710013292704, this, [other]); }
   /**
    * func padded(forSizes sizes: [(before: Int, after: Int)], mode: MLTensor.PaddingMode) -> MLTensor
    * @availability iOS 18.0+
    */
-  paddedForSizesMode(sizes: $SDK49, mode: MLTensor_PaddingMode): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3603860404193458, this, [sizes, mode]); }
+  paddedForSizesMode(sizes: $SDK49, mode: MLTensor_PaddingMode): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3603860404193458, this, [sizes, mode]); }
   /**
    * func padded(forSizes sizes: [(before: Int, after: Int)], with value: Float) -> MLTensor
    * @availability iOS 18.0+
    */
-  paddedForSizesWith(sizes: $SDK49, value: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3637451915530331, this, [sizes, value]); }
+  paddedForSizesWith(sizes: $SDK49, value: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3637451915530331, this, [sizes, value]); }
   /**
    * func argsort(alongAxis axis: Int = -1, descendingOrder: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  argsort(axis?: number, descendingOrder?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 857861720989419, this, [axis, descendingOrder]); }
+  argsort(axis?: number, descendingOrder?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 857861720989419, this, [axis, descendingOrder]); }
   /**
    * func clamped(to bounds: ClosedRange<Float>) -> MLTensor
    * @availability iOS 18.0+
    */
-  clampedTo(bounds: SDKHandle): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1507803023045887, this, [bounds]); }
+  clampedTo(bounds: SDKHandle): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1507803023045887, this, [bounds]); }
   /**
    * func clamped(to bounds: PartialRangeFrom<Float>) -> MLTensor
    * @availability iOS 18.0+
    */
-  clampedTo84394(bounds: SDKHandle): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1508131231253062, this, [bounds]); }
+  clampedTo84394(bounds: SDKHandle): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1508131231253062, this, [bounds]); }
   /**
    * func clamped(to bounds: PartialRangeThrough<Float>) -> MLTensor
    * @availability iOS 18.0+
    */
-  clampedTo17076(bounds: SDKHandle): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2870175534527152, this, [bounds]); }
+  clampedTo17076(bounds: SDKHandle): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2870175534527152, this, [bounds]); }
   /**
    * func product(keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  productKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3358573841839537, this, [keepRank]); }
+  productKeepRank(keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3358573841839537, this, [keepRank]); }
   /**
    * func product(alongAxes axes: [Int], keepRank: Bool = false) -> MLTensor
    * @availability iOS 18.0+
    */
-  productAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 634591220319424, this, [axes, keepRank]); }
+  productAlongAxesKeepRank(axes: Array<number>, keepRank?: boolean): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 634591220319424, this, [axes, keepRank]); }
   /**
    * func resized(to size: (newHeight: Int, newWidth: Int), method: MLTensor.ResizeMethod = .nearestNeighbor) -> MLTensor
    * @availability iOS 18.0+
    */
-  resized(size: { "newHeight": number; "newWidth": number }, method?: MLTensor_ResizeMethod): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4438074288832595, this, [size, method]); }
+  resized(size: { "newHeight": number; "newWidth": number }, method?: MLTensor_ResizeMethod): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4438074288832595, this, [size, method]); }
   /**
    * func softmax(alongAxis axis: Int = -1) -> MLTensor
    * @availability iOS 18.0+
    */
-  softmax(axis?: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1210540090209166, this, [axis]); }
+  softmax(axis?: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1210540090209166, this, [axis]); }
   /**
    * func squared() -> MLTensor
    * @availability iOS 18.0+
    */
-  squared(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1929703306316020, this, []); }
+  squared(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1929703306316020, this, []); }
   /**
    * func bandPart(lowerBandCount: Int, upperBandCount: Int) -> MLTensor
    * @availability iOS 18.0+
    */
-  bandPart(lowerBandCount: number, upperBandCount: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4049733355374462, this, [lowerBandCount, upperBandCount]); }
+  bandPart(lowerBandCount: number, upperBandCount: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4049733355374462, this, [lowerBandCount, upperBandCount]); }
   /**
    * var isScalar: Bool { get }
    * @availability iOS 18.0+
    */
-  get isScalar(): boolean { return callSDK<boolean>("CoreML_067acaa3e5f56b46", 1196792505672742, this, []); }
+  get isScalar(): boolean { return callSDK<boolean>("CoreML_d968214ecc684fb6", 1196792505672742, this, []); }
   /**
    * func reshaped(to newShape: [Int]) -> MLTensor
    * @availability iOS 18.0+
    */
-  reshaped(newShape: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1378853073130686, this, [newShape]); }
+  reshaped(newShape: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1378853073130686, this, [newShape]); }
   /**
    * func reversed(alongAxes axes: [Int]) -> MLTensor
    * @availability iOS 18.0+
    */
-  reversed(axes: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3103151398549473, this, [axes]); }
+  reversed(axes: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3103151398549473, this, [axes]); }
   /**
    * func flattened() -> MLTensor
    * @availability iOS 18.0+
    */
-  flattened(): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3620541017049029, this, []); }
+  flattened(): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3620541017049029, this, []); }
   /**
    * func gathering(atIndices indices: MLTensor, alongAxis axis: Int) -> MLTensor
    * @availability iOS 18.0+
    */
-  gatheringAtIndicesAlongAxis(indices: MLTensor, axis: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 186319528266039, this, [indices, axis]); }
+  gatheringAtIndicesAlongAxis(indices: MLTensor, axis: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 186319528266039, this, [indices, axis]); }
   /**
    * func gathering(atIndices indices: MLTensor) -> MLTensor
    * @availability iOS 18.0+
    */
-  gatheringAtIndices(indices: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2319117936316087, this, [indices]); }
+  gatheringAtIndices(indices: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2319117936316087, this, [indices]); }
   /**
    * init(rangeFrom start: Float, to end: Float, by stride: Float.Stride)
    * @availability iOS 18.0+
    */
-  static initRangeFromToBy(start: number, end: number, stride: SDKHandle): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4043570654979728, undefined, [start, end, stride]); }
+  static initRangeFromToBy(start: number, end: number, stride: SDKHandle): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4043570654979728, undefined, [start, end, stride]); }
   /**
    * init<Scalar>(repeating repeatedValue: Scalar, shape: [Int], scalarType: Scalar.Type = Scalar.self) where Scalar : MLTensorScalar
    * @availability iOS 18.0+
    */
-  static initRepeatingShape(repeatedValue: number, shape: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3216401698479564, undefined, [repeatedValue, shape]); }
+  static initRepeatingShape(repeatedValue: number, shape: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3216401698479564, undefined, [repeatedValue, shape]); }
   /**
    * init(repeating repeatedValue: Float, shape: [Int])
    * @availability iOS 18.0+
    */
-  static initRepeatingShape31494(repeatedValue: number, shape: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1676824488119711, undefined, [repeatedValue, shape]); }
+  static initRepeatingShape31494(repeatedValue: number, shape: Array<number>): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1676824488119711, undefined, [repeatedValue, shape]); }
   /**
    * func replacing(with replacement: MLTensor, where mask: MLTensor) -> MLTensor
    * @availability iOS 18.0+
    */
-  replacingWithWhere(replacement: MLTensor, mask: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 1044543133958593, this, [replacement, mask]); }
+  replacingWithWhere(replacement: MLTensor, mask: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 1044543133958593, this, [replacement, mask]); }
   /**
    * func replacing(with replacement: some MLTensorScalar, where mask: MLTensor) -> MLTensor
    * @availability iOS 18.0+
    */
-  replacingWithWhere75710(replacement: SDKHandle, mask: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3735013704424404, this, [replacement, mask]); }
+  replacingWithWhere75710(replacement: SDKHandle, mask: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3735013704424404, this, [replacement, mask]); }
   /**
    * func replacing(with replacement: MLTensor, atIndices indices: MLTensor, alongAxis axis: Int) -> MLTensor
    * @availability iOS 18.0+
    */
-  replacingWithAtIndicesAlongAxis(replacement: MLTensor, indices: MLTensor, axis: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 4107868957802549, this, [replacement, indices, axis]); }
+  replacingWithAtIndicesAlongAxis(replacement: MLTensor, indices: MLTensor, axis: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 4107868957802549, this, [replacement, indices, axis]); }
   /**
    * func replacing(atIndices indices: MLTensor, with replacement: some MLTensorScalar, alongAxis axis: Int) -> MLTensor
    * @availability iOS 18.0+
    */
-  replacingAtIndicesWithAlongAxis(indices: MLTensor, replacement: SDKHandle, axis: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 3378385139505185, this, [indices, replacement, axis]); }
+  replacingAtIndicesWithAlongAxis(indices: MLTensor, replacement: SDKHandle, axis: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 3378385139505185, this, [indices, replacement, axis]); }
   /**
    * func unstacked(alongAxis axis: Int = 0) -> [MLTensor]
    * @availability iOS 18.0+
    */
-  unstacked(axis?: number): Array<MLTensor> { return callSDK<Array<MLTensor>>("CoreML_067acaa3e5f56b46", 846235547059203, this, [axis]); }
+  unstacked(axis?: number): Array<MLTensor> { return callSDK<Array<MLTensor>>("CoreML_d968214ecc684fb6", 846235547059203, this, [axis]); }
   /**
    * init<Scalar>(_ value: Scalar, scalarType: Scalar.Type = Scalar.self) where Scalar : MLTensorScalar
    * @availability iOS 18.0+
    */
-  static init(value: number): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 576519585439070, undefined, [value]); }
+  static init(value: number): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 576519585439070, undefined, [value]); }
   declare readonly $type: { "s:6CoreML8MLTensorV": true };
 }
 
@@ -2951,7 +2951,7 @@ export class MLTensor_PaddingMode extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 3048386496663533, this, []); }
+  get description(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 3048386496663533, this, []); }
   declare readonly $type: { "s:6CoreML8MLTensorV11PaddingModeO": true };
 }
 
@@ -2964,7 +2964,7 @@ export class MLTensor_ResizeMethod extends SDKHandle {
    * var description: String { get }
    * @availability iOS 18.0+
    */
-  get description(): string { return callSDK<string>("CoreML_067acaa3e5f56b46", 258039709516431, this, []); }
+  get description(): string { return callSDK<string>("CoreML_d968214ecc684fb6", 258039709516431, this, []); }
   declare readonly $type: { "s:6CoreML8MLTensorV12ResizeMethodO": true };
 }
 
@@ -2990,32 +2990,32 @@ export interface MLTensorScalar {
  */
 export class MLUpdateContext extends SDKHandle {
   /** init() */
-  static init(): MLUpdateContext { return callSDK<MLUpdateContext>("CoreML_067acaa3e5f56b46", 1525567026229279, undefined, []); }
+  static init(): MLUpdateContext { return callSDK<MLUpdateContext>("CoreML_d968214ecc684fb6", 1525567026229279, undefined, []); }
   /**
    * var event: MLUpdateProgressEvent { get }
    * @availability iOS 13.0+
    */
-  get event(): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_067acaa3e5f56b46", 4193679956363340, this, []); }
+  get event(): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_d968214ecc684fb6", 4193679956363340, this, []); }
   /**
    * var metrics: [MLMetricKey : Any] { get }
    * @availability iOS 13.0+
    */
-  get metrics(): NativeMap<MLMetricKey, unknown> { return callSDK<NativeMap<MLMetricKey, unknown>>("CoreML_067acaa3e5f56b46", 3415835842003502, this, []); }
+  get metrics(): NativeMap<MLMetricKey, unknown> { return callSDK<NativeMap<MLMetricKey, unknown>>("CoreML_d968214ecc684fb6", 3415835842003502, this, []); }
   /**
    * var model: any MLModel & MLWritable { get }
    * @availability iOS 13.0+
    */
-  get model(): (MLModel) & (SDKHandle) { return callSDK<(MLModel) & (SDKHandle)>("CoreML_067acaa3e5f56b46", 4218037097064123, this, []); }
+  get model(): (MLModel) & (SDKHandle) { return callSDK<(MLModel) & (SDKHandle)>("CoreML_d968214ecc684fb6", 4218037097064123, this, []); }
   /**
    * var parameters: [MLParameterKey : Any] { get }
    * @availability iOS 13.0+
    */
-  get parameters(): $SDK52 { return callSDK<$SDK52>("CoreML_067acaa3e5f56b46", 779428384631200, this, []); }
+  get parameters(): $SDK52 { return callSDK<$SDK52>("CoreML_d968214ecc684fb6", 779428384631200, this, []); }
   /**
    * var task: MLUpdateTask { get }
    * @availability iOS 13.0+
    */
-  get task(): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_067acaa3e5f56b46", 500337094268540, this, []); }
+  get task(): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_d968214ecc684fb6", 500337094268540, this, []); }
   declare readonly $type: { "c:objc(cs)MLUpdateContext": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "event": true; "metrics": true; "model": true; "parameters": true; "task": true };
 }
@@ -3031,22 +3031,22 @@ export const MLUpdateProgressEvent = {
    * static var epochEnd: MLUpdateProgressEvent { get }
    * @availability iOS 13.0+
    */
-  get epochEnd(): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_067acaa3e5f56b46", 1120186930154692, undefined, []); },
+  get epochEnd(): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_d968214ecc684fb6", 1120186930154692, undefined, []); },
   /**
    * static var miniBatchEnd: MLUpdateProgressEvent { get }
    * @availability iOS 13.0+
    */
-  get miniBatchEnd(): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_067acaa3e5f56b46", 4000048549703311, undefined, []); },
+  get miniBatchEnd(): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_d968214ecc684fb6", 4000048549703311, undefined, []); },
   /**
    * static var trainingBegin: MLUpdateProgressEvent { get }
    * @availability iOS 13.0+
    */
-  get trainingBegin(): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_067acaa3e5f56b46", 3086775988137190, undefined, []); },
+  get trainingBegin(): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_d968214ecc684fb6", 3086775988137190, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 13.0+
    */
-  init(rawValue: number): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_067acaa3e5f56b46", 913882741910739, undefined, [rawValue]); }
+  init(rawValue: number): MLUpdateProgressEvent { return callSDK<MLUpdateProgressEvent>("CoreML_d968214ecc684fb6", 913882741910739, undefined, [rawValue]); }
 };
 
 /**
@@ -3058,7 +3058,7 @@ export class MLUpdateProgressHandlers extends SDKHandle {
    * init(forEvents interestedEvents: MLUpdateProgressEvent, progressHandler: ((MLUpdateContext) -> Void)?, completionHandler: @escaping (MLUpdateContext) -> Void)
    * @availability iOS 13.0+
    */
-  static init(interestedEvents: MLUpdateProgressEvent, progressHandler: (((arg0: MLUpdateContext) => void)) | null, completionHandler: $SDK54): MLUpdateProgressHandlers { return callSDK<MLUpdateProgressHandlers>("CoreML_067acaa3e5f56b46", 1734013004037989, undefined, [interestedEvents, progressHandler, completionHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  static init(interestedEvents: MLUpdateProgressEvent, progressHandler: (((arg0: MLUpdateContext) => void)) | null, completionHandler: $SDK54): MLUpdateProgressHandlers { return callSDK<MLUpdateProgressHandlers>("CoreML_d968214ecc684fb6", 1734013004037989, undefined, [interestedEvents, progressHandler, completionHandler], [null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   declare readonly $type: { "c:objc(cs)MLUpdateProgressHandlers": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3071,27 +3071,27 @@ export class MLUpdateTask extends (MLTask as unknown as Omit<typeof MLTask, "pro
    * convenience init(forModelAt modelURL: URL, trainingData: any MLBatchProvider, completionHandler: @escaping (MLUpdateContext) -> Void) throws
    * @availability iOS 14.0+
    */
-  static initForModelAtTrainingDataCompletionHandler(modelURL: string, trainingData: SDKHandle, completionHandler: $SDK54): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_067acaa3e5f56b46", 1894999080164455, undefined, [modelURL, trainingData, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static initForModelAtTrainingDataCompletionHandler(modelURL: string, trainingData: SDKHandle, completionHandler: $SDK54): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_d968214ecc684fb6", 1894999080164455, undefined, [modelURL, trainingData, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * convenience init(forModelAt modelURL: URL, trainingData: any MLBatchProvider, configuration: MLModelConfiguration?, completionHandler: @escaping (MLUpdateContext) -> Void) throws
    * @availability iOS 13.0+
    */
-  static initForModelAtTrainingDataConfigurationCompletionHandler(modelURL: string, trainingData: SDKHandle, configuration: (MLModelConfiguration) | null, completionHandler: $SDK54): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_067acaa3e5f56b46", 2707789249919595, undefined, [modelURL, trainingData, configuration, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  static initForModelAtTrainingDataConfigurationCompletionHandler(modelURL: string, trainingData: SDKHandle, configuration: (MLModelConfiguration) | null, completionHandler: $SDK54): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_d968214ecc684fb6", 2707789249919595, undefined, [modelURL, trainingData, configuration, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * convenience init(forModelAt modelURL: URL, trainingData: any MLBatchProvider, configuration: MLModelConfiguration?, progressHandlers: MLUpdateProgressHandlers) throws
    * @availability iOS 13.0+
    */
-  static initForModelAtTrainingDataConfigurationProgressHandlers(modelURL: string, trainingData: SDKHandle, configuration: (MLModelConfiguration) | null, progressHandlers: MLUpdateProgressHandlers): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_067acaa3e5f56b46", 3254812991505364, undefined, [modelURL, trainingData, configuration, progressHandlers]); }
+  static initForModelAtTrainingDataConfigurationProgressHandlers(modelURL: string, trainingData: SDKHandle, configuration: (MLModelConfiguration) | null, progressHandlers: MLUpdateProgressHandlers): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_d968214ecc684fb6", 3254812991505364, undefined, [modelURL, trainingData, configuration, progressHandlers]); }
   /**
    * convenience init(forModelAt modelURL: URL, trainingData: any MLBatchProvider, progressHandlers: MLUpdateProgressHandlers) throws
    * @availability iOS 14.0+
    */
-  static initForModelAtTrainingDataProgressHandlers(modelURL: string, trainingData: SDKHandle, progressHandlers: MLUpdateProgressHandlers): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_067acaa3e5f56b46", 644732208683472, undefined, [modelURL, trainingData, progressHandlers]); }
+  static initForModelAtTrainingDataProgressHandlers(modelURL: string, trainingData: SDKHandle, progressHandlers: MLUpdateProgressHandlers): MLUpdateTask { return callSDK<MLUpdateTask>("CoreML_d968214ecc684fb6", 644732208683472, undefined, [modelURL, trainingData, progressHandlers]); }
   /**
    * func resume(withParameters updateParameters: [MLParameterKey : Any])
    * @availability iOS 13.0+
    */
-  resume(updateParameters: $SDK52): void { return callSDK<void>("CoreML_067acaa3e5f56b46", 226054317664017, this, [updateParameters]); }
+  resume(updateParameters: $SDK52): void { return callSDK<void>("CoreML_d968214ecc684fb6", 226054317664017, this, [updateParameters]); }
   declare readonly $type: { "c:objc(cs)MLUpdateTask": true; "c:objc(cs)MLTask": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "error": true; "state": true; "taskIdentifier": true };
 }
@@ -3112,93 +3112,93 @@ export interface MLWritable {
  * func pointwiseMax(_ lhs: MLTensor, _ rhs: MLTensor) -> MLTensor
  * @availability iOS 18.0+
  */
-export function pointwiseMax(lhs: MLTensor, rhs: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 2393100527500053, undefined, [lhs, rhs]); }
+export function pointwiseMax(lhs: MLTensor, rhs: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 2393100527500053, undefined, [lhs, rhs]); }
 
 /**
  * func pointwiseMin(_ lhs: MLTensor, _ rhs: MLTensor) -> MLTensor
  * @availability iOS 18.0+
  */
-export function pointwiseMin(lhs: MLTensor, rhs: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_067acaa3e5f56b46", 315736038009560, undefined, [lhs, rhs]); }
+export function pointwiseMin(lhs: MLTensor, rhs: MLTensor): MLTensor { return callSDK<MLTensor>("CoreML_d968214ecc684fb6", 315736038009560, undefined, [lhs, rhs]); }
 
 /**
  * func withMLTensorComputePolicy<Result>(_ computePolicy: MLComputePolicy, _ body: () throws -> Result) rethrows -> Result
  * @availability iOS 18.0+
  */
-export function withMLTensorComputePolicy(computePolicy: MLComputePolicy, body: (() => unknown)): unknown { return callSDK<unknown>("CoreML_067acaa3e5f56b46", 2530125206816021, undefined, [computePolicy, body], [null,{"callback":{"out":[]}}], true); }
+export function withMLTensorComputePolicy(computePolicy: MLComputePolicy, body: (() => unknown)): unknown { return callSDK<unknown>("CoreML_d968214ecc684fb6", 2530125206816021, undefined, [computePolicy, body], [null,{"callback":{"out":[]}}], true); }
 
 /**
  * let MLModelErrorDomain: String
  * @availability iOS 11.0+
  */
-export const MLModelErrorDomain: string = callSDK<string>("CoreML_067acaa3e5f56b46", 2047165407188348, undefined, []);
+export const MLModelErrorDomain: string = callSDK<string>("CoreML_d968214ecc684fb6", 2047165407188348, undefined, []);
 
-registerSDKClass("MLArrayBatchProvider", MLArrayBatchProvider, { module: "CoreML_067acaa3e5f56b46", properties: {"array":400980395304401} });
+registerSDKClass("MLArrayBatchProvider", MLArrayBatchProvider, { module: "CoreML_d968214ecc684fb6", properties: {"array":400980395304401} });
 registerSDKProtocol("c:objc(pl)MLBatchProvider", {"featuresAt":"features(at:)"});
-registerSDKClass("CoreML.MLComputeDevice", MLComputeDevice, { module: "CoreML_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreML.MLComputeDevice", MLComputeDevice, { module: "CoreML_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("c:objc(pl)MLComputeDeviceProtocol", {});
-registerSDKClass("CoreML.MLComputePlan", MLComputePlan, { module: "CoreML_067acaa3e5f56b46", properties: {}, methods: {"deviceUsageFor":{"id":3411747756322772},"deviceUsageFor32006":{"id":4499772664692540},"estimatedCost":{"id":3495866872208679}} });
-registerSDKClass("CoreML.MLComputePlan.Cost", MLComputePlan_Cost, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLComputePlan.DeviceUsage", MLComputePlan_DeviceUsage, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLComputePolicy", MLComputePolicy, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("MLCPUComputeDevice", MLCPUComputeDevice, { module: "CoreML_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreML.MLComputePlan", MLComputePlan, { module: "CoreML_d968214ecc684fb6", properties: {}, methods: {"deviceUsageFor":{"id":3411747756322772},"deviceUsageFor32006":{"id":4499772664692540},"estimatedCost":{"id":3495866872208679}} });
+registerSDKClass("CoreML.MLComputePlan.Cost", MLComputePlan_Cost, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLComputePlan.DeviceUsage", MLComputePlan_DeviceUsage, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLComputePolicy", MLComputePolicy, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("MLCPUComputeDevice", MLCPUComputeDevice, { module: "CoreML_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("c:objc(pl)MLCustomLayer", {"initParameters":"init(parameters:)","setWeightData":"setWeightData(_:)","outputShapesForInputShapes":"outputShapes(forInputShapes:)","evaluateInputsOutputs":"evaluate(inputs:outputs:)","encodeCommandBufferInputsOutputs":"encode(commandBuffer:inputs:outputs:)"});
 registerSDKProtocol("c:objc(pl)MLCustomModel", {"initModelDescriptionParameters":"init(modelDescription:parameters:)","predictionFromOptions":"prediction(from:options:)"});
-registerSDKClass("MLDictionaryConstraint", MLDictionaryConstraint, { module: "CoreML_067acaa3e5f56b46", properties: {"keyType":1531048302208238} });
-registerSDKClass("MLDictionaryFeatureProvider", MLDictionaryFeatureProvider, { module: "CoreML_067acaa3e5f56b46", properties: {"dictionary":3456879554044172}, methods: {"subscript":{"id":1582349450601567}} });
-registerSDKClass("MLFeatureDescription", MLFeatureDescription, { module: "CoreML_067acaa3e5f56b46", properties: {"dictionaryConstraint":1107808976452332,"imageConstraint":2317978656414595,"multiArrayConstraint":3671263921438716,"name":653791941075869,"isOptional":3409162969135216,"sequenceConstraint":1636283909812192,"stateConstraint":318507506078177,"type":4309925675593539}, methods: {"isAllowedValue":{"id":2263468522203215}} });
+registerSDKClass("MLDictionaryConstraint", MLDictionaryConstraint, { module: "CoreML_d968214ecc684fb6", properties: {"keyType":1531048302208238} });
+registerSDKClass("MLDictionaryFeatureProvider", MLDictionaryFeatureProvider, { module: "CoreML_d968214ecc684fb6", properties: {"dictionary":3456879554044172}, methods: {"subscript":{"id":1582349450601567}} });
+registerSDKClass("MLFeatureDescription", MLFeatureDescription, { module: "CoreML_d968214ecc684fb6", properties: {"dictionaryConstraint":1107808976452332,"imageConstraint":2317978656414595,"multiArrayConstraint":3671263921438716,"name":653791941075869,"isOptional":3409162969135216,"sequenceConstraint":1636283909812192,"stateConstraint":318507506078177,"type":4309925675593539}, methods: {"isAllowedValue":{"id":2263468522203215}} });
 registerSDKProtocol("c:objc(pl)MLFeatureProvider", {"featureValueFor":"featureValue(for:)"});
-registerSDKClass("MLFeatureValue", MLFeatureValue, { module: "CoreML_067acaa3e5f56b46", properties: {"dictionaryValue":4069283403987688,"doubleValue":468500809877756,"imageBufferValue":2156708436938645,"int64Value":2388701525912046,"multiArrayValue":4050655106229942,"sequenceValue":2055292224591156,"stringValue":1532721499961357,"type":743666057687123,"isUndefined":849353803218498}, methods: {"isEqual":{"id":4312260470333294},"shapedArrayValue":{"id":4215516116899388}} });
-registerSDKClass("MLGPUComputeDevice", MLGPUComputeDevice, { module: "CoreML_067acaa3e5f56b46", properties: {"metalDevice":3212653156662109} });
-registerSDKClass("MLImageConstraint", MLImageConstraint, { module: "CoreML_067acaa3e5f56b46", properties: {"pixelFormatType":245894456640568,"pixelsHigh":463798282969953,"pixelsWide":718380024555340,"sizeConstraint":4355785914833547} });
-registerSDKClass("MLImageSize", MLImageSize, { module: "CoreML_067acaa3e5f56b46", properties: {"pixelsHigh":2979279879904893,"pixelsWide":2258445298826010} });
-registerSDKClass("MLImageSizeConstraint", MLImageSizeConstraint, { module: "CoreML_067acaa3e5f56b46", properties: {"enumeratedImageSizes":1910631493966713,"pixelsHighRange":3942949470515810,"pixelsWideRange":937710314164109,"type":2833293308582914} });
-registerSDKClass("MLKey", MLKey, { module: "CoreML_067acaa3e5f56b46", properties: {"name":2706500556997772,"scope":1873824172757589} });
-registerSDKClass("MLMetricKey", MLMetricKey, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("MLModel", MLModel, { module: "CoreML_067acaa3e5f56b46", properties: {"configuration":3475013055216349,"modelDescription":1089057482595694}, methods: {"parameterValue":{"id":2106175820674271},"predictionFrom":{"id":202286333010285},"predictionFromOptions":{"id":1358241730792777},"predictionFromUsing":{"id":2648943181363880},"predictionFromUsingOptions":{"id":2750936315930175},"predictionsFromBatch":{"id":1715982078957449},"predictionsFromOptions":{"id":644939148376373},"predictionFromUsingOptions91549":{"id":4301365474464636},"predictionFromUsing53525":{"id":2885778306700201},"predictionFromOptions37517":{"id":3504601296536938},"predictionFrom13483":{"id":528704660233547},"makeState":{"id":1640857529913813}} });
-registerSDKClass("MLModelAsset", MLModelAsset, { module: "CoreML_067acaa3e5f56b46", properties: {}, methods: {"functionNames":{"id":987767165564539,"hints":[{"callback":{"out":[]}}]},"modelDescriptionOfFunctionNamedCompletionHandler":{"id":1277096256127129,"hints":[null,{"callback":{"out":[]}}]},"modelDescriptionCompletionHandler":{"id":1595279547318156,"hints":[{"callback":{"out":[]}}]}} });
-registerSDKClass("MLModelConfiguration", MLModelConfiguration, { module: "CoreML_067acaa3e5f56b46", properties: {"allowLowPrecisionAccumulationOnGPU":4445575047753547,"computeUnits":3301444490969426,"functionName":4436617569395746,"modelDisplayName":4393391891861733,"parameters":904831263419716,"preferredMetalDevice":1066193783359520} });
-registerSDKClass("MLModelDescription", MLModelDescription, { module: "CoreML_067acaa3e5f56b46", properties: {"classLabels":1429499377559437,"inputDescriptionsByName":3865136344159757,"isUpdatable":669523276228759,"metadata":419410595080009,"outputDescriptionsByName":1019075340141333,"parameterDescriptionsByKey":144115094893888,"predictedFeatureName":3784512728289538,"predictedProbabilitiesName":4222409272631052,"stateDescriptionsByName":2773550705127312,"trainingInputDescriptionsByName":290383158971481} });
-registerSDKClass("CoreML.MLModelError", MLModelError, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure", MLModelStructure, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.NeuralNetwork", MLModelStructure_NeuralNetwork, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.NeuralNetwork.Layer", MLModelStructure_NeuralNetwork_Layer, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Pipeline", MLModelStructure_Pipeline, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Program", MLModelStructure_Program, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Program.Argument", MLModelStructure_Program_Argument, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Program.Binding", MLModelStructure_Program_Binding, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Program.Block", MLModelStructure_Program_Block, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Program.Function", MLModelStructure_Program_Function, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Program.NamedValueType", MLModelStructure_Program_NamedValueType, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Program.Operation", MLModelStructure_Program_Operation, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Program.Value", MLModelStructure_Program_Value, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLModelStructure.Program.ValueType", MLModelStructure_Program_ValueType, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("MLMultiArray", MLMultiArray, { module: "CoreML_067acaa3e5f56b46", properties: {"count":1243756876092657,"dataPointer":3738287559941148,"dataType":4140384452647343,"pixelBuffer":3971694685308551,"shape":3642251946578949,"strides":1292275887881996}, methods: {"subscript":{"id":1513073850080485},"subscript66708":{"id":4289315298838677},"transfer":{"id":1108439983487935}} });
-registerSDKClass("MLMultiArrayConstraint", MLMultiArrayConstraint, { module: "CoreML_067acaa3e5f56b46", properties: {"dataType":4142441248854410,"shape":2266361225679567,"shapeConstraint":2748340028888393} });
-registerSDKClass("MLMultiArrayShapeConstraint", MLMultiArrayShapeConstraint, { module: "CoreML_067acaa3e5f56b46", properties: {"enumeratedShapes":2260491378248366,"sizeRangeForDimension":2601766758793594,"type":3528046478498696} });
-registerSDKClass("MLNeuralEngineComputeDevice", MLNeuralEngineComputeDevice, { module: "CoreML_067acaa3e5f56b46", properties: {"totalCoreCount":3055291825092619} });
-registerSDKClass("MLNumericConstraint", MLNumericConstraint, { module: "CoreML_067acaa3e5f56b46", properties: {"enumeratedNumbers":2976109792553092,"maxNumber":1287675267133760,"minNumber":286124236401318} });
-registerSDKClass("CoreML.MLOptimizationHints", MLOptimizationHints, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("MLParameterDescription", MLParameterDescription, { module: "CoreML_067acaa3e5f56b46", properties: {"defaultValue":4251473618995157,"key":2793720926538196,"numericConstraint":2568056004454224} });
-registerSDKClass("MLParameterKey", MLParameterKey, { module: "CoreML_067acaa3e5f56b46", properties: {}, methods: {"scoped":{"id":175664218200648}} });
-registerSDKClass("MLPredictionOptions", MLPredictionOptions, { module: "CoreML_067acaa3e5f56b46", properties: {"outputBackings":914513373008862,"usesCPUOnly":4502247293967753} });
-registerSDKClass("CoreML.MLSendableFeatureValue", MLSendableFeatureValue, { module: "CoreML_067acaa3e5f56b46", properties: {}, methods: {"shapedArrayValue":{"id":4016283066799483}} });
-registerSDKClass("MLSequence", MLSequence, { module: "CoreML_067acaa3e5f56b46", properties: {"int64Values":4351302718589367,"stringValues":2238507813128656,"type":652991940072930} });
-registerSDKClass("MLSequenceConstraint", MLSequenceConstraint, { module: "CoreML_067acaa3e5f56b46", properties: {"countRange":1479922690886648,"valueDescription":3551279934830692} });
-registerSDKClass("CoreML.MLShapedArray", MLShapedArray, { module: "CoreML_067acaa3e5f56b46", properties: {}, methods: {"transposedPermutation":{"id":656624551977929},"transposed":{"id":1771430388941980},"changingLayout":{"id":4235493592945790},"expandingShape":{"id":980842241386367},"squeezingShape":{"id":86553924974297},"reshaped":{"id":3132159968020386},"subscriptScalarAt":{"id":2106244331805094},"subscript":{"id":3852400995456873},"subscript30778":{"id":3843795096165695},"subscript2169":{"id":3746201755566255}} });
-registerSDKClass("CoreML.MLShapedArrayBufferLayout", MLShapedArrayBufferLayout, { module: "CoreML_067acaa3e5f56b46", properties: {} });
+registerSDKClass("MLFeatureValue", MLFeatureValue, { module: "CoreML_d968214ecc684fb6", properties: {"dictionaryValue":4069283403987688,"doubleValue":468500809877756,"imageBufferValue":2156708436938645,"int64Value":2388701525912046,"multiArrayValue":4050655106229942,"sequenceValue":2055292224591156,"stringValue":1532721499961357,"type":743666057687123,"isUndefined":849353803218498}, methods: {"isEqual":{"id":4312260470333294},"shapedArrayValue":{"id":4215516116899388}} });
+registerSDKClass("MLGPUComputeDevice", MLGPUComputeDevice, { module: "CoreML_d968214ecc684fb6", properties: {"metalDevice":3212653156662109} });
+registerSDKClass("MLImageConstraint", MLImageConstraint, { module: "CoreML_d968214ecc684fb6", properties: {"pixelFormatType":245894456640568,"pixelsHigh":463798282969953,"pixelsWide":718380024555340,"sizeConstraint":4355785914833547} });
+registerSDKClass("MLImageSize", MLImageSize, { module: "CoreML_d968214ecc684fb6", properties: {"pixelsHigh":2979279879904893,"pixelsWide":2258445298826010} });
+registerSDKClass("MLImageSizeConstraint", MLImageSizeConstraint, { module: "CoreML_d968214ecc684fb6", properties: {"enumeratedImageSizes":1910631493966713,"pixelsHighRange":3942949470515810,"pixelsWideRange":937710314164109,"type":2833293308582914} });
+registerSDKClass("MLKey", MLKey, { module: "CoreML_d968214ecc684fb6", properties: {"name":2706500556997772,"scope":1873824172757589} });
+registerSDKClass("MLMetricKey", MLMetricKey, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("MLModel", MLModel, { module: "CoreML_d968214ecc684fb6", properties: {"configuration":3475013055216349,"modelDescription":1089057482595694}, methods: {"parameterValue":{"id":2106175820674271},"predictionFrom":{"id":202286333010285},"predictionFromOptions":{"id":1358241730792777},"predictionFromUsing":{"id":2648943181363880},"predictionFromUsingOptions":{"id":2750936315930175},"predictionsFromBatch":{"id":1715982078957449},"predictionsFromOptions":{"id":644939148376373},"predictionFromUsingOptions91549":{"id":4301365474464636},"predictionFromUsing53525":{"id":2885778306700201},"predictionFromOptions37517":{"id":3504601296536938},"predictionFrom13483":{"id":528704660233547},"makeState":{"id":1640857529913813}} });
+registerSDKClass("MLModelAsset", MLModelAsset, { module: "CoreML_d968214ecc684fb6", properties: {}, methods: {"functionNames":{"id":987767165564539,"hints":[{"callback":{"out":[]}}]},"modelDescriptionOfFunctionNamedCompletionHandler":{"id":1277096256127129,"hints":[null,{"callback":{"out":[]}}]},"modelDescriptionCompletionHandler":{"id":1595279547318156,"hints":[{"callback":{"out":[]}}]}} });
+registerSDKClass("MLModelConfiguration", MLModelConfiguration, { module: "CoreML_d968214ecc684fb6", properties: {"allowLowPrecisionAccumulationOnGPU":4445575047753547,"computeUnits":3301444490969426,"functionName":4436617569395746,"modelDisplayName":4393391891861733,"parameters":904831263419716,"preferredMetalDevice":1066193783359520} });
+registerSDKClass("MLModelDescription", MLModelDescription, { module: "CoreML_d968214ecc684fb6", properties: {"classLabels":1429499377559437,"inputDescriptionsByName":3865136344159757,"isUpdatable":669523276228759,"metadata":419410595080009,"outputDescriptionsByName":1019075340141333,"parameterDescriptionsByKey":144115094893888,"predictedFeatureName":3784512728289538,"predictedProbabilitiesName":4222409272631052,"stateDescriptionsByName":2773550705127312,"trainingInputDescriptionsByName":290383158971481} });
+registerSDKClass("CoreML.MLModelError", MLModelError, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure", MLModelStructure, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.NeuralNetwork", MLModelStructure_NeuralNetwork, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.NeuralNetwork.Layer", MLModelStructure_NeuralNetwork_Layer, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Pipeline", MLModelStructure_Pipeline, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Program", MLModelStructure_Program, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Program.Argument", MLModelStructure_Program_Argument, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Program.Binding", MLModelStructure_Program_Binding, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Program.Block", MLModelStructure_Program_Block, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Program.Function", MLModelStructure_Program_Function, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Program.NamedValueType", MLModelStructure_Program_NamedValueType, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Program.Operation", MLModelStructure_Program_Operation, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Program.Value", MLModelStructure_Program_Value, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLModelStructure.Program.ValueType", MLModelStructure_Program_ValueType, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("MLMultiArray", MLMultiArray, { module: "CoreML_d968214ecc684fb6", properties: {"count":1243756876092657,"dataPointer":3738287559941148,"dataType":4140384452647343,"pixelBuffer":3971694685308551,"shape":3642251946578949,"strides":1292275887881996}, methods: {"subscript":{"id":1513073850080485},"subscript66708":{"id":4289315298838677},"transfer":{"id":1108439983487935}} });
+registerSDKClass("MLMultiArrayConstraint", MLMultiArrayConstraint, { module: "CoreML_d968214ecc684fb6", properties: {"dataType":4142441248854410,"shape":2266361225679567,"shapeConstraint":2748340028888393} });
+registerSDKClass("MLMultiArrayShapeConstraint", MLMultiArrayShapeConstraint, { module: "CoreML_d968214ecc684fb6", properties: {"enumeratedShapes":2260491378248366,"sizeRangeForDimension":2601766758793594,"type":3528046478498696} });
+registerSDKClass("MLNeuralEngineComputeDevice", MLNeuralEngineComputeDevice, { module: "CoreML_d968214ecc684fb6", properties: {"totalCoreCount":3055291825092619} });
+registerSDKClass("MLNumericConstraint", MLNumericConstraint, { module: "CoreML_d968214ecc684fb6", properties: {"enumeratedNumbers":2976109792553092,"maxNumber":1287675267133760,"minNumber":286124236401318} });
+registerSDKClass("CoreML.MLOptimizationHints", MLOptimizationHints, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("MLParameterDescription", MLParameterDescription, { module: "CoreML_d968214ecc684fb6", properties: {"defaultValue":4251473618995157,"key":2793720926538196,"numericConstraint":2568056004454224} });
+registerSDKClass("MLParameterKey", MLParameterKey, { module: "CoreML_d968214ecc684fb6", properties: {}, methods: {"scoped":{"id":175664218200648}} });
+registerSDKClass("MLPredictionOptions", MLPredictionOptions, { module: "CoreML_d968214ecc684fb6", properties: {"outputBackings":914513373008862,"usesCPUOnly":4502247293967753} });
+registerSDKClass("CoreML.MLSendableFeatureValue", MLSendableFeatureValue, { module: "CoreML_d968214ecc684fb6", properties: {}, methods: {"shapedArrayValue":{"id":4016283066799483}} });
+registerSDKClass("MLSequence", MLSequence, { module: "CoreML_d968214ecc684fb6", properties: {"int64Values":4351302718589367,"stringValues":2238507813128656,"type":652991940072930} });
+registerSDKClass("MLSequenceConstraint", MLSequenceConstraint, { module: "CoreML_d968214ecc684fb6", properties: {"countRange":1479922690886648,"valueDescription":3551279934830692} });
+registerSDKClass("CoreML.MLShapedArray", MLShapedArray, { module: "CoreML_d968214ecc684fb6", properties: {}, methods: {"transposedPermutation":{"id":656624551977929},"transposed":{"id":1771430388941980},"changingLayout":{"id":4235493592945790},"expandingShape":{"id":980842241386367},"squeezingShape":{"id":86553924974297},"reshaped":{"id":3132159968020386},"subscriptScalarAt":{"id":2106244331805094},"subscript":{"id":3852400995456873},"subscript30778":{"id":3843795096165695},"subscript2169":{"id":3746201755566255}} });
+registerSDKClass("CoreML.MLShapedArrayBufferLayout", MLShapedArrayBufferLayout, { module: "CoreML_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6CoreML21MLShapedArrayProtocolP", {"initBytesNoCopyShapeStridesDeallocator":"init(bytesNoCopy:shape:strides:deallocator:)","initUnsafeUninitializedShapeInitializingWith":"init(unsafeUninitializedShape:initializingWith:)","subscript":"subscript(_:)","subscriptScalarAt":"subscript(scalarAt:)","withUnsafeShapedBufferPointer":"withUnsafeShapedBufferPointer(_:)","withUnsafeMutableShapedBufferPointer":"withUnsafeMutableShapedBufferPointer(_:)"});
 registerSDKProtocol("s:6CoreML28MLShapedArrayRangeExpressionP", {"relativeToShapedArrayAxis":"relative(toShapedArrayAxis:)"});
 registerSDKProtocol("s:6CoreML19MLShapedArrayScalarP", {});
-registerSDKClass("CoreML.MLShapedArraySlice", MLShapedArraySlice, { module: "CoreML_067acaa3e5f56b46", properties: {}, methods: {"transposedPermutation":{"id":3650191521578598},"transposed":{"id":411881302043623},"changingLayout":{"id":3477899871499515},"expandingShape":{"id":2445729753593445},"squeezingShape":{"id":3760853047819009},"reshaped":{"id":494560089775023},"subscriptScalarAt":{"id":2448487513217955},"subscript":{"id":4067288927466794},"subscript96786":{"id":4416043233291966}} });
-registerSDKClass("MLState", MLState, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("MLStateConstraint", MLStateConstraint, { module: "CoreML_067acaa3e5f56b46", properties: {"dataType":2835927024771977} });
-registerSDKClass("MLTask", MLTask, { module: "CoreML_067acaa3e5f56b46", properties: {"error":4091463555410574,"state":2112040490148545,"taskIdentifier":3293884599167933}, methods: {"cancel":{"id":1915962763500408},"resume":{"id":1939098691876682}} });
-registerSDKClass("CoreML.MLTensor", MLTensor, { module: "CoreML_067acaa3e5f56b46", properties: {}, methods: {"reciprocal":{"id":2822834846453266},"squareRoot":{"id":831431383209757},"transposedPermutation":{"id":168390205292560},"transposed":{"id":2139621644169421},"concatenated":{"id":2201501350508630},"cumulativeSum":{"id":4232330937525528},"expandingShape":{"id":3204485631174414},"squeezingShapeAt":{"id":251000231071373},"squeezingShape":{"id":2722213855166692},"cumulativeProduct":{"id":4152776015160790},"abs":{"id":3695394032459855},"allKeepRank":{"id":4408578239123348},"allAlongAxesKeepRank":{"id":3101694673032296},"anyKeepRank":{"id":3808518854727875},"anyAlongAxesKeepRank":{"id":3585096378016104},"cos":{"id":2798234455832660},"exp":{"id":855833966419626},"log":{"id":4004066647561460},"maxKeepRank":{"id":1487730612846606},"maxAlongAxesKeepRank":{"id":347059013738533},"minKeepRank":{"id":789995492176554},"minAlongAxesKeepRank":{"id":1339564183501071},"pow":{"id":1076608174354396},"sin":{"id":3369109747946495},"sumKeepRank":{"id":3049526456909913},"sumAlongAxesKeepRank":{"id":1519909768055414},"tan":{"id":1964625460712546},"acos":{"id":4318335364743814},"asin":{"id":3457842209388518},"atan":{"id":479585714461851},"castTo":{"id":2913149214598267},"castLike":{"id":3991594770728128},"ceil":{"id":3370304340842369},"cosh":{"id":3461955114679263},"exp2":{"id":568348366656272},"meanKeepRank":{"id":1478197152345196},"meanAlongAxesKeepRank":{"id":1220717804968189},"sign":{"id":1322913612684504},"sinh":{"id":313285133981692},"tanh":{"id":3386939399078349},"topK":{"id":1098165783198216},"acosh":{"id":2323729421904817},"asinh":{"id":4249421809287416},"atanh":{"id":3236509327856536},"floor":{"id":3130075015282179},"round":{"id":2515434093466695},"rsqrt":{"id":1543554675014051},"splitCountAlongAxis":{"id":2868256513245360},"splitSizesAlongAxis":{"id":4021846393060765},"tiled":{"id":3008859636195650},"argmaxAlongAxisKeepRank":{"id":3940873417530763},"argmax":{"id":487016838048415},"argminAlongAxisKeepRank":{"id":311524260108172},"argmin":{"id":2148337821014111},"matmul":{"id":2544710013292704},"paddedForSizesMode":{"id":3603860404193458},"paddedForSizesWith":{"id":3637451915530331},"argsort":{"id":857861720989419},"clampedTo":{"id":1507803023045887},"clampedTo84394":{"id":1508131231253062},"clampedTo17076":{"id":2870175534527152},"productKeepRank":{"id":3358573841839537},"productAlongAxesKeepRank":{"id":634591220319424},"resized":{"id":4438074288832595},"softmax":{"id":1210540090209166},"squared":{"id":1929703306316020},"bandPart":{"id":4049733355374462},"reshaped":{"id":1378853073130686},"reversed":{"id":3103151398549473},"flattened":{"id":3620541017049029},"gatheringAtIndicesAlongAxis":{"id":186319528266039},"gatheringAtIndices":{"id":2319117936316087},"replacingWithWhere":{"id":1044543133958593},"replacingWithWhere75710":{"id":3735013704424404},"replacingWithAtIndicesAlongAxis":{"id":4107868957802549},"replacingAtIndicesWithAlongAxis":{"id":3378385139505185},"unstacked":{"id":846235547059203}} });
-registerSDKClass("CoreML.MLTensor.PaddingMode", MLTensor_PaddingMode, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreML.MLTensor.ResizeMethod", MLTensor_ResizeMethod, { module: "CoreML_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreML.MLShapedArraySlice", MLShapedArraySlice, { module: "CoreML_d968214ecc684fb6", properties: {}, methods: {"transposedPermutation":{"id":3650191521578598},"transposed":{"id":411881302043623},"changingLayout":{"id":3477899871499515},"expandingShape":{"id":2445729753593445},"squeezingShape":{"id":3760853047819009},"reshaped":{"id":494560089775023},"subscriptScalarAt":{"id":2448487513217955},"subscript":{"id":4067288927466794},"subscript96786":{"id":4416043233291966}} });
+registerSDKClass("MLState", MLState, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("MLStateConstraint", MLStateConstraint, { module: "CoreML_d968214ecc684fb6", properties: {"dataType":2835927024771977} });
+registerSDKClass("MLTask", MLTask, { module: "CoreML_d968214ecc684fb6", properties: {"error":4091463555410574,"state":2112040490148545,"taskIdentifier":3293884599167933}, methods: {"cancel":{"id":1915962763500408},"resume":{"id":1939098691876682}} });
+registerSDKClass("CoreML.MLTensor", MLTensor, { module: "CoreML_d968214ecc684fb6", properties: {}, methods: {"reciprocal":{"id":2822834846453266},"squareRoot":{"id":831431383209757},"transposedPermutation":{"id":168390205292560},"transposed":{"id":2139621644169421},"concatenated":{"id":2201501350508630},"cumulativeSum":{"id":4232330937525528},"expandingShape":{"id":3204485631174414},"squeezingShapeAt":{"id":251000231071373},"squeezingShape":{"id":2722213855166692},"cumulativeProduct":{"id":4152776015160790},"abs":{"id":3695394032459855},"allKeepRank":{"id":4408578239123348},"allAlongAxesKeepRank":{"id":3101694673032296},"anyKeepRank":{"id":3808518854727875},"anyAlongAxesKeepRank":{"id":3585096378016104},"cos":{"id":2798234455832660},"exp":{"id":855833966419626},"log":{"id":4004066647561460},"maxKeepRank":{"id":1487730612846606},"maxAlongAxesKeepRank":{"id":347059013738533},"minKeepRank":{"id":789995492176554},"minAlongAxesKeepRank":{"id":1339564183501071},"pow":{"id":1076608174354396},"sin":{"id":3369109747946495},"sumKeepRank":{"id":3049526456909913},"sumAlongAxesKeepRank":{"id":1519909768055414},"tan":{"id":1964625460712546},"acos":{"id":4318335364743814},"asin":{"id":3457842209388518},"atan":{"id":479585714461851},"castTo":{"id":2913149214598267},"castLike":{"id":3991594770728128},"ceil":{"id":3370304340842369},"cosh":{"id":3461955114679263},"exp2":{"id":568348366656272},"meanKeepRank":{"id":1478197152345196},"meanAlongAxesKeepRank":{"id":1220717804968189},"sign":{"id":1322913612684504},"sinh":{"id":313285133981692},"tanh":{"id":3386939399078349},"topK":{"id":1098165783198216},"acosh":{"id":2323729421904817},"asinh":{"id":4249421809287416},"atanh":{"id":3236509327856536},"floor":{"id":3130075015282179},"round":{"id":2515434093466695},"rsqrt":{"id":1543554675014051},"splitCountAlongAxis":{"id":2868256513245360},"splitSizesAlongAxis":{"id":4021846393060765},"tiled":{"id":3008859636195650},"argmaxAlongAxisKeepRank":{"id":3940873417530763},"argmax":{"id":487016838048415},"argminAlongAxisKeepRank":{"id":311524260108172},"argmin":{"id":2148337821014111},"matmul":{"id":2544710013292704},"paddedForSizesMode":{"id":3603860404193458},"paddedForSizesWith":{"id":3637451915530331},"argsort":{"id":857861720989419},"clampedTo":{"id":1507803023045887},"clampedTo84394":{"id":1508131231253062},"clampedTo17076":{"id":2870175534527152},"productKeepRank":{"id":3358573841839537},"productAlongAxesKeepRank":{"id":634591220319424},"resized":{"id":4438074288832595},"softmax":{"id":1210540090209166},"squared":{"id":1929703306316020},"bandPart":{"id":4049733355374462},"reshaped":{"id":1378853073130686},"reversed":{"id":3103151398549473},"flattened":{"id":3620541017049029},"gatheringAtIndicesAlongAxis":{"id":186319528266039},"gatheringAtIndices":{"id":2319117936316087},"replacingWithWhere":{"id":1044543133958593},"replacingWithWhere75710":{"id":3735013704424404},"replacingWithAtIndicesAlongAxis":{"id":4107868957802549},"replacingAtIndicesWithAlongAxis":{"id":3378385139505185},"unstacked":{"id":846235547059203}} });
+registerSDKClass("CoreML.MLTensor.PaddingMode", MLTensor_PaddingMode, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreML.MLTensor.ResizeMethod", MLTensor_ResizeMethod, { module: "CoreML_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6CoreML23MLTensorRangeExpressionP", {});
 registerSDKProtocol("s:6CoreML14MLTensorScalarP", {});
-registerSDKClass("MLUpdateContext", MLUpdateContext, { module: "CoreML_067acaa3e5f56b46", properties: {"event":4193679956363340,"metrics":3415835842003502,"model":4218037097064123,"parameters":779428384631200,"task":500337094268540} });
-registerSDKClass("MLUpdateProgressHandlers", MLUpdateProgressHandlers, { module: "CoreML_067acaa3e5f56b46", properties: {} });
-registerSDKClass("MLUpdateTask", MLUpdateTask, { module: "CoreML_067acaa3e5f56b46", properties: {}, methods: {"resume":{"id":226054317664017}} });
+registerSDKClass("MLUpdateContext", MLUpdateContext, { module: "CoreML_d968214ecc684fb6", properties: {"event":4193679956363340,"metrics":3415835842003502,"model":4218037097064123,"parameters":779428384631200,"task":500337094268540} });
+registerSDKClass("MLUpdateProgressHandlers", MLUpdateProgressHandlers, { module: "CoreML_d968214ecc684fb6", properties: {} });
+registerSDKClass("MLUpdateTask", MLUpdateTask, { module: "CoreML_d968214ecc684fb6", properties: {}, methods: {"resume":{"id":226054317664017}} });
 registerSDKProtocol("c:objc(pl)MLWritable", {"writeTo":"write(to:)"});

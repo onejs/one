@@ -37509,6 +37509,25 @@ export declare class UndoManager extends SDKHandle {
         "c:objc(cs)NSUndoManager": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "canRedo": true;
+        "canUndo": true;
+        "groupingLevel": true;
+        "groupsByEvent": true;
+        "levelsOfUndo": true;
+        "redoActionIsDiscardable": true;
+        "redoActionName": true;
+        "redoCount": true;
+        "redoMenuItemTitle": true;
+        "isRedoing": true;
+        "runLoopModes": true;
+        "undoActionIsDiscardable": true;
+        "undoActionName": true;
+        "undoCount": true;
+        "undoMenuItemTitle": true;
+        "isUndoRegistrationEnabled": true;
+        "isUndoing": true;
+    };
 }
 /**
  * struct CheckpointMessage

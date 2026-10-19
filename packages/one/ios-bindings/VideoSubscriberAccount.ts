@@ -21,7 +21,7 @@ export const VSAccountAccessStatus = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (VSAccountAccessStatus) | null { return callSDK<(VSAccountAccessStatus) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 273136657028169, undefined, [rawValue]); }
+  init(rawValue: number): (VSAccountAccessStatus) | null { return callSDK<(VSAccountAccessStatus) | null>("VideoSubscriberAccount_d968214ecc684fb6", 273136657028169, undefined, [rawValue]); }
 };
 
 /**
@@ -33,17 +33,17 @@ export class VSAccountApplicationProvider extends SDKHandle {
    * init(localizedDisplayName: String, identifier: String)
    * @availability iOS 14.2+
    */
-  static init(localizedDisplayName: string, identifier: string): VSAccountApplicationProvider { return callSDK<VSAccountApplicationProvider>("VideoSubscriberAccount_067acaa3e5f56b46", 3080545796747065, undefined, [localizedDisplayName, identifier]); }
+  static init(localizedDisplayName: string, identifier: string): VSAccountApplicationProvider { return callSDK<VSAccountApplicationProvider>("VideoSubscriberAccount_d968214ecc684fb6", 3080545796747065, undefined, [localizedDisplayName, identifier]); }
   /**
    * var identifier: String { get }
    * @availability iOS 14.2+
    */
-  get identifier(): string { return callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 854395992916867, this, []); }
+  get identifier(): string { return callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 854395992916867, this, []); }
   /**
    * var localizedDisplayName: String { get }
    * @availability iOS 14.2+
    */
-  get localizedDisplayName(): string { return callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 3668216098261530, this, []); }
+  get localizedDisplayName(): string { return callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 3668216098261530, this, []); }
   declare readonly $type: { "c:objc(cs)VSAccountApplicationProvider": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "localizedDisplayName": true };
 }
@@ -57,20 +57,20 @@ export class VSAccountManager extends SDKHandle {
    * func checkAccessStatus(options: [VSCheckAccessOption : Any] = [:]) async throws -> VSAccountAccessStatus
    * @availability iOS 10.0+
    */
-  checkAccessStatus(options: NativeMap<VSCheckAccessOption, unknown>, completionHandler: ((arg0: VSAccountAccessStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 3977970582192348, this, [options, completionHandler], [null,{"callback":{"out":[]}}]); }
+  checkAccessStatus(options: NativeMap<VSCheckAccessOption, unknown>, completionHandler: ((arg0: VSAccountAccessStatus, arg1: (NativeError) | null) => void)): void { return callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 3977970582192348, this, [options, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func enqueue(_ request: VSAccountMetadataRequest, completionHandler: @escaping (VSAccountMetadata?, (any Error)?) -> Void) -> VSAccountManagerResult
    * @availability iOS 10.0+
    */
-  enqueue(request: VSAccountMetadataRequest, completionHandler: ((arg0: (VSAccountMetadata) | null, arg1: (NativeError) | null) => void)): VSAccountManagerResult { return callSDK<VSAccountManagerResult>("VideoSubscriberAccount_067acaa3e5f56b46", 3337451457353456, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
+  enqueue(request: VSAccountMetadataRequest, completionHandler: ((arg0: (VSAccountMetadata) | null, arg1: (NativeError) | null) => void)): VSAccountManagerResult { return callSDK<VSAccountManagerResult>("VideoSubscriberAccount_d968214ecc684fb6", 3337451457353456, this, [request, completionHandler], [null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): VSAccountManager { return callSDK<VSAccountManager>("VideoSubscriberAccount_067acaa3e5f56b46", 41807109257136, undefined, []); }
+  static init(): VSAccountManager { return callSDK<VSAccountManager>("VideoSubscriberAccount_d968214ecc684fb6", 41807109257136, undefined, []); }
   /**
    * weak var delegate: (any VSAccountManagerDelegate)? { get set }
    * @availability iOS 10.0+
    */
-  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 881605000692827, this, []); }
-  set delegate(value: (Implements<VSAccountManagerDelegate> | SDKHandle) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 2512338499912781, this, [value], [{"protocol":"c:objc(pl)VSAccountManagerDelegate"}]); }
+  get delegate(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("VideoSubscriberAccount_d968214ecc684fb6", 881605000692827, this, []); }
+  set delegate(value: (Implements<VSAccountManagerDelegate> | SDKHandle) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 2512338499912781, this, [value], [{"protocol":"c:objc(pl)VSAccountManagerDelegate"}]); }
   declare readonly $type: { "c:objc(cs)VSAccountManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "delegate": true };
 }
@@ -101,7 +101,7 @@ export class VSAccountManagerResult extends SDKHandle {
    * func cancel()
    * @availability iOS 10.0+
    */
-  cancel(): void { return callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 3396848065544798, this, []); }
+  cancel(): void { return callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 3396848065544798, this, []); }
   declare readonly $type: { "c:objc(cs)VSAccountManagerResult": true; "c:objc(cs)NSObject": true };
 }
 
@@ -111,32 +111,32 @@ export class VSAccountManagerResult extends SDKHandle {
  */
 export class VSAccountMetadata extends SDKHandle {
   /** init() */
-  static init(): VSAccountMetadata { return callSDK<VSAccountMetadata>("VideoSubscriberAccount_067acaa3e5f56b46", 870073069506470, undefined, []); }
+  static init(): VSAccountMetadata { return callSDK<VSAccountMetadata>("VideoSubscriberAccount_d968214ecc684fb6", 870073069506470, undefined, []); }
   /**
    * var samlAttributeQueryResponse: String? { get }
    * @availability iOS 10.0+
    */
-  get samlAttributeQueryResponse(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 423779963008742, this, []); }
+  get samlAttributeQueryResponse(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 423779963008742, this, []); }
   /**
    * var accountProviderIdentifier: String? { get }
    * @availability iOS 10.0+
    */
-  get accountProviderIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 531609619629159, this, []); }
+  get accountProviderIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 531609619629159, this, []); }
   /**
    * var accountProviderResponse: VSAccountProviderResponse? { get }
    * @availability iOS 10.2+
    */
-  get accountProviderResponse(): (VSAccountProviderResponse) | null { return callSDK<(VSAccountProviderResponse) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 3592766269751730, this, []); }
+  get accountProviderResponse(): (VSAccountProviderResponse) | null { return callSDK<(VSAccountProviderResponse) | null>("VideoSubscriberAccount_d968214ecc684fb6", 3592766269751730, this, []); }
   /**
    * var authenticationExpirationDate: Date? { get }
    * @availability iOS 10.0+
    */
-  get authenticationExpirationDate(): $SDK5 { return callSDK<$SDK5>("VideoSubscriberAccount_067acaa3e5f56b46", 1013149756273651, this, []); }
+  get authenticationExpirationDate(): $SDK5 { return callSDK<$SDK5>("VideoSubscriberAccount_d968214ecc684fb6", 1013149756273651, this, []); }
   /**
    * var verificationData: Data? { get }
    * @availability iOS 10.0+
    */
-  get verificationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 3175295096649827, this, []); }
+  get verificationData(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("VideoSubscriberAccount_d968214ecc684fb6", 3175295096649827, this, []); }
   declare readonly $type: { "c:objc(cs)VSAccountMetadata": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "samlAttributeQueryResponse": true; "accountProviderIdentifier": true; "accountProviderResponse": true; "authenticationExpirationDate": true; "verificationData": true };
 }
@@ -147,85 +147,85 @@ export class VSAccountMetadata extends SDKHandle {
  */
 export class VSAccountMetadataRequest extends SDKHandle {
   /** init() */
-  static init(): VSAccountMetadataRequest { return callSDK<VSAccountMetadataRequest>("VideoSubscriberAccount_067acaa3e5f56b46", 2180621795855885, undefined, []); }
+  static init(): VSAccountMetadataRequest { return callSDK<VSAccountMetadataRequest>("VideoSubscriberAccount_d968214ecc684fb6", 2180621795855885, undefined, []); }
   /**
    * var accountProviderAuthenticationToken: String? { get set }
    * @availability iOS 13.0+
    */
-  get accountProviderAuthenticationToken(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 2104319589122411, this, []); }
-  set accountProviderAuthenticationToken(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 1434161967342244, this, [value]); }
+  get accountProviderAuthenticationToken(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 2104319589122411, this, []); }
+  set accountProviderAuthenticationToken(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 1434161967342244, this, [value]); }
   /**
    * var applicationAccountProviders: [VSAccountApplicationProvider]? { get set }
    * @availability iOS 14.2+
    */
-  get applicationAccountProviders(): $SDK6 { return callSDK<$SDK6>("VideoSubscriberAccount_067acaa3e5f56b46", 658382652850009, this, []); }
-  set applicationAccountProviders(value: $SDK6) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 4201815405962824, this, [value]); }
+  get applicationAccountProviders(): $SDK6 { return callSDK<$SDK6>("VideoSubscriberAccount_d968214ecc684fb6", 658382652850009, this, []); }
+  set applicationAccountProviders(value: $SDK6) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 4201815405962824, this, [value]); }
   /**
    * var attributeNames: [String] { get set }
    * @availability iOS 10.0+
    */
-  get attributeNames(): Array<string> { return callSDK<Array<string>>("VideoSubscriberAccount_067acaa3e5f56b46", 1141689109826167, this, []); }
-  set attributeNames(value: Array<string>) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 3159366710889520, this, [value]); }
+  get attributeNames(): Array<string> { return callSDK<Array<string>>("VideoSubscriberAccount_d968214ecc684fb6", 1141689109826167, this, []); }
+  set attributeNames(value: Array<string>) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 3159366710889520, this, [value]); }
   /**
    * var channelIdentifier: String? { get set }
    * @availability iOS 10.0+
    */
-  get channelIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 4491633103804273, this, []); }
-  set channelIdentifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 147954572069143, this, [value]); }
+  get channelIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 4491633103804273, this, []); }
+  set channelIdentifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 147954572069143, this, [value]); }
   /**
    * var featuredAccountProviderIdentifiers: [String] { get set }
    * @availability iOS 11.0+
    */
-  get featuredAccountProviderIdentifiers(): Array<string> { return callSDK<Array<string>>("VideoSubscriberAccount_067acaa3e5f56b46", 1574919245105227, this, []); }
-  set featuredAccountProviderIdentifiers(value: Array<string>) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 525536169712705, this, [value]); }
+  get featuredAccountProviderIdentifiers(): Array<string> { return callSDK<Array<string>>("VideoSubscriberAccount_d968214ecc684fb6", 1574919245105227, this, []); }
+  set featuredAccountProviderIdentifiers(value: Array<string>) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 525536169712705, this, [value]); }
   /**
    * var forceAuthentication: Bool { get set }
    * @availability iOS 10.0+
    */
-  get forceAuthentication(): boolean { return callSDK<boolean>("VideoSubscriberAccount_067acaa3e5f56b46", 3473298140382887, this, []); }
-  set forceAuthentication(value: boolean) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 661314892044839, this, [value]); }
+  get forceAuthentication(): boolean { return callSDK<boolean>("VideoSubscriberAccount_d968214ecc684fb6", 3473298140382887, this, []); }
+  set forceAuthentication(value: boolean) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 661314892044839, this, [value]); }
   /**
    * var includeAccountProviderIdentifier: Bool { get set }
    * @availability iOS 10.0+
    */
-  get includeAccountProviderIdentifier(): boolean { return callSDK<boolean>("VideoSubscriberAccount_067acaa3e5f56b46", 3097175655208704, this, []); }
-  set includeAccountProviderIdentifier(value: boolean) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 451538080676197, this, [value]); }
+  get includeAccountProviderIdentifier(): boolean { return callSDK<boolean>("VideoSubscriberAccount_d968214ecc684fb6", 3097175655208704, this, []); }
+  set includeAccountProviderIdentifier(value: boolean) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 451538080676197, this, [value]); }
   /**
    * var includeAuthenticationExpirationDate: Bool { get set }
    * @availability iOS 10.0+
    */
-  get includeAuthenticationExpirationDate(): boolean { return callSDK<boolean>("VideoSubscriberAccount_067acaa3e5f56b46", 4143702758987681, this, []); }
-  set includeAuthenticationExpirationDate(value: boolean) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 2060742628446638, this, [value]); }
+  get includeAuthenticationExpirationDate(): boolean { return callSDK<boolean>("VideoSubscriberAccount_d968214ecc684fb6", 4143702758987681, this, []); }
+  set includeAuthenticationExpirationDate(value: boolean) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 2060742628446638, this, [value]); }
   /**
    * var isInterruptionAllowed: Bool { get set }
    * @availability iOS 10.0+
    */
-  get isInterruptionAllowed(): boolean { return callSDK<boolean>("VideoSubscriberAccount_067acaa3e5f56b46", 1016955557854910, this, []); }
-  set isInterruptionAllowed(value: boolean) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 532548983891397, this, [value]); }
+  get isInterruptionAllowed(): boolean { return callSDK<boolean>("VideoSubscriberAccount_d968214ecc684fb6", 1016955557854910, this, []); }
+  set isInterruptionAllowed(value: boolean) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 532548983891397, this, [value]); }
   /**
    * var localizedVideoTitle: String? { get set }
    * @availability iOS 10.0+
    */
-  get localizedVideoTitle(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 2081982498713918, this, []); }
-  set localizedVideoTitle(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 2215905574650706, this, [value]); }
+  get localizedVideoTitle(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 2081982498713918, this, []); }
+  set localizedVideoTitle(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 2215905574650706, this, [value]); }
   /**
    * var supportedAccountProviderIdentifiers: [String] { get set }
    * @availability iOS 10.0+
    */
-  get supportedAccountProviderIdentifiers(): Array<string> { return callSDK<Array<string>>("VideoSubscriberAccount_067acaa3e5f56b46", 3623562825026356, this, []); }
-  set supportedAccountProviderIdentifiers(value: Array<string>) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 1459025374505273, this, [value]); }
+  get supportedAccountProviderIdentifiers(): Array<string> { return callSDK<Array<string>>("VideoSubscriberAccount_d968214ecc684fb6", 3623562825026356, this, []); }
+  set supportedAccountProviderIdentifiers(value: Array<string>) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 1459025374505273, this, [value]); }
   /**
    * var supportedAuthenticationSchemes: [VSAccountProviderAuthenticationScheme] { get set }
    * @availability iOS 10.2+
    */
-  get supportedAuthenticationSchemes(): $SDK7 { return callSDK<$SDK7>("VideoSubscriberAccount_067acaa3e5f56b46", 837447469805735, this, []); }
-  set supportedAuthenticationSchemes(value: $SDK7) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 2173525698864907, this, [value]); }
+  get supportedAuthenticationSchemes(): $SDK7 { return callSDK<$SDK7>("VideoSubscriberAccount_d968214ecc684fb6", 837447469805735, this, []); }
+  set supportedAuthenticationSchemes(value: $SDK7) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 2173525698864907, this, [value]); }
   /**
    * var verificationToken: String? { get set }
    * @availability iOS 10.0+
    */
-  get verificationToken(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 1545214441431863, this, []); }
-  set verificationToken(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 3616880994240231, this, [value]); }
+  get verificationToken(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 1545214441431863, this, []); }
+  set verificationToken(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 3616880994240231, this, [value]); }
   declare readonly $type: { "c:objc(cs)VSAccountMetadataRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accountProviderAuthenticationToken": true; "applicationAccountProviders": true; "attributeNames": true; "channelIdentifier": true; "featuredAccountProviderIdentifiers": true; "forceAuthentication": true; "includeAccountProviderIdentifier": true; "includeAuthenticationExpirationDate": true; "isInterruptionAllowed": true; "localizedVideoTitle": true; "supportedAccountProviderIdentifiers": true; "supportedAuthenticationSchemes": true; "verificationToken": true };
 }
@@ -238,16 +238,16 @@ export const VSAccountProviderAuthenticationScheme = {
    * static let api: VSAccountProviderAuthenticationScheme
    * @availability iOS 13.0+
    */
-  get api(): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_067acaa3e5f56b46", 2708007516544526, undefined, []); },
+  get api(): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_d968214ecc684fb6", 2708007516544526, undefined, []); },
   /**
    * static let saml: VSAccountProviderAuthenticationScheme
    * @availability iOS 10.2+
    */
-  get saml(): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_067acaa3e5f56b46", 952743320260627, undefined, []); },
+  get saml(): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_d968214ecc684fb6", 952743320260627, undefined, []); },
   /** init(rawValue: String) */
-  initRawValue(rawValue: string): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_067acaa3e5f56b46", 891428262281201, undefined, [rawValue]); },
+  initRawValue(rawValue: string): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_d968214ecc684fb6", 891428262281201, undefined, [rawValue]); },
   /** init(_ rawValue: String) */
-  init(rawValue: string): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_067acaa3e5f56b46", 3471045331507305, undefined, [rawValue]); }
+  init(rawValue: string): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_d968214ecc684fb6", 3471045331507305, undefined, [rawValue]); }
 };
 
 /**
@@ -256,22 +256,22 @@ export const VSAccountProviderAuthenticationScheme = {
  */
 export class VSAccountProviderResponse extends SDKHandle {
   /** init() */
-  static init(): VSAccountProviderResponse { return callSDK<VSAccountProviderResponse>("VideoSubscriberAccount_067acaa3e5f56b46", 2656855612235676, undefined, []); }
+  static init(): VSAccountProviderResponse { return callSDK<VSAccountProviderResponse>("VideoSubscriberAccount_d968214ecc684fb6", 2656855612235676, undefined, []); }
   /**
    * var authenticationScheme: VSAccountProviderAuthenticationScheme { get }
    * @availability iOS 10.2+
    */
-  get authenticationScheme(): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_067acaa3e5f56b46", 642482878599417, this, []); }
+  get authenticationScheme(): VSAccountProviderAuthenticationScheme { return callSDK<VSAccountProviderAuthenticationScheme>("VideoSubscriberAccount_d968214ecc684fb6", 642482878599417, this, []); }
   /**
    * var body: String? { get }
    * @availability iOS 10.2+
    */
-  get body(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 757966477240266, this, []); }
+  get body(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 757966477240266, this, []); }
   /**
    * var status: String? { get }
    * @availability iOS 10.2+
    */
-  get status(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 4434015066665378, this, []); }
+  get status(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 4434015066665378, this, []); }
   declare readonly $type: { "c:objc(cs)VSAccountProviderResponse": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "authenticationScheme": true; "body": true; "status": true };
 }
@@ -285,19 +285,19 @@ export class VSAppleSubscription extends SDKHandle {
    * init(customerID: String, productCodes: [String])
    * @availability iOS 17.4+
    */
-  static init(customerID: string, productCodes: Array<string>): VSAppleSubscription { return callSDK<VSAppleSubscription>("VideoSubscriberAccount_067acaa3e5f56b46", 418806688034663, undefined, [customerID, productCodes]); }
+  static init(customerID: string, productCodes: Array<string>): VSAppleSubscription { return callSDK<VSAppleSubscription>("VideoSubscriberAccount_d968214ecc684fb6", 418806688034663, undefined, [customerID, productCodes]); }
   /**
    * var customerID: String { get set }
    * @availability iOS 17.4+
    */
-  get customerID(): string { return callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 2599881069205403, this, []); }
-  set customerID(value: string) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 2338737072338572, this, [value]); }
+  get customerID(): string { return callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 2599881069205403, this, []); }
+  set customerID(value: string) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 2338737072338572, this, [value]); }
   /**
    * var productCodes: [String] { get set }
    * @availability iOS 17.4+
    */
-  get productCodes(): Array<string> { return callSDK<Array<string>>("VideoSubscriberAccount_067acaa3e5f56b46", 2521431729670225, this, []); }
-  set productCodes(value: Array<string>) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 1109284346745454, this, [value]); }
+  get productCodes(): Array<string> { return callSDK<Array<string>>("VideoSubscriberAccount_d968214ecc684fb6", 2521431729670225, this, []); }
+  set productCodes(value: Array<string>) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 1109284346745454, this, [value]); }
   declare readonly $type: { "s:22VideoSubscriberAccount19VSAppleSubscriptionV": true };
 }
 
@@ -312,12 +312,12 @@ export const VSCheckAccessOption = {
    * static let prompt: VSCheckAccessOption
    * @availability iOS 10.0+
    */
-  get prompt(): VSCheckAccessOption { return callSDK<VSCheckAccessOption>("VideoSubscriberAccount_067acaa3e5f56b46", 671783571162209, undefined, []); },
+  get prompt(): VSCheckAccessOption { return callSDK<VSCheckAccessOption>("VideoSubscriberAccount_d968214ecc684fb6", 671783571162209, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 10.0+
    */
-  init(rawValue: string): VSCheckAccessOption { return callSDK<VSCheckAccessOption>("VideoSubscriberAccount_067acaa3e5f56b46", 4016743146323065, undefined, [rawValue]); }
+  init(rawValue: string): VSCheckAccessOption { return callSDK<VSCheckAccessOption>("VideoSubscriberAccount_d968214ecc684fb6", 4016743146323065, undefined, [rawValue]); }
 };
 
 /**
@@ -329,47 +329,47 @@ export class VSError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 10.0+
    */
-  static get errorDomain(): string { return callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 3762596567584739, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 3762596567584739, undefined, []); }
   /**
    * static var unsupported: VSError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unsupported(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_067acaa3e5f56b46", 3109173527347779, undefined, []); }
+  static get unsupported(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_d968214ecc684fb6", 3109173527347779, undefined, []); }
   /**
    * static var userCancelled: VSError.Code { get }
    * @availability iOS 10.0+
    */
-  static get userCancelled(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_067acaa3e5f56b46", 1513317018408661, undefined, []); }
+  static get userCancelled(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_d968214ecc684fb6", 1513317018408661, undefined, []); }
   /**
    * static var accessNotGranted: VSError.Code { get }
    * @availability iOS 10.0+
    */
-  static get accessNotGranted(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_067acaa3e5f56b46", 887801095036058, undefined, []); }
+  static get accessNotGranted(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_d968214ecc684fb6", 887801095036058, undefined, []); }
   /**
    * static var providerRejected: VSError.Code { get }
    * @availability iOS 10.0+
    */
-  static get providerRejected(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_067acaa3e5f56b46", 3768358161290003, undefined, []); }
+  static get providerRejected(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_d968214ecc684fb6", 3768358161290003, undefined, []); }
   /**
    * static var unsupportedProvider: VSError.Code { get }
    * @availability iOS 10.0+
    */
-  static get unsupportedProvider(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_067acaa3e5f56b46", 3247147327663274, undefined, []); }
+  static get unsupportedProvider(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_d968214ecc684fb6", 3247147327663274, undefined, []); }
   /**
    * static var invalidVerificationToken: VSError.Code { get }
    * @availability iOS 10.0+
    */
-  static get invalidVerificationToken(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_067acaa3e5f56b46", 2596891220421157, undefined, []); }
+  static get invalidVerificationToken(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_d968214ecc684fb6", 2596891220421157, undefined, []); }
   /**
    * static var serviceTemporarilyUnavailable: VSError.Code { get }
    * @availability iOS 10.0+
    */
-  static get serviceTemporarilyUnavailable(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_067acaa3e5f56b46", 1432808833654591, undefined, []); }
+  static get serviceTemporarilyUnavailable(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_d968214ecc684fb6", 1432808833654591, undefined, []); }
   /**
    * static var rejected: VSError.Code { get }
    * @availability iOS 10.0+
    */
-  static get rejected(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_067acaa3e5f56b46", 1081929157859572, undefined, []); }
+  static get rejected(): VSError_Code { return callSDK<VSError_Code>("VideoSubscriberAccount_d968214ecc684fb6", 1081929157859572, undefined, []); }
   declare readonly $type: { "s:SC11VSErrorCodeLeV": true };
 }
 
@@ -384,7 +384,7 @@ export const VSError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 10.0+
    */
-  init(rawValue: number): (VSError_Code) | null { return callSDK<(VSError_Code) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 3533398008138721, undefined, [rawValue]); }
+  init(rawValue: number): (VSError_Code) | null { return callSDK<(VSError_Code) | null>("VideoSubscriberAccount_d968214ecc684fb6", 3533398008138721, undefined, [rawValue]); }
 };
 
 /**
@@ -394,35 +394,35 @@ export const VSError_Code = {
  */
 export class VSSubscription extends SDKHandle {
   /** init() */
-  static init(): VSSubscription { return callSDK<VSSubscription>("VideoSubscriberAccount_067acaa3e5f56b46", 1591549901012692, undefined, []); }
+  static init(): VSSubscription { return callSDK<VSSubscription>("VideoSubscriberAccount_d968214ecc684fb6", 1591549901012692, undefined, []); }
   /**
    * var accessLevel: VSSubscriptionAccessLevel { get set }
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get accessLevel(): VSSubscriptionAccessLevel { return callSDK<VSSubscriptionAccessLevel>("VideoSubscriberAccount_067acaa3e5f56b46", 4247901751201182, this, []); }
-  set accessLevel(value: VSSubscriptionAccessLevel) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 3207339515552293, this, [value]); }
+  get accessLevel(): VSSubscriptionAccessLevel { return callSDK<VSSubscriptionAccessLevel>("VideoSubscriberAccount_d968214ecc684fb6", 4247901751201182, this, []); }
+  set accessLevel(value: VSSubscriptionAccessLevel) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 3207339515552293, this, [value]); }
   /**
    * var billingIdentifier: String? { get set }
    * @availability iOS 11.3+
    * @deprecated iOS 18.0
    */
-  get billingIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 10994141831103, this, []); }
-  set billingIdentifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 628603706734593, this, [value]); }
+  get billingIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 10994141831103, this, []); }
+  set billingIdentifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 628603706734593, this, [value]); }
   /**
    * var expirationDate: Date! { get set }
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get expirationDate(): $SDK5 { return callSDK<$SDK5>("VideoSubscriberAccount_067acaa3e5f56b46", 926670612373355, this, []); }
-  set expirationDate(value: $SDK5) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 888621620163276, this, [value]); }
+  get expirationDate(): $SDK5 { return callSDK<$SDK5>("VideoSubscriberAccount_d968214ecc684fb6", 926670612373355, this, []); }
+  set expirationDate(value: $SDK5) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 888621620163276, this, [value]); }
   /**
    * var tierIdentifiers: [String]! { get set }
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  get tierIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 4515765535673, this, []); }
-  set tierIdentifiers(value: (Array<string>) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 2044916873992213, this, [value]); }
+  get tierIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("VideoSubscriberAccount_d968214ecc684fb6", 4515765535673, this, []); }
+  set tierIdentifiers(value: (Array<string>) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 2044916873992213, this, [value]); }
   declare readonly $type: { "c:objc(cs)VSSubscription": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "accessLevel": true; "billingIdentifier": true; "expirationDate": true; "tierIdentifiers": true };
 }
@@ -440,7 +440,7 @@ export const VSSubscriptionAccessLevel = {
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  init(rawValue: number): (VSSubscriptionAccessLevel) | null { return callSDK<(VSSubscriptionAccessLevel) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 510507932459151, undefined, [rawValue]); }
+  init(rawValue: number): (VSSubscriptionAccessLevel) | null { return callSDK<(VSSubscriptionAccessLevel) | null>("VideoSubscriberAccount_d968214ecc684fb6", 510507932459151, undefined, [rawValue]); }
 };
 
 /**
@@ -454,15 +454,15 @@ export class VSSubscriptionRegistrationCenter extends SDKHandle {
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  static default(): VSSubscriptionRegistrationCenter { return callSDK<VSSubscriptionRegistrationCenter>("VideoSubscriberAccount_067acaa3e5f56b46", 3878341990154435, undefined, []); }
+  static default(): VSSubscriptionRegistrationCenter { return callSDK<VSSubscriptionRegistrationCenter>("VideoSubscriberAccount_d968214ecc684fb6", 3878341990154435, undefined, []); }
   /** init() */
-  static init(): VSSubscriptionRegistrationCenter { return callSDK<VSSubscriptionRegistrationCenter>("VideoSubscriberAccount_067acaa3e5f56b46", 227097876754051, undefined, []); }
+  static init(): VSSubscriptionRegistrationCenter { return callSDK<VSSubscriptionRegistrationCenter>("VideoSubscriberAccount_d968214ecc684fb6", 227097876754051, undefined, []); }
   /**
    * func setCurrentSubscription(_ currentSubscription: VSSubscription?)
    * @availability iOS 11.0+
    * @deprecated iOS 18.0
    */
-  setCurrentSubscription(currentSubscription?: (VSSubscription) | null): void { return callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 2207256980579783, this, [currentSubscription]); }
+  setCurrentSubscription(currentSubscription?: (VSSubscription) | null): void { return callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 2207256980579783, this, [currentSubscription]); }
   declare readonly $type: { "c:objc(cs)VSSubscriptionRegistrationCenter": true; "c:objc(cs)NSObject": true };
 }
 
@@ -475,84 +475,84 @@ export class VSUserAccount extends SDKHandle {
    * var identifier: String? { get set }
    * @availability iOS 16.4+
    */
-  get identifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 2297038239880269, this, []); }
-  set identifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 4452900823804092, this, [value]); }
+  get identifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 2297038239880269, this, []); }
+  set identifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 4452900823804092, this, [value]); }
   /**
    * init(accountType: VSUserAccount.AccountType = .free, updateURL: URL?)
    * @availability iOS 16.4+
    */
-  static init(accountType?: VSUserAccount_AccountType, updateURL?: (string) | null): VSUserAccount { return callSDK<VSUserAccount>("VideoSubscriberAccount_067acaa3e5f56b46", 2884795568773188, undefined, [accountType, updateURL]); }
+  static init(accountType?: VSUserAccount_AccountType, updateURL?: (string) | null): VSUserAccount { return callSDK<VSUserAccount>("VideoSubscriberAccount_d968214ecc684fb6", 2884795568773188, undefined, [accountType, updateURL]); }
   /**
    * var accountType: VSUserAccount.AccountType { get set }
    * @availability iOS 16.4+
    */
-  get accountType(): VSUserAccount_AccountType { return callSDK<VSUserAccount_AccountType>("VideoSubscriberAccount_067acaa3e5f56b46", 1669989310076430, this, []); }
-  set accountType(value: VSUserAccount_AccountType) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 3855171344420129, this, [value]); }
+  get accountType(): VSUserAccount_AccountType { return callSDK<VSUserAccount_AccountType>("VideoSubscriberAccount_d968214ecc684fb6", 1669989310076430, this, []); }
+  set accountType(value: VSUserAccount_AccountType) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 3855171344420129, this, [value]); }
   /**
    * var isSignedOut: Bool { get set }
    * @availability iOS 16.4+
    */
-  get isSignedOut(): boolean { return callSDK<boolean>("VideoSubscriberAccount_067acaa3e5f56b46", 2440414064519369, this, []); }
-  set isSignedOut(value: boolean) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 852941916861383, this, [value]); }
+  get isSignedOut(): boolean { return callSDK<boolean>("VideoSubscriberAccount_d968214ecc684fb6", 2440414064519369, this, []); }
+  set isSignedOut(value: boolean) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 852941916861383, this, [value]); }
   /**
    * var deviceCategory: VSUserAccount.OriginatingDeviceCategory { get }
    * @availability iOS 16.4+
    */
-  get deviceCategory(): VSUserAccount_OriginatingDeviceCategory { return callSDK<VSUserAccount_OriginatingDeviceCategory>("VideoSubscriberAccount_067acaa3e5f56b46", 72054743383918, this, []); }
+  get deviceCategory(): VSUserAccount_OriginatingDeviceCategory { return callSDK<VSUserAccount_OriginatingDeviceCategory>("VideoSubscriberAccount_d968214ecc684fb6", 72054743383918, this, []); }
   /**
    * var tierIdentifiers: [String]? { get set }
    * @availability iOS 16.4+
    */
-  get tierIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 3683420359787738, this, []); }
-  set tierIdentifiers(value: (Array<string>) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 4030743762800522, this, [value]); }
+  get tierIdentifiers(): (Array<string>) | null { return callSDK<(Array<string>) | null>("VideoSubscriberAccount_d968214ecc684fb6", 3683420359787738, this, []); }
+  set tierIdentifiers(value: (Array<string>) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 4030743762800522, this, [value]); }
   /**
    * var appleSubscription: VSAppleSubscription? { get set }
    * @availability iOS 17.4+
    */
-  get appleSubscription(): $SDK8 { return callSDK<$SDK8>("VideoSubscriberAccount_067acaa3e5f56b46", 696703540334761, this, []); }
-  set appleSubscription(value: $SDK8) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 1720848613990294, this, [value]); }
+  get appleSubscription(): $SDK8 { return callSDK<$SDK8>("VideoSubscriberAccount_d968214ecc684fb6", 696703540334761, this, []); }
+  set appleSubscription(value: $SDK8) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 1720848613990294, this, [value]); }
   /**
    * var billingIdentifier: String? { get set }
    * @availability iOS 16.4+
    */
-  get billingIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 3541523004282849, this, []); }
-  set billingIdentifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 3830807483788810, this, [value]); }
+  get billingIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 3541523004282849, this, []); }
+  set billingIdentifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 3830807483788810, this, [value]); }
   /**
    * var authenticationData: String? { get set }
    * @availability iOS 16.4+
    */
-  get authenticationData(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 3946347933835477, this, []); }
-  set authenticationData(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 4181890812919570, this, [value]); }
+  get authenticationData(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 3946347933835477, this, []); }
+  set authenticationData(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 4181890812919570, this, [value]); }
   /**
    * var isFromCurrentDevice: Bool { get set }
    * @availability iOS 16.4+
    */
-  get isFromCurrentDevice(): boolean { return callSDK<boolean>("VideoSubscriberAccount_067acaa3e5f56b46", 142347165808606, this, []); }
-  set isFromCurrentDevice(value: boolean) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 3729994098337314, this, [value]); }
+  get isFromCurrentDevice(): boolean { return callSDK<boolean>("VideoSubscriberAccount_d968214ecc684fb6", 142347165808606, this, []); }
+  set isFromCurrentDevice(value: boolean) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 3729994098337314, this, [value]); }
   /**
    * var requiresSystemTrust: Bool { get set }
    * @availability iOS 16.4+
    */
-  get requiresSystemTrust(): boolean { return callSDK<boolean>("VideoSubscriberAccount_067acaa3e5f56b46", 1154258084178855, this, []); }
-  set requiresSystemTrust(value: boolean) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 4099244575938375, this, [value]); }
+  get requiresSystemTrust(): boolean { return callSDK<boolean>("VideoSubscriberAccount_d968214ecc684fb6", 1154258084178855, this, []); }
+  set requiresSystemTrust(value: boolean) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 4099244575938375, this, [value]); }
   /**
    * var accountProviderIdentifier: String? { get set }
    * @availability iOS 16.4+
    */
-  get accountProviderIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 3175179170058417, this, []); }
-  set accountProviderIdentifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 2808983594816470, this, [value]); }
+  get accountProviderIdentifier(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 3175179170058417, this, []); }
+  set accountProviderIdentifier(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 2808983594816470, this, [value]); }
   /**
    * var subscriptionBillingCycleEndDate: Date? { get set }
    * @availability iOS 16.4+
    */
-  get subscriptionBillingCycleEndDate(): $SDK5 { return callSDK<$SDK5>("VideoSubscriberAccount_067acaa3e5f56b46", 956078615188366, this, []); }
-  set subscriptionBillingCycleEndDate(value: $SDK5) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 3154974792028155, this, [value]); }
+  get subscriptionBillingCycleEndDate(): $SDK5 { return callSDK<$SDK5>("VideoSubscriberAccount_d968214ecc684fb6", 956078615188366, this, []); }
+  set subscriptionBillingCycleEndDate(value: $SDK5) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 3154974792028155, this, [value]); }
   /**
    * var updateURL: URL? { get set }
    * @availability iOS 16.4+
    */
-  get updateURL(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 1129707468523684, this, []); }
-  set updateURL(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_067acaa3e5f56b46", 1417914481164855, this, [value]); }
+  get updateURL(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 1129707468523684, this, []); }
+  set updateURL(value: (string) | null) { callSDK<void>("VideoSubscriberAccount_d968214ecc684fb6", 1417914481164855, this, [value]); }
   declare readonly $type: { "s:22VideoSubscriberAccount06VSUserC0V": true };
 }
 
@@ -567,12 +567,12 @@ export const VSUserAccount_AccountType = {
    * init?(rawValue: Int)
    * @availability iOS 16.4+
    */
-  init(rawValue: number): (VSUserAccount_AccountType) | null { return callSDK<(VSUserAccount_AccountType) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 3859781563458913, undefined, [rawValue]); },
+  init(rawValue: number): (VSUserAccount_AccountType) | null { return callSDK<(VSUserAccount_AccountType) | null>("VideoSubscriberAccount_d968214ecc684fb6", 3859781563458913, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 16.4+
    */
-  getRawValue($self: VSUserAccount_AccountType): number { return callSDK<number>("VideoSubscriberAccount_067acaa3e5f56b46", 3307766323906699, $self, []); }
+  getRawValue($self: VSUserAccount_AccountType): number { return callSDK<number>("VideoSubscriberAccount_d968214ecc684fb6", 3307766323906699, $self, []); }
 };
 
 /**
@@ -592,12 +592,12 @@ export const VSUserAccount_OriginatingDeviceCategory = {
    * init?(rawValue: Int)
    * @availability iOS 16.4+
    */
-  init(rawValue: number): (VSUserAccount_OriginatingDeviceCategory) | null { return callSDK<(VSUserAccount_OriginatingDeviceCategory) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 69402353264146, undefined, [rawValue]); },
+  init(rawValue: number): (VSUserAccount_OriginatingDeviceCategory) | null { return callSDK<(VSUserAccount_OriginatingDeviceCategory) | null>("VideoSubscriberAccount_d968214ecc684fb6", 69402353264146, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 16.4+
    */
-  getRawValue($self: VSUserAccount_OriginatingDeviceCategory): number { return callSDK<number>("VideoSubscriberAccount_067acaa3e5f56b46", 2953392646912175, $self, []); }
+  getRawValue($self: VSUserAccount_OriginatingDeviceCategory): number { return callSDK<number>("VideoSubscriberAccount_d968214ecc684fb6", 2953392646912175, $self, []); }
 };
 
 /**
@@ -615,39 +615,39 @@ export class VSUserAccountManager extends SDKHandle {
    * class var shared: VSUserAccountManager { get }
    * @availability iOS 16.4+
    */
-  static get shared(): VSUserAccountManager { return callSDK<VSUserAccountManager>("VideoSubscriberAccount_067acaa3e5f56b46", 3809446556840963, undefined, []); }
+  static get shared(): VSUserAccountManager { return callSDK<VSUserAccountManager>("VideoSubscriberAccount_d968214ecc684fb6", 3809446556840963, undefined, []); }
   /** init() */
-  static init(): VSUserAccountManager { return callSDK<VSUserAccountManager>("VideoSubscriberAccount_067acaa3e5f56b46", 1417359324771928, undefined, []); }
+  static init(): VSUserAccountManager { return callSDK<VSUserAccountManager>("VideoSubscriberAccount_d968214ecc684fb6", 1417359324771928, undefined, []); }
   /**
    * func userAccounts(options: VSUserAccountManager.QueryOptions = []) async throws -> [VSUserAccount]
    * @availability iOS 16.4+
    */
-  userAccounts(options?: VSUserAccountManager_QueryOptions): Promise<Array<VSUserAccount>> { return callSDKAsync<Array<VSUserAccount>>("VideoSubscriberAccount_067acaa3e5f56b46", 1217765191535314, this, [options]); }
+  userAccounts(options?: VSUserAccountManager_QueryOptions): Promise<Array<VSUserAccount>> { return callSDKAsync<Array<VSUserAccount>>("VideoSubscriberAccount_d968214ecc684fb6", 1217765191535314, this, [options]); }
   /**
    * var autoSignInToken: VSUserAccountManager.AutoSignInToken { get async throws }
    * @availability iOS 26.0+
    */
-  get autoSignInToken(): Promise<VSUserAccountManager_AutoSignInToken> { return callSDKAsync<VSUserAccountManager_AutoSignInToken>("VideoSubscriberAccount_067acaa3e5f56b46", 2853060594340591, this, []); }
+  get autoSignInToken(): Promise<VSUserAccountManager_AutoSignInToken> { return callSDKAsync<VSUserAccountManager_AutoSignInToken>("VideoSubscriberAccount_d968214ecc684fb6", 2853060594340591, this, []); }
   /**
    * func deleteAutoSignInToken() async throws
    * @availability iOS 26.0+
    */
-  deleteAutoSignInToken(): Promise<void> { return callSDKAsync<void>("VideoSubscriberAccount_067acaa3e5f56b46", 4267086931439868, this, []); }
+  deleteAutoSignInToken(): Promise<void> { return callSDKAsync<void>("VideoSubscriberAccount_d968214ecc684fb6", 4267086931439868, this, []); }
   /**
    * func updateAutoSignInToken(_ newToken: String, updateContext: VSUserAccountManager.AutoSignInTokenUpdateContext) async throws
    * @availability iOS 26.0+
    */
-  updateAutoSignInToken(newToken: string, updateContext: VSUserAccountManager_AutoSignInTokenUpdateContext): Promise<void> { return callSDKAsync<void>("VideoSubscriberAccount_067acaa3e5f56b46", 1905162992289695, this, [newToken, updateContext]); }
+  updateAutoSignInToken(newToken: string, updateContext: VSUserAccountManager_AutoSignInTokenUpdateContext): Promise<void> { return callSDKAsync<void>("VideoSubscriberAccount_d968214ecc684fb6", 1905162992289695, this, [newToken, updateContext]); }
   /**
    * func requestAutoSignInAuthorization() async throws -> VSUserAccountManager.AutoSignInTokenUpdateContext
    * @availability iOS 26.0+
    */
-  requestAutoSignInAuthorization(): Promise<VSUserAccountManager_AutoSignInTokenUpdateContext> { return callSDKAsync<VSUserAccountManager_AutoSignInTokenUpdateContext>("VideoSubscriberAccount_067acaa3e5f56b46", 1127209586687269, this, []); }
+  requestAutoSignInAuthorization(): Promise<VSUserAccountManager_AutoSignInTokenUpdateContext> { return callSDKAsync<VSUserAccountManager_AutoSignInTokenUpdateContext>("VideoSubscriberAccount_d968214ecc684fb6", 1127209586687269, this, []); }
   /**
    * func update(_ account: VSUserAccount) async throws
    * @availability iOS 16.4+
    */
-  update(account: VSUserAccount): Promise<void> { return callSDKAsync<void>("VideoSubscriberAccount_067acaa3e5f56b46", 1068841297687181, this, [account]); }
+  update(account: VSUserAccount): Promise<void> { return callSDKAsync<void>("VideoSubscriberAccount_d968214ecc684fb6", 1068841297687181, this, [account]); }
   declare readonly $type: { "c:objc(cs)VSUserAccountManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -666,12 +666,12 @@ export class VSUserAccountManager_AutoSignInToken extends SDKHandle {
    * var authorization: VSUserAccountManager.AutoSignInAuthorization { get }
    * @availability iOS 26.0+
    */
-  get authorization(): VSUserAccountManager_AutoSignInAuthorization { return callSDK<VSUserAccountManager_AutoSignInAuthorization>("VideoSubscriberAccount_067acaa3e5f56b46", 2635422170373519, this, []); }
+  get authorization(): VSUserAccountManager_AutoSignInAuthorization { return callSDK<VSUserAccountManager_AutoSignInAuthorization>("VideoSubscriberAccount_d968214ecc684fb6", 2635422170373519, this, []); }
   /**
    * var value: String? { get }
    * @availability iOS 26.0+
    */
-  get value(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_067acaa3e5f56b46", 1589506936469630, this, []); }
+  get value(): (string) | null { return callSDK<(string) | null>("VideoSubscriberAccount_d968214ecc684fb6", 1589506936469630, this, []); }
   declare readonly $type: { "s:So20VSUserAccountManagerC015VideoSubscriberB0E15AutoSignInTokenV": true };
 }
 
@@ -684,7 +684,7 @@ export class VSUserAccountManager_AutoSignInTokenUpdateContext extends SDKHandle
    * var authorization: VSUserAccountManager.AutoSignInAuthorization { get }
    * @availability iOS 26.0+
    */
-  get authorization(): VSUserAccountManager_AutoSignInAuthorization { return callSDK<VSUserAccountManager_AutoSignInAuthorization>("VideoSubscriberAccount_067acaa3e5f56b46", 1725273396442834, this, []); }
+  get authorization(): VSUserAccountManager_AutoSignInAuthorization { return callSDK<VSUserAccountManager_AutoSignInAuthorization>("VideoSubscriberAccount_d968214ecc684fb6", 1725273396442834, this, []); }
   declare readonly $type: { "s:So20VSUserAccountManagerC015VideoSubscriberB0E28AutoSignInTokenUpdateContextV": true };
 }
 
@@ -699,62 +699,62 @@ export const VSUserAccountManager_QueryOptions = {
    * static var allDevices: VSUserAccountManager.QueryOptions { get }
    * @availability iOS 16.4+
    */
-  get allDevices(): VSUserAccountManager_QueryOptions { return callSDK<VSUserAccountManager_QueryOptions>("VideoSubscriberAccount_067acaa3e5f56b46", 3648401124351881, undefined, []); },
+  get allDevices(): VSUserAccountManager_QueryOptions { return callSDK<VSUserAccountManager_QueryOptions>("VideoSubscriberAccount_d968214ecc684fb6", 3648401124351881, undefined, []); },
   /**
    * init(rawValue: Int)
    * @availability iOS 16.4+
    */
-  init(rawValue: number): VSUserAccountManager_QueryOptions { return callSDK<VSUserAccountManager_QueryOptions>("VideoSubscriberAccount_067acaa3e5f56b46", 1575006880664350, undefined, [rawValue]); }
+  init(rawValue: number): VSUserAccountManager_QueryOptions { return callSDK<VSUserAccountManager_QueryOptions>("VideoSubscriberAccount_d968214ecc684fb6", 1575006880664350, undefined, [rawValue]); }
 };
 
 /**
  * let VSErrorDomain: String
  * @availability iOS 10.0+
  */
-export const VSErrorDomain: string = callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 4154988940429422, undefined, []);
+export const VSErrorDomain: string = callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 4154988940429422, undefined, []);
 
 /**
  * let VSErrorInfoKeyAccountProviderResponse: String
  * @availability iOS 10.2+
  */
-export const VSErrorInfoKeyAccountProviderResponse: string = callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 944496209732246, undefined, []);
+export const VSErrorInfoKeyAccountProviderResponse: string = callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 944496209732246, undefined, []);
 
 /**
  * let VSErrorInfoKeySAMLResponse: String
  * @availability iOS 10.0+
  */
-export const VSErrorInfoKeySAMLResponse: string = callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 522589310850829, undefined, []);
+export const VSErrorInfoKeySAMLResponse: string = callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 522589310850829, undefined, []);
 
 /**
  * let VSErrorInfoKeySAMLResponseStatus: String
  * @availability iOS 10.0+
  */
-export const VSErrorInfoKeySAMLResponseStatus: string = callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 1417728059863226, undefined, []);
+export const VSErrorInfoKeySAMLResponseStatus: string = callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 1417728059863226, undefined, []);
 
 /**
  * let VSErrorInfoKeyUnsupportedProviderIdentifier: String
  * @availability iOS 10.2+
  */
-export const VSErrorInfoKeyUnsupportedProviderIdentifier: string = callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 4420157032973561, undefined, []);
+export const VSErrorInfoKeyUnsupportedProviderIdentifier: string = callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 4420157032973561, undefined, []);
 
 /**
  * let VSOpenTVProviderSettingsURLString: String
  * @availability iOS 13.0+
  */
-export const VSOpenTVProviderSettingsURLString: string = callSDK<string>("VideoSubscriberAccount_067acaa3e5f56b46", 4428992667178873, undefined, []);
+export const VSOpenTVProviderSettingsURLString: string = callSDK<string>("VideoSubscriberAccount_d968214ecc684fb6", 4428992667178873, undefined, []);
 
-registerSDKClass("VSAccountApplicationProvider", VSAccountApplicationProvider, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {"identifier":854395992916867,"localizedDisplayName":3668216098261530} });
-registerSDKClass("VSAccountManager", VSAccountManager, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {"delegate":881605000692827}, methods: {"checkAccessStatus":{"id":3977970582192348,"hints":[null,{"callback":{"out":[]}}]},"enqueue":{"id":3337451457353456,"hints":[null,{"callback":{"out":[]}}]}} });
+registerSDKClass("VSAccountApplicationProvider", VSAccountApplicationProvider, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {"identifier":854395992916867,"localizedDisplayName":3668216098261530} });
+registerSDKClass("VSAccountManager", VSAccountManager, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {"delegate":881605000692827}, methods: {"checkAccessStatus":{"id":3977970582192348,"hints":[null,{"callback":{"out":[]}}]},"enqueue":{"id":3337451457353456,"hints":[null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)VSAccountManagerDelegate", {"accountManagerPresent":"accountManager(_:present:)","accountManagerDismiss":"accountManager(_:dismiss:)"});
-registerSDKClass("VSAccountManagerResult", VSAccountManagerResult, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {}, methods: {"cancel":{"id":3396848065544798}} });
-registerSDKClass("VSAccountMetadata", VSAccountMetadata, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {"samlAttributeQueryResponse":423779963008742,"accountProviderIdentifier":531609619629159,"accountProviderResponse":3592766269751730,"authenticationExpirationDate":1013149756273651,"verificationData":3175295096649827} });
-registerSDKClass("VSAccountMetadataRequest", VSAccountMetadataRequest, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {"accountProviderAuthenticationToken":2104319589122411,"applicationAccountProviders":658382652850009,"attributeNames":1141689109826167,"channelIdentifier":4491633103804273,"featuredAccountProviderIdentifiers":1574919245105227,"forceAuthentication":3473298140382887,"includeAccountProviderIdentifier":3097175655208704,"includeAuthenticationExpirationDate":4143702758987681,"isInterruptionAllowed":1016955557854910,"localizedVideoTitle":2081982498713918,"supportedAccountProviderIdentifiers":3623562825026356,"supportedAuthenticationSchemes":837447469805735,"verificationToken":1545214441431863} });
-registerSDKClass("VSAccountProviderResponse", VSAccountProviderResponse, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {"authenticationScheme":642482878599417,"body":757966477240266,"status":4434015066665378} });
-registerSDKClass("VideoSubscriberAccount.VSAppleSubscription", VSAppleSubscription, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {} });
-registerSDKClass("VideoSubscriberAccount.VSError", VSError, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {} });
-registerSDKClass("VSSubscription", VSSubscription, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {"accessLevel":4247901751201182,"billingIdentifier":10994141831103,"expirationDate":926670612373355,"tierIdentifiers":4515765535673} });
-registerSDKClass("VSSubscriptionRegistrationCenter", VSSubscriptionRegistrationCenter, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {}, methods: {"setCurrentSubscription":{"id":2207256980579783}} });
-registerSDKClass("VideoSubscriberAccount.VSUserAccount", VSUserAccount, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {} });
-registerSDKClass("VSUserAccountManager", VSUserAccountManager, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {}, methods: {"userAccounts":{"id":1217765191535314},"deleteAutoSignInToken":{"id":4267086931439868},"updateAutoSignInToken":{"id":1905162992289695},"requestAutoSignInAuthorization":{"id":1127209586687269},"update":{"id":1068841297687181}} });
-registerSDKClass("VideoSubscriberAccount.VSUserAccountManager.AutoSignInToken", VSUserAccountManager_AutoSignInToken, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {} });
-registerSDKClass("VideoSubscriberAccount.VSUserAccountManager.AutoSignInTokenUpdateContext", VSUserAccountManager_AutoSignInTokenUpdateContext, { module: "VideoSubscriberAccount_067acaa3e5f56b46", properties: {} });
+registerSDKClass("VSAccountManagerResult", VSAccountManagerResult, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {}, methods: {"cancel":{"id":3396848065544798}} });
+registerSDKClass("VSAccountMetadata", VSAccountMetadata, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {"samlAttributeQueryResponse":423779963008742,"accountProviderIdentifier":531609619629159,"accountProviderResponse":3592766269751730,"authenticationExpirationDate":1013149756273651,"verificationData":3175295096649827} });
+registerSDKClass("VSAccountMetadataRequest", VSAccountMetadataRequest, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {"accountProviderAuthenticationToken":2104319589122411,"applicationAccountProviders":658382652850009,"attributeNames":1141689109826167,"channelIdentifier":4491633103804273,"featuredAccountProviderIdentifiers":1574919245105227,"forceAuthentication":3473298140382887,"includeAccountProviderIdentifier":3097175655208704,"includeAuthenticationExpirationDate":4143702758987681,"isInterruptionAllowed":1016955557854910,"localizedVideoTitle":2081982498713918,"supportedAccountProviderIdentifiers":3623562825026356,"supportedAuthenticationSchemes":837447469805735,"verificationToken":1545214441431863} });
+registerSDKClass("VSAccountProviderResponse", VSAccountProviderResponse, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {"authenticationScheme":642482878599417,"body":757966477240266,"status":4434015066665378} });
+registerSDKClass("VideoSubscriberAccount.VSAppleSubscription", VSAppleSubscription, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {} });
+registerSDKClass("VideoSubscriberAccount.VSError", VSError, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {} });
+registerSDKClass("VSSubscription", VSSubscription, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {"accessLevel":4247901751201182,"billingIdentifier":10994141831103,"expirationDate":926670612373355,"tierIdentifiers":4515765535673} });
+registerSDKClass("VSSubscriptionRegistrationCenter", VSSubscriptionRegistrationCenter, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {}, methods: {"setCurrentSubscription":{"id":2207256980579783}} });
+registerSDKClass("VideoSubscriberAccount.VSUserAccount", VSUserAccount, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {} });
+registerSDKClass("VSUserAccountManager", VSUserAccountManager, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {}, methods: {"userAccounts":{"id":1217765191535314},"deleteAutoSignInToken":{"id":4267086931439868},"updateAutoSignInToken":{"id":1905162992289695},"requestAutoSignInAuthorization":{"id":1127209586687269},"update":{"id":1068841297687181}} });
+registerSDKClass("VideoSubscriberAccount.VSUserAccountManager.AutoSignInToken", VSUserAccountManager_AutoSignInToken, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {} });
+registerSDKClass("VideoSubscriberAccount.VSUserAccountManager.AutoSignInTokenUpdateContext", VSUserAccountManager_AutoSignInTokenUpdateContext, { module: "VideoSubscriberAccount_d968214ecc684fb6", properties: {} });

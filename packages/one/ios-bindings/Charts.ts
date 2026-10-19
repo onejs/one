@@ -46,7 +46,7 @@ export class AnnotationContext extends SDKHandle {
    * let targetSize: CGSize
    * @availability iOS 16.0+
    */
-  get targetSize(): $SDK0 { return callSDK<$SDK0>("Charts_067acaa3e5f56b46", 446611039073335, this, []); }
+  get targetSize(): $SDK0 { return callSDK<$SDK0>("Charts_d968214ecc684fb6", 446611039073335, this, []); }
   declare readonly $type: { "s:6Charts17AnnotationContextV": true };
 }
 
@@ -59,12 +59,12 @@ export class AnnotationOverflowResolution extends SDKHandle {
    * nonisolated init(x: AnnotationOverflowResolution.Strategy = .automatic, y: AnnotationOverflowResolution.Strategy = .automatic)
    * @availability iOS 17.0+
    */
-  static init(x?: AnnotationOverflowResolution_Strategy, y?: AnnotationOverflowResolution_Strategy): AnnotationOverflowResolution { return callSDK<AnnotationOverflowResolution>("Charts_067acaa3e5f56b46", 2900088187272349, undefined, [x, y]); }
+  static init(x?: AnnotationOverflowResolution_Strategy, y?: AnnotationOverflowResolution_Strategy): AnnotationOverflowResolution { return callSDK<AnnotationOverflowResolution>("Charts_d968214ecc684fb6", 2900088187272349, undefined, [x, y]); }
   /**
    * static let automatic: AnnotationOverflowResolution
    * @availability iOS 17.0+
    */
-  static get automatic(): AnnotationOverflowResolution { return callSDK<AnnotationOverflowResolution>("Charts_067acaa3e5f56b46", 2216755477665643, undefined, []); }
+  static get automatic(): AnnotationOverflowResolution { return callSDK<AnnotationOverflowResolution>("Charts_d968214ecc684fb6", 2216755477665643, undefined, []); }
   declare readonly $type: { "s:6Charts28AnnotationOverflowResolutionV": true };
 }
 
@@ -77,17 +77,17 @@ export class AnnotationOverflowResolution_Boundary extends SDKHandle {
    * static let plot: AnnotationOverflowResolution.Boundary
    * @availability iOS 17.0+
    */
-  static get plot(): AnnotationOverflowResolution_Boundary { return callSDK<AnnotationOverflowResolution_Boundary>("Charts_067acaa3e5f56b46", 1034369618242798, undefined, []); }
+  static get plot(): AnnotationOverflowResolution_Boundary { return callSDK<AnnotationOverflowResolution_Boundary>("Charts_d968214ecc684fb6", 1034369618242798, undefined, []); }
   /**
    * static let chart: AnnotationOverflowResolution.Boundary
    * @availability iOS 17.0+
    */
-  static get chart(): AnnotationOverflowResolution_Boundary { return callSDK<AnnotationOverflowResolution_Boundary>("Charts_067acaa3e5f56b46", 722786292270533, undefined, []); }
+  static get chart(): AnnotationOverflowResolution_Boundary { return callSDK<AnnotationOverflowResolution_Boundary>("Charts_d968214ecc684fb6", 722786292270533, undefined, []); }
   /**
    * static let automatic: AnnotationOverflowResolution.Boundary
    * @availability iOS 17.0+
    */
-  static get automatic(): AnnotationOverflowResolution_Boundary { return callSDK<AnnotationOverflowResolution_Boundary>("Charts_067acaa3e5f56b46", 142743586993874, undefined, []); }
+  static get automatic(): AnnotationOverflowResolution_Boundary { return callSDK<AnnotationOverflowResolution_Boundary>("Charts_d968214ecc684fb6", 142743586993874, undefined, []); }
   declare readonly $type: { "s:6Charts28AnnotationOverflowResolutionV8BoundaryV": true };
 }
 
@@ -100,27 +100,27 @@ export class AnnotationOverflowResolution_Strategy extends SDKHandle {
    * static func fit(to boundary: AnnotationOverflowResolution.Boundary) -> AnnotationOverflowResolution.Strategy
    * @availability iOS 17.0+
    */
-  static fitTo(boundary: AnnotationOverflowResolution_Boundary): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_067acaa3e5f56b46", 4001069456966542, undefined, [boundary]); }
+  static fitTo(boundary: AnnotationOverflowResolution_Boundary): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_d968214ecc684fb6", 4001069456966542, undefined, [boundary]); }
   /**
    * static let fit: AnnotationOverflowResolution.Strategy
    * @availability iOS 17.0+
    */
-  static get fit(): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_067acaa3e5f56b46", 2017172112204462, undefined, []); }
+  static get fit(): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_d968214ecc684fb6", 2017172112204462, undefined, []); }
   /**
    * static let disabled: AnnotationOverflowResolution.Strategy
    * @availability iOS 17.0+
    */
-  static get disabled(): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_067acaa3e5f56b46", 1035651719643532, undefined, []); }
+  static get disabled(): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_d968214ecc684fb6", 1035651719643532, undefined, []); }
   /**
    * static let padScale: AnnotationOverflowResolution.Strategy
    * @availability iOS 17.0+
    */
-  static get padScale(): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_067acaa3e5f56b46", 2266184406504082, undefined, []); }
+  static get padScale(): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_d968214ecc684fb6", 2266184406504082, undefined, []); }
   /**
    * static let automatic: AnnotationOverflowResolution.Strategy
    * @availability iOS 17.0+
    */
-  static get automatic(): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_067acaa3e5f56b46", 4091395719175685, undefined, []); }
+  static get automatic(): AnnotationOverflowResolution_Strategy { return callSDK<AnnotationOverflowResolution_Strategy>("Charts_d968214ecc684fb6", 4091395719175685, undefined, []); }
   declare readonly $type: { "s:6Charts28AnnotationOverflowResolutionV8StrategyV": true };
 }
 
@@ -133,52 +133,52 @@ export class AnnotationPosition extends SDKHandle {
    * static let topLeading: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get topLeading(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 1781542249503651, undefined, []); }
+  static get topLeading(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 1781542249503651, undefined, []); }
   /**
    * static let topTrailing: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get topTrailing(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 571738976866810, undefined, []); }
+  static get topTrailing(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 571738976866810, undefined, []); }
   /**
    * static let bottomLeading: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get bottomLeading(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 2688817491264771, undefined, []); }
+  static get bottomLeading(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 2688817491264771, undefined, []); }
   /**
    * static let bottomTrailing: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get bottomTrailing(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 1367539836757772, undefined, []); }
+  static get bottomTrailing(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 1367539836757772, undefined, []); }
   /**
    * static let top: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get top(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 4136160631393797, undefined, []); }
+  static get top(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 4136160631393797, undefined, []); }
   /**
    * static let bottom: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get bottom(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 1427964219027784, undefined, []); }
+  static get bottom(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 1427964219027784, undefined, []); }
   /**
    * static let leading: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get leading(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 2157038485734444, undefined, []); }
+  static get leading(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 2157038485734444, undefined, []); }
   /**
    * static let overlay: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get overlay(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 2756654040027479, undefined, []); }
+  static get overlay(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 2756654040027479, undefined, []); }
   /**
    * static let trailing: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get trailing(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 2341962316085285, undefined, []); }
+  static get trailing(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 2341962316085285, undefined, []); }
   /**
    * static let automatic: AnnotationPosition
    * @availability iOS 16.0+
    */
-  static get automatic(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_067acaa3e5f56b46", 175121919119111, undefined, []); }
+  static get automatic(): AnnotationPosition { return callSDK<AnnotationPosition>("Charts_d968214ecc684fb6", 175121919119111, undefined, []); }
   declare readonly $type: { "s:6Charts18AnnotationPositionV": true };
 }
 
@@ -191,12 +191,12 @@ export class AnyAxisContent extends SDKHandle {
    * nonisolated init(erasing content: some AxisContent)
    * @availability iOS 16.0+
    */
-  static initErasing(content: SDKHandle): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_067acaa3e5f56b46", 2843745527233035, undefined, [content]); }
+  static initErasing(content: SDKHandle): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_d968214ecc684fb6", 2843745527233035, undefined, [content]); }
   /**
    * nonisolated init(_ content: any AxisContent)
    * @availability iOS 16.0+
    */
-  static init(content: SDKHandle): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_067acaa3e5f56b46", 3427465230561284, undefined, [content]); }
+  static init(content: SDKHandle): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_d968214ecc684fb6", 3427465230561284, undefined, [content]); }
   declare readonly $type: { "s:6Charts14AnyAxisContentV": true };
 }
 
@@ -209,7 +209,7 @@ export class AnyAxisMark extends SDKHandle {
    * nonisolated init(_ content: any AxisMark)
    * @availability iOS 16.0+
    */
-  static init(content: SDKHandle): AnyAxisMark { return callSDK<AnyAxisMark>("Charts_067acaa3e5f56b46", 660545952481261, undefined, [content]); }
+  static init(content: SDKHandle): AnyAxisMark { return callSDK<AnyAxisMark>("Charts_d968214ecc684fb6", 660545952481261, undefined, [content]); }
   declare readonly $type: { "s:6Charts11AnyAxisMarkV": true };
 }
 
@@ -236,17 +236,17 @@ export class AnyChartSymbolShape extends SDKHandle {
    * var perceptualUnitRect: CGRect { get }
    * @availability iOS 16.0+
    */
-  get perceptualUnitRect(): $SDK1 { return callSDK<$SDK1>("Charts_067acaa3e5f56b46", 548177845761480, this, []); }
+  get perceptualUnitRect(): $SDK1 { return callSDK<$SDK1>("Charts_d968214ecc684fb6", 548177845761480, this, []); }
   /**
    * nonisolated func path(in rect: CGRect) -> Path
    * @availability iOS 16.0+
    */
-  path(rect: $SDK1): _SwiftUICore_Path { return callSDK<_SwiftUICore_Path>("Charts_067acaa3e5f56b46", 4143849126053305, this, [rect]); }
+  path(rect: $SDK1): _SwiftUICore_Path { return callSDK<_SwiftUICore_Path>("Charts_d968214ecc684fb6", 4143849126053305, this, [rect]); }
   /**
    * nonisolated init(_ content: any ChartSymbolShape)
    * @availability iOS 16.0+
    */
-  static init(content: SDKHandle): AnyChartSymbolShape { return callSDK<AnyChartSymbolShape>("Charts_067acaa3e5f56b46", 1119665127636343, undefined, [content]); }
+  static init(content: SDKHandle): AnyChartSymbolShape { return callSDK<AnyChartSymbolShape>("Charts_d968214ecc684fb6", 1119665127636343, undefined, [content]); }
   declare readonly $type: { "s:6Charts19AnyChartSymbolShapeV": true };
 }
 
@@ -277,32 +277,32 @@ export class AreaMark extends SDKHandle {
    * nonisolated init<X, Y, S>(x: PlottableValue<X>, y: PlottableValue<Y>, series: PlottableValue<S>, stacking: MarkStackingMethod = .standard) where X : Plottable, Y : Plottable, S : Plottable
    * @availability iOS 16.0+
    */
-  static initXYSeriesStacking(x: PlottableValue<number>, y: PlottableValue<number>, series: PlottableValue<number>, stacking?: MarkStackingMethod): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_067acaa3e5f56b46", 4161036461936466, undefined, [x, y, series, stacking]); }
+  static initXYSeriesStacking(x: PlottableValue<number>, y: PlottableValue<number>, series: PlottableValue<number>, stacking?: MarkStackingMethod): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_d968214ecc684fb6", 4161036461936466, undefined, [x, y, series, stacking]); }
   /**
    * nonisolated init<X, Y>(x: PlottableValue<X>, y: PlottableValue<Y>, stacking: MarkStackingMethod = .standard) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStacking(x: PlottableValue<number>, y: PlottableValue<number>, stacking?: MarkStackingMethod): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_067acaa3e5f56b46", 2991713609782664, undefined, [x, y, stacking]); }
+  static initXYStacking(x: PlottableValue<number>, y: PlottableValue<number>, stacking?: MarkStackingMethod): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_d968214ecc684fb6", 2991713609782664, undefined, [x, y, stacking]); }
   /**
    * nonisolated init<X, Y, S>(x: PlottableValue<X>, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>, series: PlottableValue<S>) where X : Plottable, Y : Plottable, S : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStartYEndSeries(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>, series: PlottableValue<number>): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_067acaa3e5f56b46", 2764056868059214, undefined, [x, yStart, yEnd, series]); }
+  static initXYStartYEndSeries(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>, series: PlottableValue<number>): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_d968214ecc684fb6", 2764056868059214, undefined, [x, yStart, yEnd, series]); }
   /**
    * nonisolated init<X, Y>(x: PlottableValue<X>, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStartYEnd(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_067acaa3e5f56b46", 518483826151531, undefined, [x, yStart, yEnd]); }
+  static initXYStartYEnd(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_d968214ecc684fb6", 518483826151531, undefined, [x, yStart, yEnd]); }
   /**
    * nonisolated init<X, Y, S>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, y: PlottableValue<Y>, series: PlottableValue<S>) where X : Plottable, Y : Plottable, S : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYSeries(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, series: PlottableValue<number>): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_067acaa3e5f56b46", 3500311283950918, undefined, [xStart, xEnd, y, series]); }
+  static initXStartXEndYSeries(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, series: PlottableValue<number>): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_d968214ecc684fb6", 3500311283950918, undefined, [xStart, xEnd, y, series]); }
   /**
    * nonisolated init<X, Y>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, y: PlottableValue<Y>) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndY(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_067acaa3e5f56b46", 835651507463288, undefined, [xStart, xEnd, y]); }
+  static initXStartXEndY(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>): Promise<AreaMark> { return callSDKAsync<AreaMark>("Charts_d968214ecc684fb6", 835651507463288, undefined, [xStart, xEnd, y]); }
   declare readonly $type: { "s:6Charts8AreaMarkV": true };
 }
 
@@ -370,37 +370,37 @@ export class AxisContentBuilder extends SDKHandle {
   
    * @availability iOS 16.0+
    */
-  static buildBlock(): SDKHandle { return callSDK<SDKHandle>("Charts_067acaa3e5f56b46", 1156383020479523, undefined, []); }
+  static buildBlock(): SDKHandle { return callSDK<SDKHandle>("Charts_d968214ecc684fb6", 1156383020479523, undefined, []); }
   /**
    * static func buildBlock<T>(_ content: T) -> T where T : AxisContent
    * @availability iOS 18.0+
    */
-  static buildBlock82563(content: AnyAxisContent): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_067acaa3e5f56b46", 2885728101229385, undefined, [content]); }
+  static buildBlock82563(content: AnyAxisContent): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_d968214ecc684fb6", 2885728101229385, undefined, [content]); }
   /**
    * static func buildEither<T1, T2>(first: T1) -> BuilderConditional<T1, T2> where T1 : AxisContent, T2 : AxisContent
    * @availability iOS 16.0+
    */
-  static buildEitherFirst(first: AnyAxisContent): $SDK2 { return callSDK<$SDK2>("Charts_067acaa3e5f56b46", 617065503597078, undefined, [first]); }
+  static buildEitherFirst(first: AnyAxisContent): $SDK2 { return callSDK<$SDK2>("Charts_d968214ecc684fb6", 617065503597078, undefined, [first]); }
   /**
    * static func buildEither<T1, T2>(second: T2) -> BuilderConditional<T1, T2> where T1 : AxisContent, T2 : AxisContent
    * @availability iOS 16.0+
    */
-  static buildEitherSecond(second: AnyAxisContent): $SDK2 { return callSDK<$SDK2>("Charts_067acaa3e5f56b46", 1545647090669430, undefined, [second]); }
+  static buildEitherSecond(second: AnyAxisContent): $SDK2 { return callSDK<$SDK2>("Charts_d968214ecc684fb6", 1545647090669430, undefined, [second]); }
   /**
    * static func buildExpression<Content>(_ content: Content) -> Content where Content : AxisContent
    * @availability iOS 16.0+
    */
-  static buildExpression(content: AnyAxisContent): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_067acaa3e5f56b46", 3380537102139376, undefined, [content]); }
+  static buildExpression(content: AnyAxisContent): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_d968214ecc684fb6", 3380537102139376, undefined, [content]); }
   /**
    * static func buildLimitedAvailability<Content>(_ content: Content) -> AnyAxisContent where Content : AxisContent
    * @availability iOS 16.0+
    */
-  static buildLimitedAvailability(content: AnyAxisContent): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_067acaa3e5f56b46", 550351947035980, undefined, [content]); }
+  static buildLimitedAvailability(content: AnyAxisContent): AnyAxisContent { return callSDK<AnyAxisContent>("Charts_d968214ecc684fb6", 550351947035980, undefined, [content]); }
   /**
    * static func buildIf<T>(_ content: T?) -> T? where T : AxisContent
    * @availability iOS 16.0+
    */
-  static buildIf(content?: (AnyAxisContent) | null): (AnyAxisContent) | null { return callSDK<(AnyAxisContent) | null>("Charts_067acaa3e5f56b46", 4483715114940868, undefined, [content]); }
+  static buildIf(content?: (AnyAxisContent) | null): (AnyAxisContent) | null { return callSDK<(AnyAxisContent) | null>("Charts_d968214ecc684fb6", 4483715114940868, undefined, [content]); }
   declare readonly $type: { "s:6Charts18AxisContentBuilderV": true };
 }
 
@@ -413,7 +413,7 @@ export class AxisGridLine extends SDKHandle {
    * nonisolated init(centered: Bool? = nil, stroke: StrokeStyle? = nil)
    * @availability iOS 16.0+
    */
-  static init(centered?: (boolean) | null, stroke?: $SDK3): AxisGridLine { return callSDK<AxisGridLine>("Charts_067acaa3e5f56b46", 1189112909287217, undefined, [centered, stroke]); }
+  static init(centered?: (boolean) | null, stroke?: $SDK3): AxisGridLine { return callSDK<AxisGridLine>("Charts_d968214ecc684fb6", 1189112909287217, undefined, [centered, stroke]); }
   declare readonly $type: { "s:6Charts12AxisGridLineV": true };
 }
 
@@ -435,7 +435,7 @@ export class AxisMarkBuilder extends SDKHandle {
   
    * @availability iOS 16.0+
    */
-  static buildBlock(): SDKHandle { return callSDK<SDKHandle>("Charts_067acaa3e5f56b46", 1461261574643895, undefined, []); }
+  static buildBlock(): SDKHandle { return callSDK<SDKHandle>("Charts_d968214ecc684fb6", 1461261574643895, undefined, []); }
   declare readonly $type: { "s:6Charts15AxisMarkBuilderV": true };
 }
 
@@ -448,32 +448,32 @@ export class AxisMarkPosition extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Charts_067acaa3e5f56b46", 2651632032418232, this, []); }
+  get description(): string { return callSDK<string>("Charts_d968214ecc684fb6", 2651632032418232, this, []); }
   /**
    * static var top: AxisMarkPosition { get }
    * @availability iOS 16.0+
    */
-  static get top(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_067acaa3e5f56b46", 1800959091187779, undefined, []); }
+  static get top(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_d968214ecc684fb6", 1800959091187779, undefined, []); }
   /**
    * static var bottom: AxisMarkPosition { get }
    * @availability iOS 16.0+
    */
-  static get bottom(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_067acaa3e5f56b46", 204111106507624, undefined, []); }
+  static get bottom(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_d968214ecc684fb6", 204111106507624, undefined, []); }
   /**
    * static var leading: AxisMarkPosition { get }
    * @availability iOS 16.0+
    */
-  static get leading(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_067acaa3e5f56b46", 4168558877738123, undefined, []); }
+  static get leading(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_d968214ecc684fb6", 4168558877738123, undefined, []); }
   /**
    * static var trailing: AxisMarkPosition { get }
    * @availability iOS 16.0+
    */
-  static get trailing(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_067acaa3e5f56b46", 1715048852459950, undefined, []); }
+  static get trailing(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_d968214ecc684fb6", 1715048852459950, undefined, []); }
   /**
    * static var automatic: AxisMarkPosition { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_067acaa3e5f56b46", 1566927814805369, undefined, []); }
+  static get automatic(): AxisMarkPosition { return callSDK<AxisMarkPosition>("Charts_d968214ecc684fb6", 1566927814805369, undefined, []); }
   declare readonly $type: { "s:6Charts16AxisMarkPositionV": true };
 }
 
@@ -486,27 +486,27 @@ export class AxisMarkPreset extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Charts_067acaa3e5f56b46", 4188984131695513, this, []); }
+  get description(): string { return callSDK<string>("Charts_d968214ecc684fb6", 4188984131695513, this, []); }
   /**
    * static var inset: AxisMarkPreset { get }
    * @availability iOS 16.0+
    */
-  static get inset(): AxisMarkPreset { return callSDK<AxisMarkPreset>("Charts_067acaa3e5f56b46", 2847476965938276, undefined, []); }
+  static get inset(): AxisMarkPreset { return callSDK<AxisMarkPreset>("Charts_d968214ecc684fb6", 2847476965938276, undefined, []); }
   /**
    * static var aligned: AxisMarkPreset { get }
    * @availability iOS 16.0+
    */
-  static get aligned(): AxisMarkPreset { return callSDK<AxisMarkPreset>("Charts_067acaa3e5f56b46", 2382177695037577, undefined, []); }
+  static get aligned(): AxisMarkPreset { return callSDK<AxisMarkPreset>("Charts_d968214ecc684fb6", 2382177695037577, undefined, []); }
   /**
    * static var extended: AxisMarkPreset { get }
    * @availability iOS 16.0+
    */
-  static get extended(): AxisMarkPreset { return callSDK<AxisMarkPreset>("Charts_067acaa3e5f56b46", 683227988103936, undefined, []); }
+  static get extended(): AxisMarkPreset { return callSDK<AxisMarkPreset>("Charts_d968214ecc684fb6", 683227988103936, undefined, []); }
   /**
    * static var automatic: AxisMarkPreset { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): AxisMarkPreset { return callSDK<AxisMarkPreset>("Charts_067acaa3e5f56b46", 3947200816846396, undefined, []); }
+  static get automatic(): AxisMarkPreset { return callSDK<AxisMarkPreset>("Charts_d968214ecc684fb6", 3947200816846396, undefined, []); }
   declare readonly $type: { "s:6Charts14AxisMarkPresetV": true };
 }
 
@@ -519,12 +519,12 @@ export class AxisMarks<Content = unknown> extends SDKHandle {
    * nonisolated init(preset: AxisMarkPreset = .automatic, position: AxisMarkPosition = .automatic, values: AxisMarkValues = .automatic, stroke: StrokeStyle? = nil) where Content == Never
    * @availability iOS 16.0+
    */
-  static initPresetPositionValuesStroke(preset?: AxisMarkPreset, position?: AxisMarkPosition, values?: AxisMarkValues, stroke?: $SDK3): AxisMarks<never> { return callSDK<AxisMarks<never>>("Charts_067acaa3e5f56b46", 2296138708289960, undefined, [preset, position, values, stroke]); }
+  static initPresetPositionValuesStroke(preset?: AxisMarkPreset, position?: AxisMarkPosition, values?: AxisMarkValues, stroke?: $SDK3): AxisMarks<never> { return callSDK<AxisMarks<never>>("Charts_d968214ecc684fb6", 2296138708289960, undefined, [preset, position, values, stroke]); }
   /**
    * nonisolated init<Value>(preset: AxisMarkPreset = .automatic, position: AxisMarkPosition = .automatic, values: [Value], stroke: StrokeStyle? = nil) where Content == Never, Value : Plottable
    * @availability iOS 16.0+
    */
-  static initPresetPositionValuesStroke14330(preset: AxisMarkPreset, position: AxisMarkPosition, values: Array<number>, stroke?: $SDK3): AxisMarks<never> { return callSDK<AxisMarks<never>>("Charts_067acaa3e5f56b46", 3758774720202266, undefined, [preset, position, values, stroke]); }
+  static initPresetPositionValuesStroke14330(preset: AxisMarkPreset, position: AxisMarkPosition, values: Array<number>, stroke?: $SDK3): AxisMarks<never> { return callSDK<AxisMarks<never>>("Charts_d968214ecc684fb6", 3758774720202266, undefined, [preset, position, values, stroke]); }
   declare readonly $type: { "s:6Charts9AxisMarksV": true };
 }
 
@@ -537,32 +537,32 @@ export class AxisMarkValues extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Charts_067acaa3e5f56b46", 733419288183208, this, []); }
+  get description(): string { return callSDK<string>("Charts_d968214ecc684fb6", 733419288183208, this, []); }
   /**
    * static func stride<P>(by stepSize: P, roundLowerBound: Bool? = nil, roundUpperBound: Bool? = nil) -> AxisMarkValues where P : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static strideByRoundLowerBoundRoundUpperBound(stepSize: number, roundLowerBound?: (boolean) | null, roundUpperBound?: (boolean) | null): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_067acaa3e5f56b46", 27660393399661, undefined, [stepSize, roundLowerBound, roundUpperBound]); }
+  static strideByRoundLowerBoundRoundUpperBound(stepSize: number, roundLowerBound?: (boolean) | null, roundUpperBound?: (boolean) | null): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_d968214ecc684fb6", 27660393399661, undefined, [stepSize, roundLowerBound, roundUpperBound]); }
   /**
    * static func stride(by component: Calendar.Component, count: Int = 1, roundLowerBound: Bool? = nil, roundUpperBound: Bool? = nil, calendar: Calendar? = nil) -> AxisMarkValues
    * @availability iOS 16.0+
    */
-  static strideByCountRoundLowerBoundRoundUpperBoundCalendar(component: _Foundation_Calendar_Component, count?: number, roundLowerBound?: (boolean) | null, roundUpperBound?: (boolean) | null, calendar?: $SDK4): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_067acaa3e5f56b46", 2896023546296396, undefined, [component, count, roundLowerBound, roundUpperBound, calendar]); }
+  static strideByCountRoundLowerBoundRoundUpperBoundCalendar(component: _Foundation_Calendar_Component, count?: number, roundLowerBound?: (boolean) | null, roundUpperBound?: (boolean) | null, calendar?: $SDK4): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_d968214ecc684fb6", 2896023546296396, undefined, [component, count, roundLowerBound, roundUpperBound, calendar]); }
   /**
    * static func automatic(desiredCount: Int? = nil, roundLowerBound: Bool? = nil, roundUpperBound: Bool? = nil) -> AxisMarkValues
    * @availability iOS 16.0+
    */
-  static automaticDesiredCountRoundLowerBoundRoundUpperBound(desiredCount?: (number) | null, roundLowerBound?: (boolean) | null, roundUpperBound?: (boolean) | null): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_067acaa3e5f56b46", 3976511333431241, undefined, [desiredCount, roundLowerBound, roundUpperBound]); }
+  static automaticDesiredCountRoundLowerBoundRoundUpperBound(desiredCount?: (number) | null, roundLowerBound?: (boolean) | null, roundUpperBound?: (boolean) | null): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_d968214ecc684fb6", 3976511333431241, undefined, [desiredCount, roundLowerBound, roundUpperBound]); }
   /**
    * static func automatic<P>(minimumStride: P, desiredCount: Int? = nil, roundLowerBound: Bool? = nil, roundUpperBound: Bool? = nil) -> AxisMarkValues where P : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static automaticMinimumStrideDesiredCountRoundLowerBoundRoundUpperBound(minimumStride: number, desiredCount?: (number) | null, roundLowerBound?: (boolean) | null, roundUpperBound?: (boolean) | null): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_067acaa3e5f56b46", 1978590105001975, undefined, [minimumStride, desiredCount, roundLowerBound, roundUpperBound]); }
+  static automaticMinimumStrideDesiredCountRoundLowerBoundRoundUpperBound(minimumStride: number, desiredCount?: (number) | null, roundLowerBound?: (boolean) | null, roundUpperBound?: (boolean) | null): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_d968214ecc684fb6", 1978590105001975, undefined, [minimumStride, desiredCount, roundLowerBound, roundUpperBound]); }
   /**
    * static var automatic: AxisMarkValues { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_067acaa3e5f56b46", 2162345154241771, undefined, []); }
+  static get automatic(): AxisMarkValues { return callSDK<AxisMarkValues>("Charts_d968214ecc684fb6", 2162345154241771, undefined, []); }
   declare readonly $type: { "s:6Charts14AxisMarkValuesV": true };
 }
 
@@ -575,12 +575,12 @@ export class AxisTick extends SDKHandle {
    * nonisolated init(centered: Bool? = nil, length: CGFloat, stroke: StrokeStyle? = nil)
    * @availability iOS 16.0+
    */
-  static initCenteredLengthStroke(centered: (boolean) | null, length: number, stroke?: $SDK3): AxisTick { return callSDK<AxisTick>("Charts_067acaa3e5f56b46", 1556972801920623, undefined, [centered, length, stroke]); }
+  static initCenteredLengthStroke(centered: (boolean) | null, length: number, stroke?: $SDK3): AxisTick { return callSDK<AxisTick>("Charts_d968214ecc684fb6", 1556972801920623, undefined, [centered, length, stroke]); }
   /**
    * nonisolated init(centered: Bool? = nil, length: AxisTick.Length = .automatic, stroke: StrokeStyle? = nil)
    * @availability iOS 16.0+
    */
-  static initCenteredLengthStroke60252(centered?: (boolean) | null, length?: AxisTick_Length, stroke?: $SDK3): AxisTick { return callSDK<AxisTick>("Charts_067acaa3e5f56b46", 1388744969555237, undefined, [centered, length, stroke]); }
+  static initCenteredLengthStroke60252(centered?: (boolean) | null, length?: AxisTick_Length, stroke?: $SDK3): AxisTick { return callSDK<AxisTick>("Charts_d968214ecc684fb6", 1388744969555237, undefined, [centered, length, stroke]); }
   declare readonly $type: { "s:6Charts8AxisTickV": true };
 }
 
@@ -593,32 +593,32 @@ export class AxisTick_Length extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Charts_067acaa3e5f56b46", 1030775546998506, this, []); }
+  get description(): string { return callSDK<string>("Charts_d968214ecc684fb6", 1030775546998506, this, []); }
   /**
    * static func longestLabel(extendPastBy: CGFloat = 0) -> AxisTick.Length
    * @availability iOS 16.0+
    */
-  static longestLabelExtendPastBy(extendPastBy?: number): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_067acaa3e5f56b46", 74987208346138, undefined, [extendPastBy]); }
+  static longestLabelExtendPastBy(extendPastBy?: number): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_d968214ecc684fb6", 74987208346138, undefined, [extendPastBy]); }
   /**
    * static var longestLabel: AxisTick.Length { get }
    * @availability iOS 16.0+
    */
-  static get longestLabel(): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_067acaa3e5f56b46", 839246822401751, undefined, []); }
+  static get longestLabel(): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_d968214ecc684fb6", 839246822401751, undefined, []); }
   /**
    * static func label(extendPastBy: CGFloat = 0) -> AxisTick.Length
    * @availability iOS 16.0+
    */
-  static labelExtendPastBy(extendPastBy?: number): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_067acaa3e5f56b46", 3255431108084174, undefined, [extendPastBy]); }
+  static labelExtendPastBy(extendPastBy?: number): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_d968214ecc684fb6", 3255431108084174, undefined, [extendPastBy]); }
   /**
    * static var label: AxisTick.Length { get }
    * @availability iOS 16.0+
    */
-  static get label(): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_067acaa3e5f56b46", 1109133677331309, undefined, []); }
+  static get label(): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_d968214ecc684fb6", 1109133677331309, undefined, []); }
   /**
    * static var automatic: AxisTick.Length { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_067acaa3e5f56b46", 2383861640267966, undefined, []); }
+  static get automatic(): AxisTick_Length { return callSDK<AxisTick_Length>("Charts_d968214ecc684fb6", 2383861640267966, undefined, []); }
   declare readonly $type: { "s:6Charts8AxisTickV6LengthV": true };
 }
 
@@ -631,17 +631,17 @@ export class AxisValue extends SDKHandle {
    * func `as`<P>(_ type: P.Type) -> P? where P : Plottable
    * @availability iOS 16.0+
    */
-  as(type: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null { return callSDK<(unknown) | null>("Charts_067acaa3e5f56b46", 1907259471591779, this, [type]); }
+  as(type: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null { return callSDK<(unknown) | null>("Charts_d968214ecc684fb6", 1907259471591779, this, [type]); }
   /**
    * var count: Int { get }
    * @availability iOS 16.0+
    */
-  get count(): number { return callSDK<number>("Charts_067acaa3e5f56b46", 4396486420414234, this, []); }
+  get count(): number { return callSDK<number>("Charts_d968214ecc684fb6", 4396486420414234, this, []); }
   /**
    * var index: Int { get }
    * @availability iOS 16.0+
    */
-  get index(): number { return callSDK<number>("Charts_067acaa3e5f56b46", 2268141417302936, this, []); }
+  get index(): number { return callSDK<number>("Charts_d968214ecc684fb6", 2268141417302936, this, []); }
   declare readonly $type: { "s:6Charts9AxisValueV": true };
 }
 
@@ -654,22 +654,22 @@ export class AxisValueLabel<Content = unknown> extends SDKHandle {
    * nonisolated init(centered: Bool? = nil, anchor: UnitPoint? = nil, multiLabelAlignment: Alignment? = nil, collisionResolution: AxisValueLabelCollisionResolution = .automatic, offsetsMarks: Bool? = nil, orientation: AxisValueLabelOrientation = .automatic, horizontalSpacing: CGFloat? = nil, verticalSpacing: CGFloat? = nil) where Content == Never
    * @availability iOS 16.0+
    */
-  static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing(centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): AxisValueLabel<never> { return callSDK<AxisValueLabel<never>>("Charts_067acaa3e5f56b46", 1298235126243352, undefined, [centered, anchor, multiLabelAlignment, collisionResolution, offsetsMarks, orientation, horizontalSpacing, verticalSpacing]); }
+  static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing(centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): AxisValueLabel<never> { return callSDK<AxisValueLabel<never>>("Charts_d968214ecc684fb6", 1298235126243352, undefined, [centered, anchor, multiLabelAlignment, collisionResolution, offsetsMarks, orientation, horizontalSpacing, verticalSpacing]); }
   /**
    * nonisolated init(_ titleResource: LocalizedStringResource, centered: Bool? = nil, anchor: UnitPoint? = nil, multiLabelAlignment: Alignment? = nil, collisionResolution: AxisValueLabelCollisionResolution = .automatic, offsetsMarks: Bool? = nil, orientation: AxisValueLabelOrientation = .automatic, horizontalSpacing: CGFloat? = nil, verticalSpacing: CGFloat? = nil) where Content == Text
    * @availability iOS 16.0+
    */
-  static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing33134(titleResource: _Foundation_LocalizedStringResource, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7 { return callSDK<$SDK7>("Charts_067acaa3e5f56b46", 1143569503906024, undefined, [titleResource, centered, anchor, multiLabelAlignment, collisionResolution, offsetsMarks, orientation, horizontalSpacing, verticalSpacing]); }
+  static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing33134(titleResource: _Foundation_LocalizedStringResource, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7 { return callSDK<$SDK7>("Charts_d968214ecc684fb6", 1143569503906024, undefined, [titleResource, centered, anchor, multiLabelAlignment, collisionResolution, offsetsMarks, orientation, horizontalSpacing, verticalSpacing]); }
   /**
    * nonisolated init(_ titleKey: LocalizedStringKey, centered: Bool? = nil, anchor: UnitPoint? = nil, multiLabelAlignment: Alignment? = nil, collisionResolution: AxisValueLabelCollisionResolution = .automatic, offsetsMarks: Bool? = nil, orientation: AxisValueLabelOrientation = .automatic, horizontalSpacing: CGFloat? = nil, verticalSpacing: CGFloat? = nil) where Content == Text
    * @availability iOS 16.0+
    */
-  static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing87872(titleKey: _SwiftUICore_LocalizedStringKey, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7 { return callSDK<$SDK7>("Charts_067acaa3e5f56b46", 1749382864605440, undefined, [titleKey, centered, anchor, multiLabelAlignment, collisionResolution, offsetsMarks, orientation, horizontalSpacing, verticalSpacing]); }
+  static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing87872(titleKey: _SwiftUICore_LocalizedStringKey, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7 { return callSDK<$SDK7>("Charts_d968214ecc684fb6", 1749382864605440, undefined, [titleKey, centered, anchor, multiLabelAlignment, collisionResolution, offsetsMarks, orientation, horizontalSpacing, verticalSpacing]); }
   /**
    * nonisolated init<S>(_ title: S, centered: Bool? = nil, anchor: UnitPoint? = nil, multiLabelAlignment: Alignment? = nil, collisionResolution: AxisValueLabelCollisionResolution = .automatic, offsetsMarks: Bool? = nil, orientation: AxisValueLabelOrientation = .automatic, horizontalSpacing: CGFloat? = nil, verticalSpacing: CGFloat? = nil) where Content == Text, S : StringProtocol
    * @availability iOS 16.0+
    */
-  static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing60146(title: string, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7 { return callSDK<$SDK7>("Charts_067acaa3e5f56b46", 1471415455091565, undefined, [title, centered, anchor, multiLabelAlignment, collisionResolution, offsetsMarks, orientation, horizontalSpacing, verticalSpacing]); }
+  static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing60146(title: string, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7 { return callSDK<$SDK7>("Charts_d968214ecc684fb6", 1471415455091565, undefined, [title, centered, anchor, multiLabelAlignment, collisionResolution, offsetsMarks, orientation, horizontalSpacing, verticalSpacing]); }
   declare readonly $type: { "s:6Charts14AxisValueLabelV": true };
 }
 
@@ -682,32 +682,32 @@ export class AxisValueLabelCollisionResolution extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Charts_067acaa3e5f56b46", 2639638654537780, this, []); }
+  get description(): string { return callSDK<string>("Charts_d968214ecc684fb6", 2639638654537780, this, []); }
   /**
    * static func greedy(priority: Double = 0, minimumSpacing: CGFloat? = nil) -> AxisValueLabelCollisionResolution
    * @availability iOS 16.0+
    */
-  static greedyPriorityMinimumSpacing(priority?: number, minimumSpacing?: (number) | null): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_067acaa3e5f56b46", 4279553840699732, undefined, [priority, minimumSpacing]); }
+  static greedyPriorityMinimumSpacing(priority?: number, minimumSpacing?: (number) | null): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_d968214ecc684fb6", 4279553840699732, undefined, [priority, minimumSpacing]); }
   /**
    * static var greedy: AxisValueLabelCollisionResolution { get }
    * @availability iOS 16.0+
    */
-  static get greedy(): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_067acaa3e5f56b46", 326177563604062, undefined, []); }
+  static get greedy(): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_d968214ecc684fb6", 326177563604062, undefined, []); }
   /**
    * static var disabled: AxisValueLabelCollisionResolution { get }
    * @availability iOS 16.0+
    */
-  static get disabled(): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_067acaa3e5f56b46", 2328392840764692, undefined, []); }
+  static get disabled(): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_d968214ecc684fb6", 2328392840764692, undefined, []); }
   /**
    * static var truncate: AxisValueLabelCollisionResolution { get }
    * @availability iOS 16.0+
    */
-  static get truncate(): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_067acaa3e5f56b46", 1017928632374830, undefined, []); }
+  static get truncate(): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_d968214ecc684fb6", 1017928632374830, undefined, []); }
   /**
    * static var automatic: AxisValueLabelCollisionResolution { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_067acaa3e5f56b46", 2510401469479216, undefined, []); }
+  static get automatic(): AxisValueLabelCollisionResolution { return callSDK<AxisValueLabelCollisionResolution>("Charts_d968214ecc684fb6", 2510401469479216, undefined, []); }
   declare readonly $type: { "s:6Charts33AxisValueLabelCollisionResolutionV": true };
 }
 
@@ -720,27 +720,27 @@ export class AxisValueLabelOrientation extends SDKHandle {
    * static var horizontal: AxisValueLabelOrientation { get }
    * @availability iOS 16.0+
    */
-  static get horizontal(): AxisValueLabelOrientation { return callSDK<AxisValueLabelOrientation>("Charts_067acaa3e5f56b46", 2167212070364012, undefined, []); }
+  static get horizontal(): AxisValueLabelOrientation { return callSDK<AxisValueLabelOrientation>("Charts_d968214ecc684fb6", 2167212070364012, undefined, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Charts_067acaa3e5f56b46", 1223393874078147, this, []); }
+  get description(): string { return callSDK<string>("Charts_d968214ecc684fb6", 1223393874078147, this, []); }
   /**
    * static var verticalReversed: AxisValueLabelOrientation { get }
    * @availability iOS 16.0+
    */
-  static get verticalReversed(): AxisValueLabelOrientation { return callSDK<AxisValueLabelOrientation>("Charts_067acaa3e5f56b46", 3540244652399487, undefined, []); }
+  static get verticalReversed(): AxisValueLabelOrientation { return callSDK<AxisValueLabelOrientation>("Charts_d968214ecc684fb6", 3540244652399487, undefined, []); }
   /**
    * static var vertical: AxisValueLabelOrientation { get }
    * @availability iOS 16.0+
    */
-  static get vertical(): AxisValueLabelOrientation { return callSDK<AxisValueLabelOrientation>("Charts_067acaa3e5f56b46", 3657030511934531, undefined, []); }
+  static get vertical(): AxisValueLabelOrientation { return callSDK<AxisValueLabelOrientation>("Charts_d968214ecc684fb6", 3657030511934531, undefined, []); }
   /**
    * static var automatic: AxisValueLabelOrientation { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): AxisValueLabelOrientation { return callSDK<AxisValueLabelOrientation>("Charts_067acaa3e5f56b46", 316345531202572, undefined, []); }
+  static get automatic(): AxisValueLabelOrientation { return callSDK<AxisValueLabelOrientation>("Charts_d968214ecc684fb6", 316345531202572, undefined, []); }
   declare readonly $type: { "s:6Charts25AxisValueLabelOrientationV": true };
 }
 
@@ -753,37 +753,37 @@ export class BarMark extends SDKHandle {
    * nonisolated init<X, Y>(x: PlottableValue<X>, y: PlottableValue<Y>, width: MarkDimension = .automatic, height: MarkDimension = .automatic, stacking: MarkStackingMethod = .standard) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXYWidthHeightStacking(x: PlottableValue<number>, y: PlottableValue<number>, width?: MarkDimension, height?: MarkDimension, stacking?: MarkStackingMethod): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_067acaa3e5f56b46", 1462301154119304, undefined, [x, y, width, height, stacking]); }
+  static initXYWidthHeightStacking(x: PlottableValue<number>, y: PlottableValue<number>, width?: MarkDimension, height?: MarkDimension, stacking?: MarkStackingMethod): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_d968214ecc684fb6", 1462301154119304, undefined, [x, y, width, height, stacking]); }
   /**
    * nonisolated init<X>(x: PlottableValue<X>, yStart: CGFloat? = nil, yEnd: CGFloat? = nil, width: MarkDimension = .automatic, stacking: MarkStackingMethod = .standard) where X : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStartYEndWidthStacking(x: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null, width?: MarkDimension, stacking?: MarkStackingMethod): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_067acaa3e5f56b46", 1939447508309891, undefined, [x, yStart, yEnd, width, stacking]); }
+  static initXYStartYEndWidthStacking(x: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null, width?: MarkDimension, stacking?: MarkStackingMethod): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_d968214ecc684fb6", 1939447508309891, undefined, [x, yStart, yEnd, width, stacking]); }
   /**
    * nonisolated init<X, Y>(x: PlottableValue<X>, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>, width: MarkDimension = .automatic) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStartYEndWidth(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>, width?: MarkDimension): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_067acaa3e5f56b46", 1900444990050648, undefined, [x, yStart, yEnd, width]); }
+  static initXYStartYEndWidth(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>, width?: MarkDimension): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_d968214ecc684fb6", 1900444990050648, undefined, [x, yStart, yEnd, width]); }
   /**
    * nonisolated init<Y>(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>) where Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYStartYEnd(xStart: (number) | null, xEnd: (number) | null, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_067acaa3e5f56b46", 980313969306217, undefined, [xStart, xEnd, yStart, yEnd]); }
+  static initXStartXEndYStartYEnd(xStart: (number) | null, xEnd: (number) | null, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_d968214ecc684fb6", 980313969306217, undefined, [xStart, xEnd, yStart, yEnd]); }
   /**
    * nonisolated init<X>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, yStart: CGFloat? = nil, yEnd: CGFloat? = nil) where X : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYStartYEnd51228(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_067acaa3e5f56b46", 283773563231961, undefined, [xStart, xEnd, yStart, yEnd]); }
+  static initXStartXEndYStartYEnd51228(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_d968214ecc684fb6", 283773563231961, undefined, [xStart, xEnd, yStart, yEnd]); }
   /**
    * nonisolated init<Y>(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, y: PlottableValue<Y>, height: MarkDimension = .automatic, stacking: MarkStackingMethod = .standard) where Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYHeightStacking(xStart: (number) | null, xEnd: (number) | null, y: PlottableValue<number>, height?: MarkDimension, stacking?: MarkStackingMethod): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_067acaa3e5f56b46", 1402720831711529, undefined, [xStart, xEnd, y, height, stacking]); }
+  static initXStartXEndYHeightStacking(xStart: (number) | null, xEnd: (number) | null, y: PlottableValue<number>, height?: MarkDimension, stacking?: MarkStackingMethod): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_d968214ecc684fb6", 1402720831711529, undefined, [xStart, xEnd, y, height, stacking]); }
   /**
    * nonisolated init<X, Y>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, y: PlottableValue<Y>, height: MarkDimension = .automatic) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYHeight(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, height?: MarkDimension): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_067acaa3e5f56b46", 3905886233619526, undefined, [xStart, xEnd, y, height]); }
+  static initXStartXEndYHeight(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, height?: MarkDimension): Promise<BarMark> { return callSDKAsync<BarMark>("Charts_d968214ecc684fb6", 3905886233619526, undefined, [xStart, xEnd, y, height]); }
   declare readonly $type: { "s:6Charts7BarMarkV": true };
 }
 
@@ -839,17 +839,17 @@ export class BasicChartSymbolShape extends SDKHandle {
   
    * @availability iOS 16.0+
    */
-  strokeBorder(lineWidth?: number): SDKHandle { return callSDK<SDKHandle>("Charts_067acaa3e5f56b46", 2543286320931440, this, [lineWidth]); }
+  strokeBorder(lineWidth?: number): SDKHandle { return callSDK<SDKHandle>("Charts_d968214ecc684fb6", 2543286320931440, this, [lineWidth]); }
   /**
    * var perceptualUnitRect: CGRect { get }
    * @availability iOS 16.0+
    */
-  get perceptualUnitRect(): $SDK1 { return callSDK<$SDK1>("Charts_067acaa3e5f56b46", 2684016587746047, this, []); }
+  get perceptualUnitRect(): $SDK1 { return callSDK<$SDK1>("Charts_d968214ecc684fb6", 2684016587746047, this, []); }
   /**
    * nonisolated func path(in rect: CGRect) -> Path
    * @availability iOS 16.0+
    */
-  path(rect: $SDK1): _SwiftUICore_Path { return callSDK<_SwiftUICore_Path>("Charts_067acaa3e5f56b46", 3334655022414753, this, [rect]); }
+  path(rect: $SDK1): _SwiftUICore_Path { return callSDK<_SwiftUICore_Path>("Charts_d968214ecc684fb6", 3334655022414753, this, [rect]); }
   declare readonly $type: { "s:6Charts21BasicChartSymbolShapeV": true };
 }
 
@@ -916,17 +916,17 @@ export class Chart3DCameraProjection extends SDKHandle {
    * static var perspective: Chart3DCameraProjection { get }
    * @availability iOS 26.0+
    */
-  static get perspective(): Chart3DCameraProjection { return callSDK<Chart3DCameraProjection>("Charts_067acaa3e5f56b46", 1981546572458186, undefined, []); }
+  static get perspective(): Chart3DCameraProjection { return callSDK<Chart3DCameraProjection>("Charts_d968214ecc684fb6", 1981546572458186, undefined, []); }
   /**
    * static var orthographic: Chart3DCameraProjection { get }
    * @availability iOS 26.0+
    */
-  static get orthographic(): Chart3DCameraProjection { return callSDK<Chart3DCameraProjection>("Charts_067acaa3e5f56b46", 1476260351748993, undefined, []); }
+  static get orthographic(): Chart3DCameraProjection { return callSDK<Chart3DCameraProjection>("Charts_d968214ecc684fb6", 1476260351748993, undefined, []); }
   /**
    * static var automatic: Chart3DCameraProjection { get }
    * @availability iOS 26.0+
    */
-  static get automatic(): Chart3DCameraProjection { return callSDK<Chart3DCameraProjection>("Charts_067acaa3e5f56b46", 100971584261262, undefined, []); }
+  static get automatic(): Chart3DCameraProjection { return callSDK<Chart3DCameraProjection>("Charts_d968214ecc684fb6", 100971584261262, undefined, []); }
   declare readonly $type: { "s:6Charts23Chart3DCameraProjectionV": true };
 }
 
@@ -955,52 +955,52 @@ export class Chart3DPose extends SDKHandle {
    * var inclination: Angle2D { get }
    * @availability iOS 26.0+
    */
-  get inclination(): _Spatial_Angle2D { return callSDK<_Spatial_Angle2D>("Charts_067acaa3e5f56b46", 147944874428267, this, []); }
+  get inclination(): _Spatial_Angle2D { return callSDK<_Spatial_Angle2D>("Charts_d968214ecc684fb6", 147944874428267, this, []); }
   /**
    * static var top: Chart3DPose { get }
    * @availability iOS 26.0+
    */
-  static get top(): Chart3DPose { return callSDK<Chart3DPose>("Charts_067acaa3e5f56b46", 1350713500828290, undefined, []); }
+  static get top(): Chart3DPose { return callSDK<Chart3DPose>("Charts_d968214ecc684fb6", 1350713500828290, undefined, []); }
   /**
    * static var back: Chart3DPose { get }
    * @availability iOS 26.0+
    */
-  static get back(): Chart3DPose { return callSDK<Chart3DPose>("Charts_067acaa3e5f56b46", 1369907142710536, undefined, []); }
+  static get back(): Chart3DPose { return callSDK<Chart3DPose>("Charts_d968214ecc684fb6", 1369907142710536, undefined, []); }
   /**
    * static var left: Chart3DPose { get }
    * @availability iOS 26.0+
    */
-  static get left(): Chart3DPose { return callSDK<Chart3DPose>("Charts_067acaa3e5f56b46", 3399357263912608, undefined, []); }
+  static get left(): Chart3DPose { return callSDK<Chart3DPose>("Charts_d968214ecc684fb6", 3399357263912608, undefined, []); }
   /**
    * static var front: Chart3DPose { get }
    * @availability iOS 26.0+
    */
-  static get front(): Chart3DPose { return callSDK<Chart3DPose>("Charts_067acaa3e5f56b46", 3040789225382162, undefined, []); }
+  static get front(): Chart3DPose { return callSDK<Chart3DPose>("Charts_d968214ecc684fb6", 3040789225382162, undefined, []); }
   /**
    * static var right: Chart3DPose { get }
    * @availability iOS 26.0+
    */
-  static get right(): Chart3DPose { return callSDK<Chart3DPose>("Charts_067acaa3e5f56b46", 1608099380739503, undefined, []); }
+  static get right(): Chart3DPose { return callSDK<Chart3DPose>("Charts_d968214ecc684fb6", 1608099380739503, undefined, []); }
   /**
    * static var bottom: Chart3DPose { get }
    * @availability iOS 26.0+
    */
-  static get bottom(): Chart3DPose { return callSDK<Chart3DPose>("Charts_067acaa3e5f56b46", 2647650664113669, undefined, []); }
+  static get bottom(): Chart3DPose { return callSDK<Chart3DPose>("Charts_d968214ecc684fb6", 2647650664113669, undefined, []); }
   /**
    * init(azimuth: Angle2D, inclination: Angle2D)
    * @availability iOS 26.0+
    */
-  static init(azimuth: _Spatial_Angle2D, inclination: _Spatial_Angle2D): Chart3DPose { return callSDK<Chart3DPose>("Charts_067acaa3e5f56b46", 536870473976721, undefined, [azimuth, inclination]); }
+  static init(azimuth: _Spatial_Angle2D, inclination: _Spatial_Angle2D): Chart3DPose { return callSDK<Chart3DPose>("Charts_d968214ecc684fb6", 536870473976721, undefined, [azimuth, inclination]); }
   /**
    * var azimuth: Angle2D { get }
    * @availability iOS 26.0+
    */
-  get azimuth(): _Spatial_Angle2D { return callSDK<_Spatial_Angle2D>("Charts_067acaa3e5f56b46", 4132961768953524, this, []); }
+  get azimuth(): _Spatial_Angle2D { return callSDK<_Spatial_Angle2D>("Charts_d968214ecc684fb6", 4132961768953524, this, []); }
   /**
    * static var `default`: Chart3DPose { get }
    * @availability iOS 26.0+
    */
-  static get default(): Chart3DPose { return callSDK<Chart3DPose>("Charts_067acaa3e5f56b46", 3844186130098723, undefined, []); }
+  static get default(): Chart3DPose { return callSDK<Chart3DPose>("Charts_d968214ecc684fb6", 3844186130098723, undefined, []); }
   declare readonly $type: { "s:6Charts11Chart3DPoseV": true };
 }
 
@@ -1081,159 +1081,159 @@ export class ChartProxy extends SDKHandle {
    * func symbolSize<P>(for value: P) -> CGFloat? where P : Plottable
    * @availability iOS 16.4+
    */
-  symbolSize(value: number): (number) | null { return callSDK<(number) | null>("Charts_067acaa3e5f56b46", 1800998072427476, this, [value]); }
+  symbolSize(value: number): (number) | null { return callSDK<(number) | null>("Charts_d968214ecc684fb6", 1800998072427476, this, [value]); }
   /**
    * var plotAreaSize: CGSize { get }
    * @availability iOS 16.0+
    * @deprecated iOS 17.0
    */
-  get plotAreaSize(): $SDK0 { return callSDK<$SDK0>("Charts_067acaa3e5f56b46", 1418734693578686, this, []); }
+  get plotAreaSize(): $SDK0 { return callSDK<$SDK0>("Charts_d968214ecc684fb6", 1418734693578686, this, []); }
   /**
    * func selectXRange(from: CGFloat, to: CGFloat)
    * @availability iOS 17.0+
    */
-  selectXRange(from: number, to: number): void { return callSDK<void>("Charts_067acaa3e5f56b46", 401675271364553, this, [from, to]); }
+  selectXRange(from: number, to: number): void { return callSDK<void>("Charts_d968214ecc684fb6", 401675271364553, this, [from, to]); }
   /**
    * func selectXValue(at xPosition: CGFloat)
    * @availability iOS 17.0+
    */
-  selectXValue(xPosition: number): void { return callSDK<void>("Charts_067acaa3e5f56b46", 1665674160612530, this, [xPosition]); }
+  selectXValue(xPosition: number): void { return callSDK<void>("Charts_d968214ecc684fb6", 1665674160612530, this, [xPosition]); }
   /**
    * func selectYRange(from: CGFloat, to: CGFloat)
    * @availability iOS 17.0+
    */
-  selectYRange(from: number, to: number): void { return callSDK<void>("Charts_067acaa3e5f56b46", 527779924263138, this, [from, to]); }
+  selectYRange(from: number, to: number): void { return callSDK<void>("Charts_d968214ecc684fb6", 527779924263138, this, [from, to]); }
   /**
    * func selectYValue(at yPosition: CGFloat)
    * @availability iOS 17.0+
    */
-  selectYValue(yPosition: number): void { return callSDK<void>("Charts_067acaa3e5f56b46", 1223147709184400, this, [yPosition]); }
+  selectYValue(yPosition: number): void { return callSDK<void>("Charts_d968214ecc684fb6", 1223147709184400, this, [yPosition]); }
   /**
    * func symbolDomain<P>(dataType: P.Type) -> [P] where P : Plottable
    * @availability iOS 16.4+
    */
-  symbolDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_067acaa3e5f56b46", 3586589528975058, this, [dataType]); }
+  symbolDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_d968214ecc684fb6", 3586589528975058, this, [dataType]); }
   /**
    * var plotAreaFrame: Anchor<CGRect> { get }
    * @availability iOS 16.0+
    * @deprecated iOS 17.0
    */
-  get plotAreaFrame(): _SwiftUICore_Anchor<{ x: number; y: number; width: number; height: number }> { return callSDK<_SwiftUICore_Anchor<{ x: number; y: number; width: number; height: number }>>("Charts_067acaa3e5f56b46", 2982794841676948, this, []); }
+  get plotAreaFrame(): _SwiftUICore_Anchor<{ x: number; y: number; width: number; height: number }> { return callSDK<_SwiftUICore_Anchor<{ x: number; y: number; width: number; height: number }>>("Charts_d968214ecc684fb6", 2982794841676948, this, []); }
   /**
    * func positionRange<X, Y>(for point: (x: X, y: Y)) -> CGRect? where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  positionRangeFor(point: { "x": number; "y": number }): ({ x: number; y: number; width: number; height: number }) | null { return callSDK<({ x: number; y: number; width: number; height: number }) | null>("Charts_067acaa3e5f56b46", 3465997741657690, this, [point]); }
+  positionRangeFor(point: { "x": number; "y": number }): ({ x: number; y: number; width: number; height: number }) | null { return callSDK<({ x: number; y: number; width: number; height: number }) | null>("Charts_d968214ecc684fb6", 3465997741657690, this, [point]); }
   /**
    * func positionRange<P>(forX value: P) -> ClosedRange<CGFloat>? where P : Plottable
    * @availability iOS 16.0+
    */
-  positionRangeForX(value: number): $SDK11 { return callSDK<$SDK11>("Charts_067acaa3e5f56b46", 1059596801461991, this, [value]); }
+  positionRangeForX(value: number): $SDK11 { return callSDK<$SDK11>("Charts_d968214ecc684fb6", 1059596801461991, this, [value]); }
   /**
    * func positionRange<P>(forY value: P) -> ClosedRange<CGFloat>? where P : Plottable
    * @availability iOS 16.0+
    */
-  positionRangeForY(value: number): $SDK11 { return callSDK<$SDK11>("Charts_067acaa3e5f56b46", 4178605247205428, this, [value]); }
+  positionRangeForY(value: number): $SDK11 { return callSDK<$SDK11>("Charts_d968214ecc684fb6", 4178605247205428, this, [value]); }
   /**
    * func foregroundStyle<P>(for value: P) -> AnyShapeStyle? where P : Plottable
    * @availability iOS 16.4+
    */
-  foregroundStyle(value: number): (_SwiftUICore_AnyShapeStyle) | null { return callSDK<(_SwiftUICore_AnyShapeStyle) | null>("Charts_067acaa3e5f56b46", 3023216273925167, this, [value]); }
+  foregroundStyle(value: number): (_SwiftUICore_AnyShapeStyle) | null { return callSDK<(_SwiftUICore_AnyShapeStyle) | null>("Charts_d968214ecc684fb6", 3023216273925167, this, [value]); }
   /**
    * func lineStyleDomain<P>(dataType: P.Type) -> [P] where P : Plottable
    * @availability iOS 16.4+
    */
-  lineStyleDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_067acaa3e5f56b46", 1495462847567049, this, [dataType]); }
+  lineStyleDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_d968214ecc684fb6", 1495462847567049, this, [dataType]); }
   /**
    * func selectAngleValue(at angle: Angle)
    * @availability iOS 17.0+
    */
-  selectAngleValue(angle: _SwiftUICore_Angle): void { return callSDK<void>("Charts_067acaa3e5f56b46", 814472321478350, this, [angle]); }
+  selectAngleValue(angle: _SwiftUICore_Angle): void { return callSDK<void>("Charts_d968214ecc684fb6", 814472321478350, this, [angle]); }
   /**
    * func symbolSizeDomain<P>(dataType: P.Type) -> [P] where P : Plottable
    * @availability iOS 16.4+
    */
-  symbolSizeDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_067acaa3e5f56b46", 2227317485750690, this, [dataType]); }
+  symbolSizeDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_d968214ecc684fb6", 2227317485750690, this, [dataType]); }
   /**
    * var plotContainerFrame: Anchor<CGRect>? { get }
    * @availability iOS 17.0+
    */
-  get plotContainerFrame(): $SDK13 { return callSDK<$SDK13>("Charts_067acaa3e5f56b46", 727109544034634, this, []); }
+  get plotContainerFrame(): $SDK13 { return callSDK<$SDK13>("Charts_d968214ecc684fb6", 727109544034634, this, []); }
   /**
    * func foregroundStyleDomain<P>(dataType: P.Type) -> [P] where P : Plottable
    * @availability iOS 16.4+
    */
-  foregroundStyleDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_067acaa3e5f56b46", 4234800655767469, this, [dataType]); }
+  foregroundStyleDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_d968214ecc684fb6", 4234800655767469, this, [dataType]); }
   /**
    * func angle(at position: CGPoint) -> Angle
    * @availability iOS 17.0+
    */
-  angle(position: { x: number; y: number }): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("Charts_067acaa3e5f56b46", 1864585951409727, this, [position]); }
+  angle(position: { x: number; y: number }): _SwiftUICore_Angle { return callSDK<_SwiftUICore_Angle>("Charts_d968214ecc684fb6", 1864585951409727, this, [position]); }
   /**
    * func value<X, Y>(at position: CGPoint, as: (X, Y).Type = (X, Y).self) -> (X, Y)? where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  valueAt(position: { x: number; y: number }): ([number, number]) | null { return callSDK<([number, number]) | null>("Charts_067acaa3e5f56b46", 1193683283321243, this, [position]); }
+  valueAt(position: { x: number; y: number }): ([number, number]) | null { return callSDK<([number, number]) | null>("Charts_d968214ecc684fb6", 1193683283321243, this, [position]); }
   /**
    * func value<P>(atX position: CGFloat, as: P.Type = P.self) -> P? where P : Plottable
    * @availability iOS 16.0+
    */
-  valueAtXAs(position: number, as?: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null { return callSDK<(unknown) | null>("Charts_067acaa3e5f56b46", 634158273206752, this, [position, as]); }
+  valueAtXAs(position: number, as?: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null { return callSDK<(unknown) | null>("Charts_d968214ecc684fb6", 634158273206752, this, [position, as]); }
   /**
    * func value<P>(atY position: CGFloat, as: P.Type = P.self) -> P? where P : Plottable
    * @availability iOS 16.0+
    */
-  valueAtYAs(position: number, as?: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null { return callSDK<(unknown) | null>("Charts_067acaa3e5f56b46", 3605467360475293, this, [position, as]); }
+  valueAtYAs(position: number, as?: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null { return callSDK<(unknown) | null>("Charts_d968214ecc684fb6", 3605467360475293, this, [position, as]); }
   /**
    * func value<P>(atAngle angle: Angle, as: P.Type = P.self) -> P? where P : Plottable
    * @availability iOS 17.0+
    */
-  valueAtAngleAs(angle: _SwiftUICore_Angle, as?: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null { return callSDK<(unknown) | null>("Charts_067acaa3e5f56b46", 4160910120705101, this, [angle, as]); }
+  valueAtAngleAs(angle: _SwiftUICore_Angle, as?: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null { return callSDK<(unknown) | null>("Charts_d968214ecc684fb6", 4160910120705101, this, [angle, as]); }
   /**
    * func symbol<P>(for value: P) -> AnyChartSymbolShape? where P : Plottable
    * @availability iOS 16.4+
    */
-  symbol(value: number): (AnyChartSymbolShape) | null { return callSDK<(AnyChartSymbolShape) | null>("Charts_067acaa3e5f56b46", 3137717630995110, this, [value]); }
+  symbol(value: number): (AnyChartSymbolShape) | null { return callSDK<(AnyChartSymbolShape) | null>("Charts_d968214ecc684fb6", 3137717630995110, this, [value]); }
   /**
    * func xDomain<P>(dataType: P.Type) -> [P] where P : Plottable
    * @availability iOS 16.4+
    */
-  xDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_067acaa3e5f56b46", 2621931583624748, this, [dataType]); }
+  xDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_d968214ecc684fb6", 2621931583624748, this, [dataType]); }
   /**
    * func yDomain<P>(dataType: P.Type) -> [P] where P : Plottable
    * @availability iOS 16.4+
    */
-  yDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_067acaa3e5f56b46", 1474442003831940, this, [dataType]); }
+  yDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown> { return callSDK<Array<unknown>>("Charts_d968214ecc684fb6", 1474442003831940, this, [dataType]); }
   /**
    * var plotSize: CGSize { get }
    * @availability iOS 17.0+
    */
-  get plotSize(): $SDK0 { return callSDK<$SDK0>("Charts_067acaa3e5f56b46", 1188705336819331, this, []); }
+  get plotSize(): $SDK0 { return callSDK<$SDK0>("Charts_d968214ecc684fb6", 1188705336819331, this, []); }
   /**
    * func position<X, Y>(for point: (x: X, y: Y)) -> CGPoint? where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  positionFor(point: { "x": number; "y": number }): ({ x: number; y: number }) | null { return callSDK<({ x: number; y: number }) | null>("Charts_067acaa3e5f56b46", 69602876294718, this, [point]); }
+  positionFor(point: { "x": number; "y": number }): ({ x: number; y: number }) | null { return callSDK<({ x: number; y: number }) | null>("Charts_d968214ecc684fb6", 69602876294718, this, [point]); }
   /**
    * func position<P>(forX value: P) -> CGFloat? where P : Plottable
    * @availability iOS 16.0+
    */
-  positionForX(value: number): (number) | null { return callSDK<(number) | null>("Charts_067acaa3e5f56b46", 1528314986236150, this, [value]); }
+  positionForX(value: number): (number) | null { return callSDK<(number) | null>("Charts_d968214ecc684fb6", 1528314986236150, this, [value]); }
   /**
    * func position<P>(forY value: P) -> CGFloat? where P : Plottable
    * @availability iOS 16.0+
    */
-  positionForY(value: number): (number) | null { return callSDK<(number) | null>("Charts_067acaa3e5f56b46", 3473330137479096, this, [value]); }
+  positionForY(value: number): (number) | null { return callSDK<(number) | null>("Charts_d968214ecc684fb6", 3473330137479096, this, [value]); }
   /**
    * func lineStyle<P>(for value: P) -> StrokeStyle? where P : Plottable
    * @availability iOS 16.4+
    */
-  lineStyle(value: number): $SDK3 { return callSDK<$SDK3>("Charts_067acaa3e5f56b46", 2711389047424758, this, [value]); }
+  lineStyle(value: number): $SDK3 { return callSDK<$SDK3>("Charts_d968214ecc684fb6", 2711389047424758, this, [value]); }
   /**
    * var plotFrame: Anchor<CGRect>? { get }
    * @availability iOS 17.0+
    */
-  get plotFrame(): $SDK13 { return callSDK<$SDK13>("Charts_067acaa3e5f56b46", 3916389949885361, this, []); }
+  get plotFrame(): $SDK13 { return callSDK<$SDK13>("Charts_d968214ecc684fb6", 3916389949885361, this, []); }
   declare readonly $type: { "s:6Charts10ChartProxyV": true };
 }
 
@@ -1255,12 +1255,12 @@ export class ChartScrollTargetBehaviorContext extends SDKHandle {
    * var chartProxy: ChartProxy { get }
    * @availability iOS 17.0+
    */
-  get chartProxy(): ChartProxy { return callSDK<ChartProxy>("Charts_067acaa3e5f56b46", 1439621246955091, this, []); }
+  get chartProxy(): ChartProxy { return callSDK<ChartProxy>("Charts_d968214ecc684fb6", 1439621246955091, this, []); }
   /**
    * subscript<T>(dynamicMember keyPath: KeyPath<ScrollTargetBehaviorContext, T>) -> T { get }
    * @availability iOS 17.0+
    */
-  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("Charts_067acaa3e5f56b46", 1901844416106167, this, [keyPath]); }
+  subscript(keyPath: SDKHandle): unknown { return callSDK<unknown>("Charts_d968214ecc684fb6", 1901844416106167, this, [keyPath]); }
   declare readonly $type: { "s:6Charts32ChartScrollTargetBehaviorContextV": true };
 }
 
@@ -1278,7 +1278,7 @@ export class Circle extends SDKHandle {
    * var perceptualUnitRect: CGRect { get }
    * @availability iOS 16.0+
    */
-  get perceptualUnitRect(): $SDK1 { return callSDK<$SDK1>("Charts_067acaa3e5f56b46", 517828531684072, this, []); }
+  get perceptualUnitRect(): $SDK1 { return callSDK<$SDK1>("Charts_d968214ecc684fb6", 517828531684072, this, []); }
   declare readonly $type: { "s:7SwiftUI6CircleV": true };
 }
 
@@ -1303,57 +1303,57 @@ export class DateBins extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 16.0+
    */
-  get startIndex(): number { return callSDK<number>("Charts_067acaa3e5f56b46", 2011731188994863, this, []); }
+  get startIndex(): number { return callSDK<number>("Charts_d968214ecc684fb6", 2011731188994863, this, []); }
   /**
    * nonisolated init(thresholds: [Date])
    * @availability iOS 16.0+
    */
-  static initThresholds(thresholds: Array<globalThis.Date>): DateBins { return callSDK<DateBins>("Charts_067acaa3e5f56b46", 3744983999380384, undefined, [thresholds]); }
+  static initThresholds(thresholds: Array<globalThis.Date>): DateBins { return callSDK<DateBins>("Charts_d968214ecc684fb6", 3744983999380384, undefined, [thresholds]); }
   /**
    * var thresholds: [Date] { get }
    * @availability iOS 16.0+
    */
-  get thresholds(): Array<globalThis.Date> { return callSDK<Array<globalThis.Date>>("Charts_067acaa3e5f56b46", 835379334979315, this, []); }
+  get thresholds(): Array<globalThis.Date> { return callSDK<Array<globalThis.Date>>("Charts_d968214ecc684fb6", 835379334979315, this, []); }
   /**
    * nonisolated init(timeInterval: TimeInterval, range: ClosedRange<Date>)
    * @availability iOS 16.0+
    */
-  static initTimeIntervalRange(timeInterval: number, range: SDKHandle): DateBins { return callSDK<DateBins>("Charts_067acaa3e5f56b46", 3276926225442514, undefined, [timeInterval, range]); }
+  static initTimeIntervalRange(timeInterval: number, range: SDKHandle): DateBins { return callSDK<DateBins>("Charts_d968214ecc684fb6", 3276926225442514, undefined, [timeInterval, range]); }
   /**
    * nonisolated init(data: [Date], desiredCount: Int? = nil, calendar: Calendar = .autoupdatingCurrent)
    * @availability iOS 16.0+
    */
-  static initDataDesiredCountCalendar(data: Array<globalThis.Date>, desiredCount?: (number) | null, calendar?: _Foundation_Calendar): DateBins { return callSDK<DateBins>("Charts_067acaa3e5f56b46", 3921627610081141, undefined, [data, desiredCount, calendar]); }
+  static initDataDesiredCountCalendar(data: Array<globalThis.Date>, desiredCount?: (number) | null, calendar?: _Foundation_Calendar): DateBins { return callSDK<DateBins>("Charts_d968214ecc684fb6", 3921627610081141, undefined, [data, desiredCount, calendar]); }
   /**
    * nonisolated init(unit: Calendar.Component, by stride: Int = 1, range: ClosedRange<Date>, calendar: Calendar = .autoupdatingCurrent)
    * @availability iOS 16.0+
    */
-  static initUnitByRangeCalendar(unit: _Foundation_Calendar_Component, stride: number, range: SDKHandle, calendar?: _Foundation_Calendar): DateBins { return callSDK<DateBins>("Charts_067acaa3e5f56b46", 3079488802762550, undefined, [unit, stride, range, calendar]); }
+  static initUnitByRangeCalendar(unit: _Foundation_Calendar_Component, stride: number, range: SDKHandle, calendar?: _Foundation_Calendar): DateBins { return callSDK<DateBins>("Charts_d968214ecc684fb6", 3079488802762550, undefined, [unit, stride, range, calendar]); }
   /**
    * func index(for value: Date) -> Int
    * @availability iOS 16.0+
    */
-  indexFor(value: globalThis.Date): number { return callSDK<number>("Charts_067acaa3e5f56b46", 4223464777965285, this, [value]); }
+  indexFor(value: globalThis.Date): number { return callSDK<number>("Charts_d968214ecc684fb6", 4223464777965285, this, [value]); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 16.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("Charts_067acaa3e5f56b46", 869878052743926, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("Charts_d968214ecc684fb6", 869878052743926, this, [i]); }
   /**
    * nonisolated init(range: ClosedRange<Date>, desiredCount: Int = 10, calendar: Calendar = .autoupdatingCurrent)
    * @availability iOS 16.0+
    */
-  static initRangeDesiredCountCalendar(range: SDKHandle, desiredCount?: number, calendar?: _Foundation_Calendar): DateBins { return callSDK<DateBins>("Charts_067acaa3e5f56b46", 2614278342491070, undefined, [range, desiredCount, calendar]); }
+  static initRangeDesiredCountCalendar(range: SDKHandle, desiredCount?: number, calendar?: _Foundation_Calendar): DateBins { return callSDK<DateBins>("Charts_d968214ecc684fb6", 2614278342491070, undefined, [range, desiredCount, calendar]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 16.0+
    */
-  get endIndex(): number { return callSDK<number>("Charts_067acaa3e5f56b46", 1891906471760553, this, []); }
+  get endIndex(): number { return callSDK<number>("Charts_d968214ecc684fb6", 1891906471760553, this, []); }
   /**
    * subscript(position: Int) -> ChartBinRange<Date> { get }
    * @availability iOS 16.0+
    */
-  subscript(position: number): $SDK18 { return callSDK<$SDK18>("Charts_067acaa3e5f56b46", 4023438954447367, this, [position]); }
+  subscript(position: number): $SDK18 { return callSDK<$SDK18>("Charts_d968214ecc684fb6", 4023438954447367, this, [position]); }
   declare readonly $type: { "s:6Charts8DateBinsV": true };
 }
 
@@ -1392,12 +1392,12 @@ export class Decimal extends SDKHandle {
    * nonisolated init?(primitivePlottable: Double)
    * @availability iOS 16.0+
    */
-  static init(primitivePlottable: number): (_Foundation_Decimal) | null { return callSDK<(_Foundation_Decimal) | null>("Charts_067acaa3e5f56b46", 3588213933747825, undefined, [primitivePlottable]); }
+  static init(primitivePlottable: number): (_Foundation_Decimal) | null { return callSDK<(_Foundation_Decimal) | null>("Charts_d968214ecc684fb6", 3588213933747825, undefined, [primitivePlottable]); }
   /**
    * var primitivePlottable: Double { get }
    * @availability iOS 16.0+
    */
-  get primitivePlottable(): number { return callSDK<number>("Charts_067acaa3e5f56b46", 3298539191292551, this, []); }
+  get primitivePlottable(): number { return callSDK<number>("Charts_d968214ecc684fb6", 3298539191292551, this, []); }
   declare readonly $type: { "c:@SA@NSDecimal": true };
 }
 
@@ -1418,7 +1418,7 @@ export class EmptyView extends SDKHandle {
    * nonisolated var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): never { return callSDK<never>("Charts_067acaa3e5f56b46", 2810374111706884, this, []); }
+  get body(): never { return callSDK<never>("Charts_d968214ecc684fb6", 2810374111706884, this, []); }
   declare readonly $type: { "s:7SwiftUI9EmptyViewV": true };
 }
 
@@ -1513,52 +1513,52 @@ export class InterpolationMethod extends SDKHandle {
    * static func catmullRom(alpha: CGFloat) -> InterpolationMethod
    * @availability iOS 16.0+
    */
-  static catmullRomAlpha(alpha: number): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_067acaa3e5f56b46", 4338098784561436, undefined, [alpha]); }
+  static catmullRomAlpha(alpha: number): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_d968214ecc684fb6", 4338098784561436, undefined, [alpha]); }
   /**
    * static var catmullRom: InterpolationMethod { get }
    * @availability iOS 16.0+
    */
-  static get catmullRom(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_067acaa3e5f56b46", 238074993652274, undefined, []); }
+  static get catmullRom(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_d968214ecc684fb6", 238074993652274, undefined, []); }
   /**
    * static var stepCenter: InterpolationMethod { get }
    * @availability iOS 16.0+
    */
-  static get stepCenter(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_067acaa3e5f56b46", 1635886384492731, undefined, []); }
+  static get stepCenter(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_d968214ecc684fb6", 1635886384492731, undefined, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Charts_067acaa3e5f56b46", 4459635422047082, this, []); }
+  get description(): string { return callSDK<string>("Charts_d968214ecc684fb6", 4459635422047082, this, []); }
   /**
    * static var linear: InterpolationMethod { get }
    * @availability iOS 16.0+
    */
-  static get linear(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_067acaa3e5f56b46", 3428329835609021, undefined, []); }
+  static get linear(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_d968214ecc684fb6", 3428329835609021, undefined, []); }
   /**
    * static var stepEnd: InterpolationMethod { get }
    * @availability iOS 16.0+
    */
-  static get stepEnd(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_067acaa3e5f56b46", 3655634126080060, undefined, []); }
+  static get stepEnd(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_d968214ecc684fb6", 3655634126080060, undefined, []); }
   /**
    * static func cardinal(tension: CGFloat) -> InterpolationMethod
    * @availability iOS 16.0+
    */
-  static cardinalTension(tension: number): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_067acaa3e5f56b46", 4093304354318636, undefined, [tension]); }
+  static cardinalTension(tension: number): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_d968214ecc684fb6", 4093304354318636, undefined, [tension]); }
   /**
    * static var cardinal: InterpolationMethod { get }
    * @availability iOS 16.0+
    */
-  static get cardinal(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_067acaa3e5f56b46", 857683600026504, undefined, []); }
+  static get cardinal(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_d968214ecc684fb6", 857683600026504, undefined, []); }
   /**
    * static var monotone: InterpolationMethod { get }
    * @availability iOS 16.0+
    */
-  static get monotone(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_067acaa3e5f56b46", 1260369934854791, undefined, []); }
+  static get monotone(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_d968214ecc684fb6", 1260369934854791, undefined, []); }
   /**
    * static var stepStart: InterpolationMethod { get }
    * @availability iOS 16.0+
    */
-  static get stepStart(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_067acaa3e5f56b46", 2747795027640359, undefined, []); }
+  static get stepStart(): InterpolationMethod { return callSDK<InterpolationMethod>("Charts_d968214ecc684fb6", 2747795027640359, undefined, []); }
   declare readonly $type: { "s:6Charts19InterpolationMethodV": true };
 }
 
@@ -1571,12 +1571,12 @@ export class LineMark extends SDKHandle {
    * nonisolated init<X, Y, S>(x: PlottableValue<X>, y: PlottableValue<Y>, series: PlottableValue<S>) where X : Plottable, Y : Plottable, S : Plottable
    * @availability iOS 16.0+
    */
-  static initXYSeries(x: PlottableValue<number>, y: PlottableValue<number>, series: PlottableValue<number>): Promise<LineMark> { return callSDKAsync<LineMark>("Charts_067acaa3e5f56b46", 1259763555286579, undefined, [x, y, series]); }
+  static initXYSeries(x: PlottableValue<number>, y: PlottableValue<number>, series: PlottableValue<number>): Promise<LineMark> { return callSDKAsync<LineMark>("Charts_d968214ecc684fb6", 1259763555286579, undefined, [x, y, series]); }
   /**
    * nonisolated init<X, Y>(x: PlottableValue<X>, y: PlottableValue<Y>) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXY(x: PlottableValue<number>, y: PlottableValue<number>): Promise<LineMark> { return callSDKAsync<LineMark>("Charts_067acaa3e5f56b46", 2551618409314587, undefined, [x, y]); }
+  static initXY(x: PlottableValue<number>, y: PlottableValue<number>): Promise<LineMark> { return callSDKAsync<LineMark>("Charts_d968214ecc684fb6", 2551618409314587, undefined, [x, y]); }
   declare readonly $type: { "s:6Charts8LineMarkV": true };
 }
 
@@ -1615,17 +1615,17 @@ export class MajorValueAlignment<Value = unknown> extends SDKHandle {
    * static var page: MajorValueAlignment<Value> { get }
    * @availability iOS 17.0+
    */
-  static get page(): MajorValueAlignment<number> { return callSDK<MajorValueAlignment<number>>("Charts_067acaa3e5f56b46", 961118741116495, undefined, []); }
+  static get page(): MajorValueAlignment<number> { return callSDK<MajorValueAlignment<number>>("Charts_d968214ecc684fb6", 961118741116495, undefined, []); }
   /**
    * static func unit(_ unit: Value) -> MajorValueAlignment<Value> where Value : Numeric
    * @availability iOS 17.0+
    */
-  static unit(unit: number): MajorValueAlignment<number> { return callSDK<MajorValueAlignment<number>>("Charts_067acaa3e5f56b46", 3666001397665765, undefined, [unit]); }
+  static unit(unit: number): MajorValueAlignment<number> { return callSDK<MajorValueAlignment<number>>("Charts_d968214ecc684fb6", 3666001397665765, undefined, [unit]); }
   /**
    * static func matching(_ components: DateComponents) -> MajorValueAlignment<Value> where Value == Date
    * @availability iOS 17.0+
    */
-  static matching(components: _Foundation_DateComponents): MajorValueAlignment<globalThis.Date> { return callSDK<MajorValueAlignment<globalThis.Date>>("Charts_067acaa3e5f56b46", 165447910202170, undefined, [components]); }
+  static matching(components: _Foundation_DateComponents): MajorValueAlignment<globalThis.Date> { return callSDK<MajorValueAlignment<globalThis.Date>>("Charts_d968214ecc684fb6", 165447910202170, undefined, [components]); }
   declare readonly $type: { "s:6Charts19MajorValueAlignmentV": true };
 }
 
@@ -1638,37 +1638,37 @@ export class MarkDimension extends SDKHandle {
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Charts_067acaa3e5f56b46", 1008983684237009, this, []); }
+  get description(): string { return callSDK<string>("Charts_d968214ecc684fb6", 1008983684237009, this, []); }
   /**
    * nonisolated init(floatLiteral value: Double)
    * @availability iOS 16.0+
    */
-  static initFloatLiteral(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_067acaa3e5f56b46", 2047510009803349, undefined, [value]); }
+  static initFloatLiteral(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_d968214ecc684fb6", 2047510009803349, undefined, [value]); }
   /**
    * nonisolated init(integerLiteral value: Int)
    * @availability iOS 16.0+
    */
-  static initIntegerLiteral(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_067acaa3e5f56b46", 3501285086881563, undefined, [value]); }
+  static initIntegerLiteral(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_d968214ecc684fb6", 3501285086881563, undefined, [value]); }
   /**
    * static func fixed(_ value: CGFloat) -> MarkDimension
    * @availability iOS 16.0+
    */
-  static fixed(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_067acaa3e5f56b46", 3816275982180598, undefined, [value]); }
+  static fixed(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_d968214ecc684fb6", 3816275982180598, undefined, [value]); }
   /**
    * static func inset(_ value: CGFloat) -> MarkDimension
    * @availability iOS 16.0+
    */
-  static inset(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_067acaa3e5f56b46", 327827142878468, undefined, [value]); }
+  static inset(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_d968214ecc684fb6", 327827142878468, undefined, [value]); }
   /**
    * static func ratio(_ value: CGFloat) -> MarkDimension
    * @availability iOS 16.0+
    */
-  static ratio(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_067acaa3e5f56b46", 3618349633298584, undefined, [value]); }
+  static ratio(value: number): MarkDimension { return callSDK<MarkDimension>("Charts_d968214ecc684fb6", 3618349633298584, undefined, [value]); }
   /**
    * static var automatic: MarkDimension { get }
    * @availability iOS 16.0+
    */
-  static get automatic(): MarkDimension { return callSDK<MarkDimension>("Charts_067acaa3e5f56b46", 1878862319619511, undefined, []); }
+  static get automatic(): MarkDimension { return callSDK<MarkDimension>("Charts_d968214ecc684fb6", 1878862319619511, undefined, []); }
   declare readonly $type: { "s:6Charts13MarkDimensionV": true };
 }
 
@@ -1693,47 +1693,47 @@ export class MarkDimensions<DataElement = unknown> extends SDKHandle {
    * nonisolated init(floatLiteral value: Double)
    * @availability iOS 18.0+
    */
-  static initFloatLiteral(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_067acaa3e5f56b46", 15751696262476, undefined, [value]); }
+  static initFloatLiteral(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_d968214ecc684fb6", 15751696262476, undefined, [value]); }
   /**
    * nonisolated init(integerLiteral value: Int)
    * @availability iOS 18.0+
    */
-  static initIntegerLiteral(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_067acaa3e5f56b46", 1400682557707233, undefined, [value]); }
+  static initIntegerLiteral(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_d968214ecc684fb6", 1400682557707233, undefined, [value]); }
   /**
    * static func fixed(_ value: CGFloat) -> MarkDimensions<DataElement>
    * @availability iOS 18.0+
    */
-  static fixed(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_067acaa3e5f56b46", 4500701045212442, undefined, [value]); }
+  static fixed(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_d968214ecc684fb6", 4500701045212442, undefined, [value]); }
   /**
    * static func fixed(_ keyPath: KeyPath<DataElement, CGFloat>) -> MarkDimensions<DataElement>
    * @availability iOS 18.0+
    */
-  static fixed86909(keyPath: SDKHandle): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_067acaa3e5f56b46", 124663086240781, undefined, [keyPath]); }
+  static fixed86909(keyPath: SDKHandle): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_d968214ecc684fb6", 124663086240781, undefined, [keyPath]); }
   /**
    * static func inset(_ value: CGFloat) -> MarkDimensions<DataElement>
    * @availability iOS 18.0+
    */
-  static inset(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_067acaa3e5f56b46", 3964061591259257, undefined, [value]); }
+  static inset(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_d968214ecc684fb6", 3964061591259257, undefined, [value]); }
   /**
    * static func inset(_ keyPath: KeyPath<DataElement, CGFloat>) -> MarkDimensions<DataElement>
    * @availability iOS 18.0+
    */
-  static inset43786(keyPath: SDKHandle): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_067acaa3e5f56b46", 3361113171707993, undefined, [keyPath]); }
+  static inset43786(keyPath: SDKHandle): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_d968214ecc684fb6", 3361113171707993, undefined, [keyPath]); }
   /**
    * static func ratio(_ value: CGFloat) -> MarkDimensions<DataElement>
    * @availability iOS 18.0+
    */
-  static ratio(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_067acaa3e5f56b46", 2098287189733305, undefined, [value]); }
+  static ratio(value: number): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_d968214ecc684fb6", 2098287189733305, undefined, [value]); }
   /**
    * static func ratio(_ keyPath: KeyPath<DataElement, CGFloat>) -> MarkDimensions<DataElement>
    * @availability iOS 18.0+
    */
-  static ratio62748(keyPath: SDKHandle): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_067acaa3e5f56b46", 1812138690919033, undefined, [keyPath]); }
+  static ratio62748(keyPath: SDKHandle): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_d968214ecc684fb6", 1812138690919033, undefined, [keyPath]); }
   /**
    * static var automatic: MarkDimensions<DataElement> { get }
    * @availability iOS 18.0+
    */
-  static get automatic(): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_067acaa3e5f56b46", 605333638865492, undefined, []); }
+  static get automatic(): MarkDimensions<unknown> { return callSDK<MarkDimensions<unknown>>("Charts_d968214ecc684fb6", 605333638865492, undefined, []); }
   declare readonly $type: { "s:6Charts14MarkDimensionsV": true };
 }
 
@@ -1758,27 +1758,27 @@ export class MarkStackingMethod extends SDKHandle {
    * static var normalized: MarkStackingMethod { get }
    * @availability iOS 16.0+
    */
-  static get normalized(): MarkStackingMethod { return callSDK<MarkStackingMethod>("Charts_067acaa3e5f56b46", 263921407807832, undefined, []); }
+  static get normalized(): MarkStackingMethod { return callSDK<MarkStackingMethod>("Charts_d968214ecc684fb6", 263921407807832, undefined, []); }
   /**
    * var description: String { get }
    * @availability iOS 16.0+
    */
-  get description(): string { return callSDK<string>("Charts_067acaa3e5f56b46", 165049291262083, this, []); }
+  get description(): string { return callSDK<string>("Charts_d968214ecc684fb6", 165049291262083, this, []); }
   /**
    * static var center: MarkStackingMethod { get }
    * @availability iOS 16.0+
    */
-  static get center(): MarkStackingMethod { return callSDK<MarkStackingMethod>("Charts_067acaa3e5f56b46", 917640705412958, undefined, []); }
+  static get center(): MarkStackingMethod { return callSDK<MarkStackingMethod>("Charts_d968214ecc684fb6", 917640705412958, undefined, []); }
   /**
    * static var standard: MarkStackingMethod { get }
    * @availability iOS 16.0+
    */
-  static get standard(): MarkStackingMethod { return callSDK<MarkStackingMethod>("Charts_067acaa3e5f56b46", 2782573849722616, undefined, []); }
+  static get standard(): MarkStackingMethod { return callSDK<MarkStackingMethod>("Charts_d968214ecc684fb6", 2782573849722616, undefined, []); }
   /**
    * static var unstacked: MarkStackingMethod { get }
    * @availability iOS 16.0+
    */
-  static get unstacked(): MarkStackingMethod { return callSDK<MarkStackingMethod>("Charts_067acaa3e5f56b46", 3702632954919429, undefined, []); }
+  static get unstacked(): MarkStackingMethod { return callSDK<MarkStackingMethod>("Charts_d968214ecc684fb6", 3702632954919429, undefined, []); }
   declare readonly $type: { "s:6Charts18MarkStackingMethodV": true };
 }
 
@@ -1797,77 +1797,77 @@ export class NumberBins<Value = unknown> extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 16.0+
    */
-  get startIndex(): number { return callSDK<number>("Charts_067acaa3e5f56b46", 699307377079938, this, []); }
+  get startIndex(): number { return callSDK<number>("Charts_d968214ecc684fb6", 699307377079938, this, []); }
   /**
    * nonisolated init(thresholds: [Value])
    * @availability iOS 16.0+
    */
-  static initThresholds(thresholds: Array<number>): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_067acaa3e5f56b46", 465983098161444, undefined, [thresholds]); }
+  static initThresholds(thresholds: Array<number>): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_d968214ecc684fb6", 465983098161444, undefined, [thresholds]); }
   /**
    * var thresholds: [Value] { get }
    * @availability iOS 16.0+
    */
-  get thresholds(): Array<number> { return callSDK<Array<number>>("Charts_067acaa3e5f56b46", 3876591925849075, this, []); }
+  get thresholds(): Array<number> { return callSDK<Array<number>>("Charts_d968214ecc684fb6", 3876591925849075, this, []); }
   /**
    * nonisolated init(data: [Value], desiredCount: Int? = nil, minimumStride: Value = 0) where Value : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initDataDesiredCountMinimumStride(data: Array<number>, desiredCount?: (number) | null, minimumStride?: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_067acaa3e5f56b46", 4091583474523814, undefined, [data, desiredCount, minimumStride]); }
+  static initDataDesiredCountMinimumStride(data: Array<number>, desiredCount?: (number) | null, minimumStride?: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_d968214ecc684fb6", 4091583474523814, undefined, [data, desiredCount, minimumStride]); }
   /**
    * nonisolated init(data: [Value], desiredCount: Int? = nil, minimumStride: Value = 0) where Value : BinaryInteger
    * @availability iOS 16.0+
    */
-  static initDataDesiredCountMinimumStride34675(data: Array<number>, desiredCount?: (number) | null, minimumStride?: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_067acaa3e5f56b46", 249186397910899, undefined, [data, desiredCount, minimumStride]); }
+  static initDataDesiredCountMinimumStride34675(data: Array<number>, desiredCount?: (number) | null, minimumStride?: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_d968214ecc684fb6", 249186397910899, undefined, [data, desiredCount, minimumStride]); }
   /**
    * nonisolated init(size: Value, range: ClosedRange<Value>) where Value : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initSizeRange(size: number, range: SDKHandle): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_067acaa3e5f56b46", 3212818263318974, undefined, [size, range]); }
+  static initSizeRange(size: number, range: SDKHandle): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_d968214ecc684fb6", 3212818263318974, undefined, [size, range]); }
   /**
    * nonisolated init(size: Value, range: ClosedRange<Value>) where Value : BinaryInteger
    * @availability iOS 16.0+
    */
-  static initSizeRange71288(size: number, range: SDKHandle): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_067acaa3e5f56b46", 208714275322967, undefined, [size, range]); }
+  static initSizeRange71288(size: number, range: SDKHandle): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_d968214ecc684fb6", 208714275322967, undefined, [size, range]); }
   /**
    * func index(for value: Value) -> Int
    * @availability iOS 16.0+
    */
-  indexFor(value: number): number { return callSDK<number>("Charts_067acaa3e5f56b46", 2519345031231919, this, [value]); }
+  indexFor(value: number): number { return callSDK<number>("Charts_d968214ecc684fb6", 2519345031231919, this, [value]); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 16.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("Charts_067acaa3e5f56b46", 3128793248600970, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("Charts_d968214ecc684fb6", 3128793248600970, this, [i]); }
   /**
    * nonisolated init(range: ClosedRange<Value>, desiredCount: Int = 10, minimumStride: Value = 0) where Value : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initRangeDesiredCountMinimumStride(range: SDKHandle, desiredCount?: number, minimumStride?: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_067acaa3e5f56b46", 1370663853578856, undefined, [range, desiredCount, minimumStride]); }
+  static initRangeDesiredCountMinimumStride(range: SDKHandle, desiredCount?: number, minimumStride?: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_d968214ecc684fb6", 1370663853578856, undefined, [range, desiredCount, minimumStride]); }
   /**
    * nonisolated init(range: ClosedRange<Value>, desiredCount: Int = 10, minimumStride: Value = 0) where Value : BinaryInteger
    * @availability iOS 16.0+
    */
-  static initRangeDesiredCountMinimumStride39834(range: SDKHandle, desiredCount?: number, minimumStride?: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_067acaa3e5f56b46", 412301033085595, undefined, [range, desiredCount, minimumStride]); }
+  static initRangeDesiredCountMinimumStride39834(range: SDKHandle, desiredCount?: number, minimumStride?: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_d968214ecc684fb6", 412301033085595, undefined, [range, desiredCount, minimumStride]); }
   /**
    * nonisolated init(range: ClosedRange<Value>, count: Int) where Value : BinaryFloatingPoint
    * @availability iOS 16.0+
    */
-  static initRangeCount(range: SDKHandle, count: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_067acaa3e5f56b46", 2919538925566313, undefined, [range, count]); }
+  static initRangeCount(range: SDKHandle, count: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_d968214ecc684fb6", 2919538925566313, undefined, [range, count]); }
   /**
    * nonisolated init(range: ClosedRange<Value>, count: Int) where Value : BinaryInteger
    * @availability iOS 16.0+
    */
-  static initRangeCount20397(range: SDKHandle, count: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_067acaa3e5f56b46", 4463554255932920, undefined, [range, count]); }
+  static initRangeCount20397(range: SDKHandle, count: number): NumberBins<number> { return callSDK<NumberBins<number>>("Charts_d968214ecc684fb6", 4463554255932920, undefined, [range, count]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 16.0+
    */
-  get endIndex(): number { return callSDK<number>("Charts_067acaa3e5f56b46", 3196542461589557, this, []); }
+  get endIndex(): number { return callSDK<number>("Charts_d968214ecc684fb6", 3196542461589557, this, []); }
   /**
    * subscript(position: Int) -> ChartBinRange<Value> { get }
    * @availability iOS 16.0+
    */
-  subscript(position: number): ChartBinRange<number> { return callSDK<ChartBinRange<number>>("Charts_067acaa3e5f56b46", 1832655735896436, this, [position]); }
+  subscript(position: number): ChartBinRange<number> { return callSDK<ChartBinRange<number>>("Charts_d968214ecc684fb6", 1832655735896436, this, [position]); }
   declare readonly $type: { "s:6Charts10NumberBinsV": true };
 }
 
@@ -1912,7 +1912,7 @@ export class PagingScrollTargetBehavior extends SDKHandle {
    * func updateTarget(_ target: inout ScrollTarget, context: ChartScrollTargetBehaviorContext)
    * @availability iOS 17.0+
    */
-  updateTarget(target: _SwiftUICore_ScrollTarget, context: ChartScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("Charts_067acaa3e5f56b46", 4138609506356890, this, [target, context]); }
+  updateTarget(target: _SwiftUICore_ScrollTarget, context: ChartScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("Charts_d968214ecc684fb6", 4138609506356890, this, [target, context]); }
   declare readonly $type: { "s:7SwiftUI26PagingScrollTargetBehaviorV": true };
 }
 
@@ -1965,62 +1965,62 @@ export class PlottableProjection<DataElement = unknown, DataValue = unknown> ext
    * static func value(_ labelResource: LocalizedStringResource, _ value: DataValue) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static value(labelResource: _Foundation_LocalizedStringResource, value: number): $SDK21 { return callSDK<$SDK21>("Charts_067acaa3e5f56b46", 2538221404600274, undefined, [labelResource, value]); }
+  static value(labelResource: _Foundation_LocalizedStringResource, value: number): $SDK21 { return callSDK<$SDK21>("Charts_d968214ecc684fb6", 2538221404600274, undefined, [labelResource, value]); }
   /**
    * static func value(_ labelResource: LocalizedStringResource, _ value: KeyPath<DataElement, DataValue>) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static value69987(labelResource: _Foundation_LocalizedStringResource, value: SDKHandle): $SDK21 { return callSDK<$SDK21>("Charts_067acaa3e5f56b46", 479707680852330, undefined, [labelResource, value]); }
+  static value69987(labelResource: _Foundation_LocalizedStringResource, value: SDKHandle): $SDK21 { return callSDK<$SDK21>("Charts_d968214ecc684fb6", 479707680852330, undefined, [labelResource, value]); }
   /**
    * static func value(_ labelKey: LocalizedStringKey, _ value: DataValue) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static value15625(labelKey: _SwiftUICore_LocalizedStringKey, value: number): $SDK21 { return callSDK<$SDK21>("Charts_067acaa3e5f56b46", 1255825736574445, undefined, [labelKey, value]); }
+  static value15625(labelKey: _SwiftUICore_LocalizedStringKey, value: number): $SDK21 { return callSDK<$SDK21>("Charts_d968214ecc684fb6", 1255825736574445, undefined, [labelKey, value]); }
   /**
    * static func value(_ labelKey: LocalizedStringKey, _ value: KeyPath<DataElement, DataValue>) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static value37385(labelKey: _SwiftUICore_LocalizedStringKey, value: SDKHandle): $SDK21 { return callSDK<$SDK21>("Charts_067acaa3e5f56b46", 846429798719880, undefined, [labelKey, value]); }
+  static value37385(labelKey: _SwiftUICore_LocalizedStringKey, value: SDKHandle): $SDK21 { return callSDK<$SDK21>("Charts_d968214ecc684fb6", 846429798719880, undefined, [labelKey, value]); }
   /**
    * static func value(_ label: Text, _ value: DataValue) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static value67314(label: _SwiftUICore_Text, value: number): $SDK21 { return callSDK<$SDK21>("Charts_067acaa3e5f56b46", 2225627897359993, undefined, [label, value]); }
+  static value67314(label: _SwiftUICore_Text, value: number): $SDK21 { return callSDK<$SDK21>("Charts_d968214ecc684fb6", 2225627897359993, undefined, [label, value]); }
   /**
    * static func value(_ label: Text, _ value: KeyPath<DataElement, DataValue>) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static value78439(label: _SwiftUICore_Text, value: SDKHandle): $SDK21 { return callSDK<$SDK21>("Charts_067acaa3e5f56b46", 1730654021623577, undefined, [label, value]); }
+  static value78439(label: _SwiftUICore_Text, value: SDKHandle): $SDK21 { return callSDK<$SDK21>("Charts_d968214ecc684fb6", 1730654021623577, undefined, [label, value]); }
   /**
    * static func value(_ label: some StringProtocol, _ value: DataValue) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static value89928(label: SDKHandle, value: number): $SDK21 { return callSDK<$SDK21>("Charts_067acaa3e5f56b46", 1556327022782134, undefined, [label, value]); }
+  static value89928(label: SDKHandle, value: number): $SDK21 { return callSDK<$SDK21>("Charts_d968214ecc684fb6", 1556327022782134, undefined, [label, value]); }
   /**
    * static func value(_ label: some StringProtocol, _ value: KeyPath<DataElement, DataValue>) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static value62251(label: SDKHandle, value: SDKHandle): $SDK21 { return callSDK<$SDK21>("Charts_067acaa3e5f56b46", 1651414429559712, undefined, [label, value]); }
+  static value62251(label: SDKHandle, value: SDKHandle): $SDK21 { return callSDK<$SDK21>("Charts_d968214ecc684fb6", 1651414429559712, undefined, [label, value]); }
   /**
    * static func value(_ labelKey: LocalizedStringKey, _ date: DataValue, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static valueUnitCalendar(labelKey: _SwiftUICore_LocalizedStringKey, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22 { return callSDK<$SDK22>("Charts_067acaa3e5f56b46", 2711392825806105, undefined, [labelKey, date, unit, calendar]); }
+  static valueUnitCalendar(labelKey: _SwiftUICore_LocalizedStringKey, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22 { return callSDK<$SDK22>("Charts_d968214ecc684fb6", 2711392825806105, undefined, [labelKey, date, unit, calendar]); }
   /**
    * static func value(_ label: Text, _ date: DataValue, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static valueUnitCalendar69495(label: _SwiftUICore_Text, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22 { return callSDK<$SDK22>("Charts_067acaa3e5f56b46", 1631117889178175, undefined, [label, date, unit, calendar]); }
+  static valueUnitCalendar69495(label: _SwiftUICore_Text, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22 { return callSDK<$SDK22>("Charts_d968214ecc684fb6", 1631117889178175, undefined, [label, date, unit, calendar]); }
   /**
    * static func value(_ labelResource: LocalizedStringResource, _ date: DataValue, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static valueUnitCalendar91127(labelResource: _Foundation_LocalizedStringResource, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22 { return callSDK<$SDK22>("Charts_067acaa3e5f56b46", 2223403310685877, undefined, [labelResource, date, unit, calendar]); }
+  static valueUnitCalendar91127(labelResource: _Foundation_LocalizedStringResource, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22 { return callSDK<$SDK22>("Charts_d968214ecc684fb6", 2223403310685877, undefined, [labelResource, date, unit, calendar]); }
   /**
    * static func value(_ label: some StringProtocol, _ date: DataValue, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableProjection<DataElement, DataValue>
    * @availability iOS 18.0+
    */
-  static valueUnitCalendar29526(label: SDKHandle, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22 { return callSDK<$SDK22>("Charts_067acaa3e5f56b46", 519732900373459, undefined, [label, date, unit, calendar]); }
+  static valueUnitCalendar29526(label: SDKHandle, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22 { return callSDK<$SDK22>("Charts_d968214ecc684fb6", 519732900373459, undefined, [label, date, unit, calendar]); }
   declare readonly $type: { "s:6Charts19PlottableProjectionV": true };
 }
 
@@ -2033,42 +2033,42 @@ export class PlottableValue<Value = unknown> extends SDKHandle {
    * static func value(_ labelKey: LocalizedStringKey, _ date: Date, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableValue<Value> where Value == Date
    * @availability iOS 16.0+
    */
-  static valueUnitCalendar(labelKey: _SwiftUICore_LocalizedStringKey, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23 { return callSDK<$SDK23>("Charts_067acaa3e5f56b46", 4344487540575791, undefined, [labelKey, date, unit, calendar]); }
+  static valueUnitCalendar(labelKey: _SwiftUICore_LocalizedStringKey, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23 { return callSDK<$SDK23>("Charts_d968214ecc684fb6", 4344487540575791, undefined, [labelKey, date, unit, calendar]); }
   /**
    * static func value(_ label: Text, _ date: Date, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableValue<Value> where Value == Date
    * @availability iOS 16.0+
    */
-  static valueUnitCalendar53015(label: _SwiftUICore_Text, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23 { return callSDK<$SDK23>("Charts_067acaa3e5f56b46", 2652326504221724, undefined, [label, date, unit, calendar]); }
+  static valueUnitCalendar53015(label: _SwiftUICore_Text, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23 { return callSDK<$SDK23>("Charts_d968214ecc684fb6", 2652326504221724, undefined, [label, date, unit, calendar]); }
   /**
    * static func value(_ labelResource: LocalizedStringResource, _ date: Date, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableValue<Value> where Value == Date
    * @availability iOS 16.0+
    */
-  static valueUnitCalendar49292(labelResource: _Foundation_LocalizedStringResource, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23 { return callSDK<$SDK23>("Charts_067acaa3e5f56b46", 1049960136613376, undefined, [labelResource, date, unit, calendar]); }
+  static valueUnitCalendar49292(labelResource: _Foundation_LocalizedStringResource, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23 { return callSDK<$SDK23>("Charts_d968214ecc684fb6", 1049960136613376, undefined, [labelResource, date, unit, calendar]); }
   /**
    * static func value<S>(_ label: S, _ date: Date, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableValue<Value> where Value == Date, S : StringProtocol
    * @availability iOS 16.0+
    */
-  static valueUnitCalendar58074(label: string, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23 { return callSDK<$SDK23>("Charts_067acaa3e5f56b46", 4259446170320803, undefined, [label, date, unit, calendar]); }
+  static valueUnitCalendar58074(label: string, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23 { return callSDK<$SDK23>("Charts_d968214ecc684fb6", 4259446170320803, undefined, [label, date, unit, calendar]); }
   /**
    * static func value(_ labelResource: LocalizedStringResource, _ value: Value) -> PlottableValue<Value>
    * @availability iOS 16.0+
    */
-  static value(labelResource: _Foundation_LocalizedStringResource, value: number): PlottableValue<number> { return callSDK<PlottableValue<number>>("Charts_067acaa3e5f56b46", 406305951049171, undefined, [labelResource, value]); }
+  static value(labelResource: _Foundation_LocalizedStringResource, value: number): PlottableValue<number> { return callSDK<PlottableValue<number>>("Charts_d968214ecc684fb6", 406305951049171, undefined, [labelResource, value]); }
   /**
    * static func value(_ labelKey: LocalizedStringKey, _ value: Value) -> PlottableValue<Value>
    * @availability iOS 16.0+
    */
-  static value40626(labelKey: _SwiftUICore_LocalizedStringKey, value: number): PlottableValue<number> { return callSDK<PlottableValue<number>>("Charts_067acaa3e5f56b46", 3525637788008192, undefined, [labelKey, value]); }
+  static value40626(labelKey: _SwiftUICore_LocalizedStringKey, value: number): PlottableValue<number> { return callSDK<PlottableValue<number>>("Charts_d968214ecc684fb6", 3525637788008192, undefined, [labelKey, value]); }
   /**
    * static func value(_ label: Text, _ value: Value) -> PlottableValue<Value>
    * @availability iOS 16.0+
    */
-  static value9453(label: _SwiftUICore_Text, value: number): PlottableValue<number> { return callSDK<PlottableValue<number>>("Charts_067acaa3e5f56b46", 941376302381826, undefined, [label, value]); }
+  static value9453(label: _SwiftUICore_Text, value: number): PlottableValue<number> { return callSDK<PlottableValue<number>>("Charts_d968214ecc684fb6", 941376302381826, undefined, [label, value]); }
   /**
    * static func value<S>(_ label: S, _ value: Value) -> PlottableValue<Value> where S : StringProtocol
    * @availability iOS 16.0+
    */
-  static value4073(label: string, value: number): PlottableValue<number> { return callSDK<PlottableValue<number>>("Charts_067acaa3e5f56b46", 3423219678562104, undefined, [label, value]); }
+  static value4073(label: string, value: number): PlottableValue<number> { return callSDK<PlottableValue<number>>("Charts_d968214ecc684fb6", 3423219678562104, undefined, [label, value]); }
   declare readonly $type: { "s:6Charts14PlottableValueV": true };
 }
 
@@ -2081,17 +2081,17 @@ export class PointMark extends SDKHandle {
    * nonisolated init<Y>(x: CGFloat? = nil, y: PlottableValue<Y>) where Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXY(x: (number) | null, y: PlottableValue<number>): Promise<PointMark> { return callSDKAsync<PointMark>("Charts_067acaa3e5f56b46", 2722788488710450, undefined, [x, y]); }
+  static initXY(x: (number) | null, y: PlottableValue<number>): Promise<PointMark> { return callSDKAsync<PointMark>("Charts_d968214ecc684fb6", 2722788488710450, undefined, [x, y]); }
   /**
    * nonisolated init<X>(x: PlottableValue<X>, y: CGFloat? = nil) where X : Plottable
    * @availability iOS 16.0+
    */
-  static initXY30538(x: PlottableValue<number>, y?: (number) | null): Promise<PointMark> { return callSDKAsync<PointMark>("Charts_067acaa3e5f56b46", 3423053710088952, undefined, [x, y]); }
+  static initXY30538(x: PlottableValue<number>, y?: (number) | null): Promise<PointMark> { return callSDKAsync<PointMark>("Charts_d968214ecc684fb6", 3423053710088952, undefined, [x, y]); }
   /**
    * nonisolated init<X, Y>(x: PlottableValue<X>, y: PlottableValue<Y>) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXY94402(x: PlottableValue<number>, y: PlottableValue<number>): Promise<PointMark> { return callSDKAsync<PointMark>("Charts_067acaa3e5f56b46", 4072496174751949, undefined, [x, y]); }
+  static initXY94402(x: PlottableValue<number>, y: PlottableValue<number>): Promise<PointMark> { return callSDKAsync<PointMark>("Charts_d968214ecc684fb6", 4072496174751949, undefined, [x, y]); }
   declare readonly $type: { "s:6Charts9PointMarkV": true };
 }
 
@@ -2150,47 +2150,47 @@ export class RectangleMark extends SDKHandle {
    * nonisolated init<X, Y>(x: PlottableValue<X>, y: PlottableValue<Y>, width: MarkDimension = .automatic, height: MarkDimension = .automatic) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXYWidthHeight(x: PlottableValue<number>, y: PlottableValue<number>, width?: MarkDimension, height?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_067acaa3e5f56b46", 1256534898111144, undefined, [x, y, width, height]); }
+  static initXYWidthHeight(x: PlottableValue<number>, y: PlottableValue<number>, width?: MarkDimension, height?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_d968214ecc684fb6", 1256534898111144, undefined, [x, y, width, height]); }
   /**
    * nonisolated init<X>(x: PlottableValue<X>, yStart: CGFloat? = nil, yEnd: CGFloat? = nil, width: MarkDimension = .automatic) where X : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStartYEndWidth(x: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null, width?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_067acaa3e5f56b46", 354885552465267, undefined, [x, yStart, yEnd, width]); }
+  static initXYStartYEndWidth(x: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null, width?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_d968214ecc684fb6", 354885552465267, undefined, [x, yStart, yEnd, width]); }
   /**
    * nonisolated init<X, Y>(x: PlottableValue<X>, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>, width: MarkDimension = .automatic) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStartYEndWidth41064(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>, width?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_067acaa3e5f56b46", 680427272527415, undefined, [x, yStart, yEnd, width]); }
+  static initXYStartYEndWidth41064(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>, width?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_d968214ecc684fb6", 680427272527415, undefined, [x, yStart, yEnd, width]); }
   /**
    * nonisolated init(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, yStart: CGFloat? = nil, yEnd: CGFloat? = nil)
    * @availability iOS 16.0+
    */
-  static initXStartXEndYStartYEnd(xStart?: (number) | null, xEnd?: (number) | null, yStart?: (number) | null, yEnd?: (number) | null): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_067acaa3e5f56b46", 4413152952665610, undefined, [xStart, xEnd, yStart, yEnd]); }
+  static initXStartXEndYStartYEnd(xStart?: (number) | null, xEnd?: (number) | null, yStart?: (number) | null, yEnd?: (number) | null): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_d968214ecc684fb6", 4413152952665610, undefined, [xStart, xEnd, yStart, yEnd]); }
   /**
    * nonisolated init<Y>(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>) where Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYStartYEnd35959(xStart: (number) | null, xEnd: (number) | null, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_067acaa3e5f56b46", 1026195592184014, undefined, [xStart, xEnd, yStart, yEnd]); }
+  static initXStartXEndYStartYEnd35959(xStart: (number) | null, xEnd: (number) | null, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_d968214ecc684fb6", 1026195592184014, undefined, [xStart, xEnd, yStart, yEnd]); }
   /**
    * nonisolated init<X>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, yStart: CGFloat? = nil, yEnd: CGFloat? = nil) where X : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYStartYEnd60143(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_067acaa3e5f56b46", 4056289748059778, undefined, [xStart, xEnd, yStart, yEnd]); }
+  static initXStartXEndYStartYEnd60143(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_d968214ecc684fb6", 4056289748059778, undefined, [xStart, xEnd, yStart, yEnd]); }
   /**
    * nonisolated init<X, Y>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYStartYEnd36827(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_067acaa3e5f56b46", 2449148436185225, undefined, [xStart, xEnd, yStart, yEnd]); }
+  static initXStartXEndYStartYEnd36827(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_d968214ecc684fb6", 2449148436185225, undefined, [xStart, xEnd, yStart, yEnd]); }
   /**
    * nonisolated init<Y>(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, y: PlottableValue<Y>, height: MarkDimension = .automatic) where Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYHeight(xStart: (number) | null, xEnd: (number) | null, y: PlottableValue<number>, height?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_067acaa3e5f56b46", 2487956480106985, undefined, [xStart, xEnd, y, height]); }
+  static initXStartXEndYHeight(xStart: (number) | null, xEnd: (number) | null, y: PlottableValue<number>, height?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_d968214ecc684fb6", 2487956480106985, undefined, [xStart, xEnd, y, height]); }
   /**
    * nonisolated init<X, Y>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, y: PlottableValue<Y>, height: MarkDimension = .automatic) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndYHeight17286(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, height?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_067acaa3e5f56b46", 2050930016689790, undefined, [xStart, xEnd, y, height]); }
+  static initXStartXEndYHeight17286(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, height?: MarkDimension): Promise<RectangleMark> { return callSDKAsync<RectangleMark>("Charts_d968214ecc684fb6", 2050930016689790, undefined, [xStart, xEnd, y, height]); }
   declare readonly $type: { "s:6Charts13RectangleMarkV": true };
 }
 
@@ -2229,32 +2229,32 @@ export class RuleMark extends SDKHandle {
    * nonisolated init<Y>(x: CGFloat? = nil, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>) where Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStartYEnd(x: (number) | null, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_067acaa3e5f56b46", 4087685293556671, undefined, [x, yStart, yEnd]); }
+  static initXYStartYEnd(x: (number) | null, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_d968214ecc684fb6", 4087685293556671, undefined, [x, yStart, yEnd]); }
   /**
    * nonisolated init<X>(x: PlottableValue<X>, yStart: CGFloat? = nil, yEnd: CGFloat? = nil) where X : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStartYEnd92156(x: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_067acaa3e5f56b46", 194635881470859, undefined, [x, yStart, yEnd]); }
+  static initXYStartYEnd92156(x: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_d968214ecc684fb6", 194635881470859, undefined, [x, yStart, yEnd]); }
   /**
    * nonisolated init<X, Y>(x: PlottableValue<X>, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXYStartYEnd29917(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_067acaa3e5f56b46", 2645043282358849, undefined, [x, yStart, yEnd]); }
+  static initXYStartYEnd29917(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_d968214ecc684fb6", 2645043282358849, undefined, [x, yStart, yEnd]); }
   /**
    * nonisolated init<Y>(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, y: PlottableValue<Y>) where Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndY(xStart: (number) | null, xEnd: (number) | null, y: PlottableValue<number>): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_067acaa3e5f56b46", 3033028521777360, undefined, [xStart, xEnd, y]); }
+  static initXStartXEndY(xStart: (number) | null, xEnd: (number) | null, y: PlottableValue<number>): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_d968214ecc684fb6", 3033028521777360, undefined, [xStart, xEnd, y]); }
   /**
    * nonisolated init<X>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, y: CGFloat? = nil) where X : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndY64777(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y?: (number) | null): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_067acaa3e5f56b46", 2458945504037647, undefined, [xStart, xEnd, y]); }
+  static initXStartXEndY64777(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y?: (number) | null): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_d968214ecc684fb6", 2458945504037647, undefined, [xStart, xEnd, y]); }
   /**
    * nonisolated init<X, Y>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, y: PlottableValue<Y>) where X : Plottable, Y : Plottable
    * @availability iOS 16.0+
    */
-  static initXStartXEndY78706(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_067acaa3e5f56b46", 2475784135282741, undefined, [xStart, xEnd, y]); }
+  static initXStartXEndY78706(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>): Promise<RuleMark> { return callSDKAsync<RuleMark>("Charts_d968214ecc684fb6", 2475784135282741, undefined, [xStart, xEnd, y]); }
   declare readonly $type: { "s:6Charts8RuleMarkV": true };
 }
 
@@ -2309,42 +2309,42 @@ export class ScaleType extends SDKHandle {
    * static var squareRoot: ScaleType { get }
    * @availability iOS 16.4+
    */
-  static get squareRoot(): ScaleType { return callSDK<ScaleType>("Charts_067acaa3e5f56b46", 749096728714402, undefined, []); }
+  static get squareRoot(): ScaleType { return callSDK<ScaleType>("Charts_d968214ecc684fb6", 749096728714402, undefined, []); }
   /**
    * static func symmetricLog(slopeAtZero: Double) -> ScaleType
    * @availability iOS 16.4+
    */
-  static symmetricLogSlopeAtZero(slopeAtZero: number): ScaleType { return callSDK<ScaleType>("Charts_067acaa3e5f56b46", 367618908950955, undefined, [slopeAtZero]); }
+  static symmetricLogSlopeAtZero(slopeAtZero: number): ScaleType { return callSDK<ScaleType>("Charts_d968214ecc684fb6", 367618908950955, undefined, [slopeAtZero]); }
   /**
    * static var symmetricLog: ScaleType { get }
    * @availability iOS 16.4+
    */
-  static get symmetricLog(): ScaleType { return callSDK<ScaleType>("Charts_067acaa3e5f56b46", 2876405311621807, undefined, []); }
+  static get symmetricLog(): ScaleType { return callSDK<ScaleType>("Charts_d968214ecc684fb6", 2876405311621807, undefined, []); }
   /**
    * static var log: ScaleType { get }
    * @availability iOS 16.0+
    */
-  static get log(): ScaleType { return callSDK<ScaleType>("Charts_067acaa3e5f56b46", 340311877240436, undefined, []); }
+  static get log(): ScaleType { return callSDK<ScaleType>("Charts_d968214ecc684fb6", 340311877240436, undefined, []); }
   /**
    * static var date: ScaleType { get }
    * @availability iOS 16.0+
    */
-  static get date(): ScaleType { return callSDK<ScaleType>("Charts_067acaa3e5f56b46", 4125244425322271, undefined, []); }
+  static get date(): ScaleType { return callSDK<ScaleType>("Charts_d968214ecc684fb6", 4125244425322271, undefined, []); }
   /**
    * static func power(exponent: Double) -> ScaleType
    * @availability iOS 16.4+
    */
-  static power(exponent: number): ScaleType { return callSDK<ScaleType>("Charts_067acaa3e5f56b46", 2108311693467712, undefined, [exponent]); }
+  static power(exponent: number): ScaleType { return callSDK<ScaleType>("Charts_d968214ecc684fb6", 2108311693467712, undefined, [exponent]); }
   /**
    * static var linear: ScaleType { get }
    * @availability iOS 16.0+
    */
-  static get linear(): ScaleType { return callSDK<ScaleType>("Charts_067acaa3e5f56b46", 687165546134155, undefined, []); }
+  static get linear(): ScaleType { return callSDK<ScaleType>("Charts_d968214ecc684fb6", 687165546134155, undefined, []); }
   /**
    * static var category: ScaleType { get }
    * @availability iOS 16.0+
    */
-  static get category(): ScaleType { return callSDK<ScaleType>("Charts_067acaa3e5f56b46", 56727017086374, undefined, []); }
+  static get category(): ScaleType { return callSDK<ScaleType>("Charts_d968214ecc684fb6", 56727017086374, undefined, []); }
   declare readonly $type: { "s:6Charts9ScaleTypeV": true };
 }
 
@@ -2397,7 +2397,7 @@ export class SurfacePlot extends SDKHandle {
    * @MainActor @preconcurrency var body: Never { get }
    * @availability iOS 26.0+
    */
-  get body(): Promise<never> { return callSDKAsync<never>("Charts_067acaa3e5f56b46", 3307144311420507, this, []); }
+  get body(): Promise<never> { return callSDKAsync<never>("Charts_d968214ecc684fb6", 3307144311420507, this, []); }
   declare readonly $type: { "s:6Charts11SurfacePlotV": true };
 }
 
@@ -2412,7 +2412,7 @@ export class TupleContent<Content = unknown> extends SDKHandle {
    * @MainActor @preconcurrency var body: Never { get }
    * @availability iOS 27.0+
    */
-  get body(): Promise<never> { return callSDKAsync<never>("Charts_067acaa3e5f56b46", 3780334379535437, this, []); }
+  get body(): Promise<never> { return callSDKAsync<never>("Charts_d968214ecc684fb6", 3780334379535437, this, []); }
   declare readonly $type: { "s:7SwiftUI12TupleContentV": true };
 }
 
@@ -2461,37 +2461,37 @@ export class ValueAlignedChartScrollTargetBehavior extends SDKHandle {
    * func updateTarget(_ target: inout ScrollTarget, context: ChartScrollTargetBehaviorContext)
    * @availability iOS 17.0+
    */
-  updateTarget(target: _SwiftUICore_ScrollTarget, context: ChartScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("Charts_067acaa3e5f56b46", 3423160469964661, this, [target, context]); }
+  updateTarget(target: _SwiftUICore_ScrollTarget, context: ChartScrollTargetBehaviorContext): { $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } } { return callSDK<{ $ret: null; $out: { "target": _SwiftUICore_ScrollTarget } }>("Charts_d968214ecc684fb6", 3423160469964661, this, [target, context]); }
   /**
    * nonisolated init<T>(unit: T, majorAlignment: MajorValueAlignment<T>? = nil, limitBehavior: ValueAlignedLimitBehavior = .automatic) where T : Plottable, T : Numeric
    * @availability iOS 17.0+
    */
-  static initUnitMajorAlignmentLimitBehavior(unit: number, majorAlignment?: $SDK24, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_067acaa3e5f56b46", 4361294262906207, undefined, [unit, majorAlignment, limitBehavior]); }
+  static initUnitMajorAlignmentLimitBehavior(unit: number, majorAlignment?: $SDK24, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_d968214ecc684fb6", 4361294262906207, undefined, [unit, majorAlignment, limitBehavior]); }
   /**
    * nonisolated init<X, Y>(xUnit: X, yUnit: Y, xMajorAlignment: MajorValueAlignment<X>? = nil, yMajorAlignment: MajorValueAlignment<Y>? = nil, limitBehavior: ValueAlignedLimitBehavior = .automatic) where X : Plottable, X : Numeric, Y : Plottable, Y : Numeric
    * @availability iOS 17.0+
    */
-  static initXUnitYUnitXMajorAlignmentYMajorAlignmentLimitBehavior(xUnit: number, yUnit: number, xMajorAlignment?: $SDK24, yMajorAlignment?: $SDK24, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_067acaa3e5f56b46", 2377543081859223, undefined, [xUnit, yUnit, xMajorAlignment, yMajorAlignment, limitBehavior]); }
+  static initXUnitYUnitXMajorAlignmentYMajorAlignmentLimitBehavior(xUnit: number, yUnit: number, xMajorAlignment?: $SDK24, yMajorAlignment?: $SDK24, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_d968214ecc684fb6", 2377543081859223, undefined, [xUnit, yUnit, xMajorAlignment, yMajorAlignment, limitBehavior]); }
   /**
    * nonisolated init<X>(xUnit: X, yMatching yComponents: DateComponents, xMajorAlignment: MajorValueAlignment<X>? = nil, yMajorAlignment: MajorValueAlignment<Date>? = nil, limitBehavior: ValueAlignedLimitBehavior = .automatic) where X : Plottable, X : Numeric
    * @availability iOS 17.0+
    */
-  static initXUnitYMatchingXMajorAlignmentYMajorAlignmentLimitBehavior(xUnit: number, yComponents: _Foundation_DateComponents, xMajorAlignment?: $SDK24, yMajorAlignment?: $SDK25, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_067acaa3e5f56b46", 4351046600138346, undefined, [xUnit, yComponents, xMajorAlignment, yMajorAlignment, limitBehavior]); }
+  static initXUnitYMatchingXMajorAlignmentYMajorAlignmentLimitBehavior(xUnit: number, yComponents: _Foundation_DateComponents, xMajorAlignment?: $SDK24, yMajorAlignment?: $SDK25, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_d968214ecc684fb6", 4351046600138346, undefined, [xUnit, yComponents, xMajorAlignment, yMajorAlignment, limitBehavior]); }
   /**
    * nonisolated init(matching components: DateComponents, majorAlignment: MajorValueAlignment<Date>? = nil, limitBehavior: ValueAlignedLimitBehavior = .automatic)
    * @availability iOS 17.0+
    */
-  static initMatchingMajorAlignmentLimitBehavior(components: _Foundation_DateComponents, majorAlignment?: $SDK25, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_067acaa3e5f56b46", 3556466396434916, undefined, [components, majorAlignment, limitBehavior]); }
+  static initMatchingMajorAlignmentLimitBehavior(components: _Foundation_DateComponents, majorAlignment?: $SDK25, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_d968214ecc684fb6", 3556466396434916, undefined, [components, majorAlignment, limitBehavior]); }
   /**
    * nonisolated init(xMatching xComponents: DateComponents, yMatching yComponents: DateComponents, xMajorAlignment: MajorValueAlignment<Date>? = nil, yMajorAlignment: MajorValueAlignment<Date>? = nil, limitBehavior: ValueAlignedLimitBehavior = .automatic)
    * @availability iOS 17.0+
    */
-  static initXMatchingYMatchingXMajorAlignmentYMajorAlignmentLimitBehavior(xComponents: _Foundation_DateComponents, yComponents: _Foundation_DateComponents, xMajorAlignment?: $SDK25, yMajorAlignment?: $SDK25, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_067acaa3e5f56b46", 2704754953293712, undefined, [xComponents, yComponents, xMajorAlignment, yMajorAlignment, limitBehavior]); }
+  static initXMatchingYMatchingXMajorAlignmentYMajorAlignmentLimitBehavior(xComponents: _Foundation_DateComponents, yComponents: _Foundation_DateComponents, xMajorAlignment?: $SDK25, yMajorAlignment?: $SDK25, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_d968214ecc684fb6", 2704754953293712, undefined, [xComponents, yComponents, xMajorAlignment, yMajorAlignment, limitBehavior]); }
   /**
    * nonisolated init<Y>(xMatching xComponents: DateComponents, yUnit: Y, xMajorAlignment: MajorValueAlignment<Date>? = nil, yMajorAlignment: MajorValueAlignment<Y>? = nil, limitBehavior: ValueAlignedLimitBehavior = .automatic) where Y : Plottable, Y : Numeric
    * @availability iOS 17.0+
    */
-  static initXMatchingYUnitXMajorAlignmentYMajorAlignmentLimitBehavior(xComponents: _Foundation_DateComponents, yUnit: number, xMajorAlignment?: $SDK25, yMajorAlignment?: $SDK24, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_067acaa3e5f56b46", 3817090894670252, undefined, [xComponents, yUnit, xMajorAlignment, yMajorAlignment, limitBehavior]); }
+  static initXMatchingYUnitXMajorAlignmentYMajorAlignmentLimitBehavior(xComponents: _Foundation_DateComponents, yUnit: number, xMajorAlignment?: $SDK25, yMajorAlignment?: $SDK24, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior { return callSDK<ValueAlignedChartScrollTargetBehavior>("Charts_d968214ecc684fb6", 3817090894670252, undefined, [xComponents, yUnit, xMajorAlignment, yMajorAlignment, limitBehavior]); }
   declare readonly $type: { "s:6Charts37ValueAlignedChartScrollTargetBehaviorV": true };
 }
 
@@ -2504,17 +2504,17 @@ export class ValueAlignedLimitBehavior extends SDKHandle {
    * static var never: ValueAlignedLimitBehavior { get }
    * @availability iOS 17.0+
    */
-  static get never(): ValueAlignedLimitBehavior { return callSDK<ValueAlignedLimitBehavior>("Charts_067acaa3e5f56b46", 930226381966090, undefined, []); }
+  static get never(): ValueAlignedLimitBehavior { return callSDK<ValueAlignedLimitBehavior>("Charts_d968214ecc684fb6", 930226381966090, undefined, []); }
   /**
    * static var always: ValueAlignedLimitBehavior { get }
    * @availability iOS 17.0+
    */
-  static get always(): ValueAlignedLimitBehavior { return callSDK<ValueAlignedLimitBehavior>("Charts_067acaa3e5f56b46", 3581123741068942, undefined, []); }
+  static get always(): ValueAlignedLimitBehavior { return callSDK<ValueAlignedLimitBehavior>("Charts_d968214ecc684fb6", 3581123741068942, undefined, []); }
   /**
    * static var automatic: ValueAlignedLimitBehavior { get }
    * @availability iOS 17.0+
    */
-  static get automatic(): ValueAlignedLimitBehavior { return callSDK<ValueAlignedLimitBehavior>("Charts_067acaa3e5f56b46", 2050788447094928, undefined, []); }
+  static get automatic(): ValueAlignedLimitBehavior { return callSDK<ValueAlignedLimitBehavior>("Charts_d968214ecc684fb6", 2050788447094928, undefined, []); }
   declare readonly $type: { "s:6Charts25ValueAlignedLimitBehaviorV": true };
 }
 
@@ -2666,98 +2666,98 @@ export type VectorizedSectorPlotContent_Body<Data = unknown> = SDKHandle;
  */
 export type VectorizedSectorPlotContent_DataElement<Data = unknown> = SDKHandle;
 
-registerSDKClass("Charts.AnnotationContext", AnnotationContext, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AnnotationOverflowResolution", AnnotationOverflowResolution, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AnnotationOverflowResolution.Boundary", AnnotationOverflowResolution_Boundary, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AnnotationOverflowResolution.Strategy", AnnotationOverflowResolution_Strategy, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AnnotationPosition", AnnotationPosition, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AnyAxisContent", AnyAxisContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AnyAxisMark", AnyAxisMark, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AnyChartContent", AnyChartContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AnyChartSymbolShape", AnyChartSymbolShape, { module: "Charts_067acaa3e5f56b46", properties: {}, methods: {"path":{"id":4143849126053305}} });
-registerSDKClass("Charts.AreaMark", AreaMark, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AreaPlot", AreaPlot, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AutomaticScaleDomain", AutomaticScaleDomain, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Charts.AnnotationContext", AnnotationContext, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AnnotationOverflowResolution", AnnotationOverflowResolution, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AnnotationOverflowResolution.Boundary", AnnotationOverflowResolution_Boundary, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AnnotationOverflowResolution.Strategy", AnnotationOverflowResolution_Strategy, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AnnotationPosition", AnnotationPosition, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AnyAxisContent", AnyAxisContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AnyAxisMark", AnyAxisMark, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AnyChartContent", AnyChartContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AnyChartSymbolShape", AnyChartSymbolShape, { module: "Charts_d968214ecc684fb6", properties: {}, methods: {"path":{"id":4143849126053305}} });
+registerSDKClass("Charts.AreaMark", AreaMark, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AreaPlot", AreaPlot, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AutomaticScaleDomain", AutomaticScaleDomain, { module: "Charts_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6Charts11AxisContentP", {});
-registerSDKClass("Charts.AxisContentBuilder", AxisContentBuilder, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisGridLine", AxisGridLine, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Charts.AxisContentBuilder", AxisContentBuilder, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisGridLine", AxisGridLine, { module: "Charts_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6Charts8AxisMarkP", {});
-registerSDKClass("Charts.AxisMarkBuilder", AxisMarkBuilder, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisMarkPosition", AxisMarkPosition, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisMarkPreset", AxisMarkPreset, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisMarks", AxisMarks, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisMarkValues", AxisMarkValues, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisTick", AxisTick, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisTick.Length", AxisTick_Length, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisValue", AxisValue, { module: "Charts_067acaa3e5f56b46", properties: {}, methods: {"as":{"id":1907259471591779}} });
-registerSDKClass("Charts.AxisValueLabel", AxisValueLabel, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisValueLabelCollisionResolution", AxisValueLabelCollisionResolution, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.AxisValueLabelOrientation", AxisValueLabelOrientation, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.BarMark", BarMark, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.BarPlot", BarPlot, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.BasicChart3DSurfaceStyle", BasicChart3DSurfaceStyle, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.BasicChart3DSymbolShape", BasicChart3DSymbolShape, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.BasicChartSymbolShape", BasicChartSymbolShape, { module: "Charts_067acaa3e5f56b46", properties: {}, methods: {"strokeBorder":{"id":2543286320931440},"path":{"id":3334655022414753}} });
-registerSDKClass("Charts.BuilderConditional", BuilderConditional, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.Chart", Chart, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.Chart3D", Chart3D, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.Chart3DCameraProjection", Chart3DCameraProjection, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Charts.AxisMarkBuilder", AxisMarkBuilder, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisMarkPosition", AxisMarkPosition, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisMarkPreset", AxisMarkPreset, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisMarks", AxisMarks, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisMarkValues", AxisMarkValues, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisTick", AxisTick, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisTick.Length", AxisTick_Length, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisValue", AxisValue, { module: "Charts_d968214ecc684fb6", properties: {}, methods: {"as":{"id":1907259471591779}} });
+registerSDKClass("Charts.AxisValueLabel", AxisValueLabel, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisValueLabelCollisionResolution", AxisValueLabelCollisionResolution, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.AxisValueLabelOrientation", AxisValueLabelOrientation, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.BarMark", BarMark, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.BarPlot", BarPlot, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.BasicChart3DSurfaceStyle", BasicChart3DSurfaceStyle, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.BasicChart3DSymbolShape", BasicChart3DSymbolShape, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.BasicChartSymbolShape", BasicChartSymbolShape, { module: "Charts_d968214ecc684fb6", properties: {}, methods: {"strokeBorder":{"id":2543286320931440},"path":{"id":3334655022414753}} });
+registerSDKClass("Charts.BuilderConditional", BuilderConditional, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.Chart", Chart, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.Chart3D", Chart3D, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.Chart3DCameraProjection", Chart3DCameraProjection, { module: "Charts_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6Charts14Chart3DContentP", {});
-registerSDKClass("Charts.Chart3DContentBuilder", Chart3DContentBuilder, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.Chart3DPose", Chart3DPose, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Charts.Chart3DContentBuilder", Chart3DContentBuilder, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.Chart3DPose", Chart3DPose, { module: "Charts_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6Charts19Chart3DSurfaceStyleP", {});
 registerSDKProtocol("s:6Charts18Chart3DSymbolShapeP", {});
-registerSDKClass("Charts.ChartAxisContent", ChartAxisContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.ChartBinRange", ChartBinRange, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Charts.ChartAxisContent", ChartAxisContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.ChartBinRange", ChartBinRange, { module: "Charts_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6Charts12ChartContentP", {});
-registerSDKClass("Charts.ChartContentBuilder", ChartContentBuilder, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.ChartPlotContent", ChartPlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.ChartProxy", ChartProxy, { module: "Charts_067acaa3e5f56b46", properties: {}, methods: {"symbolSize":{"id":1800998072427476},"selectXRange":{"id":401675271364553},"selectXValue":{"id":1665674160612530},"selectYRange":{"id":527779924263138},"selectYValue":{"id":1223147709184400},"symbolDomain":{"id":3586589528975058},"positionRangeFor":{"id":3465997741657690},"positionRangeForX":{"id":1059596801461991},"positionRangeForY":{"id":4178605247205428},"foregroundStyle":{"id":3023216273925167},"lineStyleDomain":{"id":1495462847567049},"selectAngleValue":{"id":814472321478350},"symbolSizeDomain":{"id":2227317485750690},"foregroundStyleDomain":{"id":4234800655767469},"angle":{"id":1864585951409727},"valueAt":{"id":1193683283321243},"valueAtXAs":{"id":634158273206752},"valueAtYAs":{"id":3605467360475293},"valueAtAngleAs":{"id":4160910120705101},"symbol":{"id":3137717630995110},"xDomain":{"id":2621931583624748},"yDomain":{"id":1474442003831940},"positionFor":{"id":69602876294718},"positionForX":{"id":1528314986236150},"positionForY":{"id":3473330137479096},"lineStyle":{"id":2711389047424758}} });
+registerSDKClass("Charts.ChartContentBuilder", ChartContentBuilder, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.ChartPlotContent", ChartPlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.ChartProxy", ChartProxy, { module: "Charts_d968214ecc684fb6", properties: {}, methods: {"symbolSize":{"id":1800998072427476},"selectXRange":{"id":401675271364553},"selectXValue":{"id":1665674160612530},"selectYRange":{"id":527779924263138},"selectYValue":{"id":1223147709184400},"symbolDomain":{"id":3586589528975058},"positionRangeFor":{"id":3465997741657690},"positionRangeForX":{"id":1059596801461991},"positionRangeForY":{"id":4178605247205428},"foregroundStyle":{"id":3023216273925167},"lineStyleDomain":{"id":1495462847567049},"selectAngleValue":{"id":814472321478350},"symbolSizeDomain":{"id":2227317485750690},"foregroundStyleDomain":{"id":4234800655767469},"angle":{"id":1864585951409727},"valueAt":{"id":1193683283321243},"valueAtXAs":{"id":634158273206752},"valueAtYAs":{"id":3605467360475293},"valueAtAngleAs":{"id":4160910120705101},"symbol":{"id":3137717630995110},"xDomain":{"id":2621931583624748},"yDomain":{"id":1474442003831940},"positionFor":{"id":69602876294718},"positionForX":{"id":1528314986236150},"positionForY":{"id":3473330137479096},"lineStyle":{"id":2711389047424758}} });
 registerSDKProtocol("s:6Charts25ChartScrollTargetBehaviorP", {"updateTargetContext":"updateTarget(_:context:)","propertiesContext":"properties(context:)"});
-registerSDKClass("Charts.ChartScrollTargetBehaviorContext", ChartScrollTargetBehaviorContext, { module: "Charts_067acaa3e5f56b46", properties: {}, methods: {"subscript":{"id":1901844416106167}} });
+registerSDKClass("Charts.ChartScrollTargetBehaviorContext", ChartScrollTargetBehaviorContext, { module: "Charts_d968214ecc684fb6", properties: {}, methods: {"subscript":{"id":1901844416106167}} });
 registerSDKProtocol("s:6Charts16ChartSymbolShapeP", {"pathIn":"path(in:)","sizeThatFits":"sizeThatFits(_:)"});
-registerSDKClass("SwiftUICore.Circle", Circle, { module: "Charts_067acaa3e5f56b46", properties: {} }, true);
-registerSDKClass("Charts.DateBins", DateBins, { module: "Charts_067acaa3e5f56b46", properties: {}, methods: {"indexFor":{"id":4223464777965285},"indexAfter":{"id":869878052743926},"subscript":{"id":4023438954447367}} });
-registerSDKClass("Foundation.Decimal", Decimal, { module: "Charts_067acaa3e5f56b46", properties: {} }, true);
-registerSDKClass("SwiftUICore.EmptyView", EmptyView, { module: "Charts_067acaa3e5f56b46", properties: {} }, true);
-registerSDKClass("Charts.FunctionAreaPlotContent", FunctionAreaPlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.FunctionLinePlotContent", FunctionLinePlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.InterpolationMethod", InterpolationMethod, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.LineMark", LineMark, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.LinePlot", LinePlot, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.MajorValueAlignment", MajorValueAlignment, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.MarkDimension", MarkDimension, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.MarkDimensions", MarkDimensions, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.MarkStackingMethod", MarkStackingMethod, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.NumberBins", NumberBins, { module: "Charts_067acaa3e5f56b46", properties: {}, methods: {"indexFor":{"id":2519345031231919},"indexAfter":{"id":3128793248600970},"subscript":{"id":1832655735896436}} });
-registerSDKClass("SwiftUI.PagingScrollTargetBehavior", PagingScrollTargetBehavior, { module: "Charts_067acaa3e5f56b46", properties: {}, methods: {"updateTarget":{"id":4138609506356890}} }, true);
-registerSDKClass("Charts.Plot", Plot, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.PlotDimensionScaleRange", PlotDimensionScaleRange, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("SwiftUICore.Circle", Circle, { module: "Charts_d968214ecc684fb6", properties: {} }, true);
+registerSDKClass("Charts.DateBins", DateBins, { module: "Charts_d968214ecc684fb6", properties: {}, methods: {"indexFor":{"id":4223464777965285},"indexAfter":{"id":869878052743926},"subscript":{"id":4023438954447367}} });
+registerSDKClass("Foundation.Decimal", Decimal, { module: "Charts_d968214ecc684fb6", properties: {} }, true);
+registerSDKClass("SwiftUICore.EmptyView", EmptyView, { module: "Charts_d968214ecc684fb6", properties: {} }, true);
+registerSDKClass("Charts.FunctionAreaPlotContent", FunctionAreaPlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.FunctionLinePlotContent", FunctionLinePlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.InterpolationMethod", InterpolationMethod, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.LineMark", LineMark, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.LinePlot", LinePlot, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.MajorValueAlignment", MajorValueAlignment, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.MarkDimension", MarkDimension, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.MarkDimensions", MarkDimensions, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.MarkStackingMethod", MarkStackingMethod, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.NumberBins", NumberBins, { module: "Charts_d968214ecc684fb6", properties: {}, methods: {"indexFor":{"id":2519345031231919},"indexAfter":{"id":3128793248600970},"subscript":{"id":1832655735896436}} });
+registerSDKClass("SwiftUI.PagingScrollTargetBehavior", PagingScrollTargetBehavior, { module: "Charts_d968214ecc684fb6", properties: {}, methods: {"updateTarget":{"id":4138609506356890}} }, true);
+registerSDKClass("Charts.Plot", Plot, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.PlotDimensionScaleRange", PlotDimensionScaleRange, { module: "Charts_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6Charts9PlottableP", {"initPrimitivePlottable":"init(primitivePlottable:)"});
-registerSDKClass("Charts.PlottableProjection", PlottableProjection, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.PlottableValue", PlottableValue, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.PointMark", PointMark, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.PointPlot", PointPlot, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Charts.PlottableProjection", PlottableProjection, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.PlottableValue", PlottableValue, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.PointMark", PointMark, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.PointPlot", PointPlot, { module: "Charts_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6Charts18PositionScaleRangeP", {});
 registerSDKProtocol("s:6Charts26PrimitivePlottableProtocolP", {"initPrimitivePlottable":"init(primitivePlottable:)"});
-registerSDKClass("Charts.RectangleMark", RectangleMark, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.RectanglePlot", RectanglePlot, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.RuleMark", RuleMark, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.RulePlot", RulePlot, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Charts.RectangleMark", RectangleMark, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.RectanglePlot", RectanglePlot, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.RuleMark", RuleMark, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.RulePlot", RulePlot, { module: "Charts_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6Charts11ScaleDomainP", {});
 registerSDKProtocol("s:6Charts10ScaleRangeP", {});
-registerSDKClass("Charts.ScaleType", ScaleType, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.SectorMark", SectorMark, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.SectorPlot", SectorPlot, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.SurfacePlot", SurfacePlot, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("SwiftUICore.TupleContent", TupleContent, { module: "Charts_067acaa3e5f56b46", properties: {} }, true);
-registerSDKClass("Charts.ValueAlignedChartScrollTargetBehavior", ValueAlignedChartScrollTargetBehavior, { module: "Charts_067acaa3e5f56b46", properties: {}, methods: {"updateTarget":{"id":3423160469964661}} });
-registerSDKClass("Charts.ValueAlignedLimitBehavior", ValueAlignedLimitBehavior, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.VectorizedAreaPlotContent", VectorizedAreaPlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.VectorizedBarPlotContent", VectorizedBarPlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Charts.ScaleType", ScaleType, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.SectorMark", SectorMark, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.SectorPlot", SectorPlot, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.SurfacePlot", SurfacePlot, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("SwiftUICore.TupleContent", TupleContent, { module: "Charts_d968214ecc684fb6", properties: {} }, true);
+registerSDKClass("Charts.ValueAlignedChartScrollTargetBehavior", ValueAlignedChartScrollTargetBehavior, { module: "Charts_d968214ecc684fb6", properties: {}, methods: {"updateTarget":{"id":3423160469964661}} });
+registerSDKClass("Charts.ValueAlignedLimitBehavior", ValueAlignedLimitBehavior, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.VectorizedAreaPlotContent", VectorizedAreaPlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.VectorizedBarPlotContent", VectorizedBarPlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:6Charts22VectorizedChartContentP", {});
-registerSDKClass("Charts.VectorizedLinePlotContent", VectorizedLinePlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.VectorizedPointPlotContent", VectorizedPointPlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.VectorizedRectanglePlotContent", VectorizedRectanglePlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.VectorizedRulePlotContent", VectorizedRulePlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Charts.VectorizedSectorPlotContent", VectorizedSectorPlotContent, { module: "Charts_067acaa3e5f56b46", properties: {} });
+registerSDKClass("Charts.VectorizedLinePlotContent", VectorizedLinePlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.VectorizedPointPlotContent", VectorizedPointPlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.VectorizedRectanglePlotContent", VectorizedRectanglePlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.VectorizedRulePlotContent", VectorizedRulePlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });
+registerSDKClass("Charts.VectorizedSectorPlotContent", VectorizedSectorPlotContent, { module: "Charts_d968214ecc684fb6", properties: {} });

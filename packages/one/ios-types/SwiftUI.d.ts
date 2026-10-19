@@ -5397,6 +5397,9 @@ export declare class ImageRenderer<Content = unknown> extends SDKHandle {
     readonly $type: {
         "s:7SwiftUI13ImageRendererC": true;
     };
+    readonly $observable: {
+        "uiImage": true;
+    };
 }
 /**
  * struct IndexedIdentifierCollection<Base, ID> where Base : Collection, ID : Hashable
@@ -13987,6 +13990,12 @@ export declare class URLDocumentConfiguration extends SDKHandle {
     setFileURL(value?: (string) | null): Promise<void>;
     readonly $type: {
         "s:7SwiftUI24URLDocumentConfigurationC": true;
+    };
+    readonly $observable: {
+        "description": true;
+        "creationSource": true;
+        "lastContentModificationDate": true;
+        "fileURL": true;
     };
 }
 export type UserInterfaceSizeClass = "compact" | "regular";

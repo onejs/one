@@ -1758,6 +1758,12 @@ export declare class NSCollectionLayoutAnchor extends SDKHandle {
         "c:objc(cs)NSCollectionLayoutAnchor": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "edges": true;
+        "isAbsoluteOffset": true;
+        "isFractionalOffset": true;
+        "offset": true;
+    };
 }
 /**
  * @MainActor class NSCollectionLayoutItem
@@ -1800,6 +1806,12 @@ export declare class NSCollectionLayoutItem extends SDKHandle {
         "c:objc(cs)NSCollectionLayoutItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "contentInsets": true;
+        "edgeSpacing": true;
+        "layoutSize": true;
+        "supplementaryItems": true;
+    };
 }
 /**
  * @MainActor class NSCollectionLayoutSupplementaryItem
@@ -1841,6 +1853,16 @@ export declare class NSCollectionLayoutSupplementaryItem extends NSCollectionLay
         "c:objc(cs)NSCollectionLayoutSupplementaryItem": true;
         "c:objc(cs)NSCollectionLayoutItem": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "contentInsets": true;
+        "edgeSpacing": true;
+        "layoutSize": true;
+        "supplementaryItems": true;
+        "containerAnchor": true;
+        "elementKind": true;
+        "itemAnchor": true;
+        "zIndex": true;
     };
 }
 /**
@@ -1886,6 +1908,20 @@ export declare class NSCollectionLayoutBoundarySupplementaryItem extends NSColle
         "c:objc(cs)NSCollectionLayoutItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "contentInsets": true;
+        "edgeSpacing": true;
+        "layoutSize": true;
+        "supplementaryItems": true;
+        "containerAnchor": true;
+        "elementKind": true;
+        "itemAnchor": true;
+        "zIndex": true;
+        "alignment": true;
+        "extendsBoundary": true;
+        "offset": true;
+        "pinToVisibleBounds": true;
+    };
 }
 /**
  * @MainActor protocol NSCollectionLayoutContainer : NSObjectProtocol
@@ -1918,6 +1954,14 @@ export declare class NSCollectionLayoutDecorationItem extends NSCollectionLayout
         "c:objc(cs)NSCollectionLayoutDecorationItem": true;
         "c:objc(cs)NSCollectionLayoutItem": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "contentInsets": true;
+        "edgeSpacing": true;
+        "layoutSize": true;
+        "supplementaryItems": true;
+        "elementKind": true;
+        "zIndex": true;
     };
 }
 /**
@@ -1984,6 +2028,14 @@ export declare class NSCollectionLayoutDimension extends SDKHandle {
         "c:objc(cs)NSCollectionLayoutDimension": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "dimension": true;
+        "isAbsolute": true;
+        "isEstimated": true;
+        "isFractionalHeight": true;
+        "isFractionalWidth": true;
+        "isUniformAcrossSiblings": true;
+    };
 }
 /**
  * @MainActor class NSCollectionLayoutEdgeSpacing
@@ -2018,6 +2070,12 @@ export declare class NSCollectionLayoutEdgeSpacing extends SDKHandle {
     readonly $type: {
         "c:objc(cs)NSCollectionLayoutEdgeSpacing": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "bottom": true;
+        "leading": true;
+        "top": true;
+        "trailing": true;
     };
 }
 /**
@@ -2108,6 +2166,15 @@ export declare class NSCollectionLayoutGroup extends NSCollectionLayoutGroup_bas
         "c:objc(cs)NSCollectionLayoutItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "contentInsets": true;
+        "edgeSpacing": true;
+        "layoutSize": true;
+        "supplementaryItems": true;
+        "interItemSpacing": true;
+        "subitems": true;
+        "supplementaryItems35450": true;
+    };
 }
 /**
  * @MainActor class NSCollectionLayoutGroupCustomItem
@@ -2137,6 +2204,10 @@ export declare class NSCollectionLayoutGroupCustomItem extends SDKHandle {
     readonly $type: {
         "c:objc(cs)NSCollectionLayoutGroupCustomItem": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "frame": true;
+        "zIndex": true;
     };
 }
 /** typealias NSCollectionLayoutGroupCustomItemProvider = (any NSCollectionLayoutEnvironment) -> [NSCollectionLayoutGroupCustomItem] */
@@ -2226,6 +2297,17 @@ export declare class NSCollectionLayoutSection extends SDKHandle {
         "c:objc(cs)NSCollectionLayoutSection": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "boundarySupplementaryItems": true;
+        "contentInsets": true;
+        "contentInsetsReference": true;
+        "decorationItems": true;
+        "interGroupSpacing": true;
+        "orthogonalScrollingBehavior": true;
+        "orthogonalScrollingProperties": true;
+        "supplementariesFollowContentInsets": true;
+        "supplementaryContentInsetsReference": true;
+    };
 }
 /** typealias NSCollectionLayoutSectionVisibleItemsInvalidationHandler = ([any NSCollectionLayoutVisibleItem], CGPoint, any NSCollectionLayoutEnvironment) -> Void */
 export type NSCollectionLayoutSectionVisibleItemsInvalidationHandler = ((arg0: Array<SDKHandle>, arg1: {
@@ -2255,6 +2337,10 @@ export declare class NSCollectionLayoutSize extends SDKHandle {
     readonly $type: {
         "c:objc(cs)NSCollectionLayoutSize": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "heightDimension": true;
+        "widthDimension": true;
     };
 }
 /**
@@ -2290,6 +2376,11 @@ export declare class NSCollectionLayoutSpacing extends SDKHandle {
     readonly $type: {
         "c:objc(cs)NSCollectionLayoutSpacing": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isFixed": true;
+        "isFlexible": true;
+        "spacing": true;
     };
 }
 /**
@@ -3282,6 +3373,21 @@ export declare class NSLayoutConstraint extends SDKHandle {
     readonly $type: {
         "c:objc(cs)NSLayoutConstraint": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isActive": true;
+        "constant": true;
+        "firstAnchor": true;
+        "firstAttribute": true;
+        "firstItem": true;
+        "identifier": true;
+        "multiplier": true;
+        "priority": true;
+        "relation": true;
+        "secondAnchor": true;
+        "secondAttribute": true;
+        "secondItem": true;
+        "shouldBeArchived": true;
     };
 }
 /** enum Attribute */
@@ -4859,6 +4965,40 @@ export declare class NSObject extends SDKHandle {
     setShouldGroupAccessibilityChildren(value: boolean): Promise<void>;
     readonly $type: {
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "accessibilityActivationPoint": true;
+        "accessibilityAttributedHint": true;
+        "accessibilityAttributedLabel": true;
+        "accessibilityAttributedUserInputLabels": true;
+        "accessibilityAttributedValue": true;
+        "accessibilityContainerType": true;
+        "accessibilityCustomActions": true;
+        "accessibilityCustomRotors": true;
+        "accessibilityDirectTouchOptions": true;
+        "accessibilityDragSourceDescriptors": true;
+        "accessibilityDropPointDescriptors": true;
+        "accessibilityElements": true;
+        "accessibilityElementsHidden": true;
+        "accessibilityExpandedStatus": true;
+        "accessibilityFrame": true;
+        "accessibilityHint": true;
+        "accessibilityLabel": true;
+        "accessibilityLanguage": true;
+        "accessibilityNavigationStyle": true;
+        "accessibilityNextTextNavigationElement": true;
+        "accessibilityPath": true;
+        "accessibilityPreviousTextNavigationElement": true;
+        "accessibilityRespondsToUserInteraction": true;
+        "accessibilityTextInputResponder": true;
+        "accessibilityTextualContext": true;
+        "accessibilityTraits": true;
+        "accessibilityUserInputLabels": true;
+        "accessibilityValue": true;
+        "accessibilityViewIsModal": true;
+        "automationElements": true;
+        "isAccessibilityElement": true;
+        "shouldGroupAccessibilityChildren": true;
     };
 }
 /**
@@ -8700,6 +8840,13 @@ export declare class UIAccessibilityCustomAction extends SDKHandle {
         "c:objc(cs)UIAccessibilityCustomAction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "attributedName": true;
+        "category": true;
+        "image": true;
+        "name": true;
+        "target": true;
+    };
 }
 /** @MainActor typealias Handler = (UIAccessibilityCustomAction) -> Bool */
 export type UIAccessibilityCustomAction_Handler = ((arg0: UIAccessibilityCustomAction) => Promise<boolean>);
@@ -8733,6 +8880,11 @@ export declare class UIAccessibilityCustomRotor extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIAccessibilityCustomRotor": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "attributedName": true;
+        "name": true;
+        "systemRotorType": true;
     };
 }
 /** enum Direction */
@@ -8781,6 +8933,10 @@ export declare class UIAccessibilityCustomRotorItemResult extends SDKHandle {
         "c:objc(cs)UIAccessibilityCustomRotorItemResult": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "targetElement": true;
+        "targetRange": true;
+    };
 }
 /**
  * @MainActor class UIAccessibilityCustomRotorSearchPredicate
@@ -8804,6 +8960,10 @@ export declare class UIAccessibilityCustomRotorSearchPredicate extends SDKHandle
     readonly $type: {
         "c:objc(cs)UIAccessibilityCustomRotorSearchPredicate": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "currentItem": true;
+        "searchDirection": true;
     };
 }
 /**
@@ -9057,6 +9217,24 @@ export declare class UIResponder extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+    };
 }
 declare const UIAccessibilityElement_base: Omit<typeof UIResponder, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIResponder);
 /**
@@ -9122,6 +9300,32 @@ export declare class UIAccessibilityElement extends UIAccessibilityElement_base 
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityContainer": true;
+        "accessibilityFrame": true;
+        "accessibilityFrameInContainerSpace": true;
+        "accessibilityHint": true;
+        "accessibilityLabel": true;
+        "accessibilityTraits": true;
+        "accessibilityValue": true;
+        "isAccessibilityElement": true;
+    };
 }
 /** protocol UIAccessibilityIdentification : NSObjectProtocol */
 export interface UIAccessibilityIdentification {
@@ -9169,6 +9373,12 @@ export declare class UIAccessibilityLocationDescriptor extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIAccessibilityLocationDescriptor": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "attributedName": true;
+        "name": true;
+        "point": true;
+        "view": true;
     };
 }
 /**
@@ -9416,6 +9626,12 @@ export declare class UIMenuElement extends SDKHandle {
         "c:objc(cs)UIMenuElement": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "image": true;
+        "preferredImageVisibility": true;
+        "subtitle": true;
+        "title": true;
+    };
 }
 declare const UIAction_base: Omit<typeof UIMenuElement, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIMenuElement, "image" | "title">);
 /**
@@ -9502,6 +9718,19 @@ export declare class UIAction extends UIAction_base {
         "c:objc(cs)UIAction": true;
         "c:objc(cs)UIMenuElement": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "image": true;
+        "preferredImageVisibility": true;
+        "subtitle": true;
+        "title": true;
+        "attributes": true;
+        "discoverabilityTitle": true;
+        "identifier": true;
+        "sender": true;
+        "state": true;
+        "image27557": true;
+        "title41854": true;
     };
 }
 /**
@@ -10440,6 +10669,102 @@ export declare class UIView extends UIView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+    };
 }
 declare const UIActionSheet_base: Omit<typeof UIView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
 /**
@@ -10560,6 +10885,110 @@ export declare class UIActionSheet extends UIActionSheet_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "actionSheetStyle": true;
+        "cancelButtonIndex": true;
+        "delegate": true;
+        "destructiveButtonIndex": true;
+        "firstOtherButtonIndex": true;
+        "numberOfButtons": true;
+        "title": true;
+        "isVisible": true;
     };
 }
 /** @MainActor protocol UIActionSheetDelegate : NSObjectProtocol */
@@ -10879,6 +11308,106 @@ export declare class UIActivityIndicatorView extends UIActivityIndicatorView_bas
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "style": true;
+        "isAnimating": true;
+        "color": true;
+        "hidesWhenStopped": true;
+    };
 }
 /** enum Style */
 export type UIActivityIndicatorView_Style = "medium" | "large" | "whiteLarge" | "white" | "gray";
@@ -10975,6 +11504,10 @@ export declare class UIActivityItemsConfiguration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIActivityItemsConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "localObject": true;
+        "supportedInteractions": true;
     };
 }
 /**
@@ -11940,6 +12473,104 @@ export declare class UIViewController extends UIResponder {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+    };
 }
 /**
  * class UIActivityViewController
@@ -11992,6 +12623,107 @@ export declare class UIActivityViewController extends UIViewController {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "allowsProminentActivity": true;
+        "excludedActivitySectionTypes": true;
+        "excludedActivityTypes": true;
     };
 }
 /**
@@ -12057,6 +12789,14 @@ export declare class UIActivityViewController_CollaborationModeRestriction exten
     readonly $type: {
         "c:objc(cs)UIActivityCollaborationModeRestriction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alertDismissButtonTitle": true;
+        "alertMessage": true;
+        "alertRecoverySuggestionButtonLaunchURL": true;
+        "alertRecoverySuggestionButtonTitle": true;
+        "alertTitle": true;
+        "disabledMode": true;
     };
 }
 /**
@@ -12126,6 +12866,11 @@ export declare class UIAlertAction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIAlertAction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
+        "style": true;
+        "title": true;
     };
 }
 /**
@@ -12211,6 +12956,111 @@ export declare class UIAlertController extends UIAlertController_base {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "actions": true;
+        "message": true;
+        "preferredAction": true;
+        "preferredStyle": true;
+        "severity": true;
+        "textFields": true;
+        "title15728": true;
     };
 }
 /**
@@ -12350,6 +13200,110 @@ export declare class UIAlertView extends UIAlertView_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "alertViewStyle": true;
+        "cancelButtonIndex": true;
+        "delegate": true;
+        "firstOtherButtonIndex": true;
+        "message": true;
+        "numberOfButtons": true;
+        "title": true;
+        "isVisible": true;
     };
 }
 /** @MainActor protocol UIAlertViewDelegate : NSObjectProtocol */
@@ -12952,6 +13906,53 @@ export declare class UIApplication extends UIApplication_base {
         "c:objc(cs)UIApplication": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "alternateIconName": true;
+        "applicationIconBadgeNumber": true;
+        "applicationState": true;
+        "applicationSupportsShakeToEdit": true;
+        "backgroundRefreshStatus": true;
+        "backgroundTimeRemaining": true;
+        "connectedScenes": true;
+        "currentUserNotificationSettings": true;
+        "delegate": true;
+        "isIdleTimerDisabled": true;
+        "isIgnoringInteractionEvents": true;
+        "keyWindow": true;
+        "isNetworkActivityIndicatorVisible": true;
+        "openSessions": true;
+        "preferredContentSizeCategory": true;
+        "isProtectedDataAvailable": true;
+        "isRegisteredForRemoteNotifications": true;
+        "scheduledLocalNotifications": true;
+        "shortcutItems": true;
+        "statusBarFrame": true;
+        "isStatusBarHidden": true;
+        "statusBarOrientation": true;
+        "statusBarOrientationAnimationDuration": true;
+        "statusBarStyle": true;
+        "supportsAlternateIcons": true;
+        "supportsMultipleScenes": true;
+        "systemPrefersReducedResourceUsage": true;
+        "userInterfaceLayoutDirection": true;
+        "windows": true;
     };
 }
 /**
@@ -13829,6 +14830,104 @@ export declare class UIArrangementViewController extends UIArrangementViewContro
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+    };
 }
 /**
  * protocol Arrangement
@@ -13925,6 +15024,10 @@ export declare class UIDynamicBehavior extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIDynamicBehavior": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "childBehaviors": true;
+        "dynamicAnimator": true;
     };
 }
 /**
@@ -14027,6 +15130,18 @@ export declare class UIAttachmentBehavior extends UIDynamicBehavior {
         "c:objc(cs)UIAttachmentBehavior": true;
         "c:objc(cs)UIDynamicBehavior": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "childBehaviors": true;
+        "dynamicAnimator": true;
+        "anchorPoint": true;
+        "attachedBehaviorType": true;
+        "attachmentRange": true;
+        "damping": true;
+        "frequency": true;
+        "frictionTorque": true;
+        "items": true;
+        "length": true;
     };
 }
 /**
@@ -14251,6 +15366,104 @@ export declare class UIBackgroundExtensionView extends UIBackgroundExtensionView
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "automaticallyPlacesContentView": true;
+        "contentView": true;
+    };
 }
 /**
  * enum UIBackgroundFetchResult
@@ -14329,6 +15542,11 @@ export declare class UIBandSelectionInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIBandSelectionInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
+        "initialModifierFlags": true;
+        "state": true;
     };
 }
 /**
@@ -14439,6 +15657,16 @@ export declare class UIBarAppearance extends SDKHandle {
         "c:objc(cs)UIBarAppearance": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "backgroundColor": true;
+        "backgroundEffect": true;
+        "backgroundImage": true;
+        "backgroundImageContentMode": true;
+        "idiom": true;
+        "overrideUserInterfaceStyle": true;
+        "shadowColor": true;
+        "shadowImage": true;
+    };
 }
 /**
  * @MainActor class UIBarItem
@@ -14522,6 +15750,17 @@ export declare class UIBarItem extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIBarItem": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
+        "image": true;
+        "imageInsets": true;
+        "landscapeImagePhone": true;
+        "landscapeImagePhoneInsets": true;
+        "largeContentSizeImage": true;
+        "largeContentSizeImageInsets": true;
+        "tag": true;
+        "title": true;
     };
 }
 declare const UIBarButtonItem_base: Omit<typeof UIBarItem, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIBarItem);
@@ -14796,6 +16035,38 @@ export declare class UIBarButtonItem extends UIBarButtonItem_base {
         "c:objc(cs)UIBarItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isEnabled": true;
+        "image": true;
+        "imageInsets": true;
+        "landscapeImagePhone": true;
+        "landscapeImagePhoneInsets": true;
+        "largeContentSizeImage": true;
+        "largeContentSizeImageInsets": true;
+        "tag": true;
+        "title": true;
+        "axisBehavior": true;
+        "buttonGroup": true;
+        "changesSelectionAsPrimaryAction": true;
+        "customView": true;
+        "isHidden": true;
+        "hidesSharedBackground": true;
+        "identifier": true;
+        "menu": true;
+        "menuRepresentation": true;
+        "isPaddingRemoved": true;
+        "possibleTitles": true;
+        "preferredMenuElementOrder": true;
+        "primaryAction": true;
+        "isSelected": true;
+        "sharesBackground": true;
+        "style": true;
+        "isSymbolAnimationEnabled": true;
+        "target": true;
+        "tintColor": true;
+        "visibilityPriority": true;
+        "width": true;
+    };
 }
 /**
  * enum AxisBehavior
@@ -14928,6 +16199,12 @@ export declare class UIBarButtonItemAppearance extends SDKHandle {
         "c:objc(cs)UIBarButtonItemAppearance": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "disabled": true;
+        "focused": true;
+        "highlighted": true;
+        "normal": true;
+    };
 }
 /**
  * @MainActor class UIBarButtonItemGroup
@@ -15003,6 +16280,14 @@ export declare class UIBarButtonItemGroup extends SDKHandle {
         "c:objc(cs)UIBarButtonItemGroup": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alwaysAvailable": true;
+        "barButtonItems": true;
+        "isDisplayingRepresentativeItem": true;
+        "isHidden": true;
+        "menuRepresentation": true;
+        "representativeItem": true;
+    };
 }
 /**
  * @MainActor class UIBarButtonItemStateAppearance
@@ -15036,6 +16321,12 @@ export declare class UIBarButtonItemStateAppearance extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIBarButtonItemStateAppearance": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "backgroundImage": true;
+        "backgroundImagePositionAdjustment": true;
+        "titlePositionAdjustment": true;
+        "titleTextAttributes": true;
     };
 }
 /**
@@ -15670,6 +16961,119 @@ export declare class UIControl extends UIControl_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+    };
 }
 declare const UIButton_base: Omit<typeof UIControl, "initCoder" | "initFrame" | "initFramePrimaryAction" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIControl, "tintColor" | "setTintColor">);
 /**
@@ -16007,6 +17411,148 @@ export declare class UIButton extends UIButton_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "adjustsImageWhenDisabled": true;
+        "adjustsImageWhenHighlighted": true;
+        "automaticallyUpdatesConfiguration": true;
+        "behavioralStyle": true;
+        "buttonType": true;
+        "changesSelectionAsPrimaryAction": true;
+        "contentEdgeInsets": true;
+        "currentAttributedTitle": true;
+        "currentBackgroundImage": true;
+        "currentImage": true;
+        "currentPreferredSymbolConfiguration": true;
+        "currentTitle": true;
+        "currentTitleColor": true;
+        "currentTitleShadowColor": true;
+        "isHeld": true;
+        "isHovered": true;
+        "imageEdgeInsets": true;
+        "imageView": true;
+        "menu": true;
+        "isPointerInteractionEnabled": true;
+        "preferredBehavioralStyle": true;
+        "preferredMenuElementOrder": true;
+        "reversesTitleShadowWhenHighlighted": true;
+        "role": true;
+        "showsTouchWhenHighlighted": true;
+        "subtitleLabel": true;
+        "titleEdgeInsets": true;
+        "titleLabel": true;
+        "tintColor21998": true;
     };
 }
 /** enum ButtonType */
@@ -16368,6 +17914,10 @@ export declare class UICalendarSelectionMultiDate extends UICalendarSelection {
         "c:objc(cs)UICalendarSelection": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+        "selectedDates": true;
+    };
 }
 /**
  * @MainActor protocol UICalendarSelectionMultiDateDelegate : NSObjectProtocol
@@ -16416,6 +17966,10 @@ export declare class UICalendarSelectionSingleDate extends UICalendarSelection {
         "c:objc(cs)UICalendarSelection": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+        "selectedDate": true;
+    };
 }
 /**
  * @MainActor protocol UICalendarSelectionSingleDateDelegate : NSObjectProtocol
@@ -16458,6 +18012,10 @@ export declare class UICalendarSelectionWeekOfYear extends UICalendarSelection {
         "c:objc(cs)UICalendarSelectionWeekOfYear": true;
         "c:objc(cs)UICalendarSelection": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "selectedWeekOfYear": true;
     };
 }
 /**
@@ -16548,6 +18106,111 @@ export declare class UICalendarView extends UICalendarView_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "availableDateRange": true;
+        "calendar": true;
+        "delegate": true;
+        "fontDesign": true;
+        "locale": true;
+        "selectionBehavior": true;
+        "timeZone": true;
+        "visibleDateComponents": true;
+        "wantsDateDecorations": true;
     };
 }
 /**
@@ -17349,6 +19012,107 @@ export declare class UICloudSharingController extends UIViewController {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "availablePermissions": true;
+        "delegate": true;
+        "share": true;
+    };
 }
 /**
  * struct PermissionOptions
@@ -17578,6 +19342,10 @@ export declare class UICollectionLayoutSectionOrthogonalScrollingProperties exte
         "c:objc(cs)UICollectionLayoutSectionOrthogonalScrollingProperties": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "bounce": true;
+        "decelerationRate": true;
+    };
 }
 /**
  * enum Bounce
@@ -17655,6 +19423,103 @@ export declare class UICollectionReusableView extends UICollectionReusableView_b
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "reuseIdentifier": true;
     };
 }
 declare const UIScrollView_base: Omit<typeof UIView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
@@ -18015,6 +19880,154 @@ export declare class UIScrollView extends UIScrollView_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "adjustedContentInset": true;
+        "allowsKeyboardScrolling": true;
+        "alwaysBounceHorizontal": true;
+        "alwaysBounceVertical": true;
+        "automaticallyAdjustsScrollIndicatorInsets": true;
+        "bottomEdgeEffect": true;
+        "bounces": true;
+        "bouncesHorizontally": true;
+        "bouncesVertically": true;
+        "bouncesZoom": true;
+        "canCancelContentTouches": true;
+        "contentAlignmentPoint": true;
+        "contentInset": true;
+        "contentInsetAdjustmentBehavior": true;
+        "contentLayoutGuide": true;
+        "contentOffset": true;
+        "contentSize": true;
+        "isDecelerating": true;
+        "decelerationRate": true;
+        "delaysContentTouches": true;
+        "delegate": true;
+        "isDirectionalLockEnabled": true;
+        "directionalPressGestureRecognizer": true;
+        "isDragging": true;
+        "frameLayoutGuide": true;
+        "horizontalScrollIndicatorInsets": true;
+        "indexDisplayMode": true;
+        "indicatorStyle": true;
+        "keyboardDismissMode": true;
+        "leftEdgeEffect": true;
+        "maximumZoomScale": true;
+        "minimumZoomScale": true;
+        "isPagingEnabled": true;
+        "panGestureRecognizer": true;
+        "pinchGestureRecognizer": true;
+        "refreshControl": true;
+        "rightEdgeEffect": true;
+        "isScrollAnimating": true;
+        "isScrollEnabled": true;
+        "scrollIndicatorInsets": true;
+        "scrollsToTop": true;
+        "showsHorizontalScrollIndicator": true;
+        "showsVerticalScrollIndicator": true;
+        "topEdgeEffect": true;
+        "isTracking": true;
+        "transfersHorizontalScrollingToParent": true;
+        "transfersVerticalScrollingToParent": true;
+        "verticalScrollIndicatorInsets": true;
+        "isZoomAnimating": true;
+        "isZoomBouncing": true;
+        "zoomScale": true;
+        "isZooming": true;
     };
 }
 declare const UICollectionView_base: Omit<typeof UIScrollView, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIScrollView, "delegate" | "setDelegate">);
@@ -18421,6 +20434,182 @@ export declare class UICollectionView extends UICollectionView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "adjustedContentInset": true;
+        "allowsKeyboardScrolling": true;
+        "alwaysBounceHorizontal": true;
+        "alwaysBounceVertical": true;
+        "automaticallyAdjustsScrollIndicatorInsets": true;
+        "bottomEdgeEffect": true;
+        "bounces": true;
+        "bouncesHorizontally": true;
+        "bouncesVertically": true;
+        "bouncesZoom": true;
+        "canCancelContentTouches": true;
+        "contentAlignmentPoint": true;
+        "contentInset": true;
+        "contentInsetAdjustmentBehavior": true;
+        "contentLayoutGuide": true;
+        "contentOffset": true;
+        "contentSize": true;
+        "isDecelerating": true;
+        "decelerationRate": true;
+        "delaysContentTouches": true;
+        "delegate": true;
+        "isDirectionalLockEnabled": true;
+        "directionalPressGestureRecognizer": true;
+        "isDragging": true;
+        "frameLayoutGuide": true;
+        "horizontalScrollIndicatorInsets": true;
+        "indexDisplayMode": true;
+        "indicatorStyle": true;
+        "keyboardDismissMode": true;
+        "leftEdgeEffect": true;
+        "maximumZoomScale": true;
+        "minimumZoomScale": true;
+        "isPagingEnabled": true;
+        "panGestureRecognizer": true;
+        "pinchGestureRecognizer": true;
+        "refreshControl": true;
+        "rightEdgeEffect": true;
+        "isScrollAnimating": true;
+        "isScrollEnabled": true;
+        "scrollIndicatorInsets": true;
+        "scrollsToTop": true;
+        "showsHorizontalScrollIndicator": true;
+        "showsVerticalScrollIndicator": true;
+        "topEdgeEffect": true;
+        "isTracking": true;
+        "transfersHorizontalScrollingToParent": true;
+        "transfersVerticalScrollingToParent": true;
+        "verticalScrollIndicatorInsets": true;
+        "isZoomAnimating": true;
+        "isZoomBouncing": true;
+        "zoomScale": true;
+        "isZooming": true;
+        "allowsFocus": true;
+        "allowsFocusDuringEditing": true;
+        "allowsMultipleSelection": true;
+        "allowsMultipleSelectionDuringEditing": true;
+        "allowsSelection": true;
+        "allowsSelectionDuringEditing": true;
+        "backgroundView": true;
+        "collectionViewLayout": true;
+        "contextMenuInteraction": true;
+        "dataSource": true;
+        "dragDelegate": true;
+        "dragInteractionEnabled": true;
+        "dropDelegate": true;
+        "isEditing": true;
+        "hasActiveDrag": true;
+        "hasActiveDrop": true;
+        "hasUncommittedUpdates": true;
+        "indexPathsForSelectedItems": true;
+        "indexPathsForVisibleItems": true;
+        "numberOfSections": true;
+        "prefetchDataSource": true;
+        "isPrefetchingEnabled": true;
+        "remembersLastFocusedIndexPath": true;
+        "reorderingCadence": true;
+        "selectionFollowsFocus": true;
+        "selfSizingInvalidation": true;
+        "visibleCells": true;
+        "delegate41400": true;
+    };
 }
 /**
  * struct CellRegistration<Cell, Item> where Cell : UICollectionViewCell
@@ -18625,6 +20814,110 @@ export declare class UICollectionViewCell extends UICollectionViewCell_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "reuseIdentifier": true;
+        "automaticallyUpdatesBackgroundConfiguration": true;
+        "automaticallyUpdatesContentConfiguration": true;
+        "backgroundView": true;
+        "contentView": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "selectedBackgroundView": true;
+    };
 }
 /**
  * typealias ConfigurationUpdateHandler = (UICollectionViewCell, UICellConfigurationState) -> Void
@@ -18809,6 +21102,12 @@ export declare class UICollectionViewLayout extends SDKHandle {
         "c:objc(cs)UICollectionViewLayout": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "collectionView": true;
+        "collectionViewContentSize": true;
+        "developmentLayoutDirection": true;
+        "flipsHorizontallyInOppositeLayoutDirection": true;
+    };
 }
 /**
  * @MainActor class UICollectionViewCompositionalLayout
@@ -18840,6 +21139,13 @@ export declare class UICollectionViewCompositionalLayout extends UICollectionVie
         "c:objc(cs)UICollectionViewCompositionalLayout": true;
         "c:objc(cs)UICollectionViewLayout": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "collectionView": true;
+        "collectionViewContentSize": true;
+        "developmentLayoutDirection": true;
+        "flipsHorizontallyInOppositeLayoutDirection": true;
+        "configuration": true;
     };
 }
 /**
@@ -18876,6 +21182,12 @@ export declare class UICollectionViewCompositionalLayoutConfiguration extends SD
     readonly $type: {
         "c:objc(cs)UICollectionViewCompositionalLayoutConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "boundarySupplementaryItems": true;
+        "contentInsetsReference": true;
+        "interSectionSpacing": true;
+        "scrollDirection": true;
     };
 }
 /** typealias UICollectionViewCompositionalLayoutSectionProvider = (Int, any NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? */
@@ -18935,6 +21247,109 @@ export declare class UICollectionViewController extends UICollectionViewControll
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "clearsSelectionOnViewWillAppear": true;
+        "collectionView": true;
+        "collectionViewLayout": true;
+        "installsStandardGestureForInteractiveMovement": true;
+        "useLayoutToLayoutNavigationTransitions": true;
     };
 }
 /** @MainActor protocol UICollectionViewDataSource : NSObjectProtocol */
@@ -19530,6 +21945,10 @@ export declare class UICollectionViewDiffableDataSourceReference extends SDKHand
         "c:objc(cs)UICollectionViewDiffableDataSource": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "reorderingHandlers": true;
+        "sectionSnapshotHandlers": true;
+    };
 }
 /** typealias UICollectionViewDiffableDataSourceReferenceCellProvider = (UICollectionView, IndexPath, Any) -> UICollectionViewCell? */
 export type UICollectionViewDiffableDataSourceReferenceCellProvider = $SDK292;
@@ -19708,6 +22127,11 @@ export declare class UIDropProposal extends SDKHandle {
         "c:objc(cs)UIDropProposal": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "operation": true;
+        "isPrecise": true;
+        "prefersFullSizePreview": true;
+    };
 }
 declare const UICollectionViewDropProposal_base: Omit<typeof UIDropProposal, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIDropProposal);
 /**
@@ -19729,6 +22153,12 @@ export declare class UICollectionViewDropProposal extends UICollectionViewDropPr
         "c:objc(cs)UICollectionViewDropProposal": true;
         "c:objc(cs)UIDropProposal": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "operation": true;
+        "isPrecise": true;
+        "prefersFullSizePreview": true;
+        "intent": true;
     };
 }
 /**
@@ -19827,6 +22257,23 @@ export declare class UICollectionViewFlowLayout extends UICollectionViewFlowLayo
         "c:objc(cs)UICollectionViewLayout": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "collectionView": true;
+        "collectionViewContentSize": true;
+        "developmentLayoutDirection": true;
+        "flipsHorizontallyInOppositeLayoutDirection": true;
+        "estimatedItemSize": true;
+        "footerReferenceSize": true;
+        "headerReferenceSize": true;
+        "itemSize": true;
+        "minimumInteritemSpacing": true;
+        "minimumLineSpacing": true;
+        "scrollDirection": true;
+        "sectionFootersPinToVisibleBounds": true;
+        "sectionHeadersPinToVisibleBounds": true;
+        "sectionInset": true;
+        "sectionInsetReference": true;
+    };
 }
 /**
  * enum SectionInsetReference
@@ -19918,6 +22365,18 @@ export declare class UICollectionViewLayoutInvalidationContext extends SDKHandle
         "c:objc(cs)UICollectionViewLayoutInvalidationContext": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "contentOffsetAdjustment": true;
+        "contentSizeAdjustment": true;
+        "interactiveMovementTarget": true;
+        "invalidateDataSourceCounts": true;
+        "invalidateEverything": true;
+        "invalidatedDecorationIndexPaths": true;
+        "invalidatedItemIndexPaths": true;
+        "invalidatedSupplementaryIndexPaths": true;
+        "previousIndexPathsForInteractivelyMovingItems": true;
+        "targetIndexPathsForInteractivelyMovingItems": true;
+    };
 }
 declare const UICollectionViewFlowLayoutInvalidationContext_base: Omit<typeof UICollectionViewLayoutInvalidationContext, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UICollectionViewLayoutInvalidationContext);
 /**
@@ -19943,6 +22402,20 @@ export declare class UICollectionViewFlowLayoutInvalidationContext extends UICol
         "c:objc(cs)UICollectionViewFlowLayoutInvalidationContext": true;
         "c:objc(cs)UICollectionViewLayoutInvalidationContext": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "contentOffsetAdjustment": true;
+        "contentSizeAdjustment": true;
+        "interactiveMovementTarget": true;
+        "invalidateDataSourceCounts": true;
+        "invalidateEverything": true;
+        "invalidatedDecorationIndexPaths": true;
+        "invalidatedItemIndexPaths": true;
+        "invalidatedSupplementaryIndexPaths": true;
+        "previousIndexPathsForInteractivelyMovingItems": true;
+        "targetIndexPathsForInteractivelyMovingItems": true;
+        "invalidateFlowLayoutAttributes": true;
+        "invalidateFlowLayoutDelegateMetrics": true;
     };
 }
 /**
@@ -19975,6 +22448,13 @@ export declare class UIFocusUpdateContext extends SDKHandle {
         "c:objc(cs)UIFocusUpdateContext": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "focusHeading": true;
+        "nextFocusedItem": true;
+        "nextFocusedView": true;
+        "previouslyFocusedItem": true;
+        "previouslyFocusedView": true;
+    };
 }
 declare const UICollectionViewFocusUpdateContext_base: Omit<typeof UIFocusUpdateContext, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIFocusUpdateContext);
 /**
@@ -19998,6 +22478,15 @@ export declare class UICollectionViewFocusUpdateContext extends UICollectionView
         "c:objc(cs)UICollectionViewFocusUpdateContext": true;
         "c:objc(cs)UIFocusUpdateContext": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "focusHeading": true;
+        "nextFocusedItem": true;
+        "nextFocusedView": true;
+        "previouslyFocusedItem": true;
+        "previouslyFocusedView": true;
+        "nextFocusedIndexPath": true;
+        "previouslyFocusedIndexPath": true;
     };
 }
 /**
@@ -20094,6 +22583,20 @@ export declare class UICollectionViewLayoutAttributes extends SDKHandle {
         "c:objc(cs)UICollectionViewLayoutAttributes": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "bounds": true;
+        "center": true;
+        "frame": true;
+        "isHidden": true;
+        "indexPath": true;
+        "representedElementCategory": true;
+        "representedElementKind": true;
+        "size": true;
+        "transform3D": true;
+        "transform": true;
+        "zIndex": true;
+    };
 }
 declare const UICollectionViewListCell_base: Omit<typeof UICollectionViewCell, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UICollectionViewCell);
 /**
@@ -20145,6 +22648,114 @@ export declare class UICollectionViewListCell extends UICollectionViewListCell_b
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "reuseIdentifier": true;
+        "automaticallyUpdatesBackgroundConfiguration": true;
+        "automaticallyUpdatesContentConfiguration": true;
+        "backgroundView": true;
+        "contentView": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "selectedBackgroundView": true;
+        "indentationLevel": true;
+        "indentationWidth": true;
+        "indentsAccessories": true;
+        "separatorLayoutGuide": true;
+    };
 }
 declare const UICollectionViewTransitionLayout_base: Omit<typeof UICollectionViewLayout, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UICollectionViewLayout);
 /**
@@ -20193,6 +22804,15 @@ export declare class UICollectionViewTransitionLayout extends UICollectionViewTr
         "c:objc(cs)UICollectionViewLayout": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "collectionView": true;
+        "collectionViewContentSize": true;
+        "developmentLayoutDirection": true;
+        "flipsHorizontallyInOppositeLayoutDirection": true;
+        "currentLayout": true;
+        "nextLayout": true;
+        "transitionProgress": true;
+    };
 }
 /**
  * @MainActor class UICollectionViewUpdateItem
@@ -20219,6 +22839,11 @@ export declare class UICollectionViewUpdateItem extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UICollectionViewUpdateItem": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "indexPathAfterUpdate": true;
+        "indexPathBeforeUpdate": true;
+        "updateAction": true;
     };
 }
 /** enum Action */
@@ -20310,6 +22935,15 @@ export declare class UICollisionBehavior extends UICollisionBehavior_base {
         "c:objc(cs)UICollisionBehavior": true;
         "c:objc(cs)UIDynamicBehavior": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "childBehaviors": true;
+        "dynamicAnimator": true;
+        "boundaryIdentifiers": true;
+        "collisionDelegate": true;
+        "collisionMode": true;
+        "items": true;
+        "translatesReferenceBoundsIntoBoundary": true;
     };
 }
 /**
@@ -20866,6 +23500,109 @@ export declare class UIColorPickerViewController extends UIColorPickerViewContro
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "delegate": true;
+        "maximumLinearExposure": true;
+        "selectedColor": true;
+        "supportsAlpha": true;
+        "supportsEyedropper": true;
+    };
 }
 /**
  * @MainActor protocol UIColorPickerViewControllerDelegate : NSObjectProtocol
@@ -20934,6 +23671,124 @@ export declare class UIColorWell extends UIColorWell_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "maximumLinearExposure": true;
+        "selectedColor": true;
+        "supportsAlpha": true;
+        "supportsEyedropper": true;
+        "title": true;
+    };
 }
 declare const UICommand_base: Omit<typeof UIMenuElement, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIMenuElement, "image" | "title">);
 /**
@@ -21001,6 +23856,19 @@ export declare class UICommand extends UICommand_base {
         "c:objc(cs)UIMenuElement": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "image": true;
+        "preferredImageVisibility": true;
+        "subtitle": true;
+        "title": true;
+        "alternates": true;
+        "attributes": true;
+        "discoverabilityTitle": true;
+        "propertyList": true;
+        "state": true;
+        "image27557": true;
+        "title41854": true;
+    };
 }
 /**
  * @MainActor class UICommandAlternate
@@ -21025,6 +23893,10 @@ export declare class UICommandAlternate extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UICommandAlternate": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "modifierFlags": true;
+        "title": true;
     };
 }
 /**
@@ -21740,6 +24612,103 @@ export declare class UIContentUnavailableView extends UIContentUnavailableView_b
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "isScrollEnabled": true;
+    };
 }
 /**
  * @MainActor protocol UIContentView : NSObjectProtocol
@@ -21797,6 +24766,13 @@ export declare class UIContextMenuConfiguration extends SDKHandle {
         "c:objc(cs)UIContextMenuConfiguration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsTypeSelect": true;
+        "badgeCount": true;
+        "identifier": true;
+        "preferredMenuElementOrder": true;
+        "secondaryItemIdentifiers": true;
+    };
 }
 /**
  * enum ElementOrder
@@ -21845,6 +24821,10 @@ export declare class UIContextMenuInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIContextMenuInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "menuAppearance": true;
     };
 }
 /**
@@ -22016,6 +24996,12 @@ export declare class UIContextualAction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIContextualAction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "backgroundColor": true;
+        "image": true;
+        "style": true;
+        "title": true;
     };
 }
 /** @MainActor typealias Handler = (UIContextualAction, UIView, @escaping (Bool) -> Void) -> Void */
@@ -22400,6 +25386,11 @@ export declare class UICubicTimingParameters extends SDKHandle {
         "c:objc(cs)UICubicTimingParameters": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "animationCurve": true;
+        "controlPoint1": true;
+        "controlPoint2": true;
+    };
 }
 /** struct UIDataDetectorTypes */
 export type UIDataDetectorTypes = Array<"phoneNumber" | "link" | "address" | "calendarEvent" | "shipmentTrackingNumber" | "flightNumber" | "lookupSuggestion" | "money" | "physicalValue" | "all">;
@@ -22583,6 +25574,131 @@ export declare class UIDatePicker extends UIDatePicker_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "calendar": true;
+        "countDownDuration": true;
+        "date": true;
+        "datePickerMode": true;
+        "datePickerStyle": true;
+        "locale": true;
+        "maximumDate": true;
+        "minimumDate": true;
+        "minuteInterval": true;
+        "preferredDatePickerStyle": true;
+        "roundsToMinuteInterval": true;
+        "timeZone": true;
+    };
 }
 /** enum Mode */
 export type UIDatePicker_Mode = "time" | "date" | "dateAndTime" | "countDownTimer" | "yearAndMonth";
@@ -22632,6 +25748,13 @@ export declare class UIDeferredMenuElement extends UIDeferredMenuElement_base {
         "c:objc(cs)UIDeferredMenuElement": true;
         "c:objc(cs)UIMenuElement": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "image": true;
+        "preferredImageVisibility": true;
+        "subtitle": true;
+        "title": true;
+        "identifier": true;
     };
 }
 /**
@@ -22791,6 +25914,23 @@ export declare class UIDevice extends SDKHandle {
         "c:objc(cs)UIDevice": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "batteryLevel": true;
+        "isBatteryMonitoringEnabled": true;
+        "batteryState": true;
+        "isGeneratingDeviceOrientationNotifications": true;
+        "identifierForVendor": true;
+        "localizedModel": true;
+        "model": true;
+        "isMultitaskingSupported": true;
+        "name": true;
+        "orientation": true;
+        "isProximityMonitoringEnabled": true;
+        "proximityState": true;
+        "systemName": true;
+        "systemVersion": true;
+        "userInterfaceIdiom": true;
+    };
 }
 /**
  * struct BatteryLevelDidChangeMessage
@@ -22948,6 +26088,10 @@ export declare class UIDictationPhrase extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIDictationPhrase": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alternativeInterpretations": true;
+        "text": true;
     };
 }
 /**
@@ -23494,6 +26638,10 @@ export declare class UIDocumentBrowserTransitionController extends SDKHandle {
         "c:objc(cs)UIDocumentBrowserTransitionController": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "loadingProgress": true;
+        "targetView": true;
+    };
 }
 /**
  * @MainActor class UIDocumentBrowserViewController
@@ -23624,6 +26772,118 @@ export declare class UIDocumentBrowserViewController extends UIViewController {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "activeDocumentCreationIntent": true;
+        "additionalLeadingNavigationBarButtonItems": true;
+        "additionalTrailingNavigationBarButtonItems": true;
+        "allowedContentTypes": true;
+        "allowsDocumentCreation": true;
+        "allowsPickingMultipleItems": true;
+        "browserUserInterfaceStyle": true;
+        "contentTypesForRecentDocuments": true;
+        "customActions": true;
+        "defaultDocumentAspectRatio": true;
+        "delegate": true;
+        "localizedCreateDocumentActionTitle": true;
+        "recentDocumentsContentTypes": true;
+        "shouldShowFileExtensions": true;
     };
 }
 /**
@@ -23771,6 +27031,15 @@ export declare class UIDocumentInteractionController extends SDKHandle {
         "c:objc(cs)UIDocumentInteractionController": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "url": true;
+        "uti": true;
+        "annotation": true;
+        "delegate": true;
+        "gestureRecognizers": true;
+        "icons": true;
+        "name": true;
+    };
 }
 /**
  * protocol UIDocumentInteractionControllerDelegate : NSObjectProtocol
@@ -23895,6 +27164,105 @@ export declare class UIDocumentMenuViewController extends UIDocumentMenuViewCont
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "delegate": true;
+    };
 }
 /** @MainActor protocol UIDocumentPickerDelegate : NSObjectProtocol */
 export interface UIDocumentPickerDelegate {
@@ -23971,6 +27339,109 @@ export declare class UIDocumentPickerExtensionViewController extends UIDocumentP
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "documentPickerMode": true;
+        "documentStorageURL": true;
+        "originalURL": true;
+        "providerIdentifier": true;
+        "validTypes": true;
     };
 }
 /**
@@ -24072,6 +27543,109 @@ export declare class UIDocumentPickerViewController extends UIDocumentPickerView
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "allowsMultipleSelection": true;
+        "delegate": true;
+        "directoryURL": true;
+        "documentPickerMode": true;
+        "shouldShowFileExtensions": true;
+    };
 }
 /**
  * @MainActor class UIDocumentProperties
@@ -24113,6 +27687,10 @@ export declare class UIDocumentProperties extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIDocumentProperties": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "metadata": true;
+        "wantsIconRepresentation": true;
     };
 }
 declare const UIDocumentViewController_base: Omit<typeof UIViewController, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIViewController);
@@ -24163,6 +27741,107 @@ export declare class UIDocumentViewController extends UIDocumentViewController_b
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "document": true;
+        "launchOptions": true;
+        "undoRedoItemGroup": true;
     };
 }
 /**
@@ -24234,6 +27913,16 @@ export declare class UIDocumentViewController_LaunchOptions extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIDocumentViewControllerLaunchOptions": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "backgroundAccessoryView": true;
+        "browserViewController": true;
+        "documentTargetView": true;
+        "foregroundAccessoryView": true;
+        "primaryAction": true;
+        "secondaryAction": true;
+        "subtitle": true;
+        "title": true;
     };
 }
 /**
@@ -24320,6 +28009,13 @@ export declare class UIDragInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIDragInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowsPointerDragBeforeLiftDelay": true;
+        "allowsSimultaneousRecognitionDuringLift": true;
+        "delegate": true;
+        "isEnabled": true;
+        "liftBehavior": true;
     };
 }
 /**
@@ -24420,6 +28116,10 @@ export declare class UIDragItem extends SDKHandle {
         "c:objc(cs)UIDragItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "itemProvider": true;
+        "localObject": true;
+    };
 }
 /**
  * @MainActor class UIDragPreview
@@ -24453,6 +28153,10 @@ export declare class UIDragPreview extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIDragPreview": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "parameters": true;
+        "view": true;
     };
 }
 /**
@@ -24492,6 +28196,11 @@ export declare class UIPreviewParameters extends SDKHandle {
         "c:objc(cs)UIPreviewParameters": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "backgroundColor": true;
+        "shadowPath": true;
+        "visiblePath": true;
+    };
 }
 declare const UIDragPreviewParameters_base: Omit<typeof UIPreviewParameters, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIPreviewParameters);
 /**
@@ -24505,6 +28214,11 @@ export declare class UIDragPreviewParameters extends UIDragPreviewParameters_bas
         "c:objc(cs)UIDragPreviewParameters": true;
         "c:objc(cs)UIPreviewParameters": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "backgroundColor": true;
+        "shadowPath": true;
+        "visiblePath": true;
     };
 }
 /**
@@ -24541,6 +28255,11 @@ export declare class UIPreviewTarget extends SDKHandle {
         "c:objc(cs)UIPreviewTarget": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "center": true;
+        "container": true;
+        "transform": true;
+    };
 }
 /**
  * @MainActor class UIDragPreviewTarget
@@ -24551,6 +28270,11 @@ export declare class UIDragPreviewTarget extends UIPreviewTarget {
         "c:objc(cs)UIDragPreviewTarget": true;
         "c:objc(cs)UIPreviewTarget": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "center": true;
+        "container": true;
+        "transform": true;
     };
 }
 /**
@@ -24598,6 +28322,10 @@ export declare class UIDropInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIDropInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowsSimultaneousDropSessions": true;
+        "delegate": true;
     };
 }
 /**
@@ -24882,6 +28610,19 @@ export declare class UIDynamicItemBehavior extends UIDynamicItemBehavior_base {
         "c:objc(cs)UIDynamicBehavior": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "childBehaviors": true;
+        "dynamicAnimator": true;
+        "allowsRotation": true;
+        "isAnchored": true;
+        "angularResistance": true;
+        "charge": true;
+        "density": true;
+        "elasticity": true;
+        "friction": true;
+        "items": true;
+        "resistance": true;
+    };
 }
 /**
  * enum UIDynamicItemCollisionBoundsType
@@ -24913,6 +28654,9 @@ export declare class UIDynamicItemGroup extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIDynamicItemGroup": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "items": true;
     };
 }
 /** struct UIEdgeInsets */
@@ -24995,6 +28739,10 @@ export declare class UIEditMenuConfiguration extends SDKHandle {
         "c:objc(cs)UIEditMenuConfiguration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "preferredArrowDirection": true;
+        "sourcePoint": true;
+    };
 }
 /**
  * @MainActor class UIEditMenuInteraction
@@ -25039,6 +28787,9 @@ export declare class UIEditMenuInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIEditMenuInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
     };
 }
 /**
@@ -25139,6 +28890,14 @@ export declare class UIEvent extends SDKHandle {
         "c:objc(cs)UIEvent": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allTouches": true;
+        "buttonMask": true;
+        "modifierFlags": true;
+        "subtype": true;
+        "timestamp": true;
+        "type": true;
+    };
 }
 /**
  * struct ButtonMask
@@ -25213,6 +28972,13 @@ export declare class UIEventAttribution extends SDKHandle {
         "c:objc(cs)UIEventAttribution": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "destinationURL": true;
+        "purchaser": true;
+        "reportEndpoint": true;
+        "sourceDescription": true;
+        "sourceIdentifier": true;
+    };
 }
 declare const UIEventAttributionView_base: Omit<typeof UIView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
 /**
@@ -25227,6 +28993,102 @@ export declare class UIEventAttributionView extends UIEventAttributionView_base 
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
     };
 }
 /**
@@ -25352,6 +29214,19 @@ export declare class UIFieldBehavior extends UIDynamicBehavior {
         "c:objc(cs)UIDynamicBehavior": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "childBehaviors": true;
+        "dynamicAnimator": true;
+        "animationSpeed": true;
+        "direction": true;
+        "falloff": true;
+        "items": true;
+        "minimumRadius": true;
+        "position": true;
+        "region": true;
+        "smoothness": true;
+        "strength": true;
+    };
 }
 /**
  * @MainActor class UIFindInteraction
@@ -25423,6 +29298,13 @@ export declare class UIFindInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIFindInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activeFindSession": true;
+        "delegate": true;
+        "isFindNavigatorVisible": true;
+        "replacementText": true;
+        "searchText": true;
     };
 }
 /**
@@ -25513,6 +29395,14 @@ export declare class UIFindSession extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIFindSession": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowsReplacement": true;
+        "allowsReplacementForCurrentlyHighlightedResult": true;
+        "highlightedResultIndex": true;
+        "resultCount": true;
+        "searchResultDisplayStyle": true;
+        "supportsReplacement": true;
     };
 }
 /**
@@ -25793,6 +29683,22 @@ export declare class UILayoutGuide extends SDKHandle {
         "c:objc(cs)UILayoutGuide": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "bottomAnchor": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "identifier": true;
+        "layoutFrame": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "owningView": true;
+        "rightAnchor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "widthAnchor": true;
+    };
 }
 declare const UIFocusGuide_base: Omit<typeof UILayoutGuide, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UILayoutGuide);
 /**
@@ -25825,6 +29731,25 @@ export declare class UIFocusGuide extends UIFocusGuide_base {
         "c:objc(cs)UIFocusGuide": true;
         "c:objc(cs)UILayoutGuide": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "bottomAnchor": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "identifier": true;
+        "layoutFrame": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "owningView": true;
+        "rightAnchor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "widthAnchor": true;
+        "isEnabled": true;
+        "preferredFocusEnvironments": true;
+        "preferredFocusedView": true;
     };
 }
 /**
@@ -26109,6 +30034,9 @@ export declare class UIFocusSystem extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIFocusSystem": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "focusedItem": true;
     };
 }
 /**
@@ -26989,6 +30917,107 @@ export declare class UIFontPickerViewController extends UIFontPickerViewControll
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "configuration": true;
+        "delegate": true;
+        "selectedFontDescriptor": true;
+    };
 }
 /**
  * @MainActor class Configuration
@@ -27037,6 +31066,12 @@ export declare class UIFontPickerViewController_Configuration extends SDKHandle 
     readonly $type: {
         "c:objc(cs)UIFontPickerViewControllerConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "displayUsingSystemFont": true;
+        "filteredLanguagesPredicate": true;
+        "filteredTraits": true;
+        "includeFaces": true;
     };
 }
 /**
@@ -27236,6 +31271,22 @@ export declare class UIGestureRecognizer extends SDKHandle {
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowedPressTypes": true;
+        "allowedTouchTypes": true;
+        "buttonMask": true;
+        "cancelsTouchesInView": true;
+        "delaysTouchesBegan": true;
+        "delaysTouchesEnded": true;
+        "delegate": true;
+        "isEnabled": true;
+        "modifierFlags": true;
+        "name": true;
+        "numberOfTouches": true;
+        "requiresExclusiveTouchType": true;
+        "state": true;
+        "view": true;
+    };
 }
 /** enum State */
 export type UIGestureRecognizer_State = "possible" | "began" | "changed" | "ended" | "cancelled" | "failed";
@@ -27267,6 +31318,9 @@ export declare class UIGlassContainerEffect extends UIGlassContainerEffect_base 
         "c:objc(cs)UIVisualEffect": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "spacing": true;
+    };
 }
 declare const UIGlassEffect_base: Omit<typeof UIVisualEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIVisualEffect);
 /**
@@ -27295,6 +31349,10 @@ export declare class UIGlassEffect extends UIGlassEffect_base {
         "c:objc(cs)UIGlassEffect": true;
         "c:objc(cs)UIVisualEffect": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isInteractive": true;
+        "tintColor": true;
     };
 }
 /**
@@ -27753,6 +31811,14 @@ export declare class UIGravityBehavior extends UIGravityBehavior_base {
         "c:objc(cs)UIDynamicBehavior": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "childBehaviors": true;
+        "dynamicAnimator": true;
+        "angle": true;
+        "gravityDirection": true;
+        "items": true;
+        "magnitude": true;
+    };
 }
 /**
  * struct UIGuidedAccessAccessibilityFeature
@@ -27832,6 +31898,10 @@ export declare class UIHinge extends SDKHandle {
         "c:objc(cs)UIHinge": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "angle": true;
+        "status": true;
+    };
 }
 /**
  * enum Status
@@ -27865,6 +31935,9 @@ export declare class UIHingeInteraction extends SDKHandle {
         "c:objc(cs)UIHingeInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * @MainActor class Update
@@ -27879,6 +31952,9 @@ export declare class UIHingeInteraction_Update extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIHingeInteractionUpdate": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "hinge": true;
     };
 }
 /**
@@ -27938,6 +32014,25 @@ export declare class UIHoverGestureRecognizer extends UIHoverGestureRecognizer_b
         "c:objc(cs)UIHoverGestureRecognizer": true;
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowedPressTypes": true;
+        "allowedTouchTypes": true;
+        "buttonMask": true;
+        "cancelsTouchesInView": true;
+        "delaysTouchesBegan": true;
+        "delaysTouchesEnded": true;
+        "delegate": true;
+        "isEnabled": true;
+        "modifierFlags": true;
+        "name": true;
+        "numberOfTouches": true;
+        "requiresExclusiveTouchType": true;
+        "state": true;
+        "view": true;
+        "altitudeAngle": true;
+        "rollAngle": true;
+        "zOffset": true;
     };
 }
 /**
@@ -27999,6 +32094,9 @@ export declare class UIHoverStyle extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIHoverStyle": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
     };
 }
 /**
@@ -28859,6 +32957,120 @@ export declare class UINavigationController extends UINavigationController_base 
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "barHideOnSwipeGestureRecognizer": true;
+        "barHideOnTapGestureRecognizer": true;
+        "delegate": true;
+        "hidesBarsOnSwipe": true;
+        "hidesBarsOnTap": true;
+        "hidesBarsWhenKeyboardAppears": true;
+        "hidesBarsWhenVerticallyCompact": true;
+        "interactiveContentPopGestureRecognizer": true;
+        "interactivePopGestureRecognizer": true;
+        "navigationBar": true;
+        "isNavigationBarHidden": true;
+        "toolbar": true;
+        "isToolbarHidden": true;
+        "topViewController": true;
+        "viewControllers": true;
+        "visibleViewController": true;
+    };
 }
 declare const UIImagePickerController_base: Omit<typeof UINavigationController, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UINavigationController, "delegate" | "setDelegate">);
 /**
@@ -29006,6 +33218,134 @@ export declare class UIImagePickerController extends UIImagePickerController_bas
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "barHideOnSwipeGestureRecognizer": true;
+        "barHideOnTapGestureRecognizer": true;
+        "delegate": true;
+        "hidesBarsOnSwipe": true;
+        "hidesBarsOnTap": true;
+        "hidesBarsWhenKeyboardAppears": true;
+        "hidesBarsWhenVerticallyCompact": true;
+        "interactiveContentPopGestureRecognizer": true;
+        "interactivePopGestureRecognizer": true;
+        "navigationBar": true;
+        "isNavigationBarHidden": true;
+        "toolbar": true;
+        "isToolbarHidden": true;
+        "topViewController": true;
+        "viewControllers": true;
+        "visibleViewController": true;
+        "allowsEditing": true;
+        "cameraCaptureMode": true;
+        "cameraDevice": true;
+        "cameraFlashMode": true;
+        "cameraOverlayView": true;
+        "cameraViewTransform": true;
+        "imageExportPreset": true;
+        "mediaTypes": true;
+        "showsCameraControls": true;
+        "sourceType": true;
+        "videoExportPreset": true;
+        "videoMaximumDuration": true;
+        "videoQuality": true;
+        "delegate91974": true;
     };
 }
 /** enum CameraCaptureMode */
@@ -29315,6 +33655,115 @@ export declare class UIImageView extends UIImageView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "isAnimating": true;
+        "animationDuration": true;
+        "animationImages": true;
+        "animationRepeatCount": true;
+        "isHighlighted": true;
+        "highlightedAnimationImages": true;
+        "highlightedImage": true;
+        "image": true;
+        "imageDynamicRange": true;
+        "preferredImageDynamicRange": true;
+        "preferredSymbolConfiguration": true;
+        "tintColor21998": true;
+        "isUserInteractionEnabled96980": true;
+    };
 }
 /**
  * @MainActor class UIImpactFeedbackGenerator
@@ -29476,6 +33925,104 @@ export declare class UIInputView extends UIInputView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allowsSelfSizing": true;
+        "inputViewStyle": true;
+    };
 }
 /**
  * enum Style
@@ -29563,6 +34110,110 @@ export declare class UIInputViewController extends UIInputViewController_base {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "hasDictationKey": true;
+        "hasFullAccess": true;
+        "needsInputModeSwitchKey": true;
+        "primaryLanguage": true;
+        "textDocumentProxy": true;
+        "inputView30804": true;
     };
 }
 /**
@@ -29679,6 +34330,12 @@ export declare class UIInterpolatingMotionEffect extends UIInterpolatingMotionEf
         "c:objc(cs)UIMotionEffect": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "keyPath": true;
+        "maximumRelativeValue": true;
+        "minimumRelativeValue": true;
+        "type": true;
+    };
 }
 /** enum EffectType */
 export type UIInterpolatingMotionEffect_EffectType = "tiltAlongHorizontalAxis" | "tiltAlongVerticalAxis";
@@ -29734,6 +34391,12 @@ export declare class UIKey extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIKey": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "characters": true;
+        "charactersIgnoringModifiers": true;
+        "keyCode": true;
+        "modifierFlags": true;
     };
 }
 /** enum UIKeyboardAppearance */
@@ -29829,6 +34492,22 @@ export declare class UITrackingLayoutGuide extends UITrackingLayoutGuide_base {
         "c:objc(cs)UILayoutGuide": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "bottomAnchor": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "identifier": true;
+        "layoutFrame": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "owningView": true;
+        "rightAnchor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "widthAnchor": true;
+    };
 }
 declare const UIKeyboardLayoutGuide_base: Omit<typeof UITrackingLayoutGuide, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UITrackingLayoutGuide);
 /**
@@ -29861,6 +34540,25 @@ export declare class UIKeyboardLayoutGuide extends UIKeyboardLayoutGuide_base {
         "c:objc(cs)UITrackingLayoutGuide": true;
         "c:objc(cs)UILayoutGuide": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "bottomAnchor": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "identifier": true;
+        "layoutFrame": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "owningView": true;
+        "rightAnchor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "widthAnchor": true;
+        "followsUndockedKeyboard": true;
+        "keyboardDismissPadding": true;
+        "usesBottomSafeArea": true;
     };
 }
 /** enum UIKeyboardType */
@@ -30101,6 +34799,29 @@ export declare class UIKeyCommand extends UIKeyCommand_base {
         "c:objc(cs)UIMenuElement": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "image": true;
+        "preferredImageVisibility": true;
+        "subtitle": true;
+        "title": true;
+        "alternates": true;
+        "attributes": true;
+        "discoverabilityTitle": true;
+        "propertyList": true;
+        "state": true;
+        "image27557": true;
+        "title41854": true;
+        "allowsAutomaticLocalization": true;
+        "allowsAutomaticMirroring": true;
+        "input": true;
+        "modifierFlags": true;
+        "wantsPriorityOverSystemBehavior": true;
+        "attributes70785": true;
+        "discoverabilityTitle37675": true;
+        "image31413": true;
+        "state45613": true;
+        "title47406": true;
+    };
 }
 /** @MainActor protocol UIKeyInput : UITextInputTraits */
 export interface UIKeyInput {
@@ -30307,6 +35028,123 @@ export declare class UILabel extends UILabel_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "adjustsFontSizeToFitWidth": true;
+        "allowsDefaultTighteningForTruncation": true;
+        "attributedText": true;
+        "baselineAdjustment": true;
+        "isEnabled": true;
+        "font": true;
+        "isHighlighted": true;
+        "highlightedTextColor": true;
+        "lineBreakMode": true;
+        "lineBreakStrategy": true;
+        "minimumScaleFactor": true;
+        "numberOfLines": true;
+        "preferredMaxLayoutWidth": true;
+        "preferredVibrancy": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "showsExpansionTextWhenTruncated": true;
+        "text": true;
+        "textAlignment": true;
+        "textColor": true;
+        "isUserInteractionEnabled96980": true;
+    };
 }
 /**
  * enum UILabelVibrancy
@@ -30353,6 +35191,10 @@ export declare class UILargeContentViewerInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UILargeContentViewerInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "gestureRecognizerForExclusionRelationship": true;
     };
 }
 /**
@@ -30458,6 +35300,9 @@ export declare class UILexicon extends SDKHandle {
         "c:objc(cs)UILexicon": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "entries": true;
+    };
 }
 /**
  * @MainActor class UILexiconEntry
@@ -30479,6 +35324,10 @@ export declare class UILexiconEntry extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UILexiconEntry": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "documentText": true;
+        "userInput": true;
     };
 }
 /**
@@ -30950,6 +35799,105 @@ export declare class UIListContentView extends UIListContentView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "imageLayoutGuide": true;
+        "secondaryTextLayoutGuide": true;
+        "textLayoutGuide": true;
+    };
 }
 /**
  * enum UIListEnvironment
@@ -31074,6 +36022,10 @@ export declare class UILocalizedIndexedCollation extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UILocalizedIndexedCollation": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "sectionIndexTitles": true;
+        "sectionTitles": true;
     };
 }
 /**
@@ -31203,6 +36155,23 @@ export declare class UILocalNotification extends SDKHandle {
         "c:objc(cs)UILocalNotification": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alertAction": true;
+        "alertBody": true;
+        "alertLaunchImage": true;
+        "alertTitle": true;
+        "applicationIconBadgeNumber": true;
+        "category": true;
+        "fireDate": true;
+        "hasAction": true;
+        "region": true;
+        "regionTriggersOnce": true;
+        "repeatCalendar": true;
+        "repeatInterval": true;
+        "soundName": true;
+        "timeZone": true;
+        "userInfo": true;
+    };
 }
 declare const UILongPressGestureRecognizer_base: Omit<typeof UIGestureRecognizer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIGestureRecognizer);
 /**
@@ -31240,6 +36209,26 @@ export declare class UILongPressGestureRecognizer extends UILongPressGestureReco
         "c:objc(cs)UILongPressGestureRecognizer": true;
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowedPressTypes": true;
+        "allowedTouchTypes": true;
+        "buttonMask": true;
+        "cancelsTouchesInView": true;
+        "delaysTouchesBegan": true;
+        "delaysTouchesEnded": true;
+        "delegate": true;
+        "isEnabled": true;
+        "modifierFlags": true;
+        "name": true;
+        "numberOfTouches": true;
+        "requiresExclusiveTouchType": true;
+        "state": true;
+        "view": true;
+        "allowableMovement": true;
+        "minimumPressDuration": true;
+        "numberOfTapsRequired": true;
+        "numberOfTouchesRequired": true;
     };
 }
 /** protocol UILookToDictateCapable : NSObjectProtocol */
@@ -31420,6 +36409,17 @@ export declare class UIMainMenuSystem_Configuration extends SDKHandle {
         "c:objc(cs)UIMainMenuSystemConfiguration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "documentPreference": true;
+        "findingConfiguration": true;
+        "findingPreference": true;
+        "inspectorPreference": true;
+        "newScenePreference": true;
+        "printingPreference": true;
+        "sidebarPreference": true;
+        "textFormattingPreference": true;
+        "toolbarPreference": true;
+    };
 }
 declare const UIManagedDocument_base: Omit<typeof UIDocument, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIDocument);
 /**
@@ -31487,6 +36487,8 @@ export declare class UIManagedDocument extends UIManagedDocument_base {
         "savingFileType": true;
         "undoManager": true;
         "userActivity": true;
+        "modelConfiguration": true;
+        "persistentStoreOptions": true;
     };
 }
 /**
@@ -31677,6 +36679,18 @@ export declare class UIMenu extends UIMenuElement {
         "c:objc(cs)UIMenu": true;
         "c:objc(cs)UIMenuElement": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "image": true;
+        "preferredImageVisibility": true;
+        "subtitle": true;
+        "title": true;
+        "children": true;
+        "displayPreferences": true;
+        "identifier": true;
+        "options": true;
+        "preferredElementSize": true;
+        "selectedElements": true;
     };
 }
 /**
@@ -32193,6 +37207,12 @@ export declare class UIMenuController extends SDKHandle {
         "c:objc(cs)UIMenuController": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "arrowDirection": true;
+        "menuFrame": true;
+        "menuItems": true;
+        "isMenuVisible": true;
+    };
 }
 /**
  * enum ArrowDirection
@@ -32224,6 +37244,9 @@ export declare class UIMenuDisplayPreferences extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIMenuDisplayPreferences": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "maximumNumberOfTitleLines": true;
     };
 }
 /**
@@ -32311,6 +37334,9 @@ export declare class UIMenuItem extends SDKHandle {
         "c:objc(cs)UIMenuItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "title": true;
+    };
 }
 /**
  * @MainActor protocol UIMenuLeaf : NSObjectProtocol
@@ -32349,6 +37375,9 @@ export declare class UIMenuSystem_FindElementGroupConfiguration extends SDKHandl
     readonly $type: {
         "c:objc(cs)UIMenuSystemFindElementGroupConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "style": true;
     };
 }
 /**
@@ -32469,6 +37498,9 @@ export declare class UIMotionEffectGroup extends UIMotionEffectGroup_base {
         "c:objc(cs)UIMotionEffectGroup": true;
         "c:objc(cs)UIMotionEffect": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "motionEffects": true;
     };
 }
 declare const UIMutableApplicationShortcutItem_base: Omit<typeof UIApplicationShortcutItem, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIApplicationShortcutItem, "icon" | "localizedSubtitle" | "localizedTitle" | "targetContentIdentifier" | "type" | "userInfo">);
@@ -32602,6 +37634,15 @@ export declare class UIUserNotificationAction extends SDKHandle {
         "c:objc(cs)UIUserNotificationAction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activationMode": true;
+        "isAuthenticationRequired": true;
+        "behavior": true;
+        "isDestructive": true;
+        "identifier": true;
+        "parameters": true;
+        "title": true;
+    };
 }
 declare const UIMutableUserNotificationAction_base: Omit<typeof UIUserNotificationAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIUserNotificationAction, "activationMode" | "isAuthenticationRequired" | "behavior" | "isDestructive" | "identifier" | "parameters" | "title">);
 /**
@@ -32708,6 +37749,22 @@ export declare class UIMutableUserNotificationAction extends UIMutableUserNotifi
         "c:objc(cs)UIUserNotificationAction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activationMode": true;
+        "isAuthenticationRequired": true;
+        "behavior": true;
+        "isDestructive": true;
+        "identifier": true;
+        "parameters": true;
+        "title": true;
+        "activationMode44098": true;
+        "isAuthenticationRequired99972": true;
+        "behavior51087": true;
+        "isDestructive39387": true;
+        "identifier75414": true;
+        "parameters12129": true;
+        "title625": true;
+    };
 }
 /**
  * @MainActor class UIUserNotificationCategory
@@ -32743,6 +37800,9 @@ export declare class UIUserNotificationCategory extends SDKHandle {
         "c:objc(cs)UIUserNotificationCategory": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 declare const UIMutableUserNotificationCategory_base: Omit<typeof UIUserNotificationCategory, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIUserNotificationCategory, "identifier">);
 /**
@@ -32776,6 +37836,10 @@ export declare class UIMutableUserNotificationCategory extends UIMutableUserNoti
         "c:objc(cs)UIMutableUserNotificationCategory": true;
         "c:objc(cs)UIUserNotificationCategory": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "identifier": true;
+        "identifier10940": true;
     };
 }
 declare const UINavigationBar_base: Omit<typeof UIView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIView, "tintColor" | "setTintColor">);
@@ -32965,6 +38029,123 @@ export declare class UINavigationBar extends UINavigationBar_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "backIndicatorImage": true;
+        "backIndicatorTransitionMaskImage": true;
+        "backItem": true;
+        "barStyle": true;
+        "barTintColor": true;
+        "behavioralStyle": true;
+        "compactAppearance": true;
+        "compactScrollEdgeAppearance": true;
+        "currentNSToolbarSection": true;
+        "delegate": true;
+        "items": true;
+        "largeTitleTextAttributes": true;
+        "preferredBehavioralStyle": true;
+        "prefersLargeTitles": true;
+        "scrollEdgeAppearance": true;
+        "shadowImage": true;
+        "standardAppearance": true;
+        "titleTextAttributes": true;
+        "topItem": true;
+        "isTranslucent": true;
+        "tintColor21998": true;
+    };
 }
 /**
  * enum NSToolbarSection
@@ -33060,6 +38241,27 @@ export declare class UINavigationBarAppearance extends UINavigationBarAppearance
         "c:objc(cs)UINavigationBarAppearance": true;
         "c:objc(cs)UIBarAppearance": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "backgroundColor": true;
+        "backgroundEffect": true;
+        "backgroundImage": true;
+        "backgroundImageContentMode": true;
+        "idiom": true;
+        "overrideUserInterfaceStyle": true;
+        "shadowColor": true;
+        "shadowImage": true;
+        "backButtonAppearance": true;
+        "backIndicatorImage": true;
+        "backIndicatorTransitionMaskImage": true;
+        "buttonAppearance": true;
+        "doneButtonAppearance": true;
+        "largeSubtitleTextAttributes": true;
+        "largeTitleTextAttributes": true;
+        "prominentButtonAppearance": true;
+        "subtitleTextAttributes": true;
+        "titlePositionAdjustment": true;
+        "titleTextAttributes": true;
     };
 }
 /** @MainActor protocol UINavigationBarDelegate : UIBarPositioningDelegate */
@@ -33410,6 +38612,48 @@ export declare class UINavigationItem extends SDKHandle {
         "c:objc(cs)UINavigationItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "additionalOverflowItems": true;
+        "backAction": true;
+        "backBarButtonItem": true;
+        "backButtonDisplayMode": true;
+        "backButtonTitle": true;
+        "centerItemGroups": true;
+        "compactAppearance": true;
+        "compactScrollEdgeAppearance": true;
+        "customizationIdentifier": true;
+        "documentProperties": true;
+        "hidesBackButton": true;
+        "hidesSearchBarWhenScrolling": true;
+        "largeSubtitle": true;
+        "largeSubtitleView": true;
+        "largeTitle": true;
+        "largeTitleDisplayMode": true;
+        "leadingItemGroups": true;
+        "leftBarButtonItem": true;
+        "leftBarButtonItems": true;
+        "leftItemsSupplementBackButton": true;
+        "overflowPresentationSource": true;
+        "pinnedTrailingGroup": true;
+        "preferredSearchBarPlacement": true;
+        "prompt": true;
+        "rightBarButtonItem": true;
+        "rightBarButtonItems": true;
+        "scrollEdgeAppearance": true;
+        "searchBarPlacement": true;
+        "searchBarPlacementAllowsExternalIntegration": true;
+        "searchBarPlacementAllowsToolbarIntegration": true;
+        "searchBarPlacementBarButtonItem": true;
+        "searchController": true;
+        "standardAppearance": true;
+        "style": true;
+        "subtitle": true;
+        "subtitleView": true;
+        "title": true;
+        "titleView": true;
+        "trailingItemGroups": true;
+        "verticalBarCompressionBehavior": true;
+    };
 }
 /** enum BackButtonDisplayMode */
 export type UINavigationItem_BackButtonDisplayMode = "default" | "generic" | "minimal";
@@ -33601,6 +38845,10 @@ export declare class UIOpenURLContext extends SDKHandle {
         "c:objc(cs)UIOpenURLContext": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "url": true;
+        "options": true;
+    };
 }
 /**
  * struct UIOverlayArrangement
@@ -33769,6 +39017,132 @@ export declare class UIPageControl extends UIPageControl_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "allowsContinuousInteraction": true;
+        "backgroundStyle": true;
+        "currentPage": true;
+        "currentPageIndicatorTintColor": true;
+        "defersCurrentPageDisplay": true;
+        "direction": true;
+        "hidesForSinglePage": true;
+        "interactionState": true;
+        "numberOfPages": true;
+        "pageIndicatorTintColor": true;
+        "preferredCurrentPageIndicatorImage": true;
+        "preferredIndicatorImage": true;
+        "progress": true;
     };
 }
 /**
@@ -34006,6 +39380,112 @@ export declare class UIPageViewController extends UIPageViewController_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "dataSource": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "gestureRecognizers": true;
+        "navigationOrientation": true;
+        "spineLocation": true;
+        "transitionStyle": true;
+        "viewControllers": true;
+    };
 }
 /** enum NavigationDirection */
 export type UIPageViewController_NavigationDirection = "forward" | "reverse";
@@ -34115,6 +39595,25 @@ export declare class UIPanGestureRecognizer extends UIPanGestureRecognizer_base 
         "c:objc(cs)UIPanGestureRecognizer": true;
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowedPressTypes": true;
+        "allowedTouchTypes": true;
+        "buttonMask": true;
+        "cancelsTouchesInView": true;
+        "delaysTouchesBegan": true;
+        "delaysTouchesEnded": true;
+        "delegate": true;
+        "isEnabled": true;
+        "modifierFlags": true;
+        "name": true;
+        "numberOfTouches": true;
+        "requiresExclusiveTouchType": true;
+        "state": true;
+        "view": true;
+        "allowedScrollTypesMask": true;
+        "maximumNumberOfTouches": true;
+        "minimumNumberOfTouches": true;
     };
 }
 /**
@@ -34686,6 +40185,9 @@ export declare class UIPasteConfiguration extends SDKHandle {
         "c:objc(cs)UIPasteConfiguration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "acceptableTypeIdentifiers": true;
+    };
 }
 /**
  * @MainActor protocol UIPasteConfigurationSupporting : NSObjectProtocol
@@ -34737,6 +40239,121 @@ export declare class UIPasteControl extends UIPasteControl_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "configuration": true;
+        "target": true;
+    };
 }
 /**
  * @MainActor class Configuration
@@ -34784,6 +40401,13 @@ export declare class UIPasteControl_Configuration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPasteControlConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "baseBackgroundColor": true;
+        "baseForegroundColor": true;
+        "cornerRadius": true;
+        "displayMode": true;
+        "imagePlacement": true;
     };
 }
 /**
@@ -34837,6 +40461,14 @@ export declare class UIPencilHoverPose extends SDKHandle {
         "c:objc(cs)UIPencilHoverPose": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "altitudeAngle": true;
+        "azimuthAngle": true;
+        "azimuthUnitVector": true;
+        "location": true;
+        "rollAngle": true;
+        "zOffset": true;
+    };
 }
 /**
  * @MainActor class UIPencilInteraction
@@ -34884,6 +40516,10 @@ export declare class UIPencilInteraction extends SDKHandle {
         "c:objc(cs)UIPencilInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+        "isEnabled": true;
+    };
 }
 /**
  * enum Phase
@@ -34921,6 +40557,11 @@ export declare class UIPencilInteraction_Squeeze extends SDKHandle {
         "c:objc(cs)UIPencilInteractionSqueeze": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "hoverPose": true;
+        "phase": true;
+        "timestamp": true;
+    };
 }
 /**
  * @MainActor class Tap
@@ -34940,6 +40581,10 @@ export declare class UIPencilInteraction_Tap extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPencilInteractionTap": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "hoverPose": true;
+        "timestamp": true;
     };
 }
 /**
@@ -35040,6 +40685,14 @@ export declare class UIPercentDrivenInteractiveTransition extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPercentDrivenInteractiveTransition": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "completionCurve": true;
+        "completionSpeed": true;
+        "duration": true;
+        "percentComplete": true;
+        "timingCurve": true;
+        "wantsInteractiveStart": true;
     };
 }
 /**
@@ -35152,6 +40805,106 @@ export declare class UIPickerView extends UIPickerView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "dataSource": true;
+        "delegate": true;
+        "numberOfComponents": true;
+        "showsSelectionIndicator": true;
+    };
 }
 /** @MainActor protocol UIPickerViewAccessibilityDelegate : UIPickerViewDelegate */
 export interface UIPickerViewAccessibilityDelegate {
@@ -35206,6 +40959,24 @@ export declare class UIPinchGestureRecognizer extends UIPinchGestureRecognizer_b
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowedPressTypes": true;
+        "allowedTouchTypes": true;
+        "buttonMask": true;
+        "cancelsTouchesInView": true;
+        "delaysTouchesBegan": true;
+        "delaysTouchesEnded": true;
+        "delegate": true;
+        "isEnabled": true;
+        "modifierFlags": true;
+        "name": true;
+        "numberOfTouches": true;
+        "requiresExclusiveTouchType": true;
+        "state": true;
+        "view": true;
+        "scale": true;
+        "velocity": true;
+    };
 }
 /**
  * @MainActor class UIPointerAccessory
@@ -35241,6 +41012,10 @@ export declare class UIPointerAccessory extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPointerAccessory": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "orientationMatchesAngle": true;
+        "position": true;
     };
 }
 /**
@@ -35363,6 +41138,10 @@ export declare class UIPointerInteraction extends SDKHandle {
         "c:objc(cs)UIPointerInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+        "isEnabled": true;
+    };
 }
 /**
  * @MainActor protocol UIPointerInteractionAnimating : NSObjectProtocol
@@ -35419,6 +41198,9 @@ export declare class UIPointerLockState extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPointerLockState": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isLocked": true;
     };
 }
 /**
@@ -35497,6 +41279,10 @@ export declare class UIPointerRegion extends SDKHandle {
         "c:objc(cs)UIPointerRegion": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "latchingAxes": true;
+        "rect": true;
+    };
 }
 /**
  * @MainActor class UIPointerRegionRequest
@@ -35518,6 +41304,10 @@ export declare class UIPointerRegionRequest extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPointerRegionRequest": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "location": true;
+        "modifiers": true;
     };
 }
 /**
@@ -35570,6 +41360,10 @@ export declare class UIPointerStyle extends UIHoverStyle {
         "c:objc(cs)UIHoverStyle": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isEnabled": true;
+        "accessories": true;
+    };
 }
 /** struct UIPopoverArrowDirection */
 export type UIPopoverArrowDirection = Array<"up" | "down" | "left" | "right" | "any" | "unknown">;
@@ -35620,6 +41414,104 @@ export declare class UIPopoverBackgroundView extends UIPopoverBackgroundView_bas
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "arrowDirection": true;
+        "arrowOffset": true;
     };
 }
 /** protocol UIPopoverBackgroundViewMethods */
@@ -35743,6 +41635,17 @@ export declare class UIPopoverController extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPopoverController": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "backgroundColor": true;
+        "contentViewController": true;
+        "delegate": true;
+        "passthroughViews": true;
+        "arrowDirection": true;
+        "backgroundViewClass": true;
+        "contentSize": true;
+        "layoutMargins": true;
+        "isPopoverVisible": true;
     };
 }
 /** @MainActor protocol UIPopoverControllerDelegate : NSObjectProtocol */
@@ -35884,6 +41787,20 @@ export declare class UIPresentationController extends SDKHandle {
         "c:objc(cs)UIPresentationController": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "adaptivePresentationStyle": true;
+        "backgroundEffect": true;
+        "containerView": true;
+        "delegate": true;
+        "frameOfPresentedViewInContainerView": true;
+        "overrideTraitCollection": true;
+        "presentationStyle": true;
+        "presentedView": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "shouldPresentInFullscreen": true;
+        "shouldRemovePresentersView": true;
+    };
 }
 declare const UIPopoverPresentationController_base: Omit<typeof UIPresentationController, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIPresentationController, "delegate" | "setDelegate">);
 /**
@@ -35978,6 +41895,33 @@ export declare class UIPopoverPresentationController extends UIPopoverPresentati
         "c:objc(cs)UIPopoverPresentationController": true;
         "c:objc(cs)UIPresentationController": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "adaptivePresentationStyle": true;
+        "backgroundEffect": true;
+        "containerView": true;
+        "delegate": true;
+        "frameOfPresentedViewInContainerView": true;
+        "overrideTraitCollection": true;
+        "presentationStyle": true;
+        "presentedView": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "shouldPresentInFullscreen": true;
+        "shouldRemovePresentersView": true;
+        "adaptiveSheetPresentationController": true;
+        "arrowDirection": true;
+        "backgroundColor": true;
+        "barButtonItem": true;
+        "canOverlapSourceViewRect": true;
+        "passthroughViews": true;
+        "permittedArrowDirections": true;
+        "popoverBackgroundViewClass": true;
+        "popoverLayoutMargins": true;
+        "sourceItem": true;
+        "sourceRect": true;
+        "sourceView": true;
+        "delegate23712": true;
     };
 }
 /** @MainActor protocol UIPopoverPresentationControllerDelegate : UIAdaptivePresentationControllerDelegate */
@@ -36139,6 +42083,15 @@ export declare class UIPressesEvent extends UIPressesEvent_base {
         "c:objc(cs)UIEvent": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allTouches": true;
+        "buttonMask": true;
+        "modifierFlags": true;
+        "subtype": true;
+        "timestamp": true;
+        "type": true;
+        "allPresses": true;
+    };
 }
 /**
  * @MainActor class UIPreviewAction
@@ -36235,6 +42188,10 @@ export declare class UIPreviewInteraction extends SDKHandle {
         "c:objc(cs)UIPreviewInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+        "view": true;
+    };
 }
 /** @MainActor protocol UIPreviewInteractionDelegate : NSObjectProtocol */
 export interface UIPreviewInteractionDelegate {
@@ -36307,6 +42264,15 @@ export declare class UIPrinter extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPrinter": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "url": true;
+        "displayLocation": true;
+        "displayName": true;
+        "makeAndModel": true;
+        "supportedJobTypes": true;
+        "supportsColor": true;
+        "supportsDuplex": true;
     };
 }
 /**
@@ -36410,6 +42376,11 @@ export declare class UIPrinterDestination extends SDKHandle {
         "c:objc(cs)UIPrinterDestination": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "url": true;
+        "displayName": true;
+        "txtRecord": true;
+    };
 }
 /**
  * @MainActor class UIPrinterPickerController
@@ -36455,6 +42426,10 @@ export declare class UIPrinterPickerController extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPrinterPickerController": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "selectedPrinter": true;
     };
 }
 /**
@@ -36597,6 +42572,14 @@ export declare class UIPrintInfo extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPrintInfo": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "dictionaryRepresentation": true;
+        "duplex": true;
+        "jobName": true;
+        "orientation": true;
+        "outputType": true;
+        "printerID": true;
     };
 }
 /**
@@ -36761,6 +42744,19 @@ export declare class UIPrintInteractionController extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIPrintInteractionController": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "printFormatter": true;
+        "printInfo": true;
+        "printPageRenderer": true;
+        "printPaper": true;
+        "printingItem": true;
+        "printingItems": true;
+        "showsNumberOfCopies": true;
+        "showsPageRange": true;
+        "showsPaperOrientation": true;
+        "showsPaperSelectionForLoadedPapers": true;
     };
 }
 /**
@@ -37038,6 +43034,109 @@ export declare class UIProgressView extends UIProgressView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "observedProgress": true;
+        "progress": true;
+        "progressImage": true;
+        "progressTintColor": true;
+        "progressViewStyle": true;
+        "trackImage": true;
+        "trackTintColor": true;
+    };
 }
 /** enum Style */
 export type UIProgressView_Style = "default" | "bar";
@@ -37120,6 +43219,16 @@ export declare class UIPushBehavior extends UIPushBehavior_base {
         "c:objc(cs)UIDynamicBehavior": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "childBehaviors": true;
+        "dynamicAnimator": true;
+        "active": true;
+        "angle": true;
+        "items": true;
+        "magnitude": true;
+        "mode": true;
+        "pushDirection": true;
+    };
 }
 /**
  * enum Mode
@@ -37176,6 +43285,104 @@ export declare class UIReferenceLibraryViewController extends UIReferenceLibrary
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+    };
 }
 declare const UIRefreshControl_base: Omit<typeof UIControl, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIControl, "tintColor" | "setTintColor">);
 /**
@@ -37227,6 +43434,122 @@ export declare class UIRefreshControl extends UIRefreshControl_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "attributedTitle": true;
+        "isRefreshing": true;
+        "tintColor21998": true;
     };
 }
 /**
@@ -37945,6 +44268,24 @@ export declare class UIRotationGestureRecognizer extends UIRotationGestureRecogn
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowedPressTypes": true;
+        "allowedTouchTypes": true;
+        "buttonMask": true;
+        "cancelsTouchesInView": true;
+        "delaysTouchesBegan": true;
+        "delaysTouchesEnded": true;
+        "delegate": true;
+        "isEnabled": true;
+        "modifierFlags": true;
+        "name": true;
+        "numberOfTouches": true;
+        "requiresExclusiveTouchType": true;
+        "state": true;
+        "view": true;
+        "rotation": true;
+        "velocity": true;
+    };
 }
 declare const UIScene_base: Omit<typeof UIResponder, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIResponder);
 /**
@@ -38062,6 +44403,32 @@ export declare class UIScene extends UIScene_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activationConditions": true;
+        "activationState": true;
+        "delegate": true;
+        "pointerLockState": true;
+        "session": true;
+        "subtitle": true;
+        "systemProtectionManager": true;
+        "title": true;
+    };
 }
 /**
  * @MainActor class ActivationRequestOptions
@@ -38079,6 +44446,9 @@ export declare class UIScene_ActivationRequestOptions extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISceneActivationRequestOptions": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "requestingScene": true;
     };
 }
 /**
@@ -38141,6 +44511,16 @@ export declare class UIScene_ConnectionOptions extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISceneConnectionOptions": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "urlContexts": true;
+        "cloudKitShareMetadata": true;
+        "handoffUserActivityType": true;
+        "notificationResponse": true;
+        "sceneAccessoryUserInfo": true;
+        "shortcutItem": true;
+        "sourceApplication": true;
+        "userActivities": true;
     };
 }
 /**
@@ -38260,6 +44640,10 @@ export declare class UIScene_OpenExternalURLOptions extends SDKHandle {
         "c:objc(cs)UISceneOpenExternalURLOptions": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "eventAttribution": true;
+        "universalLinksOnly": true;
+    };
 }
 /**
  * @MainActor class OpenURLOptions
@@ -38289,6 +44673,12 @@ export declare class UIScene_OpenURLOptions extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISceneOpenURLOptions": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "annotation": true;
+        "eventAttribution": true;
+        "openInPlace": true;
+        "sourceApplication": true;
     };
 }
 /**
@@ -38344,6 +44734,9 @@ export declare class UIScene_SystemProtectionManager extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISceneSystemProtectionManager": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isUserAuthenticationEnabled": true;
     };
 }
 /**
@@ -38516,6 +44909,10 @@ export declare class UISceneAccessoryRegistration extends SDKHandle {
         "c:objc(cs)UISceneAccessoryRegistration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isAvailable": true;
+        "isEnabled": true;
+    };
 }
 /**
  * @MainActor class UISceneActivationConditions
@@ -38547,6 +44944,10 @@ export declare class UISceneActivationConditions extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISceneActivationConditions": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "canActivateForTargetContentIdentifierPredicate": true;
+        "prefersToActivateForTargetContentIdentifierPredicate": true;
     };
 }
 /**
@@ -38627,6 +45028,13 @@ export declare class UISceneConfiguration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISceneConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegateClass": true;
+        "name": true;
+        "role": true;
+        "sceneClass": true;
+        "storyboard": true;
     };
 }
 /**
@@ -38794,6 +45202,14 @@ export declare class UISceneSession extends SDKHandle {
         "c:objc(cs)UISceneSession": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "configuration": true;
+        "persistentIdentifier": true;
+        "role": true;
+        "scene": true;
+        "stateRestorationActivity": true;
+        "userInfo": true;
+    };
 }
 /**
  * struct Role
@@ -38901,6 +45317,11 @@ export declare class UISceneSizeRestrictions extends SDKHandle {
         "c:objc(cs)UISceneSizeRestrictions": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsFullScreen": true;
+        "maximumSize": true;
+        "minimumSize": true;
+    };
 }
 /**
  * @MainActor class UISceneWindowingBehaviors
@@ -38922,6 +45343,10 @@ export declare class UISceneWindowingBehaviors extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISceneWindowingBehaviors": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isClosable": true;
+        "isMiniaturizable": true;
     };
 }
 /**
@@ -39112,6 +45537,32 @@ export declare class UIScreen extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIScreen": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "applicationFrame": true;
+        "availableModes": true;
+        "bounds": true;
+        "brightness": true;
+        "calibratedLatency": true;
+        "isCaptured": true;
+        "coordinateSpace": true;
+        "currentEDRHeadroom": true;
+        "currentMode": true;
+        "fixedCoordinateSpace": true;
+        "focusedItem": true;
+        "focusedView": true;
+        "maximumFramesPerSecond": true;
+        "mirrored": true;
+        "nativeBounds": true;
+        "nativeScale": true;
+        "overscanCompensation": true;
+        "overscanCompensationInsets": true;
+        "potentialEDRHeadroom": true;
+        "preferredMode": true;
+        "referenceDisplayModeStatus": true;
+        "scale": true;
+        "supportsFocus": true;
+        "wantsSoftwareDimming": true;
     };
 }
 /**
@@ -39318,6 +45769,26 @@ export declare class UIScreenEdgePanGestureRecognizer extends UIScreenEdgePanGes
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowedPressTypes": true;
+        "allowedTouchTypes": true;
+        "buttonMask": true;
+        "cancelsTouchesInView": true;
+        "delaysTouchesBegan": true;
+        "delaysTouchesEnded": true;
+        "delegate": true;
+        "isEnabled": true;
+        "modifierFlags": true;
+        "name": true;
+        "numberOfTouches": true;
+        "requiresExclusiveTouchType": true;
+        "state": true;
+        "view": true;
+        "allowedScrollTypesMask": true;
+        "maximumNumberOfTouches": true;
+        "minimumNumberOfTouches": true;
+        "edges": true;
+    };
 }
 /**
  * class UIScreenMode
@@ -39365,6 +45836,10 @@ export declare class UIScreenshotService extends SDKHandle {
         "c:objc(cs)UIScreenshotService": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+        "windowScene": true;
+    };
 }
 /** @MainActor protocol UIScreenshotServiceDelegate : NSObjectProtocol */
 export interface UIScreenshotServiceDelegate {
@@ -39397,6 +45872,10 @@ export declare class UIScribbleInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIScribbleInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "isHandlingWriting": true;
     };
 }
 /**
@@ -39435,6 +45914,10 @@ export declare class UIScrollEdgeEffect extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIScrollEdgeEffect": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isHidden": true;
+        "style": true;
     };
 }
 /**
@@ -39484,6 +45967,10 @@ export declare class UIScrollEdgeElementContainerInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIScrollEdgeElementContainerInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "edge": true;
+        "scrollView": true;
     };
 }
 /**
@@ -39969,6 +46456,126 @@ export declare class UISearchBar extends UISearchBar_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "backgroundImage": true;
+        "barStyle": true;
+        "barTintColor": true;
+        "delegate": true;
+        "isEnabled": true;
+        "isLookToDictateEnabled": true;
+        "placeholder": true;
+        "prompt": true;
+        "scopeBarBackgroundImage": true;
+        "scopeButtonTitles": true;
+        "searchBarStyle": true;
+        "searchFieldBackgroundPositionAdjustment": true;
+        "isSearchResultsButtonSelected": true;
+        "searchTextField": true;
+        "searchTextPositionAdjustment": true;
+        "selectedScopeButtonIndex": true;
+        "showsBookmarkButton": true;
+        "showsCancelButton": true;
+        "showsScopeBar": true;
+        "showsSearchResultsButton": true;
+        "text": true;
+        "isTranslucent": true;
+        "inputAccessoryView65928": true;
+        "tintColor21998": true;
+    };
 }
 /** enum Icon */
 export type UISearchBar_Icon = "search" | "clear" | "bookmark" | "resultsList";
@@ -40052,6 +46659,105 @@ export declare class UISearchContainerViewController extends UISearchContainerVi
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "searchController": true;
     };
 }
 declare const UISearchController_base: Omit<typeof UIViewController, "initCoder" | "initNibNameBundle" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIViewController);
@@ -40175,6 +46881,120 @@ export declare class UISearchController extends UISearchController_base {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "isActive": true;
+        "automaticallyShowsCancelButton": true;
+        "automaticallyShowsScopeBar": true;
+        "automaticallyShowsSearchResultsController": true;
+        "delegate": true;
+        "dimsBackgroundDuringPresentation": true;
+        "hidesNavigationBarDuringPresentation": true;
+        "ignoresSearchSuggestionsForSearchBarPlacementStacked": true;
+        "obscuresBackgroundDuringPresentation": true;
+        "scopeBarActivation": true;
+        "searchBar": true;
+        "searchBarPlacement": true;
+        "searchResultsController": true;
+        "searchResultsUpdater": true;
+        "searchSuggestions": true;
+        "showsSearchResultsController": true;
     };
 }
 /**
@@ -40314,6 +47134,18 @@ export declare class UISearchDisplayController extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISearchDisplayController": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isActive": true;
+        "delegate": true;
+        "displaysSearchBarInNavigationBar": true;
+        "navigationItem": true;
+        "searchBar": true;
+        "searchContentsController": true;
+        "searchResultsDataSource": true;
+        "searchResultsDelegate": true;
+        "searchResultsTableView": true;
+        "searchResultsTitle": true;
     };
 }
 /** @MainActor protocol UISearchDisplayDelegate : NSObjectProtocol */
@@ -40463,6 +47295,13 @@ export declare class UISearchSuggestionItem extends SDKHandle {
         "c:objc(cs)UISearchSuggestionItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "iconImage": true;
+        "localizedAttributedSuggestion": true;
+        "localizedDescription": true;
+        "localizedSuggestion": true;
+        "representedObject": true;
+    };
 }
 /**
  * @MainActor class UITab
@@ -40574,6 +47413,25 @@ export declare class UITab extends SDKHandle {
         "c:objc(cs)UITab": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsHiding": true;
+        "badgeValue": true;
+        "isEnabled": true;
+        "hasVisiblePlacement": true;
+        "isHidden": true;
+        "isHiddenByDefault": true;
+        "identifier": true;
+        "image": true;
+        "managingTabGroup": true;
+        "parent": true;
+        "preferredPlacement": true;
+        "selectedImage": true;
+        "subtitle": true;
+        "tabBarController": true;
+        "title": true;
+        "userInfo": true;
+        "viewController": true;
+    };
 }
 declare const UISearchTab_base: Omit<typeof UITab, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UITab);
 /**
@@ -40601,6 +47459,26 @@ export declare class UISearchTab extends UISearchTab_base {
         "c:objc(cs)UISearchTab": true;
         "c:objc(cs)UITab": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowsHiding": true;
+        "badgeValue": true;
+        "isEnabled": true;
+        "hasVisiblePlacement": true;
+        "isHidden": true;
+        "isHiddenByDefault": true;
+        "identifier": true;
+        "image": true;
+        "managingTabGroup": true;
+        "parent": true;
+        "preferredPlacement": true;
+        "selectedImage": true;
+        "subtitle": true;
+        "tabBarController": true;
+        "title": true;
+        "userInfo": true;
+        "viewController": true;
+        "automaticallyActivatesSearch": true;
     };
 }
 declare const UITextField_base: Omit<typeof UIControl, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIControl, "inputAccessoryView" | "inputView">);
@@ -40846,6 +47724,146 @@ export declare class UITextField extends UITextField_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "adjustsFontSizeToFitWidth": true;
+        "allowsEditingTextAttributes": true;
+        "attributedPlaceholder": true;
+        "attributedText": true;
+        "background": true;
+        "borderStyle": true;
+        "clearButtonMode": true;
+        "clearsOnBeginEditing": true;
+        "clearsOnInsertion": true;
+        "defaultTextAttributes": true;
+        "delegate": true;
+        "disabledBackground": true;
+        "isEditing": true;
+        "font": true;
+        "interactionState": true;
+        "leftView": true;
+        "leftViewMode": true;
+        "minimumFontSize": true;
+        "placeholder": true;
+        "rightView": true;
+        "rightViewMode": true;
+        "text": true;
+        "textAlignment": true;
+        "textColor": true;
+        "typingAttributes": true;
+        "inputAccessoryView65928": true;
+        "inputView30804": true;
+    };
 }
 declare const UISearchTextField_base: Omit<typeof UITextField, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UITextField);
 /**
@@ -40922,6 +47940,152 @@ export declare class UISearchTextField extends UISearchTextField_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "adjustsFontSizeToFitWidth": true;
+        "allowsEditingTextAttributes": true;
+        "attributedPlaceholder": true;
+        "attributedText": true;
+        "background": true;
+        "borderStyle": true;
+        "clearButtonMode": true;
+        "clearsOnBeginEditing": true;
+        "clearsOnInsertion": true;
+        "defaultTextAttributes": true;
+        "delegate": true;
+        "disabledBackground": true;
+        "isEditing": true;
+        "font": true;
+        "interactionState": true;
+        "leftView": true;
+        "leftViewMode": true;
+        "minimumFontSize": true;
+        "placeholder": true;
+        "rightView": true;
+        "rightViewMode": true;
+        "text": true;
+        "textAlignment": true;
+        "textColor": true;
+        "typingAttributes": true;
+        "inputAccessoryView65928": true;
+        "inputView30804": true;
+        "allowsCopyingTokens": true;
+        "allowsDeletingTokens": true;
+        "searchSuggestions": true;
+        "textualRange": true;
+        "tokenBackgroundColor": true;
+        "tokens": true;
     };
 }
 /** @MainActor protocol UISearchTextFieldDelegate : UITextFieldDelegate */
@@ -41019,6 +48183,9 @@ export declare class UISearchToken extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISearchToken": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "representedObject": true;
     };
 }
 declare const UISegmentedControl_base: Omit<typeof UIControl, "initCoder" | "initFrame" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIControl);
@@ -41214,6 +48381,124 @@ export declare class UISegmentedControl extends UISegmentedControl_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "apportionsSegmentWidthsByContent": true;
+        "isMomentary": true;
+        "numberOfSegments": true;
+        "selectedSegmentIndex": true;
+        "selectedSegmentTintColor": true;
     };
 }
 /** enum Segment */
@@ -41560,6 +48845,31 @@ export declare class UISheetPresentationController extends UISheetPresentationCo
         "c:objc(cs)UIPresentationController": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "adaptivePresentationStyle": true;
+        "backgroundEffect": true;
+        "containerView": true;
+        "delegate": true;
+        "frameOfPresentedViewInContainerView": true;
+        "overrideTraitCollection": true;
+        "presentationStyle": true;
+        "presentedView": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "shouldPresentInFullscreen": true;
+        "shouldRemovePresentersView": true;
+        "detents": true;
+        "largestUndimmedDetentIdentifier": true;
+        "preferredPlacement": true;
+        "prefersEdgeAttachedInCompactHeight": true;
+        "prefersGrabberVisible": true;
+        "prefersPageSizing": true;
+        "prefersScrollingExpandsWhenScrolledToEdge": true;
+        "selectedDetentIdentifier": true;
+        "sourceView": true;
+        "widthFollowsPreferredContentSizeWhenEdgeAttached": true;
+        "delegate23712": true;
+    };
 }
 /**
  * @MainActor class Detent
@@ -41595,6 +48905,10 @@ export declare class UISheetPresentationController_Detent extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISheetPresentationControllerDetent": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "backgroundEffect": true;
+        "identifier": true;
     };
 }
 /**
@@ -41906,6 +49220,134 @@ export declare class UISlider extends UISlider_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "behavioralStyle": true;
+        "isContinuous": true;
+        "currentMaximumTrackImage": true;
+        "currentMinimumTrackImage": true;
+        "currentThumbImage": true;
+        "maximumTrackTintColor": true;
+        "maximumValue": true;
+        "maximumValueImage": true;
+        "minimumTrackTintColor": true;
+        "minimumValue": true;
+        "minimumValueImage": true;
+        "preferredBehavioralStyle": true;
+        "sliderStyle": true;
+        "thumbTintColor": true;
+        "value": true;
+    };
 }
 /**
  * enum Style
@@ -42041,6 +49483,12 @@ export declare class UISnapBehavior extends UISnapBehavior_base {
         "c:objc(cs)UISnapBehavior": true;
         "c:objc(cs)UIDynamicBehavior": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "childBehaviors": true;
+        "dynamicAnimator": true;
+        "damping": true;
+        "snapPoint": true;
     };
 }
 /**
@@ -42406,6 +49854,135 @@ export declare class UISplitViewController extends UISplitViewController_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "isCollapsed": true;
+        "delegate": true;
+        "displayMode": true;
+        "displayModeButtonItem": true;
+        "displayModeButtonVisibility": true;
+        "maximumInspectorColumnWidth": true;
+        "maximumPrimaryColumnWidth": true;
+        "maximumSupplementaryColumnWidth": true;
+        "minimumInspectorColumnWidth": true;
+        "minimumPrimaryColumnWidth": true;
+        "minimumSecondaryColumnWidth": true;
+        "minimumSupplementaryColumnWidth": true;
+        "preferredDisplayMode": true;
+        "preferredInspectorColumnWidth": true;
+        "preferredInspectorColumnWidthFraction": true;
+        "preferredPrimaryColumnWidth": true;
+        "preferredPrimaryColumnWidthFraction": true;
+        "preferredSecondaryColumnWidth": true;
+        "preferredSecondaryColumnWidthFraction": true;
+        "preferredSplitBehavior": true;
+        "preferredSupplementaryColumnWidth": true;
+        "preferredSupplementaryColumnWidthFraction": true;
+        "presentsWithGesture": true;
+        "primaryBackgroundStyle": true;
+        "primaryColumnWidth": true;
+        "primaryEdge": true;
+        "showsSecondaryOnlyButton": true;
+        "splitBehavior": true;
+        "style": true;
+        "supplementaryColumnWidth": true;
+        "viewControllers": true;
+    };
 }
 /**
  * enum BackgroundStyle
@@ -42616,6 +50193,10 @@ export declare class UISpringLoadedInteraction extends SDKHandle {
         "c:objc(cs)UISpringLoadedInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "interactionBehavior": true;
+        "interactionEffect": true;
+    };
 }
 /**
  * @MainActor protocol UISpringLoadedInteractionBehavior : NSObjectProtocol
@@ -42722,6 +50303,9 @@ export declare class UISpringTimingParameters extends SDKHandle {
         "c:objc(cs)UISpringTimingParameters": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "initialVelocity": true;
+    };
 }
 declare const UIStackView_base: Omit<typeof UIView, "initCoder" | "initFrame" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
 /**
@@ -42826,6 +50410,109 @@ export declare class UIStackView extends UIStackView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "alignment": true;
+        "arrangedSubviews": true;
+        "axis": true;
+        "isBaselineRelativeArrangement": true;
+        "distribution": true;
+        "isLayoutMarginsRelativeArrangement": true;
+        "spacing": true;
+    };
 }
 /**
  * enum Alignment
@@ -42875,6 +50562,102 @@ export declare class UIStandardTextCursorView extends UIStandardTextCursorView_b
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+    };
 }
 /** @MainActor protocol UIStateRestoring : NSObjectProtocol */
 export interface UIStateRestoring {
@@ -42914,6 +50697,11 @@ export declare class UIStatusBarManager extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIStatusBarManager": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "statusBarFrame": true;
+        "isStatusBarHidden": true;
+        "statusBarStyle": true;
     };
 }
 /** enum UIStatusBarStyle */
@@ -43019,6 +50807,126 @@ export declare class UIStepper extends UIStepper_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "autorepeat": true;
+        "isContinuous": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "stepValue": true;
+        "value": true;
+        "wraps": true;
+    };
 }
 /**
  * @MainActor class UIStoryboard
@@ -43094,6 +51002,11 @@ export declare class UIStoryboardSegue extends SDKHandle {
         "c:objc(cs)UIStoryboardSegue": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "destination": true;
+        "identifier": true;
+        "source": true;
+    };
 }
 /**
  * @MainActor class UIStoryboardPopoverSegue
@@ -43111,6 +51024,12 @@ export declare class UIStoryboardPopoverSegue extends UIStoryboardSegue {
         "c:objc(cs)UIStoryboardPopoverSegue": true;
         "c:objc(cs)UIStoryboardSegue": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "destination": true;
+        "identifier": true;
+        "source": true;
+        "popoverController": true;
     };
 }
 /**
@@ -43131,6 +51050,10 @@ export declare class UIStoryboardUnwindSegueSource extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIStoryboardUnwindSegueSource": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "sender": true;
+        "source": true;
     };
 }
 /**
@@ -43158,6 +51081,10 @@ export declare class UISwipeActionsConfiguration extends SDKHandle {
         "c:objc(cs)UISwipeActionsConfiguration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "actions": true;
+        "performsFirstActionWithFullSwipe": true;
+    };
 }
 declare const UISwipeGestureRecognizer_base: Omit<typeof UIGestureRecognizer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIGestureRecognizer);
 /**
@@ -43183,6 +51110,24 @@ export declare class UISwipeGestureRecognizer extends UISwipeGestureRecognizer_b
         "c:objc(cs)UISwipeGestureRecognizer": true;
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowedPressTypes": true;
+        "allowedTouchTypes": true;
+        "buttonMask": true;
+        "cancelsTouchesInView": true;
+        "delaysTouchesBegan": true;
+        "delaysTouchesEnded": true;
+        "delegate": true;
+        "isEnabled": true;
+        "modifierFlags": true;
+        "name": true;
+        "numberOfTouches": true;
+        "requiresExclusiveTouchType": true;
+        "state": true;
+        "view": true;
+        "direction": true;
+        "numberOfTouchesRequired": true;
     };
 }
 /** struct Direction */
@@ -43273,6 +51218,127 @@ export declare class UISwitch extends UISwitch_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allControlEvents": true;
+        "allTargets": true;
+        "contentHorizontalAlignment": true;
+        "contentVerticalAlignment": true;
+        "contextMenuInteraction": true;
+        "isContextMenuInteractionEnabled": true;
+        "effectiveContentHorizontalAlignment": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "isSelected": true;
+        "showsMenuAsPrimaryAction": true;
+        "state": true;
+        "isSymbolAnimationEnabled": true;
+        "toolTip": true;
+        "toolTipInteraction": true;
+        "isTouchInside": true;
+        "isTracking": true;
+        "offImage": true;
+        "isOn": true;
+        "onImage": true;
+        "onTintColor": true;
+        "preferredStyle": true;
+        "style": true;
+        "thumbTintColor": true;
+        "title": true;
     };
 }
 /**
@@ -43371,6 +51437,9 @@ export declare class UITabAccessory extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITabAccessory": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "contentView": true;
     };
 }
 /**
@@ -43528,6 +51597,120 @@ export declare class UITabBar extends UITabBar_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "backgroundImage": true;
+        "barStyle": true;
+        "barTintColor": true;
+        "isCustomizing": true;
+        "delegate": true;
+        "itemPositioning": true;
+        "itemSpacing": true;
+        "itemWidth": true;
+        "items": true;
+        "scrollEdgeAppearance": true;
+        "selectedImageTintColor": true;
+        "selectedItem": true;
+        "selectionIndicatorImage": true;
+        "shadowImage": true;
+        "standardAppearance": true;
+        "isTranslucent": true;
+        "unselectedItemTintColor": true;
+        "tintColor21998": true;
+    };
 }
 /**
  * enum ItemPositioning
@@ -43601,6 +51784,24 @@ export declare class UITabBarAppearance extends UITabBarAppearance_base {
         "c:objc(cs)UITabBarAppearance": true;
         "c:objc(cs)UIBarAppearance": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "backgroundColor": true;
+        "backgroundEffect": true;
+        "backgroundImage": true;
+        "backgroundImageContentMode": true;
+        "idiom": true;
+        "overrideUserInterfaceStyle": true;
+        "shadowColor": true;
+        "shadowImage": true;
+        "compactInlineLayoutAppearance": true;
+        "inlineLayoutAppearance": true;
+        "selectionIndicatorImage": true;
+        "selectionIndicatorTintColor": true;
+        "stackedItemPositioning": true;
+        "stackedItemSpacing": true;
+        "stackedItemWidth": true;
+        "stackedLayoutAppearance": true;
     };
 }
 declare const UITabBarController_base: Omit<typeof UIViewController, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIViewController, "tab">);
@@ -43764,6 +51965,123 @@ export declare class UITabBarController extends UITabBarController_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "bottomAccessory": true;
+        "compactTabIdentifiers": true;
+        "contentLayoutGuide": true;
+        "customizableViewControllers": true;
+        "customizationIdentifier": true;
+        "delegate": true;
+        "mode": true;
+        "moreNavigationController": true;
+        "prominentTabIdentifier": true;
+        "selectedIndex": true;
+        "selectedTab": true;
+        "selectedViewController": true;
+        "sidebar": true;
+        "tabBar": true;
+        "isTabBarHidden": true;
+        "tabBarMinimizeBehavior": true;
+        "tabs": true;
+        "viewControllers": true;
+        "tab64661": true;
+    };
 }
 /**
  * enum MinimizeBehavior
@@ -43860,6 +52178,15 @@ export declare class UITabBarController_Sidebar extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITabBarControllerSidebar": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "bottomBarView": true;
+        "delegate": true;
+        "isHidden": true;
+        "isAvailable": true;
+        "navigationOverflowItems": true;
+        "preferredLayout": true;
+        "preferredPlacement": true;
     };
 }
 /**
@@ -44110,6 +52437,23 @@ export declare class UITabBarItem extends UITabBarItem_base {
         "c:objc(cs)UIBarItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isEnabled": true;
+        "image": true;
+        "imageInsets": true;
+        "landscapeImagePhone": true;
+        "landscapeImagePhoneInsets": true;
+        "largeContentSizeImage": true;
+        "largeContentSizeImageInsets": true;
+        "tag": true;
+        "title": true;
+        "badgeColor": true;
+        "badgeValue": true;
+        "scrollEdgeAppearance": true;
+        "selectedImage": true;
+        "standardAppearance": true;
+        "titlePositionAdjustment": true;
+    };
 }
 /** enum SystemItem */
 export type UITabBarItem_SystemItem = "more" | "favorites" | "featured" | "topRated" | "recents" | "contacts" | "history" | "bookmarks" | "search" | "downloads" | "mostRecent" | "mostViewed";
@@ -44171,6 +52515,12 @@ export declare class UITabBarItemAppearance extends SDKHandle {
         "c:objc(cs)UITabBarItemAppearance": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "disabled": true;
+        "focused": true;
+        "normal": true;
+        "selected": true;
+    };
 }
 /** enum Style */
 export type UITabBarItemAppearance_Style = "stacked" | "inline" | "compactInline";
@@ -44228,6 +52578,15 @@ export declare class UITabBarItemStateAppearance extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITabBarItemStateAppearance": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "badgeBackgroundColor": true;
+        "badgePositionAdjustment": true;
+        "badgeTextAttributes": true;
+        "badgeTitlePositionAdjustment": true;
+        "iconColor": true;
+        "titlePositionAdjustment": true;
+        "titleTextAttributes": true;
     };
 }
 declare const UITabGroup_base: Omit<typeof UITab, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UITab);
@@ -44315,6 +52674,36 @@ export declare class UITabGroup extends UITabGroup_base {
         "c:objc(cs)UITabGroup": true;
         "c:objc(cs)UITab": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowsHiding": true;
+        "badgeValue": true;
+        "isEnabled": true;
+        "hasVisiblePlacement": true;
+        "isHidden": true;
+        "isHiddenByDefault": true;
+        "identifier": true;
+        "image": true;
+        "managingTabGroup": true;
+        "parent": true;
+        "preferredPlacement": true;
+        "selectedImage": true;
+        "subtitle": true;
+        "tabBarController": true;
+        "title": true;
+        "userInfo": true;
+        "viewController": true;
+        "allowsReordering": true;
+        "children": true;
+        "isCollapsedByDefault": true;
+        "defaultChildIdentifier": true;
+        "displayOrder": true;
+        "displayOrderIdentifiers": true;
+        "isSidebarDestination": true;
+        "managingNavigationController": true;
+        "selectedChild": true;
+        "sidebarActions": true;
+        "sidebarAppearance": true;
     };
 }
 /**
@@ -44845,6 +53234,204 @@ export declare class UITableView extends UITableView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "adjustedContentInset": true;
+        "allowsKeyboardScrolling": true;
+        "alwaysBounceHorizontal": true;
+        "alwaysBounceVertical": true;
+        "automaticallyAdjustsScrollIndicatorInsets": true;
+        "bottomEdgeEffect": true;
+        "bounces": true;
+        "bouncesHorizontally": true;
+        "bouncesVertically": true;
+        "bouncesZoom": true;
+        "canCancelContentTouches": true;
+        "contentAlignmentPoint": true;
+        "contentInset": true;
+        "contentInsetAdjustmentBehavior": true;
+        "contentLayoutGuide": true;
+        "contentOffset": true;
+        "contentSize": true;
+        "isDecelerating": true;
+        "decelerationRate": true;
+        "delaysContentTouches": true;
+        "delegate": true;
+        "isDirectionalLockEnabled": true;
+        "directionalPressGestureRecognizer": true;
+        "isDragging": true;
+        "frameLayoutGuide": true;
+        "horizontalScrollIndicatorInsets": true;
+        "indexDisplayMode": true;
+        "indicatorStyle": true;
+        "keyboardDismissMode": true;
+        "leftEdgeEffect": true;
+        "maximumZoomScale": true;
+        "minimumZoomScale": true;
+        "isPagingEnabled": true;
+        "panGestureRecognizer": true;
+        "pinchGestureRecognizer": true;
+        "refreshControl": true;
+        "rightEdgeEffect": true;
+        "isScrollAnimating": true;
+        "isScrollEnabled": true;
+        "scrollIndicatorInsets": true;
+        "scrollsToTop": true;
+        "showsHorizontalScrollIndicator": true;
+        "showsVerticalScrollIndicator": true;
+        "topEdgeEffect": true;
+        "isTracking": true;
+        "transfersHorizontalScrollingToParent": true;
+        "transfersVerticalScrollingToParent": true;
+        "verticalScrollIndicatorInsets": true;
+        "isZoomAnimating": true;
+        "isZoomBouncing": true;
+        "zoomScale": true;
+        "isZooming": true;
+        "allowsFocus": true;
+        "allowsFocusDuringEditing": true;
+        "allowsMultipleSelection": true;
+        "allowsMultipleSelectionDuringEditing": true;
+        "allowsSelection": true;
+        "allowsSelectionDuringEditing": true;
+        "backgroundView": true;
+        "cellLayoutMarginsFollowReadableWidth": true;
+        "contentHuggingElements": true;
+        "contextMenuInteraction": true;
+        "dataSource": true;
+        "dragDelegate": true;
+        "dragInteractionEnabled": true;
+        "dropDelegate": true;
+        "isEditing": true;
+        "estimatedRowHeight": true;
+        "estimatedSectionFooterHeight": true;
+        "estimatedSectionHeaderHeight": true;
+        "fillerRowHeight": true;
+        "hasActiveDrag": true;
+        "hasActiveDrop": true;
+        "hasUncommittedUpdates": true;
+        "indexPathForSelectedRow": true;
+        "indexPathsForSelectedRows": true;
+        "indexPathsForVisibleRows": true;
+        "insetsContentViewsToSafeArea": true;
+        "numberOfSections": true;
+        "prefetchDataSource": true;
+        "isPrefetchingEnabled": true;
+        "remembersLastFocusedIndexPath": true;
+        "rowHeight": true;
+        "sectionFooterHeight": true;
+        "sectionHeaderHeight": true;
+        "sectionHeaderTopPadding": true;
+        "sectionIndexBackgroundColor": true;
+        "sectionIndexColor": true;
+        "sectionIndexMinimumDisplayRowCount": true;
+        "sectionIndexTrackingBackgroundColor": true;
+        "selectionFollowsFocus": true;
+        "selfSizingInvalidation": true;
+        "separatorColor": true;
+        "separatorEffect": true;
+        "separatorInset": true;
+        "separatorInsetReference": true;
+        "separatorStyle": true;
+        "style": true;
+        "tableFooterView": true;
+        "tableHeaderView": true;
+        "visibleCells": true;
+        "delegate41400": true;
+    };
 }
 /** enum RowAnimation */
 export type UITableView_RowAnimation = "fade" | "right" | "left" | "top" | "bottom" | "none" | "middle" | "automatic";
@@ -45186,6 +53773,129 @@ export declare class UITableViewCell extends UITableViewCell_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "accessoryType": true;
+        "accessoryView": true;
+        "automaticallyUpdatesBackgroundConfiguration": true;
+        "automaticallyUpdatesContentConfiguration": true;
+        "backgroundView": true;
+        "contentView": true;
+        "detailTextLabel": true;
+        "isEditing": true;
+        "editingAccessoryType": true;
+        "editingAccessoryView": true;
+        "editingStyle": true;
+        "focusStyle": true;
+        "isHighlighted": true;
+        "imageView": true;
+        "indentationLevel": true;
+        "indentationWidth": true;
+        "multipleSelectionBackgroundView": true;
+        "reuseIdentifier": true;
+        "isSelected": true;
+        "selectedBackgroundView": true;
+        "selectionStyle": true;
+        "separatorInset": true;
+        "shouldIndentWhileEditing": true;
+        "showingDeleteConfirmation": true;
+        "showsReorderControl": true;
+        "textLabel": true;
+        "userInteractionEnabledWhileDragging": true;
+    };
 }
 /** enum AccessoryType */
 export type UITableViewCell_AccessoryType = "none" | "disclosureIndicator" | "detailDisclosureButton" | "checkmark" | "detailButton";
@@ -45317,6 +54027,107 @@ export declare class UITableViewController extends UITableViewController_base {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "clearsSelectionOnViewWillAppear": true;
+        "refreshControl": true;
+        "tableView": true;
     };
 }
 /** @MainActor protocol UITableViewDataSource : NSObjectProtocol */
@@ -45715,6 +54526,9 @@ export declare class UITableViewDiffableDataSourceReference extends SDKHandle {
         "c:objc(cs)UITableViewDiffableDataSource": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "defaultRowAnimation": true;
+    };
 }
 /** typealias UITableViewDiffableDataSourceReferenceCellProvider = (UITableView, IndexPath, Any) -> UITableViewCell? */
 export type UITableViewDiffableDataSourceReferenceCellProvider = $SDK513;
@@ -45876,6 +54690,12 @@ export declare class UITableViewDropProposal extends UITableViewDropProposal_bas
         "c:objc(cs)UIDropProposal": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "operation": true;
+        "isPrecise": true;
+        "prefersFullSizePreview": true;
+        "intent": true;
+    };
 }
 /**
  * enum Intent
@@ -45911,6 +54731,15 @@ export declare class UITableViewFocusUpdateContext extends UITableViewFocusUpdat
         "c:objc(cs)UITableViewFocusUpdateContext": true;
         "c:objc(cs)UIFocusUpdateContext": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "focusHeading": true;
+        "nextFocusedItem": true;
+        "nextFocusedView": true;
+        "previouslyFocusedItem": true;
+        "previouslyFocusedView": true;
+        "nextFocusedIndexPath": true;
+        "previouslyFocusedIndexPath": true;
     };
 }
 declare const UITableViewHeaderFooterView_base: Omit<typeof UIView, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
@@ -46023,6 +54852,109 @@ export declare class UITableViewHeaderFooterView extends UITableViewHeaderFooter
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "automaticallyUpdatesBackgroundConfiguration": true;
+        "automaticallyUpdatesContentConfiguration": true;
+        "backgroundView": true;
+        "contentView": true;
+        "detailTextLabel": true;
+        "reuseIdentifier": true;
+        "textLabel": true;
+    };
 }
 /**
  * typealias ConfigurationUpdateHandler = (UITableViewHeaderFooterView, UIViewConfigurationState) -> Void
@@ -46071,6 +55003,12 @@ export declare class UITableViewRowAction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITableViewRowAction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "backgroundColor": true;
+        "backgroundEffect": true;
+        "style": true;
+        "title": true;
     };
 }
 /**
@@ -46201,6 +55139,25 @@ export declare class UITapGestureRecognizer extends UITapGestureRecognizer_base 
         "c:objc(cs)UIGestureRecognizer": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowedPressTypes": true;
+        "allowedTouchTypes": true;
+        "buttonMask": true;
+        "cancelsTouchesInView": true;
+        "delaysTouchesBegan": true;
+        "delaysTouchesEnded": true;
+        "delegate": true;
+        "isEnabled": true;
+        "modifierFlags": true;
+        "name": true;
+        "numberOfTouches": true;
+        "requiresExclusiveTouchType": true;
+        "state": true;
+        "view": true;
+        "buttonMaskRequired": true;
+        "numberOfTapsRequired": true;
+        "numberOfTouchesRequired": true;
+    };
 }
 /**
  * @MainActor class UITargetedPreview
@@ -46251,6 +55208,12 @@ export declare class UITargetedPreview extends SDKHandle {
         "c:objc(cs)UITargetedPreview": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "parameters": true;
+        "size": true;
+        "target": true;
+        "view": true;
+    };
 }
 declare const UITargetedDragPreview_base: Omit<typeof UITargetedPreview, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UITargetedPreview, "retargetedPreview">);
 /**
@@ -46271,6 +55234,12 @@ export declare class UITargetedDragPreview extends UITargetedDragPreview_base {
         "c:objc(cs)UITargetedDragPreview": true;
         "c:objc(cs)UITargetedPreview": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "parameters": true;
+        "size": true;
+        "target": true;
+        "view": true;
     };
 }
 /** enum UITextAlternativeStyle */
@@ -46369,6 +55338,9 @@ export declare class UITextChecker extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITextChecker": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "ignoredWords": true;
     };
 }
 /** struct UITextContentType */
@@ -46655,6 +55627,10 @@ export declare class UITextCursorDropPositionAnimator extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITextCursorDropPositionAnimator": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "cursorView": true;
+        "textInput": true;
     };
 }
 /**
@@ -46967,6 +55943,13 @@ export declare class UITextDragPreviewRenderer extends SDKHandle {
         "c:objc(cs)UITextDragPreviewRenderer": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "bodyRect": true;
+        "firstLineRect": true;
+        "image": true;
+        "lastLineRect": true;
+        "layoutManager": true;
+    };
 }
 /**
  * @MainActor protocol UITextDragRequest : NSObjectProtocol
@@ -47232,6 +56215,15 @@ export declare class UITextDropProposal extends UIDropProposal {
         "c:objc(cs)UITextDropProposal": true;
         "c:objc(cs)UIDropProposal": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "operation": true;
+        "isPrecise": true;
+        "prefersFullSizePreview": true;
+        "dropAction": true;
+        "dropPerformer": true;
+        "dropProgressMode": true;
+        "useFastSameViewOperations": true;
     };
 }
 /**
@@ -47504,6 +56496,9 @@ export declare class UITextFormattingCoordinator extends SDKHandle {
         "c:objc(cs)UITextFormattingCoordinator": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * @MainActor protocol UITextFormattingCoordinatorDelegate : NSObjectProtocol
@@ -47555,6 +56550,105 @@ export declare class UITextFormattingViewController extends UITextFormattingView
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "configuration": true;
+    };
 }
 /**
  * enum ChangeValue
@@ -47594,6 +56688,10 @@ export declare class UITextFormattingViewController_Component extends SDKHandle 
         "c:objc(cs)UITextFormattingViewControllerComponent": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "componentKey": true;
+        "preferredSize": true;
+    };
 }
 /**
  * class ComponentGroup
@@ -47618,6 +56716,9 @@ export declare class UITextFormattingViewController_ComponentGroup extends SDKHa
     readonly $type: {
         "c:objc(cs)UITextFormattingViewControllerComponentGroup": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "components": true;
     };
 }
 /**
@@ -47744,6 +56845,10 @@ export declare class UITextFormattingViewController_Configuration extends SDKHan
     readonly $type: {
         "c:objc(cs)UITextFormattingViewControllerConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "fontPickerConfiguration": true;
+        "groups": true;
     };
 }
 /**
@@ -48243,6 +57348,11 @@ export declare class UITextInputAssistantItem extends SDKHandle {
         "c:objc(cs)UITextInputAssistantItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsHidingShortcuts": true;
+        "leadingBarButtonGroups": true;
+        "trailingBarButtonGroups": true;
+    };
 }
 /**
  * class UITextInputContext
@@ -48324,6 +57434,9 @@ export declare class UITextInputMode extends SDKHandle {
         "c:objc(cs)UITextInputMode": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "primaryLanguage": true;
+    };
 }
 /**
  * struct CurrentInputModeDidChangeMessage
@@ -48372,6 +57485,9 @@ export declare class UITextInputPasswordRules extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITextInputPasswordRules": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "passwordRulesDescriptor": true;
     };
 }
 /**
@@ -48451,6 +57567,12 @@ export declare class UITextInteraction extends SDKHandle {
         "c:objc(cs)UITextInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+        "gesturesForFailureRequirements": true;
+        "textInput": true;
+        "textInteractionMode": true;
+    };
 }
 /**
  * @MainActor protocol UITextInteractionDelegate : NSObjectProtocol
@@ -48492,6 +57614,9 @@ export declare class UITextItem extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITextItem": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "range": true;
     };
 }
 /**
@@ -48655,6 +57780,9 @@ export declare class UITextPlaceholder extends SDKHandle {
         "c:objc(cs)UITextPlaceholder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "rects": true;
+    };
 }
 /**
  * @MainActor class UITextPosition
@@ -48693,6 +57821,11 @@ export declare class UITextRange extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITextRange": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEmpty": true;
+        "end": true;
+        "start": true;
     };
 }
 /**
@@ -48822,6 +57955,15 @@ export declare class UITextSearchingFindSession extends UIFindSession {
         "c:objc(cs)UIFindSession": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsReplacement": true;
+        "allowsReplacementForCurrentlyHighlightedResult": true;
+        "highlightedResultIndex": true;
+        "resultCount": true;
+        "searchResultDisplayStyle": true;
+        "supportsReplacement": true;
+        "searchableObject": true;
+    };
 }
 /**
  * @MainActor class UITextSearchOptions
@@ -48843,6 +57985,10 @@ export declare class UITextSearchOptions extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITextSearchOptions": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "stringCompareOptions": true;
+        "wordMatchMethod": true;
     };
 }
 /**
@@ -48915,6 +58061,14 @@ export declare class UITextSelectionDisplayInteraction extends SDKHandle {
         "c:objc(cs)UITextSelectionDisplayInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isActivated": true;
+        "cursorView": true;
+        "delegate": true;
+        "handleViews": true;
+        "highlightView": true;
+        "textInput": true;
+    };
 }
 /**
  * @MainActor protocol UITextSelectionDisplayInteractionDelegate : NSObjectProtocol
@@ -48979,6 +58133,14 @@ export declare class UITextSelectionRect extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITextSelectionRect": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "containsEnd": true;
+        "containsStart": true;
+        "isVertical": true;
+        "rect": true;
+        "transform": true;
+        "writingDirection": true;
     };
 }
 /**
@@ -49361,6 +58523,187 @@ export declare class UITextView extends UITextView_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "adjustedContentInset": true;
+        "allowsKeyboardScrolling": true;
+        "alwaysBounceHorizontal": true;
+        "alwaysBounceVertical": true;
+        "automaticallyAdjustsScrollIndicatorInsets": true;
+        "bottomEdgeEffect": true;
+        "bounces": true;
+        "bouncesHorizontally": true;
+        "bouncesVertically": true;
+        "bouncesZoom": true;
+        "canCancelContentTouches": true;
+        "contentAlignmentPoint": true;
+        "contentInset": true;
+        "contentInsetAdjustmentBehavior": true;
+        "contentLayoutGuide": true;
+        "contentOffset": true;
+        "contentSize": true;
+        "isDecelerating": true;
+        "decelerationRate": true;
+        "delaysContentTouches": true;
+        "delegate": true;
+        "isDirectionalLockEnabled": true;
+        "directionalPressGestureRecognizer": true;
+        "isDragging": true;
+        "frameLayoutGuide": true;
+        "horizontalScrollIndicatorInsets": true;
+        "indexDisplayMode": true;
+        "indicatorStyle": true;
+        "keyboardDismissMode": true;
+        "leftEdgeEffect": true;
+        "maximumZoomScale": true;
+        "minimumZoomScale": true;
+        "isPagingEnabled": true;
+        "panGestureRecognizer": true;
+        "pinchGestureRecognizer": true;
+        "refreshControl": true;
+        "rightEdgeEffect": true;
+        "isScrollAnimating": true;
+        "isScrollEnabled": true;
+        "scrollIndicatorInsets": true;
+        "scrollsToTop": true;
+        "showsHorizontalScrollIndicator": true;
+        "showsVerticalScrollIndicator": true;
+        "topEdgeEffect": true;
+        "isTracking": true;
+        "transfersHorizontalScrollingToParent": true;
+        "transfersVerticalScrollingToParent": true;
+        "verticalScrollIndicatorInsets": true;
+        "isZoomAnimating": true;
+        "isZoomBouncing": true;
+        "zoomScale": true;
+        "isZooming": true;
+        "allowedWritingToolsResultOptions": true;
+        "allowsEditingTextAttributes": true;
+        "attributedText": true;
+        "borderStyle": true;
+        "clearsOnInsertion": true;
+        "dataDetectorTypes": true;
+        "isEditable": true;
+        "findInteraction": true;
+        "isFindInteractionEnabled": true;
+        "font": true;
+        "interactionState": true;
+        "layoutManager": true;
+        "linkTextAttributes": true;
+        "isSelectable": true;
+        "selectedRange": true;
+        "subclassForWritingToolsCoordinator": true;
+        "text": true;
+        "textAlignment": true;
+        "textColor": true;
+        "textContainer": true;
+        "textContainerInset": true;
+        "textFormattingConfiguration": true;
+        "textHighlightAttributes": true;
+        "textLayoutManager": true;
+        "textStorage": true;
+        "typingAttributes": true;
+        "usesStandardTextScaling": true;
+        "isWritingToolsActive": true;
+        "writingToolsBehavior": true;
+        "writingToolsCoordinator": true;
+        "inputAccessoryView65928": true;
+        "inputView30804": true;
+        "delegate41400": true;
     };
 }
 /**
@@ -49767,6 +59110,112 @@ export declare class UIToolbar extends UIToolbar_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "barStyle": true;
+        "barTintColor": true;
+        "compactAppearance": true;
+        "compactScrollEdgeAppearance": true;
+        "delegate": true;
+        "items": true;
+        "scrollEdgeAppearance": true;
+        "standardAppearance": true;
+        "isTranslucent": true;
+        "tintColor21998": true;
+    };
 }
 declare const UIToolbarAppearance_base: Omit<typeof UIBarAppearance, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIBarAppearance);
 /**
@@ -49800,6 +59249,19 @@ export declare class UIToolbarAppearance extends UIToolbarAppearance_base {
         "c:objc(cs)UIBarAppearance": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "backgroundColor": true;
+        "backgroundEffect": true;
+        "backgroundImage": true;
+        "backgroundImageContentMode": true;
+        "idiom": true;
+        "overrideUserInterfaceStyle": true;
+        "shadowColor": true;
+        "shadowImage": true;
+        "buttonAppearance": true;
+        "doneButtonAppearance": true;
+        "prominentButtonAppearance": true;
+    };
 }
 /** @MainActor protocol UIToolbarDelegate : UIBarPositioningDelegate */
 export interface UIToolbarDelegate {
@@ -49832,6 +59294,9 @@ export declare class UIToolTipConfiguration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIToolTipConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "toolTip": true;
     };
 }
 /**
@@ -49870,6 +59335,11 @@ export declare class UIToolTipInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIToolTipInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "defaultToolTip": true;
+        "delegate": true;
+        "isEnabled": true;
     };
 }
 /**
@@ -49998,6 +59468,24 @@ export declare class UITouch extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UITouch": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "altitudeAngle": true;
+        "estimatedProperties": true;
+        "estimatedPropertiesExpectingUpdates": true;
+        "estimationUpdateIndex": true;
+        "force": true;
+        "gestureRecognizers": true;
+        "majorRadius": true;
+        "majorRadiusTolerance": true;
+        "maximumPossibleForce": true;
+        "phase": true;
+        "rollAngle": true;
+        "tapCount": true;
+        "timestamp": true;
+        "type": true;
+        "view": true;
+        "window": true;
     };
 }
 /** enum Phase */
@@ -51420,6 +60908,14 @@ export declare class UIUpdateInfo extends SDKHandle {
         "c:objc(cs)UIUpdateInfo": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "completionDeadlineTime": true;
+        "estimatedPresentationTime": true;
+        "isImmediatePresentationExpected": true;
+        "isLowLatencyEventDispatchConfirmed": true;
+        "modelTime": true;
+        "isPerformingLowLatencyPhases": true;
+    };
 }
 /**
  * @MainActor class UIUpdateLink
@@ -51485,6 +60981,13 @@ export declare class UIUpdateLink extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIUpdateLink": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
+        "preferredFrameRateRange": true;
+        "requiresContinuousUpdates": true;
+        "wantsImmediatePresentation": true;
+        "wantsLowLatencyEventDispatch": true;
     };
 }
 /**
@@ -51633,6 +61136,10 @@ export declare class UIUserNotificationSettings extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIUserNotificationSettings": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "categories": true;
+        "types": true;
     };
 }
 /**
@@ -51785,6 +61292,124 @@ export declare class UIVideoEditorController extends UIVideoEditorController_bas
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activePresentationController": true;
+        "additionalSafeAreaInsets": true;
+        "arrangementViewController": true;
+        "automaticallyAdjustsScrollViewInsets": true;
+        "isBeingDismissed": true;
+        "isBeingPresented": true;
+        "bottomLayoutGuide": true;
+        "childForHomeIndicatorAutoHidden": true;
+        "childForInterfaceOrientationLock": true;
+        "childViewControllerForPointerLock": true;
+        "childForPreferredVerticalBarBehavior": true;
+        "childForScreenEdgesDeferringSystemGestures": true;
+        "childForStatusBarHidden": true;
+        "childForStatusBarStyle": true;
+        "children": true;
+        "definesPresentationContext": true;
+        "disablesAutomaticKeyboardDismissal": true;
+        "edgesForExtendedLayout": true;
+        "editButtonItem": true;
+        "isEditing": true;
+        "extendedLayoutIncludesOpaqueBars": true;
+        "extensionContext": true;
+        "focusGroupIdentifier": true;
+        "hidesBottomBarWhenPushed": true;
+        "interactionActivityTrackingBaseName": true;
+        "interfaceOrientation": true;
+        "isModalInPopover": true;
+        "isModalInPresentation": true;
+        "modalPresentationCapturesStatusBarAppearance": true;
+        "modalPresentationStyle": true;
+        "modalTransitionStyle": true;
+        "isMovingFromParent": true;
+        "isMovingToParent": true;
+        "navigationController": true;
+        "navigationItem": true;
+        "nibBundle": true;
+        "nibName": true;
+        "overrideUserInterfaceStyle": true;
+        "parent": true;
+        "performsActionsWhilePresentingModally": true;
+        "popoverPresentationController": true;
+        "preferredContentSize": true;
+        "preferredInterfaceOrientationForPresentation": true;
+        "preferredScreenEdgesDeferringSystemGestures": true;
+        "preferredStatusBarStyle": true;
+        "preferredStatusBarUpdateAnimation": true;
+        "preferredTransition": true;
+        "preferredVerticalBarBehavior": true;
+        "prefersHomeIndicatorAutoHidden": true;
+        "prefersInterfaceOrientationLocked": true;
+        "prefersPointerLocked": true;
+        "prefersStatusBarHidden": true;
+        "presentationController": true;
+        "presentedViewController": true;
+        "presentingViewController": true;
+        "previewActionItems": true;
+        "providesPresentationContextTransitionStyle": true;
+        "restorationClass": true;
+        "restorationIdentifier": true;
+        "restoresFocusAfterTransition": true;
+        "searchDisplayController": true;
+        "sheetPresentationController": true;
+        "shouldAutomaticallyForwardAppearanceMethods": true;
+        "shouldAutorotate": true;
+        "splitViewController": true;
+        "storyboard": true;
+        "supportedInterfaceOrientations": true;
+        "systemMinimumLayoutMargins": true;
+        "tab": true;
+        "tabBarController": true;
+        "tabBarItem": true;
+        "title": true;
+        "toolbarItems": true;
+        "topLayoutGuide": true;
+        "transitionCoordinator": true;
+        "transitioningDelegate": true;
+        "view": true;
+        "viewIfLoaded": true;
+        "isViewLoaded": true;
+        "viewRespectsSystemMinimumLayoutMargins": true;
+        "barHideOnSwipeGestureRecognizer": true;
+        "barHideOnTapGestureRecognizer": true;
+        "delegate": true;
+        "hidesBarsOnSwipe": true;
+        "hidesBarsOnTap": true;
+        "hidesBarsWhenKeyboardAppears": true;
+        "hidesBarsWhenVerticallyCompact": true;
+        "interactiveContentPopGestureRecognizer": true;
+        "interactivePopGestureRecognizer": true;
+        "navigationBar": true;
+        "isNavigationBarHidden": true;
+        "toolbar": true;
+        "isToolbarHidden": true;
+        "topViewController": true;
+        "viewControllers": true;
+        "visibleViewController": true;
+        "videoMaximumDuration": true;
+        "videoPath": true;
+        "videoQuality": true;
+        "delegate91974": true;
     };
 }
 /** @MainActor protocol UIVideoEditorControllerDelegate : NSObjectProtocol */
@@ -52596,6 +62221,10 @@ export declare class UIViewController_Transition_ZoomOptions extends SDKHandle {
         "c:objc(cs)UIZoomTransitionOptions": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "dimmingColor": true;
+        "dimmingVisualEffect": true;
+    };
 }
 /**
  * class AlignmentRectContext
@@ -52617,6 +62246,10 @@ export declare class UIViewController_Transition_ZoomOptions_AlignmentRectContex
     readonly $type: {
         "c:objc(cs)UIZoomTransitionAlignmentRectContext": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "sourceView": true;
+        "zoomedViewController": true;
     };
 }
 /**
@@ -52645,6 +62278,11 @@ export declare class UIViewController_Transition_ZoomOptions_InteractionContext 
         "c:objc(cs)UIZoomTransitionInteractionContext": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "location": true;
+        "velocity": true;
+        "willBegin": true;
+    };
 }
 /**
  * class ZoomSourceViewProviderContext
@@ -52664,6 +62302,10 @@ export declare class UIViewController_Transition_ZoomSourceViewProviderContext e
     readonly $type: {
         "c:objc(cs)UIZoomTransitionSourceViewProviderContext": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "sourceViewController": true;
+        "zoomedViewController": true;
     };
 }
 /**
@@ -52981,6 +62623,17 @@ export declare class UIViewPropertyAnimator extends SDKHandle {
         "c:objc(cs)UIViewPropertyAnimator": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delay": true;
+        "duration": true;
+        "flushUpdates": true;
+        "isInterruptible": true;
+        "isManualHitTestingEnabled": true;
+        "pausesOnCompletion": true;
+        "scrubsLinearly": true;
+        "timingParameters": true;
+        "isUserInteractionEnabled": true;
+    };
 }
 declare const UIVisualEffectView_base: Omit<typeof UIView, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
 /**
@@ -53014,6 +62667,104 @@ export declare class UIVisualEffectView extends UIVisualEffectView_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "contentView": true;
+        "effect": true;
     };
 }
 declare const UIWebView_base: Omit<typeof UIView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
@@ -53213,6 +62964,122 @@ export declare class UIWebView extends UIWebView_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "allowsInlineMediaPlayback": true;
+        "allowsLinkPreview": true;
+        "allowsPictureInPictureMediaPlayback": true;
+        "canGoBack": true;
+        "canGoForward": true;
+        "dataDetectorTypes": true;
+        "delegate": true;
+        "gapBetweenPages": true;
+        "keyboardDisplayRequiresUserAction": true;
+        "isLoading": true;
+        "mediaPlaybackAllowsAirPlay": true;
+        "mediaPlaybackRequiresUserAction": true;
+        "pageCount": true;
+        "pageLength": true;
+        "paginationBreakingMode": true;
+        "paginationMode": true;
+        "request": true;
+        "scalesPageToFit": true;
+        "scrollView": true;
+        "suppressesIncrementalRendering": true;
+    };
 }
 /** enum NavigationType */
 export type UIWebView_NavigationType = "linkClicked" | "formSubmitted" | "backForward" | "reload" | "formResubmitted" | "other";
@@ -53379,6 +63246,110 @@ export declare class UIWindow extends UIWindow_base {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "accessibilityIgnoresInvertColors": true;
+        "alignmentRectInsets": true;
+        "alpha": true;
+        "anchorPoint": true;
+        "appliedContentSizeCategoryLimitsDescription": true;
+        "autoresizesSubviews": true;
+        "autoresizingMask": true;
+        "backgroundColor": true;
+        "bottomAnchor": true;
+        "bounds": true;
+        "canBecomeFocused": true;
+        "center": true;
+        "centerXAnchor": true;
+        "centerYAnchor": true;
+        "clearsContextBeforeDrawing": true;
+        "clipsToBounds": true;
+        "constraints": true;
+        "contentMode": true;
+        "contentScaleFactor": true;
+        "directionalLayoutMargins": true;
+        "effectiveUserInterfaceLayoutDirection": true;
+        "isExclusiveTouch": true;
+        "firstBaselineAnchor": true;
+        "focusEffect": true;
+        "focusGroupIdentifier": true;
+        "focusGroupPriority": true;
+        "isFocused": true;
+        "frame": true;
+        "gestureRecognizers": true;
+        "hasAmbiguousLayout": true;
+        "heightAnchor": true;
+        "isHidden": true;
+        "hoverStyle": true;
+        "insetsLayoutMarginsFromSafeArea": true;
+        "interactions": true;
+        "intrinsicContentSize": true;
+        "keyboardLayoutGuide": true;
+        "largeContentImage": true;
+        "largeContentImageInsets": true;
+        "largeContentTitle": true;
+        "lastBaselineAnchor": true;
+        "layer": true;
+        "layoutGuides": true;
+        "layoutMargins": true;
+        "layoutMarginsGuide": true;
+        "leadingAnchor": true;
+        "leftAnchor": true;
+        "mask": true;
+        "maximumContentSizeCategory": true;
+        "minimumContentSizeCategory": true;
+        "motionEffects": true;
+        "isMultipleTouchEnabled": true;
+        "isOpaque": true;
+        "overrideUserInterfaceStyle": true;
+        "preservesSuperviewLayoutMargins": true;
+        "readableContentGuide": true;
+        "restorationIdentifier": true;
+        "rightAnchor": true;
+        "safeAreaInsets": true;
+        "safeAreaLayoutGuide": true;
+        "scalesLargeContentImage": true;
+        "semanticContentAttribute": true;
+        "showsLargeContentViewer": true;
+        "subviews": true;
+        "superview": true;
+        "tag": true;
+        "tintAdjustmentMode": true;
+        "tintColor": true;
+        "topAnchor": true;
+        "trailingAnchor": true;
+        "transform3D": true;
+        "transform": true;
+        "translatesAutoresizingMaskIntoConstraints": true;
+        "isUserInteractionEnabled": true;
+        "forFirstBaselineLayout": true;
+        "forLastBaselineLayout": true;
+        "widthAnchor": true;
+        "window": true;
+        "canBecomeKey": true;
+        "canResizeToFitContent": true;
+        "isKeyWindow": true;
+        "rootViewController": true;
+        "safeAreaAspectFitLayoutGuide": true;
+        "screen": true;
+        "windowLevel": true;
+        "windowScene": true;
     };
 }
 /**
@@ -53666,6 +63637,47 @@ export declare class UIWindowScene extends UIScene {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activityItemsConfiguration": true;
+        "canBecomeFirstResponder": true;
+        "canResignFirstResponder": true;
+        "editingInteractionConfiguration": true;
+        "inputAccessoryView": true;
+        "inputAccessoryViewController": true;
+        "inputAssistantItem": true;
+        "inputView": true;
+        "inputViewController": true;
+        "isFirstResponder": true;
+        "keyCommands": true;
+        "next": true;
+        "textInputContextIdentifier": true;
+        "textInputMode": true;
+        "undoManager": true;
+        "userActivity": true;
+        "activationConditions": true;
+        "activationState": true;
+        "delegate": true;
+        "pointerLockState": true;
+        "session": true;
+        "subtitle": true;
+        "systemProtectionManager": true;
+        "title": true;
+        "activityItemsConfigurationSource": true;
+        "closureConfirmation": true;
+        "coordinateSpace": true;
+        "effectiveGeometry": true;
+        "focusSystem": true;
+        "isFullScreen": true;
+        "interfaceOrientation": true;
+        "keyWindow": true;
+        "screen": true;
+        "screenshotService": true;
+        "sizeRestrictions": true;
+        "statusBarManager": true;
+        "traitCollection": true;
+        "windowingBehaviors": true;
+        "windows": true;
+    };
 }
 declare const UIWindowScene_ActivationAction_base: Omit<typeof UIAction, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIAction, "title" | "setTitle">);
 /**
@@ -53690,6 +63702,20 @@ export declare class UIWindowScene_ActivationAction extends UIWindowScene_Activa
         "c:objc(cs)UIAction": true;
         "c:objc(cs)UIMenuElement": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "image": true;
+        "preferredImageVisibility": true;
+        "subtitle": true;
+        "title": true;
+        "attributes": true;
+        "discoverabilityTitle": true;
+        "identifier": true;
+        "sender": true;
+        "state": true;
+        "image27557": true;
+        "title41854": true;
+        "title14901": true;
     };
 }
 /**
@@ -53727,6 +63753,11 @@ export declare class UIWindowScene_ActivationConfiguration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIWindowSceneActivationConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "options": true;
+        "preview": true;
+        "userActivity": true;
     };
 }
 /**
@@ -53773,6 +63804,10 @@ export declare class UIWindowScene_ActivationRequestOptions extends UIWindowScen
         "c:objc(cs)UISceneActivationRequestOptions": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "requestingScene": true;
+        "preferredPresentationStyle": true;
+    };
 }
 /**
  * enum DismissalAnimation
@@ -53814,6 +63849,12 @@ export declare class UIWindowScene_Geometry extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIWindowSceneGeometry": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "coordinateSpace": true;
+        "isInteractivelyResizing": true;
+        "interfaceOrientation": true;
+        "isInterfaceOrientationLocked": true;
     };
 }
 /**
@@ -54011,6 +64052,9 @@ export declare class UIWindowSceneDestructionRequestOptions extends UIWindowScen
         "c:objc(cs)UISceneDestructionRequestOptions": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "windowDismissalAnimation": true;
+    };
 }
 /**
  * @MainActor class UIWindowSceneDragInteraction
@@ -54027,6 +64071,9 @@ export declare class UIWindowSceneDragInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIWindowSceneDragInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "gestureForFailureRelationships": true;
     };
 }
 /**
@@ -54174,6 +64221,17 @@ export declare class UIWritingToolsCoordinator extends SDKHandle {
         "c:objc(cs)UIWritingToolsCoordinator": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "behavior": true;
+        "decorationContainerView": true;
+        "delegate": true;
+        "effectContainerView": true;
+        "includesTextListMarkers": true;
+        "preferredBehavior": true;
+        "preferredResultOptions": true;
+        "resultOptions": true;
+        "state": true;
+    };
 }
 /**
  * class AnimationParameters
@@ -54205,6 +64263,10 @@ export declare class UIWritingToolsCoordinator_AnimationParameters extends SDKHa
     readonly $type: {
         "c:objc(cs)UIWritingToolsCoordinatorAnimationParameters": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delay": true;
+        "duration": true;
     };
 }
 /**
@@ -54240,6 +64302,12 @@ export declare class UIWritingToolsCoordinator_Context extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIWritingToolsCoordinatorContext": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "attributedString": true;
+        "identifier": true;
+        "range": true;
+        "resolvedRange": true;
     };
 }
 /**

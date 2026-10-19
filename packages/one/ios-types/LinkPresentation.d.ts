@@ -226,6 +226,9 @@ export declare class LPLinkView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "metadata": true;
+    };
 }
 /**
  * class LPMetadataProvider

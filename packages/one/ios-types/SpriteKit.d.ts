@@ -186,6 +186,29 @@ export declare class SKNode extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+    };
 }
 declare const SK3DNode_base: Omit<typeof SKNode, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
 /**
@@ -248,6 +271,34 @@ export declare class SK3DNode extends SK3DNode_base {
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "autoenablesDefaultLighting": true;
+        "loops": true;
+        "isPlaying": true;
+        "sceneTime": true;
+        "viewportSize": true;
     };
 }
 /** class SKAction */
@@ -781,6 +832,32 @@ export declare class SKAudioNode extends SKAudioNode_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "autoplayLooped": true;
+        "avAudioNode": true;
+        "isPositional": true;
+    };
 }
 /**
  * enum SKBlendMode
@@ -817,6 +894,29 @@ export declare class SKCameraNode extends SKCameraNode_base {
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
     };
 }
 /** typealias SKColor = UIColor */
@@ -913,6 +1013,30 @@ export declare class SKCropNode extends SKCropNode_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "maskNode": true;
+    };
 }
 declare const SKEffectNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues" | "setAttributeValues">);
 /** class SKEffectNode */
@@ -965,6 +1089,36 @@ export declare class SKEffectNode extends SKEffectNode_base {
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "blendMode": true;
+        "filter": true;
+        "shader": true;
+        "shouldCenterFilter": true;
+        "shouldEnableEffects": true;
+        "shouldRasterize": true;
+        "attributeValues1835": true;
     };
 }
 declare const SKEmitterNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues" | "setAttributeValues">);
@@ -1160,6 +1314,78 @@ export declare class SKEmitterNode extends SKEmitterNode_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "emissionAngle": true;
+        "emissionAngleRange": true;
+        "fieldBitMask": true;
+        "numParticlesToEmit": true;
+        "particleAction": true;
+        "particleAlpha": true;
+        "particleAlphaRange": true;
+        "particleAlphaSequence": true;
+        "particleAlphaSpeed": true;
+        "particleBirthRate": true;
+        "particleBlendMode": true;
+        "particleColor": true;
+        "particleColorAlphaRange": true;
+        "particleColorAlphaSpeed": true;
+        "particleColorBlendFactor": true;
+        "particleColorBlendFactorRange": true;
+        "particleColorBlendFactorSequence": true;
+        "particleColorBlendFactorSpeed": true;
+        "particleColorBlueRange": true;
+        "particleColorBlueSpeed": true;
+        "particleColorGreenRange": true;
+        "particleColorGreenSpeed": true;
+        "particleColorRedRange": true;
+        "particleColorRedSpeed": true;
+        "particleColorSequence": true;
+        "particleLifetime": true;
+        "particleLifetimeRange": true;
+        "particlePosition": true;
+        "particlePositionRange": true;
+        "particleRenderOrder": true;
+        "particleRotation": true;
+        "particleRotationRange": true;
+        "particleRotationSpeed": true;
+        "particleScale": true;
+        "particleScaleRange": true;
+        "particleScaleSequence": true;
+        "particleScaleSpeed": true;
+        "particleSize": true;
+        "particleSpeed": true;
+        "particleSpeedRange": true;
+        "particleTexture": true;
+        "particleZPosition": true;
+        "particleZPositionRange": true;
+        "particleZPositionSpeed": true;
+        "shader": true;
+        "targetNode": true;
+        "xAcceleration": true;
+        "yAcceleration": true;
+        "attributeValues1835": true;
+    };
 }
 /** typealias SKFieldForceEvaluator = (vector_float3, vector_float3, Float, Float, TimeInterval) -> vector_float3 */
 export type SKFieldForceEvaluator = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: number) => Promise<SDKHandle>);
@@ -1298,6 +1524,40 @@ export declare class SKFieldNode extends SKFieldNode_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "animationSpeed": true;
+        "categoryBitMask": true;
+        "direction": true;
+        "isEnabled": true;
+        "isExclusive": true;
+        "falloff": true;
+        "minimumRadius": true;
+        "region": true;
+        "smoothness": true;
+        "strength": true;
+        "texture": true;
+    };
 }
 /** enum SKInterpolationMode */
 export type SKInterpolationMode = "linear" | "spline" | "step";
@@ -1428,6 +1688,42 @@ export declare class SKLabelNode extends SKNode {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "attributedText": true;
+        "blendMode": true;
+        "color": true;
+        "colorBlendFactor": true;
+        "fontColor": true;
+        "fontName": true;
+        "fontSize": true;
+        "horizontalAlignmentMode": true;
+        "lineBreakMode": true;
+        "numberOfLines": true;
+        "preferredMaxLayoutWidth": true;
+        "text": true;
+        "verticalAlignmentMode": true;
+    };
 }
 /**
  * enum SKLabelVerticalAlignmentMode
@@ -1490,6 +1786,35 @@ export declare class SKLightNode extends SKLightNode_base {
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "ambientColor": true;
+        "categoryBitMask": true;
+        "isEnabled": true;
+        "falloff": true;
+        "lightColor": true;
+        "shadowColor": true;
     };
 }
 /** class SKTexture */
@@ -2132,6 +2457,29 @@ export declare class SKReferenceNode extends SKReferenceNode_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+    };
 }
 /**
  * class SKRegion
@@ -2371,6 +2719,46 @@ export declare class SKScene extends SKScene_base {
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "blendMode": true;
+        "filter": true;
+        "shader": true;
+        "shouldCenterFilter": true;
+        "shouldEnableEffects": true;
+        "shouldRasterize": true;
+        "attributeValues1835": true;
+        "anchorPoint": true;
+        "audioEngine": true;
+        "backgroundColor": true;
+        "camera": true;
+        "delegate": true;
+        "listener": true;
+        "physicsWorld": true;
+        "scaleMode": true;
+        "size": true;
+        "view": true;
     };
 }
 /**
@@ -2624,6 +3012,45 @@ export declare class SKShapeNode extends SKShapeNode_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "isAntialiased": true;
+        "blendMode": true;
+        "fillColor": true;
+        "fillShader": true;
+        "fillTexture": true;
+        "glowWidth": true;
+        "lineCap": true;
+        "lineJoin": true;
+        "lineLength": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "strokeColor": true;
+        "strokeShader": true;
+        "strokeTexture": true;
+        "attributeValues1835": true;
+    };
 }
 declare const SKSpriteNode_base: Omit<typeof SKNode, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues" | "setAttributeValues">);
 /** class SKSpriteNode */
@@ -2730,6 +3157,42 @@ export declare class SKSpriteNode extends SKSpriteNode_base {
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "anchorPoint": true;
+        "blendMode": true;
+        "centerRect": true;
+        "color": true;
+        "colorBlendFactor": true;
+        "lightingBitMask": true;
+        "normalTexture": true;
+        "shader": true;
+        "shadowCastBitMask": true;
+        "shadowedBitMask": true;
+        "size": true;
+        "texture": true;
+        "attributeValues1835": true;
     };
 }
 /** class SKTextureAtlas */
@@ -3322,6 +3785,42 @@ export declare class SKTileMapNode extends SKTileMapNode_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "anchorPoint": true;
+        "blendMode": true;
+        "color": true;
+        "colorBlendFactor": true;
+        "enableAutomapping": true;
+        "lightingBitMask": true;
+        "mapSize": true;
+        "numberOfColumns": true;
+        "numberOfRows": true;
+        "shader": true;
+        "tileSet": true;
+        "tileSize": true;
+        "attributeValues1835": true;
+    };
 }
 /**
  * class SKTileSet
@@ -3452,6 +3951,31 @@ export declare class SKTransformNode extends SKTransformNode_base {
         "c:objc(cs)SKNode": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "xRotation": true;
+        "yRotation": true;
     };
 }
 /** class SKTransition */
@@ -3777,6 +4301,31 @@ export declare class SKVideoNode extends SKVideoNode_base {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "alpha": true;
+        "attributeValues": true;
+        "children": true;
+        "constraints": true;
+        "focusBehavior": true;
+        "frame": true;
+        "isHidden": true;
+        "name": true;
+        "parent": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "position": true;
+        "reachConstraints": true;
+        "scene": true;
+        "speed": true;
+        "userData": true;
+        "isUserInteractionEnabled": true;
+        "xScale": true;
+        "yScale": true;
+        "zPosition": true;
+        "zRotation": true;
+        "anchorPoint": true;
+        "size": true;
+    };
 }
 /** class SKView */
 export declare class SKView extends SDKHandle {
@@ -3878,6 +4427,25 @@ export declare class SKView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowsTransparency": true;
+        "isAsynchronous": true;
+        "delegate": true;
+        "disableDepthStencilBuffer": true;
+        "frameInterval": true;
+        "ignoresSiblingOrder": true;
+        "isPaused": true;
+        "preferredFrameRate": true;
+        "preferredFramesPerSecond": true;
+        "scene": true;
+        "shouldCullNonVisibleNodes": true;
+        "showsDrawCount": true;
+        "showsFPS": true;
+        "showsFields": true;
+        "showsNodeCount": true;
+        "showsPhysics": true;
+        "showsQuadCount": true;
     };
 }
 /**

@@ -22596,6 +22596,36 @@ export declare class AVPlayer extends SDKHandle {
         "c:objc(cs)AVPlayer": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "actionAtItemEnd": true;
+        "allowsCaptureOfClearKeyVideo": true;
+        "allowsExternalPlayback": true;
+        "appliesMediaSelectionCriteriaAutomatically": true;
+        "audioOutputSuppressedDueToNonMixableAudioRoute": true;
+        "audiovisualBackgroundPlaybackPolicy": true;
+        "automaticallyWaitsToMinimizeStalling": true;
+        "isClosedCaptionDisplayEnabled": true;
+        "currentItem": true;
+        "defaultRate": true;
+        "disconnectedFromSystemAudio": true;
+        "error": true;
+        "isExternalPlaybackActive": true;
+        "externalPlaybackVideoGravity": true;
+        "masterClock": true;
+        "isMuted": true;
+        "networkResourcePriority": true;
+        "isOutputObscuredDueToInsufficientExternalProtection": true;
+        "playbackCoordinator": true;
+        "preventsDisplaySleepDuringVideoPlayback": true;
+        "rate": true;
+        "reasonForWaitingToPlay": true;
+        "sourceClock": true;
+        "status": true;
+        "timeControlStatus": true;
+        "usesExternalPlaybackWhileExternalScreenIsActive": true;
+        "videoOutput": true;
+        "volume": true;
+    };
 }
 /** enum ActionAtItemEnd */
 export type AVPlayer_ActionAtItemEnd = "advance" | "pause" | "none";
@@ -23751,6 +23781,60 @@ export declare class AVPlayerItem extends SDKHandle {
         "c:objc(cs)AVPlayerItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowedAudioSpatializationFormats": true;
+        "appliesPerFrameHDRDisplayMetadata": true;
+        "asset": true;
+        "audioMix": true;
+        "isAudioSpatializationAllowed": true;
+        "audioTimePitchAlgorithm": true;
+        "automaticallyHandlesInterstitialEvents": true;
+        "automaticallyLoadedAssetKeys": true;
+        "automaticallyPreservesTimeOffsetFromLive": true;
+        "canPlayFastForward": true;
+        "canPlayFastReverse": true;
+        "canPlayReverse": true;
+        "canPlaySlowForward": true;
+        "canPlaySlowReverse": true;
+        "canStepBackward": true;
+        "canStepForward": true;
+        "canUseNetworkResourcesForLiveStreamingWhilePaused": true;
+        "configuredTimeOffsetFromLive": true;
+        "currentMediaSelection": true;
+        "customVideoCompositor": true;
+        "duration": true;
+        "error": true;
+        "forwardPlaybackEndTime": true;
+        "integratedTimeline": true;
+        "interstitialEventIdentifier": true;
+        "loadedTimeRanges": true;
+        "mediaDataCollectors": true;
+        "outputs": true;
+        "isPlaybackBufferEmpty": true;
+        "isPlaybackBufferFull": true;
+        "isPlaybackLikelyToKeepUp": true;
+        "preferredCustomMediaSelectionSchemes": true;
+        "preferredForwardBufferDuration": true;
+        "preferredMaximumResolution": true;
+        "preferredMaximumResolutionForExpensiveNetworks": true;
+        "preferredPeakBitRate": true;
+        "preferredPeakBitRateForExpensiveNetworks": true;
+        "presentationSize": true;
+        "recommendedTimeOffsetFromLive": true;
+        "reversePlaybackEndTime": true;
+        "seekableTimeRanges": true;
+        "seekingWaitsForVideoCompositionRendering": true;
+        "startsOnFirstEligibleVariant": true;
+        "status": true;
+        "template": true;
+        "textStyleRules": true;
+        "timebase": true;
+        "timedMetadata": true;
+        "tracks": true;
+        "variantPreferences": true;
+        "videoApertureMode": true;
+        "videoComposition": true;
+    };
 }
 /** enum Status */
 export type AVPlayerItem_Status = "unknown" | "readyToPlay" | "failed";
@@ -24727,6 +24811,11 @@ export declare class AVPlayerItemTrack extends SDKHandle {
         "c:objc(cs)AVPlayerItemTrack": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "assetTrack": true;
+        "currentVideoFrameRate": true;
+        "isEnabled": true;
+    };
 }
 /**
  * class AVPlayerItemVideoOutput
@@ -25340,6 +25429,36 @@ export declare class AVQueuePlayer extends AVQueuePlayer_base {
         "c:objc(cs)AVPlayer": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "actionAtItemEnd": true;
+        "allowsCaptureOfClearKeyVideo": true;
+        "allowsExternalPlayback": true;
+        "appliesMediaSelectionCriteriaAutomatically": true;
+        "audioOutputSuppressedDueToNonMixableAudioRoute": true;
+        "audiovisualBackgroundPlaybackPolicy": true;
+        "automaticallyWaitsToMinimizeStalling": true;
+        "isClosedCaptionDisplayEnabled": true;
+        "currentItem": true;
+        "defaultRate": true;
+        "disconnectedFromSystemAudio": true;
+        "error": true;
+        "isExternalPlaybackActive": true;
+        "externalPlaybackVideoGravity": true;
+        "masterClock": true;
+        "isMuted": true;
+        "networkResourcePriority": true;
+        "isOutputObscuredDueToInsufficientExternalProtection": true;
+        "playbackCoordinator": true;
+        "preventsDisplaySleepDuringVideoPlayback": true;
+        "rate": true;
+        "reasonForWaitingToPlay": true;
+        "sourceClock": true;
+        "status": true;
+        "timeControlStatus": true;
+        "usesExternalPlaybackWhileExternalScreenIsActive": true;
+        "videoOutput": true;
+        "volume": true;
+    };
 }
 /**
  * class AVRenderedCaptionImage
@@ -25676,6 +25795,21 @@ export declare class AVSampleBufferDisplayLayer extends SDKHandle {
         "c:objc(cs)AVSampleBufferDisplayLayer": true;
         "c:objc(cs)CALayer": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "controlTimebase": true;
+        "error": true;
+        "hasSufficientMediaDataForReliablePlaybackStart": true;
+        "isOutputObscuredDueToInsufficientExternalProtection": true;
+        "preventsCapture": true;
+        "preventsDisplaySleepDuringVideoPlayback": true;
+        "isReadyForDisplay": true;
+        "isReadyForMoreMediaData": true;
+        "requiresFlushToResumeDecoding": true;
+        "sampleBufferRenderer": true;
+        "status": true;
+        "timebase": true;
+        "videoGravity": true;
     };
 }
 /**

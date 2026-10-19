@@ -33,17 +33,17 @@ export class AccessibilityNotification_Announcement extends SDKHandle {
    * init(_ announcement: AttributedString)
    * @availability iOS 17.0+
    */
-  static init(announcement: _Foundation_AttributedString): AccessibilityNotification_Announcement { return callSDK<AccessibilityNotification_Announcement>("Accessibility_067acaa3e5f56b46", 2343302826210209, undefined, [announcement]); }
+  static init(announcement: _Foundation_AttributedString): AccessibilityNotification_Announcement { return callSDK<AccessibilityNotification_Announcement>("Accessibility_d968214ecc684fb6", 2343302826210209, undefined, [announcement]); }
   /**
    * init(_ announcement: String)
    * @availability iOS 17.0+
    */
-  static init86601(announcement: string): AccessibilityNotification_Announcement { return callSDK<AccessibilityNotification_Announcement>("Accessibility_067acaa3e5f56b46", 4028308033307257, undefined, [announcement]); }
+  static init86601(announcement: string): AccessibilityNotification_Announcement { return callSDK<AccessibilityNotification_Announcement>("Accessibility_d968214ecc684fb6", 4028308033307257, undefined, [announcement]); }
   /**
    * init(_ announcement: NSAttributedString)
    * @availability iOS 17.0+
    */
-  static init11535(announcement: _Foundation_NSAttributedString): AccessibilityNotification_Announcement { return callSDK<AccessibilityNotification_Announcement>("Accessibility_067acaa3e5f56b46", 919037673501236, undefined, [announcement]); }
+  static init11535(announcement: _Foundation_NSAttributedString): AccessibilityNotification_Announcement { return callSDK<AccessibilityNotification_Announcement>("Accessibility_d968214ecc684fb6", 919037673501236, undefined, [announcement]); }
   declare readonly $type: { "s:13Accessibility0A12NotificationO12AnnouncementV": true };
 }
 
@@ -56,7 +56,7 @@ export class AccessibilityNotification_LayoutChanged extends SDKHandle {
    * init(_ element: Any? = nil)
    * @availability iOS 17.0+
    */
-  static init(element?: (unknown) | null): AccessibilityNotification_LayoutChanged { return callSDK<AccessibilityNotification_LayoutChanged>("Accessibility_067acaa3e5f56b46", 2216516783005789, undefined, [element]); }
+  static init(element?: (unknown) | null): AccessibilityNotification_LayoutChanged { return callSDK<AccessibilityNotification_LayoutChanged>("Accessibility_d968214ecc684fb6", 2216516783005789, undefined, [element]); }
   declare readonly $type: { "s:13Accessibility0A12NotificationO13LayoutChangedV": true };
 }
 
@@ -69,17 +69,17 @@ export class AccessibilityNotification_PageScrolled extends SDKHandle {
    * init(_ announcement: AttributedString)
    * @availability iOS 17.0+
    */
-  static init(announcement: _Foundation_AttributedString): AccessibilityNotification_PageScrolled { return callSDK<AccessibilityNotification_PageScrolled>("Accessibility_067acaa3e5f56b46", 1967823104922935, undefined, [announcement]); }
+  static init(announcement: _Foundation_AttributedString): AccessibilityNotification_PageScrolled { return callSDK<AccessibilityNotification_PageScrolled>("Accessibility_d968214ecc684fb6", 1967823104922935, undefined, [announcement]); }
   /**
    * init(_ announcement: String)
    * @availability iOS 17.0+
    */
-  static init80161(announcement: string): AccessibilityNotification_PageScrolled { return callSDK<AccessibilityNotification_PageScrolled>("Accessibility_067acaa3e5f56b46", 169518408815, undefined, [announcement]); }
+  static init80161(announcement: string): AccessibilityNotification_PageScrolled { return callSDK<AccessibilityNotification_PageScrolled>("Accessibility_d968214ecc684fb6", 169518408815, undefined, [announcement]); }
   /**
    * init(_ announcement: NSAttributedString)
    * @availability iOS 17.0+
    */
-  static init30647(announcement: _Foundation_NSAttributedString): AccessibilityNotification_PageScrolled { return callSDK<AccessibilityNotification_PageScrolled>("Accessibility_067acaa3e5f56b46", 1078284122365756, undefined, [announcement]); }
+  static init30647(announcement: _Foundation_NSAttributedString): AccessibilityNotification_PageScrolled { return callSDK<AccessibilityNotification_PageScrolled>("Accessibility_d968214ecc684fb6", 1078284122365756, undefined, [announcement]); }
   declare readonly $type: { "s:13Accessibility0A12NotificationO12PageScrolledV": true };
 }
 
@@ -92,7 +92,7 @@ export class AccessibilityNotification_ScreenChanged extends SDKHandle {
    * init(_ element: Any? = nil)
    * @availability iOS 17.0+
    */
-  static init(element?: (unknown) | null): AccessibilityNotification_ScreenChanged { return callSDK<AccessibilityNotification_ScreenChanged>("Accessibility_067acaa3e5f56b46", 4467602018117812, undefined, [element]); }
+  static init(element?: (unknown) | null): AccessibilityNotification_ScreenChanged { return callSDK<AccessibilityNotification_ScreenChanged>("Accessibility_d968214ecc684fb6", 4467602018117812, undefined, [element]); }
   declare readonly $type: { "s:13Accessibility0A12NotificationO13ScreenChangedV": true };
 }
 
@@ -105,12 +105,12 @@ export class AccessibilityRequest extends SDKHandle {
    * class var current: AccessibilityRequest? { get }
    * @availability iOS 18.0+
    */
-  static get current(): (AccessibilityRequest) | null { return callSDK<(AccessibilityRequest) | null>("Accessibility_067acaa3e5f56b46", 2090838701897441, undefined, []); }
+  static get current(): (AccessibilityRequest) | null { return callSDK<(AccessibilityRequest) | null>("Accessibility_d968214ecc684fb6", 2090838701897441, undefined, []); }
   /**
    * var technology: AccessibilityTechnology { get }
    * @availability iOS 18.0+
    */
-  get technology(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 4325739287493936, this, []); }
+  get technology(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 4325739287493936, this, []); }
   declare readonly $type: { "c:objc(cs)AXRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "technology": true };
 }
@@ -121,89 +121,89 @@ export class AccessibilitySettings extends SDKHandle {
    * static let applicationAccessibilityEnabledDidChangeNotification: NSNotification.Name
    * @availability iOS 27.0+
    */
-  static get applicationAccessibilityEnabledDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 2531878311450009, undefined, []); }
+  static get applicationAccessibilityEnabledDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 2531878311450009, undefined, []); }
   /**
    * static let prefersActionSliderAlternativeDidChangeNotification: NSNotification.Name
    * @availability iOS 26.1+
    */
-  static get prefersActionSliderAlternativeDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 3810686808408704, undefined, []); }
+  static get prefersActionSliderAlternativeDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 3810686808408704, undefined, []); }
   /**
    * static let prefersNonBlinkingTextInsertionIndicatorDidChangeNotification: NSNotification.Name
    * @availability iOS 18.0+
    */
-  static get prefersNonBlinkingTextInsertionIndicatorDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 2224568576127828, undefined, []); }
+  static get prefersNonBlinkingTextInsertionIndicatorDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 2224568576127828, undefined, []); }
   /**
    * static let reduceHighlightingEffectsEnabledDidChangeNotification: NSNotification.Name
    * @availability iOS 26.4+
    */
-  static get reduceHighlightingEffectsEnabledDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 4046484597132539, undefined, []); }
+  static get reduceHighlightingEffectsEnabledDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 4046484597132539, undefined, []); }
   /**
    * static let showBordersEnabledStatusDidChangeNotification: NSNotification.Name
    * @availability iOS 26.1+
    */
-  static get showBordersEnabledStatusDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 4028212844254735, undefined, []); }
+  static get showBordersEnabledStatusDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 4028212844254735, undefined, []); }
   /**
    * static var isApplicationAccessibilityEnabled: Bool { get }
    * @availability iOS 27.0+
    */
-  static get isApplicationAccessibilityEnabled(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 4028508259340740, undefined, []); }
+  static get isApplicationAccessibilityEnabled(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 4028508259340740, undefined, []); }
   /**
    * static var isAssistiveAccessEnabled: Bool { get }
    * @availability iOS 18.0+
    */
-  static get isAssistiveAccessEnabled(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 3616555361745663, undefined, []); }
+  static get isAssistiveAccessEnabled(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 3616555361745663, undefined, []); }
   /**
    * static var isReduceHighlightingEffectsEnabled: Bool { get }
    * @availability iOS 26.4+
    */
-  static get isReduceHighlightingEffectsEnabled(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 2641546829680363, undefined, []); }
+  static get isReduceHighlightingEffectsEnabled(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 2641546829680363, undefined, []); }
   /**
    * static func openSettings(for feature: AccessibilitySettings.Feature) async throws
    * @availability iOS 18.0+
    */
-  static openSettings(feature: AccessibilitySettings_Feature): Promise<void> { return callSDKAsync<void>("Accessibility_067acaa3e5f56b46", 1017312227994028, undefined, [feature]); }
+  static openSettings(feature: AccessibilitySettings_Feature): Promise<void> { return callSDKAsync<void>("Accessibility_d968214ecc684fb6", 1017312227994028, undefined, [feature]); }
   /**
    * static func canOpenSettings(for feature: AccessibilitySettings.Feature) -> Bool
    * @availability iOS 26.4+
    */
-  static canOpenSettings(feature: AccessibilitySettings_Feature): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 2132668390845629, undefined, [feature]); }
+  static canOpenSettings(feature: AccessibilitySettings_Feature): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 2132668390845629, undefined, [feature]); }
   /**
    * static var showBordersEnabled: Bool { get }
    * @availability iOS 26.1+
    */
-  static get showBordersEnabled(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 1209736800686112, undefined, []); }
+  static get showBordersEnabled(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 1209736800686112, undefined, []); }
   /**
    * static var animatedImagesEnabled: Bool { get }
    * @availability iOS 18.0+
    */
-  static get animatedImagesEnabled(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 903336460727762, undefined, []); }
+  static get animatedImagesEnabled(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 903336460727762, undefined, []); }
   /**
    * static var prefersHorizontalTextLayout: Bool { get }
    * @availability iOS 18.0+
    */
-  static get prefersHorizontalTextLayout(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 184624495131490, undefined, []); }
+  static get prefersHorizontalTextLayout(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 184624495131490, undefined, []); }
   /**
    * static var prefersActionSliderAlternative: Bool { get }
    * @availability iOS 26.1+
    */
-  static get prefersActionSliderAlternative(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 2513573472130090, undefined, []); }
+  static get prefersActionSliderAlternative(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 2513573472130090, undefined, []); }
   /**
    * static var prefersNonBlinkingTextInsertionIndicator: Bool { get }
    * @availability iOS 18.0+
    */
-  static get prefersNonBlinkingTextInsertionIndicator(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 1293577624984548, undefined, []); }
+  static get prefersNonBlinkingTextInsertionIndicator(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 1293577624984548, undefined, []); }
   /**
    * static var animatedImagesEnabledDidChangeNotification: Notification.Name { get }
    * @availability iOS 18.0+
    */
-  static get animatedImagesEnabledDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 891584720006854, undefined, []); }
+  static get animatedImagesEnabledDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 891584720006854, undefined, []); }
   /**
    * static var prefersHorizontalTextLayoutDidChangeNotification: Notification.Name { get }
    * @availability iOS 18.0+
    */
-  static get prefersHorizontalTextLayoutDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 3257466401590568, undefined, []); }
+  static get prefersHorizontalTextLayoutDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 3257466401590568, undefined, []); }
   /** init() */
-  static init(): AccessibilitySettings { return callSDK<AccessibilitySettings>("Accessibility_067acaa3e5f56b46", 2883059810261090, undefined, []); }
+  static init(): AccessibilitySettings { return callSDK<AccessibilitySettings>("Accessibility_d968214ecc684fb6", 2883059810261090, undefined, []); }
   declare readonly $type: { "c:@S@AccessibilitySettings": true };
 }
 
@@ -216,17 +216,17 @@ export class AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessa
    * @MainActor static func makeMessage(_ notification: Notification) -> AccessibilitySettings.ApplicationAccessibilityEnabledDidChangeMessage?
    * @availability iOS 27.0+
    */
-  static makeMessage(notification: _Foundation_Notification): Promise<(AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage) | null> { return callSDKAsync<(AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage) | null>("Accessibility_067acaa3e5f56b46", 1637732403352641, undefined, [notification]); }
+  static makeMessage(notification: _Foundation_Notification): Promise<(AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage) | null> { return callSDKAsync<(AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage) | null>("Accessibility_d968214ecc684fb6", 1637732403352641, undefined, [notification]); }
   /**
    * static var name: Notification.Name { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 3863202252956124, undefined, []); }
+  static get nameValue(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 3863202252956124, undefined, []); }
   /**
    * init()
    * @availability iOS 27.0+
    */
-  static init(): AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage { return callSDK<AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage>("Accessibility_067acaa3e5f56b46", 1380133775678008, undefined, []); }
+  static init(): AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage { return callSDK<AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage>("Accessibility_d968214ecc684fb6", 1380133775678008, undefined, []); }
   declare readonly $type: { "s:So21AccessibilitySettingsV0A0E011ApplicationA23EnabledDidChangeMessageV": true };
 }
 
@@ -247,7 +247,7 @@ export const AccessibilitySettings_Feature = {
    * init?(rawValue: Int)
    * @availability iOS 18.0+
    */
-  init(rawValue: number): (AccessibilitySettings_Feature) | null { return callSDK<(AccessibilitySettings_Feature) | null>("Accessibility_067acaa3e5f56b46", 652757319456500, undefined, [rawValue]); }
+  init(rawValue: number): (AccessibilitySettings_Feature) | null { return callSDK<(AccessibilitySettings_Feature) | null>("Accessibility_d968214ecc684fb6", 652757319456500, undefined, [rawValue]); }
 };
 
 /** struct AccessibilityTechnology */
@@ -258,44 +258,44 @@ export const AccessibilityTechnology = {
    * static let automation: AccessibilityTechnology
    * @availability iOS 18.0+
    */
-  get automation(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 4389181219856809, undefined, []); },
+  get automation(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 4389181219856809, undefined, []); },
   /**
    * static let fullKeyboardAccess: AccessibilityTechnology
    * @availability iOS 18.0+
    */
-  get fullKeyboardAccess(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 1888492393401063, undefined, []); },
+  get fullKeyboardAccess(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 1888492393401063, undefined, []); },
   /**
    * static let hoverText: AccessibilityTechnology
    * @availability iOS 18.0+
    */
-  get hoverText(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 1527571303698078, undefined, []); },
+  get hoverText(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 1527571303698078, undefined, []); },
   /**
    * static let speakScreen: AccessibilityTechnology
    * @availability iOS 18.0+
    */
-  get speakScreen(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 3803747110918633, undefined, []); },
+  get speakScreen(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 3803747110918633, undefined, []); },
   /**
    * static let switchControl: AccessibilityTechnology
    * @availability iOS 18.0+
    */
-  get switchControl(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 4368491982186884, undefined, []); },
+  get switchControl(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 4368491982186884, undefined, []); },
   /**
    * static let voiceControl: AccessibilityTechnology
    * @availability iOS 18.0+
    */
-  get voiceControl(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 2295327087510088, undefined, []); },
+  get voiceControl(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 2295327087510088, undefined, []); },
   /**
    * static let voiceOver: AccessibilityTechnology
    * @availability iOS 18.0+
    */
-  get voiceOver(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 2842842202501781, undefined, []); },
+  get voiceOver(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 2842842202501781, undefined, []); },
   /**
    * static let zoom: AccessibilityTechnology
    * @availability iOS 18.0+
    */
-  get zoom(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 3166778282227993, undefined, []); },
+  get zoom(): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 3166778282227993, undefined, []); },
   /** init(rawValue: String) */
-  init(rawValue: string): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_067acaa3e5f56b46", 98345341127270, undefined, [rawValue]); }
+  init(rawValue: string): AccessibilityTechnology { return callSDK<AccessibilityTechnology>("Accessibility_d968214ecc684fb6", 98345341127270, undefined, [rawValue]); }
 };
 
 /**
@@ -307,52 +307,52 @@ export class AttributeScopes_AccessibilityAttributes extends SDKHandle {
    * let accessibilitySpeechSSML: AttributeScopes.AccessibilityAttributes.SpeechSSMLAttribute
    * @availability iOS 27.0+
    */
-  get accessibilitySpeechSSML(): AttributeScopes_AccessibilityAttributes_SpeechSSMLAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_SpeechSSMLAttribute>("Accessibility_067acaa3e5f56b46", 993060620940865, this, []); }
+  get accessibilitySpeechSSML(): AttributeScopes_AccessibilityAttributes_SpeechSSMLAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_SpeechSSMLAttribute>("Accessibility_d968214ecc684fb6", 993060620940865, this, []); }
   /**
    * let accessibilityTextCustom: AttributeScopes.AccessibilityAttributes.TextCustomAttribute
    * @availability iOS 15.0+
    */
-  get accessibilityTextCustom(): AttributeScopes_AccessibilityAttributes_TextCustomAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_TextCustomAttribute>("Accessibility_067acaa3e5f56b46", 3159467480259819, this, []); }
+  get accessibilityTextCustom(): AttributeScopes_AccessibilityAttributes_TextCustomAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_TextCustomAttribute>("Accessibility_d968214ecc684fb6", 3159467480259819, this, []); }
   /**
    * let accessibilityHeadingLevel: AttributeScopes.AccessibilityAttributes.HeadingLevelAttribute
    * @availability iOS 15.0+
    */
-  get accessibilityHeadingLevel(): AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute>("Accessibility_067acaa3e5f56b46", 110443949313142, this, []); }
+  get accessibilityHeadingLevel(): AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute>("Accessibility_d968214ecc684fb6", 110443949313142, this, []); }
   /**
    * let accessibilityTextualContext: AttributeScopes.AccessibilityAttributes.TextualContextAttribute
    * @availability iOS 15.0+
    */
-  get accessibilityTextualContext(): AttributeScopes_AccessibilityAttributes_TextualContextAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_TextualContextAttribute>("Accessibility_067acaa3e5f56b46", 4221337527113758, this, []); }
+  get accessibilityTextualContext(): AttributeScopes_AccessibilityAttributes_TextualContextAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_TextualContextAttribute>("Accessibility_d968214ecc684fb6", 4221337527113758, this, []); }
   /**
    * let accessibilitySpeechAdjustedPitch: AttributeScopes.AccessibilityAttributes.AdjustedPitchAttribute
    * @availability iOS 15.0+
    */
-  get accessibilitySpeechAdjustedPitch(): AttributeScopes_AccessibilityAttributes_AdjustedPitchAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_AdjustedPitchAttribute>("Accessibility_067acaa3e5f56b46", 2616240478810210, this, []); }
+  get accessibilitySpeechAdjustedPitch(): AttributeScopes_AccessibilityAttributes_AdjustedPitchAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_AdjustedPitchAttribute>("Accessibility_d968214ecc684fb6", 2616240478810210, this, []); }
   /**
    * let accessibilitySpeechPhoneticNotation: AttributeScopes.AccessibilityAttributes.IPANotationAttribute
    * @availability iOS 15.0+
    */
-  get accessibilitySpeechPhoneticNotation(): AttributeScopes_AccessibilityAttributes_IPANotationAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_IPANotationAttribute>("Accessibility_067acaa3e5f56b46", 1033367336219722, this, []); }
+  get accessibilitySpeechPhoneticNotation(): AttributeScopes_AccessibilityAttributes_IPANotationAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_IPANotationAttribute>("Accessibility_d968214ecc684fb6", 1033367336219722, this, []); }
   /**
    * let accessibilitySpeechAnnouncementsQueued: AttributeScopes.AccessibilityAttributes.QueueAnnouncementAttribute
    * @availability iOS 15.0+
    */
-  get accessibilitySpeechAnnouncementsQueued(): AttributeScopes_AccessibilityAttributes_QueueAnnouncementAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_QueueAnnouncementAttribute>("Accessibility_067acaa3e5f56b46", 641949942347305, this, []); }
+  get accessibilitySpeechAnnouncementsQueued(): AttributeScopes_AccessibilityAttributes_QueueAnnouncementAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_QueueAnnouncementAttribute>("Accessibility_d968214ecc684fb6", 641949942347305, this, []); }
   /**
    * let accessibilitySpeechIncludesPunctuation: AttributeScopes.AccessibilityAttributes.IncludesPunctuationAttribute
    * @availability iOS 15.0+
    */
-  get accessibilitySpeechIncludesPunctuation(): AttributeScopes_AccessibilityAttributes_IncludesPunctuationAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_IncludesPunctuationAttribute>("Accessibility_067acaa3e5f56b46", 4066350884732080, this, []); }
+  get accessibilitySpeechIncludesPunctuation(): AttributeScopes_AccessibilityAttributes_IncludesPunctuationAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_IncludesPunctuationAttribute>("Accessibility_d968214ecc684fb6", 4066350884732080, this, []); }
   /**
    * let accessibilitySpeechSpellsOutCharacters: AttributeScopes.AccessibilityAttributes.SpellOutAttribute
    * @availability iOS 15.0+
    */
-  get accessibilitySpeechSpellsOutCharacters(): AttributeScopes_AccessibilityAttributes_SpellOutAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_SpellOutAttribute>("Accessibility_067acaa3e5f56b46", 3048082748403631, this, []); }
+  get accessibilitySpeechSpellsOutCharacters(): AttributeScopes_AccessibilityAttributes_SpellOutAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_SpellOutAttribute>("Accessibility_d968214ecc684fb6", 3048082748403631, this, []); }
   /**
    * let accessibilitySpeechAnnouncementPriority: AttributeScopes.AccessibilityAttributes.AnnouncementPriorityAttribute
    * @availability iOS 17.0+
    */
-  get accessibilitySpeechAnnouncementPriority(): AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute>("Accessibility_067acaa3e5f56b46", 4028396198042077, this, []); }
+  get accessibilitySpeechAnnouncementPriority(): AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute { return callSDK<AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute>("Accessibility_d968214ecc684fb6", 4028396198042077, this, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV": true };
 }
 
@@ -365,22 +365,22 @@ export class AttributeScopes_AccessibilityAttributes_AdjustedPitchAttribute exte
    * static let markdownName: String
    * @availability iOS 15.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2623657988795483, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2623657988795483, undefined, []); }
   /**
    * static func objectiveCValue(for value: Double) throws -> NSNumber
    * @availability iOS 15.0+
    */
-  static objectiveCValue(value: number): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("Accessibility_067acaa3e5f56b46", 3449560058900993, undefined, [value]); }
+  static objectiveCValue(value: number): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("Accessibility_d968214ecc684fb6", 3449560058900993, undefined, [value]); }
   /**
    * static var name: String { get }
    * @availability iOS 15.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 489641122481856, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 489641122481856, undefined, []); }
   /**
    * static func value(for object: NSNumber) throws -> Double
    * @availability iOS 15.0+
    */
-  static value(object: _Foundation_NSNumber): number { return callSDK<number>("Accessibility_067acaa3e5f56b46", 1080555309517323, undefined, [object]); }
+  static value(object: _Foundation_NSNumber): number { return callSDK<number>("Accessibility_d968214ecc684fb6", 1080555309517323, undefined, [object]); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV013AdjustedPitchB0O": true };
 }
 
@@ -405,22 +405,22 @@ export class AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribu
    * static let markdownName: String
    * @availability iOS 17.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1659817566222632, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1659817566222632, undefined, []); }
   /**
    * static func objectiveCValue(for value: AttributeScopes.AccessibilityAttributes.AnnouncementPriorityAttribute.AnnouncementPriority) throws -> NSString
    * @availability iOS 17.0+
    */
-  static objectiveCValue(value: AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority): _Foundation_NSString { return callSDK<_Foundation_NSString>("Accessibility_067acaa3e5f56b46", 2717894041468674, undefined, [value]); }
+  static objectiveCValue(value: AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority): _Foundation_NSString { return callSDK<_Foundation_NSString>("Accessibility_d968214ecc684fb6", 2717894041468674, undefined, [value]); }
   /**
    * static var name: String { get }
    * @availability iOS 17.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 743019354442582, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 743019354442582, undefined, []); }
   /**
    * static func value(for object: NSString) throws -> AttributeScopes.AccessibilityAttributes.AnnouncementPriorityAttribute.AnnouncementPriority
    * @availability iOS 17.0+
    */
-  static value(object: _Foundation_NSString): AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority { return callSDK<AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority>("Accessibility_067acaa3e5f56b46", 4277392760400685, undefined, [object]); }
+  static value(object: _Foundation_NSString): AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority { return callSDK<AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority>("Accessibility_d968214ecc684fb6", 4277392760400685, undefined, [object]); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV020AnnouncementPriorityB0O": true };
 }
 
@@ -435,12 +435,12 @@ export const AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribu
    * init?(rawValue: String)
    * @availability iOS 17.0+
    */
-  init(rawValue: string): (AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority) | null { return callSDK<(AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority) | null>("Accessibility_067acaa3e5f56b46", 2291112531761074, undefined, [rawValue]); },
+  init(rawValue: string): (AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority) | null { return callSDK<(AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority) | null>("Accessibility_d968214ecc684fb6", 2291112531761074, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 17.0+
    */
-  getRawValue($self: AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1065768372434367, $self, []); }
+  getRawValue($self: AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1065768372434367, $self, []); }
 };
 
 /**
@@ -482,27 +482,27 @@ export class AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute exten
    * static let markdownName: String
    * @availability iOS 15.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 3606794997242183, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 3606794997242183, undefined, []); }
   /**
    * static func decodeMarkdown(from decoder: any Decoder) throws -> AttributeScopes.AccessibilityAttributes.HeadingLevelAttribute.HeadingLevel
    * @availability iOS 15.0+
    */
-  static decodeMarkdown(decoder: SDKHandle): AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel { return callSDK<AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel>("Accessibility_067acaa3e5f56b46", 219458597271700, undefined, [decoder]); }
+  static decodeMarkdown(decoder: SDKHandle): AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel { return callSDK<AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel>("Accessibility_d968214ecc684fb6", 219458597271700, undefined, [decoder]); }
   /**
    * static func objectiveCValue(for value: AttributeScopes.AccessibilityAttributes.HeadingLevelAttribute.HeadingLevel) throws -> NSNumber
    * @availability iOS 15.0+
    */
-  static objectiveCValue(value: AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("Accessibility_067acaa3e5f56b46", 45351909999990, undefined, [value]); }
+  static objectiveCValue(value: AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel): _Foundation_NSNumber { return callSDK<_Foundation_NSNumber>("Accessibility_d968214ecc684fb6", 45351909999990, undefined, [value]); }
   /**
    * static var name: String { get }
    * @availability iOS 15.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 811575164696030, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 811575164696030, undefined, []); }
   /**
    * static func value(for object: NSNumber) throws -> AttributeScopes.AccessibilityAttributes.HeadingLevelAttribute.HeadingLevel
    * @availability iOS 15.0+
    */
-  static value(object: _Foundation_NSNumber): AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel { return callSDK<AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel>("Accessibility_067acaa3e5f56b46", 3553344097381078, undefined, [object]); }
+  static value(object: _Foundation_NSNumber): AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel { return callSDK<AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel>("Accessibility_d968214ecc684fb6", 3553344097381078, undefined, [object]); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV012HeadingLevelB0O": true };
 }
 
@@ -517,12 +517,12 @@ export const AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_Headi
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel) | null { return callSDK<(AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel) | null>("Accessibility_067acaa3e5f56b46", 638477526031077, undefined, [rawValue]); },
+  init(rawValue: number): (AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel) | null { return callSDK<(AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel) | null>("Accessibility_d968214ecc684fb6", 638477526031077, undefined, [rawValue]); },
   /**
    * var rawValue: Int { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel): number { return callSDK<number>("Accessibility_067acaa3e5f56b46", 3165855972551876, $self, []); }
+  getRawValue($self: AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel): number { return callSDK<number>("Accessibility_d968214ecc684fb6", 3165855972551876, $self, []); }
 };
 
 /**
@@ -552,12 +552,12 @@ export class AttributeScopes_AccessibilityAttributes_IncludesPunctuationAttribut
    * static let markdownName: String
    * @availability iOS 15.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 3431343754593595, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 3431343754593595, undefined, []); }
   /**
    * static var name: String { get }
    * @availability iOS 15.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2401104780361173, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2401104780361173, undefined, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV019IncludesPunctuationB0O": true };
 }
 
@@ -576,12 +576,12 @@ export class AttributeScopes_AccessibilityAttributes_IPANotationAttribute extend
    * static let markdownName: String
    * @availability iOS 15.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 4133088216210228, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 4133088216210228, undefined, []); }
   /**
    * static var name: String { get }
    * @availability iOS 15.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 963543251990136, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 963543251990136, undefined, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV011IPANotationB0O": true };
 }
 
@@ -600,12 +600,12 @@ export class AttributeScopes_AccessibilityAttributes_QueueAnnouncementAttribute 
    * static let markdownName: String
    * @availability iOS 15.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1990444880813853, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1990444880813853, undefined, []); }
   /**
    * static var name: String { get }
    * @availability iOS 15.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1857044676904175, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1857044676904175, undefined, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV017QueueAnnouncementB0O": true };
 }
 
@@ -624,12 +624,12 @@ export class AttributeScopes_AccessibilityAttributes_SpeechSSMLAttribute extends
    * static let markdownName: String
    * @availability iOS 27.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1358976151949439, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1358976151949439, undefined, []); }
   /**
    * static var name: String { get }
    * @availability iOS 27.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 3960252954959190, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 3960252954959190, undefined, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV19SpeechSSMLAttributeO": true };
 }
 
@@ -648,12 +648,12 @@ export class AttributeScopes_AccessibilityAttributes_SpellOutAttribute extends S
    * static let markdownName: String
    * @availability iOS 15.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2512391655302264, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2512391655302264, undefined, []); }
   /**
    * static var name: String { get }
    * @availability iOS 15.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2338053011202534, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2338053011202534, undefined, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV08SpellOutB0O": true };
 }
 
@@ -672,12 +672,12 @@ export class AttributeScopes_AccessibilityAttributes_TextCustomAttribute extends
    * static let markdownName: String
    * @availability iOS 15.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 4223438782923271, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 4223438782923271, undefined, []); }
   /**
    * static var name: String { get }
    * @availability iOS 15.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 4015444113634813, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 4015444113634813, undefined, []); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV010TextCustomB0O": true };
 }
 
@@ -696,27 +696,27 @@ export class AttributeScopes_AccessibilityAttributes_TextualContextAttribute ext
    * static let markdownName: String
    * @availability iOS 15.0+
    */
-  static get markdownName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 362974341922958, undefined, []); }
+  static get markdownName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 362974341922958, undefined, []); }
   /**
    * static func decodeMarkdown(from decoder: any Decoder) throws -> AttributeScopes.AccessibilityAttributes.TextualContextAttribute.TextualContext
    * @availability iOS 15.0+
    */
-  static decodeMarkdown(decoder: SDKHandle): AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext { return callSDK<AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext>("Accessibility_067acaa3e5f56b46", 3181674429043301, undefined, [decoder]); }
+  static decodeMarkdown(decoder: SDKHandle): AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext { return callSDK<AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext>("Accessibility_d968214ecc684fb6", 3181674429043301, undefined, [decoder]); }
   /**
    * static func objectiveCValue(for value: AttributeScopes.AccessibilityAttributes.TextualContextAttribute.TextualContext) throws -> NSString
    * @availability iOS 15.0+
    */
-  static objectiveCValue(value: AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext): _Foundation_NSString { return callSDK<_Foundation_NSString>("Accessibility_067acaa3e5f56b46", 2185752203953135, undefined, [value]); }
+  static objectiveCValue(value: AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext): _Foundation_NSString { return callSDK<_Foundation_NSString>("Accessibility_d968214ecc684fb6", 2185752203953135, undefined, [value]); }
   /**
    * static var name: String { get }
    * @availability iOS 15.0+
    */
-  static get nameValue(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 4024005321797675, undefined, []); }
+  static get nameValue(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 4024005321797675, undefined, []); }
   /**
    * static func value(for object: NSString) throws -> AttributeScopes.AccessibilityAttributes.TextualContextAttribute.TextualContext
    * @availability iOS 15.0+
    */
-  static value(object: _Foundation_NSString): AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext { return callSDK<AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext>("Accessibility_067acaa3e5f56b46", 423222013856491, undefined, [object]); }
+  static value(object: _Foundation_NSString): AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext { return callSDK<AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext>("Accessibility_d968214ecc684fb6", 423222013856491, undefined, [object]); }
   declare readonly $type: { "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV014TextualContextB0O": true };
 }
 
@@ -737,12 +737,12 @@ export const AttributeScopes_AccessibilityAttributes_TextualContextAttribute_Tex
    * init?(rawValue: String)
    * @availability iOS 15.0+
    */
-  init(rawValue: string): (AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext) | null { return callSDK<(AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext) | null>("Accessibility_067acaa3e5f56b46", 4225531524798327, undefined, [rawValue]); },
+  init(rawValue: string): (AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext) | null { return callSDK<(AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext) | null>("Accessibility_d968214ecc684fb6", 4225531524798327, undefined, [rawValue]); },
   /**
    * var rawValue: String { get }
    * @availability iOS 15.0+
    */
-  getRawValue($self: AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1679315511926813, $self, []); }
+  getRawValue($self: AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1679315511926813, $self, []); }
 };
 
 /**
@@ -766,27 +766,27 @@ export class AXBrailleMap extends SDKHandle {
    * func height(at point: CGPoint) -> Float
    * @availability iOS 15.2+
    */
-  height(point: $SDK2): number { return callSDK<number>("Accessibility_067acaa3e5f56b46", 2009658966444874, this, [point]); }
+  height(point: $SDK2): number { return callSDK<number>("Accessibility_d968214ecc684fb6", 2009658966444874, this, [point]); }
   /**
    * func present(_ image: CGImage)
    * @availability iOS 15.2+
    */
-  present(image: _CoreGraphics_CGImage): void { return callSDK<void>("Accessibility_067acaa3e5f56b46", 752194942902418, this, [image]); }
+  present(image: _CoreGraphics_CGImage): void { return callSDK<void>("Accessibility_d968214ecc684fb6", 752194942902418, this, [image]); }
   /**
    * func setHeight(_ status: Float, at point: CGPoint)
    * @availability iOS 15.2+
    */
-  setHeight(status: number, point: $SDK2): void { return callSDK<void>("Accessibility_067acaa3e5f56b46", 2647692841135687, this, [status, point]); }
+  setHeight(status: number, point: $SDK2): void { return callSDK<void>("Accessibility_d968214ecc684fb6", 2647692841135687, this, [status, point]); }
   /**
    * var dimensions: CGSize { get }
    * @availability iOS 15.2+
    */
-  get dimensions(): { width: number; height: number } { return callSDK<{ width: number; height: number }>("Accessibility_067acaa3e5f56b46", 1298227761968415, this, []); }
+  get dimensions(): { width: number; height: number } { return callSDK<{ width: number; height: number }>("Accessibility_d968214ecc684fb6", 1298227761968415, this, []); }
   /**
    * subscript(point: CGPoint) -> Float { get set }
    * @availability iOS 15.2+
    */
-  subscript(point: $SDK2): number { return callSDK<number>("Accessibility_067acaa3e5f56b46", 1295848356962956, this, [point]); }
+  subscript(point: $SDK2): number { return callSDK<number>("Accessibility_d968214ecc684fb6", 1295848356962956, this, [point]); }
   declare readonly $type: { "c:objc(cs)AXBrailleMap": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dimensions": true };
 }
@@ -805,62 +805,62 @@ export class AXBrailleTable extends SDKHandle {
    * class func defaultTable(for locale: Locale) -> AXBrailleTable?
    * @availability iOS 26.0+
    */
-  static defaultTable(locale: _Foundation_Locale): (AXBrailleTable) | null { return callSDK<(AXBrailleTable) | null>("Accessibility_067acaa3e5f56b46", 3937613816087774, undefined, [locale]); }
+  static defaultTable(locale: _Foundation_Locale): (AXBrailleTable) | null { return callSDK<(AXBrailleTable) | null>("Accessibility_d968214ecc684fb6", 3937613816087774, undefined, [locale]); }
   /**
    * class func languageAgnosticTables() -> Set<AXBrailleTable>
    * @availability iOS 26.0+
    */
-  static languageAgnosticTables(): Array<AXBrailleTable> { return callSDK<Array<AXBrailleTable>>("Accessibility_067acaa3e5f56b46", 326237025399975, undefined, []); }
+  static languageAgnosticTables(): Array<AXBrailleTable> { return callSDK<Array<AXBrailleTable>>("Accessibility_d968214ecc684fb6", 326237025399975, undefined, []); }
   /**
    * class func supportedLocales() -> Set<Locale>
    * @availability iOS 26.0+
    */
-  static supportedLocales(): Array<_Foundation_Locale> { return callSDK<Array<_Foundation_Locale>>("Accessibility_067acaa3e5f56b46", 391912521530145, undefined, []); }
+  static supportedLocales(): Array<_Foundation_Locale> { return callSDK<Array<_Foundation_Locale>>("Accessibility_d968214ecc684fb6", 391912521530145, undefined, []); }
   /**
    * class func tables(for locale: Locale) -> Set<AXBrailleTable>
    * @availability iOS 26.0+
    */
-  static tables(locale: _Foundation_Locale): Array<AXBrailleTable> { return callSDK<Array<AXBrailleTable>>("Accessibility_067acaa3e5f56b46", 1824194523747188, undefined, [locale]); }
+  static tables(locale: _Foundation_Locale): Array<AXBrailleTable> { return callSDK<Array<AXBrailleTable>>("Accessibility_d968214ecc684fb6", 1824194523747188, undefined, [locale]); }
   /**
    * init?(identifier: String)
    * @availability iOS 26.0+
    */
-  static init(identifier: string): (AXBrailleTable) | null { return callSDK<(AXBrailleTable) | null>("Accessibility_067acaa3e5f56b46", 4260694692946758, undefined, [identifier]); }
+  static init(identifier: string): (AXBrailleTable) | null { return callSDK<(AXBrailleTable) | null>("Accessibility_d968214ecc684fb6", 4260694692946758, undefined, [identifier]); }
   /**
    * var identifier: String { get }
    * @availability iOS 26.0+
    */
-  get identifier(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1716468207244930, this, []); }
+  get identifier(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1716468207244930, this, []); }
   /**
    * var isEightDot: Bool { get }
    * @availability iOS 26.0+
    */
-  get isEightDot(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 1060718080161019, this, []); }
+  get isEightDot(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 1060718080161019, this, []); }
   /**
    * var locales: Set<Locale> { get }
    * @availability iOS 26.0+
    */
-  get locales(): Array<_Foundation_Locale> { return callSDK<Array<_Foundation_Locale>>("Accessibility_067acaa3e5f56b46", 3936595720101711, this, []); }
+  get locales(): Array<_Foundation_Locale> { return callSDK<Array<_Foundation_Locale>>("Accessibility_d968214ecc684fb6", 3936595720101711, this, []); }
   /**
    * var localizedName: String { get }
    * @availability iOS 26.0+
    */
-  get localizedName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1454289283075166, this, []); }
+  get localizedName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1454289283075166, this, []); }
   /**
    * var localizedProviderName: String { get }
    * @availability iOS 26.0+
    */
-  get localizedProviderName(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 4166315132192304, this, []); }
+  get localizedProviderName(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 4166315132192304, this, []); }
   /**
    * var providerIdentifier: String { get }
    * @availability iOS 26.0+
    */
-  get providerIdentifier(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2451392011459282, this, []); }
+  get providerIdentifier(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2451392011459282, this, []); }
   /**
    * var language: Locale.Language { get }
    * @availability iOS 26.0+
    */
-  get language(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("Accessibility_067acaa3e5f56b46", 1008835108873454, this, []); }
+  get language(): _Foundation_Locale_Language { return callSDK<_Foundation_Locale_Language>("Accessibility_d968214ecc684fb6", 1008835108873454, this, []); }
   declare readonly $type: { "c:objc(cs)AXBrailleTable": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "identifier": true; "isEightDot": true; "locales": true; "localizedName": true; "localizedProviderName": true; "providerIdentifier": true };
 }
@@ -874,12 +874,12 @@ export class AXBrailleTranslationResult extends SDKHandle {
    * var resultString: String { get }
    * @availability iOS 26.0+
    */
-  get resultString(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1947990183775812, this, []); }
+  get resultString(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1947990183775812, this, []); }
   /**
    * func inputIndex(forResultIndex resultIndex: String.Index) -> String.Index?
    * @availability iOS 26.0+
    */
-  inputIndex(resultIndex: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Accessibility_067acaa3e5f56b46", 1302724435273166, this, [resultIndex]); }
+  inputIndex(resultIndex: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("Accessibility_d968214ecc684fb6", 1302724435273166, this, [resultIndex]); }
   declare readonly $type: { "c:objc(cs)AXBrailleTranslationResult": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "resultString": true };
 }
@@ -893,17 +893,17 @@ export class AXBrailleTranslator extends SDKHandle {
    * func backTranslateBraille(_ braille: String) -> AXBrailleTranslationResult
    * @availability iOS 26.0+
    */
-  backTranslateBraille(braille: string): AXBrailleTranslationResult { return callSDK<AXBrailleTranslationResult>("Accessibility_067acaa3e5f56b46", 3279303256466761, this, [braille]); }
+  backTranslateBraille(braille: string): AXBrailleTranslationResult { return callSDK<AXBrailleTranslationResult>("Accessibility_d968214ecc684fb6", 3279303256466761, this, [braille]); }
   /**
    * init(brailleTable: AXBrailleTable)
    * @availability iOS 26.0+
    */
-  static init(brailleTable: AXBrailleTable): AXBrailleTranslator { return callSDK<AXBrailleTranslator>("Accessibility_067acaa3e5f56b46", 1601978787038946, undefined, [brailleTable]); }
+  static init(brailleTable: AXBrailleTable): AXBrailleTranslator { return callSDK<AXBrailleTranslator>("Accessibility_d968214ecc684fb6", 1601978787038946, undefined, [brailleTable]); }
   /**
    * func translatePrintText(_ printText: String) -> AXBrailleTranslationResult
    * @availability iOS 26.0+
    */
-  translatePrintText(printText: string): AXBrailleTranslationResult { return callSDK<AXBrailleTranslationResult>("Accessibility_067acaa3e5f56b46", 1407476619788413, this, [printText]); }
+  translatePrintText(printText: string): AXBrailleTranslationResult { return callSDK<AXBrailleTranslationResult>("Accessibility_d968214ecc684fb6", 1407476619788413, this, [printText]); }
   declare readonly $type: { "c:objc(cs)AXBrailleTranslator": true; "c:objc(cs)NSObject": true };
 }
 
@@ -916,18 +916,18 @@ export class AXCategoricalDataAxisDescriptor extends SDKHandle {
    * init(attributedTitle: NSAttributedString, categoryOrder: [String])
    * @availability iOS 15.0+
    */
-  static initAttributedTitleCategoryOrder(attributedTitle: _Foundation_NSAttributedString, categoryOrder: Array<string>): AXCategoricalDataAxisDescriptor { return callSDK<AXCategoricalDataAxisDescriptor>("Accessibility_067acaa3e5f56b46", 932135667020972, undefined, [attributedTitle, categoryOrder]); }
+  static initAttributedTitleCategoryOrder(attributedTitle: _Foundation_NSAttributedString, categoryOrder: Array<string>): AXCategoricalDataAxisDescriptor { return callSDK<AXCategoricalDataAxisDescriptor>("Accessibility_d968214ecc684fb6", 932135667020972, undefined, [attributedTitle, categoryOrder]); }
   /**
    * init(title: String, categoryOrder: [String])
    * @availability iOS 15.0+
    */
-  static initTitleCategoryOrder(title: string, categoryOrder: Array<string>): AXCategoricalDataAxisDescriptor { return callSDK<AXCategoricalDataAxisDescriptor>("Accessibility_067acaa3e5f56b46", 3203042751596830, undefined, [title, categoryOrder]); }
+  static initTitleCategoryOrder(title: string, categoryOrder: Array<string>): AXCategoricalDataAxisDescriptor { return callSDK<AXCategoricalDataAxisDescriptor>("Accessibility_d968214ecc684fb6", 3203042751596830, undefined, [title, categoryOrder]); }
   /**
    * var categoryOrder: [String] { get set }
    * @availability iOS 15.0+
    */
-  get categoryOrder(): Array<string> { return callSDK<Array<string>>("Accessibility_067acaa3e5f56b46", 2297084371947624, this, []); }
-  set categoryOrder(value: Array<string>) { callSDK<void>("Accessibility_067acaa3e5f56b46", 1386800804673968, this, [value]); }
+  get categoryOrder(): Array<string> { return callSDK<Array<string>>("Accessibility_d968214ecc684fb6", 2297084371947624, this, []); }
+  set categoryOrder(value: Array<string>) { callSDK<void>("Accessibility_d968214ecc684fb6", 1386800804673968, this, [value]); }
   declare readonly $type: { "c:objc(cs)AXCategoricalDataAxisDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "categoryOrder": true };
 }
@@ -949,66 +949,66 @@ export class AXChartDescriptor extends SDKHandle {
    * @NSCopying var attributedTitle: NSAttributedString? { get set }
    * @availability iOS 15.0+
    */
-  get attributedTitle(): $SDK5 { return callSDK<$SDK5>("Accessibility_067acaa3e5f56b46", 585636414017038, this, []); }
-  set attributedTitle(value: $SDK5) { callSDK<void>("Accessibility_067acaa3e5f56b46", 1330443279284738, this, [value]); }
+  get attributedTitle(): $SDK5 { return callSDK<$SDK5>("Accessibility_d968214ecc684fb6", 585636414017038, this, []); }
+  set attributedTitle(value: $SDK5) { callSDK<void>("Accessibility_d968214ecc684fb6", 1330443279284738, this, [value]); }
   /**
    * var contentDirection: AXChartDescriptor.ContentDirection { get set }
    * @availability iOS 15.0+
    */
-  get contentDirection(): AXChartDescriptor_ContentDirection { return callSDK<AXChartDescriptor_ContentDirection>("Accessibility_067acaa3e5f56b46", 882144653351752, this, []); }
-  set contentDirection(value: AXChartDescriptor_ContentDirection) { callSDK<void>("Accessibility_067acaa3e5f56b46", 2959531957943558, this, [value]); }
+  get contentDirection(): AXChartDescriptor_ContentDirection { return callSDK<AXChartDescriptor_ContentDirection>("Accessibility_d968214ecc684fb6", 882144653351752, this, []); }
+  set contentDirection(value: AXChartDescriptor_ContentDirection) { callSDK<void>("Accessibility_d968214ecc684fb6", 2959531957943558, this, [value]); }
   /**
    * var contentFrame: CGRect { get set }
    * @availability iOS 15.0+
    */
-  get contentFrame(): $SDK6 { return callSDK<$SDK6>("Accessibility_067acaa3e5f56b46", 3694612689444683, this, []); }
-  set contentFrame(value: $SDK6) { callSDK<void>("Accessibility_067acaa3e5f56b46", 3169761129872000, this, [value]); }
+  get contentFrame(): $SDK6 { return callSDK<$SDK6>("Accessibility_d968214ecc684fb6", 3694612689444683, this, []); }
+  set contentFrame(value: $SDK6) { callSDK<void>("Accessibility_d968214ecc684fb6", 3169761129872000, this, [value]); }
   /**
    * var series: [AXDataSeriesDescriptor] { get set }
    * @availability iOS 15.0+
    */
-  get series(): $SDK7 { return callSDK<$SDK7>("Accessibility_067acaa3e5f56b46", 1678539857733214, this, []); }
-  set series(value: $SDK7) { callSDK<void>("Accessibility_067acaa3e5f56b46", 4423660541229315, this, [value]); }
+  get series(): $SDK7 { return callSDK<$SDK7>("Accessibility_d968214ecc684fb6", 1678539857733214, this, []); }
+  set series(value: $SDK7) { callSDK<void>("Accessibility_d968214ecc684fb6", 4423660541229315, this, [value]); }
   /**
    * var summary: String? { get set }
    * @availability iOS 15.0+
    */
-  get summary(): (string) | null { return callSDK<(string) | null>("Accessibility_067acaa3e5f56b46", 1089553012345696, this, []); }
-  set summary(value: (string) | null) { callSDK<void>("Accessibility_067acaa3e5f56b46", 3940606000638106, this, [value]); }
+  get summary(): (string) | null { return callSDK<(string) | null>("Accessibility_d968214ecc684fb6", 1089553012345696, this, []); }
+  set summary(value: (string) | null) { callSDK<void>("Accessibility_d968214ecc684fb6", 3940606000638106, this, [value]); }
   /**
    * var title: String? { get set }
    * @availability iOS 15.0+
    */
-  get title(): (string) | null { return callSDK<(string) | null>("Accessibility_067acaa3e5f56b46", 3294568520402946, this, []); }
-  set title(value: (string) | null) { callSDK<void>("Accessibility_067acaa3e5f56b46", 312145146694643, this, [value]); }
+  get title(): (string) | null { return callSDK<(string) | null>("Accessibility_d968214ecc684fb6", 3294568520402946, this, []); }
+  set title(value: (string) | null) { callSDK<void>("Accessibility_d968214ecc684fb6", 312145146694643, this, [value]); }
   /**
    * var yAxis: AXNumericDataAxisDescriptor? { get set }
    * @availability iOS 15.0+
    */
-  get yAxis(): $SDK8 { return callSDK<$SDK8>("Accessibility_067acaa3e5f56b46", 70102272325586, this, []); }
-  set yAxis(value: $SDK8) { callSDK<void>("Accessibility_067acaa3e5f56b46", 3007384360692307, this, [value]); }
+  get yAxis(): $SDK8 { return callSDK<$SDK8>("Accessibility_d968214ecc684fb6", 70102272325586, this, []); }
+  set yAxis(value: $SDK8) { callSDK<void>("Accessibility_d968214ecc684fb6", 3007384360692307, this, [value]); }
   /**
    * var additionalAxes: [any AXDataAxisDescriptor] { get set }
    * @availability iOS 15.0+
    */
-  get additionalAxes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Accessibility_067acaa3e5f56b46", 4266054829745016, this, []); }
-  set additionalAxes(value: Array<SDKHandle>) { callSDK<void>("Accessibility_067acaa3e5f56b46", 4471080369789191, this, [value]); }
+  get additionalAxes(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("Accessibility_d968214ecc684fb6", 4266054829745016, this, []); }
+  set additionalAxes(value: Array<SDKHandle>) { callSDK<void>("Accessibility_d968214ecc684fb6", 4471080369789191, this, [value]); }
   /**
    * convenience init(attributedTitle: NSAttributedString? = nil, summary: String? = nil, xAxis: any AXDataAxisDescriptor, yAxis: AXNumericDataAxisDescriptor? = nil, additionalAxes: [any AXDataAxisDescriptor] = [], series: [AXDataSeriesDescriptor])
    * @availability iOS 15.0+
    */
-  static initAttributedTitleSummaryXAxisYAxisAdditionalAxesSeries(attributedTitle: $SDK5, summary: (string) | null, xAxis: SDKHandle, yAxis: $SDK8, additionalAxes: Array<SDKHandle>, series: $SDK7): AXChartDescriptor { return callSDK<AXChartDescriptor>("Accessibility_067acaa3e5f56b46", 138845133875284, undefined, [attributedTitle, summary, xAxis, yAxis, additionalAxes, series]); }
+  static initAttributedTitleSummaryXAxisYAxisAdditionalAxesSeries(attributedTitle: $SDK5, summary: (string) | null, xAxis: SDKHandle, yAxis: $SDK8, additionalAxes: Array<SDKHandle>, series: $SDK7): AXChartDescriptor { return callSDK<AXChartDescriptor>("Accessibility_d968214ecc684fb6", 138845133875284, undefined, [attributedTitle, summary, xAxis, yAxis, additionalAxes, series]); }
   /**
    * convenience init(title: String? = nil, summary: String? = nil, xAxis: any AXDataAxisDescriptor, yAxis: AXNumericDataAxisDescriptor? = nil, additionalAxes: [any AXDataAxisDescriptor] = [], series: [AXDataSeriesDescriptor])
    * @availability iOS 15.0+
    */
-  static initTitleSummaryXAxisYAxisAdditionalAxesSeries(title: (string) | null, summary: (string) | null, xAxis: SDKHandle, yAxis: $SDK8, additionalAxes: Array<SDKHandle>, series: $SDK7): AXChartDescriptor { return callSDK<AXChartDescriptor>("Accessibility_067acaa3e5f56b46", 2043069695585599, undefined, [title, summary, xAxis, yAxis, additionalAxes, series]); }
+  static initTitleSummaryXAxisYAxisAdditionalAxesSeries(title: (string) | null, summary: (string) | null, xAxis: SDKHandle, yAxis: $SDK8, additionalAxes: Array<SDKHandle>, series: $SDK7): AXChartDescriptor { return callSDK<AXChartDescriptor>("Accessibility_d968214ecc684fb6", 2043069695585599, undefined, [title, summary, xAxis, yAxis, additionalAxes, series]); }
   /**
    * var xAxis: any AXDataAxisDescriptor { get set }
    * @availability iOS 15.0+
    */
-  get xAxis(): SDKHandle { return callSDK<SDKHandle>("Accessibility_067acaa3e5f56b46", 2319081469514402, this, []); }
-  set xAxis(value: SDKHandle) { callSDK<void>("Accessibility_067acaa3e5f56b46", 3647500677013896, this, [value]); }
+  get xAxis(): SDKHandle { return callSDK<SDKHandle>("Accessibility_d968214ecc684fb6", 2319081469514402, this, []); }
+  set xAxis(value: SDKHandle) { callSDK<void>("Accessibility_d968214ecc684fb6", 3647500677013896, this, [value]); }
   declare readonly $type: { "c:objc(cs)AXChartDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributedTitle": true; "contentDirection": true; "contentFrame": true; "series": true; "summary": true; "title": true; "yAxis": true };
 }
@@ -1024,7 +1024,7 @@ export const AXChartDescriptor_ContentDirection = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (AXChartDescriptor_ContentDirection) | null { return callSDK<(AXChartDescriptor_ContentDirection) | null>("Accessibility_067acaa3e5f56b46", 2927654748976985, undefined, [rawValue]); }
+  init(rawValue: number): (AXChartDescriptor_ContentDirection) | null { return callSDK<(AXChartDescriptor_ContentDirection) | null>("Accessibility_d968214ecc684fb6", 2927654748976985, undefined, [rawValue]); }
 };
 
 /**
@@ -1036,38 +1036,38 @@ export class AXCustomContent extends SDKHandle {
    * convenience init(attributedLabel label: NSAttributedString, attributedValue value: NSAttributedString)
    * @availability iOS 14.0+
    */
-  static initAttributedLabelAttributedValue(label: _Foundation_NSAttributedString, value: _Foundation_NSAttributedString): AXCustomContent { return callSDK<AXCustomContent>("Accessibility_067acaa3e5f56b46", 1315003720884804, undefined, [label, value]); }
+  static initAttributedLabelAttributedValue(label: _Foundation_NSAttributedString, value: _Foundation_NSAttributedString): AXCustomContent { return callSDK<AXCustomContent>("Accessibility_d968214ecc684fb6", 1315003720884804, undefined, [label, value]); }
   /**
    * convenience init(label: String, value: String)
    * @availability iOS 14.0+
    */
-  static initLabelValue(label: string, value: string): AXCustomContent { return callSDK<AXCustomContent>("Accessibility_067acaa3e5f56b46", 2854516670559796, undefined, [label, value]); }
+  static initLabelValue(label: string, value: string): AXCustomContent { return callSDK<AXCustomContent>("Accessibility_d968214ecc684fb6", 2854516670559796, undefined, [label, value]); }
   /**
    * @NSCopying var attributedLabel: NSAttributedString { get }
    * @availability iOS 14.0+
    */
-  get attributedLabel(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Accessibility_067acaa3e5f56b46", 30197655315086, this, []); }
+  get attributedLabel(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Accessibility_d968214ecc684fb6", 30197655315086, this, []); }
   /**
    * @NSCopying var attributedValue: NSAttributedString { get }
    * @availability iOS 14.0+
    */
-  get attributedValue(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Accessibility_067acaa3e5f56b46", 3872868437069345, this, []); }
+  get attributedValue(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Accessibility_d968214ecc684fb6", 3872868437069345, this, []); }
   /**
    * var importance: AXCustomContent.Importance { get set }
    * @availability iOS 14.0+
    */
-  get importance(): AXCustomContent_Importance { return callSDK<AXCustomContent_Importance>("Accessibility_067acaa3e5f56b46", 1498159152594241, this, []); }
-  set importance(value: AXCustomContent_Importance) { callSDK<void>("Accessibility_067acaa3e5f56b46", 3947762335326996, this, [value]); }
+  get importance(): AXCustomContent_Importance { return callSDK<AXCustomContent_Importance>("Accessibility_d968214ecc684fb6", 1498159152594241, this, []); }
+  set importance(value: AXCustomContent_Importance) { callSDK<void>("Accessibility_d968214ecc684fb6", 3947762335326996, this, [value]); }
   /**
    * var label: String { get }
    * @availability iOS 14.0+
    */
-  get label(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 3585158486549327, this, []); }
+  get label(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 3585158486549327, this, []); }
   /**
    * var value: String { get }
    * @availability iOS 14.0+
    */
-  get value(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 1693176173171338, this, []); }
+  get value(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 1693176173171338, this, []); }
   declare readonly $type: { "c:objc(cs)AXCustomContent": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributedLabel": true; "attributedValue": true; "importance": true; "label": true; "value": true };
 }
@@ -1083,7 +1083,7 @@ export const AXCustomContent_Importance = {
    * init?(rawValue: UInt)
    * @availability iOS 14.0+
    */
-  init(rawValue: number): (AXCustomContent_Importance) | null { return callSDK<(AXCustomContent_Importance) | null>("Accessibility_067acaa3e5f56b46", 1459130901740320, undefined, [rawValue]); }
+  init(rawValue: number): (AXCustomContent_Importance) | null { return callSDK<(AXCustomContent_Importance) | null>("Accessibility_d968214ecc684fb6", 1459130901740320, undefined, [rawValue]); }
 };
 
 /**
@@ -1114,36 +1114,36 @@ export class AXDataPoint extends SDKHandle {
    * @NSCopying var attributedLabel: NSAttributedString? { get set }
    * @availability iOS 15.0+
    */
-  get attributedLabel(): $SDK5 { return callSDK<$SDK5>("Accessibility_067acaa3e5f56b46", 3396388011126941, this, []); }
-  set attributedLabel(value: $SDK5) { callSDK<void>("Accessibility_067acaa3e5f56b46", 1964251678563426, this, [value]); }
+  get attributedLabel(): $SDK5 { return callSDK<$SDK5>("Accessibility_d968214ecc684fb6", 3396388011126941, this, []); }
+  set attributedLabel(value: $SDK5) { callSDK<void>("Accessibility_d968214ecc684fb6", 1964251678563426, this, [value]); }
   /**
    * var label: String? { get set }
    * @availability iOS 15.0+
    */
-  get label(): (string) | null { return callSDK<(string) | null>("Accessibility_067acaa3e5f56b46", 500547598145801, this, []); }
-  set label(value: (string) | null) { callSDK<void>("Accessibility_067acaa3e5f56b46", 1234137376511342, this, [value]); }
+  get label(): (string) | null { return callSDK<(string) | null>("Accessibility_d968214ecc684fb6", 500547598145801, this, []); }
+  set label(value: (string) | null) { callSDK<void>("Accessibility_d968214ecc684fb6", 1234137376511342, this, [value]); }
   /**
    * @NSCopying var xValue: AXDataPointValue { get set }
    * @availability iOS 15.0+
    */
-  get xValue(): AXDataPointValue { return callSDK<AXDataPointValue>("Accessibility_067acaa3e5f56b46", 3295678554835343, this, []); }
-  set xValue(value: AXDataPointValue) { callSDK<void>("Accessibility_067acaa3e5f56b46", 4066116566459771, this, [value]); }
+  get xValue(): AXDataPointValue { return callSDK<AXDataPointValue>("Accessibility_d968214ecc684fb6", 3295678554835343, this, []); }
+  set xValue(value: AXDataPointValue) { callSDK<void>("Accessibility_d968214ecc684fb6", 4066116566459771, this, [value]); }
   /**
    * @NSCopying var yValue: AXDataPointValue? { get set }
    * @availability iOS 15.0+
    */
-  get yValue(): (AXDataPointValue) | null { return callSDK<(AXDataPointValue) | null>("Accessibility_067acaa3e5f56b46", 2420593544713493, this, []); }
-  set yValue(value: (AXDataPointValue) | null) { callSDK<void>("Accessibility_067acaa3e5f56b46", 4230330879945357, this, [value]); }
+  get yValue(): (AXDataPointValue) | null { return callSDK<(AXDataPointValue) | null>("Accessibility_d968214ecc684fb6", 2420593544713493, this, []); }
+  set yValue(value: (AXDataPointValue) | null) { callSDK<void>("Accessibility_d968214ecc684fb6", 4230330879945357, this, [value]); }
   /**
    * convenience init(x: String, y: Double? = nil, additionalValues: [AXDataPoint.Value] = [], label: String? = nil)
    * @availability iOS 15.0+
    */
-  static initXYAdditionalValuesLabel(x: string, y?: (number) | null, additionalValues?: Array<AXDataPoint_Value>, label?: (string) | null): AXDataPoint { return callSDK<AXDataPoint>("Accessibility_067acaa3e5f56b46", 3669937542745934, undefined, [x, y, additionalValues, label]); }
+  static initXYAdditionalValuesLabel(x: string, y?: (number) | null, additionalValues?: Array<AXDataPoint_Value>, label?: (string) | null): AXDataPoint { return callSDK<AXDataPoint>("Accessibility_d968214ecc684fb6", 3669937542745934, undefined, [x, y, additionalValues, label]); }
   /**
    * convenience init(x: Double, y: Double? = nil, additionalValues: [AXDataPoint.Value] = [], label: String? = nil)
    * @availability iOS 15.0+
    */
-  static initXYAdditionalValuesLabel66813(x: number, y?: (number) | null, additionalValues?: Array<AXDataPoint_Value>, label?: (string) | null): AXDataPoint { return callSDK<AXDataPoint>("Accessibility_067acaa3e5f56b46", 965121881040618, undefined, [x, y, additionalValues, label]); }
+  static initXYAdditionalValuesLabel66813(x: number, y?: (number) | null, additionalValues?: Array<AXDataPoint_Value>, label?: (string) | null): AXDataPoint { return callSDK<AXDataPoint>("Accessibility_d968214ecc684fb6", 965121881040618, undefined, [x, y, additionalValues, label]); }
   declare readonly $type: { "c:objc(cs)AXDataPoint": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributedLabel": true; "label": true; "xValue": true; "yValue": true };
 }
@@ -1173,36 +1173,36 @@ export class AXDataSeriesDescriptor extends SDKHandle {
    * init(attributedName: NSAttributedString, isContinuous: Bool, dataPoints: [AXDataPoint])
    * @availability iOS 15.0+
    */
-  static initAttributedNameIsContinuousDataPoints(attributedName: _Foundation_NSAttributedString, isContinuous: boolean, dataPoints: Array<AXDataPoint>): AXDataSeriesDescriptor { return callSDK<AXDataSeriesDescriptor>("Accessibility_067acaa3e5f56b46", 731132129689291, undefined, [attributedName, isContinuous, dataPoints]); }
+  static initAttributedNameIsContinuousDataPoints(attributedName: _Foundation_NSAttributedString, isContinuous: boolean, dataPoints: Array<AXDataPoint>): AXDataSeriesDescriptor { return callSDK<AXDataSeriesDescriptor>("Accessibility_d968214ecc684fb6", 731132129689291, undefined, [attributedName, isContinuous, dataPoints]); }
   /**
    * init(name: String, isContinuous: Bool, dataPoints: [AXDataPoint])
    * @availability iOS 15.0+
    */
-  static initNameIsContinuousDataPoints(name: string, isContinuous: boolean, dataPoints: Array<AXDataPoint>): AXDataSeriesDescriptor { return callSDK<AXDataSeriesDescriptor>("Accessibility_067acaa3e5f56b46", 4413430738157921, undefined, [name, isContinuous, dataPoints]); }
+  static initNameIsContinuousDataPoints(name: string, isContinuous: boolean, dataPoints: Array<AXDataPoint>): AXDataSeriesDescriptor { return callSDK<AXDataSeriesDescriptor>("Accessibility_d968214ecc684fb6", 4413430738157921, undefined, [name, isContinuous, dataPoints]); }
   /**
    * @NSCopying var attributedName: NSAttributedString { get set }
    * @availability iOS 15.0+
    */
-  get attributedName(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Accessibility_067acaa3e5f56b46", 2960573738892011, this, []); }
-  set attributedName(value: _Foundation_NSAttributedString) { callSDK<void>("Accessibility_067acaa3e5f56b46", 1318564362543639, this, [value]); }
+  get attributedName(): _Foundation_NSAttributedString { return callSDK<_Foundation_NSAttributedString>("Accessibility_d968214ecc684fb6", 2960573738892011, this, []); }
+  set attributedName(value: _Foundation_NSAttributedString) { callSDK<void>("Accessibility_d968214ecc684fb6", 1318564362543639, this, [value]); }
   /**
    * var dataPoints: [AXDataPoint] { get set }
    * @availability iOS 15.0+
    */
-  get dataPoints(): Array<AXDataPoint> { return callSDK<Array<AXDataPoint>>("Accessibility_067acaa3e5f56b46", 4289780773632485, this, []); }
-  set dataPoints(value: Array<AXDataPoint>) { callSDK<void>("Accessibility_067acaa3e5f56b46", 3571007611560900, this, [value]); }
+  get dataPoints(): Array<AXDataPoint> { return callSDK<Array<AXDataPoint>>("Accessibility_d968214ecc684fb6", 4289780773632485, this, []); }
+  set dataPoints(value: Array<AXDataPoint>) { callSDK<void>("Accessibility_d968214ecc684fb6", 3571007611560900, this, [value]); }
   /**
    * var isContinuous: Bool { get set }
    * @availability iOS 15.0+
    */
-  get isContinuous(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 470301701836130, this, []); }
-  set isContinuous(value: boolean) { callSDK<void>("Accessibility_067acaa3e5f56b46", 4129552847981421, this, [value]); }
+  get isContinuous(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 470301701836130, this, []); }
+  set isContinuous(value: boolean) { callSDK<void>("Accessibility_d968214ecc684fb6", 4129552847981421, this, [value]); }
   /**
    * var name: String? { get set }
    * @availability iOS 15.0+
    */
-  get name(): (string) | null { return callSDK<(string) | null>("Accessibility_067acaa3e5f56b46", 2121766017883907, this, []); }
-  set name(value: (string) | null) { callSDK<void>("Accessibility_067acaa3e5f56b46", 63385213040070, this, [value]); }
+  get name(): (string) | null { return callSDK<(string) | null>("Accessibility_d968214ecc684fb6", 2121766017883907, this, []); }
+  set name(value: (string) | null) { callSDK<void>("Accessibility_d968214ecc684fb6", 63385213040070, this, [value]); }
   declare readonly $type: { "c:objc(cs)AXDataSeriesDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "attributedName": true; "dataPoints": true; "isContinuous": true; "name": true };
 }
@@ -1226,32 +1226,32 @@ export const AXFeatureOverrideSession_Options = {
    * static var grayscale: AXFeatureOverrideSession.Options { get }
    * @availability iOS 18.2+
    */
-  get grayscale(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_067acaa3e5f56b46", 1851598166206425, undefined, []); },
+  get grayscale(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_d968214ecc684fb6", 1851598166206425, undefined, []); },
   /**
    * static var invertColors: AXFeatureOverrideSession.Options { get }
    * @availability iOS 18.2+
    */
-  get invertColors(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_067acaa3e5f56b46", 821938999733420, undefined, []); },
+  get invertColors(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_d968214ecc684fb6", 821938999733420, undefined, []); },
   /**
    * static var voiceControl: AXFeatureOverrideSession.Options { get }
    * @availability iOS 18.2+
    */
-  get voiceControl(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_067acaa3e5f56b46", 3285017823613737, undefined, []); },
+  get voiceControl(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_d968214ecc684fb6", 3285017823613737, undefined, []); },
   /**
    * static var voiceOver: AXFeatureOverrideSession.Options { get }
    * @availability iOS 18.2+
    */
-  get voiceOver(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_067acaa3e5f56b46", 293970743260095, undefined, []); },
+  get voiceOver(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_d968214ecc684fb6", 293970743260095, undefined, []); },
   /**
    * static var zoom: AXFeatureOverrideSession.Options { get }
    * @availability iOS 18.2+
    */
-  get zoom(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_067acaa3e5f56b46", 3607161562149085, undefined, []); },
+  get zoom(): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_d968214ecc684fb6", 3607161562149085, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 18.2+
    */
-  init(rawValue: number): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_067acaa3e5f56b46", 1930819378242599, undefined, [rawValue]); }
+  init(rawValue: number): AXFeatureOverrideSession_Options { return callSDK<AXFeatureOverrideSession_Options>("Accessibility_d968214ecc684fb6", 1930819378242599, undefined, [rawValue]); }
 };
 
 /**
@@ -1263,27 +1263,27 @@ export class AXFeatureOverrideSessionError extends SDKHandle {
    * static var errorDomain: String { get }
    * @availability iOS 18.2+
    */
-  static get errorDomain(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2008995390742386, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2008995390742386, undefined, []); }
   /**
    * static var appNotEntitled: AXFeatureOverrideSessionError.Code { get }
    * @availability iOS 18.2+
    */
-  static get appNotEntitled(): AXFeatureOverrideSessionError_Code { return callSDK<AXFeatureOverrideSessionError_Code>("Accessibility_067acaa3e5f56b46", 25703970298027, undefined, []); }
+  static get appNotEntitled(): AXFeatureOverrideSessionError_Code { return callSDK<AXFeatureOverrideSessionError_Code>("Accessibility_d968214ecc684fb6", 25703970298027, undefined, []); }
   /**
    * static var overrideIsAlreadyActive: AXFeatureOverrideSessionError.Code { get }
    * @availability iOS 18.2+
    */
-  static get overrideIsAlreadyActive(): AXFeatureOverrideSessionError_Code { return callSDK<AXFeatureOverrideSessionError_Code>("Accessibility_067acaa3e5f56b46", 76024717895435, undefined, []); }
+  static get overrideIsAlreadyActive(): AXFeatureOverrideSessionError_Code { return callSDK<AXFeatureOverrideSessionError_Code>("Accessibility_d968214ecc684fb6", 76024717895435, undefined, []); }
   /**
    * static var overrideNotFoundForUUID: AXFeatureOverrideSessionError.Code { get }
    * @availability iOS 18.2+
    */
-  static get overrideNotFoundForUUID(): AXFeatureOverrideSessionError_Code { return callSDK<AXFeatureOverrideSessionError_Code>("Accessibility_067acaa3e5f56b46", 1049209126626275, undefined, []); }
+  static get overrideNotFoundForUUID(): AXFeatureOverrideSessionError_Code { return callSDK<AXFeatureOverrideSessionError_Code>("Accessibility_d968214ecc684fb6", 1049209126626275, undefined, []); }
   /**
    * static var undefined: AXFeatureOverrideSessionError.Code { get }
    * @availability iOS 18.2+
    */
-  static get undefined(): AXFeatureOverrideSessionError_Code { return callSDK<AXFeatureOverrideSessionError_Code>("Accessibility_067acaa3e5f56b46", 781794342925594, undefined, []); }
+  static get undefined(): AXFeatureOverrideSessionError_Code { return callSDK<AXFeatureOverrideSessionError_Code>("Accessibility_d968214ecc684fb6", 781794342925594, undefined, []); }
   declare readonly $type: { "s:SC29AXFeatureOverrideSessionErrorLeV": true };
 }
 
@@ -1298,7 +1298,7 @@ export const AXFeatureOverrideSessionError_Code = {
    * init?(rawValue: Int)
    * @availability iOS 18.2+
    */
-  init(rawValue: number): (AXFeatureOverrideSessionError_Code) | null { return callSDK<(AXFeatureOverrideSessionError_Code) | null>("Accessibility_067acaa3e5f56b46", 214456499061070, undefined, [rawValue]); }
+  init(rawValue: number): (AXFeatureOverrideSessionError_Code) | null { return callSDK<(AXFeatureOverrideSessionError_Code) | null>("Accessibility_d968214ecc684fb6", 214456499061070, undefined, [rawValue]); }
 };
 
 /**
@@ -1310,17 +1310,17 @@ export class AXFeatureOverrideSessionManager extends SDKHandle {
    * class var sharedInstance: AXFeatureOverrideSessionManager { get }
    * @availability iOS 18.2+
    */
-  static get sharedInstance(): AXFeatureOverrideSessionManager { return callSDK<AXFeatureOverrideSessionManager>("Accessibility_067acaa3e5f56b46", 971468320196132, undefined, []); }
+  static get sharedInstance(): AXFeatureOverrideSessionManager { return callSDK<AXFeatureOverrideSessionManager>("Accessibility_d968214ecc684fb6", 971468320196132, undefined, []); }
   /**
    * func beginOverrideSession(enabling enableOptions: AXFeatureOverrideSession.Options = [], disabling disableOptions: AXFeatureOverrideSession.Options = []) throws -> AXFeatureOverrideSession
    * @availability iOS 18.2+
    */
-  beginOverrideSession(enableOptions?: AXFeatureOverrideSession_Options, disableOptions?: AXFeatureOverrideSession_Options): AXFeatureOverrideSession { return callSDK<AXFeatureOverrideSession>("Accessibility_067acaa3e5f56b46", 4381332677561323, this, [enableOptions, disableOptions]); }
+  beginOverrideSession(enableOptions?: AXFeatureOverrideSession_Options, disableOptions?: AXFeatureOverrideSession_Options): AXFeatureOverrideSession { return callSDK<AXFeatureOverrideSession>("Accessibility_d968214ecc684fb6", 4381332677561323, this, [enableOptions, disableOptions]); }
   /**
    * func end(_ session: AXFeatureOverrideSession) throws
    * @availability iOS 18.2+
    */
-  end(session: AXFeatureOverrideSession): void { return callSDK<void>("Accessibility_067acaa3e5f56b46", 3107127754671412, this, [session]); }
+  end(session: AXFeatureOverrideSession): void { return callSDK<void>("Accessibility_d968214ecc684fb6", 3107127754671412, this, [session]); }
   declare readonly $type: { "c:objc(cs)AXFeatureOverrideSessionManager": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1333,19 +1333,19 @@ export class AXLiveAudioGraph extends SDKHandle {
    * class func start()
    * @availability iOS 15.0+
    */
-  static start(): void { return callSDK<void>("Accessibility_067acaa3e5f56b46", 498054829744654, undefined, []); }
+  static start(): void { return callSDK<void>("Accessibility_d968214ecc684fb6", 498054829744654, undefined, []); }
   /**
    * class func stop()
    * @availability iOS 15.0+
    */
-  static stop(): void { return callSDK<void>("Accessibility_067acaa3e5f56b46", 1074452232558116, undefined, []); }
+  static stop(): void { return callSDK<void>("Accessibility_d968214ecc684fb6", 1074452232558116, undefined, []); }
   /**
    * class func updateValue(_ value: Double)
    * @availability iOS 15.0+
    */
-  static updateValue(value: number): void { return callSDK<void>("Accessibility_067acaa3e5f56b46", 4468673088717938, undefined, [value]); }
+  static updateValue(value: number): void { return callSDK<void>("Accessibility_d968214ecc684fb6", 4468673088717938, undefined, [value]); }
   /** init() */
-  static init(): AXLiveAudioGraph { return callSDK<AXLiveAudioGraph>("Accessibility_067acaa3e5f56b46", 536587930206257, undefined, []); }
+  static init(): AXLiveAudioGraph { return callSDK<AXLiveAudioGraph>("Accessibility_d968214ecc684fb6", 536587930206257, undefined, []); }
   declare readonly $type: { "c:objc(cs)AXLiveAudioGraph": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1355,7 +1355,7 @@ export class AXLiveAudioGraph extends SDKHandle {
  */
 export class AXMathExpression extends SDKHandle {
   /** init() */
-  static init(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_067acaa3e5f56b46", 3518227763329058, undefined, []); }
+  static init(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_d968214ecc684fb6", 3518227763329058, undefined, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
 }
 
@@ -1368,22 +1368,22 @@ export class AXMathExpressionFenced extends (AXMathExpression as unknown as Omit
    * init(expressions: [AXMathExpression], open openString: String, close closeString: String)
    * @availability iOS 18.2+
    */
-  static init(expressions: Array<AXMathExpression>, openString: string, closeString: string): AXMathExpressionFenced { return callSDK<AXMathExpressionFenced>("Accessibility_067acaa3e5f56b46", 1239984859061544, undefined, [expressions, openString, closeString]); }
+  static init(expressions: Array<AXMathExpression>, openString: string, closeString: string): AXMathExpressionFenced { return callSDK<AXMathExpressionFenced>("Accessibility_d968214ecc684fb6", 1239984859061544, undefined, [expressions, openString, closeString]); }
   /**
    * var closeString: String { get }
    * @availability iOS 18.2+
    */
-  get closeString(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 3953984242547889, this, []); }
+  get closeString(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 3953984242547889, this, []); }
   /**
    * var expressions: [AXMathExpression] { get }
    * @availability iOS 18.2+
    */
-  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_067acaa3e5f56b46", 2906441220780213, this, []); }
+  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_d968214ecc684fb6", 2906441220780213, this, []); }
   /**
    * var openString: String { get }
    * @availability iOS 18.2+
    */
-  get openString(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 150932546573567, this, []); }
+  get openString(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 150932546573567, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionFenced": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "closeString": true; "expressions": true; "openString": true };
 }
@@ -1397,17 +1397,17 @@ export class AXMathExpressionFraction extends (AXMathExpression as unknown as Om
    * init(numeratorExpression: AXMathExpression, denimonatorExpression: AXMathExpression)
    * @availability iOS 18.2+
    */
-  static init(numeratorExpression: AXMathExpression, denimonatorExpression: AXMathExpression): AXMathExpressionFraction { return callSDK<AXMathExpressionFraction>("Accessibility_067acaa3e5f56b46", 4069078529235689, undefined, [numeratorExpression, denimonatorExpression]); }
+  static init(numeratorExpression: AXMathExpression, denimonatorExpression: AXMathExpression): AXMathExpressionFraction { return callSDK<AXMathExpressionFraction>("Accessibility_d968214ecc684fb6", 4069078529235689, undefined, [numeratorExpression, denimonatorExpression]); }
   /**
    * var denimonatorExpression: AXMathExpression { get }
    * @availability iOS 18.2+
    */
-  get denimonatorExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_067acaa3e5f56b46", 3832981191206265, this, []); }
+  get denimonatorExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_d968214ecc684fb6", 3832981191206265, this, []); }
   /**
    * var numeratorExpression: AXMathExpression { get }
    * @availability iOS 18.2+
    */
-  get numeratorExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_067acaa3e5f56b46", 2259224609240290, this, []); }
+  get numeratorExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_d968214ecc684fb6", 2259224609240290, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionFraction": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "denimonatorExpression": true; "numeratorExpression": true };
 }
@@ -1421,12 +1421,12 @@ export class AXMathExpressionIdentifier extends (AXMathExpression as unknown as 
    * init(content: String)
    * @availability iOS 18.2+
    */
-  static init(content: string): AXMathExpressionIdentifier { return callSDK<AXMathExpressionIdentifier>("Accessibility_067acaa3e5f56b46", 1802853157000944, undefined, [content]); }
+  static init(content: string): AXMathExpressionIdentifier { return callSDK<AXMathExpressionIdentifier>("Accessibility_d968214ecc684fb6", 1802853157000944, undefined, [content]); }
   /**
    * var content: String { get }
    * @availability iOS 18.2+
    */
-  get content(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2383238760540340, this, []); }
+  get content(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2383238760540340, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionIdentifier": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "content": true };
 }
@@ -1440,22 +1440,22 @@ export class AXMathExpressionMultiscript extends (AXMathExpression as unknown as
    * init(baseExpression: AXMathExpression, prescriptExpressions: [AXMathExpressionSubSuperscript], postscriptExpressions: [AXMathExpressionSubSuperscript])
    * @availability iOS 18.2+
    */
-  static init(baseExpression: AXMathExpression, prescriptExpressions: $SDK13, postscriptExpressions: $SDK13): AXMathExpressionMultiscript { return callSDK<AXMathExpressionMultiscript>("Accessibility_067acaa3e5f56b46", 1559936209529374, undefined, [baseExpression, prescriptExpressions, postscriptExpressions]); }
+  static init(baseExpression: AXMathExpression, prescriptExpressions: $SDK13, postscriptExpressions: $SDK13): AXMathExpressionMultiscript { return callSDK<AXMathExpressionMultiscript>("Accessibility_d968214ecc684fb6", 1559936209529374, undefined, [baseExpression, prescriptExpressions, postscriptExpressions]); }
   /**
    * var baseExpression: AXMathExpression { get }
    * @availability iOS 18.2+
    */
-  get baseExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_067acaa3e5f56b46", 4485522519962625, this, []); }
+  get baseExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_d968214ecc684fb6", 4485522519962625, this, []); }
   /**
    * var postscriptExpressions: [AXMathExpressionSubSuperscript] { get }
    * @availability iOS 18.2+
    */
-  get postscriptExpressions(): $SDK13 { return callSDK<$SDK13>("Accessibility_067acaa3e5f56b46", 2417109998561805, this, []); }
+  get postscriptExpressions(): $SDK13 { return callSDK<$SDK13>("Accessibility_d968214ecc684fb6", 2417109998561805, this, []); }
   /**
    * var prescriptExpressions: [AXMathExpressionSubSuperscript] { get }
    * @availability iOS 18.2+
    */
-  get prescriptExpressions(): $SDK13 { return callSDK<$SDK13>("Accessibility_067acaa3e5f56b46", 3268190369158175, this, []); }
+  get prescriptExpressions(): $SDK13 { return callSDK<$SDK13>("Accessibility_d968214ecc684fb6", 3268190369158175, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionMultiscript": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "baseExpression": true; "postscriptExpressions": true; "prescriptExpressions": true };
 }
@@ -1469,12 +1469,12 @@ export class AXMathExpressionNumber extends (AXMathExpression as unknown as Omit
    * init(content: String)
    * @availability iOS 18.2+
    */
-  static init(content: string): AXMathExpressionNumber { return callSDK<AXMathExpressionNumber>("Accessibility_067acaa3e5f56b46", 1152306838773498, undefined, [content]); }
+  static init(content: string): AXMathExpressionNumber { return callSDK<AXMathExpressionNumber>("Accessibility_d968214ecc684fb6", 1152306838773498, undefined, [content]); }
   /**
    * var content: String { get }
    * @availability iOS 18.2+
    */
-  get content(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2388260966912831, this, []); }
+  get content(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2388260966912831, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionNumber": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "content": true };
 }
@@ -1488,12 +1488,12 @@ export class AXMathExpressionOperator extends (AXMathExpression as unknown as Om
    * init(content: String)
    * @availability iOS 18.2+
    */
-  static init(content: string): AXMathExpressionOperator { return callSDK<AXMathExpressionOperator>("Accessibility_067acaa3e5f56b46", 2317735989322317, undefined, [content]); }
+  static init(content: string): AXMathExpressionOperator { return callSDK<AXMathExpressionOperator>("Accessibility_d968214ecc684fb6", 2317735989322317, undefined, [content]); }
   /**
    * var content: String { get }
    * @availability iOS 18.2+
    */
-  get content(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 768777923718299, this, []); }
+  get content(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 768777923718299, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionOperator": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "content": true };
 }
@@ -1516,17 +1516,17 @@ export class AXMathExpressionRoot extends (AXMathExpression as unknown as Omit<t
    * init(radicandExpressions: [AXMathExpression], rootIndexExpression: AXMathExpression)
    * @availability iOS 18.2+
    */
-  static init(radicandExpressions: Array<AXMathExpression>, rootIndexExpression: AXMathExpression): AXMathExpressionRoot { return callSDK<AXMathExpressionRoot>("Accessibility_067acaa3e5f56b46", 235709511375021, undefined, [radicandExpressions, rootIndexExpression]); }
+  static init(radicandExpressions: Array<AXMathExpression>, rootIndexExpression: AXMathExpression): AXMathExpressionRoot { return callSDK<AXMathExpressionRoot>("Accessibility_d968214ecc684fb6", 235709511375021, undefined, [radicandExpressions, rootIndexExpression]); }
   /**
    * var radicandExpressions: [AXMathExpression] { get }
    * @availability iOS 18.2+
    */
-  get radicandExpressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_067acaa3e5f56b46", 1605407795465296, this, []); }
+  get radicandExpressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_d968214ecc684fb6", 1605407795465296, this, []); }
   /**
    * var rootIndexExpression: AXMathExpression { get }
    * @availability iOS 18.2+
    */
-  get rootIndexExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_067acaa3e5f56b46", 152273588365376, this, []); }
+  get rootIndexExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_d968214ecc684fb6", 152273588365376, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionRoot": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "radicandExpressions": true; "rootIndexExpression": true };
 }
@@ -1540,12 +1540,12 @@ export class AXMathExpressionRow extends (AXMathExpression as unknown as Omit<ty
    * init(expressions: [AXMathExpression])
    * @availability iOS 18.2+
    */
-  static init(expressions: Array<AXMathExpression>): AXMathExpressionRow { return callSDK<AXMathExpressionRow>("Accessibility_067acaa3e5f56b46", 2211037689007000, undefined, [expressions]); }
+  static init(expressions: Array<AXMathExpression>): AXMathExpressionRow { return callSDK<AXMathExpressionRow>("Accessibility_d968214ecc684fb6", 2211037689007000, undefined, [expressions]); }
   /**
    * var expressions: [AXMathExpression] { get }
    * @availability iOS 18.2+
    */
-  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_067acaa3e5f56b46", 1790879906083224, this, []); }
+  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_d968214ecc684fb6", 1790879906083224, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionRow": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "expressions": true };
 }
@@ -1559,22 +1559,22 @@ export class AXMathExpressionSubSuperscript extends (AXMathExpression as unknown
    * init(baseExpression: [AXMathExpression], subscriptExpressions: [AXMathExpression], superscriptExpressions: [AXMathExpression])
    * @availability iOS 18.2+
    */
-  static init(baseExpression: Array<AXMathExpression>, subscriptExpressions: Array<AXMathExpression>, superscriptExpressions: Array<AXMathExpression>): AXMathExpressionSubSuperscript { return callSDK<AXMathExpressionSubSuperscript>("Accessibility_067acaa3e5f56b46", 917058966963377, undefined, [baseExpression, subscriptExpressions, superscriptExpressions]); }
+  static init(baseExpression: Array<AXMathExpression>, subscriptExpressions: Array<AXMathExpression>, superscriptExpressions: Array<AXMathExpression>): AXMathExpressionSubSuperscript { return callSDK<AXMathExpressionSubSuperscript>("Accessibility_d968214ecc684fb6", 917058966963377, undefined, [baseExpression, subscriptExpressions, superscriptExpressions]); }
   /**
    * var baseExpression: AXMathExpression { get }
    * @availability iOS 18.2+
    */
-  get baseExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_067acaa3e5f56b46", 2986009955576329, this, []); }
+  get baseExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_d968214ecc684fb6", 2986009955576329, this, []); }
   /**
    * var subscriptExpressions: [AXMathExpression] { get }
    * @availability iOS 18.2+
    */
-  get subscriptExpressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_067acaa3e5f56b46", 4149303445072367, this, []); }
+  get subscriptExpressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_d968214ecc684fb6", 4149303445072367, this, []); }
   /**
    * var superscriptExpressions: [AXMathExpression] { get }
    * @availability iOS 18.2+
    */
-  get superscriptExpressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_067acaa3e5f56b46", 1758447157846971, this, []); }
+  get superscriptExpressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_d968214ecc684fb6", 1758447157846971, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionSubSuperscript": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "baseExpression": true; "subscriptExpressions": true; "superscriptExpressions": true };
 }
@@ -1588,12 +1588,12 @@ export class AXMathExpressionTable extends (AXMathExpression as unknown as Omit<
    * init(expressions: [AXMathExpression])
    * @availability iOS 18.2+
    */
-  static init(expressions: Array<AXMathExpression>): AXMathExpressionTable { return callSDK<AXMathExpressionTable>("Accessibility_067acaa3e5f56b46", 1019337536549666, undefined, [expressions]); }
+  static init(expressions: Array<AXMathExpression>): AXMathExpressionTable { return callSDK<AXMathExpressionTable>("Accessibility_d968214ecc684fb6", 1019337536549666, undefined, [expressions]); }
   /**
    * var expressions: [AXMathExpression] { get }
    * @availability iOS 18.2+
    */
-  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_067acaa3e5f56b46", 1436749969883829, this, []); }
+  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_d968214ecc684fb6", 1436749969883829, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionTable": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "expressions": true };
 }
@@ -1607,12 +1607,12 @@ export class AXMathExpressionTableCell extends (AXMathExpression as unknown as O
    * init(expressions: [AXMathExpression])
    * @availability iOS 18.2+
    */
-  static init(expressions: Array<AXMathExpression>): AXMathExpressionTableCell { return callSDK<AXMathExpressionTableCell>("Accessibility_067acaa3e5f56b46", 1076291258844495, undefined, [expressions]); }
+  static init(expressions: Array<AXMathExpression>): AXMathExpressionTableCell { return callSDK<AXMathExpressionTableCell>("Accessibility_d968214ecc684fb6", 1076291258844495, undefined, [expressions]); }
   /**
    * var expressions: [AXMathExpression] { get }
    * @availability iOS 18.2+
    */
-  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_067acaa3e5f56b46", 146385712692637, this, []); }
+  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_d968214ecc684fb6", 146385712692637, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionTableCell": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "expressions": true };
 }
@@ -1626,12 +1626,12 @@ export class AXMathExpressionTableRow extends (AXMathExpression as unknown as Om
    * init(expressions: [AXMathExpression])
    * @availability iOS 18.2+
    */
-  static init(expressions: Array<AXMathExpression>): AXMathExpressionTableRow { return callSDK<AXMathExpressionTableRow>("Accessibility_067acaa3e5f56b46", 4006085700812513, undefined, [expressions]); }
+  static init(expressions: Array<AXMathExpression>): AXMathExpressionTableRow { return callSDK<AXMathExpressionTableRow>("Accessibility_d968214ecc684fb6", 4006085700812513, undefined, [expressions]); }
   /**
    * var expressions: [AXMathExpression] { get }
    * @availability iOS 18.2+
    */
-  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_067acaa3e5f56b46", 1070278853873675, this, []); }
+  get expressions(): Array<AXMathExpression> { return callSDK<Array<AXMathExpression>>("Accessibility_d968214ecc684fb6", 1070278853873675, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionTableRow": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "expressions": true };
 }
@@ -1645,12 +1645,12 @@ export class AXMathExpressionText extends (AXMathExpression as unknown as Omit<t
    * init(content: String)
    * @availability iOS 18.2+
    */
-  static init(content: string): AXMathExpressionText { return callSDK<AXMathExpressionText>("Accessibility_067acaa3e5f56b46", 2535642546525818, undefined, [content]); }
+  static init(content: string): AXMathExpressionText { return callSDK<AXMathExpressionText>("Accessibility_d968214ecc684fb6", 2535642546525818, undefined, [content]); }
   /**
    * var content: String { get }
    * @availability iOS 18.2+
    */
-  get content(): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2249869447902031, this, []); }
+  get content(): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2249869447902031, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionText": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "content": true };
 }
@@ -1664,22 +1664,22 @@ export class AXMathExpressionUnderOver extends (AXMathExpression as unknown as O
    * init(baseExpression: AXMathExpression, underExpression: AXMathExpression, overExpression: AXMathExpression)
    * @availability iOS 18.2+
    */
-  static init(baseExpression: AXMathExpression, underExpression: AXMathExpression, overExpression: AXMathExpression): AXMathExpressionUnderOver { return callSDK<AXMathExpressionUnderOver>("Accessibility_067acaa3e5f56b46", 1393982373668995, undefined, [baseExpression, underExpression, overExpression]); }
+  static init(baseExpression: AXMathExpression, underExpression: AXMathExpression, overExpression: AXMathExpression): AXMathExpressionUnderOver { return callSDK<AXMathExpressionUnderOver>("Accessibility_d968214ecc684fb6", 1393982373668995, undefined, [baseExpression, underExpression, overExpression]); }
   /**
    * var baseExpression: AXMathExpression { get }
    * @availability iOS 18.2+
    */
-  get baseExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_067acaa3e5f56b46", 3541648628737974, this, []); }
+  get baseExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_d968214ecc684fb6", 3541648628737974, this, []); }
   /**
    * var overExpression: AXMathExpression { get }
    * @availability iOS 18.2+
    */
-  get overExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_067acaa3e5f56b46", 2298984023305978, this, []); }
+  get overExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_d968214ecc684fb6", 2298984023305978, this, []); }
   /**
    * var underExpression: AXMathExpression { get }
    * @availability iOS 18.2+
    */
-  get underExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_067acaa3e5f56b46", 4481262036980835, this, []); }
+  get underExpression(): AXMathExpression { return callSDK<AXMathExpression>("Accessibility_d968214ecc684fb6", 4481262036980835, this, []); }
   declare readonly $type: { "c:objc(cs)AXMathExpressionUnderOver": true; "c:objc(cs)AXMathExpression": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "baseExpression": true; "overExpression": true; "underExpression": true };
 }
@@ -1690,27 +1690,27 @@ export class AXMFiHearingDevice extends SDKHandle {
    * static let pairedUUIDsDidChangeNotification: NSNotification.Name
    * @availability iOS 15.0+
    */
-  static get pairedUUIDsDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 759692310089284, undefined, []); }
+  static get pairedUUIDsDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 759692310089284, undefined, []); }
   /**
    * static let streamingEarDidChangeNotification: NSNotification.Name
    * @availability iOS 15.0+
    */
-  static get streamingEarDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 3883333999906360, undefined, []); }
+  static get streamingEarDidChangeNotification(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 3883333999906360, undefined, []); }
   /**
    * static func pairedDeviceIdentifiers() -> [UUID]
    * @availability iOS 15.0+
    */
-  static pairedDeviceIdentifiers(): Array<string> { return callSDK<Array<string>>("Accessibility_067acaa3e5f56b46", 3281220421171875, undefined, []); }
+  static pairedDeviceIdentifiers(): Array<string> { return callSDK<Array<string>>("Accessibility_d968214ecc684fb6", 3281220421171875, undefined, []); }
   /**
    * static func streamingEar() -> AXMFiHearingDevice.Ear
    * @availability iOS 15.0+
    */
-  static streamingEar(): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_067acaa3e5f56b46", 448548761807102, undefined, []); }
+  static streamingEar(): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_d968214ecc684fb6", 448548761807102, undefined, []); }
   /**
    * static func supportsBidirectionalStreaming() -> Bool
    * @availability iOS 15.0+
    */
-  static supportsBidirectionalStreaming(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 2490005125134126, undefined, []); }
+  static supportsBidirectionalStreaming(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 2490005125134126, undefined, []); }
   declare readonly $type: { "c:@S@AXMFiHearingDevice": true };
 }
 
@@ -1725,22 +1725,22 @@ export const AXMFiHearingDevice_Ear = {
    * static var both: AXMFiHearingDevice.Ear { get }
    * @availability iOS 15.0+
    */
-  get both(): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_067acaa3e5f56b46", 1835825940259544, undefined, []); },
+  get both(): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_d968214ecc684fb6", 1835825940259544, undefined, []); },
   /**
    * static var left: AXMFiHearingDevice.Ear { get }
    * @availability iOS 15.0+
    */
-  get left(): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_067acaa3e5f56b46", 3925727129900427, undefined, []); },
+  get left(): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_d968214ecc684fb6", 3925727129900427, undefined, []); },
   /**
    * static var right: AXMFiHearingDevice.Ear { get }
    * @availability iOS 15.0+
    */
-  get right(): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_067acaa3e5f56b46", 3735807793072323, undefined, []); },
+  get right(): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_d968214ecc684fb6", 3735807793072323, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_067acaa3e5f56b46", 3262803477006163, undefined, [rawValue]); }
+  init(rawValue: number): AXMFiHearingDevice_Ear { return callSDK<AXMFiHearingDevice_Ear>("Accessibility_d968214ecc684fb6", 3262803477006163, undefined, [rawValue]); }
 };
 
 /**
@@ -1752,25 +1752,25 @@ export class AXNumericDataAxisDescriptor extends SDKHandle {
    * var scaleType: AXNumericDataAxisDescriptor.ScaleType { get set }
    * @availability iOS 15.0+
    */
-  get scaleType(): AXNumericDataAxisDescriptor_ScaleType { return callSDK<AXNumericDataAxisDescriptor_ScaleType>("Accessibility_067acaa3e5f56b46", 920109876941660, this, []); }
-  set scaleType(value: AXNumericDataAxisDescriptor_ScaleType) { callSDK<void>("Accessibility_067acaa3e5f56b46", 3592417104758139, this, [value]); }
+  get scaleType(): AXNumericDataAxisDescriptor_ScaleType { return callSDK<AXNumericDataAxisDescriptor_ScaleType>("Accessibility_d968214ecc684fb6", 920109876941660, this, []); }
+  set scaleType(value: AXNumericDataAxisDescriptor_ScaleType) { callSDK<void>("Accessibility_d968214ecc684fb6", 3592417104758139, this, [value]); }
   /**
    * var valueDescriptionProvider: (Double) -> String { get set }
    * @availability iOS 15.0+
    */
-  get valueDescriptionProvider(): ((arg0: number) => Promise<string>) { return callSDK<((arg0: number) => Promise<string>)>("Accessibility_067acaa3e5f56b46", 1722632924983724, this, []); }
+  get valueDescriptionProvider(): ((arg0: number) => Promise<string>) { return callSDK<((arg0: number) => Promise<string>)>("Accessibility_d968214ecc684fb6", 1722632924983724, this, []); }
   /**
    * var gridlinePositions: [Double] { get set }
    * @availability iOS 15.0+
    */
-  get gridlinePositions(): Array<number> { return callSDK<Array<number>>("Accessibility_067acaa3e5f56b46", 115444567849950, this, []); }
-  set gridlinePositions(value: Array<number>) { callSDK<void>("Accessibility_067acaa3e5f56b46", 1048985969688280, this, [value]); }
+  get gridlinePositions(): Array<number> { return callSDK<Array<number>>("Accessibility_d968214ecc684fb6", 115444567849950, this, []); }
+  set gridlinePositions(value: Array<number>) { callSDK<void>("Accessibility_d968214ecc684fb6", 1048985969688280, this, [value]); }
   /**
    * var range: ClosedRange<Double> { get set }
    * @availability iOS 15.0+
    */
-  get range(): SDKHandle { return callSDK<SDKHandle>("Accessibility_067acaa3e5f56b46", 2434543315422127, this, []); }
-  set range(value: SDKHandle) { callSDK<void>("Accessibility_067acaa3e5f56b46", 1705115403906569, this, [value]); }
+  get range(): SDKHandle { return callSDK<SDKHandle>("Accessibility_d968214ecc684fb6", 2434543315422127, this, []); }
+  set range(value: SDKHandle) { callSDK<void>("Accessibility_d968214ecc684fb6", 1705115403906569, this, [value]); }
   declare readonly $type: { "c:objc(cs)AXNumericDataAxisDescriptor": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "scaleType": true };
 }
@@ -1786,7 +1786,7 @@ export const AXNumericDataAxisDescriptor_ScaleType = {
    * init?(rawValue: Int)
    * @availability iOS 15.0+
    */
-  init(rawValue: number): (AXNumericDataAxisDescriptor_ScaleType) | null { return callSDK<(AXNumericDataAxisDescriptor_ScaleType) | null>("Accessibility_067acaa3e5f56b46", 1632367885132156, undefined, [rawValue]); }
+  init(rawValue: number): (AXNumericDataAxisDescriptor_ScaleType) | null { return callSDK<(AXNumericDataAxisDescriptor_ScaleType) | null>("Accessibility_d968214ecc684fb6", 1632367885132156, undefined, [rawValue]); }
 };
 
 export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "textItemTag" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | (string & {});
@@ -1796,7 +1796,7 @@ export const NSAttributedString_Key = {
    * static let AXSpeechAttributeSSML: NSAttributedString.Key
    * @availability iOS 27.0+
    */
-  get AXSpeechAttributeSSML(): _Foundation_NSAttributedString_Key { return callSDK<_Foundation_NSAttributedString_Key>("Accessibility_067acaa3e5f56b46", 1187723809948512, undefined, []); }
+  get AXSpeechAttributeSSML(): _Foundation_NSAttributedString_Key { return callSDK<_Foundation_NSAttributedString_Key>("Accessibility_d968214ecc684fb6", 1187723809948512, undefined, []); }
 };
 
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
@@ -1808,21 +1808,21 @@ export const NSNotification_Name = {
    * @availability iOS 17.0+
    * @deprecated iOS 18.0
    */
-  get AXAnimatedImagesEnabledDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 1065052857352308, undefined, []); },
+  get AXAnimatedImagesEnabledDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 1065052857352308, undefined, []); },
   /**
    * @backDeployed(before: macOS 15.0, iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
   static var AXPrefersHorizontalTextLayoutDidChange: NSNotification.Name { get }
    * @availability iOS 17.0+
    * @deprecated iOS 18.0
    */
-  get AXPrefersHorizontalTextLayoutDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_067acaa3e5f56b46", 3855973757755508, undefined, []); }
+  get AXPrefersHorizontalTextLayoutDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("Accessibility_d968214ecc684fb6", 3855973757755508, undefined, []); }
 };
 
 /**
  * func AXNameFromColor(_ color: CGColor) -> String
  * @availability iOS 14.0+
  */
-export function AXNameFromColor(color: _CoreGraphics_CGColor): string { return callSDK<string>("Accessibility_067acaa3e5f56b46", 2600190729672004, undefined, [color]); }
+export function AXNameFromColor(color: _CoreGraphics_CGColor): string { return callSDK<string>("Accessibility_d968214ecc684fb6", 2600190729672004, undefined, [color]); }
 
 /**
  * @backDeployed(before: macOS 15.0, iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
@@ -1830,7 +1830,7 @@ func AXAnimatedImagesEnabled() -> Bool
  * @availability iOS 17.0+
  * @deprecated iOS 18.0
  */
-export function AXAnimatedImagesEnabled(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 533756829829800, undefined, []); }
+export function AXAnimatedImagesEnabled(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 533756829829800, undefined, []); }
 
 /**
  * @backDeployed(before: macOS 15.0, iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)
@@ -1838,67 +1838,67 @@ func AXPrefersHorizontalTextLayout() -> Bool
  * @availability iOS 17.0+
  * @deprecated iOS 18.0
  */
-export function AXPrefersHorizontalTextLayout(): boolean { return callSDK<boolean>("Accessibility_067acaa3e5f56b46", 769523901770880, undefined, []); }
+export function AXPrefersHorizontalTextLayout(): boolean { return callSDK<boolean>("Accessibility_d968214ecc684fb6", 769523901770880, undefined, []); }
 
 /**
  * let AXFeatureOverrideSessionErrorDomain: String
  * @availability iOS 18.2+
  */
-export const AXFeatureOverrideSessionErrorDomain: string = callSDK<string>("Accessibility_067acaa3e5f56b46", 2763435859036631, undefined, []);
+export const AXFeatureOverrideSessionErrorDomain: string = callSDK<string>("Accessibility_d968214ecc684fb6", 2763435859036631, undefined, []);
 
-registerSDKClass("Accessibility.AccessibilityNotification", AccessibilityNotification, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AccessibilityNotification.Announcement", AccessibilityNotification_Announcement, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AccessibilityNotification.LayoutChanged", AccessibilityNotification_LayoutChanged, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AccessibilityNotification.PageScrolled", AccessibilityNotification_PageScrolled, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AccessibilityNotification.ScreenChanged", AccessibilityNotification_ScreenChanged, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("AXRequest", AccessibilityRequest, { module: "Accessibility_067acaa3e5f56b46", properties: {"technology":4325739287493936} });
-registerSDKClass("Accessibility.AccessibilitySettings", AccessibilitySettings, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AccessibilitySettings.ApplicationAccessibilityEnabledDidChangeMessage", AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes", AttributeScopes_AccessibilityAttributes, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.AdjustedPitchAttribute", AttributeScopes_AccessibilityAttributes_AdjustedPitchAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.AnnouncementPriorityAttribute", AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.HeadingLevelAttribute", AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.IncludesPunctuationAttribute", AttributeScopes_AccessibilityAttributes_IncludesPunctuationAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.IPANotationAttribute", AttributeScopes_AccessibilityAttributes_IPANotationAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.QueueAnnouncementAttribute", AttributeScopes_AccessibilityAttributes_QueueAnnouncementAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.SpeechSSMLAttribute", AttributeScopes_AccessibilityAttributes_SpeechSSMLAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.SpellOutAttribute", AttributeScopes_AccessibilityAttributes_SpellOutAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.TextCustomAttribute", AttributeScopes_AccessibilityAttributes_TextCustomAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.TextualContextAttribute", AttributeScopes_AccessibilityAttributes_TextualContextAttribute, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("AXBrailleMap", AXBrailleMap, { module: "Accessibility_067acaa3e5f56b46", properties: {"dimensions":1298227761968415}, methods: {"height":{"id":2009658966444874},"present":{"id":752194942902418},"setHeight":{"id":2647692841135687},"subscript":{"id":1295848356962956}} });
+registerSDKClass("Accessibility.AccessibilityNotification", AccessibilityNotification, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AccessibilityNotification.Announcement", AccessibilityNotification_Announcement, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AccessibilityNotification.LayoutChanged", AccessibilityNotification_LayoutChanged, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AccessibilityNotification.PageScrolled", AccessibilityNotification_PageScrolled, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AccessibilityNotification.ScreenChanged", AccessibilityNotification_ScreenChanged, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("AXRequest", AccessibilityRequest, { module: "Accessibility_d968214ecc684fb6", properties: {"technology":4325739287493936} });
+registerSDKClass("Accessibility.AccessibilitySettings", AccessibilitySettings, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AccessibilitySettings.ApplicationAccessibilityEnabledDidChangeMessage", AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes", AttributeScopes_AccessibilityAttributes, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.AdjustedPitchAttribute", AttributeScopes_AccessibilityAttributes_AdjustedPitchAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.AnnouncementPriorityAttribute", AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.HeadingLevelAttribute", AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.IncludesPunctuationAttribute", AttributeScopes_AccessibilityAttributes_IncludesPunctuationAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.IPANotationAttribute", AttributeScopes_AccessibilityAttributes_IPANotationAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.QueueAnnouncementAttribute", AttributeScopes_AccessibilityAttributes_QueueAnnouncementAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.SpeechSSMLAttribute", AttributeScopes_AccessibilityAttributes_SpeechSSMLAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.SpellOutAttribute", AttributeScopes_AccessibilityAttributes_SpellOutAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.TextCustomAttribute", AttributeScopes_AccessibilityAttributes_TextCustomAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AttributeScopes.AccessibilityAttributes.TextualContextAttribute", AttributeScopes_AccessibilityAttributes_TextualContextAttribute, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("AXBrailleMap", AXBrailleMap, { module: "Accessibility_d968214ecc684fb6", properties: {"dimensions":1298227761968415}, methods: {"height":{"id":2009658966444874},"present":{"id":752194942902418},"setHeight":{"id":2647692841135687},"subscript":{"id":1295848356962956}} });
 registerSDKProtocol("c:objc(pl)AXBrailleMapRenderer", {});
-registerSDKClass("AXBrailleTable", AXBrailleTable, { module: "Accessibility_067acaa3e5f56b46", properties: {"identifier":1716468207244930,"isEightDot":1060718080161019,"locales":3936595720101711,"localizedName":1454289283075166,"localizedProviderName":4166315132192304,"providerIdentifier":2451392011459282} });
-registerSDKClass("AXBrailleTranslationResult", AXBrailleTranslationResult, { module: "Accessibility_067acaa3e5f56b46", properties: {"resultString":1947990183775812}, methods: {"inputIndex":{"id":1302724435273166}} });
-registerSDKClass("AXBrailleTranslator", AXBrailleTranslator, { module: "Accessibility_067acaa3e5f56b46", properties: {}, methods: {"backTranslateBraille":{"id":3279303256466761},"translatePrintText":{"id":1407476619788413}} });
-registerSDKClass("AXCategoricalDataAxisDescriptor", AXCategoricalDataAxisDescriptor, { module: "Accessibility_067acaa3e5f56b46", properties: {"categoryOrder":2297084371947624} });
+registerSDKClass("AXBrailleTable", AXBrailleTable, { module: "Accessibility_d968214ecc684fb6", properties: {"identifier":1716468207244930,"isEightDot":1060718080161019,"locales":3936595720101711,"localizedName":1454289283075166,"localizedProviderName":4166315132192304,"providerIdentifier":2451392011459282} });
+registerSDKClass("AXBrailleTranslationResult", AXBrailleTranslationResult, { module: "Accessibility_d968214ecc684fb6", properties: {"resultString":1947990183775812}, methods: {"inputIndex":{"id":1302724435273166}} });
+registerSDKClass("AXBrailleTranslator", AXBrailleTranslator, { module: "Accessibility_d968214ecc684fb6", properties: {}, methods: {"backTranslateBraille":{"id":3279303256466761},"translatePrintText":{"id":1407476619788413}} });
+registerSDKClass("AXCategoricalDataAxisDescriptor", AXCategoricalDataAxisDescriptor, { module: "Accessibility_d968214ecc684fb6", properties: {"categoryOrder":2297084371947624} });
 registerSDKProtocol("c:objc(pl)AXChart", {});
-registerSDKClass("AXChartDescriptor", AXChartDescriptor, { module: "Accessibility_067acaa3e5f56b46", properties: {"attributedTitle":585636414017038,"contentDirection":882144653351752,"contentFrame":3694612689444683,"series":1678539857733214,"summary":1089553012345696,"title":3294568520402946,"yAxis":70102272325586} });
-registerSDKClass("AXCustomContent", AXCustomContent, { module: "Accessibility_067acaa3e5f56b46", properties: {"attributedLabel":30197655315086,"attributedValue":3872868437069345,"importance":1498159152594241,"label":3585158486549327,"value":1693176173171338} });
+registerSDKClass("AXChartDescriptor", AXChartDescriptor, { module: "Accessibility_d968214ecc684fb6", properties: {"attributedTitle":585636414017038,"contentDirection":882144653351752,"contentFrame":3694612689444683,"series":1678539857733214,"summary":1089553012345696,"title":3294568520402946,"yAxis":70102272325586} });
+registerSDKClass("AXCustomContent", AXCustomContent, { module: "Accessibility_d968214ecc684fb6", properties: {"attributedLabel":30197655315086,"attributedValue":3872868437069345,"importance":1498159152594241,"label":3585158486549327,"value":1693176173171338} });
 registerSDKProtocol("c:objc(pl)AXCustomContentProvider", {});
 registerSDKProtocol("c:objc(pl)AXDataAxisDescriptor", {"copyWith":"copy(with:)"});
-registerSDKClass("AXDataPoint", AXDataPoint, { module: "Accessibility_067acaa3e5f56b46", properties: {"attributedLabel":3396388011126941,"label":500547598145801,"xValue":3295678554835343,"yValue":2420593544713493} });
-registerSDKClass("Accessibility.AXDataPoint.Value", AXDataPoint_Value, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("AXDataPointValue", AXDataPointValue, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("AXDataSeriesDescriptor", AXDataSeriesDescriptor, { module: "Accessibility_067acaa3e5f56b46", properties: {"attributedName":2960573738892011,"dataPoints":4289780773632485,"isContinuous":470301701836130,"name":2121766017883907} });
-registerSDKClass("AXFeatureOverrideSession", AXFeatureOverrideSession, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Accessibility.AXFeatureOverrideSessionError", AXFeatureOverrideSessionError, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("AXFeatureOverrideSessionManager", AXFeatureOverrideSessionManager, { module: "Accessibility_067acaa3e5f56b46", properties: {}, methods: {"beginOverrideSession":{"id":4381332677561323},"end":{"id":3107127754671412}} });
-registerSDKClass("AXLiveAudioGraph", AXLiveAudioGraph, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("AXMathExpression", AXMathExpression, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("AXMathExpressionFenced", AXMathExpressionFenced, { module: "Accessibility_067acaa3e5f56b46", properties: {"closeString":3953984242547889,"expressions":2906441220780213,"openString":150932546573567} });
-registerSDKClass("AXMathExpressionFraction", AXMathExpressionFraction, { module: "Accessibility_067acaa3e5f56b46", properties: {"denimonatorExpression":3832981191206265,"numeratorExpression":2259224609240290} });
-registerSDKClass("AXMathExpressionIdentifier", AXMathExpressionIdentifier, { module: "Accessibility_067acaa3e5f56b46", properties: {"content":2383238760540340} });
-registerSDKClass("AXMathExpressionMultiscript", AXMathExpressionMultiscript, { module: "Accessibility_067acaa3e5f56b46", properties: {"baseExpression":4485522519962625,"postscriptExpressions":2417109998561805,"prescriptExpressions":3268190369158175} });
-registerSDKClass("AXMathExpressionNumber", AXMathExpressionNumber, { module: "Accessibility_067acaa3e5f56b46", properties: {"content":2388260966912831} });
-registerSDKClass("AXMathExpressionOperator", AXMathExpressionOperator, { module: "Accessibility_067acaa3e5f56b46", properties: {"content":768777923718299} });
+registerSDKClass("AXDataPoint", AXDataPoint, { module: "Accessibility_d968214ecc684fb6", properties: {"attributedLabel":3396388011126941,"label":500547598145801,"xValue":3295678554835343,"yValue":2420593544713493} });
+registerSDKClass("Accessibility.AXDataPoint.Value", AXDataPoint_Value, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("AXDataPointValue", AXDataPointValue, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("AXDataSeriesDescriptor", AXDataSeriesDescriptor, { module: "Accessibility_d968214ecc684fb6", properties: {"attributedName":2960573738892011,"dataPoints":4289780773632485,"isContinuous":470301701836130,"name":2121766017883907} });
+registerSDKClass("AXFeatureOverrideSession", AXFeatureOverrideSession, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("Accessibility.AXFeatureOverrideSessionError", AXFeatureOverrideSessionError, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("AXFeatureOverrideSessionManager", AXFeatureOverrideSessionManager, { module: "Accessibility_d968214ecc684fb6", properties: {}, methods: {"beginOverrideSession":{"id":4381332677561323},"end":{"id":3107127754671412}} });
+registerSDKClass("AXLiveAudioGraph", AXLiveAudioGraph, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("AXMathExpression", AXMathExpression, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("AXMathExpressionFenced", AXMathExpressionFenced, { module: "Accessibility_d968214ecc684fb6", properties: {"closeString":3953984242547889,"expressions":2906441220780213,"openString":150932546573567} });
+registerSDKClass("AXMathExpressionFraction", AXMathExpressionFraction, { module: "Accessibility_d968214ecc684fb6", properties: {"denimonatorExpression":3832981191206265,"numeratorExpression":2259224609240290} });
+registerSDKClass("AXMathExpressionIdentifier", AXMathExpressionIdentifier, { module: "Accessibility_d968214ecc684fb6", properties: {"content":2383238760540340} });
+registerSDKClass("AXMathExpressionMultiscript", AXMathExpressionMultiscript, { module: "Accessibility_d968214ecc684fb6", properties: {"baseExpression":4485522519962625,"postscriptExpressions":2417109998561805,"prescriptExpressions":3268190369158175} });
+registerSDKClass("AXMathExpressionNumber", AXMathExpressionNumber, { module: "Accessibility_d968214ecc684fb6", properties: {"content":2388260966912831} });
+registerSDKClass("AXMathExpressionOperator", AXMathExpressionOperator, { module: "Accessibility_d968214ecc684fb6", properties: {"content":768777923718299} });
 registerSDKProtocol("c:objc(pl)AXMathExpressionProvider", {"accessibilityMathExpression":"accessibilityMathExpression()"});
-registerSDKClass("AXMathExpressionRoot", AXMathExpressionRoot, { module: "Accessibility_067acaa3e5f56b46", properties: {"radicandExpressions":1605407795465296,"rootIndexExpression":152273588365376} });
-registerSDKClass("AXMathExpressionRow", AXMathExpressionRow, { module: "Accessibility_067acaa3e5f56b46", properties: {"expressions":1790879906083224} });
-registerSDKClass("AXMathExpressionSubSuperscript", AXMathExpressionSubSuperscript, { module: "Accessibility_067acaa3e5f56b46", properties: {"baseExpression":2986009955576329,"subscriptExpressions":4149303445072367,"superscriptExpressions":1758447157846971} });
-registerSDKClass("AXMathExpressionTable", AXMathExpressionTable, { module: "Accessibility_067acaa3e5f56b46", properties: {"expressions":1436749969883829} });
-registerSDKClass("AXMathExpressionTableCell", AXMathExpressionTableCell, { module: "Accessibility_067acaa3e5f56b46", properties: {"expressions":146385712692637} });
-registerSDKClass("AXMathExpressionTableRow", AXMathExpressionTableRow, { module: "Accessibility_067acaa3e5f56b46", properties: {"expressions":1070278853873675} });
-registerSDKClass("AXMathExpressionText", AXMathExpressionText, { module: "Accessibility_067acaa3e5f56b46", properties: {"content":2249869447902031} });
-registerSDKClass("AXMathExpressionUnderOver", AXMathExpressionUnderOver, { module: "Accessibility_067acaa3e5f56b46", properties: {"baseExpression":3541648628737974,"overExpression":2298984023305978,"underExpression":4481262036980835} });
-registerSDKClass("Accessibility.AXMFiHearingDevice", AXMFiHearingDevice, { module: "Accessibility_067acaa3e5f56b46", properties: {} });
-registerSDKClass("AXNumericDataAxisDescriptor", AXNumericDataAxisDescriptor, { module: "Accessibility_067acaa3e5f56b46", properties: {"scaleType":920109876941660} });
+registerSDKClass("AXMathExpressionRoot", AXMathExpressionRoot, { module: "Accessibility_d968214ecc684fb6", properties: {"radicandExpressions":1605407795465296,"rootIndexExpression":152273588365376} });
+registerSDKClass("AXMathExpressionRow", AXMathExpressionRow, { module: "Accessibility_d968214ecc684fb6", properties: {"expressions":1790879906083224} });
+registerSDKClass("AXMathExpressionSubSuperscript", AXMathExpressionSubSuperscript, { module: "Accessibility_d968214ecc684fb6", properties: {"baseExpression":2986009955576329,"subscriptExpressions":4149303445072367,"superscriptExpressions":1758447157846971} });
+registerSDKClass("AXMathExpressionTable", AXMathExpressionTable, { module: "Accessibility_d968214ecc684fb6", properties: {"expressions":1436749969883829} });
+registerSDKClass("AXMathExpressionTableCell", AXMathExpressionTableCell, { module: "Accessibility_d968214ecc684fb6", properties: {"expressions":146385712692637} });
+registerSDKClass("AXMathExpressionTableRow", AXMathExpressionTableRow, { module: "Accessibility_d968214ecc684fb6", properties: {"expressions":1070278853873675} });
+registerSDKClass("AXMathExpressionText", AXMathExpressionText, { module: "Accessibility_d968214ecc684fb6", properties: {"content":2249869447902031} });
+registerSDKClass("AXMathExpressionUnderOver", AXMathExpressionUnderOver, { module: "Accessibility_d968214ecc684fb6", properties: {"baseExpression":3541648628737974,"overExpression":2298984023305978,"underExpression":4481262036980835} });
+registerSDKClass("Accessibility.AXMFiHearingDevice", AXMFiHearingDevice, { module: "Accessibility_d968214ecc684fb6", properties: {} });
+registerSDKClass("AXNumericDataAxisDescriptor", AXNumericDataAxisDescriptor, { module: "Accessibility_d968214ecc684fb6", properties: {"scaleType":920109876941660} });

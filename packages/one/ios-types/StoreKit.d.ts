@@ -2851,6 +2851,9 @@ export declare class SKCloudServiceSetupViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol SKCloudServiceSetupViewControllerDelegate : NSObjectProtocol
@@ -4336,6 +4339,9 @@ export declare class SKStoreProductViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
     };
 }
 /**

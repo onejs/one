@@ -67,6 +67,9 @@ export declare class RPBroadcastActivityViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol RPBroadcastActivityViewControllerDelegate : NSObjectProtocol
@@ -363,6 +366,9 @@ export declare class RPPreviewViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "previewControllerDelegate": true;
+    };
 }
 /**
  * protocol RPPreviewViewControllerDelegate : NSObjectProtocol
@@ -595,6 +601,10 @@ export declare class RPSystemBroadcastPickerView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "preferredExtension": true;
+        "showsMicrophoneButton": true;
     };
 }
 /**

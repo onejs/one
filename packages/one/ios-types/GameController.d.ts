@@ -2112,6 +2112,9 @@ export declare class GCEventViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "controllerUserInteractionEnabled": true;
+    };
 }
 /**
  * class GCExtendedGamepadSnapshot
@@ -4827,6 +4830,9 @@ export declare class UIScene_ConnectionOptions extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UISceneConnectionOptions": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "gameControllerActivationContext": true;
     };
 }
 /**

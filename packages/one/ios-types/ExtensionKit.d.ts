@@ -88,6 +88,10 @@ export declare class EXHostViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+        "placeholderView": true;
+    };
 }
 /**
  * struct Configuration

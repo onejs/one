@@ -175,5 +175,13 @@ export declare class STWebpageController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "url": true;
+        "urlIsBlocked": true;
+        "urlIsPictureInPicture": true;
+        "urlIsPlayingVideo": true;
+        "profileIdentifier": true;
+        "suppressUsageRecording": true;
+    };
 }
 export {};

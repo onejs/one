@@ -117,6 +117,13 @@ export declare class PHLivePhotoView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "contentsRect": true;
+        "delegate": true;
+        "livePhoto": true;
+        "isMuted": true;
+        "playbackGestureRecognizer": true;
+    };
 }
 /**
  * @MainActor protocol PHLivePhotoViewDelegate : NSObjectProtocol
@@ -676,6 +683,10 @@ export declare class PHSharedAlbumCreationViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "creationResult": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol Delegate : NSObjectProtocol
@@ -715,6 +726,10 @@ export declare class PHSharedAlbumCustomizationViewController extends SDKHandle 
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "albumIdentifier": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol Delegate : NSObjectProtocol
@@ -753,6 +768,10 @@ export declare class PHSharedAlbumPostingViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "albumIdentifier": true;
+        "delegate": true;
     };
 }
 /**

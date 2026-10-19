@@ -327,6 +327,24 @@ export declare class WebPage extends SDKHandle {
     readonly $type: {
         "s:6WebKit0A4PageC": true;
     };
+    readonly $observable: {
+        "navigations": true;
+        "serverTrust": true;
+        "isInspectable": true;
+        "backForwardList": true;
+        "customUserAgent": true;
+        "fullscreenState": true;
+        "estimatedProgress": true;
+        "cameraCaptureState": true;
+        "hasOnlySecureContent": true;
+        "isWritingToolsActive": true;
+        "isBlockedByScreenTime": true;
+        "microphoneCaptureState": true;
+        "url": true;
+        "title": true;
+        "isLoading": true;
+        "mediaType": true;
+    };
 }
 /**
  * @MainActor struct BackForwardList
@@ -991,6 +1009,13 @@ export declare class WKBackForwardList extends SDKHandle {
         "c:objc(cs)WKBackForwardList": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "backItem": true;
+        "backList": true;
+        "currentItem": true;
+        "forwardItem": true;
+        "forwardList": true;
+    };
 }
 /**
  * @MainActor class WKBackForwardListItem
@@ -1016,6 +1041,11 @@ export declare class WKBackForwardListItem extends SDKHandle {
         "c:objc(cs)WKBackForwardListItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "url": true;
+        "initialURL": true;
+        "title": true;
+    };
 }
 /**
  * @MainActor class WKContentRuleList
@@ -1032,6 +1062,9 @@ export declare class WKContentRuleList extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKContentRuleList": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "identifier": true;
     };
 }
 /**
@@ -1108,6 +1141,9 @@ export declare class WKContentWorld extends SDKHandle {
         "c:objc(cs)WKContentWorld": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "name": true;
+    };
 }
 /**
  * @MainActor class Configuration
@@ -1162,6 +1198,15 @@ export declare class WKContentWorld_Configuration extends SDKHandle {
         "c:objc(cs)WKContentWorldConfiguration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowAccessingClosedShadowRoots": true;
+        "autofillScriptingEnabled": true;
+        "elementUserInfoEnabled": true;
+        "isInspectable": true;
+        "jsHandleCreationEnabled": true;
+        "legacyBuiltinOverridesEnabled": true;
+        "nodeSnapshotCreationEnabled": true;
+    };
 }
 /**
  * @MainActor class WKContextMenuElementInfo
@@ -1176,6 +1221,9 @@ export declare class WKContextMenuElementInfo extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKContextMenuElementInfo": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "linkURL": true;
     };
 }
 /**
@@ -1299,6 +1347,13 @@ export declare class WKDownload extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKDownload": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "originalRequest": true;
+        "originatingFrame": true;
+        "isUserInitiated": true;
+        "webView": true;
     };
 }
 /**
@@ -1488,6 +1543,11 @@ export declare class WKFindConfiguration extends SDKHandle {
         "c:objc(cs)WKFindConfiguration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "backwards": true;
+        "caseSensitive": true;
+        "wraps": true;
+    };
 }
 /**
  * @MainActor class WKFindResult
@@ -1502,6 +1562,9 @@ export declare class WKFindResult extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKFindResult": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "matchFound": true;
     };
 }
 /**
@@ -1540,6 +1603,13 @@ export declare class WKFormInfo extends SDKHandle {
         "c:objc(cs)WKFormInfo": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "formValues": true;
+        "httpMethod": true;
+        "sourceFrame": true;
+        "submissionURL": true;
+        "targetFrame": true;
+    };
 }
 /**
  * @MainActor class WKFrameInfo
@@ -1571,6 +1641,12 @@ export declare class WKFrameInfo extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKFrameInfo": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isMainFrame": true;
+        "request": true;
+        "securityOrigin": true;
+        "webView": true;
     };
 }
 /**
@@ -1675,6 +1751,10 @@ export declare class WKJSHandle extends SDKHandle {
         "c:objc(cs)WKJSHandle": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "contentWorld": true;
+        "sourceFrame": true;
+    };
 }
 /**
  * enum WKMediaCaptureState
@@ -1727,6 +1807,9 @@ export declare class WKNavigation extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKNavigation": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "effectiveContentMode": true;
     };
 }
 /**
@@ -1784,6 +1867,17 @@ export declare class WKNavigationAction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKNavigationAction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "buttonNumber": true;
+        "isContentRuleListRedirect": true;
+        "mainFrameNavigation": true;
+        "modifierFlags": true;
+        "navigationType": true;
+        "request": true;
+        "shouldPerformDownload": true;
+        "sourceFrame": true;
+        "targetFrame": true;
     };
 }
 /**
@@ -1907,6 +2001,12 @@ export declare class WKNavigationResponse extends SDKHandle {
         "c:objc(cs)WKNavigationResponse": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "canShowMIMEType": true;
+        "isForMainFrame": true;
+        "mainFrameNavigation": true;
+        "response": true;
+    };
 }
 /**
  * enum WKNavigationResponsePolicy
@@ -1953,6 +2053,10 @@ export declare class WKOpenPanelParameters extends SDKHandle {
         "c:objc(cs)WKOpenPanelParameters": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsDirectories": true;
+        "allowsMultipleSelection": true;
+    };
 }
 /**
  * @MainActor class WKPDFConfiguration
@@ -1976,6 +2080,9 @@ export declare class WKPDFConfiguration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKPDFConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowTransparentBackground": true;
     };
 }
 /**
@@ -2055,6 +2162,17 @@ export declare class WKPreferences extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKPreferences": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isElementFullscreenEnabled": true;
+        "isFraudulentWebsiteWarningEnabled": true;
+        "inactiveSchedulingPolicy": true;
+        "javaScriptCanOpenWindowsAutomatically": true;
+        "javaScriptEnabled": true;
+        "minimumFontSize": true;
+        "shouldPrintBackgrounds": true;
+        "isSiteSpecificQuirksModeEnabled": true;
+        "isTextInteractionEnabled": true;
     };
 }
 /**
@@ -2147,6 +2265,13 @@ export declare class WKScriptMessage extends SDKHandle {
         "c:objc(cs)WKScriptMessage": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "body": true;
+        "frameInfo": true;
+        "name": true;
+        "webView": true;
+        "world": true;
+    };
 }
 /** @MainActor protocol WKScriptMessageHandler : NSObjectProtocol */
 export interface WKScriptMessageHandler {
@@ -2187,6 +2312,11 @@ export declare class WKSecurityOrigin extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKSecurityOrigin": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "host": true;
+        "port": true;
+        "protocol": true;
     };
 }
 /**
@@ -2243,6 +2373,11 @@ export declare class WKSnapshotConfiguration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKSnapshotConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "afterScreenUpdates": true;
+        "rect": true;
+        "snapshotWidth": true;
     };
 }
 /** @MainActor protocol WKUIDelegate : NSObjectProtocol */
@@ -2402,6 +2537,9 @@ export declare class WKUserContentController extends SDKHandle {
         "c:objc(cs)WKUserContentController": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "userScripts": true;
+    };
 }
 /**
  * @MainActor class WKUserScript
@@ -2436,6 +2574,11 @@ export declare class WKUserScript extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKUserScript": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isForMainFrameOnly": true;
+        "injectionTime": true;
+        "source": true;
     };
 }
 /**
@@ -2599,6 +2742,30 @@ export declare class WKWebExtension extends SDKHandle {
         "c:objc(cs)WKWebExtension": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allRequestedMatchPatterns": true;
+        "defaultLocale": true;
+        "displayActionLabel": true;
+        "displayDescription": true;
+        "displayName": true;
+        "displayShortName": true;
+        "displayVersion": true;
+        "errors": true;
+        "hasBackgroundContent": true;
+        "hasCommands": true;
+        "hasContentModificationRules": true;
+        "hasInjectedContent": true;
+        "hasOptionsPage": true;
+        "hasOverrideNewTabPage": true;
+        "hasPersistentBackgroundContent": true;
+        "manifest": true;
+        "manifestVersion": true;
+        "optionalPermissionMatchPatterns": true;
+        "optionalPermissions": true;
+        "requestedPermissionMatchPatterns": true;
+        "requestedPermissions": true;
+        "version": true;
+    };
 }
 /**
  * @MainActor class Action
@@ -2676,6 +2843,19 @@ export declare class WKWebExtension_Action extends SDKHandle {
         "c:objc(cs)WKWebExtensionAction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "associatedTab": true;
+        "badgeText": true;
+        "isEnabled": true;
+        "hasUnreadBadgeText": true;
+        "inspectionName": true;
+        "label": true;
+        "menuItems": true;
+        "popupViewController": true;
+        "popupWebView": true;
+        "presentsPopup": true;
+        "webExtensionContext": true;
+    };
 }
 /**
  * @MainActor class Command
@@ -2723,6 +2903,15 @@ export declare class WKWebExtension_Command extends SDKHandle {
         "c:objc(cs)WKWebExtensionCommand": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activationKey": true;
+        "id": true;
+        "keyCommand": true;
+        "menuItem": true;
+        "modifierFlags": true;
+        "title": true;
+        "webExtensionContext": true;
+    };
 }
 /**
  * @MainActor class DataRecord
@@ -2767,6 +2956,13 @@ export declare class WKWebExtension_DataRecord extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKWebExtensionDataRecord": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "containedDataTypes": true;
+        "displayName": true;
+        "errors": true;
+        "totalSizeInBytes": true;
+        "uniqueIdentifier": true;
     };
 }
 /**
@@ -3002,6 +3198,14 @@ export declare class WKWebExtension_MatchPattern extends SDKHandle {
         "c:objc(cs)WKWebExtensionMatchPattern": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "host": true;
+        "matchesAllHosts": true;
+        "matchesAllURLs": true;
+        "path": true;
+        "scheme": true;
+        "string": true;
+    };
 }
 /**
  * struct Error
@@ -3126,6 +3330,10 @@ export declare class WKWebExtension_MessagePort extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKWebExtensionMessagePort": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "applicationIdentifier": true;
+        "isDisconnected": true;
     };
 }
 /**
@@ -3377,6 +3585,17 @@ export declare class WKWebExtension_TabConfiguration extends SDKHandle {
         "c:objc(cs)WKWebExtensionTabConfiguration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "index": true;
+        "parentTab": true;
+        "shouldAddToSelection": true;
+        "shouldBeActive": true;
+        "shouldBeMuted": true;
+        "shouldBePinned": true;
+        "shouldReaderModeBeActive": true;
+        "url": true;
+        "window": true;
+    };
 }
 /**
  * @MainActor class WindowConfiguration
@@ -3421,6 +3640,15 @@ export declare class WKWebExtension_WindowConfiguration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKWebExtensionWindowConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "frame": true;
+        "shouldBeFocused": true;
+        "shouldBePrivate": true;
+        "tabURLs": true;
+        "tabs": true;
+        "windowState": true;
+        "windowType": true;
     };
 }
 /**
@@ -3847,6 +4075,36 @@ export declare class WKWebExtensionContext extends SDKHandle {
         "c:objc(cs)WKWebExtensionContext": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "baseURL": true;
+        "commands": true;
+        "currentPermissionMatchPatterns": true;
+        "currentPermissions": true;
+        "deniedPermissionMatchPatterns": true;
+        "deniedPermissions": true;
+        "errors": true;
+        "focusedWindow": true;
+        "grantedPermissionMatchPatterns": true;
+        "grantedPermissions": true;
+        "hasAccessToAllHosts": true;
+        "hasAccessToAllURLs": true;
+        "hasAccessToPrivateData": true;
+        "hasContentModificationRules": true;
+        "hasInjectedContent": true;
+        "hasRequestedOptionalAccessToAllHosts": true;
+        "isInspectable": true;
+        "inspectionName": true;
+        "isLoaded": true;
+        "openTabs": true;
+        "openWindows": true;
+        "optionsPageURL": true;
+        "overrideNewTabPageURL": true;
+        "uniqueIdentifier": true;
+        "unsupportedAPIs": true;
+        "webExtension": true;
+        "webExtensionController": true;
+        "webViewConfiguration": true;
+    };
 }
 /**
  * struct Error
@@ -4078,6 +4336,12 @@ export declare class WKWebExtensionController extends SDKHandle {
         "c:objc(cs)WKWebExtensionController": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "configuration": true;
+        "delegate": true;
+        "extensionContexts": true;
+        "extensions": true;
+    };
 }
 /**
  * @MainActor class Configuration
@@ -4124,6 +4388,12 @@ export declare class WKWebExtensionController_Configuration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKWebExtensionControllerConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "defaultWebsiteDataStore": true;
+        "identifier": true;
+        "isPersistent": true;
+        "webViewConfiguration": true;
     };
 }
 /**
@@ -4214,6 +4484,17 @@ export declare class WKWebpagePreferences extends SDKHandle {
         "c:objc(cs)WKWebpagePreferences": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsContentJavaScript": true;
+        "allowsJSHandleCreationInPageWorld": true;
+        "alternateRequest": true;
+        "globalPrivacyControlEnabled": true;
+        "isLockdownModeEnabled": true;
+        "overrideReferrer": true;
+        "preferredContentMode": true;
+        "preferredHTTPSNavigationPolicy": true;
+        "securityRestrictionMode": true;
+    };
 }
 /**
  * enum ContentMode
@@ -4259,6 +4540,10 @@ export declare class WKWebsiteDataRecord extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKWebsiteDataRecord": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "dataTypes": true;
+        "displayName": true;
     };
 }
 /**
@@ -4345,6 +4630,11 @@ export declare class WKWebsiteDataStore extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKWebsiteDataStore": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "httpCookieStore": true;
+        "identifier": true;
+        "isPersistent": true;
     };
 }
 /**
@@ -4749,6 +5039,41 @@ export declare class WKWebView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "uiDelegate": true;
+        "url": true;
+        "allowsBackForwardNavigationGestures": true;
+        "allowsLinkPreview": true;
+        "backForwardList": true;
+        "cameraCaptureState": true;
+        "canGoBack": true;
+        "canGoForward": true;
+        "certificateChain": true;
+        "configuration": true;
+        "customUserAgent": true;
+        "estimatedProgress": true;
+        "findInteraction": true;
+        "isFindInteractionEnabled": true;
+        "fullscreenState": true;
+        "hasOnlySecureContent": true;
+        "isInspectable": true;
+        "interactionState": true;
+        "isBlockedByScreenTime": true;
+        "isLoading": true;
+        "maximumViewportInset": true;
+        "mediaType": true;
+        "microphoneCaptureState": true;
+        "minimumViewportInset": true;
+        "navigationDelegate": true;
+        "obscuredContentInsets": true;
+        "pageZoom": true;
+        "scrollView": true;
+        "serverTrust": true;
+        "themeColor": true;
+        "title": true;
+        "underPageBackgroundColor": true;
+        "isWritingToolsActive": true;
+    };
 }
 /**
  * enum FullscreenState
@@ -4932,6 +5257,32 @@ export declare class WKWebViewConfiguration extends SDKHandle {
         "c:objc(cs)WKWebViewConfiguration": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsAirPlayForMediaPlayback": true;
+        "allowsInlineMediaPlayback": true;
+        "allowsInlinePredictions": true;
+        "allowsPictureInPictureMediaPlayback": true;
+        "applicationNameForUserAgent": true;
+        "dataDetectorTypes": true;
+        "defaultWebpagePreferences": true;
+        "ignoresViewportScaleLimits": true;
+        "limitsNavigationsToAppBoundDomains": true;
+        "mediaPlaybackAllowsAirPlay": true;
+        "mediaPlaybackRequiresUserAction": true;
+        "mediaTypesRequiringUserActionForPlayback": true;
+        "preferences": true;
+        "processPool": true;
+        "requiresUserActionForMediaPlayback": true;
+        "selectionGranularity": true;
+        "showsSystemScreenTimeBlockingView": true;
+        "supportsAdaptiveImageGlyph": true;
+        "suppressesIncrementalRendering": true;
+        "upgradeKnownHostsToHTTPS": true;
+        "userContentController": true;
+        "webExtensionController": true;
+        "websiteDataStore": true;
+        "writingToolsBehavior": true;
+    };
 }
 /**
  * struct WKWebViewDataType
@@ -5000,6 +5351,16 @@ export declare class WKWindowFeatures extends SDKHandle {
     readonly $type: {
         "c:objc(cs)WKWindowFeatures": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowsResizing": true;
+        "height": true;
+        "menuBarVisibility": true;
+        "statusBarVisibility": true;
+        "toolbarsVisibility": true;
+        "width": true;
+        "x": true;
+        "y": true;
     };
 }
 /**

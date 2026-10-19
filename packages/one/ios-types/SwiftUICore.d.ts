@@ -7542,6 +7542,15 @@ export declare class ImageRenderer<Content = unknown> extends SDKHandle {
     readonly $type: {
         "s:7SwiftUI13ImageRendererC": true;
     };
+    readonly $observable: {
+        "cgImage": true;
+        "proposedSize": true;
+        "allowedDynamicRange": true;
+        "scale": true;
+        "content": true;
+        "isOpaque": true;
+        "colorMode": true;
+    };
 }
 /**
  * typealias ObjectWillChangePublisher = PassthroughSubject<Void, Never>

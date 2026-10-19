@@ -902,6 +902,32 @@ export declare class Entity extends SDKHandle {
     readonly $type: {
         "s:17RealityFoundation6EntityC": true;
     };
+    readonly $observable: {
+        "components": true;
+        "isAnchored": true;
+        "observable": true;
+        "parameters": true;
+        "ambientAudio": true;
+        "channelAudio": true;
+        "spatialAudio": true;
+        "bindableValues": true;
+        "debugDescription": true;
+        "accessibilityLabel": true;
+        "availableAnimations": true;
+        "characterController": true;
+        "isEnabledInHierarchy": true;
+        "defaultAnimationClock": true;
+        "isAccessibilityElement": true;
+        "accessibilityDescription": true;
+        "characterControllerState": true;
+        "id": true;
+        "name": true;
+        "pins": true;
+        "scene": true;
+        "anchor": true;
+        "isActive": true;
+        "isEnabled": true;
+    };
 }
 declare const AnchorEntity_base: Omit<typeof Entity, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Entity);
 /**
@@ -947,6 +973,32 @@ export declare class AnchorEntity extends AnchorEntity_base {
     readonly $type: {
         "s:17RealityFoundation12AnchorEntityC": true;
         "s:17RealityFoundation6EntityC": true;
+    };
+    readonly $observable: {
+        "components": true;
+        "isAnchored": true;
+        "observable": true;
+        "parameters": true;
+        "ambientAudio": true;
+        "channelAudio": true;
+        "spatialAudio": true;
+        "bindableValues": true;
+        "debugDescription": true;
+        "accessibilityLabel": true;
+        "availableAnimations": true;
+        "characterController": true;
+        "isEnabledInHierarchy": true;
+        "defaultAnimationClock": true;
+        "isAccessibilityElement": true;
+        "accessibilityDescription": true;
+        "characterControllerState": true;
+        "id": true;
+        "name": true;
+        "pins": true;
+        "scene": true;
+        "anchor": true;
+        "isActive": true;
+        "isEnabled": true;
     };
 }
 /**
@@ -1998,6 +2050,19 @@ export declare class AnimationPlaybackController extends SDKHandle {
     get isStopped(): Promise<boolean>;
     readonly $type: {
         "s:17RealityFoundation27AnimationPlaybackControllerC": true;
+    };
+    readonly $observable: {
+        "isComplete": true;
+        "blendFactor": true;
+        "time": true;
+        "clock": true;
+        "speed": true;
+        "entity": true;
+        "isValid": true;
+        "duration": true;
+        "isPaused": true;
+        "isPlaying": true;
+        "isStopped": true;
     };
 }
 /**
@@ -4439,6 +4504,32 @@ export declare class BodyTrackedEntity extends Entity {
         "s:17RealityFoundation17BodyTrackedEntityC": true;
         "s:17RealityFoundation6EntityC": true;
     };
+    readonly $observable: {
+        "components": true;
+        "isAnchored": true;
+        "observable": true;
+        "parameters": true;
+        "ambientAudio": true;
+        "channelAudio": true;
+        "spatialAudio": true;
+        "bindableValues": true;
+        "debugDescription": true;
+        "accessibilityLabel": true;
+        "availableAnimations": true;
+        "characterController": true;
+        "isEnabledInHierarchy": true;
+        "defaultAnimationClock": true;
+        "isAccessibilityElement": true;
+        "accessibilityDescription": true;
+        "characterControllerState": true;
+        "id": true;
+        "name": true;
+        "pins": true;
+        "scene": true;
+        "anchor": true;
+        "isActive": true;
+        "isEnabled": true;
+    };
 }
 /**
  * struct BodyTrackingComponent
@@ -6400,6 +6491,32 @@ export declare class DirectionalLight extends DirectionalLight_base {
     readonly $type: {
         "s:17RealityFoundation16DirectionalLightC": true;
         "s:17RealityFoundation6EntityC": true;
+    };
+    readonly $observable: {
+        "components": true;
+        "isAnchored": true;
+        "observable": true;
+        "parameters": true;
+        "ambientAudio": true;
+        "channelAudio": true;
+        "spatialAudio": true;
+        "bindableValues": true;
+        "debugDescription": true;
+        "accessibilityLabel": true;
+        "availableAnimations": true;
+        "characterController": true;
+        "isEnabledInHierarchy": true;
+        "defaultAnimationClock": true;
+        "isAccessibilityElement": true;
+        "accessibilityDescription": true;
+        "characterControllerState": true;
+        "id": true;
+        "name": true;
+        "pins": true;
+        "scene": true;
+        "anchor": true;
+        "isActive": true;
+        "isEnabled": true;
     };
 }
 /**
@@ -13670,6 +13787,32 @@ export declare class ModelEntity extends ModelEntity_base {
         "s:17RealityFoundation11ModelEntityC": true;
         "s:17RealityFoundation6EntityC": true;
     };
+    readonly $observable: {
+        "components": true;
+        "isAnchored": true;
+        "observable": true;
+        "parameters": true;
+        "ambientAudio": true;
+        "channelAudio": true;
+        "spatialAudio": true;
+        "bindableValues": true;
+        "debugDescription": true;
+        "accessibilityLabel": true;
+        "availableAnimations": true;
+        "characterController": true;
+        "isEnabledInHierarchy": true;
+        "defaultAnimationClock": true;
+        "isAccessibilityElement": true;
+        "accessibilityDescription": true;
+        "characterControllerState": true;
+        "id": true;
+        "name": true;
+        "pins": true;
+        "scene": true;
+        "anchor": true;
+        "isActive": true;
+        "isEnabled": true;
+    };
 }
 /**
  * struct ModelSortGroup
@@ -15279,6 +15422,32 @@ export declare class PerspectiveCamera extends PerspectiveCamera_base {
     readonly $type: {
         "s:17RealityFoundation17PerspectiveCameraC": true;
         "s:17RealityFoundation6EntityC": true;
+    };
+    readonly $observable: {
+        "components": true;
+        "isAnchored": true;
+        "observable": true;
+        "parameters": true;
+        "ambientAudio": true;
+        "channelAudio": true;
+        "spatialAudio": true;
+        "bindableValues": true;
+        "debugDescription": true;
+        "accessibilityLabel": true;
+        "availableAnimations": true;
+        "characterController": true;
+        "isEnabledInHierarchy": true;
+        "defaultAnimationClock": true;
+        "isAccessibilityElement": true;
+        "accessibilityDescription": true;
+        "characterControllerState": true;
+        "id": true;
+        "name": true;
+        "pins": true;
+        "scene": true;
+        "anchor": true;
+        "isActive": true;
+        "isEnabled": true;
     };
 }
 /**
@@ -18026,6 +18195,32 @@ export declare class PointLight extends PointLight_base {
     readonly $type: {
         "s:17RealityFoundation10PointLightC": true;
         "s:17RealityFoundation6EntityC": true;
+    };
+    readonly $observable: {
+        "components": true;
+        "isAnchored": true;
+        "observable": true;
+        "parameters": true;
+        "ambientAudio": true;
+        "channelAudio": true;
+        "spatialAudio": true;
+        "bindableValues": true;
+        "debugDescription": true;
+        "accessibilityLabel": true;
+        "availableAnimations": true;
+        "characterController": true;
+        "isEnabledInHierarchy": true;
+        "defaultAnimationClock": true;
+        "isAccessibilityElement": true;
+        "accessibilityDescription": true;
+        "characterControllerState": true;
+        "id": true;
+        "name": true;
+        "pins": true;
+        "scene": true;
+        "anchor": true;
+        "isActive": true;
+        "isEnabled": true;
     };
 }
 /**
@@ -21209,6 +21404,32 @@ export declare class SpotLight extends SpotLight_base {
         "s:17RealityFoundation9SpotLightC": true;
         "s:17RealityFoundation6EntityC": true;
     };
+    readonly $observable: {
+        "components": true;
+        "isAnchored": true;
+        "observable": true;
+        "parameters": true;
+        "ambientAudio": true;
+        "channelAudio": true;
+        "spatialAudio": true;
+        "bindableValues": true;
+        "debugDescription": true;
+        "accessibilityLabel": true;
+        "availableAnimations": true;
+        "characterController": true;
+        "isEnabledInHierarchy": true;
+        "defaultAnimationClock": true;
+        "isAccessibilityElement": true;
+        "accessibilityDescription": true;
+        "characterControllerState": true;
+        "id": true;
+        "name": true;
+        "pins": true;
+        "scene": true;
+        "anchor": true;
+        "isActive": true;
+        "isEnabled": true;
+    };
 }
 /**
  * struct SpotLightComponent
@@ -22430,6 +22651,32 @@ export declare class TriggerVolume extends TriggerVolume_base {
     readonly $type: {
         "s:17RealityFoundation13TriggerVolumeC": true;
         "s:17RealityFoundation6EntityC": true;
+    };
+    readonly $observable: {
+        "components": true;
+        "isAnchored": true;
+        "observable": true;
+        "parameters": true;
+        "ambientAudio": true;
+        "channelAudio": true;
+        "spatialAudio": true;
+        "bindableValues": true;
+        "debugDescription": true;
+        "accessibilityLabel": true;
+        "availableAnimations": true;
+        "characterController": true;
+        "isEnabledInHierarchy": true;
+        "defaultAnimationClock": true;
+        "isAccessibilityElement": true;
+        "accessibilityDescription": true;
+        "characterControllerState": true;
+        "id": true;
+        "name": true;
+        "pins": true;
+        "scene": true;
+        "anchor": true;
+        "isActive": true;
+        "isEnabled": true;
     };
 }
 /**

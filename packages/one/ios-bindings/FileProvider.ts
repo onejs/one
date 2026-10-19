@@ -29,17 +29,17 @@ export class NSError extends SDKHandle {
    * class func fileProviderErrorForCollision(with existingItem: NSFileProviderItem) -> Self
    * @availability iOS 11.0+
    */
-  static fileProviderErrorForCollision(existingItem: SDKHandle): _Foundation_NSError { return callSDK<_Foundation_NSError>("FileProvider_067acaa3e5f56b46", 4088756289159486, undefined, [existingItem]); }
+  static fileProviderErrorForCollision(existingItem: SDKHandle): _Foundation_NSError { return callSDK<_Foundation_NSError>("FileProvider_d968214ecc684fb6", 4088756289159486, undefined, [existingItem]); }
   /**
    * class func fileProviderErrorForNonExistentItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier) -> Self
    * @availability iOS 11.0+
    */
-  static fileProviderErrorForNonExistentItem(itemIdentifier: NSFileProviderItemIdentifier): _Foundation_NSError { return callSDK<_Foundation_NSError>("FileProvider_067acaa3e5f56b46", 1548593829040959, undefined, [itemIdentifier]); }
+  static fileProviderErrorForNonExistentItem(itemIdentifier: NSFileProviderItemIdentifier): _Foundation_NSError { return callSDK<_Foundation_NSError>("FileProvider_d968214ecc684fb6", 1548593829040959, undefined, [itemIdentifier]); }
   /**
    * class func fileProviderErrorForRejectedDeletion(of updatedVersion: NSFileProviderItem) -> Self
    * @availability iOS 16.0+
    */
-  static fileProviderErrorForRejectedDeletion(updatedVersion: SDKHandle): _Foundation_NSError { return callSDK<_Foundation_NSError>("FileProvider_067acaa3e5f56b46", 861651475769204, undefined, [updatedVersion]); }
+  static fileProviderErrorForRejectedDeletion(updatedVersion: SDKHandle): _Foundation_NSError { return callSDK<_Foundation_NSError>("FileProvider_d968214ecc684fb6", 861651475769204, undefined, [updatedVersion]); }
   declare readonly $type: { "c:objc(cs)NSError": true; "c:objc(cs)NSObject": true };
 }
 
@@ -81,7 +81,7 @@ export const NSFileProviderContentPolicy = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (NSFileProviderContentPolicy) | null { return callSDK<(NSFileProviderContentPolicy) | null>("FileProvider_067acaa3e5f56b46", 3336507871387491, undefined, [rawValue]); }
+  init(rawValue: number): (NSFileProviderContentPolicy) | null { return callSDK<(NSFileProviderContentPolicy) | null>("FileProvider_d968214ecc684fb6", 3336507871387491, undefined, [rawValue]); }
 };
 
 /**
@@ -95,17 +95,17 @@ export const NSFileProviderCreateItemOptions = {
    * static var deletionConflicted: NSFileProviderCreateItemOptions { get }
    * @availability iOS 16.0+
    */
-  get deletionConflicted(): NSFileProviderCreateItemOptions { return callSDK<NSFileProviderCreateItemOptions>("FileProvider_067acaa3e5f56b46", 3112224037456284, undefined, []); },
+  get deletionConflicted(): NSFileProviderCreateItemOptions { return callSDK<NSFileProviderCreateItemOptions>("FileProvider_d968214ecc684fb6", 3112224037456284, undefined, []); },
   /**
    * static var mayAlreadyExist: NSFileProviderCreateItemOptions { get }
    * @availability iOS 16.0+
    */
-  get mayAlreadyExist(): NSFileProviderCreateItemOptions { return callSDK<NSFileProviderCreateItemOptions>("FileProvider_067acaa3e5f56b46", 4279750561845526, undefined, []); },
+  get mayAlreadyExist(): NSFileProviderCreateItemOptions { return callSDK<NSFileProviderCreateItemOptions>("FileProvider_d968214ecc684fb6", 4279750561845526, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): NSFileProviderCreateItemOptions { return callSDK<NSFileProviderCreateItemOptions>("FileProvider_067acaa3e5f56b46", 1463209700370656, undefined, [rawValue]); }
+  init(rawValue: number): NSFileProviderCreateItemOptions { return callSDK<NSFileProviderCreateItemOptions>("FileProvider_d968214ecc684fb6", 1463209700370656, undefined, [rawValue]); }
 };
 
 /**
@@ -131,12 +131,12 @@ export const NSFileProviderDeleteItemOptions = {
    * static var recursive: NSFileProviderDeleteItemOptions { get }
    * @availability iOS 16.0+
    */
-  get recursive(): NSFileProviderDeleteItemOptions { return callSDK<NSFileProviderDeleteItemOptions>("FileProvider_067acaa3e5f56b46", 351070826178458, undefined, []); },
+  get recursive(): NSFileProviderDeleteItemOptions { return callSDK<NSFileProviderDeleteItemOptions>("FileProvider_d968214ecc684fb6", 351070826178458, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): NSFileProviderDeleteItemOptions { return callSDK<NSFileProviderDeleteItemOptions>("FileProvider_067acaa3e5f56b46", 504524756944083, undefined, [rawValue]); }
+  init(rawValue: number): NSFileProviderDeleteItemOptions { return callSDK<NSFileProviderDeleteItemOptions>("FileProvider_d968214ecc684fb6", 504524756944083, undefined, [rawValue]); }
 };
 
 /**
@@ -148,54 +148,54 @@ export class NSFileProviderDomain extends SDKHandle {
    * init(identifier: NSFileProviderDomainIdentifier, displayName: String)
    * @availability iOS 16.0+
    */
-  static initIdentifierDisplayName(identifier: NSFileProviderDomainIdentifier, displayName: string): NSFileProviderDomain { return callSDK<NSFileProviderDomain>("FileProvider_067acaa3e5f56b46", 3441167288926114, undefined, [identifier, displayName]); }
+  static initIdentifierDisplayName(identifier: NSFileProviderDomainIdentifier, displayName: string): NSFileProviderDomain { return callSDK<NSFileProviderDomain>("FileProvider_d968214ecc684fb6", 3441167288926114, undefined, [identifier, displayName]); }
   /**
    * init(identifier: NSFileProviderDomainIdentifier, displayName: String, pathRelativeToDocumentStorage: String)
    * @availability iOS 11.0+
    */
-  static initIdentifierDisplayNamePathRelativeToDocumentStorage(identifier: NSFileProviderDomainIdentifier, displayName: string, pathRelativeToDocumentStorage: string): NSFileProviderDomain { return callSDK<NSFileProviderDomain>("FileProvider_067acaa3e5f56b46", 2214823718883126, undefined, [identifier, displayName, pathRelativeToDocumentStorage]); }
+  static initIdentifierDisplayNamePathRelativeToDocumentStorage(identifier: NSFileProviderDomainIdentifier, displayName: string, pathRelativeToDocumentStorage: string): NSFileProviderDomain { return callSDK<NSFileProviderDomain>("FileProvider_d968214ecc684fb6", 2214823718883126, undefined, [identifier, displayName, pathRelativeToDocumentStorage]); }
   /**
    * var backingStoreIdentity: Data? { get }
    * @availability iOS 16.0+
    */
-  get backingStoreIdentity(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("FileProvider_067acaa3e5f56b46", 3199801326944253, this, []); }
+  get backingStoreIdentity(): (ArrayBuffer) | null { return callSDK<(ArrayBuffer) | null>("FileProvider_d968214ecc684fb6", 3199801326944253, this, []); }
   /**
    * var displayName: String { get }
    * @availability iOS 11.0+
    */
-  get displayName(): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 4070669673720818, this, []); }
+  get displayName(): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 4070669673720818, this, []); }
   /**
    * var identifier: NSFileProviderDomainIdentifier { get }
    * @availability iOS 11.0+
    */
-  get identifier(): NSFileProviderDomainIdentifier { return callSDK<NSFileProviderDomainIdentifier>("FileProvider_067acaa3e5f56b46", 1771756156652585, this, []); }
+  get identifier(): NSFileProviderDomainIdentifier { return callSDK<NSFileProviderDomainIdentifier>("FileProvider_d968214ecc684fb6", 1771756156652585, this, []); }
   /**
    * var pathRelativeToDocumentStorage: String { get }
    * @availability iOS 11.0+
    */
-  get pathRelativeToDocumentStorage(): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 589322401413418, this, []); }
+  get pathRelativeToDocumentStorage(): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 589322401413418, this, []); }
   /**
    * var isReplicated: Bool { get }
    * @availability iOS 16.0+
    */
-  get isReplicated(): boolean { return callSDK<boolean>("FileProvider_067acaa3e5f56b46", 3703550476339085, this, []); }
+  get isReplicated(): boolean { return callSDK<boolean>("FileProvider_d968214ecc684fb6", 3703550476339085, this, []); }
   /**
    * var supportsSyncingTrash: Bool { get set }
    * @availability iOS 18.0+
    */
-  get supportsSyncingTrash(): boolean { return callSDK<boolean>("FileProvider_067acaa3e5f56b46", 3697384579679823, this, []); }
-  set supportsSyncingTrash(value: boolean) { callSDK<void>("FileProvider_067acaa3e5f56b46", 2462736297120744, this, [value]); }
+  get supportsSyncingTrash(): boolean { return callSDK<boolean>("FileProvider_d968214ecc684fb6", 3697384579679823, this, []); }
+  set supportsSyncingTrash(value: boolean) { callSDK<void>("FileProvider_d968214ecc684fb6", 2462736297120744, this, [value]); }
   /**
    * var testingModes: NSFileProviderDomain.TestingModes { get set }
    * @availability iOS 16.0+
    */
-  get testingModes(): NSFileProviderDomain_TestingModes { return callSDK<NSFileProviderDomain_TestingModes>("FileProvider_067acaa3e5f56b46", 1631753452533526, this, []); }
-  set testingModes(value: NSFileProviderDomain_TestingModes) { callSDK<void>("FileProvider_067acaa3e5f56b46", 1143868402949741, this, [value]); }
+  get testingModes(): NSFileProviderDomain_TestingModes { return callSDK<NSFileProviderDomain_TestingModes>("FileProvider_d968214ecc684fb6", 1631753452533526, this, []); }
+  set testingModes(value: NSFileProviderDomain_TestingModes) { callSDK<void>("FileProvider_d968214ecc684fb6", 1143868402949741, this, [value]); }
   /**
    * var userEnabled: Bool { get }
    * @availability iOS 16.0+
    */
-  get userEnabled(): boolean { return callSDK<boolean>("FileProvider_067acaa3e5f56b46", 2841119514128685, this, []); }
+  get userEnabled(): boolean { return callSDK<boolean>("FileProvider_d968214ecc684fb6", 2841119514128685, this, []); }
   declare readonly $type: { "c:objc(cs)NSFileProviderDomain": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "backingStoreIdentity": true; "displayName": true; "identifier": true; "pathRelativeToDocumentStorage": true; "isReplicated": true; "supportsSyncingTrash": true; "testingModes": true; "userEnabled": true };
 }
@@ -211,17 +211,17 @@ export const NSFileProviderDomain_TestingModes = {
    * static var alwaysEnabled: NSFileProviderDomain.TestingModes { get }
    * @availability iOS 16.0+
    */
-  get alwaysEnabled(): NSFileProviderDomain_TestingModes { return callSDK<NSFileProviderDomain_TestingModes>("FileProvider_067acaa3e5f56b46", 20573599599094, undefined, []); },
+  get alwaysEnabled(): NSFileProviderDomain_TestingModes { return callSDK<NSFileProviderDomain_TestingModes>("FileProvider_d968214ecc684fb6", 20573599599094, undefined, []); },
   /**
    * static var interactive: NSFileProviderDomain.TestingModes { get }
    * @availability iOS 16.0+
    */
-  get interactive(): NSFileProviderDomain_TestingModes { return callSDK<NSFileProviderDomain_TestingModes>("FileProvider_067acaa3e5f56b46", 794134115778213, undefined, []); },
+  get interactive(): NSFileProviderDomain_TestingModes { return callSDK<NSFileProviderDomain_TestingModes>("FileProvider_d968214ecc684fb6", 794134115778213, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): NSFileProviderDomain_TestingModes { return callSDK<NSFileProviderDomain_TestingModes>("FileProvider_067acaa3e5f56b46", 1735731728628645, undefined, [rawValue]); }
+  init(rawValue: number): NSFileProviderDomain_TestingModes { return callSDK<NSFileProviderDomain_TestingModes>("FileProvider_d968214ecc684fb6", 1735731728628645, undefined, [rawValue]); }
 };
 
 /**
@@ -235,12 +235,12 @@ export const NSFileProviderDomainIdentifier = {
    * init(rawValue: String)
    * @availability iOS 11.0+
    */
-  initRawValue(rawValue: string): NSFileProviderDomainIdentifier { return callSDK<NSFileProviderDomainIdentifier>("FileProvider_067acaa3e5f56b46", 3752696520875676, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NSFileProviderDomainIdentifier { return callSDK<NSFileProviderDomainIdentifier>("FileProvider_d968214ecc684fb6", 3752696520875676, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 11.0+
    */
-  init(rawValue: string): NSFileProviderDomainIdentifier { return callSDK<NSFileProviderDomainIdentifier>("FileProvider_067acaa3e5f56b46", 1143599358831761, undefined, [rawValue]); }
+  init(rawValue: string): NSFileProviderDomainIdentifier { return callSDK<NSFileProviderDomainIdentifier>("FileProvider_d968214ecc684fb6", 1143599358831761, undefined, [rawValue]); }
 };
 
 /**
@@ -257,12 +257,12 @@ export interface NSFileProviderDomainState {
  */
 export class NSFileProviderDomainVersion extends SDKHandle {
   /** init() */
-  static init(): NSFileProviderDomainVersion { return callSDK<NSFileProviderDomainVersion>("FileProvider_067acaa3e5f56b46", 3383936854655347, undefined, []); }
+  static init(): NSFileProviderDomainVersion { return callSDK<NSFileProviderDomainVersion>("FileProvider_d968214ecc684fb6", 3383936854655347, undefined, []); }
   /**
    * func next() -> NSFileProviderDomainVersion
    * @availability iOS 16.0+
    */
-  next(): NSFileProviderDomainVersion { return callSDK<NSFileProviderDomainVersion>("FileProvider_067acaa3e5f56b46", 1696844892539708, this, []); }
+  next(): NSFileProviderDomainVersion { return callSDK<NSFileProviderDomainVersion>("FileProvider_d968214ecc684fb6", 1696844892539708, this, []); }
   declare readonly $type: { "c:objc(cs)NSFileProviderDomainVersion": true; "c:objc(cs)NSObject": true };
 }
 
@@ -331,107 +331,107 @@ export class NSFileProviderError extends SDKHandle {
    * static var noSuchItem: NSFileProviderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get noSuchItem(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 1449607596147308, undefined, []); }
+  static get noSuchItem(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 1449607596147308, undefined, []); }
   /**
    * static var errorDomain: String { get }
    * @availability iOS 11.0+
    */
-  static get errorDomain(): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 2219851935109058, undefined, []); }
+  static get errorDomain(): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 2219851935109058, undefined, []); }
   /**
    * static var pageExpired: NSFileProviderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get pageExpired(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 4127957966463752, undefined, []); }
+  static get pageExpired(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 4127957966463752, undefined, []); }
   /**
    * static var nonEvictable: NSFileProviderError.Code { get }
    * @availability iOS 16.0+
    */
-  static get nonEvictable(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 572714204754419, undefined, []); }
+  static get nonEvictable(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 572714204754419, undefined, []); }
   /**
    * static var unsyncedEdits: NSFileProviderError.Code { get }
    * @availability iOS 16.0+
    */
-  static get unsyncedEdits(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 2059488448786569, undefined, []); }
+  static get unsyncedEdits(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 2059488448786569, undefined, []); }
   /**
    * static var domainDisabled: NSFileProviderError.Code { get }
    * @availability iOS 16.0+
    */
-  static get domainDisabled(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 4212165367598706, undefined, []); }
+  static get domainDisabled(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 4212165367598706, undefined, []); }
   /**
    * static var deletionRejected: NSFileProviderError.Code { get }
    * @availability iOS 16.0+
    */
-  static get deletionRejected(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 162526807908140, undefined, []); }
+  static get deletionRejected(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 162526807908140, undefined, []); }
   /**
    * static var excludedFromSync: NSFileProviderError.Code { get }
    * @availability iOS 16.0+
    */
-  static get excludedFromSync(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 1959585597954834, undefined, []); }
+  static get excludedFromSync(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 1959585597954834, undefined, []); }
   /**
    * static var notAuthenticated: NSFileProviderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get notAuthenticated(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 1678170846907266, undefined, []); }
+  static get notAuthenticated(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 1678170846907266, undefined, []); }
   /**
    * static var providerNotFound: NSFileProviderError.Code { get }
    * @availability iOS 16.0+
    */
-  static get providerNotFound(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 1262501689952242, undefined, []); }
+  static get providerNotFound(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 1262501689952242, undefined, []); }
   /**
    * static var cannotSynchronize: NSFileProviderError.Code { get }
    * @availability iOS 16.0+
    */
-  static get cannotSynchronize(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 462996730888439, undefined, []); }
+  static get cannotSynchronize(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 462996730888439, undefined, []); }
   /**
    * static var directoryNotEmpty: NSFileProviderError.Code { get }
    * @availability iOS 16.0+
    */
-  static get directoryNotEmpty(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 2545403362890480, undefined, []); }
+  static get directoryNotEmpty(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 2545403362890480, undefined, []); }
   /**
    * static var filenameCollision: NSFileProviderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get filenameCollision(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 2621398290551016, undefined, []); }
+  static get filenameCollision(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 2621398290551016, undefined, []); }
   /**
    * static var insufficientQuota: NSFileProviderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get insufficientQuota(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 1385764387408782, undefined, []); }
+  static get insufficientQuota(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 1385764387408782, undefined, []); }
   /**
    * static var serverUnreachable: NSFileProviderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get serverUnreachable(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 2800314010508871, undefined, []); }
+  static get serverUnreachable(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 2800314010508871, undefined, []); }
   /**
    * static var syncAnchorExpired: NSFileProviderError.Code { get }
    * @availability iOS 11.0+
    */
-  static get syncAnchorExpired(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 109107419422640, undefined, []); }
+  static get syncAnchorExpired(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 109107419422640, undefined, []); }
   /**
    * static var nonEvictableChildren: NSFileProviderError.Code { get }
    * @availability iOS 16.0+
    */
-  static get nonEvictableChildren(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 1279518000813944, undefined, []); }
+  static get nonEvictableChildren(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 1279518000813944, undefined, []); }
   /**
    * static var providerDomainNotFound: NSFileProviderError.Code { get }
    * @availability iOS 17.1+
    */
-  static get providerDomainNotFound(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 106843245777921, undefined, []); }
+  static get providerDomainNotFound(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 106843245777921, undefined, []); }
   /**
    * static var applicationExtensionNotFound: NSFileProviderError.Code { get }
    * @availability iOS 17.1+
    */
-  static get applicationExtensionNotFound(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 3386590063988606, undefined, []); }
+  static get applicationExtensionNotFound(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 3386590063988606, undefined, []); }
   /**
    * static var localVersionConflictingWithServer: NSFileProviderError.Code { get }
    * @availability iOS 26.0+
    */
-  static get localVersionConflictingWithServer(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 768351175830847, undefined, []); }
+  static get localVersionConflictingWithServer(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 768351175830847, undefined, []); }
   /**
    * static var providerDomainTemporarilyUnavailable: NSFileProviderError.Code { get }
    * @availability iOS 17.1+
    */
-  static get providerDomainTemporarilyUnavailable(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 2432509399842140, undefined, []); }
+  static get providerDomainTemporarilyUnavailable(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 2432509399842140, undefined, []); }
   declare readonly $type: { "s:SC23NSFileProviderErrorCodeLeV": true };
 }
 
@@ -446,12 +446,12 @@ export const NSFileProviderError_Code = {
    * static var pageExpired: NSFileProviderError.Code { get }
    * @availability iOS 11.0+
    */
-  get pageExpired(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_067acaa3e5f56b46", 3177606018411220, undefined, []); },
+  get pageExpired(): NSFileProviderError_Code { return callSDK<NSFileProviderError_Code>("FileProvider_d968214ecc684fb6", 3177606018411220, undefined, []); },
   /**
    * init?(rawValue: Int)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): (NSFileProviderError_Code) | null { return callSDK<(NSFileProviderError_Code) | null>("FileProvider_067acaa3e5f56b46", 1368993473744085, undefined, [rawValue]); }
+  init(rawValue: number): (NSFileProviderError_Code) | null { return callSDK<(NSFileProviderError_Code) | null>("FileProvider_d968214ecc684fb6", 1368993473744085, undefined, [rawValue]); }
 };
 
 /**
@@ -464,132 +464,132 @@ export class NSFileProviderExtension extends SDKHandle {
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  static placeholderURL(url: string): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 1923472045010110, undefined, [url]); }
+  static placeholderURL(url: string): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 1923472045010110, undefined, [url]); }
   /**
    * class func writePlaceholder(at placeholderURL: URL, withMetadata metadata: [URLResourceKey : Any]) throws
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  static writePlaceholder(placeholderURL: string, metadata: NativeMap<_Foundation_URLResourceKey, unknown>): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 396242670805138, undefined, [placeholderURL, metadata]); }
+  static writePlaceholder(placeholderURL: string, metadata: NativeMap<_Foundation_URLResourceKey, unknown>): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 396242670805138, undefined, [placeholderURL, metadata]); }
   /**
    * func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL?
    * @availability iOS 8.0+
    */
-  urlForItem(identifier: NSFileProviderItemIdentifier): (string) | null { return callSDK<(string) | null>("FileProvider_067acaa3e5f56b46", 3574239397018340, this, [identifier]); }
+  urlForItem(identifier: NSFileProviderItemIdentifier): (string) | null { return callSDK<(string) | null>("FileProvider_d968214ecc684fb6", 3574239397018340, this, [identifier]); }
   /**
    * func createDirectory(withName directoryName: String, inParentItemIdentifier parentItemIdentifier: NSFileProviderItemIdentifier) async throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  createDirectory(directoryName: string, parentItemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1491249670928891, this, [directoryName, parentItemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  createDirectory(directoryName: string, parentItemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1491249670928891, this, [directoryName, parentItemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func deleteItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier) async throws
    * @availability iOS 11.0+
    */
-  deleteItem(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1363590320061996, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  deleteItem(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1363590320061996, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> any NSFileProviderEnumerator
    * @availability iOS 11.0+
    */
-  enumerator(containerItemIdentifier: NSFileProviderItemIdentifier): SDKHandle { return callSDK<SDKHandle>("FileProvider_067acaa3e5f56b46", 813052715035533, this, [containerItemIdentifier]); }
+  enumerator(containerItemIdentifier: NSFileProviderItemIdentifier): SDKHandle { return callSDK<SDKHandle>("FileProvider_d968214ecc684fb6", 813052715035533, this, [containerItemIdentifier]); }
   /**
    * func fetchThumbnails(for itemIdentifiers: [NSFileProviderItemIdentifier], requestedSize size: CGSize, perThumbnailCompletionHandler: @escaping (NSFileProviderItemIdentifier, Data?, (any Error)?) -> Void, completionHandler: @escaping ((any Error)?) -> Void) -> Progress
    * @availability iOS 11.0+
    */
-  fetchThumbnails(itemIdentifiers: $SDK0, size: $SDK7, perThumbnailCompletionHandler: ((arg0: NSFileProviderItemIdentifier, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => void), completionHandler: $SDK6): _Foundation_Progress { return callSDK<_Foundation_Progress>("FileProvider_067acaa3e5f56b46", 975728607417484, this, [itemIdentifiers, size, perThumbnailCompletionHandler, completionHandler], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
+  fetchThumbnails(itemIdentifiers: $SDK0, size: $SDK7, perThumbnailCompletionHandler: ((arg0: NSFileProviderItemIdentifier, arg1: (ArrayBuffer) | null, arg2: (NativeError) | null) => void), completionHandler: $SDK6): _Foundation_Progress { return callSDK<_Foundation_Progress>("FileProvider_d968214ecc684fb6", 975728607417484, this, [itemIdentifiers, size, perThumbnailCompletionHandler, completionHandler], [null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]); }
   /**
    * func importDocument(at fileURL: URL, toParentItemIdentifier parentItemIdentifier: NSFileProviderItemIdentifier) async throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  importDocument(fileURL: string, parentItemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 496915619696779, this, [fileURL, parentItemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  importDocument(fileURL: string, parentItemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 496915619696779, this, [fileURL, parentItemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /** init() */
-  static init(): NSFileProviderExtension { return callSDK<NSFileProviderExtension>("FileProvider_067acaa3e5f56b46", 3008559027514576, undefined, []); }
+  static init(): NSFileProviderExtension { return callSDK<NSFileProviderExtension>("FileProvider_d968214ecc684fb6", 3008559027514576, undefined, []); }
   /**
    * func itemChanged(at url: URL)
    * @availability iOS 8.0+
    */
-  itemChanged(url: string): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3149953029797020, this, [url]); }
+  itemChanged(url: string): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3149953029797020, this, [url]); }
   /**
    * func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  item(identifier: NSFileProviderItemIdentifier): SDKHandle { return callSDK<SDKHandle>("FileProvider_067acaa3e5f56b46", 748285234923277, this, [identifier]); }
+  item(identifier: NSFileProviderItemIdentifier): SDKHandle { return callSDK<SDKHandle>("FileProvider_d968214ecc684fb6", 748285234923277, this, [identifier]); }
   /**
    * func persistentIdentifierForItem(at url: URL) -> NSFileProviderItemIdentifier?
    * @availability iOS 8.0+
    */
-  persistentIdentifierForItem(url: string): $SDK9 { return callSDK<$SDK9>("FileProvider_067acaa3e5f56b46", 710448026428895, this, [url]); }
+  persistentIdentifierForItem(url: string): $SDK9 { return callSDK<$SDK9>("FileProvider_d968214ecc684fb6", 710448026428895, this, [url]); }
   /**
    * func providePlaceholder(at url: URL) async throws
    * @availability iOS 8.0+
    */
-  providePlaceholder(url: string, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3898519631706642, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
+  providePlaceholder(url: string, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3898519631706642, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func renameItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, toName itemName: String) async throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  renameItem(itemIdentifier: NSFileProviderItemIdentifier, itemName: string, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3989765501755457, this, [itemIdentifier, itemName, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  renameItem(itemIdentifier: NSFileProviderItemIdentifier, itemName: string, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3989765501755457, this, [itemIdentifier, itemName, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func reparentItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, toParentItemWithIdentifier parentItemIdentifier: NSFileProviderItemIdentifier, newName: String?) async throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  reparentItem(itemIdentifier: NSFileProviderItemIdentifier, parentItemIdentifier: NSFileProviderItemIdentifier, newName: (string) | null, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1587129158093921, this, [itemIdentifier, parentItemIdentifier, newName, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  reparentItem(itemIdentifier: NSFileProviderItemIdentifier, parentItemIdentifier: NSFileProviderItemIdentifier, newName: (string) | null, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1587129158093921, this, [itemIdentifier, parentItemIdentifier, newName, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func setFavoriteRank(_ favoriteRank: NSNumber?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier) async throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  setFavoriteRank(favoriteRank: (_Foundation_NSNumber) | null, itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 329777656506852, this, [favoriteRank, itemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  setFavoriteRank(favoriteRank: (_Foundation_NSNumber) | null, itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 329777656506852, this, [favoriteRank, itemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func setLastUsedDate(_ lastUsedDate: Date?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier) async throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  setLastUsedDate(lastUsedDate: (globalThis.Date) | null, itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1209018442794126, this, [lastUsedDate, itemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  setLastUsedDate(lastUsedDate: (globalThis.Date) | null, itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1209018442794126, this, [lastUsedDate, itemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func setTagData(_ tagData: Data?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier) async throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  setTagData(tagData: (ArrayBuffer) | null, itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 199427753871676, this, [tagData, itemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  setTagData(tagData: (ArrayBuffer) | null, itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 199427753871676, this, [tagData, itemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func startProvidingItem(at url: URL) async throws
    * @availability iOS 8.0+
    */
-  startProvidingItem(url: string, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1093094277538792, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
+  startProvidingItem(url: string, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1093094277538792, this, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func stopProvidingItem(at url: URL)
    * @availability iOS 8.0+
    */
-  stopProvidingItem(url: string): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1997071396617968, this, [url]); }
+  stopProvidingItem(url: string): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1997071396617968, this, [url]); }
   /**
    * func supportedServiceSources(for itemIdentifier: NSFileProviderItemIdentifier) throws -> [any NSFileProviderServiceSource]
    * @availability iOS 11.0+
    */
-  supportedServiceSources(itemIdentifier: NSFileProviderItemIdentifier): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("FileProvider_067acaa3e5f56b46", 236710390319878, this, [itemIdentifier]); }
+  supportedServiceSources(itemIdentifier: NSFileProviderItemIdentifier): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("FileProvider_d968214ecc684fb6", 236710390319878, this, [itemIdentifier]); }
   /**
    * func trashItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier) async throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  trashItem(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 4380668306929157, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  trashItem(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 4380668306929157, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func untrashItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, toParentItemIdentifier parentItemIdentifier: NSFileProviderItemIdentifier?) async throws -> NSFileProviderItem
    * @availability iOS 11.0+
    */
-  untrashItem(itemIdentifier: NSFileProviderItemIdentifier, parentItemIdentifier: $SDK9, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3788376032894306, this, [itemIdentifier, parentItemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  untrashItem(itemIdentifier: NSFileProviderItemIdentifier, parentItemIdentifier: $SDK9, completionHandler: $SDK5): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3788376032894306, this, [itemIdentifier, parentItemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * var documentStorageURL: URL { get }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get documentStorageURL(): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 3027236974139310, this, []); }
+  get documentStorageURL(): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 3027236974139310, this, []); }
   /**
    * var domain: NSFileProviderDomain? { get }
    * @availability iOS 11.0+
    */
-  get domain(): (NSFileProviderDomain) | null { return callSDK<(NSFileProviderDomain) | null>("FileProvider_067acaa3e5f56b46", 3618805347004869, this, []); }
+  get domain(): (NSFileProviderDomain) | null { return callSDK<(NSFileProviderDomain) | null>("FileProvider_d968214ecc684fb6", 3618805347004869, this, []); }
   /**
    * var providerIdentifier: String { get }
    * @availability iOS 8.0+
    * @deprecated iOS 11.0
    */
-  get providerIdentifier(): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 3053580428766146, this, []); }
+  get providerIdentifier(): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 3053580428766146, this, []); }
   declare readonly $type: { "c:objc(cs)NSFileProviderExtension": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "documentStorageURL": true; "domain": true; "providerIdentifier": true };
 }
@@ -605,12 +605,12 @@ export const NSFileProviderExtensionActionIdentifier = {
    * init(rawValue: String)
    * @availability iOS 11.0+
    */
-  initRawValue(rawValue: string): NSFileProviderExtensionActionIdentifier { return callSDK<NSFileProviderExtensionActionIdentifier>("FileProvider_067acaa3e5f56b46", 2205773628365358, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NSFileProviderExtensionActionIdentifier { return callSDK<NSFileProviderExtensionActionIdentifier>("FileProvider_d968214ecc684fb6", 2205773628365358, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 11.0+
    */
-  init(rawValue: string): NSFileProviderExtensionActionIdentifier { return callSDK<NSFileProviderExtensionActionIdentifier>("FileProvider_067acaa3e5f56b46", 499641889278464, undefined, [rawValue]); }
+  init(rawValue: string): NSFileProviderExtensionActionIdentifier { return callSDK<NSFileProviderExtensionActionIdentifier>("FileProvider_d968214ecc684fb6", 499641889278464, undefined, [rawValue]); }
 };
 
 /**
@@ -624,32 +624,32 @@ export const NSFileProviderFileSystemFlags = {
    * static var hidden: NSFileProviderFileSystemFlags { get }
    * @availability iOS 16.0+
    */
-  get hidden(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_067acaa3e5f56b46", 4278772257509053, undefined, []); },
+  get hidden(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_d968214ecc684fb6", 4278772257509053, undefined, []); },
   /**
    * static var pathExtensionHidden: NSFileProviderFileSystemFlags { get }
    * @availability iOS 16.0+
    */
-  get pathExtensionHidden(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_067acaa3e5f56b46", 3824535832149944, undefined, []); },
+  get pathExtensionHidden(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_d968214ecc684fb6", 3824535832149944, undefined, []); },
   /**
    * static var userExecutable: NSFileProviderFileSystemFlags { get }
    * @availability iOS 16.0+
    */
-  get userExecutable(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_067acaa3e5f56b46", 3849472583569461, undefined, []); },
+  get userExecutable(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_d968214ecc684fb6", 3849472583569461, undefined, []); },
   /**
    * static var userReadable: NSFileProviderFileSystemFlags { get }
    * @availability iOS 16.0+
    */
-  get userReadable(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_067acaa3e5f56b46", 561620960649963, undefined, []); },
+  get userReadable(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_d968214ecc684fb6", 561620960649963, undefined, []); },
   /**
    * static var userWritable: NSFileProviderFileSystemFlags { get }
    * @availability iOS 16.0+
    */
-  get userWritable(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_067acaa3e5f56b46", 1961622179714147, undefined, []); },
+  get userWritable(): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_d968214ecc684fb6", 1961622179714147, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_067acaa3e5f56b46", 3785218726069853, undefined, [rawValue]); }
+  init(rawValue: number): NSFileProviderFileSystemFlags { return callSDK<NSFileProviderFileSystemFlags>("FileProvider_d968214ecc684fb6", 3785218726069853, undefined, [rawValue]); }
 };
 
 /**
@@ -681,58 +681,58 @@ export const NSFileProviderItemCapabilities = {
    * static var allowsAddingSubItems: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    */
-  get allowsAddingSubItems(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 4197749473510867, undefined, []); },
+  get allowsAddingSubItems(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 4197749473510867, undefined, []); },
   /**
    * static var allowsAll: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    * @deprecated iOS 15.0
    */
-  get allowsAll(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 1873362028916624, undefined, []); },
+  get allowsAll(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 1873362028916624, undefined, []); },
   /**
    * static var allowsContentEnumerating: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    */
-  get allowsContentEnumerating(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 3829955667968210, undefined, []); },
+  get allowsContentEnumerating(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 3829955667968210, undefined, []); },
   /**
    * static var allowsDeleting: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    */
-  get allowsDeleting(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 3466138390247051, undefined, []); },
+  get allowsDeleting(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 3466138390247051, undefined, []); },
   /**
    * static var allowsEvicting: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    */
-  get allowsEvicting(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 1894044755329840, undefined, []); },
+  get allowsEvicting(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 1894044755329840, undefined, []); },
   /**
    * static var allowsReading: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    */
-  get allowsReading(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 3891054641906857, undefined, []); },
+  get allowsReading(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 3891054641906857, undefined, []); },
   /**
    * static var allowsRenaming: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    */
-  get allowsRenaming(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 2765894462354984, undefined, []); },
+  get allowsRenaming(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 2765894462354984, undefined, []); },
   /**
    * static var allowsReparenting: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    */
-  get allowsReparenting(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 3753470739555675, undefined, []); },
+  get allowsReparenting(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 3753470739555675, undefined, []); },
   /**
    * static var allowsTrashing: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    */
-  get allowsTrashing(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 623592145439337, undefined, []); },
+  get allowsTrashing(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 623592145439337, undefined, []); },
   /**
    * static var allowsWriting: NSFileProviderItemCapabilities { get }
    * @availability iOS 11.0+
    */
-  get allowsWriting(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 2502743511067392, undefined, []); },
+  get allowsWriting(): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 2502743511067392, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 11.0+
    */
-  init(rawValue: number): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_067acaa3e5f56b46", 998129521846755, undefined, [rawValue]); }
+  init(rawValue: number): NSFileProviderItemCapabilities { return callSDK<NSFileProviderItemCapabilities>("FileProvider_d968214ecc684fb6", 998129521846755, undefined, [rawValue]); }
 };
 
 /**
@@ -754,12 +754,12 @@ export const NSFileProviderItemDecorationIdentifier = {
    * init(rawValue: String)
    * @availability iOS 16.0+
    */
-  initRawValue(rawValue: string): NSFileProviderItemDecorationIdentifier { return callSDK<NSFileProviderItemDecorationIdentifier>("FileProvider_067acaa3e5f56b46", 455105665280215, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NSFileProviderItemDecorationIdentifier { return callSDK<NSFileProviderItemDecorationIdentifier>("FileProvider_d968214ecc684fb6", 455105665280215, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 16.0+
    */
-  init(rawValue: string): NSFileProviderItemDecorationIdentifier { return callSDK<NSFileProviderItemDecorationIdentifier>("FileProvider_067acaa3e5f56b46", 3506082436866387, undefined, [rawValue]); }
+  init(rawValue: string): NSFileProviderItemDecorationIdentifier { return callSDK<NSFileProviderItemDecorationIdentifier>("FileProvider_d968214ecc684fb6", 3506082436866387, undefined, [rawValue]); }
 };
 
 /**
@@ -773,62 +773,62 @@ export const NSFileProviderItemFields = {
    * static var contentModificationDate: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get contentModificationDate(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 1682224227861636, undefined, []); },
+  get contentModificationDate(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 1682224227861636, undefined, []); },
   /**
    * static var contents: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get contents(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 970575736786369, undefined, []); },
+  get contents(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 970575736786369, undefined, []); },
   /**
    * static var creationDate: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get creationDate(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 2659949263276539, undefined, []); },
+  get creationDate(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 2659949263276539, undefined, []); },
   /**
    * static var extendedAttributes: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get extendedAttributes(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 2844171883670927, undefined, []); },
+  get extendedAttributes(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 2844171883670927, undefined, []); },
   /**
    * static var favoriteRank: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get favoriteRank(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 2982551143072872, undefined, []); },
+  get favoriteRank(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 2982551143072872, undefined, []); },
   /**
    * static var fileSystemFlags: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get fileSystemFlags(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 4297195009891263, undefined, []); },
+  get fileSystemFlags(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 4297195009891263, undefined, []); },
   /**
    * static var filename: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get filename(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 3126962109050573, undefined, []); },
+  get filename(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 3126962109050573, undefined, []); },
   /**
    * static var lastUsedDate: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get lastUsedDate(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 1425843311304556, undefined, []); },
+  get lastUsedDate(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 1425843311304556, undefined, []); },
   /**
    * static var parentItemIdentifier: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get parentItemIdentifier(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 2067243008339420, undefined, []); },
+  get parentItemIdentifier(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 2067243008339420, undefined, []); },
   /**
    * static var tagData: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get tagData(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 2399568053741931, undefined, []); },
+  get tagData(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 2399568053741931, undefined, []); },
   /**
    * static var typeAndCreator: NSFileProviderItemFields { get }
    * @availability iOS 16.0+
    */
-  get typeAndCreator(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 3841132627559272, undefined, []); },
+  get typeAndCreator(): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 3841132627559272, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_067acaa3e5f56b46", 1689860748564145, undefined, [rawValue]); }
+  init(rawValue: number): NSFileProviderItemFields { return callSDK<NSFileProviderItemFields>("FileProvider_d968214ecc684fb6", 1689860748564145, undefined, [rawValue]); }
 };
 
 /**
@@ -842,27 +842,27 @@ export const NSFileProviderItemIdentifier = {
    * static let rootContainer: NSFileProviderItemIdentifier
    * @availability iOS 11.0+
    */
-  get rootContainer(): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_067acaa3e5f56b46", 1274902469123525, undefined, []); },
+  get rootContainer(): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_d968214ecc684fb6", 1274902469123525, undefined, []); },
   /**
    * static let trashContainer: NSFileProviderItemIdentifier
    * @availability iOS 16.0+
    */
-  get trashContainer(): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_067acaa3e5f56b46", 1066798422929809, undefined, []); },
+  get trashContainer(): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_d968214ecc684fb6", 1066798422929809, undefined, []); },
   /**
    * static let workingSet: NSFileProviderItemIdentifier
    * @availability iOS 11.0+
    */
-  get workingSet(): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_067acaa3e5f56b46", 257522259752018, undefined, []); },
+  get workingSet(): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_d968214ecc684fb6", 257522259752018, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 8.0+
    */
-  initRawValue(rawValue: string): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_067acaa3e5f56b46", 4293423137626323, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_d968214ecc684fb6", 4293423137626323, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 8.0+
    */
-  init(rawValue: string): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_067acaa3e5f56b46", 1218741354108315, undefined, [rawValue]); }
+  init(rawValue: string): NSFileProviderItemIdentifier { return callSDK<NSFileProviderItemIdentifier>("FileProvider_d968214ecc684fb6", 1218741354108315, undefined, [rawValue]); }
 };
 
 /**
@@ -882,22 +882,22 @@ export class NSFileProviderItemVersion extends SDKHandle {
    * class var beforeFirstSyncComponent: Data { get }
    * @availability iOS 16.0+
    */
-  static get beforeFirstSyncComponent(): ArrayBuffer { return callSDK<ArrayBuffer>("FileProvider_067acaa3e5f56b46", 2558431356621137, undefined, []); }
+  static get beforeFirstSyncComponent(): ArrayBuffer { return callSDK<ArrayBuffer>("FileProvider_d968214ecc684fb6", 2558431356621137, undefined, []); }
   /**
    * init(contentVersion: Data, metadataVersion: Data)
    * @availability iOS 16.0+
    */
-  static init(contentVersion: ArrayBuffer, metadataVersion: ArrayBuffer): NSFileProviderItemVersion { return callSDK<NSFileProviderItemVersion>("FileProvider_067acaa3e5f56b46", 4481157086084824, undefined, [contentVersion, metadataVersion]); }
+  static init(contentVersion: ArrayBuffer, metadataVersion: ArrayBuffer): NSFileProviderItemVersion { return callSDK<NSFileProviderItemVersion>("FileProvider_d968214ecc684fb6", 4481157086084824, undefined, [contentVersion, metadataVersion]); }
   /**
    * var contentVersion: Data { get }
    * @availability iOS 16.0+
    */
-  get contentVersion(): ArrayBuffer { return callSDK<ArrayBuffer>("FileProvider_067acaa3e5f56b46", 2304110660326105, this, []); }
+  get contentVersion(): ArrayBuffer { return callSDK<ArrayBuffer>("FileProvider_d968214ecc684fb6", 2304110660326105, this, []); }
   /**
    * var metadataVersion: Data { get }
    * @availability iOS 16.0+
    */
-  get metadataVersion(): ArrayBuffer { return callSDK<ArrayBuffer>("FileProvider_067acaa3e5f56b46", 1384352621538584, this, []); }
+  get metadataVersion(): ArrayBuffer { return callSDK<ArrayBuffer>("FileProvider_d968214ecc684fb6", 1384352621538584, this, []); }
   declare readonly $type: { "c:objc(cs)NSFileProviderItemVersion": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "contentVersion": true; "metadataVersion": true };
 }
@@ -911,157 +911,157 @@ export class NSFileProviderManager extends SDKHandle {
    * class func add(_ domain: NSFileProviderDomain) async throws
    * @availability iOS 11.0+
    */
-  static add(domain: NSFileProviderDomain, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3905634900127996, undefined, [domain, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static add(domain: NSFileProviderDomain, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3905634900127996, undefined, [domain, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func domains() async throws -> [NSFileProviderDomain]
    * @availability iOS 11.0+
    */
-  static getDomainsWithCompletionHandler(completionHandler: ((arg0: Array<NSFileProviderDomain>, arg1: (NativeError) | null) => void)): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 2161794880499428, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static getDomainsWithCompletionHandler(completionHandler: ((arg0: Array<NSFileProviderDomain>, arg1: (NativeError) | null) => void)): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 2161794880499428, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func identifierForUserVisibleFile(at url: URL) async throws -> (NSFileProviderItemIdentifier, NSFileProviderDomainIdentifier)
    * @availability iOS 16.0+
    */
-  static getIdentifierForUserVisibleFile(url: string, completionHandler: ((arg0: (NSFileProviderItemIdentifier) | null, arg1: (NSFileProviderDomainIdentifier) | null, arg2: (NativeError) | null) => void)): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3413427671748188, undefined, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static getIdentifierForUserVisibleFile(url: string, completionHandler: ((arg0: (NSFileProviderItemIdentifier) | null, arg1: (NSFileProviderDomainIdentifier) | null, arg2: (NativeError) | null) => void)): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3413427671748188, undefined, [url, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func `import`(_ domain: NSFileProviderDomain, fromDirectoryAt url: URL) async throws
    * @availability iOS 16.0+
    */
-  static import(domain: NSFileProviderDomain, url: string, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 2235639173801824, undefined, [domain, url, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static import(domain: NSFileProviderDomain, url: string, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 2235639173801824, undefined, [domain, url, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * convenience init?(for domain: NSFileProviderDomain)
    * @availability iOS 11.0+
    */
-  static init(domain: NSFileProviderDomain): (NSFileProviderManager) | null { return callSDK<(NSFileProviderManager) | null>("FileProvider_067acaa3e5f56b46", 3842003019309782, undefined, [domain]); }
+  static init(domain: NSFileProviderDomain): (NSFileProviderManager) | null { return callSDK<(NSFileProviderManager) | null>("FileProvider_d968214ecc684fb6", 3842003019309782, undefined, [domain]); }
   /**
    * class func placeholderURL(for url: URL) -> URL
    * @availability iOS 11.0+
    */
-  static placeholderURL(url: string): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 2240320616871285, undefined, [url]); }
+  static placeholderURL(url: string): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 2240320616871285, undefined, [url]); }
   /**
    * class func removeAllDomains() async throws
    * @availability iOS 11.0+
    */
-  static removeAllDomains(completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1182835344393263, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
+  static removeAllDomains(completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1182835344393263, undefined, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * class func remove(_ domain: NSFileProviderDomain) async throws
    * @availability iOS 11.0+
    */
-  static removeCompletionHandler(domain: NSFileProviderDomain, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 4086973789936449, undefined, [domain, completionHandler], [null,{"callback":{"out":[]}}]); }
+  static removeCompletionHandler(domain: NSFileProviderDomain, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 4086973789936449, undefined, [domain, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * class func remove(_ domain: NSFileProviderDomain, mode: NSFileProviderManager.DomainRemovalMode) async throws -> URL?
    * @availability iOS 16.0+
    */
-  static removeModeCompletionHandler(domain: NSFileProviderDomain, mode: NSFileProviderManager_DomainRemovalMode, completionHandler: $SDK17): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3149343831274602, undefined, [domain, mode, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  static removeModeCompletionHandler(domain: NSFileProviderDomain, mode: NSFileProviderManager_DomainRemovalMode, completionHandler: $SDK17): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3149343831274602, undefined, [domain, mode, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * class func writePlaceholder(at placeholderURL: URL, withMetadata metadata: NSFileProviderItem) throws
    * @availability iOS 11.0+
    */
-  static writePlaceholder(placeholderURL: string, metadata: SDKHandle): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1131726773587936, undefined, [placeholderURL, metadata]); }
+  static writePlaceholder(placeholderURL: string, metadata: SDKHandle): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1131726773587936, undefined, [placeholderURL, metadata]); }
   /**
    * class var `default`: NSFileProviderManager { get }
    * @availability iOS 11.0+
    */
-  static get default(): NSFileProviderManager { return callSDK<NSFileProviderManager>("FileProvider_067acaa3e5f56b46", 1962552698956431, undefined, []); }
+  static get default(): NSFileProviderManager { return callSDK<NSFileProviderManager>("FileProvider_d968214ecc684fb6", 1962552698956431, undefined, []); }
   /**
    * func enumeratorForMaterializedItems() -> any NSFileProviderEnumerator
    * @availability iOS 16.0+
    */
-  enumeratorForMaterializedItems(): SDKHandle { return callSDK<SDKHandle>("FileProvider_067acaa3e5f56b46", 3128301411865711, this, []); }
+  enumeratorForMaterializedItems(): SDKHandle { return callSDK<SDKHandle>("FileProvider_d968214ecc684fb6", 3128301411865711, this, []); }
   /**
    * func enumeratorForPendingItems() -> any NSFileProviderPendingSetEnumerator
    * @availability iOS 16.0+
    */
-  enumeratorForPendingItems(): SDKHandle { return callSDK<SDKHandle>("FileProvider_067acaa3e5f56b46", 4035279893346062, this, []); }
+  enumeratorForPendingItems(): SDKHandle { return callSDK<SDKHandle>("FileProvider_d968214ecc684fb6", 4035279893346062, this, []); }
   /**
    * func evictItem(identifier itemIdentifier: NSFileProviderItemIdentifier) async throws
    * @availability iOS 16.0+
    */
-  evictItem(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1061862926140237, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  evictItem(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1061862926140237, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func service(named serviceName: NSFileProviderServiceName, for itemIdentifier: NSFileProviderItemIdentifier) async throws -> NSFileProviderService?
    * @availability iOS 16.0+
    */
-  getService(serviceName: _Foundation_NSFileProviderServiceName, itemIdentifier: NSFileProviderItemIdentifier, completionHandler: ((arg0: (_Foundation_NSFileProviderService) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 327520117863510, this, [serviceName, itemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  getService(serviceName: _Foundation_NSFileProviderServiceName, itemIdentifier: NSFileProviderItemIdentifier, completionHandler: ((arg0: (_Foundation_NSFileProviderService) | null, arg1: (NativeError) | null) => void)): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 327520117863510, this, [serviceName, itemIdentifier, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func getUserVisibleURL(for itemIdentifier: NSFileProviderItemIdentifier) async throws -> URL
    * @availability iOS 16.0+
    */
-  getUserVisibleURL(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK17): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 2495808977565407, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  getUserVisibleURL(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK17): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 2495808977565407, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func globalProgress(for kind: Progress.FileOperationKind) -> Progress
    * @availability iOS 16.0+
    */
-  globalProgress(kind: _Foundation_Progress_FileOperationKind): _Foundation_Progress { return callSDK<_Foundation_Progress>("FileProvider_067acaa3e5f56b46", 484450890165697, this, [kind]); }
+  globalProgress(kind: _Foundation_Progress_FileOperationKind): _Foundation_Progress { return callSDK<_Foundation_Progress>("FileProvider_d968214ecc684fb6", 484450890165697, this, [kind]); }
   /**
    * func listAvailableTestingOperations() throws -> [any NSFileProviderTestingOperation]
    * @availability iOS 16.0+
    */
-  listAvailableTestingOperations(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("FileProvider_067acaa3e5f56b46", 2025150279488819, this, []); }
+  listAvailableTestingOperations(): Array<SDKHandle> { return callSDK<Array<SDKHandle>>("FileProvider_d968214ecc684fb6", 2025150279488819, this, []); }
   /**
    * func register(_ task: URLSessionTask, forItemWithIdentifier identifier: NSFileProviderItemIdentifier) async throws
    * @availability iOS 11.0+
    */
-  register(task: _Foundation_URLSessionTask, identifier: NSFileProviderItemIdentifier, completion: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 662437863709223, this, [task, identifier, completion], [null,null,{"callback":{"out":[]}}]); }
+  register(task: _Foundation_URLSessionTask, identifier: NSFileProviderItemIdentifier, completion: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 662437863709223, this, [task, identifier, completion], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func reimportItems(below itemIdentifier: NSFileProviderItemIdentifier) async throws
    * @availability iOS 16.0+
    */
-  reimportItems(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3769765617522396, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  reimportItems(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3769765617522396, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func requestModification(of fields: NSFileProviderItemFields, forItemWithIdentifier itemIdentifier: NSFileProviderItemIdentifier, options: NSFileProviderModifyItemOptions = []) async throws
    * @availability iOS 16.0+
    */
-  requestModification(fields: NSFileProviderItemFields, itemIdentifier: NSFileProviderItemIdentifier, options: NSFileProviderModifyItemOptions, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3262821451072721, this, [fields, itemIdentifier, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
+  requestModification(fields: NSFileProviderItemFields, itemIdentifier: NSFileProviderItemIdentifier, options: NSFileProviderModifyItemOptions, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3262821451072721, this, [fields, itemIdentifier, options, completionHandler], [null,null,null,{"callback":{"out":[]}}]); }
   /**
    * func run(_ operations: [any NSFileProviderTestingOperation]) throws -> [AnyHashable : any Error]
    * @availability iOS 16.0+
    */
-  run(operations: Array<SDKHandle>): NativeMap<unknown, NativeError> { return callSDK<NativeMap<unknown, NativeError>>("FileProvider_067acaa3e5f56b46", 1169618149453553, this, [operations]); }
+  run(operations: Array<SDKHandle>): NativeMap<unknown, NativeError> { return callSDK<NativeMap<unknown, NativeError>>("FileProvider_d968214ecc684fb6", 1169618149453553, this, [operations]); }
   /**
    * func signalEnumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) async throws
    * @availability iOS 11.0+
    */
-  signalEnumerator(containerItemIdentifier: NSFileProviderItemIdentifier, completion: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1343657549351310, this, [containerItemIdentifier, completion], [null,{"callback":{"out":[]}}]); }
+  signalEnumerator(containerItemIdentifier: NSFileProviderItemIdentifier, completion: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1343657549351310, this, [containerItemIdentifier, completion], [null,{"callback":{"out":[]}}]); }
   /**
    * func signalErrorResolved(_ error: any Error) async throws
    * @availability iOS 16.0+
    */
-  signalErrorResolved(error: NativeError, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 3359805961571846, this, [error, completionHandler], [null,{"callback":{"out":[]}}]); }
+  signalErrorResolved(error: NativeError, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 3359805961571846, this, [error, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func temporaryDirectoryURL() throws -> URL
    * @availability iOS 16.0+
    */
-  temporaryDirectoryURL(): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 833621729797234, this, []); }
+  temporaryDirectoryURL(): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 833621729797234, this, []); }
   /**
    * func waitForChanges(below itemIdentifier: NSFileProviderItemIdentifier) async throws
    * @availability iOS 16.0+
    */
-  waitForChanges(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 2166307973665616, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
+  waitForChanges(itemIdentifier: NSFileProviderItemIdentifier, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 2166307973665616, this, [itemIdentifier, completionHandler], [null,{"callback":{"out":[]}}]); }
   /**
    * func waitForStabilization() async throws
    * @availability iOS 16.0+
    */
-  waitForStabilization(completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 1769683581272929, this, [completionHandler], [{"callback":{"out":[]}}]); }
+  waitForStabilization(completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 1769683581272929, this, [completionHandler], [{"callback":{"out":[]}}]); }
   /**
    * var documentStorageURL: URL { get }
    * @availability iOS 11.0+
    */
-  get documentStorageURL(): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 3600133297761329, this, []); }
+  get documentStorageURL(): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 3600133297761329, this, []); }
   /**
    * var providerIdentifier: String { get }
    * @availability iOS 11.0+
    */
-  get providerIdentifier(): string { return callSDK<string>("FileProvider_067acaa3e5f56b46", 4492729728688297, this, []); }
+  get providerIdentifier(): string { return callSDK<string>("FileProvider_d968214ecc684fb6", 4492729728688297, this, []); }
   /**
    * func requestDownloadForItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, requestedRange: NSRange? = nil, completionHandler: @escaping ((any Error)?) -> Void)
    * @availability iOS 16.0+
    */
-  requestDownloadForItemWithIdentifierRequestedRangeCompletionHandler(itemIdentifier: NSFileProviderItemIdentifier, requestedRange: (SDKHandle) | null, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_067acaa3e5f56b46", 2312137143835281, this, [itemIdentifier, requestedRange, completionHandler], [null,null,{"callback":{"out":[]}}]); }
+  requestDownloadForItemWithIdentifierRequestedRangeCompletionHandler(itemIdentifier: NSFileProviderItemIdentifier, requestedRange: (SDKHandle) | null, completionHandler: $SDK6): void { return callSDK<void>("FileProvider_d968214ecc684fb6", 2312137143835281, this, [itemIdentifier, requestedRange, completionHandler], [null,null,{"callback":{"out":[]}}]); }
   /**
    * func requestDownloadForItem(withIdentifier itemIdentifier: NSFileProviderItemIdentifier, requestedRange: NSRange? = nil) async throws
    * @availability iOS 16.0+
    */
-  requestDownloadForItemWithIdentifierRequestedRange(itemIdentifier: NSFileProviderItemIdentifier, requestedRange?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("FileProvider_067acaa3e5f56b46", 996115613146165, this, [itemIdentifier, requestedRange]); }
+  requestDownloadForItemWithIdentifierRequestedRange(itemIdentifier: NSFileProviderItemIdentifier, requestedRange?: (SDKHandle) | null): Promise<void> { return callSDKAsync<void>("FileProvider_d968214ecc684fb6", 996115613146165, this, [itemIdentifier, requestedRange]); }
   declare readonly $type: { "c:objc(cs)NSFileProviderManager": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "documentStorageURL": true; "providerIdentifier": true };
 }
@@ -1077,7 +1077,7 @@ export const NSFileProviderManager_DomainRemovalMode = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (NSFileProviderManager_DomainRemovalMode) | null { return callSDK<(NSFileProviderManager_DomainRemovalMode) | null>("FileProvider_067acaa3e5f56b46", 42493725141141, undefined, [rawValue]); }
+  init(rawValue: number): (NSFileProviderManager_DomainRemovalMode) | null { return callSDK<(NSFileProviderManager_DomainRemovalMode) | null>("FileProvider_d968214ecc684fb6", 42493725141141, undefined, [rawValue]); }
 };
 
 /**
@@ -1091,22 +1091,22 @@ export const NSFileProviderModifyItemOptions = {
    * static var failOnConflict: NSFileProviderModifyItemOptions { get }
    * @availability iOS 26.0+
    */
-  get failOnConflict(): NSFileProviderModifyItemOptions { return callSDK<NSFileProviderModifyItemOptions>("FileProvider_067acaa3e5f56b46", 3555612526745857, undefined, []); },
+  get failOnConflict(): NSFileProviderModifyItemOptions { return callSDK<NSFileProviderModifyItemOptions>("FileProvider_d968214ecc684fb6", 3555612526745857, undefined, []); },
   /**
    * static var isImmediateUploadRequestByPresentingApplication: NSFileProviderModifyItemOptions { get }
    * @availability iOS 26.0+
    */
-  get isImmediateUploadRequestByPresentingApplication(): NSFileProviderModifyItemOptions { return callSDK<NSFileProviderModifyItemOptions>("FileProvider_067acaa3e5f56b46", 1867619451165988, undefined, []); },
+  get isImmediateUploadRequestByPresentingApplication(): NSFileProviderModifyItemOptions { return callSDK<NSFileProviderModifyItemOptions>("FileProvider_d968214ecc684fb6", 1867619451165988, undefined, []); },
   /**
    * static var mayAlreadyExist: NSFileProviderModifyItemOptions { get }
    * @availability iOS 16.0+
    */
-  get mayAlreadyExist(): NSFileProviderModifyItemOptions { return callSDK<NSFileProviderModifyItemOptions>("FileProvider_067acaa3e5f56b46", 2330855191033491, undefined, []); },
+  get mayAlreadyExist(): NSFileProviderModifyItemOptions { return callSDK<NSFileProviderModifyItemOptions>("FileProvider_d968214ecc684fb6", 2330855191033491, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): NSFileProviderModifyItemOptions { return callSDK<NSFileProviderModifyItemOptions>("FileProvider_067acaa3e5f56b46", 1484741257477230, undefined, [rawValue]); }
+  init(rawValue: number): NSFileProviderModifyItemOptions { return callSDK<NSFileProviderModifyItemOptions>("FileProvider_d968214ecc684fb6", 1484741257477230, undefined, [rawValue]); }
 };
 
 /**
@@ -1120,7 +1120,7 @@ export const NSFileProviderNamespacePolicy = {
    * init?(rawValue: Int)
    * @availability iOS 27.0+
    */
-  init(rawValue: number): (NSFileProviderNamespacePolicy) | null { return callSDK<(NSFileProviderNamespacePolicy) | null>("FileProvider_067acaa3e5f56b46", 4246493227167698, undefined, [rawValue]); }
+  init(rawValue: number): (NSFileProviderNamespacePolicy) | null { return callSDK<(NSFileProviderNamespacePolicy) | null>("FileProvider_d968214ecc684fb6", 4246493227167698, undefined, [rawValue]); }
 };
 
 /**
@@ -1134,22 +1134,22 @@ export const NSFileProviderPage = {
    * static let initialPageSortedByDate: NSData
    * @availability iOS 11.0+
    */
-  get initialPageSortedByDate(): _Foundation_NSData { return callSDK<_Foundation_NSData>("FileProvider_067acaa3e5f56b46", 2108438852596724, undefined, []); },
+  get initialPageSortedByDate(): _Foundation_NSData { return callSDK<_Foundation_NSData>("FileProvider_d968214ecc684fb6", 2108438852596724, undefined, []); },
   /**
    * static let initialPageSortedByName: NSData
    * @availability iOS 11.0+
    */
-  get initialPageSortedByName(): _Foundation_NSData { return callSDK<_Foundation_NSData>("FileProvider_067acaa3e5f56b46", 3722658071545169, undefined, []); },
+  get initialPageSortedByName(): _Foundation_NSData { return callSDK<_Foundation_NSData>("FileProvider_d968214ecc684fb6", 3722658071545169, undefined, []); },
   /**
    * init(rawValue: Data)
    * @availability iOS 11.0+
    */
-  initRawValue(rawValue: ArrayBuffer): NSFileProviderPage { return callSDK<NSFileProviderPage>("FileProvider_067acaa3e5f56b46", 3010156572092295, undefined, [rawValue]); },
+  initRawValue(rawValue: ArrayBuffer): NSFileProviderPage { return callSDK<NSFileProviderPage>("FileProvider_d968214ecc684fb6", 3010156572092295, undefined, [rawValue]); },
   /**
    * init(_ rawValue: Data)
    * @availability iOS 11.0+
    */
-  init(rawValue: ArrayBuffer): NSFileProviderPage { return callSDK<NSFileProviderPage>("FileProvider_067acaa3e5f56b46", 1980350567581881, undefined, [rawValue]); }
+  init(rawValue: ArrayBuffer): NSFileProviderPage { return callSDK<NSFileProviderPage>("FileProvider_d968214ecc684fb6", 1980350567581881, undefined, [rawValue]); }
 };
 
 /**
@@ -1227,22 +1227,22 @@ export interface NSFileProviderReplicatedExtension {
  */
 export class NSFileProviderRequest extends SDKHandle {
   /** init() */
-  static init(): NSFileProviderRequest { return callSDK<NSFileProviderRequest>("FileProvider_067acaa3e5f56b46", 2753012467125844, undefined, []); }
+  static init(): NSFileProviderRequest { return callSDK<NSFileProviderRequest>("FileProvider_d968214ecc684fb6", 2753012467125844, undefined, []); }
   /**
    * var domainVersion: NSFileProviderDomainVersion? { get }
    * @availability iOS 16.0+
    */
-  get domainVersion(): (NSFileProviderDomainVersion) | null { return callSDK<(NSFileProviderDomainVersion) | null>("FileProvider_067acaa3e5f56b46", 3287482333127117, this, []); }
+  get domainVersion(): (NSFileProviderDomainVersion) | null { return callSDK<(NSFileProviderDomainVersion) | null>("FileProvider_d968214ecc684fb6", 3287482333127117, this, []); }
   /**
    * var isFileViewerRequest: Bool { get }
    * @availability iOS 16.0+
    */
-  get isFileViewerRequest(): boolean { return callSDK<boolean>("FileProvider_067acaa3e5f56b46", 1614967802302513, this, []); }
+  get isFileViewerRequest(): boolean { return callSDK<boolean>("FileProvider_d968214ecc684fb6", 1614967802302513, this, []); }
   /**
    * var isSystemRequest: Bool { get }
    * @availability iOS 16.0+
    */
-  get isSystemRequest(): boolean { return callSDK<boolean>("FileProvider_067acaa3e5f56b46", 388019193234547, this, []); }
+  get isSystemRequest(): boolean { return callSDK<boolean>("FileProvider_d968214ecc684fb6", 388019193234547, this, []); }
   declare readonly $type: { "c:objc(cs)NSFileProviderRequest": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "domainVersion": true; "isFileViewerRequest": true; "isSystemRequest": true };
 }
@@ -1282,12 +1282,12 @@ export const NSFileProviderSyncAnchor = {
    * init(rawValue: Data)
    * @availability iOS 11.0+
    */
-  initRawValue(rawValue: ArrayBuffer): NSFileProviderSyncAnchor { return callSDK<NSFileProviderSyncAnchor>("FileProvider_067acaa3e5f56b46", 1770170918905442, undefined, [rawValue]); },
+  initRawValue(rawValue: ArrayBuffer): NSFileProviderSyncAnchor { return callSDK<NSFileProviderSyncAnchor>("FileProvider_d968214ecc684fb6", 1770170918905442, undefined, [rawValue]); },
   /**
    * init(_ rawValue: Data)
    * @availability iOS 11.0+
    */
-  init(rawValue: ArrayBuffer): NSFileProviderSyncAnchor { return callSDK<NSFileProviderSyncAnchor>("FileProvider_067acaa3e5f56b46", 3705067893670179, undefined, [rawValue]); }
+  init(rawValue: ArrayBuffer): NSFileProviderSyncAnchor { return callSDK<NSFileProviderSyncAnchor>("FileProvider_d968214ecc684fb6", 3705067893670179, undefined, [rawValue]); }
 };
 
 /**
@@ -1373,7 +1373,7 @@ export const NSFileProviderTestingOperationSide = {
    * init?(rawValue: UInt)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (NSFileProviderTestingOperationSide) | null { return callSDK<(NSFileProviderTestingOperationSide) | null>("FileProvider_067acaa3e5f56b46", 2862869344421111, undefined, [rawValue]); }
+  init(rawValue: number): (NSFileProviderTestingOperationSide) | null { return callSDK<(NSFileProviderTestingOperationSide) | null>("FileProvider_d968214ecc684fb6", 2862869344421111, undefined, [rawValue]); }
 };
 
 /**
@@ -1387,7 +1387,7 @@ export const NSFileProviderTestingOperationType = {
    * init?(rawValue: Int)
    * @availability iOS 16.0+
    */
-  init(rawValue: number): (NSFileProviderTestingOperationType) | null { return callSDK<(NSFileProviderTestingOperationType) | null>("FileProvider_067acaa3e5f56b46", 2032395872189015, undefined, [rawValue]); }
+  init(rawValue: number): (NSFileProviderTestingOperationType) | null { return callSDK<(NSFileProviderTestingOperationType) | null>("FileProvider_d968214ecc684fb6", 2032395872189015, undefined, [rawValue]); }
 };
 
 /**
@@ -1411,24 +1411,24 @@ export class NSFileProviderTypeAndCreator extends SDKHandle {
    * var creator: OSType
    * @availability iOS 16.0+
    */
-  get creator(): SDKHandle { return callSDK<SDKHandle>("FileProvider_067acaa3e5f56b46", 247207401612918, this, []); }
-  set creator(value: SDKHandle) { callSDK<void>("FileProvider_067acaa3e5f56b46", 2659252176065274, this, [value]); }
+  get creator(): SDKHandle { return callSDK<SDKHandle>("FileProvider_d968214ecc684fb6", 247207401612918, this, []); }
+  set creator(value: SDKHandle) { callSDK<void>("FileProvider_d968214ecc684fb6", 2659252176065274, this, [value]); }
   /**
    * var type: OSType
    * @availability iOS 16.0+
    */
-  get type(): SDKHandle { return callSDK<SDKHandle>("FileProvider_067acaa3e5f56b46", 2795291991624579, this, []); }
-  set type(value: SDKHandle) { callSDK<void>("FileProvider_067acaa3e5f56b46", 3805148184494368, this, [value]); }
+  get type(): SDKHandle { return callSDK<SDKHandle>("FileProvider_d968214ecc684fb6", 2795291991624579, this, []); }
+  set type(value: SDKHandle) { callSDK<void>("FileProvider_d968214ecc684fb6", 3805148184494368, this, [value]); }
   /**
    * init(type: OSType, creator: OSType)
    * @availability iOS 16.0+
    */
-  static initTypeCreator(type: SDKHandle, creator: SDKHandle): NSFileProviderTypeAndCreator { return callSDK<NSFileProviderTypeAndCreator>("FileProvider_067acaa3e5f56b46", 2015106969166144, undefined, [type, creator]); }
+  static initTypeCreator(type: SDKHandle, creator: SDKHandle): NSFileProviderTypeAndCreator { return callSDK<NSFileProviderTypeAndCreator>("FileProvider_d968214ecc684fb6", 2015106969166144, undefined, [type, creator]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): NSFileProviderTypeAndCreator { return callSDK<NSFileProviderTypeAndCreator>("FileProvider_067acaa3e5f56b46", 1475820868395718, undefined, []); }
+  static init(): NSFileProviderTypeAndCreator { return callSDK<NSFileProviderTypeAndCreator>("FileProvider_d968214ecc684fb6", 1475820868395718, undefined, []); }
   declare readonly $type: { "c:@S@NSFileProviderTypeAndCreator": true };
 }
 
@@ -1443,17 +1443,17 @@ export const NSFileProviderUserInfoKey = {
    * static let experimentID: NSFileProviderUserInfoKey
    * @availability iOS 26.0+
    */
-  get experimentID(): NSFileProviderUserInfoKey { return callSDK<NSFileProviderUserInfoKey>("FileProvider_067acaa3e5f56b46", 2609157840767440, undefined, []); },
+  get experimentID(): NSFileProviderUserInfoKey { return callSDK<NSFileProviderUserInfoKey>("FileProvider_d968214ecc684fb6", 2609157840767440, undefined, []); },
   /**
    * init(rawValue: String)
    * @availability iOS 26.0+
    */
-  initRawValue(rawValue: string): NSFileProviderUserInfoKey { return callSDK<NSFileProviderUserInfoKey>("FileProvider_067acaa3e5f56b46", 916382342611066, undefined, [rawValue]); },
+  initRawValue(rawValue: string): NSFileProviderUserInfoKey { return callSDK<NSFileProviderUserInfoKey>("FileProvider_d968214ecc684fb6", 916382342611066, undefined, [rawValue]); },
   /**
    * init(_ rawValue: String)
    * @availability iOS 26.0+
    */
-  init(rawValue: string): NSFileProviderUserInfoKey { return callSDK<NSFileProviderUserInfoKey>("FileProvider_067acaa3e5f56b46", 4433056609302017, undefined, [rawValue]); }
+  init(rawValue: string): NSFileProviderUserInfoKey { return callSDK<NSFileProviderUserInfoKey>("FileProvider_d968214ecc684fb6", 4433056609302017, undefined, [rawValue]); }
 };
 
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
@@ -1463,17 +1463,17 @@ export const NSNotification_Name = {
    * static let fileProviderDomainDidChange: NSNotification.Name
    * @availability iOS 16.0+
    */
-  get fileProviderDomainDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("FileProvider_067acaa3e5f56b46", 3223375807414708, undefined, []); },
+  get fileProviderDomainDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("FileProvider_d968214ecc684fb6", 3223375807414708, undefined, []); },
   /**
    * static let fileProviderMaterializedSetDidChange: NSNotification.Name
    * @availability iOS 16.0+
    */
-  get fileProviderMaterializedSetDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("FileProvider_067acaa3e5f56b46", 2957134206244258, undefined, []); },
+  get fileProviderMaterializedSetDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("FileProvider_d968214ecc684fb6", 2957134206244258, undefined, []); },
   /**
    * static let fileProviderPendingSetDidChange: NSNotification.Name
    * @availability iOS 16.0+
    */
-  get fileProviderPendingSetDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("FileProvider_067acaa3e5f56b46", 4189720239964039, undefined, []); }
+  get fileProviderPendingSetDidChange(): _Foundation_NSNotification_Name { return callSDK<_Foundation_NSNotification_Name>("FileProvider_d968214ecc684fb6", 4189720239964039, undefined, []); }
 };
 
 /**
@@ -1481,51 +1481,51 @@ export const NSNotification_Name = {
  * @availability iOS 8.0+
  * @deprecated iOS 13.0
  */
-export const NSFileProviderErrorCollidingItemKey: string = callSDK<string>("FileProvider_067acaa3e5f56b46", 3550377144606444, undefined, []);
+export const NSFileProviderErrorCollidingItemKey: string = callSDK<string>("FileProvider_d968214ecc684fb6", 3550377144606444, undefined, []);
 
 /**
  * let NSFileProviderErrorDomain: String
  * @availability iOS 11.0+
  */
-export const NSFileProviderErrorDomain: string = callSDK<string>("FileProvider_067acaa3e5f56b46", 140999729931317, undefined, []);
+export const NSFileProviderErrorDomain: string = callSDK<string>("FileProvider_d968214ecc684fb6", 140999729931317, undefined, []);
 
 /**
  * let NSFileProviderErrorItemKey: String
  * @availability iOS 13.0+
  */
-export const NSFileProviderErrorItemKey: string = callSDK<string>("FileProvider_067acaa3e5f56b46", 2709738658003157, undefined, []);
+export const NSFileProviderErrorItemKey: string = callSDK<string>("FileProvider_d968214ecc684fb6", 2709738658003157, undefined, []);
 
 /**
  * let NSFileProviderErrorNonExistentItemIdentifierKey: String
  * @availability iOS 11.0+
  */
-export const NSFileProviderErrorNonExistentItemIdentifierKey: string = callSDK<string>("FileProvider_067acaa3e5f56b46", 1883246031479482, undefined, []);
+export const NSFileProviderErrorNonExistentItemIdentifierKey: string = callSDK<string>("FileProvider_d968214ecc684fb6", 1883246031479482, undefined, []);
 
 /**
  * let NSFileProviderFavoriteRankUnranked: UInt64
  * @availability iOS 11.0+
  */
-export const NSFileProviderFavoriteRankUnranked: number = callSDK<number>("FileProvider_067acaa3e5f56b46", 1962747316869058, undefined, []);
+export const NSFileProviderFavoriteRankUnranked: number = callSDK<number>("FileProvider_d968214ecc684fb6", 1962747316869058, undefined, []);
 
-registerSDKClass("NSError", NSError, { module: "FileProvider_067acaa3e5f56b46", properties: {} }, true);
+registerSDKClass("NSError", NSError, { module: "FileProvider_d968214ecc684fb6", properties: {} }, true);
 registerSDKProtocol("c:objc(pl)NSFileProviderChangeObserver", {"didUpdate":"didUpdate(_:)","didDeleteItemsWithIdentifiers":"didDeleteItems(withIdentifiers:)","finishEnumeratingChangesUpToMoreComing":"finishEnumeratingChanges(upTo:moreComing:)","finishEnumeratingWithError":"finishEnumeratingWithError(_:)"});
 registerSDKProtocol("c:objc(pl)NSFileProviderCustomAction", {"performActionIdentifierOnItemsWithIdentifiersCompletionHandler":"performAction(identifier:onItemsWithIdentifiers:completionHandler:)"});
-registerSDKClass("NSFileProviderDomain", NSFileProviderDomain, { module: "FileProvider_067acaa3e5f56b46", properties: {"backingStoreIdentity":3199801326944253,"displayName":4070669673720818,"identifier":1771756156652585,"pathRelativeToDocumentStorage":589322401413418,"isReplicated":3703550476339085,"supportsSyncingTrash":3697384579679823,"testingModes":1631753452533526,"userEnabled":2841119514128685} });
+registerSDKClass("NSFileProviderDomain", NSFileProviderDomain, { module: "FileProvider_d968214ecc684fb6", properties: {"backingStoreIdentity":3199801326944253,"displayName":4070669673720818,"identifier":1771756156652585,"pathRelativeToDocumentStorage":589322401413418,"isReplicated":3703550476339085,"supportsSyncingTrash":3697384579679823,"testingModes":1631753452533526,"userEnabled":2841119514128685} });
 registerSDKProtocol("c:objc(pl)NSFileProviderDomainState", {});
-registerSDKClass("NSFileProviderDomainVersion", NSFileProviderDomainVersion, { module: "FileProvider_067acaa3e5f56b46", properties: {}, methods: {"next":{"id":1696844892539708}} });
+registerSDKClass("NSFileProviderDomainVersion", NSFileProviderDomainVersion, { module: "FileProvider_d968214ecc684fb6", properties: {}, methods: {"next":{"id":1696844892539708}} });
 registerSDKProtocol("c:objc(pl)NSFileProviderEnumerating", {"enumeratorForRequest":"enumerator(for:request:)"});
 registerSDKProtocol("c:objc(pl)NSFileProviderEnumerationObserver", {"didEnumerate":"didEnumerate(_:)","finishEnumeratingUpTo":"finishEnumerating(upTo:)","finishEnumeratingWithError":"finishEnumeratingWithError(_:)"});
 registerSDKProtocol("c:objc(pl)NSFileProviderEnumerator", {"invalidate":"invalidate()","enumerateItemsForStartingAt":"enumerateItems(for:startingAt:)","enumerateChangesForFrom":"enumerateChanges(for:from:)"});
-registerSDKClass("FileProvider.NSFileProviderError", NSFileProviderError, { module: "FileProvider_067acaa3e5f56b46", properties: {} });
-registerSDKClass("NSFileProviderExtension", NSFileProviderExtension, { module: "FileProvider_067acaa3e5f56b46", properties: {"documentStorageURL":3027236974139310,"domain":3618805347004869,"providerIdentifier":3053580428766146}, methods: {"urlForItem":{"id":3574239397018340},"createDirectory":{"id":1491249670928891,"hints":[null,null,{"callback":{"out":[]}}]},"deleteItem":{"id":1363590320061996,"hints":[null,{"callback":{"out":[]}}]},"enumerator":{"id":813052715035533},"fetchThumbnails":{"id":975728607417484,"hints":[null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"importDocument":{"id":496915619696779,"hints":[null,null,{"callback":{"out":[]}}]},"itemChanged":{"id":3149953029797020},"item":{"id":748285234923277},"persistentIdentifierForItem":{"id":710448026428895},"providePlaceholder":{"id":3898519631706642,"hints":[null,{"callback":{"out":[]}}]},"renameItem":{"id":3989765501755457,"hints":[null,null,{"callback":{"out":[]}}]},"reparentItem":{"id":1587129158093921,"hints":[null,null,null,{"callback":{"out":[]}}]},"setFavoriteRank":{"id":329777656506852,"hints":[null,null,{"callback":{"out":[]}}]},"setLastUsedDate":{"id":1209018442794126,"hints":[null,null,{"callback":{"out":[]}}]},"setTagData":{"id":199427753871676,"hints":[null,null,{"callback":{"out":[]}}]},"startProvidingItem":{"id":1093094277538792,"hints":[null,{"callback":{"out":[]}}]},"stopProvidingItem":{"id":1997071396617968},"supportedServiceSources":{"id":236710390319878},"trashItem":{"id":4380668306929157,"hints":[null,{"callback":{"out":[]}}]},"untrashItem":{"id":3788376032894306,"hints":[null,null,{"callback":{"out":[]}}]}} });
+registerSDKClass("FileProvider.NSFileProviderError", NSFileProviderError, { module: "FileProvider_d968214ecc684fb6", properties: {} });
+registerSDKClass("NSFileProviderExtension", NSFileProviderExtension, { module: "FileProvider_d968214ecc684fb6", properties: {"documentStorageURL":3027236974139310,"domain":3618805347004869,"providerIdentifier":3053580428766146}, methods: {"urlForItem":{"id":3574239397018340},"createDirectory":{"id":1491249670928891,"hints":[null,null,{"callback":{"out":[]}}]},"deleteItem":{"id":1363590320061996,"hints":[null,{"callback":{"out":[]}}]},"enumerator":{"id":813052715035533},"fetchThumbnails":{"id":975728607417484,"hints":[null,null,{"callback":{"out":[]}},{"callback":{"out":[]}}]},"importDocument":{"id":496915619696779,"hints":[null,null,{"callback":{"out":[]}}]},"itemChanged":{"id":3149953029797020},"item":{"id":748285234923277},"persistentIdentifierForItem":{"id":710448026428895},"providePlaceholder":{"id":3898519631706642,"hints":[null,{"callback":{"out":[]}}]},"renameItem":{"id":3989765501755457,"hints":[null,null,{"callback":{"out":[]}}]},"reparentItem":{"id":1587129158093921,"hints":[null,null,null,{"callback":{"out":[]}}]},"setFavoriteRank":{"id":329777656506852,"hints":[null,null,{"callback":{"out":[]}}]},"setLastUsedDate":{"id":1209018442794126,"hints":[null,null,{"callback":{"out":[]}}]},"setTagData":{"id":199427753871676,"hints":[null,null,{"callback":{"out":[]}}]},"startProvidingItem":{"id":1093094277538792,"hints":[null,{"callback":{"out":[]}}]},"stopProvidingItem":{"id":1997071396617968},"supportedServiceSources":{"id":236710390319878},"trashItem":{"id":4380668306929157,"hints":[null,{"callback":{"out":[]}}]},"untrashItem":{"id":3788376032894306,"hints":[null,null,{"callback":{"out":[]}}]}} });
 registerSDKProtocol("c:objc(pl)NSFileProviderIncrementalContentFetching", {"fetchContentsForVersionUsingExistingContentsAtExistingVersionRequestCompletionHandler":"fetchContents(for:version:usingExistingContentsAt:existingVersion:request:completionHandler:)"});
 registerSDKProtocol("c:objc(pl)NSFileProviderItemDecorating", {});
 registerSDKProtocol("c:objc(pl)NSFileProviderItem", {});
-registerSDKClass("NSFileProviderItemVersion", NSFileProviderItemVersion, { module: "FileProvider_067acaa3e5f56b46", properties: {"contentVersion":2304110660326105,"metadataVersion":1384352621538584} });
-registerSDKClass("NSFileProviderManager", NSFileProviderManager, { module: "FileProvider_067acaa3e5f56b46", properties: {"documentStorageURL":3600133297761329,"providerIdentifier":4492729728688297}, methods: {"enumeratorForMaterializedItems":{"id":3128301411865711},"enumeratorForPendingItems":{"id":4035279893346062},"evictItem":{"id":1061862926140237,"hints":[null,{"callback":{"out":[]}}]},"getService":{"id":327520117863510,"hints":[null,null,{"callback":{"out":[]}}]},"getUserVisibleURL":{"id":2495808977565407,"hints":[null,{"callback":{"out":[]}}]},"globalProgress":{"id":484450890165697},"listAvailableTestingOperations":{"id":2025150279488819},"register":{"id":662437863709223,"hints":[null,null,{"callback":{"out":[]}}]},"reimportItems":{"id":3769765617522396,"hints":[null,{"callback":{"out":[]}}]},"requestModification":{"id":3262821451072721,"hints":[null,null,null,{"callback":{"out":[]}}]},"run":{"id":1169618149453553},"signalEnumerator":{"id":1343657549351310,"hints":[null,{"callback":{"out":[]}}]},"signalErrorResolved":{"id":3359805961571846,"hints":[null,{"callback":{"out":[]}}]},"temporaryDirectoryURL":{"id":833621729797234},"waitForChanges":{"id":2166307973665616,"hints":[null,{"callback":{"out":[]}}]},"waitForStabilization":{"id":1769683581272929,"hints":[{"callback":{"out":[]}}]},"requestDownloadForItemWithIdentifierRequestedRangeCompletionHandler":{"id":2312137143835281,"hints":[null,null,{"callback":{"out":[]}}]},"requestDownloadForItemWithIdentifierRequestedRange":{"id":996115613146165}} });
+registerSDKClass("NSFileProviderItemVersion", NSFileProviderItemVersion, { module: "FileProvider_d968214ecc684fb6", properties: {"contentVersion":2304110660326105,"metadataVersion":1384352621538584} });
+registerSDKClass("NSFileProviderManager", NSFileProviderManager, { module: "FileProvider_d968214ecc684fb6", properties: {"documentStorageURL":3600133297761329,"providerIdentifier":4492729728688297}, methods: {"enumeratorForMaterializedItems":{"id":3128301411865711},"enumeratorForPendingItems":{"id":4035279893346062},"evictItem":{"id":1061862926140237,"hints":[null,{"callback":{"out":[]}}]},"getService":{"id":327520117863510,"hints":[null,null,{"callback":{"out":[]}}]},"getUserVisibleURL":{"id":2495808977565407,"hints":[null,{"callback":{"out":[]}}]},"globalProgress":{"id":484450890165697},"listAvailableTestingOperations":{"id":2025150279488819},"register":{"id":662437863709223,"hints":[null,null,{"callback":{"out":[]}}]},"reimportItems":{"id":3769765617522396,"hints":[null,{"callback":{"out":[]}}]},"requestModification":{"id":3262821451072721,"hints":[null,null,null,{"callback":{"out":[]}}]},"run":{"id":1169618149453553},"signalEnumerator":{"id":1343657549351310,"hints":[null,{"callback":{"out":[]}}]},"signalErrorResolved":{"id":3359805961571846,"hints":[null,{"callback":{"out":[]}}]},"temporaryDirectoryURL":{"id":833621729797234},"waitForChanges":{"id":2166307973665616,"hints":[null,{"callback":{"out":[]}}]},"waitForStabilization":{"id":1769683581272929,"hints":[{"callback":{"out":[]}}]},"requestDownloadForItemWithIdentifierRequestedRangeCompletionHandler":{"id":2312137143835281,"hints":[null,null,{"callback":{"out":[]}}]},"requestDownloadForItemWithIdentifierRequestedRange":{"id":996115613146165}} });
 registerSDKProtocol("c:objc(pl)NSFileProviderPendingSetEnumerator", {"invalidate":"invalidate()","enumerateItemsForStartingAt":"enumerateItems(for:startingAt:)","enumerateChangesForFrom":"enumerateChanges(for:from:)"});
 registerSDKProtocol("c:objc(pl)NSFileProviderReplicatedExtension", {"enumeratorForRequest":"enumerator(for:request:)","initDomain":"init(domain:)","invalidate":"invalidate()","itemForRequestCompletionHandler":"item(for:request:completionHandler:)","fetchContentsForVersionRequestCompletionHandler":"fetchContents(for:version:request:completionHandler:)","createItemBasedOnFieldsContentsOptionsRequestCompletionHandler":"createItem(basedOn:fields:contents:options:request:completionHandler:)","modifyItemBaseVersionChangedFieldsContentsOptionsRequestCompletionHandler":"modifyItem(_:baseVersion:changedFields:contents:options:request:completionHandler:)","deleteItemIdentifierBaseVersionOptionsRequestCompletionHandler":"deleteItem(identifier:baseVersion:options:request:completionHandler:)"});
-registerSDKClass("NSFileProviderRequest", NSFileProviderRequest, { module: "FileProvider_067acaa3e5f56b46", properties: {"domainVersion":3287482333127117,"isFileViewerRequest":1614967802302513,"isSystemRequest":388019193234547} });
+registerSDKClass("NSFileProviderRequest", NSFileProviderRequest, { module: "FileProvider_d968214ecc684fb6", properties: {"domainVersion":3287482333127117,"isFileViewerRequest":1614967802302513,"isSystemRequest":388019193234547} });
 registerSDKProtocol("c:objc(pl)NSFileProviderServiceSource", {"makeListenerEndpoint":"makeListenerEndpoint()"});
 registerSDKProtocol("c:objc(pl)NSFileProviderServicing", {"supportedServiceSourcesForCompletionHandler":"supportedServiceSources(for:completionHandler:)"});
 registerSDKProtocol("c:objc(pl)NSFileProviderTestingChildrenEnumeration", {});
@@ -1538,4 +1538,4 @@ registerSDKProtocol("c:objc(pl)NSFileProviderTestingLookup", {});
 registerSDKProtocol("c:objc(pl)NSFileProviderTestingModification", {});
 registerSDKProtocol("c:objc(pl)NSFileProviderTestingOperation", {});
 registerSDKProtocol("c:objc(pl)NSFileProviderThumbnailing", {"fetchThumbnailsForRequestedSizePerThumbnailCompletionHandlerCompletionHandler":"fetchThumbnails(for:requestedSize:perThumbnailCompletionHandler:completionHandler:)"});
-registerSDKClass("FileProvider.NSFileProviderTypeAndCreator", NSFileProviderTypeAndCreator, { module: "FileProvider_067acaa3e5f56b46", properties: {} });
+registerSDKClass("FileProvider.NSFileProviderTypeAndCreator", NSFileProviderTypeAndCreator, { module: "FileProvider_d968214ecc684fb6", properties: {} });

@@ -97,12 +97,12 @@ export class ReceivedTransferredFile extends SDKHandle {
    * let isOriginalFile: Bool
    * @availability iOS 16.0+
    */
-  get isOriginalFile(): boolean { return callSDK<boolean>("CoreTransferable_067acaa3e5f56b46", 1976151988702257, this, []); }
+  get isOriginalFile(): boolean { return callSDK<boolean>("CoreTransferable_d968214ecc684fb6", 1976151988702257, this, []); }
   /**
    * let file: URL
    * @availability iOS 16.0+
    */
-  get file(): string { return callSDK<string>("CoreTransferable_067acaa3e5f56b46", 336993739750616, this, []); }
+  get file(): string { return callSDK<string>("CoreTransferable_d968214ecc684fb6", 336993739750616, this, []); }
   declare readonly $type: { "s:16CoreTransferable23ReceivedTransferredFileV": true };
 }
 
@@ -115,17 +115,17 @@ export class SentTransferredFile extends SDKHandle {
    * let allowAccessingOriginalFile: Bool
    * @availability iOS 16.0+
    */
-  get allowAccessingOriginalFile(): boolean { return callSDK<boolean>("CoreTransferable_067acaa3e5f56b46", 2587828246131848, this, []); }
+  get allowAccessingOriginalFile(): boolean { return callSDK<boolean>("CoreTransferable_d968214ecc684fb6", 2587828246131848, this, []); }
   /**
    * let file: URL
    * @availability iOS 16.0+
    */
-  get file(): string { return callSDK<string>("CoreTransferable_067acaa3e5f56b46", 2288545404773410, this, []); }
+  get file(): string { return callSDK<string>("CoreTransferable_d968214ecc684fb6", 2288545404773410, this, []); }
   /**
    * init(_ file: URL, allowAccessingOriginalFile: Bool = false)
    * @availability iOS 16.0+
    */
-  static init(file: string, allowAccessingOriginalFile?: boolean): SentTransferredFile { return callSDK<SentTransferredFile>("CoreTransferable_067acaa3e5f56b46", 404177858972354, undefined, [file, allowAccessingOriginalFile]); }
+  static init(file: string, allowAccessingOriginalFile?: boolean): SentTransferredFile { return callSDK<SentTransferredFile>("CoreTransferable_d968214ecc684fb6", 404177858972354, undefined, [file, allowAccessingOriginalFile]); }
   declare readonly $type: { "s:16CoreTransferable19SentTransferredFileV": true };
 }
 
@@ -168,17 +168,17 @@ export class TransferRepresentationVisibility extends SDKHandle {
    * static let ownProcess: TransferRepresentationVisibility
    * @availability iOS 16.0+
    */
-  static get ownProcess(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_067acaa3e5f56b46", 3729862353185062, undefined, []); }
+  static get ownProcess(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_d968214ecc684fb6", 3729862353185062, undefined, []); }
   /**
    * static let all: TransferRepresentationVisibility
    * @availability iOS 16.0+
    */
-  static get all(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_067acaa3e5f56b46", 3477191520014547, undefined, []); }
+  static get all(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_d968214ecc684fb6", 3477191520014547, undefined, []); }
   /**
    * static let team: TransferRepresentationVisibility
    * @availability iOS 16.0+
    */
-  static get team(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_067acaa3e5f56b46", 731117638315178, undefined, []); }
+  static get team(): TransferRepresentationVisibility { return callSDK<TransferRepresentationVisibility>("CoreTransferable_d968214ecc684fb6", 731117638315178, undefined, []); }
   declare readonly $type: { "s:16CoreTransferable32TransferRepresentationVisibilityV": true };
 }
 
@@ -202,14 +202,14 @@ export type TupleTransferRepresentation_Body<Item = unknown, Value = unknown> = 
  */
 export type URL_Representation = SDKHandle;
 
-registerSDKClass("CoreTransferable.CodableRepresentation", CodableRepresentation, { module: "CoreTransferable_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreTransferable.DataRepresentation", DataRepresentation, { module: "CoreTransferable_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreTransferable.FileRepresentation", FileRepresentation, { module: "CoreTransferable_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreTransferable.ProxyRepresentation", ProxyRepresentation, { module: "CoreTransferable_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreTransferable.ReceivedTransferredFile", ReceivedTransferredFile, { module: "CoreTransferable_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreTransferable.SentTransferredFile", SentTransferredFile, { module: "CoreTransferable_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreTransferable.CodableRepresentation", CodableRepresentation, { module: "CoreTransferable_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreTransferable.DataRepresentation", DataRepresentation, { module: "CoreTransferable_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreTransferable.FileRepresentation", FileRepresentation, { module: "CoreTransferable_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreTransferable.ProxyRepresentation", ProxyRepresentation, { module: "CoreTransferable_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreTransferable.ReceivedTransferredFile", ReceivedTransferredFile, { module: "CoreTransferable_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreTransferable.SentTransferredFile", SentTransferredFile, { module: "CoreTransferable_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:16CoreTransferable0B0P", {});
 registerSDKProtocol("s:16CoreTransferable22TransferRepresentationP", {});
-registerSDKClass("CoreTransferable.TransferRepresentationBuilder", TransferRepresentationBuilder, { module: "CoreTransferable_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreTransferable.TransferRepresentationVisibility", TransferRepresentationVisibility, { module: "CoreTransferable_067acaa3e5f56b46", properties: {} });
-registerSDKClass("CoreTransferable.TupleTransferRepresentation", TupleTransferRepresentation, { module: "CoreTransferable_067acaa3e5f56b46", properties: {} });
+registerSDKClass("CoreTransferable.TransferRepresentationBuilder", TransferRepresentationBuilder, { module: "CoreTransferable_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreTransferable.TransferRepresentationVisibility", TransferRepresentationVisibility, { module: "CoreTransferable_d968214ecc684fb6", properties: {} });
+registerSDKClass("CoreTransferable.TupleTransferRepresentation", TupleTransferRepresentation, { module: "CoreTransferable_d968214ecc684fb6", properties: {} });

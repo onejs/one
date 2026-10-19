@@ -138,6 +138,13 @@ export declare class MCBrowserViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "browser": true;
+        "delegate": true;
+        "maximumNumberOfPeers": true;
+        "minimumNumberOfPeers": true;
+        "session": true;
+    };
 }
 /**
  * protocol MCBrowserViewControllerDelegate : NSObjectProtocol

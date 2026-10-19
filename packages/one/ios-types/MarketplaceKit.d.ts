@@ -121,6 +121,12 @@ export declare class AppLibrary extends SDKHandle {
     readonly $type: {
         "s:14MarketplaceKit10AppLibraryC": true;
     };
+    readonly $observable: {
+        "installedApps": true;
+        "installingApps": true;
+        "maximumAllowedAgeRating": true;
+        "isLoading": true;
+    };
 }
 /**
  * @MainActor final class App
@@ -169,6 +175,15 @@ export declare class AppLibrary_App extends SDKHandle {
     presentAgeExceptionApproveInPersonSheet(): Promise<void>;
     readonly $type: {
         "s:14MarketplaceKit10AppLibraryC0C0C": true;
+    };
+    readonly $observable: {
+        "isUpdating": true;
+        "isInstalled": true;
+        "installation": true;
+        "isInstalling": true;
+        "installationError": true;
+        "installedMetadata": true;
+        "id": true;
     };
 }
 /**

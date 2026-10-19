@@ -26,62 +26,62 @@ export class NSObject extends SDKHandle {
    * class func conforms(to protocol: Protocol) -> Bool
    * @availability iOS 2.0+
    */
-  static conforms(protocol: string): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 1749225672424273, undefined, [protocol]); }
+  static conforms(protocol: string): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 1749225672424273, undefined, [protocol]); }
   /**
    * class func debugDescription() -> String
    * @availability iOS 2.0+
    */
-  static debugDescription(): string { return callSDK<string>("ObjectiveC_067acaa3e5f56b46", 1804017882264013, undefined, []); }
+  static debugDescription(): string { return callSDK<string>("ObjectiveC_d968214ecc684fb6", 1804017882264013, undefined, []); }
   /**
    * class func description() -> String
    * @availability iOS 2.0+
    */
-  static description(): string { return callSDK<string>("ObjectiveC_067acaa3e5f56b46", 3189891681706730, undefined, []); }
+  static description(): string { return callSDK<string>("ObjectiveC_d968214ecc684fb6", 3189891681706730, undefined, []); }
   /**
    * class func hash() -> Int
    * @availability iOS 2.0+
    */
-  static hash(): number { return callSDK<number>("ObjectiveC_067acaa3e5f56b46", 3134687128349651, undefined, []); }
+  static hash(): number { return callSDK<number>("ObjectiveC_d968214ecc684fb6", 3134687128349651, undefined, []); }
   /**
    * class func initialize()
    * @availability iOS 2.0+
    */
-  static initialize(): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3838185743159015, undefined, []); }
+  static initialize(): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3838185743159015, undefined, []); }
   /**
    * class func isSubclass(of aClass: AnyClass) -> Bool
    * @availability iOS 2.0+
    */
-  static isSubclass(aClass: string): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 3669970895144444, undefined, [aClass]); }
+  static isSubclass(aClass: string): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 3669970895144444, undefined, [aClass]); }
   /**
    * class func load()
    * @availability iOS 2.0+
    */
-  static load(): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 2318291678166315, undefined, []); }
+  static load(): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 2318291678166315, undefined, []); }
   /**
    * class func superclass() -> AnyClass?
    * @availability iOS 2.0+
    */
-  static superclass(): (string) | null { return callSDK<(string) | null>("ObjectiveC_067acaa3e5f56b46", 3276302971767437, undefined, []); }
+  static superclass(): (string) | null { return callSDK<(string) | null>("ObjectiveC_d968214ecc684fb6", 3276302971767437, undefined, []); }
   /**
    * func copy() -> Any
    * @availability iOS 2.0+
    */
-  copy(): unknown { return callSDK<unknown>("ObjectiveC_067acaa3e5f56b46", 2029445217640493, this, []); }
+  copy(): unknown { return callSDK<unknown>("ObjectiveC_d968214ecc684fb6", 2029445217640493, this, []); }
   /**
    * func finalize()
    * @availability iOS 2.0+
    */
-  finalize(): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 4409796875101370, this, []); }
+  finalize(): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 4409796875101370, this, []); }
   /**
    * init()
    * @availability iOS 2.0+
    */
-  static init(): NSObject { return callSDK<NSObject>("ObjectiveC_067acaa3e5f56b46", 505793175226334, undefined, []); }
+  static init(): NSObject { return callSDK<NSObject>("ObjectiveC_d968214ecc684fb6", 505793175226334, undefined, []); }
   /**
    * func mutableCopy() -> Any
    * @availability iOS 2.0+
    */
-  mutableCopy(): unknown { return callSDK<unknown>("ObjectiveC_067acaa3e5f56b46", 2282269385420363, this, []); }
+  mutableCopy(): unknown { return callSDK<unknown>("ObjectiveC_d968214ecc684fb6", 2282269385420363, this, []); }
   declare readonly $type: { "c:objc(cs)NSObject": true };
 }
 
@@ -134,7 +134,7 @@ export type objc_AssociationPolicy = "OBJC_ASSOCIATION_ASSIGN" | "OBJC_ASSOCIATI
 
 export const objc_AssociationPolicy = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (objc_AssociationPolicy) | null { return callSDK<(objc_AssociationPolicy) | null>("ObjectiveC_067acaa3e5f56b46", 2350426050551716, undefined, [rawValue]); }
+  init(rawValue: number): (objc_AssociationPolicy) | null { return callSDK<(objc_AssociationPolicy) | null>("ObjectiveC_d968214ecc684fb6", 2350426050551716, undefined, [rawValue]); }
 };
 
 /** typealias objc_exception_handler = (Any?, UnsafeMutableRawPointer?) -> Void */
@@ -161,20 +161,20 @@ export type objc_hook_lazyClassNamer = ((arg0: string) => Promise<(SDKHandle) | 
 /** struct objc_method_description */
 export class objc_method_description extends SDKHandle {
   /** var types: UnsafeMutablePointer<CChar>? */
-  get types(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 3453874966635407, this, []); }
-  set types(value: (SDKHandle) | null) { callSDK<void>("ObjectiveC_067acaa3e5f56b46", 462659256795717, this, [value]); }
+  get types(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 3453874966635407, this, []); }
+  set types(value: (SDKHandle) | null) { callSDK<void>("ObjectiveC_d968214ecc684fb6", 462659256795717, this, [value]); }
   /** init() */
-  static init(): objc_method_description { return callSDK<objc_method_description>("ObjectiveC_067acaa3e5f56b46", 1761682245803894, undefined, []); }
+  static init(): objc_method_description { return callSDK<objc_method_description>("ObjectiveC_d968214ecc684fb6", 1761682245803894, undefined, []); }
   declare readonly $type: { "c:@S@objc_method_description": true };
 }
 
 /** struct objc_object */
 export class objc_object extends SDKHandle {
   /** var isa: AnyClass */
-  get isa(): string { return callSDK<string>("ObjectiveC_067acaa3e5f56b46", 1799471100798508, this, []); }
-  set isa(value: string) { callSDK<void>("ObjectiveC_067acaa3e5f56b46", 2019876904675086, this, [value]); }
+  get isa(): string { return callSDK<string>("ObjectiveC_d968214ecc684fb6", 1799471100798508, this, []); }
+  set isa(value: string) { callSDK<void>("ObjectiveC_d968214ecc684fb6", 2019876904675086, this, [value]); }
   /** init(isa: AnyClass) */
-  static init(isa: string): objc_object { return callSDK<objc_object>("ObjectiveC_067acaa3e5f56b46", 1409977379343955, undefined, [isa]); }
+  static init(isa: string): objc_object { return callSDK<objc_object>("ObjectiveC_d968214ecc684fb6", 1409977379343955, undefined, [isa]); }
   declare readonly $type: { "c:@S@objc_object": true };
 }
 
@@ -184,13 +184,13 @@ export type objc_objectptr_t = SDKHandle;
 /** struct objc_property_attribute_t */
 export class objc_property_attribute_t extends SDKHandle {
   /** var name: UnsafePointer<CChar> */
-  get name(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 4468340179431668, this, []); }
-  set name(value: SDKHandle) { callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3168075149958922, this, [value]); }
+  get name(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 4468340179431668, this, []); }
+  set name(value: SDKHandle) { callSDK<void>("ObjectiveC_d968214ecc684fb6", 3168075149958922, this, [value]); }
   /** var value: UnsafePointer<CChar> */
-  get value(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 386370784531015, this, []); }
-  set value(value: SDKHandle) { callSDK<void>("ObjectiveC_067acaa3e5f56b46", 289254837464074, this, [value]); }
+  get value(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 386370784531015, this, []); }
+  set value(value: SDKHandle) { callSDK<void>("ObjectiveC_d968214ecc684fb6", 289254837464074, this, [value]); }
   /** init(name: UnsafePointer<CChar>, value: UnsafePointer<CChar>) */
-  static init(name: SDKHandle, value: SDKHandle): objc_property_attribute_t { return callSDK<objc_property_attribute_t>("ObjectiveC_067acaa3e5f56b46", 38284584817915, undefined, [name, value]); }
+  static init(name: SDKHandle, value: SDKHandle): objc_property_attribute_t { return callSDK<objc_property_attribute_t>("ObjectiveC_d968214ecc684fb6", 38284584817915, undefined, [name, value]); }
   declare readonly $type: { "c:@SA@objc_property_attribute_t": true };
 }
 
@@ -200,13 +200,13 @@ export type objc_property_t = SDKHandle;
 /** struct objc_super */
 export class objc_super extends SDKHandle {
   /** var receiver: Unmanaged<AnyObject> */
-  get receiver(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 2036772946709645, this, []); }
-  set receiver(value: SDKHandle) { callSDK<void>("ObjectiveC_067acaa3e5f56b46", 4039596496849555, this, [value]); }
+  get receiver(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 2036772946709645, this, []); }
+  set receiver(value: SDKHandle) { callSDK<void>("ObjectiveC_d968214ecc684fb6", 4039596496849555, this, [value]); }
   /** var super_class: AnyClass */
-  get super_class(): string { return callSDK<string>("ObjectiveC_067acaa3e5f56b46", 1676608356745854, this, []); }
-  set super_class(value: string) { callSDK<void>("ObjectiveC_067acaa3e5f56b46", 325642937527190, this, [value]); }
+  get super_class(): string { return callSDK<string>("ObjectiveC_d968214ecc684fb6", 1676608356745854, this, []); }
+  set super_class(value: string) { callSDK<void>("ObjectiveC_d968214ecc684fb6", 325642937527190, this, [value]); }
   /** init(receiver: Unmanaged<AnyObject>, super_class: AnyClass) */
-  static init(receiver: SDKHandle, super_class: string): objc_super { return callSDK<objc_super>("ObjectiveC_067acaa3e5f56b46", 3470837563490762, undefined, [receiver, super_class]); }
+  static init(receiver: SDKHandle, super_class: string): objc_super { return callSDK<objc_super>("ObjectiveC_d968214ecc684fb6", 3470837563490762, undefined, [receiver, super_class]); }
   declare readonly $type: { "c:@S@objc_super": true };
 }
 
@@ -225,27 +225,27 @@ export class ObjCBool extends SDKHandle {
    * var description: String { get }
    * @availability iOS 1.0+
    */
-  get description(): string { return callSDK<string>("ObjectiveC_067acaa3e5f56b46", 3279589130598786, this, []); }
+  get description(): string { return callSDK<string>("ObjectiveC_d968214ecc684fb6", 3279589130598786, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 1.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 3796786726875614, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 3796786726875614, this, []); }
   /**
    * init(booleanLiteral value: Bool)
    * @availability iOS 1.0+
    */
-  static initBooleanLiteral(value: boolean): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 1500814384896912, undefined, [value]); }
+  static initBooleanLiteral(value: boolean): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 1500814384896912, undefined, [value]); }
   /**
    * var boolValue: Bool { get }
    * @availability iOS 1.0+
    */
-  get boolValue(): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 1256359955627501, this, []); }
+  get boolValue(): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 1256359955627501, this, []); }
   /**
    * init(_ value: Bool)
    * @availability iOS 1.0+
    */
-  static init(value: boolean): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 2748419774463877, undefined, [value]); }
+  static init(value: boolean): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 2748419774463877, undefined, [value]); }
   declare readonly $type: { "s:10ObjectiveC8ObjCBoolV": true };
 }
 
@@ -264,7 +264,7 @@ export class ObjCClassList extends SDKHandle {
    * func makeIterator() -> ObjCClassList.Iterator
    * @availability iOS 16.0+
    */
-  makeIterator(): ObjCClassList_Iterator { return callSDK<ObjCClassList_Iterator>("ObjectiveC_067acaa3e5f56b46", 1560870406095207, this, []); }
+  makeIterator(): ObjCClassList_Iterator { return callSDK<ObjCClassList_Iterator>("ObjectiveC_d968214ecc684fb6", 1560870406095207, this, []); }
   declare readonly $type: { "s:10ObjectiveC13ObjCClassListV": true };
 }
 
@@ -283,7 +283,7 @@ export class ObjCClassList_Iterator extends SDKHandle {
    * func next() -> AnyClass?
    * @availability iOS 16.0+
    */
-  next(): (string) | null { return callSDK<(string) | null>("ObjectiveC_067acaa3e5f56b46", 2309687947835278, this, []); }
+  next(): (string) | null { return callSDK<(string) | null>("ObjectiveC_d968214ecc684fb6", 2309687947835278, this, []); }
   declare readonly $type: { "s:10ObjectiveC13ObjCClassListV8IteratorC": true };
 }
 
@@ -315,22 +315,22 @@ export class Selector extends SDKHandle {
    * var description: String { get }
    * @availability iOS 1.0+
    */
-  get description(): string { return callSDK<string>("ObjectiveC_067acaa3e5f56b46", 2508846630913748, this, []); }
+  get description(): string { return callSDK<string>("ObjectiveC_d968214ecc684fb6", 2508846630913748, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 1.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 1903082277988976, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 1903082277988976, this, []); }
   /**
    * init(stringLiteral value: String)
    * @availability iOS 1.0+
    */
-  static initStringLiteral(value: string): Selector { return callSDK<Selector>("ObjectiveC_067acaa3e5f56b46", 1164241485843985, undefined, [value]); }
+  static initStringLiteral(value: string): Selector { return callSDK<Selector>("ObjectiveC_d968214ecc684fb6", 1164241485843985, undefined, [value]); }
   /**
    * init(_ str: String)
    * @availability iOS 1.0+
    */
-  static init(str: string): Selector { return callSDK<Selector>("ObjectiveC_067acaa3e5f56b46", 4390621242344264, undefined, [str]); }
+  static init(str: string): Selector { return callSDK<Selector>("ObjectiveC_d968214ecc684fb6", 4390621242344264, undefined, [str]); }
   declare readonly $type: { "s:10ObjectiveC8SelectorV": true };
 }
 
@@ -356,631 +356,631 @@ export type Selector_UnicodeScalarLiteralType = string;
  * func class_addIvar(_ cls: AnyClass?, _ name: UnsafePointer<CChar>, _ size: Int, _ alignment: UInt8, _ types: UnsafePointer<CChar>?) -> Bool
  * @availability iOS 2.0+
  */
-export function class_addIvar(cls: (string) | null, name: SDKHandle, size: number, alignment: number, types?: (SDKHandle) | null): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 3427318672126997, undefined, [cls, name, size, alignment, types]); }
+export function class_addIvar(cls: (string) | null, name: SDKHandle, size: number, alignment: number, types?: (SDKHandle) | null): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 3427318672126997, undefined, [cls, name, size, alignment, types]); }
 
 /**
  * func class_addProperty(_ cls: AnyClass?, _ name: UnsafePointer<CChar>, _ attributes: UnsafePointer<objc_property_attribute_t>?, _ attributeCount: UInt32) -> Bool
  * @availability iOS 4.3+
  */
-export function class_addProperty(cls: (string) | null, name: SDKHandle, attributes: (SDKHandle) | null, attributeCount: number): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 620637014934385, undefined, [cls, name, attributes, attributeCount]); }
+export function class_addProperty(cls: (string) | null, name: SDKHandle, attributes: (SDKHandle) | null, attributeCount: number): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 620637014934385, undefined, [cls, name, attributes, attributeCount]); }
 
 /**
  * func class_addProtocol(_ cls: AnyClass?, _ protocol: Protocol) -> Bool
  * @availability iOS 2.0+
  */
-export function class_addProtocol(cls: (string) | null, protocol: string): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 2025775510116607, undefined, [cls, protocol]); }
+export function class_addProtocol(cls: (string) | null, protocol: string): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 2025775510116607, undefined, [cls, protocol]); }
 
 /**
  * func class_conformsToProtocol(_ cls: AnyClass?, _ protocol: Protocol?) -> Bool
  * @availability iOS 2.0+
  */
-export function class_conformsToProtocol(cls?: (string) | null, protocol?: (string) | null): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 828033252107408, undefined, [cls, protocol]); }
+export function class_conformsToProtocol(cls?: (string) | null, protocol?: (string) | null): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 828033252107408, undefined, [cls, protocol]); }
 
 /**
  * func class_copyIvarList(_ cls: AnyClass?, _ outCount: UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<Ivar>?
  * @availability iOS 2.0+
  */
-export function class_copyIvarList(cls?: (string) | null, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 101168165870190, undefined, [cls, outCount]); }
+export function class_copyIvarList(cls?: (string) | null, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 101168165870190, undefined, [cls, outCount]); }
 
 /**
  * func class_copyMethodList(_ cls: AnyClass?, _ outCount: UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<Method>?
  * @availability iOS 2.0+
  */
-export function class_copyMethodList(cls?: (string) | null, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 2869375235916440, undefined, [cls, outCount]); }
+export function class_copyMethodList(cls?: (string) | null, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 2869375235916440, undefined, [cls, outCount]); }
 
 /**
  * func class_copyPropertyList(_ cls: AnyClass?, _ outCount: UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<objc_property_t>?
  * @availability iOS 2.0+
  */
-export function class_copyPropertyList(cls?: (string) | null, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 3988261312969063, undefined, [cls, outCount]); }
+export function class_copyPropertyList(cls?: (string) | null, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 3988261312969063, undefined, [cls, outCount]); }
 
 /**
  * func class_createInstance(_ cls: AnyClass?, _ extraBytes: Int) -> Any?
  * @availability iOS 2.0+
  */
-export function class_createInstance(cls: (string) | null, extraBytes: number): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_067acaa3e5f56b46", 53625269681866, undefined, [cls, extraBytes]); }
+export function class_createInstance(cls: (string) | null, extraBytes: number): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_d968214ecc684fb6", 53625269681866, undefined, [cls, extraBytes]); }
 
 /**
  * func class_getClassVariable(_ cls: AnyClass?, _ name: UnsafePointer<CChar>) -> Ivar?
  * @availability iOS 2.0+
  */
-export function class_getClassVariable(cls: (string) | null, name: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 3992419884244982, undefined, [cls, name]); }
+export function class_getClassVariable(cls: (string) | null, name: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 3992419884244982, undefined, [cls, name]); }
 
 /**
  * func class_getImageName(_ cls: AnyClass?) -> UnsafePointer<CChar>?
  * @availability iOS 2.0+
  */
-export function class_getImageName(cls?: (string) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 801635590532819, undefined, [cls]); }
+export function class_getImageName(cls?: (string) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 801635590532819, undefined, [cls]); }
 
 /**
  * func class_getInstanceSize(_ cls: AnyClass?) -> Int
  * @availability iOS 2.0+
  */
-export function class_getInstanceSize(cls?: (string) | null): number { return callSDK<number>("ObjectiveC_067acaa3e5f56b46", 2018700495924381, undefined, [cls]); }
+export function class_getInstanceSize(cls?: (string) | null): number { return callSDK<number>("ObjectiveC_d968214ecc684fb6", 2018700495924381, undefined, [cls]); }
 
 /**
  * func class_getInstanceVariable(_ cls: AnyClass?, _ name: UnsafePointer<CChar>) -> Ivar?
  * @availability iOS 2.0+
  */
-export function class_getInstanceVariable(cls: (string) | null, name: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 2334322936579957, undefined, [cls, name]); }
+export function class_getInstanceVariable(cls: (string) | null, name: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 2334322936579957, undefined, [cls, name]); }
 
 /**
  * func class_getIvarLayout(_ cls: AnyClass?) -> UnsafePointer<UInt8>?
  * @availability iOS 2.0+
  */
-export function class_getIvarLayout(cls?: (string) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 1378988388103738, undefined, [cls]); }
+export function class_getIvarLayout(cls?: (string) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 1378988388103738, undefined, [cls]); }
 
 /**
  * func class_getName(_ cls: AnyClass?) -> UnsafePointer<CChar>
  * @availability iOS 2.0+
  */
-export function class_getName(cls?: (string) | null): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 141946080383356, undefined, [cls]); }
+export function class_getName(cls?: (string) | null): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 141946080383356, undefined, [cls]); }
 
 /**
  * func class_getProperty(_ cls: AnyClass?, _ name: UnsafePointer<CChar>) -> objc_property_t?
  * @availability iOS 2.0+
  */
-export function class_getProperty(cls: (string) | null, name: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 3334270830210151, undefined, [cls, name]); }
+export function class_getProperty(cls: (string) | null, name: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 3334270830210151, undefined, [cls, name]); }
 
 /**
  * func class_getSuperclass(_ cls: AnyClass?) -> AnyClass?
  * @availability iOS 2.0+
  */
-export function class_getSuperclass(cls?: (string) | null): (string) | null { return callSDK<(string) | null>("ObjectiveC_067acaa3e5f56b46", 3236584325636264, undefined, [cls]); }
+export function class_getSuperclass(cls?: (string) | null): (string) | null { return callSDK<(string) | null>("ObjectiveC_d968214ecc684fb6", 3236584325636264, undefined, [cls]); }
 
 /**
  * func class_getVersion(_ cls: AnyClass?) -> Int32
  * @availability iOS 2.0+
  */
-export function class_getVersion(cls?: (string) | null): number { return callSDK<number>("ObjectiveC_067acaa3e5f56b46", 4420534264825584, undefined, [cls]); }
+export function class_getVersion(cls?: (string) | null): number { return callSDK<number>("ObjectiveC_d968214ecc684fb6", 4420534264825584, undefined, [cls]); }
 
 /**
  * func class_getWeakIvarLayout(_ cls: AnyClass?) -> UnsafePointer<UInt8>?
  * @availability iOS 2.0+
  */
-export function class_getWeakIvarLayout(cls?: (string) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 3746797813177600, undefined, [cls]); }
+export function class_getWeakIvarLayout(cls?: (string) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 3746797813177600, undefined, [cls]); }
 
 /**
  * func class_isMetaClass(_ cls: AnyClass?) -> Bool
  * @availability iOS 2.0+
  */
-export function class_isMetaClass(cls?: (string) | null): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 2842834342527837, undefined, [cls]); }
+export function class_isMetaClass(cls?: (string) | null): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 2842834342527837, undefined, [cls]); }
 
 /**
  * func class_replaceProperty(_ cls: AnyClass?, _ name: UnsafePointer<CChar>, _ attributes: UnsafePointer<objc_property_attribute_t>?, _ attributeCount: UInt32)
  * @availability iOS 4.3+
  */
-export function class_replaceProperty(cls: (string) | null, name: SDKHandle, attributes: (SDKHandle) | null, attributeCount: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3651266345226647, undefined, [cls, name, attributes, attributeCount]); }
+export function class_replaceProperty(cls: (string) | null, name: SDKHandle, attributes: (SDKHandle) | null, attributeCount: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3651266345226647, undefined, [cls, name, attributes, attributeCount]); }
 
 /**
  * func class_setIvarLayout(_ cls: AnyClass?, _ layout: UnsafePointer<UInt8>?)
  * @availability iOS 2.0+
  */
-export function class_setIvarLayout(cls?: (string) | null, layout?: (SDKHandle) | null): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3091661382956508, undefined, [cls, layout]); }
+export function class_setIvarLayout(cls?: (string) | null, layout?: (SDKHandle) | null): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3091661382956508, undefined, [cls, layout]); }
 
 /**
  * func class_setVersion(_ cls: AnyClass?, _ version: Int32)
  * @availability iOS 2.0+
  */
-export function class_setVersion(cls: (string) | null, version: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3987596007831359, undefined, [cls, version]); }
+export function class_setVersion(cls: (string) | null, version: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3987596007831359, undefined, [cls, version]); }
 
 /**
  * func class_setWeakIvarLayout(_ cls: AnyClass?, _ layout: UnsafePointer<UInt8>?)
  * @availability iOS 2.0+
  */
-export function class_setWeakIvarLayout(cls?: (string) | null, layout?: (SDKHandle) | null): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 742482082889854, undefined, [cls, layout]); }
+export function class_setWeakIvarLayout(cls?: (string) | null, layout?: (SDKHandle) | null): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 742482082889854, undefined, [cls, layout]); }
 
 /**
  * func imp_getBlock(_ anImp: IMP) -> Any?
  * @availability iOS 4.3+
  */
-export function imp_getBlock(anImp: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_067acaa3e5f56b46", 4438808219670268, undefined, [anImp]); }
+export function imp_getBlock(anImp: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_d968214ecc684fb6", 4438808219670268, undefined, [anImp]); }
 
 /**
  * func imp_implementationWithBlock(_ block: Any) -> IMP
  * @availability iOS 4.3+
  */
-export function imp_implementationWithBlock(block: unknown): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 4382779392159298, undefined, [block]); }
+export function imp_implementationWithBlock(block: unknown): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 4382779392159298, undefined, [block]); }
 
 /**
  * func imp_removeBlock(_ anImp: IMP) -> Bool
  * @availability iOS 4.3+
  */
-export function imp_removeBlock(anImp: SDKHandle): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 1217946324573145, undefined, [anImp]); }
+export function imp_removeBlock(anImp: SDKHandle): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 1217946324573145, undefined, [anImp]); }
 
 /**
  * func ivar_getName(_ v: Ivar) -> UnsafePointer<CChar>?
  * @availability iOS 2.0+
  */
-export function ivar_getName(v: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 916062702432255, undefined, [v]); }
+export function ivar_getName(v: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 916062702432255, undefined, [v]); }
 
 /**
  * func ivar_getOffset(_ v: Ivar) -> Int
  * @availability iOS 2.0+
  */
-export function ivar_getOffset(v: SDKHandle): number { return callSDK<number>("ObjectiveC_067acaa3e5f56b46", 1627116038737330, undefined, [v]); }
+export function ivar_getOffset(v: SDKHandle): number { return callSDK<number>("ObjectiveC_d968214ecc684fb6", 1627116038737330, undefined, [v]); }
 
 /**
  * func ivar_getTypeEncoding(_ v: Ivar) -> UnsafePointer<CChar>?
  * @availability iOS 2.0+
  */
-export function ivar_getTypeEncoding(v: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 3847028967867813, undefined, [v]); }
+export function ivar_getTypeEncoding(v: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 3847028967867813, undefined, [v]); }
 
 /**
  * func method_copyArgumentType(_ m: Method, _ index: UInt32) -> UnsafeMutablePointer<CChar>?
  * @availability iOS 2.0+
  */
-export function method_copyArgumentType(m: SDKHandle, index: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 3308923659288752, undefined, [m, index]); }
+export function method_copyArgumentType(m: SDKHandle, index: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 3308923659288752, undefined, [m, index]); }
 
 /**
  * func method_copyReturnType(_ m: Method) -> UnsafeMutablePointer<CChar>
  * @availability iOS 2.0+
  */
-export function method_copyReturnType(m: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 415508294346645, undefined, [m]); }
+export function method_copyReturnType(m: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 415508294346645, undefined, [m]); }
 
 /**
  * func method_exchangeImplementations(_ m1: Method, _ m2: Method)
  * @availability iOS 2.0+
  */
-export function method_exchangeImplementations(m1: SDKHandle, m2: SDKHandle): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3684104858402155, undefined, [m1, m2]); }
+export function method_exchangeImplementations(m1: SDKHandle, m2: SDKHandle): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3684104858402155, undefined, [m1, m2]); }
 
 /**
  * func method_getArgumentType(_ m: Method, _ index: UInt32, _ dst: UnsafeMutablePointer<CChar>?, _ dst_len: Int)
  * @availability iOS 2.0+
  */
-export function method_getArgumentType(m: SDKHandle, index: number, dst: (SDKHandle) | null, dst_len: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 1901727061736490, undefined, [m, index, dst, dst_len]); }
+export function method_getArgumentType(m: SDKHandle, index: number, dst: (SDKHandle) | null, dst_len: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 1901727061736490, undefined, [m, index, dst, dst_len]); }
 
 /**
  * func method_getDescription(_ m: Method) -> UnsafeMutablePointer<objc_method_description>
  * @availability iOS 2.0+
  * @deprecated iOS 15.0
  */
-export function method_getDescription(m: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 1884888651884425, undefined, [m]); }
+export function method_getDescription(m: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 1884888651884425, undefined, [m]); }
 
 /**
  * func method_getImplementation(_ m: Method) -> IMP
  * @availability iOS 2.0+
  */
-export function method_getImplementation(m: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 3744982331978043, undefined, [m]); }
+export function method_getImplementation(m: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 3744982331978043, undefined, [m]); }
 
 /**
  * func method_getNumberOfArguments(_ m: Method) -> UInt32
  * @availability iOS 2.0+
  */
-export function method_getNumberOfArguments(m: SDKHandle): number { return callSDK<number>("ObjectiveC_067acaa3e5f56b46", 2859088473246101, undefined, [m]); }
+export function method_getNumberOfArguments(m: SDKHandle): number { return callSDK<number>("ObjectiveC_d968214ecc684fb6", 2859088473246101, undefined, [m]); }
 
 /**
  * func method_getReturnType(_ m: Method, _ dst: UnsafeMutablePointer<CChar>, _ dst_len: Int)
  * @availability iOS 2.0+
  */
-export function method_getReturnType(m: SDKHandle, dst: SDKHandle, dst_len: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 4051325625171476, undefined, [m, dst, dst_len]); }
+export function method_getReturnType(m: SDKHandle, dst: SDKHandle, dst_len: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 4051325625171476, undefined, [m, dst, dst_len]); }
 
 /**
  * func method_getTypeEncoding(_ m: Method) -> UnsafePointer<CChar>?
  * @availability iOS 2.0+
  */
-export function method_getTypeEncoding(m: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 739676073547643, undefined, [m]); }
+export function method_getTypeEncoding(m: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 739676073547643, undefined, [m]); }
 
 /**
  * func method_setImplementation(_ m: Method, _ imp: IMP) -> IMP
  * @availability iOS 2.0+
  */
-export function method_setImplementation(m: SDKHandle, imp: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 199870951696473, undefined, [m, imp]); }
+export function method_setImplementation(m: SDKHandle, imp: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 199870951696473, undefined, [m, imp]); }
 
 /**
  * func objc_allocateClassPair(_ superclass: AnyClass?, _ name: UnsafePointer<CChar>, _ extraBytes: Int) -> AnyClass?
  * @availability iOS 2.0+
  */
-export function objc_allocateClassPair(superclass: (string) | null, name: SDKHandle, extraBytes: number): (string) | null { return callSDK<(string) | null>("ObjectiveC_067acaa3e5f56b46", 116232379029140, undefined, [superclass, name, extraBytes]); }
+export function objc_allocateClassPair(superclass: (string) | null, name: SDKHandle, extraBytes: number): (string) | null { return callSDK<(string) | null>("ObjectiveC_d968214ecc684fb6", 116232379029140, undefined, [superclass, name, extraBytes]); }
 
 /**
  * func objc_allocateProtocol(_ name: UnsafePointer<CChar>) -> Protocol?
  * @availability iOS 4.3+
  */
-export function objc_allocateProtocol(name: SDKHandle): (string) | null { return callSDK<(string) | null>("ObjectiveC_067acaa3e5f56b46", 2521953757124829, undefined, [name]); }
+export function objc_allocateProtocol(name: SDKHandle): (string) | null { return callSDK<(string) | null>("ObjectiveC_d968214ecc684fb6", 2521953757124829, undefined, [name]); }
 
 /** func objc_assertRegisteredThreadWithCollector() */
-export function objc_assertRegisteredThreadWithCollector(): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 987111497841595, undefined, []); }
+export function objc_assertRegisteredThreadWithCollector(): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 987111497841595, undefined, []); }
 
 /**
  * func objc_begin_catch(_ exc_buf: UnsafeMutableRawPointer) -> Any
  * @availability iOS 2.0+
  */
-export function objc_begin_catch(exc_buf: SDKHandle): unknown { return callSDK<unknown>("ObjectiveC_067acaa3e5f56b46", 1702073206436140, undefined, [exc_buf]); }
+export function objc_begin_catch(exc_buf: SDKHandle): unknown { return callSDK<unknown>("ObjectiveC_d968214ecc684fb6", 1702073206436140, undefined, [exc_buf]); }
 
 /** func objc_clear_stack(_ options: UInt) */
-export function objc_clear_stack(options: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 1577822068566100, undefined, [options]); }
+export function objc_clear_stack(options: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 1577822068566100, undefined, [options]); }
 
 /** func objc_collect(_ options: UInt) */
-export function objc_collect(options: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 451357064472862, undefined, [options]); }
+export function objc_collect(options: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 451357064472862, undefined, [options]); }
 
 /** func objc_collectingEnabled() -> Bool */
-export function objc_collectingEnabled(): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 2225399901686108, undefined, []); }
+export function objc_collectingEnabled(): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 2225399901686108, undefined, []); }
 
 /** func objc_collecting_enabled() -> Bool */
-export function objc_collecting_enabled(): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 871036067824081, undefined, []); }
+export function objc_collecting_enabled(): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 871036067824081, undefined, []); }
 
 /**
  * func objc_disposeClassPair(_ cls: AnyClass)
  * @availability iOS 2.0+
  */
-export function objc_disposeClassPair(cls: string): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3862264837588997, undefined, [cls]); }
+export function objc_disposeClassPair(cls: string): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3862264837588997, undefined, [cls]); }
 
 /**
  * func objc_duplicateClass(_ original: AnyClass, _ name: UnsafePointer<CChar>, _ extraBytes: Int) -> AnyClass
  * @availability iOS 2.0+
  */
-export function objc_duplicateClass(original: string, name: SDKHandle, extraBytes: number): string { return callSDK<string>("ObjectiveC_067acaa3e5f56b46", 19271895162071, undefined, [original, name, extraBytes]); }
+export function objc_duplicateClass(original: string, name: SDKHandle, extraBytes: number): string { return callSDK<string>("ObjectiveC_d968214ecc684fb6", 19271895162071, undefined, [original, name, extraBytes]); }
 
 /**
  * func objc_end_catch()
  * @availability iOS 2.0+
  */
-export function objc_end_catch(): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 2225550253290611, undefined, []); }
+export function objc_end_catch(): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 2225550253290611, undefined, []); }
 
 /**
  * func objc_enumerationMutation(_ obj: Any)
  * @availability iOS 2.0+
  */
-export function objc_enumerationMutation(obj: unknown): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 639773943623930, undefined, [obj]); }
+export function objc_enumerationMutation(obj: unknown): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 639773943623930, undefined, [obj]); }
 
 /**
  * func objc_exception_rethrow() -> Never
  * @availability iOS 2.0+
  */
-export function objc_exception_rethrow(): never { return callSDK<never>("ObjectiveC_067acaa3e5f56b46", 3394485545092155, undefined, []); }
+export function objc_exception_rethrow(): never { return callSDK<never>("ObjectiveC_d968214ecc684fb6", 3394485545092155, undefined, []); }
 
 /**
  * func objc_exception_throw(_ exception: Any) -> Never
  * @availability iOS 2.0+
  */
-export function objc_exception_throw(exception: unknown): never { return callSDK<never>("ObjectiveC_067acaa3e5f56b46", 67881485392579, undefined, [exception]); }
+export function objc_exception_throw(exception: unknown): never { return callSDK<never>("ObjectiveC_d968214ecc684fb6", 67881485392579, undefined, [exception]); }
 
 /** func objc_finalizeOnMainThread(_ cls: AnyClass!) */
-export function objc_finalizeOnMainThread(cls?: (string) | null): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 2683518403467282, undefined, [cls]); }
+export function objc_finalizeOnMainThread(cls?: (string) | null): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 2683518403467282, undefined, [cls]); }
 
 /**
  * func objc_getAssociatedObject(_ object: Any, _ key: UnsafeRawPointer) -> Any?
  * @availability iOS 3.1+
  */
-export function objc_getAssociatedObject(object: unknown, key: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_067acaa3e5f56b46", 199800395241866, undefined, [object, key]); }
+export function objc_getAssociatedObject(object: unknown, key: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_d968214ecc684fb6", 199800395241866, undefined, [object, key]); }
 
 /**
  * func objc_getClass(_ name: UnsafePointer<CChar>) -> Any!
  * @availability iOS 2.0+
  */
-export function objc_getClass(name: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_067acaa3e5f56b46", 1421487523692050, undefined, [name]); }
+export function objc_getClass(name: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_d968214ecc684fb6", 1421487523692050, undefined, [name]); }
 
 /**
  * func objc_getMetaClass(_ name: UnsafePointer<CChar>) -> Any!
  * @availability iOS 2.0+
  */
-export function objc_getMetaClass(name: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_067acaa3e5f56b46", 1850664274065352, undefined, [name]); }
+export function objc_getMetaClass(name: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_d968214ecc684fb6", 1850664274065352, undefined, [name]); }
 
 /**
  * func objc_getProtocol(_ name: UnsafePointer<CChar>) -> Protocol?
  * @availability iOS 2.0+
  */
-export function objc_getProtocol(name: SDKHandle): (string) | null { return callSDK<(string) | null>("ObjectiveC_067acaa3e5f56b46", 230079728319703, undefined, [name]); }
+export function objc_getProtocol(name: SDKHandle): (string) | null { return callSDK<(string) | null>("ObjectiveC_d968214ecc684fb6", 230079728319703, undefined, [name]); }
 
 /**
  * func objc_getRequiredClass(_ name: UnsafePointer<CChar>) -> AnyClass
  * @availability iOS 2.0+
  */
-export function objc_getRequiredClass(name: SDKHandle): string { return callSDK<string>("ObjectiveC_067acaa3e5f56b46", 3367439151292116, undefined, [name]); }
+export function objc_getRequiredClass(name: SDKHandle): string { return callSDK<string>("ObjectiveC_d968214ecc684fb6", 3367439151292116, undefined, [name]); }
 
 /** func objc_is_finalized(_ ptr: UnsafeMutableRawPointer!) -> Bool */
-export function objc_is_finalized(ptr?: (SDKHandle) | null): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 3801566319610450, undefined, [ptr]); }
+export function objc_is_finalized(ptr?: (SDKHandle) | null): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 3801566319610450, undefined, [ptr]); }
 
 /**
  * func objc_loadWeak(_ location: AutoreleasingUnsafeMutablePointer<AnyObject?>) -> Any?
  * @availability iOS 5.0+
  */
-export function objc_loadWeak(): { $ret: (unknown) | null; $out: { "location": (unknown) | null } } { return callSDK<{ $ret: (unknown) | null; $out: { "location": (unknown) | null } }>("ObjectiveC_067acaa3e5f56b46", 4065292018605941, undefined, [null]); }
+export function objc_loadWeak(): { $ret: (unknown) | null; $out: { "location": (unknown) | null } } { return callSDK<{ $ret: (unknown) | null; $out: { "location": (unknown) | null } }>("ObjectiveC_d968214ecc684fb6", 4065292018605941, undefined, [null]); }
 
 /**
  * func objc_lookUpClass(_ name: UnsafePointer<CChar>) -> AnyClass?
  * @availability iOS 2.0+
  */
-export function objc_lookUpClass(name: SDKHandle): (string) | null { return callSDK<(string) | null>("ObjectiveC_067acaa3e5f56b46", 2121138220360418, undefined, [name]); }
+export function objc_lookUpClass(name: SDKHandle): (string) | null { return callSDK<(string) | null>("ObjectiveC_d968214ecc684fb6", 2121138220360418, undefined, [name]); }
 
 /** func objc_memmove_collectable(_ dst: UnsafeMutableRawPointer!, _ src: UnsafeRawPointer!, _ size: Int) -> UnsafeMutableRawPointer! */
-export function objc_memmove_collectable(dst: (SDKHandle) | null, src: (SDKHandle) | null, size: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 349250738478208, undefined, [dst, src, size]); }
+export function objc_memmove_collectable(dst: (SDKHandle) | null, src: (SDKHandle) | null, size: number): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 349250738478208, undefined, [dst, src, size]); }
 
 /**
  * func objc_registerClassPair(_ cls: AnyClass)
  * @availability iOS 2.0+
  */
-export function objc_registerClassPair(cls: string): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 2756702534787319, undefined, [cls]); }
+export function objc_registerClassPair(cls: string): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 2756702534787319, undefined, [cls]); }
 
 /**
  * func objc_registerProtocol(_ proto: Protocol)
  * @availability iOS 4.3+
  */
-export function objc_registerProtocol(proto: string): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 828545917560713, undefined, [proto]); }
+export function objc_registerProtocol(proto: string): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 828545917560713, undefined, [proto]); }
 
 /** func objc_registerThreadWithCollector() */
-export function objc_registerThreadWithCollector(): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3090188887882984, undefined, []); }
+export function objc_registerThreadWithCollector(): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3090188887882984, undefined, []); }
 
 /**
  * func objc_removeAssociatedObjects(_ object: Any)
  * @availability iOS 3.1+
  */
-export function objc_removeAssociatedObjects(object: unknown): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 2724326339919707, undefined, [object]); }
+export function objc_removeAssociatedObjects(object: unknown): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 2724326339919707, undefined, [object]); }
 
 /**
  * func objc_setAssociatedObject(_ object: Any, _ key: UnsafeRawPointer, _ value: Any?, _ policy: objc_AssociationPolicy)
  * @availability iOS 3.1+
  */
-export function objc_setAssociatedObject(object: unknown, key: SDKHandle, value: (unknown) | null, policy: objc_AssociationPolicy): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3876668461722303, undefined, [object, key, value, policy]); }
+export function objc_setAssociatedObject(object: unknown, key: SDKHandle, value: (unknown) | null, policy: objc_AssociationPolicy): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3876668461722303, undefined, [object, key, value, policy]); }
 
 /** func objc_setCollectionRatio(_ ratio: Int) */
-export function objc_setCollectionRatio(ratio: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 398886129745514, undefined, [ratio]); }
+export function objc_setCollectionRatio(ratio: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 398886129745514, undefined, [ratio]); }
 
 /** func objc_setCollectionThreshold(_ threshold: Int) */
-export function objc_setCollectionThreshold(threshold: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3733591057154890, undefined, [threshold]); }
+export function objc_setCollectionThreshold(threshold: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3733591057154890, undefined, [threshold]); }
 
 /**
  * func objc_setForwardHandler(_ fwd: UnsafeMutableRawPointer, _ fwd_stret: UnsafeMutableRawPointer)
  * @availability iOS 2.0+
  */
-export function objc_setForwardHandler(fwd: SDKHandle, fwd_stret: SDKHandle): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 2776616992184476, undefined, [fwd, fwd_stret]); }
+export function objc_setForwardHandler(fwd: SDKHandle, fwd_stret: SDKHandle): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 2776616992184476, undefined, [fwd, fwd_stret]); }
 
 /** func objc_set_collection_ratio(_ ratio: Int) */
-export function objc_set_collection_ratio(ratio: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 1572360968488451, undefined, [ratio]); }
+export function objc_set_collection_ratio(ratio: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 1572360968488451, undefined, [ratio]); }
 
 /** func objc_set_collection_threshold(_ threshold: Int) */
-export function objc_set_collection_threshold(threshold: number): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 234473007449341, undefined, [threshold]); }
+export function objc_set_collection_threshold(threshold: number): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 234473007449341, undefined, [threshold]); }
 
 /** func objc_startCollectorThread() */
-export function objc_startCollectorThread(): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 353549031159991, undefined, []); }
+export function objc_startCollectorThread(): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 353549031159991, undefined, []); }
 
 /** func objc_start_collector_thread() */
-export function objc_start_collector_thread(): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 743680284631851, undefined, []); }
+export function objc_start_collector_thread(): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 743680284631851, undefined, []); }
 
 /**
  * func objc_storeWeak(_ location: AutoreleasingUnsafeMutablePointer<AnyObject?>, _ obj: Any?) -> Any?
  * @availability iOS 5.0+
  */
-export function objc_storeWeak(obj?: (unknown) | null): { $ret: (unknown) | null; $out: { "location": (unknown) | null } } { return callSDK<{ $ret: (unknown) | null; $out: { "location": (unknown) | null } }>("ObjectiveC_067acaa3e5f56b46", 4060686068149734, undefined, [null, obj]); }
+export function objc_storeWeak(obj?: (unknown) | null): { $ret: (unknown) | null; $out: { "location": (unknown) | null } } { return callSDK<{ $ret: (unknown) | null; $out: { "location": (unknown) | null } }>("ObjectiveC_d968214ecc684fb6", 4060686068149734, undefined, [null, obj]); }
 
 /**
  * func objc_terminate() -> Never
  * @availability iOS 6.0+
  */
-export function objc_terminate(): never { return callSDK<never>("ObjectiveC_067acaa3e5f56b46", 1429900265687293, undefined, []); }
+export function objc_terminate(): never { return callSDK<never>("ObjectiveC_d968214ecc684fb6", 1429900265687293, undefined, []); }
 
 /** func objc_unregisterThreadWithCollector() */
-export function objc_unregisterThreadWithCollector(): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 2631573491506518, undefined, []); }
+export function objc_unregisterThreadWithCollector(): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 2631573491506518, undefined, []); }
 
 /**
  * func object_getClass(_ obj: Any?) -> AnyClass?
  * @availability iOS 2.0+
  */
-export function object_getClass(obj?: (unknown) | null): (string) | null { return callSDK<(string) | null>("ObjectiveC_067acaa3e5f56b46", 3123131285712693, undefined, [obj]); }
+export function object_getClass(obj?: (unknown) | null): (string) | null { return callSDK<(string) | null>("ObjectiveC_d968214ecc684fb6", 3123131285712693, undefined, [obj]); }
 
 /**
  * func object_getClassName(_ obj: Any?) -> UnsafePointer<CChar>
  * @availability iOS 2.0+
  */
-export function object_getClassName(obj?: (unknown) | null): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 541059608278798, undefined, [obj]); }
+export function object_getClassName(obj?: (unknown) | null): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 541059608278798, undefined, [obj]); }
 
 /**
  * func object_getIndexedIvars(_ obj: Any?) -> UnsafeMutableRawPointer?
  * @availability iOS 2.0+
  */
-export function object_getIndexedIvars(obj?: (unknown) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 1936673200412864, undefined, [obj]); }
+export function object_getIndexedIvars(obj?: (unknown) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 1936673200412864, undefined, [obj]); }
 
 /**
  * func object_getIvar(_ obj: Any?, _ ivar: Ivar) -> Any?
  * @availability iOS 2.0+
  */
-export function object_getIvar(obj: (unknown) | null, ivar: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_067acaa3e5f56b46", 2737332107172538, undefined, [obj, ivar]); }
+export function object_getIvar(obj: (unknown) | null, ivar: SDKHandle): (unknown) | null { return callSDK<(unknown) | null>("ObjectiveC_d968214ecc684fb6", 2737332107172538, undefined, [obj, ivar]); }
 
 /**
  * func object_isClass(_ obj: Any?) -> Bool
  * @availability iOS 8.0+
  */
-export function object_isClass(obj?: (unknown) | null): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 2706978263149646, undefined, [obj]); }
+export function object_isClass(obj?: (unknown) | null): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 2706978263149646, undefined, [obj]); }
 
 /**
  * func object_setClass(_ obj: Any?, _ cls: AnyClass) -> AnyClass?
  * @availability iOS 2.0+
  */
-export function object_setClass(obj: (unknown) | null, cls: string): (string) | null { return callSDK<(string) | null>("ObjectiveC_067acaa3e5f56b46", 2764530662313038, undefined, [obj, cls]); }
+export function object_setClass(obj: (unknown) | null, cls: string): (string) | null { return callSDK<(string) | null>("ObjectiveC_d968214ecc684fb6", 2764530662313038, undefined, [obj, cls]); }
 
 /**
  * func object_setIvar(_ obj: Any?, _ ivar: Ivar, _ value: Any?)
  * @availability iOS 2.0+
  */
-export function object_setIvar(obj: (unknown) | null, ivar: SDKHandle, value?: (unknown) | null): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 31612927978839, undefined, [obj, ivar, value]); }
+export function object_setIvar(obj: (unknown) | null, ivar: SDKHandle, value?: (unknown) | null): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 31612927978839, undefined, [obj, ivar, value]); }
 
 /**
  * func object_setIvarWithStrongDefault(_ obj: Any?, _ ivar: Ivar, _ value: Any?)
  * @availability iOS 10.0+
  */
-export function object_setIvarWithStrongDefault(obj: (unknown) | null, ivar: SDKHandle, value?: (unknown) | null): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 3768870344196204, undefined, [obj, ivar, value]); }
+export function object_setIvarWithStrongDefault(obj: (unknown) | null, ivar: SDKHandle, value?: (unknown) | null): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 3768870344196204, undefined, [obj, ivar, value]); }
 
 /**
  * func property_copyAttributeList(_ property: objc_property_t, _ outCount: UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<objc_property_attribute_t>?
  * @availability iOS 4.3+
  */
-export function property_copyAttributeList(property: SDKHandle, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 2058349730789855, undefined, [property, outCount]); }
+export function property_copyAttributeList(property: SDKHandle, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 2058349730789855, undefined, [property, outCount]); }
 
 /**
  * func property_copyAttributeValue(_ property: objc_property_t, _ attributeName: UnsafePointer<CChar>) -> UnsafeMutablePointer<CChar>?
  * @availability iOS 4.3+
  */
-export function property_copyAttributeValue(property: SDKHandle, attributeName: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 3425515111008681, undefined, [property, attributeName]); }
+export function property_copyAttributeValue(property: SDKHandle, attributeName: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 3425515111008681, undefined, [property, attributeName]); }
 
 /**
  * func property_getAttributes(_ property: objc_property_t) -> UnsafePointer<CChar>?
  * @availability iOS 2.0+
  */
-export function property_getAttributes(property: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 1404385568390231, undefined, [property]); }
+export function property_getAttributes(property: SDKHandle): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 1404385568390231, undefined, [property]); }
 
 /**
  * func property_getName(_ property: objc_property_t) -> UnsafePointer<CChar>
  * @availability iOS 2.0+
  */
-export function property_getName(property: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 2306600184264598, undefined, [property]); }
+export function property_getName(property: SDKHandle): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 2306600184264598, undefined, [property]); }
 
 /**
  * func protocol_addProperty(_ proto: Protocol, _ name: UnsafePointer<CChar>, _ attributes: UnsafePointer<objc_property_attribute_t>?, _ attributeCount: UInt32, _ isRequiredProperty: Bool, _ isInstanceProperty: Bool)
  * @availability iOS 4.3+
  */
-export function protocol_addProperty(proto: string, name: SDKHandle, attributes: (SDKHandle) | null, attributeCount: number, isRequiredProperty: boolean, isInstanceProperty: boolean): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 2037850574823473, undefined, [proto, name, attributes, attributeCount, isRequiredProperty, isInstanceProperty]); }
+export function protocol_addProperty(proto: string, name: SDKHandle, attributes: (SDKHandle) | null, attributeCount: number, isRequiredProperty: boolean, isInstanceProperty: boolean): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 2037850574823473, undefined, [proto, name, attributes, attributeCount, isRequiredProperty, isInstanceProperty]); }
 
 /**
  * func protocol_addProtocol(_ proto: Protocol, _ addition: Protocol)
  * @availability iOS 4.3+
  */
-export function protocol_addProtocol(proto: string, addition: string): void { return callSDK<void>("ObjectiveC_067acaa3e5f56b46", 413031412216197, undefined, [proto, addition]); }
+export function protocol_addProtocol(proto: string, addition: string): void { return callSDK<void>("ObjectiveC_d968214ecc684fb6", 413031412216197, undefined, [proto, addition]); }
 
 /**
  * func protocol_conformsToProtocol(_ proto: Protocol?, _ other: Protocol?) -> Bool
  * @availability iOS 2.0+
  */
-export function protocol_conformsToProtocol(proto?: (string) | null, other?: (string) | null): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 3069649078776735, undefined, [proto, other]); }
+export function protocol_conformsToProtocol(proto?: (string) | null, other?: (string) | null): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 3069649078776735, undefined, [proto, other]); }
 
 /**
  * func protocol_copyMethodDescriptionList(_ proto: Protocol, _ isRequiredMethod: Bool, _ isInstanceMethod: Bool, _ outCount: UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<objc_method_description>?
  * @availability iOS 2.0+
  */
-export function protocol_copyMethodDescriptionList(proto: string, isRequiredMethod: boolean, isInstanceMethod: boolean, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 3316255052795538, undefined, [proto, isRequiredMethod, isInstanceMethod, outCount]); }
+export function protocol_copyMethodDescriptionList(proto: string, isRequiredMethod: boolean, isInstanceMethod: boolean, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 3316255052795538, undefined, [proto, isRequiredMethod, isInstanceMethod, outCount]); }
 
 /**
  * func protocol_copyPropertyList(_ proto: Protocol, _ outCount: UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<objc_property_t>?
  * @availability iOS 2.0+
  */
-export function protocol_copyPropertyList(proto: string, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 639964326209097, undefined, [proto, outCount]); }
+export function protocol_copyPropertyList(proto: string, outCount?: (SDKHandle) | null): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 639964326209097, undefined, [proto, outCount]); }
 
 /**
  * func protocol_copyPropertyList2(_ proto: Protocol, _ outCount: UnsafeMutablePointer<UInt32>?, _ isRequiredProperty: Bool, _ isInstanceProperty: Bool) -> UnsafeMutablePointer<objc_property_t>?
  * @availability iOS 10.0+
  */
-export function protocol_copyPropertyList2(proto: string, outCount: (SDKHandle) | null, isRequiredProperty: boolean, isInstanceProperty: boolean): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 749659055412299, undefined, [proto, outCount, isRequiredProperty, isInstanceProperty]); }
+export function protocol_copyPropertyList2(proto: string, outCount: (SDKHandle) | null, isRequiredProperty: boolean, isInstanceProperty: boolean): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 749659055412299, undefined, [proto, outCount, isRequiredProperty, isInstanceProperty]); }
 
 /**
  * func protocol_getName(_ proto: Protocol) -> UnsafePointer<CChar>
  * @availability iOS 2.0+
  */
-export function protocol_getName(proto: string): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_067acaa3e5f56b46", 2104090905330472, undefined, [proto]); }
+export function protocol_getName(proto: string): SDKHandle { return callSDK<SDKHandle>("ObjectiveC_d968214ecc684fb6", 2104090905330472, undefined, [proto]); }
 
 /**
  * func protocol_getProperty(_ proto: Protocol, _ name: UnsafePointer<CChar>, _ isRequiredProperty: Bool, _ isInstanceProperty: Bool) -> objc_property_t?
  * @availability iOS 2.0+
  */
-export function protocol_getProperty(proto: string, name: SDKHandle, isRequiredProperty: boolean, isInstanceProperty: boolean): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_067acaa3e5f56b46", 605449388401978, undefined, [proto, name, isRequiredProperty, isInstanceProperty]); }
+export function protocol_getProperty(proto: string, name: SDKHandle, isRequiredProperty: boolean, isInstanceProperty: boolean): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("ObjectiveC_d968214ecc684fb6", 605449388401978, undefined, [proto, name, isRequiredProperty, isInstanceProperty]); }
 
 /**
  * func protocol_isEqual(_ proto: Protocol?, _ other: Protocol?) -> Bool
  * @availability iOS 2.0+
  */
-export function protocol_isEqual(proto?: (string) | null, other?: (string) | null): boolean { return callSDK<boolean>("ObjectiveC_067acaa3e5f56b46", 804465199981960, undefined, [proto, other]); }
+export function protocol_isEqual(proto?: (string) | null, other?: (string) | null): boolean { return callSDK<boolean>("ObjectiveC_d968214ecc684fb6", 804465199981960, undefined, [proto, other]); }
 
 /**
  * func autoreleasepool<E, Result>(invoking body: () throws(E) -> Result) throws(E) -> Result where E : Error, Result : ~Copyable
  * @availability iOS 1.0+
  */
-export function autoreleasepool(body: (() => unknown)): unknown { return callSDK<unknown>("ObjectiveC_067acaa3e5f56b46", 2742140573590497, undefined, [body], [{"callback":{"out":[]}}], true); }
+export function autoreleasepool(body: (() => unknown)): unknown { return callSDK<unknown>("ObjectiveC_d968214ecc684fb6", 2742140573590497, undefined, [body], [{"callback":{"out":[]}}], true); }
 
 /**
  * func objc_enumerateClasses(fromImage: ObjCEnumerationImage = .machHeader(#dsohandle), matchingNamePrefix: String? = nil, conformingTo: Protocol? = nil, subclassing: AnyClass? = nil) -> ObjCClassList
  * @availability iOS 16.0+
  */
-export function objc_enumerateClasses(fromImage?: ObjCEnumerationImage, matchingNamePrefix?: (string) | null, conformingTo?: (string) | null, subclassing?: (string) | null): ObjCClassList { return callSDK<ObjCClassList>("ObjectiveC_067acaa3e5f56b46", 1384821421092697, undefined, [fromImage, matchingNamePrefix, conformingTo, subclassing]); }
+export function objc_enumerateClasses(fromImage?: ObjCEnumerationImage, matchingNamePrefix?: (string) | null, conformingTo?: (string) | null, subclassing?: (string) | null): ObjCClassList { return callSDK<ObjCClassList>("ObjectiveC_d968214ecc684fb6", 1384821421092697, undefined, [fromImage, matchingNamePrefix, conformingTo, subclassing]); }
 
 /** var OBJC_CLEAR_RESIDENT_STACK: Int { get } */
-export const OBJC_CLEAR_RESIDENT_STACK: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 1314700421968985, undefined, []);
+export const OBJC_CLEAR_RESIDENT_STACK: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 1314700421968985, undefined, []);
 
 /** var OBJC_COLLECT_IF_NEEDED: Int { get } */
-export const OBJC_COLLECT_IF_NEEDED: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 2887807603494597, undefined, []);
+export const OBJC_COLLECT_IF_NEEDED: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 2887807603494597, undefined, []);
 
 /** var OBJC_EXHAUSTIVE_COLLECTION: Int { get } */
-export const OBJC_EXHAUSTIVE_COLLECTION: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 893692784619489, undefined, []);
+export const OBJC_EXHAUSTIVE_COLLECTION: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 893692784619489, undefined, []);
 
 /** var OBJC_FULL_COLLECTION: Int { get } */
-export const OBJC_FULL_COLLECTION: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 2547812182769912, undefined, []);
+export const OBJC_FULL_COLLECTION: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 2547812182769912, undefined, []);
 
 /** var OBJC_GENERATIONAL_COLLECTION: Int { get } */
-export const OBJC_GENERATIONAL_COLLECTION: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 3821573199809287, undefined, []);
+export const OBJC_GENERATIONAL_COLLECTION: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 3821573199809287, undefined, []);
 
 /** var OBJC_RATIO_COLLECTION: Int { get } */
-export const OBJC_RATIO_COLLECTION: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 802720438430311, undefined, []);
+export const OBJC_RATIO_COLLECTION: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 802720438430311, undefined, []);
 
 /** var OBJC_WAIT_UNTIL_DONE: Int { get } */
-export const OBJC_WAIT_UNTIL_DONE: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 2051169493586862, undefined, []);
+export const OBJC_WAIT_UNTIL_DONE: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 2051169493586862, undefined, []);
 
 /** var OBJC_SYNC_NOT_OWNING_THREAD_ERROR: Int { get } */
-export const OBJC_SYNC_NOT_OWNING_THREAD_ERROR: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 561505937166990, undefined, []);
+export const OBJC_SYNC_NOT_OWNING_THREAD_ERROR: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 561505937166990, undefined, []);
 
 /** var OBJC_SYNC_SUCCESS: Int { get } */
-export const OBJC_SYNC_SUCCESS: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 673942859103579, undefined, []);
+export const OBJC_SYNC_SUCCESS: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 673942859103579, undefined, []);
 
 /** var NSIntegerMax: Int { get } */
-export const NSIntegerMax: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 1102189352691498, undefined, []);
+export const NSIntegerMax: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 1102189352691498, undefined, []);
 
 /** var NS_ENFORCE_NSOBJECT_DESIGNATED_INITIALIZER: Int32 { get } */
-export const NS_ENFORCE_NSOBJECT_DESIGNATED_INITIALIZER: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 3079493101931319, undefined, []);
+export const NS_ENFORCE_NSOBJECT_DESIGNATED_INITIALIZER: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 3079493101931319, undefined, []);
 
 /** var OBJC_ADDLOADIMAGEFUNC_DEFINED: Int32 { get } */
-export const OBJC_ADDLOADIMAGEFUNC_DEFINED: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 3023778058081340, undefined, []);
+export const OBJC_ADDLOADIMAGEFUNC_DEFINED: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 3023778058081340, undefined, []);
 
 /** var OBJC_API_VERSION: Int32 { get } */
-export const OBJC_API_VERSION: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 215975916483087, undefined, []);
+export const OBJC_API_VERSION: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 215975916483087, undefined, []);
 
 /** var OBJC_BOOL_IS_BOOL: Int32 { get } */
-export const OBJC_BOOL_IS_BOOL: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 4340763870744137, undefined, []);
+export const OBJC_BOOL_IS_BOOL: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 4340763870744137, undefined, []);
 
 /** var OBJC_GETCLASSHOOK_DEFINED: Int32 { get } */
-export const OBJC_GETCLASSHOOK_DEFINED: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 3816229529399000, undefined, []);
+export const OBJC_GETCLASSHOOK_DEFINED: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 3816229529399000, undefined, []);
 
 /** var OBJC_NO_GC: Int32 { get } */
-export const OBJC_NO_GC: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 2910150096838840, undefined, []);
+export const OBJC_NO_GC: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 2910150096838840, undefined, []);
 
 /** var OBJC_NO_GC_API: Int32 { get } */
-export const OBJC_NO_GC_API: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 3763496276078188, undefined, []);
+export const OBJC_NO_GC_API: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 3763496276078188, undefined, []);
 
 /** var OBJC_OLD_DISPATCH_PROTOTYPES: Int32 { get } */
-export const OBJC_OLD_DISPATCH_PROTOTYPES: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 552262588437291, undefined, []);
+export const OBJC_OLD_DISPATCH_PROTOTYPES: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 552262588437291, undefined, []);
 
 /** var OBJC_REALIZECLASSFROMSWIFT_DEFINED: Int32 { get } */
-export const OBJC_REALIZECLASSFROMSWIFT_DEFINED: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 3648054421804535, undefined, []);
+export const OBJC_REALIZECLASSFROMSWIFT_DEFINED: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 3648054421804535, undefined, []);
 
 /** var OBJC_SETHOOK_LAZYCLASSNAMER_DEFINED: Int32 { get } */
-export const OBJC_SETHOOK_LAZYCLASSNAMER_DEFINED: number = callSDK<number>("ObjectiveC_067acaa3e5f56b46", 2307026856391275, undefined, []);
+export const OBJC_SETHOOK_LAZYCLASSNAMER_DEFINED: number = callSDK<number>("ObjectiveC_d968214ecc684fb6", 2307026856391275, undefined, []);
 
-registerSDKClass("NSObject", NSObject, { module: "ObjectiveC_067acaa3e5f56b46", properties: {}, methods: {"copy":{"id":2029445217640493},"finalize":{"id":4409796875101370},"mutableCopy":{"id":2282269385420363}} });
+registerSDKClass("NSObject", NSObject, { module: "ObjectiveC_d968214ecc684fb6", properties: {}, methods: {"copy":{"id":2029445217640493},"finalize":{"id":4409796875101370},"mutableCopy":{"id":2282269385420363}} });
 registerSDKProtocol("c:objc(pl)NSObject", {"isEqual":"isEqual(_:)","self":"self()","perform":"perform(_:)","performWith":"perform(_:with:)","performWithWith":"perform(_:with:with:)","isProxy":"isProxy()","isKindOf":"isKind(of:)","isMemberOf":"isMember(of:)","conformsTo":"conforms(to:)","respondsTo":"responds(to:)"});
-registerSDKClass("ObjectiveC.NSZone", NSZone, { module: "ObjectiveC_067acaa3e5f56b46", properties: {} });
-registerSDKClass("ObjectiveC.objc_method_description", objc_method_description, { module: "ObjectiveC_067acaa3e5f56b46", properties: {} });
-registerSDKClass("ObjectiveC.objc_object", objc_object, { module: "ObjectiveC_067acaa3e5f56b46", properties: {} });
-registerSDKClass("ObjectiveC.objc_property_attribute_t", objc_property_attribute_t, { module: "ObjectiveC_067acaa3e5f56b46", properties: {} });
-registerSDKClass("ObjectiveC.objc_super", objc_super, { module: "ObjectiveC_067acaa3e5f56b46", properties: {} });
-registerSDKClass("ObjectiveC.ObjCBool", ObjCBool, { module: "ObjectiveC_067acaa3e5f56b46", properties: {} });
-registerSDKClass("ObjectiveC.ObjCClassList", ObjCClassList, { module: "ObjectiveC_067acaa3e5f56b46", properties: {}, methods: {"makeIterator":{"id":1560870406095207}} });
-registerSDKClass("ObjectiveC.ObjCClassList.Iterator", ObjCClassList_Iterator, { module: "ObjectiveC_067acaa3e5f56b46", properties: {}, methods: {"next":{"id":2309687947835278}} });
-registerSDKClass("ObjectiveC.ObjCEnumerationImage", ObjCEnumerationImage, { module: "ObjectiveC_067acaa3e5f56b46", properties: {} });
-registerSDKClass("Protocol", Protocol, { module: "ObjectiveC_067acaa3e5f56b46", properties: {} });
-registerSDKClass("ObjectiveC.Selector", Selector, { module: "ObjectiveC_067acaa3e5f56b46", properties: {} });
+registerSDKClass("ObjectiveC.NSZone", NSZone, { module: "ObjectiveC_d968214ecc684fb6", properties: {} });
+registerSDKClass("ObjectiveC.objc_method_description", objc_method_description, { module: "ObjectiveC_d968214ecc684fb6", properties: {} });
+registerSDKClass("ObjectiveC.objc_object", objc_object, { module: "ObjectiveC_d968214ecc684fb6", properties: {} });
+registerSDKClass("ObjectiveC.objc_property_attribute_t", objc_property_attribute_t, { module: "ObjectiveC_d968214ecc684fb6", properties: {} });
+registerSDKClass("ObjectiveC.objc_super", objc_super, { module: "ObjectiveC_d968214ecc684fb6", properties: {} });
+registerSDKClass("ObjectiveC.ObjCBool", ObjCBool, { module: "ObjectiveC_d968214ecc684fb6", properties: {} });
+registerSDKClass("ObjectiveC.ObjCClassList", ObjCClassList, { module: "ObjectiveC_d968214ecc684fb6", properties: {}, methods: {"makeIterator":{"id":1560870406095207}} });
+registerSDKClass("ObjectiveC.ObjCClassList.Iterator", ObjCClassList_Iterator, { module: "ObjectiveC_d968214ecc684fb6", properties: {}, methods: {"next":{"id":2309687947835278}} });
+registerSDKClass("ObjectiveC.ObjCEnumerationImage", ObjCEnumerationImage, { module: "ObjectiveC_d968214ecc684fb6", properties: {} });
+registerSDKClass("Protocol", Protocol, { module: "ObjectiveC_d968214ecc684fb6", properties: {} });
+registerSDKClass("ObjectiveC.Selector", Selector, { module: "ObjectiveC_d968214ecc684fb6", properties: {} });

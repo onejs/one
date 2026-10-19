@@ -386,6 +386,29 @@ export declare class MKAnnotationView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "accessoryOffset": true;
+        "annotation": true;
+        "calloutOffset": true;
+        "canShowCallout": true;
+        "centerOffset": true;
+        "cluster": true;
+        "clusteringIdentifier": true;
+        "collisionMode": true;
+        "detailCalloutAccessoryView": true;
+        "displayPriority": true;
+        "dragState": true;
+        "isDraggable": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "image": true;
+        "leftCalloutAccessoryView": true;
+        "reuseIdentifier": true;
+        "rightCalloutAccessoryView": true;
+        "isSelected": true;
+        "selectedZPriority": true;
+        "zPriority": true;
+    };
 }
 /**
  * enum CollisionMode
@@ -895,6 +918,10 @@ export declare class MKCompassButton extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "compassVisibility": true;
+        "mapView": true;
     };
 }
 /** struct MKCoordinateRegion */
@@ -2439,6 +2466,14 @@ export declare class MKLookAroundViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "badgePosition": true;
+        "delegate": true;
+        "isNavigationEnabled": true;
+        "pointOfInterestFilter": true;
+        "scene": true;
+        "showsRoadLabels": true;
+    };
 }
 /**
  * protocol MKLookAroundViewControllerDelegate : NSObjectProtocol
@@ -2829,6 +2864,10 @@ export declare class MKMapItemDetailViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "mapItem": true;
     };
 }
 /**
@@ -3643,6 +3682,38 @@ export declare class MKMapView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "annotationVisibleRect": true;
+        "annotations": true;
+        "camera": true;
+        "cameraBoundary": true;
+        "cameraZoomRange": true;
+        "centerCoordinate": true;
+        "delegate": true;
+        "mapType": true;
+        "overlays": true;
+        "pitchButtonVisibility": true;
+        "isPitchEnabled": true;
+        "pointOfInterestFilter": true;
+        "preferredConfiguration": true;
+        "region": true;
+        "isRotateEnabled": true;
+        "isScrollEnabled": true;
+        "selectableMapFeatures": true;
+        "selectedAnnotations": true;
+        "showsBuildings": true;
+        "showsCompass": true;
+        "showsPointsOfInterest": true;
+        "showsScale": true;
+        "showsTraffic": true;
+        "showsUserLocation": true;
+        "showsUserTrackingButton": true;
+        "userLocation": true;
+        "isUserLocationVisible": true;
+        "userTrackingMode": true;
+        "visibleMapRect": true;
+        "isZoomEnabled": true;
+    };
 }
 /**
  * class CameraBoundary
@@ -3678,6 +3749,10 @@ export declare class MKMapView_CameraBoundary extends SDKHandle {
         "c:objc(cs)MKMapCameraBoundary": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "mapRect": true;
+        "region": true;
+    };
 }
 /**
  * class CameraZoomRange
@@ -3712,6 +3787,10 @@ export declare class MKMapView_CameraZoomRange extends SDKHandle {
     readonly $type: {
         "c:objc(cs)MKMapCameraZoomRange": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "maxCenterCoordinateDistance": true;
+        "minCenterCoordinateDistance": true;
     };
 }
 /** @MainActor protocol MKMapViewDelegate : NSObjectProtocol */
@@ -3874,6 +3953,37 @@ export declare class MKMarkerAnnotationView extends MKAnnotationView {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "accessoryOffset": true;
+        "annotation": true;
+        "calloutOffset": true;
+        "canShowCallout": true;
+        "centerOffset": true;
+        "cluster": true;
+        "clusteringIdentifier": true;
+        "collisionMode": true;
+        "detailCalloutAccessoryView": true;
+        "displayPriority": true;
+        "dragState": true;
+        "isDraggable": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "image": true;
+        "leftCalloutAccessoryView": true;
+        "reuseIdentifier": true;
+        "rightCalloutAccessoryView": true;
+        "isSelected": true;
+        "selectedZPriority": true;
+        "zPriority": true;
+        "animatesWhenAdded": true;
+        "glyphImage": true;
+        "glyphText": true;
+        "glyphTintColor": true;
+        "markerTintColor": true;
+        "selectedGlyphImage": true;
+        "subtitleVisibility": true;
+        "titleVisibility": true;
     };
 }
 declare const MKMultiPolygon_base: Omit<typeof MKShape, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKShape);
@@ -4095,6 +4205,32 @@ export declare class MKPinAnnotationView extends MKAnnotationView {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "accessoryOffset": true;
+        "annotation": true;
+        "calloutOffset": true;
+        "canShowCallout": true;
+        "centerOffset": true;
+        "cluster": true;
+        "clusteringIdentifier": true;
+        "collisionMode": true;
+        "detailCalloutAccessoryView": true;
+        "displayPriority": true;
+        "dragState": true;
+        "isDraggable": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "image": true;
+        "leftCalloutAccessoryView": true;
+        "reuseIdentifier": true;
+        "rightCalloutAccessoryView": true;
+        "isSelected": true;
+        "selectedZPriority": true;
+        "zPriority": true;
+        "animatesDrop": true;
+        "pinColor": true;
+        "pinTintColor": true;
     };
 }
 /**
@@ -4971,6 +5107,11 @@ export declare class MKScaleView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "legendAlignment": true;
+        "mapView": true;
+        "scaleVisibility": true;
+    };
 }
 /**
  * enum Alignment
@@ -5285,6 +5426,29 @@ export declare class MKUserLocationView extends MKAnnotationView {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "accessoryOffset": true;
+        "annotation": true;
+        "calloutOffset": true;
+        "canShowCallout": true;
+        "centerOffset": true;
+        "cluster": true;
+        "clusteringIdentifier": true;
+        "collisionMode": true;
+        "detailCalloutAccessoryView": true;
+        "displayPriority": true;
+        "dragState": true;
+        "isDraggable": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "image": true;
+        "leftCalloutAccessoryView": true;
+        "reuseIdentifier": true;
+        "rightCalloutAccessoryView": true;
+        "isSelected": true;
+        "selectedZPriority": true;
+        "zPriority": true;
+    };
 }
 /**
  * class MKUserTrackingBarButtonItem
@@ -5308,6 +5472,9 @@ export declare class MKUserTrackingBarButtonItem extends SDKHandle {
         "c:objc(cs)UIBarItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "mapView": true;
+    };
 }
 /**
  * class MKUserTrackingButton
@@ -5330,6 +5497,9 @@ export declare class MKUserTrackingButton extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "mapView": true;
     };
 }
 /**

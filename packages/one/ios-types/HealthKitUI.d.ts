@@ -28,6 +28,9 @@ export declare class HKActivityRingView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activitySummary": true;
+    };
 }
 export declare class HKHealthStore extends SDKHandle {
     /**

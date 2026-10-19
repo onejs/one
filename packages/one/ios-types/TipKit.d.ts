@@ -161,6 +161,7 @@ export declare class TipGroup extends SDKHandle {
         "s:6TipKit0A5GroupC": true;
     };
     readonly $observable: {
+        "currentTip": true;
         "currentTipUpdates": true;
     };
 }

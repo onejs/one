@@ -473,6 +473,11 @@ export declare class MSMessagesAppViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activeConversation": true;
+        "presentationContext": true;
+        "presentationStyle": true;
+    };
 }
 declare const MSMessageTemplateLayout_base: Omit<typeof MSMessageLayout, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MSMessageLayout);
 /**
@@ -661,6 +666,12 @@ export declare class MSStickerBrowserView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "contentInset": true;
+        "contentOffset": true;
+        "dataSource": true;
+        "stickerSize": true;
+    };
 }
 /**
  * class MSStickerBrowserViewController
@@ -687,6 +698,10 @@ export declare class MSStickerBrowserViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "stickerBrowserView": true;
+        "stickerSize": true;
     };
 }
 /**
@@ -758,6 +773,10 @@ export declare class MSStickerView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "animationDuration": true;
+        "sticker": true;
     };
 }
 /**

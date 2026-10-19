@@ -540,6 +540,14 @@ export declare class ARCoachingOverlayView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "activatesAutomatically": true;
+        "delegate": true;
+        "goal": true;
+        "isActive": true;
+        "session": true;
+        "sessionProvider": true;
+    };
 }
 /**
  * enum Goal
@@ -2851,6 +2859,14 @@ export declare class ARSCNView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "automaticallyUpdatesLighting": true;
+        "delegate": true;
+        "rendersCameraGrain": true;
+        "rendersMotionBlur": true;
+        "scene": true;
+        "session": true;
+    };
 }
 /**
  * protocol ARSCNViewDelegate : ARSessionObserver, SCNSceneRendererDelegate
@@ -3452,6 +3468,10 @@ export declare class ARSKView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "session": true;
     };
 }
 /**

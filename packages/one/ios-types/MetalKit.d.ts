@@ -582,6 +582,33 @@ export declare class MTKView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "autoResizeDrawable": true;
+        "clearColor": true;
+        "clearDepth": true;
+        "clearStencil": true;
+        "colorPixelFormat": true;
+        "currentDrawable": true;
+        "currentRenderPassDescriptor": true;
+        "delegate": true;
+        "depthStencilAttachmentTextureUsage": true;
+        "depthStencilPixelFormat": true;
+        "depthStencilStorageMode": true;
+        "depthStencilTexture": true;
+        "device": true;
+        "drawableSize": true;
+        "enableSetNeedsDisplay": true;
+        "framebufferOnly": true;
+        "multisampleColorAttachmentTextureUsage": true;
+        "multisampleColorTexture": true;
+        "isPaused": true;
+        "preferredDevice": true;
+        "preferredDrawableSize": true;
+        "preferredFramesPerSecond": true;
+        "presentsWithTransaction": true;
+        "residencySet": true;
+        "sampleCount": true;
+    };
 }
 /**
  * protocol MTKViewDelegate : NSObjectProtocol

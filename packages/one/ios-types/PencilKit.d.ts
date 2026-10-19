@@ -105,6 +105,17 @@ export declare class PKCanvasView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsFingerDrawing": true;
+        "delegate": true;
+        "drawing": true;
+        "isDrawingEnabled": true;
+        "drawingGestureRecognizer": true;
+        "drawingPolicy": true;
+        "maximumSupportedContentVersion": true;
+        "isRulerActive": true;
+        "selection": true;
+    };
 }
 /**
  * @MainActor protocol PKCanvasViewDelegate : UIScrollViewDelegate
@@ -2019,6 +2030,9 @@ export declare class UIResponder extends SDKHandle {
     readonly $type: {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "pencilKitResponderState": true;
     };
 }
 /**

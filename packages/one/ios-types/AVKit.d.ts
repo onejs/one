@@ -195,6 +195,9 @@ export declare class AVCaptureEventInteraction extends SDKHandle {
         "c:objc(cs)AVCaptureEventInteraction": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * enum AVCaptureEventPhase
@@ -295,6 +298,11 @@ export declare class AVInputPickerInteraction extends SDKHandle {
     readonly $type: {
         "c:objc(cs)AVInputPickerInteraction": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "audioSession": true;
+        "delegate": true;
+        "isPresented": true;
     };
 }
 /**
@@ -1141,6 +1149,10 @@ export declare class AVPlayerItem extends SDKHandle {
         "c:objc(cs)AVPlayerItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "externalMetadata": true;
+        "interstitialTimeRanges": true;
+    };
 }
 /**
  * @MainActor class AVPlayerViewController
@@ -1291,6 +1303,29 @@ export declare class AVPlayerViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsPictureInPicturePlayback": true;
+        "allowsVideoFrameAnalysis": true;
+        "canStartPictureInPictureAutomaticallyFromInline": true;
+        "contentOverlayView": true;
+        "delegate": true;
+        "entersFullScreenWhenPlaybackBegins": true;
+        "exitsFullScreenWhenPlaybackEnds": true;
+        "pixelBufferAttributes": true;
+        "player": true;
+        "preferredDisplayDynamicRange": true;
+        "isReadyForDisplay": true;
+        "requiresLinearPlayback": true;
+        "selectedSpeed": true;
+        "showsPlaybackControls": true;
+        "showsTimecodes": true;
+        "speeds": true;
+        "toggleLookupAction": true;
+        "updatesNowPlayingInfoCenter": true;
+        "videoBounds": true;
+        "videoFrameAnalysisTypes": true;
+        "videoGravity": true;
+    };
 }
 /**
  * protocol AVPlayerViewControllerDelegate : NSObjectProtocol
@@ -1379,6 +1414,12 @@ export declare class AVRoutePickerView extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "activeTintColor": true;
+        "customRoutingController": true;
+        "delegate": true;
+        "prioritizesVideoDevices": true;
     };
 }
 /**

@@ -16,57 +16,57 @@ export class ShieldConfiguration extends SDKHandle {
    * let backgroundColor: UIColor?
    * @availability iOS 15.0+
    */
-  get backgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("ManagedSettingsUI_067acaa3e5f56b46", 1456733214304993, this, []); }
+  get backgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("ManagedSettingsUI_d968214ecc684fb6", 1456733214304993, this, []); }
   /**
    * let primaryButtonLabel: ShieldConfiguration.Label?
    * @availability iOS 15.0+
    */
-  get primaryButtonLabel(): $SDK0 { return callSDK<$SDK0>("ManagedSettingsUI_067acaa3e5f56b46", 2590399693788342, this, []); }
+  get primaryButtonLabel(): $SDK0 { return callSDK<$SDK0>("ManagedSettingsUI_d968214ecc684fb6", 2590399693788342, this, []); }
   /**
    * init(backgroundBlurStyle: UIBlurEffect.Style? = nil, backgroundColor: UIColor? = nil, icon: UIImage? = nil, title: ShieldConfiguration.Label? = nil, subtitle: ShieldConfiguration.Label? = nil, primaryButtonLabel: ShieldConfiguration.Label? = nil, primaryButtonBackgroundColor: UIColor? = nil, secondaryButtonLabel: ShieldConfiguration.Label? = nil, secondaryButtonSubmenuItems: [String]? = nil)
    * @availability iOS 26.4+
    */
-  static initBackgroundBlurStyleBackgroundColorIconTitleSubtitlePrimaryButtonLabelPrimaryButtonBackgroundColorSecondaryButtonLabelSecondaryButtonSubmenuItems(backgroundBlurStyle?: $SDK1, backgroundColor?: (_UIKit_UIColor) | null, icon?: (_UIKit_UIImage) | null, title?: $SDK0, subtitle?: $SDK0, primaryButtonLabel?: $SDK0, primaryButtonBackgroundColor?: (_UIKit_UIColor) | null, secondaryButtonLabel?: $SDK0, secondaryButtonSubmenuItems?: (Array<string>) | null): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_067acaa3e5f56b46", 4375583166070113, undefined, [backgroundBlurStyle, backgroundColor, icon, title, subtitle, primaryButtonLabel, primaryButtonBackgroundColor, secondaryButtonLabel, secondaryButtonSubmenuItems]); }
+  static initBackgroundBlurStyleBackgroundColorIconTitleSubtitlePrimaryButtonLabelPrimaryButtonBackgroundColorSecondaryButtonLabelSecondaryButtonSubmenuItems(backgroundBlurStyle?: $SDK1, backgroundColor?: (_UIKit_UIColor) | null, icon?: (_UIKit_UIImage) | null, title?: $SDK0, subtitle?: $SDK0, primaryButtonLabel?: $SDK0, primaryButtonBackgroundColor?: (_UIKit_UIColor) | null, secondaryButtonLabel?: $SDK0, secondaryButtonSubmenuItems?: (Array<string>) | null): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_d968214ecc684fb6", 4375583166070113, undefined, [backgroundBlurStyle, backgroundColor, icon, title, subtitle, primaryButtonLabel, primaryButtonBackgroundColor, secondaryButtonLabel, secondaryButtonSubmenuItems]); }
   /**
    * init(backgroundBlurStyle: UIBlurEffect.Style? = nil, backgroundColor: UIColor? = nil, icon: UIImage? = nil, title: ShieldConfiguration.Label? = nil, subtitle: ShieldConfiguration.Label? = nil, primaryButtonLabel: ShieldConfiguration.Label? = nil, primaryButtonBackgroundColor: UIColor? = nil, secondaryButtonLabel: ShieldConfiguration.Label? = nil)
    * @availability iOS 15.0+
    */
-  static initBackgroundBlurStyleBackgroundColorIconTitleSubtitlePrimaryButtonLabelPrimaryButtonBackgroundColorSecondaryButtonLabel(backgroundBlurStyle?: $SDK1, backgroundColor?: (_UIKit_UIColor) | null, icon?: (_UIKit_UIImage) | null, title?: $SDK0, subtitle?: $SDK0, primaryButtonLabel?: $SDK0, primaryButtonBackgroundColor?: (_UIKit_UIColor) | null, secondaryButtonLabel?: $SDK0): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_067acaa3e5f56b46", 1252796402619521, undefined, [backgroundBlurStyle, backgroundColor, icon, title, subtitle, primaryButtonLabel, primaryButtonBackgroundColor, secondaryButtonLabel]); }
+  static initBackgroundBlurStyleBackgroundColorIconTitleSubtitlePrimaryButtonLabelPrimaryButtonBackgroundColorSecondaryButtonLabel(backgroundBlurStyle?: $SDK1, backgroundColor?: (_UIKit_UIColor) | null, icon?: (_UIKit_UIImage) | null, title?: $SDK0, subtitle?: $SDK0, primaryButtonLabel?: $SDK0, primaryButtonBackgroundColor?: (_UIKit_UIColor) | null, secondaryButtonLabel?: $SDK0): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_d968214ecc684fb6", 1252796402619521, undefined, [backgroundBlurStyle, backgroundColor, icon, title, subtitle, primaryButtonLabel, primaryButtonBackgroundColor, secondaryButtonLabel]); }
   /**
    * let backgroundBlurStyle: UIBlurEffect.Style?
    * @availability iOS 15.0+
    */
-  get backgroundBlurStyle(): $SDK1 { return callSDK<$SDK1>("ManagedSettingsUI_067acaa3e5f56b46", 3347449526663667, this, []); }
+  get backgroundBlurStyle(): $SDK1 { return callSDK<$SDK1>("ManagedSettingsUI_d968214ecc684fb6", 3347449526663667, this, []); }
   /**
    * let secondaryButtonLabel: ShieldConfiguration.Label?
    * @availability iOS 15.0+
    */
-  get secondaryButtonLabel(): $SDK0 { return callSDK<$SDK0>("ManagedSettingsUI_067acaa3e5f56b46", 4135830669015546, this, []); }
+  get secondaryButtonLabel(): $SDK0 { return callSDK<$SDK0>("ManagedSettingsUI_d968214ecc684fb6", 4135830669015546, this, []); }
   /**
    * let secondaryButtonSubmenuItems: [String]?
    * @availability iOS 26.4+
    */
-  get secondaryButtonSubmenuItems(): (Array<string>) | null { return callSDK<(Array<string>) | null>("ManagedSettingsUI_067acaa3e5f56b46", 2833051800684237, this, []); }
+  get secondaryButtonSubmenuItems(): (Array<string>) | null { return callSDK<(Array<string>) | null>("ManagedSettingsUI_d968214ecc684fb6", 2833051800684237, this, []); }
   /**
    * let primaryButtonBackgroundColor: UIColor?
    * @availability iOS 15.0+
    */
-  get primaryButtonBackgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("ManagedSettingsUI_067acaa3e5f56b46", 4406158500192836, this, []); }
+  get primaryButtonBackgroundColor(): (_UIKit_UIColor) | null { return callSDK<(_UIKit_UIColor) | null>("ManagedSettingsUI_d968214ecc684fb6", 4406158500192836, this, []); }
   /**
    * let icon: UIImage?
    * @availability iOS 15.0+
    */
-  get icon(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("ManagedSettingsUI_067acaa3e5f56b46", 3707801326574609, this, []); }
+  get icon(): (_UIKit_UIImage) | null { return callSDK<(_UIKit_UIImage) | null>("ManagedSettingsUI_d968214ecc684fb6", 3707801326574609, this, []); }
   /**
    * let title: ShieldConfiguration.Label?
    * @availability iOS 15.0+
    */
-  get title(): $SDK0 { return callSDK<$SDK0>("ManagedSettingsUI_067acaa3e5f56b46", 2746811246867046, this, []); }
+  get title(): $SDK0 { return callSDK<$SDK0>("ManagedSettingsUI_d968214ecc684fb6", 2746811246867046, this, []); }
   /**
    * let subtitle: ShieldConfiguration.Label?
    * @availability iOS 15.0+
    */
-  get subtitle(): $SDK0 { return callSDK<$SDK0>("ManagedSettingsUI_067acaa3e5f56b46", 570445243322851, this, []); }
+  get subtitle(): $SDK0 { return callSDK<$SDK0>("ManagedSettingsUI_d968214ecc684fb6", 570445243322851, this, []); }
   declare readonly $type: { "s:17ManagedSettingsUI19ShieldConfigurationV": true };
 }
 
@@ -79,17 +79,17 @@ export class ShieldConfiguration_Label extends SDKHandle {
    * init(text: String, color: UIColor)
    * @availability iOS 15.0+
    */
-  static init(text: string, color: _UIKit_UIColor): ShieldConfiguration_Label { return callSDK<ShieldConfiguration_Label>("ManagedSettingsUI_067acaa3e5f56b46", 250842573757232, undefined, [text, color]); }
+  static init(text: string, color: _UIKit_UIColor): ShieldConfiguration_Label { return callSDK<ShieldConfiguration_Label>("ManagedSettingsUI_d968214ecc684fb6", 250842573757232, undefined, [text, color]); }
   /**
    * let text: String
    * @availability iOS 15.0+
    */
-  get text(): string { return callSDK<string>("ManagedSettingsUI_067acaa3e5f56b46", 2856324418133351, this, []); }
+  get text(): string { return callSDK<string>("ManagedSettingsUI_d968214ecc684fb6", 2856324418133351, this, []); }
   /**
    * let color: UIColor
    * @availability iOS 15.0+
    */
-  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("ManagedSettingsUI_067acaa3e5f56b46", 522240439353552, this, []); }
+  get color(): _UIKit_UIColor { return callSDK<_UIKit_UIColor>("ManagedSettingsUI_d968214ecc684fb6", 522240439353552, this, []); }
   declare readonly $type: { "s:17ManagedSettingsUI19ShieldConfigurationV5LabelV": true };
 }
 
@@ -102,30 +102,30 @@ export class ShieldConfigurationDataSource extends SDKHandle {
    * override dynamic init()
    * @availability iOS 15.0+
    */
-  static init(): ShieldConfigurationDataSource { return callSDK<ShieldConfigurationDataSource>("ManagedSettingsUI_067acaa3e5f56b46", 2595984651880479, undefined, []); }
+  static init(): ShieldConfigurationDataSource { return callSDK<ShieldConfigurationDataSource>("ManagedSettingsUI_d968214ecc684fb6", 2595984651880479, undefined, []); }
   /**
    * func configuration(shielding application: Application, in category: ActivityCategory) -> ShieldConfiguration
    * @availability iOS 15.0+
    */
-  configurationShieldingIn(application: _ManagedSettings_Application, category: _ManagedSettings_ActivityCategory): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_067acaa3e5f56b46", 3695422930564675, this, [application, category]); }
+  configurationShieldingIn(application: _ManagedSettings_Application, category: _ManagedSettings_ActivityCategory): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_d968214ecc684fb6", 3695422930564675, this, [application, category]); }
   /**
    * func configuration(shielding webDomain: WebDomain, in category: ActivityCategory) -> ShieldConfiguration
    * @availability iOS 15.0+
    */
-  configurationShieldingIn69477(webDomain: _ManagedSettings_WebDomain, category: _ManagedSettings_ActivityCategory): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_067acaa3e5f56b46", 3590550738750263, this, [webDomain, category]); }
+  configurationShieldingIn69477(webDomain: _ManagedSettings_WebDomain, category: _ManagedSettings_ActivityCategory): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_d968214ecc684fb6", 3590550738750263, this, [webDomain, category]); }
   /**
    * func configuration(shielding application: Application) -> ShieldConfiguration
    * @availability iOS 15.0+
    */
-  configurationShielding(application: _ManagedSettings_Application): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_067acaa3e5f56b46", 3433378084961775, this, [application]); }
+  configurationShielding(application: _ManagedSettings_Application): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_d968214ecc684fb6", 3433378084961775, this, [application]); }
   /**
    * func configuration(shielding webDomain: WebDomain) -> ShieldConfiguration
    * @availability iOS 15.0+
    */
-  configurationShielding90850(webDomain: _ManagedSettings_WebDomain): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_067acaa3e5f56b46", 1853378545321784, this, [webDomain]); }
+  configurationShielding90850(webDomain: _ManagedSettings_WebDomain): ShieldConfiguration { return callSDK<ShieldConfiguration>("ManagedSettingsUI_d968214ecc684fb6", 1853378545321784, this, [webDomain]); }
   declare readonly $type: { "c:@M@ManagedSettingsUI@objc(cs)ShieldConfigurationDataSource": true; "c:objc(cs)NSObject": true };
 }
 
-registerSDKClass("ManagedSettingsUI.ShieldConfiguration", ShieldConfiguration, { module: "ManagedSettingsUI_067acaa3e5f56b46", properties: {} });
-registerSDKClass("ManagedSettingsUI.ShieldConfiguration.Label", ShieldConfiguration_Label, { module: "ManagedSettingsUI_067acaa3e5f56b46", properties: {} });
-registerSDKClass("ManagedSettingsUI.ShieldConfigurationDataSource", ShieldConfigurationDataSource, { module: "ManagedSettingsUI_067acaa3e5f56b46", properties: {}, methods: {"configurationShieldingIn":{"id":3695422930564675},"configurationShieldingIn69477":{"id":3590550738750263},"configurationShielding":{"id":3433378084961775},"configurationShielding90850":{"id":1853378545321784}} });
+registerSDKClass("ManagedSettingsUI.ShieldConfiguration", ShieldConfiguration, { module: "ManagedSettingsUI_d968214ecc684fb6", properties: {} });
+registerSDKClass("ManagedSettingsUI.ShieldConfiguration.Label", ShieldConfiguration_Label, { module: "ManagedSettingsUI_d968214ecc684fb6", properties: {} });
+registerSDKClass("ManagedSettingsUI.ShieldConfigurationDataSource", ShieldConfigurationDataSource, { module: "ManagedSettingsUI_d968214ecc684fb6", properties: {}, methods: {"configurationShieldingIn":{"id":3695422930564675},"configurationShieldingIn69477":{"id":3590550738750263},"configurationShielding":{"id":3433378084961775},"configurationShielding90850":{"id":1853378545321784}} });

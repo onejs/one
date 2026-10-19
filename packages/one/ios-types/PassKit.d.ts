@@ -439,6 +439,9 @@ export declare class PKAddPassButton extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "addPassButtonStyle": true;
+    };
 }
 /**
  * enum PKAddPassButtonStyle
@@ -503,6 +506,9 @@ export declare class PKAddPassesViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
     };
 }
 /** protocol PKAddPassesViewControllerDelegate : NSObjectProtocol */
@@ -724,6 +730,9 @@ export declare class PKAddPaymentPassViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol PKAddPaymentPassViewControllerDelegate : NSObjectProtocol
@@ -884,6 +893,9 @@ export declare class PKAddSecureElementPassViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
     };
 }
 /**
@@ -1763,6 +1775,9 @@ export declare class PKIdentityButton extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "cornerRadius": true;
     };
 }
 /**
@@ -3006,6 +3021,11 @@ export declare class PKPayLaterView extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "action": true;
+        "delegate": true;
+        "displayStyle": true;
+    };
 }
 /**
  * protocol PKPayLaterViewDelegate : NSObjectProtocol
@@ -3259,6 +3279,9 @@ export declare class PKPaymentAuthorizationViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /** protocol PKPaymentAuthorizationViewControllerDelegate : NSObjectProtocol */
 export interface PKPaymentAuthorizationViewControllerDelegate {
@@ -3301,6 +3324,9 @@ export declare class PKPaymentButton extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "cornerRadius": true;
     };
 }
 /**
@@ -4944,6 +4970,10 @@ export declare class PKShareSecureElementPassViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "delegate": true;
+        "promptToShareURL": true;
     };
 }
 /**

@@ -1313,6 +1313,28 @@ export declare class PaperMarkupViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "canBecomeFirstResponder": true;
+        "undoManager": true;
+        "contentView": true;
+        "selectedMarkup": true;
+        "adornments": true;
+        "isEditable": true;
+        "drawingTool": true;
+        "isRulerActive": true;
+        "directTouchMode": true;
+        "contentVisibleFrame": true;
+        "scrollConfiguration": true;
+        "supportedFeatureSet": true;
+        "indirectPointerTouchMode": true;
+        "showsVerticalScrollIndicator": true;
+        "directTouchAutomaticallyDraws": true;
+        "showsHorizontalScrollIndicator": true;
+        "markup": true;
+        "delegate": true;
+        "selection": true;
+        "zoomRange": true;
+    };
 }
 /**
  * protocol Delegate : AnyObject
@@ -1439,6 +1461,21 @@ export declare class PaperMarkupViewController_ScrollConfiguration extends SDKHa
     setZoomScale(value: number): Promise<void>;
     readonly $type: {
         "s:8PaperKit0A20MarkupViewControllerC19ScrollConfigurationC": true;
+    };
+    readonly $observable: {
+        "horizontalScrollIndicatorInsets": true;
+        "isScrollEnabled": true;
+        "visibleScrollIndicators": true;
+        "verticalScrollIndicatorInsets": true;
+        "bouncesZoom": true;
+        "contentInset": true;
+        "scrollsToTop": true;
+        "alwaysBounces": true;
+        "adjustedContentInset": true;
+        "isDirectionalLockEnabled": true;
+        "contentInsetAdjustmentBehavior": true;
+        "bounces": true;
+        "zoomScale": true;
     };
 }
 /**

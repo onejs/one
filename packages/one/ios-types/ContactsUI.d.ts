@@ -72,6 +72,13 @@ export declare class CNContactPickerViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "delegate": true;
+        "displayedPropertyKeys": true;
+        "predicateForEnablingContact": true;
+        "predicateForSelectionOfContact": true;
+        "predicateForSelectionOfProperty": true;
+    };
 }
 /**
  * class CNContactViewController
@@ -173,6 +180,19 @@ export declare class CNContactViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allowsActions": true;
+        "allowsEditing": true;
+        "alternateName": true;
+        "contact": true;
+        "contactStore": true;
+        "delegate": true;
+        "displayedPropertyKeys": true;
+        "message": true;
+        "parentContainer": true;
+        "parentGroup": true;
+        "shouldShowLinkedContacts": true;
     };
 }
 /**

@@ -60,6 +60,9 @@ export declare class FPUIActionExtensionViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "extensionContext": true;
+    };
 }
 /** struct FPUIActionIdentifier */
 export type FPUIActionIdentifier = (string & {});

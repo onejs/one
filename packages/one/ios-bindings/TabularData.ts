@@ -41,41 +41,41 @@ export class AnyCategoricalSummary extends SDKHandle {
    * var totalCount: Int { get }
    * @availability iOS 15.0+
    */
-  get totalCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3108956366508892, this, []); }
+  get totalCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3108956366508892, this, []); }
   /**
    * var uniqueCount: Int
    * @availability iOS 15.0+
    */
-  get uniqueCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1079694425989119, this, []); }
-  set uniqueCount(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 3587696222781494, this, [value]); }
+  get uniqueCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1079694425989119, this, []); }
+  set uniqueCount(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 3587696222781494, this, [value]); }
   /**
    * var mode: [Any]
    * @availability iOS 15.0+
    */
-  get mode(): Array<unknown> { return callSDK<Array<unknown>>("TabularData_067acaa3e5f56b46", 3675359465650446, this, []); }
-  set mode(value: Array<unknown>) { callSDK<void>("TabularData_067acaa3e5f56b46", 1376850011391424, this, [value]); }
+  get mode(): Array<unknown> { return callSDK<Array<unknown>>("TabularData_d968214ecc684fb6", 3675359465650446, this, []); }
+  set mode(value: Array<unknown>) { callSDK<void>("TabularData_d968214ecc684fb6", 1376850011391424, this, [value]); }
   /**
    * var noneCount: Int
    * @availability iOS 15.0+
    */
-  get noneCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1796499900334369, this, []); }
-  set noneCount(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 1082882345343654, this, [value]); }
+  get noneCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1796499900334369, this, []); }
+  set noneCount(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 1082882345343654, this, [value]); }
   /**
    * var someCount: Int
    * @availability iOS 15.0+
    */
-  get someCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3839079203149603, this, []); }
-  set someCount(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 276616103157390, this, [value]); }
+  get someCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3839079203149603, this, []); }
+  set someCount(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 276616103157390, this, [value]); }
   /**
    * init(_ summary: CategoricalSummary<AnyHashable>)
    * @availability iOS 15.0+
    */
-  static init(summary: CategoricalSummary<unknown>): AnyCategoricalSummary { return callSDK<AnyCategoricalSummary>("TabularData_067acaa3e5f56b46", 1475737752610607, undefined, [summary]); }
+  static init(summary: CategoricalSummary<unknown>): AnyCategoricalSummary { return callSDK<AnyCategoricalSummary>("TabularData_d968214ecc684fb6", 1475737752610607, undefined, [summary]); }
   /**
    * init<T>(_ summary: CategoricalSummary<T>) where T : Hashable
    * @availability iOS 15.0+
    */
-  static init86069(summary: $SDK1): AnyCategoricalSummary { return callSDK<AnyCategoricalSummary>("TabularData_067acaa3e5f56b46", 234090152732633, undefined, [summary]); }
+  static init86069(summary: $SDK1): AnyCategoricalSummary { return callSDK<AnyCategoricalSummary>("TabularData_d968214ecc684fb6", 234090152732633, undefined, [summary]); }
   declare readonly $type: { "s:11TabularData21AnyCategoricalSummaryV": true };
 }
 
@@ -88,103 +88,103 @@ export class AnyColumn extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1088701373025696, this, []); }
+  get startIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1088701373025696, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 1584414445235632, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 1584414445235632, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 15.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 2659665139502389, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 2659665139502389, this, []); }
   /**
    * var missingCount: Int { get }
    * @availability iOS 15.0+
    */
-  get missingCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2134617589489071, this, []); }
+  get missingCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2134617589489071, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 3208754547046833, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 3208754547046833, this, []); }
   /**
    * var name: String { get set }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 1920943877310036, this, []); }
-  set name(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 615184129561196, this, [value]); }
+  get name(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 1920943877310036, this, []); }
+  set name(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 615184129561196, this, [value]); }
   /**
    * var count: Int { get }
    * @availability iOS 15.0+
    */
-  get count(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2899484472216799, this, []); }
+  get count(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2899484472216799, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 132653343179223, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 132653343179223, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 777262507690654, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 777262507690654, this, [i]); }
   /**
    * func isNil(at index: Int) -> Bool
    * @availability iOS 15.0+
    */
-  isNil(index: number): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 2444951051492153, this, [index]); }
+  isNil(index: number): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 2444951051492153, this, [index]); }
   /**
    * mutating func append(contentsOf other: AnyColumnSlice)
    * @availability iOS 15.0+
    */
-  appendContentsOf(other: AnyColumnSlice): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 1762421428785612, this, [other]); }
+  appendContentsOf(other: AnyColumnSlice): void { return callSDK<void>("TabularData_d968214ecc684fb6", 1762421428785612, this, [other]); }
   /**
    * mutating func append(contentsOf other: AnyColumn)
    * @availability iOS 15.0+
    */
-  appendContentsOf97210(other: AnyColumn): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 3140111527470052, this, [other]); }
+  appendContentsOf97210(other: AnyColumn): void { return callSDK<void>("TabularData_d968214ecc684fb6", 3140111527470052, this, [other]); }
   /**
    * mutating func append(_ element: Any?)
    * @availability iOS 15.0+
    */
-  append(element?: (unknown) | null): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 1695203712371362, this, [element]); }
+  append(element?: (unknown) | null): void { return callSDK<void>("TabularData_d968214ecc684fb6", 1695203712371362, this, [element]); }
   /**
    * mutating func remove(at index: Int)
    * @availability iOS 15.0+
    */
-  remove(index: number): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 837119121676432, this, [index]); }
+  remove(index: number): void { return callSDK<void>("TabularData_d968214ecc684fb6", 837119121676432, this, [index]); }
   /**
    * func distinct() -> AnyColumnSlice
    * @availability iOS 15.0+
    */
-  distinct(): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_067acaa3e5f56b46", 4428691474205436, this, []); }
+  distinct(): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_d968214ecc684fb6", 4428691474205436, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2976275460141365, this, []); }
+  get endIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2976275460141365, this, []); }
   /**
    * var prototype: any AnyColumnPrototype { get }
    * @availability iOS 15.0+
    */
-  get prototype(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 3097623479383359, this, []); }
+  get prototype(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 3097623479383359, this, []); }
   /**
    * subscript(range: Range<Int>) -> AnyColumnSlice { get set }
    * @availability iOS 15.0+
    */
-  subscript(range: SDKHandle): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_067acaa3e5f56b46", 2606725720093428, this, [range]); }
+  subscript(range: SDKHandle): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_d968214ecc684fb6", 2606725720093428, this, [range]); }
   /**
    * subscript<C>(mask: C) -> AnyColumnSlice where C : Collection, C.Element == Bool { get }
    * @availability iOS 15.0+
    */
-  subscript89099(mask: Array<boolean>): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_067acaa3e5f56b46", 4140205309327658, this, [mask]); }
+  subscript89099(mask: Array<boolean>): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_d968214ecc684fb6", 4140205309327658, this, [mask]); }
   /**
    * subscript(position: Int) -> Any? { get set }
    * @availability iOS 15.0+
    */
-  subscript36140(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 2755815518252948, this, [position]); }
+  subscript36140(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 2755815518252948, this, [position]); }
   declare readonly $type: { "s:11TabularData9AnyColumnV": true };
 }
 
@@ -251,78 +251,78 @@ export class AnyColumnSlice extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3577629146138308, this, []); }
+  get startIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3577629146138308, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 1123245152514832, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 1123245152514832, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 15.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 3080689461350796, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 3080689461350796, this, []); }
   /**
    * var missingCount: Int { get }
    * @availability iOS 15.0+
    */
-  get missingCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 4366499827329641, this, []); }
+  get missingCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 4366499827329641, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 4420189496611100, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 4420189496611100, this, []); }
   /**
    * var name: String { get set }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 327318844696147, this, []); }
-  set name(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 2624278782630449, this, [value]); }
+  get name(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 327318844696147, this, []); }
+  set name(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 2624278782630449, this, [value]); }
   /**
    * var count: Int { get }
    * @availability iOS 15.0+
    */
-  get count(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2048875222950483, this, []); }
+  get count(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2048875222950483, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1640825469480426, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1640825469480426, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 56029876140976, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 56029876140976, this, [i]); }
   /**
    * func isNil(at index: Int) -> Bool
    * @availability iOS 15.0+
    */
-  isNil(index: number): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 3385624442125981, this, [index]); }
+  isNil(index: number): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 3385624442125981, this, [index]); }
   /**
    * func summary() -> AnyCategoricalSummary
    * @availability iOS 15.0+
    */
-  summary(): AnyCategoricalSummary { return callSDK<AnyCategoricalSummary>("TabularData_067acaa3e5f56b46", 1378521455773118, this, []); }
+  summary(): AnyCategoricalSummary { return callSDK<AnyCategoricalSummary>("TabularData_d968214ecc684fb6", 1378521455773118, this, []); }
   /**
    * func distinct() -> AnyColumnSlice
    * @availability iOS 15.0+
    */
-  distinct(): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_067acaa3e5f56b46", 3420289522631317, this, []); }
+  distinct(): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_d968214ecc684fb6", 3420289522631317, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 4436069512790565, this, []); }
+  get endIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 4436069512790565, this, []); }
   /**
    * subscript(range: Range<Int>) -> AnyColumnSlice { get set }
    * @availability iOS 15.0+
    */
-  subscript(range: SDKHandle): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_067acaa3e5f56b46", 3015329823336492, this, [range]); }
+  subscript(range: SDKHandle): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_d968214ecc684fb6", 3015329823336492, this, [range]); }
   /**
    * subscript(position: Int) -> Any? { get set }
    * @availability iOS 15.0+
    */
-  subscript88042(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 2683204728791047, this, [position]); }
+  subscript88042(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 2683204728791047, this, [position]); }
   declare readonly $type: { "s:11TabularData14AnyColumnSliceV": true };
 }
 
@@ -365,46 +365,46 @@ export class CategoricalSummary<Element = unknown> extends SDKHandle {
    * var totalCount: Int { get }
    * @availability iOS 15.0+
    */
-  get totalCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3933065344295747, this, []); }
+  get totalCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3933065344295747, this, []); }
   /**
    * var uniqueCount: Int
    * @availability iOS 15.0+
    */
-  get uniqueCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 41631133408733, this, []); }
-  set uniqueCount(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 2165243900156541, this, [value]); }
+  get uniqueCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 41631133408733, this, []); }
+  set uniqueCount(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 2165243900156541, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 4207983656054005, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 4207983656054005, this, []); }
   /**
    * var mode: [Element]
    * @availability iOS 15.0+
    */
-  get mode(): Array<number> { return callSDK<Array<number>>("TabularData_067acaa3e5f56b46", 1559505006280688, this, []); }
-  set mode(value: Array<number>) { callSDK<void>("TabularData_067acaa3e5f56b46", 2060835589267049, this, [value]); }
+  get mode(): Array<number> { return callSDK<Array<number>>("TabularData_d968214ecc684fb6", 1559505006280688, this, []); }
+  set mode(value: Array<number>) { callSDK<void>("TabularData_d968214ecc684fb6", 2060835589267049, this, [value]); }
   /**
    * var noneCount: Int
    * @availability iOS 15.0+
    */
-  get noneCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3813457235510402, this, []); }
-  set noneCount(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 236919626468174, this, [value]); }
+  get noneCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3813457235510402, this, []); }
+  set noneCount(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 236919626468174, this, [value]); }
   /**
    * init(someCount: Int, noneCount: Int, uniqueCount: Int, mode: [Element])
    * @availability iOS 15.0+
    */
-  static initSomeCountNoneCountUniqueCountMode(someCount: number, noneCount: number, uniqueCount: number, mode: Array<number>): $SDK1 { return callSDK<$SDK1>("TabularData_067acaa3e5f56b46", 1423273349767640, undefined, [someCount, noneCount, uniqueCount, mode]); }
+  static initSomeCountNoneCountUniqueCountMode(someCount: number, noneCount: number, uniqueCount: number, mode: Array<number>): $SDK1 { return callSDK<$SDK1>("TabularData_d968214ecc684fb6", 1423273349767640, undefined, [someCount, noneCount, uniqueCount, mode]); }
   /**
    * var someCount: Int
    * @availability iOS 15.0+
    */
-  get someCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2313948760223083, this, []); }
-  set someCount(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 1364080281745748, this, [value]); }
+  get someCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2313948760223083, this, []); }
+  set someCount(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 1364080281745748, this, [value]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): $SDK1 { return callSDK<$SDK1>("TabularData_067acaa3e5f56b46", 1816570861987331, undefined, []); }
+  static init(): $SDK1 { return callSDK<$SDK1>("TabularData_d968214ecc684fb6", 1816570861987331, undefined, []); }
   declare readonly $type: { "s:11TabularData18CategoricalSummaryV": true };
 }
 
@@ -417,193 +417,193 @@ export class Column<WrappedElement = unknown> extends SDKHandle {
    * func eraseToAnyColumn() -> AnyColumn
    * @availability iOS 15.0+
    */
-  eraseToAnyColumn(): AnyColumn { return callSDK<AnyColumn>("TabularData_067acaa3e5f56b46", 283635644737776, this, []); }
+  eraseToAnyColumn(): AnyColumn { return callSDK<AnyColumn>("TabularData_d968214ecc684fb6", 283635644737776, this, []); }
   /**
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1314742869179952, this, []); }
+  get startIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1314742869179952, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 177196741361198, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 177196741361198, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 15.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 700493162594667, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 700493162594667, this, []); }
   /**
    * var missingCount: Int { get }
    * @availability iOS 15.0+
    */
-  get missingCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3140097458549533, this, []); }
+  get missingCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3140097458549533, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 3055935128101603, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 3055935128101603, this, []); }
   /**
    * func withContiguousStorageIfAvailable<R>(_ body: (UnsafeBufferPointer<WrappedElement>) throws -> R) rethrows -> R?
    * @availability iOS 16.0+
    */
-  withContiguousStorageIfAvailable(body: $SDK2): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 349082478495676, this, [body], [{"callback":{"out":[]}}], true); }
+  withContiguousStorageIfAvailable(body: $SDK2): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 349082478495676, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * mutating func withContiguousMutableStorageIfAvailable<R>(_ body: (inout UnsafeMutableBufferPointer<WrappedElement>) throws -> R) rethrows -> R?
    * @availability iOS 16.0+
    */
-  withContiguousMutableStorageIfAvailable(body: $SDK2): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 4164443248872541, this, [body], [{"callback":{"out":[]}}], true); }
+  withContiguousMutableStorageIfAvailable(body: $SDK2): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 4164443248872541, this, [body], [{"callback":{"out":[]}}], true); }
   /**
    * func map<T>(_ transform: (Column<WrappedElement>.Element) throws -> T?) rethrows -> Column<T>
    * @availability iOS 15.0+
    */
-  map(transform: $SDK3): Column<unknown> { return callSDK<Column<unknown>>("TabularData_067acaa3e5f56b46", 483781189486622, this, [transform], [{"callback":{"out":[]}}], true); }
+  map(transform: $SDK3): Column<unknown> { return callSDK<Column<unknown>>("TabularData_d968214ecc684fb6", 483781189486622, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * init(name: String, capacity: Int)
    * @availability iOS 15.0+
    */
-  static initNameCapacity(name: string, capacity: number): Column<unknown> { return callSDK<Column<unknown>>("TabularData_067acaa3e5f56b46", 2914770652045384, undefined, [name, capacity]); }
+  static initNameCapacity(name: string, capacity: number): Column<unknown> { return callSDK<Column<unknown>>("TabularData_d968214ecc684fb6", 2914770652045384, undefined, [name, capacity]); }
   /**
    * var name: String
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 1090796863380735, this, []); }
-  set name(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 2156415113971577, this, [value]); }
+  get name(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 1090796863380735, this, []); }
+  set name(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 2156415113971577, this, [value]); }
   /**
    * var count: Int { get }
    * @availability iOS 15.0+
    */
-  get count(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 605890337144223, this, []); }
+  get count(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 605890337144223, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2536690184205163, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2536690184205163, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2848445918481460, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2848445918481460, this, [i]); }
   /**
    * mutating func append(_ element: WrappedElement)
    * @availability iOS 15.0+
    */
-  append(element: unknown): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 3138169764990428, this, [element]); }
+  append(element: unknown): void { return callSDK<void>("TabularData_d968214ecc684fb6", 3138169764990428, this, [element]); }
   /**
    * mutating func append(_ element: Column<WrappedElement>.Element)
    * @availability iOS 15.0+
    */
-  append63987(element: (unknown) | null): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 3247337617548127, this, [element]); }
+  append63987(element: (unknown) | null): void { return callSDK<void>("TabularData_d968214ecc684fb6", 3247337617548127, this, [element]); }
   /**
    * func filter(_ isIncluded: (Column<WrappedElement>.Element) throws -> Bool) rethrows -> DiscontiguousColumnSlice<WrappedElement>
    * @availability iOS 15.0+
    */
-  filter(isIncluded: $SDK5): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 3503196299681348, this, [isIncluded], [{"callback":{"out":[]}}], true); }
+  filter(isIncluded: $SDK5): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 3503196299681348, this, [isIncluded], [{"callback":{"out":[]}}], true); }
   /**
    * mutating func remove(at index: Int)
    * @availability iOS 15.0+
    */
-  remove(index: number): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 1603269257014217, this, [index]); }
+  remove(index: number): void { return callSDK<void>("TabularData_d968214ecc684fb6", 1603269257014217, this, [index]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1060702242898744, this, []); }
+  get endIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1060702242898744, this, []); }
   /**
    * func mapNonNil<T>(_ transform: (WrappedElement) throws -> T?) rethrows -> Column<T>
    * @availability iOS 15.0+
    */
-  mapNonNil(transform: $SDK6): Column<unknown> { return callSDK<Column<unknown>>("TabularData_067acaa3e5f56b46", 2643227952824086, this, [transform], [{"callback":{"out":[]}}], true); }
+  mapNonNil(transform: $SDK6): Column<unknown> { return callSDK<Column<unknown>>("TabularData_d968214ecc684fb6", 2643227952824086, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * var prototype: any AnyColumnPrototype { get }
    * @availability iOS 15.0+
    */
-  get prototype(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 1765796721277917, this, []); }
+  get prototype(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 1765796721277917, this, []); }
   /**
    * mutating func transform(_ transform: (Column<WrappedElement>.Element) throws -> Column<WrappedElement>.Element) rethrows
    * @availability iOS 15.0+
    */
-  transform(transform: $SDK3): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 3320029031601008, this, [transform], [{"callback":{"out":[]}}], true); }
+  transform(transform: $SDK3): void { return callSDK<void>("TabularData_d968214ecc684fb6", 3320029031601008, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * mutating func transform(_ transform: (WrappedElement) throws -> WrappedElement) rethrows
    * @availability iOS 15.0+
    */
-  transform60933(transform: ((arg0: unknown) => unknown)): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 1880668449275487, this, [transform], [{"callback":{"out":[]}}], true); }
+  transform60933(transform: ((arg0: unknown) => unknown)): void { return callSDK<void>("TabularData_d968214ecc684fb6", 1880668449275487, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * func numericSummary() -> NumericSummary<WrappedElement>
    * @availability iOS 15.0+
    */
-  numericSummary(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_067acaa3e5f56b46", 4401586047126565, this, []); }
+  numericSummary(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_d968214ecc684fb6", 4401586047126565, this, []); }
   /**
    * func standardDeviation(deltaDegreesOfFreedom: Int = 1) -> Column<WrappedElement>.Element
    * @availability iOS 15.0+
    */
-  standardDeviationDeltaDegreesOfFreedom(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 4009329476443641, this, [deltaDegreesOfFreedom]); }
+  standardDeviationDeltaDegreesOfFreedom(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 4009329476443641, this, [deltaDegreesOfFreedom]); }
   /**
    * func mean() -> Column<WrappedElement>.Element
    * @availability iOS 15.0+
    */
-  mean(): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 824285312037188, this, []); }
+  mean(): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 824285312037188, this, []); }
   /**
    * func summary() -> CategoricalSummary<WrappedElement>
    * @availability iOS 15.0+
    */
-  summary(): $SDK1 { return callSDK<$SDK1>("TabularData_067acaa3e5f56b46", 459228679067280, this, []); }
+  summary(): $SDK1 { return callSDK<$SDK1>("TabularData_d968214ecc684fb6", 459228679067280, this, []); }
   /**
    * func distinct() -> DiscontiguousColumnSlice<WrappedElement>
    * @availability iOS 15.0+
    */
-  distinct(): $SDK8 { return callSDK<$SDK8>("TabularData_067acaa3e5f56b46", 3519981206188165, this, []); }
+  distinct(): $SDK8 { return callSDK<$SDK8>("TabularData_d968214ecc684fb6", 3519981206188165, this, []); }
   /**
    * func numericSummary() -> NumericSummary<Double>
    * @availability iOS 15.0+
    */
-  numericSummary83584(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_067acaa3e5f56b46", 346485014181504, this, []); }
+  numericSummary83584(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_d968214ecc684fb6", 346485014181504, this, []); }
   /**
    * func standardDeviation(deltaDegreesOfFreedom: Int = 1) -> Double?
    * @availability iOS 15.0+
    */
-  standardDeviationDeltaDegreesOfFreedom81666(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 3530772327586084, this, [deltaDegreesOfFreedom]); }
+  standardDeviationDeltaDegreesOfFreedom81666(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 3530772327586084, this, [deltaDegreesOfFreedom]); }
   /**
    * func mean() -> Double?
    * @availability iOS 15.0+
    */
-  mean26908(): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 1891008985439718, this, []); }
+  mean26908(): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 1891008985439718, this, []); }
   /**
    * func sum() -> WrappedElement
    * @availability iOS 15.0+
    */
-  sum(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 447068205260012, this, []); }
+  sum(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 447068205260012, this, []); }
   /**
    * init(_ id: ColumnID<WrappedElement>, capacity: Int)
    * @availability iOS 15.0+
    */
-  static initCapacity(id: ColumnID<unknown>, capacity: number): Column<unknown> { return callSDK<Column<unknown>>("TabularData_067acaa3e5f56b46", 3950164278038236, undefined, [id, capacity]); }
+  static initCapacity(id: ColumnID<unknown>, capacity: number): Column<unknown> { return callSDK<Column<unknown>>("TabularData_d968214ecc684fb6", 3950164278038236, undefined, [id, capacity]); }
   /**
    * subscript<C>(mask: C) -> DiscontiguousColumnSlice<WrappedElement> where C : Collection, C.Element == Bool { get }
    * @availability iOS 15.0+
    */
-  subscript(mask: Array<boolean>): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 3624881368077203, this, [mask]); }
+  subscript(mask: Array<boolean>): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 3624881368077203, this, [mask]); }
   /**
    * subscript(bounds: Range<Int>) -> ColumnSlice<WrappedElement> { get set }
    * @availability iOS 15.0+
    */
-  subscript44431(bounds: SDKHandle): ColumnSlice<unknown> { return callSDK<ColumnSlice<unknown>>("TabularData_067acaa3e5f56b46", 3357024457573440, this, [bounds]); }
+  subscript44431(bounds: SDKHandle): ColumnSlice<unknown> { return callSDK<ColumnSlice<unknown>>("TabularData_d968214ecc684fb6", 3357024457573440, this, [bounds]); }
   /**
    * subscript<R>(range: R) -> ColumnSlice<WrappedElement> where R : RangeExpression, R.Bound == Int { get set }
    * @availability iOS 15.0+
    */
-  subscript5224(range: SDKHandle): ColumnSlice<unknown> { return callSDK<ColumnSlice<unknown>>("TabularData_067acaa3e5f56b46", 1224034891525627, this, [range]); }
+  subscript5224(range: SDKHandle): ColumnSlice<unknown> { return callSDK<ColumnSlice<unknown>>("TabularData_d968214ecc684fb6", 1224034891525627, this, [range]); }
   /**
    * init(_ slice: ColumnSlice<WrappedElement>)
    * @availability iOS 15.0+
    */
-  static init(slice: ColumnSlice<unknown>): Column<unknown> { return callSDK<Column<unknown>>("TabularData_067acaa3e5f56b46", 3453727182627764, undefined, [slice]); }
+  static init(slice: ColumnSlice<unknown>): Column<unknown> { return callSDK<Column<unknown>>("TabularData_d968214ecc684fb6", 3453727182627764, undefined, [slice]); }
   /**
    * subscript(position: Int) -> Column<WrappedElement>.Element { get set }
    * @availability iOS 15.0+
    */
-  subscript52386(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 3804274704657763, this, [position]); }
+  subscript52386(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 3804274704657763, this, [position]); }
   declare readonly $type: { "s:11TabularData6ColumnV": true };
 }
 
@@ -646,30 +646,30 @@ export class ColumnDecodingError extends SDKHandle {
    * var decodingError: DecodingError
    * @availability iOS 15.0+
    */
-  get decodingError(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 3128327008695073, this, []); }
-  set decodingError(value: SDKHandle) { callSDK<void>("TabularData_067acaa3e5f56b46", 3686207663195603, this, [value]); }
+  get decodingError(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 3128327008695073, this, []); }
+  set decodingError(value: SDKHandle) { callSDK<void>("TabularData_d968214ecc684fb6", 3686207663195603, this, [value]); }
   /**
    * init(columnName: String, rowIndex: Int, decodingError: DecodingError)
    * @availability iOS 15.0+
    */
-  static init(columnName: string, rowIndex: number, decodingError: SDKHandle): ColumnDecodingError { return callSDK<ColumnDecodingError>("TabularData_067acaa3e5f56b46", 2568050603351637, undefined, [columnName, rowIndex, decodingError]); }
+  static init(columnName: string, rowIndex: number, decodingError: SDKHandle): ColumnDecodingError { return callSDK<ColumnDecodingError>("TabularData_d968214ecc684fb6", 2568050603351637, undefined, [columnName, rowIndex, decodingError]); }
   /**
    * var columnName: String
    * @availability iOS 15.0+
    */
-  get columnName(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 559438928806586, this, []); }
-  set columnName(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 645551417571328, this, [value]); }
+  get columnName(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 559438928806586, this, []); }
+  set columnName(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 645551417571328, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 3771638353852228, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 3771638353852228, this, []); }
   /**
    * var rowIndex: Int
    * @availability iOS 15.0+
    */
-  get rowIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1924499912867393, this, []); }
-  set rowIndex(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 3693946042532901, this, [value]); }
+  get rowIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1924499912867393, this, []); }
+  set rowIndex(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 3693946042532901, this, [value]); }
   declare readonly $type: { "s:11TabularData19ColumnDecodingErrorV": true };
 }
 
@@ -682,30 +682,30 @@ export class ColumnEncodingError extends SDKHandle {
    * var encodingError: EncodingError
    * @availability iOS 15.0+
    */
-  get encodingError(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 4356950620228725, this, []); }
-  set encodingError(value: SDKHandle) { callSDK<void>("TabularData_067acaa3e5f56b46", 1637976333810685, this, [value]); }
+  get encodingError(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 4356950620228725, this, []); }
+  set encodingError(value: SDKHandle) { callSDK<void>("TabularData_d968214ecc684fb6", 1637976333810685, this, [value]); }
   /**
    * init(columnName: String, rowIndex: Int, encodingError: EncodingError)
    * @availability iOS 15.0+
    */
-  static init(columnName: string, rowIndex: number, encodingError: SDKHandle): ColumnEncodingError { return callSDK<ColumnEncodingError>("TabularData_067acaa3e5f56b46", 2086148748737063, undefined, [columnName, rowIndex, encodingError]); }
+  static init(columnName: string, rowIndex: number, encodingError: SDKHandle): ColumnEncodingError { return callSDK<ColumnEncodingError>("TabularData_d968214ecc684fb6", 2086148748737063, undefined, [columnName, rowIndex, encodingError]); }
   /**
    * var columnName: String
    * @availability iOS 15.0+
    */
-  get columnName(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 4225687405661380, this, []); }
-  set columnName(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 3296326308429260, this, [value]); }
+  get columnName(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 4225687405661380, this, []); }
+  set columnName(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 3296326308429260, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 1151515350599802, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 1151515350599802, this, []); }
   /**
    * var rowIndex: Int
    * @availability iOS 15.0+
    */
-  get rowIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1200202422973028, this, []); }
-  set rowIndex(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 3888964370657562, this, [value]); }
+  get rowIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1200202422973028, this, []); }
+  set rowIndex(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 3888964370657562, this, [value]); }
   declare readonly $type: { "s:11TabularData19ColumnEncodingErrorV": true };
 }
 
@@ -718,13 +718,13 @@ export class ColumnID<T = unknown> extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 3317132499039657, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 3317132499039657, this, []); }
   /**
    * var name: String
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 841747692960936, this, []); }
-  set name(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 4199693017206680, this, [value]); }
+  get name(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 841747692960936, this, []); }
+  set name(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 4199693017206680, this, [value]); }
   declare readonly $type: { "s:11TabularData8ColumnIDV": true };
 }
 
@@ -745,138 +745,138 @@ export class ColumnSlice<WrappedElement = unknown> extends SDKHandle {
    * func eraseToAnyColumn() -> AnyColumnSlice
    * @availability iOS 15.0+
    */
-  eraseToAnyColumn(): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_067acaa3e5f56b46", 2116163166882981, this, []); }
+  eraseToAnyColumn(): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_d968214ecc684fb6", 2116163166882981, this, []); }
   /**
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 125063694121146, this, []); }
+  get startIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 125063694121146, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 949000618237902, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 949000618237902, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 15.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 94661031703137, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 94661031703137, this, []); }
   /**
    * var missingCount: Int { get }
    * @availability iOS 15.0+
    */
-  get missingCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 4433542860065539, this, []); }
+  get missingCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 4433542860065539, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 1329919457499424, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 1329919457499424, this, []); }
   /**
    * func map<T>(_ transform: (ColumnSlice<WrappedElement>.Element) throws -> T?) rethrows -> Column<T>
    * @availability iOS 15.0+
    */
-  map(transform: $SDK3): Column<unknown> { return callSDK<Column<unknown>>("TabularData_067acaa3e5f56b46", 533995177723496, this, [transform], [{"callback":{"out":[]}}], true); }
+  map(transform: $SDK3): Column<unknown> { return callSDK<Column<unknown>>("TabularData_d968214ecc684fb6", 533995177723496, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * var name: String { get set }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 4480544261494128, this, []); }
-  set name(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 26383515396545, this, [value]); }
+  get name(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 4480544261494128, this, []); }
+  set name(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 26383515396545, this, [value]); }
   /**
    * var count: Int { get }
    * @availability iOS 15.0+
    */
-  get count(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1395264413665315, this, []); }
+  get count(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1395264413665315, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2132343341628541, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2132343341628541, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 36082750280306, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 36082750280306, this, [i]); }
   /**
    * func isNil(at index: Int) -> Bool
    * @availability iOS 15.0+
    */
-  isNil(index: number): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 2997214646942192, this, [index]); }
+  isNil(index: number): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 2997214646942192, this, [index]); }
   /**
    * func filter(_ isIncluded: (ColumnSlice<WrappedElement>.Element) throws -> Bool) rethrows -> DiscontiguousColumnSlice<WrappedElement>
    * @availability iOS 15.0+
    */
-  filter(isIncluded: $SDK5): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 2499036564956852, this, [isIncluded], [{"callback":{"out":[]}}], true); }
+  filter(isIncluded: $SDK5): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 2499036564956852, this, [isIncluded], [{"callback":{"out":[]}}], true); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3952796013676419, this, []); }
+  get endIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3952796013676419, this, []); }
   /**
    * var prototype: any AnyColumnPrototype { get }
    * @availability iOS 15.0+
    */
-  get prototype(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 4469052879214714, this, []); }
+  get prototype(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 4469052879214714, this, []); }
   /**
    * func numericSummary() -> NumericSummary<WrappedElement>
    * @availability iOS 15.0+
    */
-  numericSummary(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_067acaa3e5f56b46", 1377012739347817, this, []); }
+  numericSummary(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_d968214ecc684fb6", 1377012739347817, this, []); }
   /**
    * func standardDeviation(deltaDegreesOfFreedom: Int = 1) -> ColumnSlice<WrappedElement>.Element
    * @availability iOS 15.0+
    */
-  standardDeviationDeltaDegreesOfFreedom(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 2794791771401902, this, [deltaDegreesOfFreedom]); }
+  standardDeviationDeltaDegreesOfFreedom(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 2794791771401902, this, [deltaDegreesOfFreedom]); }
   /**
    * func mean() -> ColumnSlice<WrappedElement>.Element
    * @availability iOS 15.0+
    */
-  mean(): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 3331347625779834, this, []); }
+  mean(): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 3331347625779834, this, []); }
   /**
    * func summary() -> CategoricalSummary<WrappedElement>
    * @availability iOS 15.0+
    */
-  summary(): $SDK1 { return callSDK<$SDK1>("TabularData_067acaa3e5f56b46", 1810597688575688, this, []); }
+  summary(): $SDK1 { return callSDK<$SDK1>("TabularData_d968214ecc684fb6", 1810597688575688, this, []); }
   /**
    * func distinct() -> DiscontiguousColumnSlice<WrappedElement>
    * @availability iOS 15.0+
    */
-  distinct(): $SDK8 { return callSDK<$SDK8>("TabularData_067acaa3e5f56b46", 757390972014697, this, []); }
+  distinct(): $SDK8 { return callSDK<$SDK8>("TabularData_d968214ecc684fb6", 757390972014697, this, []); }
   /**
    * func numericSummary() -> NumericSummary<Double>
    * @availability iOS 15.0+
    */
-  numericSummary947(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_067acaa3e5f56b46", 2950886892725879, this, []); }
+  numericSummary947(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_d968214ecc684fb6", 2950886892725879, this, []); }
   /**
    * func standardDeviation(deltaDegreesOfFreedom: Int = 1) -> Double?
    * @availability iOS 15.0+
    */
-  standardDeviationDeltaDegreesOfFreedom66200(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 820755103977844, this, [deltaDegreesOfFreedom]); }
+  standardDeviationDeltaDegreesOfFreedom66200(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 820755103977844, this, [deltaDegreesOfFreedom]); }
   /**
    * func mean() -> Double?
    * @availability iOS 15.0+
    */
-  mean65126(): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 3197930256258747, this, []); }
+  mean65126(): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 3197930256258747, this, []); }
   /**
    * func sum() -> WrappedElement
    * @availability iOS 15.0+
    */
-  sum(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1331568064618592, this, []); }
+  sum(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1331568064618592, this, []); }
   /**
    * init(_ column: Column<WrappedElement>)
    * @availability iOS 15.0+
    */
-  static init(column: Column<unknown>): ColumnSlice<unknown> { return callSDK<ColumnSlice<unknown>>("TabularData_067acaa3e5f56b46", 21646712947150, undefined, [column]); }
+  static init(column: Column<unknown>): ColumnSlice<unknown> { return callSDK<ColumnSlice<unknown>>("TabularData_d968214ecc684fb6", 21646712947150, undefined, [column]); }
   /**
    * subscript(range: Range<Int>) -> ColumnSlice<WrappedElement> { get set }
    * @availability iOS 15.0+
    */
-  subscript(range: SDKHandle): ColumnSlice<unknown> { return callSDK<ColumnSlice<unknown>>("TabularData_067acaa3e5f56b46", 3022995607534690, this, [range]); }
+  subscript(range: SDKHandle): ColumnSlice<unknown> { return callSDK<ColumnSlice<unknown>>("TabularData_d968214ecc684fb6", 3022995607534690, this, [range]); }
   /**
    * subscript(position: Int) -> ColumnSlice<WrappedElement>.Element { get set }
    * @availability iOS 15.0+
    */
-  subscript44104(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 3930288743379058, this, [position]); }
+  subscript44104(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 3930288743379058, this, [position]); }
   declare readonly $type: { "s:11TabularData11ColumnSliceV": true };
 }
 
@@ -919,22 +919,22 @@ export class CSVReadingError extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 3655203613365184, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 3655203613365184, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("TabularData_067acaa3e5f56b46", 2445306005304312, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("TabularData_d968214ecc684fb6", 2445306005304312, this, []); }
   /**
    * var row: Int { get }
    * @availability iOS 15.0+
    */
-  get row(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2093486920782748, this, []); }
+  get row(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2093486920782748, this, []); }
   /**
    * var column: Int? { get }
    * @availability iOS 15.0+
    */
-  get column(): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 1431082426258180, this, []); }
+  get column(): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 1431082426258180, this, []); }
   declare readonly $type: { "s:11TabularData15CSVReadingErrorO": true };
 }
 
@@ -947,71 +947,71 @@ export class CSVReadingOptions extends SDKHandle {
    * var dateParsers: [(String) -> Date?]
    * @availability iOS 15.0+
    */
-  get dateParsers(): $SDK9 { return callSDK<$SDK9>("TabularData_067acaa3e5f56b46", 3538541038949367, this, []); }
-  set dateParsers(value: $SDK10) { callSDK<void>("TabularData_067acaa3e5f56b46", 3252502122354407, this, [value], [{"array":{"callback":{"out":[]}}}]); }
+  get dateParsers(): $SDK9 { return callSDK<$SDK9>("TabularData_d968214ecc684fb6", 3538541038949367, this, []); }
+  set dateParsers(value: $SDK10) { callSDK<void>("TabularData_d968214ecc684fb6", 3252502122354407, this, [value], [{"array":{"callback":{"out":[]}}}]); }
   /**
    * var usesQuoting: Bool
    * @availability iOS 15.0+
    */
-  get usesQuoting(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 342502703910713, this, []); }
-  set usesQuoting(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 672127237626288, this, [value]); }
+  get usesQuoting(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 342502703910713, this, []); }
+  set usesQuoting(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 672127237626288, this, [value]); }
   /**
    * init(hasHeaderRow: Bool = true, nilEncodings: Set<String> = ["", "#N/A", "#N/A N/A", "#NA", "N/A", "NA", "NULL", "n/a", "nil", "null"], trueEncodings: Set<String> = ["1", "True", "TRUE", "true"], falseEncodings: Set<String> = ["0", "False", "FALSE", "false"], floatingPointType: CSVType = .double, ignoresEmptyLines: Bool = true, usesQuoting: Bool = true, usesEscaping: Bool = false, delimiter: Character = Character(","), escapeCharacter: Character = Character("\\"))
    * @availability iOS 15.0+
    */
-  static init(hasHeaderRow?: boolean, nilEncodings?: Array<string>, trueEncodings?: Array<string>, falseEncodings?: Array<string>, floatingPointType?: CSVType, ignoresEmptyLines?: boolean, usesQuoting?: boolean, usesEscaping?: boolean, delimiter?: string, escapeCharacter?: string): CSVReadingOptions { return callSDK<CSVReadingOptions>("TabularData_067acaa3e5f56b46", 2306601046843911, undefined, [hasHeaderRow, nilEncodings, trueEncodings, falseEncodings, floatingPointType, ignoresEmptyLines, usesQuoting, usesEscaping, delimiter, escapeCharacter]); }
+  static init(hasHeaderRow?: boolean, nilEncodings?: Array<string>, trueEncodings?: Array<string>, falseEncodings?: Array<string>, floatingPointType?: CSVType, ignoresEmptyLines?: boolean, usesQuoting?: boolean, usesEscaping?: boolean, delimiter?: string, escapeCharacter?: string): CSVReadingOptions { return callSDK<CSVReadingOptions>("TabularData_d968214ecc684fb6", 2306601046843911, undefined, [hasHeaderRow, nilEncodings, trueEncodings, falseEncodings, floatingPointType, ignoresEmptyLines, usesQuoting, usesEscaping, delimiter, escapeCharacter]); }
   /**
    * var hasHeaderRow: Bool
    * @availability iOS 15.0+
    */
-  get hasHeaderRow(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 1188142232621801, this, []); }
-  set hasHeaderRow(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 1406570714125375, this, [value]); }
+  get hasHeaderRow(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 1188142232621801, this, []); }
+  set hasHeaderRow(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 1406570714125375, this, [value]); }
   /**
    * var nilEncodings: Set<String>
    * @availability iOS 15.0+
    */
-  get nilEncodings(): Array<string> { return callSDK<Array<string>>("TabularData_067acaa3e5f56b46", 1741114092886716, this, []); }
-  set nilEncodings(value: Array<string>) { callSDK<void>("TabularData_067acaa3e5f56b46", 290469316034597, this, [value]); }
+  get nilEncodings(): Array<string> { return callSDK<Array<string>>("TabularData_d968214ecc684fb6", 1741114092886716, this, []); }
+  set nilEncodings(value: Array<string>) { callSDK<void>("TabularData_d968214ecc684fb6", 290469316034597, this, [value]); }
   /**
    * var usesEscaping: Bool
    * @availability iOS 15.0+
    */
-  get usesEscaping(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 3285973379294247, this, []); }
-  set usesEscaping(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 1310385446589278, this, [value]); }
+  get usesEscaping(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 3285973379294247, this, []); }
+  set usesEscaping(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 1310385446589278, this, [value]); }
   /**
    * var trueEncodings: Set<String>
    * @availability iOS 15.0+
    */
-  get trueEncodings(): Array<string> { return callSDK<Array<string>>("TabularData_067acaa3e5f56b46", 3974692755733058, this, []); }
-  set trueEncodings(value: Array<string>) { callSDK<void>("TabularData_067acaa3e5f56b46", 3765468422783557, this, [value]); }
+  get trueEncodings(): Array<string> { return callSDK<Array<string>>("TabularData_d968214ecc684fb6", 3974692755733058, this, []); }
+  set trueEncodings(value: Array<string>) { callSDK<void>("TabularData_d968214ecc684fb6", 3765468422783557, this, [value]); }
   /**
    * var falseEncodings: Set<String>
    * @availability iOS 15.0+
    */
-  get falseEncodings(): Array<string> { return callSDK<Array<string>>("TabularData_067acaa3e5f56b46", 3365796270447292, this, []); }
-  set falseEncodings(value: Array<string>) { callSDK<void>("TabularData_067acaa3e5f56b46", 3656245433367707, this, [value]); }
+  get falseEncodings(): Array<string> { return callSDK<Array<string>>("TabularData_d968214ecc684fb6", 3365796270447292, this, []); }
+  set falseEncodings(value: Array<string>) { callSDK<void>("TabularData_d968214ecc684fb6", 3656245433367707, this, [value]); }
   /**
    * var escapeCharacter: Character { get }
    * @availability iOS 15.0+
    */
-  get escapeCharacter(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 384121290185429, this, []); }
+  get escapeCharacter(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 384121290185429, this, []); }
   /**
    * var floatingPointType: CSVType
    * @availability iOS 15.0+
    */
-  get floatingPointType(): CSVType { return callSDK<CSVType>("TabularData_067acaa3e5f56b46", 1368863620717286, this, []); }
-  set floatingPointType(value: CSVType) { callSDK<void>("TabularData_067acaa3e5f56b46", 2483092029254063, this, [value]); }
+  get floatingPointType(): CSVType { return callSDK<CSVType>("TabularData_d968214ecc684fb6", 1368863620717286, this, []); }
+  set floatingPointType(value: CSVType) { callSDK<void>("TabularData_d968214ecc684fb6", 2483092029254063, this, [value]); }
   /**
    * var ignoresEmptyLines: Bool
    * @availability iOS 15.0+
    */
-  get ignoresEmptyLines(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 1287846887201683, this, []); }
-  set ignoresEmptyLines(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 3455723167125885, this, [value]); }
+  get ignoresEmptyLines(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 1287846887201683, this, []); }
+  set ignoresEmptyLines(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 3455723167125885, this, [value]); }
   /**
    * var delimiter: Character { get }
    * @availability iOS 15.0+
    */
-  get delimiter(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 2735235267049875, this, []); }
+  get delimiter(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 2735235267049875, this, []); }
   declare readonly $type: { "s:11TabularData17CSVReadingOptionsV": true };
 }
 
@@ -1030,17 +1030,17 @@ export class CSVWritingError extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 458929315218093, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 458929315218093, this, []); }
   /**
    * var row: Int { get }
    * @availability iOS 15.0+
    */
-  get row(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1237145461060965, this, []); }
+  get row(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1237145461060965, this, []); }
   /**
    * var column: String? { get }
    * @availability iOS 15.0+
    */
-  get column(): (string) | null { return callSDK<(string) | null>("TabularData_067acaa3e5f56b46", 1792592392362150, this, []); }
+  get column(): (string) | null { return callSDK<(string) | null>("TabularData_d968214ecc684fb6", 1792592392362150, this, []); }
   declare readonly $type: { "s:11TabularData15CSVWritingErrorO": true };
 }
 
@@ -1053,64 +1053,64 @@ export class CSVWritingOptions extends SDKHandle {
    * var dateFormat: String?
    * @availability iOS 15.0+
    */
-  get dateFormat(): (string) | null { return callSDK<(string) | null>("TabularData_067acaa3e5f56b46", 1830452124811935, this, []); }
-  set dateFormat(value: (string) | null) { callSDK<void>("TabularData_067acaa3e5f56b46", 3763526843509430, this, [value]); }
+  get dateFormat(): (string) | null { return callSDK<(string) | null>("TabularData_d968214ecc684fb6", 1830452124811935, this, []); }
+  set dateFormat(value: (string) | null) { callSDK<void>("TabularData_d968214ecc684fb6", 3763526843509430, this, [value]); }
   /**
    * var nilEncoding: String
    * @availability iOS 15.0+
    */
-  get nilEncoding(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 4400615700589680, this, []); }
-  set nilEncoding(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 1608993678691864, this, [value]); }
+  get nilEncoding(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 4400615700589680, this, []); }
+  set nilEncoding(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 1608993678691864, this, [value]); }
   /**
    * var trueEncoding: String
    * @availability iOS 15.0+
    */
-  get trueEncoding(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 416013378199317, this, []); }
-  set trueEncoding(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 344655238814490, this, [value]); }
+  get trueEncoding(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 416013378199317, this, []); }
+  set trueEncoding(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 344655238814490, this, [value]); }
   /**
    * var dateFormatter: (Date) -> String { get set }
    * @availability iOS 15.4+
    */
-  get dateFormatter(): $SDK11 { return callSDK<$SDK11>("TabularData_067acaa3e5f56b46", 2260547389185491, this, []); }
+  get dateFormatter(): $SDK11 { return callSDK<$SDK11>("TabularData_d968214ecc684fb6", 2260547389185491, this, []); }
   /**
    * var falseEncoding: String
    * @availability iOS 15.0+
    */
-  get falseEncoding(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 1196365523312788, this, []); }
-  set falseEncoding(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 2551104065638183, this, [value]); }
+  get falseEncoding(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 1196365523312788, this, []); }
+  set falseEncoding(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 2551104065638183, this, [value]); }
   /**
    * init(includesHeader: Bool = true, dateFormat: String?, nilEncoding: String = "", trueEncoding: String = "true", falseEncoding: String = "false", newline: String = "\n", delimiter: Character = ",")
    * @availability iOS 15.0+
    */
-  static initIncludesHeaderDateFormatNilEncodingTrueEncodingFalseEncodingNewlineDelimiter(includesHeader?: boolean, dateFormat?: (string) | null, nilEncoding?: string, trueEncoding?: string, falseEncoding?: string, newline?: string, delimiter?: string): CSVWritingOptions { return callSDK<CSVWritingOptions>("TabularData_067acaa3e5f56b46", 3737162931188809, undefined, [includesHeader, dateFormat, nilEncoding, trueEncoding, falseEncoding, newline, delimiter]); }
+  static initIncludesHeaderDateFormatNilEncodingTrueEncodingFalseEncodingNewlineDelimiter(includesHeader?: boolean, dateFormat?: (string) | null, nilEncoding?: string, trueEncoding?: string, falseEncoding?: string, newline?: string, delimiter?: string): CSVWritingOptions { return callSDK<CSVWritingOptions>("TabularData_d968214ecc684fb6", 3737162931188809, undefined, [includesHeader, dateFormat, nilEncoding, trueEncoding, falseEncoding, newline, delimiter]); }
   /**
    * init(includesHeader: Bool = true, nilEncoding: String = "", trueEncoding: String = "true", falseEncoding: String = "false", newline: String = "\n", delimiter: Character = ",")
    * @availability iOS 15.0+
    */
-  static initIncludesHeaderNilEncodingTrueEncodingFalseEncodingNewlineDelimiter(includesHeader?: boolean, nilEncoding?: string, trueEncoding?: string, falseEncoding?: string, newline?: string, delimiter?: string): CSVWritingOptions { return callSDK<CSVWritingOptions>("TabularData_067acaa3e5f56b46", 3568572474608701, undefined, [includesHeader, nilEncoding, trueEncoding, falseEncoding, newline, delimiter]); }
+  static initIncludesHeaderNilEncodingTrueEncodingFalseEncodingNewlineDelimiter(includesHeader?: boolean, nilEncoding?: string, trueEncoding?: string, falseEncoding?: string, newline?: string, delimiter?: string): CSVWritingOptions { return callSDK<CSVWritingOptions>("TabularData_d968214ecc684fb6", 3568572474608701, undefined, [includesHeader, nilEncoding, trueEncoding, falseEncoding, newline, delimiter]); }
   /**
    * var includesHeader: Bool
    * @availability iOS 15.0+
    */
-  get includesHeader(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 2901193357765996, this, []); }
-  set includesHeader(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 3196411706645647, this, [value]); }
+  get includesHeader(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 2901193357765996, this, []); }
+  set includesHeader(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 3196411706645647, this, [value]); }
   /**
    * var newline: String
    * @availability iOS 15.0+
    */
-  get newline(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 3586368111535109, this, []); }
-  set newline(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 2953170262071127, this, [value]); }
+  get newline(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 3586368111535109, this, []); }
+  set newline(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 2953170262071127, this, [value]); }
   /**
    * var delimiter: Character
    * @availability iOS 15.0+
    */
-  get delimiter(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 643517836191131, this, []); }
-  set delimiter(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 102791919613244, this, [value]); }
+  get delimiter(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 643517836191131, this, []); }
+  set delimiter(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 102791919613244, this, [value]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): CSVWritingOptions { return callSDK<CSVWritingOptions>("TabularData_067acaa3e5f56b46", 1463417542641544, undefined, []); }
+  static init(): CSVWritingOptions { return callSDK<CSVWritingOptions>("TabularData_d968214ecc684fb6", 1463417542641544, undefined, []); }
   declare readonly $type: { "s:11TabularData17CSVWritingOptionsV": true };
 }
 
@@ -1123,330 +1123,330 @@ export class DataFrame extends SDKHandle {
    * init(csvData data: Data, columns: [String]? = nil, rows: Range<Int>? = nil, types: [String : CSVType] = [:], options: CSVReadingOptions = .init()) throws
    * @availability iOS 15.0+
    */
-  static initCsvDataColumnsRowsTypesOptions(data: ArrayBuffer, columns?: (Array<string>) | null, rows?: (SDKHandle) | null, types?: Record<string, CSVType>, options?: CSVReadingOptions): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3066419315196794, undefined, [data, columns, rows, types, options]); }
+  static initCsvDataColumnsRowsTypesOptions(data: ArrayBuffer, columns?: (Array<string>) | null, rows?: (SDKHandle) | null, types?: Record<string, CSVType>, options?: CSVReadingOptions): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3066419315196794, undefined, [data, columns, rows, types, options]); }
   /**
    * init(jsonData data: Data, columns: [String]? = nil, types: [String : JSONType] = [:], options: JSONReadingOptions = .init()) throws
    * @availability iOS 15.0+
    */
-  static initJsonDataColumnsTypesOptions(data: ArrayBuffer, columns?: (Array<string>) | null, types?: Record<string, JSONType>, options?: JSONReadingOptions): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 2415707746768534, undefined, [data, columns, types, options]); }
+  static initJsonDataColumnsTypesOptions(data: ArrayBuffer, columns?: (Array<string>) | null, types?: Record<string, JSONType>, options?: JSONReadingOptions): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 2415707746768534, undefined, [data, columns, types, options]); }
   /**
    * func columnNames(forAlias alias: String) -> [String]
    * @availability iOS 15.0+
    */
-  columnNames(alias: string): Array<string> { return callSDK<Array<string>>("TabularData_067acaa3e5f56b46", 2335110508295504, this, [alias]); }
+  columnNames(alias: string): Array<string> { return callSDK<Array<string>>("TabularData_d968214ecc684fb6", 2335110508295504, this, [alias]); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 1522586518806685, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 1522586518806685, this, []); }
   /**
    * mutating func removeAlias(_ alias: String)
    * @availability iOS 15.0+
    */
-  removeAlias(alias: string): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 3016932935041676, this, [alias]); }
+  removeAlias(alias: string): void { return callSDK<void>("TabularData_d968214ecc684fb6", 3016932935041676, this, [alias]); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 15.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 612472205023788, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 612472205023788, this, []); }
   /**
    * @discardableResult mutating func removeColumn(_ name: String) -> AnyColumn
    * @availability iOS 15.0+
    */
-  removeColumn(name: string): AnyColumn { return callSDK<AnyColumn>("TabularData_067acaa3e5f56b46", 3541074747580633, this, [name]); }
+  removeColumn(name: string): AnyColumn { return callSDK<AnyColumn>("TabularData_d968214ecc684fb6", 3541074747580633, this, [name]); }
   /**
    * @discardableResult mutating func removeColumn<T>(_ id: ColumnID<T>) -> Column<T>
    * @availability iOS 15.0+
    */
-  removeColumn71940(id: ColumnID<unknown>): Column<unknown> { return callSDK<Column<unknown>>("TabularData_067acaa3e5f56b46", 3746000074925048, this, [id]); }
+  removeColumn71940(id: ColumnID<unknown>): Column<unknown> { return callSDK<Column<unknown>>("TabularData_d968214ecc684fb6", 3746000074925048, this, [id]); }
   /**
    * mutating func renameColumn(_ name: String, to newName: String)
    * @availability iOS 15.0+
    */
-  renameColumn(name: string, newName: string): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 1347520169299082, this, [name, newName]); }
+  renameColumn(name: string, newName: string): void { return callSDK<void>("TabularData_d968214ecc684fb6", 1347520169299082, this, [name, newName]); }
   /**
    * subscript(dynamicMember columnName: String) -> AnyColumn { get set }
    * @availability iOS 15.0+
    */
-  subscriptDynamicMember(columnName: string): AnyColumn { return callSDK<AnyColumn>("TabularData_067acaa3e5f56b46", 1743922047096692, this, [columnName]); }
+  subscriptDynamicMember(columnName: string): AnyColumn { return callSDK<AnyColumn>("TabularData_d968214ecc684fb6", 1743922047096692, this, [columnName]); }
   /**
    * func indexOfColumn(_ columnName: String) -> Int?
    * @availability iOS 15.0+
    */
-  indexOfColumn(columnName: string): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 3992824821831155, this, [columnName]); }
+  indexOfColumn(columnName: string): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 3992824821831155, this, [columnName]); }
   /**
    * mutating func replaceColumn<T>(_ id: ColumnID<T>, with newColumn: AnyColumn)
    * @availability iOS 15.0+
    */
-  replaceColumnWith(id: ColumnID<unknown>, newColumn: AnyColumn): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2030347994916962, this, [id, newColumn]); }
+  replaceColumnWith(id: ColumnID<unknown>, newColumn: AnyColumn): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2030347994916962, this, [id, newColumn]); }
   /**
    * mutating func replaceColumn<T, U>(_ id: ColumnID<T>, with newColumn: Column<U>)
    * @availability iOS 15.0+
    */
-  replaceColumnWith45742(id: ColumnID<unknown>, newColumn: Column<unknown>): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2029751779794488, this, [id, newColumn]); }
+  replaceColumnWith45742(id: ColumnID<unknown>, newColumn: Column<unknown>): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2029751779794488, this, [id, newColumn]); }
   /**
    * mutating func replaceColumn(_ name: String, with newColumn: AnyColumn)
    * @availability iOS 15.0+
    */
-  replaceColumnWith80022(name: string, newColumn: AnyColumn): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2113872346599963, this, [name, newColumn]); }
+  replaceColumnWith80022(name: string, newColumn: AnyColumn): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2113872346599963, this, [name, newColumn]); }
   /**
    * mutating func replaceColumn<T>(_ name: String, with newColumn: Column<T>)
    * @availability iOS 15.0+
    */
-  replaceColumnWith91187(name: string, newColumn: Column<unknown>): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 4497891141573841, this, [name, newColumn]); }
+  replaceColumnWith91187(name: string, newColumn: Column<unknown>): void { return callSDK<void>("TabularData_d968214ecc684fb6", 4497891141573841, this, [name, newColumn]); }
   /**
    * mutating func appendEmptyRow()
    * @availability iOS 15.0+
    */
-  appendEmptyRow(): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2931401741597804, this, []); }
+  appendEmptyRow(): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2931401741597804, this, []); }
   /**
    * mutating func combineColumns<E1, E2, R>(_ columnID1: ColumnID<E1>, _ columnID2: ColumnID<E2>, into newColumnName: String, transform: (E1?, E2?) throws -> R?) rethrows
    * @availability iOS 15.0+
    */
-  combineColumnsIntoTransform(columnID1: ColumnID<unknown>, columnID2: ColumnID<unknown>, newColumnName: string, transform: $SDK13): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2959152763546045, this, [columnID1, columnID2, newColumnName, transform], [null,null,null,{"callback":{"out":[]}}], true); }
+  combineColumnsIntoTransform(columnID1: ColumnID<unknown>, columnID2: ColumnID<unknown>, newColumnName: string, transform: $SDK13): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2959152763546045, this, [columnID1, columnID2, newColumnName, transform], [null,null,null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func combineColumns<E1, E2, R>(_ columnName1: String, _ columnName2: String, into newColumnName: String, transform: (E1?, E2?) throws -> R?) rethrows
    * @availability iOS 15.0+
    */
-  combineColumnsIntoTransform49209(columnName1: string, columnName2: string, newColumnName: string, transform: $SDK13): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 3940798181228687, this, [columnName1, columnName2, newColumnName, transform], [null,null,null,{"callback":{"out":[]}}], true); }
+  combineColumnsIntoTransform49209(columnName1: string, columnName2: string, newColumnName: string, transform: $SDK13): void { return callSDK<void>("TabularData_d968214ecc684fb6", 3940798181228687, this, [columnName1, columnName2, newColumnName, transform], [null,null,null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func combineColumns<E1, E2, E3, R>(_ columnID1: ColumnID<E1>, _ columnID2: ColumnID<E2>, _ columnID3: ColumnID<E3>, into newColumnName: String, transform: (E1?, E2?, E3?) throws -> R?) rethrows
    * @availability iOS 15.0+
    */
-  combineColumnsIntoTransform30675(columnID1: ColumnID<unknown>, columnID2: ColumnID<unknown>, columnID3: ColumnID<unknown>, newColumnName: string, transform: $SDK14): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 557211728963519, this, [columnID1, columnID2, columnID3, newColumnName, transform], [null,null,null,null,{"callback":{"out":[]}}], true); }
+  combineColumnsIntoTransform30675(columnID1: ColumnID<unknown>, columnID2: ColumnID<unknown>, columnID3: ColumnID<unknown>, newColumnName: string, transform: $SDK14): void { return callSDK<void>("TabularData_d968214ecc684fb6", 557211728963519, this, [columnID1, columnID2, columnID3, newColumnName, transform], [null,null,null,null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func combineColumns<E1, E2, E3, R>(_ columnName1: String, _ columnName2: String, _ columnName3: String, into newColumnName: String, transform: (E1?, E2?, E3?) throws -> R?) rethrows
    * @availability iOS 15.0+
    */
-  combineColumnsIntoTransform27399(columnName1: string, columnName2: string, columnName3: string, newColumnName: string, transform: $SDK14): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2051641853524255, this, [columnName1, columnName2, columnName3, newColumnName, transform], [null,null,null,null,{"callback":{"out":[]}}], true); }
+  combineColumnsIntoTransform27399(columnName1: string, columnName2: string, columnName3: string, newColumnName: string, transform: $SDK14): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2051641853524255, this, [columnName1, columnName2, columnName3, newColumnName, transform], [null,null,null,null,{"callback":{"out":[]}}], true); }
   /**
    * func containsColumn<T>(_ id: ColumnID<T>) -> Bool
    * @availability iOS 15.4+
    */
-  containsColumn(id: ColumnID<unknown>): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 3097832604812941, this, [id]); }
+  containsColumn(id: ColumnID<unknown>): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 3097832604812941, this, [id]); }
   /**
    * func containsColumn(_ name: String) -> Bool
    * @availability iOS 16.0+
    */
-  containsColumn17205(name: string): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 2590836555291461, this, [name]); }
+  containsColumn17205(name: string): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 2590836555291461, this, [name]); }
   /**
    * mutating func transformColumn<From, To>(_ id: ColumnID<From>, _ transform: (From) throws -> To?) rethrows
    * @availability iOS 15.0+
    */
-  transformColumn(id: ColumnID<unknown>, transform: $SDK6): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 4104053259329397, this, [id, transform], [null,{"callback":{"out":[]}}], true); }
+  transformColumn(id: ColumnID<unknown>, transform: $SDK6): void { return callSDK<void>("TabularData_d968214ecc684fb6", 4104053259329397, this, [id, transform], [null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func transformColumn<From, To>(_ id: ColumnID<From>, _ transform: (From?) throws -> To?) rethrows
    * @availability iOS 15.0+
    */
-  transformColumn10996(id: ColumnID<unknown>, transform: $SDK3): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 3847805502485260, this, [id, transform], [null,{"callback":{"out":[]}}], true); }
+  transformColumn10996(id: ColumnID<unknown>, transform: $SDK3): void { return callSDK<void>("TabularData_d968214ecc684fb6", 3847805502485260, this, [id, transform], [null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func transformColumn<From, To>(_ name: String, _ transform: (From) throws -> To?) rethrows
    * @availability iOS 15.0+
    */
-  transformColumn83894(name: string, transform: $SDK6): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 4246732236455829, this, [name, transform], [null,{"callback":{"out":[]}}], true); }
+  transformColumn83894(name: string, transform: $SDK6): void { return callSDK<void>("TabularData_d968214ecc684fb6", 4246732236455829, this, [name, transform], [null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func transformColumn<From, To>(_ name: String, _ transform: (From?) throws -> To?) rethrows
    * @availability iOS 15.0+
    */
-  transformColumn83300(name: string, transform: $SDK3): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 4316526801414051, this, [name, transform], [null,{"callback":{"out":[]}}], true); }
+  transformColumn83300(name: string, transform: $SDK3): void { return callSDK<void>("TabularData_d968214ecc684fb6", 4316526801414051, this, [name, transform], [null,{"callback":{"out":[]}}], true); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 809736785503469, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 809736785503469, this, []); }
   /**
    * init(contentsOfCSVFile url: URL, columns: [String]? = nil, rows: Range<Int>? = nil, types: [String : CSVType] = [:], options: CSVReadingOptions = .init()) throws
    * @availability iOS 15.0+
    */
-  static initContentsOfCSVFileColumnsRowsTypesOptions(url: string, columns?: (Array<string>) | null, rows?: (SDKHandle) | null, types?: Record<string, CSVType>, options?: CSVReadingOptions): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 1739904582991594, undefined, [url, columns, rows, types, options]); }
+  static initContentsOfCSVFileColumnsRowsTypesOptions(url: string, columns?: (Array<string>) | null, rows?: (SDKHandle) | null, types?: Record<string, CSVType>, options?: CSVReadingOptions): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 1739904582991594, undefined, [url, columns, rows, types, options]); }
   /**
    * init(contentsOfJSONFile url: URL, columns: [String]? = nil, types: [String : JSONType] = [:], options: JSONReadingOptions = .init()) throws
    * @availability iOS 15.0+
    */
-  static initContentsOfJSONFileColumnsTypesOptions(url: string, columns?: (Array<string>) | null, types?: Record<string, JSONType>, options?: JSONReadingOptions): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3861344968545863, undefined, [url, columns, types, options]); }
+  static initContentsOfJSONFileColumnsTypesOptions(url: string, columns?: (Array<string>) | null, types?: Record<string, JSONType>, options?: JSONReadingOptions): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3861344968545863, undefined, [url, columns, types, options]); }
   /**
    * init(contentsOfSFrameDirectory url: URL, columns: [String]? = nil, rows: Range<Int>? = nil) throws
    * @availability iOS 15.0+
    */
-  static initContentsOfSFrameDirectoryColumnsRows(url: string, columns?: (Array<string>) | null, rows?: (SDKHandle) | null): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3701869523211937, undefined, [url, columns, rows]); }
+  static initContentsOfSFrameDirectoryColumnsRows(url: string, columns?: (Array<string>) | null, rows?: (SDKHandle) | null): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3701869523211937, undefined, [url, columns, rows]); }
   /**
    * subscript(row index: Int) -> DataFrame.Row { get set }
    * @availability iOS 15.0+
    */
-  subscriptRow(index: number): DataFrame_Row { return callSDK<DataFrame_Row>("TabularData_067acaa3e5f56b46", 620863031305313, this, [index]); }
+  subscriptRow(index: number): DataFrame_Row { return callSDK<DataFrame_Row>("TabularData_d968214ecc684fb6", 620863031305313, this, [index]); }
   /**
    * var base: DataFrame { get }
    * @availability iOS 15.0+
    */
-  get base(): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 2082287707741704, this, []); }
+  get base(): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 2082287707741704, this, []); }
   /**
    * var rows: DataFrame.Rows { get set }
    * @availability iOS 15.0+
    */
-  get rows(): DataFrame_Rows { return callSDK<DataFrame_Rows>("TabularData_067acaa3e5f56b46", 669329023262619, this, []); }
-  set rows(value: DataFrame_Rows) { callSDK<void>("TabularData_067acaa3e5f56b46", 3450099321095141, this, [value]); }
+  get rows(): DataFrame_Rows { return callSDK<DataFrame_Rows>("TabularData_d968214ecc684fb6", 669329023262619, this, []); }
+  set rows(value: DataFrame_Rows) { callSDK<void>("TabularData_d968214ecc684fb6", 3450099321095141, this, [value]); }
   /**
    * mutating func sort<T>(on columnID: ColumnID<T>, by areInIncreasingOrder: (T, T) throws -> Bool) rethrows
    * @availability iOS 15.0+
    */
-  sortOnBy(columnID: ColumnID<unknown>, areInIncreasingOrder: ((arg0: unknown, arg1: unknown) => boolean)): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2307640598570174, this, [columnID, areInIncreasingOrder], [null,{"callback":{"out":[]}}], true); }
+  sortOnBy(columnID: ColumnID<unknown>, areInIncreasingOrder: ((arg0: unknown, arg1: unknown) => boolean)): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2307640598570174, this, [columnID, areInIncreasingOrder], [null,{"callback":{"out":[]}}], true); }
   /**
    * mutating func sort(on columnName: String, order: Order = .ascending)
    * @availability iOS 15.0+
    */
-  sortOnOrder(columnName: string, order?: Order): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 4054163591438451, this, [columnName, order]); }
+  sortOnOrder(columnName: string, order?: Order): void { return callSDK<void>("TabularData_d968214ecc684fb6", 4054163591438451, this, [columnName, order]); }
   /**
    * var shape: (rows: Int, columns: Int) { get }
    * @availability iOS 15.0+
    */
-  get shape(): $SDK16 { return callSDK<$SDK16>("TabularData_067acaa3e5f56b46", 1041064367223433, this, []); }
+  get shape(): $SDK16 { return callSDK<$SDK16>("TabularData_d968214ecc684fb6", 1041064367223433, this, []); }
   /**
    * mutating func append(valuesByColumn dictionary: [String : Any?])
    * @availability iOS 15.0+
    */
-  appendValuesByColumn(dictionary: Record<string, (unknown) | null>): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 718193899847962, this, [dictionary]); }
+  appendValuesByColumn(dictionary: Record<string, (unknown) | null>): void { return callSDK<void>("TabularData_d968214ecc684fb6", 718193899847962, this, [dictionary]); }
   /**
    * mutating func append(row: DataFrame.Row)
    * @availability iOS 15.0+
    */
-  appendRow(row: DataFrame_Row): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2040843960055479, this, [row]); }
+  appendRow(row: DataFrame_Row): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2040843960055479, this, [row]); }
   /**
    * mutating func append<T>(column: Column<T>)
    * @availability iOS 15.0+
    */
-  appendColumn(column: Column<unknown>): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 11576160214186, this, [column]); }
+  appendColumn(column: Column<unknown>): void { return callSDK<void>("TabularData_d968214ecc684fb6", 11576160214186, this, [column]); }
   /**
    * mutating func append(column: AnyColumn)
    * @availability iOS 15.0+
    */
-  appendColumn3352(column: AnyColumn): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 4393013923257453, this, [column]); }
+  appendColumn3352(column: AnyColumn): void { return callSDK<void>("TabularData_d968214ecc684fb6", 4393013923257453, this, [column]); }
   /**
    * mutating func append(rowsOf other: DataFrame)
    * @availability iOS 15.0+
    */
-  appendRowsOf(other: DataFrame): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2118383978937120, this, [other]); }
+  appendRowsOf(other: DataFrame): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2118383978937120, this, [other]); }
   /**
    * mutating func append(_ other: DataFrame.Slice)
    * @availability iOS 15.0+
    */
-  append(other: DataFrame_Slice): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 1369767483854406, this, [other]); }
+  append(other: DataFrame_Slice): void { return callSDK<void>("TabularData_d968214ecc684fb6", 1369767483854406, this, [other]); }
   /**
    * mutating func append(_ other: DataFrame)
    * @availability iOS 15.0+
    */
-  append64411(other: DataFrame): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2256833338984891, this, [other]); }
+  append64411(other: DataFrame): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2256833338984891, this, [other]); }
   /**
    * subscript(column index: Int) -> AnyColumn { get set }
    * @availability iOS 15.0+
    */
-  subscriptColumn(index: number): AnyColumn { return callSDK<AnyColumn>("TabularData_067acaa3e5f56b46", 2740436330847542, this, [index]); }
+  subscriptColumn(index: number): AnyColumn { return callSDK<AnyColumn>("TabularData_d968214ecc684fb6", 2740436330847542, this, [index]); }
   /**
    * func filter<T>(on columnID: ColumnID<T>, _ isIncluded: (T?) throws -> Bool) rethrows -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  filterOn(columnID: ColumnID<unknown>, isIncluded: $SDK5): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 3165353381419519, this, [columnID, isIncluded], [null,{"callback":{"out":[]}}], true); }
+  filterOn(columnID: ColumnID<unknown>, isIncluded: $SDK5): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 3165353381419519, this, [columnID, isIncluded], [null,{"callback":{"out":[]}}], true); }
   /**
    * func filter(_ isIncluded: (DataFrame.Row) throws -> Bool) rethrows -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  filter(isIncluded: ((arg0: DataFrame_Row) => boolean)): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 3091495936668586, this, [isIncluded], [{"callback":{"out":[]}}], true); }
+  filter(isIncluded: ((arg0: DataFrame_Row) => boolean)): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 3091495936668586, this, [isIncluded], [{"callback":{"out":[]}}], true); }
   /**
    * mutating func insert(row: DataFrame.Row, at index: Int)
    * @availability iOS 15.0+
    */
-  insertRowAt(row: DataFrame_Row, index: number): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 337568241272391, this, [row, index]); }
+  insertRowAt(row: DataFrame_Row, index: number): void { return callSDK<void>("TabularData_d968214ecc684fb6", 337568241272391, this, [row, index]); }
   /**
    * mutating func insert<T>(column: Column<T>, at index: Int)
    * @availability iOS 15.0+
    */
-  insertColumnAt(column: Column<unknown>, index: number): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 1234106571125501, this, [column, index]); }
+  insertColumnAt(column: Column<unknown>, index: number): void { return callSDK<void>("TabularData_d968214ecc684fb6", 1234106571125501, this, [column, index]); }
   /**
    * mutating func insert(column: AnyColumn, at index: Int)
    * @availability iOS 15.0+
    */
-  insertColumnAt82928(column: AnyColumn, index: number): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 2455343817379585, this, [column, index]); }
+  insertColumnAt82928(column: AnyColumn, index: number): void { return callSDK<void>("TabularData_d968214ecc684fb6", 2455343817379585, this, [column, index]); }
   /**
    * func prefix(_ maxLength: Int) -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  prefix(maxLength: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 15749264344054, this, [maxLength]); }
+  prefix(maxLength: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 15749264344054, this, [maxLength]); }
   /**
    * func suffix(_ maxLength: Int) -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  suffix(maxLength: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 3649838359869677, this, [maxLength]); }
+  suffix(maxLength: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 3649838359869677, this, [maxLength]); }
   /**
    * init<S>(columns: S) where S : Sequence, S.Element == AnyColumn
    * @availability iOS 15.0+
    */
-  static initColumns(columns: Array<AnyColumn>): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3384615110162829, undefined, [columns]); }
+  static initColumns(columns: Array<AnyColumn>): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3384615110162829, undefined, [columns]); }
   /**
    * var columns: [AnyColumn] { get }
    * @availability iOS 15.0+
    */
-  get columns(): Array<AnyColumn> { return callSDK<Array<AnyColumn>>("TabularData_067acaa3e5f56b46", 2831669133594146, this, []); }
+  get columns(): Array<AnyColumn> { return callSDK<Array<AnyColumn>>("TabularData_d968214ecc684fb6", 2831669133594146, this, []); }
   /**
    * func grouped(by columnName: String) -> any RowGroupingProtocol
    * @availability iOS 15.0+
    */
-  grouped(columnName: string): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 2150864534996705, this, [columnName]); }
+  grouped(columnName: string): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 2150864534996705, this, [columnName]); }
   /**
    * func summary() -> DataFrame
    * @availability iOS 15.0+
    */
-  summary(): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3280315679090535, this, []); }
+  summary(): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3280315679090535, this, []); }
   /**
    * mutating func addAlias(_ alias: String, forColumn columnName: String)
    * @availability iOS 15.0+
    */
-  addAlias(alias: string, columnName: string): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 1292770442843072, this, [alias, columnName]); }
+  addAlias(alias: string, columnName: string): void { return callSDK<void>("TabularData_d968214ecc684fb6", 1292770442843072, this, [alias, columnName]); }
   /**
    * mutating func removeRow(at index: Int)
    * @availability iOS 15.0+
    */
-  removeRow(index: number): void { return callSDK<void>("TabularData_067acaa3e5f56b46", 1895587850496814, this, [index]); }
+  removeRow(index: number): void { return callSDK<void>("TabularData_d968214ecc684fb6", 1895587850496814, this, [index]); }
   /**
    * func selecting<S>(columnNames: S) -> DataFrame where S : Sequence, S.Element == String
    * @availability iOS 15.0+
    */
-  selecting(columnNames: Array<string>): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3694700586632310, this, [columnNames]); }
+  selecting(columnNames: Array<string>): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3694700586632310, this, [columnNames]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 1209932736948635, undefined, []); }
+  static init(): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 1209932736948635, undefined, []); }
   /**
    * init(_ other: DataFrame.Slice)
    * @availability iOS 15.0+
    */
-  static init64035(other: DataFrame_Slice): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 2647827702172852, undefined, [other]); }
+  static init64035(other: DataFrame_Slice): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 2647827702172852, undefined, [other]); }
   /**
    * subscript<T>(id: ColumnID<T>) -> Column<T> { get set }
    * @availability iOS 15.0+
    */
-  subscript(id: ColumnID<unknown>): Column<unknown> { return callSDK<Column<unknown>>("TabularData_067acaa3e5f56b46", 4446735474748003, this, [id]); }
+  subscript(id: ColumnID<unknown>): Column<unknown> { return callSDK<Column<unknown>>("TabularData_d968214ecc684fb6", 4446735474748003, this, [id]); }
   /**
    * @backDeployed(before: macOS 15.4, iOS 18.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   subscript(columnName: String) -> AnyColumn { get set }
    * @availability iOS 15.0+
    */
-  subscript29591(columnName: string): AnyColumn { return callSDK<AnyColumn>("TabularData_067acaa3e5f56b46", 1515351346904410, this, [columnName]); }
+  subscript29591(columnName: string): AnyColumn { return callSDK<AnyColumn>("TabularData_d968214ecc684fb6", 1515351346904410, this, [columnName]); }
   /**
    * subscript<C>(mask: C) -> DataFrame.Slice where C : Collection, C.Element == Bool { get }
    * @availability iOS 15.0+
    */
-  subscript3107(mask: Array<boolean>): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 4212430898765415, this, [mask]); }
+  subscript3107(mask: Array<boolean>): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 4212430898765415, this, [mask]); }
   /**
    * subscript<S>(columnNames: S) -> DataFrame where S : Sequence, S.Element == String { get }
    * @availability iOS 15.0+
    */
-  subscript35327(columnNames: Array<string>): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3876194493210581, this, [columnNames]); }
+  subscript35327(columnNames: Array<string>): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3876194493210581, this, [columnNames]); }
   /**
    * @backDeployed(before: macOS 15.4, iOS 18.4, tvOS 18.4, watchOS 11.4, visionOS 2.4)
   subscript<T>(columnName: String, type: T.Type = T.self) -> [T?] { get set }
    * @availability iOS 15.0+
    */
-  subscript4051(columnName: string): Array<(unknown) | null> { return callSDK<Array<(unknown) | null>>("TabularData_067acaa3e5f56b46", 4179541557702754, this, [columnName]); }
+  subscript4051(columnName: string): Array<(unknown) | null> { return callSDK<Array<(unknown) | null>>("TabularData_d968214ecc684fb6", 4179541557702754, this, [columnName]); }
   declare readonly $type: { "s:11TabularData0B5FrameV": true };
 }
 
@@ -1471,77 +1471,77 @@ export class DataFrame_Row extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2257725250166901, this, []); }
+  get startIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2257725250166901, this, []); }
   /**
    * func description(options: FormattingOptions) -> String
    * @availability iOS 15.0+
    */
-  descriptionOptions(options: FormattingOptions): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 1115625443058362, this, [options]); }
+  descriptionOptions(options: FormattingOptions): string { return callSDK<string>("TabularData_d968214ecc684fb6", 1115625443058362, this, [options]); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 2908042328951636, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 2908042328951636, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 15.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 2208004309966528, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 2208004309966528, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 3841177740581208, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 3841177740581208, this, []); }
   /**
    * var base: DataFrame { get }
    * @availability iOS 15.0+
    */
-  get base(): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 1693738867921598, this, []); }
+  get base(): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 1693738867921598, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 15.0+
    */
-  get count(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 4372394141623854, this, []); }
+  get count(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 4372394141623854, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 603977720262992, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 603977720262992, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2006956989911855, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2006956989911855, this, [i]); }
   /**
    * let index: Int
    * @availability iOS 15.0+
    */
-  get index(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 727505625420465, this, []); }
+  get index(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 727505625420465, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 493321585062071, this, []); }
+  get endIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 493321585062071, this, []); }
   /**
    * subscript(bounds: Range<Int>) -> Slice<DataFrame.Row> { get set }
    * @availability iOS 15.0+
    */
-  subscript(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 2864003388433515, this, [bounds]); }
+  subscript(bounds: SDKHandle): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 2864003388433515, this, [bounds]); }
   /**
    * subscript<T>(columnID: ColumnID<T>) -> T? { get set }
    * @availability iOS 15.0+
    */
-  subscript79167(columnID: ColumnID<unknown>): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 3658353571472561, this, [columnID]); }
+  subscript79167(columnID: ColumnID<unknown>): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 3658353571472561, this, [columnID]); }
   /**
    * subscript(columnName: String) -> Any? { get set }
    * @availability iOS 15.0+
    */
-  subscript87246(columnName: string): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 630875444163621, this, [columnName]); }
+  subscript87246(columnName: string): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 630875444163621, this, [columnName]); }
   /**
    * subscript(position: Int) -> Any? { get set }
    * @availability iOS 15.0+
    */
-  subscript96016(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 176865254187252, this, [position]); }
+  subscript96016(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 176865254187252, this, [position]); }
   declare readonly $type: { "s:11TabularData0B5FrameV3RowV": true };
 }
 
@@ -1584,37 +1584,37 @@ export class DataFrame_Rows extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2545569197758527, this, []); }
+  get startIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2545569197758527, this, []); }
   /**
    * var count: Int { get }
    * @availability iOS 15.0+
    */
-  get count(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3690840331208928, this, []); }
+  get count(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3690840331208928, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3317293165907854, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3317293165907854, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1844769565754404, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1844769565754404, this, [i]); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2965349646646171, this, []); }
+  get endIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2965349646646171, this, []); }
   /**
    * subscript(position: Int) -> DataFrame.Row { get set }
    * @availability iOS 15.0+
    */
-  subscript(position: number): DataFrame_Row { return callSDK<DataFrame_Row>("TabularData_067acaa3e5f56b46", 467047136188366, this, [position]); }
+  subscript(position: number): DataFrame_Row { return callSDK<DataFrame_Row>("TabularData_d968214ecc684fb6", 467047136188366, this, [position]); }
   /**
    * subscript(bounds: Range<Int>) -> DataFrame.Rows { get set }
    * @availability iOS 15.0+
    */
-  subscript55752(bounds: SDKHandle): DataFrame_Rows { return callSDK<DataFrame_Rows>("TabularData_067acaa3e5f56b46", 2382265519567372, this, [bounds]); }
+  subscript55752(bounds: SDKHandle): DataFrame_Rows { return callSDK<DataFrame_Rows>("TabularData_d968214ecc684fb6", 2382265519567372, this, [bounds]); }
   declare readonly $type: { "s:11TabularData0B5FrameV4RowsV": true };
 }
 
@@ -1657,103 +1657,103 @@ export class DataFrame_Slice extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 3116433208666767, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 3116433208666767, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 15.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 2573005879651668, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 2573005879651668, this, []); }
   /**
    * subscript(dynamicMember columnName: String) -> AnyColumnSlice { get }
    * @availability iOS 15.0+
    */
-  subscriptDynamicMember(columnName: string): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_067acaa3e5f56b46", 96020717775613, this, [columnName]); }
+  subscriptDynamicMember(columnName: string): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_d968214ecc684fb6", 96020717775613, this, [columnName]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 705197999522493, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 705197999522493, this, []); }
   /**
    * var base: DataFrame { get }
    * @availability iOS 15.0+
    */
-  get base(): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3609146804952870, this, []); }
+  get base(): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3609146804952870, this, []); }
   /**
    * var rows: DataFrame.Rows { get set }
    * @availability iOS 15.0+
    */
-  get rows(): DataFrame_Rows { return callSDK<DataFrame_Rows>("TabularData_067acaa3e5f56b46", 450874997856854, this, []); }
-  set rows(value: DataFrame_Rows) { callSDK<void>("TabularData_067acaa3e5f56b46", 2647157251194068, this, [value]); }
+  get rows(): DataFrame_Rows { return callSDK<DataFrame_Rows>("TabularData_d968214ecc684fb6", 450874997856854, this, []); }
+  set rows(value: DataFrame_Rows) { callSDK<void>("TabularData_d968214ecc684fb6", 2647157251194068, this, [value]); }
   /**
    * var shape: (rows: Int, columns: Int) { get }
    * @availability iOS 15.0+
    */
-  get shape(): $SDK16 { return callSDK<$SDK16>("TabularData_067acaa3e5f56b46", 2610305507276570, this, []); }
+  get shape(): $SDK16 { return callSDK<$SDK16>("TabularData_d968214ecc684fb6", 2610305507276570, this, []); }
   /**
    * func filter<T>(on columnID: ColumnID<T>, _ isIncluded: (T?) throws -> Bool) rethrows -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  filter(columnID: ColumnID<unknown>, isIncluded: $SDK5): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 1066595365967824, this, [columnID, isIncluded], [null,{"callback":{"out":[]}}], true); }
+  filter(columnID: ColumnID<unknown>, isIncluded: $SDK5): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 1066595365967824, this, [columnID, isIncluded], [null,{"callback":{"out":[]}}], true); }
   /**
    * func prefix(upTo position: Int) -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  prefixUpTo(position: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 3531948263837391, this, [position]); }
+  prefixUpTo(position: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 3531948263837391, this, [position]); }
   /**
    * func prefix(through position: Int) -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  prefixThrough(position: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 3485660024007907, this, [position]); }
+  prefixThrough(position: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 3485660024007907, this, [position]); }
   /**
    * func prefix(_ length: Int) -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  prefix(length: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 2734846307424196, this, [length]); }
+  prefix(length: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 2734846307424196, this, [length]); }
   /**
    * func suffix(from position: Int) -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  suffixFrom(position: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 486102256808099, this, [position]); }
+  suffixFrom(position: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 486102256808099, this, [position]); }
   /**
    * func suffix(_ length: Int) -> DataFrame.Slice
    * @availability iOS 15.0+
    */
-  suffix(length: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 1012382436580812, this, [length]); }
+  suffix(length: number): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 1012382436580812, this, [length]); }
   /**
    * var columns: [AnyColumnSlice] { get }
    * @availability iOS 15.0+
    */
-  get columns(): Array<AnyColumnSlice> { return callSDK<Array<AnyColumnSlice>>("TabularData_067acaa3e5f56b46", 3688880984255542, this, []); }
+  get columns(): Array<AnyColumnSlice> { return callSDK<Array<AnyColumnSlice>>("TabularData_d968214ecc684fb6", 3688880984255542, this, []); }
   /**
    * func grouped(by columnName: String) -> any RowGroupingProtocol
    * @availability iOS 15.0+
    */
-  grouped(columnName: string): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 2822250932176673, this, [columnName]); }
+  grouped(columnName: string): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 2822250932176673, this, [columnName]); }
   /**
    * func summary() -> DataFrame
    * @availability iOS 15.0+
    */
-  summary(): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 725298218432893, this, []); }
+  summary(): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 725298218432893, this, []); }
   /**
    * func selecting<S>(columnNames: S) -> DataFrame.Slice where S : Sequence, S.Element == String
    * @availability iOS 15.0+
    */
-  selecting(columnNames: Array<string>): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 792722594354354, this, [columnNames]); }
+  selecting(columnNames: Array<string>): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 792722594354354, this, [columnNames]); }
   /**
    * subscript<T>(columnID: ColumnID<T>) -> DiscontiguousColumnSlice<T> { get }
    * @availability iOS 15.0+
    */
-  subscript(columnID: ColumnID<unknown>): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 1176361226864182, this, [columnID]); }
+  subscript(columnID: ColumnID<unknown>): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 1176361226864182, this, [columnID]); }
   /**
    * subscript(columnName: String) -> AnyColumnSlice { get }
    * @availability iOS 15.0+
    */
-  subscript75194(columnName: string): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_067acaa3e5f56b46", 3401129577213796, this, [columnName]); }
+  subscript75194(columnName: string): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_d968214ecc684fb6", 3401129577213796, this, [columnName]); }
   /**
    * subscript<S>(columnNames: S) -> DataFrame.Slice where S : Sequence, S.Element == String { get }
    * @availability iOS 15.0+
    */
-  subscript87752(columnNames: Array<string>): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_067acaa3e5f56b46", 516718433435547, this, [columnNames]); }
+  subscript87752(columnNames: Array<string>): DataFrame_Slice { return callSDK<DataFrame_Slice>("TabularData_d968214ecc684fb6", 516718433435547, this, [columnNames]); }
   declare readonly $type: { "s:11TabularData0B5FrameV5SliceV": true };
 }
 
@@ -1790,153 +1790,153 @@ export class DiscontiguousColumnSlice<WrappedElement = unknown> extends SDKHandl
    * func eraseToAnyColumn() -> AnyColumnSlice
    * @availability iOS 15.0+
    */
-  eraseToAnyColumn(): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_067acaa3e5f56b46", 1395919583491963, this, []); }
+  eraseToAnyColumn(): AnyColumnSlice { return callSDK<AnyColumnSlice>("TabularData_d968214ecc684fb6", 1395919583491963, this, []); }
   /**
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 4181883836881045, this, []); }
+  get startIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 4181883836881045, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 4309228925678240, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 4309228925678240, this, []); }
   /**
    * var customMirror: Mirror { get }
    * @availability iOS 15.0+
    */
-  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 4369648744704609, this, []); }
+  get customMirror(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 4369648744704609, this, []); }
   /**
    * var missingCount: Int { get }
    * @availability iOS 15.0+
    */
-  get missingCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3997842542540811, this, []); }
+  get missingCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3997842542540811, this, []); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 896272994387315, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 896272994387315, this, []); }
   /**
    * func map<T>(_ transform: (DiscontiguousColumnSlice<WrappedElement>.Element) throws -> T?) rethrows -> Column<T>
    * @availability iOS 15.0+
    */
-  map(transform: $SDK3): Column<unknown> { return callSDK<Column<unknown>>("TabularData_067acaa3e5f56b46", 3958160990610330, this, [transform], [{"callback":{"out":[]}}], true); }
+  map(transform: $SDK3): Column<unknown> { return callSDK<Column<unknown>>("TabularData_d968214ecc684fb6", 3958160990610330, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * var name: String { get set }
    * @availability iOS 15.0+
    */
-  get name(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 2180747581240345, this, []); }
-  set name(value: string) { callSDK<void>("TabularData_067acaa3e5f56b46", 45363270841993, this, [value]); }
+  get name(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 2180747581240345, this, []); }
+  set name(value: string) { callSDK<void>("TabularData_d968214ecc684fb6", 45363270841993, this, [value]); }
   /**
    * var count: Int { get }
    * @availability iOS 15.0+
    */
-  get count(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 4414340520818697, this, []); }
+  get count(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 4414340520818697, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 657700283199915, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 657700283199915, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1425752681009649, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1425752681009649, this, [i]); }
   /**
    * func isNil(at index: Int) -> Bool
    * @availability iOS 15.0+
    */
-  isNil(index: number): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 99145874337554, this, [index]); }
+  isNil(index: number): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 99145874337554, this, [index]); }
   /**
    * init(column: Column<WrappedElement>, ranges: [Range<Int>])
    * @availability iOS 15.0+
    */
-  static initColumnRanges(column: Column<unknown>, ranges: Array<SDKHandle>): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 3441403416586362, undefined, [column, ranges]); }
+  static initColumnRanges(column: Column<unknown>, ranges: Array<SDKHandle>): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 3441403416586362, undefined, [column, ranges]); }
   /**
    * func filter(_ isIncluded: (DiscontiguousColumnSlice<WrappedElement>.Element) throws -> Bool) rethrows -> DiscontiguousColumnSlice<WrappedElement>
    * @availability iOS 15.0+
    */
-  filter(isIncluded: $SDK5): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 706466690281997, this, [isIncluded], [{"callback":{"out":[]}}], true); }
+  filter(isIncluded: $SDK5): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 706466690281997, this, [isIncluded], [{"callback":{"out":[]}}], true); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3551375695356434, this, []); }
+  get endIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3551375695356434, this, []); }
   /**
    * var prototype: any AnyColumnPrototype { get }
    * @availability iOS 15.0+
    */
-  get prototype(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 1765185240875721, this, []); }
+  get prototype(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 1765185240875721, this, []); }
   /**
    * func numericSummary() -> NumericSummary<WrappedElement>
    * @availability iOS 15.0+
    */
-  numericSummary(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_067acaa3e5f56b46", 4413211877436979, this, []); }
+  numericSummary(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_d968214ecc684fb6", 4413211877436979, this, []); }
   /**
    * func standardDeviation(deltaDegreesOfFreedom: Int = 1) -> DiscontiguousColumnSlice<WrappedElement>.Element
    * @availability iOS 15.0+
    */
-  standardDeviationDeltaDegreesOfFreedom(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 1660674965988267, this, [deltaDegreesOfFreedom]); }
+  standardDeviationDeltaDegreesOfFreedom(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 1660674965988267, this, [deltaDegreesOfFreedom]); }
   /**
    * func mean() -> DiscontiguousColumnSlice<WrappedElement>.Element
    * @availability iOS 15.0+
    */
-  mean(): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 3847897683894741, this, []); }
+  mean(): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 3847897683894741, this, []); }
   /**
    * func summary() -> CategoricalSummary<WrappedElement>
    * @availability iOS 15.0+
    */
-  summary(): $SDK1 { return callSDK<$SDK1>("TabularData_067acaa3e5f56b46", 3184332382150569, this, []); }
+  summary(): $SDK1 { return callSDK<$SDK1>("TabularData_d968214ecc684fb6", 3184332382150569, this, []); }
   /**
    * func distinct() -> DiscontiguousColumnSlice<WrappedElement>
    * @availability iOS 15.0+
    */
-  distinct(): $SDK8 { return callSDK<$SDK8>("TabularData_067acaa3e5f56b46", 2003676871241674, this, []); }
+  distinct(): $SDK8 { return callSDK<$SDK8>("TabularData_d968214ecc684fb6", 2003676871241674, this, []); }
   /**
    * func numericSummary() -> NumericSummary<Double>
    * @availability iOS 15.0+
    */
-  numericSummary56122(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_067acaa3e5f56b46", 520434791740775, this, []); }
+  numericSummary56122(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_d968214ecc684fb6", 520434791740775, this, []); }
   /**
    * func standardDeviation(deltaDegreesOfFreedom: Int = 1) -> Double?
    * @availability iOS 15.0+
    */
-  standardDeviationDeltaDegreesOfFreedom29806(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 4446139135527381, this, [deltaDegreesOfFreedom]); }
+  standardDeviationDeltaDegreesOfFreedom29806(deltaDegreesOfFreedom?: number): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 4446139135527381, this, [deltaDegreesOfFreedom]); }
   /**
    * func mean() -> Double?
    * @availability iOS 15.0+
    */
-  mean60696(): (number) | null { return callSDK<(number) | null>("TabularData_067acaa3e5f56b46", 4466092426871056, this, []); }
+  mean60696(): (number) | null { return callSDK<(number) | null>("TabularData_d968214ecc684fb6", 4466092426871056, this, []); }
   /**
    * func sum() -> WrappedElement
    * @availability iOS 15.0+
    */
-  sum(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 249777456091450, this, []); }
+  sum(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 249777456091450, this, []); }
   /**
    * init(_ column: Column<WrappedElement>)
    * @availability iOS 15.0+
    */
-  static init(column: Column<unknown>): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 1391288424493797, undefined, [column]); }
+  static init(column: Column<unknown>): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 1391288424493797, undefined, [column]); }
   /**
    * subscript(range: Range<Int>) -> DiscontiguousColumnSlice<WrappedElement> { get set }
    * @availability iOS 15.0+
    */
-  subscript(range: SDKHandle): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 916690352926758, this, [range]); }
+  subscript(range: SDKHandle): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 916690352926758, this, [range]); }
   /**
    * subscript<R>(range: R) -> DiscontiguousColumnSlice<WrappedElement> where R : RangeExpression, R.Bound == Int { get set }
    * @availability iOS 15.0+
    */
-  subscript93698(range: SDKHandle): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 1698954720737994, this, [range]); }
+  subscript93698(range: SDKHandle): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 1698954720737994, this, [range]); }
   /**
    * subscript(range: UnboundedRange) -> DiscontiguousColumnSlice<WrappedElement> { get set }
    * @availability iOS 15.0+
    */
-  subscript82204(range: SDKHandle): $SDK4 { return callSDK<$SDK4>("TabularData_067acaa3e5f56b46", 1326781387636122, this, [range]); }
+  subscript82204(range: SDKHandle): $SDK4 { return callSDK<$SDK4>("TabularData_d968214ecc684fb6", 1326781387636122, this, [range]); }
   /**
    * subscript(position: Int) -> DiscontiguousColumnSlice<WrappedElement>.Element { get set }
    * @availability iOS 15.0+
    */
-  subscript57566(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_067acaa3e5f56b46", 2532752547938118, this, [position]); }
+  subscript57566(position: number): (unknown) | null { return callSDK<(unknown) | null>("TabularData_d968214ecc684fb6", 2532752547938118, this, [position]); }
   declare readonly $type: { "s:11TabularData24DiscontiguousColumnSliceV": true };
 }
 
@@ -2023,77 +2023,77 @@ export class FormattingOptions extends SDKHandle {
    * var dateFormatStyle: Date.FormatStyle { get set }
    * @availability iOS 15.4+
    */
-  get dateFormatStyle(): _Foundation_Date_FormatStyle { return callSDK<_Foundation_Date_FormatStyle>("TabularData_067acaa3e5f56b46", 1785984446073828, this, []); }
-  set dateFormatStyle(value: _Foundation_Date_FormatStyle) { callSDK<void>("TabularData_067acaa3e5f56b46", 3917048631470933, this, [value]); }
+  get dateFormatStyle(): _Foundation_Date_FormatStyle { return callSDK<_Foundation_Date_FormatStyle>("TabularData_d968214ecc684fb6", 1785984446073828, this, []); }
+  set dateFormatStyle(value: _Foundation_Date_FormatStyle) { callSDK<void>("TabularData_d968214ecc684fb6", 3917048631470933, this, [value]); }
   /**
    * var maximumRowCount: Int
    * @availability iOS 15.0+
    */
-  get maximumRowCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2122086031590120, this, []); }
-  set maximumRowCount(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 2652044811488438, this, [value]); }
+  get maximumRowCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2122086031590120, this, []); }
+  set maximumRowCount(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 2652044811488438, this, [value]); }
   /**
    * var maximumCellWidth: Int
    * @availability iOS 15.0+
    */
-  get maximumCellWidth(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1091270457909601, this, []); }
-  set maximumCellWidth(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 3056749580294153, this, [value]); }
+  get maximumCellWidth(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1091270457909601, this, []); }
+  set maximumCellWidth(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 3056749580294153, this, [value]); }
   /**
    * init(maximumLineWidth: Int, maximumCellWidth: Int = 50, maximumRowCount: Int = 20, includesColumnTypes: Bool = true)
    * @availability iOS 15.0+
    */
-  static initMaximumLineWidthMaximumCellWidthMaximumRowCountIncludesColumnTypes(maximumLineWidth: number, maximumCellWidth?: number, maximumRowCount?: number, includesColumnTypes?: boolean): FormattingOptions { return callSDK<FormattingOptions>("TabularData_067acaa3e5f56b46", 1131624383456160, undefined, [maximumLineWidth, maximumCellWidth, maximumRowCount, includesColumnTypes]); }
+  static initMaximumLineWidthMaximumCellWidthMaximumRowCountIncludesColumnTypes(maximumLineWidth: number, maximumCellWidth?: number, maximumRowCount?: number, includesColumnTypes?: boolean): FormattingOptions { return callSDK<FormattingOptions>("TabularData_d968214ecc684fb6", 1131624383456160, undefined, [maximumLineWidth, maximumCellWidth, maximumRowCount, includesColumnTypes]); }
   /**
    * var maximumLineWidth: Int
    * @availability iOS 15.0+
    */
-  get maximumLineWidth(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 4307376127508969, this, []); }
-  set maximumLineWidth(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 2173855413214091, this, [value]); }
+  get maximumLineWidth(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 4307376127508969, this, []); }
+  set maximumLineWidth(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 2173855413214091, this, [value]); }
   /**
    * var includesRowIndices: Bool
    * @availability iOS 17.0+
    */
-  get includesRowIndices(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 1666755146401483, this, []); }
-  set includesRowIndices(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 4235080118596202, this, [value]); }
+  get includesRowIndices(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 1666755146401483, this, []); }
+  set includesRowIndices(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 4235080118596202, this, [value]); }
   /**
    * var integerFormatStyle: IntegerFormatStyle<Int> { get set }
    * @availability iOS 15.4+
    */
-  get integerFormatStyle(): $SDK19 { return callSDK<$SDK19>("TabularData_067acaa3e5f56b46", 3123216721282800, this, []); }
-  set integerFormatStyle(value: $SDK19) { callSDK<void>("TabularData_067acaa3e5f56b46", 2278831796478378, this, [value]); }
+  get integerFormatStyle(): $SDK19 { return callSDK<$SDK19>("TabularData_d968214ecc684fb6", 3123216721282800, this, []); }
+  set integerFormatStyle(value: $SDK19) { callSDK<void>("TabularData_d968214ecc684fb6", 2278831796478378, this, [value]); }
   /**
    * var includesColumnTypes: Bool
    * @availability iOS 15.0+
    */
-  get includesColumnTypes(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 873726083452342, this, []); }
-  set includesColumnTypes(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 1758543507377384, this, [value]); }
+  get includesColumnTypes(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 873726083452342, this, []); }
+  set includesColumnTypes(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 1758543507377384, this, [value]); }
   /**
    * var floatingPointFormatStyle: FloatingPointFormatStyle<Double> { get set }
    * @availability iOS 15.4+
    */
-  get floatingPointFormatStyle(): $SDK20 { return callSDK<$SDK20>("TabularData_067acaa3e5f56b46", 2491531194206798, this, []); }
-  set floatingPointFormatStyle(value: $SDK20) { callSDK<void>("TabularData_067acaa3e5f56b46", 1971788222646582, this, [value]); }
+  get floatingPointFormatStyle(): $SDK20 { return callSDK<$SDK20>("TabularData_d968214ecc684fb6", 2491531194206798, this, []); }
+  set floatingPointFormatStyle(value: $SDK20) { callSDK<void>("TabularData_d968214ecc684fb6", 1971788222646582, this, [value]); }
   /**
    * var includesRowAndColumnCounts: Bool
    * @availability iOS 17.0+
    */
-  get includesRowAndColumnCounts(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 3876215704829047, this, []); }
-  set includesRowAndColumnCounts(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 3958466472774183, this, [value]); }
+  get includesRowAndColumnCounts(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 3876215704829047, this, []); }
+  set includesRowAndColumnCounts(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 3958466472774183, this, [value]); }
   /**
    * var locale: Locale { get set }
    * @availability iOS 15.4+
    */
-  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("TabularData_067acaa3e5f56b46", 704023409380740, this, []); }
-  set locale(value: _Foundation_Locale) { callSDK<void>("TabularData_067acaa3e5f56b46", 3387862794887084, this, [value]); }
+  get locale(): _Foundation_Locale { return callSDK<_Foundation_Locale>("TabularData_d968214ecc684fb6", 704023409380740, this, []); }
+  set locale(value: _Foundation_Locale) { callSDK<void>("TabularData_d968214ecc684fb6", 3387862794887084, this, [value]); }
   /**
    * init(locale: Locale)
    * @availability iOS 15.4+
    */
-  static initLocale(locale: _Foundation_Locale): FormattingOptions { return callSDK<FormattingOptions>("TabularData_067acaa3e5f56b46", 3669459953139884, undefined, [locale]); }
+  static initLocale(locale: _Foundation_Locale): FormattingOptions { return callSDK<FormattingOptions>("TabularData_d968214ecc684fb6", 3669459953139884, undefined, [locale]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): FormattingOptions { return callSDK<FormattingOptions>("TabularData_067acaa3e5f56b46", 1081622567735765, undefined, []); }
+  static init(): FormattingOptions { return callSDK<FormattingOptions>("TabularData_d968214ecc684fb6", 1081622567735765, undefined, []); }
   declare readonly $type: { "s:11TabularData17FormattingOptionsV": true };
 }
 
@@ -2129,12 +2129,12 @@ export class JSONReadingError extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 2380288067511289, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 2380288067511289, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("TabularData_067acaa3e5f56b46", 705808202462096, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("TabularData_d968214ecc684fb6", 705808202462096, this, []); }
   declare readonly $type: { "s:11TabularData16JSONReadingErrorO": true };
 }
 
@@ -2147,13 +2147,13 @@ export class JSONReadingOptions extends SDKHandle {
    * var dateParsers: [(String) -> Date?]
    * @availability iOS 15.0+
    */
-  get dateParsers(): $SDK9 { return callSDK<$SDK9>("TabularData_067acaa3e5f56b46", 2542616242544582, this, []); }
-  set dateParsers(value: $SDK10) { callSDK<void>("TabularData_067acaa3e5f56b46", 3851578050949384, this, [value], [{"array":{"callback":{"out":[]}}}]); }
+  get dateParsers(): $SDK9 { return callSDK<$SDK9>("TabularData_d968214ecc684fb6", 2542616242544582, this, []); }
+  set dateParsers(value: $SDK10) { callSDK<void>("TabularData_d968214ecc684fb6", 3851578050949384, this, [value], [{"array":{"callback":{"out":[]}}}]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): JSONReadingOptions { return callSDK<JSONReadingOptions>("TabularData_067acaa3e5f56b46", 3521489875620349, undefined, []); }
+  static init(): JSONReadingOptions { return callSDK<JSONReadingOptions>("TabularData_d968214ecc684fb6", 3521489875620349, undefined, []); }
   declare readonly $type: { "s:11TabularData18JSONReadingOptionsV": true };
 }
 
@@ -2172,24 +2172,24 @@ export class JSONWritingOptions extends SDKHandle {
    * var prettyPrint: Bool
    * @availability iOS 16.0+
    */
-  get prettyPrint(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 3444942593285917, this, []); }
-  set prettyPrint(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 2532218765448867, this, [value]); }
+  get prettyPrint(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 3444942593285917, this, []); }
+  set prettyPrint(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 2532218765448867, this, [value]); }
   /**
    * var dateFormatter: (Date) -> String
    * @availability iOS 16.0+
    */
-  get dateFormatter(): $SDK11 { return callSDK<$SDK11>("TabularData_067acaa3e5f56b46", 3372621119386976, this, []); }
+  get dateFormatter(): $SDK11 { return callSDK<$SDK11>("TabularData_d968214ecc684fb6", 3372621119386976, this, []); }
   /**
    * var sortKeys: Bool
    * @availability iOS 16.0+
    */
-  get sortKeys(): boolean { return callSDK<boolean>("TabularData_067acaa3e5f56b46", 4048910131362463, this, []); }
-  set sortKeys(value: boolean) { callSDK<void>("TabularData_067acaa3e5f56b46", 2251275711649682, this, [value]); }
+  get sortKeys(): boolean { return callSDK<boolean>("TabularData_d968214ecc684fb6", 4048910131362463, this, []); }
+  set sortKeys(value: boolean) { callSDK<void>("TabularData_d968214ecc684fb6", 2251275711649682, this, [value]); }
   /**
    * init()
    * @availability iOS 16.0+
    */
-  static init(): JSONWritingOptions { return callSDK<JSONWritingOptions>("TabularData_067acaa3e5f56b46", 1536324126305223, undefined, []); }
+  static init(): JSONWritingOptions { return callSDK<JSONWritingOptions>("TabularData_d968214ecc684fb6", 1536324126305223, undefined, []); }
   declare readonly $type: { "s:11TabularData18JSONWritingOptionsV": true };
 }
 
@@ -2202,76 +2202,76 @@ export class NumericSummary<Element = unknown> extends SDKHandle {
    * var totalCount: Int { get }
    * @availability iOS 15.0+
    */
-  get totalCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2499788804360867, this, []); }
+  get totalCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2499788804360867, this, []); }
   /**
    * var firstQuartile: Element
    * @availability iOS 15.0+
    */
-  get firstQuartile(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 127686411213365, this, []); }
-  set firstQuartile(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 151392149757090, this, [value]); }
+  get firstQuartile(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 127686411213365, this, []); }
+  set firstQuartile(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 151392149757090, this, [value]); }
   /**
    * var thirdQuartile: Element
    * @availability iOS 15.0+
    */
-  get thirdQuartile(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1667688155361267, this, []); }
-  set thirdQuartile(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 2245527437421743, this, [value]); }
+  get thirdQuartile(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1667688155361267, this, []); }
+  set thirdQuartile(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 2245527437421743, this, [value]); }
   /**
    * var debugDescription: String { get }
    * @availability iOS 15.0+
    */
-  get debugDescription(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 2179364488082453, this, []); }
+  get debugDescription(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 2179364488082453, this, []); }
   /**
    * var standardDeviation: Element
    * @availability iOS 15.0+
    */
-  get standardDeviation(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 815327903903001, this, []); }
-  set standardDeviation(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 2770233638816087, this, [value]); }
+  get standardDeviation(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 815327903903001, this, []); }
+  set standardDeviation(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 2770233638816087, this, [value]); }
   /**
    * var max: Element
    * @availability iOS 15.0+
    */
-  get max(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3554414830003432, this, []); }
-  set max(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 203845809054093, this, [value]); }
+  get max(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3554414830003432, this, []); }
+  set max(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 203845809054093, this, [value]); }
   /**
    * var min: Element
    * @availability iOS 15.0+
    */
-  get min(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3669069659026153, this, []); }
-  set min(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 1420514857086565, this, [value]); }
+  get min(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3669069659026153, this, []); }
+  set min(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 1420514857086565, this, [value]); }
   /**
    * var mean: Element
    * @availability iOS 15.0+
    */
-  get mean(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3530010663579467, this, []); }
-  set mean(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 752122894217426, this, [value]); }
+  get mean(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3530010663579467, this, []); }
+  set mean(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 752122894217426, this, [value]); }
   /**
    * var median: Element
    * @availability iOS 15.0+
    */
-  get median(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 2464265464856508, this, []); }
-  set median(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 2045562968975727, this, [value]); }
+  get median(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 2464265464856508, this, []); }
+  set median(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 2045562968975727, this, [value]); }
   /**
    * var noneCount: Int
    * @availability iOS 15.0+
    */
-  get noneCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 1437083124543762, this, []); }
-  set noneCount(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 842173516949749, this, [value]); }
+  get noneCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 1437083124543762, this, []); }
+  set noneCount(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 842173516949749, this, [value]); }
   /**
    * init(someCount: Int, noneCount: Int, mean: Element, standardDeviation: Element, min: Element, max: Element, median: Element, firstQuartile: Element, thirdQuartile: Element)
    * @availability iOS 15.0+
    */
-  static initSomeCountNoneCountMeanStandardDeviationMinMaxMedianFirstQuartileThirdQuartile(someCount: number, noneCount: number, mean: number, standardDeviation: number, min: number, max: number, median: number, firstQuartile: number, thirdQuartile: number): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_067acaa3e5f56b46", 2563288963573775, undefined, [someCount, noneCount, mean, standardDeviation, min, max, median, firstQuartile, thirdQuartile]); }
+  static initSomeCountNoneCountMeanStandardDeviationMinMaxMedianFirstQuartileThirdQuartile(someCount: number, noneCount: number, mean: number, standardDeviation: number, min: number, max: number, median: number, firstQuartile: number, thirdQuartile: number): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_d968214ecc684fb6", 2563288963573775, undefined, [someCount, noneCount, mean, standardDeviation, min, max, median, firstQuartile, thirdQuartile]); }
   /**
    * var someCount: Int
    * @availability iOS 15.0+
    */
-  get someCount(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3857084890595440, this, []); }
-  set someCount(value: number) { callSDK<void>("TabularData_067acaa3e5f56b46", 4094069598156547, this, [value]); }
+  get someCount(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3857084890595440, this, []); }
+  set someCount(value: number) { callSDK<void>("TabularData_d968214ecc684fb6", 4094069598156547, this, [value]); }
   /**
    * init()
    * @availability iOS 15.0+
    */
-  static init(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_067acaa3e5f56b46", 2213396192307791, undefined, []); }
+  static init(): NumericSummary<number> { return callSDK<NumericSummary<number>>("TabularData_d968214ecc684fb6", 2213396192307791, undefined, []); }
   declare readonly $type: { "s:11TabularData14NumericSummaryV": true };
 }
 
@@ -2298,72 +2298,72 @@ export class RowGrouping<GroupingKey = unknown> extends SDKHandle {
    * var startIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get startIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 676739028714463, this, []); }
+  get startIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 676739028714463, this, []); }
   /**
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 2823750785569303, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 2823750785569303, this, []); }
   /**
    * func randomSplit(by proportion: Double, seed: Int? = nil) -> (RowGrouping<GroupingKey>, RowGrouping<GroupingKey>)
    * @availability iOS 15.0+
    */
-  randomSplit(proportion: number, seed?: (number) | null): [RowGrouping<number>, RowGrouping<number>] { return callSDK<[RowGrouping<number>, RowGrouping<number>]>("TabularData_067acaa3e5f56b46", 182903536675637, this, [proportion, seed]); }
+  randomSplit(proportion: number, seed?: (number) | null): [RowGrouping<number>, RowGrouping<number>] { return callSDK<[RowGrouping<number>, RowGrouping<number>]>("TabularData_d968214ecc684fb6", 182903536675637, this, [proportion, seed]); }
   /**
    * var count: Int { get }
    * @availability iOS 15.0+
    */
-  get count(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3393147545391644, this, []); }
+  get count(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3393147545391644, this, []); }
   /**
    * func index(after i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexAfter(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3312195302133478, this, [i]); }
+  indexAfter(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3312195302133478, this, [i]); }
   /**
    * func index(before i: Int) -> Int
    * @availability iOS 15.0+
    */
-  indexBefore(i: number): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3709081138018598, this, [i]); }
+  indexBefore(i: number): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3709081138018598, this, [i]); }
   /**
    * func counts(order: Order? = nil) -> DataFrame
    * @availability iOS 15.0+
    */
-  counts(order?: (Order) | null): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3578601839131465, this, [order]); }
+  counts(order?: (Order) | null): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3578601839131465, this, [order]); }
   /**
    * func filter(_ isIncluded: (DataFrame.Slice) throws -> Bool) rethrows -> RowGrouping<GroupingKey>
    * @availability iOS 15.4+
    */
-  filter(isIncluded: ((arg0: DataFrame_Slice) => boolean)): RowGrouping<number> { return callSDK<RowGrouping<number>>("TabularData_067acaa3e5f56b46", 4219463465717254, this, [isIncluded], [{"callback":{"out":[]}}], true); }
+  filter(isIncluded: ((arg0: DataFrame_Slice) => boolean)): RowGrouping<number> { return callSDK<RowGrouping<number>>("TabularData_d968214ecc684fb6", 4219463465717254, this, [isIncluded], [{"callback":{"out":[]}}], true); }
   /**
    * func summary(of columnNames: [String]) -> any GroupSummaries
    * @availability iOS 15.0+
    */
-  summaryOf(columnNames: Array<string>): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 1508507362653437, this, [columnNames]); }
+  summaryOf(columnNames: Array<string>): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 1508507362653437, this, [columnNames]); }
   /**
    * func summary() -> any GroupSummaries
    * @availability iOS 15.0+
    */
-  summary(): SDKHandle { return callSDK<SDKHandle>("TabularData_067acaa3e5f56b46", 4020291140595034, this, []); }
+  summary(): SDKHandle { return callSDK<SDKHandle>("TabularData_d968214ecc684fb6", 4020291140595034, this, []); }
   /**
    * var endIndex: Int { get }
    * @availability iOS 15.0+
    */
-  get endIndex(): number { return callSDK<number>("TabularData_067acaa3e5f56b46", 3660642092094506, this, []); }
+  get endIndex(): number { return callSDK<number>("TabularData_d968214ecc684fb6", 3660642092094506, this, []); }
   /**
    * func mapGroups(_ transform: (DataFrame.Slice) throws -> DataFrame) rethrows -> RowGrouping<GroupingKey>
    * @availability iOS 15.0+
    */
-  mapGroups(transform: ((arg0: DataFrame_Slice) => DataFrame)): RowGrouping<number> { return callSDK<RowGrouping<number>>("TabularData_067acaa3e5f56b46", 2240209589901639, this, [transform], [{"callback":{"out":[]}}], true); }
+  mapGroups(transform: ((arg0: DataFrame_Slice) => DataFrame)): RowGrouping<number> { return callSDK<RowGrouping<number>>("TabularData_d968214ecc684fb6", 2240209589901639, this, [transform], [{"callback":{"out":[]}}], true); }
   /**
    * func ungrouped() -> DataFrame
    * @availability iOS 15.0+
    */
-  ungrouped(): DataFrame { return callSDK<DataFrame>("TabularData_067acaa3e5f56b46", 3039208508679896, this, []); }
+  ungrouped(): DataFrame { return callSDK<DataFrame>("TabularData_d968214ecc684fb6", 3039208508679896, this, []); }
   /**
    * subscript(position: Int) -> (key: GroupingKey?, group: DataFrame.Slice) { get }
    * @availability iOS 15.0+
    */
-  subscript(position: number): { "key": (number) | null; "group": DataFrame_Slice } { return callSDK<{ "key": (number) | null; "group": DataFrame_Slice }>("TabularData_067acaa3e5f56b46", 4168286710917682, this, [position]); }
+  subscript(position: number): { "key": (number) | null; "group": DataFrame_Slice } { return callSDK<{ "key": (number) | null; "group": DataFrame_Slice }>("TabularData_d968214ecc684fb6", 4168286710917682, this, [position]); }
   declare readonly $type: { "s:11TabularData11RowGroupingV": true };
 }
 
@@ -2458,12 +2458,12 @@ export class SFrameReadingError extends SDKHandle {
    * var description: String { get }
    * @availability iOS 15.0+
    */
-  get description(): string { return callSDK<string>("TabularData_067acaa3e5f56b46", 2646880910997930, this, []); }
+  get description(): string { return callSDK<string>("TabularData_d968214ecc684fb6", 2646880910997930, this, []); }
   /**
    * var errorDescription: String? { get }
    * @availability iOS 17.0+
    */
-  get errorDescription(): (string) | null { return callSDK<(string) | null>("TabularData_067acaa3e5f56b46", 1953001686152900, this, []); }
+  get errorDescription(): (string) | null { return callSDK<(string) | null>("TabularData_d968214ecc684fb6", 1953001686152900, this, []); }
   declare readonly $type: { "s:11TabularData18SFrameReadingErrorO": true };
 }
 
@@ -2476,22 +2476,22 @@ export class ShapedData<Element = unknown> extends SDKHandle {
    * init(shape: [Int], strides: [Int], contents: [Element])
    * @availability iOS 15.0+
    */
-  static init(shape: Array<number>, strides: Array<number>, contents: Array<unknown>): ShapedData<unknown> { return callSDK<ShapedData<unknown>>("TabularData_067acaa3e5f56b46", 3996786280181102, undefined, [shape, strides, contents]); }
+  static init(shape: Array<number>, strides: Array<number>, contents: Array<unknown>): ShapedData<unknown> { return callSDK<ShapedData<unknown>>("TabularData_d968214ecc684fb6", 3996786280181102, undefined, [shape, strides, contents]); }
   /**
    * let shape: [Int]
    * @availability iOS 15.0+
    */
-  get shape(): Array<number> { return callSDK<Array<number>>("TabularData_067acaa3e5f56b46", 1420006940931413, this, []); }
+  get shape(): Array<number> { return callSDK<Array<number>>("TabularData_d968214ecc684fb6", 1420006940931413, this, []); }
   /**
    * let strides: [Int]
    * @availability iOS 15.0+
    */
-  get strides(): Array<number> { return callSDK<Array<number>>("TabularData_067acaa3e5f56b46", 728330907343485, this, []); }
+  get strides(): Array<number> { return callSDK<Array<number>>("TabularData_d968214ecc684fb6", 728330907343485, this, []); }
   /**
    * let contents: [Element]
    * @availability iOS 15.0+
    */
-  get contents(): Array<unknown> { return callSDK<Array<unknown>>("TabularData_067acaa3e5f56b46", 2402702655765914, this, []); }
+  get contents(): Array<unknown> { return callSDK<Array<unknown>>("TabularData_d968214ecc684fb6", 2402702655765914, this, []); }
   declare readonly $type: { "s:11TabularData06ShapedB0V": true };
 }
 
@@ -2504,97 +2504,97 @@ export class SummaryColumnIDs extends SDKHandle {
    * static let columnName: ColumnID<String>
    * @availability iOS 15.0+
    */
-  static get columnName(): ColumnID<string> { return callSDK<ColumnID<string>>("TabularData_067acaa3e5f56b46", 777704896517358, undefined, []); }
+  static get columnName(): ColumnID<string> { return callSDK<ColumnID<string>>("TabularData_d968214ecc684fb6", 777704896517358, undefined, []); }
   /**
    * static let uniqueCount: ColumnID<Int>
    * @availability iOS 15.0+
    */
-  static get uniqueCount(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 1628195287496542, undefined, []); }
+  static get uniqueCount(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 1628195287496542, undefined, []); }
   /**
    * static let firstQuartile: ColumnID<Double>
    * @availability iOS 15.0+
    */
-  static get firstQuartile(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 4142687100370366, undefined, []); }
+  static get firstQuartile(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 4142687100370366, undefined, []); }
   /**
    * static let thirdQuartile: ColumnID<Double>
    * @availability iOS 15.0+
    */
-  static get thirdQuartile(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 3324743922641479, undefined, []); }
+  static get thirdQuartile(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 3324743922641479, undefined, []); }
   /**
    * static let standardDeviation: ColumnID<Double>
    * @availability iOS 15.0+
    */
-  static get standardDeviation(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 1029586178325332, undefined, []); }
+  static get standardDeviation(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 1029586178325332, undefined, []); }
   /**
    * static let mean: ColumnID<Double>
    * @availability iOS 15.0+
    */
-  static get mean(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 2937516351592201, undefined, []); }
+  static get mean(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 2937516351592201, undefined, []); }
   /**
    * static let mode: ColumnID<[Any]>
    * @availability iOS 15.0+
    */
-  static get mode(): ColumnID<Array<unknown>> { return callSDK<ColumnID<Array<unknown>>>("TabularData_067acaa3e5f56b46", 805582440238262, undefined, []); }
+  static get mode(): ColumnID<Array<unknown>> { return callSDK<ColumnID<Array<unknown>>>("TabularData_d968214ecc684fb6", 805582440238262, undefined, []); }
   /**
    * static let median: ColumnID<Double>
    * @availability iOS 15.0+
    */
-  static get median(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 2352332250321604, undefined, []); }
+  static get median(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 2352332250321604, undefined, []); }
   /**
    * static let maximum: ColumnID<Double>
    * @availability iOS 15.0+
    */
-  static get maximum(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 1377553300385865, undefined, []); }
+  static get maximum(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 1377553300385865, undefined, []); }
   /**
    * static let minimum: ColumnID<Double>
    * @availability iOS 15.0+
    */
-  static get minimum(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 2259822522791287, undefined, []); }
+  static get minimum(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 2259822522791287, undefined, []); }
   /**
    * static let noneCount: ColumnID<Int>
    * @availability iOS 15.0+
    */
-  static get noneCount(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 103287593519268, undefined, []); }
+  static get noneCount(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 103287593519268, undefined, []); }
   /**
    * static let someCount: ColumnID<Int>
    * @availability iOS 15.0+
    */
-  static get someCount(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_067acaa3e5f56b46", 1623987375240097, undefined, []); }
+  static get someCount(): ColumnID<number> { return callSDK<ColumnID<number>>("TabularData_d968214ecc684fb6", 1623987375240097, undefined, []); }
   declare readonly $type: { "s:11TabularData16SummaryColumnIDsO": true };
 }
 
-registerSDKClass("TabularData.AnyCategoricalSummary", AnyCategoricalSummary, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.AnyColumn", AnyColumn, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"indexAfter":{"id":132653343179223},"indexBefore":{"id":777262507690654},"isNil":{"id":2444951051492153},"appendContentsOf":{"id":1762421428785612},"appendContentsOf97210":{"id":3140111527470052},"append":{"id":1695203712371362},"remove":{"id":837119121676432},"distinct":{"id":4428691474205436},"subscript":{"id":2606725720093428},"subscript89099":{"id":4140205309327658},"subscript36140":{"id":2755815518252948}} });
+registerSDKClass("TabularData.AnyCategoricalSummary", AnyCategoricalSummary, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.AnyColumn", AnyColumn, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"indexAfter":{"id":132653343179223},"indexBefore":{"id":777262507690654},"isNil":{"id":2444951051492153},"appendContentsOf":{"id":1762421428785612},"appendContentsOf97210":{"id":3140111527470052},"append":{"id":1695203712371362},"remove":{"id":837119121676432},"distinct":{"id":4428691474205436},"subscript":{"id":2606725720093428},"subscript89099":{"id":4140205309327658},"subscript36140":{"id":2755815518252948}} });
 registerSDKProtocol("s:11TabularData17AnyColumnProtocolP", {"subscript":"subscript(_:)"});
 registerSDKProtocol("s:11TabularData18AnyColumnPrototypeP", {"makeColumnCapacity":"makeColumn(capacity:)"});
-registerSDKClass("TabularData.AnyColumnSlice", AnyColumnSlice, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"indexAfter":{"id":1640825469480426},"indexBefore":{"id":56029876140976},"isNil":{"id":3385624442125981},"summary":{"id":1378521455773118},"distinct":{"id":3420289522631317},"subscript":{"id":3015329823336492},"subscript88042":{"id":2683204728791047}} });
-registerSDKClass("TabularData.CategoricalSummary", CategoricalSummary, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.Column", Column, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"eraseToAnyColumn":{"id":283635644737776},"indexAfter":{"id":2536690184205163},"indexBefore":{"id":2848445918481460},"append":{"id":3138169764990428},"append63987":{"id":3247337617548127},"remove":{"id":1603269257014217},"numericSummary":{"id":4401586047126565},"standardDeviationDeltaDegreesOfFreedom":{"id":4009329476443641},"mean":{"id":824285312037188},"summary":{"id":459228679067280},"distinct":{"id":3519981206188165},"numericSummary83584":{"id":346485014181504},"standardDeviationDeltaDegreesOfFreedom81666":{"id":3530772327586084},"mean26908":{"id":1891008985439718},"sum":{"id":447068205260012},"subscript":{"id":3624881368077203},"subscript44431":{"id":3357024457573440},"subscript5224":{"id":1224034891525627},"subscript52386":{"id":3804274704657763}} });
-registerSDKClass("TabularData.ColumnDecodingError", ColumnDecodingError, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.ColumnEncodingError", ColumnEncodingError, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.ColumnID", ColumnID, { module: "TabularData_067acaa3e5f56b46", properties: {} });
+registerSDKClass("TabularData.AnyColumnSlice", AnyColumnSlice, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"indexAfter":{"id":1640825469480426},"indexBefore":{"id":56029876140976},"isNil":{"id":3385624442125981},"summary":{"id":1378521455773118},"distinct":{"id":3420289522631317},"subscript":{"id":3015329823336492},"subscript88042":{"id":2683204728791047}} });
+registerSDKClass("TabularData.CategoricalSummary", CategoricalSummary, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.Column", Column, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"eraseToAnyColumn":{"id":283635644737776},"indexAfter":{"id":2536690184205163},"indexBefore":{"id":2848445918481460},"append":{"id":3138169764990428},"append63987":{"id":3247337617548127},"remove":{"id":1603269257014217},"numericSummary":{"id":4401586047126565},"standardDeviationDeltaDegreesOfFreedom":{"id":4009329476443641},"mean":{"id":824285312037188},"summary":{"id":459228679067280},"distinct":{"id":3519981206188165},"numericSummary83584":{"id":346485014181504},"standardDeviationDeltaDegreesOfFreedom81666":{"id":3530772327586084},"mean26908":{"id":1891008985439718},"sum":{"id":447068205260012},"subscript":{"id":3624881368077203},"subscript44431":{"id":3357024457573440},"subscript5224":{"id":1224034891525627},"subscript52386":{"id":3804274704657763}} });
+registerSDKClass("TabularData.ColumnDecodingError", ColumnDecodingError, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.ColumnEncodingError", ColumnEncodingError, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.ColumnID", ColumnID, { module: "TabularData_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:11TabularData14ColumnProtocolP", {});
-registerSDKClass("TabularData.ColumnSlice", ColumnSlice, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"eraseToAnyColumn":{"id":2116163166882981},"indexAfter":{"id":2132343341628541},"indexBefore":{"id":36082750280306},"isNil":{"id":2997214646942192},"numericSummary":{"id":1377012739347817},"standardDeviationDeltaDegreesOfFreedom":{"id":2794791771401902},"mean":{"id":3331347625779834},"summary":{"id":1810597688575688},"distinct":{"id":757390972014697},"numericSummary947":{"id":2950886892725879},"standardDeviationDeltaDegreesOfFreedom66200":{"id":820755103977844},"mean65126":{"id":3197930256258747},"sum":{"id":1331568064618592},"subscript":{"id":3022995607534690},"subscript44104":{"id":3930288743379058}} });
-registerSDKClass("TabularData.CSVReadingError", CSVReadingError, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.CSVReadingOptions", CSVReadingOptions, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.CSVWritingError", CSVWritingError, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.CSVWritingOptions", CSVWritingOptions, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.DataFrame", DataFrame, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"columnNames":{"id":2335110508295504},"removeAlias":{"id":3016932935041676},"removeColumn":{"id":3541074747580633},"removeColumn71940":{"id":3746000074925048},"renameColumn":{"id":1347520169299082},"subscriptDynamicMember":{"id":1743922047096692},"indexOfColumn":{"id":3992824821831155},"replaceColumnWith":{"id":2030347994916962},"replaceColumnWith45742":{"id":2029751779794488},"replaceColumnWith80022":{"id":2113872346599963},"replaceColumnWith91187":{"id":4497891141573841},"appendEmptyRow":{"id":2931401741597804},"containsColumn":{"id":3097832604812941},"containsColumn17205":{"id":2590836555291461},"subscriptRow":{"id":620863031305313},"sortOnOrder":{"id":4054163591438451},"appendValuesByColumn":{"id":718193899847962},"appendRow":{"id":2040843960055479},"appendColumn":{"id":11576160214186},"appendColumn3352":{"id":4393013923257453},"appendRowsOf":{"id":2118383978937120},"append":{"id":1369767483854406},"append64411":{"id":2256833338984891},"subscriptColumn":{"id":2740436330847542},"insertRowAt":{"id":337568241272391},"insertColumnAt":{"id":1234106571125501},"insertColumnAt82928":{"id":2455343817379585},"prefix":{"id":15749264344054},"suffix":{"id":3649838359869677},"grouped":{"id":2150864534996705},"summary":{"id":3280315679090535},"addAlias":{"id":1292770442843072},"removeRow":{"id":1895587850496814},"selecting":{"id":3694700586632310},"subscript":{"id":4446735474748003},"subscript29591":{"id":1515351346904410},"subscript3107":{"id":4212430898765415},"subscript35327":{"id":3876194493210581},"subscript4051":{"id":4179541557702754}} });
-registerSDKClass("TabularData.DataFrame.Row", DataFrame_Row, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"descriptionOptions":{"id":1115625443058362},"indexAfter":{"id":603977720262992},"indexBefore":{"id":2006956989911855},"subscript":{"id":2864003388433515},"subscript79167":{"id":3658353571472561},"subscript87246":{"id":630875444163621},"subscript96016":{"id":176865254187252}} });
-registerSDKClass("TabularData.DataFrame.Rows", DataFrame_Rows, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"indexAfter":{"id":3317293165907854},"indexBefore":{"id":1844769565754404},"subscript":{"id":467047136188366},"subscript55752":{"id":2382265519567372}} });
-registerSDKClass("TabularData.DataFrame.Slice", DataFrame_Slice, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"subscriptDynamicMember":{"id":96020717775613},"prefixUpTo":{"id":3531948263837391},"prefixThrough":{"id":3485660024007907},"prefix":{"id":2734846307424196},"suffixFrom":{"id":486102256808099},"suffix":{"id":1012382436580812},"grouped":{"id":2822250932176673},"summary":{"id":725298218432893},"selecting":{"id":792722594354354},"subscript":{"id":1176361226864182},"subscript75194":{"id":3401129577213796},"subscript87752":{"id":516718433435547}} });
+registerSDKClass("TabularData.ColumnSlice", ColumnSlice, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"eraseToAnyColumn":{"id":2116163166882981},"indexAfter":{"id":2132343341628541},"indexBefore":{"id":36082750280306},"isNil":{"id":2997214646942192},"numericSummary":{"id":1377012739347817},"standardDeviationDeltaDegreesOfFreedom":{"id":2794791771401902},"mean":{"id":3331347625779834},"summary":{"id":1810597688575688},"distinct":{"id":757390972014697},"numericSummary947":{"id":2950886892725879},"standardDeviationDeltaDegreesOfFreedom66200":{"id":820755103977844},"mean65126":{"id":3197930256258747},"sum":{"id":1331568064618592},"subscript":{"id":3022995607534690},"subscript44104":{"id":3930288743379058}} });
+registerSDKClass("TabularData.CSVReadingError", CSVReadingError, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.CSVReadingOptions", CSVReadingOptions, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.CSVWritingError", CSVWritingError, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.CSVWritingOptions", CSVWritingOptions, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.DataFrame", DataFrame, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"columnNames":{"id":2335110508295504},"removeAlias":{"id":3016932935041676},"removeColumn":{"id":3541074747580633},"removeColumn71940":{"id":3746000074925048},"renameColumn":{"id":1347520169299082},"subscriptDynamicMember":{"id":1743922047096692},"indexOfColumn":{"id":3992824821831155},"replaceColumnWith":{"id":2030347994916962},"replaceColumnWith45742":{"id":2029751779794488},"replaceColumnWith80022":{"id":2113872346599963},"replaceColumnWith91187":{"id":4497891141573841},"appendEmptyRow":{"id":2931401741597804},"containsColumn":{"id":3097832604812941},"containsColumn17205":{"id":2590836555291461},"subscriptRow":{"id":620863031305313},"sortOnOrder":{"id":4054163591438451},"appendValuesByColumn":{"id":718193899847962},"appendRow":{"id":2040843960055479},"appendColumn":{"id":11576160214186},"appendColumn3352":{"id":4393013923257453},"appendRowsOf":{"id":2118383978937120},"append":{"id":1369767483854406},"append64411":{"id":2256833338984891},"subscriptColumn":{"id":2740436330847542},"insertRowAt":{"id":337568241272391},"insertColumnAt":{"id":1234106571125501},"insertColumnAt82928":{"id":2455343817379585},"prefix":{"id":15749264344054},"suffix":{"id":3649838359869677},"grouped":{"id":2150864534996705},"summary":{"id":3280315679090535},"addAlias":{"id":1292770442843072},"removeRow":{"id":1895587850496814},"selecting":{"id":3694700586632310},"subscript":{"id":4446735474748003},"subscript29591":{"id":1515351346904410},"subscript3107":{"id":4212430898765415},"subscript35327":{"id":3876194493210581},"subscript4051":{"id":4179541557702754}} });
+registerSDKClass("TabularData.DataFrame.Row", DataFrame_Row, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"descriptionOptions":{"id":1115625443058362},"indexAfter":{"id":603977720262992},"indexBefore":{"id":2006956989911855},"subscript":{"id":2864003388433515},"subscript79167":{"id":3658353571472561},"subscript87246":{"id":630875444163621},"subscript96016":{"id":176865254187252}} });
+registerSDKClass("TabularData.DataFrame.Rows", DataFrame_Rows, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"indexAfter":{"id":3317293165907854},"indexBefore":{"id":1844769565754404},"subscript":{"id":467047136188366},"subscript55752":{"id":2382265519567372}} });
+registerSDKClass("TabularData.DataFrame.Slice", DataFrame_Slice, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"subscriptDynamicMember":{"id":96020717775613},"prefixUpTo":{"id":3531948263837391},"prefixThrough":{"id":3485660024007907},"prefix":{"id":2734846307424196},"suffixFrom":{"id":486102256808099},"suffix":{"id":1012382436580812},"grouped":{"id":2822250932176673},"summary":{"id":725298218432893},"selecting":{"id":792722594354354},"subscript":{"id":1176361226864182},"subscript75194":{"id":3401129577213796},"subscript87752":{"id":516718433435547}} });
 registerSDKProtocol("s:11TabularData0B13FrameProtocolP", {"subscript":"subscript(_:)"});
-registerSDKClass("TabularData.DiscontiguousColumnSlice", DiscontiguousColumnSlice, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"eraseToAnyColumn":{"id":1395919583491963},"indexAfter":{"id":657700283199915},"indexBefore":{"id":1425752681009649},"isNil":{"id":99145874337554},"numericSummary":{"id":4413211877436979},"standardDeviationDeltaDegreesOfFreedom":{"id":1660674965988267},"mean":{"id":3847897683894741},"summary":{"id":3184332382150569},"distinct":{"id":2003676871241674},"numericSummary56122":{"id":520434791740775},"standardDeviationDeltaDegreesOfFreedom29806":{"id":4446139135527381},"mean60696":{"id":4466092426871056},"sum":{"id":249777456091450},"subscript":{"id":916690352926758},"subscript93698":{"id":1698954720737994},"subscript82204":{"id":1326781387636122},"subscript57566":{"id":2532752547938118}} });
-registerSDKClass("TabularData.FilledColumn", FilledColumn, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.FormattingOptions", FormattingOptions, { module: "TabularData_067acaa3e5f56b46", properties: {} });
+registerSDKClass("TabularData.DiscontiguousColumnSlice", DiscontiguousColumnSlice, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"eraseToAnyColumn":{"id":1395919583491963},"indexAfter":{"id":657700283199915},"indexBefore":{"id":1425752681009649},"isNil":{"id":99145874337554},"numericSummary":{"id":4413211877436979},"standardDeviationDeltaDegreesOfFreedom":{"id":1660674965988267},"mean":{"id":3847897683894741},"summary":{"id":3184332382150569},"distinct":{"id":2003676871241674},"numericSummary56122":{"id":520434791740775},"standardDeviationDeltaDegreesOfFreedom29806":{"id":4446139135527381},"mean60696":{"id":4466092426871056},"sum":{"id":249777456091450},"subscript":{"id":916690352926758},"subscript93698":{"id":1698954720737994},"subscript82204":{"id":1326781387636122},"subscript57566":{"id":2532752547938118}} });
+registerSDKClass("TabularData.FilledColumn", FilledColumn, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.FormattingOptions", FormattingOptions, { module: "TabularData_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:11TabularData14GroupSummariesP", {"subscript":"subscript(_:)","descriptionOptions":"description(options:)"});
-registerSDKClass("TabularData.JSONReadingError", JSONReadingError, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.JSONReadingOptions", JSONReadingOptions, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.JSONWritingOptions", JSONWritingOptions, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.NumericSummary", NumericSummary, { module: "TabularData_067acaa3e5f56b46", properties: {} });
+registerSDKClass("TabularData.JSONReadingError", JSONReadingError, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.JSONReadingOptions", JSONReadingOptions, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.JSONWritingOptions", JSONWritingOptions, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.NumericSummary", NumericSummary, { module: "TabularData_d968214ecc684fb6", properties: {} });
 registerSDKProtocol("s:11TabularData22OptionalColumnProtocolP", {});
-registerSDKClass("TabularData.RowGrouping", RowGrouping, { module: "TabularData_067acaa3e5f56b46", properties: {}, methods: {"randomSplit":{"id":182903536675637},"indexAfter":{"id":3312195302133478},"indexBefore":{"id":3709081138018598},"counts":{"id":3578601839131465},"summaryOf":{"id":1508507362653437},"summary":{"id":4020291140595034},"ungrouped":{"id":3039208508679896},"subscript":{"id":4168286710917682}} });
+registerSDKClass("TabularData.RowGrouping", RowGrouping, { module: "TabularData_d968214ecc684fb6", properties: {}, methods: {"randomSplit":{"id":182903536675637},"indexAfter":{"id":3312195302133478},"indexBefore":{"id":3709081138018598},"counts":{"id":3578601839131465},"summaryOf":{"id":1508507362653437},"summary":{"id":4020291140595034},"ungrouped":{"id":3039208508679896},"subscript":{"id":4168286710917682}} });
 registerSDKProtocol("s:11TabularData19RowGroupingProtocolP", {"ungrouped":"ungrouped()","countsOrder":"counts(order:)","aggregatedOnNamingTransform":"aggregated(on:naming:transform:)","filter":"filter(_:)","mapGroups":"mapGroups(_:)","randomSplitBySeed":"randomSplit(by:seed:)","summary":"summary()","summaryOf":"summary(of:)","subscript":"subscript(_:)"});
-registerSDKClass("TabularData.SFrameReadingError", SFrameReadingError, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.ShapedData", ShapedData, { module: "TabularData_067acaa3e5f56b46", properties: {} });
-registerSDKClass("TabularData.SummaryColumnIDs", SummaryColumnIDs, { module: "TabularData_067acaa3e5f56b46", properties: {} });
+registerSDKClass("TabularData.SFrameReadingError", SFrameReadingError, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.ShapedData", ShapedData, { module: "TabularData_d968214ecc684fb6", properties: {} });
+registerSDKClass("TabularData.SummaryColumnIDs", SummaryColumnIDs, { module: "TabularData_d968214ecc684fb6", properties: {} });

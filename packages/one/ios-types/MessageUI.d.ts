@@ -148,6 +148,9 @@ export declare class MFMailComposeViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "mailComposeDelegate": true;
+    };
 }
 /** protocol MFMailComposeViewControllerDelegate : NSObjectProtocol */
 export interface MFMailComposeViewControllerDelegate {
@@ -265,6 +268,13 @@ export declare class MFMessageComposeViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "attachments": true;
+        "body": true;
+        "messageComposeDelegate": true;
+        "recipients": true;
+        "subject": true;
     };
 }
 /**

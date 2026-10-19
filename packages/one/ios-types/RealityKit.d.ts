@@ -1051,6 +1051,15 @@ export declare class Entity extends SDKHandle {
     readonly $type: {
         "s:17RealityFoundation6EntityC": true;
     };
+    readonly $observable: {
+        "accessibilityValue": true;
+        "accessibilityTraits": true;
+        "accessibilityLabelKey": true;
+        "accessibilityCustomRotors": true;
+        "accessibilityCustomActions": true;
+        "accessibilityCustomContent": true;
+        "accessibilitySystemActions": true;
+    };
 }
 /**
  * protocol EntityGestureRecognizer : UIGestureRecognizer

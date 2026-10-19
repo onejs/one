@@ -101,6 +101,13 @@ export declare class SLComposeServiceViewController extends SDKHandle {
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "autoCompletionViewController": true;
+        "charactersRemaining": true;
+        "contentText": true;
+        "placeholder": true;
+        "textView": true;
+    };
 }
 /**
  * class SLComposeSheetConfigurationItem
@@ -204,6 +211,9 @@ export declare class SLComposeViewController extends SDKHandle {
         "c:objc(cs)UIViewController": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "serviceType": true;
     };
 }
 /** typealias SLComposeViewControllerCompletionHandler = (SLComposeViewControllerResult) -> Void */

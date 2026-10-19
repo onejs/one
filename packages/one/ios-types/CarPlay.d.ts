@@ -101,6 +101,13 @@ export declare class CPTemplate extends SDKHandle {
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+    };
 }
 declare const CPActionSheetTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -132,6 +139,16 @@ export declare class CPActionSheetTemplate extends CPActionSheetTemplate_base {
         "c:objc(cs)CPActionSheetTemplate": true;
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "actions": true;
+        "message": true;
+        "title": true;
     };
 }
 /**
@@ -223,6 +240,15 @@ export declare class CPAlertTemplate extends CPAlertTemplate_base {
         "c:objc(cs)CPAlertTemplate": true;
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "actions": true;
+        "titleVariants": true;
     };
 }
 /**
@@ -629,6 +655,14 @@ export declare class CPContactTemplate extends CPContactTemplate_base {
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "contact": true;
+    };
 }
 /**
  * struct CPContentStyle
@@ -804,6 +838,15 @@ export declare class CPGridTemplate extends CPGridTemplate_base {
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "gridButtons": true;
+        "title": true;
+    };
 }
 /**
  * @MainActor class CPImageOverlay
@@ -848,6 +891,13 @@ export declare class CPImageOverlay extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPImageOverlay": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "alignment": true;
+        "backgroundColor": true;
+        "image": true;
+        "text": true;
+        "textColor": true;
     };
 }
 /**
@@ -991,6 +1041,17 @@ export declare class CPInformationTemplate extends CPInformationTemplate_base {
         "c:objc(cs)CPInformationTemplate": true;
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "actions": true;
+        "items": true;
+        "layout": true;
+        "title": true;
     };
 }
 /**
@@ -1194,6 +1255,15 @@ export declare class CPInterfaceController extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPInterfaceController": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "carTraitCollection": true;
+        "delegate": true;
+        "prefersDarkUserInterfaceStyle": true;
+        "presentedTemplate": true;
+        "rootTemplate": true;
+        "templates": true;
+        "topTemplate": true;
     };
 }
 /**
@@ -1468,6 +1538,15 @@ export declare class CPListImageRowItem extends SDKHandle {
         "c:objc(cs)CPListImageRowItem": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "allowsMultipleLines": true;
+        "elements": true;
+        "isEnabled": true;
+        "gridImages": true;
+        "imageTitles": true;
+        "text": true;
+        "userInfo": true;
+    };
 }
 /**
  * @MainActor class CPListImageRowItemElement
@@ -1500,6 +1579,11 @@ export declare class CPListImageRowItemElement extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPListImageRowItemElement": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "accessibilityLabel": true;
+        "isEnabled": true;
+        "image": true;
     };
 }
 declare const CPListImageRowItemCardElement_base: Omit<typeof CPListImageRowItemElement, "maximumImageSize" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPListImageRowItemElement);
@@ -1562,6 +1646,16 @@ export declare class CPListImageRowItemCardElement extends CPListImageRowItemCar
         "c:objc(cs)CPListImageRowItemElement": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "accessibilityLabel": true;
+        "isEnabled": true;
+        "image": true;
+        "showsImageFullHeight": true;
+        "subtitle": true;
+        "thumbnail": true;
+        "tintColor": true;
+        "title": true;
+    };
 }
 /**
  * @MainActor class CPListImageRowItemCondensedElement
@@ -1601,6 +1695,15 @@ export declare class CPListImageRowItemCondensedElement extends CPListImageRowIt
         "c:objc(cs)CPListImageRowItemElement": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "accessibilityLabel": true;
+        "isEnabled": true;
+        "image": true;
+        "accessorySymbolName": true;
+        "imageShape": true;
+        "subtitle": true;
+        "title": true;
+    };
 }
 /**
  * enum Shape
@@ -1628,6 +1731,11 @@ export declare class CPListImageRowItemGridElement extends CPListImageRowItemEle
         "c:objc(cs)CPListImageRowItemGridElement": true;
         "c:objc(cs)CPListImageRowItemElement": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "accessibilityLabel": true;
+        "isEnabled": true;
+        "image": true;
     };
 }
 /**
@@ -1661,6 +1769,14 @@ export declare class CPListImageRowItemImageGridElement extends CPListImageRowIt
         "c:objc(cs)CPListImageRowItemImageGridElement": true;
         "c:objc(cs)CPListImageRowItemElement": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "accessibilityLabel": true;
+        "isEnabled": true;
+        "image": true;
+        "accessorySymbolName": true;
+        "imageShape": true;
+        "title": true;
     };
 }
 /**
@@ -1701,6 +1817,13 @@ export declare class CPListImageRowItemRowElement extends CPListImageRowItemElem
         "c:objc(cs)CPListImageRowItemRowElement": true;
         "c:objc(cs)CPListImageRowItemElement": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "accessibilityLabel": true;
+        "isEnabled": true;
+        "image": true;
+        "subtitle": true;
+        "title": true;
     };
 }
 /**
@@ -1837,6 +1960,21 @@ export declare class CPListItem extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPListItem": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "accessoryImage": true;
+        "accessoryType": true;
+        "detailText": true;
+        "isEnabled": true;
+        "isExplicitContent": true;
+        "image": true;
+        "playbackProgress": true;
+        "isPlaying": true;
+        "playingIndicatorLocation": true;
+        "showsDisclosureIndicator": true;
+        "showsExplicitLabel": true;
+        "text": true;
+        "userInfo": true;
     };
 }
 /**
@@ -2094,6 +2232,24 @@ export declare class CPListTemplate extends CPTemplate {
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "assistantCellConfiguration": true;
+        "delegate": true;
+        "emptyViewSubtitleVariants": true;
+        "emptyViewTitleVariants": true;
+        "headerGridButtons": true;
+        "itemCount": true;
+        "listHeader": true;
+        "sectionCount": true;
+        "sections": true;
+        "showsSpinnerWhileEmpty": true;
+        "title": true;
+    };
 }
 /**
  * protocol CPListTemplateDelegate : NSObjectProtocol
@@ -2172,6 +2328,14 @@ export declare class CPListTemplateDetailsHeader extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPListTemplateDetailsHeader": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "actionButtons": true;
+        "wantsAdaptiveBackgroundStyle": true;
+        "bodyVariants": true;
+        "subtitle": true;
+        "thumbnail": true;
+        "title": true;
     };
 }
 /**
@@ -2486,6 +2650,12 @@ export declare class CPMapButton extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPMapButton": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
+        "focusedImage": true;
+        "isHidden": true;
+        "image": true;
     };
 }
 /**
@@ -2892,6 +3062,21 @@ export declare class CPMapTemplate extends CPMapTemplate_base {
         "c:objc(cs)CPMapTemplate": true;
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "automaticallyHidesNavigationBar": true;
+        "currentNavigationAlert": true;
+        "guidanceBackgroundColor": true;
+        "hidesButtonsWithNavigationBar": true;
+        "mapButtons": true;
+        "mapDelegate": true;
+        "isPanningInterfaceVisible": true;
+        "tripEstimateStyle": true;
     };
 }
 /**
@@ -3505,6 +3690,19 @@ export declare class CPNavigationAlert extends SDKHandle {
         "c:objc(cs)CPNavigationAlert": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "actions": true;
+        "alertImage": true;
+        "avatarImage": true;
+        "duration": true;
+        "image": true;
+        "imageSet": true;
+        "primaryAction": true;
+        "secondaryAction": true;
+        "showsCloseButton": true;
+        "subtitleVariants": true;
+        "titleVariants": true;
+    };
 }
 /**
  * enum DismissalContext
@@ -3638,6 +3836,18 @@ export declare class CPNavigationSession extends SDKHandle {
         "c:objc(cs)CPNavigationSession": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "currentLaneGuidance": true;
+        "currentRoadNameVariants": true;
+        "currentSegment": true;
+        "maneuverState": true;
+        "optionsPanel": true;
+        "routeSegments": true;
+        "isRouteSharingEnabled": true;
+        "isRouteSharingSupported": true;
+        "trip": true;
+        "upcomingManeuvers": true;
+    };
 }
 /**
  * enum PauseReason
@@ -3753,6 +3963,10 @@ export declare class CPNowPlayingButton extends SDKHandle {
         "c:objc(cs)CPNowPlayingButton": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isEnabled": true;
+        "isSelected": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingAddToLibraryButton
@@ -3763,6 +3977,10 @@ export declare class CPNowPlayingAddToLibraryButton extends CPNowPlayingButton {
         "c:objc(cs)CPNowPlayingAddToLibraryButton": true;
         "c:objc(cs)CPNowPlayingButton": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
+        "isSelected": true;
     };
 }
 declare const CPNowPlayingImageButton_base: Omit<typeof CPNowPlayingButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPNowPlayingButton);
@@ -3785,6 +4003,11 @@ export declare class CPNowPlayingImageButton extends CPNowPlayingImageButton_bas
         "c:objc(cs)CPNowPlayingImageButton": true;
         "c:objc(cs)CPNowPlayingButton": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
+        "isSelected": true;
+        "image": true;
     };
 }
 /**
@@ -3840,6 +4063,12 @@ export declare class CPNowPlayingModeSports extends CPNowPlayingModeSports_base 
         "c:objc(cs)CPNowPlayingMode": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "backgroundArtwork": true;
+        "eventStatus": true;
+        "leftTeam": true;
+        "rightTeam": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingMoreButton
@@ -3850,6 +4079,10 @@ export declare class CPNowPlayingMoreButton extends CPNowPlayingButton {
         "c:objc(cs)CPNowPlayingMoreButton": true;
         "c:objc(cs)CPNowPlayingButton": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
+        "isSelected": true;
     };
 }
 /**
@@ -3862,6 +4095,10 @@ export declare class CPNowPlayingPlaybackRateButton extends CPNowPlayingButton {
         "c:objc(cs)CPNowPlayingButton": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isEnabled": true;
+        "isSelected": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingRepeatButton
@@ -3873,6 +4110,10 @@ export declare class CPNowPlayingRepeatButton extends CPNowPlayingButton {
         "c:objc(cs)CPNowPlayingButton": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "isEnabled": true;
+        "isSelected": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingShuffleButton
@@ -3883,6 +4124,10 @@ export declare class CPNowPlayingShuffleButton extends CPNowPlayingButton {
         "c:objc(cs)CPNowPlayingShuffleButton": true;
         "c:objc(cs)CPNowPlayingButton": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "isEnabled": true;
+        "isSelected": true;
     };
 }
 /**
@@ -3919,6 +4164,11 @@ export declare class CPNowPlayingSportsClock extends SDKHandle {
         "c:objc(cs)CPNowPlayingSportsClock": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "countsUp": true;
+        "isPaused": true;
+        "timeValue": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingSportsEventStatus
@@ -3948,6 +4198,11 @@ export declare class CPNowPlayingSportsEventStatus extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPNowPlayingSportsEventStatus": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "eventClock": true;
+        "eventStatusImage": true;
+        "eventStatusText": true;
     };
 }
 /**
@@ -3994,6 +4249,14 @@ export declare class CPNowPlayingSportsTeam extends SDKHandle {
         "c:objc(cs)CPNowPlayingSportsTeam": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "eventScore": true;
+        "isFavorite": true;
+        "logo": true;
+        "name": true;
+        "possessionIndicator": true;
+        "teamStandings": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingSportsTeamLogo
@@ -4023,6 +4286,10 @@ export declare class CPNowPlayingSportsTeamLogo extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPNowPlayingSportsTeamLogo": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "initials": true;
+        "logo": true;
     };
 }
 /**
@@ -4090,6 +4357,19 @@ export declare class CPNowPlayingTemplate extends CPTemplate {
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "isAlbumArtistButtonEnabled": true;
+        "allowsMiniPlayer": true;
+        "nowPlayingButtons": true;
+        "nowPlayingMode": true;
+        "isUpNextButtonEnabled": true;
+        "upNextTitle": true;
+    };
 }
 /**
  * protocol CPNowPlayingTemplateObserver : NSObjectProtocol
@@ -4146,6 +4426,12 @@ export declare class CPPlaybackConfiguration extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPPlaybackConfiguration": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "duration": true;
+        "elapsedTime": true;
+        "playbackAction": true;
+        "preferredPresentation": true;
     };
 }
 /**
@@ -4332,6 +4618,17 @@ export declare class CPPointOfInterestTemplate extends CPPointOfInterestTemplate
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "pointOfInterestDelegate": true;
+        "pointsOfInterest": true;
+        "selectedIndex": true;
+        "title": true;
+    };
 }
 /**
  * @MainActor protocol CPPointOfInterestTemplateDelegate : NSObjectProtocol
@@ -4509,6 +4806,9 @@ export declare class CPRouteDetail extends SDKHandle {
         "c:objc(cs)CPRouteDetail": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "symbolTintColor": true;
+    };
 }
 /**
  * class CPRouteInformation
@@ -4670,6 +4970,14 @@ export declare class CPSearchTemplate extends CPSearchTemplate_base {
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "delegate": true;
+    };
 }
 /**
  * @MainActor protocol CPSearchTemplateDelegate : NSObjectProtocol
@@ -4785,6 +5093,11 @@ export declare class CPSportsOverlay extends SDKHandle {
         "c:objc(cs)CPSportsOverlay": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "eventStatus": true;
+        "leftTeam": true;
+        "rightTeam": true;
+    };
 }
 declare const CPTabBarTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -4838,6 +5151,16 @@ export declare class CPTabBarTemplate extends CPTabBarTemplate_base {
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "delegate": true;
+        "selectedTemplate": true;
+        "templates": true;
+    };
 }
 /**
  * @MainActor protocol CPTabBarTemplateDelegate : NSObjectProtocol
@@ -4876,6 +5199,11 @@ export declare class CPTemplateApplicationDashboardScene extends SDKHandle {
         "c:objc(cs)UIScene": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "dashboardController": true;
+        "dashboardWindow": true;
+        "delegate": true;
     };
 }
 /**
@@ -4932,6 +5260,11 @@ export declare class CPTemplateApplicationInstrumentClusterScene extends SDKHand
         "c:objc(cs)UIScene": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "contentStyle": true;
+        "delegate": true;
+        "instrumentClusterController": true;
     };
 }
 /**
@@ -4998,6 +5331,12 @@ export declare class CPTemplateApplicationScene extends SDKHandle {
         "c:objc(cs)UIScene": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "carWindow": true;
+        "contentStyle": true;
+        "delegate": true;
+        "interfaceController": true;
     };
 }
 /**
@@ -5132,6 +5471,11 @@ export declare class CPThumbnailImage extends SDKHandle {
     readonly $type: {
         "c:objc(cs)CPThumbnailImage": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "image": true;
+        "imageOverlay": true;
+        "sportsOverlay": true;
     };
 }
 /**
@@ -5453,6 +5797,18 @@ export declare class CPVoiceControlTemplate extends CPVoiceControlTemplate_base 
         "c:objc(cs)CPTemplate": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "showsTabBadge": true;
+        "tabImage": true;
+        "tabSystemItem": true;
+        "tabTitle": true;
+        "userInfo": true;
+        "activeStateIdentifier": true;
+        "backButton": true;
+        "leadingNavigationBarButtons": true;
+        "trailingNavigationBarButtons": true;
+        "voiceControlStates": true;
+    };
 }
 /**
  * class CPWindow
@@ -5478,6 +5834,10 @@ export declare class CPWindow extends SDKHandle {
         "c:objc(cs)UIView": true;
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "mapButtonSafeAreaLayoutGuide": true;
+        "templateApplicationScene": true;
     };
 }
 export type UISceneSession_Role = "carTemplateApplication" | "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});

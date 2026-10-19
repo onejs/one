@@ -271,6 +271,26 @@ export declare class ObjectCaptureSession extends SDKHandle {
     readonly $type: {
         "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC": true;
     };
+    readonly $observable: {
+        "canRequestImageCapture": true;
+        "canRequestImageCaptureUpdates": true;
+        "isAutoCaptureEnabled": true;
+        "stateUpdates": true;
+        "configuration": true;
+        "cameraTracking": true;
+        "feedbackUpdates": true;
+        "isPausedUpdates": true;
+        "shouldPlayHaptics": true;
+        "numberOfShotsTaken": true;
+        "cameraTrackingUpdates": true;
+        "userCompletedScanPass": true;
+        "numberOfShotsTakenUpdates": true;
+        "maximumNumberOfInputImages": true;
+        "userCompletedScanPassUpdates": true;
+        "state": true;
+        "feedback": true;
+        "isPaused": true;
+    };
 }
 /**
  * enum CaptureState

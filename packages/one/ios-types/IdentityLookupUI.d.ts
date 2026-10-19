@@ -51,4 +51,7 @@ export declare class ILClassificationUIExtensionViewController extends SDKHandle
         "c:objc(cs)UIResponder": true;
         "c:objc(cs)NSObject": true;
     };
+    readonly $observable: {
+        "extensionContext": true;
+    };
 }

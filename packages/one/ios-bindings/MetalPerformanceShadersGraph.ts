@@ -45,7 +45,7 @@ type $SDK22 = ((arg0: NativeMap<MPSGraphTensor, MPSGraphTensorData>, arg1: (Nati
  */
 export class MPSGraphObject extends SDKHandle {
   /** init() */
-  static init(): MPSGraphObject { return callSDK<MPSGraphObject>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1539419398334332, undefined, []); }
+  static init(): MPSGraphObject { return callSDK<MPSGraphObject>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1539419398334332, undefined, []); }
   declare readonly $type: { "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
 }
 
@@ -58,1933 +58,1933 @@ export class MPSGraph extends (MPSGraphObject as unknown as Omit<typeof MPSGraph
    * class func new() -> Self
    * @availability iOS 14.0+
    */
-  static new(): MPSGraph { return callSDK<MPSGraph>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1743961377062406, undefined, []); }
+  static new(): MPSGraph { return callSDK<MPSGraph>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1743961377062406, undefined, []); }
   /**
    * func GRUGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, outputFwd: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, descriptor: MPSGraphGRUDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 16.0+
    */
-  GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, outputFwd: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4015485670793496, this, [source, recurrentWeight, sourceGradient, zState, outputFwd, inputWeight, bias, descriptor, name]); }
+  GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, outputFwd: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4015485670793496, this, [source, recurrentWeight, sourceGradient, zState, outputFwd, inputWeight, bias, descriptor, name]); }
   /**
    * func GRUGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, outputFwd: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, descriptor: MPSGraphGRUDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 16.0+
    */
-  GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, outputFwd: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 323740994390127, this, [source, recurrentWeight, sourceGradient, zState, outputFwd, inputWeight, bias, initState, descriptor, name]); }
+  GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, outputFwd: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 323740994390127, this, [source, recurrentWeight, sourceGradient, zState, outputFwd, inputWeight, bias, initState, descriptor, name]); }
   /**
    * func GRUGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, outputFwd: MPSGraphTensor, stateGradient: MPSGraphTensor?, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, mask: MPSGraphTensor?, secondaryBias: MPSGraphTensor?, descriptor: MPSGraphGRUDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 16.0+
    */
-  GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdStateGradientInputWeightBiasInitStateMaskSecondaryBiasDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, outputFwd: MPSGraphTensor, stateGradient: (MPSGraphTensor) | null, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, secondaryBias: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4311978033208140, this, [source, recurrentWeight, sourceGradient, zState, outputFwd, stateGradient, inputWeight, bias, initState, mask, secondaryBias, descriptor, name]); }
+  GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdStateGradientInputWeightBiasInitStateMaskSecondaryBiasDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, outputFwd: MPSGraphTensor, stateGradient: (MPSGraphTensor) | null, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, secondaryBias: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4311978033208140, this, [source, recurrentWeight, sourceGradient, zState, outputFwd, stateGradient, inputWeight, bias, initState, mask, secondaryBias, descriptor, name]); }
   /**
    * func GRU(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, descriptor: MPSGraphGRUDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 16.0+
    */
-  GRURecurrentWeightInputWeightBiasDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 366094811090289, this, [source, recurrentWeight, inputWeight, bias, descriptor, name]); }
+  GRURecurrentWeightInputWeightBiasDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 366094811090289, this, [source, recurrentWeight, inputWeight, bias, descriptor, name]); }
   /**
    * func GRU(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, descriptor: MPSGraphGRUDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 16.0+
    */
-  GRURecurrentWeightInputWeightBiasInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 859025683715267, this, [source, recurrentWeight, inputWeight, bias, initState, descriptor, name]); }
+  GRURecurrentWeightInputWeightBiasInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 859025683715267, this, [source, recurrentWeight, inputWeight, bias, initState, descriptor, name]); }
   /**
    * func GRU(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, mask: MPSGraphTensor?, secondaryBias: MPSGraphTensor?, descriptor: MPSGraphGRUDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 16.0+
    */
-  GRURecurrentWeightInputWeightBiasInitStateMaskSecondaryBiasDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, secondaryBias: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1657769243839160, this, [source, recurrentWeight, inputWeight, bias, initState, mask, secondaryBias, descriptor, name]); }
+  GRURecurrentWeightInputWeightBiasInitStateMaskSecondaryBiasDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, secondaryBias: (MPSGraphTensor) | null, descriptor: MPSGraphGRUDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1657769243839160, this, [source, recurrentWeight, inputWeight, bias, initState, mask, secondaryBias, descriptor, name]); }
   /**
    * func HammingDistance(primary primaryTensor: MPSGraphTensor, secondary secondaryTensor: MPSGraphTensor, resultDataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  HammingDistance(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, resultDataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 144710035331354, this, [primaryTensor, secondaryTensor, resultDataType, name]); }
+  HammingDistance(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, resultDataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 144710035331354, this, [primaryTensor, secondaryTensor, resultDataType, name]); }
   /**
    * func HermiteanToRealFFT(_ tensor: MPSGraphTensor, axes: [NSNumber], descriptor: MPSGraphFFTDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  HermiteanToRealFFTAxesDescriptorName(tensor: MPSGraphTensor, axes: $SDK0, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3590730410054638, this, [tensor, axes, descriptor, name]); }
+  HermiteanToRealFFTAxesDescriptorName(tensor: MPSGraphTensor, axes: $SDK0, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3590730410054638, this, [tensor, axes, descriptor, name]); }
   /**
    * func HermiteanToRealFFT(_ tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, descriptor: MPSGraphFFTDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  HermiteanToRealFFTAxesTensorDescriptorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3273544614775266, this, [tensor, axesTensor, descriptor, name]); }
+  HermiteanToRealFFTAxesTensorDescriptorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3273544614775266, this, [tensor, axesTensor, descriptor, name]); }
   /**
    * func L2NormPooling4DGradient(_ gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  L2NormPooling4DGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4474678784135683, this, [gradient, source, descriptor, name]); }
+  L2NormPooling4DGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4474678784135683, this, [gradient, source, descriptor, name]); }
   /**
    * func L2NormPooling4D(_ source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  L2NormPooling4D(source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2166713687822094, this, [source, descriptor, name]); }
+  L2NormPooling4D(source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2166713687822094, this, [source, descriptor, name]); }
   /**
    * func LSTMGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, descriptor: MPSGraphLSTMDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1871468106059954, this, [source, recurrentWeight, sourceGradient, zState, cellOutputFwd, descriptor, name]); }
+  LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1871468106059954, this, [source, recurrentWeight, sourceGradient, zState, cellOutputFwd, descriptor, name]); }
   /**
    * func LSTMGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, initCell: MPSGraphTensor?, descriptor: MPSGraphLSTMDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdInputWeightBiasInitStateInitCellDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 586349065077992, this, [source, recurrentWeight, sourceGradient, zState, cellOutputFwd, inputWeight, bias, initState, initCell, descriptor, name]); }
+  LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdInputWeightBiasInitStateInitCellDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 586349065077992, this, [source, recurrentWeight, sourceGradient, zState, cellOutputFwd, inputWeight, bias, initState, initCell, descriptor, name]); }
   /**
    * func LSTMGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, initCell: MPSGraphTensor?, mask: MPSGraphTensor?, descriptor: MPSGraphLSTMDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdInputWeightBiasInitStateInitCellMaskDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3254680011537662, this, [source, recurrentWeight, sourceGradient, zState, cellOutputFwd, inputWeight, bias, initState, initCell, mask, descriptor, name]); }
+  LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdInputWeightBiasInitStateInitCellMaskDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3254680011537662, this, [source, recurrentWeight, sourceGradient, zState, cellOutputFwd, inputWeight, bias, initState, initCell, mask, descriptor, name]); }
   /**
    * func LSTMGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, stateGradient: MPSGraphTensor?, cellGradient: MPSGraphTensor?, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, initCell: MPSGraphTensor?, mask: MPSGraphTensor?, peephole: MPSGraphTensor?, descriptor: MPSGraphLSTMDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdStateGradientCellGradientInputWeightBiasInitStateInitCellMaskPeepholeDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, stateGradient: (MPSGraphTensor) | null, cellGradient: (MPSGraphTensor) | null, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, peephole: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2554053570168700, this, [source, recurrentWeight, sourceGradient, zState, cellOutputFwd, stateGradient, cellGradient, inputWeight, bias, initState, initCell, mask, peephole, descriptor, name]); }
+  LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdStateGradientCellGradientInputWeightBiasInitStateInitCellMaskPeepholeDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, cellOutputFwd: MPSGraphTensor, stateGradient: (MPSGraphTensor) | null, cellGradient: (MPSGraphTensor) | null, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, peephole: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2554053570168700, this, [source, recurrentWeight, sourceGradient, zState, cellOutputFwd, stateGradient, cellGradient, inputWeight, bias, initState, initCell, mask, peephole, descriptor, name]); }
   /**
    * func LSTM(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, initState: MPSGraphTensor?, initCell: MPSGraphTensor?, descriptor: MPSGraphLSTMDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  LSTMRecurrentWeightInitStateInitCellDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3425904034001943, this, [source, recurrentWeight, initState, initCell, descriptor, name]); }
+  LSTMRecurrentWeightInitStateInitCellDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3425904034001943, this, [source, recurrentWeight, initState, initCell, descriptor, name]); }
   /**
    * func LSTM(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, initCell: MPSGraphTensor?, descriptor: MPSGraphLSTMDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  LSTMRecurrentWeightInputWeightBiasInitStateInitCellDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2589280728033099, this, [source, recurrentWeight, inputWeight, bias, initState, initCell, descriptor, name]); }
+  LSTMRecurrentWeightInputWeightBiasInitStateInitCellDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2589280728033099, this, [source, recurrentWeight, inputWeight, bias, initState, initCell, descriptor, name]); }
   /**
    * func LSTM(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, initCell: MPSGraphTensor?, mask: MPSGraphTensor?, peephole: MPSGraphTensor?, descriptor: MPSGraphLSTMDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  LSTMRecurrentWeightInputWeightBiasInitStateInitCellMaskPeepholeDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, peephole: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 648526789035136, this, [source, recurrentWeight, inputWeight, bias, initState, initCell, mask, peephole, descriptor, name]); }
+  LSTMRecurrentWeightInputWeightBiasInitStateInitCellMaskPeepholeDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, initCell: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, peephole: (MPSGraphTensor) | null, descriptor: MPSGraphLSTMDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 648526789035136, this, [source, recurrentWeight, inputWeight, bias, initState, initCell, mask, peephole, descriptor, name]); }
   /**
    * func absoluteSquare(tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  absoluteSquare(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 728087475885340, this, [tensor, name]); }
+  absoluteSquare(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 728087475885340, this, [tensor, name]); }
   /**
    * func absolute(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  absolute(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 169590478272533, this, [tensor, name]); }
+  absolute(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 169590478272533, this, [tensor, name]); }
   /**
    * func acos(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  acos(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3282439198027409, this, [tensor, name]); }
+  acos(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3282439198027409, this, [tensor, name]); }
   /**
    * func acosh(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  acosh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1198593063025505, this, [tensor, name]); }
+  acosh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1198593063025505, this, [tensor, name]); }
   /**
    * func adam(currentLearningRate currentLearningRateTensor: MPSGraphTensor, beta1 beta1Tensor: MPSGraphTensor, beta2 beta2Tensor: MPSGraphTensor, epsilon epsilonTensor: MPSGraphTensor, values valuesTensor: MPSGraphTensor, momentum momentumTensor: MPSGraphTensor, velocity velocityTensor: MPSGraphTensor, maximumVelocity maximumVelocityTensor: MPSGraphTensor?, gradient gradientTensor: MPSGraphTensor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 14.0+
    */
-  adamCurrentLearningRateBeta1Beta2EpsilonValuesMomentumVelocityMaximumVelocityGradientName(currentLearningRateTensor: MPSGraphTensor, beta1Tensor: MPSGraphTensor, beta2Tensor: MPSGraphTensor, epsilonTensor: MPSGraphTensor, valuesTensor: MPSGraphTensor, momentumTensor: MPSGraphTensor, velocityTensor: MPSGraphTensor, maximumVelocityTensor: (MPSGraphTensor) | null, gradientTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2069700468862826, this, [currentLearningRateTensor, beta1Tensor, beta2Tensor, epsilonTensor, valuesTensor, momentumTensor, velocityTensor, maximumVelocityTensor, gradientTensor, name]); }
+  adamCurrentLearningRateBeta1Beta2EpsilonValuesMomentumVelocityMaximumVelocityGradientName(currentLearningRateTensor: MPSGraphTensor, beta1Tensor: MPSGraphTensor, beta2Tensor: MPSGraphTensor, epsilonTensor: MPSGraphTensor, valuesTensor: MPSGraphTensor, momentumTensor: MPSGraphTensor, velocityTensor: MPSGraphTensor, maximumVelocityTensor: (MPSGraphTensor) | null, gradientTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2069700468862826, this, [currentLearningRateTensor, beta1Tensor, beta2Tensor, epsilonTensor, valuesTensor, momentumTensor, velocityTensor, maximumVelocityTensor, gradientTensor, name]); }
   /**
    * func adam(learningRate learningRateTensor: MPSGraphTensor, beta1 beta1Tensor: MPSGraphTensor, beta2 beta2Tensor: MPSGraphTensor, epsilon epsilonTensor: MPSGraphTensor, beta1Power beta1PowerTensor: MPSGraphTensor, beta2Power beta2PowerTensor: MPSGraphTensor, values valuesTensor: MPSGraphTensor, momentum momentumTensor: MPSGraphTensor, velocity velocityTensor: MPSGraphTensor, maximumVelocity maximumVelocityTensor: MPSGraphTensor?, gradient gradientTensor: MPSGraphTensor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 14.0+
    */
-  adamLearningRateBeta1Beta2EpsilonBeta1PowerBeta2PowerValuesMomentumVelocityMaximumVelocityGradientName(learningRateTensor: MPSGraphTensor, beta1Tensor: MPSGraphTensor, beta2Tensor: MPSGraphTensor, epsilonTensor: MPSGraphTensor, beta1PowerTensor: MPSGraphTensor, beta2PowerTensor: MPSGraphTensor, valuesTensor: MPSGraphTensor, momentumTensor: MPSGraphTensor, velocityTensor: MPSGraphTensor, maximumVelocityTensor: (MPSGraphTensor) | null, gradientTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3859668218482138, this, [learningRateTensor, beta1Tensor, beta2Tensor, epsilonTensor, beta1PowerTensor, beta2PowerTensor, valuesTensor, momentumTensor, velocityTensor, maximumVelocityTensor, gradientTensor, name]); }
+  adamLearningRateBeta1Beta2EpsilonBeta1PowerBeta2PowerValuesMomentumVelocityMaximumVelocityGradientName(learningRateTensor: MPSGraphTensor, beta1Tensor: MPSGraphTensor, beta2Tensor: MPSGraphTensor, epsilonTensor: MPSGraphTensor, beta1PowerTensor: MPSGraphTensor, beta2PowerTensor: MPSGraphTensor, valuesTensor: MPSGraphTensor, momentumTensor: MPSGraphTensor, velocityTensor: MPSGraphTensor, maximumVelocityTensor: (MPSGraphTensor) | null, gradientTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3859668218482138, this, [learningRateTensor, beta1Tensor, beta2Tensor, epsilonTensor, beta1PowerTensor, beta2PowerTensor, valuesTensor, momentumTensor, velocityTensor, maximumVelocityTensor, gradientTensor, name]); }
   /**
    * func addition(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  addition(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 399496783013156, this, [primaryTensor, secondaryTensor, name]); }
+  addition(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 399496783013156, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func applyStochasticGradientDescent(learningRate learningRateTensor: MPSGraphTensor, variable: MPSGraphVariableOp, gradient gradientTensor: MPSGraphTensor, name: String?) -> MPSGraphOperation
    * @availability iOS 14.0+
    */
-  applyStochasticGradientDescent(learningRateTensor: MPSGraphTensor, variable: MPSGraphVariableOp, gradientTensor: MPSGraphTensor, name?: (string) | null): MPSGraphOperation { return callSDK<MPSGraphOperation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 686362147490548, this, [learningRateTensor, variable, gradientTensor, name]); }
+  applyStochasticGradientDescent(learningRateTensor: MPSGraphTensor, variable: MPSGraphVariableOp, gradientTensor: MPSGraphTensor, name?: (string) | null): MPSGraphOperation { return callSDK<MPSGraphOperation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 686362147490548, this, [learningRateTensor, variable, gradientTensor, name]); }
   /**
    * func argSort(_ tensor: MPSGraphTensor, axis: Int, descending: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  argSortAxisDescendingName(tensor: MPSGraphTensor, axis: number, descending: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3884683898973146, this, [tensor, axis, descending, name]); }
+  argSortAxisDescendingName(tensor: MPSGraphTensor, axis: number, descending: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3884683898973146, this, [tensor, axis, descending, name]); }
   /**
    * func argSort(_ tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  argSortAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4106889161295446, this, [tensor, axis, name]); }
+  argSortAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4106889161295446, this, [tensor, axis, name]); }
   /**
    * func argSort(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, descending: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  argSortAxisTensorDescendingName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, descending: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2956830106190540, this, [tensor, axisTensor, descending, name]); }
+  argSortAxisTensorDescendingName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, descending: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2956830106190540, this, [tensor, axisTensor, descending, name]); }
   /**
    * func argSort(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  argSortAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3207495003493884, this, [tensor, axisTensor, name]); }
+  argSortAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3207495003493884, this, [tensor, axisTensor, name]); }
   /**
    * func asin(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  asin(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4001357890923179, this, [tensor, name]); }
+  asin(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4001357890923179, this, [tensor, name]); }
   /**
    * func asinh(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  asinh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2564051321843036, this, [tensor, name]); }
+  asinh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2564051321843036, this, [tensor, name]); }
   /**
    * func assign(_ variable: MPSGraphTensor, tensor: MPSGraphTensor, name: String?) -> MPSGraphOperation
    * @availability iOS 14.0+
    */
-  assign(variable: MPSGraphTensor, tensor: MPSGraphTensor, name?: (string) | null): MPSGraphOperation { return callSDK<MPSGraphOperation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2340222309962221, this, [variable, tensor, name]); }
+  assign(variable: MPSGraphTensor, tensor: MPSGraphTensor, name?: (string) | null): MPSGraphOperation { return callSDK<MPSGraphOperation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2340222309962221, this, [variable, tensor, name]); }
   /**
    * func atan2(withPrimaryTensor primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  atan2(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 170033493051582, this, [primaryTensor, secondaryTensor, name]); }
+  atan2(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 170033493051582, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func atan(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  atan(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2624897943687451, this, [tensor, name]); }
+  atan(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2624897943687451, this, [tensor, name]); }
   /**
    * func atanh(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  atanh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3869777385029775, this, [tensor, name]); }
+  atanh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3869777385029775, this, [tensor, name]); }
   /**
    * func avgPooling2DGradient(withGradientTensor gradient: MPSGraphTensor, sourceTensor source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  avgPooling2DGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1526767771577946, this, [gradient, source, descriptor, name]); }
+  avgPooling2DGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1526767771577946, this, [gradient, source, descriptor, name]); }
   /**
    * func avgPooling2D(withSourceTensor source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  avgPooling2D(source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3377496235957527, this, [source, descriptor, name]); }
+  avgPooling2D(source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3377496235957527, this, [source, descriptor, name]); }
   /**
    * func avgPooling4DGradient(_ gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  avgPooling4DGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 193599516770240, this, [gradient, source, descriptor, name]); }
+  avgPooling4DGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 193599516770240, this, [gradient, source, descriptor, name]); }
   /**
    * func avgPooling4D(_ source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  avgPooling4D(source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 709615036559416, this, [source, descriptor, name]); }
+  avgPooling4D(source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 709615036559416, this, [source, descriptor, name]); }
   /**
    * func bandPart(_ inputTensor: MPSGraphTensor, numLower: Int, numUpper: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  bandPartNumLowerNumUpperName(inputTensor: MPSGraphTensor, numLower: number, numUpper: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1208569132907722, this, [inputTensor, numLower, numUpper, name]); }
+  bandPartNumLowerNumUpperName(inputTensor: MPSGraphTensor, numLower: number, numUpper: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1208569132907722, this, [inputTensor, numLower, numUpper, name]); }
   /**
    * func bandPart(_ inputTensor: MPSGraphTensor, numLowerTensor: MPSGraphTensor, numUpperTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  bandPartNumLowerTensorNumUpperTensorName(inputTensor: MPSGraphTensor, numLowerTensor: MPSGraphTensor, numUpperTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1629901271822350, this, [inputTensor, numLowerTensor, numUpperTensor, name]); }
+  bandPartNumLowerTensorNumUpperTensorName(inputTensor: MPSGraphTensor, numLowerTensor: MPSGraphTensor, numUpperTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1629901271822350, this, [inputTensor, numLowerTensor, numUpperTensor, name]); }
   /**
    * func batchToSpace(_ tensor: MPSGraphTensor, spatialAxes: [NSNumber], batchAxis: Int, blockDimensions: [NSNumber], usePixelShuffleOrder: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  batchToSpaceSpatialAxesBatchAxisBlockDimensionsUsePixelShuffleOrderName(tensor: MPSGraphTensor, spatialAxes: $SDK0, batchAxis: number, blockDimensions: $SDK0, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3977201995658065, this, [tensor, spatialAxes, batchAxis, blockDimensions, usePixelShuffleOrder, name]); }
+  batchToSpaceSpatialAxesBatchAxisBlockDimensionsUsePixelShuffleOrderName(tensor: MPSGraphTensor, spatialAxes: $SDK0, batchAxis: number, blockDimensions: $SDK0, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3977201995658065, this, [tensor, spatialAxes, batchAxis, blockDimensions, usePixelShuffleOrder, name]); }
   /**
    * func batchToSpace(_ tensor: MPSGraphTensor, spatialAxesTensor: MPSGraphTensor, batchAxisTensor: MPSGraphTensor, blockDimensionsTensor: MPSGraphTensor, usePixelShuffleOrder: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  batchToSpaceSpatialAxesTensorBatchAxisTensorBlockDimensionsTensorUsePixelShuffleOrderName(tensor: MPSGraphTensor, spatialAxesTensor: MPSGraphTensor, batchAxisTensor: MPSGraphTensor, blockDimensionsTensor: MPSGraphTensor, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2285873998790369, this, [tensor, spatialAxesTensor, batchAxisTensor, blockDimensionsTensor, usePixelShuffleOrder, name]); }
+  batchToSpaceSpatialAxesTensorBatchAxisTensorBlockDimensionsTensorUsePixelShuffleOrderName(tensor: MPSGraphTensor, spatialAxesTensor: MPSGraphTensor, batchAxisTensor: MPSGraphTensor, blockDimensionsTensor: MPSGraphTensor, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2285873998790369, this, [tensor, spatialAxesTensor, batchAxisTensor, blockDimensionsTensor, usePixelShuffleOrder, name]); }
   /**
    * func bitwiseAND(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  bitwiseAND(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 583636628105270, this, [primaryTensor, secondaryTensor, name]); }
+  bitwiseAND(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 583636628105270, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func bitwiseLeftShift(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  bitwiseLeftShift(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1756861100084475, this, [primaryTensor, secondaryTensor, name]); }
+  bitwiseLeftShift(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1756861100084475, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func bitwiseNOT(_ tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  bitwiseNOT(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1753686415266617, this, [tensor, name]); }
+  bitwiseNOT(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1753686415266617, this, [tensor, name]); }
   /**
    * func bitwiseOR(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  bitwiseOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4049280226397879, this, [primaryTensor, secondaryTensor, name]); }
+  bitwiseOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4049280226397879, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func bitwisePopulationCount(_ tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  bitwisePopulationCount(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3904663948252968, this, [tensor, name]); }
+  bitwisePopulationCount(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3904663948252968, this, [tensor, name]); }
   /**
    * func bitwiseRightShift(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  bitwiseRightShift(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1625126196168702, this, [primaryTensor, secondaryTensor, name]); }
+  bitwiseRightShift(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1625126196168702, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func bitwiseXOR(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  bitwiseXOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3204475536929028, this, [primaryTensor, secondaryTensor, name]); }
+  bitwiseXOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3204475536929028, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func bottomKGradient(_ gradient: MPSGraphTensor, source: MPSGraphTensor, axis: Int, k: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  bottomKGradientSourceAxisKName(gradient: MPSGraphTensor, source: MPSGraphTensor, axis: number, k: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4212781262037623, this, [gradient, source, axis, k, name]); }
+  bottomKGradientSourceAxisKName(gradient: MPSGraphTensor, source: MPSGraphTensor, axis: number, k: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4212781262037623, this, [gradient, source, axis, k, name]); }
   /**
    * func bottomKGradient(_ gradient: MPSGraphTensor, source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  bottomKGradientSourceAxisTensorKTensorName(gradient: MPSGraphTensor, source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2122578241487622, this, [gradient, source, axisTensor, kTensor, name]); }
+  bottomKGradientSourceAxisTensorKTensorName(gradient: MPSGraphTensor, source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2122578241487622, this, [gradient, source, axisTensor, kTensor, name]); }
   /**
    * func bottomK(_ source: MPSGraphTensor, axis: Int, k: Int, name: String?) -> [MPSGraphTensor]
    * @availability iOS 17.0+
    */
-  bottomKAxisKName(source: MPSGraphTensor, axis: number, k: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 950839985533883, this, [source, axis, k, name]); }
+  bottomKAxisKName(source: MPSGraphTensor, axis: number, k: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 950839985533883, this, [source, axis, k, name]); }
   /**
    * func bottomK(_ source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 17.0+
    */
-  bottomKAxisTensorKTensorName(source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3892990340600226, this, [source, axisTensor, kTensor, name]); }
+  bottomKAxisTensorKTensorName(source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3892990340600226, this, [source, axisTensor, kTensor, name]); }
   /**
    * func broadcast(_ tensor: MPSGraphTensor, shape: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  broadcastShapeName(tensor: MPSGraphTensor, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3855046296467379, this, [tensor, shape, name]); }
+  broadcastShapeName(tensor: MPSGraphTensor, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3855046296467379, this, [tensor, shape, name]); }
   /**
    * func broadcast(_ tensor: MPSGraphTensor, shapeTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  broadcastShapeTensorName(tensor: MPSGraphTensor, shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 51882771551498, this, [tensor, shapeTensor, name]); }
+  broadcastShapeTensorName(tensor: MPSGraphTensor, shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 51882771551498, this, [tensor, shapeTensor, name]); }
   /**
    * func call(symbolName: String, inputTensors: [MPSGraphTensor], outputTypes: [MPSGraphType], name: String?) -> [MPSGraphTensor]
    * @availability iOS 18.0+
    */
-  call(symbolName: string, inputTensors: Array<MPSGraphTensor>, outputTypes: Array<MPSGraphType>, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2142573561578178, this, [symbolName, inputTensors, outputTypes, name]); }
+  call(symbolName: string, inputTensors: Array<MPSGraphTensor>, outputTypes: Array<MPSGraphType>, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2142573561578178, this, [symbolName, inputTensors, outputTypes, name]); }
   /**
    * func cast(_ tensor: MPSGraphTensor, to type: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  cast(tensor: MPSGraphTensor, type: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1312818181885, this, [tensor, type, name]); }
+  cast(tensor: MPSGraphTensor, type: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1312818181885, this, [tensor, type, name]); }
   /**
    * func ceil(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  ceil(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 596637108147514, this, [tensor, name]); }
+  ceil(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 596637108147514, this, [tensor, name]); }
   /**
    * func clamp(_ tensor: MPSGraphTensor, min minValueTensor: MPSGraphTensor, max maxValueTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  clamp(tensor: MPSGraphTensor, minValueTensor: MPSGraphTensor, maxValueTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 5986475150084, this, [tensor, minValueTensor, maxValueTensor, name]); }
+  clamp(tensor: MPSGraphTensor, minValueTensor: MPSGraphTensor, maxValueTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 5986475150084, this, [tensor, minValueTensor, maxValueTensor, name]); }
   /**
    * func colToIm(_ source: MPSGraphTensor, outputShape: [NSNumber], descriptor: MPSGraphImToColOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  colToIm(source: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphImToColOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2366273574724377, this, [source, outputShape, descriptor, name]); }
+  colToIm(source: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphImToColOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2366273574724377, this, [source, outputShape, descriptor, name]); }
   /**
    * func compile(with device: MPSGraphDevice?, feeds: [MPSGraphTensor : MPSGraphShapedType], targetTensors: [MPSGraphTensor], targetOperations: [MPSGraphOperation]?, compilationDescriptor: MPSGraphCompilationDescriptor?) -> MPSGraphExecutable
    * @availability iOS 15.0+
    */
-  compile(device: (MPSGraphDevice) | null, feeds: NativeMap<MPSGraphTensor, MPSGraphShapedType>, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2, compilationDescriptor?: $SDK3): MPSGraphExecutable { return callSDK<MPSGraphExecutable>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3652790885681477, this, [device, feeds, targetTensors, targetOperations, compilationDescriptor]); }
+  compile(device: (MPSGraphDevice) | null, feeds: NativeMap<MPSGraphTensor, MPSGraphShapedType>, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2, compilationDescriptor?: $SDK3): MPSGraphExecutable { return callSDK<MPSGraphExecutable>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3652790885681477, this, [device, feeds, targetTensors, targetOperations, compilationDescriptor]); }
   /**
    * func complexTensor(realTensor: MPSGraphTensor, imaginaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  complexTensor(realTensor: MPSGraphTensor, imaginaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2346511450406291, this, [realTensor, imaginaryTensor, name]); }
+  complexTensor(realTensor: MPSGraphTensor, imaginaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2346511450406291, this, [realTensor, imaginaryTensor, name]); }
   /**
    * func concatTensor(_ tensor: MPSGraphTensor, with tensor2: MPSGraphTensor, dimension dimensionIndex: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  concatTensor(tensor: MPSGraphTensor, tensor2: MPSGraphTensor, dimensionIndex: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3612573846146405, this, [tensor, tensor2, dimensionIndex, name]); }
+  concatTensor(tensor: MPSGraphTensor, tensor2: MPSGraphTensor, dimensionIndex: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3612573846146405, this, [tensor, tensor2, dimensionIndex, name]); }
   /**
    * func concatTensors(_ tensors: [MPSGraphTensor], dimension dimensionIndex: Int, interleave: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  concatTensorsDimensionInterleaveName(tensors: Array<MPSGraphTensor>, dimensionIndex: number, interleave: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1718768169721256, this, [tensors, dimensionIndex, interleave, name]); }
+  concatTensorsDimensionInterleaveName(tensors: Array<MPSGraphTensor>, dimensionIndex: number, interleave: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1718768169721256, this, [tensors, dimensionIndex, interleave, name]); }
   /**
    * func concatTensors(_ tensors: [MPSGraphTensor], dimension dimensionIndex: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  concatTensorsDimensionName(tensors: Array<MPSGraphTensor>, dimensionIndex: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2377390527343689, this, [tensors, dimensionIndex, name]); }
+  concatTensorsDimensionName(tensors: Array<MPSGraphTensor>, dimensionIndex: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2377390527343689, this, [tensors, dimensionIndex, name]); }
   /**
    * func conjugate(tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  conjugate(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4247026040502952, this, [tensor, name]); }
+  conjugate(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4247026040502952, this, [tensor, name]); }
   /**
    * func constant(_ data: Data, shape: [NSNumber], dataType: MPSDataType) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  constantShapeDataType(data: ArrayBuffer, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1037550456960451, this, [data, shape, dataType]); }
+  constantShapeDataType(data: ArrayBuffer, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1037550456960451, this, [data, shape, dataType]); }
   /**
    * func complexConstant(realPart: Double, imaginaryPart: Double) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  complexConstantRealPartImaginaryPart(realPart: number, imaginaryPart: number): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1530605379115862, this, [realPart, imaginaryPart]); }
+  complexConstantRealPartImaginaryPart(realPart: number, imaginaryPart: number): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1530605379115862, this, [realPart, imaginaryPart]); }
   /**
    * func complexConstant(realPart: Double, imaginaryPart: Double, dataType: MPSDataType) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  complexConstantRealPartImaginaryPartDataType(realPart: number, imaginaryPart: number, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2953545819097055, this, [realPart, imaginaryPart, dataType]); }
+  complexConstantRealPartImaginaryPartDataType(realPart: number, imaginaryPart: number, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2953545819097055, this, [realPart, imaginaryPart, dataType]); }
   /**
    * func complexConstant(realPart: Double, imaginaryPart: Double, shape: [NSNumber], dataType: MPSDataType) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  complexConstantRealPartImaginaryPartShapeDataType(realPart: number, imaginaryPart: number, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2851507646568108, this, [realPart, imaginaryPart, shape, dataType]); }
+  complexConstantRealPartImaginaryPartShapeDataType(realPart: number, imaginaryPart: number, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2851507646568108, this, [realPart, imaginaryPart, shape, dataType]); }
   /**
    * func constant(_ scalar: Double, dataType: MPSDataType) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  constantDataType(scalar: number, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1155554588487651, this, [scalar, dataType]); }
+  constantDataType(scalar: number, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1155554588487651, this, [scalar, dataType]); }
   /**
    * func constant(_ scalar: Double, shape: [NSNumber], dataType: MPSDataType) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  constantShapeDataType74923(scalar: number, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3832377648416249, this, [scalar, shape, dataType]); }
+  constantShapeDataType74923(scalar: number, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3832377648416249, this, [scalar, shape, dataType]); }
   /**
    * func convolution2DDataGradient(_ incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: [NSNumber], forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  convolution2DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1300094825825679, this, [incomingGradient, weights, outputShape, forwardConvolutionDescriptor, name]); }
+  convolution2DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1300094825825679, this, [incomingGradient, weights, outputShape, forwardConvolutionDescriptor, name]); }
   /**
    * func convolution2DDataGradient(_ gradient: MPSGraphTensor, weights: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  convolution2DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName(gradient: MPSGraphTensor, weights: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 715709253910361, this, [gradient, weights, outputShapeTensor, forwardConvolutionDescriptor, name]); }
+  convolution2DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName(gradient: MPSGraphTensor, weights: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 715709253910361, this, [gradient, weights, outputShapeTensor, forwardConvolutionDescriptor, name]); }
   /**
    * func convolution2DWeightsGradient(_ incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: [NSNumber], forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  convolution2DWeightsGradientSourceOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1058899531451763, this, [incomingGradient, source, outputShape, forwardConvolutionDescriptor, name]); }
+  convolution2DWeightsGradientSourceOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1058899531451763, this, [incomingGradient, source, outputShape, forwardConvolutionDescriptor, name]); }
   /**
    * func convolution2DWeightsGradient(_ gradient: MPSGraphTensor, source: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  convolution2DWeightsGradientSourceOutputShapeTensorForwardConvolutionDescriptorName(gradient: MPSGraphTensor, source: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1542431658978781, this, [gradient, source, outputShapeTensor, forwardConvolutionDescriptor, name]); }
+  convolution2DWeightsGradientSourceOutputShapeTensorForwardConvolutionDescriptorName(gradient: MPSGraphTensor, source: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1542431658978781, this, [gradient, source, outputShapeTensor, forwardConvolutionDescriptor, name]); }
   /**
    * func convolution2D(_ source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  convolution2D(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2520719046203585, this, [source, weights, descriptor, name]); }
+  convolution2D(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2520719046203585, this, [source, weights, descriptor, name]); }
   /**
    * func convolution3DDataGradient(_ incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: [NSNumber], forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.3+
    */
-  convolution3DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1268560579883806, this, [incomingGradient, weights, outputShape, forwardConvolutionDescriptor, name]); }
+  convolution3DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1268560579883806, this, [incomingGradient, weights, outputShape, forwardConvolutionDescriptor, name]); }
   /**
    * func convolution3DDataGradient(_ gradient: MPSGraphTensor, weights: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.3+
    */
-  convolution3DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName(gradient: MPSGraphTensor, weights: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3018504309650458, this, [gradient, weights, outputShapeTensor, forwardConvolutionDescriptor, name]); }
+  convolution3DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName(gradient: MPSGraphTensor, weights: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3018504309650458, this, [gradient, weights, outputShapeTensor, forwardConvolutionDescriptor, name]); }
   /**
    * func convolution3DWeightsGradient(_ incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: [NSNumber], forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.3+
    */
-  convolution3DWeightsGradientSourceOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4275451345612233, this, [incomingGradient, source, outputShape, forwardConvolutionDescriptor, name]); }
+  convolution3DWeightsGradientSourceOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4275451345612233, this, [incomingGradient, source, outputShape, forwardConvolutionDescriptor, name]); }
   /**
    * func convolution3DWeightsGradient(_ gradient: MPSGraphTensor, source: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.3+
    */
-  convolution3DWeightsGradientSourceOutputShapeTensorForwardConvolutionDescriptorName(gradient: MPSGraphTensor, source: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3198622578572582, this, [gradient, source, outputShapeTensor, forwardConvolutionDescriptor, name]); }
+  convolution3DWeightsGradientSourceOutputShapeTensorForwardConvolutionDescriptorName(gradient: MPSGraphTensor, source: MPSGraphTensor, outputShapeTensor: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3198622578572582, this, [gradient, source, outputShapeTensor, forwardConvolutionDescriptor, name]); }
   /**
    * func convolution3D(_ source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphConvolution3DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.3+
    */
-  convolution3D(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 317331338787550, this, [source, weights, descriptor, name]); }
+  convolution3D(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 317331338787550, this, [source, weights, descriptor, name]); }
   /**
    * func convolutionTranspose2DDataGradient(_ incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: [NSNumber], forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  convolutionTranspose2DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4061948601405475, this, [incomingGradient, weights, outputShape, forwardConvolutionDescriptor, name]); }
+  convolutionTranspose2DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4061948601405475, this, [incomingGradient, weights, outputShape, forwardConvolutionDescriptor, name]); }
   /**
    * func convolutionTranspose2DDataGradient(_ incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShapeTensor outputShape: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  convolutionTranspose2DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2634452557788708, this, [incomingGradient, weights, outputShape, forwardConvolutionDescriptor, name]); }
+  convolutionTranspose2DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2634452557788708, this, [incomingGradient, weights, outputShape, forwardConvolutionDescriptor, name]); }
   /**
    * func convolutionTranspose2DWeightsGradient(_ incomingGradientTensor: MPSGraphTensor, weights source: MPSGraphTensor, outputShape: [NSNumber], forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  convolutionTranspose2DWeightsGradientWeightsOutputShapeForwardConvolutionDescriptorName(incomingGradientTensor: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3953800690843880, this, [incomingGradientTensor, source, outputShape, forwardConvolutionDescriptor, name]); }
+  convolutionTranspose2DWeightsGradientWeightsOutputShapeForwardConvolutionDescriptorName(incomingGradientTensor: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3953800690843880, this, [incomingGradientTensor, source, outputShape, forwardConvolutionDescriptor, name]); }
   /**
    * func convolutionTranspose2DWeightsGradient(_ incomingGradientTensor: MPSGraphTensor, weights source: MPSGraphTensor, outputShapeTensor outputShape: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  convolutionTranspose2DWeightsGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName(incomingGradientTensor: MPSGraphTensor, source: MPSGraphTensor, outputShape: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2707703913706735, this, [incomingGradientTensor, source, outputShape, forwardConvolutionDescriptor, name]); }
+  convolutionTranspose2DWeightsGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName(incomingGradientTensor: MPSGraphTensor, source: MPSGraphTensor, outputShape: MPSGraphTensor, forwardConvolutionDescriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2707703913706735, this, [incomingGradientTensor, source, outputShape, forwardConvolutionDescriptor, name]); }
   /**
    * func convolutionTranspose2D(_ source: MPSGraphTensor, weights: MPSGraphTensor, outputShape: [NSNumber], descriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  convolutionTranspose2DWeightsOutputShapeDescriptorName(source: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1318420104202125, this, [source, weights, outputShape, descriptor, name]); }
+  convolutionTranspose2DWeightsOutputShapeDescriptorName(source: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1318420104202125, this, [source, weights, outputShape, descriptor, name]); }
   /**
    * func convolutionTranspose2D(_ source: MPSGraphTensor, weights: MPSGraphTensor, outputShapeTensor outputShape: MPSGraphTensor, descriptor: MPSGraphConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  convolutionTranspose2DWeightsOutputShapeTensorDescriptorName(source: MPSGraphTensor, weights: MPSGraphTensor, outputShape: MPSGraphTensor, descriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 643821587329248, this, [source, weights, outputShape, descriptor, name]); }
+  convolutionTranspose2DWeightsOutputShapeTensorDescriptorName(source: MPSGraphTensor, weights: MPSGraphTensor, outputShape: MPSGraphTensor, descriptor: MPSGraphConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 643821587329248, this, [source, weights, outputShape, descriptor, name]); }
   /**
    * func coordinate(alongAxis axis: Int, withShape shape: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  coordinateAlongAxisWithShapeName(axis: number, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3989047189761129, this, [axis, shape, name]); }
+  coordinateAlongAxisWithShapeName(axis: number, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3989047189761129, this, [axis, shape, name]); }
   /**
    * func coordinate(alongAxis axis: Int, withShapeTensor shapeTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  coordinateAlongAxisWithShapeTensorName(axis: number, shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1697662042744399, this, [axis, shapeTensor, name]); }
+  coordinateAlongAxisWithShapeTensorName(axis: number, shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1697662042744399, this, [axis, shapeTensor, name]); }
   /**
    * func coordinate(alongAxisTensor axisTensor: MPSGraphTensor, withShape shape: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  coordinateAlongAxisTensorWithShapeName(axisTensor: MPSGraphTensor, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 287188408216385, this, [axisTensor, shape, name]); }
+  coordinateAlongAxisTensorWithShapeName(axisTensor: MPSGraphTensor, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 287188408216385, this, [axisTensor, shape, name]); }
   /**
    * func coordinate(alongAxisTensor axisTensor: MPSGraphTensor, withShapeTensor shapeTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  coordinateAlongAxisTensorWithShapeTensorName(axisTensor: MPSGraphTensor, shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2839204295435463, this, [axisTensor, shapeTensor, name]); }
+  coordinateAlongAxisTensorWithShapeTensorName(axisTensor: MPSGraphTensor, shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2839204295435463, this, [axisTensor, shapeTensor, name]); }
   /**
    * func cos(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  cos(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3122698450444737, this, [tensor, name]); }
+  cos(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3122698450444737, this, [tensor, name]); }
   /**
    * func cosh(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  cosh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2622765541159214, this, [tensor, name]); }
+  cosh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2622765541159214, this, [tensor, name]); }
   /**
    * func cumulativeMaximum(_ tensor: MPSGraphTensor, axis: Int, exclusive: Bool, reverse: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeMaximumAxisExclusiveReverseName(tensor: MPSGraphTensor, axis: number, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 975419776626780, this, [tensor, axis, exclusive, reverse, name]); }
+  cumulativeMaximumAxisExclusiveReverseName(tensor: MPSGraphTensor, axis: number, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 975419776626780, this, [tensor, axis, exclusive, reverse, name]); }
   /**
    * func cumulativeMaximum(_ tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeMaximumAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2148000384041877, this, [tensor, axis, name]); }
+  cumulativeMaximumAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2148000384041877, this, [tensor, axis, name]); }
   /**
    * func cumulativeMaximum(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: Bool, reverse: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeMaximumAxisTensorExclusiveReverseName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4297129048213507, this, [tensor, axisTensor, exclusive, reverse, name]); }
+  cumulativeMaximumAxisTensorExclusiveReverseName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4297129048213507, this, [tensor, axisTensor, exclusive, reverse, name]); }
   /**
    * func cumulativeMaximum(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeMaximumAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 602457017203733, this, [tensor, axisTensor, name]); }
+  cumulativeMaximumAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 602457017203733, this, [tensor, axisTensor, name]); }
   /**
    * func cumulativeMinimum(_ tensor: MPSGraphTensor, axis: Int, exclusive: Bool, reverse: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeMinimumAxisExclusiveReverseName(tensor: MPSGraphTensor, axis: number, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1266099484138547, this, [tensor, axis, exclusive, reverse, name]); }
+  cumulativeMinimumAxisExclusiveReverseName(tensor: MPSGraphTensor, axis: number, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1266099484138547, this, [tensor, axis, exclusive, reverse, name]); }
   /**
    * func cumulativeMinimum(_ tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeMinimumAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1230996224225183, this, [tensor, axis, name]); }
+  cumulativeMinimumAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1230996224225183, this, [tensor, axis, name]); }
   /**
    * func cumulativeMinimum(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: Bool, reverse: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeMinimumAxisTensorExclusiveReverseName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4472329111392134, this, [tensor, axisTensor, exclusive, reverse, name]); }
+  cumulativeMinimumAxisTensorExclusiveReverseName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4472329111392134, this, [tensor, axisTensor, exclusive, reverse, name]); }
   /**
    * func cumulativeMinimum(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeMinimumAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2174974027215561, this, [tensor, axisTensor, name]); }
+  cumulativeMinimumAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2174974027215561, this, [tensor, axisTensor, name]); }
   /**
    * func cumulativeProduct(_ tensor: MPSGraphTensor, axis: Int, exclusive: Bool, reverse: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeProductAxisExclusiveReverseName(tensor: MPSGraphTensor, axis: number, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 405140355743935, this, [tensor, axis, exclusive, reverse, name]); }
+  cumulativeProductAxisExclusiveReverseName(tensor: MPSGraphTensor, axis: number, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 405140355743935, this, [tensor, axis, exclusive, reverse, name]); }
   /**
    * func cumulativeProduct(_ tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeProductAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 649439422629050, this, [tensor, axis, name]); }
+  cumulativeProductAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 649439422629050, this, [tensor, axis, name]); }
   /**
    * func cumulativeProduct(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: Bool, reverse: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeProductAxisTensorExclusiveReverseName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4113172235929160, this, [tensor, axisTensor, exclusive, reverse, name]); }
+  cumulativeProductAxisTensorExclusiveReverseName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4113172235929160, this, [tensor, axisTensor, exclusive, reverse, name]); }
   /**
    * func cumulativeProduct(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeProductAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 370253902697923, this, [tensor, axisTensor, name]); }
+  cumulativeProductAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 370253902697923, this, [tensor, axisTensor, name]); }
   /**
    * func cumulativeSum(_ tensor: MPSGraphTensor, axis: Int, exclusive: Bool, reverse: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeSumAxisExclusiveReverseName(tensor: MPSGraphTensor, axis: number, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4268943711703257, this, [tensor, axis, exclusive, reverse, name]); }
+  cumulativeSumAxisExclusiveReverseName(tensor: MPSGraphTensor, axis: number, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4268943711703257, this, [tensor, axis, exclusive, reverse, name]); }
   /**
    * func cumulativeSum(_ tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeSumAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2688662103645781, this, [tensor, axis, name]); }
+  cumulativeSumAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2688662103645781, this, [tensor, axis, name]); }
   /**
    * func cumulativeSum(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: Bool, reverse: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeSumAxisTensorExclusiveReverseName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3421190161120238, this, [tensor, axisTensor, exclusive, reverse, name]); }
+  cumulativeSumAxisTensorExclusiveReverseName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, exclusive: boolean, reverse: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3421190161120238, this, [tensor, axisTensor, exclusive, reverse, name]); }
   /**
    * func cumulativeSum(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  cumulativeSumAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3425552408096964, this, [tensor, axisTensor, name]); }
+  cumulativeSumAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3425552408096964, this, [tensor, axisTensor, name]); }
   /**
    * func depth(toSpace2DTensor tensor: MPSGraphTensor, widthAxis: Int, heightAxis: Int, depthAxis: Int, blockSize: Int, usePixelShuffleOrder: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  depthToSpace2DTensorWidthAxisHeightAxisDepthAxisBlockSizeUsePixelShuffleOrderName(tensor: MPSGraphTensor, widthAxis: number, heightAxis: number, depthAxis: number, blockSize: number, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2960940989407803, this, [tensor, widthAxis, heightAxis, depthAxis, blockSize, usePixelShuffleOrder, name]); }
+  depthToSpace2DTensorWidthAxisHeightAxisDepthAxisBlockSizeUsePixelShuffleOrderName(tensor: MPSGraphTensor, widthAxis: number, heightAxis: number, depthAxis: number, blockSize: number, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2960940989407803, this, [tensor, widthAxis, heightAxis, depthAxis, blockSize, usePixelShuffleOrder, name]); }
   /**
    * func depth(toSpace2DTensor tensor: MPSGraphTensor, widthAxisTensor: MPSGraphTensor, heightAxisTensor: MPSGraphTensor, depthAxisTensor: MPSGraphTensor, blockSize: Int, usePixelShuffleOrder: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  depthToSpace2DTensorWidthAxisTensorHeightAxisTensorDepthAxisTensorBlockSizeUsePixelShuffleOrderName(tensor: MPSGraphTensor, widthAxisTensor: MPSGraphTensor, heightAxisTensor: MPSGraphTensor, depthAxisTensor: MPSGraphTensor, blockSize: number, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4055441521010169, this, [tensor, widthAxisTensor, heightAxisTensor, depthAxisTensor, blockSize, usePixelShuffleOrder, name]); }
+  depthToSpace2DTensorWidthAxisTensorHeightAxisTensorDepthAxisTensorBlockSizeUsePixelShuffleOrderName(tensor: MPSGraphTensor, widthAxisTensor: MPSGraphTensor, heightAxisTensor: MPSGraphTensor, depthAxisTensor: MPSGraphTensor, blockSize: number, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4055441521010169, this, [tensor, widthAxisTensor, heightAxisTensor, depthAxisTensor, blockSize, usePixelShuffleOrder, name]); }
   /**
    * func depthwiseConvolution2DDataGradient(_ incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: [NSNumber], descriptor: MPSGraphDepthwiseConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  depthwiseConvolution2DDataGradient(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphDepthwiseConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 736607828039952, this, [incomingGradient, weights, outputShape, descriptor, name]); }
+  depthwiseConvolution2DDataGradient(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphDepthwiseConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 736607828039952, this, [incomingGradient, weights, outputShape, descriptor, name]); }
   /**
    * func depthwiseConvolution2DWeightsGradient(_ incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: [NSNumber], descriptor: MPSGraphDepthwiseConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  depthwiseConvolution2DWeightsGradient(incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphDepthwiseConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4141907719055410, this, [incomingGradient, source, outputShape, descriptor, name]); }
+  depthwiseConvolution2DWeightsGradient(incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphDepthwiseConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4141907719055410, this, [incomingGradient, source, outputShape, descriptor, name]); }
   /**
    * func depthwiseConvolution2D(_ source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphDepthwiseConvolution2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  depthwiseConvolution2D(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphDepthwiseConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2285925154441817, this, [source, weights, descriptor, name]); }
+  depthwiseConvolution2D(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphDepthwiseConvolution2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2285925154441817, this, [source, weights, descriptor, name]); }
   /**
    * func depthwiseConvolution3DDataGradient(_ incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: [NSNumber]?, descriptor: MPSGraphDepthwiseConvolution3DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  depthwiseConvolution3DDataGradient(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK4, descriptor: MPSGraphDepthwiseConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2579879550943474, this, [incomingGradient, weights, outputShape, descriptor, name]); }
+  depthwiseConvolution3DDataGradient(incomingGradient: MPSGraphTensor, weights: MPSGraphTensor, outputShape: $SDK4, descriptor: MPSGraphDepthwiseConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2579879550943474, this, [incomingGradient, weights, outputShape, descriptor, name]); }
   /**
    * func depthwiseConvolution3DWeightsGradient(_ incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: [NSNumber], descriptor: MPSGraphDepthwiseConvolution3DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  depthwiseConvolution3DWeightsGradient(incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphDepthwiseConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2379220809005317, this, [incomingGradient, source, outputShape, descriptor, name]); }
+  depthwiseConvolution3DWeightsGradient(incomingGradient: MPSGraphTensor, source: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphDepthwiseConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2379220809005317, this, [incomingGradient, source, outputShape, descriptor, name]); }
   /**
    * func depthwiseConvolution3D(_ source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphDepthwiseConvolution3DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  depthwiseConvolution3D(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphDepthwiseConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 882472052819838, this, [source, weights, descriptor, name]); }
+  depthwiseConvolution3D(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphDepthwiseConvolution3DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 882472052819838, this, [source, weights, descriptor, name]); }
   /**
    * func dequantize(_ tensor: MPSGraphTensor, LUTTensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  dequantizeLUTTensorAxisName(tensor: MPSGraphTensor, LUTTensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 148688708136371, this, [tensor, LUTTensor, axis, name]); }
+  dequantizeLUTTensorAxisName(tensor: MPSGraphTensor, LUTTensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 148688708136371, this, [tensor, LUTTensor, axis, name]); }
   /**
    * func dequantize(_ tensor: MPSGraphTensor, LUTTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  dequantizeLUTTensorName(tensor: MPSGraphTensor, LUTTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2537220406783852, this, [tensor, LUTTensor, name]); }
+  dequantizeLUTTensorName(tensor: MPSGraphTensor, LUTTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2537220406783852, this, [tensor, LUTTensor, name]); }
   /**
    * func dequantize(_ tensor: MPSGraphTensor, scale: Double, zeroPoint: Double, dataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 16.2+
    */
-  dequantizeScaleZeroPointDataTypeName(tensor: MPSGraphTensor, scale: number, zeroPoint: number, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3658885661745633, this, [tensor, scale, zeroPoint, dataType, name]); }
+  dequantizeScaleZeroPointDataTypeName(tensor: MPSGraphTensor, scale: number, zeroPoint: number, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3658885661745633, this, [tensor, scale, zeroPoint, dataType, name]); }
   /**
    * func dequantize(_ tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, dataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  dequantizeScaleTensorDataTypeName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2449259305851816, this, [tensor, scaleTensor, dataType, name]); }
+  dequantizeScaleTensorDataTypeName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2449259305851816, this, [tensor, scaleTensor, dataType, name]); }
   /**
    * func dequantize(_ tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPoint: Double, dataType: MPSDataType, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.2+
    */
-  dequantizeScaleTensorZeroPointDataTypeAxisName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPoint: number, dataType: _MetalPerformanceShaders_MPSDataType, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2802804911242424, this, [tensor, scaleTensor, zeroPoint, dataType, axis, name]); }
+  dequantizeScaleTensorZeroPointDataTypeAxisName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPoint: number, dataType: _MetalPerformanceShaders_MPSDataType, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2802804911242424, this, [tensor, scaleTensor, zeroPoint, dataType, axis, name]); }
   /**
    * func dequantize(_ tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPointTensor: MPSGraphTensor, dataType: MPSDataType, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.2+
    */
-  dequantizeScaleTensorZeroPointTensorDataTypeAxisName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPointTensor: MPSGraphTensor, dataType: _MetalPerformanceShaders_MPSDataType, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 852939433438144, this, [tensor, scaleTensor, zeroPointTensor, dataType, axis, name]); }
+  dequantizeScaleTensorZeroPointTensorDataTypeAxisName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPointTensor: MPSGraphTensor, dataType: _MetalPerformanceShaders_MPSDataType, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 852939433438144, this, [tensor, scaleTensor, zeroPointTensor, dataType, axis, name]); }
   /**
    * func dequantize(_ tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPointTensor: MPSGraphTensor, dataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  dequantizeScaleTensorZeroPointTensorDataTypeName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPointTensor: MPSGraphTensor, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1940129840511343, this, [tensor, scaleTensor, zeroPointTensor, dataType, name]); }
+  dequantizeScaleTensorZeroPointTensorDataTypeName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPointTensor: MPSGraphTensor, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1940129840511343, this, [tensor, scaleTensor, zeroPointTensor, dataType, name]); }
   /**
    * func divisionNoNaN(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  divisionNoNaN(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3385218595438115, this, [primaryTensor, secondaryTensor, name]); }
+  divisionNoNaN(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3385218595438115, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func division(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  division(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 686579839640776, this, [primaryTensor, secondaryTensor, name]); }
+  division(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 686579839640776, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func dropout(_ tensor: MPSGraphTensor, rate: Double, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  dropoutRateName(tensor: MPSGraphTensor, rate: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4390548527721133, this, [tensor, rate, name]); }
+  dropoutRateName(tensor: MPSGraphTensor, rate: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4390548527721133, this, [tensor, rate, name]); }
   /**
    * func dropout(_ tensor: MPSGraphTensor, rate: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  dropoutRateName85178(tensor: MPSGraphTensor, rate: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 690098386316713, this, [tensor, rate, name]); }
+  dropoutRateName85178(tensor: MPSGraphTensor, rate: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 690098386316713, this, [tensor, rate, name]); }
   /**
    * func encode(to commandBuffer: MPSCommandBuffer, feeds: [MPSGraphTensor : MPSGraphTensorData], targetOperations: [MPSGraphOperation]?, resultsDictionary: [MPSGraphTensor : MPSGraphTensorData], executionDescriptor: MPSGraphExecutionDescriptor?)
    * @availability iOS 14.0+
    */
-  encodeToFeedsTargetOperationsResultsDictionaryExecutionDescriptor(commandBuffer: _MetalPerformanceShaders_MPSCommandBuffer, feeds: $SDK5, targetOperations: $SDK2, resultsDictionary: $SDK5, executionDescriptor?: $SDK6): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2407414173118803, this, [commandBuffer, feeds, targetOperations, resultsDictionary, executionDescriptor]); }
+  encodeToFeedsTargetOperationsResultsDictionaryExecutionDescriptor(commandBuffer: _MetalPerformanceShaders_MPSCommandBuffer, feeds: $SDK5, targetOperations: $SDK2, resultsDictionary: $SDK5, executionDescriptor?: $SDK6): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2407414173118803, this, [commandBuffer, feeds, targetOperations, resultsDictionary, executionDescriptor]); }
   /**
    * func encode(to commandBuffer: MPSCommandBuffer, feeds: [MPSGraphTensor : MPSGraphTensorData], targetTensors: [MPSGraphTensor], targetOperations: [MPSGraphOperation]?, executionDescriptor: MPSGraphExecutionDescriptor?) -> [MPSGraphTensor : MPSGraphTensorData]
    * @availability iOS 14.0+
    */
-  encodeToFeedsTargetTensorsTargetOperationsExecutionDescriptor(commandBuffer: _MetalPerformanceShaders_MPSCommandBuffer, feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2, executionDescriptor?: $SDK6): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4096497591592578, this, [commandBuffer, feeds, targetTensors, targetOperations, executionDescriptor]); }
+  encodeToFeedsTargetTensorsTargetOperationsExecutionDescriptor(commandBuffer: _MetalPerformanceShaders_MPSCommandBuffer, feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2, executionDescriptor?: $SDK6): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4096497591592578, this, [commandBuffer, feeds, targetTensors, targetOperations, executionDescriptor]); }
   /**
    * func equal(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  equal(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1450457502393684, this, [primaryTensor, secondaryTensor, name]); }
+  equal(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1450457502393684, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func erf(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  erf(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4131134212656905, this, [tensor, name]); }
+  erf(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4131134212656905, this, [tensor, name]); }
   /**
    * func expandDims(_ tensor: MPSGraphTensor, axes: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  expandDimsAxesName(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3043828425821361, this, [tensor, axes, name]); }
+  expandDimsAxesName(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3043828425821361, this, [tensor, axes, name]); }
   /**
    * func expandDims(_ tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  expandDimsAxesTensorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1631984694666003, this, [tensor, axesTensor, name]); }
+  expandDimsAxesTensorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1631984694666003, this, [tensor, axesTensor, name]); }
   /**
    * func expandDims(_ tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  expandDimsAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2887608057428561, this, [tensor, axis, name]); }
+  expandDimsAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2887608057428561, this, [tensor, axis, name]); }
   /**
    * func exponentBase10(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  exponentBase10(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1697583822107048, this, [tensor, name]); }
+  exponentBase10(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1697583822107048, this, [tensor, name]); }
   /**
    * func exponentBase2(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  exponentBase2(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3504108540781310, this, [tensor, name]); }
+  exponentBase2(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3504108540781310, this, [tensor, name]); }
   /**
    * func exponent(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  exponent(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 826023864266994, this, [tensor, name]); }
+  exponent(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 826023864266994, this, [tensor, name]); }
   /**
    * func fastFourierTransform(_ tensor: MPSGraphTensor, axes: [NSNumber], descriptor: MPSGraphFFTDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  fastFourierTransformAxesDescriptorName(tensor: MPSGraphTensor, axes: $SDK0, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 640191091987406, this, [tensor, axes, descriptor, name]); }
+  fastFourierTransformAxesDescriptorName(tensor: MPSGraphTensor, axes: $SDK0, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 640191091987406, this, [tensor, axes, descriptor, name]); }
   /**
    * func fastFourierTransform(_ tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, descriptor: MPSGraphFFTDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  fastFourierTransformAxesTensorDescriptorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1319448818840724, this, [tensor, axesTensor, descriptor, name]); }
+  fastFourierTransformAxesTensorDescriptorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1319448818840724, this, [tensor, axesTensor, descriptor, name]); }
   /**
    * func flatten2D(_ tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  flatten2DAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2733397437062966, this, [tensor, axis, name]); }
+  flatten2DAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2733397437062966, this, [tensor, axis, name]); }
   /**
    * func flatten2D(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  flatten2DAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 569179966181350, this, [tensor, axisTensor, name]); }
+  flatten2DAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 569179966181350, this, [tensor, axisTensor, name]); }
   /**
    * func floorModulo(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  floorModulo(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1351758663002248, this, [primaryTensor, secondaryTensor, name]); }
+  floorModulo(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1351758663002248, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func floor(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  floor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 791434366710895, this, [tensor, name]); }
+  floor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 791434366710895, this, [tensor, name]); }
   /**
    * func gatherAlongAxis(_ axis: Int, updates updatesTensor: MPSGraphTensor, indices indicesTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  gatherAlongAxis(axis: number, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1414851745538796, this, [axis, updatesTensor, indicesTensor, name]); }
+  gatherAlongAxis(axis: number, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1414851745538796, this, [axis, updatesTensor, indicesTensor, name]); }
   /**
    * func gatherAlongAxisTensor(_ axisTensor: MPSGraphTensor, updates updatesTensor: MPSGraphTensor, indices indicesTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  gatherAlongAxisTensor(axisTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2225453642471318, this, [axisTensor, updatesTensor, indicesTensor, name]); }
+  gatherAlongAxisTensor(axisTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2225453642471318, this, [axisTensor, updatesTensor, indicesTensor, name]); }
   /**
    * func gatherND(withUpdatesTensor updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, batchDimensions: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  gatherND(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, batchDimensions: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1382408822291319, this, [updatesTensor, indicesTensor, batchDimensions, name]); }
+  gatherND(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, batchDimensions: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1382408822291319, this, [updatesTensor, indicesTensor, batchDimensions, name]); }
   /**
    * func gather(withUpdatesTensor updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, axis: Int, batchDimensions: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  gather(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, axis: number, batchDimensions: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 423190996052569, this, [updatesTensor, indicesTensor, axis, batchDimensions, name]); }
+  gather(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, axis: number, batchDimensions: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 423190996052569, this, [updatesTensor, indicesTensor, axis, batchDimensions, name]); }
   /**
    * func gradients(of primaryTensor: MPSGraphTensor, with tensors: [MPSGraphTensor], name: String?) -> [MPSGraphTensor : MPSGraphTensor]
    * @availability iOS 14.0+
    */
-  gradients(primaryTensor: MPSGraphTensor, tensors: Array<MPSGraphTensor>, name?: (string) | null): NativeMap<MPSGraphTensor, MPSGraphTensor> { return callSDK<NativeMap<MPSGraphTensor, MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2192247204650618, this, [primaryTensor, tensors, name]); }
+  gradients(primaryTensor: MPSGraphTensor, tensors: Array<MPSGraphTensor>, name?: (string) | null): NativeMap<MPSGraphTensor, MPSGraphTensor> { return callSDK<NativeMap<MPSGraphTensor, MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2192247204650618, this, [primaryTensor, tensors, name]); }
   /**
    * func greaterThanOrEqualTo(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  greaterThanOrEqualTo(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2931041490227236, this, [primaryTensor, secondaryTensor, name]); }
+  greaterThanOrEqualTo(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2931041490227236, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func greaterThan(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  greaterThan(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4431245665376682, this, [primaryTensor, secondaryTensor, name]); }
+  greaterThan(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4431245665376682, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func identity(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  identity(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 644676143341199, this, [tensor, name]); }
+  identity(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 644676143341199, this, [tensor, name]); }
   /**
    * func imToCol(_ source: MPSGraphTensor, descriptor: MPSGraphImToColOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  imToCol(source: MPSGraphTensor, descriptor: MPSGraphImToColOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1394676092242728, this, [source, descriptor, name]); }
+  imToCol(source: MPSGraphTensor, descriptor: MPSGraphImToColOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1394676092242728, this, [source, descriptor, name]); }
   /**
    * func imaginaryPartOfTensor(tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  imaginaryPartOfTensor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3805499922246894, this, [tensor, name]); }
+  imaginaryPartOfTensor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3805499922246894, this, [tensor, name]); }
   /**
    * init()
    * @availability iOS 14.0+
    */
-  static init(): MPSGraph { return callSDK<MPSGraph>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2615885328259447, undefined, []); }
+  static init(): MPSGraph { return callSDK<MPSGraph>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2615885328259447, undefined, []); }
   /**
    * func inverse(input inputTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  inverse(inputTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 142538408095772, this, [inputTensor, name]); }
+  inverse(inputTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 142538408095772, this, [inputTensor, name]); }
   /**
    * func isFinite(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  isFinite(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3104265704470420, this, [tensor, name]); }
+  isFinite(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3104265704470420, this, [tensor, name]); }
   /**
    * func isInfinite(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  isInfinite(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 344597047090740, this, [tensor, name]); }
+  isInfinite(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 344597047090740, this, [tensor, name]); }
   /**
    * func isNaN(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  isNaN(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3912529930199632, this, [tensor, name]); }
+  isNaN(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3912529930199632, this, [tensor, name]); }
   /**
    * func leakyReLUGradient(withIncomingGradient gradient: MPSGraphTensor, sourceTensor source: MPSGraphTensor, alphaTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  leakyReLUGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, alphaTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4268026520622447, this, [gradient, source, alphaTensor, name]); }
+  leakyReLUGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, alphaTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4268026520622447, this, [gradient, source, alphaTensor, name]); }
   /**
    * func leakyReLU(with tensor: MPSGraphTensor, alpha: Double, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  leakyReLUWithAlphaName(tensor: MPSGraphTensor, alpha: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1252560478568105, this, [tensor, alpha, name]); }
+  leakyReLUWithAlphaName(tensor: MPSGraphTensor, alpha: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1252560478568105, this, [tensor, alpha, name]); }
   /**
    * func leakyReLU(with tensor: MPSGraphTensor, alphaTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  leakyReLUWithAlphaTensorName(tensor: MPSGraphTensor, alphaTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4325050830792087, this, [tensor, alphaTensor, name]); }
+  leakyReLUWithAlphaTensorName(tensor: MPSGraphTensor, alphaTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4325050830792087, this, [tensor, alphaTensor, name]); }
   /**
    * func lessThanOrEqualTo(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  lessThanOrEqualTo(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2063703007593178, this, [primaryTensor, secondaryTensor, name]); }
+  lessThanOrEqualTo(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2063703007593178, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func lessThan(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  lessThan(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2391997800252573, this, [primaryTensor, secondaryTensor, name]); }
+  lessThan(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2391997800252573, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func logarithmBase10(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  logarithmBase10(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 645587448304029, this, [tensor, name]); }
+  logarithmBase10(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 645587448304029, this, [tensor, name]); }
   /**
    * func logarithmBase2(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  logarithmBase2(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2670834501755772, this, [tensor, name]); }
+  logarithmBase2(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2670834501755772, this, [tensor, name]); }
   /**
    * func logarithm(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  logarithm(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4149317678449894, this, [tensor, name]); }
+  logarithm(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4149317678449894, this, [tensor, name]); }
   /**
    * func logicalAND(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  logicalAND(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2944158542769189, this, [primaryTensor, secondaryTensor, name]); }
+  logicalAND(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2944158542769189, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func logicalNAND(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  logicalNAND(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 778281276034059, this, [primaryTensor, secondaryTensor, name]); }
+  logicalNAND(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 778281276034059, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func logicalNOR(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  logicalNOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2062443570498304, this, [primaryTensor, secondaryTensor, name]); }
+  logicalNOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2062443570498304, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func logicalOR(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  logicalOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3982814375036182, this, [primaryTensor, secondaryTensor, name]); }
+  logicalOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3982814375036182, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func logicalXNOR(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  logicalXNOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3314586616047847, this, [primaryTensor, secondaryTensor, name]); }
+  logicalXNOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3314586616047847, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func logicalXOR(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  logicalXOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 65653620769044, this, [primaryTensor, secondaryTensor, name]); }
+  logicalXOR(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 65653620769044, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func matrixMultiplication(primary primaryTensor: MPSGraphTensor, secondary secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  matrixMultiplication(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4290357935180726, this, [primaryTensor, secondaryTensor, name]); }
+  matrixMultiplication(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4290357935180726, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func maxPooling2DGradient(withGradientTensor gradient: MPSGraphTensor, indicesTensor indices: MPSGraphTensor, outputShape: [NSNumber], descriptor: MPSGraphPooling2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  maxPooling2DGradientWithGradientTensorIndicesTensorOutputShapeDescriptorName(gradient: MPSGraphTensor, indices: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4458603876227786, this, [gradient, indices, outputShape, descriptor, name]); }
+  maxPooling2DGradientWithGradientTensorIndicesTensorOutputShapeDescriptorName(gradient: MPSGraphTensor, indices: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4458603876227786, this, [gradient, indices, outputShape, descriptor, name]); }
   /**
    * func maxPooling2DGradient(withGradientTensor gradient: MPSGraphTensor, indicesTensor indices: MPSGraphTensor, outputShapeTensor outputShape: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  maxPooling2DGradientWithGradientTensorIndicesTensorOutputShapeTensorDescriptorName(gradient: MPSGraphTensor, indices: MPSGraphTensor, outputShape: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1044554499211399, this, [gradient, indices, outputShape, descriptor, name]); }
+  maxPooling2DGradientWithGradientTensorIndicesTensorOutputShapeTensorDescriptorName(gradient: MPSGraphTensor, indices: MPSGraphTensor, outputShape: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1044554499211399, this, [gradient, indices, outputShape, descriptor, name]); }
   /**
    * func maxPooling2DGradient(withGradientTensor gradient: MPSGraphTensor, sourceTensor source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  maxPooling2DGradientWithGradientTensorSourceTensorDescriptorName(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2537455401953149, this, [gradient, source, descriptor, name]); }
+  maxPooling2DGradientWithGradientTensorSourceTensorDescriptorName(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2537455401953149, this, [gradient, source, descriptor, name]); }
   /**
    * func maxPooling2DReturnIndices(_ source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.3+
    */
-  maxPooling2DReturnIndices(source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2116667821379444, this, [source, descriptor, name]); }
+  maxPooling2DReturnIndices(source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2116667821379444, this, [source, descriptor, name]); }
   /**
    * func maxPooling2D(withSourceTensor source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  maxPooling2D(source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 202336166568301, this, [source, descriptor, name]); }
+  maxPooling2D(source: MPSGraphTensor, descriptor: MPSGraphPooling2DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 202336166568301, this, [source, descriptor, name]); }
   /**
    * func maxPooling4DGradient(withGradientTensor gradient: MPSGraphTensor, indicesTensor indices: MPSGraphTensor, outputShape: [NSNumber], descriptor: MPSGraphPooling4DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  maxPooling4DGradientWithGradientTensorIndicesTensorOutputShapeDescriptorName(gradient: MPSGraphTensor, indices: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2164375602355839, this, [gradient, indices, outputShape, descriptor, name]); }
+  maxPooling4DGradientWithGradientTensorIndicesTensorOutputShapeDescriptorName(gradient: MPSGraphTensor, indices: MPSGraphTensor, outputShape: $SDK0, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2164375602355839, this, [gradient, indices, outputShape, descriptor, name]); }
   /**
    * func maxPooling4DGradient(withGradientTensor gradient: MPSGraphTensor, indicesTensor indices: MPSGraphTensor, outputShapeTensor outputShape: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  maxPooling4DGradientWithGradientTensorIndicesTensorOutputShapeTensorDescriptorName(gradient: MPSGraphTensor, indices: MPSGraphTensor, outputShape: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 967914347864317, this, [gradient, indices, outputShape, descriptor, name]); }
+  maxPooling4DGradientWithGradientTensorIndicesTensorOutputShapeTensorDescriptorName(gradient: MPSGraphTensor, indices: MPSGraphTensor, outputShape: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 967914347864317, this, [gradient, indices, outputShape, descriptor, name]); }
   /**
    * func maxPooling4DGradient(_ gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  maxPooling4DGradientSourceDescriptorName(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3741255435487248, this, [gradient, source, descriptor, name]); }
+  maxPooling4DGradientSourceDescriptorName(gradient: MPSGraphTensor, source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3741255435487248, this, [gradient, source, descriptor, name]); }
   /**
    * func maxPooling4DReturnIndices(_ source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.3+
    */
-  maxPooling4DReturnIndices(source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1312989039385198, this, [source, descriptor, name]); }
+  maxPooling4DReturnIndices(source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1312989039385198, this, [source, descriptor, name]); }
   /**
    * func maxPooling4D(_ source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  maxPooling4D(source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1244465145679946, this, [source, descriptor, name]); }
+  maxPooling4D(source: MPSGraphTensor, descriptor: MPSGraphPooling4DOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1244465145679946, this, [source, descriptor, name]); }
   /**
    * func maximumWithNaNPropagation(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  maximumWithNaNPropagation(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4029339243245264, this, [primaryTensor, secondaryTensor, name]); }
+  maximumWithNaNPropagation(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4029339243245264, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func maximum(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  maximum(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4452896198152334, this, [primaryTensor, secondaryTensor, name]); }
+  maximum(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4452896198152334, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func mean(of tensor: MPSGraphTensor, axes: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  mean(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2840256457209710, this, [tensor, axes, name]); }
+  mean(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2840256457209710, this, [tensor, axes, name]); }
   /**
    * func minimumWithNaNPropagation(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  minimumWithNaNPropagation(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2089009605052278, this, [primaryTensor, secondaryTensor, name]); }
+  minimumWithNaNPropagation(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2089009605052278, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func minimum(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  minimum(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1182091056996042, this, [primaryTensor, secondaryTensor, name]); }
+  minimum(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1182091056996042, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func modulo(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  modulo(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 382063094152927, this, [primaryTensor, secondaryTensor, name]); }
+  modulo(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 382063094152927, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func multiplication(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  multiplication(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1820605011712477, this, [primaryTensor, secondaryTensor, name]); }
+  multiplication(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1820605011712477, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func negative(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  negative(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3147937863645951, this, [tensor, name]); }
+  negative(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3147937863645951, this, [tensor, name]); }
   /**
    * func nonMaximumSuppression(withBoxesTensor boxesTensor: MPSGraphTensor, scoresTensor: MPSGraphTensor, iouThreshold IOUThreshold: Float, scoreThreshold: Float, perClassSuppression: Bool, coordinateMode: MPSGraphNonMaximumSuppressionCoordinateMode, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  nonMaximumSuppressionWithBoxesTensorScoresTensorIouThresholdScoreThresholdPerClassSuppressionCoordinateModeName(boxesTensor: MPSGraphTensor, scoresTensor: MPSGraphTensor, IOUThreshold: number, scoreThreshold: number, perClassSuppression: boolean, coordinateMode: MPSGraphNonMaximumSuppressionCoordinateMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2099985329511982, this, [boxesTensor, scoresTensor, IOUThreshold, scoreThreshold, perClassSuppression, coordinateMode, name]); }
+  nonMaximumSuppressionWithBoxesTensorScoresTensorIouThresholdScoreThresholdPerClassSuppressionCoordinateModeName(boxesTensor: MPSGraphTensor, scoresTensor: MPSGraphTensor, IOUThreshold: number, scoreThreshold: number, perClassSuppression: boolean, coordinateMode: MPSGraphNonMaximumSuppressionCoordinateMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2099985329511982, this, [boxesTensor, scoresTensor, IOUThreshold, scoreThreshold, perClassSuppression, coordinateMode, name]); }
   /**
    * func nonMaximumSuppression(withBoxesTensor boxesTensor: MPSGraphTensor, scoresTensor: MPSGraphTensor, classIndicesTensor: MPSGraphTensor, iouThreshold IOUThreshold: Float, scoreThreshold: Float, perClassSuppression: Bool, coordinateMode: MPSGraphNonMaximumSuppressionCoordinateMode, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  nonMaximumSuppressionWithBoxesTensorScoresTensorClassIndicesTensorIouThresholdScoreThresholdPerClassSuppressionCoordinateModeName(boxesTensor: MPSGraphTensor, scoresTensor: MPSGraphTensor, classIndicesTensor: MPSGraphTensor, IOUThreshold: number, scoreThreshold: number, perClassSuppression: boolean, coordinateMode: MPSGraphNonMaximumSuppressionCoordinateMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3389983002275534, this, [boxesTensor, scoresTensor, classIndicesTensor, IOUThreshold, scoreThreshold, perClassSuppression, coordinateMode, name]); }
+  nonMaximumSuppressionWithBoxesTensorScoresTensorClassIndicesTensorIouThresholdScoreThresholdPerClassSuppressionCoordinateModeName(boxesTensor: MPSGraphTensor, scoresTensor: MPSGraphTensor, classIndicesTensor: MPSGraphTensor, IOUThreshold: number, scoreThreshold: number, perClassSuppression: boolean, coordinateMode: MPSGraphNonMaximumSuppressionCoordinateMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3389983002275534, this, [boxesTensor, scoresTensor, classIndicesTensor, IOUThreshold, scoreThreshold, perClassSuppression, coordinateMode, name]); }
   /**
    * func nonZeroIndices(_ tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  nonZeroIndices(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1393627817141073, this, [tensor, name]); }
+  nonZeroIndices(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1393627817141073, this, [tensor, name]); }
   /**
    * func normalizationBetaGradient(withIncomingGradientTensor incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, reductionAxes axes: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  normalizationBetaGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3556563100503304, this, [incomingGradientTensor, sourceTensor, axes, name]); }
+  normalizationBetaGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3556563100503304, this, [incomingGradientTensor, sourceTensor, axes, name]); }
   /**
    * func normalizationGammaGradient(withIncomingGradientTensor incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, mean meanTensor: MPSGraphTensor, varianceTensor: MPSGraphTensor, reductionAxes axes: [NSNumber], epsilon: Float, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  normalizationGammaGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, meanTensor: MPSGraphTensor, varianceTensor: MPSGraphTensor, axes: $SDK0, epsilon: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2816831334367775, this, [incomingGradientTensor, sourceTensor, meanTensor, varianceTensor, axes, epsilon, name]); }
+  normalizationGammaGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, meanTensor: MPSGraphTensor, varianceTensor: MPSGraphTensor, axes: $SDK0, epsilon: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2816831334367775, this, [incomingGradientTensor, sourceTensor, meanTensor, varianceTensor, axes, epsilon, name]); }
   /**
    * func normalizationGradient(withIncomingGradientTensor incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, mean meanTensor: MPSGraphTensor, varianceTensor: MPSGraphTensor, gammaTensor gamma: MPSGraphTensor?, gammaGradientTensor gammaGradient: MPSGraphTensor?, betaGradientTensor betaGradient: MPSGraphTensor?, reductionAxes axes: [NSNumber], epsilon: Float, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  normalizationGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, meanTensor: MPSGraphTensor, varianceTensor: MPSGraphTensor, gamma: (MPSGraphTensor) | null, gammaGradient: (MPSGraphTensor) | null, betaGradient: (MPSGraphTensor) | null, axes: $SDK0, epsilon: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2063078758372913, this, [incomingGradientTensor, sourceTensor, meanTensor, varianceTensor, gamma, gammaGradient, betaGradient, axes, epsilon, name]); }
+  normalizationGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, meanTensor: MPSGraphTensor, varianceTensor: MPSGraphTensor, gamma: (MPSGraphTensor) | null, gammaGradient: (MPSGraphTensor) | null, betaGradient: (MPSGraphTensor) | null, axes: $SDK0, epsilon: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2063078758372913, this, [incomingGradientTensor, sourceTensor, meanTensor, varianceTensor, gamma, gammaGradient, betaGradient, axes, epsilon, name]); }
   /**
    * func normalize(_ tensor: MPSGraphTensor, mean: MPSGraphTensor, variance: MPSGraphTensor, gamma: MPSGraphTensor?, beta: MPSGraphTensor?, epsilon: Float, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  normalize(tensor: MPSGraphTensor, mean: MPSGraphTensor, variance: MPSGraphTensor, gamma: (MPSGraphTensor) | null, beta: (MPSGraphTensor) | null, epsilon: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3552649829679900, this, [tensor, mean, variance, gamma, beta, epsilon, name]); }
+  normalize(tensor: MPSGraphTensor, mean: MPSGraphTensor, variance: MPSGraphTensor, gamma: (MPSGraphTensor) | null, beta: (MPSGraphTensor) | null, epsilon: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3552649829679900, this, [tensor, mean, variance, gamma, beta, epsilon, name]); }
   /**
    * func notEqual(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  notEqual(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2609118575112929, this, [primaryTensor, secondaryTensor, name]); }
+  notEqual(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2609118575112929, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func not(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  not(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1745072491473896, this, [tensor, name]); }
+  not(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1745072491473896, this, [tensor, name]); }
   /**
    * func oneHot(withIndicesTensor indicesTensor: MPSGraphTensor, depth: Int, axis: Int, dataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  oneHotWithIndicesTensorDepthAxisDataTypeName(indicesTensor: MPSGraphTensor, depth: number, axis: number, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1665232389226709, this, [indicesTensor, depth, axis, dataType, name]); }
+  oneHotWithIndicesTensorDepthAxisDataTypeName(indicesTensor: MPSGraphTensor, depth: number, axis: number, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1665232389226709, this, [indicesTensor, depth, axis, dataType, name]); }
   /**
    * func oneHot(withIndicesTensor indicesTensor: MPSGraphTensor, depth: Int, axis: Int, dataType: MPSDataType, onValue: Double, offValue: Double, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  oneHotWithIndicesTensorDepthAxisDataTypeOnValueOffValueName(indicesTensor: MPSGraphTensor, depth: number, axis: number, dataType: _MetalPerformanceShaders_MPSDataType, onValue: number, offValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 847199038213019, this, [indicesTensor, depth, axis, dataType, onValue, offValue, name]); }
+  oneHotWithIndicesTensorDepthAxisDataTypeOnValueOffValueName(indicesTensor: MPSGraphTensor, depth: number, axis: number, dataType: _MetalPerformanceShaders_MPSDataType, onValue: number, offValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 847199038213019, this, [indicesTensor, depth, axis, dataType, onValue, offValue, name]); }
   /**
    * func oneHot(withIndicesTensor indicesTensor: MPSGraphTensor, depth: Int, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  oneHotWithIndicesTensorDepthAxisName(indicesTensor: MPSGraphTensor, depth: number, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2596180281923559, this, [indicesTensor, depth, axis, name]); }
+  oneHotWithIndicesTensorDepthAxisName(indicesTensor: MPSGraphTensor, depth: number, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2596180281923559, this, [indicesTensor, depth, axis, name]); }
   /**
    * func oneHot(withIndicesTensor indicesTensor: MPSGraphTensor, depth: Int, dataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  oneHotWithIndicesTensorDepthDataTypeName(indicesTensor: MPSGraphTensor, depth: number, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3641521264595290, this, [indicesTensor, depth, dataType, name]); }
+  oneHotWithIndicesTensorDepthDataTypeName(indicesTensor: MPSGraphTensor, depth: number, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3641521264595290, this, [indicesTensor, depth, dataType, name]); }
   /**
    * func oneHot(withIndicesTensor indicesTensor: MPSGraphTensor, depth: Int, dataType: MPSDataType, onValue: Double, offValue: Double, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  oneHotWithIndicesTensorDepthDataTypeOnValueOffValueName(indicesTensor: MPSGraphTensor, depth: number, dataType: _MetalPerformanceShaders_MPSDataType, onValue: number, offValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3146656330719650, this, [indicesTensor, depth, dataType, onValue, offValue, name]); }
+  oneHotWithIndicesTensorDepthDataTypeOnValueOffValueName(indicesTensor: MPSGraphTensor, depth: number, dataType: _MetalPerformanceShaders_MPSDataType, onValue: number, offValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3146656330719650, this, [indicesTensor, depth, dataType, onValue, offValue, name]); }
   /**
    * func oneHot(withIndicesTensor indicesTensor: MPSGraphTensor, depth: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  oneHotWithIndicesTensorDepthName(indicesTensor: MPSGraphTensor, depth: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 207158948859944, this, [indicesTensor, depth, name]); }
+  oneHotWithIndicesTensorDepthName(indicesTensor: MPSGraphTensor, depth: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 207158948859944, this, [indicesTensor, depth, name]); }
   /**
    * func padGradient(withIncomingGradientTensor incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, paddingMode: MPSGraphPaddingMode, leftPadding: [NSNumber], rightPadding: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  padGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, paddingMode: MPSGraphPaddingMode, leftPadding: $SDK0, rightPadding: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2330172889903794, this, [incomingGradientTensor, sourceTensor, paddingMode, leftPadding, rightPadding, name]); }
+  padGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, paddingMode: MPSGraphPaddingMode, leftPadding: $SDK0, rightPadding: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2330172889903794, this, [incomingGradientTensor, sourceTensor, paddingMode, leftPadding, rightPadding, name]); }
   /**
    * func padTensor(_ tensor: MPSGraphTensor, with paddingMode: MPSGraphPaddingMode, leftPadding: [NSNumber], rightPadding: [NSNumber], constantValue: Double, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  padTensor(tensor: MPSGraphTensor, paddingMode: MPSGraphPaddingMode, leftPadding: $SDK0, rightPadding: $SDK0, constantValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2431877156218566, this, [tensor, paddingMode, leftPadding, rightPadding, constantValue, name]); }
+  padTensor(tensor: MPSGraphTensor, paddingMode: MPSGraphPaddingMode, leftPadding: $SDK0, rightPadding: $SDK0, constantValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2431877156218566, this, [tensor, paddingMode, leftPadding, rightPadding, constantValue, name]); }
   /**
    * func placeholder(shape: [NSNumber]?, dataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  placeholderShapeDataTypeName(shape: $SDK4, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2198737326634003, this, [shape, dataType, name]); }
+  placeholderShapeDataTypeName(shape: $SDK4, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2198737326634003, this, [shape, dataType, name]); }
   /**
    * func placeholder(shape: [NSNumber]?, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  placeholderShapeName(shape?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1839377842846229, this, [shape, name]); }
+  placeholderShapeName(shape?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1839377842846229, this, [shape, name]); }
   /**
    * func planarTensor(tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 26.3+
    */
-  planarTensor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1317918493084057, this, [tensor, name]); }
+  planarTensor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1317918493084057, this, [tensor, name]); }
   /**
    * func power(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  power(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 160051306481619, this, [primaryTensor, secondaryTensor, name]); }
+  power(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 160051306481619, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func quantize(_ tensor: MPSGraphTensor, scale: Double, zeroPoint: Double, dataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 16.2+
    */
-  quantizeScaleZeroPointDataTypeName(tensor: MPSGraphTensor, scale: number, zeroPoint: number, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3692187826432367, this, [tensor, scale, zeroPoint, dataType, name]); }
+  quantizeScaleZeroPointDataTypeName(tensor: MPSGraphTensor, scale: number, zeroPoint: number, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3692187826432367, this, [tensor, scale, zeroPoint, dataType, name]); }
   /**
    * func quantize(_ tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPoint: Double, dataType: MPSDataType, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.2+
    */
-  quantizeScaleTensorZeroPointDataTypeAxisName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPoint: number, dataType: _MetalPerformanceShaders_MPSDataType, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4309486891854692, this, [tensor, scaleTensor, zeroPoint, dataType, axis, name]); }
+  quantizeScaleTensorZeroPointDataTypeAxisName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPoint: number, dataType: _MetalPerformanceShaders_MPSDataType, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4309486891854692, this, [tensor, scaleTensor, zeroPoint, dataType, axis, name]); }
   /**
    * func quantize(_ tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPointTensor: MPSGraphTensor, dataType: MPSDataType, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.2+
    */
-  quantizeScaleTensorZeroPointTensorDataTypeAxisName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPointTensor: MPSGraphTensor, dataType: _MetalPerformanceShaders_MPSDataType, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4139532073739451, this, [tensor, scaleTensor, zeroPointTensor, dataType, axis, name]); }
+  quantizeScaleTensorZeroPointTensorDataTypeAxisName(tensor: MPSGraphTensor, scaleTensor: MPSGraphTensor, zeroPointTensor: MPSGraphTensor, dataType: _MetalPerformanceShaders_MPSDataType, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4139532073739451, this, [tensor, scaleTensor, zeroPointTensor, dataType, axis, name]); }
   /**
    * func randomPhiloxStateTensor(withCounterLow counterLow: Int, counterHigh: Int, key: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomPhiloxStateTensorWithCounterLowCounterHighKeyName(counterLow: number, counterHigh: number, key: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3181389007847033, this, [counterLow, counterHigh, key, name]); }
+  randomPhiloxStateTensorWithCounterLowCounterHighKeyName(counterLow: number, counterHigh: number, key: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3181389007847033, this, [counterLow, counterHigh, key, name]); }
   /**
    * func randomPhiloxStateTensor(withSeed seed: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomPhiloxStateTensorWithSeedName(seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3380270015590915, this, [seed, name]); }
+  randomPhiloxStateTensorWithSeedName(seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3380270015590915, this, [seed, name]); }
   /**
    * func randomTensor(withShape shape: [NSNumber], descriptor: MPSGraphRandomOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomTensorWithShapeDescriptorName(shape: $SDK0, descriptor: MPSGraphRandomOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4155302390504980, this, [shape, descriptor, name]); }
+  randomTensorWithShapeDescriptorName(shape: $SDK0, descriptor: MPSGraphRandomOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4155302390504980, this, [shape, descriptor, name]); }
   /**
    * func randomTensor(withShape shape: [NSNumber], descriptor: MPSGraphRandomOpDescriptor, seed: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomTensorWithShapeDescriptorSeedName(shape: $SDK0, descriptor: MPSGraphRandomOpDescriptor, seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1226002051352739, this, [shape, descriptor, seed, name]); }
+  randomTensorWithShapeDescriptorSeedName(shape: $SDK0, descriptor: MPSGraphRandomOpDescriptor, seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1226002051352739, this, [shape, descriptor, seed, name]); }
   /**
    * func randomTensor(withShape shape: [NSNumber], descriptor: MPSGraphRandomOpDescriptor, stateTensor state: MPSGraphTensor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 14.0+
    */
-  randomTensorWithShapeDescriptorStateTensorName(shape: $SDK0, descriptor: MPSGraphRandomOpDescriptor, state: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3897116857661397, this, [shape, descriptor, state, name]); }
+  randomTensorWithShapeDescriptorStateTensorName(shape: $SDK0, descriptor: MPSGraphRandomOpDescriptor, state: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3897116857661397, this, [shape, descriptor, state, name]); }
   /**
    * func randomTensor(withShapeTensor shapeTensor: MPSGraphTensor, descriptor: MPSGraphRandomOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomTensorWithShapeTensorDescriptorName(shapeTensor: MPSGraphTensor, descriptor: MPSGraphRandomOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3499912042472827, this, [shapeTensor, descriptor, name]); }
+  randomTensorWithShapeTensorDescriptorName(shapeTensor: MPSGraphTensor, descriptor: MPSGraphRandomOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3499912042472827, this, [shapeTensor, descriptor, name]); }
   /**
    * func randomTensor(withShapeTensor shapeTensor: MPSGraphTensor, descriptor: MPSGraphRandomOpDescriptor, seed: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomTensorWithShapeTensorDescriptorSeedName(shapeTensor: MPSGraphTensor, descriptor: MPSGraphRandomOpDescriptor, seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3259226894144054, this, [shapeTensor, descriptor, seed, name]); }
+  randomTensorWithShapeTensorDescriptorSeedName(shapeTensor: MPSGraphTensor, descriptor: MPSGraphRandomOpDescriptor, seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3259226894144054, this, [shapeTensor, descriptor, seed, name]); }
   /**
    * func randomTensor(withShapeTensor shapeTensor: MPSGraphTensor, descriptor: MPSGraphRandomOpDescriptor, stateTensor state: MPSGraphTensor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 14.0+
    */
-  randomTensorWithShapeTensorDescriptorStateTensorName(shapeTensor: MPSGraphTensor, descriptor: MPSGraphRandomOpDescriptor, state: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3069495628007486, this, [shapeTensor, descriptor, state, name]); }
+  randomTensorWithShapeTensorDescriptorStateTensorName(shapeTensor: MPSGraphTensor, descriptor: MPSGraphRandomOpDescriptor, state: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3069495628007486, this, [shapeTensor, descriptor, state, name]); }
   /**
    * func randomUniformTensor(withShape shape: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomUniformTensorWithShapeName(shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 132732695908341, this, [shape, name]); }
+  randomUniformTensorWithShapeName(shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 132732695908341, this, [shape, name]); }
   /**
    * func randomUniformTensor(withShape shape: [NSNumber], seed: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomUniformTensorWithShapeSeedName(shape: $SDK0, seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 160940835145284, this, [shape, seed, name]); }
+  randomUniformTensorWithShapeSeedName(shape: $SDK0, seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 160940835145284, this, [shape, seed, name]); }
   /**
    * func randomUniformTensor(withShape shape: [NSNumber], stateTensor state: MPSGraphTensor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 14.0+
    */
-  randomUniformTensorWithShapeStateTensorName(shape: $SDK0, state: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4126598018931255, this, [shape, state, name]); }
+  randomUniformTensorWithShapeStateTensorName(shape: $SDK0, state: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4126598018931255, this, [shape, state, name]); }
   /**
    * func randomUniformTensor(withShapeTensor shapeTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomUniformTensorWithShapeTensorName(shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4074240474674072, this, [shapeTensor, name]); }
+  randomUniformTensorWithShapeTensorName(shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4074240474674072, this, [shapeTensor, name]); }
   /**
    * func randomUniformTensor(withShapeTensor shapeTensor: MPSGraphTensor, seed: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  randomUniformTensorWithShapeTensorSeedName(shapeTensor: MPSGraphTensor, seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2345564994124742, this, [shapeTensor, seed, name]); }
+  randomUniformTensorWithShapeTensorSeedName(shapeTensor: MPSGraphTensor, seed: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2345564994124742, this, [shapeTensor, seed, name]); }
   /**
    * func randomUniformTensor(withShapeTensor shapeTensor: MPSGraphTensor, stateTensor state: MPSGraphTensor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 14.0+
    */
-  randomUniformTensorWithShapeTensorStateTensorName(shapeTensor: MPSGraphTensor, state: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2854538642710561, this, [shapeTensor, state, name]); }
+  randomUniformTensorWithShapeTensorStateTensorName(shapeTensor: MPSGraphTensor, state: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2854538642710561, this, [shapeTensor, state, name]); }
   /**
    * func reLUGradient(withIncomingGradient gradient: MPSGraphTensor, sourceTensor source: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reLUGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2694229970098091, this, [gradient, source, name]); }
+  reLUGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2694229970098091, this, [gradient, source, name]); }
   /**
    * func reLU(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reLU(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 566376728709096, this, [tensor, name]); }
+  reLU(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 566376728709096, this, [tensor, name]); }
   /**
    * func read(_ variable: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  read(variable: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3661719079070995, this, [variable, name]); }
+  read(variable: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3661719079070995, this, [variable, name]); }
   /**
    * func realPartOfTensor(tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  realPartOfTensor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2169096324908930, this, [tensor, name]); }
+  realPartOfTensor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2169096324908930, this, [tensor, name]); }
   /**
    * func realToHermiteanFFT(_ tensor: MPSGraphTensor, axes: [NSNumber], descriptor: MPSGraphFFTDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  realToHermiteanFFTAxesDescriptorName(tensor: MPSGraphTensor, axes: $SDK0, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2104829042554304, this, [tensor, axes, descriptor, name]); }
+  realToHermiteanFFTAxesDescriptorName(tensor: MPSGraphTensor, axes: $SDK0, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2104829042554304, this, [tensor, axes, descriptor, name]); }
   /**
    * func realToHermiteanFFT(_ tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, descriptor: MPSGraphFFTDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  realToHermiteanFFTAxesTensorDescriptorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3211205455543273, this, [tensor, axesTensor, descriptor, name]); }
+  realToHermiteanFFTAxesTensorDescriptorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, descriptor: MPSGraphFFTDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3211205455543273, this, [tensor, axesTensor, descriptor, name]); }
   /**
    * func reciprocalSquareRoot(_ tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  reciprocalSquareRoot(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3229322687006584, this, [tensor, name]); }
+  reciprocalSquareRoot(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3229322687006584, this, [tensor, name]); }
   /**
    * func reciprocal(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reciprocal(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3872071274160908, this, [tensor, name]); }
+  reciprocal(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3872071274160908, this, [tensor, name]); }
   /**
    * func reductionAnd(with tensor: MPSGraphTensor, axes: [NSNumber]?, name: String?) -> MPSGraphTensor
    * @availability iOS 15.3+
    */
-  reductionAndWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2703058112670589, this, [tensor, axes, name]); }
+  reductionAndWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2703058112670589, this, [tensor, axes, name]); }
   /**
    * func reductionAnd(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 15.3+
    */
-  reductionAndWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2025736220089595, this, [tensor, axis, name]); }
+  reductionAndWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2025736220089595, this, [tensor, axis, name]); }
   /**
    * func reductionArgMaximum(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  reductionArgMaximum(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2466370498127015, this, [tensor, axis, name]); }
+  reductionArgMaximum(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2466370498127015, this, [tensor, axis, name]); }
   /**
    * func reductionArgMinimum(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  reductionArgMinimum(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3731799970074458, this, [tensor, axis, name]); }
+  reductionArgMinimum(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3731799970074458, this, [tensor, axis, name]); }
   /**
    * func reductionMaximumPropagateNaN(with tensor: MPSGraphTensor, axes: [NSNumber]?, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionMaximumPropagateNaNWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3265628663625264, this, [tensor, axes, name]); }
+  reductionMaximumPropagateNaNWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3265628663625264, this, [tensor, axes, name]); }
   /**
    * func reductionMaximumPropagateNaN(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionMaximumPropagateNaNWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2931581860861167, this, [tensor, axis, name]); }
+  reductionMaximumPropagateNaNWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2931581860861167, this, [tensor, axis, name]); }
   /**
    * func reductionMaximum(with tensor: MPSGraphTensor, axes: [NSNumber]?, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionMaximumWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1018926754817249, this, [tensor, axes, name]); }
+  reductionMaximumWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1018926754817249, this, [tensor, axes, name]); }
   /**
    * func reductionMaximum(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionMaximumWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2652596124529688, this, [tensor, axis, name]); }
+  reductionMaximumWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2652596124529688, this, [tensor, axis, name]); }
   /**
    * func reductionMinimumPropagateNaN(with tensor: MPSGraphTensor, axes: [NSNumber]?, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionMinimumPropagateNaNWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1177669159438379, this, [tensor, axes, name]); }
+  reductionMinimumPropagateNaNWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1177669159438379, this, [tensor, axes, name]); }
   /**
    * func reductionMinimumPropagateNaN(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionMinimumPropagateNaNWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 973940704343182, this, [tensor, axis, name]); }
+  reductionMinimumPropagateNaNWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 973940704343182, this, [tensor, axis, name]); }
   /**
    * func reductionMinimum(with tensor: MPSGraphTensor, axes: [NSNumber]?, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionMinimumWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2905147081534350, this, [tensor, axes, name]); }
+  reductionMinimumWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2905147081534350, this, [tensor, axes, name]); }
   /**
    * func reductionMinimum(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionMinimumWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1552757431987860, this, [tensor, axis, name]); }
+  reductionMinimumWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1552757431987860, this, [tensor, axis, name]); }
   /**
    * func reductionOr(with tensor: MPSGraphTensor, axes: [NSNumber]?, name: String?) -> MPSGraphTensor
    * @availability iOS 15.3+
    */
-  reductionOrWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 469767358790399, this, [tensor, axes, name]); }
+  reductionOrWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 469767358790399, this, [tensor, axes, name]); }
   /**
    * func reductionOr(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 15.3+
    */
-  reductionOrWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1265384186453608, this, [tensor, axis, name]); }
+  reductionOrWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1265384186453608, this, [tensor, axis, name]); }
   /**
    * func reductionProduct(with tensor: MPSGraphTensor, axes: [NSNumber]?, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionProductWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3635471837256342, this, [tensor, axes, name]); }
+  reductionProductWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3635471837256342, this, [tensor, axes, name]); }
   /**
    * func reductionProduct(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionProductWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4096655565011693, this, [tensor, axis, name]); }
+  reductionProductWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4096655565011693, this, [tensor, axis, name]); }
   /**
    * func reductionSum(with tensor: MPSGraphTensor, axes: [NSNumber]?, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionSumWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2700118338718694, this, [tensor, axes, name]); }
+  reductionSumWithAxesName(tensor: MPSGraphTensor, axes?: $SDK4, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2700118338718694, this, [tensor, axes, name]); }
   /**
    * func reductionSum(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reductionSumWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3361467616342118, this, [tensor, axis, name]); }
+  reductionSumWithAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3361467616342118, this, [tensor, axis, name]); }
   /**
    * func reinterpretCast(_ tensor: MPSGraphTensor, to type: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 16.3+
    */
-  reinterpretCast(tensor: MPSGraphTensor, type: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1336757674871058, this, [tensor, type, name]); }
+  reinterpretCast(tensor: MPSGraphTensor, type: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1336757674871058, this, [tensor, type, name]); }
   /**
    * func reshape(_ tensor: MPSGraphTensor, shape: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  reshapeShapeName(tensor: MPSGraphTensor, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2803177484075951, this, [tensor, shape, name]); }
+  reshapeShapeName(tensor: MPSGraphTensor, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2803177484075951, this, [tensor, shape, name]); }
   /**
    * func reshape(_ tensor: MPSGraphTensor, shapeTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  reshapeShapeTensorName(tensor: MPSGraphTensor, shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1435435162041801, this, [tensor, shapeTensor, name]); }
+  reshapeShapeTensorName(tensor: MPSGraphTensor, shapeTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1435435162041801, this, [tensor, shapeTensor, name]); }
   /**
    * func resizeBilinear(withGradientTensor gradient: MPSGraphTensor, input: MPSGraphTensor, centerResult: Bool, alignCorners: Bool, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeBilinearWithGradientTensorInputCenterResultAlignCornersLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2673614418388372, this, [gradient, input, centerResult, alignCorners, layout, name]); }
+  resizeBilinearWithGradientTensorInputCenterResultAlignCornersLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2673614418388372, this, [gradient, input, centerResult, alignCorners, layout, name]); }
   /**
    * func resizeBilinear(withGradientTensor gradient: MPSGraphTensor, input: MPSGraphTensor, scaleOffsetTensor scaleOffset: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeBilinearWithGradientTensorInputScaleOffsetTensorLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, scaleOffset: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4228033687406786, this, [gradient, input, scaleOffset, layout, name]); }
+  resizeBilinearWithGradientTensorInputScaleOffsetTensorLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, scaleOffset: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4228033687406786, this, [gradient, input, scaleOffset, layout, name]); }
   /**
    * func resizeBilinear(withGradientTensor gradient: MPSGraphTensor, input: MPSGraphTensor, scale: MPSGraphTensor, offsetTensor offset: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  resizeBilinearWithGradientTensorInputScaleOffsetTensorName(gradient: MPSGraphTensor, input: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 707109203870233, this, [gradient, input, scale, offset, name]); }
+  resizeBilinearWithGradientTensorInputScaleOffsetTensorName(gradient: MPSGraphTensor, input: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 707109203870233, this, [gradient, input, scale, offset, name]); }
   /**
    * func resizeBilinear(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, centerResult: Bool, alignCorners: Bool, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeBilinearSizeTensorCenterResultAlignCornersLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3564348996125863, this, [imagesTensor, size, centerResult, alignCorners, layout, name]); }
+  resizeBilinearSizeTensorCenterResultAlignCornersLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3564348996125863, this, [imagesTensor, size, centerResult, alignCorners, layout, name]); }
   /**
    * func resizeBilinear(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, centerResult: Bool, alignCorners: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  resizeBilinearSizeTensorCenterResultAlignCornersName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, centerResult: boolean, alignCorners: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3698405434015796, this, [imagesTensor, size, centerResult, alignCorners, name]); }
+  resizeBilinearSizeTensorCenterResultAlignCornersName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, centerResult: boolean, alignCorners: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3698405434015796, this, [imagesTensor, size, centerResult, alignCorners, name]); }
   /**
    * func resizeBilinear(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, scaleOffsetTensor scaleOffset: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeBilinearSizeTensorScaleOffsetTensorLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scaleOffset: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3074924087846213, this, [imagesTensor, size, scaleOffset, layout, name]); }
+  resizeBilinearSizeTensorScaleOffsetTensorLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scaleOffset: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3074924087846213, this, [imagesTensor, size, scaleOffset, layout, name]); }
   /**
    * func resizeBilinear(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, scaleTensor scale: MPSGraphTensor, offsetTensor offset: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  resizeBilinearSizeTensorScaleTensorOffsetTensorName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1403579682075125, this, [imagesTensor, size, scale, offset, name]); }
+  resizeBilinearSizeTensorScaleTensorOffsetTensorName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1403579682075125, this, [imagesTensor, size, scale, offset, name]); }
   /**
    * func resizeNearest(withGradientTensor gradient: MPSGraphTensor, input: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, centerResult: Bool, alignCorners: Bool, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeNearestWithGradientTensorInputNearestRoundingModeCenterResultAlignCornersLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 907969973275242, this, [gradient, input, nearestRoundingMode, centerResult, alignCorners, layout, name]); }
+  resizeNearestWithGradientTensorInputNearestRoundingModeCenterResultAlignCornersLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 907969973275242, this, [gradient, input, nearestRoundingMode, centerResult, alignCorners, layout, name]); }
   /**
    * func resizeNearest(withGradientTensor gradient: MPSGraphTensor, input: MPSGraphTensor, scaleOffsetTensor scaleOffset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeNearestWithGradientTensorInputScaleOffsetTensorNearestRoundingModeLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, scaleOffset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2621008954722448, this, [gradient, input, scaleOffset, nearestRoundingMode, layout, name]); }
+  resizeNearestWithGradientTensorInputScaleOffsetTensorNearestRoundingModeLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, scaleOffset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2621008954722448, this, [gradient, input, scaleOffset, nearestRoundingMode, layout, name]); }
   /**
    * func resizeNearest(withGradientTensor gradient: MPSGraphTensor, input: MPSGraphTensor, scale: MPSGraphTensor, offsetTensor offset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  resizeNearestWithGradientTensorInputScaleOffsetTensorNearestRoundingModeName(gradient: MPSGraphTensor, input: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3211751940822625, this, [gradient, input, scale, offset, nearestRoundingMode, name]); }
+  resizeNearestWithGradientTensorInputScaleOffsetTensorNearestRoundingModeName(gradient: MPSGraphTensor, input: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3211751940822625, this, [gradient, input, scale, offset, nearestRoundingMode, name]); }
   /**
    * func resizeNearest(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, centerResult: Bool, alignCorners: Bool, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeNearestSizeTensorNearestRoundingModeCenterResultAlignCornersLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1469256590488979, this, [imagesTensor, size, nearestRoundingMode, centerResult, alignCorners, layout, name]); }
+  resizeNearestSizeTensorNearestRoundingModeCenterResultAlignCornersLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1469256590488979, this, [imagesTensor, size, nearestRoundingMode, centerResult, alignCorners, layout, name]); }
   /**
    * func resizeNearest(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, centerResult: Bool, alignCorners: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  resizeNearestSizeTensorNearestRoundingModeCenterResultAlignCornersName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, centerResult: boolean, alignCorners: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3565885919557580, this, [imagesTensor, size, nearestRoundingMode, centerResult, alignCorners, name]); }
+  resizeNearestSizeTensorNearestRoundingModeCenterResultAlignCornersName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, centerResult: boolean, alignCorners: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3565885919557580, this, [imagesTensor, size, nearestRoundingMode, centerResult, alignCorners, name]); }
   /**
    * func resizeNearest(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, scaleOffsetTensor scaleOffset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeNearestSizeTensorScaleOffsetTensorNearestRoundingModeLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scaleOffset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2407412194357933, this, [imagesTensor, size, scaleOffset, nearestRoundingMode, layout, name]); }
+  resizeNearestSizeTensorScaleOffsetTensorNearestRoundingModeLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scaleOffset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2407412194357933, this, [imagesTensor, size, scaleOffset, nearestRoundingMode, layout, name]); }
   /**
    * func resizeNearest(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, scaleTensor scale: MPSGraphTensor, offsetTensor offset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  resizeNearestSizeTensorScaleTensorOffsetTensorNearestRoundingModeName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4177736201132921, this, [imagesTensor, size, scale, offset, nearestRoundingMode, name]); }
+  resizeNearestSizeTensorScaleTensorOffsetTensorNearestRoundingModeName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4177736201132921, this, [imagesTensor, size, scale, offset, nearestRoundingMode, name]); }
   /**
    * func resize(_ imagesTensor: MPSGraphTensor, size: [NSNumber], mode: MPSGraphResizeMode, centerResult: Bool, alignCorners: Bool, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  resizeSizeModeCenterResultAlignCornersLayoutName(imagesTensor: MPSGraphTensor, size: $SDK0, mode: MPSGraphResizeMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4274081291881911, this, [imagesTensor, size, mode, centerResult, alignCorners, layout, name]); }
+  resizeSizeModeCenterResultAlignCornersLayoutName(imagesTensor: MPSGraphTensor, size: $SDK0, mode: MPSGraphResizeMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4274081291881911, this, [imagesTensor, size, mode, centerResult, alignCorners, layout, name]); }
   /**
    * func resize(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, mode: MPSGraphResizeMode, centerResult: Bool, alignCorners: Bool, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  resizeSizeTensorModeCenterResultAlignCornersLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, mode: MPSGraphResizeMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1562855669561985, this, [imagesTensor, size, mode, centerResult, alignCorners, layout, name]); }
+  resizeSizeTensorModeCenterResultAlignCornersLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, mode: MPSGraphResizeMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1562855669561985, this, [imagesTensor, size, mode, centerResult, alignCorners, layout, name]); }
   /**
    * func resize(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, mode: MPSGraphResizeMode, centerResult: Bool, alignCorners: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  resizeSizeTensorModeCenterResultAlignCornersName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, mode: MPSGraphResizeMode, centerResult: boolean, alignCorners: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1727838020939690, this, [imagesTensor, size, mode, centerResult, alignCorners, name]); }
+  resizeSizeTensorModeCenterResultAlignCornersName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, mode: MPSGraphResizeMode, centerResult: boolean, alignCorners: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1727838020939690, this, [imagesTensor, size, mode, centerResult, alignCorners, name]); }
   /**
    * func resize(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, scaleOffsetTensor scaleOffset: MPSGraphTensor, mode: MPSGraphResizeMode, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeSizeTensorScaleOffsetTensorModeLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scaleOffset: MPSGraphTensor, mode: MPSGraphResizeMode, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3256762769365132, this, [imagesTensor, size, scaleOffset, mode, layout, name]); }
+  resizeSizeTensorScaleOffsetTensorModeLayoutName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scaleOffset: MPSGraphTensor, mode: MPSGraphResizeMode, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3256762769365132, this, [imagesTensor, size, scaleOffset, mode, layout, name]); }
   /**
    * func resize(_ imagesTensor: MPSGraphTensor, sizeTensor size: MPSGraphTensor, scaleTensor scale: MPSGraphTensor, offsetTenor offset: MPSGraphTensor, mode: MPSGraphResizeMode, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  resizeSizeTensorScaleTensorOffsetTenorModeName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, mode: MPSGraphResizeMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1176413682652798, this, [imagesTensor, size, scale, offset, mode, name]); }
+  resizeSizeTensorScaleTensorOffsetTenorModeName(imagesTensor: MPSGraphTensor, size: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, mode: MPSGraphResizeMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1176413682652798, this, [imagesTensor, size, scale, offset, mode, name]); }
   /**
    * func resize(withGradientTensor gradient: MPSGraphTensor, input: MPSGraphTensor, mode: MPSGraphResizeMode, centerResult: Bool, alignCorners: Bool, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  resizeWithGradientTensorInputModeCenterResultAlignCornersLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, mode: MPSGraphResizeMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3357018063505034, this, [gradient, input, mode, centerResult, alignCorners, layout, name]); }
+  resizeWithGradientTensorInputModeCenterResultAlignCornersLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, mode: MPSGraphResizeMode, centerResult: boolean, alignCorners: boolean, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3357018063505034, this, [gradient, input, mode, centerResult, alignCorners, layout, name]); }
   /**
    * func resize(withGradientTensor gradient: MPSGraphTensor, input: MPSGraphTensor, scaleOffsetTensor scaleOffset: MPSGraphTensor, mode: MPSGraphResizeMode, layout: MPSGraphTensorNamedDataLayout, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  resizeWithGradientTensorInputScaleOffsetTensorModeLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, scaleOffset: MPSGraphTensor, mode: MPSGraphResizeMode, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1887797440730079, this, [gradient, input, scaleOffset, mode, layout, name]); }
+  resizeWithGradientTensorInputScaleOffsetTensorModeLayoutName(gradient: MPSGraphTensor, input: MPSGraphTensor, scaleOffset: MPSGraphTensor, mode: MPSGraphResizeMode, layout: MPSGraphTensorNamedDataLayout, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1887797440730079, this, [gradient, input, scaleOffset, mode, layout, name]); }
   /**
    * func resize(withGradientTensor gradient: MPSGraphTensor, input: MPSGraphTensor, scale: MPSGraphTensor, offsetTensor offset: MPSGraphTensor, mode: MPSGraphResizeMode, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  resizeWithGradientTensorInputScaleOffsetTensorModeName(gradient: MPSGraphTensor, input: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, mode: MPSGraphResizeMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 14361085307984, this, [gradient, input, scale, offset, mode, name]); }
+  resizeWithGradientTensorInputScaleOffsetTensorModeName(gradient: MPSGraphTensor, input: MPSGraphTensor, scale: MPSGraphTensor, offset: MPSGraphTensor, mode: MPSGraphResizeMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 14361085307984, this, [gradient, input, scale, offset, mode, name]); }
   /**
    * func reverseSquareRoot(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    * @deprecated iOS 18.0
    */
-  reverseSquareRoot(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1979418799487061, this, [tensor, name]); }
+  reverseSquareRoot(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1979418799487061, this, [tensor, name]); }
   /**
    * func reverse(_ tensor: MPSGraphTensor, axes: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  reverseAxesName(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 668200693143534, this, [tensor, axes, name]); }
+  reverseAxesName(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 668200693143534, this, [tensor, axes, name]); }
   /**
    * func reverse(_ tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  reverseAxesTensorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2160206102729256, this, [tensor, axesTensor, name]); }
+  reverseAxesTensorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2160206102729256, this, [tensor, axesTensor, name]); }
   /**
    * func reverse(_ tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  reverseName(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4417292741469986, this, [tensor, name]); }
+  reverseName(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4417292741469986, this, [tensor, name]); }
   /**
    * func rint(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  rint(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 262180373327405, this, [tensor, name]); }
+  rint(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 262180373327405, this, [tensor, name]); }
   /**
    * func round(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  round(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4299980231178791, this, [tensor, name]); }
+  round(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4299980231178791, this, [tensor, name]); }
   /**
    * func runAsync(feeds: [MPSGraphTensor : MPSGraphTensorData], targetTensors: [MPSGraphTensor], targetOperations: [MPSGraphOperation]?, executionDescriptor: MPSGraphExecutionDescriptor?) -> [MPSGraphTensor : MPSGraphTensorData]
    * @availability iOS 14.0+
    */
-  runAsyncFeedsTargetTensorsTargetOperationsExecutionDescriptor(feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2, executionDescriptor?: $SDK6): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1828120681831146, this, [feeds, targetTensors, targetOperations, executionDescriptor]); }
+  runAsyncFeedsTargetTensorsTargetOperationsExecutionDescriptor(feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2, executionDescriptor?: $SDK6): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1828120681831146, this, [feeds, targetTensors, targetOperations, executionDescriptor]); }
   /**
    * func runAsync(with commandQueue: any MTLCommandQueue, feeds: [MPSGraphTensor : MPSGraphTensorData], targetOperations: [MPSGraphOperation]?, resultsDictionary: [MPSGraphTensor : MPSGraphTensorData], executionDescriptor: MPSGraphExecutionDescriptor?)
    * @availability iOS 14.0+
    */
-  runAsyncWithFeedsTargetOperationsResultsDictionaryExecutionDescriptor(commandQueue: SDKHandle, feeds: $SDK5, targetOperations: $SDK2, resultsDictionary: $SDK5, executionDescriptor?: $SDK6): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 498110078153595, this, [commandQueue, feeds, targetOperations, resultsDictionary, executionDescriptor]); }
+  runAsyncWithFeedsTargetOperationsResultsDictionaryExecutionDescriptor(commandQueue: SDKHandle, feeds: $SDK5, targetOperations: $SDK2, resultsDictionary: $SDK5, executionDescriptor?: $SDK6): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 498110078153595, this, [commandQueue, feeds, targetOperations, resultsDictionary, executionDescriptor]); }
   /**
    * func runAsync(with commandQueue: any MTLCommandQueue, feeds: [MPSGraphTensor : MPSGraphTensorData], targetTensors: [MPSGraphTensor], targetOperations: [MPSGraphOperation]?, executionDescriptor: MPSGraphExecutionDescriptor?) -> [MPSGraphTensor : MPSGraphTensorData]
    * @availability iOS 14.0+
    */
-  runAsyncWithFeedsTargetTensorsTargetOperationsExecutionDescriptor(commandQueue: SDKHandle, feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2, executionDescriptor?: $SDK6): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 763407367364212, this, [commandQueue, feeds, targetTensors, targetOperations, executionDescriptor]); }
+  runAsyncWithFeedsTargetTensorsTargetOperationsExecutionDescriptor(commandQueue: SDKHandle, feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2, executionDescriptor?: $SDK6): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_d968214ecc684fb6", 763407367364212, this, [commandQueue, feeds, targetTensors, targetOperations, executionDescriptor]); }
   /**
    * func run(feeds: [MPSGraphTensor : MPSGraphTensorData], targetTensors: [MPSGraphTensor], targetOperations: [MPSGraphOperation]?) -> [MPSGraphTensor : MPSGraphTensorData]
    * @availability iOS 14.0+
    */
-  runFeedsTargetTensorsTargetOperations(feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1355629301852934, this, [feeds, targetTensors, targetOperations]); }
+  runFeedsTargetTensorsTargetOperations(feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1355629301852934, this, [feeds, targetTensors, targetOperations]); }
   /**
    * func run(with commandQueue: any MTLCommandQueue, feeds: [MPSGraphTensor : MPSGraphTensorData], targetOperations: [MPSGraphOperation]?, resultsDictionary: [MPSGraphTensor : MPSGraphTensorData])
    * @availability iOS 14.0+
    */
-  runWithFeedsTargetOperationsResultsDictionary(commandQueue: SDKHandle, feeds: $SDK5, targetOperations: $SDK2, resultsDictionary: $SDK5): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1890053877015262, this, [commandQueue, feeds, targetOperations, resultsDictionary]); }
+  runWithFeedsTargetOperationsResultsDictionary(commandQueue: SDKHandle, feeds: $SDK5, targetOperations: $SDK2, resultsDictionary: $SDK5): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1890053877015262, this, [commandQueue, feeds, targetOperations, resultsDictionary]); }
   /**
    * func run(with commandQueue: any MTLCommandQueue, feeds: [MPSGraphTensor : MPSGraphTensorData], targetTensors: [MPSGraphTensor], targetOperations: [MPSGraphOperation]?) -> [MPSGraphTensor : MPSGraphTensorData]
    * @availability iOS 14.0+
    */
-  runWithFeedsTargetTensorsTargetOperations(commandQueue: SDKHandle, feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1788507996217537, this, [commandQueue, feeds, targetTensors, targetOperations]); }
+  runWithFeedsTargetTensorsTargetOperations(commandQueue: SDKHandle, feeds: $SDK5, targetTensors: Array<MPSGraphTensor>, targetOperations?: $SDK2): $SDK5 { return callSDK<$SDK5>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1788507996217537, this, [commandQueue, feeds, targetTensors, targetOperations]); }
   /**
    * func sampleGrid(withSourceTensor source: MPSGraphTensor, coordinateTensor coordinates: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, normalizeCoordinates: Bool, relativeCoordinates: Bool, alignCorners: Bool, paddingMode: MPSGraphPaddingMode, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, constantValue: Double, name: String?) -> MPSGraphTensor
    * @availability iOS 16.2+
    */
-  sampleGridWithSourceTensorCoordinateTensorLayoutNormalizeCoordinatesRelativeCoordinatesAlignCornersPaddingModeNearestRoundingModeConstantValueName(source: MPSGraphTensor, coordinates: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, normalizeCoordinates: boolean, relativeCoordinates: boolean, alignCorners: boolean, paddingMode: MPSGraphPaddingMode, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, constantValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3180191828082966, this, [source, coordinates, layout, normalizeCoordinates, relativeCoordinates, alignCorners, paddingMode, nearestRoundingMode, constantValue, name]); }
+  sampleGridWithSourceTensorCoordinateTensorLayoutNormalizeCoordinatesRelativeCoordinatesAlignCornersPaddingModeNearestRoundingModeConstantValueName(source: MPSGraphTensor, coordinates: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, normalizeCoordinates: boolean, relativeCoordinates: boolean, alignCorners: boolean, paddingMode: MPSGraphPaddingMode, nearestRoundingMode: MPSGraphResizeNearestRoundingMode, constantValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3180191828082966, this, [source, coordinates, layout, normalizeCoordinates, relativeCoordinates, alignCorners, paddingMode, nearestRoundingMode, constantValue, name]); }
   /**
    * func sampleGrid(withSourceTensor source: MPSGraphTensor, coordinateTensor coordinates: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, normalizeCoordinates: Bool, relativeCoordinates: Bool, alignCorners: Bool, paddingMode: MPSGraphPaddingMode, samplingMode: MPSGraphResizeMode, constantValue: Double, name: String?) -> MPSGraphTensor
    * @availability iOS 16.2+
    */
-  sampleGridWithSourceTensorCoordinateTensorLayoutNormalizeCoordinatesRelativeCoordinatesAlignCornersPaddingModeSamplingModeConstantValueName(source: MPSGraphTensor, coordinates: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, normalizeCoordinates: boolean, relativeCoordinates: boolean, alignCorners: boolean, paddingMode: MPSGraphPaddingMode, samplingMode: MPSGraphResizeMode, constantValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3735666956704527, this, [source, coordinates, layout, normalizeCoordinates, relativeCoordinates, alignCorners, paddingMode, samplingMode, constantValue, name]); }
+  sampleGridWithSourceTensorCoordinateTensorLayoutNormalizeCoordinatesRelativeCoordinatesAlignCornersPaddingModeSamplingModeConstantValueName(source: MPSGraphTensor, coordinates: MPSGraphTensor, layout: MPSGraphTensorNamedDataLayout, normalizeCoordinates: boolean, relativeCoordinates: boolean, alignCorners: boolean, paddingMode: MPSGraphPaddingMode, samplingMode: MPSGraphResizeMode, constantValue: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3735666956704527, this, [source, coordinates, layout, normalizeCoordinates, relativeCoordinates, alignCorners, paddingMode, samplingMode, constantValue, name]); }
   /**
    * func scaledDotProductAttention(query queryTensor: MPSGraphTensor, key keyTensor: MPSGraphTensor, value valueTensor: MPSGraphTensor, descriptor: MPSGraphSDPADescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 27.0+
    */
-  scaledDotProductAttentionQueryKeyValueDescriptorName(queryTensor: MPSGraphTensor, keyTensor: MPSGraphTensor, valueTensor: MPSGraphTensor, descriptor: MPSGraphSDPADescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 546395725826390, this, [queryTensor, keyTensor, valueTensor, descriptor, name]); }
+  scaledDotProductAttentionQueryKeyValueDescriptorName(queryTensor: MPSGraphTensor, keyTensor: MPSGraphTensor, valueTensor: MPSGraphTensor, descriptor: MPSGraphSDPADescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 546395725826390, this, [queryTensor, keyTensor, valueTensor, descriptor, name]); }
   /**
    * func scaledDotProductAttention(query queryTensor: MPSGraphTensor, key keyTensor: MPSGraphTensor, value valueTensor: MPSGraphTensor, mask maskTensor: MPSGraphTensor?, scale: Float, name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  scaledDotProductAttentionQueryKeyValueMaskScaleName(queryTensor: MPSGraphTensor, keyTensor: MPSGraphTensor, valueTensor: MPSGraphTensor, maskTensor: (MPSGraphTensor) | null, scale: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1275620288872342, this, [queryTensor, keyTensor, valueTensor, maskTensor, scale, name]); }
+  scaledDotProductAttentionQueryKeyValueMaskScaleName(queryTensor: MPSGraphTensor, keyTensor: MPSGraphTensor, valueTensor: MPSGraphTensor, maskTensor: (MPSGraphTensor) | null, scale: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1275620288872342, this, [queryTensor, keyTensor, valueTensor, maskTensor, scale, name]); }
   /**
    * func scaledDotProductAttention(query queryTensor: MPSGraphTensor, key keyTensor: MPSGraphTensor, value valueTensor: MPSGraphTensor, scale: Float, name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  scaledDotProductAttentionQueryKeyValueScaleName(queryTensor: MPSGraphTensor, keyTensor: MPSGraphTensor, valueTensor: MPSGraphTensor, scale: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1573073506337397, this, [queryTensor, keyTensor, valueTensor, scale, name]); }
+  scaledDotProductAttentionQueryKeyValueScaleName(queryTensor: MPSGraphTensor, keyTensor: MPSGraphTensor, valueTensor: MPSGraphTensor, scale: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1573073506337397, this, [queryTensor, keyTensor, valueTensor, scale, name]); }
   /**
    * func scatterAlongAxis(_ axis: Int, data dataTensor: MPSGraphTensor, updates updatesTensor: MPSGraphTensor, indices indicesTensor: MPSGraphTensor, mode: MPSGraphScatterMode, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  scatterAlongAxisDataUpdatesIndicesModeName(axis: number, dataTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4049076440543929, this, [axis, dataTensor, updatesTensor, indicesTensor, mode, name]); }
+  scatterAlongAxisDataUpdatesIndicesModeName(axis: number, dataTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4049076440543929, this, [axis, dataTensor, updatesTensor, indicesTensor, mode, name]); }
   /**
    * func scatterAlongAxis(_ axis: Int, updates updatesTensor: MPSGraphTensor, indices indicesTensor: MPSGraphTensor, shape: [NSNumber], mode: MPSGraphScatterMode, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  scatterAlongAxisUpdatesIndicesShapeModeName(axis: number, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2589510819204267, this, [axis, updatesTensor, indicesTensor, shape, mode, name]); }
+  scatterAlongAxisUpdatesIndicesShapeModeName(axis: number, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2589510819204267, this, [axis, updatesTensor, indicesTensor, shape, mode, name]); }
   /**
    * func scatterAlongAxisTensor(_ axisTensor: MPSGraphTensor, data dataTensor: MPSGraphTensor, updates updatesTensor: MPSGraphTensor, indices indicesTensor: MPSGraphTensor, mode: MPSGraphScatterMode, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  scatterAlongAxisTensorDataUpdatesIndicesModeName(axisTensor: MPSGraphTensor, dataTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1630644993907032, this, [axisTensor, dataTensor, updatesTensor, indicesTensor, mode, name]); }
+  scatterAlongAxisTensorDataUpdatesIndicesModeName(axisTensor: MPSGraphTensor, dataTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1630644993907032, this, [axisTensor, dataTensor, updatesTensor, indicesTensor, mode, name]); }
   /**
    * func scatterAlongAxisTensor(_ axisTensor: MPSGraphTensor, updates updatesTensor: MPSGraphTensor, indices indicesTensor: MPSGraphTensor, shape: [NSNumber], mode: MPSGraphScatterMode, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  scatterAlongAxisTensorUpdatesIndicesShapeModeName(axisTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2112989142664114, this, [axisTensor, updatesTensor, indicesTensor, shape, mode, name]); }
+  scatterAlongAxisTensorUpdatesIndicesShapeModeName(axisTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2112989142664114, this, [axisTensor, updatesTensor, indicesTensor, shape, mode, name]); }
   /**
    * func scatterNDWithData(_ dataTensor: MPSGraphTensor, updates updatesTensor: MPSGraphTensor, indices indicesTensor: MPSGraphTensor, batchDimensions: Int, mode: MPSGraphScatterMode, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  scatterNDWithData(dataTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, batchDimensions: number, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2953200371426053, this, [dataTensor, updatesTensor, indicesTensor, batchDimensions, mode, name]); }
+  scatterNDWithData(dataTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, batchDimensions: number, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2953200371426053, this, [dataTensor, updatesTensor, indicesTensor, batchDimensions, mode, name]); }
   /**
    * func scatterND(withUpdatesTensor updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: [NSNumber], batchDimensions: Int, mode: MPSGraphScatterMode, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  scatterNDWithUpdatesTensorIndicesTensorShapeBatchDimensionsModeName(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, batchDimensions: number, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3413005416208716, this, [updatesTensor, indicesTensor, shape, batchDimensions, mode, name]); }
+  scatterNDWithUpdatesTensorIndicesTensorShapeBatchDimensionsModeName(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, batchDimensions: number, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3413005416208716, this, [updatesTensor, indicesTensor, shape, batchDimensions, mode, name]); }
   /**
    * func scatterND(withUpdatesTensor updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: [NSNumber], batchDimensions: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  scatterNDWithUpdatesTensorIndicesTensorShapeBatchDimensionsName(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, batchDimensions: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1056275902359034, this, [updatesTensor, indicesTensor, shape, batchDimensions, name]); }
+  scatterNDWithUpdatesTensorIndicesTensorShapeBatchDimensionsName(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, batchDimensions: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1056275902359034, this, [updatesTensor, indicesTensor, shape, batchDimensions, name]); }
   /**
    * func scatterWithData(_ dataTensor: MPSGraphTensor, updates updatesTensor: MPSGraphTensor, indices indicesTensor: MPSGraphTensor, axis: Int, mode: MPSGraphScatterMode, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  scatterWithData(dataTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, axis: number, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 60166860883788, this, [dataTensor, updatesTensor, indicesTensor, axis, mode, name]); }
+  scatterWithData(dataTensor: MPSGraphTensor, updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, axis: number, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 60166860883788, this, [dataTensor, updatesTensor, indicesTensor, axis, mode, name]); }
   /**
    * func scatter(_ updatesTensor: MPSGraphTensor, indices indicesTensor: MPSGraphTensor, shape: [NSNumber], axis: Int, mode: MPSGraphScatterMode, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  scatter(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, axis: number, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3595745132681198, this, [updatesTensor, indicesTensor, shape, axis, mode, name]); }
+  scatter(updatesTensor: MPSGraphTensor, indicesTensor: MPSGraphTensor, shape: $SDK0, axis: number, mode: MPSGraphScatterMode, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3595745132681198, this, [updatesTensor, indicesTensor, shape, axis, mode, name]); }
   /**
    * func select(predicate predicateTensor: MPSGraphTensor, trueTensor truePredicateTensor: MPSGraphTensor, falseTensor falseSelectTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  select(predicateTensor: MPSGraphTensor, truePredicateTensor: MPSGraphTensor, falseSelectTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2323572878929047, this, [predicateTensor, truePredicateTensor, falseSelectTensor, name]); }
+  select(predicateTensor: MPSGraphTensor, truePredicateTensor: MPSGraphTensor, falseSelectTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2323572878929047, this, [predicateTensor, truePredicateTensor, falseSelectTensor, name]); }
   /**
    * func shapeOf(_ tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  shapeOf(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1888887291132262, this, [tensor, name]); }
+  shapeOf(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1888887291132262, this, [tensor, name]); }
   /**
    * func sigmoidGradient(withIncomingGradient gradient: MPSGraphTensor, sourceTensor source: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sigmoidGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2955836749400488, this, [gradient, source, name]); }
+  sigmoidGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2955836749400488, this, [gradient, source, name]); }
   /**
    * func sigmoid(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sigmoid(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 833438232051647, this, [tensor, name]); }
+  sigmoid(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 833438232051647, this, [tensor, name]); }
   /**
    * func sign(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sign(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1746720143486273, this, [tensor, name]); }
+  sign(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1746720143486273, this, [tensor, name]); }
   /**
    * func signbit(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  signbit(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4281743540771781, this, [tensor, name]); }
+  signbit(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4281743540771781, this, [tensor, name]); }
   /**
    * func sin(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sin(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2183271236797304, this, [tensor, name]); }
+  sin(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2183271236797304, this, [tensor, name]); }
   /**
    * func singleGateRNNGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, initState: MPSGraphTensor?, descriptor: MPSGraphSingleGateRNNDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  singleGateRNNGradientsRecurrentWeightSourceGradientZStateInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, initState: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1325019169502623, this, [source, recurrentWeight, sourceGradient, zState, initState, descriptor, name]); }
+  singleGateRNNGradientsRecurrentWeightSourceGradientZStateInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, initState: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1325019169502623, this, [source, recurrentWeight, sourceGradient, zState, initState, descriptor, name]); }
   /**
    * func singleGateRNNGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, descriptor: MPSGraphSingleGateRNNDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  singleGateRNNGradientsRecurrentWeightSourceGradientZStateInputWeightBiasInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2991968169916999, this, [source, recurrentWeight, sourceGradient, zState, inputWeight, bias, initState, descriptor, name]); }
+  singleGateRNNGradientsRecurrentWeightSourceGradientZStateInputWeightBiasInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2991968169916999, this, [source, recurrentWeight, sourceGradient, zState, inputWeight, bias, initState, descriptor, name]); }
   /**
    * func singleGateRNNGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, mask: MPSGraphTensor?, descriptor: MPSGraphSingleGateRNNDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  singleGateRNNGradientsRecurrentWeightSourceGradientZStateInputWeightBiasInitStateMaskDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2265219944401037, this, [source, recurrentWeight, sourceGradient, zState, inputWeight, bias, initState, mask, descriptor, name]); }
+  singleGateRNNGradientsRecurrentWeightSourceGradientZStateInputWeightBiasInitStateMaskDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2265219944401037, this, [source, recurrentWeight, sourceGradient, zState, inputWeight, bias, initState, mask, descriptor, name]); }
   /**
    * func singleGateRNNGradients(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, stateGradient: MPSGraphTensor?, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, mask: MPSGraphTensor?, descriptor: MPSGraphSingleGateRNNDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  singleGateRNNGradientsRecurrentWeightSourceGradientZStateStateGradientInputWeightBiasInitStateMaskDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, stateGradient: (MPSGraphTensor) | null, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1270615596838598, this, [source, recurrentWeight, sourceGradient, zState, stateGradient, inputWeight, bias, initState, mask, descriptor, name]); }
+  singleGateRNNGradientsRecurrentWeightSourceGradientZStateStateGradientInputWeightBiasInitStateMaskDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, sourceGradient: MPSGraphTensor, zState: MPSGraphTensor, stateGradient: (MPSGraphTensor) | null, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1270615596838598, this, [source, recurrentWeight, sourceGradient, zState, stateGradient, inputWeight, bias, initState, mask, descriptor, name]); }
   /**
    * func singleGateRNN(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, initState: MPSGraphTensor?, descriptor: MPSGraphSingleGateRNNDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  singleGateRNNRecurrentWeightInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, initState: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3880075159086765, this, [source, recurrentWeight, initState, descriptor, name]); }
+  singleGateRNNRecurrentWeightInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, initState: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3880075159086765, this, [source, recurrentWeight, initState, descriptor, name]); }
   /**
    * func singleGateRNN(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, descriptor: MPSGraphSingleGateRNNDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  singleGateRNNRecurrentWeightInputWeightBiasInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3905808241728049, this, [source, recurrentWeight, inputWeight, bias, initState, descriptor, name]); }
+  singleGateRNNRecurrentWeightInputWeightBiasInitStateDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3905808241728049, this, [source, recurrentWeight, inputWeight, bias, initState, descriptor, name]); }
   /**
    * func singleGateRNN(_ source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: MPSGraphTensor?, bias: MPSGraphTensor?, initState: MPSGraphTensor?, mask: MPSGraphTensor?, descriptor: MPSGraphSingleGateRNNDescriptor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  singleGateRNNRecurrentWeightInputWeightBiasInitStateMaskDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2851399695469815, this, [source, recurrentWeight, inputWeight, bias, initState, mask, descriptor, name]); }
+  singleGateRNNRecurrentWeightInputWeightBiasInitStateMaskDescriptorName(source: MPSGraphTensor, recurrentWeight: MPSGraphTensor, inputWeight: (MPSGraphTensor) | null, bias: (MPSGraphTensor) | null, initState: (MPSGraphTensor) | null, mask: (MPSGraphTensor) | null, descriptor: MPSGraphSingleGateRNNDescriptor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2851399695469815, this, [source, recurrentWeight, inputWeight, bias, initState, mask, descriptor, name]); }
   /**
    * func sinh(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sinh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3478917535294143, this, [tensor, name]); }
+  sinh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3478917535294143, this, [tensor, name]); }
   /**
    * func sliceGradientTensor(_ inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, start startTensor: MPSGraphTensor, end endTensor: MPSGraphTensor, strideTensor: MPSGraphTensor, startMask: UInt32, endMask: UInt32, squeezeMask: UInt32, name: String?) -> MPSGraphTensor
    * @availability iOS 18.2+
    */
-  sliceGradientTensorFwdInShapeTensorStartEndStrideTensorStartMaskEndMaskSqueezeMaskName(inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, startTensor: MPSGraphTensor, endTensor: MPSGraphTensor, strideTensor: MPSGraphTensor, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2751745339577702, this, [inputGradientTensor, fwdInShapeTensor, startTensor, endTensor, strideTensor, startMask, endMask, squeezeMask, name]); }
+  sliceGradientTensorFwdInShapeTensorStartEndStrideTensorStartMaskEndMaskSqueezeMaskName(inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, startTensor: MPSGraphTensor, endTensor: MPSGraphTensor, strideTensor: MPSGraphTensor, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2751745339577702, this, [inputGradientTensor, fwdInShapeTensor, startTensor, endTensor, strideTensor, startMask, endMask, squeezeMask, name]); }
   /**
    * func sliceGradientTensor(_ inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, start startTensor: MPSGraphTensor, sizeTensor: MPSGraphTensor, squeezeMask: UInt32, name: String?) -> MPSGraphTensor
    * @availability iOS 18.2+
    */
-  sliceGradientTensorFwdInShapeTensorStartSizeTensorSqueezeMaskName(inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, startTensor: MPSGraphTensor, sizeTensor: MPSGraphTensor, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3792755735490934, this, [inputGradientTensor, fwdInShapeTensor, startTensor, sizeTensor, squeezeMask, name]); }
+  sliceGradientTensorFwdInShapeTensorStartSizeTensorSqueezeMaskName(inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, startTensor: MPSGraphTensor, sizeTensor: MPSGraphTensor, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3792755735490934, this, [inputGradientTensor, fwdInShapeTensor, startTensor, sizeTensor, squeezeMask, name]); }
   /**
    * func sliceGradientTensor(_ inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, starts: [NSNumber], ends: [NSNumber], strides: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sliceGradientTensorFwdInShapeTensorStartsEndsStridesName(inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 727506476775512, this, [inputGradientTensor, fwdInShapeTensor, starts, ends, strides, name]); }
+  sliceGradientTensorFwdInShapeTensorStartsEndsStridesName(inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 727506476775512, this, [inputGradientTensor, fwdInShapeTensor, starts, ends, strides, name]); }
   /**
    * func sliceGradientTensor(_ inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, starts: [NSNumber], ends: [NSNumber], strides: [NSNumber], startMask: UInt32, endMask: UInt32, squeezeMask: UInt32, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sliceGradientTensorFwdInShapeTensorStartsEndsStridesStartMaskEndMaskSqueezeMaskName(inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 361742712707186, this, [inputGradientTensor, fwdInShapeTensor, starts, ends, strides, startMask, endMask, squeezeMask, name]); }
+  sliceGradientTensorFwdInShapeTensorStartsEndsStridesStartMaskEndMaskSqueezeMaskName(inputGradientTensor: MPSGraphTensor, fwdInShapeTensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 361742712707186, this, [inputGradientTensor, fwdInShapeTensor, starts, ends, strides, startMask, endMask, squeezeMask, name]); }
   /**
    * func sliceTensor(_ tensor: MPSGraphTensor, dimension dimensionIndex: Int, start: Int, length: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sliceTensorDimensionStartLengthName(tensor: MPSGraphTensor, dimensionIndex: number, start: number, length: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 416452627556977, this, [tensor, dimensionIndex, start, length, name]); }
+  sliceTensorDimensionStartLengthName(tensor: MPSGraphTensor, dimensionIndex: number, start: number, length: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 416452627556977, this, [tensor, dimensionIndex, start, length, name]); }
   /**
    * func sliceTensor(_ tensor: MPSGraphTensor, start startTensor: MPSGraphTensor, end endTensor: MPSGraphTensor, strideTensor: MPSGraphTensor, startMask: UInt32, endMask: UInt32, squeezeMask: UInt32, name: String?) -> MPSGraphTensor
    * @availability iOS 18.2+
    */
-  sliceTensorStartEndStrideTensorStartMaskEndMaskSqueezeMaskName(tensor: MPSGraphTensor, startTensor: MPSGraphTensor, endTensor: MPSGraphTensor, strideTensor: MPSGraphTensor, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2215184575541062, this, [tensor, startTensor, endTensor, strideTensor, startMask, endMask, squeezeMask, name]); }
+  sliceTensorStartEndStrideTensorStartMaskEndMaskSqueezeMaskName(tensor: MPSGraphTensor, startTensor: MPSGraphTensor, endTensor: MPSGraphTensor, strideTensor: MPSGraphTensor, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2215184575541062, this, [tensor, startTensor, endTensor, strideTensor, startMask, endMask, squeezeMask, name]); }
   /**
    * func sliceTensor(_ tensor: MPSGraphTensor, start startTensor: MPSGraphTensor, sizeTensor: MPSGraphTensor, squeezeMask: UInt32, name: String?) -> MPSGraphTensor
    * @availability iOS 18.2+
    */
-  sliceTensorStartSizeTensorSqueezeMaskName(tensor: MPSGraphTensor, startTensor: MPSGraphTensor, sizeTensor: MPSGraphTensor, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1647231196801040, this, [tensor, startTensor, sizeTensor, squeezeMask, name]); }
+  sliceTensorStartSizeTensorSqueezeMaskName(tensor: MPSGraphTensor, startTensor: MPSGraphTensor, sizeTensor: MPSGraphTensor, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1647231196801040, this, [tensor, startTensor, sizeTensor, squeezeMask, name]); }
   /**
    * func sliceTensor(_ tensor: MPSGraphTensor, starts: [NSNumber], ends: [NSNumber], strides: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sliceTensorStartsEndsStridesName(tensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2523329258669833, this, [tensor, starts, ends, strides, name]); }
+  sliceTensorStartsEndsStridesName(tensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2523329258669833, this, [tensor, starts, ends, strides, name]); }
   /**
    * func sliceTensor(_ tensor: MPSGraphTensor, starts: [NSNumber], ends: [NSNumber], strides: [NSNumber], startMask: UInt32, endMask: UInt32, squeezeMask: UInt32, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  sliceTensorStartsEndsStridesStartMaskEndMaskSqueezeMaskName(tensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3515097504395146, this, [tensor, starts, ends, strides, startMask, endMask, squeezeMask, name]); }
+  sliceTensorStartsEndsStridesStartMaskEndMaskSqueezeMaskName(tensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3515097504395146, this, [tensor, starts, ends, strides, startMask, endMask, squeezeMask, name]); }
   /**
    * func sliceUpdateDataTensor(_ dataTensor: MPSGraphTensor, update updateTensor: MPSGraphTensor, starts: [NSNumber], ends: [NSNumber], strides: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  sliceUpdateDataTensorUpdateStartsEndsStridesName(dataTensor: MPSGraphTensor, updateTensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3822299795522743, this, [dataTensor, updateTensor, starts, ends, strides, name]); }
+  sliceUpdateDataTensorUpdateStartsEndsStridesName(dataTensor: MPSGraphTensor, updateTensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3822299795522743, this, [dataTensor, updateTensor, starts, ends, strides, name]); }
   /**
    * func sliceUpdateDataTensor(_ dataTensor: MPSGraphTensor, update updateTensor: MPSGraphTensor, starts: [NSNumber], ends: [NSNumber], strides: [NSNumber], startMask: UInt32, endMask: UInt32, squeezeMask: UInt32, name: String?) -> MPSGraphTensor
    * @availability iOS 17.4+
    */
-  sliceUpdateDataTensorUpdateStartsEndsStridesStartMaskEndMaskSqueezeMaskName(dataTensor: MPSGraphTensor, updateTensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1433563211596833, this, [dataTensor, updateTensor, starts, ends, strides, startMask, endMask, squeezeMask, name]); }
+  sliceUpdateDataTensorUpdateStartsEndsStridesStartMaskEndMaskSqueezeMaskName(dataTensor: MPSGraphTensor, updateTensor: MPSGraphTensor, starts: $SDK0, ends: $SDK0, strides: $SDK0, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1433563211596833, this, [dataTensor, updateTensor, starts, ends, strides, startMask, endMask, squeezeMask, name]); }
   /**
    * func sliceUpdateDataTensor(_ dataTensor: MPSGraphTensor, update updateTensor: MPSGraphTensor, startsTensor: MPSGraphTensor, endsTensor: MPSGraphTensor, stridesTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  sliceUpdateDataTensorUpdateStartsTensorEndsTensorStridesTensorName(dataTensor: MPSGraphTensor, updateTensor: MPSGraphTensor, startsTensor: MPSGraphTensor, endsTensor: MPSGraphTensor, stridesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1835428635180022, this, [dataTensor, updateTensor, startsTensor, endsTensor, stridesTensor, name]); }
+  sliceUpdateDataTensorUpdateStartsTensorEndsTensorStridesTensorName(dataTensor: MPSGraphTensor, updateTensor: MPSGraphTensor, startsTensor: MPSGraphTensor, endsTensor: MPSGraphTensor, stridesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1835428635180022, this, [dataTensor, updateTensor, startsTensor, endsTensor, stridesTensor, name]); }
   /**
    * func sliceUpdateDataTensor(_ dataTensor: MPSGraphTensor, update updateTensor: MPSGraphTensor, startsTensor: MPSGraphTensor, endsTensor: MPSGraphTensor, stridesTensor: MPSGraphTensor, startMask: UInt32, endMask: UInt32, squeezeMask: UInt32, name: String?) -> MPSGraphTensor
    * @availability iOS 17.4+
    */
-  sliceUpdateDataTensorUpdateStartsTensorEndsTensorStridesTensorStartMaskEndMaskSqueezeMaskName(dataTensor: MPSGraphTensor, updateTensor: MPSGraphTensor, startsTensor: MPSGraphTensor, endsTensor: MPSGraphTensor, stridesTensor: MPSGraphTensor, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1571598018860649, this, [dataTensor, updateTensor, startsTensor, endsTensor, stridesTensor, startMask, endMask, squeezeMask, name]); }
+  sliceUpdateDataTensorUpdateStartsTensorEndsTensorStridesTensorStartMaskEndMaskSqueezeMaskName(dataTensor: MPSGraphTensor, updateTensor: MPSGraphTensor, startsTensor: MPSGraphTensor, endsTensor: MPSGraphTensor, stridesTensor: MPSGraphTensor, startMask: number, endMask: number, squeezeMask: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1571598018860649, this, [dataTensor, updateTensor, startsTensor, endsTensor, stridesTensor, startMask, endMask, squeezeMask, name]); }
   /**
    * func softMaxCrossEntropyGradient(_ gradientTensor: MPSGraphTensor, source sourceTensor: MPSGraphTensor, labels labelsTensor: MPSGraphTensor, axis: Int, reuctionType reductionType: MPSGraphLossReductionType, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  softMaxCrossEntropyGradient(gradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, labelsTensor: MPSGraphTensor, axis: number, reductionType: MPSGraphLossReductionType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 178725483673475, this, [gradientTensor, sourceTensor, labelsTensor, axis, reductionType, name]); }
+  softMaxCrossEntropyGradient(gradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, labelsTensor: MPSGraphTensor, axis: number, reductionType: MPSGraphLossReductionType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 178725483673475, this, [gradientTensor, sourceTensor, labelsTensor, axis, reductionType, name]); }
   /**
    * func softMaxCrossEntropy(_ sourceTensor: MPSGraphTensor, labels labelsTensor: MPSGraphTensor, axis: Int, reuctionType reductionType: MPSGraphLossReductionType, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  softMaxCrossEntropy(sourceTensor: MPSGraphTensor, labelsTensor: MPSGraphTensor, axis: number, reductionType: MPSGraphLossReductionType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2377967031875919, this, [sourceTensor, labelsTensor, axis, reductionType, name]); }
+  softMaxCrossEntropy(sourceTensor: MPSGraphTensor, labelsTensor: MPSGraphTensor, axis: number, reductionType: MPSGraphLossReductionType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2377967031875919, this, [sourceTensor, labelsTensor, axis, reductionType, name]); }
   /**
    * func softMaxGradient(withIncomingGradient gradient: MPSGraphTensor, sourceTensor source: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  softMaxGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3177886050888067, this, [gradient, source, axis, name]); }
+  softMaxGradient(gradient: MPSGraphTensor, source: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3177886050888067, this, [gradient, source, axis, name]); }
   /**
    * func softMax(with tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  softMax(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2678876328693870, this, [tensor, axis, name]); }
+  softMax(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2678876328693870, this, [tensor, axis, name]); }
   /**
    * func sort(_ tensor: MPSGraphTensor, axis: Int, descending: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  sortAxisDescendingName(tensor: MPSGraphTensor, axis: number, descending: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2055569221816058, this, [tensor, axis, descending, name]); }
+  sortAxisDescendingName(tensor: MPSGraphTensor, axis: number, descending: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2055569221816058, this, [tensor, axis, descending, name]); }
   /**
    * func sort(_ tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  sortAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1037225735520400, this, [tensor, axis, name]); }
+  sortAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1037225735520400, this, [tensor, axis, name]); }
   /**
    * func sort(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, descending: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  sortAxisTensorDescendingName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, descending: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3035575617032146, this, [tensor, axisTensor, descending, name]); }
+  sortAxisTensorDescendingName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, descending: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3035575617032146, this, [tensor, axisTensor, descending, name]); }
   /**
    * func sort(_ tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  sortAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3826002866147208, this, [tensor, axisTensor, name]); }
+  sortAxisTensorName(tensor: MPSGraphTensor, axisTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3826002866147208, this, [tensor, axisTensor, name]); }
   /**
    * func spaceToBatch(_ tensor: MPSGraphTensor, spatialAxes: [NSNumber], batchAxis: Int, blockDimensions: [NSNumber], usePixelShuffleOrder: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  spaceToBatchSpatialAxesBatchAxisBlockDimensionsUsePixelShuffleOrderName(tensor: MPSGraphTensor, spatialAxes: $SDK0, batchAxis: number, blockDimensions: $SDK0, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 636364416685573, this, [tensor, spatialAxes, batchAxis, blockDimensions, usePixelShuffleOrder, name]); }
+  spaceToBatchSpatialAxesBatchAxisBlockDimensionsUsePixelShuffleOrderName(tensor: MPSGraphTensor, spatialAxes: $SDK0, batchAxis: number, blockDimensions: $SDK0, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 636364416685573, this, [tensor, spatialAxes, batchAxis, blockDimensions, usePixelShuffleOrder, name]); }
   /**
    * func spaceToBatch(_ tensor: MPSGraphTensor, spatialAxesTensor: MPSGraphTensor, batchAxisTensor: MPSGraphTensor, blockDimensionsTensor: MPSGraphTensor, usePixelShuffleOrder: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 16.1+
    */
-  spaceToBatchSpatialAxesTensorBatchAxisTensorBlockDimensionsTensorUsePixelShuffleOrderName(tensor: MPSGraphTensor, spatialAxesTensor: MPSGraphTensor, batchAxisTensor: MPSGraphTensor, blockDimensionsTensor: MPSGraphTensor, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2148132555356191, this, [tensor, spatialAxesTensor, batchAxisTensor, blockDimensionsTensor, usePixelShuffleOrder, name]); }
+  spaceToBatchSpatialAxesTensorBatchAxisTensorBlockDimensionsTensorUsePixelShuffleOrderName(tensor: MPSGraphTensor, spatialAxesTensor: MPSGraphTensor, batchAxisTensor: MPSGraphTensor, blockDimensionsTensor: MPSGraphTensor, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2148132555356191, this, [tensor, spatialAxesTensor, batchAxisTensor, blockDimensionsTensor, usePixelShuffleOrder, name]); }
   /**
    * func space(toDepth2DTensor tensor: MPSGraphTensor, widthAxis: Int, heightAxis: Int, depthAxis: Int, blockSize: Int, usePixelShuffleOrder: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  spaceToDepth2DTensorWidthAxisHeightAxisDepthAxisBlockSizeUsePixelShuffleOrderName(tensor: MPSGraphTensor, widthAxis: number, heightAxis: number, depthAxis: number, blockSize: number, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3108223006458157, this, [tensor, widthAxis, heightAxis, depthAxis, blockSize, usePixelShuffleOrder, name]); }
+  spaceToDepth2DTensorWidthAxisHeightAxisDepthAxisBlockSizeUsePixelShuffleOrderName(tensor: MPSGraphTensor, widthAxis: number, heightAxis: number, depthAxis: number, blockSize: number, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3108223006458157, this, [tensor, widthAxis, heightAxis, depthAxis, blockSize, usePixelShuffleOrder, name]); }
   /**
    * func space(toDepth2DTensor tensor: MPSGraphTensor, widthAxisTensor: MPSGraphTensor, heightAxisTensor: MPSGraphTensor, depthAxisTensor: MPSGraphTensor, blockSize: Int, usePixelShuffleOrder: Bool, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  spaceToDepth2DTensorWidthAxisTensorHeightAxisTensorDepthAxisTensorBlockSizeUsePixelShuffleOrderName(tensor: MPSGraphTensor, widthAxisTensor: MPSGraphTensor, heightAxisTensor: MPSGraphTensor, depthAxisTensor: MPSGraphTensor, blockSize: number, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2698824899771552, this, [tensor, widthAxisTensor, heightAxisTensor, depthAxisTensor, blockSize, usePixelShuffleOrder, name]); }
+  spaceToDepth2DTensorWidthAxisTensorHeightAxisTensorDepthAxisTensorBlockSizeUsePixelShuffleOrderName(tensor: MPSGraphTensor, widthAxisTensor: MPSGraphTensor, heightAxisTensor: MPSGraphTensor, depthAxisTensor: MPSGraphTensor, blockSize: number, usePixelShuffleOrder: boolean, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2698824899771552, this, [tensor, widthAxisTensor, heightAxisTensor, depthAxisTensor, blockSize, usePixelShuffleOrder, name]); }
   /**
    * func sparseTensor(sparseTensorWithDescriptor sparseDescriptor: MPSGraphCreateSparseOpDescriptor, tensors inputTensorArray: [MPSGraphTensor], shape: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  sparseTensorSparseTensorWithDescriptorTensorsShapeName(sparseDescriptor: MPSGraphCreateSparseOpDescriptor, inputTensorArray: Array<MPSGraphTensor>, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2627084864439662, this, [sparseDescriptor, inputTensorArray, shape, name]); }
+  sparseTensorSparseTensorWithDescriptorTensorsShapeName(sparseDescriptor: MPSGraphCreateSparseOpDescriptor, inputTensorArray: Array<MPSGraphTensor>, shape: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2627084864439662, this, [sparseDescriptor, inputTensorArray, shape, name]); }
   /**
    * func sparseTensor(sparseTensorWithType sparseStorageType: MPSGraphSparseStorageType, tensors inputTensorArray: [MPSGraphTensor], shape: [NSNumber], dataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  sparseTensorSparseTensorWithTypeTensorsShapeDataTypeName(sparseStorageType: MPSGraphSparseStorageType, inputTensorArray: Array<MPSGraphTensor>, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4097004102062394, this, [sparseStorageType, inputTensorArray, shape, dataType, name]); }
+  sparseTensorSparseTensorWithTypeTensorsShapeDataTypeName(sparseStorageType: MPSGraphSparseStorageType, inputTensorArray: Array<MPSGraphTensor>, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4097004102062394, this, [sparseStorageType, inputTensorArray, shape, dataType, name]); }
   /**
    * func split(_ tensor: MPSGraphTensor, numSplits: Int, axis: Int, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  splitNumSplitsAxisName(tensor: MPSGraphTensor, numSplits: number, axis: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2283338879933459, this, [tensor, numSplits, axis, name]); }
+  splitNumSplitsAxisName(tensor: MPSGraphTensor, numSplits: number, axis: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2283338879933459, this, [tensor, numSplits, axis, name]); }
   /**
    * func split(_ tensor: MPSGraphTensor, splitSizes: [NSNumber], axis: Int, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  splitSplitSizesAxisName(tensor: MPSGraphTensor, splitSizes: $SDK0, axis: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 11346426845474, this, [tensor, splitSizes, axis, name]); }
+  splitSplitSizesAxisName(tensor: MPSGraphTensor, splitSizes: $SDK0, axis: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 11346426845474, this, [tensor, splitSizes, axis, name]); }
   /**
    * func split(_ tensor: MPSGraphTensor, splitSizesTensor: MPSGraphTensor, axis: Int, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.4+
    */
-  splitSplitSizesTensorAxisName(tensor: MPSGraphTensor, splitSizesTensor: MPSGraphTensor, axis: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3640229427603217, this, [tensor, splitSizesTensor, axis, name]); }
+  splitSplitSizesTensorAxisName(tensor: MPSGraphTensor, splitSizesTensor: MPSGraphTensor, axis: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3640229427603217, this, [tensor, splitSizesTensor, axis, name]); }
   /**
    * func squareRoot(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  squareRoot(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1218683448898768, this, [tensor, name]); }
+  squareRoot(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1218683448898768, this, [tensor, name]); }
   /**
    * func square(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  square(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 238665526477177, this, [tensor, name]); }
+  square(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 238665526477177, this, [tensor, name]); }
   /**
    * func squeeze(_ tensor: MPSGraphTensor, axes: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  squeezeAxesName(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3075227187291817, this, [tensor, axes, name]); }
+  squeezeAxesName(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3075227187291817, this, [tensor, axes, name]); }
   /**
    * func squeeze(_ tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  squeezeAxesTensorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3262065544026872, this, [tensor, axesTensor, name]); }
+  squeezeAxesTensorName(tensor: MPSGraphTensor, axesTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3262065544026872, this, [tensor, axesTensor, name]); }
   /**
    * func squeeze(_ tensor: MPSGraphTensor, axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  squeezeAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 979267209098296, this, [tensor, axis, name]); }
+  squeezeAxisName(tensor: MPSGraphTensor, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 979267209098296, this, [tensor, axis, name]); }
   /**
    * func squeeze(_ tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  squeezeName(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 509454411768260, this, [tensor, name]); }
+  squeezeName(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 509454411768260, this, [tensor, name]); }
   /**
    * func stack(_ inputTensors: [MPSGraphTensor], axis: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 15.4+
    */
-  stack(inputTensors: Array<MPSGraphTensor>, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 348911304251534, this, [inputTensors, axis, name]); }
+  stack(inputTensors: Array<MPSGraphTensor>, axis: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 348911304251534, this, [inputTensors, axis, name]); }
   /**
    * func stencil(withSourceTensor source: MPSGraphTensor, weightsTensor weights: MPSGraphTensor, descriptor: MPSGraphStencilOpDescriptor, name: String?) -> MPSGraphTensor
    * @availability iOS 15.0+
    */
-  stencil(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphStencilOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 519375692984262, this, [source, weights, descriptor, name]); }
+  stencil(source: MPSGraphTensor, weights: MPSGraphTensor, descriptor: MPSGraphStencilOpDescriptor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 519375692984262, this, [source, weights, descriptor, name]); }
   /**
    * func stochasticGradientDescent(learningRate learningRateTensor: MPSGraphTensor, values valuesTensor: MPSGraphTensor, gradient gradientTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  stochasticGradientDescent(learningRateTensor: MPSGraphTensor, valuesTensor: MPSGraphTensor, gradientTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 327695527913654, this, [learningRateTensor, valuesTensor, gradientTensor, name]); }
+  stochasticGradientDescent(learningRateTensor: MPSGraphTensor, valuesTensor: MPSGraphTensor, gradientTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 327695527913654, this, [learningRateTensor, valuesTensor, gradientTensor, name]); }
   /**
    * func subtraction(_ primaryTensor: MPSGraphTensor, _ secondaryTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  subtraction(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1924877358142862, this, [primaryTensor, secondaryTensor, name]); }
+  subtraction(primaryTensor: MPSGraphTensor, secondaryTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1924877358142862, this, [primaryTensor, secondaryTensor, name]); }
   /**
    * func tan(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  tan(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 881508260042017, this, [tensor, name]); }
+  tan(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 881508260042017, this, [tensor, name]); }
   /**
    * func tanh(with tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  tanh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2821611655567760, this, [tensor, name]); }
+  tanh(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2821611655567760, this, [tensor, name]); }
   /**
    * func tileGradient(withIncomingGradientTensor incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, withMultiplier multiplier: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  tileGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, multiplier: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1306090968647926, this, [incomingGradientTensor, sourceTensor, multiplier, name]); }
+  tileGradient(incomingGradientTensor: MPSGraphTensor, sourceTensor: MPSGraphTensor, multiplier: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1306090968647926, this, [incomingGradientTensor, sourceTensor, multiplier, name]); }
   /**
    * func tileTensor(_ tensor: MPSGraphTensor, withMultiplier multiplier: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  tileTensor(tensor: MPSGraphTensor, multiplier: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 948691410139078, this, [tensor, multiplier, name]); }
+  tileTensor(tensor: MPSGraphTensor, multiplier: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 948691410139078, this, [tensor, multiplier, name]); }
   /**
    * func topKGradient(_ gradient: MPSGraphTensor, source: MPSGraphTensor, axis: Int, k: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  topKGradientSourceAxisKName(gradient: MPSGraphTensor, source: MPSGraphTensor, axis: number, k: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3820603519817562, this, [gradient, source, axis, k, name]); }
+  topKGradientSourceAxisKName(gradient: MPSGraphTensor, source: MPSGraphTensor, axis: number, k: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3820603519817562, this, [gradient, source, axis, k, name]); }
   /**
    * func topKGradient(_ gradient: MPSGraphTensor, source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 17.0+
    */
-  topKGradientSourceAxisTensorKTensorName(gradient: MPSGraphTensor, source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3711236413127491, this, [gradient, source, axisTensor, kTensor, name]); }
+  topKGradientSourceAxisTensorKTensorName(gradient: MPSGraphTensor, source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3711236413127491, this, [gradient, source, axisTensor, kTensor, name]); }
   /** func topKGradient(_ gradient: MPSGraphTensor, input source: MPSGraphTensor, k: Int, name: String?) -> MPSGraphTensor */
-  topKGradientInputKName(gradient: MPSGraphTensor, source: MPSGraphTensor, k: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4292568066307461, this, [gradient, source, k, name]); }
+  topKGradientInputKName(gradient: MPSGraphTensor, source: MPSGraphTensor, k: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4292568066307461, this, [gradient, source, k, name]); }
   /** func topKGradient(_ gradient: MPSGraphTensor, input source: MPSGraphTensor, kTensor: MPSGraphTensor, name: String?) -> MPSGraphTensor */
-  topKGradientInputKTensorName(gradient: MPSGraphTensor, source: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4035049008672019, this, [gradient, source, kTensor, name]); }
+  topKGradientInputKTensorName(gradient: MPSGraphTensor, source: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4035049008672019, this, [gradient, source, kTensor, name]); }
   /**
    * func topK(_ source: MPSGraphTensor, axis: Int, k: Int, name: String?) -> [MPSGraphTensor]
    * @availability iOS 17.0+
    */
-  topKAxisKName(source: MPSGraphTensor, axis: number, k: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 458744469109061, this, [source, axis, k, name]); }
+  topKAxisKName(source: MPSGraphTensor, axis: number, k: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 458744469109061, this, [source, axis, k, name]); }
   /**
    * func topK(_ source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 17.0+
    */
-  topKAxisTensorKTensorName(source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2953499526595625, this, [source, axisTensor, kTensor, name]); }
+  topKAxisTensorKTensorName(source: MPSGraphTensor, axisTensor: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2953499526595625, this, [source, axisTensor, kTensor, name]); }
   /**
    * func topK(_ source: MPSGraphTensor, k: Int, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.0+
    */
-  topKKName(source: MPSGraphTensor, k: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 184583972997296, this, [source, k, name]); }
+  topKKName(source: MPSGraphTensor, k: number, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 184583972997296, this, [source, k, name]); }
   /**
    * func topK(_ source: MPSGraphTensor, kTensor: MPSGraphTensor, name: String?) -> [MPSGraphTensor]
    * @availability iOS 15.0+
    */
-  topKKTensorName(source: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4176529841369389, this, [source, kTensor, name]); }
+  topKKTensorName(source: MPSGraphTensor, kTensor: MPSGraphTensor, name?: (string) | null): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4176529841369389, this, [source, kTensor, name]); }
   /**
    * func transposeTensor(_ tensor: MPSGraphTensor, dimension dimensionIndex: Int, withDimension dimensionIndex2: Int, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  transposeTensor(tensor: MPSGraphTensor, dimensionIndex: number, dimensionIndex2: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 974541068210436, this, [tensor, dimensionIndex, dimensionIndex2, name]); }
+  transposeTensor(tensor: MPSGraphTensor, dimensionIndex: number, dimensionIndex2: number, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 974541068210436, this, [tensor, dimensionIndex, dimensionIndex2, name]); }
   /**
    * func transpose(_ tensor: MPSGraphTensor, permutation: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  transpose(tensor: MPSGraphTensor, permutation: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 230060359063257, this, [tensor, permutation, name]); }
+  transpose(tensor: MPSGraphTensor, permutation: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 230060359063257, this, [tensor, permutation, name]); }
   /**
    * func truncate(_ tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 16.0+
    */
-  truncate(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 772167749926971, this, [tensor, name]); }
+  truncate(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 772167749926971, this, [tensor, name]); }
   /**
    * func variableFromTensor(_ tensor: MPSGraphTensor, name: String?) -> MPSGraphTensor
    * @availability iOS 18.0+
    */
-  variableFromTensor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2449849042214663, this, [tensor, name]); }
+  variableFromTensor(tensor: MPSGraphTensor, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2449849042214663, this, [tensor, name]); }
   /**
    * func variable(with data: Data, shape: [NSNumber], dataType: MPSDataType, name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  variable(data: ArrayBuffer, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2007668798642424, this, [data, shape, dataType, name]); }
+  variable(data: ArrayBuffer, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2007668798642424, this, [data, shape, dataType, name]); }
   /**
    * func variance(of tensor: MPSGraphTensor, axes: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  varianceOfAxesName(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 100344014169828, this, [tensor, axes, name]); }
+  varianceOfAxesName(tensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 100344014169828, this, [tensor, axes, name]); }
   /**
    * func variance(of tensor: MPSGraphTensor, mean meanTensor: MPSGraphTensor, axes: [NSNumber], name: String?) -> MPSGraphTensor
    * @availability iOS 14.0+
    */
-  varianceOfMeanAxesName(tensor: MPSGraphTensor, meanTensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 972738343195618, this, [tensor, meanTensor, axes, name]); }
+  varianceOfMeanAxesName(tensor: MPSGraphTensor, meanTensor: MPSGraphTensor, axes: $SDK0, name?: (string) | null): MPSGraphTensor { return callSDK<MPSGraphTensor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 972738343195618, this, [tensor, meanTensor, axes, name]); }
   /**
    * var options: MPSGraphOptions { get set }
    * @availability iOS 14.0+
    */
-  get options(): MPSGraphOptions { return callSDK<MPSGraphOptions>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3804979134301539, this, []); }
-  set options(value: MPSGraphOptions) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 594571944915816, this, [value]); }
+  get options(): MPSGraphOptions { return callSDK<MPSGraphOptions>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3804979134301539, this, []); }
+  set options(value: MPSGraphOptions) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 594571944915816, this, [value]); }
   /**
    * var placeholderTensors: [MPSGraphTensor] { get }
    * @availability iOS 14.0+
    */
-  get placeholderTensors(): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1377815656800731, this, []); }
+  get placeholderTensors(): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1377815656800731, this, []); }
   declare readonly $type: { "c:objc(cs)MPSGraph": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "options": true; "placeholderTensors": true };
 }
@@ -2002,62 +2002,62 @@ export class MPSGraphCompilationDescriptor extends (MPSGraphObject as unknown as
    * @availability iOS 26.4+
    * @deprecated iOS 27.0
    */
-  convertLayoutToNHWC(): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 810130583543487, this, []); }
+  convertLayoutToNHWC(): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 810130583543487, this, []); }
   /**
    * func disableAutoLayoutConversion()
    * @availability iOS 27.0+
    */
-  disableAutoLayoutConversion(): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3134355879500459, this, []); }
+  disableAutoLayoutConversion(): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3134355879500459, this, []); }
   /**
    * func disableTypeInference()
    * @availability iOS 15.0+
    */
-  disableTypeInference(): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3138863365274104, this, []); }
+  disableTypeInference(): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3138863365274104, this, []); }
   /** init() */
-  static init(): MPSGraphCompilationDescriptor { return callSDK<MPSGraphCompilationDescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1699301598417354, undefined, []); }
+  static init(): MPSGraphCompilationDescriptor { return callSDK<MPSGraphCompilationDescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1699301598417354, undefined, []); }
   /**
    * var callables: [String : MPSGraphExecutable]? { get set }
    * @availability iOS 17.1+
    */
-  get callables(): $SDK9 { return callSDK<$SDK9>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 671437707495905, this, []); }
-  set callables(value: $SDK9) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4123799153189334, this, [value]); }
+  get callables(): $SDK9 { return callSDK<$SDK9>("MetalPerformanceShadersGraph_d968214ecc684fb6", 671437707495905, this, []); }
+  set callables(value: $SDK9) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4123799153189334, this, [value]); }
   /**
    * var compilationCompletionHandler: MPSGraphCompilationCompletionHandler { get set }
    * @availability iOS 16.0+
    */
-  get compilationCompletionHandler(): $SDK8 { return callSDK<$SDK8>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 264679798421532, this, []); }
-  set compilationCompletionHandler(value: ((arg0: MPSGraphExecutable, arg1: (NativeError) | null) => void)) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 176824475310118, this, [value], [{"callback":{"out":[]}}]); }
+  get compilationCompletionHandler(): $SDK8 { return callSDK<$SDK8>("MetalPerformanceShadersGraph_d968214ecc684fb6", 264679798421532, this, []); }
+  set compilationCompletionHandler(value: ((arg0: MPSGraphExecutable, arg1: (NativeError) | null) => void)) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 176824475310118, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var dispatchQueue: dispatch_queue_t { get set }
    * @availability iOS 16.0+
    */
-  get dispatchQueue(): _Dispatch_DispatchQueue { return callSDK<_Dispatch_DispatchQueue>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1493387017304053, this, []); }
-  set dispatchQueue(value: _Dispatch_DispatchQueue) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4227609758115484, this, [value]); }
+  get dispatchQueue(): _Dispatch_DispatchQueue { return callSDK<_Dispatch_DispatchQueue>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1493387017304053, this, []); }
+  set dispatchQueue(value: _Dispatch_DispatchQueue) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4227609758115484, this, [value]); }
   /**
    * var optimizationLevel: MPSGraphOptimization { get set }
    * @availability iOS 15.4+
    */
-  get optimizationLevel(): MPSGraphOptimization { return callSDK<MPSGraphOptimization>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 659464651838990, this, []); }
-  set optimizationLevel(value: MPSGraphOptimization) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1708977373054587, this, [value]); }
+  get optimizationLevel(): MPSGraphOptimization { return callSDK<MPSGraphOptimization>("MetalPerformanceShadersGraph_d968214ecc684fb6", 659464651838990, this, []); }
+  set optimizationLevel(value: MPSGraphOptimization) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1708977373054587, this, [value]); }
   /**
    * var optimizationProfile: MPSGraphOptimizationProfile { get set }
    * @availability iOS 15.4+
    * @deprecated iOS 17.0
    */
-  get optimizationProfile(): MPSGraphOptimizationProfile { return callSDK<MPSGraphOptimizationProfile>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1895076435409138, this, []); }
-  set optimizationProfile(value: MPSGraphOptimizationProfile) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 665845680739395, this, [value]); }
+  get optimizationProfile(): MPSGraphOptimizationProfile { return callSDK<MPSGraphOptimizationProfile>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1895076435409138, this, []); }
+  set optimizationProfile(value: MPSGraphOptimizationProfile) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 665845680739395, this, [value]); }
   /**
    * var reducedPrecisionFastMath: MPSGraphReducedPrecisionFastMath { get set }
    * @availability iOS 26.0+
    */
-  get reducedPrecisionFastMath(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2929742921768819, this, []); }
-  set reducedPrecisionFastMath(value: MPSGraphReducedPrecisionFastMath) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1566195308313854, this, [value]); }
+  get reducedPrecisionFastMath(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2929742921768819, this, []); }
+  set reducedPrecisionFastMath(value: MPSGraphReducedPrecisionFastMath) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1566195308313854, this, [value]); }
   /**
    * var waitForCompilationCompletion: Bool { get set }
    * @availability iOS 16.0+
    */
-  get waitForCompilationCompletion(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3239013772552021, this, []); }
-  set waitForCompilationCompletion(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1144737040326351, this, [value]); }
+  get waitForCompilationCompletion(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3239013772552021, this, []); }
+  set waitForCompilationCompletion(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1144737040326351, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphCompilationDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "callables": true; "dispatchQueue": true; "optimizationLevel": true; "optimizationProfile": true; "reducedPrecisionFastMath": true; "waitForCompilationCompletion": true };
 }
@@ -2077,89 +2077,89 @@ export class MPSGraphConvolution2DOpDescriptor extends MPSGraphObject {
    * convenience init?(strideInX: Int, strideInY: Int, dilationRateInX: Int, dilationRateInY: Int, groups: Int, paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 14.0+
    */
-  static initStrideInXStrideInYDilationRateInXDilationRateInYGroupsPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, groups: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphConvolution2DOpDescriptor) | null { return callSDK<(MPSGraphConvolution2DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1082252221615311, undefined, [strideInX, strideInY, dilationRateInX, dilationRateInY, groups, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingStyle, dataLayout, weightsLayout]); }
+  static initStrideInXStrideInYDilationRateInXDilationRateInYGroupsPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, groups: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphConvolution2DOpDescriptor) | null { return callSDK<(MPSGraphConvolution2DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1082252221615311, undefined, [strideInX, strideInY, dilationRateInX, dilationRateInY, groups, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingStyle, dataLayout, weightsLayout]); }
   /**
    * convenience init?(strideInX: Int, strideInY: Int, dilationRateInX: Int, dilationRateInY: Int, groups: Int, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 14.0+
    */
-  static initStrideInXStrideInYDilationRateInXDilationRateInYGroupsPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, groups: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphConvolution2DOpDescriptor) | null { return callSDK<(MPSGraphConvolution2DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3378858026842497, undefined, [strideInX, strideInY, dilationRateInX, dilationRateInY, groups, paddingStyle, dataLayout, weightsLayout]); }
+  static initStrideInXStrideInYDilationRateInXDilationRateInYGroupsPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, groups: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphConvolution2DOpDescriptor) | null { return callSDK<(MPSGraphConvolution2DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3378858026842497, undefined, [strideInX, strideInY, dilationRateInX, dilationRateInY, groups, paddingStyle, dataLayout, weightsLayout]); }
   /**
    * func setExplicitPaddingWithPaddingLeft(_ paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int)
    * @availability iOS 14.0+
    */
-  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1360829281745971, this, [paddingLeft, paddingRight, paddingTop, paddingBottom]); }
+  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1360829281745971, this, [paddingLeft, paddingRight, paddingTop, paddingBottom]); }
   /**
    * var dataLayout: MPSGraphTensorNamedDataLayout { get set }
    * @availability iOS 14.0+
    */
-  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3041417437913046, this, []); }
-  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 474659145902129, this, [value]); }
+  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3041417437913046, this, []); }
+  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 474659145902129, this, [value]); }
   /**
    * var dilationRateInX: Int { get set }
    * @availability iOS 14.0+
    */
-  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4332903326685961, this, []); }
-  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2613013215802999, this, [value]); }
+  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4332903326685961, this, []); }
+  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2613013215802999, this, [value]); }
   /**
    * var dilationRateInY: Int { get set }
    * @availability iOS 14.0+
    */
-  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1161122942453678, this, []); }
-  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3155342703405840, this, [value]); }
+  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1161122942453678, this, []); }
+  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3155342703405840, this, [value]); }
   /**
    * var groups: Int { get set }
    * @availability iOS 14.0+
    */
-  get groups(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 459540363069785, this, []); }
-  set groups(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2802613095606040, this, [value]); }
+  get groups(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 459540363069785, this, []); }
+  set groups(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2802613095606040, this, [value]); }
   /**
    * var paddingBottom: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2650756774273301, this, []); }
-  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1214699604764102, this, [value]); }
+  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2650756774273301, this, []); }
+  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1214699604764102, this, [value]); }
   /**
    * var paddingLeft: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 597576516635948, this, []); }
-  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1177813034748449, this, [value]); }
+  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 597576516635948, this, []); }
+  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1177813034748449, this, [value]); }
   /**
    * var paddingRight: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 791527926003126, this, []); }
-  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1974195151118246, this, [value]); }
+  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 791527926003126, this, []); }
+  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1974195151118246, this, [value]); }
   /**
    * var paddingStyle: MPSGraphPaddingStyle { get set }
    * @availability iOS 14.0+
    */
-  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 357899079005522, this, []); }
-  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2483655018580419, this, [value]); }
+  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_d968214ecc684fb6", 357899079005522, this, []); }
+  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2483655018580419, this, [value]); }
   /**
    * var paddingTop: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1348865898260783, this, []); }
-  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2154159471720262, this, [value]); }
+  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1348865898260783, this, []); }
+  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2154159471720262, this, [value]); }
   /**
    * var strideInX: Int { get set }
    * @availability iOS 14.0+
    */
-  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2889717224311337, this, []); }
-  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2651318564299115, this, [value]); }
+  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2889717224311337, this, []); }
+  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2651318564299115, this, [value]); }
   /**
    * var strideInY: Int { get set }
    * @availability iOS 14.0+
    */
-  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1866015829372984, this, []); }
-  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3804380907996680, this, [value]); }
+  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1866015829372984, this, []); }
+  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3804380907996680, this, [value]); }
   /**
    * var weightsLayout: MPSGraphTensorNamedDataLayout { get set }
    * @availability iOS 14.0+
    */
-  get weightsLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 139063356947389, this, []); }
-  set weightsLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1538998027524171, this, [value]); }
+  get weightsLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_d968214ecc684fb6", 139063356947389, this, []); }
+  set weightsLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1538998027524171, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphConvolution2DOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataLayout": true; "dilationRateInX": true; "dilationRateInY": true; "groups": true; "paddingBottom": true; "paddingLeft": true; "paddingRight": true; "paddingStyle": true; "paddingTop": true; "strideInX": true; "strideInY": true; "weightsLayout": true };
 }
@@ -2173,113 +2173,113 @@ export class MPSGraphConvolution3DOpDescriptor extends MPSGraphObject {
    * convenience init?(strideInX: Int, strideInY: Int, strideInZ: Int, dilationRateInX: Int, dilationRateInY: Int, dilationRateInZ: Int, groups: Int, paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int, paddingFront: Int, paddingBack: Int, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 16.3+
    */
-  static initStrideInXStrideInYStrideInZDilationRateInXDilationRateInYDilationRateInZGroupsPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingFrontPaddingBackPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, strideInZ: number, dilationRateInX: number, dilationRateInY: number, dilationRateInZ: number, groups: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingFront: number, paddingBack: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphConvolution3DOpDescriptor) | null { return callSDK<(MPSGraphConvolution3DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3067875284470303, undefined, [strideInX, strideInY, strideInZ, dilationRateInX, dilationRateInY, dilationRateInZ, groups, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingFront, paddingBack, paddingStyle, dataLayout, weightsLayout]); }
+  static initStrideInXStrideInYStrideInZDilationRateInXDilationRateInYDilationRateInZGroupsPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingFrontPaddingBackPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, strideInZ: number, dilationRateInX: number, dilationRateInY: number, dilationRateInZ: number, groups: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingFront: number, paddingBack: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphConvolution3DOpDescriptor) | null { return callSDK<(MPSGraphConvolution3DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3067875284470303, undefined, [strideInX, strideInY, strideInZ, dilationRateInX, dilationRateInY, dilationRateInZ, groups, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingFront, paddingBack, paddingStyle, dataLayout, weightsLayout]); }
   /**
    * convenience init?(strideInX: Int, strideInY: Int, strideInZ: Int, dilationRateInX: Int, dilationRateInY: Int, dilationRateInZ: Int, groups: Int, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 16.3+
    */
-  static initStrideInXStrideInYStrideInZDilationRateInXDilationRateInYDilationRateInZGroupsPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, strideInZ: number, dilationRateInX: number, dilationRateInY: number, dilationRateInZ: number, groups: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphConvolution3DOpDescriptor) | null { return callSDK<(MPSGraphConvolution3DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2773450073082499, undefined, [strideInX, strideInY, strideInZ, dilationRateInX, dilationRateInY, dilationRateInZ, groups, paddingStyle, dataLayout, weightsLayout]); }
+  static initStrideInXStrideInYStrideInZDilationRateInXDilationRateInYDilationRateInZGroupsPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, strideInZ: number, dilationRateInX: number, dilationRateInY: number, dilationRateInZ: number, groups: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphConvolution3DOpDescriptor) | null { return callSDK<(MPSGraphConvolution3DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2773450073082499, undefined, [strideInX, strideInY, strideInZ, dilationRateInX, dilationRateInY, dilationRateInZ, groups, paddingStyle, dataLayout, weightsLayout]); }
   /**
    * func setExplicitPaddingWithPaddingLeft(_ paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int, paddingFront: Int, paddingBack: Int)
    * @availability iOS 16.3+
    */
-  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingFront: number, paddingBack: number): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 703908002054680, this, [paddingLeft, paddingRight, paddingTop, paddingBottom, paddingFront, paddingBack]); }
+  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingFront: number, paddingBack: number): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 703908002054680, this, [paddingLeft, paddingRight, paddingTop, paddingBottom, paddingFront, paddingBack]); }
   /**
    * var dataLayout: MPSGraphTensorNamedDataLayout { get set }
    * @availability iOS 16.3+
    */
-  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 512624677420747, this, []); }
-  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 21066413608535, this, [value]); }
+  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_d968214ecc684fb6", 512624677420747, this, []); }
+  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 21066413608535, this, [value]); }
   /**
    * var dilationRateInX: Int { get set }
    * @availability iOS 16.3+
    */
-  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2980056830506929, this, []); }
-  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2534914824994483, this, [value]); }
+  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2980056830506929, this, []); }
+  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2534914824994483, this, [value]); }
   /**
    * var dilationRateInY: Int { get set }
    * @availability iOS 16.3+
    */
-  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2360118336361724, this, []); }
-  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 331374091460336, this, [value]); }
+  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2360118336361724, this, []); }
+  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 331374091460336, this, [value]); }
   /**
    * var dilationRateInZ: Int { get set }
    * @availability iOS 16.3+
    */
-  get dilationRateInZ(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 875241565384899, this, []); }
-  set dilationRateInZ(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2445706171902071, this, [value]); }
+  get dilationRateInZ(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 875241565384899, this, []); }
+  set dilationRateInZ(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2445706171902071, this, [value]); }
   /**
    * var groups: Int { get set }
    * @availability iOS 16.3+
    */
-  get groups(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 601206173515960, this, []); }
-  set groups(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1132920143872567, this, [value]); }
+  get groups(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 601206173515960, this, []); }
+  set groups(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1132920143872567, this, [value]); }
   /**
    * var paddingBack: Int { get set }
    * @availability iOS 16.3+
    */
-  get paddingBack(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3570505736445867, this, []); }
-  set paddingBack(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1883991297414520, this, [value]); }
+  get paddingBack(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3570505736445867, this, []); }
+  set paddingBack(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1883991297414520, this, [value]); }
   /**
    * var paddingBottom: Int { get set }
    * @availability iOS 16.3+
    */
-  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4192948330049122, this, []); }
-  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2370657710115512, this, [value]); }
+  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4192948330049122, this, []); }
+  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2370657710115512, this, [value]); }
   /**
    * var paddingFront: Int { get set }
    * @availability iOS 16.3+
    */
-  get paddingFront(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2086626185754873, this, []); }
-  set paddingFront(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3254542253564515, this, [value]); }
+  get paddingFront(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2086626185754873, this, []); }
+  set paddingFront(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3254542253564515, this, [value]); }
   /**
    * var paddingLeft: Int { get set }
    * @availability iOS 16.3+
    */
-  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3210829515045214, this, []); }
-  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4040993377637248, this, [value]); }
+  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3210829515045214, this, []); }
+  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4040993377637248, this, [value]); }
   /**
    * var paddingRight: Int { get set }
    * @availability iOS 16.3+
    */
-  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2538054535884000, this, []); }
-  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2194266498874552, this, [value]); }
+  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2538054535884000, this, []); }
+  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2194266498874552, this, [value]); }
   /**
    * var paddingStyle: MPSGraphPaddingStyle { get set }
    * @availability iOS 16.3+
    */
-  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 232887920984875, this, []); }
-  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 73253830892302, this, [value]); }
+  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_d968214ecc684fb6", 232887920984875, this, []); }
+  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 73253830892302, this, [value]); }
   /**
    * var paddingTop: Int { get set }
    * @availability iOS 16.3+
    */
-  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1570600700508205, this, []); }
-  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2792885567838330, this, [value]); }
+  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1570600700508205, this, []); }
+  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2792885567838330, this, [value]); }
   /**
    * var strideInX: Int { get set }
    * @availability iOS 16.3+
    */
-  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3127624553178857, this, []); }
-  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 246363940139808, this, [value]); }
+  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3127624553178857, this, []); }
+  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 246363940139808, this, [value]); }
   /**
    * var strideInY: Int { get set }
    * @availability iOS 16.3+
    */
-  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2094556525425259, this, []); }
-  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1997213484126350, this, [value]); }
+  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2094556525425259, this, []); }
+  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1997213484126350, this, [value]); }
   /**
    * var strideInZ: Int { get set }
    * @availability iOS 16.3+
    */
-  get strideInZ(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 482829274411838, this, []); }
-  set strideInZ(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 869443816658195, this, [value]); }
+  get strideInZ(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 482829274411838, this, []); }
+  set strideInZ(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 869443816658195, this, [value]); }
   /**
    * var weightsLayout: MPSGraphTensorNamedDataLayout { get set }
    * @availability iOS 16.3+
    */
-  get weightsLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1212573235342033, this, []); }
-  set weightsLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 681635163667920, this, [value]); }
+  get weightsLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1212573235342033, this, []); }
+  set weightsLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 681635163667920, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphConvolution3DOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataLayout": true; "dilationRateInX": true; "dilationRateInY": true; "dilationRateInZ": true; "groups": true; "paddingBack": true; "paddingBottom": true; "paddingFront": true; "paddingLeft": true; "paddingRight": true; "paddingStyle": true; "paddingTop": true; "strideInX": true; "strideInY": true; "strideInZ": true; "weightsLayout": true };
 }
@@ -2293,21 +2293,21 @@ export class MPSGraphCreateSparseOpDescriptor extends (MPSGraphObject as unknown
    * class func sparseDescriptor(descriptorWithStorageType sparseStorageType: MPSGraphSparseStorageType, dataType: MPSDataType) -> Self?
    * @availability iOS 15.0+
    */
-  static sparseDescriptor(sparseStorageType: MPSGraphSparseStorageType, dataType: _MetalPerformanceShaders_MPSDataType): (MPSGraphCreateSparseOpDescriptor) | null { return callSDK<(MPSGraphCreateSparseOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1520990012600630, undefined, [sparseStorageType, dataType]); }
+  static sparseDescriptor(sparseStorageType: MPSGraphSparseStorageType, dataType: _MetalPerformanceShaders_MPSDataType): (MPSGraphCreateSparseOpDescriptor) | null { return callSDK<(MPSGraphCreateSparseOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1520990012600630, undefined, [sparseStorageType, dataType]); }
   /** init() */
-  static init(): MPSGraphCreateSparseOpDescriptor { return callSDK<MPSGraphCreateSparseOpDescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1220812657897514, undefined, []); }
+  static init(): MPSGraphCreateSparseOpDescriptor { return callSDK<MPSGraphCreateSparseOpDescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1220812657897514, undefined, []); }
   /**
    * var dataType: MPSDataType { get set }
    * @availability iOS 15.0+
    */
-  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4395313825241939, this, []); }
-  set dataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1490036808056684, this, [value]); }
+  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4395313825241939, this, []); }
+  set dataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1490036808056684, this, [value]); }
   /**
    * var sparseStorageType: MPSGraphSparseStorageType { get set }
    * @availability iOS 15.0+
    */
-  get sparseStorageType(): MPSGraphSparseStorageType { return callSDK<MPSGraphSparseStorageType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1531525827730799, this, []); }
-  set sparseStorageType(value: MPSGraphSparseStorageType) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4498672663372603, this, [value]); }
+  get sparseStorageType(): MPSGraphSparseStorageType { return callSDK<MPSGraphSparseStorageType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1531525827730799, this, []); }
+  set sparseStorageType(value: MPSGraphSparseStorageType) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4498672663372603, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphCreateSparseOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "sparseStorageType": true };
 }
@@ -2317,7 +2317,7 @@ export type MPSGraphDeploymentPlatform = "macOS" | "iOS" | "tvOS" | "visionOS";
 
 export const MPSGraphDeploymentPlatform = {
   /** init?(rawValue: UInt64) */
-  init(rawValue: number): (MPSGraphDeploymentPlatform) | null { return callSDK<(MPSGraphDeploymentPlatform) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 59137470427237, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphDeploymentPlatform) | null { return callSDK<(MPSGraphDeploymentPlatform) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 59137470427237, undefined, [rawValue]); }
 };
 
 /**
@@ -2329,83 +2329,83 @@ export class MPSGraphDepthwiseConvolution2DOpDescriptor extends MPSGraphObject {
    * convenience init?(dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 14.0+
    */
-  static initDataLayoutWeightsLayout(dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphDepthwiseConvolution2DOpDescriptor) | null { return callSDK<(MPSGraphDepthwiseConvolution2DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4206736116737476, undefined, [dataLayout, weightsLayout]); }
+  static initDataLayoutWeightsLayout(dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphDepthwiseConvolution2DOpDescriptor) | null { return callSDK<(MPSGraphDepthwiseConvolution2DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4206736116737476, undefined, [dataLayout, weightsLayout]); }
   /**
    * convenience init?(strideInX: Int, strideInY: Int, dilationRateInX: Int, dilationRateInY: Int, paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 14.0+
    */
-  static initStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphDepthwiseConvolution2DOpDescriptor) | null { return callSDK<(MPSGraphDepthwiseConvolution2DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3741833054070152, undefined, [strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingStyle, dataLayout, weightsLayout]); }
+  static initStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayoutWeightsLayout(strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout, weightsLayout: MPSGraphTensorNamedDataLayout): (MPSGraphDepthwiseConvolution2DOpDescriptor) | null { return callSDK<(MPSGraphDepthwiseConvolution2DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3741833054070152, undefined, [strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingStyle, dataLayout, weightsLayout]); }
   /**
    * func setExplicitPaddingWithPaddingLeft(_ paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int)
    * @availability iOS 14.0+
    */
-  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4180463238960313, this, [paddingLeft, paddingRight, paddingTop, paddingBottom]); }
+  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4180463238960313, this, [paddingLeft, paddingRight, paddingTop, paddingBottom]); }
   /**
    * var dataLayout: MPSGraphTensorNamedDataLayout { get set }
    * @availability iOS 14.0+
    */
-  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3251732720478569, this, []); }
-  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3364831427384618, this, [value]); }
+  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3251732720478569, this, []); }
+  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3364831427384618, this, [value]); }
   /**
    * var dilationRateInX: Int { get set }
    * @availability iOS 14.0+
    */
-  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1185094392925746, this, []); }
-  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1522466837082790, this, [value]); }
+  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1185094392925746, this, []); }
+  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1522466837082790, this, [value]); }
   /**
    * var dilationRateInY: Int { get set }
    * @availability iOS 14.0+
    */
-  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4028520652429832, this, []); }
-  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2307964398776006, this, [value]); }
+  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4028520652429832, this, []); }
+  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2307964398776006, this, [value]); }
   /**
    * var paddingBottom: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 743217094763237, this, []); }
-  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4025298593839222, this, [value]); }
+  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 743217094763237, this, []); }
+  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4025298593839222, this, [value]); }
   /**
    * var paddingLeft: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4376850067371209, this, []); }
-  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3182069944803870, this, [value]); }
+  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4376850067371209, this, []); }
+  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3182069944803870, this, [value]); }
   /**
    * var paddingRight: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1168684569651040, this, []); }
-  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4124680271979897, this, [value]); }
+  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1168684569651040, this, []); }
+  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4124680271979897, this, [value]); }
   /**
    * var paddingStyle: MPSGraphPaddingStyle { get set }
    * @availability iOS 14.0+
    */
-  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2045421262708773, this, []); }
-  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2013954573470222, this, [value]); }
+  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2045421262708773, this, []); }
+  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2013954573470222, this, [value]); }
   /**
    * var paddingTop: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2773778974649292, this, []); }
-  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3891691896591955, this, [value]); }
+  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2773778974649292, this, []); }
+  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3891691896591955, this, [value]); }
   /**
    * var strideInX: Int { get set }
    * @availability iOS 14.0+
    */
-  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1662492499595001, this, []); }
-  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 39863641400117, this, [value]); }
+  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1662492499595001, this, []); }
+  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 39863641400117, this, [value]); }
   /**
    * var strideInY: Int { get set }
    * @availability iOS 14.0+
    */
-  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1308093680256266, this, []); }
-  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1611732305653599, this, [value]); }
+  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1308093680256266, this, []); }
+  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1611732305653599, this, [value]); }
   /**
    * var weightsLayout: MPSGraphTensorNamedDataLayout { get set }
    * @availability iOS 14.0+
    */
-  get weightsLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 67137267276669, this, []); }
-  set weightsLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2392847115048790, this, [value]); }
+  get weightsLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_d968214ecc684fb6", 67137267276669, this, []); }
+  set weightsLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2392847115048790, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphDepthwiseConvolution2DOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataLayout": true; "dilationRateInX": true; "dilationRateInY": true; "paddingBottom": true; "paddingLeft": true; "paddingRight": true; "paddingStyle": true; "paddingTop": true; "strideInX": true; "strideInY": true; "weightsLayout": true };
 }
@@ -2419,42 +2419,42 @@ export class MPSGraphDepthwiseConvolution3DOpDescriptor extends MPSGraphObject {
    * convenience init?(paddingStyle: MPSGraphPaddingStyle)
    * @availability iOS 15.0+
    */
-  static initPaddingStyle(paddingStyle: MPSGraphPaddingStyle): (MPSGraphDepthwiseConvolution3DOpDescriptor) | null { return callSDK<(MPSGraphDepthwiseConvolution3DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 902222520265901, undefined, [paddingStyle]); }
+  static initPaddingStyle(paddingStyle: MPSGraphPaddingStyle): (MPSGraphDepthwiseConvolution3DOpDescriptor) | null { return callSDK<(MPSGraphDepthwiseConvolution3DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 902222520265901, undefined, [paddingStyle]); }
   /**
    * convenience init?(strides: [NSNumber], dilationRates: [NSNumber], paddingValues: [NSNumber], paddingStyle: MPSGraphPaddingStyle)
    * @availability iOS 15.0+
    */
-  static initStridesDilationRatesPaddingValuesPaddingStyle(strides: $SDK0, dilationRates: $SDK0, paddingValues: $SDK0, paddingStyle: MPSGraphPaddingStyle): (MPSGraphDepthwiseConvolution3DOpDescriptor) | null { return callSDK<(MPSGraphDepthwiseConvolution3DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1521024234447965, undefined, [strides, dilationRates, paddingValues, paddingStyle]); }
+  static initStridesDilationRatesPaddingValuesPaddingStyle(strides: $SDK0, dilationRates: $SDK0, paddingValues: $SDK0, paddingStyle: MPSGraphPaddingStyle): (MPSGraphDepthwiseConvolution3DOpDescriptor) | null { return callSDK<(MPSGraphDepthwiseConvolution3DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1521024234447965, undefined, [strides, dilationRates, paddingValues, paddingStyle]); }
   /**
    * var channelDimensionIndex: Int { get set }
    * @availability iOS 15.0+
    */
-  get channelDimensionIndex(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1846720108863766, this, []); }
-  set channelDimensionIndex(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4406075973775361, this, [value]); }
+  get channelDimensionIndex(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1846720108863766, this, []); }
+  set channelDimensionIndex(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4406075973775361, this, [value]); }
   /**
    * var dilationRates: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get dilationRates(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 458892062858853, this, []); }
-  set dilationRates(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2022703012942804, this, [value]); }
+  get dilationRates(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 458892062858853, this, []); }
+  set dilationRates(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2022703012942804, this, [value]); }
   /**
    * var paddingStyle: MPSGraphPaddingStyle { get set }
    * @availability iOS 15.0+
    */
-  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2312839078942408, this, []); }
-  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2137194099119439, this, [value]); }
+  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2312839078942408, this, []); }
+  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2137194099119439, this, [value]); }
   /**
    * var paddingValues: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get paddingValues(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 635996485928449, this, []); }
-  set paddingValues(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 631705417652257, this, [value]); }
+  get paddingValues(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 635996485928449, this, []); }
+  set paddingValues(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 631705417652257, this, [value]); }
   /**
    * var strides: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get strides(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3238068786319936, this, []); }
-  set strides(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4233382909768209, this, [value]); }
+  get strides(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3238068786319936, this, []); }
+  set strides(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4233382909768209, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphDepthwiseConvolution3DOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "channelDimensionIndex": true; "dilationRates": true; "paddingStyle": true; "paddingValues": true; "strides": true };
 }
@@ -2468,17 +2468,17 @@ export class MPSGraphDevice extends (MPSGraphObject as unknown as Omit<typeof MP
    * convenience init(mtlDevice metalDevice: any MTLDevice)
    * @availability iOS 14.0+
    */
-  static init(metalDevice: SDKHandle): MPSGraphDevice { return callSDK<MPSGraphDevice>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1154680892022506, undefined, [metalDevice]); }
+  static init(metalDevice: SDKHandle): MPSGraphDevice { return callSDK<MPSGraphDevice>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1154680892022506, undefined, [metalDevice]); }
   /**
    * var metalDevice: (any MTLDevice)? { get }
    * @availability iOS 14.0+
    */
-  get metalDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 41724952703882, this, []); }
+  get metalDevice(): (SDKHandle) | null { return callSDK<(SDKHandle) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 41724952703882, this, []); }
   /**
    * var type: MPSGraphDeviceType { get }
    * @availability iOS 14.0+
    */
-  get type(): MPSGraphDeviceType { return callSDK<MPSGraphDeviceType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3996419045815575, this, []); }
+  get type(): MPSGraphDeviceType { return callSDK<MPSGraphDeviceType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3996419045815575, this, []); }
   declare readonly $type: { "c:objc(cs)MPSGraphDevice": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "metalDevice": true; "type": true };
 }
@@ -2488,7 +2488,7 @@ export type MPSGraphDeviceType = "metal";
 
 export const MPSGraphDeviceType = {
   /** init?(rawValue: UInt32) */
-  init(rawValue: number): (MPSGraphDeviceType) | null { return callSDK<(MPSGraphDeviceType) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2550014981208411, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphDeviceType) | null { return callSDK<(MPSGraphDeviceType) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2550014981208411, undefined, [rawValue]); }
 };
 
 /**
@@ -2500,58 +2500,58 @@ export class MPSGraphExecutable extends MPSGraphObject {
    * func encode(to commandBuffer: MPSCommandBuffer, inputs inputsArray: [MPSGraphTensorData], results resultsArray: [MPSGraphTensorData]?, executionDescriptor: MPSGraphExecutableExecutionDescriptor?) -> [MPSGraphTensorData]
    * @availability iOS 15.0+
    */
-  encode(commandBuffer: _MetalPerformanceShaders_MPSCommandBuffer, inputsArray: $SDK14, resultsArray?: $SDK15, executionDescriptor?: $SDK16): $SDK14 { return callSDK<$SDK14>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 499142310006228, this, [commandBuffer, inputsArray, resultsArray, executionDescriptor]); }
+  encode(commandBuffer: _MetalPerformanceShaders_MPSCommandBuffer, inputsArray: $SDK14, resultsArray?: $SDK15, executionDescriptor?: $SDK16): $SDK14 { return callSDK<$SDK14>("MetalPerformanceShadersGraph_d968214ecc684fb6", 499142310006228, this, [commandBuffer, inputsArray, resultsArray, executionDescriptor]); }
   /**
    * func getOutputTypes(with device: MPSGraphDevice?, inputTypes: [MPSGraphType], compilationDescriptor: MPSGraphCompilationDescriptor?) -> [MPSGraphShapedType]?
    * @availability iOS 16.3+
    */
-  getOutputTypes(device: (MPSGraphDevice) | null, inputTypes: Array<MPSGraphType>, compilationDescriptor?: $SDK3): (Array<MPSGraphShapedType>) | null { return callSDK<(Array<MPSGraphShapedType>) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 715935208498899, this, [device, inputTypes, compilationDescriptor]); }
+  getOutputTypes(device: (MPSGraphDevice) | null, inputTypes: Array<MPSGraphType>, compilationDescriptor?: $SDK3): (Array<MPSGraphShapedType>) | null { return callSDK<(Array<MPSGraphShapedType>) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 715935208498899, this, [device, inputTypes, compilationDescriptor]); }
   /**
    * init(coreMLPackageAtURL coreMLPackageURL: URL, descriptor compilationDescriptor: MPSGraphCompilationDescriptor?)
    * @availability iOS 18.0+
    */
-  static initCoreMLPackageAtURLDescriptor(coreMLPackageURL: string, compilationDescriptor?: $SDK3): MPSGraphExecutable { return callSDK<MPSGraphExecutable>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2551576290962318, undefined, [coreMLPackageURL, compilationDescriptor]); }
+  static initCoreMLPackageAtURLDescriptor(coreMLPackageURL: string, compilationDescriptor?: $SDK3): MPSGraphExecutable { return callSDK<MPSGraphExecutable>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2551576290962318, undefined, [coreMLPackageURL, compilationDescriptor]); }
   /**
    * init(package mpsgraphPackageURL: URL, descriptor compilationDescriptor: MPSGraphCompilationDescriptor?)
    * @availability iOS 17.0+
    */
-  static initPackageDescriptor(mpsgraphPackageURL: string, compilationDescriptor?: $SDK3): MPSGraphExecutable { return callSDK<MPSGraphExecutable>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3689810648242290, undefined, [mpsgraphPackageURL, compilationDescriptor]); }
+  static initPackageDescriptor(mpsgraphPackageURL: string, compilationDescriptor?: $SDK3): MPSGraphExecutable { return callSDK<MPSGraphExecutable>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3689810648242290, undefined, [mpsgraphPackageURL, compilationDescriptor]); }
   /**
    * func runAsync(with commandQueue: any MTLCommandQueue, inputs inputsArray: [MPSGraphTensorData], results resultsArray: [MPSGraphTensorData]?, executionDescriptor: MPSGraphExecutableExecutionDescriptor?) -> [MPSGraphTensorData]
    * @availability iOS 15.0+
    */
-  runAsync(commandQueue: SDKHandle, inputsArray: $SDK14, resultsArray?: $SDK15, executionDescriptor?: $SDK16): $SDK14 { return callSDK<$SDK14>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2592898686220471, this, [commandQueue, inputsArray, resultsArray, executionDescriptor]); }
+  runAsync(commandQueue: SDKHandle, inputsArray: $SDK14, resultsArray?: $SDK15, executionDescriptor?: $SDK16): $SDK14 { return callSDK<$SDK14>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2592898686220471, this, [commandQueue, inputsArray, resultsArray, executionDescriptor]); }
   /**
    * func run(with commandQueue: any MTLCommandQueue, inputs inputsArray: [MPSGraphTensorData], results resultsArray: [MPSGraphTensorData]?, executionDescriptor: MPSGraphExecutableExecutionDescriptor?) -> [MPSGraphTensorData]
    * @availability iOS 15.0+
    */
-  run(commandQueue: SDKHandle, inputsArray: $SDK14, resultsArray?: $SDK15, executionDescriptor?: $SDK16): $SDK14 { return callSDK<$SDK14>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 192389357282465, this, [commandQueue, inputsArray, resultsArray, executionDescriptor]); }
+  run(commandQueue: SDKHandle, inputsArray: $SDK14, resultsArray?: $SDK15, executionDescriptor?: $SDK16): $SDK14 { return callSDK<$SDK14>("MetalPerformanceShadersGraph_d968214ecc684fb6", 192389357282465, this, [commandQueue, inputsArray, resultsArray, executionDescriptor]); }
   /**
    * func serialize(package url: URL, descriptor: MPSGraphExecutableSerializationDescriptor?)
    * @availability iOS 17.0+
    */
-  serialize(url: string, descriptor?: (MPSGraphExecutableSerializationDescriptor) | null): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2879016014608583, this, [url, descriptor]); }
+  serialize(url: string, descriptor?: (MPSGraphExecutableSerializationDescriptor) | null): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2879016014608583, this, [url, descriptor]); }
   /**
    * func specialize(with device: MPSGraphDevice?, inputTypes: [MPSGraphType], compilationDescriptor: MPSGraphCompilationDescriptor?)
    * @availability iOS 15.0+
    */
-  specialize(device: (MPSGraphDevice) | null, inputTypes: Array<MPSGraphType>, compilationDescriptor?: $SDK3): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3621536018820801, this, [device, inputTypes, compilationDescriptor]); }
+  specialize(device: (MPSGraphDevice) | null, inputTypes: Array<MPSGraphType>, compilationDescriptor?: $SDK3): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3621536018820801, this, [device, inputTypes, compilationDescriptor]); }
   /**
    * var feedTensors: [MPSGraphTensor]? { get }
    * @availability iOS 15.0+
    */
-  get feedTensors(): $SDK19 { return callSDK<$SDK19>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3708407658606936, this, []); }
+  get feedTensors(): $SDK19 { return callSDK<$SDK19>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3708407658606936, this, []); }
   /**
    * var options: MPSGraphOptions { get set }
    * @availability iOS 15.0+
    */
-  get options(): MPSGraphOptions { return callSDK<MPSGraphOptions>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 56522535479136, this, []); }
-  set options(value: MPSGraphOptions) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3562651733242646, this, [value]); }
+  get options(): MPSGraphOptions { return callSDK<MPSGraphOptions>("MetalPerformanceShadersGraph_d968214ecc684fb6", 56522535479136, this, []); }
+  set options(value: MPSGraphOptions) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3562651733242646, this, [value]); }
   /**
    * var targetTensors: [MPSGraphTensor]? { get }
    * @availability iOS 15.0+
    */
-  get targetTensors(): $SDK19 { return callSDK<$SDK19>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3947857547318653, this, []); }
+  get targetTensors(): $SDK19 { return callSDK<$SDK19>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3947857547318653, this, []); }
   declare readonly $type: { "c:objc(cs)MPSGraphExecutable": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "feedTensors": true; "options": true; "targetTensors": true };
 }
@@ -2568,35 +2568,35 @@ export type MPSGraphExecutableCompletionHandler = $SDK20;
  */
 export class MPSGraphExecutableExecutionDescriptor extends (MPSGraphObject as unknown as Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject)) {
   /** init() */
-  static init(): MPSGraphExecutableExecutionDescriptor { return callSDK<MPSGraphExecutableExecutionDescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 112073145922216, undefined, []); }
+  static init(): MPSGraphExecutableExecutionDescriptor { return callSDK<MPSGraphExecutableExecutionDescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 112073145922216, undefined, []); }
   /**
    * func signal(_ event: any MTLSharedEvent, atExecutionEvent executionStage: MPSGraphExecutionStage, value: UInt64)
    * @availability iOS 16.0+
    */
-  signal(event: SDKHandle, executionStage: MPSGraphExecutionStage, value: number): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2940793947853336, this, [event, executionStage, value]); }
+  signal(event: SDKHandle, executionStage: MPSGraphExecutionStage, value: number): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2940793947853336, this, [event, executionStage, value]); }
   /**
    * func wait(for event: any MTLSharedEvent, value: UInt64)
    * @availability iOS 16.0+
    */
-  wait(event: SDKHandle, value: number): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2664384892761075, this, [event, value]); }
+  wait(event: SDKHandle, value: number): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2664384892761075, this, [event, value]); }
   /**
    * var completionHandler: MPSGraphExecutableCompletionHandler { get set }
    * @availability iOS 15.0+
    */
-  get completionHandler(): $SDK20 { return callSDK<$SDK20>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3435707418823215, this, []); }
-  set completionHandler(value: $SDK21) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4172422628262617, this, [value], [{"callback":{"out":[]}}]); }
+  get completionHandler(): $SDK20 { return callSDK<$SDK20>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3435707418823215, this, []); }
+  set completionHandler(value: $SDK21) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4172422628262617, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var scheduledHandler: MPSGraphExecutableScheduledHandler { get set }
    * @availability iOS 15.0+
    */
-  get scheduledHandler(): $SDK20 { return callSDK<$SDK20>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3075949386249763, this, []); }
-  set scheduledHandler(value: $SDK21) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 736893793715802, this, [value], [{"callback":{"out":[]}}]); }
+  get scheduledHandler(): $SDK20 { return callSDK<$SDK20>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3075949386249763, this, []); }
+  set scheduledHandler(value: $SDK21) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 736893793715802, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var waitUntilCompleted: Bool { get set }
    * @availability iOS 15.0+
    */
-  get waitUntilCompleted(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4221376925362533, this, []); }
-  set waitUntilCompleted(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3220030725635013, this, [value]); }
+  get waitUntilCompleted(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4221376925362533, this, []); }
+  set waitUntilCompleted(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3220030725635013, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphExecutableExecutionDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "waitUntilCompleted": true };
 }
@@ -2613,25 +2613,25 @@ export type MPSGraphExecutableScheduledHandler = $SDK20;
  */
 export class MPSGraphExecutableSerializationDescriptor extends (MPSGraphObject as unknown as Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject)) {
   /** init() */
-  static init(): MPSGraphExecutableSerializationDescriptor { return callSDK<MPSGraphExecutableSerializationDescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1970579134613096, undefined, []); }
+  static init(): MPSGraphExecutableSerializationDescriptor { return callSDK<MPSGraphExecutableSerializationDescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1970579134613096, undefined, []); }
   /**
    * var append: Bool { get set }
    * @availability iOS 17.0+
    */
-  get append(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3565805713675656, this, []); }
-  set append(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2562179311648346, this, [value]); }
+  get append(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3565805713675656, this, []); }
+  set append(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2562179311648346, this, [value]); }
   /**
    * var deploymentPlatform: MPSGraphDeploymentPlatform { get set }
    * @availability iOS 17.0+
    */
-  get deploymentPlatform(): MPSGraphDeploymentPlatform { return callSDK<MPSGraphDeploymentPlatform>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 932655176881554, this, []); }
-  set deploymentPlatform(value: MPSGraphDeploymentPlatform) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2822891564566082, this, [value]); }
+  get deploymentPlatform(): MPSGraphDeploymentPlatform { return callSDK<MPSGraphDeploymentPlatform>("MetalPerformanceShadersGraph_d968214ecc684fb6", 932655176881554, this, []); }
+  set deploymentPlatform(value: MPSGraphDeploymentPlatform) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2822891564566082, this, [value]); }
   /**
    * var minimumDeploymentTarget: String { get set }
    * @availability iOS 17.0+
    */
-  get minimumDeploymentTarget(): string { return callSDK<string>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4211964946779595, this, []); }
-  set minimumDeploymentTarget(value: string) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2173092257414232, this, [value]); }
+  get minimumDeploymentTarget(): string { return callSDK<string>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4211964946779595, this, []); }
+  set minimumDeploymentTarget(value: string) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2173092257414232, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphExecutableSerializationDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "append": true; "deploymentPlatform": true; "minimumDeploymentTarget": true };
 }
@@ -2642,41 +2642,41 @@ export class MPSGraphExecutableSerializationDescriptor extends (MPSGraphObject a
  */
 export class MPSGraphExecutionDescriptor extends (MPSGraphObject as unknown as Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject)) {
   /** init() */
-  static init(): MPSGraphExecutionDescriptor { return callSDK<MPSGraphExecutionDescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3585773340177825, undefined, []); }
+  static init(): MPSGraphExecutionDescriptor { return callSDK<MPSGraphExecutionDescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3585773340177825, undefined, []); }
   /**
    * func signal(_ event: any MTLSharedEvent, atExecutionEvent executionStage: MPSGraphExecutionStage, value: UInt64)
    * @availability iOS 16.0+
    */
-  signal(event: SDKHandle, executionStage: MPSGraphExecutionStage, value: number): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1889391453667394, this, [event, executionStage, value]); }
+  signal(event: SDKHandle, executionStage: MPSGraphExecutionStage, value: number): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1889391453667394, this, [event, executionStage, value]); }
   /**
    * func wait(for event: any MTLSharedEvent, value: UInt64)
    * @availability iOS 16.0+
    */
-  wait(event: SDKHandle, value: number): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4229096872984128, this, [event, value]); }
+  wait(event: SDKHandle, value: number): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4229096872984128, this, [event, value]); }
   /**
    * @NSCopying var compilationDescriptor: MPSGraphCompilationDescriptor? { get set }
    * @availability iOS 15.4+
    */
-  get compilationDescriptor(): $SDK3 { return callSDK<$SDK3>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4299216247652331, this, []); }
-  set compilationDescriptor(value: $SDK3) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4068294458964555, this, [value]); }
+  get compilationDescriptor(): $SDK3 { return callSDK<$SDK3>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4299216247652331, this, []); }
+  set compilationDescriptor(value: $SDK3) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4068294458964555, this, [value]); }
   /**
    * var completionHandler: MPSGraphCompletionHandler { get set }
    * @availability iOS 14.0+
    */
-  get completionHandler(): $SDK11 { return callSDK<$SDK11>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3701696772492826, this, []); }
-  set completionHandler(value: $SDK22) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1754935237063962, this, [value], [{"callback":{"out":[]}}]); }
+  get completionHandler(): $SDK11 { return callSDK<$SDK11>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3701696772492826, this, []); }
+  set completionHandler(value: $SDK22) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1754935237063962, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var scheduledHandler: MPSGraphScheduledHandler { get set }
    * @availability iOS 14.0+
    */
-  get scheduledHandler(): $SDK11 { return callSDK<$SDK11>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4316498698782677, this, []); }
-  set scheduledHandler(value: $SDK22) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 50220452458799, this, [value], [{"callback":{"out":[]}}]); }
+  get scheduledHandler(): $SDK11 { return callSDK<$SDK11>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4316498698782677, this, []); }
+  set scheduledHandler(value: $SDK22) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 50220452458799, this, [value], [{"callback":{"out":[]}}]); }
   /**
    * var waitUntilCompleted: Bool { get set }
    * @availability iOS 14.0+
    */
-  get waitUntilCompleted(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1674629655195339, this, []); }
-  set waitUntilCompleted(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1773468544073670, this, [value]); }
+  get waitUntilCompleted(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1674629655195339, this, []); }
+  set waitUntilCompleted(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1773468544073670, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphExecutionDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "compilationDescriptor": true; "waitUntilCompleted": true };
 }
@@ -2686,7 +2686,7 @@ export type MPSGraphExecutionStage = "completed";
 
 export const MPSGraphExecutionStage = {
   /** init?(rawValue: UInt64) */
-  init(rawValue: number): (MPSGraphExecutionStage) | null { return callSDK<(MPSGraphExecutionStage) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3519980905326462, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphExecutionStage) | null { return callSDK<(MPSGraphExecutionStage) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3519980905326462, undefined, [rawValue]); }
 };
 
 /**
@@ -2695,25 +2695,25 @@ export const MPSGraphExecutionStage = {
  */
 export class MPSGraphFFTDescriptor extends (MPSGraphObject as unknown as Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject)) {
   /** init() */
-  static init(): MPSGraphFFTDescriptor { return callSDK<MPSGraphFFTDescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2816264877493501, undefined, []); }
+  static init(): MPSGraphFFTDescriptor { return callSDK<MPSGraphFFTDescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2816264877493501, undefined, []); }
   /**
    * var inverse: Bool { get set }
    * @availability iOS 17.0+
    */
-  get inverse(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1252916770723411, this, []); }
-  set inverse(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3866533029445072, this, [value]); }
+  get inverse(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1252916770723411, this, []); }
+  set inverse(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3866533029445072, this, [value]); }
   /**
    * var roundToOddHermitean: Bool { get set }
    * @availability iOS 17.0+
    */
-  get roundToOddHermitean(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 189418332001180, this, []); }
-  set roundToOddHermitean(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1688042609095266, this, [value]); }
+  get roundToOddHermitean(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 189418332001180, this, []); }
+  set roundToOddHermitean(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1688042609095266, this, [value]); }
   /**
    * var scalingMode: MPSGraphFFTScalingMode { get set }
    * @availability iOS 17.0+
    */
-  get scalingMode(): MPSGraphFFTScalingMode { return callSDK<MPSGraphFFTScalingMode>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2645505968563737, this, []); }
-  set scalingMode(value: MPSGraphFFTScalingMode) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3878686851322838, this, [value]); }
+  get scalingMode(): MPSGraphFFTScalingMode { return callSDK<MPSGraphFFTScalingMode>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2645505968563737, this, []); }
+  set scalingMode(value: MPSGraphFFTScalingMode) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3878686851322838, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphFFTDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "inverse": true; "roundToOddHermitean": true; "scalingMode": true };
 }
@@ -2723,7 +2723,7 @@ export type MPSGraphFFTScalingMode = "none" | "size" | "unitary";
 
 export const MPSGraphFFTScalingMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MPSGraphFFTScalingMode) | null { return callSDK<(MPSGraphFFTScalingMode) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1229326446930049, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphFFTScalingMode) | null { return callSDK<(MPSGraphFFTScalingMode) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1229326446930049, undefined, [rawValue]); }
 };
 
 /** typealias MPSGraphForLoopBodyBlock = (MPSGraphTensor, [MPSGraphTensor]) -> [MPSGraphTensor] */
@@ -2735,61 +2735,61 @@ export type MPSGraphForLoopBodyBlock = ((arg0: MPSGraphTensor, arg1: Array<MPSGr
  */
 export class MPSGraphGRUDescriptor extends (MPSGraphObject as unknown as Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject)) {
   /** init() */
-  static init(): MPSGraphGRUDescriptor { return callSDK<MPSGraphGRUDescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 604443882040203, undefined, []); }
+  static init(): MPSGraphGRUDescriptor { return callSDK<MPSGraphGRUDescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 604443882040203, undefined, []); }
   /**
    * var bidirectional: Bool { get set }
    * @availability iOS 16.0+
    */
-  get bidirectional(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 617561129954986, this, []); }
-  set bidirectional(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4453018054401617, this, [value]); }
+  get bidirectional(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 617561129954986, this, []); }
+  set bidirectional(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4453018054401617, this, [value]); }
   /**
    * var flipZ: Bool { get set }
    * @availability iOS 16.0+
    */
-  get flipZ(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4449458290179915, this, []); }
-  set flipZ(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1888845797126843, this, [value]); }
+  get flipZ(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4449458290179915, this, []); }
+  set flipZ(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1888845797126843, this, [value]); }
   /**
    * var outputGateActivation: MPSGraphRNNActivation { get set }
    * @availability iOS 16.0+
    */
-  get outputGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1392537122294267, this, []); }
-  set outputGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 698007665145853, this, [value]); }
+  get outputGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1392537122294267, this, []); }
+  set outputGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 698007665145853, this, [value]); }
   /**
    * var resetAfter: Bool { get set }
    * @availability iOS 16.0+
    */
-  get resetAfter(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1108229299142915, this, []); }
-  set resetAfter(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 555805960551197, this, [value]); }
+  get resetAfter(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1108229299142915, this, []); }
+  set resetAfter(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 555805960551197, this, [value]); }
   /**
    * var resetGateActivation: MPSGraphRNNActivation { get set }
    * @availability iOS 16.0+
    */
-  get resetGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4156790308138125, this, []); }
-  set resetGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 500965268654599, this, [value]); }
+  get resetGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4156790308138125, this, []); }
+  set resetGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 500965268654599, this, [value]); }
   /**
    * var resetGateFirst: Bool { get set }
    * @availability iOS 16.0+
    */
-  get resetGateFirst(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1113820990551810, this, []); }
-  set resetGateFirst(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 181288599617055, this, [value]); }
+  get resetGateFirst(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1113820990551810, this, []); }
+  set resetGateFirst(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 181288599617055, this, [value]); }
   /**
    * var reverse: Bool { get set }
    * @availability iOS 16.0+
    */
-  get reverse(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1812805139988509, this, []); }
-  set reverse(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 911751723734795, this, [value]); }
+  get reverse(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1812805139988509, this, []); }
+  set reverse(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 911751723734795, this, [value]); }
   /**
    * var training: Bool { get set }
    * @availability iOS 16.0+
    */
-  get training(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 890721979615197, this, []); }
-  set training(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 650511892517749, this, [value]); }
+  get training(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 890721979615197, this, []); }
+  set training(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 650511892517749, this, [value]); }
   /**
    * var updateGateActivation: MPSGraphRNNActivation { get set }
    * @availability iOS 16.0+
    */
-  get updateGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2917209811560476, this, []); }
-  set updateGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1623340619149076, this, [value]); }
+  get updateGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2917209811560476, this, []); }
+  set updateGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1623340619149076, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphGRUDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "bidirectional": true; "flipZ": true; "outputGateActivation": true; "resetAfter": true; "resetGateActivation": true; "resetGateFirst": true; "reverse": true; "training": true; "updateGateActivation": true };
 }
@@ -2806,83 +2806,83 @@ export class MPSGraphImToColOpDescriptor extends MPSGraphObject {
    * convenience init?(kernelWidth: Int, kernelHeight: Int, strideInX: Int, strideInY: Int, dilationRateInX: Int, dilationRateInY: Int, dataLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 17.0+
    */
-  static initKernelWidthKernelHeightStrideInXStrideInYDilationRateInXDilationRateInYDataLayout(kernelWidth: number, kernelHeight: number, strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, dataLayout: MPSGraphTensorNamedDataLayout): (MPSGraphImToColOpDescriptor) | null { return callSDK<(MPSGraphImToColOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 901182060066488, undefined, [kernelWidth, kernelHeight, strideInX, strideInY, dilationRateInX, dilationRateInY, dataLayout]); }
+  static initKernelWidthKernelHeightStrideInXStrideInYDilationRateInXDilationRateInYDataLayout(kernelWidth: number, kernelHeight: number, strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, dataLayout: MPSGraphTensorNamedDataLayout): (MPSGraphImToColOpDescriptor) | null { return callSDK<(MPSGraphImToColOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 901182060066488, undefined, [kernelWidth, kernelHeight, strideInX, strideInY, dilationRateInX, dilationRateInY, dataLayout]); }
   /**
    * convenience init?(kernelWidth: Int, kernelHeight: Int, strideInX: Int, strideInY: Int, dilationRateInX: Int, dilationRateInY: Int, paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int, dataLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 17.0+
    */
-  static initKernelWidthKernelHeightStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomDataLayout(kernelWidth: number, kernelHeight: number, strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, dataLayout: MPSGraphTensorNamedDataLayout): (MPSGraphImToColOpDescriptor) | null { return callSDK<(MPSGraphImToColOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2674531030305233, undefined, [kernelWidth, kernelHeight, strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, dataLayout]); }
+  static initKernelWidthKernelHeightStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomDataLayout(kernelWidth: number, kernelHeight: number, strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, dataLayout: MPSGraphTensorNamedDataLayout): (MPSGraphImToColOpDescriptor) | null { return callSDK<(MPSGraphImToColOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2674531030305233, undefined, [kernelWidth, kernelHeight, strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, dataLayout]); }
   /**
    * func setExplicitPaddingWithPaddingLeft(_ paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int)
    * @availability iOS 17.0+
    */
-  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 377729997255683, this, [paddingLeft, paddingRight, paddingTop, paddingBottom]); }
+  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 377729997255683, this, [paddingLeft, paddingRight, paddingTop, paddingBottom]); }
   /**
    * var dataLayout: MPSGraphTensorNamedDataLayout { get set }
    * @availability iOS 17.0+
    */
-  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4056178344191601, this, []); }
-  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3393355200767559, this, [value]); }
+  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4056178344191601, this, []); }
+  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3393355200767559, this, [value]); }
   /**
    * var dilationRateInX: Int { get set }
    * @availability iOS 17.0+
    */
-  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2934900323863402, this, []); }
-  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 645206477508909, this, [value]); }
+  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2934900323863402, this, []); }
+  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 645206477508909, this, [value]); }
   /**
    * var dilationRateInY: Int { get set }
    * @availability iOS 17.0+
    */
-  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4310115736849010, this, []); }
-  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1798447428057274, this, [value]); }
+  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4310115736849010, this, []); }
+  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1798447428057274, this, [value]); }
   /**
    * var kernelHeight: Int { get set }
    * @availability iOS 17.0+
    */
-  get kernelHeight(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2507664414890392, this, []); }
-  set kernelHeight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3597185914436187, this, [value]); }
+  get kernelHeight(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2507664414890392, this, []); }
+  set kernelHeight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3597185914436187, this, [value]); }
   /**
    * var kernelWidth: Int { get set }
    * @availability iOS 17.0+
    */
-  get kernelWidth(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4309920397703218, this, []); }
-  set kernelWidth(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2977885431777313, this, [value]); }
+  get kernelWidth(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4309920397703218, this, []); }
+  set kernelWidth(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2977885431777313, this, [value]); }
   /**
    * var paddingBottom: Int { get set }
    * @availability iOS 17.0+
    */
-  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4480106524827383, this, []); }
-  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2841057881332369, this, [value]); }
+  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4480106524827383, this, []); }
+  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2841057881332369, this, [value]); }
   /**
    * var paddingLeft: Int { get set }
    * @availability iOS 17.0+
    */
-  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2873634624867438, this, []); }
-  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4386483318405748, this, [value]); }
+  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2873634624867438, this, []); }
+  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4386483318405748, this, [value]); }
   /**
    * var paddingRight: Int { get set }
    * @availability iOS 17.0+
    */
-  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4500665371681910, this, []); }
-  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 472572075392858, this, [value]); }
+  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4500665371681910, this, []); }
+  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 472572075392858, this, [value]); }
   /**
    * var paddingTop: Int { get set }
    * @availability iOS 17.0+
    */
-  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1420659338544825, this, []); }
-  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3843774882640263, this, [value]); }
+  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1420659338544825, this, []); }
+  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3843774882640263, this, [value]); }
   /**
    * var strideInX: Int { get set }
    * @availability iOS 17.0+
    */
-  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 404416016201890, this, []); }
-  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 208154303418653, this, [value]); }
+  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 404416016201890, this, []); }
+  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 208154303418653, this, [value]); }
   /**
    * var strideInY: Int { get set }
    * @availability iOS 17.0+
    */
-  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 499892680278028, this, []); }
-  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2394320586431123, this, [value]); }
+  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 499892680278028, this, []); }
+  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2394320586431123, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphImToColOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataLayout": true; "dilationRateInX": true; "dilationRateInY": true; "kernelHeight": true; "kernelWidth": true; "paddingBottom": true; "paddingLeft": true; "paddingRight": true; "paddingTop": true; "strideInX": true; "strideInY": true };
 }
@@ -2895,9 +2895,9 @@ export const MPSGraphLossReductionType = {
    * static var axis: MPSGraphLossReductionType { get }
    * @availability iOS 14.0+
    */
-  get axis(): MPSGraphLossReductionType { return callSDK<MPSGraphLossReductionType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2944038654717077, undefined, []); },
+  get axis(): MPSGraphLossReductionType { return callSDK<MPSGraphLossReductionType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2944038654717077, undefined, []); },
   /** init?(rawValue: UInt64) */
-  init(rawValue: number): (MPSGraphLossReductionType) | null { return callSDK<(MPSGraphLossReductionType) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 553942193905618, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphLossReductionType) | null { return callSDK<(MPSGraphLossReductionType) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 553942193905618, undefined, [rawValue]); }
 };
 
 /**
@@ -2906,67 +2906,67 @@ export const MPSGraphLossReductionType = {
  */
 export class MPSGraphLSTMDescriptor extends (MPSGraphObject as unknown as Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject)) {
   /** init() */
-  static init(): MPSGraphLSTMDescriptor { return callSDK<MPSGraphLSTMDescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 437530516209164, undefined, []); }
+  static init(): MPSGraphLSTMDescriptor { return callSDK<MPSGraphLSTMDescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 437530516209164, undefined, []); }
   /**
    * var activation: MPSGraphRNNActivation { get set }
    * @availability iOS 15.4+
    */
-  get activation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1231355210170293, this, []); }
-  set activation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2559119797754205, this, [value]); }
+  get activation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1231355210170293, this, []); }
+  set activation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2559119797754205, this, [value]); }
   /**
    * var bidirectional: Bool { get set }
    * @availability iOS 15.4+
    */
-  get bidirectional(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3462552199871207, this, []); }
-  set bidirectional(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2790721138845318, this, [value]); }
+  get bidirectional(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3462552199871207, this, []); }
+  set bidirectional(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2790721138845318, this, [value]); }
   /**
    * var cellGateActivation: MPSGraphRNNActivation { get set }
    * @availability iOS 15.4+
    */
-  get cellGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 999048132307178, this, []); }
-  set cellGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1825463854055417, this, [value]); }
+  get cellGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 999048132307178, this, []); }
+  set cellGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1825463854055417, this, [value]); }
   /**
    * var forgetGateActivation: MPSGraphRNNActivation { get set }
    * @availability iOS 15.4+
    */
-  get forgetGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2031337229858260, this, []); }
-  set forgetGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4369266498973223, this, [value]); }
+  get forgetGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2031337229858260, this, []); }
+  set forgetGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4369266498973223, this, [value]); }
   /**
    * var forgetGateLast: Bool { get set }
    * @availability iOS 15.4+
    */
-  get forgetGateLast(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3689831860131684, this, []); }
-  set forgetGateLast(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2915548402799893, this, [value]); }
+  get forgetGateLast(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3689831860131684, this, []); }
+  set forgetGateLast(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2915548402799893, this, [value]); }
   /**
    * var inputGateActivation: MPSGraphRNNActivation { get set }
    * @availability iOS 15.4+
    */
-  get inputGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2355774018125508, this, []); }
-  set inputGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2094848692400425, this, [value]); }
+  get inputGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2355774018125508, this, []); }
+  set inputGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2094848692400425, this, [value]); }
   /**
    * var outputGateActivation: MPSGraphRNNActivation { get set }
    * @availability iOS 15.4+
    */
-  get outputGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3965949284999574, this, []); }
-  set outputGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3761436593000343, this, [value]); }
+  get outputGateActivation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3965949284999574, this, []); }
+  set outputGateActivation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3761436593000343, this, [value]); }
   /**
    * var produceCell: Bool { get set }
    * @availability iOS 15.4+
    */
-  get produceCell(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2140706598434223, this, []); }
-  set produceCell(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4167306291824976, this, [value]); }
+  get produceCell(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2140706598434223, this, []); }
+  set produceCell(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4167306291824976, this, [value]); }
   /**
    * var reverse: Bool { get set }
    * @availability iOS 15.4+
    */
-  get reverse(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3940037869829831, this, []); }
-  set reverse(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4329680750456636, this, [value]); }
+  get reverse(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3940037869829831, this, []); }
+  set reverse(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4329680750456636, this, [value]); }
   /**
    * var training: Bool { get set }
    * @availability iOS 15.4+
    */
-  get training(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3510829797573016, this, []); }
-  set training(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 612786268865903, this, [value]); }
+  get training(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3510829797573016, this, []); }
+  set training(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 612786268865903, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphLSTMDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activation": true; "bidirectional": true; "cellGateActivation": true; "forgetGateActivation": true; "forgetGateLast": true; "inputGateActivation": true; "outputGateActivation": true; "produceCell": true; "reverse": true; "training": true };
 }
@@ -2976,7 +2976,7 @@ export type MPSGraphNonMaximumSuppressionCoordinateMode = "explicit" | "cornersW
 
 export const MPSGraphNonMaximumSuppressionCoordinateMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MPSGraphNonMaximumSuppressionCoordinateMode) | null { return callSDK<(MPSGraphNonMaximumSuppressionCoordinateMode) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1371396269979799, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphNonMaximumSuppressionCoordinateMode) | null { return callSDK<(MPSGraphNonMaximumSuppressionCoordinateMode) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1371396269979799, undefined, [rawValue]); }
 };
 
 /**
@@ -2988,27 +2988,27 @@ export class MPSGraphOperation extends MPSGraphObject {
    * var controlDependencies: [MPSGraphOperation] { get }
    * @availability iOS 14.0+
    */
-  get controlDependencies(): Array<MPSGraphOperation> { return callSDK<Array<MPSGraphOperation>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2932225213949904, this, []); }
+  get controlDependencies(): Array<MPSGraphOperation> { return callSDK<Array<MPSGraphOperation>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2932225213949904, this, []); }
   /**
    * var graph: MPSGraph { get }
    * @availability iOS 14.0+
    */
-  get graph(): MPSGraph { return callSDK<MPSGraph>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1620749386563562, this, []); }
+  get graph(): MPSGraph { return callSDK<MPSGraph>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1620749386563562, this, []); }
   /**
    * var inputTensors: [MPSGraphTensor] { get }
    * @availability iOS 14.0+
    */
-  get inputTensors(): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4459486404989496, this, []); }
+  get inputTensors(): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4459486404989496, this, []); }
   /**
    * var name: String { get }
    * @availability iOS 14.0+
    */
-  get name(): string { return callSDK<string>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 60425812664733, this, []); }
+  get name(): string { return callSDK<string>("MetalPerformanceShadersGraph_d968214ecc684fb6", 60425812664733, this, []); }
   /**
    * var outputTensors: [MPSGraphTensor] { get }
    * @availability iOS 14.0+
    */
-  get outputTensors(): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4108003936058830, this, []); }
+  get outputTensors(): Array<MPSGraphTensor> { return callSDK<Array<MPSGraphTensor>>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4108003936058830, this, []); }
   declare readonly $type: { "c:objc(cs)MPSGraphOperation": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "controlDependencies": true; "graph": true; "inputTensors": true; "name": true; "outputTensors": true };
 }
@@ -3018,7 +3018,7 @@ export type MPSGraphOptimization = "level0" | "level1";
 
 export const MPSGraphOptimization = {
   /** init?(rawValue: UInt64) */
-  init(rawValue: number): (MPSGraphOptimization) | null { return callSDK<(MPSGraphOptimization) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 75926146856673, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphOptimization) | null { return callSDK<(MPSGraphOptimization) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 75926146856673, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphOptimizationProfile */
@@ -3026,7 +3026,7 @@ export type MPSGraphOptimizationProfile = "performance" | "powerEfficiency";
 
 export const MPSGraphOptimizationProfile = {
   /** init?(rawValue: UInt64) */
-  init(rawValue: number): (MPSGraphOptimizationProfile) | null { return callSDK<(MPSGraphOptimizationProfile) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 456785573522961, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphOptimizationProfile) | null { return callSDK<(MPSGraphOptimizationProfile) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 456785573522961, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphOptions */
@@ -3037,9 +3037,9 @@ export const MPSGraphOptions = {
    * static var `default`: MPSGraphOptions { get }
    * @availability iOS 14.0+
    */
-  get default(): MPSGraphOptions { return callSDK<MPSGraphOptions>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3888908093008592, undefined, []); },
+  get default(): MPSGraphOptions { return callSDK<MPSGraphOptions>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3888908093008592, undefined, []); },
   /** init?(rawValue: UInt64) */
-  init(rawValue: number): (MPSGraphOptions) | null { return callSDK<(MPSGraphOptions) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3253214094746081, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphOptions) | null { return callSDK<(MPSGraphOptions) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3253214094746081, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphPaddingMode */
@@ -3047,7 +3047,7 @@ export type MPSGraphPaddingMode = "constant" | "reflect" | "symmetric" | "clampT
 
 export const MPSGraphPaddingMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MPSGraphPaddingMode) | null { return callSDK<(MPSGraphPaddingMode) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 142690997329488, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphPaddingMode) | null { return callSDK<(MPSGraphPaddingMode) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 142690997329488, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphPaddingStyle */
@@ -3055,7 +3055,7 @@ export type MPSGraphPaddingStyle = "explicit" | "TF_VALID" | "TF_SAME" | "explic
 
 export const MPSGraphPaddingStyle = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MPSGraphPaddingStyle) | null { return callSDK<(MPSGraphPaddingStyle) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1133085065992377, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphPaddingStyle) | null { return callSDK<(MPSGraphPaddingStyle) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1133085065992377, undefined, [rawValue]); }
 };
 
 /**
@@ -3067,113 +3067,113 @@ export class MPSGraphPooling2DOpDescriptor extends MPSGraphObject {
    * convenience init?(kernelWidth: Int, kernelHeight: Int, strideInX: Int, strideInY: Int, dilationRateInX: Int, dilationRateInY: Int, paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 14.0+
    */
-  static initKernelWidthKernelHeightStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayout(kernelWidth: number, kernelHeight: number, strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout): (MPSGraphPooling2DOpDescriptor) | null { return callSDK<(MPSGraphPooling2DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1101967161498380, undefined, [kernelWidth, kernelHeight, strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingStyle, dataLayout]); }
+  static initKernelWidthKernelHeightStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayout(kernelWidth: number, kernelHeight: number, strideInX: number, strideInY: number, dilationRateInX: number, dilationRateInY: number, paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout): (MPSGraphPooling2DOpDescriptor) | null { return callSDK<(MPSGraphPooling2DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1101967161498380, undefined, [kernelWidth, kernelHeight, strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingStyle, dataLayout]); }
   /**
    * convenience init?(kernelWidth: Int, kernelHeight: Int, strideInX: Int, strideInY: Int, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout)
    * @availability iOS 14.0+
    */
-  static initKernelWidthKernelHeightStrideInXStrideInYPaddingStyleDataLayout(kernelWidth: number, kernelHeight: number, strideInX: number, strideInY: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout): (MPSGraphPooling2DOpDescriptor) | null { return callSDK<(MPSGraphPooling2DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1161202588303819, undefined, [kernelWidth, kernelHeight, strideInX, strideInY, paddingStyle, dataLayout]); }
+  static initKernelWidthKernelHeightStrideInXStrideInYPaddingStyleDataLayout(kernelWidth: number, kernelHeight: number, strideInX: number, strideInY: number, paddingStyle: MPSGraphPaddingStyle, dataLayout: MPSGraphTensorNamedDataLayout): (MPSGraphPooling2DOpDescriptor) | null { return callSDK<(MPSGraphPooling2DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1161202588303819, undefined, [kernelWidth, kernelHeight, strideInX, strideInY, paddingStyle, dataLayout]); }
   /**
    * func setExplicitPaddingWithPaddingLeft(_ paddingLeft: Int, paddingRight: Int, paddingTop: Int, paddingBottom: Int)
    * @availability iOS 14.0+
    */
-  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number): void { return callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3710743557018797, this, [paddingLeft, paddingRight, paddingTop, paddingBottom]); }
+  setExplicitPaddingWithPaddingLeft(paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number): void { return callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3710743557018797, this, [paddingLeft, paddingRight, paddingTop, paddingBottom]); }
   /**
    * var ceilMode: Bool { get set }
    * @availability iOS 15.0+
    */
-  get ceilMode(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 770047775649112, this, []); }
-  set ceilMode(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2877499434950286, this, [value]); }
+  get ceilMode(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 770047775649112, this, []); }
+  set ceilMode(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2877499434950286, this, [value]); }
   /**
    * var dataLayout: MPSGraphTensorNamedDataLayout { get set }
    * @availability iOS 14.0+
    */
-  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 281467847057828, this, []); }
-  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3376944376024143, this, [value]); }
+  get dataLayout(): MPSGraphTensorNamedDataLayout { return callSDK<MPSGraphTensorNamedDataLayout>("MetalPerformanceShadersGraph_d968214ecc684fb6", 281467847057828, this, []); }
+  set dataLayout(value: MPSGraphTensorNamedDataLayout) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3376944376024143, this, [value]); }
   /**
    * var dilationRateInX: Int { get set }
    * @availability iOS 14.0+
    */
-  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2690545634263114, this, []); }
-  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2160615264968476, this, [value]); }
+  get dilationRateInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2690545634263114, this, []); }
+  set dilationRateInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2160615264968476, this, [value]); }
   /**
    * var dilationRateInY: Int { get set }
    * @availability iOS 14.0+
    */
-  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2759839789406784, this, []); }
-  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1316600978415279, this, [value]); }
+  get dilationRateInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2759839789406784, this, []); }
+  set dilationRateInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1316600978415279, this, [value]); }
   /**
    * var includeZeroPadToAverage: Bool { get set }
    * @availability iOS 15.0+
    */
-  get includeZeroPadToAverage(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2671034519201168, this, []); }
-  set includeZeroPadToAverage(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3072873009502445, this, [value]); }
+  get includeZeroPadToAverage(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2671034519201168, this, []); }
+  set includeZeroPadToAverage(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3072873009502445, this, [value]); }
   /**
    * var kernelHeight: Int { get set }
    * @availability iOS 14.0+
    */
-  get kernelHeight(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3253984816063467, this, []); }
-  set kernelHeight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1270967839524462, this, [value]); }
+  get kernelHeight(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3253984816063467, this, []); }
+  set kernelHeight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1270967839524462, this, [value]); }
   /**
    * var kernelWidth: Int { get set }
    * @availability iOS 14.0+
    */
-  get kernelWidth(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 398846664708741, this, []); }
-  set kernelWidth(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2325966588783897, this, [value]); }
+  get kernelWidth(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 398846664708741, this, []); }
+  set kernelWidth(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2325966588783897, this, [value]); }
   /**
    * var paddingBottom: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2041266396240082, this, []); }
-  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2116295253521026, this, [value]); }
+  get paddingBottom(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2041266396240082, this, []); }
+  set paddingBottom(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2116295253521026, this, [value]); }
   /**
    * var paddingLeft: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 618728533186622, this, []); }
-  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3884409483976610, this, [value]); }
+  get paddingLeft(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 618728533186622, this, []); }
+  set paddingLeft(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3884409483976610, this, [value]); }
   /**
    * var paddingRight: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 635365960120672, this, []); }
-  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 725197685828599, this, [value]); }
+  get paddingRight(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 635365960120672, this, []); }
+  set paddingRight(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 725197685828599, this, [value]); }
   /**
    * var paddingStyle: MPSGraphPaddingStyle { get set }
    * @availability iOS 14.0+
    */
-  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1081326496568963, this, []); }
-  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1769995338355820, this, [value]); }
+  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1081326496568963, this, []); }
+  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1769995338355820, this, [value]); }
   /**
    * var paddingTop: Int { get set }
    * @availability iOS 14.0+
    */
-  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3601923094630997, this, []); }
-  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2779416000793107, this, [value]); }
+  get paddingTop(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3601923094630997, this, []); }
+  set paddingTop(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2779416000793107, this, [value]); }
   /**
    * var returnIndicesDataType: MPSDataType { get set }
    * @availability iOS 15.3+
    */
-  get returnIndicesDataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 489281365404340, this, []); }
-  set returnIndicesDataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2709420131440938, this, [value]); }
+  get returnIndicesDataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 489281365404340, this, []); }
+  set returnIndicesDataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2709420131440938, this, [value]); }
   /**
    * var returnIndicesMode: MPSGraphPoolingReturnIndicesMode { get set }
    * @availability iOS 15.3+
    */
-  get returnIndicesMode(): MPSGraphPoolingReturnIndicesMode { return callSDK<MPSGraphPoolingReturnIndicesMode>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2204292662762749, this, []); }
-  set returnIndicesMode(value: MPSGraphPoolingReturnIndicesMode) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 604907483976147, this, [value]); }
+  get returnIndicesMode(): MPSGraphPoolingReturnIndicesMode { return callSDK<MPSGraphPoolingReturnIndicesMode>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2204292662762749, this, []); }
+  set returnIndicesMode(value: MPSGraphPoolingReturnIndicesMode) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 604907483976147, this, [value]); }
   /**
    * var strideInX: Int { get set }
    * @availability iOS 14.0+
    */
-  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3391277816870698, this, []); }
-  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1178547156909393, this, [value]); }
+  get strideInX(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3391277816870698, this, []); }
+  set strideInX(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1178547156909393, this, [value]); }
   /**
    * var strideInY: Int { get set }
    * @availability iOS 14.0+
    */
-  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1102864432095118, this, []); }
-  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3679504484742487, this, [value]); }
+  get strideInY(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1102864432095118, this, []); }
+  set strideInY(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3679504484742487, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphPooling2DOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ceilMode": true; "dataLayout": true; "dilationRateInX": true; "dilationRateInY": true; "includeZeroPadToAverage": true; "kernelHeight": true; "kernelWidth": true; "paddingBottom": true; "paddingLeft": true; "paddingRight": true; "paddingStyle": true; "paddingTop": true; "returnIndicesDataType": true; "returnIndicesMode": true; "strideInX": true; "strideInY": true };
 }
@@ -3187,66 +3187,66 @@ export class MPSGraphPooling4DOpDescriptor extends MPSGraphObject {
    * convenience init?(kernelSizes: [NSNumber], paddingStyle: MPSGraphPaddingStyle)
    * @availability iOS 15.0+
    */
-  static initKernelSizesPaddingStyle(kernelSizes: $SDK0, paddingStyle: MPSGraphPaddingStyle): (MPSGraphPooling4DOpDescriptor) | null { return callSDK<(MPSGraphPooling4DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1935132401895308, undefined, [kernelSizes, paddingStyle]); }
+  static initKernelSizesPaddingStyle(kernelSizes: $SDK0, paddingStyle: MPSGraphPaddingStyle): (MPSGraphPooling4DOpDescriptor) | null { return callSDK<(MPSGraphPooling4DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1935132401895308, undefined, [kernelSizes, paddingStyle]); }
   /**
    * convenience init?(kernelSizes: [NSNumber], strides: [NSNumber], dilationRates: [NSNumber], paddingValues: [NSNumber], paddingStyle: MPSGraphPaddingStyle)
    * @availability iOS 15.0+
    */
-  static initKernelSizesStridesDilationRatesPaddingValuesPaddingStyle(kernelSizes: $SDK0, strides: $SDK0, dilationRates: $SDK0, paddingValues: $SDK0, paddingStyle: MPSGraphPaddingStyle): (MPSGraphPooling4DOpDescriptor) | null { return callSDK<(MPSGraphPooling4DOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4454605874997584, undefined, [kernelSizes, strides, dilationRates, paddingValues, paddingStyle]); }
+  static initKernelSizesStridesDilationRatesPaddingValuesPaddingStyle(kernelSizes: $SDK0, strides: $SDK0, dilationRates: $SDK0, paddingValues: $SDK0, paddingStyle: MPSGraphPaddingStyle): (MPSGraphPooling4DOpDescriptor) | null { return callSDK<(MPSGraphPooling4DOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4454605874997584, undefined, [kernelSizes, strides, dilationRates, paddingValues, paddingStyle]); }
   /**
    * var ceilMode: Bool { get set }
    * @availability iOS 15.0+
    */
-  get ceilMode(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4220477680056685, this, []); }
-  set ceilMode(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 705516055160920, this, [value]); }
+  get ceilMode(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4220477680056685, this, []); }
+  set ceilMode(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 705516055160920, this, [value]); }
   /**
    * var dilationRates: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get dilationRates(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3982884570546369, this, []); }
-  set dilationRates(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1190536166746429, this, [value]); }
+  get dilationRates(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3982884570546369, this, []); }
+  set dilationRates(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1190536166746429, this, [value]); }
   /**
    * var includeZeroPadToAverage: Bool { get set }
    * @availability iOS 15.0+
    */
-  get includeZeroPadToAverage(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1408044673719243, this, []); }
-  set includeZeroPadToAverage(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3290828753881522, this, [value]); }
+  get includeZeroPadToAverage(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1408044673719243, this, []); }
+  set includeZeroPadToAverage(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3290828753881522, this, [value]); }
   /**
    * var kernelSizes: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get kernelSizes(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3826379863840619, this, []); }
-  set kernelSizes(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1688056094279691, this, [value]); }
+  get kernelSizes(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3826379863840619, this, []); }
+  set kernelSizes(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1688056094279691, this, [value]); }
   /**
    * var paddingStyle: MPSGraphPaddingStyle { get set }
    * @availability iOS 15.0+
    */
-  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4165764961986841, this, []); }
-  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4041017876442050, this, [value]); }
+  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4165764961986841, this, []); }
+  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4041017876442050, this, [value]); }
   /**
    * var paddingValues: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get paddingValues(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 666232693379853, this, []); }
-  set paddingValues(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 895139547878853, this, [value]); }
+  get paddingValues(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 666232693379853, this, []); }
+  set paddingValues(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 895139547878853, this, [value]); }
   /**
    * var returnIndicesDataType: MPSDataType { get set }
    * @availability iOS 15.3+
    */
-  get returnIndicesDataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1510653147261107, this, []); }
-  set returnIndicesDataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2521482212219399, this, [value]); }
+  get returnIndicesDataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1510653147261107, this, []); }
+  set returnIndicesDataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2521482212219399, this, [value]); }
   /**
    * var returnIndicesMode: MPSGraphPoolingReturnIndicesMode { get set }
    * @availability iOS 15.3+
    */
-  get returnIndicesMode(): MPSGraphPoolingReturnIndicesMode { return callSDK<MPSGraphPoolingReturnIndicesMode>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1308588251409049, this, []); }
-  set returnIndicesMode(value: MPSGraphPoolingReturnIndicesMode) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1030914216564175, this, [value]); }
+  get returnIndicesMode(): MPSGraphPoolingReturnIndicesMode { return callSDK<MPSGraphPoolingReturnIndicesMode>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1308588251409049, this, []); }
+  set returnIndicesMode(value: MPSGraphPoolingReturnIndicesMode) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1030914216564175, this, [value]); }
   /**
    * var strides: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get strides(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4386095385485475, this, []); }
-  set strides(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 558799027070071, this, [value]); }
+  get strides(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4386095385485475, this, []); }
+  set strides(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 558799027070071, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphPooling4DOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "ceilMode": true; "dilationRates": true; "includeZeroPadToAverage": true; "kernelSizes": true; "paddingStyle": true; "paddingValues": true; "returnIndicesDataType": true; "returnIndicesMode": true; "strides": true };
 }
@@ -3262,7 +3262,7 @@ export const MPSGraphPoolingReturnIndicesMode = {
    * init?(rawValue: UInt)
    * @availability iOS 15.3+
    */
-  init(rawValue: number): (MPSGraphPoolingReturnIndicesMode) | null { return callSDK<(MPSGraphPoolingReturnIndicesMode) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3756024858505639, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphPoolingReturnIndicesMode) | null { return callSDK<(MPSGraphPoolingReturnIndicesMode) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3756024858505639, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphRandomDistribution */
@@ -3270,7 +3270,7 @@ export type MPSGraphRandomDistribution = "uniform" | "normal" | "truncatedNormal
 
 export const MPSGraphRandomDistribution = {
   /** init?(rawValue: UInt64) */
-  init(rawValue: number): (MPSGraphRandomDistribution) | null { return callSDK<(MPSGraphRandomDistribution) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1902876469679794, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphRandomDistribution) | null { return callSDK<(MPSGraphRandomDistribution) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1902876469679794, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphRandomNormalSamplingMethod */
@@ -3278,40 +3278,40 @@ export type MPSGraphRandomNormalSamplingMethod = "invCDF" | "boxMuller";
 
 export const MPSGraphRandomNormalSamplingMethod = {
   /** init?(rawValue: UInt64) */
-  init(rawValue: number): (MPSGraphRandomNormalSamplingMethod) | null { return callSDK<(MPSGraphRandomNormalSamplingMethod) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3251244594263334, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphRandomNormalSamplingMethod) | null { return callSDK<(MPSGraphRandomNormalSamplingMethod) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3251244594263334, undefined, [rawValue]); }
 };
 
 /** class MPSGraphRandomOpDescriptor */
 export class MPSGraphRandomOpDescriptor extends (MPSGraphObject as unknown as Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject)) {
   /** convenience init?(distribution: MPSGraphRandomDistribution, dataType: MPSDataType) */
-  static init(distribution: MPSGraphRandomDistribution, dataType: _MetalPerformanceShaders_MPSDataType): (MPSGraphRandomOpDescriptor) | null { return callSDK<(MPSGraphRandomOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2906596940529489, undefined, [distribution, dataType]); }
+  static init(distribution: MPSGraphRandomDistribution, dataType: _MetalPerformanceShaders_MPSDataType): (MPSGraphRandomOpDescriptor) | null { return callSDK<(MPSGraphRandomOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2906596940529489, undefined, [distribution, dataType]); }
   /** var dataType: MPSDataType { get set } */
-  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3452337638821031, this, []); }
-  set dataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3353500950841912, this, [value]); }
+  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3452337638821031, this, []); }
+  set dataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3353500950841912, this, [value]); }
   /** var distribution: MPSGraphRandomDistribution { get set } */
-  get distribution(): MPSGraphRandomDistribution { return callSDK<MPSGraphRandomDistribution>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 793296112584047, this, []); }
-  set distribution(value: MPSGraphRandomDistribution) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1903012541176072, this, [value]); }
+  get distribution(): MPSGraphRandomDistribution { return callSDK<MPSGraphRandomDistribution>("MetalPerformanceShadersGraph_d968214ecc684fb6", 793296112584047, this, []); }
+  set distribution(value: MPSGraphRandomDistribution) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1903012541176072, this, [value]); }
   /** var max: Float { get set } */
-  get max(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2708254432857957, this, []); }
-  set max(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3518382950805658, this, [value]); }
+  get max(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2708254432857957, this, []); }
+  set max(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3518382950805658, this, [value]); }
   /** var maxInteger: Int { get set } */
-  get maxInteger(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 568694954806304, this, []); }
-  set maxInteger(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1433218121868610, this, [value]); }
+  get maxInteger(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 568694954806304, this, []); }
+  set maxInteger(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1433218121868610, this, [value]); }
   /** var mean: Float { get set } */
-  get mean(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 894484301489093, this, []); }
-  set mean(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4128582300663909, this, [value]); }
+  get mean(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 894484301489093, this, []); }
+  set mean(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4128582300663909, this, [value]); }
   /** var min: Float { get set } */
-  get min(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3393620794786608, this, []); }
-  set min(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3224969122397133, this, [value]); }
+  get min(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3393620794786608, this, []); }
+  set min(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3224969122397133, this, [value]); }
   /** var minInteger: Int { get set } */
-  get minInteger(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 648715070982678, this, []); }
-  set minInteger(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1929596328381087, this, [value]); }
+  get minInteger(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 648715070982678, this, []); }
+  set minInteger(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1929596328381087, this, [value]); }
   /** var samplingMethod: MPSGraphRandomNormalSamplingMethod { get set } */
-  get samplingMethod(): MPSGraphRandomNormalSamplingMethod { return callSDK<MPSGraphRandomNormalSamplingMethod>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2464102107100628, this, []); }
-  set samplingMethod(value: MPSGraphRandomNormalSamplingMethod) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1022094619268163, this, [value]); }
+  get samplingMethod(): MPSGraphRandomNormalSamplingMethod { return callSDK<MPSGraphRandomNormalSamplingMethod>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2464102107100628, this, []); }
+  set samplingMethod(value: MPSGraphRandomNormalSamplingMethod) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1022094619268163, this, [value]); }
   /** var standardDeviation: Float { get set } */
-  get standardDeviation(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 332379693781898, this, []); }
-  set standardDeviation(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3493003909475058, this, [value]); }
+  get standardDeviation(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 332379693781898, this, []); }
+  set standardDeviation(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3493003909475058, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphRandomOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "distribution": true; "max": true; "maxInteger": true; "mean": true; "min": true; "minInteger": true; "samplingMethod": true; "standardDeviation": true };
 }
@@ -3327,27 +3327,27 @@ export const MPSGraphReducedPrecisionFastMath = {
    * static var allowConvertingOperandsFromFP32ToFP19: MPSGraphReducedPrecisionFastMath { get }
    * @availability iOS 26.0+
    */
-  get allowConvertingOperandsFromFP32ToFP19(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 479010213038747, undefined, []); },
+  get allowConvertingOperandsFromFP32ToFP19(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_d968214ecc684fb6", 479010213038747, undefined, []); },
   /**
    * static var allowFP16Conv2DWinogradTransformIntermediate: MPSGraphReducedPrecisionFastMath { get }
    * @availability iOS 26.0+
    */
-  get allowFP16Conv2DWinogradTransformIntermediate(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 191745437593797, undefined, []); },
+  get allowFP16Conv2DWinogradTransformIntermediate(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_d968214ecc684fb6", 191745437593797, undefined, []); },
   /**
    * static var allowFP16Intermediates: MPSGraphReducedPrecisionFastMath { get }
    * @availability iOS 26.0+
    */
-  get allowFP16Intermediates(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1309384900782242, undefined, []); },
+  get allowFP16Intermediates(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1309384900782242, undefined, []); },
   /**
    * static var none: MPSGraphReducedPrecisionFastMath { get }
    * @availability iOS 26.0+
    */
-  get none(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4426874661780159, undefined, []); },
+  get none(): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4426874661780159, undefined, []); },
   /**
    * init(rawValue: UInt)
    * @availability iOS 26.0+
    */
-  init(rawValue: number): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3925720190212910, undefined, [rawValue]); }
+  init(rawValue: number): MPSGraphReducedPrecisionFastMath { return callSDK<MPSGraphReducedPrecisionFastMath>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3925720190212910, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphReductionMode */
@@ -3355,7 +3355,7 @@ export type MPSGraphReductionMode = "min" | "max" | "sum" | "product" | "argumen
 
 export const MPSGraphReductionMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MPSGraphReductionMode) | null { return callSDK<(MPSGraphReductionMode) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3978047166036530, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphReductionMode) | null { return callSDK<(MPSGraphReductionMode) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3978047166036530, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphResizeMode */
@@ -3363,7 +3363,7 @@ export type MPSGraphResizeMode = "nearest" | "bilinear";
 
 export const MPSGraphResizeMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MPSGraphResizeMode) | null { return callSDK<(MPSGraphResizeMode) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2493272499472896, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphResizeMode) | null { return callSDK<(MPSGraphResizeMode) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2493272499472896, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphResizeNearestRoundingMode */
@@ -3371,7 +3371,7 @@ export type MPSGraphResizeNearestRoundingMode = "roundPreferCeil" | "roundPrefer
 
 export const MPSGraphResizeNearestRoundingMode = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MPSGraphResizeNearestRoundingMode) | null { return callSDK<(MPSGraphResizeNearestRoundingMode) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 301732916880028, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphResizeNearestRoundingMode) | null { return callSDK<(MPSGraphResizeNearestRoundingMode) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 301732916880028, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphRNNActivation */
@@ -3379,7 +3379,7 @@ export type MPSGraphRNNActivation = "none" | "relu" | "tanh" | "sigmoid" | "hard
 
 export const MPSGraphRNNActivation = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MPSGraphRNNActivation) | null { return callSDK<(MPSGraphRNNActivation) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4488692107316056, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphRNNActivation) | null { return callSDK<(MPSGraphRNNActivation) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4488692107316056, undefined, [rawValue]); }
 };
 
 /** enum MPSGraphScatterMode */
@@ -3387,7 +3387,7 @@ export type MPSGraphScatterMode = "add" | "sub" | "mul" | "div" | "min" | "max" 
 
 export const MPSGraphScatterMode = {
   /** init?(rawValue: Int) */
-  init(rawValue: number): (MPSGraphScatterMode) | null { return callSDK<(MPSGraphScatterMode) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2437524411265233, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphScatterMode) | null { return callSDK<(MPSGraphScatterMode) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2437524411265233, undefined, [rawValue]); }
 };
 
 /** typealias MPSGraphScheduledHandler = ([MPSGraphTensor : MPSGraphTensorData], (any Error)?) -> Void */
@@ -3402,31 +3402,31 @@ export class MPSGraphSDPADescriptor extends (MPSGraphObject as unknown as Omit<t
    * convenience init(scale: Float)
    * @availability iOS 27.0+
    */
-  static init(scale: number): MPSGraphSDPADescriptor { return callSDK<MPSGraphSDPADescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2323357396239922, undefined, [scale]); }
+  static init(scale: number): MPSGraphSDPADescriptor { return callSDK<MPSGraphSDPADescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2323357396239922, undefined, [scale]); }
   /**
    * var isCausal: Bool { get set }
    * @availability iOS 27.0+
    */
-  get isCausal(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2516642329447592, this, []); }
-  set isCausal(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1292678155077965, this, [value]); }
+  get isCausal(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2516642329447592, this, []); }
+  set isCausal(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1292678155077965, this, [value]); }
   /**
    * var maskTensor: MPSGraphTensor? { get set }
    * @availability iOS 27.0+
    */
-  get maskTensor(): (MPSGraphTensor) | null { return callSDK<(MPSGraphTensor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4205629547674307, this, []); }
-  set maskTensor(value: (MPSGraphTensor) | null) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1319500917840494, this, [value]); }
+  get maskTensor(): (MPSGraphTensor) | null { return callSDK<(MPSGraphTensor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4205629547674307, this, []); }
+  set maskTensor(value: (MPSGraphTensor) | null) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1319500917840494, this, [value]); }
   /**
    * var scale: Float { get set }
    * @availability iOS 27.0+
    */
-  get scale(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2890137732684776, this, []); }
-  set scale(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 772351912271551, this, [value]); }
+  get scale(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2890137732684776, this, []); }
+  set scale(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 772351912271551, this, [value]); }
   /**
    * var sinksTensor: MPSGraphTensor? { get set }
    * @availability iOS 27.0+
    */
-  get sinksTensor(): (MPSGraphTensor) | null { return callSDK<(MPSGraphTensor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 886738642484120, this, []); }
-  set sinksTensor(value: (MPSGraphTensor) | null) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1227532976230956, this, [value]); }
+  get sinksTensor(): (MPSGraphTensor) | null { return callSDK<(MPSGraphTensor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 886738642484120, this, []); }
+  set sinksTensor(value: (MPSGraphTensor) | null) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1227532976230956, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphSDPADescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "isCausal": true; "maskTensor": true; "scale": true; "sinksTensor": true };
 }
@@ -3437,7 +3437,7 @@ export class MPSGraphSDPADescriptor extends (MPSGraphObject as unknown as Omit<t
  */
 export class MPSGraphType extends (MPSGraphObject as unknown as Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject)) {
   /** init() */
-  static init(): MPSGraphType { return callSDK<MPSGraphType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2530132430794037, undefined, []); }
+  static init(): MPSGraphType { return callSDK<MPSGraphType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2530132430794037, undefined, []); }
   declare readonly $type: { "c:objc(cs)MPSGraphType": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
 }
 
@@ -3450,24 +3450,24 @@ export class MPSGraphShapedType extends (MPSGraphType as unknown as Omit<typeof 
    * init(shape: [NSNumber]?, dataType: MPSDataType)
    * @availability iOS 14.0+
    */
-  static init(shape: $SDK4, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphShapedType { return callSDK<MPSGraphShapedType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1869698904425621, undefined, [shape, dataType]); }
+  static init(shape: $SDK4, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphShapedType { return callSDK<MPSGraphShapedType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1869698904425621, undefined, [shape, dataType]); }
   /**
    * func isEqual(to object: MPSGraphShapedType?) -> Bool
    * @availability iOS 14.0+
    */
-  isEqual(object?: (MPSGraphShapedType) | null): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 603122484553909, this, [object]); }
+  isEqual(object?: (MPSGraphShapedType) | null): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 603122484553909, this, [object]); }
   /**
    * var dataType: MPSDataType { get set }
    * @availability iOS 14.0+
    */
-  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4123282357365165, this, []); }
-  set dataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2934205445283771, this, [value]); }
+  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4123282357365165, this, []); }
+  set dataType(value: _MetalPerformanceShaders_MPSDataType) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2934205445283771, this, [value]); }
   /**
    * var shape: [NSNumber]? { get set }
    * @availability iOS 14.0+
    */
-  get shape(): $SDK4 { return callSDK<$SDK4>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3896728601377292, this, []); }
-  set shape(value: $SDK4) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4286683362885022, this, [value]); }
+  get shape(): $SDK4 { return callSDK<$SDK4>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3896728601377292, this, []); }
+  set shape(value: $SDK4) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4286683362885022, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphShapedType": true; "c:objc(cs)MPSGraphType": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "shape": true };
 }
@@ -3478,31 +3478,31 @@ export class MPSGraphShapedType extends (MPSGraphType as unknown as Omit<typeof 
  */
 export class MPSGraphSingleGateRNNDescriptor extends (MPSGraphObject as unknown as Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject)) {
   /** init() */
-  static init(): MPSGraphSingleGateRNNDescriptor { return callSDK<MPSGraphSingleGateRNNDescriptor>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1273235725489500, undefined, []); }
+  static init(): MPSGraphSingleGateRNNDescriptor { return callSDK<MPSGraphSingleGateRNNDescriptor>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1273235725489500, undefined, []); }
   /**
    * var activation: MPSGraphRNNActivation { get set }
    * @availability iOS 15.4+
    */
-  get activation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3011279560041088, this, []); }
-  set activation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 916471531795384, this, [value]); }
+  get activation(): MPSGraphRNNActivation { return callSDK<MPSGraphRNNActivation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3011279560041088, this, []); }
+  set activation(value: MPSGraphRNNActivation) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 916471531795384, this, [value]); }
   /**
    * var bidirectional: Bool { get set }
    * @availability iOS 15.4+
    */
-  get bidirectional(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2646061166375369, this, []); }
-  set bidirectional(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3232332793176048, this, [value]); }
+  get bidirectional(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2646061166375369, this, []); }
+  set bidirectional(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3232332793176048, this, [value]); }
   /**
    * var reverse: Bool { get set }
    * @availability iOS 15.4+
    */
-  get reverse(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4261446319463487, this, []); }
-  set reverse(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 896687673226252, this, [value]); }
+  get reverse(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4261446319463487, this, []); }
+  set reverse(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 896687673226252, this, [value]); }
   /**
    * var training: Bool { get set }
    * @availability iOS 15.4+
    */
-  get training(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1607141899979250, this, []); }
-  set training(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3647503327995939, this, [value]); }
+  get training(): boolean { return callSDK<boolean>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1607141899979250, this, []); }
+  set training(value: boolean) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3647503327995939, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphSingleGateRNNDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "activation": true; "bidirectional": true; "reverse": true; "training": true };
 }
@@ -3512,7 +3512,7 @@ export type MPSGraphSparseStorageType = "COO" | "CSC" | "CSR";
 
 export const MPSGraphSparseStorageType = {
   /** init?(rawValue: UInt64) */
-  init(rawValue: number): (MPSGraphSparseStorageType) | null { return callSDK<(MPSGraphSparseStorageType) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2941478674683734, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphSparseStorageType) | null { return callSDK<(MPSGraphSparseStorageType) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2941478674683734, undefined, [rawValue]); }
 };
 
 /**
@@ -3524,70 +3524,70 @@ export class MPSGraphStencilOpDescriptor extends MPSGraphObject {
    * convenience init?(explicitPadding: [NSNumber])
    * @availability iOS 15.0+
    */
-  static initExplicitPadding(explicitPadding: $SDK0): (MPSGraphStencilOpDescriptor) | null { return callSDK<(MPSGraphStencilOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1875557381743901, undefined, [explicitPadding]); }
+  static initExplicitPadding(explicitPadding: $SDK0): (MPSGraphStencilOpDescriptor) | null { return callSDK<(MPSGraphStencilOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1875557381743901, undefined, [explicitPadding]); }
   /**
    * convenience init?(offsets: [NSNumber], explicitPadding: [NSNumber])
    * @availability iOS 15.0+
    */
-  static initOffsetsExplicitPadding(offsets: $SDK0, explicitPadding: $SDK0): (MPSGraphStencilOpDescriptor) | null { return callSDK<(MPSGraphStencilOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2261156157268129, undefined, [offsets, explicitPadding]); }
+  static initOffsetsExplicitPadding(offsets: $SDK0, explicitPadding: $SDK0): (MPSGraphStencilOpDescriptor) | null { return callSDK<(MPSGraphStencilOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2261156157268129, undefined, [offsets, explicitPadding]); }
   /**
    * convenience init?(paddingStyle: MPSGraphPaddingStyle)
    * @availability iOS 15.0+
    */
-  static initPaddingStyle(paddingStyle: MPSGraphPaddingStyle): (MPSGraphStencilOpDescriptor) | null { return callSDK<(MPSGraphStencilOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2784300755617512, undefined, [paddingStyle]); }
+  static initPaddingStyle(paddingStyle: MPSGraphPaddingStyle): (MPSGraphStencilOpDescriptor) | null { return callSDK<(MPSGraphStencilOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2784300755617512, undefined, [paddingStyle]); }
   /**
    * convenience init?(reductionMode: MPSGraphReductionMode, offsets: [NSNumber], strides: [NSNumber], dilationRates: [NSNumber], explicitPadding: [NSNumber], boundaryMode: MPSGraphPaddingMode, paddingStyle: MPSGraphPaddingStyle, paddingConstant: Float)
    * @availability iOS 15.0+
    */
-  static initReductionModeOffsetsStridesDilationRatesExplicitPaddingBoundaryModePaddingStylePaddingConstant(reductionMode: MPSGraphReductionMode, offsets: $SDK0, strides: $SDK0, dilationRates: $SDK0, explicitPadding: $SDK0, boundaryMode: MPSGraphPaddingMode, paddingStyle: MPSGraphPaddingStyle, paddingConstant: number): (MPSGraphStencilOpDescriptor) | null { return callSDK<(MPSGraphStencilOpDescriptor) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4461249067527809, undefined, [reductionMode, offsets, strides, dilationRates, explicitPadding, boundaryMode, paddingStyle, paddingConstant]); }
+  static initReductionModeOffsetsStridesDilationRatesExplicitPaddingBoundaryModePaddingStylePaddingConstant(reductionMode: MPSGraphReductionMode, offsets: $SDK0, strides: $SDK0, dilationRates: $SDK0, explicitPadding: $SDK0, boundaryMode: MPSGraphPaddingMode, paddingStyle: MPSGraphPaddingStyle, paddingConstant: number): (MPSGraphStencilOpDescriptor) | null { return callSDK<(MPSGraphStencilOpDescriptor) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4461249067527809, undefined, [reductionMode, offsets, strides, dilationRates, explicitPadding, boundaryMode, paddingStyle, paddingConstant]); }
   /**
    * var boundaryMode: MPSGraphPaddingMode { get set }
    * @availability iOS 15.0+
    */
-  get boundaryMode(): MPSGraphPaddingMode { return callSDK<MPSGraphPaddingMode>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1915570695878246, this, []); }
-  set boundaryMode(value: MPSGraphPaddingMode) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2182432448335182, this, [value]); }
+  get boundaryMode(): MPSGraphPaddingMode { return callSDK<MPSGraphPaddingMode>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1915570695878246, this, []); }
+  set boundaryMode(value: MPSGraphPaddingMode) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2182432448335182, this, [value]); }
   /**
    * var dilationRates: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get dilationRates(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 337321760151056, this, []); }
-  set dilationRates(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2475756781107505, this, [value]); }
+  get dilationRates(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 337321760151056, this, []); }
+  set dilationRates(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2475756781107505, this, [value]); }
   /**
    * var explicitPadding: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get explicitPadding(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3648401017578818, this, []); }
-  set explicitPadding(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3646212687095419, this, [value]); }
+  get explicitPadding(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3648401017578818, this, []); }
+  set explicitPadding(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3646212687095419, this, [value]); }
   /**
    * var offsets: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get offsets(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 459035578343359, this, []); }
-  set offsets(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2439224448939272, this, [value]); }
+  get offsets(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 459035578343359, this, []); }
+  set offsets(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2439224448939272, this, [value]); }
   /**
    * var paddingConstant: Float { get set }
    * @availability iOS 15.0+
    */
-  get paddingConstant(): number { return callSDK<number>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4002311744907541, this, []); }
-  set paddingConstant(value: number) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2023929887060510, this, [value]); }
+  get paddingConstant(): number { return callSDK<number>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4002311744907541, this, []); }
+  set paddingConstant(value: number) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2023929887060510, this, [value]); }
   /**
    * var paddingStyle: MPSGraphPaddingStyle { get set }
    * @availability iOS 15.0+
    */
-  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 680549932362925, this, []); }
-  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3259221436463640, this, [value]); }
+  get paddingStyle(): MPSGraphPaddingStyle { return callSDK<MPSGraphPaddingStyle>("MetalPerformanceShadersGraph_d968214ecc684fb6", 680549932362925, this, []); }
+  set paddingStyle(value: MPSGraphPaddingStyle) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3259221436463640, this, [value]); }
   /**
    * var reductionMode: MPSGraphReductionMode { get set }
    * @availability iOS 15.0+
    */
-  get reductionMode(): MPSGraphReductionMode { return callSDK<MPSGraphReductionMode>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 306706812661256, this, []); }
-  set reductionMode(value: MPSGraphReductionMode) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 530789989737014, this, [value]); }
+  get reductionMode(): MPSGraphReductionMode { return callSDK<MPSGraphReductionMode>("MetalPerformanceShadersGraph_d968214ecc684fb6", 306706812661256, this, []); }
+  set reductionMode(value: MPSGraphReductionMode) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 530789989737014, this, [value]); }
   /**
    * var strides: [NSNumber] { get set }
    * @availability iOS 15.0+
    */
-  get strides(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3031472886351907, this, []); }
-  set strides(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3082562078143104, this, [value]); }
+  get strides(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3031472886351907, this, []); }
+  set strides(value: $SDK0) { callSDK<void>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3082562078143104, this, [value]); }
   declare readonly $type: { "c:objc(cs)MPSGraphStencilOpDescriptor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "boundaryMode": true; "dilationRates": true; "explicitPadding": true; "offsets": true; "paddingConstant": true; "paddingStyle": true; "reductionMode": true; "strides": true };
 }
@@ -3601,17 +3601,17 @@ export class MPSGraphTensor extends MPSGraphObject {
    * var dataType: MPSDataType { get }
    * @availability iOS 14.0+
    */
-  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3440325870443822, this, []); }
+  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3440325870443822, this, []); }
   /**
    * var operation: MPSGraphOperation { get }
    * @availability iOS 14.0+
    */
-  get operation(): MPSGraphOperation { return callSDK<MPSGraphOperation>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4453356450469654, this, []); }
+  get operation(): MPSGraphOperation { return callSDK<MPSGraphOperation>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4453356450469654, this, []); }
   /**
    * var shape: [NSNumber]? { get }
    * @availability iOS 14.0+
    */
-  get shape(): $SDK4 { return callSDK<$SDK4>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4307075560158130, this, []); }
+  get shape(): $SDK4 { return callSDK<$SDK4>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4307075560158130, this, []); }
   declare readonly $type: { "c:objc(cs)MPSGraphTensor": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "operation": true; "shape": true };
 }
@@ -3625,67 +3625,67 @@ export class MPSGraphTensorData extends (MPSGraphObject as unknown as Omit<typeo
    * init(device: MPSGraphDevice, data: Data, shape: [NSNumber], dataType: MPSDataType)
    * @availability iOS 14.0+
    */
-  static initDeviceDataShapeDataType(device: MPSGraphDevice, data: ArrayBuffer, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 873245177973695, undefined, [device, data, shape, dataType]); }
+  static initDeviceDataShapeDataType(device: MPSGraphDevice, data: ArrayBuffer, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_d968214ecc684fb6", 873245177973695, undefined, [device, data, shape, dataType]); }
   /**
    * init(_ imageBatch: [MPSImage])
    * @availability iOS 14.0+
    */
-  static init(imageBatch: Array<_MetalPerformanceShaders_MPSImage>): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2464161187318410, undefined, [imageBatch]); }
+  static init(imageBatch: Array<_MetalPerformanceShaders_MPSImage>): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2464161187318410, undefined, [imageBatch]); }
   /**
    * init(_ matrix: MPSMatrix)
    * @availability iOS 14.0+
    */
-  static init54852(matrix: _MetalPerformanceShaders_MPSMatrix): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4357234754464920, undefined, [matrix]); }
+  static init54852(matrix: _MetalPerformanceShaders_MPSMatrix): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4357234754464920, undefined, [matrix]); }
   /**
    * init(_ matrix: MPSMatrix, rank: Int)
    * @availability iOS 14.0+
    */
-  static initRank(matrix: _MetalPerformanceShaders_MPSMatrix, rank: number): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1737475083942497, undefined, [matrix, rank]); }
+  static initRank(matrix: _MetalPerformanceShaders_MPSMatrix, rank: number): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1737475083942497, undefined, [matrix, rank]); }
   /**
    * init(_ ndarray: MPSNDArray)
    * @availability iOS 14.0+
    */
-  static init72488(ndarray: _MetalPerformanceShaders_MPSNDArray): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1450468610290603, undefined, [ndarray]); }
+  static init72488(ndarray: _MetalPerformanceShaders_MPSNDArray): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1450468610290603, undefined, [ndarray]); }
   /**
    * init(_ vector: MPSVector)
    * @availability iOS 14.0+
    */
-  static init19774(vector: _MetalPerformanceShaders_MPSVector): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2993261658177123, undefined, [vector]); }
+  static init19774(vector: _MetalPerformanceShaders_MPSVector): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2993261658177123, undefined, [vector]); }
   /**
    * init(_ vector: MPSVector, rank: Int)
    * @availability iOS 14.0+
    */
-  static initRank2406(vector: _MetalPerformanceShaders_MPSVector, rank: number): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 134093774409804, undefined, [vector, rank]); }
+  static initRank2406(vector: _MetalPerformanceShaders_MPSVector, rank: number): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_d968214ecc684fb6", 134093774409804, undefined, [vector, rank]); }
   /**
    * init(_ buffer: any MTLBuffer, shape: [NSNumber], dataType: MPSDataType)
    * @availability iOS 14.0+
    */
-  static initShapeDataType(buffer: SDKHandle, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4202442284222214, undefined, [buffer, shape, dataType]); }
+  static initShapeDataType(buffer: SDKHandle, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4202442284222214, undefined, [buffer, shape, dataType]); }
   /**
    * init(_ buffer: any MTLBuffer, shape: [NSNumber], dataType: MPSDataType, rowBytes: Int)
    * @availability iOS 15.4+
    */
-  static initShapeDataTypeRowBytes(buffer: SDKHandle, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType, rowBytes: number): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 2867275911085037, undefined, [buffer, shape, dataType, rowBytes]); }
+  static initShapeDataTypeRowBytes(buffer: SDKHandle, shape: $SDK0, dataType: _MetalPerformanceShaders_MPSDataType, rowBytes: number): MPSGraphTensorData { return callSDK<MPSGraphTensorData>("MetalPerformanceShadersGraph_d968214ecc684fb6", 2867275911085037, undefined, [buffer, shape, dataType, rowBytes]); }
   /**
    * func mpsndarray() -> MPSNDArray
    * @availability iOS 14.0+
    */
-  mpsndarray(): _MetalPerformanceShaders_MPSNDArray { return callSDK<_MetalPerformanceShaders_MPSNDArray>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1999213341089801, this, []); }
+  mpsndarray(): _MetalPerformanceShaders_MPSNDArray { return callSDK<_MetalPerformanceShaders_MPSNDArray>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1999213341089801, this, []); }
   /**
    * var dataType: MPSDataType { get }
    * @availability iOS 14.0+
    */
-  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 1721283556015563, this, []); }
+  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 1721283556015563, this, []); }
   /**
    * var device: MPSGraphDevice { get }
    * @availability iOS 14.0+
    */
-  get device(): MPSGraphDevice { return callSDK<MPSGraphDevice>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 983598468726631, this, []); }
+  get device(): MPSGraphDevice { return callSDK<MPSGraphDevice>("MetalPerformanceShadersGraph_d968214ecc684fb6", 983598468726631, this, []); }
   /**
    * var shape: [NSNumber] { get }
    * @availability iOS 14.0+
    */
-  get shape(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 652998985296464, this, []); }
+  get shape(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 652998985296464, this, []); }
   declare readonly $type: { "c:objc(cs)MPSGraphTensorData": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "dataType": true; "device": true; "shape": true };
 }
@@ -3695,7 +3695,7 @@ export type MPSGraphTensorNamedDataLayout = "NCHW" | "NHWC" | "OIHW" | "HWIO" | 
 
 export const MPSGraphTensorNamedDataLayout = {
   /** init?(rawValue: UInt) */
-  init(rawValue: number): (MPSGraphTensorNamedDataLayout) | null { return callSDK<(MPSGraphTensorNamedDataLayout) | null>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3143272254698416, undefined, [rawValue]); }
+  init(rawValue: number): (MPSGraphTensorNamedDataLayout) | null { return callSDK<(MPSGraphTensorNamedDataLayout) | null>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3143272254698416, undefined, [rawValue]); }
 };
 
 /**
@@ -3707,12 +3707,12 @@ export class MPSGraphVariableOp extends MPSGraphOperation {
    * var dataType: MPSDataType { get }
    * @availability iOS 14.0+
    */
-  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 4036153444808329, this, []); }
+  get dataType(): _MetalPerformanceShaders_MPSDataType { return callSDK<_MetalPerformanceShaders_MPSDataType>("MetalPerformanceShadersGraph_d968214ecc684fb6", 4036153444808329, this, []); }
   /**
    * var shape: [NSNumber] { get }
    * @availability iOS 14.0+
    */
-  get shape(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_067acaa3e5f56b46", 3549233356624075, this, []); }
+  get shape(): $SDK0 { return callSDK<$SDK0>("MetalPerformanceShadersGraph_d968214ecc684fb6", 3549233356624075, this, []); }
   declare readonly $type: { "c:objc(cs)MPSGraphVariableOp": true; "c:objc(cs)MPSGraphOperation": true; "c:objc(cs)MPSGraphObject": true; "c:objc(cs)NSObject": true };
   declare readonly $observable: { "controlDependencies": true; "graph": true; "inputTensors": true; "name": true; "outputTensors": true; "dataType": true; "shape": true };
 }
@@ -3723,32 +3723,32 @@ export type MPSGraphWhileAfterBlock = ((arg0: Array<MPSGraphTensor>) => Promise<
 /** typealias MPSGraphWhileBeforeBlock = ([MPSGraphTensor], NSMutableArray) -> MPSGraphTensor */
 export type MPSGraphWhileBeforeBlock = ((arg0: Array<MPSGraphTensor>, arg1: _Foundation_NSMutableArray) => Promise<MPSGraphTensor>);
 
-registerSDKClass("MPSGraphObject", MPSGraphObject, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {} });
-registerSDKClass("MPSGraph", MPSGraph, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"options":3804979134301539,"placeholderTensors":1377815656800731}, methods: {"GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasDescriptorName":{"id":4015485670793496},"GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasInitStateDescriptorName":{"id":323740994390127},"GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdStateGradientInputWeightBiasInitStateMaskSecondaryBiasDescriptorName":{"id":4311978033208140},"GRURecurrentWeightInputWeightBiasDescriptorName":{"id":366094811090289},"GRURecurrentWeightInputWeightBiasInitStateDescriptorName":{"id":859025683715267},"GRURecurrentWeightInputWeightBiasInitStateMaskSecondaryBiasDescriptorName":{"id":1657769243839160},"HammingDistance":{"id":144710035331354},"HermiteanToRealFFTAxesDescriptorName":{"id":3590730410054638},"HermiteanToRealFFTAxesTensorDescriptorName":{"id":3273544614775266},"L2NormPooling4DGradient":{"id":4474678784135683},"L2NormPooling4D":{"id":2166713687822094},"LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdDescriptorName":{"id":1871468106059954},"LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdInputWeightBiasInitStateInitCellDescriptorName":{"id":586349065077992},"LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdInputWeightBiasInitStateInitCellMaskDescriptorName":{"id":3254680011537662},"LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdStateGradientCellGradientInputWeightBiasInitStateInitCellMaskPeepholeDescriptorName":{"id":2554053570168700},"LSTMRecurrentWeightInitStateInitCellDescriptorName":{"id":3425904034001943},"LSTMRecurrentWeightInputWeightBiasInitStateInitCellDescriptorName":{"id":2589280728033099},"LSTMRecurrentWeightInputWeightBiasInitStateInitCellMaskPeepholeDescriptorName":{"id":648526789035136},"absoluteSquare":{"id":728087475885340},"absolute":{"id":169590478272533},"acos":{"id":3282439198027409},"acosh":{"id":1198593063025505},"adamCurrentLearningRateBeta1Beta2EpsilonValuesMomentumVelocityMaximumVelocityGradientName":{"id":2069700468862826},"adamLearningRateBeta1Beta2EpsilonBeta1PowerBeta2PowerValuesMomentumVelocityMaximumVelocityGradientName":{"id":3859668218482138},"addition":{"id":399496783013156},"applyStochasticGradientDescent":{"id":686362147490548},"argSortAxisDescendingName":{"id":3884683898973146},"argSortAxisName":{"id":4106889161295446},"argSortAxisTensorDescendingName":{"id":2956830106190540},"argSortAxisTensorName":{"id":3207495003493884},"asin":{"id":4001357890923179},"asinh":{"id":2564051321843036},"assign":{"id":2340222309962221},"atan2":{"id":170033493051582},"atan":{"id":2624897943687451},"atanh":{"id":3869777385029775},"avgPooling2DGradient":{"id":1526767771577946},"avgPooling2D":{"id":3377496235957527},"avgPooling4DGradient":{"id":193599516770240},"avgPooling4D":{"id":709615036559416},"bandPartNumLowerNumUpperName":{"id":1208569132907722},"bandPartNumLowerTensorNumUpperTensorName":{"id":1629901271822350},"batchToSpaceSpatialAxesBatchAxisBlockDimensionsUsePixelShuffleOrderName":{"id":3977201995658065},"batchToSpaceSpatialAxesTensorBatchAxisTensorBlockDimensionsTensorUsePixelShuffleOrderName":{"id":2285873998790369},"bitwiseAND":{"id":583636628105270},"bitwiseLeftShift":{"id":1756861100084475},"bitwiseNOT":{"id":1753686415266617},"bitwiseOR":{"id":4049280226397879},"bitwisePopulationCount":{"id":3904663948252968},"bitwiseRightShift":{"id":1625126196168702},"bitwiseXOR":{"id":3204475536929028},"bottomKGradientSourceAxisKName":{"id":4212781262037623},"bottomKGradientSourceAxisTensorKTensorName":{"id":2122578241487622},"bottomKAxisKName":{"id":950839985533883},"bottomKAxisTensorKTensorName":{"id":3892990340600226},"broadcastShapeName":{"id":3855046296467379},"broadcastShapeTensorName":{"id":51882771551498},"call":{"id":2142573561578178},"cast":{"id":1312818181885},"ceil":{"id":596637108147514},"clamp":{"id":5986475150084},"colToIm":{"id":2366273574724377},"compile":{"id":3652790885681477},"complexTensor":{"id":2346511450406291},"concatTensor":{"id":3612573846146405},"concatTensorsDimensionInterleaveName":{"id":1718768169721256},"concatTensorsDimensionName":{"id":2377390527343689},"conjugate":{"id":4247026040502952},"constantShapeDataType":{"id":1037550456960451},"complexConstantRealPartImaginaryPart":{"id":1530605379115862},"complexConstantRealPartImaginaryPartDataType":{"id":2953545819097055},"complexConstantRealPartImaginaryPartShapeDataType":{"id":2851507646568108},"constantDataType":{"id":1155554588487651},"constantShapeDataType74923":{"id":3832377648416249},"convolution2DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName":{"id":1300094825825679},"convolution2DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName":{"id":715709253910361},"convolution2DWeightsGradientSourceOutputShapeForwardConvolutionDescriptorName":{"id":1058899531451763},"convolution2DWeightsGradientSourceOutputShapeTensorForwardConvolutionDescriptorName":{"id":1542431658978781},"convolution2D":{"id":2520719046203585},"convolution3DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName":{"id":1268560579883806},"convolution3DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName":{"id":3018504309650458},"convolution3DWeightsGradientSourceOutputShapeForwardConvolutionDescriptorName":{"id":4275451345612233},"convolution3DWeightsGradientSourceOutputShapeTensorForwardConvolutionDescriptorName":{"id":3198622578572582},"convolution3D":{"id":317331338787550},"convolutionTranspose2DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName":{"id":4061948601405475},"convolutionTranspose2DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName":{"id":2634452557788708},"convolutionTranspose2DWeightsGradientWeightsOutputShapeForwardConvolutionDescriptorName":{"id":3953800690843880},"convolutionTranspose2DWeightsGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName":{"id":2707703913706735},"convolutionTranspose2DWeightsOutputShapeDescriptorName":{"id":1318420104202125},"convolutionTranspose2DWeightsOutputShapeTensorDescriptorName":{"id":643821587329248},"coordinateAlongAxisWithShapeName":{"id":3989047189761129},"coordinateAlongAxisWithShapeTensorName":{"id":1697662042744399},"coordinateAlongAxisTensorWithShapeName":{"id":287188408216385},"coordinateAlongAxisTensorWithShapeTensorName":{"id":2839204295435463},"cos":{"id":3122698450444737},"cosh":{"id":2622765541159214},"cumulativeMaximumAxisExclusiveReverseName":{"id":975419776626780},"cumulativeMaximumAxisName":{"id":2148000384041877},"cumulativeMaximumAxisTensorExclusiveReverseName":{"id":4297129048213507},"cumulativeMaximumAxisTensorName":{"id":602457017203733},"cumulativeMinimumAxisExclusiveReverseName":{"id":1266099484138547},"cumulativeMinimumAxisName":{"id":1230996224225183},"cumulativeMinimumAxisTensorExclusiveReverseName":{"id":4472329111392134},"cumulativeMinimumAxisTensorName":{"id":2174974027215561},"cumulativeProductAxisExclusiveReverseName":{"id":405140355743935},"cumulativeProductAxisName":{"id":649439422629050},"cumulativeProductAxisTensorExclusiveReverseName":{"id":4113172235929160},"cumulativeProductAxisTensorName":{"id":370253902697923},"cumulativeSumAxisExclusiveReverseName":{"id":4268943711703257},"cumulativeSumAxisName":{"id":2688662103645781},"cumulativeSumAxisTensorExclusiveReverseName":{"id":3421190161120238},"cumulativeSumAxisTensorName":{"id":3425552408096964},"depthToSpace2DTensorWidthAxisHeightAxisDepthAxisBlockSizeUsePixelShuffleOrderName":{"id":2960940989407803},"depthToSpace2DTensorWidthAxisTensorHeightAxisTensorDepthAxisTensorBlockSizeUsePixelShuffleOrderName":{"id":4055441521010169},"depthwiseConvolution2DDataGradient":{"id":736607828039952},"depthwiseConvolution2DWeightsGradient":{"id":4141907719055410},"depthwiseConvolution2D":{"id":2285925154441817},"depthwiseConvolution3DDataGradient":{"id":2579879550943474},"depthwiseConvolution3DWeightsGradient":{"id":2379220809005317},"depthwiseConvolution3D":{"id":882472052819838},"dequantizeLUTTensorAxisName":{"id":148688708136371},"dequantizeLUTTensorName":{"id":2537220406783852},"dequantizeScaleZeroPointDataTypeName":{"id":3658885661745633},"dequantizeScaleTensorDataTypeName":{"id":2449259305851816},"dequantizeScaleTensorZeroPointDataTypeAxisName":{"id":2802804911242424},"dequantizeScaleTensorZeroPointTensorDataTypeAxisName":{"id":852939433438144},"dequantizeScaleTensorZeroPointTensorDataTypeName":{"id":1940129840511343},"divisionNoNaN":{"id":3385218595438115},"division":{"id":686579839640776},"dropoutRateName":{"id":4390548527721133},"dropoutRateName85178":{"id":690098386316713},"encodeToFeedsTargetOperationsResultsDictionaryExecutionDescriptor":{"id":2407414173118803},"encodeToFeedsTargetTensorsTargetOperationsExecutionDescriptor":{"id":4096497591592578},"equal":{"id":1450457502393684},"erf":{"id":4131134212656905},"expandDimsAxesName":{"id":3043828425821361},"expandDimsAxesTensorName":{"id":1631984694666003},"expandDimsAxisName":{"id":2887608057428561},"exponentBase10":{"id":1697583822107048},"exponentBase2":{"id":3504108540781310},"exponent":{"id":826023864266994},"fastFourierTransformAxesDescriptorName":{"id":640191091987406},"fastFourierTransformAxesTensorDescriptorName":{"id":1319448818840724},"flatten2DAxisName":{"id":2733397437062966},"flatten2DAxisTensorName":{"id":569179966181350},"floorModulo":{"id":1351758663002248},"floor":{"id":791434366710895},"gatherAlongAxis":{"id":1414851745538796},"gatherAlongAxisTensor":{"id":2225453642471318},"gatherND":{"id":1382408822291319},"gather":{"id":423190996052569},"gradients":{"id":2192247204650618},"greaterThanOrEqualTo":{"id":2931041490227236},"greaterThan":{"id":4431245665376682},"identity":{"id":644676143341199},"imToCol":{"id":1394676092242728},"imaginaryPartOfTensor":{"id":3805499922246894},"inverse":{"id":142538408095772},"isFinite":{"id":3104265704470420},"isInfinite":{"id":344597047090740},"isNaN":{"id":3912529930199632},"leakyReLUGradient":{"id":4268026520622447},"leakyReLUWithAlphaName":{"id":1252560478568105},"leakyReLUWithAlphaTensorName":{"id":4325050830792087},"lessThanOrEqualTo":{"id":2063703007593178},"lessThan":{"id":2391997800252573},"logarithmBase10":{"id":645587448304029},"logarithmBase2":{"id":2670834501755772},"logarithm":{"id":4149317678449894},"logicalAND":{"id":2944158542769189},"logicalNAND":{"id":778281276034059},"logicalNOR":{"id":2062443570498304},"logicalOR":{"id":3982814375036182},"logicalXNOR":{"id":3314586616047847},"logicalXOR":{"id":65653620769044},"matrixMultiplication":{"id":4290357935180726},"maxPooling2DGradientWithGradientTensorIndicesTensorOutputShapeDescriptorName":{"id":4458603876227786},"maxPooling2DGradientWithGradientTensorIndicesTensorOutputShapeTensorDescriptorName":{"id":1044554499211399},"maxPooling2DGradientWithGradientTensorSourceTensorDescriptorName":{"id":2537455401953149},"maxPooling2DReturnIndices":{"id":2116667821379444},"maxPooling2D":{"id":202336166568301},"maxPooling4DGradientWithGradientTensorIndicesTensorOutputShapeDescriptorName":{"id":2164375602355839},"maxPooling4DGradientWithGradientTensorIndicesTensorOutputShapeTensorDescriptorName":{"id":967914347864317},"maxPooling4DGradientSourceDescriptorName":{"id":3741255435487248},"maxPooling4DReturnIndices":{"id":1312989039385198},"maxPooling4D":{"id":1244465145679946},"maximumWithNaNPropagation":{"id":4029339243245264},"maximum":{"id":4452896198152334},"mean":{"id":2840256457209710},"minimumWithNaNPropagation":{"id":2089009605052278},"minimum":{"id":1182091056996042},"modulo":{"id":382063094152927},"multiplication":{"id":1820605011712477},"negative":{"id":3147937863645951},"nonMaximumSuppressionWithBoxesTensorScoresTensorIouThresholdScoreThresholdPerClassSuppressionCoordinateModeName":{"id":2099985329511982},"nonMaximumSuppressionWithBoxesTensorScoresTensorClassIndicesTensorIouThresholdScoreThresholdPerClassSuppressionCoordinateModeName":{"id":3389983002275534},"nonZeroIndices":{"id":1393627817141073},"normalizationBetaGradient":{"id":3556563100503304},"normalizationGammaGradient":{"id":2816831334367775},"normalizationGradient":{"id":2063078758372913},"normalize":{"id":3552649829679900},"notEqual":{"id":2609118575112929},"not":{"id":1745072491473896},"oneHotWithIndicesTensorDepthAxisDataTypeName":{"id":1665232389226709},"oneHotWithIndicesTensorDepthAxisDataTypeOnValueOffValueName":{"id":847199038213019},"oneHotWithIndicesTensorDepthAxisName":{"id":2596180281923559},"oneHotWithIndicesTensorDepthDataTypeName":{"id":3641521264595290},"oneHotWithIndicesTensorDepthDataTypeOnValueOffValueName":{"id":3146656330719650},"oneHotWithIndicesTensorDepthName":{"id":207158948859944},"padGradient":{"id":2330172889903794},"padTensor":{"id":2431877156218566},"placeholderShapeDataTypeName":{"id":2198737326634003},"placeholderShapeName":{"id":1839377842846229},"planarTensor":{"id":1317918493084057},"power":{"id":160051306481619},"quantizeScaleZeroPointDataTypeName":{"id":3692187826432367},"quantizeScaleTensorZeroPointDataTypeAxisName":{"id":4309486891854692},"quantizeScaleTensorZeroPointTensorDataTypeAxisName":{"id":4139532073739451},"randomPhiloxStateTensorWithCounterLowCounterHighKeyName":{"id":3181389007847033},"randomPhiloxStateTensorWithSeedName":{"id":3380270015590915},"randomTensorWithShapeDescriptorName":{"id":4155302390504980},"randomTensorWithShapeDescriptorSeedName":{"id":1226002051352739},"randomTensorWithShapeDescriptorStateTensorName":{"id":3897116857661397},"randomTensorWithShapeTensorDescriptorName":{"id":3499912042472827},"randomTensorWithShapeTensorDescriptorSeedName":{"id":3259226894144054},"randomTensorWithShapeTensorDescriptorStateTensorName":{"id":3069495628007486},"randomUniformTensorWithShapeName":{"id":132732695908341},"randomUniformTensorWithShapeSeedName":{"id":160940835145284},"randomUniformTensorWithShapeStateTensorName":{"id":4126598018931255},"randomUniformTensorWithShapeTensorName":{"id":4074240474674072},"randomUniformTensorWithShapeTensorSeedName":{"id":2345564994124742},"randomUniformTensorWithShapeTensorStateTensorName":{"id":2854538642710561},"reLUGradient":{"id":2694229970098091},"reLU":{"id":566376728709096},"read":{"id":3661719079070995},"realPartOfTensor":{"id":2169096324908930},"realToHermiteanFFTAxesDescriptorName":{"id":2104829042554304},"realToHermiteanFFTAxesTensorDescriptorName":{"id":3211205455543273},"reciprocalSquareRoot":{"id":3229322687006584},"reciprocal":{"id":3872071274160908},"reductionAndWithAxesName":{"id":2703058112670589},"reductionAndWithAxisName":{"id":2025736220089595},"reductionArgMaximum":{"id":2466370498127015},"reductionArgMinimum":{"id":3731799970074458},"reductionMaximumPropagateNaNWithAxesName":{"id":3265628663625264},"reductionMaximumPropagateNaNWithAxisName":{"id":2931581860861167},"reductionMaximumWithAxesName":{"id":1018926754817249},"reductionMaximumWithAxisName":{"id":2652596124529688},"reductionMinimumPropagateNaNWithAxesName":{"id":1177669159438379},"reductionMinimumPropagateNaNWithAxisName":{"id":973940704343182},"reductionMinimumWithAxesName":{"id":2905147081534350},"reductionMinimumWithAxisName":{"id":1552757431987860},"reductionOrWithAxesName":{"id":469767358790399},"reductionOrWithAxisName":{"id":1265384186453608},"reductionProductWithAxesName":{"id":3635471837256342},"reductionProductWithAxisName":{"id":4096655565011693},"reductionSumWithAxesName":{"id":2700118338718694},"reductionSumWithAxisName":{"id":3361467616342118},"reinterpretCast":{"id":1336757674871058},"reshapeShapeName":{"id":2803177484075951},"reshapeShapeTensorName":{"id":1435435162041801},"resizeBilinearWithGradientTensorInputCenterResultAlignCornersLayoutName":{"id":2673614418388372},"resizeBilinearWithGradientTensorInputScaleOffsetTensorLayoutName":{"id":4228033687406786},"resizeBilinearWithGradientTensorInputScaleOffsetTensorName":{"id":707109203870233},"resizeBilinearSizeTensorCenterResultAlignCornersLayoutName":{"id":3564348996125863},"resizeBilinearSizeTensorCenterResultAlignCornersName":{"id":3698405434015796},"resizeBilinearSizeTensorScaleOffsetTensorLayoutName":{"id":3074924087846213},"resizeBilinearSizeTensorScaleTensorOffsetTensorName":{"id":1403579682075125},"resizeNearestWithGradientTensorInputNearestRoundingModeCenterResultAlignCornersLayoutName":{"id":907969973275242},"resizeNearestWithGradientTensorInputScaleOffsetTensorNearestRoundingModeLayoutName":{"id":2621008954722448},"resizeNearestWithGradientTensorInputScaleOffsetTensorNearestRoundingModeName":{"id":3211751940822625},"resizeNearestSizeTensorNearestRoundingModeCenterResultAlignCornersLayoutName":{"id":1469256590488979},"resizeNearestSizeTensorNearestRoundingModeCenterResultAlignCornersName":{"id":3565885919557580},"resizeNearestSizeTensorScaleOffsetTensorNearestRoundingModeLayoutName":{"id":2407412194357933},"resizeNearestSizeTensorScaleTensorOffsetTensorNearestRoundingModeName":{"id":4177736201132921},"resizeSizeModeCenterResultAlignCornersLayoutName":{"id":4274081291881911},"resizeSizeTensorModeCenterResultAlignCornersLayoutName":{"id":1562855669561985},"resizeSizeTensorModeCenterResultAlignCornersName":{"id":1727838020939690},"resizeSizeTensorScaleOffsetTensorModeLayoutName":{"id":3256762769365132},"resizeSizeTensorScaleTensorOffsetTenorModeName":{"id":1176413682652798},"resizeWithGradientTensorInputModeCenterResultAlignCornersLayoutName":{"id":3357018063505034},"resizeWithGradientTensorInputScaleOffsetTensorModeLayoutName":{"id":1887797440730079},"resizeWithGradientTensorInputScaleOffsetTensorModeName":{"id":14361085307984},"reverseSquareRoot":{"id":1979418799487061},"reverseAxesName":{"id":668200693143534},"reverseAxesTensorName":{"id":2160206102729256},"reverseName":{"id":4417292741469986},"rint":{"id":262180373327405},"round":{"id":4299980231178791},"runAsyncFeedsTargetTensorsTargetOperationsExecutionDescriptor":{"id":1828120681831146},"runAsyncWithFeedsTargetOperationsResultsDictionaryExecutionDescriptor":{"id":498110078153595},"runAsyncWithFeedsTargetTensorsTargetOperationsExecutionDescriptor":{"id":763407367364212},"runFeedsTargetTensorsTargetOperations":{"id":1355629301852934},"runWithFeedsTargetOperationsResultsDictionary":{"id":1890053877015262},"runWithFeedsTargetTensorsTargetOperations":{"id":1788507996217537},"sampleGridWithSourceTensorCoordinateTensorLayoutNormalizeCoordinatesRelativeCoordinatesAlignCornersPaddingModeNearestRoundingModeConstantValueName":{"id":3180191828082966},"sampleGridWithSourceTensorCoordinateTensorLayoutNormalizeCoordinatesRelativeCoordinatesAlignCornersPaddingModeSamplingModeConstantValueName":{"id":3735666956704527},"scaledDotProductAttentionQueryKeyValueDescriptorName":{"id":546395725826390},"scaledDotProductAttentionQueryKeyValueMaskScaleName":{"id":1275620288872342},"scaledDotProductAttentionQueryKeyValueScaleName":{"id":1573073506337397},"scatterAlongAxisDataUpdatesIndicesModeName":{"id":4049076440543929},"scatterAlongAxisUpdatesIndicesShapeModeName":{"id":2589510819204267},"scatterAlongAxisTensorDataUpdatesIndicesModeName":{"id":1630644993907032},"scatterAlongAxisTensorUpdatesIndicesShapeModeName":{"id":2112989142664114},"scatterNDWithData":{"id":2953200371426053},"scatterNDWithUpdatesTensorIndicesTensorShapeBatchDimensionsModeName":{"id":3413005416208716},"scatterNDWithUpdatesTensorIndicesTensorShapeBatchDimensionsName":{"id":1056275902359034},"scatterWithData":{"id":60166860883788},"scatter":{"id":3595745132681198},"select":{"id":2323572878929047},"shapeOf":{"id":1888887291132262},"sigmoidGradient":{"id":2955836749400488},"sigmoid":{"id":833438232051647},"sign":{"id":1746720143486273},"signbit":{"id":4281743540771781},"sin":{"id":2183271236797304},"singleGateRNNGradientsRecurrentWeightSourceGradientZStateInitStateDescriptorName":{"id":1325019169502623},"singleGateRNNGradientsRecurrentWeightSourceGradientZStateInputWeightBiasInitStateDescriptorName":{"id":2991968169916999},"singleGateRNNGradientsRecurrentWeightSourceGradientZStateInputWeightBiasInitStateMaskDescriptorName":{"id":2265219944401037},"singleGateRNNGradientsRecurrentWeightSourceGradientZStateStateGradientInputWeightBiasInitStateMaskDescriptorName":{"id":1270615596838598},"singleGateRNNRecurrentWeightInitStateDescriptorName":{"id":3880075159086765},"singleGateRNNRecurrentWeightInputWeightBiasInitStateDescriptorName":{"id":3905808241728049},"singleGateRNNRecurrentWeightInputWeightBiasInitStateMaskDescriptorName":{"id":2851399695469815},"sinh":{"id":3478917535294143},"sliceGradientTensorFwdInShapeTensorStartEndStrideTensorStartMaskEndMaskSqueezeMaskName":{"id":2751745339577702},"sliceGradientTensorFwdInShapeTensorStartSizeTensorSqueezeMaskName":{"id":3792755735490934},"sliceGradientTensorFwdInShapeTensorStartsEndsStridesName":{"id":727506476775512},"sliceGradientTensorFwdInShapeTensorStartsEndsStridesStartMaskEndMaskSqueezeMaskName":{"id":361742712707186},"sliceTensorDimensionStartLengthName":{"id":416452627556977},"sliceTensorStartEndStrideTensorStartMaskEndMaskSqueezeMaskName":{"id":2215184575541062},"sliceTensorStartSizeTensorSqueezeMaskName":{"id":1647231196801040},"sliceTensorStartsEndsStridesName":{"id":2523329258669833},"sliceTensorStartsEndsStridesStartMaskEndMaskSqueezeMaskName":{"id":3515097504395146},"sliceUpdateDataTensorUpdateStartsEndsStridesName":{"id":3822299795522743},"sliceUpdateDataTensorUpdateStartsEndsStridesStartMaskEndMaskSqueezeMaskName":{"id":1433563211596833},"sliceUpdateDataTensorUpdateStartsTensorEndsTensorStridesTensorName":{"id":1835428635180022},"sliceUpdateDataTensorUpdateStartsTensorEndsTensorStridesTensorStartMaskEndMaskSqueezeMaskName":{"id":1571598018860649},"softMaxCrossEntropyGradient":{"id":178725483673475},"softMaxCrossEntropy":{"id":2377967031875919},"softMaxGradient":{"id":3177886050888067},"softMax":{"id":2678876328693870},"sortAxisDescendingName":{"id":2055569221816058},"sortAxisName":{"id":1037225735520400},"sortAxisTensorDescendingName":{"id":3035575617032146},"sortAxisTensorName":{"id":3826002866147208},"spaceToBatchSpatialAxesBatchAxisBlockDimensionsUsePixelShuffleOrderName":{"id":636364416685573},"spaceToBatchSpatialAxesTensorBatchAxisTensorBlockDimensionsTensorUsePixelShuffleOrderName":{"id":2148132555356191},"spaceToDepth2DTensorWidthAxisHeightAxisDepthAxisBlockSizeUsePixelShuffleOrderName":{"id":3108223006458157},"spaceToDepth2DTensorWidthAxisTensorHeightAxisTensorDepthAxisTensorBlockSizeUsePixelShuffleOrderName":{"id":2698824899771552},"sparseTensorSparseTensorWithDescriptorTensorsShapeName":{"id":2627084864439662},"sparseTensorSparseTensorWithTypeTensorsShapeDataTypeName":{"id":4097004102062394},"splitNumSplitsAxisName":{"id":2283338879933459},"splitSplitSizesAxisName":{"id":11346426845474},"splitSplitSizesTensorAxisName":{"id":3640229427603217},"squareRoot":{"id":1218683448898768},"square":{"id":238665526477177},"squeezeAxesName":{"id":3075227187291817},"squeezeAxesTensorName":{"id":3262065544026872},"squeezeAxisName":{"id":979267209098296},"squeezeName":{"id":509454411768260},"stack":{"id":348911304251534},"stencil":{"id":519375692984262},"stochasticGradientDescent":{"id":327695527913654},"subtraction":{"id":1924877358142862},"tan":{"id":881508260042017},"tanh":{"id":2821611655567760},"tileGradient":{"id":1306090968647926},"tileTensor":{"id":948691410139078},"topKGradientSourceAxisKName":{"id":3820603519817562},"topKGradientSourceAxisTensorKTensorName":{"id":3711236413127491},"topKGradientInputKName":{"id":4292568066307461},"topKGradientInputKTensorName":{"id":4035049008672019},"topKAxisKName":{"id":458744469109061},"topKAxisTensorKTensorName":{"id":2953499526595625},"topKKName":{"id":184583972997296},"topKKTensorName":{"id":4176529841369389},"transposeTensor":{"id":974541068210436},"transpose":{"id":230060359063257},"truncate":{"id":772167749926971},"variableFromTensor":{"id":2449849042214663},"variable":{"id":2007668798642424},"varianceOfAxesName":{"id":100344014169828},"varianceOfMeanAxesName":{"id":972738343195618}} });
-registerSDKClass("MPSGraphCompilationDescriptor", MPSGraphCompilationDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"callables":671437707495905,"dispatchQueue":1493387017304053,"optimizationLevel":659464651838990,"optimizationProfile":1895076435409138,"reducedPrecisionFastMath":2929742921768819,"waitForCompilationCompletion":3239013772552021}, methods: {"convertLayoutToNHWC":{"id":810130583543487},"disableAutoLayoutConversion":{"id":3134355879500459},"disableTypeInference":{"id":3138863365274104}} });
-registerSDKClass("MPSGraphConvolution2DOpDescriptor", MPSGraphConvolution2DOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataLayout":3041417437913046,"dilationRateInX":4332903326685961,"dilationRateInY":1161122942453678,"groups":459540363069785,"paddingBottom":2650756774273301,"paddingLeft":597576516635948,"paddingRight":791527926003126,"paddingStyle":357899079005522,"paddingTop":1348865898260783,"strideInX":2889717224311337,"strideInY":1866015829372984,"weightsLayout":139063356947389}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":1360829281745971}} });
-registerSDKClass("MPSGraphConvolution3DOpDescriptor", MPSGraphConvolution3DOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataLayout":512624677420747,"dilationRateInX":2980056830506929,"dilationRateInY":2360118336361724,"dilationRateInZ":875241565384899,"groups":601206173515960,"paddingBack":3570505736445867,"paddingBottom":4192948330049122,"paddingFront":2086626185754873,"paddingLeft":3210829515045214,"paddingRight":2538054535884000,"paddingStyle":232887920984875,"paddingTop":1570600700508205,"strideInX":3127624553178857,"strideInY":2094556525425259,"strideInZ":482829274411838,"weightsLayout":1212573235342033}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":703908002054680}} });
-registerSDKClass("MPSGraphCreateSparseOpDescriptor", MPSGraphCreateSparseOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataType":4395313825241939,"sparseStorageType":1531525827730799} });
-registerSDKClass("MPSGraphDepthwiseConvolution2DOpDescriptor", MPSGraphDepthwiseConvolution2DOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataLayout":3251732720478569,"dilationRateInX":1185094392925746,"dilationRateInY":4028520652429832,"paddingBottom":743217094763237,"paddingLeft":4376850067371209,"paddingRight":1168684569651040,"paddingStyle":2045421262708773,"paddingTop":2773778974649292,"strideInX":1662492499595001,"strideInY":1308093680256266,"weightsLayout":67137267276669}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":4180463238960313}} });
-registerSDKClass("MPSGraphDepthwiseConvolution3DOpDescriptor", MPSGraphDepthwiseConvolution3DOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"channelDimensionIndex":1846720108863766,"dilationRates":458892062858853,"paddingStyle":2312839078942408,"paddingValues":635996485928449,"strides":3238068786319936} });
-registerSDKClass("MPSGraphDevice", MPSGraphDevice, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"metalDevice":41724952703882,"type":3996419045815575} });
-registerSDKClass("MPSGraphExecutable", MPSGraphExecutable, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"feedTensors":3708407658606936,"options":56522535479136,"targetTensors":3947857547318653}, methods: {"encode":{"id":499142310006228},"getOutputTypes":{"id":715935208498899},"runAsync":{"id":2592898686220471},"run":{"id":192389357282465},"serialize":{"id":2879016014608583},"specialize":{"id":3621536018820801}} });
-registerSDKClass("MPSGraphExecutableExecutionDescriptor", MPSGraphExecutableExecutionDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"waitUntilCompleted":4221376925362533}, methods: {"signal":{"id":2940793947853336},"wait":{"id":2664384892761075}} });
-registerSDKClass("MPSGraphExecutableSerializationDescriptor", MPSGraphExecutableSerializationDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"append":3565805713675656,"deploymentPlatform":932655176881554,"minimumDeploymentTarget":4211964946779595} });
-registerSDKClass("MPSGraphExecutionDescriptor", MPSGraphExecutionDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"compilationDescriptor":4299216247652331,"waitUntilCompleted":1674629655195339}, methods: {"signal":{"id":1889391453667394},"wait":{"id":4229096872984128}} });
-registerSDKClass("MPSGraphFFTDescriptor", MPSGraphFFTDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"inverse":1252916770723411,"roundToOddHermitean":189418332001180,"scalingMode":2645505968563737} });
-registerSDKClass("MPSGraphGRUDescriptor", MPSGraphGRUDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"bidirectional":617561129954986,"flipZ":4449458290179915,"outputGateActivation":1392537122294267,"resetAfter":1108229299142915,"resetGateActivation":4156790308138125,"resetGateFirst":1113820990551810,"reverse":1812805139988509,"training":890721979615197,"updateGateActivation":2917209811560476} });
-registerSDKClass("MPSGraphImToColOpDescriptor", MPSGraphImToColOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataLayout":4056178344191601,"dilationRateInX":2934900323863402,"dilationRateInY":4310115736849010,"kernelHeight":2507664414890392,"kernelWidth":4309920397703218,"paddingBottom":4480106524827383,"paddingLeft":2873634624867438,"paddingRight":4500665371681910,"paddingTop":1420659338544825,"strideInX":404416016201890,"strideInY":499892680278028}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":377729997255683}} });
-registerSDKClass("MPSGraphLSTMDescriptor", MPSGraphLSTMDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"activation":1231355210170293,"bidirectional":3462552199871207,"cellGateActivation":999048132307178,"forgetGateActivation":2031337229858260,"forgetGateLast":3689831860131684,"inputGateActivation":2355774018125508,"outputGateActivation":3965949284999574,"produceCell":2140706598434223,"reverse":3940037869829831,"training":3510829797573016} });
-registerSDKClass("MPSGraphOperation", MPSGraphOperation, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"controlDependencies":2932225213949904,"graph":1620749386563562,"inputTensors":4459486404989496,"name":60425812664733,"outputTensors":4108003936058830} });
-registerSDKClass("MPSGraphPooling2DOpDescriptor", MPSGraphPooling2DOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"ceilMode":770047775649112,"dataLayout":281467847057828,"dilationRateInX":2690545634263114,"dilationRateInY":2759839789406784,"includeZeroPadToAverage":2671034519201168,"kernelHeight":3253984816063467,"kernelWidth":398846664708741,"paddingBottom":2041266396240082,"paddingLeft":618728533186622,"paddingRight":635365960120672,"paddingStyle":1081326496568963,"paddingTop":3601923094630997,"returnIndicesDataType":489281365404340,"returnIndicesMode":2204292662762749,"strideInX":3391277816870698,"strideInY":1102864432095118}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":3710743557018797}} });
-registerSDKClass("MPSGraphPooling4DOpDescriptor", MPSGraphPooling4DOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"ceilMode":4220477680056685,"dilationRates":3982884570546369,"includeZeroPadToAverage":1408044673719243,"kernelSizes":3826379863840619,"paddingStyle":4165764961986841,"paddingValues":666232693379853,"returnIndicesDataType":1510653147261107,"returnIndicesMode":1308588251409049,"strides":4386095385485475} });
-registerSDKClass("MPSGraphRandomOpDescriptor", MPSGraphRandomOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataType":3452337638821031,"distribution":793296112584047,"max":2708254432857957,"maxInteger":568694954806304,"mean":894484301489093,"min":3393620794786608,"minInteger":648715070982678,"samplingMethod":2464102107100628,"standardDeviation":332379693781898} });
-registerSDKClass("MPSGraphSDPADescriptor", MPSGraphSDPADescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"isCausal":2516642329447592,"maskTensor":4205629547674307,"scale":2890137732684776,"sinksTensor":886738642484120} });
-registerSDKClass("MPSGraphType", MPSGraphType, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {} });
-registerSDKClass("MPSGraphShapedType", MPSGraphShapedType, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataType":4123282357365165,"shape":3896728601377292}, methods: {"isEqual":{"id":603122484553909}} });
-registerSDKClass("MPSGraphSingleGateRNNDescriptor", MPSGraphSingleGateRNNDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"activation":3011279560041088,"bidirectional":2646061166375369,"reverse":4261446319463487,"training":1607141899979250} });
-registerSDKClass("MPSGraphStencilOpDescriptor", MPSGraphStencilOpDescriptor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"boundaryMode":1915570695878246,"dilationRates":337321760151056,"explicitPadding":3648401017578818,"offsets":459035578343359,"paddingConstant":4002311744907541,"paddingStyle":680549932362925,"reductionMode":306706812661256,"strides":3031472886351907} });
-registerSDKClass("MPSGraphTensor", MPSGraphTensor, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataType":3440325870443822,"operation":4453356450469654,"shape":4307075560158130} });
-registerSDKClass("MPSGraphTensorData", MPSGraphTensorData, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataType":1721283556015563,"device":983598468726631,"shape":652998985296464}, methods: {"mpsndarray":{"id":1999213341089801}} });
-registerSDKClass("MPSGraphVariableOp", MPSGraphVariableOp, { module: "MetalPerformanceShadersGraph_067acaa3e5f56b46", properties: {"dataType":4036153444808329,"shape":3549233356624075} });
+registerSDKClass("MPSGraphObject", MPSGraphObject, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {} });
+registerSDKClass("MPSGraph", MPSGraph, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"options":3804979134301539,"placeholderTensors":1377815656800731}, methods: {"GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasDescriptorName":{"id":4015485670793496},"GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdInputWeightBiasInitStateDescriptorName":{"id":323740994390127},"GRUGradientsRecurrentWeightSourceGradientZStateOutputFwdStateGradientInputWeightBiasInitStateMaskSecondaryBiasDescriptorName":{"id":4311978033208140},"GRURecurrentWeightInputWeightBiasDescriptorName":{"id":366094811090289},"GRURecurrentWeightInputWeightBiasInitStateDescriptorName":{"id":859025683715267},"GRURecurrentWeightInputWeightBiasInitStateMaskSecondaryBiasDescriptorName":{"id":1657769243839160},"HammingDistance":{"id":144710035331354},"HermiteanToRealFFTAxesDescriptorName":{"id":3590730410054638},"HermiteanToRealFFTAxesTensorDescriptorName":{"id":3273544614775266},"L2NormPooling4DGradient":{"id":4474678784135683},"L2NormPooling4D":{"id":2166713687822094},"LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdDescriptorName":{"id":1871468106059954},"LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdInputWeightBiasInitStateInitCellDescriptorName":{"id":586349065077992},"LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdInputWeightBiasInitStateInitCellMaskDescriptorName":{"id":3254680011537662},"LSTMGradientsRecurrentWeightSourceGradientZStateCellOutputFwdStateGradientCellGradientInputWeightBiasInitStateInitCellMaskPeepholeDescriptorName":{"id":2554053570168700},"LSTMRecurrentWeightInitStateInitCellDescriptorName":{"id":3425904034001943},"LSTMRecurrentWeightInputWeightBiasInitStateInitCellDescriptorName":{"id":2589280728033099},"LSTMRecurrentWeightInputWeightBiasInitStateInitCellMaskPeepholeDescriptorName":{"id":648526789035136},"absoluteSquare":{"id":728087475885340},"absolute":{"id":169590478272533},"acos":{"id":3282439198027409},"acosh":{"id":1198593063025505},"adamCurrentLearningRateBeta1Beta2EpsilonValuesMomentumVelocityMaximumVelocityGradientName":{"id":2069700468862826},"adamLearningRateBeta1Beta2EpsilonBeta1PowerBeta2PowerValuesMomentumVelocityMaximumVelocityGradientName":{"id":3859668218482138},"addition":{"id":399496783013156},"applyStochasticGradientDescent":{"id":686362147490548},"argSortAxisDescendingName":{"id":3884683898973146},"argSortAxisName":{"id":4106889161295446},"argSortAxisTensorDescendingName":{"id":2956830106190540},"argSortAxisTensorName":{"id":3207495003493884},"asin":{"id":4001357890923179},"asinh":{"id":2564051321843036},"assign":{"id":2340222309962221},"atan2":{"id":170033493051582},"atan":{"id":2624897943687451},"atanh":{"id":3869777385029775},"avgPooling2DGradient":{"id":1526767771577946},"avgPooling2D":{"id":3377496235957527},"avgPooling4DGradient":{"id":193599516770240},"avgPooling4D":{"id":709615036559416},"bandPartNumLowerNumUpperName":{"id":1208569132907722},"bandPartNumLowerTensorNumUpperTensorName":{"id":1629901271822350},"batchToSpaceSpatialAxesBatchAxisBlockDimensionsUsePixelShuffleOrderName":{"id":3977201995658065},"batchToSpaceSpatialAxesTensorBatchAxisTensorBlockDimensionsTensorUsePixelShuffleOrderName":{"id":2285873998790369},"bitwiseAND":{"id":583636628105270},"bitwiseLeftShift":{"id":1756861100084475},"bitwiseNOT":{"id":1753686415266617},"bitwiseOR":{"id":4049280226397879},"bitwisePopulationCount":{"id":3904663948252968},"bitwiseRightShift":{"id":1625126196168702},"bitwiseXOR":{"id":3204475536929028},"bottomKGradientSourceAxisKName":{"id":4212781262037623},"bottomKGradientSourceAxisTensorKTensorName":{"id":2122578241487622},"bottomKAxisKName":{"id":950839985533883},"bottomKAxisTensorKTensorName":{"id":3892990340600226},"broadcastShapeName":{"id":3855046296467379},"broadcastShapeTensorName":{"id":51882771551498},"call":{"id":2142573561578178},"cast":{"id":1312818181885},"ceil":{"id":596637108147514},"clamp":{"id":5986475150084},"colToIm":{"id":2366273574724377},"compile":{"id":3652790885681477},"complexTensor":{"id":2346511450406291},"concatTensor":{"id":3612573846146405},"concatTensorsDimensionInterleaveName":{"id":1718768169721256},"concatTensorsDimensionName":{"id":2377390527343689},"conjugate":{"id":4247026040502952},"constantShapeDataType":{"id":1037550456960451},"complexConstantRealPartImaginaryPart":{"id":1530605379115862},"complexConstantRealPartImaginaryPartDataType":{"id":2953545819097055},"complexConstantRealPartImaginaryPartShapeDataType":{"id":2851507646568108},"constantDataType":{"id":1155554588487651},"constantShapeDataType74923":{"id":3832377648416249},"convolution2DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName":{"id":1300094825825679},"convolution2DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName":{"id":715709253910361},"convolution2DWeightsGradientSourceOutputShapeForwardConvolutionDescriptorName":{"id":1058899531451763},"convolution2DWeightsGradientSourceOutputShapeTensorForwardConvolutionDescriptorName":{"id":1542431658978781},"convolution2D":{"id":2520719046203585},"convolution3DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName":{"id":1268560579883806},"convolution3DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName":{"id":3018504309650458},"convolution3DWeightsGradientSourceOutputShapeForwardConvolutionDescriptorName":{"id":4275451345612233},"convolution3DWeightsGradientSourceOutputShapeTensorForwardConvolutionDescriptorName":{"id":3198622578572582},"convolution3D":{"id":317331338787550},"convolutionTranspose2DDataGradientWeightsOutputShapeForwardConvolutionDescriptorName":{"id":4061948601405475},"convolutionTranspose2DDataGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName":{"id":2634452557788708},"convolutionTranspose2DWeightsGradientWeightsOutputShapeForwardConvolutionDescriptorName":{"id":3953800690843880},"convolutionTranspose2DWeightsGradientWeightsOutputShapeTensorForwardConvolutionDescriptorName":{"id":2707703913706735},"convolutionTranspose2DWeightsOutputShapeDescriptorName":{"id":1318420104202125},"convolutionTranspose2DWeightsOutputShapeTensorDescriptorName":{"id":643821587329248},"coordinateAlongAxisWithShapeName":{"id":3989047189761129},"coordinateAlongAxisWithShapeTensorName":{"id":1697662042744399},"coordinateAlongAxisTensorWithShapeName":{"id":287188408216385},"coordinateAlongAxisTensorWithShapeTensorName":{"id":2839204295435463},"cos":{"id":3122698450444737},"cosh":{"id":2622765541159214},"cumulativeMaximumAxisExclusiveReverseName":{"id":975419776626780},"cumulativeMaximumAxisName":{"id":2148000384041877},"cumulativeMaximumAxisTensorExclusiveReverseName":{"id":4297129048213507},"cumulativeMaximumAxisTensorName":{"id":602457017203733},"cumulativeMinimumAxisExclusiveReverseName":{"id":1266099484138547},"cumulativeMinimumAxisName":{"id":1230996224225183},"cumulativeMinimumAxisTensorExclusiveReverseName":{"id":4472329111392134},"cumulativeMinimumAxisTensorName":{"id":2174974027215561},"cumulativeProductAxisExclusiveReverseName":{"id":405140355743935},"cumulativeProductAxisName":{"id":649439422629050},"cumulativeProductAxisTensorExclusiveReverseName":{"id":4113172235929160},"cumulativeProductAxisTensorName":{"id":370253902697923},"cumulativeSumAxisExclusiveReverseName":{"id":4268943711703257},"cumulativeSumAxisName":{"id":2688662103645781},"cumulativeSumAxisTensorExclusiveReverseName":{"id":3421190161120238},"cumulativeSumAxisTensorName":{"id":3425552408096964},"depthToSpace2DTensorWidthAxisHeightAxisDepthAxisBlockSizeUsePixelShuffleOrderName":{"id":2960940989407803},"depthToSpace2DTensorWidthAxisTensorHeightAxisTensorDepthAxisTensorBlockSizeUsePixelShuffleOrderName":{"id":4055441521010169},"depthwiseConvolution2DDataGradient":{"id":736607828039952},"depthwiseConvolution2DWeightsGradient":{"id":4141907719055410},"depthwiseConvolution2D":{"id":2285925154441817},"depthwiseConvolution3DDataGradient":{"id":2579879550943474},"depthwiseConvolution3DWeightsGradient":{"id":2379220809005317},"depthwiseConvolution3D":{"id":882472052819838},"dequantizeLUTTensorAxisName":{"id":148688708136371},"dequantizeLUTTensorName":{"id":2537220406783852},"dequantizeScaleZeroPointDataTypeName":{"id":3658885661745633},"dequantizeScaleTensorDataTypeName":{"id":2449259305851816},"dequantizeScaleTensorZeroPointDataTypeAxisName":{"id":2802804911242424},"dequantizeScaleTensorZeroPointTensorDataTypeAxisName":{"id":852939433438144},"dequantizeScaleTensorZeroPointTensorDataTypeName":{"id":1940129840511343},"divisionNoNaN":{"id":3385218595438115},"division":{"id":686579839640776},"dropoutRateName":{"id":4390548527721133},"dropoutRateName85178":{"id":690098386316713},"encodeToFeedsTargetOperationsResultsDictionaryExecutionDescriptor":{"id":2407414173118803},"encodeToFeedsTargetTensorsTargetOperationsExecutionDescriptor":{"id":4096497591592578},"equal":{"id":1450457502393684},"erf":{"id":4131134212656905},"expandDimsAxesName":{"id":3043828425821361},"expandDimsAxesTensorName":{"id":1631984694666003},"expandDimsAxisName":{"id":2887608057428561},"exponentBase10":{"id":1697583822107048},"exponentBase2":{"id":3504108540781310},"exponent":{"id":826023864266994},"fastFourierTransformAxesDescriptorName":{"id":640191091987406},"fastFourierTransformAxesTensorDescriptorName":{"id":1319448818840724},"flatten2DAxisName":{"id":2733397437062966},"flatten2DAxisTensorName":{"id":569179966181350},"floorModulo":{"id":1351758663002248},"floor":{"id":791434366710895},"gatherAlongAxis":{"id":1414851745538796},"gatherAlongAxisTensor":{"id":2225453642471318},"gatherND":{"id":1382408822291319},"gather":{"id":423190996052569},"gradients":{"id":2192247204650618},"greaterThanOrEqualTo":{"id":2931041490227236},"greaterThan":{"id":4431245665376682},"identity":{"id":644676143341199},"imToCol":{"id":1394676092242728},"imaginaryPartOfTensor":{"id":3805499922246894},"inverse":{"id":142538408095772},"isFinite":{"id":3104265704470420},"isInfinite":{"id":344597047090740},"isNaN":{"id":3912529930199632},"leakyReLUGradient":{"id":4268026520622447},"leakyReLUWithAlphaName":{"id":1252560478568105},"leakyReLUWithAlphaTensorName":{"id":4325050830792087},"lessThanOrEqualTo":{"id":2063703007593178},"lessThan":{"id":2391997800252573},"logarithmBase10":{"id":645587448304029},"logarithmBase2":{"id":2670834501755772},"logarithm":{"id":4149317678449894},"logicalAND":{"id":2944158542769189},"logicalNAND":{"id":778281276034059},"logicalNOR":{"id":2062443570498304},"logicalOR":{"id":3982814375036182},"logicalXNOR":{"id":3314586616047847},"logicalXOR":{"id":65653620769044},"matrixMultiplication":{"id":4290357935180726},"maxPooling2DGradientWithGradientTensorIndicesTensorOutputShapeDescriptorName":{"id":4458603876227786},"maxPooling2DGradientWithGradientTensorIndicesTensorOutputShapeTensorDescriptorName":{"id":1044554499211399},"maxPooling2DGradientWithGradientTensorSourceTensorDescriptorName":{"id":2537455401953149},"maxPooling2DReturnIndices":{"id":2116667821379444},"maxPooling2D":{"id":202336166568301},"maxPooling4DGradientWithGradientTensorIndicesTensorOutputShapeDescriptorName":{"id":2164375602355839},"maxPooling4DGradientWithGradientTensorIndicesTensorOutputShapeTensorDescriptorName":{"id":967914347864317},"maxPooling4DGradientSourceDescriptorName":{"id":3741255435487248},"maxPooling4DReturnIndices":{"id":1312989039385198},"maxPooling4D":{"id":1244465145679946},"maximumWithNaNPropagation":{"id":4029339243245264},"maximum":{"id":4452896198152334},"mean":{"id":2840256457209710},"minimumWithNaNPropagation":{"id":2089009605052278},"minimum":{"id":1182091056996042},"modulo":{"id":382063094152927},"multiplication":{"id":1820605011712477},"negative":{"id":3147937863645951},"nonMaximumSuppressionWithBoxesTensorScoresTensorIouThresholdScoreThresholdPerClassSuppressionCoordinateModeName":{"id":2099985329511982},"nonMaximumSuppressionWithBoxesTensorScoresTensorClassIndicesTensorIouThresholdScoreThresholdPerClassSuppressionCoordinateModeName":{"id":3389983002275534},"nonZeroIndices":{"id":1393627817141073},"normalizationBetaGradient":{"id":3556563100503304},"normalizationGammaGradient":{"id":2816831334367775},"normalizationGradient":{"id":2063078758372913},"normalize":{"id":3552649829679900},"notEqual":{"id":2609118575112929},"not":{"id":1745072491473896},"oneHotWithIndicesTensorDepthAxisDataTypeName":{"id":1665232389226709},"oneHotWithIndicesTensorDepthAxisDataTypeOnValueOffValueName":{"id":847199038213019},"oneHotWithIndicesTensorDepthAxisName":{"id":2596180281923559},"oneHotWithIndicesTensorDepthDataTypeName":{"id":3641521264595290},"oneHotWithIndicesTensorDepthDataTypeOnValueOffValueName":{"id":3146656330719650},"oneHotWithIndicesTensorDepthName":{"id":207158948859944},"padGradient":{"id":2330172889903794},"padTensor":{"id":2431877156218566},"placeholderShapeDataTypeName":{"id":2198737326634003},"placeholderShapeName":{"id":1839377842846229},"planarTensor":{"id":1317918493084057},"power":{"id":160051306481619},"quantizeScaleZeroPointDataTypeName":{"id":3692187826432367},"quantizeScaleTensorZeroPointDataTypeAxisName":{"id":4309486891854692},"quantizeScaleTensorZeroPointTensorDataTypeAxisName":{"id":4139532073739451},"randomPhiloxStateTensorWithCounterLowCounterHighKeyName":{"id":3181389007847033},"randomPhiloxStateTensorWithSeedName":{"id":3380270015590915},"randomTensorWithShapeDescriptorName":{"id":4155302390504980},"randomTensorWithShapeDescriptorSeedName":{"id":1226002051352739},"randomTensorWithShapeDescriptorStateTensorName":{"id":3897116857661397},"randomTensorWithShapeTensorDescriptorName":{"id":3499912042472827},"randomTensorWithShapeTensorDescriptorSeedName":{"id":3259226894144054},"randomTensorWithShapeTensorDescriptorStateTensorName":{"id":3069495628007486},"randomUniformTensorWithShapeName":{"id":132732695908341},"randomUniformTensorWithShapeSeedName":{"id":160940835145284},"randomUniformTensorWithShapeStateTensorName":{"id":4126598018931255},"randomUniformTensorWithShapeTensorName":{"id":4074240474674072},"randomUniformTensorWithShapeTensorSeedName":{"id":2345564994124742},"randomUniformTensorWithShapeTensorStateTensorName":{"id":2854538642710561},"reLUGradient":{"id":2694229970098091},"reLU":{"id":566376728709096},"read":{"id":3661719079070995},"realPartOfTensor":{"id":2169096324908930},"realToHermiteanFFTAxesDescriptorName":{"id":2104829042554304},"realToHermiteanFFTAxesTensorDescriptorName":{"id":3211205455543273},"reciprocalSquareRoot":{"id":3229322687006584},"reciprocal":{"id":3872071274160908},"reductionAndWithAxesName":{"id":2703058112670589},"reductionAndWithAxisName":{"id":2025736220089595},"reductionArgMaximum":{"id":2466370498127015},"reductionArgMinimum":{"id":3731799970074458},"reductionMaximumPropagateNaNWithAxesName":{"id":3265628663625264},"reductionMaximumPropagateNaNWithAxisName":{"id":2931581860861167},"reductionMaximumWithAxesName":{"id":1018926754817249},"reductionMaximumWithAxisName":{"id":2652596124529688},"reductionMinimumPropagateNaNWithAxesName":{"id":1177669159438379},"reductionMinimumPropagateNaNWithAxisName":{"id":973940704343182},"reductionMinimumWithAxesName":{"id":2905147081534350},"reductionMinimumWithAxisName":{"id":1552757431987860},"reductionOrWithAxesName":{"id":469767358790399},"reductionOrWithAxisName":{"id":1265384186453608},"reductionProductWithAxesName":{"id":3635471837256342},"reductionProductWithAxisName":{"id":4096655565011693},"reductionSumWithAxesName":{"id":2700118338718694},"reductionSumWithAxisName":{"id":3361467616342118},"reinterpretCast":{"id":1336757674871058},"reshapeShapeName":{"id":2803177484075951},"reshapeShapeTensorName":{"id":1435435162041801},"resizeBilinearWithGradientTensorInputCenterResultAlignCornersLayoutName":{"id":2673614418388372},"resizeBilinearWithGradientTensorInputScaleOffsetTensorLayoutName":{"id":4228033687406786},"resizeBilinearWithGradientTensorInputScaleOffsetTensorName":{"id":707109203870233},"resizeBilinearSizeTensorCenterResultAlignCornersLayoutName":{"id":3564348996125863},"resizeBilinearSizeTensorCenterResultAlignCornersName":{"id":3698405434015796},"resizeBilinearSizeTensorScaleOffsetTensorLayoutName":{"id":3074924087846213},"resizeBilinearSizeTensorScaleTensorOffsetTensorName":{"id":1403579682075125},"resizeNearestWithGradientTensorInputNearestRoundingModeCenterResultAlignCornersLayoutName":{"id":907969973275242},"resizeNearestWithGradientTensorInputScaleOffsetTensorNearestRoundingModeLayoutName":{"id":2621008954722448},"resizeNearestWithGradientTensorInputScaleOffsetTensorNearestRoundingModeName":{"id":3211751940822625},"resizeNearestSizeTensorNearestRoundingModeCenterResultAlignCornersLayoutName":{"id":1469256590488979},"resizeNearestSizeTensorNearestRoundingModeCenterResultAlignCornersName":{"id":3565885919557580},"resizeNearestSizeTensorScaleOffsetTensorNearestRoundingModeLayoutName":{"id":2407412194357933},"resizeNearestSizeTensorScaleTensorOffsetTensorNearestRoundingModeName":{"id":4177736201132921},"resizeSizeModeCenterResultAlignCornersLayoutName":{"id":4274081291881911},"resizeSizeTensorModeCenterResultAlignCornersLayoutName":{"id":1562855669561985},"resizeSizeTensorModeCenterResultAlignCornersName":{"id":1727838020939690},"resizeSizeTensorScaleOffsetTensorModeLayoutName":{"id":3256762769365132},"resizeSizeTensorScaleTensorOffsetTenorModeName":{"id":1176413682652798},"resizeWithGradientTensorInputModeCenterResultAlignCornersLayoutName":{"id":3357018063505034},"resizeWithGradientTensorInputScaleOffsetTensorModeLayoutName":{"id":1887797440730079},"resizeWithGradientTensorInputScaleOffsetTensorModeName":{"id":14361085307984},"reverseSquareRoot":{"id":1979418799487061},"reverseAxesName":{"id":668200693143534},"reverseAxesTensorName":{"id":2160206102729256},"reverseName":{"id":4417292741469986},"rint":{"id":262180373327405},"round":{"id":4299980231178791},"runAsyncFeedsTargetTensorsTargetOperationsExecutionDescriptor":{"id":1828120681831146},"runAsyncWithFeedsTargetOperationsResultsDictionaryExecutionDescriptor":{"id":498110078153595},"runAsyncWithFeedsTargetTensorsTargetOperationsExecutionDescriptor":{"id":763407367364212},"runFeedsTargetTensorsTargetOperations":{"id":1355629301852934},"runWithFeedsTargetOperationsResultsDictionary":{"id":1890053877015262},"runWithFeedsTargetTensorsTargetOperations":{"id":1788507996217537},"sampleGridWithSourceTensorCoordinateTensorLayoutNormalizeCoordinatesRelativeCoordinatesAlignCornersPaddingModeNearestRoundingModeConstantValueName":{"id":3180191828082966},"sampleGridWithSourceTensorCoordinateTensorLayoutNormalizeCoordinatesRelativeCoordinatesAlignCornersPaddingModeSamplingModeConstantValueName":{"id":3735666956704527},"scaledDotProductAttentionQueryKeyValueDescriptorName":{"id":546395725826390},"scaledDotProductAttentionQueryKeyValueMaskScaleName":{"id":1275620288872342},"scaledDotProductAttentionQueryKeyValueScaleName":{"id":1573073506337397},"scatterAlongAxisDataUpdatesIndicesModeName":{"id":4049076440543929},"scatterAlongAxisUpdatesIndicesShapeModeName":{"id":2589510819204267},"scatterAlongAxisTensorDataUpdatesIndicesModeName":{"id":1630644993907032},"scatterAlongAxisTensorUpdatesIndicesShapeModeName":{"id":2112989142664114},"scatterNDWithData":{"id":2953200371426053},"scatterNDWithUpdatesTensorIndicesTensorShapeBatchDimensionsModeName":{"id":3413005416208716},"scatterNDWithUpdatesTensorIndicesTensorShapeBatchDimensionsName":{"id":1056275902359034},"scatterWithData":{"id":60166860883788},"scatter":{"id":3595745132681198},"select":{"id":2323572878929047},"shapeOf":{"id":1888887291132262},"sigmoidGradient":{"id":2955836749400488},"sigmoid":{"id":833438232051647},"sign":{"id":1746720143486273},"signbit":{"id":4281743540771781},"sin":{"id":2183271236797304},"singleGateRNNGradientsRecurrentWeightSourceGradientZStateInitStateDescriptorName":{"id":1325019169502623},"singleGateRNNGradientsRecurrentWeightSourceGradientZStateInputWeightBiasInitStateDescriptorName":{"id":2991968169916999},"singleGateRNNGradientsRecurrentWeightSourceGradientZStateInputWeightBiasInitStateMaskDescriptorName":{"id":2265219944401037},"singleGateRNNGradientsRecurrentWeightSourceGradientZStateStateGradientInputWeightBiasInitStateMaskDescriptorName":{"id":1270615596838598},"singleGateRNNRecurrentWeightInitStateDescriptorName":{"id":3880075159086765},"singleGateRNNRecurrentWeightInputWeightBiasInitStateDescriptorName":{"id":3905808241728049},"singleGateRNNRecurrentWeightInputWeightBiasInitStateMaskDescriptorName":{"id":2851399695469815},"sinh":{"id":3478917535294143},"sliceGradientTensorFwdInShapeTensorStartEndStrideTensorStartMaskEndMaskSqueezeMaskName":{"id":2751745339577702},"sliceGradientTensorFwdInShapeTensorStartSizeTensorSqueezeMaskName":{"id":3792755735490934},"sliceGradientTensorFwdInShapeTensorStartsEndsStridesName":{"id":727506476775512},"sliceGradientTensorFwdInShapeTensorStartsEndsStridesStartMaskEndMaskSqueezeMaskName":{"id":361742712707186},"sliceTensorDimensionStartLengthName":{"id":416452627556977},"sliceTensorStartEndStrideTensorStartMaskEndMaskSqueezeMaskName":{"id":2215184575541062},"sliceTensorStartSizeTensorSqueezeMaskName":{"id":1647231196801040},"sliceTensorStartsEndsStridesName":{"id":2523329258669833},"sliceTensorStartsEndsStridesStartMaskEndMaskSqueezeMaskName":{"id":3515097504395146},"sliceUpdateDataTensorUpdateStartsEndsStridesName":{"id":3822299795522743},"sliceUpdateDataTensorUpdateStartsEndsStridesStartMaskEndMaskSqueezeMaskName":{"id":1433563211596833},"sliceUpdateDataTensorUpdateStartsTensorEndsTensorStridesTensorName":{"id":1835428635180022},"sliceUpdateDataTensorUpdateStartsTensorEndsTensorStridesTensorStartMaskEndMaskSqueezeMaskName":{"id":1571598018860649},"softMaxCrossEntropyGradient":{"id":178725483673475},"softMaxCrossEntropy":{"id":2377967031875919},"softMaxGradient":{"id":3177886050888067},"softMax":{"id":2678876328693870},"sortAxisDescendingName":{"id":2055569221816058},"sortAxisName":{"id":1037225735520400},"sortAxisTensorDescendingName":{"id":3035575617032146},"sortAxisTensorName":{"id":3826002866147208},"spaceToBatchSpatialAxesBatchAxisBlockDimensionsUsePixelShuffleOrderName":{"id":636364416685573},"spaceToBatchSpatialAxesTensorBatchAxisTensorBlockDimensionsTensorUsePixelShuffleOrderName":{"id":2148132555356191},"spaceToDepth2DTensorWidthAxisHeightAxisDepthAxisBlockSizeUsePixelShuffleOrderName":{"id":3108223006458157},"spaceToDepth2DTensorWidthAxisTensorHeightAxisTensorDepthAxisTensorBlockSizeUsePixelShuffleOrderName":{"id":2698824899771552},"sparseTensorSparseTensorWithDescriptorTensorsShapeName":{"id":2627084864439662},"sparseTensorSparseTensorWithTypeTensorsShapeDataTypeName":{"id":4097004102062394},"splitNumSplitsAxisName":{"id":2283338879933459},"splitSplitSizesAxisName":{"id":11346426845474},"splitSplitSizesTensorAxisName":{"id":3640229427603217},"squareRoot":{"id":1218683448898768},"square":{"id":238665526477177},"squeezeAxesName":{"id":3075227187291817},"squeezeAxesTensorName":{"id":3262065544026872},"squeezeAxisName":{"id":979267209098296},"squeezeName":{"id":509454411768260},"stack":{"id":348911304251534},"stencil":{"id":519375692984262},"stochasticGradientDescent":{"id":327695527913654},"subtraction":{"id":1924877358142862},"tan":{"id":881508260042017},"tanh":{"id":2821611655567760},"tileGradient":{"id":1306090968647926},"tileTensor":{"id":948691410139078},"topKGradientSourceAxisKName":{"id":3820603519817562},"topKGradientSourceAxisTensorKTensorName":{"id":3711236413127491},"topKGradientInputKName":{"id":4292568066307461},"topKGradientInputKTensorName":{"id":4035049008672019},"topKAxisKName":{"id":458744469109061},"topKAxisTensorKTensorName":{"id":2953499526595625},"topKKName":{"id":184583972997296},"topKKTensorName":{"id":4176529841369389},"transposeTensor":{"id":974541068210436},"transpose":{"id":230060359063257},"truncate":{"id":772167749926971},"variableFromTensor":{"id":2449849042214663},"variable":{"id":2007668798642424},"varianceOfAxesName":{"id":100344014169828},"varianceOfMeanAxesName":{"id":972738343195618}} });
+registerSDKClass("MPSGraphCompilationDescriptor", MPSGraphCompilationDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"callables":671437707495905,"dispatchQueue":1493387017304053,"optimizationLevel":659464651838990,"optimizationProfile":1895076435409138,"reducedPrecisionFastMath":2929742921768819,"waitForCompilationCompletion":3239013772552021}, methods: {"convertLayoutToNHWC":{"id":810130583543487},"disableAutoLayoutConversion":{"id":3134355879500459},"disableTypeInference":{"id":3138863365274104}} });
+registerSDKClass("MPSGraphConvolution2DOpDescriptor", MPSGraphConvolution2DOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataLayout":3041417437913046,"dilationRateInX":4332903326685961,"dilationRateInY":1161122942453678,"groups":459540363069785,"paddingBottom":2650756774273301,"paddingLeft":597576516635948,"paddingRight":791527926003126,"paddingStyle":357899079005522,"paddingTop":1348865898260783,"strideInX":2889717224311337,"strideInY":1866015829372984,"weightsLayout":139063356947389}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":1360829281745971}} });
+registerSDKClass("MPSGraphConvolution3DOpDescriptor", MPSGraphConvolution3DOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataLayout":512624677420747,"dilationRateInX":2980056830506929,"dilationRateInY":2360118336361724,"dilationRateInZ":875241565384899,"groups":601206173515960,"paddingBack":3570505736445867,"paddingBottom":4192948330049122,"paddingFront":2086626185754873,"paddingLeft":3210829515045214,"paddingRight":2538054535884000,"paddingStyle":232887920984875,"paddingTop":1570600700508205,"strideInX":3127624553178857,"strideInY":2094556525425259,"strideInZ":482829274411838,"weightsLayout":1212573235342033}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":703908002054680}} });
+registerSDKClass("MPSGraphCreateSparseOpDescriptor", MPSGraphCreateSparseOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataType":4395313825241939,"sparseStorageType":1531525827730799} });
+registerSDKClass("MPSGraphDepthwiseConvolution2DOpDescriptor", MPSGraphDepthwiseConvolution2DOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataLayout":3251732720478569,"dilationRateInX":1185094392925746,"dilationRateInY":4028520652429832,"paddingBottom":743217094763237,"paddingLeft":4376850067371209,"paddingRight":1168684569651040,"paddingStyle":2045421262708773,"paddingTop":2773778974649292,"strideInX":1662492499595001,"strideInY":1308093680256266,"weightsLayout":67137267276669}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":4180463238960313}} });
+registerSDKClass("MPSGraphDepthwiseConvolution3DOpDescriptor", MPSGraphDepthwiseConvolution3DOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"channelDimensionIndex":1846720108863766,"dilationRates":458892062858853,"paddingStyle":2312839078942408,"paddingValues":635996485928449,"strides":3238068786319936} });
+registerSDKClass("MPSGraphDevice", MPSGraphDevice, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"metalDevice":41724952703882,"type":3996419045815575} });
+registerSDKClass("MPSGraphExecutable", MPSGraphExecutable, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"feedTensors":3708407658606936,"options":56522535479136,"targetTensors":3947857547318653}, methods: {"encode":{"id":499142310006228},"getOutputTypes":{"id":715935208498899},"runAsync":{"id":2592898686220471},"run":{"id":192389357282465},"serialize":{"id":2879016014608583},"specialize":{"id":3621536018820801}} });
+registerSDKClass("MPSGraphExecutableExecutionDescriptor", MPSGraphExecutableExecutionDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"waitUntilCompleted":4221376925362533}, methods: {"signal":{"id":2940793947853336},"wait":{"id":2664384892761075}} });
+registerSDKClass("MPSGraphExecutableSerializationDescriptor", MPSGraphExecutableSerializationDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"append":3565805713675656,"deploymentPlatform":932655176881554,"minimumDeploymentTarget":4211964946779595} });
+registerSDKClass("MPSGraphExecutionDescriptor", MPSGraphExecutionDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"compilationDescriptor":4299216247652331,"waitUntilCompleted":1674629655195339}, methods: {"signal":{"id":1889391453667394},"wait":{"id":4229096872984128}} });
+registerSDKClass("MPSGraphFFTDescriptor", MPSGraphFFTDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"inverse":1252916770723411,"roundToOddHermitean":189418332001180,"scalingMode":2645505968563737} });
+registerSDKClass("MPSGraphGRUDescriptor", MPSGraphGRUDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"bidirectional":617561129954986,"flipZ":4449458290179915,"outputGateActivation":1392537122294267,"resetAfter":1108229299142915,"resetGateActivation":4156790308138125,"resetGateFirst":1113820990551810,"reverse":1812805139988509,"training":890721979615197,"updateGateActivation":2917209811560476} });
+registerSDKClass("MPSGraphImToColOpDescriptor", MPSGraphImToColOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataLayout":4056178344191601,"dilationRateInX":2934900323863402,"dilationRateInY":4310115736849010,"kernelHeight":2507664414890392,"kernelWidth":4309920397703218,"paddingBottom":4480106524827383,"paddingLeft":2873634624867438,"paddingRight":4500665371681910,"paddingTop":1420659338544825,"strideInX":404416016201890,"strideInY":499892680278028}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":377729997255683}} });
+registerSDKClass("MPSGraphLSTMDescriptor", MPSGraphLSTMDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"activation":1231355210170293,"bidirectional":3462552199871207,"cellGateActivation":999048132307178,"forgetGateActivation":2031337229858260,"forgetGateLast":3689831860131684,"inputGateActivation":2355774018125508,"outputGateActivation":3965949284999574,"produceCell":2140706598434223,"reverse":3940037869829831,"training":3510829797573016} });
+registerSDKClass("MPSGraphOperation", MPSGraphOperation, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"controlDependencies":2932225213949904,"graph":1620749386563562,"inputTensors":4459486404989496,"name":60425812664733,"outputTensors":4108003936058830} });
+registerSDKClass("MPSGraphPooling2DOpDescriptor", MPSGraphPooling2DOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"ceilMode":770047775649112,"dataLayout":281467847057828,"dilationRateInX":2690545634263114,"dilationRateInY":2759839789406784,"includeZeroPadToAverage":2671034519201168,"kernelHeight":3253984816063467,"kernelWidth":398846664708741,"paddingBottom":2041266396240082,"paddingLeft":618728533186622,"paddingRight":635365960120672,"paddingStyle":1081326496568963,"paddingTop":3601923094630997,"returnIndicesDataType":489281365404340,"returnIndicesMode":2204292662762749,"strideInX":3391277816870698,"strideInY":1102864432095118}, methods: {"setExplicitPaddingWithPaddingLeft":{"id":3710743557018797}} });
+registerSDKClass("MPSGraphPooling4DOpDescriptor", MPSGraphPooling4DOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"ceilMode":4220477680056685,"dilationRates":3982884570546369,"includeZeroPadToAverage":1408044673719243,"kernelSizes":3826379863840619,"paddingStyle":4165764961986841,"paddingValues":666232693379853,"returnIndicesDataType":1510653147261107,"returnIndicesMode":1308588251409049,"strides":4386095385485475} });
+registerSDKClass("MPSGraphRandomOpDescriptor", MPSGraphRandomOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataType":3452337638821031,"distribution":793296112584047,"max":2708254432857957,"maxInteger":568694954806304,"mean":894484301489093,"min":3393620794786608,"minInteger":648715070982678,"samplingMethod":2464102107100628,"standardDeviation":332379693781898} });
+registerSDKClass("MPSGraphSDPADescriptor", MPSGraphSDPADescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"isCausal":2516642329447592,"maskTensor":4205629547674307,"scale":2890137732684776,"sinksTensor":886738642484120} });
+registerSDKClass("MPSGraphType", MPSGraphType, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {} });
+registerSDKClass("MPSGraphShapedType", MPSGraphShapedType, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataType":4123282357365165,"shape":3896728601377292}, methods: {"isEqual":{"id":603122484553909}} });
+registerSDKClass("MPSGraphSingleGateRNNDescriptor", MPSGraphSingleGateRNNDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"activation":3011279560041088,"bidirectional":2646061166375369,"reverse":4261446319463487,"training":1607141899979250} });
+registerSDKClass("MPSGraphStencilOpDescriptor", MPSGraphStencilOpDescriptor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"boundaryMode":1915570695878246,"dilationRates":337321760151056,"explicitPadding":3648401017578818,"offsets":459035578343359,"paddingConstant":4002311744907541,"paddingStyle":680549932362925,"reductionMode":306706812661256,"strides":3031472886351907} });
+registerSDKClass("MPSGraphTensor", MPSGraphTensor, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataType":3440325870443822,"operation":4453356450469654,"shape":4307075560158130} });
+registerSDKClass("MPSGraphTensorData", MPSGraphTensorData, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataType":1721283556015563,"device":983598468726631,"shape":652998985296464}, methods: {"mpsndarray":{"id":1999213341089801}} });
+registerSDKClass("MPSGraphVariableOp", MPSGraphVariableOp, { module: "MetalPerformanceShadersGraph_d968214ecc684fb6", properties: {"dataType":4036153444808329,"shape":3549233356624075} });
