@@ -11,8 +11,8 @@ export default function OneNativePopover() {
   // the instance count shows a restore reuses the same root
   const [mode, setMode] = useState<'full' | 'empty' | 'hidden'>('full')
   const [rootInstances, setRootInstances] = useState(0)
-  const root = useRef<View | null>(null)
-  const trackRoot = (node: View | null) => {
+  const root = useRef<object | null>(null)
+  const trackRoot = (node: object | null) => {
     if (!node || node === root.current) return
     root.current = node
     setRootInstances((count) => count + 1)
