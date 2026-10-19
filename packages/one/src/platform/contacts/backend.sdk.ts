@@ -273,8 +273,8 @@ async function pickContact(): Promise<ContactInfo | undefined> {
     ) {
       throw failure('pickContact', 'E_CONTACTS_PICKER', 'no active view controller')
     }
-    const picker = CNContactPickerViewController.init()
-    picker.predicateForSelectionOfContact = NSPredicate.initValue(true)
+    const picker = await CNContactPickerViewController.init()
+    await picker.setPredicateForSelectionOfContact(NSPredicate.initValue(true))
     // present/dismiss/presentationController live on the UIKit base, which the
     // contacts picker facade does not extend, so drive them through the same
     // handle viewed as a view controller.
@@ -299,7 +299,7 @@ async function pickContact(): Promise<ContactInfo | undefined> {
       }
       // single-selection mode only delivers one contact; the array form of the
       // union cannot fire without multiple selection so it settles empty.
-      picker.delegate = {
+      void picker.setDelegate({
         contactPickerDidSelect: (_picker, selected) => {
           finish(
             Array.isArray(selected) ? null : (selected as unknown as CNContact)
@@ -308,9 +308,8 @@ async function pickContact(): Promise<ContactInfo | undefined> {
         contactPickerDidCancel: () => {
           finish(null)
         },
-      }
-      presenter
-        .present(presented, true, () => {
+      })
+        .then(() => presenter.present(presented, true, () => {
           void presented.presentationController
             .then((controller) =>
               controller?.setDelegate({
@@ -320,7 +319,7 @@ async function pickContact(): Promise<ContactInfo | undefined> {
               })
             )
             .catch(reject)
-        })
+        }))
         .catch(reject)
     })
   } catch (error) {

@@ -51,7 +51,7 @@ async function share(items: ShareItem[]): Promise<ShareResult> {
       await presenter.isBeingPresented || await presenter.transitionCoordinator !== null) {
       throw failure('PRESENTATION', 'there is no active view controller to present from')
     }
-    const controller = UIActivityViewController.initActivityItemsApplicationActivities(activityItems)
+    const controller = await UIActivityViewController.initActivityItemsApplicationActivities(activityItems)
     const popover = await controller.popoverPresentationController
     if (popover) {
       await popover.setSourceView(view)
@@ -68,7 +68,7 @@ async function share(items: ShareItem[]): Promise<ShareResult> {
         clearTimeout(timer)
         reject(error)
       }
-      controller.completionWithItemsHandler = (activityType, completed, _items, error) => {
+      void controller.setCompletionWithItemsHandler((activityType, completed, _items, error) => {
         void (async () => {
           if (settled || finishing || (!completed && activityType !== null && await controller.presentingViewController !== null)) return
           finishing = true
@@ -82,8 +82,7 @@ async function share(items: ShareItem[]): Promise<ShareResult> {
           if (error) reject(failure('FAILED', new NSError(error.$handle).localizedDescription))
           else resolve({ completed, activityType: activityType ?? undefined })
         })().catch(rejectOnce)
-      }
-      void presenter.present(controller, true).then(() => {
+      }).then(() => presenter.present(controller, true)).then(() => {
         if (settled) return
         timer = setTimeout(() => {
           void controller.presentingViewController.then((attached) => {
