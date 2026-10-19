@@ -7,7 +7,7 @@
 #include "OneNativeSlotShadowNode.h"
 namespace facebook::react {
 extern const char OneNativePopoverContentComponentName[];
-using OneNativePopoverContentShadowNode = OneNativeSlotShadowNode<OneNativePopoverContentComponentName, OneNativePopoverContentProps, OneNativePopoverContentEventEmitter>;
+using OneNativePopoverContentShadowNode = OneNativePresentedSlotShadowNode<OneNativePopoverContentComponentName, OneNativePopoverContentProps, OneNativePopoverContentEventEmitter>;
 using OneNativePopoverContentComponentDescriptor = OneNativeSlotComponentDescriptor<OneNativePopoverContentShadowNode>;
 }
 #endif

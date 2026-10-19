@@ -7,7 +7,7 @@
 #include "OneNativeSlotShadowNode.h"
 namespace facebook::react {
 extern const char OneNativeSheetContentComponentName[];
-using OneNativeSheetContentShadowNode = OneNativeSlotShadowNode<OneNativeSheetContentComponentName, OneNativeSheetContentProps, OneNativeSheetContentEventEmitter>;
+using OneNativeSheetContentShadowNode = OneNativePresentedSlotShadowNode<OneNativeSheetContentComponentName, OneNativeSheetContentProps, OneNativeSheetContentEventEmitter>;
 using OneNativeSheetContentComponentDescriptor = OneNativeSlotComponentDescriptor<OneNativeSheetContentShadowNode>;
 }
 #endif

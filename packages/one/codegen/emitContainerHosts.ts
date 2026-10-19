@@ -374,6 +374,7 @@ using namespace facebook::react;
 
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState {
   _slotState = std::static_pointer_cast<const ${name}ShadowNode::ConcreteState>(state);
+  [self reportMeasuredSize];
 }
 
 // the size SwiftUI gave the presented content, which Yoga lays the children out in
@@ -382,7 +383,7 @@ using namespace facebook::react;
   const auto &old = _slotState->getData();
   const facebook::react::Size size{(Float)frame.size.width, (Float)frame.size.height};
   if (old.measured && old.size == size) return;
-  OneNativeSlotState state;
+  OneNativeSlotState state = old;
   state.size = size;
   state.measured = true;
   _slotState->updateState(std::move(state));
@@ -390,26 +391,22 @@ using namespace facebook::react;
 
 - (void)setMeasuredSizeCallback:(void (^)(CGSize))callback {
   _measuredSizeCallback = [callback copy];
-  [self setNeedsLayout];
+  [self reportMeasuredSize];
+}
+
+// the shadow node measures the children's layout, since flattening can remove the
+// authored root from the mounted views
+- (void)reportMeasuredSize {
+  if (!_measuredSizeCallback || !_slotState) return;
+  const auto content = _slotState->getData().content;
+  if (std::isfinite(content.width) && std::isfinite(content.height) && content.width > 0 && content.height > 0)
+    _measuredSizeCallback(CGSizeMake(content.width, content.height));
 }
 
 - (void)updateLayoutMetrics:(LayoutMetrics const &)layoutMetrics oldLayoutMetrics:(LayoutMetrics const &)oldLayoutMetrics {
   [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
   // SwiftUI owns placement. Fabric owns the bounds and the descendants' layout
   self.frame = (CGRect){CGPointZero, self.bounds.size};
-}
-
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  CGFloat width = 0;
-  CGFloat height = 0;
-  for (UIView *subview in self.subviews) {
-    if (subview.hidden) continue;
-    width = MAX(width, CGRectGetMaxX(subview.frame));
-    height = MAX(height, CGRectGetMaxY(subview.frame));
-  }
-  if (_measuredSizeCallback && std::isfinite(width) && std::isfinite(height) && width > 0 && height > 0)
-    _measuredSizeCallback(CGSizeMake(width, height));
 }
 
 - (void)prepareForRecycle {
@@ -432,7 +429,7 @@ using namespace facebook::react;
 #include "OneNativeSlotShadowNode.h"
 namespace facebook::react {
 extern const char ${name}ComponentName[];
-using ${name}ShadowNode = OneNativeSlotShadowNode<${name}ComponentName, ${name}Props, ${name}EventEmitter>;
+using ${name}ShadowNode = OneNativePresentedSlotShadowNode<${name}ComponentName, ${name}Props, ${name}EventEmitter>;
 using ${name}ComponentDescriptor = OneNativeSlotComponentDescriptor<${name}ShadowNode>;
 }
 #endif

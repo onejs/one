@@ -770,30 +770,30 @@ ${configureRest.map((line) => `    ${line}`).join('\n')}];
 }
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState {
   _slotState = std::static_pointer_cast<const OneNativeSheetContentShadowNode::ConcreteState>(state);
+  [self reportMeasuredHeight];
 }
 - (void)setMeasuredHeightCallback:(void (^)(CGFloat))callback {
   _measuredHeightCallback = [callback copy];
-  [self setNeedsLayout];
+  [self reportMeasuredHeight];
+}
+// the shadow node measures the children's layout, since flattening can remove the
+// authored root from the mounted views.
+- (void)reportMeasuredHeight {
+  if (!_measuredHeightCallback || !_slotState) return;
+  const auto height = _slotState->getData().content.height;
+  if (std::isfinite(height) && height > 0) _measuredHeightCallback(height);
 }
 - (void)updateNativeFrame:(CGRect)frame {
   if (!_slotState || !std::isfinite(frame.size.width) || !std::isfinite(frame.size.height)) return;
   const auto &old = _slotState->getData();
   const facebook::react::Size size{(Float)frame.size.width, (Float)frame.size.height};
   if (old.measured && old.size == size) return;
-  OneNativeSlotState state; state.size = size; state.measured = true;
+  OneNativeSlotState state = old; state.size = size; state.measured = true;
   _slotState->updateState(std::move(state));
 }
 - (void)updateLayoutMetrics:(LayoutMetrics const &)layoutMetrics oldLayoutMetrics:(LayoutMetrics const &)oldLayoutMetrics {
   [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
   self.frame = (CGRect){CGPointZero, self.bounds.size};
-}
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  CGFloat height = 0;
-  for (UIView *subview in self.subviews) {
-    if (!subview.hidden) height = MAX(height, CGRectGetMaxY(subview.frame));
-  }
-  if (_measuredHeightCallback && std::isfinite(height) && height > 0) _measuredHeightCallback(height);
 }
 - (void)prepareForRecycle {
   [super prepareForRecycle];
@@ -811,7 +811,7 @@ ${configureRest.map((line) => `    ${line}`).join('\n')}];
 #include "OneNativeSlotShadowNode.h"
 namespace facebook::react {
 extern const char OneNativeSheetContentComponentName[];
-using OneNativeSheetContentShadowNode = OneNativeSlotShadowNode<OneNativeSheetContentComponentName, OneNativeSheetContentProps, OneNativeSheetContentEventEmitter>;
+using OneNativeSheetContentShadowNode = OneNativePresentedSlotShadowNode<OneNativeSheetContentComponentName, OneNativeSheetContentProps, OneNativeSheetContentEventEmitter>;
 using OneNativeSheetContentComponentDescriptor = OneNativeSlotComponentDescriptor<OneNativeSheetContentShadowNode>;
 }
 #endif
