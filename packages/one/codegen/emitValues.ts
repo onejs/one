@@ -363,9 +363,10 @@ function checkSDKValue(value: unknown, key: string, context: string) {
   }
 }
 
-// returns the text native decodes: the case name, or the record as JSON. a record is
+// returns the text native decodes: the case name, or the record as JSON. anything else is
 // validated as the parsed JSON it serializes to, so toJSON, getters and undefined fields
-// cannot send native anything other than what was checked.
+// cannot send native anything other than what was checked, and a value serializing to a
+// case name travels as that bare name.
 export function sdkValueText(value: unknown, key: string, context: string): string {
   if (typeof value === 'string') {
     checkSDKValue(value, key, context)
@@ -373,6 +374,7 @@ export function sdkValueText(value: unknown, key: string, context: string): stri
   }
   const text = JSON.stringify(value)
   if (typeof text !== 'string') throw new Error(context + ' must be a case name or a record with a kind')
-  checkSDKValue(JSON.parse(text), key, context)
-  return text
+  const parsed: unknown = JSON.parse(text)
+  checkSDKValue(parsed, key, context)
+  return typeof parsed === 'string' ? parsed : text
 }`
