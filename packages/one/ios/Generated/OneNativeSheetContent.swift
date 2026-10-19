@@ -11,8 +11,6 @@ struct OneNativeSheetRoot: View {
     if let content = model.content {
       OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
         if model.active && model.controlled.value { model.onLayout?(frame) }
-      }, onWindowChange: { identity, attached in
-        model.presentedWindowChanged(identity, attached: attached)
       })
       .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -27,7 +25,7 @@ struct OneNativeSheetRoot: View {
       Color.clear
         .sheet(isPresented: presented, onDismiss: { model.dismissed() }) {
           content
-            .oneNativeSheetPresentation(model, fitToContents: model.fitToContents)
+            .oneNativeSheetPresentation(model)
         }
     }
   }
@@ -35,20 +33,14 @@ struct OneNativeSheetRoot: View {
 
 extension View {
   @ViewBuilder func oneNativeSheetPresentation(
-    _ model: OneNativeSheetModel, fitToContents: Bool
+    _ model: OneNativeSheetModel
   ) -> some View {
-    if fitToContents {
-      self
-        .presentationDetents(model.fittedHeight > 0 ? [.height(model.fittedHeight)] : [.medium])
-        .oneNativeSheetPresentationModifiers(model)
-    } else {
-      self
-        .presentationDetents(model.detents, selection: Binding(
-          get: { model.selectedPresentationDetent },
-          set: { model.changeDetent($0) }
-        ))
-        .oneNativeSheetPresentationModifiers(model)
-    }
+    self
+      .presentationDetents(model.detents, selection: Binding(
+        get: { model.selectedPresentationDetent },
+        set: { model.changeDetent($0) }
+      ))
+      .oneNativeSheetPresentationModifiers(model)
   }
 
   @ViewBuilder func oneNativeSheetPresentationModifiers(

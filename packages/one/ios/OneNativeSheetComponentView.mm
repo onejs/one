@@ -29,12 +29,6 @@ using namespace facebook::react;
       auto emitter = std::static_pointer_cast<const OneNativeSheetEventEmitter>(strongSelf->_eventEmitter);
       emitter->onNativeSheetDismiss({.revision = (int)revision});
     };
-    _sheet.onDidDismiss = ^(NSInteger revision, NSInteger presentationId) {
-      OneNativeSheetComponentView *strongSelf = weakSelf;
-      if (!strongSelf || !strongSelf->_eventEmitter) return;
-      auto emitter = std::static_pointer_cast<const OneNativeSheetEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onNativeSheetDidDismiss({.revision = (int)revision, .presentationId = (int)presentationId});
-    };
     _sheet.onDetentChange = ^(NSString *type, double value, NSInteger eventCount, NSInteger revision) {
       OneNativeSheetComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
@@ -50,12 +44,9 @@ using namespace facebook::react;
 - (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
   OneNativeSheetContentComponentView *content = (OneNativeSheetContentComponentView *)child;
   __weak OneNativeSheetContentComponentView *weakContent = content;
-  __weak OneNativeSheetView *weakSheet = _sheet;
-  [content setFittedHeightCallback:^(CGFloat height) { [weakSheet setFittedHeight:height]; }];
   [_sheet mountContent:child onLayout:^(CGRect frame) { [weakContent updateNativeFrame:frame]; }];
 }
 - (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
-  [(OneNativeSheetContentComponentView *)child setFittedHeightCallback:nil];
   [_sheet unmountContent:child];
 }
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
@@ -71,8 +62,7 @@ using namespace facebook::react;
     [_sheet setDetents:detents];
     _detentsDirty = NO;
   }
-  [_sheet configure:next.isPresented acknowledgedEvent:next.acknowledgedEvent revision:next.revision presentationId:next.presentationId
-    fitToContents:next.fitToContents
+  [_sheet configure:next.isPresented acknowledgedEvent:next.acknowledgedEvent revision:next.revision
     selectedDetentType:RCTNSStringFromString(next.selectedDetentType)
     selectedDetentValue:next.selectedDetentValue
     acknowledgedDetentEvent:next.acknowledgedDetentEvent detentRevision:next.detentRevision
@@ -94,7 +84,6 @@ using namespace facebook::react;
 @implementation OneNativeSheetContentComponentView {
   OneNativeSheetContentShadowNode::ConcreteState::Shared _slotState;
   RCTSurfaceTouchHandler *_touchHandler;
-  void (^_fittedHeightCallback)(CGFloat);
 }
 + (ComponentDescriptorProvider)componentDescriptorProvider { return concreteComponentDescriptorProvider<OneNativeSheetContentComponentDescriptor>(); }
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -108,10 +97,6 @@ using namespace facebook::react;
 - (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState {
   _slotState = std::static_pointer_cast<const OneNativeSheetContentShadowNode::ConcreteState>(state);
 }
-- (void)setFittedHeightCallback:(void (^)(CGFloat))callback {
-  _fittedHeightCallback = [callback copy];
-  [self setNeedsLayout];
-}
 - (void)updateNativeFrame:(CGRect)frame {
   if (!_slotState || !std::isfinite(frame.size.width) || !std::isfinite(frame.size.height)) return;
   const auto &old = _slotState->getData();
@@ -124,16 +109,8 @@ using namespace facebook::react;
   [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
   self.frame = (CGRect){CGPointZero, self.bounds.size};
 }
-- (void)layoutSubviews {
-  [super layoutSubviews];
-  CGFloat height = 0;
-  for (UIView *subview in self.subviews) {
-    if (!subview.hidden) height = MAX(height, CGRectGetMaxY(subview.frame));
-  }
-  if (_fittedHeightCallback && std::isfinite(height) && height > 0) _fittedHeightCallback(height);
-}
 - (void)prepareForRecycle {
   [super prepareForRecycle];
-  _touchHandler.enabled = NO; _touchHandler.enabled = YES; _slotState.reset(); _fittedHeightCallback = nil;
+  _touchHandler.enabled = NO; _touchHandler.enabled = YES; _slotState.reset();
 }
 @end

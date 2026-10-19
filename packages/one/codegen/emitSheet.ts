@@ -66,9 +66,7 @@ export const sheetComponents = [
       isPresented: 'boolean',
       acknowledgedEvent: 'Int32',
       revision: 'Int32',
-      presentationId: 'Int32',
       detents: 'ReadonlyArray<NativeSheetDetent>',
-      fitToContents: 'boolean',
       selectedDetentType: 'string',
       selectedDetentValue: 'Double',
       acknowledgedDetentEvent: 'Int32',
@@ -94,7 +92,6 @@ export const sheetComponents = [
         revision: 'Int32',
       },
       onNativeSheetDismiss: { revision: 'Int32' },
-      onNativeSheetDidDismiss: { revision: 'Int32', presentationId: 'Int32' },
       onNativeSheetDetentChange: {
         type: 'string',
         value: 'Double',
@@ -178,11 +175,8 @@ export interface SheetProps extends ViewProps {
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   onDismiss?: () => void
-  /** fires after the presented native content leaves its window following an accepted close. */
-  onDidDismiss?: () => void
   revision?: number
   presentationDetents?: readonly PresentationDetent[]
-  fitToContents?: boolean
   selectedDetent?: PresentationDetent
   onSelectedDetentChange?: (detent: PresentationDetent) => void
   detentRevision?: number
@@ -200,8 +194,6 @@ export interface FullScreenCoverProps extends ViewProps {
   isPresented: boolean
   onIsPresentedChange: (value: boolean) => void
   onDismiss?: () => void
-  /** fires after the presented native content leaves its window following an accepted close. */
-  onDidDismiss?: () => void
   revision?: number
   children: ReactNode
 }
@@ -221,8 +213,6 @@ struct OneNativeSheetRoot: View {
     if let content = model.content {
       OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
         if model.active && model.controlled.value { model.onLayout?(frame) }
-      }, onWindowChange: { identity, attached in
-        model.presentedWindowChanged(identity, attached: attached)
       })
       .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -237,7 +227,7 @@ struct OneNativeSheetRoot: View {
       Color.clear
         .sheet(isPresented: presented, onDismiss: { model.dismissed() }) {
           content
-            .oneNativeSheetPresentation(model, fitToContents: model.fitToContents)
+            .oneNativeSheetPresentation(model)
         }
     }
   }
@@ -245,20 +235,14 @@ struct OneNativeSheetRoot: View {
 
 extension View {
   @ViewBuilder func oneNativeSheetPresentation(
-    _ model: OneNativeSheetModel, fitToContents: Bool
+    _ model: OneNativeSheetModel
   ) -> some View {
-    if fitToContents {
-      self
-        .presentationDetents(model.fittedHeight > 0 ? [.height(model.fittedHeight)] : [.medium])
-        .oneNativeSheetPresentationModifiers(model)
-    } else {
-      self
-        .presentationDetents(model.detents, selection: Binding(
-          get: { model.selectedPresentationDetent },
-          set: { model.changeDetent($0) }
-        ))
-        .oneNativeSheetPresentationModifiers(model)
-    }
+    self
+      .presentationDetents(model.detents, selection: Binding(
+        get: { model.selectedPresentationDetent },
+        set: { model.changeDetent($0) }
+      ))
+      .oneNativeSheetPresentationModifiers(model)
   }
 
   @ViewBuilder func oneNativeSheetPresentationModifiers(

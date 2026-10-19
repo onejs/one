@@ -3698,14 +3698,8 @@
         "revision": {
           "type": "Int32"
         },
-        "presentationId": {
-          "type": "Int32"
-        },
         "detents": {
           "type": "ReadonlyArray<NativeSheetDetent>"
-        },
-        "fitToContents": {
-          "type": "boolean"
         },
         "selectedDetentType": {
           "type": "string"
@@ -3765,14 +3759,6 @@
         },
         "onNativeSheetDismiss": {
           "revision": {
-            "type": "Int32"
-          }
-        },
-        "onNativeSheetDidDismiss": {
-          "revision": {
-            "type": "Int32"
-          },
-          "presentationId": {
             "type": "Int32"
           }
         },
