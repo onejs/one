@@ -5,6 +5,10 @@ import { SDKHandle } from 'one/ios-runtime';
  * @availability iOS 15.0+
  */
 export declare class OSLogEntry extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)OSLogEntry": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum StoreCategory
@@ -16,12 +20,22 @@ export type OSLogEntry_StoreCategory = "undefined" | "metadata" | "shortTerm" | 
  * @availability iOS 15.0+
  */
 export declare class OSLogEntryActivity extends OSLogEntry {
+    readonly $type: {
+        "c:objc(cs)OSLogEntryActivity": true;
+        "c:objc(cs)OSLogEntry": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class OSLogEntryBoundary
  * @availability iOS 15.0+
  */
 export declare class OSLogEntryBoundary extends OSLogEntry {
+    readonly $type: {
+        "c:objc(cs)OSLogEntryBoundary": true;
+        "c:objc(cs)OSLogEntry": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol OSLogEntryFromProcess
@@ -34,6 +48,11 @@ export interface OSLogEntryFromProcess {
  * @availability iOS 15.0+
  */
 export declare class OSLogEntryLog extends OSLogEntry {
+    readonly $type: {
+        "c:objc(cs)OSLogEntryLog": true;
+        "c:objc(cs)OSLogEntry": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Level
@@ -45,6 +64,11 @@ export type OSLogEntryLog_Level = "undefined" | "debug" | "info" | "notice" | "e
  * @availability iOS 15.0+
  */
 export declare class OSLogEntrySignpost extends OSLogEntry {
+    readonly $type: {
+        "c:objc(cs)OSLogEntrySignpost": true;
+        "c:objc(cs)OSLogEntry": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum SignpostType
@@ -62,6 +86,11 @@ export interface OSLogEntryWithPayload {
  * @availability iOS 15.0+
  */
 export declare class OSLogEnumerator extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)OSLogEnumerator": true;
+        "c:objc(cs)NSEnumerator": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct Options
@@ -73,12 +102,19 @@ export type OSLogEnumerator_Options = Array<"reverse">;
  * @availability iOS 15.0+
  */
 export declare class OSLogMessageComponent extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)OSLogMessageComponent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Argument
  * @availability iOS 15.0+
  */
 export declare class OSLogMessageComponent_Argument extends SDKHandle {
+    readonly $type: {
+        "s:So21OSLogMessageComponentC0A0E8ArgumentO": true;
+    };
 }
 /**
  * enum ArgumentCategory
@@ -90,12 +126,20 @@ export type OSLogMessageComponent_ArgumentCategory = "undefined" | "data" | "dou
  * @availability iOS 15.0+
  */
 export declare class OSLogPosition extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)OSLogPosition": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class OSLogStore
  * @availability iOS 15.0+
  */
 export declare class OSLogStore extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)OSLogStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Scope

@@ -22,6 +22,12 @@ export declare class HKActivityRingView extends SDKHandle {
      */
     get activitySummary(): $SDK0;
     set activitySummary(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)HKActivityRingView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activitySummary": true;
     };
@@ -33,6 +39,10 @@ export declare class HKHealthStore extends SDKHandle {
      */
     get authorizationViewControllerPresenter(): $SDK1;
     set authorizationViewControllerPresenter(value: $SDK1);
+    readonly $type: {
+        "c:objc(cs)HKHealthStore": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorizationViewControllerPresenter": true;
     };
@@ -43,5 +53,9 @@ export declare class UIScene_ConnectionOptions extends SDKHandle {
      * @availability iOS 26.0+
      */
     get shouldHandleActiveWorkoutRecovery(): Promise<boolean>;
+    readonly $type: {
+        "c:objc(cs)UISceneConnectionOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

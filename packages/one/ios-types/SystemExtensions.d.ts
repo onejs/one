@@ -75,6 +75,9 @@ export declare class OSSystemExtensionError extends SDKHandle {
      * @availability iOS 18.4+
      */
     static get unknown(): OSSystemExtensionError_Code;
+    readonly $type: {
+        "s:SC26OSSystemExtensionErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -115,6 +118,10 @@ export declare class OSSystemExtensionProperties extends SDKHandle {
      * @availability iOS 18.4+
      */
     get isEnabled(): boolean;
+    readonly $type: {
+        "c:objc(cs)OSSystemExtensionProperties": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bundleIdentifier": true;
         "bundleShortVersion": true;
@@ -139,6 +146,10 @@ export declare class OSSystemExtensionsWorkspace extends SDKHandle {
      * @availability iOS 18.4+
      */
     systemExtensions(bundleID: string): Array<OSSystemExtensionProperties>;
+    readonly $type: {
+        "c:objc(cs)OSSystemExtensionsWorkspace": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * let NSSystemExtensionUsageDescriptionKey: String

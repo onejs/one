@@ -17,6 +17,10 @@ export declare class NSString extends SDKHandle {
      * @availability iOS 10.0+
      */
     static localizedUserNotificationString(key: string, arguments_?: (Array<unknown>) | null): string;
+    readonly $type: {
+        "c:objc(cs)NSString": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum UNAlertStyle
@@ -111,6 +115,10 @@ export declare class UNNotificationTrigger extends SDKHandle {
      * @availability iOS 10.0+
      */
     get repeats(): boolean;
+    readonly $type: {
+        "c:objc(cs)UNNotificationTrigger": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "repeats": true;
     };
@@ -135,6 +143,11 @@ export declare class UNCalendarNotificationTrigger extends UNNotificationTrigger
      * @availability iOS 10.0+
      */
     get dateComponents(): _Foundation_DateComponents;
+    readonly $type: {
+        "c:objc(cs)UNCalendarNotificationTrigger": true;
+        "c:objc(cs)UNNotificationTrigger": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "repeats": true;
         "dateComponents": true;
@@ -210,6 +223,9 @@ export declare class UNError extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get attachmentMoveIntoDataStoreFailed(): UNError_Code;
+    readonly $type: {
+        "s:SC11UNErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -238,6 +254,11 @@ export declare class UNLocationNotificationTrigger extends UNNotificationTrigger
      * @availability iOS 10.0+
      */
     get region(): _CoreLocation_CLRegion;
+    readonly $type: {
+        "c:objc(cs)UNLocationNotificationTrigger": true;
+        "c:objc(cs)UNNotificationTrigger": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "repeats": true;
         "region": true;
@@ -337,6 +358,10 @@ export declare class UNNotificationContent extends SDKHandle {
      * @availability iOS 10.0+
      */
     get userInfo(): $SDK5;
+    readonly $type: {
+        "c:objc(cs)UNNotificationContent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attachments": true;
         "badge": true;
@@ -462,6 +487,11 @@ export declare class UNMutableNotificationContent extends UNMutableNotificationC
      */
     get userInfo(): $SDK5;
     set userInfo(value: $SDK5);
+    readonly $type: {
+        "c:objc(cs)UNMutableNotificationContent": true;
+        "c:objc(cs)UNNotificationContent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attachments": true;
         "badge": true;
@@ -496,6 +526,10 @@ export declare class UNNotification extends SDKHandle {
      * @availability iOS 10.0+
      */
     get request(): UNNotificationRequest;
+    readonly $type: {
+        "c:objc(cs)UNNotification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "request": true;
@@ -536,6 +570,10 @@ export declare class UNNotificationAction extends SDKHandle {
      * @availability iOS 10.0+
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)UNNotificationAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "icon": true;
         "identifier": true;
@@ -558,6 +596,10 @@ export declare class UNNotificationActionIcon extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initTemplateImageName(templateImageName: string): UNNotificationActionIcon;
+    readonly $type: {
+        "c:objc(cs)UNNotificationActionIcon": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct UNNotificationActionOptions
@@ -611,6 +653,10 @@ export declare class UNNotificationAttachment extends SDKHandle {
      * @availability iOS 10.0+
      */
     get type(): string;
+    readonly $type: {
+        "c:objc(cs)UNNotificationAttachment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "identifier": true;
@@ -627,6 +673,10 @@ export declare class UNNotificationAttributedMessageContext extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(sendMessageIntent: _Intents_INSendMessageIntent, attributedContent: _Foundation_NSAttributedString): UNNotificationAttributedMessageContext;
+    readonly $type: {
+        "c:objc(cs)UNNotificationAttributedMessageContext": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class UNNotificationCategory
@@ -678,6 +728,10 @@ export declare class UNNotificationCategory extends SDKHandle {
      * @availability iOS 10.0+
      */
     get options(): UNNotificationCategoryOptions;
+    readonly $type: {
+        "c:objc(cs)UNNotificationCategory": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "categorySummaryFormat": true;
@@ -806,6 +860,10 @@ export declare class UNNotificationRequest extends SDKHandle {
      * @availability iOS 10.0+
      */
     get trigger(): $SDK9;
+    readonly $type: {
+        "c:objc(cs)UNNotificationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "content": true;
         "identifier": true;
@@ -827,6 +885,10 @@ export declare class UNNotificationResponse extends SDKHandle {
      * @availability iOS 10.0+
      */
     get notification(): UNNotification;
+    readonly $type: {
+        "c:objc(cs)UNNotificationResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionIdentifier": true;
         "notification": true;
@@ -849,6 +911,10 @@ export declare class UNNotificationServiceExtension extends SDKHandle {
      * @availability iOS 10.0+
      */
     serviceExtensionTimeWillExpire(): void;
+    readonly $type: {
+        "c:objc(cs)UNNotificationServiceExtension": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum UNNotificationSetting
@@ -942,6 +1008,10 @@ export declare class UNNotificationSettings extends SDKHandle {
      * @availability iOS 15.0+
      */
     get timeSensitiveSetting(): UNNotificationSetting;
+    readonly $type: {
+        "c:objc(cs)UNNotificationSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alertSetting": true;
         "alertStyle": true;
@@ -1005,6 +1075,10 @@ export declare class UNNotificationSound extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get default(): UNNotificationSound;
+    readonly $type: {
+        "c:objc(cs)UNNotificationSound": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct UNNotificationSoundName */
 export type UNNotificationSoundName = (string & {});
@@ -1019,6 +1093,11 @@ export declare const UNNotificationSoundName: {
  * @availability iOS 10.0+
  */
 export declare class UNPushNotificationTrigger extends UNNotificationTrigger {
+    readonly $type: {
+        "c:objc(cs)UNPushNotificationTrigger": true;
+        "c:objc(cs)UNNotificationTrigger": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "repeats": true;
     };
@@ -1060,6 +1139,11 @@ export declare class UNTextInputNotificationAction extends UNNotificationAction 
      * @availability iOS 10.0+
      */
     get textInputPlaceholder(): string;
+    readonly $type: {
+        "c:objc(cs)UNTextInputNotificationAction": true;
+        "c:objc(cs)UNNotificationAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "icon": true;
         "identifier": true;
@@ -1079,6 +1163,11 @@ export declare class UNTextInputNotificationResponse extends UNNotificationRespo
      * @availability iOS 10.0+
      */
     get userText(): string;
+    readonly $type: {
+        "c:objc(cs)UNTextInputNotificationResponse": true;
+        "c:objc(cs)UNNotificationResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionIdentifier": true;
         "notification": true;
@@ -1105,6 +1194,11 @@ export declare class UNTimeIntervalNotificationTrigger extends UNNotificationTri
      * @availability iOS 10.0+
      */
     get timeInterval(): number;
+    readonly $type: {
+        "c:objc(cs)UNTimeIntervalNotificationTrigger": true;
+        "c:objc(cs)UNNotificationTrigger": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "repeats": true;
         "timeInterval": true;
@@ -1191,6 +1285,10 @@ export declare class UNUserNotificationCenter extends SDKHandle {
      * @availability iOS 10.0+
      */
     get supportsContentExtensions(): boolean;
+    readonly $type: {
+        "c:objc(cs)UNUserNotificationCenter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "supportsContentExtensions": true;

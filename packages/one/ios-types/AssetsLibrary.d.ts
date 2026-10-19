@@ -9,6 +9,10 @@ type $SDK5 = ((arg0: (string) | null, arg1: (NativeError) | null) => Promise<voi
 export declare class ALAsset extends SDKHandle {
     /** init() */
     static init(): ALAsset;
+    readonly $type: {
+        "c:objc(cs)ALAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum ALAssetOrientation
@@ -24,6 +28,10 @@ export type ALAssetOrientation = "up" | "down" | "left" | "right" | "upMirrored"
 export declare class ALAssetRepresentation extends SDKHandle {
     /** init() */
     static init(): ALAssetRepresentation;
+    readonly $type: {
+        "c:objc(cs)ALAssetRepresentation": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ALAssetsFilter
@@ -33,6 +41,10 @@ export declare class ALAssetRepresentation extends SDKHandle {
 export declare class ALAssetsFilter extends SDKHandle {
     /** init() */
     static init(): ALAssetsFilter;
+    readonly $type: {
+        "c:objc(cs)ALAssetsFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ALAssetsGroup
@@ -42,6 +54,10 @@ export declare class ALAssetsFilter extends SDKHandle {
 export declare class ALAssetsGroup extends SDKHandle {
     /** init() */
     static init(): ALAssetsGroup;
+    readonly $type: {
+        "c:objc(cs)ALAssetsGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias ALAssetsGroupEnumerationResultsBlock = (ALAsset?, Int, UnsafeMutablePointer<ObjCBool>?) -> Void
@@ -63,6 +79,10 @@ export type ALAssetsGroupType = number;
 export declare class ALAssetsLibrary extends SDKHandle {
     /** init() */
     static init(): ALAssetsLibrary;
+    readonly $type: {
+        "c:objc(cs)ALAssetsLibrary": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias ALAssetsLibraryAccessFailureBlock = ((any Error)?) -> Void

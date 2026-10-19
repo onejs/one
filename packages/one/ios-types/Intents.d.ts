@@ -41,32 +41,37 @@ type $SDK50 = (_CoreLocation_CLPlacemark) | null;
 type $SDK51 = (Array<INPaymentMethod>) | null;
 type $SDK56 = (INMessageLinkMetadata) | null;
 type $SDK57 = (INMessageReaction) | null;
-type $SDK59 = (INPaymentAccount) | null;
-type $SDK60 = (INPaymentAmount) | null;
-type $SDK61 = (INBalanceAmount) | null;
-type $SDK62 = (INPaymentMethod) | null;
-type $SDK63 = (_Foundation_PersonNameComponents) | null;
-type $SDK64 = (Array<INPersonHandle>) | null;
-type $SDK71 = (INDefaultCardTemplate) | null;
-type $SDK73 = (INPaymentRecord) | null;
-type $SDK75 = (Array<INRestaurantOffer>) | null;
-type $SDK76 = (Array<INCurrencyAmount>) | null;
-type $SDK77 = (Array<INRidePartySizeOption>) | null;
-type $SDK78 = (Array<INRideFareLineItem>) | null;
-type $SDK79 = (Array<_Foundation_NSUserActivity>) | null;
-type $SDK80 = (INRideCompletionStatus) | null;
-type $SDK81 = (Array<_CoreLocation_CLPlacemark>) | null;
-type $SDK82 = (__LocationEssentials_CLLocation) | null;
-type $SDK83 = (Array<INPaymentAccount>) | null;
-type $SDK86 = (Array<INMessage>) | null;
-type $SDK88 = (Array<INSendMessageAttachment>) | null;
-type $SDK89 = (_Foundation_Measurement<_Foundation_UnitTemperature>) | null;
+type $SDK60 = Array<INObjectSection<SDKHandle>>;
+type $SDK62 = (INPaymentAccount) | null;
+type $SDK63 = (INPaymentAmount) | null;
+type $SDK64 = (INBalanceAmount) | null;
+type $SDK65 = (INPaymentMethod) | null;
+type $SDK66 = (_Foundation_PersonNameComponents) | null;
+type $SDK67 = (Array<INPersonHandle>) | null;
+type $SDK74 = (INDefaultCardTemplate) | null;
+type $SDK76 = (INPaymentRecord) | null;
+type $SDK78 = (Array<INRestaurantOffer>) | null;
+type $SDK79 = (Array<INCurrencyAmount>) | null;
+type $SDK80 = (Array<INRidePartySizeOption>) | null;
+type $SDK81 = (Array<INRideFareLineItem>) | null;
+type $SDK82 = (Array<_Foundation_NSUserActivity>) | null;
+type $SDK83 = (INRideCompletionStatus) | null;
+type $SDK84 = (Array<_CoreLocation_CLPlacemark>) | null;
+type $SDK85 = (__LocationEssentials_CLLocation) | null;
+type $SDK86 = (Array<INPaymentAccount>) | null;
+type $SDK89 = (Array<INMessage>) | null;
+type $SDK91 = (Array<INSendMessageAttachment>) | null;
+type $SDK92 = (_Foundation_Measurement<_Foundation_UnitTemperature>) | null;
 export declare class CLPlacemark extends SDKHandle {
     /**
      * convenience init(location: CLLocation, name: String?, postalAddress: CNPostalAddress?)
      * @availability iOS 10.0+
      */
     static init(location: __LocationEssentials_CLLocation, name?: (string) | null, postalAddress?: (_Contacts_CNPostalAddress) | null): _CoreLocation_CLPlacemark;
+    readonly $type: {
+        "c:objc(cs)CLPlacemark": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INAccountType
@@ -100,6 +105,10 @@ export declare class INIntentResolutionResult extends SDKHandle {
      * @availability iOS 10.0+
      */
     static unsupported(): INIntentResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INAccountTypeResolutionResult
@@ -116,6 +125,11 @@ export declare class INAccountTypeResolutionResult extends INIntentResolutionRes
      * @availability iOS 11.0+
      */
     static success(resolvedAccountType: INAccountType): INAccountTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INAccountTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INIntent
@@ -157,6 +171,10 @@ export declare class INIntent extends SDKHandle {
      */
     get suggestedInvocationPhrase(): (string) | null;
     set suggestedInvocationPhrase(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -171,13 +189,11 @@ declare const INActivateCarSignalIntent_base: Omit<typeof INIntent, "init" | "pr
  * @availability iOS 10.3+
  */
 export declare class INActivateCarSignalIntent extends INActivateCarSignalIntent_base {
-    /** init() */
-    static init(): INActivateCarSignalIntent;
     /**
      * init(carName: INSpeakableString?, signals: INCarSignalOptions = [])
      * @availability iOS 10.3+
      */
-    static initCarNameSignals(carName?: $SDK2, signals?: INCarSignalOptions): INActivateCarSignalIntent;
+    static init(carName?: $SDK2, signals?: INCarSignalOptions): INActivateCarSignalIntent;
     /**
      * @NSCopying var carName: INSpeakableString? { get }
      * @availability iOS 10.3+
@@ -188,6 +204,11 @@ export declare class INActivateCarSignalIntent extends INActivateCarSignalIntent
      * @availability iOS 10.3+
      */
     get signals(): INCarSignalOptions;
+    readonly $type: {
+        "c:objc(cs)INActivateCarSignalIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -222,6 +243,10 @@ export declare class INIntentResponse extends SDKHandle {
      */
     get userActivity(): $SDK3;
     set userActivity(value: $SDK3);
+    readonly $type: {
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
     };
@@ -248,6 +273,11 @@ export declare class INActivateCarSignalIntentResponse extends INActivateCarSign
      */
     get signals(): INCarSignalOptions;
     set signals(value: INCarSignalOptions);
+    readonly $type: {
+        "c:objc(cs)INActivateCarSignalIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -272,13 +302,11 @@ declare const INAddMediaIntent_base: Omit<typeof INIntent, "init" | "prototype">
  * @availability iOS 13.0+
  */
 export declare class INAddMediaIntent extends INAddMediaIntent_base {
-    /** init() */
-    static init(): INAddMediaIntent;
     /**
      * init(mediaItems: [INMediaItem]?, mediaSearch: INMediaSearch?, mediaDestination: INMediaDestination?)
      * @availability iOS 13.0+
      */
-    static initMediaItemsMediaSearchMediaDestination(mediaItems?: $SDK4, mediaSearch?: (INMediaSearch) | null, mediaDestination?: $SDK5): INAddMediaIntent;
+    static init(mediaItems?: $SDK4, mediaSearch?: (INMediaSearch) | null, mediaDestination?: $SDK5): INAddMediaIntent;
     /**
      * var mediaDestination: INMediaDestination? { get }
      * @availability iOS 13.0+
@@ -294,6 +322,11 @@ export declare class INAddMediaIntent extends INAddMediaIntent_base {
      * @availability iOS 13.0+
      */
     get mediaSearch(): (INMediaSearch) | null;
+    readonly $type: {
+        "c:objc(cs)INAddMediaIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -332,6 +365,11 @@ export declare class INAddMediaIntentResponse extends INAddMediaIntentResponse_b
      * @availability iOS 13.0+
      */
     get code(): INAddMediaIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INAddMediaIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -369,6 +407,11 @@ export declare class INMediaDestinationResolutionResult extends INIntentResoluti
      * @availability iOS 13.0+
      */
     static success(resolvedMediaDestination: INMediaDestination): INMediaDestinationResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INMediaDestinationResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INAddMediaMediaDestinationResolutionResult_base: Omit<typeof INMediaDestinationResolutionResult, "prototype" | "unsupported"> & (new ($handle: SDKHandle['$handle']) => INMediaDestinationResolutionResult);
 /**
@@ -386,6 +429,12 @@ export declare class INAddMediaMediaDestinationResolutionResult extends INAddMed
      * @availability iOS 13.0+
      */
     static init(mediaDestinationResolutionResult: INMediaDestinationResolutionResult): INAddMediaMediaDestinationResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INAddMediaMediaDestinationResolutionResult": true;
+        "c:objc(cs)INMediaDestinationResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INAddMediaMediaDestinationUnsupportedReason
@@ -424,6 +473,11 @@ export declare class INMediaItemResolutionResult extends INIntentResolutionResul
      * @availability iOS 12.0+
      */
     static successes(resolvedMediaItems: Array<INMediaItem>): Array<INMediaItemResolutionResult>;
+    readonly $type: {
+        "c:objc(cs)INMediaItemResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INAddMediaMediaItemResolutionResult_base: Omit<typeof INMediaItemResolutionResult, "prototype" | "successes" | "unsupported"> & (new ($handle: SDKHandle['$handle']) => INMediaItemResolutionResult);
 /**
@@ -446,6 +500,12 @@ export declare class INAddMediaMediaItemResolutionResult extends INAddMediaMedia
      * @availability iOS 13.0+
      */
     static init(mediaItemResolutionResult: INMediaItemResolutionResult): INAddMediaMediaItemResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INAddMediaMediaItemResolutionResult": true;
+        "c:objc(cs)INMediaItemResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INAddMediaMediaItemUnsupportedReason
@@ -459,15 +519,12 @@ export declare const INAddMediaMediaItemUnsupportedReason: {
      */
     init(rawValue: number): (INAddMediaMediaItemUnsupportedReason) | null;
 };
-declare const INAddTasksIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
  * class INAddTasksIntent
  * @availability iOS 11.0+
  * @deprecated iOS 27.0
  */
-export declare class INAddTasksIntent extends INAddTasksIntent_base {
-    /** init() */
-    static init(): INAddTasksIntent;
+export declare class INAddTasksIntent extends INIntent {
     /**
      * convenience init(targetTaskList: INTaskList?, taskTitles: [INSpeakableString]?, spatialEventTrigger: INSpatialEventTrigger?, temporalEventTrigger: INTemporalEventTrigger?)
      * @availability iOS 11.0+
@@ -510,6 +567,11 @@ export declare class INAddTasksIntent extends INAddTasksIntent_base {
      * @deprecated iOS 27.0
      */
     get temporalEventTrigger(): $SDK11;
+    readonly $type: {
+        "c:objc(cs)INAddTasksIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -569,6 +631,11 @@ export declare class INAddTasksIntentResponse extends INAddTasksIntentResponse_b
      */
     get modifiedTaskList(): (INTaskList) | null;
     set modifiedTaskList(value: (INTaskList) | null);
+    readonly $type: {
+        "c:objc(cs)INAddTasksIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "addedTasks": true;
@@ -628,6 +695,11 @@ export declare class INTaskListResolutionResult extends INIntentResolutionResult
      * @deprecated iOS 27.0
      */
     static success(resolvedTaskList: INTaskList): INTaskListResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INTaskListResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INAddTasksTargetTaskListResolutionResult_base: Omit<typeof INTaskListResolutionResult, "confirmationRequired" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INTaskListResolutionResult);
 /**
@@ -648,6 +720,12 @@ export declare class INAddTasksTargetTaskListResolutionResult extends INAddTasks
      * @deprecated iOS 27.0
      */
     static init(taskListResolutionResult: INTaskListResolutionResult): INAddTasksTargetTaskListResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INAddTasksTargetTaskListResolutionResult": true;
+        "c:objc(cs)INTaskListResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INTemporalEventTriggerResolutionResult
@@ -669,6 +747,11 @@ export declare class INTemporalEventTriggerResolutionResult extends INIntentReso
      * @availability iOS 11.0+
      */
     static success(resolvedTemporalEventTrigger: INTemporalEventTrigger): INTemporalEventTriggerResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INTemporalEventTriggerResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INAddTasksTemporalEventTriggerResolutionResult_base: Omit<typeof INTemporalEventTriggerResolutionResult, "prototype" | "unsupported"> & (new ($handle: SDKHandle['$handle']) => INTemporalEventTriggerResolutionResult);
 /**
@@ -689,6 +772,12 @@ export declare class INAddTasksTemporalEventTriggerResolutionResult extends INAd
      * @deprecated iOS 27.0
      */
     static init(temporalEventTriggerResolutionResult: INTemporalEventTriggerResolutionResult): INAddTasksTemporalEventTriggerResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INAddTasksTemporalEventTriggerResolutionResult": true;
+        "c:objc(cs)INTemporalEventTriggerResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INAddTasksTemporalEventTriggerUnsupportedReason
@@ -729,6 +818,10 @@ export declare class INAirline extends SDKHandle {
      * @availability iOS 13.0+
      */
     get name(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INAirline": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "iataCode": true;
         "icaoCode": true;
@@ -760,6 +853,10 @@ export declare class INAirport extends SDKHandle {
      * @availability iOS 13.0+
      */
     get name(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INAirport": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "iataCode": true;
         "icaoCode": true;
@@ -791,6 +888,10 @@ export declare class INAirportGate extends SDKHandle {
      * @availability iOS 13.0+
      */
     get terminal(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INAirportGate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "airport": true;
         "gate": true;
@@ -815,13 +916,11 @@ declare const INAnswerCallIntent_base: Omit<typeof INIntent, "init" | "prototype
  * @availability iOS 16.2+
  */
 export declare class INAnswerCallIntent extends INAnswerCallIntent_base {
-    /** init() */
-    static init(): INAnswerCallIntent;
     /**
      * init(audioRoute: INCallAudioRoute, callIdentifier: String?)
      * @availability iOS 16.2+
      */
-    static initAudioRouteCallIdentifier(audioRoute: INCallAudioRoute, callIdentifier?: (string) | null): INAnswerCallIntent;
+    static init(audioRoute: INCallAudioRoute, callIdentifier?: (string) | null): INAnswerCallIntent;
     /**
      * var audioRoute: INCallAudioRoute { get }
      * @availability iOS 16.2+
@@ -832,6 +931,11 @@ export declare class INAnswerCallIntent extends INAnswerCallIntent_base {
      * @availability iOS 16.2+
      */
     get callIdentifier(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INAnswerCallIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -875,6 +979,11 @@ export declare class INAnswerCallIntentResponse extends INAnswerCallIntentRespon
      * @availability iOS 16.2+
      */
     get code(): INAnswerCallIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INAnswerCallIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "callRecords": true;
@@ -900,14 +1009,12 @@ declare const INAppendToNoteIntent_base: Omit<typeof INIntent, "init" | "prototy
  * @deprecated iOS 15.0
  */
 export declare class INAppendToNoteIntent extends INAppendToNoteIntent_base {
-    /** init() */
-    static init(): INAppendToNoteIntent;
     /**
      * init(targetNote: INNote?, content: INNoteContent?)
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static initTargetNoteContent(targetNote?: (INNote) | null, content?: (INNoteContent) | null): INAppendToNoteIntent;
+    static init(targetNote?: (INNote) | null, content?: (INNoteContent) | null): INAppendToNoteIntent;
     /**
      * @NSCopying var content: INNoteContent? { get }
      * @availability iOS 11.0+
@@ -920,6 +1027,11 @@ export declare class INAppendToNoteIntent extends INAppendToNoteIntent_base {
      * @deprecated iOS 15.0
      */
     get targetNote(): (INNote) | null;
+    readonly $type: {
+        "c:objc(cs)INAppendToNoteIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -969,6 +1081,11 @@ export declare class INAppendToNoteIntentResponse extends INAppendToNoteIntentRe
      */
     get note(): (INNote) | null;
     set note(value: (INNote) | null);
+    readonly $type: {
+        "c:objc(cs)INAppendToNoteIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -1019,6 +1136,10 @@ export declare class INBalanceAmount extends SDKHandle {
      * @availability iOS 11.0+
      */
     get currencyCode(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INBalanceAmount": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "balanceType": true;
@@ -1052,6 +1173,11 @@ export declare class INBalanceTypeResolutionResult extends INIntentResolutionRes
      * @availability iOS 11.0+
      */
     static success(resolvedBalanceType: INBalanceType): INBalanceTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INBalanceTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INBillDetails
@@ -1121,6 +1247,10 @@ export declare class INBillDetails extends SDKHandle {
      */
     get paymentStatus(): INPaymentStatus;
     set paymentStatus(value: INPaymentStatus);
+    readonly $type: {
+        "c:objc(cs)INBillDetails": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amountDue": true;
         "billPayee": true;
@@ -1162,6 +1292,10 @@ export declare class INBillPayee extends SDKHandle {
      * @deprecated iOS 15.0
      */
     get organizationName(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INBillPayee": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accountNumber": true;
         "nickname": true;
@@ -1192,6 +1326,11 @@ export declare class INBillPayeeResolutionResult extends INIntentResolutionResul
      * @deprecated iOS 15.0
      */
     static success(resolvedBillPayee: INBillPayee): INBillPayeeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INBillPayeeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INBillType
@@ -1225,6 +1364,11 @@ export declare class INBillTypeResolutionResult extends INIntentResolutionResult
      * @deprecated iOS 15.0
      */
     static success(resolvedBillType: INBillType): INBillTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INBillTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INReservation
@@ -1266,6 +1410,10 @@ export declare class INReservation extends SDKHandle {
      * @availability iOS 13.0+
      */
     get reservationStatus(): INReservationStatus;
+    readonly $type: {
+        "c:objc(cs)INReservation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "actions": true;
@@ -1296,6 +1444,11 @@ export declare class INBoatReservation extends INReservation {
      * @availability iOS 14.0+
      */
     get reservedSeat(): (INSeat) | null;
+    readonly $type: {
+        "c:objc(cs)INBoatReservation": true;
+        "c:objc(cs)INReservation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "actions": true;
@@ -1348,6 +1501,10 @@ export declare class INBoatTrip extends SDKHandle {
      * @availability iOS 14.0+
      */
     get tripDuration(): INDateComponentsRange;
+    readonly $type: {
+        "c:objc(cs)INBoatTrip": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arrivalBoatTerminalLocation": true;
         "boatName": true;
@@ -1363,13 +1520,11 @@ declare const INBookRestaurantReservationIntent_base: Omit<typeof INIntent, "ini
  * @availability iOS 10.0+
  */
 export declare class INBookRestaurantReservationIntent extends INBookRestaurantReservationIntent_base {
-    /** init() */
-    static init(): INBookRestaurantReservationIntent;
     /**
      * init(restaurant: INRestaurant, booking bookingDateComponents: DateComponents, partySize: Int, bookingIdentifier: String?, guest: INRestaurantGuest?, selectedOffer: INRestaurantOffer?, guestProvidedSpecialRequestText: String?)
      * @availability iOS 11.0+
      */
-    static initRestaurantBookingPartySizeBookingIdentifierGuestSelectedOfferGuestProvidedSpecialRequestText(restaurant: INRestaurant, bookingDateComponents: _Foundation_DateComponents, partySize: number, bookingIdentifier?: (string) | null, guest?: $SDK19, selectedOffer?: $SDK20, guestProvidedSpecialRequestText?: (string) | null): INBookRestaurantReservationIntent;
+    static init(restaurant: INRestaurant, bookingDateComponents: _Foundation_DateComponents, partySize: number, bookingIdentifier?: (string) | null, guest?: $SDK19, selectedOffer?: $SDK20, guestProvidedSpecialRequestText?: (string) | null): INBookRestaurantReservationIntent;
     /**
      * var bookingDateComponents: DateComponents { get set }
      * @availability iOS 10.0+
@@ -1412,6 +1567,11 @@ export declare class INBookRestaurantReservationIntent extends INBookRestaurantR
      */
     get selectedOffer(): $SDK20;
     set selectedOffer(value: $SDK20);
+    readonly $type: {
+        "c:objc(cs)INBookRestaurantReservationIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -1450,13 +1610,11 @@ declare const INBookRestaurantReservationIntentResponse_base: Omit<typeof INInte
  * @availability iOS 10.0+
  */
 export declare class INBookRestaurantReservationIntentResponse extends INBookRestaurantReservationIntentResponse_base {
-    /** init() */
-    static init(): INBookRestaurantReservationIntentResponse;
     /**
      * init(code: INBookRestaurantReservationIntentCode, userActivity: NSUserActivity?)
      * @availability iOS 10.0+
      */
-    static initCodeUserActivity(code: INBookRestaurantReservationIntentCode, userActivity?: $SDK3): INBookRestaurantReservationIntentResponse;
+    static init(code: INBookRestaurantReservationIntentCode, userActivity?: $SDK3): INBookRestaurantReservationIntentResponse;
     /**
      * var code: INBookRestaurantReservationIntentCode { get }
      * @availability iOS 10.0+
@@ -1468,6 +1626,11 @@ export declare class INBookRestaurantReservationIntentResponse extends INBookRes
      */
     get userBooking(): $SDK21;
     set userBooking(value: $SDK21);
+    readonly $type: {
+        "c:objc(cs)INBookRestaurantReservationIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -1489,6 +1652,11 @@ export declare class INBooleanResolutionResult extends INIntentResolutionResult 
      * @availability iOS 10.0+
      */
     static confirmationRequired(valueToConfirm?: (boolean) | null): INBooleanResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INBooleanResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INBusReservation
@@ -1510,6 +1678,11 @@ export declare class INBusReservation extends INReservation {
      * @availability iOS 14.0+
      */
     get reservedSeat(): (INSeat) | null;
+    readonly $type: {
+        "c:objc(cs)INBusReservation": true;
+        "c:objc(cs)INReservation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "actions": true;
@@ -1572,6 +1745,10 @@ export declare class INBusTrip extends SDKHandle {
      * @availability iOS 14.0+
      */
     get tripDuration(): INDateComponentsRange;
+    readonly $type: {
+        "c:objc(cs)INBusTrip": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arrivalBusStopLocation": true;
         "arrivalPlatform": true;
@@ -1644,6 +1821,11 @@ export declare class INCallCapabilityResolutionResult extends INIntentResolution
      * @availability iOS 13.0+
      */
     static success(resolvedCallCapability: INCallCapability): INCallCapabilityResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCallCapabilityResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INCallDestinationType
@@ -1696,6 +1878,11 @@ export declare class INCallDestinationTypeResolutionResult extends INIntentResol
      * @availability iOS 11.0+
      */
     static success(resolvedCallDestinationType: INCallDestinationType): INCallDestinationTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCallDestinationTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INCallGroup
@@ -1717,6 +1904,10 @@ export declare class INCallGroup extends SDKHandle {
      * @availability iOS 14.5+
      */
     get groupName(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INCallGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupId": true;
         "groupName": true;
@@ -1778,6 +1969,10 @@ export declare class INCallRecord extends SDKHandle {
      * @availability iOS 11.0+
      */
     get unseen(): (boolean) | null;
+    readonly $type: {
+        "c:objc(cs)INCallRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "callCapability": true;
         "callRecordType": true;
@@ -1812,6 +2007,10 @@ export declare class INCallRecordFilter extends SDKHandle {
      * @availability iOS 14.0+
      */
     get participants(): $SDK22;
+    readonly $type: {
+        "c:objc(cs)INCallRecordFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "callCapability": true;
         "callTypes": true;
@@ -1838,6 +2037,11 @@ export declare class INCallRecordResolutionResult extends INIntentResolutionResu
      * @availability iOS 11.0+
      */
     static success(resolvedCallRecord: INCallRecord): INCallRecordResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCallRecordResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INCallRecordType
@@ -1918,6 +2122,11 @@ export declare class INCallRecordTypeOptionsResolutionResult extends INIntentRes
      * @availability iOS 11.0+
      */
     static success(resolvedCallRecordTypeOptions?: INCallRecordTypeOptions): INCallRecordTypeOptionsResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCallRecordTypeOptionsResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INCallRecordTypeResolutionResult
@@ -1934,6 +2143,11 @@ export declare class INCallRecordTypeResolutionResult extends INIntentResolution
      * @availability iOS 11.0+
      */
     static success(resolvedCallRecordType: INCallRecordType): INCallRecordTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCallRecordTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol INCallsDomainHandling : INSearchCallHistoryIntentHandling, INStartAudioCallIntentHandling, INStartVideoCallIntentHandling
@@ -1964,6 +2178,11 @@ export declare class INCancelRideIntent extends INCancelRideIntent_base {
      * @availability iOS 11.0+
      */
     get rideIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)INCancelRideIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -2012,6 +2231,11 @@ export declare class INCancelRideIntentResponse extends INCancelRideIntentRespon
      * @availability iOS 11.0+
      */
     get code(): INCancelRideIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INCancelRideIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "cancellationFee": true;
@@ -2037,18 +2261,21 @@ declare const INCancelWorkoutIntent_base: Omit<typeof INIntent, "init" | "protot
  * @availability iOS 10.0+
  */
 export declare class INCancelWorkoutIntent extends INCancelWorkoutIntent_base {
-    /** init() */
-    static init(): INCancelWorkoutIntent;
     /**
      * init(workoutName: INSpeakableString?)
      * @availability iOS 10.0+
      */
-    static initWorkoutName(workoutName?: $SDK2): INCancelWorkoutIntent;
+    static init(workoutName?: $SDK2): INCancelWorkoutIntent;
     /**
      * @NSCopying var workoutName: INSpeakableString? { get }
      * @availability iOS 10.0+
      */
     get workoutName(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INCancelWorkoutIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -2085,6 +2312,11 @@ export declare class INCancelWorkoutIntentResponse extends INCancelWorkoutIntent
      * @availability iOS 10.0+
      */
     get code(): INCancelWorkoutIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INCancelWorkoutIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -2162,6 +2394,10 @@ export declare class INCar extends SDKHandle {
      * @availability iOS 14.0+
      */
     get year(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INCar": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "carIdentifier": true;
         "color": true;
@@ -2250,6 +2486,10 @@ export declare class INCar_HeadUnit extends SDKHandle {
      * @availability iOS 14.0+
      */
     get iAP2Identifier(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INCarHeadUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bluetoothIdentifier": true;
         "iAP2Identifier": true;
@@ -2287,6 +2527,11 @@ export declare class INCarAirCirculationModeResolutionResult extends INIntentRes
      * @deprecated iOS 15.0
      */
     static success(resolvedCarAirCirculationMode: INCarAirCirculationMode): INCarAirCirculationModeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCarAirCirculationModeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INCarAudioSource
@@ -2320,6 +2565,11 @@ export declare class INCarAudioSourceResolutionResult extends INIntentResolution
      * @deprecated iOS 15.0
      */
     static success(resolvedCarAudioSource: INCarAudioSource): INCarAudioSourceResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCarAudioSourceResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol INCarCommandsDomainHandling : INActivateCarSignalIntentHandling, INGetCarLockStatusIntentHandling, INGetCarPowerLevelStatusIntentHandling, INSetCarLockStatusIntentHandling
@@ -2375,6 +2625,11 @@ export declare class INCarDefrosterResolutionResult extends INIntentResolutionRe
      * @deprecated iOS 15.0
      */
     static success(resolvedCarDefroster: INCarDefroster): INCarDefrosterResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCarDefrosterResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol INCarPlayDomainHandling : INSaveProfileInCarIntentHandling, INSetAudioSourceInCarIntentHandling, INSetClimateSettingsInCarIntentHandling, INSetDefrosterSettingsInCarIntentHandling, INSetProfileInCarIntentHandling, INSetSeatSettingsInCarIntentHandling
@@ -2421,6 +2676,11 @@ export declare class INCarSeatResolutionResult extends INIntentResolutionResult 
      * @deprecated iOS 15.0
      */
     static success(resolvedCarSeat: INCarSeat): INCarSeatResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCarSeatResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct INCarSignalOptions
@@ -2459,6 +2719,11 @@ export declare class INCarSignalOptionsResolutionResult extends INIntentResoluti
      * @availability iOS 10.3+
      */
     static success(resolvedCarSignalOptions?: INCarSignalOptions): INCarSignalOptionsResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCarSignalOptionsResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INConditionalOperator
@@ -2479,14 +2744,12 @@ declare const INCreateNoteIntent_base: Omit<typeof INIntent, "init" | "prototype
  * @deprecated iOS 27.0
  */
 export declare class INCreateNoteIntent extends INCreateNoteIntent_base {
-    /** init() */
-    static init(): INCreateNoteIntent;
     /**
      * init(title: INSpeakableString?, content: INNoteContent?, groupName: INSpeakableString?)
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    static initTitleContentGroupName(title?: $SDK2, content?: (INNoteContent) | null, groupName?: $SDK2): INCreateNoteIntent;
+    static init(title?: $SDK2, content?: (INNoteContent) | null, groupName?: $SDK2): INCreateNoteIntent;
     /**
      * @NSCopying var content: INNoteContent? { get }
      * @availability iOS 11.0+
@@ -2505,6 +2768,11 @@ export declare class INCreateNoteIntent extends INCreateNoteIntent_base {
      * @deprecated iOS 27.0
      */
     get title(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INCreateNoteIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -2555,6 +2823,11 @@ export declare class INCreateNoteIntentResponse extends INCreateNoteIntentRespon
      */
     get createdNote(): (INNote) | null;
     set createdNote(value: (INNote) | null);
+    readonly $type: {
+        "c:objc(cs)INCreateNoteIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -2582,14 +2855,12 @@ declare const INCreateTaskListIntent_base: Omit<typeof INIntent, "init" | "proto
  * @deprecated iOS 15.0
  */
 export declare class INCreateTaskListIntent extends INCreateTaskListIntent_base {
-    /** init() */
-    static init(): INCreateTaskListIntent;
     /**
      * init(title: INSpeakableString?, taskTitles: [INSpeakableString]?, groupName: INSpeakableString?)
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static initTitleTaskTitlesGroupName(title?: $SDK2, taskTitles?: $SDK9, groupName?: $SDK2): INCreateTaskListIntent;
+    static init(title?: $SDK2, taskTitles?: $SDK9, groupName?: $SDK2): INCreateTaskListIntent;
     /**
      * @NSCopying var groupName: INSpeakableString? { get }
      * @availability iOS 11.0+
@@ -2608,6 +2879,11 @@ export declare class INCreateTaskListIntent extends INCreateTaskListIntent_base 
      * @deprecated iOS 15.0
      */
     get title(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INCreateTaskListIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -2658,6 +2934,11 @@ export declare class INCreateTaskListIntentResponse extends INCreateTaskListInte
      */
     get createdTaskList(): (INTaskList) | null;
     set createdTaskList(value: (INTaskList) | null);
+    readonly $type: {
+        "c:objc(cs)INCreateTaskListIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -2698,6 +2979,10 @@ export declare class INCurrencyAmount extends SDKHandle {
      * @availability iOS 10.0+
      */
     get currencyCode(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INCurrencyAmount": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "currencyCode": true;
@@ -2723,12 +3008,21 @@ export declare class INCurrencyAmountResolutionResult extends INIntentResolution
      * @availability iOS 10.0+
      */
     static success(resolvedCurrencyAmount: INCurrencyAmount): INCurrencyAmountResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INCurrencyAmountResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INRelevanceProvider
  * @availability iOS 12.0+
  */
 export declare class INRelevanceProvider extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)INRelevanceProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INDailyRoutineRelevanceProvider
@@ -2745,6 +3039,11 @@ export declare class INDailyRoutineRelevanceProvider extends INRelevanceProvider
      * @availability iOS 12.0+
      */
     get situation(): INDailyRoutineRelevanceProvider_Situation;
+    readonly $type: {
+        "c:objc(cs)INDailyRoutineRelevanceProvider": true;
+        "c:objc(cs)INRelevanceProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "situation": true;
     };
@@ -2801,6 +3100,10 @@ export declare class INDateComponentsRange extends SDKHandle {
      * @availability iOS 10.0+
      */
     get startDateComponents(): $SDK16;
+    readonly $type: {
+        "c:objc(cs)INDateComponentsRange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endDateComponents": true;
         "recurrenceRule": true;
@@ -2827,6 +3130,11 @@ export declare class INDateComponentsRangeResolutionResult extends INIntentResol
      * @availability iOS 10.0+
      */
     static success(resolvedDateComponentsRange: INDateComponentsRange): INDateComponentsRangeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INDateComponentsRangeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INDateComponentsResolutionResult
@@ -2848,6 +3156,11 @@ export declare class INDateComponentsResolutionResult extends INIntentResolution
      * @availability iOS 10.0+
      */
     static success(resolvedDateComponents: _Foundation_DateComponents): INDateComponentsResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INDateComponentsResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INDateRelevanceProvider
@@ -2869,6 +3182,11 @@ export declare class INDateRelevanceProvider extends INRelevanceProvider {
      * @availability iOS 12.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)INDateRelevanceProvider": true;
+        "c:objc(cs)INRelevanceProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endDate": true;
         "startDate": true;
@@ -2906,6 +3224,11 @@ export declare class INDateSearchTypeResolutionResult extends INIntentResolution
      * @deprecated iOS 27.0
      */
     static success(resolvedDateSearchType: INDateSearchType): INDateSearchTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INDateSearchTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct INDayOfWeekOptions
@@ -2982,6 +3305,10 @@ export declare class INDefaultCardTemplate extends SDKHandle {
      */
     get title(): string;
     set title(value: string);
+    readonly $type: {
+        "c:objc(cs)INDefaultCardTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "image": true;
         "subtitle": true;
@@ -2995,8 +3322,6 @@ declare const INDeleteTasksIntent_base: Omit<typeof INIntent, "init" | "prototyp
  * @deprecated iOS 15.0
  */
 export declare class INDeleteTasksIntent extends INDeleteTasksIntent_base {
-    /** init() */
-    static init(): INDeleteTasksIntent;
     /**
      * @NSCopying var taskList: INTaskList? { get }
      * @availability iOS 13.0+
@@ -3020,7 +3345,12 @@ export declare class INDeleteTasksIntent extends INDeleteTasksIntent_base {
      * @availability iOS 13.0+
      * @deprecated iOS 15.0
      */
-    static initTaskListTasksAll(taskList?: (INTaskList) | null, tasks?: (Array<INTask>) | null, all?: (boolean) | null): INDeleteTasksIntent;
+    static init(taskList?: (INTaskList) | null, tasks?: (Array<INTask>) | null, all?: (boolean) | null): INDeleteTasksIntent;
+    readonly $type: {
+        "c:objc(cs)INDeleteTasksIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -3070,6 +3400,11 @@ export declare class INDeleteTasksIntentResponse extends INDeleteTasksIntentResp
      */
     get deletedTasks(): (Array<INTask>) | null;
     set deletedTasks(value: (Array<INTask>) | null);
+    readonly $type: {
+        "c:objc(cs)INDeleteTasksIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -3109,6 +3444,12 @@ export declare class INDeleteTasksTaskListResolutionResult extends INDeleteTasks
      * @deprecated iOS 15.0
      */
     static init(taskListResolutionResult: INTaskListResolutionResult): INDeleteTasksTaskListResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INDeleteTasksTaskListResolutionResult": true;
+        "c:objc(cs)INTaskListResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INDeleteTasksTaskListUnsupportedReason
@@ -3148,6 +3489,11 @@ export declare class INTaskResolutionResult extends INIntentResolutionResult {
      * @deprecated iOS 27.0
      */
     static success(resolvedTask: INTask): INTaskResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INTaskResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INDeleteTasksTaskResolutionResult_base: Omit<typeof INTaskResolutionResult, "prototype" | "unsupported"> & (new ($handle: SDKHandle['$handle']) => INTaskResolutionResult);
 /**
@@ -3168,6 +3514,12 @@ export declare class INDeleteTasksTaskResolutionResult extends INDeleteTasksTask
      * @deprecated iOS 15.0
      */
     static init(taskResolutionResult: INTaskResolutionResult): INDeleteTasksTaskResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INDeleteTasksTaskResolutionResult": true;
+        "c:objc(cs)INTaskResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INDeleteTasksTaskUnsupportedReason
@@ -3198,6 +3550,11 @@ export declare class INDoubleResolutionResult extends INIntentResolutionResult {
      * @availability iOS 10.0+
      */
     static confirmationRequired(valueToConfirm?: (number) | null): INDoubleResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INDoubleResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INEditMessageIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -3205,13 +3562,11 @@ declare const INEditMessageIntent_base: Omit<typeof INIntent, "init" | "prototyp
  * @availability iOS 17.0+
  */
 export declare class INEditMessageIntent extends INEditMessageIntent_base {
-    /** init() */
-    static init(): INEditMessageIntent;
     /**
      * init(messageIdentifier: String?, editedContent: String?)
      * @availability iOS 17.0+
      */
-    static initMessageIdentifierEditedContent(messageIdentifier?: (string) | null, editedContent?: (string) | null): INEditMessageIntent;
+    static init(messageIdentifier?: (string) | null, editedContent?: (string) | null): INEditMessageIntent;
     /**
      * var editedContent: String? { get }
      * @availability iOS 17.0+
@@ -3222,6 +3577,11 @@ export declare class INEditMessageIntent extends INEditMessageIntent_base {
      * @availability iOS 17.0+
      */
     get messageIdentifier(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INEditMessageIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -3259,6 +3619,11 @@ export declare class INEditMessageIntentResponse extends INEditMessageIntentResp
      * @availability iOS 17.0+
      */
     get code(): INEditMessageIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INEditMessageIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -3282,18 +3647,21 @@ declare const INEndWorkoutIntent_base: Omit<typeof INIntent, "init" | "prototype
  * @availability iOS 10.0+
  */
 export declare class INEndWorkoutIntent extends INEndWorkoutIntent_base {
-    /** init() */
-    static init(): INEndWorkoutIntent;
     /**
      * init(workoutName: INSpeakableString?)
      * @availability iOS 10.0+
      */
-    static initWorkoutName(workoutName?: $SDK2): INEndWorkoutIntent;
+    static init(workoutName?: $SDK2): INEndWorkoutIntent;
     /**
      * @NSCopying var workoutName: INSpeakableString? { get }
      * @availability iOS 10.0+
      */
     get workoutName(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INEndWorkoutIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -3330,6 +3698,11 @@ export declare class INEndWorkoutIntentResponse extends INEndWorkoutIntentRespon
      * @availability iOS 10.0+
      */
     get code(): INEndWorkoutIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INEndWorkoutIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -3367,12 +3740,22 @@ export declare class INEnergyResolutionResult extends INIntentResolutionResult {
      * @availability iOS 13.0+
      */
     static success(resolvedEnergy: _Foundation_Measurement<_Foundation_UnitEnergy>): INEnergyResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INEnergyResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INEnumResolutionResult
  * @availability iOS 13.0+
  */
 export declare class INEnumResolutionResult extends INIntentResolutionResult {
+    readonly $type: {
+        "c:objc(cs)INEnumResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INExtension
@@ -3381,6 +3764,10 @@ export declare class INEnumResolutionResult extends INIntentResolutionResult {
 export declare class INExtension extends SDKHandle {
     /** init() */
     static init(): INExtension;
+    readonly $type: {
+        "c:objc(cs)INExtension": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INFile
@@ -3397,8 +3784,6 @@ export declare class INFile extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initFileURLFilenameTypeIdentifier(fileURL: string, filename?: (string) | null, typeIdentifier?: (string) | null): INFile;
-    /** init() */
-    static init(): INFile;
     /**
      * var data: Data { get }
      * @availability iOS 13.0+
@@ -3426,6 +3811,10 @@ export declare class INFile extends SDKHandle {
      * @availability iOS 13.0+
      */
     get typeIdentifier(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INFile": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "fileURL": true;
@@ -3454,6 +3843,11 @@ export declare class INFileResolutionResult extends INIntentResolutionResult {
      * @availability iOS 13.0+
      */
     static success(resolvedFile: INFile): INFileResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INFileResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INFlight
@@ -3495,6 +3889,10 @@ export declare class INFlight extends SDKHandle {
      * @availability iOS 13.0+
      */
     get flightNumber(): string;
+    readonly $type: {
+        "c:objc(cs)INFlight": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "airline": true;
         "arrivalAirportGate": true;
@@ -3529,6 +3927,11 @@ export declare class INFlightReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get reservedSeat(): (INSeat) | null;
+    readonly $type: {
+        "c:objc(cs)INFlightReservation": true;
+        "c:objc(cs)INReservation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "actions": true;
@@ -3546,18 +3949,20 @@ export declare class INFlightReservation extends INReservation {
  * @availability iOS 15.0+
  */
 export declare class INFocusStatus extends SDKHandle {
-    /** init() */
-    static init(): INFocusStatus;
     /**
      * @nonobjc convenience init(isFocused: Bool? = nil)
      * @availability iOS 15.0+
      */
-    static initIsFocused(isFocused?: (boolean) | null): INFocusStatus;
+    static init(isFocused?: (boolean) | null): INFocusStatus;
     /**
      * @nonobjc final var isFocused: Bool? { get }
      * @availability iOS 15.0+
      */
     get isFocused(): (boolean) | null;
+    readonly $type: {
+        "c:objc(cs)INFocusStatus": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INFocusStatusAuthorizationStatus
@@ -3598,6 +4003,10 @@ export declare class INFocusStatusCenter extends SDKHandle {
      * @availability iOS 15.0+
      */
     get focusStatus(): INFocusStatus;
+    readonly $type: {
+        "c:objc(cs)INFocusStatusCenter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorizationStatus": true;
         "focusStatus": true;
@@ -3609,19 +4018,22 @@ declare const INGetAvailableRestaurantReservationBookingDefaultsIntent_base: Omi
  * @availability iOS 10.0+
  */
 export declare class INGetAvailableRestaurantReservationBookingDefaultsIntent extends INGetAvailableRestaurantReservationBookingDefaultsIntent_base {
-    /** init() */
-    static init(): INGetAvailableRestaurantReservationBookingDefaultsIntent;
     /**
      * init(restaurant: INRestaurant?)
      * @availability iOS 11.0+
      */
-    static initRestaurant(restaurant?: (INRestaurant) | null): INGetAvailableRestaurantReservationBookingDefaultsIntent;
+    static init(restaurant?: (INRestaurant) | null): INGetAvailableRestaurantReservationBookingDefaultsIntent;
     /**
      * @NSCopying var restaurant: INRestaurant? { get set }
      * @availability iOS 10.0+
      */
     get restaurant(): (INRestaurant) | null;
     set restaurant(value: (INRestaurant) | null);
+    readonly $type: {
+        "c:objc(cs)INGetAvailableRestaurantReservationBookingDefaultsIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -3648,13 +4060,11 @@ declare const INGetAvailableRestaurantReservationBookingDefaultsIntentResponse_b
  * @availability iOS 10.0+
  */
 export declare class INGetAvailableRestaurantReservationBookingDefaultsIntentResponse extends INGetAvailableRestaurantReservationBookingDefaultsIntentResponse_base {
-    /** init() */
-    static init(): INGetAvailableRestaurantReservationBookingDefaultsIntentResponse;
     /**
      * init(defaultPartySize: Int, defaultBooking defaultBookingDate: Date, code: INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode, userActivity: NSUserActivity?)
      * @availability iOS 10.0+
      */
-    static initDefaultPartySizeDefaultBookingCodeUserActivity(defaultPartySize: number, defaultBookingDate: globalThis.Date, code: INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode, userActivity?: $SDK3): INGetAvailableRestaurantReservationBookingDefaultsIntentResponse;
+    static init(defaultPartySize: number, defaultBookingDate: globalThis.Date, code: INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode, userActivity?: $SDK3): INGetAvailableRestaurantReservationBookingDefaultsIntentResponse;
     /**
      * var code: INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode { get }
      * @availability iOS 10.0+
@@ -3688,6 +4098,11 @@ export declare class INGetAvailableRestaurantReservationBookingDefaultsIntentRes
      */
     get providerImage(): INImage;
     set providerImage(value: INImage);
+    readonly $type: {
+        "c:objc(cs)INGetAvailableRestaurantReservationBookingDefaultsIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -3710,13 +4125,11 @@ declare const INGetAvailableRestaurantReservationBookingsIntent_base: Omit<typeo
  * @availability iOS 10.0+
  */
 export declare class INGetAvailableRestaurantReservationBookingsIntent extends INGetAvailableRestaurantReservationBookingsIntent_base {
-    /** init() */
-    static init(): INGetAvailableRestaurantReservationBookingsIntent;
     /**
      * init(restaurant: INRestaurant, partySize: Int, preferredBooking preferredBookingDateComponents: DateComponents?, maximumNumberOfResults: NSNumber?, earliestBookingDateForResults: Date?, latestBookingDateForResults: Date?)
      * @availability iOS 11.0+
      */
-    static initRestaurantPartySizePreferredBookingMaximumNumberOfResultsEarliestBookingDateForResultsLatestBookingDateForResults(restaurant: INRestaurant, partySize: number, preferredBookingDateComponents?: $SDK16, maximumNumberOfResults?: $SDK36, earliestBookingDateForResults?: $SDK18, latestBookingDateForResults?: $SDK18): INGetAvailableRestaurantReservationBookingsIntent;
+    static init(restaurant: INRestaurant, partySize: number, preferredBookingDateComponents?: $SDK16, maximumNumberOfResults?: $SDK36, earliestBookingDateForResults?: $SDK18, latestBookingDateForResults?: $SDK18): INGetAvailableRestaurantReservationBookingsIntent;
     /**
      * var earliestBookingDateForResults: Date? { get set }
      * @availability iOS 10.0+
@@ -3753,6 +4166,11 @@ export declare class INGetAvailableRestaurantReservationBookingsIntent extends I
      */
     get restaurant(): INRestaurant;
     set restaurant(value: INRestaurant);
+    readonly $type: {
+        "c:objc(cs)INGetAvailableRestaurantReservationBookingsIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -3790,13 +4208,11 @@ declare const INGetAvailableRestaurantReservationBookingsIntentResponse_base: Om
  * @availability iOS 10.0+
  */
 export declare class INGetAvailableRestaurantReservationBookingsIntentResponse extends INGetAvailableRestaurantReservationBookingsIntentResponse_base {
-    /** init() */
-    static init(): INGetAvailableRestaurantReservationBookingsIntentResponse;
     /**
      * init(availableBookings: [INRestaurantReservationBooking], code: INGetAvailableRestaurantReservationBookingsIntentCode, userActivity: NSUserActivity?)
      * @availability iOS 10.0+
      */
-    static initAvailableBookingsCodeUserActivity(availableBookings: $SDK37, code: INGetAvailableRestaurantReservationBookingsIntentCode, userActivity?: $SDK3): INGetAvailableRestaurantReservationBookingsIntentResponse;
+    static init(availableBookings: $SDK37, code: INGetAvailableRestaurantReservationBookingsIntentCode, userActivity?: $SDK3): INGetAvailableRestaurantReservationBookingsIntentResponse;
     /**
      * var availableBookings: [INRestaurantReservationBooking] { get }
      * @availability iOS 10.0+
@@ -3825,6 +4241,11 @@ export declare class INGetAvailableRestaurantReservationBookingsIntentResponse e
      */
     get termsAndConditions(): (INTermsAndConditions) | null;
     set termsAndConditions(value: (INTermsAndConditions) | null);
+    readonly $type: {
+        "c:objc(cs)INGetAvailableRestaurantReservationBookingsIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "availableBookings": true;
@@ -3840,18 +4261,21 @@ declare const INGetCarLockStatusIntent_base: Omit<typeof INIntent, "init" | "pro
  * @availability iOS 10.3+
  */
 export declare class INGetCarLockStatusIntent extends INGetCarLockStatusIntent_base {
-    /** init() */
-    static init(): INGetCarLockStatusIntent;
     /**
      * init(carName: INSpeakableString?)
      * @availability iOS 10.3+
      */
-    static initCarName(carName?: $SDK2): INGetCarLockStatusIntent;
+    static init(carName?: $SDK2): INGetCarLockStatusIntent;
     /**
      * @NSCopying var carName: INSpeakableString? { get }
      * @availability iOS 10.3+
      */
     get carName(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INGetCarLockStatusIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -3894,6 +4318,11 @@ export declare class INGetCarLockStatusIntentResponse extends INGetCarLockStatus
      */
     get locked(): (boolean) | null;
     set locked(value: (boolean) | null);
+    readonly $type: {
+        "c:objc(cs)INGetCarLockStatusIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -3917,18 +4346,21 @@ declare const INGetCarPowerLevelStatusIntent_base: Omit<typeof INIntent, "init" 
  * @availability iOS 10.3+
  */
 export declare class INGetCarPowerLevelStatusIntent extends INGetCarPowerLevelStatusIntent_base {
-    /** init() */
-    static init(): INGetCarPowerLevelStatusIntent;
     /**
      * init(carName: INSpeakableString?)
      * @availability iOS 10.3+
      */
-    static initCarName(carName?: $SDK2): INGetCarPowerLevelStatusIntent;
+    static init(carName?: $SDK2): INGetCarPowerLevelStatusIntent;
     /**
      * @NSCopying var carName: INSpeakableString? { get }
      * @availability iOS 10.3+
      */
     get carName(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INGetCarPowerLevelStatusIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -4083,6 +4515,11 @@ export declare class INGetCarPowerLevelStatusIntentResponse extends INGetCarPowe
      */
     get charging(): (boolean) | null;
     set charging(value: (boolean) | null);
+    readonly $type: {
+        "c:objc(cs)INGetCarPowerLevelStatusIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "activeConnector": true;
@@ -4131,13 +4568,11 @@ declare const INGetReservationDetailsIntent_base: Omit<typeof INIntent, "init" |
  * @availability iOS 13.0+
  */
 export declare class INGetReservationDetailsIntent extends INGetReservationDetailsIntent_base {
-    /** init() */
-    static init(): INGetReservationDetailsIntent;
     /**
      * init(reservationContainerReference: INSpeakableString?, reservationItemReferences: [INSpeakableString]?)
      * @availability iOS 13.0+
      */
-    static initReservationContainerReferenceReservationItemReferences(reservationContainerReference?: $SDK2, reservationItemReferences?: $SDK9): INGetReservationDetailsIntent;
+    static init(reservationContainerReference?: $SDK2, reservationItemReferences?: $SDK9): INGetReservationDetailsIntent;
     /**
      * @NSCopying var reservationContainerReference: INSpeakableString? { get }
      * @availability iOS 13.0+
@@ -4148,6 +4583,11 @@ export declare class INGetReservationDetailsIntent extends INGetReservationDetai
      * @availability iOS 13.0+
      */
     get reservationItemReferences(): $SDK9;
+    readonly $type: {
+        "c:objc(cs)INGetReservationDetailsIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -4180,6 +4620,11 @@ export declare class INGetReservationDetailsIntentResponse extends INGetReservat
      */
     get reservations(): (Array<INReservation>) | null;
     set reservations(value: (Array<INReservation>) | null);
+    readonly $type: {
+        "c:objc(cs)INGetReservationDetailsIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -4206,6 +4651,11 @@ declare const INGetRestaurantGuestIntent_base: Omit<typeof INIntent, "init" | "p
 export declare class INGetRestaurantGuestIntent extends INGetRestaurantGuestIntent_base {
     /** init() */
     static init(): INGetRestaurantGuestIntent;
+    readonly $type: {
+        "c:objc(cs)INGetRestaurantGuestIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -4231,13 +4681,11 @@ declare const INGetRestaurantGuestIntentResponse_base: Omit<typeof INIntentRespo
  * @availability iOS 10.0+
  */
 export declare class INGetRestaurantGuestIntentResponse extends INGetRestaurantGuestIntentResponse_base {
-    /** init() */
-    static init(): INGetRestaurantGuestIntentResponse;
     /**
      * init(code: INGetRestaurantGuestIntentResponseCode, userActivity: NSUserActivity?)
      * @availability iOS 10.0+
      */
-    static initCodeUserActivity(code: INGetRestaurantGuestIntentResponseCode, userActivity?: $SDK3): INGetRestaurantGuestIntentResponse;
+    static init(code: INGetRestaurantGuestIntentResponseCode, userActivity?: $SDK3): INGetRestaurantGuestIntentResponse;
     /**
      * var code: INGetRestaurantGuestIntentResponseCode { get }
      * @availability iOS 10.0+
@@ -4255,6 +4703,11 @@ export declare class INGetRestaurantGuestIntentResponse extends INGetRestaurantG
      */
     get guestDisplayPreferences(): $SDK43;
     set guestDisplayPreferences(value: $SDK43);
+    readonly $type: {
+        "c:objc(cs)INGetRestaurantGuestIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -4279,6 +4732,11 @@ export declare class INGetRideStatusIntent extends INGetRideStatusIntent_base {
      * @availability iOS 10.0+
      */
     static init(): INGetRideStatusIntent;
+    readonly $type: {
+        "c:objc(cs)INGetRideStatusIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -4330,6 +4788,11 @@ export declare class INGetRideStatusIntentResponse extends INGetRideStatusIntent
      */
     get rideStatus(): (INRideStatus) | null;
     set rideStatus(value: (INRideStatus) | null);
+    readonly $type: {
+        "c:objc(cs)INGetRideStatusIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -4365,13 +4828,11 @@ declare const INGetUserCurrentRestaurantReservationBookingsIntent_base: Omit<typ
  * @availability iOS 10.0+
  */
 export declare class INGetUserCurrentRestaurantReservationBookingsIntent extends INGetUserCurrentRestaurantReservationBookingsIntent_base {
-    /** init() */
-    static init(): INGetUserCurrentRestaurantReservationBookingsIntent;
     /**
      * init(restaurant: INRestaurant?, reservationIdentifier: String?, maximumNumberOfResults: NSNumber?, earliestBookingDateForResults: Date?)
      * @availability iOS 11.0+
      */
-    static initRestaurantReservationIdentifierMaximumNumberOfResultsEarliestBookingDateForResults(restaurant?: (INRestaurant) | null, reservationIdentifier?: (string) | null, maximumNumberOfResults?: $SDK36, earliestBookingDateForResults?: $SDK18): INGetUserCurrentRestaurantReservationBookingsIntent;
+    static init(restaurant?: (INRestaurant) | null, reservationIdentifier?: (string) | null, maximumNumberOfResults?: $SDK36, earliestBookingDateForResults?: $SDK18): INGetUserCurrentRestaurantReservationBookingsIntent;
     /**
      * var earliestBookingDateForResults: Date? { get set }
      * @availability iOS 10.0+
@@ -4396,6 +4857,11 @@ export declare class INGetUserCurrentRestaurantReservationBookingsIntent extends
      */
     get restaurant(): (INRestaurant) | null;
     set restaurant(value: (INRestaurant) | null);
+    readonly $type: {
+        "c:objc(cs)INGetUserCurrentRestaurantReservationBookingsIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -4425,13 +4891,11 @@ declare const INGetUserCurrentRestaurantReservationBookingsIntentResponse_base: 
  * @availability iOS 10.0+
  */
 export declare class INGetUserCurrentRestaurantReservationBookingsIntentResponse extends INGetUserCurrentRestaurantReservationBookingsIntentResponse_base {
-    /** init() */
-    static init(): INGetUserCurrentRestaurantReservationBookingsIntentResponse;
     /**
      * init(userCurrentBookings: [INRestaurantReservationUserBooking], code: INGetUserCurrentRestaurantReservationBookingsIntentResponseCode, userActivity: NSUserActivity?)
      * @availability iOS 10.0+
      */
-    static initUserCurrentBookingsCodeUserActivity(userCurrentBookings: $SDK44, code: INGetUserCurrentRestaurantReservationBookingsIntentResponseCode, userActivity?: $SDK3): INGetUserCurrentRestaurantReservationBookingsIntentResponse;
+    static init(userCurrentBookings: $SDK44, code: INGetUserCurrentRestaurantReservationBookingsIntentResponseCode, userActivity?: $SDK3): INGetUserCurrentRestaurantReservationBookingsIntentResponse;
     /**
      * var code: INGetUserCurrentRestaurantReservationBookingsIntentResponseCode { get }
      * @availability iOS 10.0+
@@ -4443,6 +4907,11 @@ export declare class INGetUserCurrentRestaurantReservationBookingsIntentResponse
      */
     get userCurrentBookings(): $SDK44;
     set userCurrentBookings(value: $SDK44);
+    readonly $type: {
+        "c:objc(cs)INGetUserCurrentRestaurantReservationBookingsIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -4462,20 +4931,23 @@ declare const INGetVisualCodeIntent_base: Omit<typeof INIntent, "init" | "protot
  * @deprecated iOS 15.0
  */
 export declare class INGetVisualCodeIntent extends INGetVisualCodeIntent_base {
-    /** init() */
-    static init(): INGetVisualCodeIntent;
     /**
      * init(visualCodeType: INVisualCodeType)
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static initVisualCodeType(visualCodeType: INVisualCodeType): INGetVisualCodeIntent;
+    static init(visualCodeType: INVisualCodeType): INGetVisualCodeIntent;
     /**
      * var visualCodeType: INVisualCodeType { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
     get visualCodeType(): INVisualCodeType;
+    readonly $type: {
+        "c:objc(cs)INGetVisualCodeIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -4524,6 +4996,11 @@ export declare class INGetVisualCodeIntentResponse extends INGetVisualCodeIntent
      */
     get visualCodeImage(): (INImage) | null;
     set visualCodeImage(value: (INImage) | null);
+    readonly $type: {
+        "c:objc(cs)INGetVisualCodeIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -4550,18 +5027,21 @@ declare const INHangUpCallIntent_base: Omit<typeof INIntent, "init" | "prototype
  * @availability iOS 16.2+
  */
 export declare class INHangUpCallIntent extends INHangUpCallIntent_base {
-    /** init() */
-    static init(): INHangUpCallIntent;
     /**
      * init(callIdentifier: String?)
      * @availability iOS 16.2+
      */
-    static initCallIdentifier(callIdentifier?: (string) | null): INHangUpCallIntent;
+    static init(callIdentifier?: (string) | null): INHangUpCallIntent;
     /**
      * var callIdentifier: String? { get }
      * @availability iOS 16.2+
      */
     get callIdentifier(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INHangUpCallIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -4598,6 +5078,11 @@ export declare class INHangUpCallIntentResponse extends INHangUpCallIntentRespon
      * @availability iOS 16.2+
      */
     get code(): INHangUpCallIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INHangUpCallIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -4645,8 +5130,10 @@ export declare class INImage extends SDKHandle {
      * @availability iOS 14.0+
      */
     static systemImageNamed(systemImageName: string): INImage;
-    /** init() */
-    static init(): INImage;
+    readonly $type: {
+        "c:objc(cs)INImage": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INNoteContent
@@ -4656,6 +5143,10 @@ export declare class INImage extends SDKHandle {
 export declare class INNoteContent extends SDKHandle {
     /** init() */
     static init(): INNoteContent;
+    readonly $type: {
+        "c:objc(cs)INNoteContent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INImageNoteContent_base: Omit<typeof INNoteContent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INNoteContent);
 /**
@@ -4664,20 +5155,23 @@ declare const INImageNoteContent_base: Omit<typeof INNoteContent, "init" | "prot
  * @deprecated iOS 27.0
  */
 export declare class INImageNoteContent extends INImageNoteContent_base {
-    /** init() */
-    static init(): INImageNoteContent;
     /**
      * init(image: INImage)
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    static initImage(image: INImage): INImageNoteContent;
+    static init(image: INImage): INImageNoteContent;
     /**
      * @NSCopying var image: INImage? { get }
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
     get image(): (INImage) | null;
+    readonly $type: {
+        "c:objc(cs)INImageNoteContent": true;
+        "c:objc(cs)INNoteContent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "image": true;
     };
@@ -4697,12 +5191,21 @@ export declare class INIntegerResolutionResult extends INIntentResolutionResult 
      * @availability iOS 10.0+
      */
     static confirmationRequired(valueToConfirm?: (number) | null): INIntegerResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INIntegerResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INIntentDonationMetadata
  * @availability iOS 15.0+
  */
 export declare class INIntentDonationMetadata extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)INIntentDonationMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct INIntentError
@@ -4884,6 +5387,9 @@ export declare class INIntentError extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get restrictedIntentsNotSupportedByExtension(): INIntentError_Code;
+    readonly $type: {
+        "s:SC17INIntentErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -5000,6 +5506,10 @@ export declare class INInteraction extends SDKHandle {
      * @availability iOS 10.0+
      */
     get intentResponse(): (INIntentResponse) | null;
+    readonly $type: {
+        "c:objc(cs)INInteraction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateInterval": true;
         "direction": true;
@@ -5042,6 +5552,11 @@ export declare class INLengthResolutionResult extends INIntentResolutionResult {
      * @availability iOS 13.0+
      */
     static success(resolvedLength: _Foundation_Measurement<_Foundation_UnitLength>): INLengthResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INLengthResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INListCarsIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -5054,6 +5569,11 @@ export declare class INListCarsIntent extends INListCarsIntent_base {
      * @availability iOS 14.0+
      */
     static init(): INListCarsIntent;
+    readonly $type: {
+        "c:objc(cs)INListCarsIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -5095,6 +5615,11 @@ export declare class INListCarsIntentResponse extends INListCarsIntentResponse_b
      * @availability iOS 14.0+
      */
     get code(): INListCarsIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INListCarsIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "cars": true;
@@ -5119,13 +5644,11 @@ declare const INListRideOptionsIntent_base: Omit<typeof INIntent, "init" | "prot
  * @availability iOS 10.0+
  */
 export declare class INListRideOptionsIntent extends INListRideOptionsIntent_base {
-    /** init() */
-    static init(): INListRideOptionsIntent;
     /**
      * init(pickupLocation: CLPlacemark?, dropOffLocation: CLPlacemark?)
      * @availability iOS 10.0+
      */
-    static initPickupLocationDropOffLocation(pickupLocation?: $SDK50, dropOffLocation?: $SDK50): INListRideOptionsIntent;
+    static init(pickupLocation?: $SDK50, dropOffLocation?: $SDK50): INListRideOptionsIntent;
     /**
      * @NSCopying var dropOffLocation: CLPlacemark? { get }
      * @availability iOS 10.0+
@@ -5136,6 +5659,11 @@ export declare class INListRideOptionsIntent extends INListRideOptionsIntent_bas
      * @availability iOS 10.0+
      */
     get pickupLocation(): $SDK50;
+    readonly $type: {
+        "c:objc(cs)INListRideOptionsIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -5191,6 +5719,11 @@ export declare class INListRideOptionsIntentResponse extends INListRideOptionsIn
      */
     get rideOptions(): (Array<INRideOption>) | null;
     set rideOptions(value: (Array<INRideOption>) | null);
+    readonly $type: {
+        "c:objc(cs)INListRideOptionsIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -5226,6 +5759,11 @@ export declare class INLocationRelevanceProvider extends INRelevanceProvider {
      * @availability iOS 12.0+
      */
     get region(): _CoreLocation_CLRegion;
+    readonly $type: {
+        "c:objc(cs)INLocationRelevanceProvider": true;
+        "c:objc(cs)INRelevanceProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "region": true;
     };
@@ -5262,6 +5800,11 @@ export declare class INLocationSearchTypeResolutionResult extends INIntentResolu
      * @deprecated iOS 27.0
      */
     static success(resolvedLocationSearchType: INLocationSearchType): INLocationSearchTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INLocationSearchTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INLodgingReservation
@@ -5298,6 +5841,11 @@ export declare class INLodgingReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get numberOfChildren(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)INLodgingReservation": true;
+        "c:objc(cs)INReservation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "actions": true;
@@ -5330,6 +5878,11 @@ export declare class INMassResolutionResult extends INIntentResolutionResult {
      * @availability iOS 13.0+
      */
     static success(resolvedMass: _Foundation_Measurement<_Foundation_UnitMass>): INMassResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INMassResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INMediaAffinityType
@@ -5358,6 +5911,11 @@ export declare class INMediaAffinityTypeResolutionResult extends INIntentResolut
      * @availability iOS 13.0+
      */
     static success(resolvedMediaAffinityType: INMediaAffinityType): INMediaAffinityTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INMediaAffinityTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INMediaDestination
@@ -5379,6 +5937,9 @@ export declare class INMediaDestination extends SDKHandle {
      * @availability iOS 13.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:7Intents18INMediaDestinationO": true;
+    };
 }
 /**
  * typealias ReferenceType = INMediaDestinationReference
@@ -5410,6 +5971,10 @@ export declare class INMediaDestinationReference extends SDKHandle {
      * @availability iOS 13.0+
      */
     get playlistName(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INMediaDestination": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mediaDestinationType": true;
         "playlistName": true;
@@ -5467,6 +6032,10 @@ export declare class INMediaItem extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): INMediaItemType;
+    readonly $type: {
+        "c:objc(cs)INMediaItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "artist": true;
         "artwork": true;
@@ -5504,8 +6073,6 @@ export declare const INMediaReference: {
  * @availability iOS 13.0+
  */
 export declare class INMediaSearch extends SDKHandle {
-    /** init() */
-    static init(): INMediaSearch;
     /**
      * var activityNames: [String]? { get }
      * @availability iOS 13.0+
@@ -5566,7 +6133,11 @@ export declare class INMediaSearch extends SDKHandle {
      * @nonobjc convenience init(mediaType: INMediaItemType = .unknown, sortOrder: INMediaSortOrder = .unknown, mediaName: String? = nil, artistName: String? = nil, albumName: String? = nil, genreNames: [String]? = nil, moodNames: [String]? = nil, releaseDate: INDateComponentsRange? = nil, reference: INMediaReference = .unknown, mediaIdentifier: String? = nil)
      * @availability iOS 13.0+
      */
-    static initMediaTypeSortOrderMediaNameArtistNameAlbumNameGenreNamesMoodNamesReleaseDateReferenceMediaIdentifier(mediaType?: INMediaItemType, sortOrder?: INMediaSortOrder, mediaName?: (string) | null, artistName?: (string) | null, albumName?: (string) | null, genreNames?: (Array<string>) | null, moodNames?: (Array<string>) | null, releaseDate?: $SDK29, reference?: INMediaReference, mediaIdentifier?: (string) | null): INMediaSearch;
+    static init(mediaType?: INMediaItemType, sortOrder?: INMediaSortOrder, mediaName?: (string) | null, artistName?: (string) | null, albumName?: (string) | null, genreNames?: (Array<string>) | null, moodNames?: (Array<string>) | null, releaseDate?: $SDK29, reference?: INMediaReference, mediaIdentifier?: (string) | null): INMediaSearch;
+    readonly $type: {
+        "c:objc(cs)INMediaSearch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activityNames": true;
         "albumName": true;
@@ -5603,6 +6174,10 @@ export declare class INUserContext extends SDKHandle {
      * @availability iOS 13.0+
      */
     becomeCurrent(): void;
+    readonly $type: {
+        "c:objc(cs)INUserContext": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INMediaUserContext
@@ -5626,6 +6201,11 @@ export declare class INMediaUserContext extends INUserContext {
      */
     get numberOfLibraryItems(): (number) | null;
     set numberOfLibraryItems(value: (number) | null);
+    readonly $type: {
+        "c:objc(cs)INMediaUserContext": true;
+        "c:objc(cs)INUserContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subscriptionStatus": true;
     };
@@ -5775,6 +6355,10 @@ export declare class INMessage extends SDKHandle {
      */
     get sticker(): (INSticker) | null;
     set sticker(value: (INSticker) | null);
+    readonly $type: {
+        "c:objc(cs)INMessage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attachmentFiles": true;
         "audioMessageFile": true;
@@ -5857,6 +6441,11 @@ export declare class INMessageAttributeOptionsResolutionResult extends INIntentR
      * @availability iOS 10.0+
      */
     static success(resolvedMessageAttributeOptions?: INMessageAttributeOptions): INMessageAttributeOptionsResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INMessageAttributeOptionsResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INMessageAttributeResolutionResult
@@ -5873,19 +6462,22 @@ export declare class INMessageAttributeResolutionResult extends INIntentResoluti
      * @availability iOS 10.0+
      */
     static success(resolvedMessageAttribute: INMessageAttribute): INMessageAttributeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INMessageAttributeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INMessageLinkMetadata
  * @availability iOS 17.0+
  */
 export declare class INMessageLinkMetadata extends SDKHandle {
-    /** init() */
-    static init(): INMessageLinkMetadata;
     /**
      * init(siteName: String?, summary: String?, title: String?, openGraphType: String?, linkURL: URL?)
      * @availability iOS 17.0+
      */
-    static initSiteNameSummaryTitleOpenGraphTypeLinkURL(siteName?: (string) | null, summary?: (string) | null, title?: (string) | null, openGraphType?: (string) | null, linkURL?: (string) | null): INMessageLinkMetadata;
+    static init(siteName?: (string) | null, summary?: (string) | null, title?: (string) | null, openGraphType?: (string) | null, linkURL?: (string) | null): INMessageLinkMetadata;
     /**
      * var linkURL: URL? { get set }
      * @availability iOS 17.0+
@@ -5916,6 +6508,10 @@ export declare class INMessageLinkMetadata extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)INMessageLinkMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "linkURL": true;
         "openGraphType": true;
@@ -5929,13 +6525,11 @@ export declare class INMessageLinkMetadata extends SDKHandle {
  * @availability iOS 18.0+
  */
 export declare class INMessageReaction extends SDKHandle {
-    /** init() */
-    static init(): INMessageReaction;
     /**
      * init(reactionType: INMessageReactionType, reactionDescription: String?, emoji: String?)
      * @availability iOS 18.0+
      */
-    static initReactionTypeReactionDescriptionEmoji(reactionType: INMessageReactionType, reactionDescription?: (string) | null, emoji?: (string) | null): INMessageReaction;
+    static init(reactionType: INMessageReactionType, reactionDescription?: (string) | null, emoji?: (string) | null): INMessageReaction;
     /**
      * var emoji: String? { get }
      * @availability iOS 18.0+
@@ -5951,6 +6545,10 @@ export declare class INMessageReaction extends SDKHandle {
      * @availability iOS 18.0+
      */
     get reactionType(): INMessageReactionType;
+    readonly $type: {
+        "c:objc(cs)INMessageReaction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "emoji": true;
         "reactionDescription": true;
@@ -5999,14 +6597,12 @@ export declare const INMessageType: {
  * @deprecated iOS 27.0
  */
 export declare class INNote extends SDKHandle {
-    /** init() */
-    static init(): INNote;
     /**
      * init(title: INSpeakableString, contents: [INNoteContent], groupName: INSpeakableString?, createdDateComponents: DateComponents?, modifiedDateComponents: DateComponents?, identifier: String?)
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    static initTitleContentsGroupNameCreatedDateComponentsModifiedDateComponentsIdentifier(title: INSpeakableString, contents: Array<INNoteContent>, groupName?: $SDK2, createdDateComponents?: $SDK16, modifiedDateComponents?: $SDK16, identifier?: (string) | null): INNote;
+    static init(title: INSpeakableString, contents: Array<INNoteContent>, groupName?: $SDK2, createdDateComponents?: $SDK16, modifiedDateComponents?: $SDK16, identifier?: (string) | null): INNote;
     /**
      * var contents: [INNoteContent] { get }
      * @availability iOS 11.0+
@@ -6043,6 +6639,10 @@ export declare class INNote extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get title(): INSpeakableString;
+    readonly $type: {
+        "c:objc(cs)INNote": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contents": true;
         "createdDateComponents": true;
@@ -6102,6 +6702,11 @@ export declare class INNotebookItemTypeResolutionResult extends INIntentResoluti
      * @availability iOS 11.0+
      */
     static disambiguation(notebookItemTypesToDisambiguate: Array<INNotebookItemType>): INNotebookItemTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INNotebookItemTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INNoteContentResolutionResult
@@ -6127,6 +6732,11 @@ export declare class INNoteContentResolutionResult extends INIntentResolutionRes
      * @deprecated iOS 27.0
      */
     static success(resolvedNoteContent: INNoteContent): INNoteContentResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INNoteContentResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INNoteContentType
@@ -6160,6 +6770,11 @@ export declare class INNoteContentTypeResolutionResult extends INIntentResolutio
      * @deprecated iOS 13.0
      */
     static success(resolvedNoteContentType: INNoteContentType): INNoteContentTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INNoteContentTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INNoteResolutionResult
@@ -6185,6 +6800,11 @@ export declare class INNoteResolutionResult extends INIntentResolutionResult {
      * @deprecated iOS 27.0
      */
     static success(resolvedNote: INNote): INNoteResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INNoteResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INObject
@@ -6244,6 +6864,10 @@ export declare class INObject extends SDKHandle {
      */
     get subtitleString(): (string) | null;
     set subtitleString(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)INObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alternativeSpeakableMatches": true;
         "displayImage": true;
@@ -6258,6 +6882,41 @@ export declare class INObject extends SDKHandle {
  * @availability iOS 14.0+
  */
 export declare class INObjectCollection<ObjectType = unknown> extends SDKHandle {
+    /**
+     * convenience init(items: [ObjectType])
+     * @availability iOS 14.0+
+     */
+    static initItems(items: Array<SDKHandle>): INObjectCollection<SDKHandle>;
+    /**
+     * init(sections: [INObjectSection<ObjectType>])
+     * @availability iOS 14.0+
+     */
+    static initSections(sections: $SDK60): INObjectCollection<SDKHandle>;
+    /**
+     * var allItems: [ObjectType] { get }
+     * @availability iOS 14.0+
+     */
+    get allItems(): Array<SDKHandle>;
+    /**
+     * var sections: [INObjectSection<ObjectType>] { get }
+     * @availability iOS 14.0+
+     */
+    get sections(): $SDK60;
+    /**
+     * var usesIndexedCollation: Bool { get set }
+     * @availability iOS 14.0+
+     */
+    get usesIndexedCollation(): boolean;
+    set usesIndexedCollation(value: boolean);
+    readonly $type: {
+        "c:objc(cs)INObjectCollection": true;
+        "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allItems": true;
+        "sections": true;
+        "usesIndexedCollation": true;
+    };
 }
 /**
  * class INObjectResolutionResult
@@ -6279,12 +6938,40 @@ export declare class INObjectResolutionResult extends INIntentResolutionResult {
      * @availability iOS 13.0+
      */
     static success(resolvedObject: INObject): INObjectResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INObjectResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INObjectSection<ObjectType> where ObjectType : AnyObject
  * @availability iOS 14.0+
  */
 export declare class INObjectSection<ObjectType = unknown> extends SDKHandle {
+    /**
+     * init(title: String?, items: [ObjectType])
+     * @availability iOS 14.0+
+     */
+    static init(title: (string) | null, items: Array<SDKHandle>): INObjectSection<SDKHandle>;
+    /**
+     * var items: [ObjectType] { get }
+     * @availability iOS 14.0+
+     */
+    get items(): Array<SDKHandle>;
+    /**
+     * var title: String? { get }
+     * @availability iOS 14.0+
+     */
+    get title(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INObjectSection": true;
+        "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "items": true;
+        "title": true;
+    };
 }
 /**
  * enum INOutgoingMessageType
@@ -6313,6 +7000,11 @@ export declare class INOutgoingMessageTypeResolutionResult extends INIntentResol
      * @availability iOS 14.0+
      */
     static success(resolvedOutgoingMessageType: INOutgoingMessageType): INOutgoingMessageTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INOutgoingMessageTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INParameter
@@ -6329,8 +7021,6 @@ export declare class INParameter extends SDKHandle {
      * @availability iOS 11.0+
      */
     index(subKeyPath: string): number;
-    /** init() */
-    static init(): INParameter;
     /**
      * func isEqual(to parameter: INParameter) -> Bool
      * @availability iOS 11.0+
@@ -6356,6 +7046,10 @@ export declare class INParameter extends SDKHandle {
      * @availability iOS 11.0+
      */
     static initKeyPath(keyPath: SDKHandle): (INParameter) | null;
+    readonly $type: {
+        "c:objc(cs)INParameter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "parameterClass": true;
         "parameterKeyPath": true;
@@ -6367,18 +7061,21 @@ declare const INPauseWorkoutIntent_base: Omit<typeof INIntent, "init" | "prototy
  * @availability iOS 10.0+
  */
 export declare class INPauseWorkoutIntent extends INPauseWorkoutIntent_base {
-    /** init() */
-    static init(): INPauseWorkoutIntent;
     /**
      * init(workoutName: INSpeakableString?)
      * @availability iOS 10.0+
      */
-    static initWorkoutName(workoutName?: $SDK2): INPauseWorkoutIntent;
+    static init(workoutName?: $SDK2): INPauseWorkoutIntent;
     /**
      * @NSCopying var workoutName: INSpeakableString? { get }
      * @availability iOS 10.0+
      */
     get workoutName(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INPauseWorkoutIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -6415,6 +7112,11 @@ export declare class INPauseWorkoutIntentResponse extends INPauseWorkoutIntentRe
      * @availability iOS 10.0+
      */
     get code(): INPauseWorkoutIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INPauseWorkoutIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -6439,14 +7141,12 @@ declare const INPayBillIntent_base: Omit<typeof INIntent, "init" | "prototype"> 
  * @deprecated iOS 15.0
  */
 export declare class INPayBillIntent extends INPayBillIntent_base {
-    /** init() */
-    static init(): INPayBillIntent;
     /**
      * init(billPayee: INBillPayee?, from fromAccount: INPaymentAccount?, transactionAmount: INPaymentAmount?, transactionScheduledDate: INDateComponentsRange?, transactionNote: String?, billType: INBillType, dueDate: INDateComponentsRange?)
      * @availability iOS 10.3+
      * @deprecated iOS 15.0
      */
-    static initBillPayeeFromTransactionAmountTransactionScheduledDateTransactionNoteBillTypeDueDate(billPayee: (INBillPayee) | null, fromAccount: $SDK59, transactionAmount: $SDK60, transactionScheduledDate: $SDK29, transactionNote: (string) | null, billType: INBillType, dueDate?: $SDK29): INPayBillIntent;
+    static init(billPayee: (INBillPayee) | null, fromAccount: $SDK62, transactionAmount: $SDK63, transactionScheduledDate: $SDK29, transactionNote: (string) | null, billType: INBillType, dueDate?: $SDK29): INPayBillIntent;
     /**
      * @NSCopying var billPayee: INBillPayee? { get }
      * @availability iOS 10.3+
@@ -6470,13 +7170,13 @@ export declare class INPayBillIntent extends INPayBillIntent_base {
      * @availability iOS 10.3+
      * @deprecated iOS 15.0
      */
-    get fromAccount(): $SDK59;
+    get fromAccount(): $SDK62;
     /**
      * @NSCopying var transactionAmount: INPaymentAmount? { get }
      * @availability iOS 10.3+
      * @deprecated iOS 15.0
      */
-    get transactionAmount(): $SDK60;
+    get transactionAmount(): $SDK63;
     /**
      * var transactionNote: String? { get }
      * @availability iOS 10.3+
@@ -6489,6 +7189,11 @@ export declare class INPayBillIntent extends INPayBillIntent_base {
      * @deprecated iOS 15.0
      */
     get transactionScheduledDate(): $SDK29;
+    readonly $type: {
+        "c:objc(cs)INPayBillIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -6548,15 +7253,15 @@ export declare class INPayBillIntentResponse extends INPayBillIntentResponse_bas
      * @availability iOS 10.3+
      * @deprecated iOS 15.0
      */
-    get fromAccount(): $SDK59;
-    set fromAccount(value: $SDK59);
+    get fromAccount(): $SDK62;
+    set fromAccount(value: $SDK62);
     /**
      * @NSCopying var transactionAmount: INPaymentAmount? { get set }
      * @availability iOS 10.3+
      * @deprecated iOS 15.0
      */
-    get transactionAmount(): $SDK60;
-    set transactionAmount(value: $SDK60);
+    get transactionAmount(): $SDK63;
+    set transactionAmount(value: $SDK63);
     /**
      * var transactionNote: String? { get set }
      * @availability iOS 10.3+
@@ -6571,6 +7276,11 @@ export declare class INPayBillIntentResponse extends INPayBillIntentResponse_bas
      */
     get transactionScheduledDate(): $SDK29;
     set transactionScheduledDate(value: $SDK29);
+    readonly $type: {
+        "c:objc(cs)INPayBillIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "billDetails": true;
@@ -6610,7 +7320,7 @@ export declare class INPaymentAccount extends SDKHandle {
      * init(nickname: INSpeakableString, number: String?, accountType: INAccountType, organizationName: INSpeakableString?, balance: INBalanceAmount?, secondaryBalance: INBalanceAmount?)
      * @availability iOS 11.0+
      */
-    static initNicknameNumberAccountTypeOrganizationNameBalanceSecondaryBalance(nickname: INSpeakableString, number: (string) | null, accountType: INAccountType, organizationName?: $SDK2, balance?: $SDK61, secondaryBalance?: $SDK61): INPaymentAccount;
+    static initNicknameNumberAccountTypeOrganizationNameBalanceSecondaryBalance(nickname: INSpeakableString, number: (string) | null, accountType: INAccountType, organizationName?: $SDK2, balance?: $SDK64, secondaryBalance?: $SDK64): INPaymentAccount;
     /**
      * var accountNumber: String? { get }
      * @availability iOS 10.3+
@@ -6625,7 +7335,7 @@ export declare class INPaymentAccount extends SDKHandle {
      * @NSCopying var balance: INBalanceAmount? { get }
      * @availability iOS 11.0+
      */
-    get balance(): $SDK61;
+    get balance(): $SDK64;
     /**
      * @NSCopying var nickname: INSpeakableString? { get }
      * @availability iOS 10.3+
@@ -6640,7 +7350,11 @@ export declare class INPaymentAccount extends SDKHandle {
      * @NSCopying var secondaryBalance: INBalanceAmount? { get }
      * @availability iOS 11.0+
      */
-    get secondaryBalance(): $SDK61;
+    get secondaryBalance(): $SDK64;
+    readonly $type: {
+        "c:objc(cs)INPaymentAccount": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accountNumber": true;
         "accountType": true;
@@ -6659,7 +7373,7 @@ export declare class INPaymentAccountResolutionResult extends INIntentResolution
      * class func confirmationRequired(with paymentAccountToConfirm: INPaymentAccount?) -> Self
      * @availability iOS 10.3+
      */
-    static confirmationRequired(paymentAccountToConfirm?: $SDK59): INPaymentAccountResolutionResult;
+    static confirmationRequired(paymentAccountToConfirm?: $SDK62): INPaymentAccountResolutionResult;
     /**
      * class func disambiguation(with paymentAccountsToDisambiguate: [INPaymentAccount]) -> Self
      * @availability iOS 10.3+
@@ -6670,6 +7384,11 @@ export declare class INPaymentAccountResolutionResult extends INIntentResolution
      * @availability iOS 10.3+
      */
     static success(resolvedPaymentAccount: INPaymentAccount): INPaymentAccountResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPaymentAccountResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INPaymentAmount
@@ -6691,6 +7410,10 @@ export declare class INPaymentAmount extends SDKHandle {
      * @availability iOS 10.3+
      */
     get amountType(): INAmountType;
+    readonly $type: {
+        "c:objc(cs)INPaymentAmount": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "amountType": true;
@@ -6705,7 +7428,7 @@ export declare class INPaymentAmountResolutionResult extends INIntentResolutionR
      * class func confirmationRequired(with paymentAmountToConfirm: INPaymentAmount?) -> Self
      * @availability iOS 10.3+
      */
-    static confirmationRequired(paymentAmountToConfirm?: $SDK60): INPaymentAmountResolutionResult;
+    static confirmationRequired(paymentAmountToConfirm?: $SDK63): INPaymentAmountResolutionResult;
     /**
      * class func disambiguation(with paymentAmountsToDisambiguate: [INPaymentAmount]) -> Self
      * @availability iOS 10.3+
@@ -6716,6 +7439,11 @@ export declare class INPaymentAmountResolutionResult extends INIntentResolutionR
      * @availability iOS 10.3+
      */
     static success(resolvedPaymentAmount: INPaymentAmount): INPaymentAmountResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPaymentAmountResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INPaymentMethod
@@ -6752,6 +7480,10 @@ export declare class INPaymentMethod extends SDKHandle {
      * @availability iOS 10.0+
      */
     get type(): INPaymentMethodType;
+    readonly $type: {
+        "c:objc(cs)INPaymentMethod": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "icon": true;
         "identificationHint": true;
@@ -6768,7 +7500,7 @@ export declare class INPaymentMethodResolutionResult extends INIntentResolutionR
      * class func confirmationRequired(with paymentMethodToConfirm: INPaymentMethod?) -> Self
      * @availability iOS 13.0+
      */
-    static confirmationRequired(paymentMethodToConfirm?: $SDK62): INPaymentMethodResolutionResult;
+    static confirmationRequired(paymentMethodToConfirm?: $SDK65): INPaymentMethodResolutionResult;
     /**
      * class func disambiguation(with paymentMethodsToDisambiguate: [INPaymentMethod]) -> Self
      * @availability iOS 13.0+
@@ -6779,6 +7511,11 @@ export declare class INPaymentMethodResolutionResult extends INIntentResolutionR
      * @availability iOS 13.0+
      */
     static success(resolvedPaymentMethod: INPaymentMethod): INPaymentMethodResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPaymentMethodResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INPaymentMethodType
@@ -6801,12 +7538,12 @@ export declare class INPaymentRecord extends SDKHandle {
      * convenience init?(payee: INPerson?, payer: INPerson?, currencyAmount: INCurrencyAmount?, paymentMethod: INPaymentMethod?, note: String?, status: INPaymentStatus)
      * @availability iOS 10.0+
      */
-    static initPayeePayerCurrencyAmountPaymentMethodNoteStatus(payee: (INPerson) | null, payer: (INPerson) | null, currencyAmount: $SDK15, paymentMethod: $SDK62, note: (string) | null, status: INPaymentStatus): (INPaymentRecord) | null;
+    static initPayeePayerCurrencyAmountPaymentMethodNoteStatus(payee: (INPerson) | null, payer: (INPerson) | null, currencyAmount: $SDK15, paymentMethod: $SDK65, note: (string) | null, status: INPaymentStatus): (INPaymentRecord) | null;
     /**
      * init?(payee: INPerson?, payer: INPerson?, currencyAmount: INCurrencyAmount?, paymentMethod: INPaymentMethod?, note: String?, status: INPaymentStatus, feeAmount: INCurrencyAmount?)
      * @availability iOS 10.0+
      */
-    static initPayeePayerCurrencyAmountPaymentMethodNoteStatusFeeAmount(payee: (INPerson) | null, payer: (INPerson) | null, currencyAmount: $SDK15, paymentMethod: $SDK62, note: (string) | null, status: INPaymentStatus, feeAmount?: $SDK15): (INPaymentRecord) | null;
+    static initPayeePayerCurrencyAmountPaymentMethodNoteStatusFeeAmount(payee: (INPerson) | null, payer: (INPerson) | null, currencyAmount: $SDK15, paymentMethod: $SDK65, note: (string) | null, status: INPaymentStatus, feeAmount?: $SDK15): (INPaymentRecord) | null;
     /**
      * @NSCopying var currencyAmount: INCurrencyAmount? { get }
      * @availability iOS 10.0+
@@ -6836,12 +7573,16 @@ export declare class INPaymentRecord extends SDKHandle {
      * @NSCopying var paymentMethod: INPaymentMethod? { get }
      * @availability iOS 10.0+
      */
-    get paymentMethod(): $SDK62;
+    get paymentMethod(): $SDK65;
     /**
      * var status: INPaymentStatus { get }
      * @availability iOS 10.0+
      */
     get status(): INPaymentStatus;
+    readonly $type: {
+        "c:objc(cs)INPaymentRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currencyAmount": true;
         "feeAmount": true;
@@ -6892,6 +7633,11 @@ export declare class INPaymentStatusResolutionResult extends INIntentResolutionR
      * @availability iOS 10.0+
      */
     static success(resolvedPaymentStatus: INPaymentStatus): INPaymentStatusResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPaymentStatusResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INPerson
@@ -6915,36 +7661,36 @@ export declare class INPerson extends SDKHandle {
      * @availability iOS 10.0+
      * @deprecated iOS 10.0
      */
-    static initHandleNameComponentsDisplayNameImageContactIdentifier(handle: string, nameComponents?: $SDK63, displayName?: (string) | null, image?: (INImage) | null, contactIdentifier?: (string) | null): INPerson;
+    static initHandleNameComponentsDisplayNameImageContactIdentifier(handle: string, nameComponents?: $SDK66, displayName?: (string) | null, image?: (INImage) | null, contactIdentifier?: (string) | null): INPerson;
     /**
      * convenience init(personHandle: INPersonHandle, nameComponents: PersonNameComponents?, displayName: String?, image: INImage?, contactIdentifier: String?, customIdentifier: String?)
      * @availability iOS 10.0+
      */
-    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifier(personHandle: INPersonHandle, nameComponents?: $SDK63, displayName?: (string) | null, image?: (INImage) | null, contactIdentifier?: (string) | null, customIdentifier?: (string) | null): INPerson;
+    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifier(personHandle: INPersonHandle, nameComponents?: $SDK66, displayName?: (string) | null, image?: (INImage) | null, contactIdentifier?: (string) | null, customIdentifier?: (string) | null): INPerson;
     /** convenience init(personHandle: INPersonHandle, nameComponents: PersonNameComponents?, displayName: String?, image: INImage?, contactIdentifier: String?, customIdentifier: String?, aliases: [INPersonHandle]?, suggestionType: INPersonSuggestionType) */
-    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierAliasesSuggestionType(personHandle: INPersonHandle, nameComponents: $SDK63, displayName: (string) | null, image: (INImage) | null, contactIdentifier: (string) | null, customIdentifier: (string) | null, aliases: $SDK64, suggestionType: INPersonSuggestionType): INPerson;
+    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierAliasesSuggestionType(personHandle: INPersonHandle, nameComponents: $SDK66, displayName: (string) | null, image: (INImage) | null, contactIdentifier: (string) | null, customIdentifier: (string) | null, aliases: $SDK67, suggestionType: INPersonSuggestionType): INPerson;
     /**
      * convenience init(personHandle: INPersonHandle, nameComponents: PersonNameComponents?, displayName: String?, image: INImage?, contactIdentifier: String?, customIdentifier: String?, isContactSuggestion: Bool, suggestionType: INPersonSuggestionType)
      * @availability iOS 15.0+
      */
-    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsContactSuggestionSuggestionType(personHandle: INPersonHandle, nameComponents: $SDK63, displayName: (string) | null, image: (INImage) | null, contactIdentifier: (string) | null, customIdentifier: (string) | null, isContactSuggestion: boolean, suggestionType: INPersonSuggestionType): INPerson;
+    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsContactSuggestionSuggestionType(personHandle: INPersonHandle, nameComponents: $SDK66, displayName: (string) | null, image: (INImage) | null, contactIdentifier: (string) | null, customIdentifier: (string) | null, isContactSuggestion: boolean, suggestionType: INPersonSuggestionType): INPerson;
     /**
      * init(personHandle: INPersonHandle, nameComponents: PersonNameComponents?, displayName: String?, image: INImage?, contactIdentifier: String?, customIdentifier: String?, isMe: Bool)
      * @availability iOS 12.0+
      */
-    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsMe(personHandle: INPersonHandle, nameComponents: $SDK63, displayName: (string) | null, image: (INImage) | null, contactIdentifier: (string) | null, customIdentifier: (string) | null, isMe: boolean): INPerson;
+    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsMe(personHandle: INPersonHandle, nameComponents: $SDK66, displayName: (string) | null, image: (INImage) | null, contactIdentifier: (string) | null, customIdentifier: (string) | null, isMe: boolean): INPerson;
     /**
      * convenience init(personHandle: INPersonHandle, nameComponents: PersonNameComponents?, displayName: String?, image: INImage?, contactIdentifier: String?, customIdentifier: String?, isMe: Bool, suggestionType: INPersonSuggestionType)
      * @availability iOS 15.0+
      */
-    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsMeSuggestionType(personHandle: INPersonHandle, nameComponents: $SDK63, displayName: (string) | null, image: (INImage) | null, contactIdentifier: (string) | null, customIdentifier: (string) | null, isMe: boolean, suggestionType: INPersonSuggestionType): INPerson;
+    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierIsMeSuggestionType(personHandle: INPersonHandle, nameComponents: $SDK66, displayName: (string) | null, image: (INImage) | null, contactIdentifier: (string) | null, customIdentifier: (string) | null, isMe: boolean, suggestionType: INPersonSuggestionType): INPerson;
     /**
      * convenience init(personHandle: INPersonHandle, nameComponents: PersonNameComponents?, displayName: String?, image: INImage?, contactIdentifier: String?, customIdentifier: String?, relationship: INPersonRelationship?)
      * @availability iOS 14.0+
      */
-    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierRelationship(personHandle: INPersonHandle, nameComponents?: $SDK63, displayName?: (string) | null, image?: (INImage) | null, contactIdentifier?: (string) | null, customIdentifier?: (string) | null, relationship?: (INPersonRelationship) | null): INPerson;
+    static initPersonHandleNameComponentsDisplayNameImageContactIdentifierCustomIdentifierRelationship(personHandle: INPersonHandle, nameComponents?: $SDK66, displayName?: (string) | null, image?: (INImage) | null, contactIdentifier?: (string) | null, customIdentifier?: (string) | null, relationship?: (INPersonRelationship) | null): INPerson;
     /** var aliases: [INPersonHandle]? { get } */
-    get aliases(): $SDK64;
+    get aliases(): $SDK67;
     /**
      * var contactIdentifier: String? { get }
      * @availability iOS 10.0+
@@ -6985,7 +7731,7 @@ export declare class INPerson extends SDKHandle {
      * var nameComponents: PersonNameComponents? { get }
      * @availability iOS 10.0+
      */
-    get nameComponents(): $SDK63;
+    get nameComponents(): $SDK66;
     /**
      * @NSCopying var personHandle: INPersonHandle? { get }
      * @availability iOS 10.0+
@@ -7003,6 +7749,10 @@ export declare class INPerson extends SDKHandle {
     get siriMatches(): $SDK22;
     /** var suggestionType: INPersonSuggestionType { get } */
     get suggestionType(): INPersonSuggestionType;
+    readonly $type: {
+        "c:objc(cs)INPerson": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "aliases": true;
         "contactIdentifier": true;
@@ -7049,6 +7799,10 @@ export declare class INPersonHandle extends SDKHandle {
      * @availability iOS 10.0+
      */
     get value(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INPersonHandle": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "type": true;
@@ -7218,6 +7972,11 @@ export declare class INPersonResolutionResult extends INIntentResolutionResult {
      * @availability iOS 10.0+
      */
     static success(resolvedPerson: INPerson): INPersonResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPersonResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INPersonSuggestionType
@@ -7452,6 +8211,11 @@ export declare class INPlacemarkResolutionResult extends INIntentResolutionResul
      * @availability iOS 10.0+
      */
     static success(resolvedPlacemark: _CoreLocation_CLPlacemark): INPlacemarkResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPlacemarkResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INPlaybackQueueLocation
@@ -7480,6 +8244,11 @@ export declare class INPlaybackQueueLocationResolutionResult extends INIntentRes
      * @availability iOS 13.0+
      */
     static success(resolvedPlaybackQueueLocation: INPlaybackQueueLocation): INPlaybackQueueLocationResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPlaybackQueueLocationResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INPlaybackRepeatMode
@@ -7508,6 +8277,11 @@ export declare class INPlaybackRepeatModeResolutionResult extends INIntentResolu
      * @availability iOS 12.0+
      */
     static success(resolvedPlaybackRepeatMode: INPlaybackRepeatMode): INPlaybackRepeatModeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPlaybackRepeatModeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INPlayMediaIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -7515,8 +8289,6 @@ declare const INPlayMediaIntent_base: Omit<typeof INIntent, "init" | "prototype"
  * @availability iOS 12.0+
  */
 export declare class INPlayMediaIntent extends INPlayMediaIntent_base {
-    /** init() */
-    static init(): INPlayMediaIntent;
     /**
      * @NSCopying var mediaContainer: INMediaItem? { get }
      * @availability iOS 12.0+
@@ -7546,7 +8318,7 @@ export declare class INPlayMediaIntent extends INPlayMediaIntent_base {
      * @nonobjc convenience init(mediaItems: [INMediaItem]? = nil, mediaContainer: INMediaItem? = nil, playShuffled: Bool? = nil, playbackRepeatMode: INPlaybackRepeatMode = .unknown, resumePlayback: Bool? = nil, playbackQueueLocation: INPlaybackQueueLocation = .unknown, playbackSpeed: Double? = nil, mediaSearch: INMediaSearch? = nil)
      * @availability iOS 13.0+
      */
-    static initMediaItemsMediaContainerPlayShuffledPlaybackRepeatModeResumePlaybackPlaybackQueueLocationPlaybackSpeedMediaSearch(mediaItems?: $SDK4, mediaContainer?: (INMediaItem) | null, playShuffled?: (boolean) | null, playbackRepeatMode?: INPlaybackRepeatMode, resumePlayback?: (boolean) | null, playbackQueueLocation?: INPlaybackQueueLocation, playbackSpeed?: (number) | null, mediaSearch?: (INMediaSearch) | null): INPlayMediaIntent;
+    static init(mediaItems?: $SDK4, mediaContainer?: (INMediaItem) | null, playShuffled?: (boolean) | null, playbackRepeatMode?: INPlaybackRepeatMode, resumePlayback?: (boolean) | null, playbackQueueLocation?: INPlaybackQueueLocation, playbackSpeed?: (number) | null, mediaSearch?: (INMediaSearch) | null): INPlayMediaIntent;
     /**
      * @nonobjc final var playShuffled: Bool? { get }
      * @availability iOS 12.0+
@@ -7562,6 +8334,11 @@ export declare class INPlayMediaIntent extends INPlayMediaIntent_base {
      * @availability iOS 12.0+
      */
     get resumePlayback(): (boolean) | null;
+    readonly $type: {
+        "c:objc(cs)INPlayMediaIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -7608,6 +8385,11 @@ export declare class INPlayMediaIntentResponse extends INPlayMediaIntentResponse
      */
     get nowPlayingInfo(): $SDK40;
     set nowPlayingInfo(value: $SDK40);
+    readonly $type: {
+        "c:objc(cs)INPlayMediaIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -7647,6 +8429,12 @@ export declare class INPlayMediaMediaItemResolutionResult extends INPlayMediaMed
      * @availability iOS 13.0+
      */
     static init(mediaItemResolutionResult: INMediaItemResolutionResult): INPlayMediaMediaItemResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPlayMediaMediaItemResolutionResult": true;
+        "c:objc(cs)INMediaItemResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INPlayMediaMediaItemUnsupportedReason
@@ -7676,6 +8464,12 @@ export declare class INPlayMediaPlaybackSpeedResolutionResult extends INPlayMedi
      * @availability iOS 13.0+
      */
     static init(doubleResolutionResult: INDoubleResolutionResult): INPlayMediaPlaybackSpeedResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INPlayMediaPlaybackSpeedResolutionResult": true;
+        "c:objc(cs)INDoubleResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INPlayMediaPlaybackSpeedUnsupportedReason
@@ -7711,6 +8505,10 @@ export declare class INPreferences extends SDKHandle {
     static siriLanguageCode(): string;
     /** init() */
     static init(): INPreferences;
+    readonly $type: {
+        "c:objc(cs)INPreferences": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INPriceRange
@@ -7752,6 +8550,10 @@ export declare class INPriceRange extends SDKHandle {
      * @availability iOS 10.0+
      */
     get minimumPrice(): $SDK14;
+    readonly $type: {
+        "c:objc(cs)INPriceRange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currencyCode": true;
         "maximumPrice": true;
@@ -7803,6 +8605,11 @@ export declare class INRadioTypeResolutionResult extends INIntentResolutionResul
      * @deprecated iOS 15.0
      */
     static success(resolvedRadioType: INRadioType): INRadioTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INRadioTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INRecurrenceFrequency
@@ -7846,6 +8653,10 @@ export declare class INRecurrenceRule extends SDKHandle {
      * @availability iOS 14.0+
      */
     get weeklyRecurrenceDays(): INDayOfWeekOptions;
+    readonly $type: {
+        "c:objc(cs)INRecurrenceRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frequency": true;
         "interval": true;
@@ -7884,6 +8695,11 @@ export declare class INRelativeReferenceResolutionResult extends INIntentResolut
      * @deprecated iOS 15.0
      */
     static success(resolvedRelativeReference: INRelativeReference): INRelativeReferenceResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INRelativeReferenceResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INRelativeSetting
@@ -7917,19 +8733,22 @@ export declare class INRelativeSettingResolutionResult extends INIntentResolutio
      * @deprecated iOS 15.0
      */
     static success(resolvedRelativeSetting: INRelativeSetting): INRelativeSettingResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INRelativeSettingResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INRelevantShortcut
  * @availability iOS 12.0+
  */
 export declare class INRelevantShortcut extends SDKHandle {
-    /** init() */
-    static init(): INRelevantShortcut;
     /**
      * init(shortcut: INShortcut)
      * @availability iOS 12.0+
      */
-    static initShortcut(shortcut: INShortcut): INRelevantShortcut;
+    static init(shortcut: INShortcut): INRelevantShortcut;
     /**
      * var relevanceProviders: [INRelevanceProvider] { get set }
      * @availability iOS 12.0+
@@ -7951,14 +8770,18 @@ export declare class INRelevantShortcut extends SDKHandle {
      * @NSCopying var watchTemplate: INDefaultCardTemplate? { get set }
      * @availability iOS 12.0+
      */
-    get watchTemplate(): $SDK71;
-    set watchTemplate(value: $SDK71);
+    get watchTemplate(): $SDK74;
+    set watchTemplate(value: $SDK74);
     /**
      * var widgetKind: String? { get set }
      * @availability iOS 15.0+
      */
     get widgetKind(): (string) | null;
     set widgetKind(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)INRelevantShortcut": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "relevanceProviders": true;
         "shortcut": true;
@@ -7994,6 +8817,10 @@ export declare class INRelevantShortcutStore extends SDKHandle {
      * @availability iOS 12.0+
      */
     setRelevantShortcuts(shortcuts: Array<INRelevantShortcut>, completionHandler?: $SDK45): void;
+    readonly $type: {
+        "c:objc(cs)INRelevantShortcutStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INRentalCar
@@ -8030,6 +8857,10 @@ export declare class INRentalCar extends SDKHandle {
      * @availability iOS 13.0+
      */
     get type(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INRentalCar": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "make": true;
         "model": true;
@@ -8073,6 +8904,11 @@ export declare class INRentalCarReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get rentalDuration(): INDateComponentsRange;
+    readonly $type: {
+        "c:objc(cs)INRentalCarReservation": true;
+        "c:objc(cs)INReservation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "actions": true;
@@ -8103,6 +8939,12 @@ export declare class INRequestPaymentCurrencyAmountResolutionResult extends INRe
      * @availability iOS 11.0+
      */
     static init(currencyAmountResolutionResult: INCurrencyAmountResolutionResult): INRequestPaymentCurrencyAmountResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INRequestPaymentCurrencyAmountResolutionResult": true;
+        "c:objc(cs)INCurrencyAmountResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INRequestPaymentCurrencyAmountUnsupportedReason
@@ -8122,13 +8964,11 @@ declare const INRequestPaymentIntent_base: Omit<typeof INIntent, "init" | "proto
  * @availability iOS 10.0+
  */
 export declare class INRequestPaymentIntent extends INRequestPaymentIntent_base {
-    /** init() */
-    static init(): INRequestPaymentIntent;
     /**
      * init(payer: INPerson?, currencyAmount: INCurrencyAmount?, note: String?)
      * @availability iOS 10.0+
      */
-    static initPayerCurrencyAmountNote(payer?: (INPerson) | null, currencyAmount?: $SDK15, note?: (string) | null): INRequestPaymentIntent;
+    static init(payer?: (INPerson) | null, currencyAmount?: $SDK15, note?: (string) | null): INRequestPaymentIntent;
     /**
      * @NSCopying var currencyAmount: INCurrencyAmount? { get }
      * @availability iOS 10.0+
@@ -8144,6 +8984,11 @@ export declare class INRequestPaymentIntent extends INRequestPaymentIntent_base 
      * @availability iOS 10.0+
      */
     get payer(): (INPerson) | null;
+    readonly $type: {
+        "c:objc(cs)INRequestPaymentIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -8186,8 +9031,13 @@ export declare class INRequestPaymentIntentResponse extends INRequestPaymentInte
      * @NSCopying var paymentRecord: INPaymentRecord? { get set }
      * @availability iOS 10.0+
      */
-    get paymentRecord(): $SDK73;
-    set paymentRecord(value: $SDK73);
+    get paymentRecord(): $SDK76;
+    set paymentRecord(value: $SDK76);
+    readonly $type: {
+        "c:objc(cs)INRequestPaymentIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -8222,6 +9072,12 @@ export declare class INRequestPaymentPayerResolutionResult extends INRequestPaym
      * @availability iOS 11.0+
      */
     static init(personResolutionResult: INPersonResolutionResult): INRequestPaymentPayerResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INRequestPaymentPayerResolutionResult": true;
+        "c:objc(cs)INPersonResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INRequestPaymentPayerUnsupportedReason
@@ -8241,8 +9097,6 @@ declare const INRequestRideIntent_base: Omit<typeof INIntent, "init" | "prototyp
  * @availability iOS 10.0+
  */
 export declare class INRequestRideIntent extends INRequestRideIntent_base {
-    /** init() */
-    static init(): INRequestRideIntent;
     /**
      * @NSCopying var dropOffLocation: CLPlacemark? { get }
      * @availability iOS 10.0+
@@ -8252,7 +9106,7 @@ export declare class INRequestRideIntent extends INRequestRideIntent_base {
      * @NSCopying var paymentMethod: INPaymentMethod? { get }
      * @availability iOS 10.0+
      */
-    get paymentMethod(): $SDK62;
+    get paymentMethod(): $SDK65;
     /**
      * @NSCopying var pickupLocation: CLPlacemark? { get }
      * @availability iOS 10.0+
@@ -8272,12 +9126,17 @@ export declare class INRequestRideIntent extends INRequestRideIntent_base {
      * @nonobjc convenience init(pickupLocation: CLPlacemark? = nil, dropOffLocation: CLPlacemark? = nil, rideOptionName: INSpeakableString? = nil, partySize: Int? = nil, paymentMethod: INPaymentMethod? = nil, scheduledPickupTime: INDateComponentsRange? = nil)
      * @availability iOS 10.0+
      */
-    static initPickupLocationDropOffLocationRideOptionNamePartySizePaymentMethodScheduledPickupTime(pickupLocation?: $SDK50, dropOffLocation?: $SDK50, rideOptionName?: $SDK2, partySize?: (number) | null, paymentMethod?: $SDK62, scheduledPickupTime?: $SDK29): INRequestRideIntent;
+    static init(pickupLocation?: $SDK50, dropOffLocation?: $SDK50, rideOptionName?: $SDK2, partySize?: (number) | null, paymentMethod?: $SDK65, scheduledPickupTime?: $SDK29): INRequestRideIntent;
     /**
      * @nonobjc final var partySize: Int? { get }
      * @availability iOS 10.0+
      */
     get partySize(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)INRequestRideIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -8324,6 +9183,11 @@ export declare class INRequestRideIntentResponse extends INRequestRideIntentResp
      */
     get rideStatus(): (INRideStatus) | null;
     set rideStatus(value: (INRideStatus) | null);
+    readonly $type: {
+        "c:objc(cs)INRequestRideIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -8367,6 +9231,10 @@ export declare class INReservationAction extends SDKHandle {
      * @availability iOS 13.0+
      */
     get validDuration(): INDateComponentsRange;
+    readonly $type: {
+        "c:objc(cs)INReservationAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "type": true;
         "userActivity": true;
@@ -8402,13 +9270,11 @@ export declare const INReservationStatus: {
  * @availability iOS 10.0+
  */
 export declare class INRestaurant extends SDKHandle {
-    /** init() */
-    static init(): INRestaurant;
     /**
      * init(location: CLLocation, name: String, vendorIdentifier: String, restaurantIdentifier: String)
      * @availability iOS 10.0+
      */
-    static initLocationNameVendorIdentifierRestaurantIdentifier(location: __LocationEssentials_CLLocation, name: string, vendorIdentifier: string, restaurantIdentifier: string): INRestaurant;
+    static init(location: __LocationEssentials_CLLocation, name: string, vendorIdentifier: string, restaurantIdentifier: string): INRestaurant;
     /**
      * @NSCopying var location: CLLocation { get set }
      * @availability iOS 10.0+
@@ -8433,6 +9299,10 @@ export declare class INRestaurant extends SDKHandle {
      */
     get vendorIdentifier(): string;
     set vendorIdentifier(value: string);
+    readonly $type: {
+        "c:objc(cs)INRestaurant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "location": true;
         "name": true;
@@ -8449,7 +9319,7 @@ export declare class INRestaurantGuest extends INPerson {
      * init(nameComponents: PersonNameComponents?, phoneNumber: String?, emailAddress: String?)
      * @availability iOS 10.0+
      */
-    static init(nameComponents?: $SDK63, phoneNumber?: (string) | null, emailAddress?: (string) | null): INRestaurantGuest;
+    static init(nameComponents?: $SDK66, phoneNumber?: (string) | null, emailAddress?: (string) | null): INRestaurantGuest;
     /**
      * var emailAddress: String? { get set }
      * @availability iOS 10.0+
@@ -8462,6 +9332,11 @@ export declare class INRestaurantGuest extends INPerson {
      */
     get phoneNumber(): (string) | null;
     set phoneNumber(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)INRestaurantGuest": true;
+        "c:objc(cs)INPerson": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "aliases": true;
         "contactIdentifier": true;
@@ -8535,6 +9410,10 @@ export declare class INRestaurantGuestDisplayPreferences extends SDKHandle {
      */
     get phoneNumberFieldShouldBeDisplayed(): boolean;
     set phoneNumberFieldShouldBeDisplayed(value: boolean);
+    readonly $type: {
+        "c:objc(cs)INRestaurantGuestDisplayPreferences": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "emailAddressEditable": true;
         "emailAddressFieldShouldBeDisplayed": true;
@@ -8566,6 +9445,11 @@ export declare class INRestaurantGuestResolutionResult extends INIntentResolutio
      * @availability iOS 10.0+
      */
     static success(resolvedRestaurantGuest: INRestaurantGuest): INRestaurantGuestResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INRestaurantGuestResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INRestaurantOffer
@@ -8592,6 +9476,10 @@ export declare class INRestaurantOffer extends SDKHandle {
      */
     get offerTitleText(): string;
     set offerTitleText(value: string);
+    readonly $type: {
+        "c:objc(cs)INRestaurantOffer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "offerDetailText": true;
         "offerIdentifier": true;
@@ -8628,6 +9516,11 @@ export declare class INRestaurantReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get partySize(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)INRestaurantReservation": true;
+        "c:objc(cs)INReservation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "actions": true;
@@ -8645,13 +9538,11 @@ export declare class INRestaurantReservation extends INReservation {
  * @availability iOS 10.0+
  */
 export declare class INRestaurantReservationBooking extends SDKHandle {
-    /** init() */
-    static init(): INRestaurantReservationBooking;
     /**
      * init(restaurant: INRestaurant, booking bookingDate: Date, partySize: Int, bookingIdentifier: String)
      * @availability iOS 10.0+
      */
-    static initRestaurantBookingPartySizeBookingIdentifier(restaurant: INRestaurant, bookingDate: globalThis.Date, partySize: number, bookingIdentifier: string): INRestaurantReservationBooking;
+    static init(restaurant: INRestaurant, bookingDate: globalThis.Date, partySize: number, bookingIdentifier: string): INRestaurantReservationBooking;
     /**
      * var isBookingAvailable: Bool { get set }
      * @availability iOS 10.0+
@@ -8680,8 +9571,8 @@ export declare class INRestaurantReservationBooking extends SDKHandle {
      * var offers: [INRestaurantOffer]? { get set }
      * @availability iOS 10.0+
      */
-    get offers(): $SDK75;
-    set offers(value: $SDK75);
+    get offers(): $SDK78;
+    set offers(value: $SDK78);
     /**
      * var partySize: Int { get set }
      * @availability iOS 10.0+
@@ -8718,6 +9609,10 @@ export declare class INRestaurantReservationBooking extends SDKHandle {
      */
     get restaurant(): INRestaurant;
     set restaurant(value: INRestaurant);
+    readonly $type: {
+        "c:objc(cs)INRestaurantReservationBooking": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isBookingAvailable": true;
         "bookingDate": true;
@@ -8738,13 +9633,11 @@ declare const INRestaurantReservationUserBooking_base: Omit<typeof INRestaurantR
  * @availability iOS 10.0+
  */
 export declare class INRestaurantReservationUserBooking extends INRestaurantReservationUserBooking_base {
-    /** init() */
-    static init(): INRestaurantReservationUserBooking;
     /**
      * init(restaurant: INRestaurant, booking bookingDate: Date, partySize: Int, bookingIdentifier: String, guest: INRestaurantGuest, status: INRestaurantReservationUserBookingStatus, dateStatusModified: Date)
      * @availability iOS 10.0+
      */
-    static initRestaurantBookingPartySizeBookingIdentifierGuestStatusDateStatusModified(restaurant: INRestaurant, bookingDate: globalThis.Date, partySize: number, bookingIdentifier: string, guest: INRestaurantGuest, status: INRestaurantReservationUserBookingStatus, dateStatusModified: globalThis.Date): INRestaurantReservationUserBooking;
+    static init(restaurant: INRestaurant, bookingDate: globalThis.Date, partySize: number, bookingIdentifier: string, guest: INRestaurantGuest, status: INRestaurantReservationUserBookingStatus, dateStatusModified: globalThis.Date): INRestaurantReservationUserBooking;
     /**
      * var advisementText: String? { get set }
      * @availability iOS 10.0+
@@ -8781,6 +9674,11 @@ export declare class INRestaurantReservationUserBooking extends INRestaurantRese
      */
     get status(): INRestaurantReservationUserBookingStatus;
     set status(value: INRestaurantReservationUserBookingStatus);
+    readonly $type: {
+        "c:objc(cs)INRestaurantReservationUserBooking": true;
+        "c:objc(cs)INRestaurantReservationBooking": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isBookingAvailable": true;
         "bookingDate": true;
@@ -8827,6 +9725,11 @@ export declare class INRestaurantResolutionResult extends INIntentResolutionResu
      * @availability iOS 10.0+
      */
     static success(resolvedRestaurant: INRestaurant): INRestaurantResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INRestaurantResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const INResumeWorkoutIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -8834,18 +9737,21 @@ declare const INResumeWorkoutIntent_base: Omit<typeof INIntent, "init" | "protot
  * @availability iOS 10.0+
  */
 export declare class INResumeWorkoutIntent extends INResumeWorkoutIntent_base {
-    /** init() */
-    static init(): INResumeWorkoutIntent;
     /**
      * init(workoutName: INSpeakableString?)
      * @availability iOS 10.0+
      */
-    static initWorkoutName(workoutName?: $SDK2): INResumeWorkoutIntent;
+    static init(workoutName?: $SDK2): INResumeWorkoutIntent;
     /**
      * @NSCopying var workoutName: INSpeakableString? { get }
      * @availability iOS 10.0+
      */
     get workoutName(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INResumeWorkoutIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -8882,6 +9788,11 @@ export declare class INResumeWorkoutIntentResponse extends INResumeWorkoutIntent
      * @availability iOS 10.0+
      */
     get code(): INResumeWorkoutIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INResumeWorkoutIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -8959,8 +9870,8 @@ export declare class INRideCompletionStatus extends SDKHandle {
      * var defaultTippingOptions: Set<INCurrencyAmount>? { get set }
      * @availability iOS 11.0+
      */
-    get defaultTippingOptions(): $SDK76;
-    set defaultTippingOptions(value: $SDK76);
+    get defaultTippingOptions(): $SDK79;
+    set defaultTippingOptions(value: $SDK79);
     /**
      * var feedbackType: INRideFeedbackTypeOptions { get }
      * @availability iOS 11.0+
@@ -8981,6 +9892,10 @@ export declare class INRideCompletionStatus extends SDKHandle {
      * @availability iOS 10.0+
      */
     get paymentAmount(): $SDK15;
+    readonly $type: {
+        "c:objc(cs)INRideCompletionStatus": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCanceled": true;
         "isCompleted": true;
@@ -9014,12 +9929,12 @@ export declare class INRideDriver extends INPerson {
      * @availability iOS 10.0+
      * @deprecated iOS 10.2
      */
-    static initPersonHandleNameComponentsDisplayNameImageRatingPhoneNumber(personHandle: INPersonHandle, nameComponents?: $SDK63, displayName?: (string) | null, image?: (INImage) | null, rating?: (string) | null, phoneNumber?: (string) | null): INRideDriver;
+    static initPersonHandleNameComponentsDisplayNameImageRatingPhoneNumber(personHandle: INPersonHandle, nameComponents?: $SDK66, displayName?: (string) | null, image?: (INImage) | null, rating?: (string) | null, phoneNumber?: (string) | null): INRideDriver;
     /**
      * init(phoneNumber: String, nameComponents: PersonNameComponents?, displayName: String?, image: INImage?, rating: String?)
      * @availability iOS 10.2+
      */
-    static initPhoneNumberNameComponentsDisplayNameImageRating(phoneNumber: string, nameComponents?: $SDK63, displayName?: (string) | null, image?: (INImage) | null, rating?: (string) | null): INRideDriver;
+    static initPhoneNumberNameComponentsDisplayNameImageRating(phoneNumber: string, nameComponents?: $SDK66, displayName?: (string) | null, image?: (INImage) | null, rating?: (string) | null): INRideDriver;
     /**
      * var phoneNumber: String? { get }
      * @availability iOS 10.0+
@@ -9030,6 +9945,11 @@ export declare class INRideDriver extends INPerson {
      * @availability iOS 10.0+
      */
     get rating(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INRideDriver": true;
+        "c:objc(cs)INPerson": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "aliases": true;
         "contactIdentifier": true;
@@ -9073,6 +9993,10 @@ export declare class INRideFareLineItem extends SDKHandle {
      * @availability iOS 10.0+
      */
     get title(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INRideFareLineItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currencyCode": true;
         "price": true;
@@ -9120,8 +10044,8 @@ export declare class INRideOption extends SDKHandle {
      * var availablePartySizeOptions: [INRidePartySizeOption]? { get set }
      * @availability iOS 10.0+
      */
-    get availablePartySizeOptions(): $SDK77;
-    set availablePartySizeOptions(value: $SDK77);
+    get availablePartySizeOptions(): $SDK80;
+    set availablePartySizeOptions(value: $SDK80);
     /**
      * var availablePartySizeOptionsSelectionPrompt: String? { get set }
      * @availability iOS 10.0+
@@ -9144,8 +10068,8 @@ export declare class INRideOption extends SDKHandle {
      * var fareLineItems: [INRideFareLineItem]? { get set }
      * @availability iOS 10.0+
      */
-    get fareLineItems(): $SDK78;
-    set fareLineItems(value: $SDK78);
+    get fareLineItems(): $SDK81;
+    set fareLineItems(value: $SDK81);
     /** var identifier: String? { get set } */
     get identifier(): (string) | null;
     set identifier(value: (string) | null);
@@ -9191,6 +10115,10 @@ export declare class INRideOption extends SDKHandle {
      */
     get usesMeteredFare51416(): $SDK36;
     set usesMeteredFare51416(value: $SDK36);
+    readonly $type: {
+        "c:objc(cs)INRideOption": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "availablePartySizeOptions": true;
         "availablePartySizeOptionsSelectionPrompt": true;
@@ -9230,6 +10158,10 @@ export declare class INRidePartySizeOption extends SDKHandle {
      * @availability iOS 10.0+
      */
     get sizeDescription(): string;
+    readonly $type: {
+        "c:objc(cs)INRidePartySizeOption": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "partySizeRange": true;
         "priceRange": true;
@@ -9291,14 +10223,14 @@ export declare class INRideStatus extends SDKHandle {
      * var additionalActionActivities: [NSUserActivity]? { get set }
      * @availability iOS 10.0+
      */
-    get additionalActionActivities(): $SDK79;
-    set additionalActionActivities(value: $SDK79);
+    get additionalActionActivities(): $SDK82;
+    set additionalActionActivities(value: $SDK82);
     /**
      * @NSCopying var completionStatus: INRideCompletionStatus? { get set }
      * @availability iOS 10.0+
      */
-    get completionStatus(): $SDK80;
-    set completionStatus(value: $SDK80);
+    get completionStatus(): $SDK83;
+    set completionStatus(value: $SDK83);
     /**
      * @NSCopying var driver: INRideDriver? { get set }
      * @availability iOS 10.0+
@@ -9375,8 +10307,12 @@ export declare class INRideStatus extends SDKHandle {
      * var waypoints: [CLPlacemark]? { get set }
      * @availability iOS 10.0+
      */
-    get waypoints(): $SDK81;
-    set waypoints(value: $SDK81);
+    get waypoints(): $SDK84;
+    set waypoints(value: $SDK84);
+    readonly $type: {
+        "c:objc(cs)INRideStatus": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "additionalActionActivities": true;
         "completionStatus": true;
@@ -9406,8 +10342,8 @@ export declare class INRideVehicle extends SDKHandle {
      * @NSCopying var location: CLLocation? { get set }
      * @availability iOS 10.0+
      */
-    get location(): $SDK82;
-    set location(value: $SDK82);
+    get location(): $SDK85;
+    set location(value: $SDK85);
     /**
      * var manufacturer: String? { get set }
      * @availability iOS 10.0+
@@ -9432,6 +10368,10 @@ export declare class INRideVehicle extends SDKHandle {
      */
     get registrationPlate(): (string) | null;
     set registrationPlate(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)INRideVehicle": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "location": true;
         "manufacturer": true;
@@ -9447,8 +10387,6 @@ declare const INSaveProfileInCarIntent_base: Omit<typeof INIntent, "init" | "pro
  * @deprecated iOS 15.0
  */
 export declare class INSaveProfileInCarIntent extends INSaveProfileInCarIntent_base {
-    /** init() */
-    static init(): INSaveProfileInCarIntent;
     /**
      * var profileLabel: String? { get }
      * @availability iOS 10.0+
@@ -9466,13 +10404,18 @@ export declare class INSaveProfileInCarIntent extends INSaveProfileInCarIntent_b
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    static initProfileNumberProfileLabel(profileNumber?: (number) | null, profileLabel?: (string) | null): INSaveProfileInCarIntent;
+    static init(profileNumber?: (number) | null, profileLabel?: (string) | null): INSaveProfileInCarIntent;
     /**
      * @nonobjc final var profileNumber: Int? { get }
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
     get profileNumber(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)INSaveProfileInCarIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -9515,6 +10458,11 @@ export declare class INSaveProfileInCarIntentResponse extends INSaveProfileInCar
      * @deprecated iOS 15.0
      */
     get code(): INSaveProfileInCarIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSaveProfileInCarIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -9534,15 +10482,12 @@ export declare const INSaveProfileInCarIntentResponseCode: {
      */
     init(rawValue: number): (INSaveProfileInCarIntentResponseCode) | null;
 };
-declare const INSearchCallHistoryIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
  * class INSearchCallHistoryIntent
  * @availability iOS 10.0+
  * @deprecated iOS 15.0
  */
-export declare class INSearchCallHistoryIntent extends INSearchCallHistoryIntent_base {
-    /** init() */
-    static init(): INSearchCallHistoryIntent;
+export declare class INSearchCallHistoryIntent extends INIntent {
     /**
      * convenience init(call callType: INCallRecordType, dateCreated: INDateComponentsRange?, recipient: INPerson?, callCapabilities: INCallCapabilityOptions = [])
      * @availability iOS 10.0+
@@ -9591,6 +10536,11 @@ export declare class INSearchCallHistoryIntent extends INSearchCallHistoryIntent
      * @deprecated iOS 15.0
      */
     get unseen(): (boolean) | null;
+    readonly $type: {
+        "c:objc(cs)INSearchCallHistoryIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -9643,6 +10593,11 @@ export declare class INSearchCallHistoryIntentResponse extends INSearchCallHisto
      * @deprecated iOS 15.0
      */
     get code(): INSearchCallHistoryIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSearchCallHistoryIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "callRecords": true;
@@ -9669,13 +10624,11 @@ declare const INSearchForAccountsIntent_base: Omit<typeof INIntent, "init" | "pr
  * @availability iOS 11.0+
  */
 export declare class INSearchForAccountsIntent extends INSearchForAccountsIntent_base {
-    /** init() */
-    static init(): INSearchForAccountsIntent;
     /**
      * init(accountNickname: INSpeakableString?, accountType: INAccountType, organizationName: INSpeakableString?, requestedBalanceType: INBalanceType)
      * @availability iOS 11.0+
      */
-    static initAccountNicknameAccountTypeOrganizationNameRequestedBalanceType(accountNickname: $SDK2, accountType: INAccountType, organizationName: $SDK2, requestedBalanceType: INBalanceType): INSearchForAccountsIntent;
+    static init(accountNickname: $SDK2, accountType: INAccountType, organizationName: $SDK2, requestedBalanceType: INBalanceType): INSearchForAccountsIntent;
     /**
      * @NSCopying var accountNickname: INSpeakableString? { get }
      * @availability iOS 11.0+
@@ -9696,6 +10649,11 @@ export declare class INSearchForAccountsIntent extends INSearchForAccountsIntent
      * @availability iOS 11.0+
      */
     get requestedBalanceType(): INBalanceType;
+    readonly $type: {
+        "c:objc(cs)INSearchForAccountsIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -9734,13 +10692,18 @@ export declare class INSearchForAccountsIntentResponse extends INSearchForAccoun
      * var accounts: [INPaymentAccount]? { get set }
      * @availability iOS 11.0+
      */
-    get accounts(): $SDK83;
-    set accounts(value: $SDK83);
+    get accounts(): $SDK86;
+    set accounts(value: $SDK86);
     /**
      * var code: INSearchForAccountsIntentResponseCode { get }
      * @availability iOS 11.0+
      */
     get code(): INSearchForAccountsIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSearchForAccountsIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "accounts": true;
@@ -9766,14 +10729,12 @@ declare const INSearchForBillsIntent_base: Omit<typeof INIntent, "init" | "proto
  * @deprecated iOS 15.0
  */
 export declare class INSearchForBillsIntent extends INSearchForBillsIntent_base {
-    /** init() */
-    static init(): INSearchForBillsIntent;
     /**
      * init(billPayee: INBillPayee?, paymentDateRange: INDateComponentsRange?, billType: INBillType, status: INPaymentStatus, dueDateRange: INDateComponentsRange?)
      * @availability iOS 10.3+
      * @deprecated iOS 15.0
      */
-    static initBillPayeePaymentDateRangeBillTypeStatusDueDateRange(billPayee: (INBillPayee) | null, paymentDateRange: $SDK29, billType: INBillType, status: INPaymentStatus, dueDateRange?: $SDK29): INSearchForBillsIntent;
+    static init(billPayee: (INBillPayee) | null, paymentDateRange: $SDK29, billType: INBillType, status: INPaymentStatus, dueDateRange?: $SDK29): INSearchForBillsIntent;
     /**
      * @NSCopying var billPayee: INBillPayee? { get }
      * @availability iOS 10.3+
@@ -9804,6 +10765,11 @@ export declare class INSearchForBillsIntent extends INSearchForBillsIntent_base 
      * @deprecated iOS 15.0
      */
     get status(): INPaymentStatus;
+    readonly $type: {
+        "c:objc(cs)INSearchForBillsIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -9856,6 +10822,11 @@ export declare class INSearchForBillsIntentResponse extends INSearchForBillsInte
      * @deprecated iOS 15.0
      */
     get code(): INSearchForBillsIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSearchForBillsIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "bills": true;
@@ -9882,13 +10853,11 @@ declare const INSearchForMediaIntent_base: Omit<typeof INIntent, "init" | "proto
  * @availability iOS 13.0+
  */
 export declare class INSearchForMediaIntent extends INSearchForMediaIntent_base {
-    /** init() */
-    static init(): INSearchForMediaIntent;
     /**
      * init(mediaItems: [INMediaItem]?, mediaSearch: INMediaSearch?)
      * @availability iOS 13.0+
      */
-    static initMediaItemsMediaSearch(mediaItems?: $SDK4, mediaSearch?: (INMediaSearch) | null): INSearchForMediaIntent;
+    static init(mediaItems?: $SDK4, mediaSearch?: (INMediaSearch) | null): INSearchForMediaIntent;
     /**
      * var mediaItems: [INMediaItem]? { get }
      * @availability iOS 13.0+
@@ -9899,6 +10868,11 @@ export declare class INSearchForMediaIntent extends INSearchForMediaIntent_base 
      * @availability iOS 13.0+
      */
     get mediaSearch(): (INMediaSearch) | null;
+    readonly $type: {
+        "c:objc(cs)INSearchForMediaIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -9942,6 +10916,11 @@ export declare class INSearchForMediaIntentResponse extends INSearchForMediaInte
      */
     get mediaItems(): $SDK4;
     set mediaItems(value: $SDK4);
+    readonly $type: {
+        "c:objc(cs)INSearchForMediaIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -9981,6 +10960,12 @@ export declare class INSearchForMediaMediaItemResolutionResult extends INSearchF
      * @availability iOS 13.0+
      */
     static init(mediaItemResolutionResult: INMediaItemResolutionResult): INSearchForMediaMediaItemResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INSearchForMediaMediaItemResolutionResult": true;
+        "c:objc(cs)INMediaItemResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INSearchForMediaMediaItemUnsupportedReason
@@ -9994,14 +10979,11 @@ export declare const INSearchForMediaMediaItemUnsupportedReason: {
      */
     init(rawValue: number): (INSearchForMediaMediaItemUnsupportedReason) | null;
 };
-declare const INSearchForMessagesIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
  * class INSearchForMessagesIntent
  * @availability iOS 10.0+
  */
-export declare class INSearchForMessagesIntent extends INSearchForMessagesIntent_base {
-    /** init() */
-    static init(): INSearchForMessagesIntent;
+export declare class INSearchForMessagesIntent extends INIntent {
     /**
      * convenience init(recipients: [INPerson]?, senders: [INPerson]?, searchTerms: [String]?, attributes: INMessageAttributeOptions = [], dateTime dateTimeRange: INDateComponentsRange?, identifiers: [String]?, notificationIdentifiers: [String]?, groupNames: [String]?)
      * @availability iOS 10.0+
@@ -10111,6 +11093,11 @@ export declare class INSearchForMessagesIntent extends INSearchForMessagesIntent
      * @availability iOS 11.0+
      */
     get speakableGroupNamesOperator(): INConditionalOperator;
+    readonly $type: {
+        "c:objc(cs)INSearchForMessagesIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -10168,8 +11155,13 @@ export declare class INSearchForMessagesIntentResponse extends INSearchForMessag
      * var messages: [INMessage]? { get set }
      * @availability iOS 10.0+
      */
-    get messages(): $SDK86;
-    set messages(value: $SDK86);
+    get messages(): $SDK89;
+    set messages(value: $SDK89);
+    readonly $type: {
+        "c:objc(cs)INSearchForMessagesIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -10188,15 +11180,12 @@ export declare const INSearchForMessagesIntentResponseCode: {
      */
     init(rawValue: number): (INSearchForMessagesIntentResponseCode) | null;
 };
-declare const INSearchForNotebookItemsIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
  * class INSearchForNotebookItemsIntent
  * @availability iOS 11.0+
  * @deprecated iOS 27.0
  */
-export declare class INSearchForNotebookItemsIntent extends INSearchForNotebookItemsIntent_base {
-    /** init() */
-    static init(): INSearchForNotebookItemsIntent;
+export declare class INSearchForNotebookItemsIntent extends INIntent {
     /**
      * convenience init(title: INSpeakableString?, content: String?, itemType: INNotebookItemType, status: INTaskStatus, location: CLPlacemark?, locationSearchType: INLocationSearchType, dateTime: INDateComponentsRange?, dateSearchType: INDateSearchType)
      * @availability iOS 11.0+
@@ -10281,6 +11270,11 @@ export declare class INSearchForNotebookItemsIntent extends INSearchForNotebookI
      * @deprecated iOS 27.0
      */
     get title(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INSearchForNotebookItemsIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -10360,6 +11354,11 @@ export declare class INSearchForNotebookItemsIntentResponse extends INSearchForN
      */
     get tasks(): (Array<INTask>) | null;
     set tasks(value: (Array<INTask>) | null);
+    readonly $type: {
+        "c:objc(cs)INSearchForNotebookItemsIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -10390,14 +11389,12 @@ declare const INSearchForPhotosIntent_base: Omit<typeof INIntent, "init" | "prot
  * @deprecated iOS 15.0
  */
 export declare class INSearchForPhotosIntent extends INSearchForPhotosIntent_base {
-    /** init() */
-    static init(): INSearchForPhotosIntent;
     /**
      * init(dateCreated: INDateComponentsRange?, locationCreated: CLPlacemark?, albumName: String?, searchTerms: [String]?, includedAttributes: INPhotoAttributeOptions = [], excludedAttributes: INPhotoAttributeOptions = [], peopleInPhoto: [INPerson]?)
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    static initDateCreatedLocationCreatedAlbumNameSearchTermsIncludedAttributesExcludedAttributesPeopleInPhoto(dateCreated?: $SDK29, locationCreated?: $SDK50, albumName?: (string) | null, searchTerms?: (Array<string>) | null, includedAttributes?: INPhotoAttributeOptions, excludedAttributes?: INPhotoAttributeOptions, peopleInPhoto?: $SDK22): INSearchForPhotosIntent;
+    static init(dateCreated?: $SDK29, locationCreated?: $SDK50, albumName?: (string) | null, searchTerms?: (Array<string>) | null, includedAttributes?: INPhotoAttributeOptions, excludedAttributes?: INPhotoAttributeOptions, peopleInPhoto?: $SDK22): INSearchForPhotosIntent;
     /**
      * var albumName: String? { get }
      * @availability iOS 10.0+
@@ -10452,6 +11449,11 @@ export declare class INSearchForPhotosIntent extends INSearchForPhotosIntent_bas
      * @deprecated iOS 15.0
      */
     get searchTermsOperator(): INConditionalOperator;
+    readonly $type: {
+        "c:objc(cs)INSearchForPhotosIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -10508,6 +11510,11 @@ export declare class INSearchForPhotosIntentResponse extends INSearchForPhotosIn
      */
     get searchResultsCount(): (number) | null;
     set searchResultsCount(value: (number) | null);
+    readonly $type: {
+        "c:objc(cs)INSearchForPhotosIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -10557,6 +11564,10 @@ export declare class INSeat extends SDKHandle {
      * @availability iOS 13.0+
      */
     get seatingType(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INSeat": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "seatNumber": true;
         "seatRow": true;
@@ -10573,26 +11584,25 @@ export declare class INSendMessageAttachment extends SDKHandle {
      * init(audioMessageFile: INFile)
      * @availability iOS 14.0+
      */
-    static initAudioMessageFile(audioMessageFile: INFile): INSendMessageAttachment;
-    /** init() */
-    static init(): INSendMessageAttachment;
+    static init(audioMessageFile: INFile): INSendMessageAttachment;
     /**
      * @NSCopying var audioMessageFile: INFile? { get }
      * @availability iOS 14.0+
      */
     get audioMessageFile(): (INFile) | null;
+    readonly $type: {
+        "c:objc(cs)INSendMessageAttachment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioMessageFile": true;
     };
 }
-declare const INSendMessageIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
  * class INSendMessageIntent
  * @availability iOS 10.0+
  */
-export declare class INSendMessageIntent extends INSendMessageIntent_base {
-    /** init() */
-    static init(): INSendMessageIntent;
+export declare class INSendMessageIntent extends INIntent {
     /**
      * convenience init(recipients: [INPerson]?, content: String?, groupName: String?, serviceName: String?, sender: INPerson?)
      * @availability iOS 10.0+
@@ -10615,12 +11625,12 @@ export declare class INSendMessageIntent extends INSendMessageIntent_base {
      * init(recipients: [INPerson]?, outgoingMessageType: INOutgoingMessageType, content: String?, speakableGroupName: INSpeakableString?, conversationIdentifier: String?, serviceName: String?, sender: INPerson?, attachments: [INSendMessageAttachment]?)
      * @availability iOS 14.0+
      */
-    static initRecipientsOutgoingMessageTypeContentSpeakableGroupNameConversationIdentifierServiceNameSenderAttachments(recipients: $SDK22, outgoingMessageType: INOutgoingMessageType, content?: (string) | null, speakableGroupName?: $SDK2, conversationIdentifier?: (string) | null, serviceName?: (string) | null, sender?: (INPerson) | null, attachments?: $SDK88): INSendMessageIntent;
+    static initRecipientsOutgoingMessageTypeContentSpeakableGroupNameConversationIdentifierServiceNameSenderAttachments(recipients: $SDK22, outgoingMessageType: INOutgoingMessageType, content?: (string) | null, speakableGroupName?: $SDK2, conversationIdentifier?: (string) | null, serviceName?: (string) | null, sender?: (INPerson) | null, attachments?: $SDK91): INSendMessageIntent;
     /**
      * var attachments: [INSendMessageAttachment]? { get }
      * @availability iOS 14.0+
      */
-    get attachments(): $SDK88;
+    get attachments(): $SDK91;
     /**
      * var content: String? { get }
      * @availability iOS 10.0+
@@ -10662,6 +11672,11 @@ export declare class INSendMessageIntent extends INSendMessageIntent_base {
      * @availability iOS 11.0+
      */
     get speakableGroupName(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)INSendMessageIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -10713,6 +11728,11 @@ export declare class INSendMessageIntentDonationMetadata extends INIntentDonatio
      */
     get isReplyToCurrentUser(): boolean;
     set isReplyToCurrentUser(value: boolean);
+    readonly $type: {
+        "c:objc(cs)INSendMessageIntentDonationMetadata": true;
+        "c:objc(cs)INIntentDonationMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mentionsCurrentUser": true;
         "notifyRecipientAnyway": true;
@@ -10758,8 +11778,13 @@ export declare class INSendMessageIntentResponse extends INSendMessageIntentResp
      * var sentMessages: [INMessage]? { get set }
      * @availability iOS 16.0+
      */
-    get sentMessages(): $SDK86;
-    set sentMessages(value: $SDK86);
+    get sentMessages(): $SDK89;
+    set sentMessages(value: $SDK89);
+    readonly $type: {
+        "c:objc(cs)INSendMessageIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -10795,6 +11820,12 @@ export declare class INSendMessageRecipientResolutionResult extends INSendMessag
      * @availability iOS 11.0+
      */
     static init(personResolutionResult: INPersonResolutionResult): INSendMessageRecipientResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INSendMessageRecipientResolutionResult": true;
+        "c:objc(cs)INPersonResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INSendMessageRecipientUnsupportedReason
@@ -10824,6 +11855,12 @@ export declare class INSendPaymentCurrencyAmountResolutionResult extends INSendP
      * @availability iOS 11.0+
      */
     static init(currencyAmountResolutionResult: INCurrencyAmountResolutionResult): INSendPaymentCurrencyAmountResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INSendPaymentCurrencyAmountResolutionResult": true;
+        "c:objc(cs)INCurrencyAmountResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INSendPaymentCurrencyAmountUnsupportedReason
@@ -10843,13 +11880,11 @@ declare const INSendPaymentIntent_base: Omit<typeof INIntent, "init" | "prototyp
  * @availability iOS 10.0+
  */
 export declare class INSendPaymentIntent extends INSendPaymentIntent_base {
-    /** init() */
-    static init(): INSendPaymentIntent;
     /**
      * init(payee: INPerson?, currencyAmount: INCurrencyAmount?, note: String?)
      * @availability iOS 10.0+
      */
-    static initPayeeCurrencyAmountNote(payee?: (INPerson) | null, currencyAmount?: $SDK15, note?: (string) | null): INSendPaymentIntent;
+    static init(payee?: (INPerson) | null, currencyAmount?: $SDK15, note?: (string) | null): INSendPaymentIntent;
     /**
      * @NSCopying var currencyAmount: INCurrencyAmount? { get }
      * @availability iOS 10.0+
@@ -10865,6 +11900,11 @@ export declare class INSendPaymentIntent extends INSendPaymentIntent_base {
      * @availability iOS 10.0+
      */
     get payee(): (INPerson) | null;
+    readonly $type: {
+        "c:objc(cs)INSendPaymentIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -10907,8 +11947,13 @@ export declare class INSendPaymentIntentResponse extends INSendPaymentIntentResp
      * @NSCopying var paymentRecord: INPaymentRecord? { get set }
      * @availability iOS 10.0+
      */
-    get paymentRecord(): $SDK73;
-    set paymentRecord(value: $SDK73);
+    get paymentRecord(): $SDK76;
+    set paymentRecord(value: $SDK76);
+    readonly $type: {
+        "c:objc(cs)INSendPaymentIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -10943,6 +11988,12 @@ export declare class INSendPaymentPayeeResolutionResult extends INSendPaymentPay
      * @availability iOS 11.0+
      */
     static init(personResolutionResult: INPersonResolutionResult): INSendPaymentPayeeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INSendPaymentPayeeResolutionResult": true;
+        "c:objc(cs)INPersonResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INSendPaymentPayeeUnsupportedReason
@@ -10984,6 +12035,11 @@ export declare class INSendRideFeedbackIntent extends INSendRideFeedbackIntent_b
      */
     get tip(): $SDK15;
     set tip(value: $SDK15);
+    readonly $type: {
+        "c:objc(cs)INSendRideFeedbackIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -11022,6 +12078,11 @@ export declare class INSendRideFeedbackIntentResponse extends INSendRideFeedback
      * @availability iOS 11.0+
      */
     get code(): INSendRideFeedbackIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSendRideFeedbackIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -11046,14 +12107,12 @@ declare const INSetAudioSourceInCarIntent_base: Omit<typeof INIntent, "init" | "
  * @deprecated iOS 15.0
  */
 export declare class INSetAudioSourceInCarIntent extends INSetAudioSourceInCarIntent_base {
-    /** init() */
-    static init(): INSetAudioSourceInCarIntent;
     /**
      * init(audioSource: INCarAudioSource, relativeAudioSourceReference: INRelativeReference)
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    static initAudioSourceRelativeAudioSourceReference(audioSource: INCarAudioSource, relativeAudioSourceReference: INRelativeReference): INSetAudioSourceInCarIntent;
+    static init(audioSource: INCarAudioSource, relativeAudioSourceReference: INRelativeReference): INSetAudioSourceInCarIntent;
     /**
      * var audioSource: INCarAudioSource { get }
      * @availability iOS 10.0+
@@ -11066,6 +12125,11 @@ export declare class INSetAudioSourceInCarIntent extends INSetAudioSourceInCarIn
      * @deprecated iOS 15.0
      */
     get relativeAudioSourceReference(): INRelativeReference;
+    readonly $type: {
+        "c:objc(cs)INSetAudioSourceInCarIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -11108,6 +12172,11 @@ export declare class INSetAudioSourceInCarIntentResponse extends INSetAudioSourc
      * @deprecated iOS 15.0
      */
     get code(): INSetAudioSourceInCarIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSetAudioSourceInCarIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -11133,8 +12202,6 @@ declare const INSetCarLockStatusIntent_base: Omit<typeof INIntent, "init" | "pro
  * @availability iOS 10.3+
  */
 export declare class INSetCarLockStatusIntent extends INSetCarLockStatusIntent_base {
-    /** init() */
-    static init(): INSetCarLockStatusIntent;
     /**
      * @NSCopying var carName: INSpeakableString? { get }
      * @availability iOS 10.3+
@@ -11144,12 +12211,17 @@ export declare class INSetCarLockStatusIntent extends INSetCarLockStatusIntent_b
      * @nonobjc convenience init(locked: Bool?, carName: INSpeakableString?)
      * @availability iOS 10.3+
      */
-    static initLockedCarName(locked?: (boolean) | null, carName?: $SDK2): INSetCarLockStatusIntent;
+    static init(locked?: (boolean) | null, carName?: $SDK2): INSetCarLockStatusIntent;
     /**
      * @nonobjc final var locked: Bool? { get }
      * @availability iOS 10.3+
      */
     get locked(): (boolean) | null;
+    readonly $type: {
+        "c:objc(cs)INSetCarLockStatusIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -11186,6 +12258,11 @@ export declare class INSetCarLockStatusIntentResponse extends INSetCarLockStatus
      * @availability iOS 10.3+
      */
     get code(): INSetCarLockStatusIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSetCarLockStatusIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -11210,8 +12287,6 @@ declare const INSetClimateSettingsInCarIntent_base: Omit<typeof INIntent, "init"
  * @deprecated iOS 15.0
  */
 export declare class INSetClimateSettingsInCarIntent extends INSetClimateSettingsInCarIntent_base {
-    /** init() */
-    static init(): INSetClimateSettingsInCarIntent;
     /**
      * var airCirculationMode: INCarAirCirculationMode { get }
      * @availability iOS 10.0+
@@ -11247,7 +12322,7 @@ export declare class INSetClimateSettingsInCarIntent extends INSetClimateSetting
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    get temperature(): $SDK89;
+    get temperature(): $SDK92;
     /**
      * @nonobjc final var enableClimateControl: Bool? { get }
      * @availability iOS 10.0+
@@ -11283,13 +12358,18 @@ export declare class INSetClimateSettingsInCarIntent extends INSetClimateSetting
      * @availability iOS 12.0+
      * @deprecated iOS 15.0
      */
-    static initEnableFanEnableAirConditionerEnableClimateControlEnableAutoModeAirCirculationModeFanSpeedIndexFanSpeedPercentageRelativeFanSpeedSettingTemperatureRelativeTemperatureSettingClimateZoneCarName(enableFan?: (boolean) | null, enableAirConditioner?: (boolean) | null, enableClimateControl?: (boolean) | null, enableAutoMode?: (boolean) | null, airCirculationMode?: INCarAirCirculationMode, fanSpeedIndex?: (number) | null, fanSpeedPercentage?: (number) | null, relativeFanSpeedSetting?: INRelativeSetting, temperature?: $SDK89, relativeTemperatureSetting?: INRelativeSetting, climateZone?: INCarSeat, carName?: $SDK2): INSetClimateSettingsInCarIntent;
+    static init(enableFan?: (boolean) | null, enableAirConditioner?: (boolean) | null, enableClimateControl?: (boolean) | null, enableAutoMode?: (boolean) | null, airCirculationMode?: INCarAirCirculationMode, fanSpeedIndex?: (number) | null, fanSpeedPercentage?: (number) | null, relativeFanSpeedSetting?: INRelativeSetting, temperature?: $SDK92, relativeTemperatureSetting?: INRelativeSetting, climateZone?: INCarSeat, carName?: $SDK2): INSetClimateSettingsInCarIntent;
     /**
      * @nonobjc final var enableFan: Bool? { get }
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
     get enableFan(): (boolean) | null;
+    readonly $type: {
+        "c:objc(cs)INSetClimateSettingsInCarIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -11336,6 +12416,11 @@ export declare class INSetClimateSettingsInCarIntentResponse extends INSetClimat
      * @deprecated iOS 15.0
      */
     get code(): INSetClimateSettingsInCarIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSetClimateSettingsInCarIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -11362,8 +12447,6 @@ declare const INSetDefrosterSettingsInCarIntent_base: Omit<typeof INIntent, "ini
  * @deprecated iOS 15.0
  */
 export declare class INSetDefrosterSettingsInCarIntent extends INSetDefrosterSettingsInCarIntent_base {
-    /** init() */
-    static init(): INSetDefrosterSettingsInCarIntent;
     /**
      * @NSCopying var carName: INSpeakableString? { get }
      * @availability iOS 12.0+
@@ -11381,13 +12464,18 @@ export declare class INSetDefrosterSettingsInCarIntent extends INSetDefrosterSet
      * @availability iOS 12.0+
      * @deprecated iOS 15.0
      */
-    static initEnableDefrosterCarName(enable?: (boolean) | null, defroster?: INCarDefroster, carName?: $SDK2): INSetDefrosterSettingsInCarIntent;
+    static init(enable?: (boolean) | null, defroster?: INCarDefroster, carName?: $SDK2): INSetDefrosterSettingsInCarIntent;
     /**
      * @nonobjc final var enable: Bool? { get }
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
     get enable(): (boolean) | null;
+    readonly $type: {
+        "c:objc(cs)INSetDefrosterSettingsInCarIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -11430,6 +12518,11 @@ export declare class INSetDefrosterSettingsInCarIntentResponse extends INSetDefr
      * @deprecated iOS 15.0
      */
     get code(): INSetDefrosterSettingsInCarIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSetDefrosterSettingsInCarIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -11455,13 +12548,11 @@ declare const INSetMessageAttributeIntent_base: Omit<typeof INIntent, "init" | "
  * @availability iOS 10.0+
  */
 export declare class INSetMessageAttributeIntent extends INSetMessageAttributeIntent_base {
-    /** init() */
-    static init(): INSetMessageAttributeIntent;
     /**
      * init(identifiers: [String]?, attribute: INMessageAttribute)
      * @availability iOS 10.0+
      */
-    static initIdentifiersAttribute(identifiers: (Array<string>) | null, attribute: INMessageAttribute): INSetMessageAttributeIntent;
+    static init(identifiers: (Array<string>) | null, attribute: INMessageAttribute): INSetMessageAttributeIntent;
     /**
      * var attribute: INMessageAttribute { get }
      * @availability iOS 10.0+
@@ -11472,6 +12563,11 @@ export declare class INSetMessageAttributeIntent extends INSetMessageAttributeIn
      * @availability iOS 10.0+
      */
     get identifiers(): (Array<string>) | null;
+    readonly $type: {
+        "c:objc(cs)INSetMessageAttributeIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -11509,6 +12605,11 @@ export declare class INSetMessageAttributeIntentResponse extends INSetMessageAtt
      * @availability iOS 10.0+
      */
     get code(): INSetMessageAttributeIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSetMessageAttributeIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -11526,15 +12627,12 @@ export declare const INSetMessageAttributeIntentResponseCode: {
      */
     init(rawValue: number): (INSetMessageAttributeIntentResponseCode) | null;
 };
-declare const INSetProfileInCarIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
  * class INSetProfileInCarIntent
  * @availability iOS 10.0+
  * @deprecated iOS 15.0
  */
-export declare class INSetProfileInCarIntent extends INSetProfileInCarIntent_base {
-    /** init() */
-    static init(): INSetProfileInCarIntent;
+export declare class INSetProfileInCarIntent extends INIntent {
     /**
      * @NSCopying var carName: INSpeakableString? { get }
      * @availability iOS 12.0+
@@ -11631,6 +12729,11 @@ export declare class INSetProfileInCarIntent extends INSetProfileInCarIntent_bas
      * @deprecated iOS 15.0
      */
     get profileNumber(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)INSetProfileInCarIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -11674,6 +12777,11 @@ export declare class INSetProfileInCarIntentResponse extends INSetProfileInCarIn
      * @deprecated iOS 15.0
      */
     get code(): INSetProfileInCarIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSetProfileInCarIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -11700,8 +12808,6 @@ declare const INSetRadioStationIntent_base: Omit<typeof INIntent, "init" | "prot
  * @deprecated iOS 15.0
  */
 export declare class INSetRadioStationIntent extends INSetRadioStationIntent_base {
-    /** init() */
-    static init(): INSetRadioStationIntent;
     /**
      * var channel: String? { get }
      * @availability iOS 10.0+
@@ -11737,7 +12843,12 @@ export declare class INSetRadioStationIntent extends INSetRadioStationIntent_bas
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    static initRadioTypeFrequencyStationNameChannelPresetNumber(radioType?: INRadioType, frequency?: (number) | null, stationName?: (string) | null, channel?: (string) | null, presetNumber?: (number) | null): INSetRadioStationIntent;
+    static init(radioType?: INRadioType, frequency?: (number) | null, stationName?: (string) | null, channel?: (string) | null, presetNumber?: (number) | null): INSetRadioStationIntent;
+    readonly $type: {
+        "c:objc(cs)INSetRadioStationIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -11781,6 +12892,11 @@ export declare class INSetRadioStationIntentResponse extends INSetRadioStationIn
      * @deprecated iOS 15.0
      */
     get code(): INSetRadioStationIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSetRadioStationIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -11807,8 +12923,6 @@ declare const INSetSeatSettingsInCarIntent_base: Omit<typeof INIntent, "init" | 
  * @deprecated iOS 15.0
  */
 export declare class INSetSeatSettingsInCarIntent extends INSetSeatSettingsInCarIntent_base {
-    /** init() */
-    static init(): INSetSeatSettingsInCarIntent;
     /**
      * @NSCopying var carName: INSpeakableString? { get }
      * @availability iOS 12.0+
@@ -11838,7 +12952,7 @@ export declare class INSetSeatSettingsInCarIntent extends INSetSeatSettingsInCar
      * @availability iOS 12.0+
      * @deprecated iOS 15.0
      */
-    static initEnableHeatingEnableCoolingEnableMassageSeatLevelRelativeLevelCarName(enableHeating?: (boolean) | null, enableCooling?: (boolean) | null, enableMassage?: (boolean) | null, seat?: INCarSeat, level?: (number) | null, relativeLevel?: INRelativeSetting, carName?: $SDK2): INSetSeatSettingsInCarIntent;
+    static init(enableHeating?: (boolean) | null, enableCooling?: (boolean) | null, enableMassage?: (boolean) | null, seat?: INCarSeat, level?: (number) | null, relativeLevel?: INRelativeSetting, carName?: $SDK2): INSetSeatSettingsInCarIntent;
     /**
      * @nonobjc final var enableHeating: Bool? { get }
      * @availability iOS 10.0+
@@ -11857,6 +12971,11 @@ export declare class INSetSeatSettingsInCarIntent extends INSetSeatSettingsInCar
      * @deprecated iOS 15.0
      */
     get level(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)INSetSeatSettingsInCarIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -11900,6 +13019,11 @@ export declare class INSetSeatSettingsInCarIntentResponse extends INSetSeatSetti
      * @deprecated iOS 15.0
      */
     get code(): INSetSeatSettingsInCarIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INSetSeatSettingsInCarIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -11919,15 +13043,12 @@ export declare const INSetSeatSettingsInCarIntentResponseCode: {
      */
     init(rawValue: number): (INSetSeatSettingsInCarIntentResponseCode) | null;
 };
-declare const INSetTaskAttributeIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
  * class INSetTaskAttributeIntent
  * @availability iOS 11.0+
  * @deprecated iOS 27.0
  */
-export declare class INSetTaskAttributeIntent extends INSetTaskAttributeIntent_base {
-    /** init() */
-    static init(): INSetTaskAttributeIntent;
+export declare class INSetTaskAttributeIntent extends INIntent {
     /**
      * convenience init(targetTask: INTask?, status: INTaskStatus, spatialEventTrigger: INSpatialEventTrigger?, temporalEventTrigger: INTemporalEventTrigger?)
      * @availability iOS 11.0+
@@ -11976,6 +13097,11 @@ export declare class INSetTaskAttributeIntent extends INSetTaskAttributeIntent_b
      * @deprecated iOS 27.0
      */
     get temporalEventTrigger(): $SDK11;
+    readonly $type: {
+        "c:objc(cs)INSetTaskAttributeIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -12029,6 +13155,11 @@ export declare class INSetTaskAttributeIntentResponse extends INSetTaskAttribute
      */
     get modifiedTask(): (INTask) | null;
     set modifiedTask(value: (INTask) | null);
+    readonly $type: {
+        "c:objc(cs)INSetTaskAttributeIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -12068,6 +13199,12 @@ export declare class INSetTaskAttributeTemporalEventTriggerResolutionResult exte
      * @deprecated iOS 27.0
      */
     static init(temporalEventTriggerResolutionResult: INTemporalEventTriggerResolutionResult): INSetTaskAttributeTemporalEventTriggerResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INSetTaskAttributeTemporalEventTriggerResolutionResult": true;
+        "c:objc(cs)INTemporalEventTriggerResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INSetTaskAttributeTemporalEventTriggerUnsupportedReason
@@ -12089,18 +13226,21 @@ declare const INShareFocusStatusIntent_base: Omit<typeof INIntent, "init" | "pro
  * @availability iOS 15.0+
  */
 export declare class INShareFocusStatusIntent extends INShareFocusStatusIntent_base {
-    /** init() */
-    static init(): INShareFocusStatusIntent;
     /**
      * init(focusStatus: INFocusStatus?)
      * @availability iOS 15.0+
      */
-    static initFocusStatus(focusStatus?: (INFocusStatus) | null): INShareFocusStatusIntent;
+    static init(focusStatus?: (INFocusStatus) | null): INShareFocusStatusIntent;
     /**
      * @NSCopying var focusStatus: INFocusStatus? { get }
      * @availability iOS 15.0+
      */
     get focusStatus(): (INFocusStatus) | null;
+    readonly $type: {
+        "c:objc(cs)INShareFocusStatusIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -12137,6 +13277,11 @@ export declare class INShareFocusStatusIntentResponse extends INShareFocusStatus
      * @availability iOS 15.0+
      */
     get code(): INShareFocusStatusIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INShareFocusStatusIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -12189,6 +13334,9 @@ export declare class INShortcut extends SDKHandle {
      * @availability iOS 12.0+
      */
     get intent(): (INIntent) | null;
+    readonly $type: {
+        "s:7Intents10INShortcutO": true;
+    };
 }
 /**
  * typealias ReferenceType = INShortcutReference
@@ -12267,6 +13415,10 @@ export declare class INShortcutReference extends SDKHandle {
      * @availability iOS 12.0+
      */
     get userActivity(): $SDK3;
+    readonly $type: {
+        "c:objc(cs)INShortcut": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "intent": true;
         "userActivity": true;
@@ -12291,8 +13443,6 @@ declare const INSnoozeTasksIntent_base: Omit<typeof INIntent, "init" | "prototyp
  * @deprecated iOS 27.0
  */
 export declare class INSnoozeTasksIntent extends INSnoozeTasksIntent_base {
-    /** init() */
-    static init(): INSnoozeTasksIntent;
     /**
      * @NSCopying var nextTriggerTime: INDateComponentsRange? { get }
      * @availability iOS 13.0+
@@ -12314,7 +13464,12 @@ export declare class INSnoozeTasksIntent extends INSnoozeTasksIntent_base {
      * @nonobjc convenience init(tasks: [INTask]? = nil, nextTriggerTime: INDateComponentsRange? = nil, all: Bool? = nil)
      * @availability iOS 13.0+
      */
-    static initTasksNextTriggerTimeAll(tasks?: (Array<INTask>) | null, nextTriggerTime?: $SDK29, all?: (boolean) | null): INSnoozeTasksIntent;
+    static init(tasks?: (Array<INTask>) | null, nextTriggerTime?: $SDK29, all?: (boolean) | null): INSnoozeTasksIntent;
+    readonly $type: {
+        "c:objc(cs)INSnoozeTasksIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -12364,6 +13519,11 @@ export declare class INSnoozeTasksIntentResponse extends INSnoozeTasksIntentResp
      */
     get snoozedTasks(): (Array<INTask>) | null;
     set snoozedTasks(value: (Array<INTask>) | null);
+    readonly $type: {
+        "c:objc(cs)INSnoozeTasksIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -12403,6 +13563,12 @@ export declare class INSnoozeTasksTaskResolutionResult extends INSnoozeTasksTask
      * @deprecated iOS 27.0
      */
     static init(taskResolutionResult: INTaskResolutionResult): INSnoozeTasksTaskResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INSnoozeTasksTaskResolutionResult": true;
+        "c:objc(cs)INTaskResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INSnoozeTasksTaskUnsupportedReason
@@ -12449,13 +13615,11 @@ export declare const INSpatialEvent: {
  * @availability iOS 11.0+
  */
 export declare class INSpatialEventTrigger extends SDKHandle {
-    /** init() */
-    static init(): INSpatialEventTrigger;
     /**
      * init(placemark: CLPlacemark, event: INSpatialEvent)
      * @availability iOS 11.0+
      */
-    static initPlacemarkEvent(placemark: _CoreLocation_CLPlacemark, event: INSpatialEvent): INSpatialEventTrigger;
+    static init(placemark: _CoreLocation_CLPlacemark, event: INSpatialEvent): INSpatialEventTrigger;
     /**
      * var event: INSpatialEvent { get }
      * @availability iOS 11.0+
@@ -12466,6 +13630,10 @@ export declare class INSpatialEventTrigger extends SDKHandle {
      * @availability iOS 11.0+
      */
     get placemark(): _CoreLocation_CLPlacemark;
+    readonly $type: {
+        "c:objc(cs)INSpatialEventTrigger": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "event": true;
         "placemark": true;
@@ -12491,6 +13659,11 @@ export declare class INSpatialEventTriggerResolutionResult extends INIntentResol
      * @availability iOS 11.0+
      */
     static success(resolvedSpatialEventTrigger: INSpatialEventTrigger): INSpatialEventTriggerResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INSpatialEventTriggerResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol INSpeakable : NSObjectProtocol
@@ -12519,6 +13692,10 @@ export declare class INSpeakableString extends SDKHandle {
      * @availability iOS 10.0+
      */
     static initVocabularyIdentifierSpokenPhrasePronunciationHint(vocabularyIdentifier: string, spokenPhrase: string, pronunciationHint?: (string) | null): INSpeakableString;
+    readonly $type: {
+        "c:objc(cs)INSpeakableString": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INSpeakableStringResolutionResult
@@ -12540,6 +13717,11 @@ export declare class INSpeakableStringResolutionResult extends INIntentResolutio
      * @availability iOS 10.0+
      */
     static success(resolvedString: INSpeakableString): INSpeakableStringResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INSpeakableStringResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INSpeedResolutionResult
@@ -12561,16 +13743,18 @@ export declare class INSpeedResolutionResult extends INIntentResolutionResult {
      * @availability iOS 13.0+
      */
     static success(resolvedSpeed: _Foundation_Measurement<_Foundation_UnitSpeed>): INSpeedResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INSpeedResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const INStartAudioCallIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
  * class INStartAudioCallIntent
  * @availability iOS 10.0+
  * @deprecated iOS 13.0
  */
-export declare class INStartAudioCallIntent extends INStartAudioCallIntent_base {
-    /** init() */
-    static init(): INStartAudioCallIntent;
+export declare class INStartAudioCallIntent extends INIntent {
     /**
      * convenience init(contacts: [INPerson]?)
      * @availability iOS 10.0+
@@ -12595,6 +13779,11 @@ export declare class INStartAudioCallIntent extends INStartAudioCallIntent_base 
      * @deprecated iOS 13.0
      */
     get destinationType(): INCallDestinationType;
+    readonly $type: {
+        "c:objc(cs)INStartAudioCallIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -12637,6 +13826,11 @@ export declare class INStartAudioCallIntentResponse extends INStartAudioCallInte
      * @deprecated iOS 13.0
      */
     get code(): INStartAudioCallIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INStartAudioCallIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -12672,6 +13866,12 @@ export declare class INStartCallCallCapabilityResolutionResult extends INStartCa
      * @availability iOS 13.0+
      */
     static init(callCapabilityResolutionResult: INCallCapabilityResolutionResult): INStartCallCallCapabilityResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INStartCallCallCapabilityResolutionResult": true;
+        "c:objc(cs)INCallCapabilityResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INStartCallCallCapabilityUnsupportedReason
@@ -12701,6 +13901,12 @@ export declare class INStartCallCallRecordToCallBackResolutionResult extends INS
      * @availability iOS 14.0+
      */
     static init(callRecordResolutionResult: INCallRecordResolutionResult): INStartCallCallRecordToCallBackResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INStartCallCallRecordToCallBackResolutionResult": true;
+        "c:objc(cs)INCallRecordResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INStartCallCallRecordToCallBackUnsupportedReason
@@ -12730,6 +13936,12 @@ export declare class INStartCallContactResolutionResult extends INStartCallConta
      * @availability iOS 13.0+
      */
     static init(personResolutionResult: INPersonResolutionResult): INStartCallContactResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INStartCallContactResolutionResult": true;
+        "c:objc(cs)INPersonResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INStartCallContactUnsupportedReason
@@ -12743,14 +13955,11 @@ export declare const INStartCallContactUnsupportedReason: {
      */
     init(rawValue: number): (INStartCallContactUnsupportedReason) | null;
 };
-declare const INStartCallIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
  * class INStartCallIntent
  * @availability iOS 13.0+
  */
-export declare class INStartCallIntent extends INStartCallIntent_base {
-    /** init() */
-    static init(): INStartCallIntent;
+export declare class INStartCallIntent extends INIntent {
     /**
      * convenience init(audioRoute: INCallAudioRoute, destinationType: INCallDestinationType, contacts: [INPerson]?, recordTypeForRedialing: INCallRecordType, callCapability: INCallCapability)
      * @availability iOS 13.0+
@@ -12798,6 +14007,11 @@ export declare class INStartCallIntent extends INStartCallIntent_base {
      * @deprecated iOS 14.0
      */
     get recordTypeForRedialing(): INCallRecordType;
+    readonly $type: {
+        "c:objc(cs)INStartCallIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -12840,6 +14054,11 @@ export declare class INStartCallIntentResponse extends INStartCallIntentResponse
      * @availability iOS 13.0+
      */
     get code(): INStartCallIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INStartCallIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -12864,14 +14083,12 @@ declare const INStartPhotoPlaybackIntent_base: Omit<typeof INIntent, "init" | "p
  * @deprecated iOS 15.0
  */
 export declare class INStartPhotoPlaybackIntent extends INStartPhotoPlaybackIntent_base {
-    /** init() */
-    static init(): INStartPhotoPlaybackIntent;
     /**
      * init(dateCreated: INDateComponentsRange?, locationCreated: CLPlacemark?, albumName: String?, searchTerms: [String]?, includedAttributes: INPhotoAttributeOptions = [], excludedAttributes: INPhotoAttributeOptions = [], peopleInPhoto: [INPerson]?)
      * @availability iOS 10.0+
      * @deprecated iOS 15.0
      */
-    static initDateCreatedLocationCreatedAlbumNameSearchTermsIncludedAttributesExcludedAttributesPeopleInPhoto(dateCreated?: $SDK29, locationCreated?: $SDK50, albumName?: (string) | null, searchTerms?: (Array<string>) | null, includedAttributes?: INPhotoAttributeOptions, excludedAttributes?: INPhotoAttributeOptions, peopleInPhoto?: $SDK22): INStartPhotoPlaybackIntent;
+    static init(dateCreated?: $SDK29, locationCreated?: $SDK50, albumName?: (string) | null, searchTerms?: (Array<string>) | null, includedAttributes?: INPhotoAttributeOptions, excludedAttributes?: INPhotoAttributeOptions, peopleInPhoto?: $SDK22): INStartPhotoPlaybackIntent;
     /**
      * var albumName: String? { get }
      * @availability iOS 10.0+
@@ -12926,6 +14143,11 @@ export declare class INStartPhotoPlaybackIntent extends INStartPhotoPlaybackInte
      * @deprecated iOS 15.0
      */
     get searchTermsOperator(): INConditionalOperator;
+    readonly $type: {
+        "c:objc(cs)INStartPhotoPlaybackIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -12982,6 +14204,11 @@ export declare class INStartPhotoPlaybackIntentResponse extends INStartPhotoPlay
      */
     get searchResultsCount(): (number) | null;
     set searchResultsCount(value: (number) | null);
+    readonly $type: {
+        "c:objc(cs)INStartPhotoPlaybackIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -13008,20 +14235,23 @@ declare const INStartVideoCallIntent_base: Omit<typeof INIntent, "init" | "proto
  * @deprecated iOS 13.0
  */
 export declare class INStartVideoCallIntent extends INStartVideoCallIntent_base {
-    /** init() */
-    static init(): INStartVideoCallIntent;
     /**
      * init(contacts: [INPerson]?)
      * @availability iOS 10.0+
      * @deprecated iOS 13.0
      */
-    static initContacts(contacts?: $SDK22): INStartVideoCallIntent;
+    static init(contacts?: $SDK22): INStartVideoCallIntent;
     /**
      * var contacts: [INPerson]? { get }
      * @availability iOS 10.0+
      * @deprecated iOS 13.0
      */
     get contacts(): $SDK22;
+    readonly $type: {
+        "c:objc(cs)INStartVideoCallIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -13063,6 +14293,11 @@ export declare class INStartVideoCallIntentResponse extends INStartVideoCallInte
      * @deprecated iOS 13.0
      */
     get code(): INStartVideoCallIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INStartVideoCallIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -13088,8 +14323,6 @@ declare const INStartWorkoutIntent_base: Omit<typeof INIntent, "init" | "prototy
  * @availability iOS 10.0+
  */
 export declare class INStartWorkoutIntent extends INStartWorkoutIntent_base {
-    /** init() */
-    static init(): INStartWorkoutIntent;
     /**
      * var workoutGoalUnitType: INWorkoutGoalUnitType { get }
      * @availability iOS 10.0+
@@ -13114,12 +14347,17 @@ export declare class INStartWorkoutIntent extends INStartWorkoutIntent_base {
      * @nonobjc convenience init(workoutName: INSpeakableString? = nil, goalValue: Double? = nil, workoutGoalUnitType: INWorkoutGoalUnitType = .unknown, workoutLocationType: INWorkoutLocationType = .unknown, isOpenEnded: Bool? = nil)
      * @availability iOS 10.0+
      */
-    static initWorkoutNameGoalValueWorkoutGoalUnitTypeWorkoutLocationTypeIsOpenEnded(workoutName?: $SDK2, goalValue?: (number) | null, workoutGoalUnitType?: INWorkoutGoalUnitType, workoutLocationType?: INWorkoutLocationType, isOpenEnded?: (boolean) | null): INStartWorkoutIntent;
+    static init(workoutName?: $SDK2, goalValue?: (number) | null, workoutGoalUnitType?: INWorkoutGoalUnitType, workoutLocationType?: INWorkoutLocationType, isOpenEnded?: (boolean) | null): INStartWorkoutIntent;
     /**
      * @nonobjc final var goalValue: Double? { get }
      * @availability iOS 10.0+
      */
     get goalValue(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)INStartWorkoutIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -13158,6 +14396,11 @@ export declare class INStartWorkoutIntentResponse extends INStartWorkoutIntentRe
      * @availability iOS 10.0+
      */
     get code(): INStartWorkoutIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INStartWorkoutIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -13180,13 +14423,11 @@ export declare const INStartWorkoutIntentResponseCode: {
  * @availability iOS 18.0+
  */
 export declare class INSticker extends SDKHandle {
-    /** init() */
-    static init(): INSticker;
     /**
      * init(type: INSticker.StickerType, emoji: String?)
      * @availability iOS 18.0+
      */
-    static initTypeEmoji(type: INSticker_StickerType, emoji?: (string) | null): INSticker;
+    static init(type: INSticker_StickerType, emoji?: (string) | null): INSticker;
     /**
      * var emoji: String? { get }
      * @availability iOS 18.0+
@@ -13197,6 +14438,10 @@ export declare class INSticker extends SDKHandle {
      * @availability iOS 18.0+
      */
     get type(): INSticker_StickerType;
+    readonly $type: {
+        "c:objc(cs)INSticker": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "emoji": true;
         "type": true;
@@ -13234,6 +14479,11 @@ export declare class INStringResolutionResult extends INIntentResolutionResult {
      * @availability iOS 10.0+
      */
     static success(resolvedString: string): INStringResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INStringResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INTask
@@ -13241,8 +14491,6 @@ export declare class INStringResolutionResult extends INIntentResolutionResult {
  * @deprecated iOS 27.0
  */
 export declare class INTask extends SDKHandle {
-    /** init() */
-    static init(): INTask;
     /**
      * convenience init(title: INSpeakableString, status: INTaskStatus, taskType: INTaskType, spatialEventTrigger: INSpatialEventTrigger?, temporalEventTrigger: INTemporalEventTrigger?, createdDateComponents: DateComponents?, modifiedDateComponents: DateComponents?, identifier: String?)
      * @availability iOS 11.0+
@@ -13309,6 +14557,10 @@ export declare class INTask extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get title(): INSpeakableString;
+    readonly $type: {
+        "c:objc(cs)INTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "createdDateComponents": true;
         "identifier": true;
@@ -13327,14 +14579,12 @@ export declare class INTask extends SDKHandle {
  * @deprecated iOS 27.0
  */
 export declare class INTaskList extends SDKHandle {
-    /** init() */
-    static init(): INTaskList;
     /**
      * init(title: INSpeakableString, tasks: [INTask], groupName: INSpeakableString?, createdDateComponents: DateComponents?, modifiedDateComponents: DateComponents?, identifier: String?)
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    static initTitleTasksGroupNameCreatedDateComponentsModifiedDateComponentsIdentifier(title: INSpeakableString, tasks: Array<INTask>, groupName?: $SDK2, createdDateComponents?: $SDK16, modifiedDateComponents?: $SDK16, identifier?: (string) | null): INTaskList;
+    static init(title: INSpeakableString, tasks: Array<INTask>, groupName?: $SDK2, createdDateComponents?: $SDK16, modifiedDateComponents?: $SDK16, identifier?: (string) | null): INTaskList;
     /**
      * var createdDateComponents: DateComponents? { get }
      * @availability iOS 11.0+
@@ -13371,6 +14621,10 @@ export declare class INTaskList extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get title(): INSpeakableString;
+    readonly $type: {
+        "c:objc(cs)INTaskList": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "createdDateComponents": true;
         "groupName": true;
@@ -13412,6 +14666,11 @@ export declare class INTaskPriorityResolutionResult extends INIntentResolutionRe
      * @deprecated iOS 27.0
      */
     static success(resolvedTaskPriority: INTaskPriority): INTaskPriorityResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INTaskPriorityResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INTaskStatus
@@ -13445,6 +14704,11 @@ export declare class INTaskStatusResolutionResult extends INIntentResolutionResu
      * @deprecated iOS 27.0
      */
     static success(resolvedTaskStatus: INTaskStatus): INTaskStatusResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INTaskStatusResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INTaskType
@@ -13469,7 +14733,7 @@ export declare class INTemperatureResolutionResult extends INIntentResolutionRes
      * class func confirmationRequired(with temperatureToConfirm: Measurement<UnitTemperature>?) -> Self
      * @availability iOS 10.0+
      */
-    static confirmationRequired(temperatureToConfirm?: $SDK89): INTemperatureResolutionResult;
+    static confirmationRequired(temperatureToConfirm?: $SDK92): INTemperatureResolutionResult;
     /**
      * class func disambiguation(with temperaturesToDisambiguate: [Measurement<UnitTemperature>]) -> Self
      * @availability iOS 10.0+
@@ -13480,24 +14744,31 @@ export declare class INTemperatureResolutionResult extends INIntentResolutionRes
      * @availability iOS 10.0+
      */
     static success(resolvedTemperature: _Foundation_Measurement<_Foundation_UnitTemperature>): INTemperatureResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INTemperatureResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INTemporalEventTrigger
  * @availability iOS 11.0+
  */
 export declare class INTemporalEventTrigger extends SDKHandle {
-    /** init() */
-    static init(): INTemporalEventTrigger;
     /**
      * init(dateComponentsRange: INDateComponentsRange)
      * @availability iOS 11.0+
      */
-    static initDateComponentsRange(dateComponentsRange: INDateComponentsRange): INTemporalEventTrigger;
+    static init(dateComponentsRange: INDateComponentsRange): INTemporalEventTrigger;
     /**
      * @NSCopying var dateComponentsRange: INDateComponentsRange { get }
      * @availability iOS 11.0+
      */
     get dateComponentsRange(): INDateComponentsRange;
+    readonly $type: {
+        "c:objc(cs)INTemporalEventTrigger": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateComponentsRange": true;
     };
@@ -13552,19 +14823,22 @@ export declare class INTemporalEventTriggerTypeOptionsResolutionResult extends I
      * @deprecated iOS 27.0
      */
     static success(resolvedTemporalEventTriggerTypeOptions?: INTemporalEventTriggerTypeOptions): INTemporalEventTriggerTypeOptionsResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INTemporalEventTriggerTypeOptionsResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INTermsAndConditions
  * @availability iOS 10.0+
  */
 export declare class INTermsAndConditions extends SDKHandle {
-    /** init() */
-    static init(): INTermsAndConditions;
     /**
      * init(localizedTermsAndConditionsText: String, privacyPolicyURL: URL?, termsAndConditionsURL: URL?)
      * @availability iOS 10.0+
      */
-    static initLocalizedTermsAndConditionsTextPrivacyPolicyURLTermsAndConditionsURL(localizedTermsAndConditionsText: string, privacyPolicyURL?: (string) | null, termsAndConditionsURL?: (string) | null): INTermsAndConditions;
+    static init(localizedTermsAndConditionsText: string, privacyPolicyURL?: (string) | null, termsAndConditionsURL?: (string) | null): INTermsAndConditions;
     /**
      * var localizedTermsAndConditionsText: String { get }
      * @availability iOS 10.0+
@@ -13580,6 +14854,10 @@ export declare class INTermsAndConditions extends SDKHandle {
      * @availability iOS 10.0+
      */
     get termsAndConditionsURL(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INTermsAndConditions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localizedTermsAndConditionsText": true;
         "privacyPolicyURL": true;
@@ -13593,20 +14871,23 @@ declare const INTextNoteContent_base: Omit<typeof INNoteContent, "init" | "proto
  * @deprecated iOS 27.0
  */
 export declare class INTextNoteContent extends INTextNoteContent_base {
-    /** init() */
-    static init(): INTextNoteContent;
     /**
      * init(text: String)
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    static initText(text: string): INTextNoteContent;
+    static init(text: string): INTextNoteContent;
     /**
      * var text: String? { get }
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
     get text(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)INTextNoteContent": true;
+        "c:objc(cs)INNoteContent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "text": true;
     };
@@ -13641,6 +14922,10 @@ export declare class INTicketedEvent extends SDKHandle {
      * @availability iOS 13.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)INTicketedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "category": true;
         "eventDuration": true;
@@ -13685,6 +14970,11 @@ export declare class INTicketedEventReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get reservedSeat(): (INSeat) | null;
+    readonly $type: {
+        "c:objc(cs)INTicketedEventReservation": true;
+        "c:objc(cs)INReservation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "actions": true;
@@ -13712,6 +15002,11 @@ export declare class INTimeIntervalResolutionResult extends INIntentResolutionRe
      * @availability iOS 13.0+
      */
     static success(resolvedTimeInterval: number): INTimeIntervalResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INTimeIntervalResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INTrainReservation
@@ -13738,6 +15033,11 @@ export declare class INTrainReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get trainTrip(): INTrainTrip;
+    readonly $type: {
+        "c:objc(cs)INTrainReservation": true;
+        "c:objc(cs)INReservation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "actions": true;
@@ -13800,6 +15100,10 @@ export declare class INTrainTrip extends SDKHandle {
      * @availability iOS 13.0+
      */
     get tripDuration(): INDateComponentsRange;
+    readonly $type: {
+        "c:objc(cs)INTrainTrip": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arrivalPlatform": true;
         "arrivalStationLocation": true;
@@ -13818,32 +15122,30 @@ declare const INTransferMoneyIntent_base: Omit<typeof INIntent, "init" | "protot
  * @deprecated iOS 15.0
  */
 export declare class INTransferMoneyIntent extends INTransferMoneyIntent_base {
-    /** init() */
-    static init(): INTransferMoneyIntent;
     /**
      * init(from fromAccount: INPaymentAccount?, to toAccount: INPaymentAccount?, transactionAmount: INPaymentAmount?, transactionScheduledDate: INDateComponentsRange?, transactionNote: String?)
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static initFromToTransactionAmountTransactionScheduledDateTransactionNote(fromAccount?: $SDK59, toAccount?: $SDK59, transactionAmount?: $SDK60, transactionScheduledDate?: $SDK29, transactionNote?: (string) | null): INTransferMoneyIntent;
+    static init(fromAccount?: $SDK62, toAccount?: $SDK62, transactionAmount?: $SDK63, transactionScheduledDate?: $SDK29, transactionNote?: (string) | null): INTransferMoneyIntent;
     /**
      * @NSCopying var fromAccount: INPaymentAccount? { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    get fromAccount(): $SDK59;
+    get fromAccount(): $SDK62;
     /**
      * @NSCopying var toAccount: INPaymentAccount? { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    get toAccount(): $SDK59;
+    get toAccount(): $SDK62;
     /**
      * @NSCopying var transactionAmount: INPaymentAmount? { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    get transactionAmount(): $SDK60;
+    get transactionAmount(): $SDK63;
     /**
      * var transactionNote: String? { get }
      * @availability iOS 11.0+
@@ -13856,6 +15158,11 @@ export declare class INTransferMoneyIntent extends INTransferMoneyIntent_base {
      * @deprecated iOS 15.0
      */
     get transactionScheduledDate(): $SDK29;
+    readonly $type: {
+        "c:objc(cs)INTransferMoneyIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -13906,22 +15213,22 @@ export declare class INTransferMoneyIntentResponse extends INTransferMoneyIntent
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    get fromAccount(): $SDK59;
-    set fromAccount(value: $SDK59);
+    get fromAccount(): $SDK62;
+    set fromAccount(value: $SDK62);
     /**
      * @NSCopying var toAccount: INPaymentAccount? { get set }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    get toAccount(): $SDK59;
-    set toAccount(value: $SDK59);
+    get toAccount(): $SDK62;
+    set toAccount(value: $SDK62);
     /**
      * @NSCopying var transactionAmount: INPaymentAmount? { get set }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    get transactionAmount(): $SDK60;
-    set transactionAmount(value: $SDK60);
+    get transactionAmount(): $SDK63;
+    set transactionAmount(value: $SDK63);
     /**
      * var transactionNote: String? { get set }
      * @availability iOS 11.0+
@@ -13943,6 +15250,11 @@ export declare class INTransferMoneyIntentResponse extends INTransferMoneyIntent
      */
     get transferFee(): $SDK15;
     set transferFee(value: $SDK15);
+    readonly $type: {
+        "c:objc(cs)INTransferMoneyIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -13974,18 +15286,21 @@ declare const INUnsendMessagesIntent_base: Omit<typeof INIntent, "init" | "proto
  * @availability iOS 17.0+
  */
 export declare class INUnsendMessagesIntent extends INUnsendMessagesIntent_base {
-    /** init() */
-    static init(): INUnsendMessagesIntent;
     /**
      * init(messageIdentifiers: [String]?)
      * @availability iOS 17.0+
      */
-    static initMessageIdentifiers(messageIdentifiers?: (Array<string>) | null): INUnsendMessagesIntent;
+    static init(messageIdentifiers?: (Array<string>) | null): INUnsendMessagesIntent;
     /**
      * var messageIdentifiers: [String]? { get }
      * @availability iOS 17.0+
      */
     get messageIdentifiers(): (Array<string>) | null;
+    readonly $type: {
+        "c:objc(cs)INUnsendMessagesIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -14022,6 +15337,11 @@ export declare class INUnsendMessagesIntentResponse extends INUnsendMessagesInte
      * @availability iOS 17.0+
      */
     get code(): INUnsendMessagesIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INUnsendMessagesIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -14061,6 +15381,10 @@ export declare class INUpcomingMediaManager extends SDKHandle {
      * @availability iOS 12.0+
      */
     setSuggestedMediaIntents(intents: _Foundation_NSOrderedSet): void;
+    readonly $type: {
+        "c:objc(cs)INUpcomingMediaManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INUpcomingMediaPredictionMode
@@ -14080,13 +15404,11 @@ declare const INUpdateMediaAffinityIntent_base: Omit<typeof INIntent, "init" | "
  * @availability iOS 13.0+
  */
 export declare class INUpdateMediaAffinityIntent extends INUpdateMediaAffinityIntent_base {
-    /** init() */
-    static init(): INUpdateMediaAffinityIntent;
     /**
      * init(mediaItems: [INMediaItem]?, mediaSearch: INMediaSearch?, affinityType: INMediaAffinityType)
      * @availability iOS 13.0+
      */
-    static initMediaItemsMediaSearchAffinityType(mediaItems: $SDK4, mediaSearch: (INMediaSearch) | null, affinityType: INMediaAffinityType): INUpdateMediaAffinityIntent;
+    static init(mediaItems: $SDK4, mediaSearch: (INMediaSearch) | null, affinityType: INMediaAffinityType): INUpdateMediaAffinityIntent;
     /**
      * var affinityType: INMediaAffinityType { get }
      * @availability iOS 13.0+
@@ -14102,6 +15424,11 @@ export declare class INUpdateMediaAffinityIntent extends INUpdateMediaAffinityIn
      * @availability iOS 13.0+
      */
     get mediaSearch(): (INMediaSearch) | null;
+    readonly $type: {
+        "c:objc(cs)INUpdateMediaAffinityIntent": true;
+        "c:objc(cs)INIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "donationMetadata": true;
         "identifier": true;
@@ -14140,6 +15467,11 @@ export declare class INUpdateMediaAffinityIntentResponse extends INUpdateMediaAf
      * @availability iOS 13.0+
      */
     get code(): INUpdateMediaAffinityIntentResponseCode;
+    readonly $type: {
+        "c:objc(cs)INUpdateMediaAffinityIntentResponse": true;
+        "c:objc(cs)INIntentResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userActivity": true;
         "code": true;
@@ -14178,6 +15510,12 @@ export declare class INUpdateMediaAffinityMediaItemResolutionResult extends INUp
      * @availability iOS 13.0+
      */
     static init(mediaItemResolutionResult: INMediaItemResolutionResult): INUpdateMediaAffinityMediaItemResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INUpdateMediaAffinityMediaItemResolutionResult": true;
+        "c:objc(cs)INMediaItemResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INUpdateMediaAffinityMediaItemUnsupportedReason
@@ -14211,6 +15549,11 @@ export declare class INURLResolutionResult extends INIntentResolutionResult {
      * @availability iOS 13.0+
      */
     static success(resolvedURL: string): INURLResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INURLResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol INVisualCodeDomainHandling : INGetVisualCodeIntentHandling
@@ -14257,6 +15600,11 @@ export declare class INVisualCodeTypeResolutionResult extends INIntentResolution
      * @deprecated iOS 15.0
      */
     static success(resolvedVisualCodeType: INVisualCodeType): INVisualCodeTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INVisualCodeTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INVocabulary
@@ -14285,6 +15633,10 @@ export declare class INVocabulary extends SDKHandle {
      * @availability iOS 10.0+
      */
     setVocabularyStrings(vocabulary: _Foundation_NSOrderedSet, type: INVocabularyStringType): void;
+    readonly $type: {
+        "c:objc(cs)INVocabulary": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INVocabularyStringType
@@ -14318,6 +15670,10 @@ export declare class INVoiceShortcut extends SDKHandle {
      * @availability iOS 12.0+
      */
     get shortcut(): INShortcut;
+    readonly $type: {
+        "c:objc(cs)INVoiceShortcut": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "invocationPhrase": true;
@@ -14349,6 +15705,10 @@ export declare class INVoiceShortcutCenter extends SDKHandle {
      * @availability iOS 12.0+
      */
     setShortcutSuggestions(suggestions: Array<INShortcut>): void;
+    readonly $type: {
+        "c:objc(cs)INVoiceShortcutCenter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INVolumeResolutionResult
@@ -14370,6 +15730,11 @@ export declare class INVolumeResolutionResult extends INIntentResolutionResult {
      * @availability iOS 13.0+
      */
     static success(resolvedVolume: _Foundation_Measurement<_Foundation_UnitVolume>): INVolumeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INVolumeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INWorkoutGoalUnitType
@@ -14398,6 +15763,11 @@ export declare class INWorkoutGoalUnitTypeResolutionResult extends INIntentResol
      * @availability iOS 10.0+
      */
     static success(resolvedWorkoutGoalUnitType: INWorkoutGoalUnitType): INWorkoutGoalUnitTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INWorkoutGoalUnitTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum INWorkoutLocationType
@@ -14426,6 +15796,11 @@ export declare class INWorkoutLocationTypeResolutionResult extends INIntentResol
      * @availability iOS 10.0+
      */
     static success(resolvedWorkoutLocationType: INWorkoutLocationType): INWorkoutLocationTypeResolutionResult;
+    readonly $type: {
+        "c:objc(cs)INWorkoutLocationTypeResolutionResult": true;
+        "c:objc(cs)INIntentResolutionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct INWorkoutNameIdentifier */
 export type INWorkoutNameIdentifier = "run" | "sit" | "steps" | "stand" | "move" | "walk" | "yoga" | "dance" | "crosstraining" | "elliptical" | "rower" | "cycle" | "stairs" | "other" | "indoorrun" | "indoorcycle" | "indoorwalk" | "exercise" | "hike" | "highIntensityIntervalTraining" | "swim" | (string & {});
@@ -14556,6 +15931,10 @@ export declare class NSExtensionContext extends SDKHandle {
      * @availability iOS 13.0+
      */
     get intent(): (INIntent) | null;
+    readonly $type: {
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "intent": true;
     };
@@ -14578,6 +15957,10 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get suggestedInvocationPhrase(): (string) | null;
     set suggestedInvocationPhrase(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interaction": true;
         "shortcutAvailability": true;

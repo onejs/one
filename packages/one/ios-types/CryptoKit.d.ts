@@ -11,6 +11,9 @@ type $SDK9 = (_LocalAuthentication_LAContext) | null;
  * @availability iOS 13.0+
  */
 export declare class AES extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit3AESO": true;
+    };
 }
 /**
  * enum GCM
@@ -37,6 +40,9 @@ export declare class AES_GCM extends SDKHandle {
      * @availability iOS 13.0+
      */
     static sealUsingNonce(message: ArrayBuffer, key: SymmetricKey, nonce?: (AES_GCM_Nonce) | null): AES_GCM_SealedBox;
+    readonly $type: {
+        "s:9CryptoKit3AESO3GCMO": true;
+    };
 }
 /**
  * struct Nonce
@@ -68,6 +74,9 @@ export declare class AES_GCM_Nonce extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): AES_GCM_Nonce;
+    readonly $type: {
+        "s:9CryptoKit3AESO3GCMO5NonceV": true;
+    };
 }
 /**
  * typealias Element = IndexingIterator<Array<UInt8>>.Element
@@ -114,6 +123,9 @@ export declare class AES_GCM_SealedBox extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initCombined(combined: ArrayBuffer): AES_GCM_SealedBox;
+    readonly $type: {
+        "s:9CryptoKit3AESO3GCMO9SealedBoxV": true;
+    };
 }
 /**
  * enum KeyWrap
@@ -130,6 +142,9 @@ export declare class AES_KeyWrap extends SDKHandle {
      * @availability iOS 15.0+
      */
     static unwrap(wrappedKey: ArrayBuffer, kek: SymmetricKey): SymmetricKey;
+    readonly $type: {
+        "s:9CryptoKit3AESO7KeyWrapO": true;
+    };
 }
 /**
  * enum ChaChaPoly
@@ -156,6 +171,9 @@ export declare class ChaChaPoly extends SDKHandle {
      * @availability iOS 13.0+
      */
     static sealUsingNonce(message: ArrayBuffer, key: SymmetricKey, nonce?: (ChaChaPoly_Nonce) | null): ChaChaPoly_SealedBox;
+    readonly $type: {
+        "s:9CryptoKit03ChaC4PolyO": true;
+    };
 }
 /**
  * struct Nonce
@@ -187,6 +205,9 @@ export declare class ChaChaPoly_Nonce extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): ChaChaPoly_Nonce;
+    readonly $type: {
+        "s:9CryptoKit03ChaC4PolyO5NonceV": true;
+    };
 }
 /**
  * typealias Element = IndexingIterator<Array<UInt8>>.Element
@@ -233,12 +254,18 @@ export declare class ChaChaPoly_SealedBox extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initCombined(combined: ArrayBuffer): ChaChaPoly_SealedBox;
+    readonly $type: {
+        "s:9CryptoKit03ChaC4PolyO9SealedBoxV": true;
+    };
 }
 /**
  * struct CorecryptoCurveType
  * @availability iOS 18.0+
  */
 export declare class CorecryptoCurveType extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit19CorecryptoCurveTypeV": true;
+    };
 }
 /**
  * enum CryptoKitASN1Error
@@ -250,6 +277,9 @@ export type CryptoKitASN1Error = "invalidFieldIdentifier" | "unexpectedFieldType
  * @availability iOS 13.0+
  */
 export declare class CryptoKitError extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit0aB5ErrorO": true;
+    };
 }
 /** typealias CryptoKitMetaError = any Error */
 export type CryptoKitMetaError = NativeError;
@@ -258,12 +288,18 @@ export type CryptoKitMetaError = NativeError;
  * @availability iOS 13.0+
  */
 export declare class Curve25519 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit10Curve25519O": true;
+    };
 }
 /**
  * enum KeyAgreement
  * @availability iOS 13.0+
  */
 export declare class Curve25519_KeyAgreement extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit10Curve25519O12KeyAgreementO": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -295,6 +331,9 @@ export declare class Curve25519_KeyAgreement_PrivateKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): Curve25519_KeyAgreement_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit10Curve25519O12KeyAgreementO07PrivateD0V": true;
+    };
 }
 /**
  * typealias PublicKey = Curve25519.KeyAgreement.PublicKey
@@ -326,6 +365,9 @@ export declare class Curve25519_KeyAgreement_PublicKey extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): Curve25519_KeyAgreement_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit10Curve25519O12KeyAgreementO06PublicD0V": true;
+    };
 }
 /**
  * typealias EphemeralPrivateKey = Curve25519.KeyAgreement.PrivateKey
@@ -342,6 +384,9 @@ export type Curve25519_KeyAgreement_PublicKey_HPKEEphemeralPrivateKey = Curve255
  * @availability iOS 13.0+
  */
 export declare class Curve25519_Signing extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit10Curve25519O7SigningO": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -373,6 +418,9 @@ export declare class Curve25519_Signing_PrivateKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): Curve25519_Signing_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit10Curve25519O7SigningO10PrivateKeyV": true;
+    };
 }
 /**
  * struct PublicKey
@@ -394,6 +442,9 @@ export declare class Curve25519_Signing_PublicKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(rawRepresentation: ArrayBuffer): Curve25519_Signing_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit10Curve25519O7SigningO9PublicKeyV": true;
+    };
 }
 /**
  * @preconcurrency protocol DiffieHellmanKeyAgreement : Sendable
@@ -419,6 +470,9 @@ export interface Digest {
  * @availability iOS 13.0+
  */
 export declare class HashedAuthenticationCode<H = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit24HashedAuthenticationCodeV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -456,12 +510,18 @@ export interface HashFunction {
  * @availability iOS 14.0+
  */
 export declare class HKDF<H = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4HKDFV": true;
+    };
 }
 /**
  * struct HMAC<H> where H : HashFunction
  * @availability iOS 13.0+
  */
 export declare class HMAC<H = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4HMACV": true;
+    };
 }
 /**
  * typealias Key = SymmetricKey
@@ -478,6 +538,9 @@ export type HMAC_MAC<H = unknown> = HashedAuthenticationCode<unknown>;
  * @availability iOS 17.0+
  */
 export declare class HPKE extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4HPKEO": true;
+    };
 }
 /**
  * enum AEAD
@@ -546,12 +609,18 @@ export declare class HPKE_Ciphersuite extends SDKHandle {
      * @availability iOS 17.0+
      */
     get aead(): HPKE_AEAD;
+    readonly $type: {
+        "s:9CryptoKit4HPKEO11CiphersuiteV": true;
+    };
 }
 /**
  * enum DHKEM
  * @availability iOS 17.0+
  */
 export declare class HPKE_DHKEM extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4HPKEO5DHKEMO": true;
+    };
 }
 /**
  * enum Errors
@@ -617,6 +686,9 @@ export declare class HPKE_Recipient extends SDKHandle {
      * @availability iOS 17.0+
      */
     open(ciphertext: ArrayBuffer): ArrayBuffer;
+    readonly $type: {
+        "s:9CryptoKit4HPKEO9RecipientV": true;
+    };
 }
 /**
  * struct Sender
@@ -648,6 +720,9 @@ export declare class HPKE_Sender extends SDKHandle {
      * @availability iOS 17.0+
      */
     seal(msg: ArrayBuffer): ArrayBuffer;
+    readonly $type: {
+        "s:9CryptoKit4HPKEO6SenderV": true;
+    };
 }
 /**
  * @preconcurrency protocol HPKEDiffieHellmanPrivateKey : DiffieHellmanKeyAgreement where Self.PublicKey : HPKEDiffieHellmanPublicKey
@@ -771,6 +846,9 @@ export interface HPKEPublicKeySerialization {
  * @availability iOS 13.0+
  */
 export declare class Insecure extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit8InsecureO": true;
+    };
 }
 /**
  * struct MD5
@@ -802,6 +880,9 @@ export declare class Insecure_MD5 extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): Insecure_MD5;
+    readonly $type: {
+        "s:9CryptoKit8InsecureO3MD5V": true;
+    };
 }
 /**
  * typealias Digest = Insecure.MD5Digest
@@ -828,6 +909,9 @@ export declare class Insecure_MD5Digest extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get byteCount(): number;
+    readonly $type: {
+        "s:9CryptoKit8InsecureO9MD5DigestV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -869,6 +953,9 @@ export declare class Insecure_SHA1 extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): Insecure_SHA1;
+    readonly $type: {
+        "s:9CryptoKit8InsecureO4SHA1V": true;
+    };
 }
 /**
  * typealias Digest = Insecure.SHA1Digest
@@ -895,6 +982,9 @@ export declare class Insecure_SHA1Digest extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get byteCount(): number;
+    readonly $type: {
+        "s:9CryptoKit8InsecureO10SHA1DigestV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -911,6 +1001,9 @@ export type Insecure_SHA1Digest_Iterator = SDKHandle;
  * @availability iOS 17.0+
  */
 export declare class KEM extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit3KEMO": true;
+    };
 }
 /**
  * struct EncapsulationResult
@@ -932,6 +1025,9 @@ export declare class KEM_EncapsulationResult extends SDKHandle {
      * @availability iOS 17.0+
      */
     get sharedSecret(): SymmetricKey;
+    readonly $type: {
+        "s:9CryptoKit3KEMO19EncapsulationResultV": true;
+    };
 }
 /**
  * enum Errors
@@ -994,6 +1090,9 @@ export interface MessageAuthenticationCode {
  * @availability iOS 26.0+
  */
 export declare class MLDSA65 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit7MLDSA65O": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -1040,6 +1139,9 @@ export declare class MLDSA65_PrivateKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): MLDSA65_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit7MLDSA65O10PrivateKeyV": true;
+    };
 }
 /**
  * struct PublicKey
@@ -1066,12 +1168,18 @@ export declare class MLDSA65_PublicKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(rawRepresentation: ArrayBuffer): MLDSA65_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit7MLDSA65O9PublicKeyV": true;
+    };
 }
 /**
  * enum MLDSA87
  * @availability iOS 26.0+
  */
 export declare class MLDSA87 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit7MLDSA87O": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -1118,6 +1226,9 @@ export declare class MLDSA87_PrivateKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): MLDSA87_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit7MLDSA87O10PrivateKeyV": true;
+    };
 }
 /**
  * struct PublicKey
@@ -1144,18 +1255,27 @@ export declare class MLDSA87_PublicKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(rawRepresentation: ArrayBuffer): MLDSA87_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit7MLDSA87O9PublicKeyV": true;
+    };
 }
 /**
  * enum MLKEM1024
  * @availability iOS 26.0+
  */
 export declare class MLKEM1024 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit9MLKEM1024O": true;
+    };
 }
 /**
  * struct OneTimePrivateKey
  * @availability iOS 27.0+
  */
 export declare class MLKEM1024_OneTimePrivateKey extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit9MLKEM1024O17OneTimePrivateKeyV": true;
+    };
 }
 /**
  * typealias PublicKey = MLKEM1024.PublicKey
@@ -1207,6 +1327,9 @@ export declare class MLKEM1024_PrivateKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): MLKEM1024_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit9MLKEM1024O10PrivateKeyV": true;
+    };
 }
 /**
  * typealias PublicKey = MLKEM1024.PublicKey
@@ -1233,18 +1356,27 @@ export declare class MLKEM1024_PublicKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(rawRepresentation: ArrayBuffer): MLKEM1024_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit9MLKEM1024O9PublicKeyV": true;
+    };
 }
 /**
  * enum MLKEM768
  * @availability iOS 26.0+
  */
 export declare class MLKEM768 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit8MLKEM768O": true;
+    };
 }
 /**
  * struct OneTimePrivateKey
  * @availability iOS 27.0+
  */
 export declare class MLKEM768_OneTimePrivateKey extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit8MLKEM768O17OneTimePrivateKeyV": true;
+    };
 }
 /**
  * typealias PublicKey = MLKEM768.PublicKey
@@ -1296,6 +1428,9 @@ export declare class MLKEM768_PrivateKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): MLKEM768_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit8MLKEM768O10PrivateKeyV": true;
+    };
 }
 /**
  * typealias PublicKey = MLKEM768.PublicKey
@@ -1322,18 +1457,27 @@ export declare class MLKEM768_PublicKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(rawRepresentation: ArrayBuffer): MLKEM768_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit8MLKEM768O9PublicKeyV": true;
+    };
 }
 /**
  * enum P256
  * @availability iOS 13.0+
  */
 export declare class P256 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4P256O": true;
+    };
 }
 /**
  * enum KeyAgreement
  * @availability iOS 13.0+
  */
 export declare class P256_KeyAgreement extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4P256O12KeyAgreementO": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -1400,6 +1544,9 @@ export declare class P256_KeyAgreement_PrivateKey extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): P256_KeyAgreement_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit4P256O12KeyAgreementO07PrivateD0V": true;
+    };
 }
 /**
  * typealias PublicKey = P256.KeyAgreement.PublicKey
@@ -1481,6 +1628,9 @@ export declare class P256_KeyAgreement_PublicKey extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): P256_KeyAgreement_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit4P256O12KeyAgreementO06PublicD0V": true;
+    };
 }
 /**
  * typealias EphemeralPrivateKey = P256.KeyAgreement.PrivateKey
@@ -1497,6 +1647,9 @@ export type P256_KeyAgreement_PublicKey_HPKEEphemeralPrivateKey = P256_KeyAgreem
  * @availability iOS 13.0+
  */
 export declare class P256_Signing extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4P256O7SigningO": true;
+    };
 }
 /**
  * struct ECDSASignature
@@ -1529,6 +1682,9 @@ export declare class P256_Signing_ECDSASignature extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initRawRepresentation(rawRepresentation: ArrayBuffer): P256_Signing_ECDSASignature;
+    readonly $type: {
+        "s:9CryptoKit4P256O7SigningO14ECDSASignatureV": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -1590,6 +1746,9 @@ export declare class P256_Signing_PrivateKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     signature(data: ArrayBuffer): P256_Signing_ECDSASignature;
+    readonly $type: {
+        "s:9CryptoKit4P256O7SigningO10PrivateKeyV": true;
+    };
 }
 /**
  * struct PublicKey
@@ -1661,18 +1820,27 @@ export declare class P256_Signing_PublicKey extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P256_Signing_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit4P256O7SigningO9PublicKeyV": true;
+    };
 }
 /**
  * enum P384
  * @availability iOS 13.0+
  */
 export declare class P384 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4P384O": true;
+    };
 }
 /**
  * enum KeyAgreement
  * @availability iOS 13.0+
  */
 export declare class P384_KeyAgreement extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4P384O12KeyAgreementO": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -1739,6 +1907,9 @@ export declare class P384_KeyAgreement_PrivateKey extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): P384_KeyAgreement_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit4P384O12KeyAgreementO07PrivateD0V": true;
+    };
 }
 /**
  * typealias PublicKey = P384.KeyAgreement.PublicKey
@@ -1820,6 +1991,9 @@ export declare class P384_KeyAgreement_PublicKey extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): P384_KeyAgreement_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit4P384O12KeyAgreementO06PublicD0V": true;
+    };
 }
 /**
  * typealias EphemeralPrivateKey = P384.KeyAgreement.PrivateKey
@@ -1831,6 +2005,9 @@ export type P384_KeyAgreement_PublicKey_EphemeralPrivateKey = P384_KeyAgreement_
  * @availability iOS 13.0+
  */
 export declare class P384_Signing extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4P384O7SigningO": true;
+    };
 }
 /**
  * struct ECDSASignature
@@ -1863,6 +2040,9 @@ export declare class P384_Signing_ECDSASignature extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initRawRepresentation(rawRepresentation: ArrayBuffer): P384_Signing_ECDSASignature;
+    readonly $type: {
+        "s:9CryptoKit4P384O7SigningO14ECDSASignatureV": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -1924,6 +2104,9 @@ export declare class P384_Signing_PrivateKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     signature(data: ArrayBuffer): P384_Signing_ECDSASignature;
+    readonly $type: {
+        "s:9CryptoKit4P384O7SigningO10PrivateKeyV": true;
+    };
 }
 /**
  * struct PublicKey
@@ -1995,18 +2178,27 @@ export declare class P384_Signing_PublicKey extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P384_Signing_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit4P384O7SigningO9PublicKeyV": true;
+    };
 }
 /**
  * enum P521
  * @availability iOS 13.0+
  */
 export declare class P521 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4P521O": true;
+    };
 }
 /**
  * enum KeyAgreement
  * @availability iOS 13.0+
  */
 export declare class P521_KeyAgreement extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4P521O12KeyAgreementO": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -2073,6 +2265,9 @@ export declare class P521_KeyAgreement_PrivateKey extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): P521_KeyAgreement_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit4P521O12KeyAgreementO07PrivateD0V": true;
+    };
 }
 /**
  * typealias PublicKey = P521.KeyAgreement.PublicKey
@@ -2154,6 +2349,9 @@ export declare class P521_KeyAgreement_PublicKey extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): P521_KeyAgreement_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit4P521O12KeyAgreementO06PublicD0V": true;
+    };
 }
 /**
  * typealias EphemeralPrivateKey = P521.KeyAgreement.PrivateKey
@@ -2170,6 +2368,9 @@ export type P521_KeyAgreement_PublicKey_HPKEEphemeralPrivateKey = P521_KeyAgreem
  * @availability iOS 13.0+
  */
 export declare class P521_Signing extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit4P521O7SigningO": true;
+    };
 }
 /**
  * struct ECDSASignature
@@ -2202,6 +2403,9 @@ export declare class P521_Signing_ECDSASignature extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initRawRepresentation(rawRepresentation: ArrayBuffer): P521_Signing_ECDSASignature;
+    readonly $type: {
+        "s:9CryptoKit4P521O7SigningO14ECDSASignatureV": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -2263,6 +2467,9 @@ export declare class P521_Signing_PrivateKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     signature(data: ArrayBuffer): P521_Signing_ECDSASignature;
+    readonly $type: {
+        "s:9CryptoKit4P521O7SigningO10PrivateKeyV": true;
+    };
 }
 /**
  * struct PublicKey
@@ -2334,6 +2541,9 @@ export declare class P521_Signing_PublicKey extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initCompressedRepresentation(compressedRepresentation: ArrayBuffer): P521_Signing_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit4P521O7SigningO9PublicKeyV": true;
+    };
 }
 /**
  * enum SecureEnclave
@@ -2345,12 +2555,18 @@ export declare class SecureEnclave extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get isAvailable(): boolean;
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO": true;
+    };
 }
 /**
  * enum MLDSA65
  * @availability iOS 26.0+
  */
 export declare class SecureEnclave_MLDSA65 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO7MLDSA65O": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -2387,12 +2603,18 @@ export declare class SecureEnclave_MLDSA65_PrivateKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer;
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO7MLDSA65O10PrivateKeyV": true;
+    };
 }
 /**
  * enum MLDSA87
  * @availability iOS 26.0+
  */
 export declare class SecureEnclave_MLDSA87 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO7MLDSA87O": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -2429,12 +2651,18 @@ export declare class SecureEnclave_MLDSA87_PrivateKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     signatureForContext(data: ArrayBuffer, context: ArrayBuffer): ArrayBuffer;
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO7MLDSA87O10PrivateKeyV": true;
+    };
 }
 /**
  * enum MLKEM1024
  * @availability iOS 26.0+
  */
 export declare class SecureEnclave_MLKEM1024 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO9MLKEM1024O": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -2471,6 +2699,9 @@ export declare class SecureEnclave_MLKEM1024_PrivateKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static generate(): SecureEnclave_MLKEM1024_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO9MLKEM1024O10PrivateKeyV": true;
+    };
 }
 /**
  * typealias PublicKey = MLKEM1024.PublicKey
@@ -2482,6 +2713,9 @@ export type SecureEnclave_MLKEM1024_PrivateKey_PublicKey = MLKEM1024_PublicKey;
  * @availability iOS 26.0+
  */
 export declare class SecureEnclave_MLKEM768 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO8MLKEM768O": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -2518,6 +2752,9 @@ export declare class SecureEnclave_MLKEM768_PrivateKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static generate(): SecureEnclave_MLKEM768_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO8MLKEM768O10PrivateKeyV": true;
+    };
 }
 /**
  * typealias PublicKey = MLKEM768.PublicKey
@@ -2529,12 +2766,18 @@ export type SecureEnclave_MLKEM768_PrivateKey_PublicKey = MLKEM768_PublicKey;
  * @availability iOS 13.0+
  */
 export declare class SecureEnclave_P256 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO4P256O": true;
+    };
 }
 /**
  * enum KeyAgreement
  * @availability iOS 13.0+
  */
 export declare class SecureEnclave_P256_KeyAgreement extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO4P256O12KeyAgreementO": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -2566,6 +2809,9 @@ export declare class SecureEnclave_P256_KeyAgreement_PrivateKey extends SDKHandl
      * @availability iOS 13.0+
      */
     static initCompactRepresentableAccessControlAuthenticationContext(compactRepresentable?: boolean, accessControl?: _Security_SecAccessControl, authenticationContext?: $SDK9): SecureEnclave_P256_KeyAgreement_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO4P256O12KeyAgreementO07PrivateF0V": true;
+    };
 }
 /**
  * typealias PublicKey = P256.KeyAgreement.PublicKey
@@ -2577,6 +2823,9 @@ export type SecureEnclave_P256_KeyAgreement_PrivateKey_PublicKey = P256_KeyAgree
  * @availability iOS 13.0+
  */
 export declare class SecureEnclave_P256_Signing extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO4P256O7SigningO": true;
+    };
 }
 /**
  * struct PrivateKey
@@ -2608,6 +2857,9 @@ export declare class SecureEnclave_P256_Signing_PrivateKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     signature(data: ArrayBuffer): P256_Signing_ECDSASignature;
+    readonly $type: {
+        "s:9CryptoKit13SecureEnclaveO4P256O7SigningO10PrivateKeyV": true;
+    };
 }
 /**
  * typealias SHA2_256 = SHA256
@@ -2654,6 +2906,9 @@ export declare class SHA256 extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): SHA256;
+    readonly $type: {
+        "s:9CryptoKit6SHA256V": true;
+    };
 }
 /**
  * typealias Digest = SHA256Digest
@@ -2680,6 +2935,9 @@ export declare class SHA256Digest extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get byteCount(): number;
+    readonly $type: {
+        "s:9CryptoKit12SHA256DigestV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -2721,6 +2979,9 @@ export declare class SHA3_256 extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): SHA3_256;
+    readonly $type: {
+        "s:9CryptoKit8SHA3_256V": true;
+    };
 }
 /**
  * typealias Digest = SHA3_256Digest
@@ -2747,6 +3008,9 @@ export declare class SHA3_256Digest extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get byteCount(): number;
+    readonly $type: {
+        "s:9CryptoKit14SHA3_256DigestV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -2788,6 +3052,9 @@ export declare class SHA3_384 extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): SHA3_384;
+    readonly $type: {
+        "s:9CryptoKit8SHA3_384V": true;
+    };
 }
 /**
  * typealias Digest = SHA3_384Digest
@@ -2814,6 +3081,9 @@ export declare class SHA3_384Digest extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get byteCount(): number;
+    readonly $type: {
+        "s:9CryptoKit14SHA3_384DigestV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -2855,6 +3125,9 @@ export declare class SHA3_512 extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): SHA3_512;
+    readonly $type: {
+        "s:9CryptoKit8SHA3_512V": true;
+    };
 }
 /**
  * typealias Digest = SHA3_512Digest
@@ -2881,6 +3154,9 @@ export declare class SHA3_512Digest extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get byteCount(): number;
+    readonly $type: {
+        "s:9CryptoKit14SHA3_512DigestV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -2922,6 +3198,9 @@ export declare class SHA384 extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): SHA384;
+    readonly $type: {
+        "s:9CryptoKit6SHA384V": true;
+    };
 }
 /**
  * typealias Digest = SHA384Digest
@@ -2948,6 +3227,9 @@ export declare class SHA384Digest extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get byteCount(): number;
+    readonly $type: {
+        "s:9CryptoKit12SHA384DigestV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -2989,6 +3271,9 @@ export declare class SHA512 extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): SHA512;
+    readonly $type: {
+        "s:9CryptoKit6SHA512V": true;
+    };
 }
 /**
  * typealias Digest = SHA512Digest
@@ -3015,6 +3300,9 @@ export declare class SHA512Digest extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get byteCount(): number;
+    readonly $type: {
+        "s:9CryptoKit12SHA512DigestV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -3041,6 +3329,9 @@ export declare class SharedSecret extends SDKHandle {
      * @availability iOS 13.0+
      */
     withUnsafeBytes(body: $SDK0): unknown;
+    readonly $type: {
+        "s:9CryptoKit12SharedSecretV": true;
+    };
 }
 /**
  * struct SymmetricKey
@@ -3067,6 +3358,9 @@ export declare class SymmetricKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     get bitCount(): number;
+    readonly $type: {
+        "s:9CryptoKit12SymmetricKeyV": true;
+    };
 }
 /**
  * struct SymmetricKeySize
@@ -3098,18 +3392,27 @@ export declare class SymmetricKeySize extends SDKHandle {
      * @availability iOS 13.0+
      */
     get bitCount(): number;
+    readonly $type: {
+        "s:9CryptoKit16SymmetricKeySizeV": true;
+    };
 }
 /**
  * enum XWingMLKEM768X25519
  * @availability iOS 26.0+
  */
 export declare class XWingMLKEM768X25519 extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit19XWingMLKEM768X25519O": true;
+    };
 }
 /**
  * struct OneTimePrivateKey
  * @availability iOS 27.0+
  */
 export declare class XWingMLKEM768X25519_OneTimePrivateKey extends SDKHandle {
+    readonly $type: {
+        "s:9CryptoKit19XWingMLKEM768X25519O17OneTimePrivateKeyV": true;
+    };
 }
 /**
  * typealias PublicKey = XWingMLKEM768X25519.PublicKey
@@ -3161,6 +3464,9 @@ export declare class XWingMLKEM768X25519_PrivateKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): XWingMLKEM768X25519_PrivateKey;
+    readonly $type: {
+        "s:9CryptoKit19XWingMLKEM768X25519O10PrivateKeyV": true;
+    };
 }
 /**
  * typealias PublicKey = XWingMLKEM768X25519.PublicKey
@@ -3197,6 +3503,9 @@ export declare class XWingMLKEM768X25519_PublicKey extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initKem(serialization: ArrayBuffer, kem: HPKE_KEM): XWingMLKEM768X25519_PublicKey;
+    readonly $type: {
+        "s:9CryptoKit19XWingMLKEM768X25519O9PublicKeyV": true;
+    };
 }
 /**
  * typealias EphemeralPrivateKey = XWingMLKEM768X25519.PrivateKey

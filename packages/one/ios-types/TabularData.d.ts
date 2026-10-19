@@ -63,6 +63,9 @@ export declare class AnyCategoricalSummary extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init86069(summary: $SDK1): AnyCategoricalSummary;
+    readonly $type: {
+        "s:11TabularData21AnyCategoricalSummaryV": true;
+    };
 }
 /**
  * struct AnyColumn
@@ -170,6 +173,9 @@ export declare class AnyColumn extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript36140(position: number): (unknown) | null;
+    readonly $type: {
+        "s:11TabularData9AnyColumnV": true;
+    };
 }
 /**
  * typealias Element = Any?
@@ -299,6 +305,9 @@ export declare class AnyColumnSlice extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript88042(position: number): (unknown) | null;
+    readonly $type: {
+        "s:11TabularData14AnyColumnSliceV": true;
+    };
 }
 /**
  * typealias Element = Any?
@@ -374,6 +383,9 @@ export declare class CategoricalSummary<Element = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): $SDK1;
+    readonly $type: {
+        "s:11TabularData18CategoricalSummaryV": true;
+    };
 }
 /**
  * struct Column<WrappedElement>
@@ -571,6 +583,9 @@ export declare class Column<WrappedElement = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript52386(position: number): (unknown) | null;
+    readonly $type: {
+        "s:11TabularData6ColumnV": true;
+    };
 }
 /**
  * typealias Element = WrappedElement?
@@ -630,6 +645,9 @@ export declare class ColumnDecodingError extends SDKHandle {
      */
     get rowIndex(): number;
     set rowIndex(value: number);
+    readonly $type: {
+        "s:11TabularData19ColumnDecodingErrorV": true;
+    };
 }
 /**
  * struct ColumnEncodingError
@@ -664,6 +682,9 @@ export declare class ColumnEncodingError extends SDKHandle {
      */
     get rowIndex(): number;
     set rowIndex(value: number);
+    readonly $type: {
+        "s:11TabularData19ColumnEncodingErrorV": true;
+    };
 }
 /**
  * struct ColumnID<T>
@@ -681,6 +702,9 @@ export declare class ColumnID<T = unknown> extends SDKHandle {
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "s:11TabularData8ColumnIDV": true;
+    };
 }
 /**
  * protocol ColumnProtocol<Element> : BidirectionalCollection
@@ -829,6 +853,9 @@ export declare class ColumnSlice<WrappedElement = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript44104(position: number): (unknown) | null;
+    readonly $type: {
+        "s:11TabularData11ColumnSliceV": true;
+    };
 }
 /**
  * typealias Element = WrappedElement?
@@ -880,6 +907,9 @@ export declare class CSVReadingError extends SDKHandle {
      * @availability iOS 15.0+
      */
     get column(): (number) | null;
+    readonly $type: {
+        "s:11TabularData15CSVReadingErrorO": true;
+    };
 }
 /**
  * struct CSVReadingOptions
@@ -955,6 +985,9 @@ export declare class CSVReadingOptions extends SDKHandle {
      * @availability iOS 15.0+
      */
     get delimiter(): string;
+    readonly $type: {
+        "s:11TabularData17CSVReadingOptionsV": true;
+    };
 }
 /**
  * enum CSVType
@@ -981,6 +1014,9 @@ export declare class CSVWritingError extends SDKHandle {
      * @availability iOS 15.0+
      */
     get column(): (string) | null;
+    readonly $type: {
+        "s:11TabularData15CSVWritingErrorO": true;
+    };
 }
 /**
  * struct CSVWritingOptions
@@ -1049,6 +1085,9 @@ export declare class CSVWritingOptions extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): CSVWritingOptions;
+    readonly $type: {
+        "s:11TabularData17CSVWritingOptionsV": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct DataFrame
@@ -1383,6 +1422,9 @@ export declare class DataFrame extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript4051(columnName: string): Array<(unknown) | null>;
+    readonly $type: {
+        "s:11TabularData0B5FrameV": true;
+    };
 }
 /**
  * typealias ColumnType = AnyColumn
@@ -1474,6 +1516,9 @@ export declare class DataFrame_Row extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript96016(position: number): (unknown) | null;
+    readonly $type: {
+        "s:11TabularData0B5FrameV3RowV": true;
+    };
 }
 /**
  * typealias Element = Any?
@@ -1540,6 +1585,9 @@ export declare class DataFrame_Rows extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript55752(bounds: SDKHandle): DataFrame_Rows;
+    readonly $type: {
+        "s:11TabularData0B5FrameV4RowsV": true;
+    };
 }
 /**
  * typealias Element = DataFrame.Row
@@ -1672,6 +1720,9 @@ export declare class DataFrame_Slice extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript87752(columnNames: Array<string>): DataFrame_Slice;
+    readonly $type: {
+        "s:11TabularData0B5FrameV5SliceV": true;
+    };
 }
 /**
  * typealias ColumnType = AnyColumnSlice
@@ -1850,6 +1901,9 @@ export declare class DiscontiguousColumnSlice<WrappedElement = unknown> extends 
      * @availability iOS 15.0+
      */
     subscript57566(position: number): (unknown) | null;
+    readonly $type: {
+        "s:11TabularData24DiscontiguousColumnSliceV": true;
+    };
 }
 /**
  * typealias Element = WrappedElement?
@@ -1881,6 +1935,9 @@ export type DiscontiguousColumnSlice_SubSequence<WrappedElement = unknown> = $SD
  * @availability iOS 15.0+
  */
 export declare class FilledColumn<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11TabularData12FilledColumnV": true;
+    };
 }
 /**
  * typealias Element = Base.WrappedElement
@@ -1992,6 +2049,9 @@ export declare class FormattingOptions extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): FormattingOptions;
+    readonly $type: {
+        "s:11TabularData17FormattingOptionsV": true;
+    };
 }
 /**
  * protocol GroupSummaries : CustomStringConvertible
@@ -2029,6 +2089,9 @@ export declare class JSONReadingError extends SDKHandle {
      * @availability iOS 17.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:11TabularData16JSONReadingErrorO": true;
+    };
 }
 /**
  * struct JSONReadingOptions
@@ -2046,6 +2109,9 @@ export declare class JSONReadingOptions extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): JSONReadingOptions;
+    readonly $type: {
+        "s:11TabularData18JSONReadingOptionsV": true;
+    };
 }
 /**
  * enum JSONType
@@ -2079,6 +2145,9 @@ export declare class JSONWritingOptions extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): JSONWritingOptions;
+    readonly $type: {
+        "s:11TabularData18JSONWritingOptionsV": true;
+    };
 }
 /**
  * struct NumericSummary<Element> where Element : BinaryFloatingPoint
@@ -2159,6 +2228,9 @@ export declare class NumericSummary<Element = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): NumericSummary<number>;
+    readonly $type: {
+        "s:11TabularData14NumericSummaryV": true;
+    };
 }
 /**
  * protocol OptionalColumnProtocol<WrappedElement> : ColumnProtocol
@@ -2248,6 +2320,9 @@ export declare class RowGrouping<GroupingKey = unknown> extends SDKHandle {
     subscript(position: number): {
         "key": (number) | null;
         "group": DataFrame_Slice;
+    };
+    readonly $type: {
+        "s:11TabularData11RowGroupingV": true;
     };
 }
 /**
@@ -2344,6 +2419,9 @@ export declare class SFrameReadingError extends SDKHandle {
      * @availability iOS 17.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:11TabularData18SFrameReadingErrorO": true;
+    };
 }
 /**
  * struct ShapedData<Element>
@@ -2370,6 +2448,9 @@ export declare class ShapedData<Element = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     get contents(): Array<unknown>;
+    readonly $type: {
+        "s:11TabularData06ShapedB0V": true;
+    };
 }
 /**
  * enum SummaryColumnIDs
@@ -2436,5 +2517,8 @@ export declare class SummaryColumnIDs extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get someCount(): ColumnID<number>;
+    readonly $type: {
+        "s:11TabularData16SummaryColumnIDsO": true;
+    };
 }
 export {};

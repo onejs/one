@@ -5,6 +5,12 @@ import { SDKHandle } from 'one/ios-runtime';
  * @availability iOS 26.4+
  */
 export declare class AssignedDocumentDeferredMenuElement extends SDKHandle {
+    readonly $type: {
+        "c:@M@ClassKitUI@objc(cs)AssignedDocumentDeferredMenuElement": true;
+        "c:objc(cs)UIDeferredMenuElement": true;
+        "c:objc(cs)UIMenuElement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct AssignedDocumentLabel
@@ -16,6 +22,9 @@ export declare class AssignedDocumentLabel extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init(role: AssignedDocumentLabel_Role, documentURL: string): Promise<AssignedDocumentLabel>;
+    readonly $type: {
+        "s:10ClassKitUI21AssignedDocumentLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -37,6 +46,9 @@ export declare class AssignedDocumentLabel_Role extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get status(): Promise<AssignedDocumentLabel_Role>;
+    readonly $type: {
+        "s:10ClassKitUI21AssignedDocumentLabelV4RoleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct AssignedDocumentSubmissionButton
@@ -48,6 +60,9 @@ export declare class AssignedDocumentSubmissionButton extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init(documentURL: string): Promise<AssignedDocumentSubmissionButton>;
+    readonly $type: {
+        "s:10ClassKitUI32AssignedDocumentSubmissionButtonV": true;
+    };
 }
 /**
  * typealias Body = some View

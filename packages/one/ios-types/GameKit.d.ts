@@ -164,6 +164,10 @@ export declare class GKAccessPoint extends SDKHandle {
      * @availability iOS 14.0+
      */
     get isVisible(): boolean;
+    readonly $type: {
+        "c:objc(cs)GKAccessPoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "frameInScreenCoordinates": true;
@@ -230,8 +234,6 @@ export declare class GKAchievement extends SDKHandle {
      * @deprecated iOS 8.0
      */
     challengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs?: (Array<string>) | null, message?: (string) | null, completionHandler?: $SDK5): $SDK6;
-    /** init() */
-    static init(): GKAchievement;
     /**
      * init(identifier: String)
      * @availability iOS 4.1+
@@ -299,6 +301,10 @@ export declare class GKAchievement extends SDKHandle {
      */
     get showsCompletionBanner(): boolean;
     set showsCompletionBanner(value: boolean);
+    readonly $type: {
+        "c:objc(cs)GKAchievement": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCompleted": true;
         "identifier": true;
@@ -377,6 +383,10 @@ export declare class GKChallenge extends SDKHandle {
      * @deprecated iOS 26.0
      */
     get state(): GKChallengeState;
+    readonly $type: {
+        "c:objc(cs)GKChallenge": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "completionDate": true;
         "issueDate": true;
@@ -403,6 +413,11 @@ export declare class GKAchievementChallenge extends GKAchievementChallenge_base 
      * @deprecated iOS 26.0
      */
     get achievement(): (GKAchievement) | null;
+    readonly $type: {
+        "c:objc(cs)GKAchievementChallenge": true;
+        "c:objc(cs)GKChallenge": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "completionDate": true;
         "issueDate": true;
@@ -493,6 +508,10 @@ export declare class GKAchievementDescription extends SDKHandle {
      * @availability iOS 17.0+
      */
     get rarityPercent(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)GKAchievementDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "achievedDescription": true;
         "activityIdentifier": true;
@@ -525,6 +544,10 @@ export declare class GKBasePlayer extends SDKHandle {
      * @deprecated iOS 13.0
      */
     get playerID(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)GKBasePlayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "playerID": true;
@@ -604,6 +627,10 @@ export declare class GKChallengeDefinition extends SDKHandle {
      * @availability iOS 26.0+
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)GKChallengeDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "details": true;
         "durationOptions": true;
@@ -675,6 +702,11 @@ export declare class GKCloudPlayer extends GKCloudPlayer_base {
     static getCurrentSignedInPlayer(containerName: (string) | null, handler: ((arg0: (GKCloudPlayer) | null, arg1: (NativeError) | null) => void)): void;
     /** init() */
     static init(): GKCloudPlayer;
+    readonly $type: {
+        "c:objc(cs)GKCloudPlayer": true;
+        "c:objc(cs)GKBasePlayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "playerID": true;
@@ -913,6 +945,9 @@ export declare class GKError extends SDKHandle {
      * @availability iOS 18.4+
      */
     static get debugMode(): GKError_Code;
+    readonly $type: {
+        "s:SC11GKErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -971,6 +1006,13 @@ export declare class GKFriendRequestComposeViewController extends SDKHandle {
      */
     get composeViewDelegate(): (SDKHandle) | null;
     set composeViewDelegate(value: (Implements<GKFriendRequestComposeViewControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)GKFriendRequestComposeViewController": true;
+        "c:objc(cs)UINavigationController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "composeViewDelegate": true;
     };
@@ -1176,6 +1218,10 @@ export declare class GKGameActivity extends SDKHandle {
      * @availability iOS 26.0+
      */
     get state(): GKGameActivity_State;
+    readonly $type: {
+        "c:objc(cs)GKGameActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "achievements": true;
         "activityDefinition": true;
@@ -1289,6 +1335,10 @@ export declare class GKGameActivityDefinition extends SDKHandle {
      * @availability iOS 26.0+
      */
     get playerRange(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)GKGameActivityDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultProperties": true;
         "details": true;
@@ -1339,8 +1389,6 @@ export interface GKGameCenterControllerDelegate {
  * @deprecated iOS 26.0
  */
 export declare class GKGameCenterViewController extends SDKHandle {
-    /** init() */
-    static init(): GKGameCenterViewController;
     /**
      * init(achievementID: String)
      * @availability iOS 14.0+
@@ -1395,6 +1443,13 @@ export declare class GKGameCenterViewController extends SDKHandle {
      */
     get viewState(): GKGameCenterViewControllerState;
     set viewState(value: GKGameCenterViewControllerState);
+    readonly $type: {
+        "c:objc(cs)GKGameCenterViewController": true;
+        "c:objc(cs)UINavigationController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "gameCenterDelegate": true;
         "leaderboardIdentifier": true;
@@ -1554,6 +1609,10 @@ export declare class GKGameSession extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)GKGameSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "badgedPlayers": true;
         "identifier": true;
@@ -1673,6 +1732,9 @@ export declare class GKGameSessionError extends SDKHandle {
      * @deprecated iOS 12.0
      */
     static get unknown(): GKGameSessionError_Code;
+    readonly $type: {
+        "s:SC22GKGameSessionErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1764,6 +1826,10 @@ export declare class GKInvite extends SDKHandle {
      * @availability iOS 8.0+
      */
     get sender(): GKPlayer;
+    readonly $type: {
+        "c:objc(cs)GKInvite": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isHosted": true;
         "inviter": true;
@@ -1869,8 +1935,6 @@ export declare class GKLeaderboard extends SDKHandle {
      * @availability iOS 14.0+
      */
     static submitScoreContextPlayerLeaderboardIDsCompletionHandler(score: number, context: number, player: GKPlayer, leaderboardIDs: Array<string>, completionHandler: $SDK33): void;
-    /** init() */
-    static init(): GKLeaderboard;
     /**
      * init?(playerIDs: [String]?)
      * @availability iOS 4.1+
@@ -2026,6 +2090,10 @@ export declare class GKLeaderboard extends SDKHandle {
      * @availability iOS 14.0+
      */
     get type(): GKLeaderboard_LeaderboardType;
+    readonly $type: {
+        "c:objc(cs)GKLeaderboard": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activityIdentifier": true;
         "activityProperties": true;
@@ -2096,6 +2164,10 @@ export declare class GKLeaderboard_Entry extends SDKHandle {
      * @availability iOS 14.0+
      */
     get score(): number;
+    readonly $type: {
+        "c:objc(cs)GKLeaderboardEntry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "context": true;
         "date": true;
@@ -2172,6 +2244,10 @@ export declare class GKLeaderboardScore extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $type: {
+        "c:objc(cs)GKLeaderboardScore": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "context": true;
         "leaderboardID": true;
@@ -2223,6 +2299,10 @@ export declare class GKLeaderboardSet extends SDKHandle {
      * @availability iOS 7.0+
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)GKLeaderboardSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupIdentifier": true;
         "identifier": true;
@@ -2300,6 +2380,11 @@ export declare class GKPlayer extends GKPlayer_base {
      * @availability iOS 12.4+
      */
     get teamPlayerID(): string;
+    readonly $type: {
+        "c:objc(cs)GKPlayer": true;
+        "c:objc(cs)GKBasePlayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "playerID": true;
@@ -2461,6 +2546,12 @@ export declare class GKLocalPlayer extends GKLocalPlayer_base {
      * @availability iOS 4.1+
      */
     get isUnderage(): boolean;
+    readonly $type: {
+        "c:objc(cs)GKLocalPlayer": true;
+        "c:objc(cs)GKPlayer": true;
+        "c:objc(cs)GKBasePlayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "playerID": true;
@@ -2650,6 +2741,10 @@ export declare class GKMatch extends SDKHandle {
      * @availability iOS 17.2+
      */
     get properties(): $SDK56;
+    readonly $type: {
+        "c:objc(cs)GKMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "expectedPlayerCount": true;
@@ -2725,6 +2820,10 @@ export declare class GKMatchedPlayers extends SDKHandle {
      * @availability iOS 17.2+
      */
     get properties(): $SDK56;
+    readonly $type: {
+        "c:objc(cs)GKMatchedPlayers": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "playerProperties": true;
         "players": true;
@@ -2836,6 +2935,10 @@ export declare class GKMatchmaker extends SDKHandle {
      * @availability iOS 16.2+
      */
     stopGroupActivity(): void;
+    readonly $type: {
+        "c:objc(cs)GKMatchmaker": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class GKMatchmakerViewController
@@ -2847,8 +2950,6 @@ export declare class GKMatchmakerViewController extends SDKHandle {
      * @availability iOS 5.0+
      */
     addPlayers(match: GKMatch): void;
-    /** init() */
-    static init(): GKMatchmakerViewController;
     /**
      * init?(invite: GKInvite)
      * @availability iOS 4.1+
@@ -2899,6 +3000,13 @@ export declare class GKMatchmakerViewController extends SDKHandle {
      */
     get matchmakingMode(): GKMatchmakingMode;
     set matchmakingMode(value: GKMatchmakingMode);
+    readonly $type: {
+        "c:objc(cs)GKMatchmakerViewController": true;
+        "c:objc(cs)UINavigationController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "canStartWithMinimumPlayers": true;
         "isHosted": true;
@@ -3061,6 +3169,10 @@ export declare class GKMatchRequest extends SDKHandle {
      */
     get restrictToAutomatch(): boolean;
     set restrictToAutomatch(value: boolean);
+    readonly $type: {
+        "c:objc(cs)GKMatchRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultNumberOfPlayers": true;
         "inviteMessage": true;
@@ -3108,6 +3220,10 @@ export declare class GKNotificationBanner extends SDKHandle {
     static showWithTitleMessageDurationCompletionHandler(title: (string) | null, message: (string) | null, duration: number, completionHandler?: ((() => void)) | null): void;
     /** init() */
     static init(): GKNotificationBanner;
+    readonly $type: {
+        "c:objc(cs)GKNotificationBanner": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum PhotoSize
@@ -3182,6 +3298,10 @@ export declare class GKSavedGame extends SDKHandle {
      * @availability iOS 8.0+
      */
     get name(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)GKSavedGame": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceName": true;
         "modificationDate": true;
@@ -3246,8 +3366,6 @@ export declare class GKScore extends SDKHandle {
      * @deprecated iOS 8.0
      */
     challengeComposeControllerWithPlayersMessageCompletionHandler(playerIDs?: (Array<string>) | null, message?: (string) | null, completionHandler?: $SDK5): $SDK6;
-    /** init() */
-    static init(): GKScore;
     /**
      * init(leaderboardIdentifier identifier: String)
      * @availability iOS 4.1+
@@ -3324,6 +3442,10 @@ export declare class GKScore extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $type: {
+        "c:objc(cs)GKScore": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "context": true;
         "date": true;
@@ -3357,6 +3479,11 @@ export declare class GKScoreChallenge extends GKScoreChallenge_base {
      * @deprecated iOS 17.4
      */
     get score(): (GKScore) | null;
+    readonly $type: {
+        "c:objc(cs)GKScoreChallenge": true;
+        "c:objc(cs)GKChallenge": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "completionDate": true;
         "issueDate": true;
@@ -3496,6 +3623,10 @@ export declare class GKTurnBasedExchange extends SDKHandle {
      * @availability iOS 7.0+
      */
     get timeoutDate(): $SDK10;
+    readonly $type: {
+        "c:objc(cs)GKTurnBasedExchange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "completionDate": true;
         "data": true;
@@ -3536,6 +3667,10 @@ export declare class GKTurnBasedExchangeReply extends SDKHandle {
      * @availability iOS 8.0+
      */
     get replyDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)GKTurnBasedExchangeReply": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "message": true;
@@ -3724,6 +3859,10 @@ export declare class GKTurnBasedMatch extends SDKHandle {
      * @availability iOS 5.0+
      */
     get status(): GKTurnBasedMatch_Status;
+    readonly $type: {
+        "c:objc(cs)GKTurnBasedMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeExchanges": true;
         "completedExchanges": true;
@@ -3769,10 +3908,8 @@ export declare const GKTurnBasedMatch_Status: {
  * @availability iOS 5.0+
  */
 export declare class GKTurnBasedMatchmakerViewController extends SDKHandle {
-    /** init() */
-    static init(): GKTurnBasedMatchmakerViewController;
     /** init(matchRequest request: GKMatchRequest) */
-    static initMatchRequest(request: GKMatchRequest): GKTurnBasedMatchmakerViewController;
+    static init(request: GKMatchRequest): GKTurnBasedMatchmakerViewController;
     /**
      * var matchmakingMode: GKMatchmakingMode { get set }
      * @availability iOS 15.0+
@@ -3785,6 +3922,13 @@ export declare class GKTurnBasedMatchmakerViewController extends SDKHandle {
     /** weak var turnBasedMatchmakerDelegate: (any GKTurnBasedMatchmakerViewControllerDelegate)? { get set } */
     get turnBasedMatchmakerDelegate(): (SDKHandle) | null;
     set turnBasedMatchmakerDelegate(value: (Implements<GKTurnBasedMatchmakerViewControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)GKTurnBasedMatchmakerViewController": true;
+        "c:objc(cs)UINavigationController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchmakingMode": true;
         "showExistingMatches": true;
@@ -3858,6 +4002,10 @@ export declare class GKTurnBasedParticipant extends SDKHandle {
      * @availability iOS 6.0+
      */
     get timeoutDate(): $SDK10;
+    readonly $type: {
+        "c:objc(cs)GKTurnBasedParticipant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "lastTurnDate": true;
         "matchOutcome": true;
@@ -3963,6 +4111,10 @@ export declare class GKVoiceChat extends SDKHandle {
      */
     get volume(): number;
     set volume(value: number);
+    readonly $type: {
+        "c:objc(cs)GKVoiceChat": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "name": true;
@@ -3985,7 +4137,7 @@ export declare const GKVoiceChat_PlayerState: {
      */
     init(rawValue: number): (GKVoiceChat_PlayerState) | null;
 };
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let GKPlayerAuthenticationDidChangeNotificationName: NSNotification.Name

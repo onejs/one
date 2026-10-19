@@ -18,9 +18,15 @@ export declare const CGImageAnimationStatus: {
 };
 /** class CGImageDestination */
 export declare class CGImageDestination extends SDKHandle {
+    readonly $type: {
+        "c:@T@CGImageDestinationRef": true;
+    };
 }
 /** class CGImageMetadata */
 export declare class CGImageMetadata extends SDKHandle {
+    readonly $type: {
+        "c:@T@CGImageMetadataRef": true;
+    };
 }
 /** enum CGImageMetadataErrors */
 export type CGImageMetadataErrors = "unknown" | "unsupportedFormat" | "badArgument" | "conflictingArguments" | "prefixConflict";
@@ -30,6 +36,9 @@ export declare const CGImageMetadataErrors: {
 };
 /** class CGImageMetadataTag */
 export declare class CGImageMetadataTag extends SDKHandle {
+    readonly $type: {
+        "c:@T@CGImageMetadataTagRef": true;
+    };
 }
 /** typealias CGImageMetadataTagBlock = (CFString, CGImageMetadataTag) -> Bool */
 export type CGImageMetadataTagBlock = ((arg0: _CoreFoundation_CFString, arg1: CGImageMetadataTag) => Promise<boolean>);
@@ -53,6 +62,9 @@ export declare const CGImagePropertyTGACompression: {
 };
 /** class CGImageSource */
 export declare class CGImageSource extends SDKHandle {
+    readonly $type: {
+        "c:@T@CGImageSourceRef": true;
+    };
 }
 /** typealias CGImageSourceAnimationBlock = (Int, CGImage, UnsafeMutablePointer<Bool>) -> Void */
 export type CGImageSourceAnimationBlock = ((arg0: number, arg1: _CoreGraphics_CGImage, arg2: SDKHandle) => Promise<void>);
@@ -64,6 +76,10 @@ export declare const CGImageSourceStatus: {
 };
 /** class CGMutableImageMetadata */
 export declare class CGMutableImageMetadata extends CGImageMetadata {
+    readonly $type: {
+        "c:@T@CGMutableImageMetadataRef": true;
+        "c:@T@CGImageMetadataRef": true;
+    };
 }
 /**
  * func CGImageDestinationAddAuxiliaryDataInfo(_ idst: CGImageDestination, _ auxiliaryImageDataType: CFString, _ auxiliaryDataInfoDictionary: CFDictionary)

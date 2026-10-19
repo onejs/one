@@ -17,6 +17,9 @@ export declare class NWEndpoint extends SDKHandle {
      * @availability iOS 26.4+
      */
     get wifiAware(): (WAEndpoint) | null;
+    readonly $type: {
+        "s:7Network10NWEndpointO": true;
+    };
 }
 export declare class NWError extends SDKHandle {
     /**
@@ -24,6 +27,9 @@ export declare class NWError extends SDKHandle {
      * @availability iOS 26.0+
      */
     get wifiAware(): (WAError) | null;
+    readonly $type: {
+        "s:7Network7NWErrorO": true;
+    };
 }
 export declare class NWParameters extends SDKHandle {
     /**
@@ -37,6 +43,9 @@ export declare class NWParameters extends SDKHandle {
      * @availability iOS 26.0+
      */
     wifiAware7940(configurator: ((arg0: WAParameters) => void)): _Network_NWParameters;
+    readonly $type: {
+        "s:7Network12NWParametersC": true;
+    };
 }
 export declare class NWPath extends SDKHandle {
     /**
@@ -44,6 +53,9 @@ export declare class NWPath extends SDKHandle {
      * @availability iOS 26.0+
      */
     get wifiAware(): Promise<(WAPath) | null>;
+    readonly $type: {
+        "s:7Network6NWPathV": true;
+    };
 }
 /**
  * enum WAAccessCategory
@@ -87,6 +99,9 @@ export declare class WACapabilities extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get maximumSubscribableServices(): number;
+    readonly $type: {
+        "s:9WiFiAware14WACapabilitiesV": true;
+    };
 }
 /**
  * enum Feature
@@ -110,6 +125,9 @@ export type WACapabilities_Feature_AllCases = $SDK1;
  * @availability iOS 26.4+
  */
 export declare class WAConnection<ApplicationProtocol = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware12WAConnectionC": true;
+    };
 }
 /**
  * struct WAEndpoint
@@ -141,102 +159,153 @@ export declare class WAEndpoint extends SDKHandle {
      * @availability iOS 26.0+
      */
     get device(): WAPairedDevice;
+    readonly $type: {
+        "s:9WiFiAware10WAEndpointV": true;
+    };
 }
 /**
  * enum WAError
  * @availability iOS 26.0+
  */
 export declare class WAError extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO": true;
+    };
 }
 /**
  * struct ConnectionFailedDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_ConnectionFailedDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO23ConnectionFailedDetailsV": true;
+    };
 }
 /**
  * struct ConnectionIdleTimeoutDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_ConnectionIdleTimeoutDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO28ConnectionIdleTimeoutDetailsV": true;
+    };
 }
 /**
  * struct ConnectionTerminatedDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_ConnectionTerminatedDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO27ConnectionTerminatedDetailsV": true;
+    };
 }
 /**
  * struct DeviceInvalidDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_DeviceInvalidDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO20DeviceInvalidDetailsV": true;
+    };
 }
 /**
  * struct DeviceNoLongerAvailableDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_DeviceNoLongerAvailableDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO30DeviceNoLongerAvailableDetailsV": true;
+    };
 }
 /**
  * struct EntitlementMissingDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_EntitlementMissingDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO25EntitlementMissingDetailsV": true;
+    };
 }
 /**
  * struct ErrorDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_ErrorDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO12ErrorDetailsV": true;
+    };
 }
 /**
  * struct NoPairedDevicesDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_NoPairedDevicesDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO22NoPairedDevicesDetailsV": true;
+    };
 }
 /**
  * struct NoRadioResourcesDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_NoRadioResourcesDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO23NoRadioResourcesDetailsV": true;
+    };
 }
 /**
  * struct PublisherTimeoutDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_PublisherTimeoutDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO23PublisherTimeoutDetailsV": true;
+    };
 }
 /**
  * struct ServiceAlreadyPublishingDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_ServiceAlreadyPublishingDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO31ServiceAlreadyPublishingDetailsV": true;
+    };
 }
 /**
  * struct ServiceAlreadySubscribingDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_ServiceAlreadySubscribingDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO32ServiceAlreadySubscribingDetailsV": true;
+    };
 }
 /**
  * struct ServiceNotDeclaredDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_ServiceNotDeclaredDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO25ServiceNotDeclaredDetailsV": true;
+    };
 }
 /**
  * struct SubscriberTimeoutDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_SubscriberTimeoutDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO24SubscriberTimeoutDetailsV": true;
+    };
 }
 /**
  * struct WiFiAwareUnsupportedDetails
  * @availability iOS 26.0+
  */
 export declare class WAError_WiFiAwareUnsupportedDetails extends SDKHandle {
+    readonly $type: {
+        "s:9WiFiAware7WAErrorO0abC18UnsupportedDetailsV": true;
+    };
 }
 /**
  * struct WAPairedDevice
@@ -273,6 +342,9 @@ export declare class WAPairedDevice extends SDKHandle {
      * @availability iOS 26.0+
      */
     get name(): (string) | null;
+    readonly $type: {
+        "s:9WiFiAware14WAPairedDeviceV": true;
+    };
 }
 /**
  * typealias Devices = [WAPairedDevice.ID : WAPairedDevice]
@@ -294,6 +366,9 @@ export declare class WAPairedDevice_DevicesSequence extends SDKHandle {
      * @availability iOS 26.0+
      */
     current(): Promise<$SDK8>;
+    readonly $type: {
+        "s:9WiFiAware14WAPairedDeviceV15DevicesSequenceV": true;
+    };
     readonly $element: $SDK7;
 }
 /**
@@ -306,6 +381,9 @@ export declare class WAPairedDevice_DevicesSequence_AsyncIterator extends SDKHan
      * @availability iOS 26.0+
      */
     next(): Promise<$SDK8>;
+    readonly $type: {
+        "s:9WiFiAware14WAPairedDeviceV15DevicesSequenceV13AsyncIteratorC": true;
+    };
 }
 /**
  * typealias Element = WAPairedDevice.Devices
@@ -352,6 +430,9 @@ export declare class WAPairedDevice_PairingInfo extends SDKHandle {
      * @availability iOS 26.0+
      */
     get modelName(): string;
+    readonly $type: {
+        "s:9WiFiAware14WAPairedDeviceV11PairingInfoV": true;
+    };
 }
 /**
  * struct WAParameters
@@ -379,6 +460,9 @@ export declare class WAParameters extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get realtime(): WAParameters;
+    readonly $type: {
+        "s:9WiFiAware12WAParametersV": true;
+    };
 }
 /**
  * struct WAPath
@@ -400,6 +484,9 @@ export declare class WAPath extends SDKHandle {
      * @availability iOS 26.0+
      */
     get endpoint(): WAEndpoint;
+    readonly $type: {
+        "s:9WiFiAware6WAPathV": true;
+    };
 }
 /**
  * struct WAPerformanceForecast
@@ -446,6 +533,9 @@ export declare class WAPerformanceForecast extends SDKHandle {
      * @availability iOS 27.0+
      */
     get timestamp(): globalThis.Date;
+    readonly $type: {
+        "s:9WiFiAware21WAPerformanceForecastV": true;
+    };
 }
 /**
  * enum WAPerformanceMode
@@ -504,6 +594,9 @@ export declare class WAPerformanceReport extends SDKHandle {
      * @availability iOS 26.0+
      */
     get timestamp(): globalThis.Date;
+    readonly $type: {
+        "s:9WiFiAware19WAPerformanceReportV": true;
+    };
 }
 /**
  * struct TransmitLatencyMetrics
@@ -520,6 +613,9 @@ export declare class WAPerformanceReport_TransmitLatencyMetrics extends SDKHandl
      * @availability iOS 26.0+
      */
     get average(): (SDKHandle) | null;
+    readonly $type: {
+        "s:9WiFiAware19WAPerformanceReportV22TransmitLatencyMetricsV": true;
+    };
 }
 /**
  * struct WAPublishableService
@@ -546,6 +642,9 @@ export declare class WAPublishableService extends SDKHandle {
      * @availability iOS 26.0+
      */
     get name(): string;
+    readonly $type: {
+        "s:9WiFiAware20WAPublishableServiceV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -572,6 +671,9 @@ export declare class WAPublisherListener extends SDKHandle {
      * @availability iOS 26.0+
      */
     get service(): _Network_NWListener_Service;
+    readonly $type: {
+        "s:9WiFiAware19WAPublisherListenerV": true;
+    };
 }
 /**
  * struct Action
@@ -588,6 +690,9 @@ export declare class WAPublisherListener_Action extends SDKHandle {
      * @availability iOS 26.4+
      */
     static addingConnections(pairedDevices: WAPublisherListener_Devices): WAPublisherListener_Action;
+    readonly $type: {
+        "s:9WiFiAware19WAPublisherListenerV6ActionV": true;
+    };
 }
 /**
  * struct DatapathParameters
@@ -604,6 +709,9 @@ export declare class WAPublisherListener_DatapathParameters extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get realtime(): WAPublisherListener_DatapathParameters;
+    readonly $type: {
+        "s:9WiFiAware19WAPublisherListenerV18DatapathParametersV": true;
+    };
 }
 /**
  * struct Devices
@@ -630,6 +738,9 @@ export declare class WAPublisherListener_Devices extends SDKHandle {
      * @availability iOS 26.0+
      */
     static selected(pairedDevices: $SDK7): WAPublisherListener_Devices;
+    readonly $type: {
+        "s:9WiFiAware19WAPublisherListenerV7DevicesV": true;
+    };
 }
 /**
  * protocol WAService : CustomStringConvertible, Decodable, Encodable, Hashable, Identifiable, Sendable
@@ -652,6 +763,9 @@ export declare class WASharedSecret extends SDKHandle {
      * @availability iOS 26.4+
      */
     get data(): ArrayBuffer;
+    readonly $type: {
+        "s:9WiFiAware14WASharedSecretV": true;
+    };
 }
 /**
  * struct Context
@@ -673,6 +787,9 @@ export declare class WASharedSecret_Context extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init37833(string: string): (WASharedSecret_Context) | null;
+    readonly $type: {
+        "s:9WiFiAware14WASharedSecretV7ContextV": true;
+    };
 }
 /**
  * struct DerivationMethod
@@ -684,6 +801,9 @@ export declare class WASharedSecret_DerivationMethod extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get kdfHash256(): WASharedSecret_DerivationMethod;
+    readonly $type: {
+        "s:9WiFiAware14WASharedSecretV16DerivationMethodV": true;
+    };
 }
 /**
  * struct ProtocolName
@@ -710,6 +830,9 @@ export declare class WASharedSecret_ProtocolName extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init33821(string: string): (WASharedSecret_ProtocolName) | null;
+    readonly $type: {
+        "s:9WiFiAware14WASharedSecretV12ProtocolNameV": true;
+    };
 }
 /**
  * struct WASubscribableService
@@ -736,6 +859,9 @@ export declare class WASubscribableService extends SDKHandle {
      * @availability iOS 26.0+
      */
     get name(): string;
+    readonly $type: {
+        "s:9WiFiAware21WASubscribableServiceV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -762,6 +888,9 @@ export declare class WASubscriberBrowser extends SDKHandle {
      * @availability iOS 26.0+
      */
     configureParameters(parameters?: (_Network_NWParameters) | null): _Network_NWParameters;
+    readonly $type: {
+        "s:9WiFiAware19WASubscriberBrowserV": true;
+    };
 }
 /**
  * struct Action
@@ -773,6 +902,9 @@ export declare class WASubscriberBrowser_Action extends SDKHandle {
      * @availability iOS 26.0+
      */
     static connecting(pairedDevices: WASubscriberBrowser_Devices, mySubscribingService: WASubscribableService): WASubscriberBrowser_Action;
+    readonly $type: {
+        "s:9WiFiAware19WASubscriberBrowserV6ActionV": true;
+    };
 }
 /**
  * struct Devices
@@ -799,6 +931,9 @@ export declare class WASubscriberBrowser_Devices extends SDKHandle {
      * @availability iOS 26.0+
      */
     static selected(pairedDevices: $SDK7): WASubscriberBrowser_Devices;
+    readonly $type: {
+        "s:9WiFiAware19WASubscriberBrowserV7DevicesV": true;
+    };
 }
 /**
  * typealias Endpoint = WAEndpoint

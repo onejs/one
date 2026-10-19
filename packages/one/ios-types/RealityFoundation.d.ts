@@ -211,6 +211,9 @@ export declare class AccessibilityComponent extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): AccessibilityComponent;
+    readonly $type: {
+        "s:17RealityFoundation22AccessibilityComponentV": true;
+    };
 }
 /**
  * struct CustomContent
@@ -240,6 +243,9 @@ export declare class AccessibilityComponent_CustomContent extends SDKHandle {
      */
     get value(): _Foundation_LocalizedStringResource;
     set value(value: _Foundation_LocalizedStringResource);
+    readonly $type: {
+        "s:17RealityFoundation22AccessibilityComponentV13CustomContentV": true;
+    };
 }
 /**
  * struct SupportedActions
@@ -293,6 +299,9 @@ export type AccessibilityComponent_SupportedActions_RawValue = number;
  * @availability iOS 18.0+
  */
 export declare class ActionAnimation<ActionType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation15ActionAnimationV": true;
+    };
 }
 /**
  * typealias EventDefinitionType = ActionEventDefinition<ActionType>
@@ -314,18 +323,27 @@ export declare class ActionEntityResolution extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get sourceEntity(): ActionEntityResolution;
+    readonly $type: {
+        "s:17RealityFoundation22ActionEntityResolutionO": true;
+    };
 }
 /**
  * struct ActionEvent<ActionType> where ActionType : EntityAction
  * @availability iOS 18.0+
  */
 export declare class ActionEvent<ActionType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation11ActionEventV": true;
+    };
 }
 /**
  * struct ActionEventDefinition<ActionType> where ActionType : EntityAction
  * @availability iOS 18.0+
  */
 export declare class ActionEventDefinition<ActionType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation21ActionEventDefinitionV": true;
+    };
 }
 /**
  * typealias EventParameterType = ActionType.EventParameterType
@@ -470,6 +488,9 @@ export declare class AdaptiveResolutionComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): AdaptiveResolutionComponent;
+    readonly $type: {
+        "s:17RealityFoundation27AdaptiveResolutionComponentV": true;
+    };
 }
 export declare class AffineTransform3D extends SDKHandle {
     /**
@@ -477,6 +498,9 @@ export declare class AffineTransform3D extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(transform: Transform): _Spatial_AffineTransform3D;
+    readonly $type: {
+        "c:@SA@SPAffineTransform3D": true;
+    };
 }
 /**
  * struct AmbientAudioComponent
@@ -494,6 +518,9 @@ export declare class AmbientAudioComponent extends SDKHandle {
      */
     get gain(): number;
     set gain(value: number);
+    readonly $type: {
+        "s:17RealityFoundation21AmbientAudioComponentV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class Entity
@@ -872,6 +899,9 @@ export declare class Entity extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(entityPath: BindTarget_EntityPath): Promise<(Entity) | null>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 declare const AnchorEntity_base: Omit<typeof Entity, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Entity);
 /**
@@ -914,6 +944,10 @@ export declare class AnchorEntity extends AnchorEntity_base {
      * @availability iOS 13.0+
      */
     static init87284(target: AnchoringComponent_Target): Promise<AnchorEntity>;
+    readonly $type: {
+        "s:17RealityFoundation12AnchorEntityC": true;
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * struct AnchoringComponent
@@ -952,6 +986,9 @@ export declare class AnchoringComponent extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(target: AnchoringComponent_Target): AnchoringComponent;
+    readonly $type: {
+        "s:17RealityFoundation18AnchoringComponentV": true;
+    };
 }
 /**
  * struct ImageAnchoringSource
@@ -968,6 +1005,9 @@ export declare class AnchoringComponent_ImageAnchoringSource extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initPhysicalSize(url: string, physicalSize: SDKHandle): AnchoringComponent_ImageAnchoringSource;
+    readonly $type: {
+        "s:17RealityFoundation18AnchoringComponentV05ImageC6SourceV": true;
+    };
 }
 /**
  * struct ObjectAnchoringSource
@@ -984,6 +1024,9 @@ export declare class AnchoringComponent_ObjectAnchoringSource extends SDKHandle 
      * @availability iOS 18.0+
      */
     static initGroupName(group: string, name: string): AnchoringComponent_ObjectAnchoringSource;
+    readonly $type: {
+        "s:17RealityFoundation18AnchoringComponentV06ObjectC6SourceV": true;
+    };
 }
 /**
  * enum PhysicsSimulation
@@ -995,6 +1038,9 @@ export type AnchoringComponent_PhysicsSimulation = "none" | "isolated";
  * @availability iOS 13.0+
  */
 export declare class AnchoringComponent_Target extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation18AnchoringComponentV6TargetO": true;
+    };
 }
 /**
  * struct Alignment
@@ -1125,12 +1171,18 @@ export declare class AnchoringComponent_TrackingMode extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get predicted(): AnchoringComponent_TrackingMode;
+    readonly $type: {
+        "s:17RealityFoundation18AnchoringComponentV12TrackingModeV": true;
+    };
 }
 /**
  * enum AnchorStateEvents
  * @availability iOS 26.0+
  */
 export declare class AnchorStateEvents extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation17AnchorStateEventsO": true;
+    };
 }
 /**
  * struct DidAnchor
@@ -1147,6 +1199,9 @@ export declare class AnchorStateEvents_DidAnchor extends SDKHandle {
      * @availability iOS 26.0+
      */
     get reason(): AnchorStateEvents_DidAnchor_Reason;
+    readonly $type: {
+        "s:17RealityFoundation17AnchorStateEventsO03DidC0V": true;
+    };
 }
 /**
  * enum Reason
@@ -1168,6 +1223,9 @@ export declare class AnchorStateEvents_DidFailToAnchor extends SDKHandle {
      * @availability iOS 26.0+
      */
     get reason(): AnchorStateEvents_DidFailToAnchor_Reason;
+    readonly $type: {
+        "s:17RealityFoundation17AnchorStateEventsO09DidFailToC0V": true;
+    };
 }
 /**
  * enum Reason
@@ -1189,6 +1247,9 @@ export declare class AnchorStateEvents_WillUnanchor extends SDKHandle {
      * @availability iOS 26.0+
      */
     get reason(): AnchorStateEvents_WillUnanchor_Reason;
+    readonly $type: {
+        "s:17RealityFoundation17AnchorStateEventsO12WillUnanchorV": true;
+    };
 }
 /**
  * enum Reason
@@ -1212,6 +1273,9 @@ export interface AnimationDefinition {
  * @availability iOS 13.0+
  */
 export declare class AnimationEvents extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation15AnimationEventsO": true;
+    };
 }
 /**
  * struct PlaybackCompleted
@@ -1223,6 +1287,9 @@ export declare class AnimationEvents_PlaybackCompleted extends SDKHandle {
      * @availability iOS 13.0+
      */
     get playbackController(): AnimationPlaybackController;
+    readonly $type: {
+        "s:17RealityFoundation15AnimationEventsO17PlaybackCompletedV": true;
+    };
 }
 /**
  * struct PlaybackLooped
@@ -1234,6 +1301,9 @@ export declare class AnimationEvents_PlaybackLooped extends SDKHandle {
      * @availability iOS 13.0+
      */
     get playbackController(): AnimationPlaybackController;
+    readonly $type: {
+        "s:17RealityFoundation15AnimationEventsO14PlaybackLoopedV": true;
+    };
 }
 /**
  * struct PlaybackStarted
@@ -1245,6 +1315,9 @@ export declare class AnimationEvents_PlaybackStarted extends SDKHandle {
      * @availability iOS 18.0+
      */
     get playbackController(): AnimationPlaybackController;
+    readonly $type: {
+        "s:17RealityFoundation15AnimationEventsO15PlaybackStartedV": true;
+    };
 }
 /**
  * struct PlaybackTerminated
@@ -1256,6 +1329,9 @@ export declare class AnimationEvents_PlaybackTerminated extends SDKHandle {
      * @availability iOS 13.0+
      */
     get playbackController(): AnimationPlaybackController;
+    readonly $type: {
+        "s:17RealityFoundation15AnimationEventsO18PlaybackTerminatedV": true;
+    };
 }
 /**
  * struct RootMotionDidUpdate
@@ -1283,6 +1359,9 @@ export declare class AnimationEvents_RootMotionDidUpdate extends SDKHandle {
      * @availability iOS 27.0+
      */
     get deltaTime(): number;
+    readonly $type: {
+        "s:17RealityFoundation15AnimationEventsO19RootMotionDidUpdateV": true;
+    };
 }
 /**
  * struct SkeletalPoseUpdateComplete
@@ -1294,6 +1373,9 @@ export declare class AnimationEvents_SkeletalPoseUpdateComplete extends SDKHandl
      * @availability iOS 18.0+
      */
     get deltaTime(): number;
+    readonly $type: {
+        "s:17RealityFoundation15AnimationEventsO26SkeletalPoseUpdateCompleteV": true;
+    };
 }
 /**
  * struct AnimationFillMode
@@ -1382,6 +1464,9 @@ export declare class AnimationGraphComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(graph: AnimationGraphResource): AnimationGraphComponent;
+    readonly $type: {
+        "s:17RealityFoundation23AnimationGraphComponentV": true;
+    };
 }
 /**
  * struct ActiveClipNode
@@ -1408,6 +1493,9 @@ export declare class AnimationGraphComponent_ActiveClipNode extends SDKHandle {
      * @availability iOS 27.0+
      */
     get wasReset(): boolean;
+    readonly $type: {
+        "s:17RealityFoundation23AnimationGraphComponentV14ActiveClipNodeV": true;
+    };
 }
 /**
  * typealias ID = Int
@@ -1455,6 +1543,9 @@ export declare class AnimationGraphComponent_ActiveStateMachineNode extends SDKH
      * @availability iOS 27.0+
      */
     get wasReset(): boolean;
+    readonly $type: {
+        "s:17RealityFoundation23AnimationGraphComponentV22ActiveStateMachineNodeV": true;
+    };
 }
 /**
  * typealias ID = Int
@@ -1476,6 +1567,9 @@ export declare class AnimationGraphComponent_ActiveTag extends SDKHandle {
      * @availability iOS 27.0+
      */
     get name(): string;
+    readonly $type: {
+        "s:17RealityFoundation23AnimationGraphComponentV9ActiveTagV": true;
+    };
 }
 /**
  * typealias ID = Int
@@ -1502,6 +1596,9 @@ export declare class AnimationGraphResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     static validate(definition: ArrayBuffer, nodeResourceMapping: $SDK21, skeletonResource: SkeletonResource): Array<string>;
+    readonly $type: {
+        "s:17RealityFoundation22AnimationGraphResourceC": true;
+    };
 }
 /**
  * struct AnimationGroup
@@ -1596,6 +1693,9 @@ export declare class AnimationGroup extends SDKHandle {
      */
     get trimStart(): (number) | null;
     set trimStart(value: (number) | null);
+    readonly $type: {
+        "s:17RealityFoundation14AnimationGroupV": true;
+    };
 }
 /**
  * struct AnimationHandoffType
@@ -1627,6 +1727,9 @@ export declare class AnimationHandoffType extends SDKHandle {
      * @availability iOS 18.0+
      */
     static replace(applyToAllLayers?: boolean): AnimationHandoffType;
+    readonly $type: {
+        "s:17RealityFoundation20AnimationHandoffTypeV": true;
+    };
 }
 /**
  * struct AnimationLibraryComponent
@@ -1685,6 +1788,9 @@ export declare class AnimationLibraryComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): AnimationLibraryComponent;
+    readonly $type: {
+        "s:17RealityFoundation25AnimationLibraryComponentV": true;
+    };
 }
 /**
  * struct AnimationCollection
@@ -1746,6 +1852,9 @@ export declare class AnimationLibraryComponent_AnimationCollection extends SDKHa
      * @availability iOS 18.0+
      */
     subscript94245(bounds: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation25AnimationLibraryComponentV0C10CollectionV": true;
+    };
 }
 /**
  * typealias Element = (key: String, value: AnimationResource)
@@ -1757,6 +1866,9 @@ export type AnimationLibraryComponent_AnimationCollection_Element = $SDK25;
  * @availability iOS 18.0+
  */
 export declare class AnimationLibraryComponent_AnimationCollection_Index extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation25AnimationLibraryComponentV0C10CollectionV5IndexV": true;
+    };
 }
 /**
  * typealias Indices = DefaultIndices<AnimationLibraryComponent.AnimationCollection>
@@ -1776,6 +1888,9 @@ export declare class AnimationLibraryComponent_AnimationCollection_Iterator exte
         "key": string;
         "value": AnimationResource;
     }) | null;
+    readonly $type: {
+        "s:17RealityFoundation25AnimationLibraryComponentV0C10CollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AnimationLibraryComponent.AnimationCollection.Element
@@ -1881,6 +1996,9 @@ export declare class AnimationPlaybackController extends SDKHandle {
      * @availability iOS 15.0+
      */
     get isStopped(): Promise<boolean>;
+    readonly $type: {
+        "s:17RealityFoundation27AnimationPlaybackControllerC": true;
+    };
 }
 /**
  * enum AnimationRepeatMode
@@ -1932,6 +2050,9 @@ export declare class AnimationResource extends SDKHandle {
      * @availability iOS 15.0+
      */
     static sequence(resources: $SDK13): Promise<AnimationResource>;
+    readonly $type: {
+        "s:17RealityFoundation17AnimationResourceC": true;
+    };
 }
 /**
  * struct AnimationState<Value> where Value : AnimatableData
@@ -2003,6 +2124,9 @@ export declare class AnimationState<Value = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     storeAnimatedJoints(transforms: Array<Transform>, jointIndex: number): boolean;
+    readonly $type: {
+        "s:17RealityFoundation14AnimationStateV": true;
+    };
 }
 /**
  * typealias ValueType = Value
@@ -2055,6 +2179,9 @@ export declare class AnimationTimingFunction extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get easeInOut(): AnimationTimingFunction;
+    readonly $type: {
+        "s:17RealityFoundation23AnimationTimingFunctionV": true;
+    };
 }
 /**
  * struct AnimationView
@@ -2143,6 +2270,9 @@ export declare class AnimationView extends SDKHandle {
      */
     get trimStart(): (number) | null;
     set trimStart(value: (number) | null);
+    readonly $type: {
+        "s:17RealityFoundation13AnimationViewV": true;
+    };
 }
 /**
  * enum AntialiasingMode
@@ -2179,6 +2309,9 @@ export declare class AnyMeshBuffer extends SDKHandle {
      * @availability iOS 15.0+
      */
     get count(): number;
+    readonly $type: {
+        "s:17RealityFoundation13AnyMeshBufferV": true;
+    };
 }
 /**
  * struct AttachedTransformComponent
@@ -2202,6 +2335,9 @@ export declare class AttachedTransformComponent extends SDKHandle {
      */
     get target(): GeometricPin;
     set target(value: GeometricPin);
+    readonly $type: {
+        "s:17RealityFoundation26AttachedTransformComponentV": true;
+    };
 }
 /**
  * enum Audio
@@ -2223,6 +2359,9 @@ export declare class Audio extends SDKHandle {
      * @availability iOS 27.0+
      */
     static prepareAudio(resourcesAndEntities: $SDK29): Promise<AudioPlaybackGroupController>;
+    readonly $type: {
+        "s:17RealityFoundation5AudioO": true;
+    };
 }
 /**
  * struct Absorption
@@ -2249,6 +2388,9 @@ export declare class Audio_Absorption extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init68751(coefficients: Array<number>): Audio_Absorption;
+    readonly $type: {
+        "s:17RealityFoundation5AudioO10AbsorptionV": true;
+    };
 }
 /**
  * typealias Key = Float
@@ -2270,6 +2412,9 @@ export type Audio_Decibel = number;
  * @availability iOS 18.0+
  */
 export declare class Audio_Directivity extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation5AudioO11DirectivityO": true;
+    };
 }
 /**
  * enum DistanceAttenuation
@@ -2281,6 +2426,9 @@ export declare class Audio_DistanceAttenuation extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get default(): Audio_DistanceAttenuation;
+    readonly $type: {
+        "s:17RealityFoundation5AudioO19DistanceAttenuationO": true;
+    };
 }
 /**
  * typealias GeneratorRenderHandler = AVAudioSourceNodeRenderBlock
@@ -2428,6 +2576,9 @@ export declare class Audio_Material extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get mattress(): Audio_Material;
+    readonly $type: {
+        "s:17RealityFoundation5AudioO8MaterialV": true;
+    };
 }
 /**
  * struct Scattering
@@ -2454,6 +2605,9 @@ export declare class Audio_Scattering extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init90326(coefficients: Array<number>): Audio_Scattering;
+    readonly $type: {
+        "s:17RealityFoundation5AudioO10ScatteringV": true;
+    };
 }
 /**
  * typealias Key = Float
@@ -2477,6 +2631,9 @@ export declare class AudioResource extends SDKHandle {
      */
     get inputMode(): Promise<AudioResource_InputMode>;
     setInputMode(value: AudioResource_InputMode): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation13AudioResourceC": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class AudioBufferResource
@@ -2510,6 +2667,10 @@ export declare class AudioBufferResource extends AudioResource {
      * @availability iOS 18.0+
      */
     get duration(): Promise<SDKHandle>;
+    readonly $type: {
+        "s:17RealityFoundation19AudioBufferResourceC": true;
+        "s:17RealityFoundation13AudioResourceC": true;
+    };
 }
 /**
  * struct Configuration
@@ -2551,12 +2712,18 @@ export declare class AudioBufferResource_Configuration extends SDKHandle {
      */
     get shouldRandomizeStartTime(): Promise<boolean>;
     setShouldRandomizeStartTime(value: boolean): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation19AudioBufferResourceC13ConfigurationV": true;
+    };
 }
 /**
  * enum AudioEvents
  * @availability iOS 13.0+
  */
 export declare class AudioEvents extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation11AudioEventsO": true;
+    };
 }
 /**
  * struct PlaybackCompleted
@@ -2569,6 +2736,9 @@ export declare class AudioEvents_PlaybackCompleted extends SDKHandle {
      */
     get playbackController(): AudioPlaybackController;
     set playbackController(value: AudioPlaybackController);
+    readonly $type: {
+        "s:17RealityFoundation11AudioEventsO17PlaybackCompletedV": true;
+    };
 }
 /**
  * struct PlaybackGroupCompleted
@@ -2581,6 +2751,9 @@ export declare class AudioEvents_PlaybackGroupCompleted extends SDKHandle {
      */
     get playbackController(): AudioPlaybackGroupController;
     set playbackController(value: AudioPlaybackGroupController);
+    readonly $type: {
+        "s:17RealityFoundation11AudioEventsO22PlaybackGroupCompletedV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class AudioFileGroupResource
@@ -2607,6 +2780,10 @@ export declare class AudioFileGroupResource extends AudioResource {
      * @availability iOS 18.0+
      */
     static init(resources: Array<AudioFileResource>): Promise<AudioFileGroupResource>;
+    readonly $type: {
+        "s:17RealityFoundation22AudioFileGroupResourceC": true;
+        "s:17RealityFoundation13AudioResourceC": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class AudioFileResource
@@ -2701,6 +2878,10 @@ export declare class AudioFileResource extends AudioResource {
      * @deprecated iOS 18.0
      */
     static loadAsyncNamedInInputModeLoadingStrategyShouldLoop(name: string, bundle?: $SDK6, inputMode?: AudioResource_InputMode, loadingStrategy?: AudioFileResource_LoadingStrategy, shouldLoop?: boolean): Promise<$SDK34>;
+    readonly $type: {
+        "s:17RealityFoundation17AudioFileResourceC": true;
+        "s:17RealityFoundation13AudioResourceC": true;
+    };
 }
 /**
  * struct Configuration
@@ -2748,6 +2929,9 @@ export declare class AudioFileResource_Configuration extends SDKHandle {
      */
     get shouldRandomizeStartTime(): Promise<boolean>;
     setShouldRandomizeStartTime(value: boolean): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation17AudioFileResourceC13ConfigurationV": true;
+    };
 }
 /**
  * enum LoadingStrategy
@@ -2793,6 +2977,9 @@ export declare class AudioGeneratorConfiguration extends SDKHandle {
      */
     get layoutTag(): number;
     set layoutTag(value: number);
+    readonly $type: {
+        "s:17RealityFoundation27AudioGeneratorConfigurationV": true;
+    };
 }
 /**
  * @MainActor class AudioGeneratorController
@@ -2830,6 +3017,9 @@ export declare class AudioGeneratorController extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isPlaying(): Promise<boolean>;
+    readonly $type: {
+        "s:17RealityFoundation24AudioGeneratorControllerC": true;
+    };
 }
 /**
  * struct AudioLibraryComponent
@@ -2847,6 +3037,9 @@ export declare class AudioLibraryComponent extends SDKHandle {
      */
     get resources(): $SDK35;
     set resources(value: $SDK35);
+    readonly $type: {
+        "s:17RealityFoundation21AudioLibraryComponentV": true;
+    };
 }
 /**
  * typealias Key = String
@@ -2896,6 +3089,9 @@ export declare class AudioMixGroup extends SDKHandle {
      */
     get isMuted(): boolean;
     set isMuted(value: boolean);
+    readonly $type: {
+        "s:17RealityFoundation13AudioMixGroupV": true;
+    };
 }
 /**
  * struct AudioMixGroupsComponent
@@ -2922,6 +3118,9 @@ export declare class AudioMixGroupsComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     mixGroup(name: string): (AudioMixGroup) | null;
+    readonly $type: {
+        "s:17RealityFoundation23AudioMixGroupsComponentV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class AudioPlaybackController
@@ -3003,6 +3202,9 @@ export declare class AudioPlaybackController extends SDKHandle {
      * @availability iOS 13.0+
      */
     get isPlaying(): Promise<boolean>;
+    readonly $type: {
+        "s:17RealityFoundation23AudioPlaybackControllerC": true;
+    };
 }
 /**
  * typealias Decibel = Double
@@ -3077,6 +3279,9 @@ export declare class AudioPlaybackGroupController extends SDKHandle {
      * @availability iOS 27.0+
      */
     get isPlaying(): Promise<boolean>;
+    readonly $type: {
+        "s:17RealityFoundation28AudioPlaybackGroupControllerC": true;
+    };
 }
 /**
  * typealias ID = UInt64
@@ -3098,6 +3303,9 @@ export declare class AudioResource_Calibration extends SDKHandle {
      * @availability iOS 18.0+
      */
     static relative(dBSPL: number): Promise<AudioResource_Calibration>;
+    readonly $type: {
+        "s:17RealityFoundation13AudioResourceC11CalibrationV": true;
+    };
 }
 /**
  * enum InputMode
@@ -3115,6 +3323,9 @@ export declare class AudioResource_Normalization extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get dynamic(): Promise<AudioResource_Normalization>;
+    readonly $type: {
+        "s:17RealityFoundation13AudioResourceC13NormalizationV": true;
+    };
 }
 /**
  * protocol BehaviorTreeAction : EntityAction
@@ -3225,6 +3436,9 @@ export declare class BehaviorTreeComponent extends SDKHandle {
      */
     get availableBehaviorTrees(): $SDK38;
     set availableBehaviorTrees(value: $SDK38);
+    readonly $type: {
+        "s:17RealityFoundation21BehaviorTreeComponentV": true;
+    };
 }
 /**
  * class BehaviorTreeResource
@@ -3246,6 +3460,9 @@ export declare class BehaviorTreeResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     static validate(definition: ArrayBuffer): Array<string>;
+    readonly $type: {
+        "s:17RealityFoundation20BehaviorTreeResourceC": true;
+    };
 }
 /**
  * struct BillboardAction
@@ -3269,6 +3486,9 @@ export declare class BillboardAction extends SDKHandle {
      */
     get transitionOut(): BillboardAction_Transition;
     set transitionOut(value: BillboardAction_Transition);
+    readonly $type: {
+        "s:17RealityFoundation15BillboardActionV": true;
+    };
 }
 /**
  * typealias EventParameterType = Never
@@ -3297,6 +3517,9 @@ export declare class BillboardAction_Transition extends SDKHandle {
      */
     get duration(): number;
     set duration(value: number);
+    readonly $type: {
+        "s:17RealityFoundation15BillboardActionV10TransitionV": true;
+    };
 }
 /**
  * struct BillboardComponent
@@ -3314,6 +3537,9 @@ export declare class BillboardComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): BillboardComponent;
+    readonly $type: {
+        "s:17RealityFoundation18BillboardComponentV": true;
+    };
 }
 /**
  * protocol BindableData
@@ -3349,6 +3575,9 @@ export declare class BindableValue<T = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: number, animatedValue?: (number) | null): BindableValue<number>;
+    readonly $type: {
+        "s:17RealityFoundation13BindableValueV": true;
+    };
 }
 /**
  * struct BindableValuesReference
@@ -3360,6 +3589,9 @@ export declare class BindableValuesReference extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript(bindTarget: BindTarget, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK39>;
+    readonly $type: {
+        "s:17RealityFoundation23BindableValuesReferenceV": true;
+    };
 }
 /**
  * struct BindPath
@@ -3371,12 +3603,18 @@ export declare class BindPath extends SDKHandle {
      * @availability iOS 15.0+
      */
     get parts(): Array<BindPath_Part>;
+    readonly $type: {
+        "s:17RealityFoundation8BindPathV": true;
+    };
 }
 /**
  * enum Part
  * @availability iOS 15.0+
  */
 export declare class BindPath_Part extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation8BindPathV4PartO": true;
+    };
 }
 /**
  * enum BindTarget
@@ -3403,6 +3641,9 @@ export declare class BindTarget extends SDKHandle {
      * @availability iOS 18.0+
      */
     static material(index: number): BindTarget_MaterialPath;
+    readonly $type: {
+        "s:17RealityFoundation10BindTargetO": true;
+    };
 }
 /**
  * struct EntityPath
@@ -3479,6 +3720,9 @@ export declare class BindTarget_EntityPath extends SDKHandle {
      * @availability iOS 15.0+
      */
     get transform(): BindTarget;
+    readonly $type: {
+        "s:17RealityFoundation10BindTargetO10EntityPathV": true;
+    };
 }
 /**
  * struct IkSolverPath
@@ -3495,6 +3739,9 @@ export declare class BindTarget_IkSolverPath extends SDKHandle {
      * @availability iOS 18.0+
      */
     constraintLookAtTarget(constraintName: string): BindTarget;
+    readonly $type: {
+        "s:17RealityFoundation10BindTargetO12IkSolverPathV": true;
+    };
 }
 /**
  * struct MaterialPath
@@ -3576,6 +3823,9 @@ export declare class BindTarget_MaterialPath extends SDKHandle {
      * @availability iOS 18.0+
      */
     get sheenTint(): BindTarget;
+    readonly $type: {
+        "s:17RealityFoundation10BindTargetO12MaterialPathV": true;
+    };
 }
 /**
  * struct ScenePath
@@ -3592,6 +3842,9 @@ export declare class BindTarget_ScenePath extends SDKHandle {
      * @availability iOS 15.0+
      */
     get self(): BindTarget;
+    readonly $type: {
+        "s:17RealityFoundation10BindTargetO9ScenePathV": true;
+    };
 }
 /**
  * struct TextureCoordinateTransformPath
@@ -3603,6 +3856,9 @@ export declare class BindTarget_TextureCoordinateTransformPath extends SDKHandle
      * @availability iOS 18.0+
      */
     get offset(): BindTarget;
+    readonly $type: {
+        "s:17RealityFoundation10BindTargetO30TextureCoordinateTransformPathV": true;
+    };
 }
 /**
  * struct BlendShapeDeformer
@@ -3629,6 +3885,9 @@ export declare class BlendShapeDeformer extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): BlendShapeDeformer;
+    readonly $type: {
+        "s:17RealityFoundation18BlendShapeDeformerV": true;
+    };
 }
 /**
  * struct BlendShapeWeights
@@ -3670,6 +3929,9 @@ export declare class BlendShapeWeights extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:17RealityFoundation17BlendShapeWeightsV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Float
@@ -3717,6 +3979,9 @@ export declare class BlendShapeWeightsComponent extends SDKHandle {
      */
     get weightSet(): BlendShapeWeightsSet;
     set weightSet(value: BlendShapeWeightsSet);
+    readonly $type: {
+        "s:17RealityFoundation26BlendShapeWeightsComponentV": true;
+    };
 }
 /**
  * struct BlendShapeWeightsData
@@ -3744,6 +4009,9 @@ export declare class BlendShapeWeightsData extends SDKHandle {
      */
     get weights(): BlendShapeWeights;
     set weights(value: BlendShapeWeights);
+    readonly $type: {
+        "s:17RealityFoundation21BlendShapeWeightsDataV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3765,6 +4033,9 @@ export declare class BlendShapeWeightsMapping extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initMeshResource(meshResource: MeshResource): BlendShapeWeightsMapping;
+    readonly $type: {
+        "s:17RealityFoundation24BlendShapeWeightsMappingC": true;
+    };
 }
 /**
  * struct BlendShapeWeightsSet
@@ -3837,6 +4108,9 @@ export declare class BlendShapeWeightsSet extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript77229(index: number): BlendShapeWeightsData;
+    readonly $type: {
+        "s:17RealityFoundation20BlendShapeWeightsSetV": true;
+    };
 }
 /**
  * typealias Element = BlendShapeWeightsData
@@ -3863,6 +4137,9 @@ export declare class BlendShapeWeightsSet_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): $SDK42;
+    readonly $type: {
+        "s:17RealityFoundation20BlendShapeWeightsSetV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = BlendShapeWeightsSet.Element
@@ -3967,6 +4244,9 @@ export declare class BlendTreeAnimation<Value = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(root: SDKHandle, name?: string, isAdditive?: boolean, bindTarget?: (BindTarget) | null, blendLayer?: number, repeatMode?: AnimationRepeatMode, fillMode?: AnimationFillMode, trimStart?: (number) | null, trimEnd?: (number) | null, trimDuration?: (number) | null, offset?: number, delay?: number, speed?: number): BlendTreeAnimation<number>;
+    readonly $type: {
+        "s:17RealityFoundation18BlendTreeAnimationV": true;
+    };
 }
 /**
  * struct BlendTreeBlendNode
@@ -4002,6 +4282,9 @@ export declare class BlendTreeBlendNode extends SDKHandle {
      */
     get sources(): Array<SDKHandle>;
     set sources(value: Array<SDKHandle>);
+    readonly $type: {
+        "s:17RealityFoundation09BlendTreeC4NodeV": true;
+    };
 }
 /**
  * struct BlendTreeInvalidNode
@@ -4020,6 +4303,9 @@ export declare class BlendTreeInvalidNode extends SDKHandle {
      */
     get weight(): BlendWeight;
     set weight(value: BlendWeight);
+    readonly $type: {
+        "s:17RealityFoundation20BlendTreeInvalidNodeV": true;
+    };
 }
 /**
  * protocol BlendTreeNode
@@ -4055,12 +4341,18 @@ export declare class BlendTreeSourceNode extends SDKHandle {
      */
     get weight(): BlendWeight;
     set weight(value: BlendWeight);
+    readonly $type: {
+        "s:17RealityFoundation19BlendTreeSourceNodeV": true;
+    };
 }
 /**
  * enum BlendWeight
  * @availability iOS 15.0+
  */
 export declare class BlendWeight extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation11BlendWeightO": true;
+    };
 }
 /**
  * struct BloomComponent
@@ -4083,6 +4375,9 @@ export declare class BloomComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): BloomComponent;
+    readonly $type: {
+        "s:17RealityFoundation14BloomComponentV": true;
+    };
 }
 /**
  * struct BloomScope
@@ -4099,6 +4394,9 @@ export declare class BloomComponent_BloomScope extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get unbounded(): BloomComponent_BloomScope;
+    readonly $type: {
+        "s:17RealityFoundation14BloomComponentV0C5ScopeV": true;
+    };
 }
 /**
  * struct BloomOptionsComponent
@@ -4128,12 +4426,19 @@ export declare class BloomOptionsComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): BloomOptionsComponent;
+    readonly $type: {
+        "s:17RealityFoundation21BloomOptionsComponentV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class BodyTrackedEntity
  * @availability iOS 13.0+
  */
 export declare class BodyTrackedEntity extends Entity {
+    readonly $type: {
+        "s:17RealityFoundation17BodyTrackedEntityC": true;
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * struct BodyTrackingComponent
@@ -4162,12 +4467,18 @@ export declare class BodyTrackingComponent extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init20015(target: BodyTrackingComponent_Target): BodyTrackingComponent;
+    readonly $type: {
+        "s:17RealityFoundation21BodyTrackingComponentV": true;
+    };
 }
 /**
  * enum Target
  * @availability iOS 13.0+
  */
 export declare class BodyTrackingComponent_Target extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation21BodyTrackingComponentV6TargetO": true;
+    };
 }
 /**
  * @frozen struct BoundingBox
@@ -4276,6 +4587,9 @@ export declare class BoundingBox extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init89264(rect3D: _Spatial_Rect3D): BoundingBox;
+    readonly $type: {
+        "s:17RealityFoundation11BoundingBoxV": true;
+    };
 }
 /**
  * struct BoundingBoxCalculator
@@ -4302,6 +4616,9 @@ export declare class BoundingBoxCalculator extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): BoundingBoxCalculator;
+    readonly $type: {
+        "s:17RealityFoundation21BoundingBoxCalculatorV": true;
+    };
 }
 /**
  * struct CameraControls
@@ -4333,6 +4650,9 @@ export declare class CameraControls extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get orbit(): CameraControls;
+    readonly $type: {
+        "s:17RealityFoundation14CameraControlsV": true;
+    };
 }
 /**
  * enum CameraFieldOfViewOrientation
@@ -4349,6 +4669,9 @@ export declare class CameraRealityCoordinateSpace extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): CameraRealityCoordinateSpace;
+    readonly $type: {
+        "s:17RealityFoundation06CameraA15CoordinateSpaceV": true;
+    };
 }
 /**
  * struct ChannelAudioComponent
@@ -4366,6 +4689,9 @@ export declare class ChannelAudioComponent extends SDKHandle {
      */
     get gain(): number;
     set gain(value: number);
+    readonly $type: {
+        "s:17RealityFoundation21ChannelAudioComponentV": true;
+    };
 }
 /**
  * struct CharacterControllerComponent
@@ -4449,6 +4775,9 @@ export declare class CharacterControllerComponent extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): CharacterControllerComponent;
+    readonly $type: {
+        "s:17RealityFoundation28CharacterControllerComponentV": true;
+    };
 }
 /**
  * struct Collision
@@ -4496,6 +4825,9 @@ export declare class CharacterControllerComponent_Collision extends SDKHandle {
      */
     get hitNormal(): SDKHandle;
     set hitNormal(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation28CharacterControllerComponentV9CollisionV": true;
+    };
 }
 /**
  * struct CollisionFlags
@@ -4569,6 +4901,9 @@ export declare class CharacterControllerStateComponent extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): CharacterControllerStateComponent;
+    readonly $type: {
+        "s:17RealityFoundation33CharacterControllerStateComponentV": true;
+    };
 }
 /**
  * struct ClippingComponent
@@ -4604,6 +4939,9 @@ export declare class ClippingComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(bounds: BoundingBox): ClippingComponent;
+    readonly $type: {
+        "s:17RealityFoundation17ClippingComponentV": true;
+    };
 }
 /**
  * struct FeatheredEdge
@@ -4638,6 +4976,9 @@ export declare class ClippingComponent_FeatheredEdge extends SDKHandle {
      */
     get falloff(): ClippingComponent_FeatheredEdge_Falloff;
     set falloff(value: ClippingComponent_FeatheredEdge_Falloff);
+    readonly $type: {
+        "s:17RealityFoundation17ClippingComponentV13FeatheredEdgeV": true;
+    };
 }
 /**
  * enum Falloff
@@ -4679,6 +5020,9 @@ export declare class CollisionCastHit extends SDKHandle {
      * @availability iOS 13.0+
      */
     get position(): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation16CollisionCastHitV": true;
+    };
 }
 /**
  * struct TriangleHit
@@ -4695,6 +5039,9 @@ export declare class CollisionCastHit_TriangleHit extends SDKHandle {
      * @availability iOS 18.0+
      */
     get faceIndex(): number;
+    readonly $type: {
+        "s:17RealityFoundation16CollisionCastHitV08TriangleE0V": true;
+    };
 }
 /**
  * enum CollisionCastQueryType
@@ -4751,6 +5098,9 @@ export declare class CollisionComponent extends SDKHandle {
      */
     get isStatic(): boolean;
     set isStatic(value: boolean);
+    readonly $type: {
+        "s:17RealityFoundation18CollisionComponentV": true;
+    };
 }
 /**
  * struct CollisionOptions
@@ -4809,6 +5159,9 @@ export type CollisionComponent_Mode = "default" | "trigger" | "colliding";
  * @availability iOS 13.0+
  */
 export declare class CollisionEvents extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation15CollisionEventsO": true;
+    };
 }
 /**
  * struct Began
@@ -4850,6 +5203,9 @@ export declare class CollisionEvents_Began extends SDKHandle {
      * @availability iOS 13.0+
      */
     get position(): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation15CollisionEventsO5BeganV": true;
+    };
 }
 /**
  * struct Ended
@@ -4866,6 +5222,9 @@ export declare class CollisionEvents_Ended extends SDKHandle {
      * @availability iOS 13.0+
      */
     get entityB(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation15CollisionEventsO5EndedV": true;
+    };
 }
 /**
  * struct Updated
@@ -4907,6 +5266,9 @@ export declare class CollisionEvents_Updated extends SDKHandle {
      * @availability iOS 13.0+
      */
     get position(): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation15CollisionEventsO7UpdatedV": true;
+    };
 }
 /**
  * struct CollisionFilter
@@ -4940,6 +5302,9 @@ export declare class CollisionFilter extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get default(): CollisionFilter;
+    readonly $type: {
+        "s:17RealityFoundation15CollisionFilterV": true;
+    };
 }
 /**
  * struct CollisionGroup
@@ -4999,6 +5364,9 @@ export interface Component {
  * @availability iOS 15.0+
  */
 export declare class ComponentEvents extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation15ComponentEventsO": true;
+    };
 }
 /**
  * struct DidActivate
@@ -5010,6 +5378,9 @@ export declare class ComponentEvents_DidActivate extends SDKHandle {
      * @availability iOS 15.0+
      */
     get entity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation15ComponentEventsO11DidActivateV": true;
+    };
 }
 /**
  * struct DidAdd
@@ -5021,6 +5392,9 @@ export declare class ComponentEvents_DidAdd extends SDKHandle {
      * @availability iOS 15.0+
      */
     get entity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation15ComponentEventsO6DidAddV": true;
+    };
 }
 /**
  * struct DidChange
@@ -5032,6 +5406,9 @@ export declare class ComponentEvents_DidChange extends SDKHandle {
      * @availability iOS 15.0+
      */
     get entity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation15ComponentEventsO9DidChangeV": true;
+    };
 }
 /**
  * struct WillDeactivate
@@ -5043,6 +5420,9 @@ export declare class ComponentEvents_WillDeactivate extends SDKHandle {
      * @availability iOS 15.0+
      */
     get entity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation15ComponentEventsO14WillDeactivateV": true;
+    };
 }
 /**
  * struct WillRemove
@@ -5054,6 +5434,9 @@ export declare class ComponentEvents_WillRemove extends SDKHandle {
      * @availability iOS 15.0+
      */
     get entity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation15ComponentEventsO10WillRemoveV": true;
+    };
 }
 /**
  * struct ConstantForceEffect
@@ -5096,6 +5479,9 @@ export declare class ConstantForceEffect extends SDKHandle {
      */
     get forceMode(): ForceMode;
     set forceMode(value: ForceMode);
+    readonly $type: {
+        "s:17RealityFoundation19ConstantForceEffectV": true;
+    };
 }
 /**
  * struct ConstantRadialForceEffect
@@ -5133,6 +5519,9 @@ export declare class ConstantRadialForceEffect extends SDKHandle {
      */
     get forceMode(): ForceMode;
     set forceMode(value: ForceMode);
+    readonly $type: {
+        "s:17RealityFoundation25ConstantRadialForceEffectV": true;
+    };
 }
 /**
  * struct Contact
@@ -5164,6 +5553,9 @@ export declare class Contact extends SDKHandle {
      * @availability iOS 18.0+
      */
     get impulse(): number;
+    readonly $type: {
+        "s:17RealityFoundation7ContactV": true;
+    };
 }
 /**
  * struct CustomMaterial
@@ -5321,6 +5713,9 @@ export declare class CustomMaterial extends SDKHandle {
      */
     get roughness(): CustomMaterial_Roughness;
     set roughness(value: CustomMaterial_Roughness);
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV": true;
+    };
 }
 /**
  * struct AmbientOcclusion
@@ -5343,6 +5738,9 @@ export declare class CustomMaterial_AmbientOcclusion extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_AmbientOcclusion): CustomMaterial_AmbientOcclusion;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV16AmbientOcclusionV": true;
+    };
 }
 /**
  * struct BaseColor
@@ -5360,6 +5758,9 @@ export declare class CustomMaterial_BaseColor extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_BaseColor): CustomMaterial_BaseColor;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV9BaseColorV": true;
+    };
 }
 /**
  * enum Blending
@@ -5371,6 +5772,9 @@ export declare class CustomMaterial_Blending extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_Blending): CustomMaterial_Blending;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV8BlendingO": true;
+    };
 }
 /**
  * struct Clearcoat
@@ -5404,6 +5808,9 @@ export declare class CustomMaterial_Clearcoat extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_Clearcoat): CustomMaterial_Clearcoat;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV9ClearcoatV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -5431,6 +5838,9 @@ export declare class CustomMaterial_ClearcoatNormal extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(value: PhysicallyBasedMaterial_ClearcoatNormal): CustomMaterial_ClearcoatNormal;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV15ClearcoatNormalV": true;
+    };
 }
 /**
  * struct ClearcoatRoughness
@@ -5464,6 +5874,9 @@ export declare class CustomMaterial_ClearcoatRoughness extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_ClearcoatRoughness): CustomMaterial_ClearcoatRoughness;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV18ClearcoatRoughnessV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -5492,6 +5905,9 @@ export declare class CustomMaterial_Custom extends SDKHandle {
      */
     get texture(): $SDK46;
     set texture(value: $SDK46);
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV0C0V": true;
+    };
 }
 /**
  * struct CustomMaterialTexture
@@ -5525,6 +5941,9 @@ export declare class CustomMaterial_CustomMaterialTexture extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init97329(resource: TextureResource): CustomMaterial_CustomMaterialTexture;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV0cD7TextureV": true;
+    };
 }
 /**
  * struct EmissiveColor
@@ -5542,6 +5961,9 @@ export declare class CustomMaterial_EmissiveColor extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_EmissiveColor): CustomMaterial_EmissiveColor;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV13EmissiveColorV": true;
+    };
 }
 /**
  * typealias FaceCulling = MaterialParameterTypes.FaceCulling
@@ -5581,6 +6003,9 @@ export declare class CustomMaterial_GeometryModifier extends SDKHandle {
      */
     get library(): SDKHandle;
     set library(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV16GeometryModifierV": true;
+    };
 }
 /**
  * enum LightingModel
@@ -5619,6 +6044,9 @@ export declare class CustomMaterial_Metallic extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_Metallic): CustomMaterial_Metallic;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV8MetallicV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -5646,6 +6074,9 @@ export declare class CustomMaterial_Normal extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_Normal): CustomMaterial_Normal;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV6NormalV": true;
+    };
 }
 /**
  * struct Opacity
@@ -5679,6 +6110,9 @@ export declare class CustomMaterial_Opacity extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_Opacity): CustomMaterial_Opacity;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV7OpacityV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -5715,6 +6149,9 @@ export declare class CustomMaterial_Program extends SDKHandle {
      * @availability iOS 18.0+
      */
     get geometryModifier(): $SDK45;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV7ProgramC": true;
+    };
 }
 /**
  * struct Descriptor
@@ -5738,12 +6175,18 @@ export declare class CustomMaterial_Program_Descriptor extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): CustomMaterial_Program_Descriptor;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV7ProgramC10DescriptorV": true;
+    };
 }
 /**
  * struct ResourceStorage<UniformsType>
  * @availability iOS 18.0+
  */
 export declare class CustomMaterial_ResourceStorage<UniformsType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV15ResourceStorageV": true;
+    };
 }
 /**
  * struct Roughness
@@ -5777,6 +6220,9 @@ export declare class CustomMaterial_Roughness extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_Roughness): CustomMaterial_Roughness;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV9RoughnessV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -5815,6 +6261,9 @@ export declare class CustomMaterial_Specular extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: PhysicallyBasedMaterial_Specular): CustomMaterial_Specular;
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV8SpecularV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -5854,6 +6303,9 @@ export declare class CustomMaterial_SurfaceShader extends SDKHandle {
      */
     get library(): SDKHandle;
     set library(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV13SurfaceShaderV": true;
+    };
 }
 /**
  * typealias Texture = CustomMaterial.CustomMaterialTexture
@@ -5896,6 +6348,9 @@ export declare class DiffuseLightProbeGroupComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(resource: DiffuseProbeResource): DiffuseLightProbeGroupComponent;
+    readonly $type: {
+        "s:17RealityFoundation31DiffuseLightProbeGroupComponentV": true;
+    };
 }
 /**
  * struct DiffuseLightProbeReceiverComponent
@@ -5913,6 +6368,9 @@ export declare class DiffuseLightProbeReceiverComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(probeGroup: Entity): DiffuseLightProbeReceiverComponent;
+    readonly $type: {
+        "s:17RealityFoundation34DiffuseLightProbeReceiverComponentV": true;
+    };
 }
 /**
  * final class DiffuseProbeResource
@@ -5924,6 +6382,9 @@ export declare class DiffuseProbeResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(positions: Array<SDKHandle>, coefficients: Array<SDKHandle>, tetrahedronIndices: Array<SDKHandle>): DiffuseProbeResource;
+    readonly $type: {
+        "s:17RealityFoundation20DiffuseProbeResourceC": true;
+    };
 }
 declare const DirectionalLight_base: Omit<typeof Entity, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Entity);
 /**
@@ -5936,6 +6397,10 @@ export declare class DirectionalLight extends DirectionalLight_base {
      * @availability iOS 13.0+
      */
     static init(): Promise<DirectionalLight>;
+    readonly $type: {
+        "s:17RealityFoundation16DirectionalLightC": true;
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * struct DirectionalLightComponent
@@ -5960,6 +6425,9 @@ export declare class DirectionalLightComponent extends SDKHandle {
      */
     get intensity(): number;
     set intensity(value: number);
+    readonly $type: {
+        "s:17RealityFoundation25DirectionalLightComponentV": true;
+    };
 }
 /**
  * struct Shadow
@@ -6023,6 +6491,9 @@ export declare class DirectionalLightComponent_Shadow extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): DirectionalLightComponent_Shadow;
+    readonly $type: {
+        "s:17RealityFoundation25DirectionalLightComponentV6ShadowV": true;
+    };
 }
 /**
  * struct Cascades
@@ -6039,6 +6510,9 @@ export declare class DirectionalLightComponent_Shadow_Cascades extends SDKHandle
      * @availability iOS 27.0+
      */
     static get automatic(): DirectionalLightComponent_Shadow_Cascades;
+    readonly $type: {
+        "s:17RealityFoundation25DirectionalLightComponentV6ShadowV8CascadesV": true;
+    };
 }
 /**
  * typealias ShadowMapCullMode = MaterialParameterTypes.FaceCulling
@@ -6050,6 +6524,9 @@ export type DirectionalLightComponent_Shadow_ShadowMapCullMode = MaterialParamet
  * @availability iOS 18.0+
  */
 export declare class DirectionalLightComponent_Shadow_ShadowProjectionType extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation25DirectionalLightComponentV6ShadowV0F14ProjectionTypeO": true;
+    };
 }
 /**
  * struct DragForceEffect
@@ -6087,6 +6564,9 @@ export declare class DragForceEffect extends SDKHandle {
      */
     get forceMode(): ForceMode;
     set forceMode(value: ForceMode);
+    readonly $type: {
+        "s:17RealityFoundation15DragForceEffectV": true;
+    };
 }
 /**
  * struct DynamicLightShadowComponent
@@ -6104,6 +6584,9 @@ export declare class DynamicLightShadowComponent extends SDKHandle {
      */
     get castsShadow(): boolean;
     set castsShadow(value: boolean);
+    readonly $type: {
+        "s:17RealityFoundation27DynamicLightShadowComponentV": true;
+    };
 }
 /**
  * struct EmphasizeAction
@@ -6133,6 +6616,9 @@ export declare class EmphasizeAction extends SDKHandle {
      */
     get style(): EmphasizeAction_EmphasisAnimationStyle;
     set style(value: EmphasizeAction_EmphasisAnimationStyle);
+    readonly $type: {
+        "s:17RealityFoundation15EmphasizeActionV": true;
+    };
 }
 /**
  * enum EmphasisAnimationStyle
@@ -6298,6 +6784,9 @@ export declare class Entity_ChildCollection extends SDKHandle {
      * @availability iOS 13.0+
      */
     subscript(index: number): Promise<Entity>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC15ChildCollectionV": true;
+    };
 }
 /**
  * typealias Element = Entity
@@ -6314,6 +6803,9 @@ export type Entity_ChildCollection_Index = number;
  * @availability iOS 13.0+
  */
 export declare class Entity_ChildCollection_IndexingIterator<Elements = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation6EntityC15ChildCollectionV16IndexingIteratorV": true;
+    };
 }
 /**
  * typealias Element = Elements.Element
@@ -6430,6 +6922,9 @@ export declare class Entity_ComponentSet extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(position: Entity_ComponentSet_Index): Promise<SDKHandle>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC12ComponentSetV": true;
+    };
 }
 /**
  * typealias Element = any Component
@@ -6441,6 +6936,9 @@ export type Entity_ComponentSet_Element = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class Entity_ComponentSet_Index extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation6EntityC12ComponentSetV5IndexV": true;
+    };
 }
 /**
  * struct Indices
@@ -6497,6 +6995,9 @@ export declare class Entity_ComponentSet_Indices extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript65426(bounds: SDKHandle): Promise<Entity_ComponentSet_Indices>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC12ComponentSetV7IndicesV": true;
+    };
 }
 /**
  * typealias Element = Entity.ComponentSet.Index
@@ -6533,6 +7034,9 @@ export declare class Entity_ComponentSet_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): Promise<(SDKHandle) | null>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC12ComponentSetV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = any Component
@@ -6574,6 +7078,9 @@ export declare class Entity_ConfigurationCatalog extends SDKHandle {
      * @availability iOS 18.0+
      */
     writeTo(url: string): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC20ConfigurationCatalogV": true;
+    };
 }
 /**
  * struct Configuration
@@ -6590,6 +7097,9 @@ export declare class Entity_ConfigurationCatalog_Configuration extends SDKHandle
      * @availability iOS 18.0+
      */
     get id(): Promise<string>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC20ConfigurationCatalogV0D0V": true;
+    };
 }
 /**
  * typealias ID = String
@@ -6616,6 +7126,9 @@ export declare class Entity_ConfigurationCatalog_ConfigurationCombination extend
      * @availability iOS 18.0+
      */
     get entity(): Promise<Entity>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC20ConfigurationCatalogV0D11CombinationV": true;
+    };
 }
 /**
  * struct ConfigurationSet
@@ -6647,6 +7160,9 @@ export declare class Entity_ConfigurationCatalog_ConfigurationSet extends SDKHan
      * @availability iOS 18.0+
      */
     get id(): Promise<string>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC20ConfigurationCatalogV0D3SetV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -6716,12 +7232,18 @@ export declare class Entity_Observable extends SDKHandle {
      */
     get transform(): Promise<Transform>;
     setTransform(value: Transform): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC10ObservableV": true;
+    };
 }
 /**
  * struct Components
  * @availability iOS 26.0+
  */
 export declare class Entity_Observable_Components extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation6EntityC10ObservableV10ComponentsV": true;
+    };
 }
 /**
  * struct ParameterSet
@@ -6733,6 +7255,9 @@ export declare class Entity_ParameterSet extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript(name: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK39>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC12ParameterSetV": true;
+    };
 }
 /**
  * struct WriteOptions
@@ -6749,6 +7274,9 @@ export declare class Entity_WriteOptions extends SDKHandle {
      * @availability iOS 27.0+
      */
     static preferSmallTextureFiles(quality: Entity_WriteOptions_TextureQuality): Promise<Entity_WriteOptions>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC12WriteOptionsV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Entity.WriteOptions
@@ -6775,6 +7303,9 @@ export declare class Entity_WriteOptions_TextureQuality extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get standard(): Promise<Entity_WriteOptions_TextureQuality>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC12WriteOptionsV14TextureQualityV": true;
+    };
 }
 /**
  * protocol EntityAction
@@ -6883,6 +7414,9 @@ export declare class EntityGeometricPins extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(name: string): Promise<(GeometricPin) | null>;
+    readonly $type: {
+        "s:17RealityFoundation19EntityGeometricPinsV": true;
+    };
 }
 /**
  * typealias Element = GeometricPin
@@ -6899,6 +7433,9 @@ export declare class EntityGeometricPins_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): Promise<(GeometricPin) | null>;
+    readonly $type: {
+        "s:17RealityFoundation19EntityGeometricPinsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = GeometricPin
@@ -6920,6 +7457,9 @@ export declare class EntityQuery extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): EntityQuery;
+    readonly $type: {
+        "s:17RealityFoundation11EntityQueryV": true;
+    };
 }
 /**
  * struct EnvironmentLightingConfigurationComponent
@@ -6937,6 +7477,9 @@ export declare class EnvironmentLightingConfigurationComponent extends SDKHandle
      */
     get environmentLightingWeight(): number;
     set environmentLightingWeight(value: number);
+    readonly $type: {
+        "s:17RealityFoundation41EnvironmentLightingConfigurationComponentV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class EnvironmentResource
@@ -7008,6 +7551,9 @@ export declare class EnvironmentResource extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static loadAsync(name: string, bundle?: $SDK6): Promise<LoadRequest<EnvironmentResource>>;
+    readonly $type: {
+        "s:17RealityFoundation19EnvironmentResourceC": true;
+    };
 }
 /**
  * typealias Compression = TextureResource.Compression
@@ -7053,6 +7599,9 @@ export declare class EnvironmentResource_CreateOptions extends SDKHandle {
      */
     get specularCubeDimension(): Promise<(number) | null>;
     setSpecularCubeDimension(value?: (number) | null): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation19EnvironmentResourceC13CreateOptionsV": true;
+    };
 }
 /**
  * enum SamplingQuality
@@ -7074,6 +7623,9 @@ export declare class EnvironmentResource_SkyboxMode extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get preserve(): Promise<EnvironmentResource_SkyboxMode>;
+    readonly $type: {
+        "s:17RealityFoundation19EnvironmentResourceC10SkyboxModeV": true;
+    };
 }
 /**
  * protocol Event : Sendable
@@ -7102,12 +7654,18 @@ export declare class EventSubscription extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscribe(scene: Scene): void;
+    readonly $type: {
+        "s:17RealityFoundation17EventSubscriptionV": true;
+    };
 }
 /**
  * struct ForceEffect<ForceEffectType> where ForceEffectType : ForceEffectProtocol
  * @availability iOS 18.0+
  */
 export declare class ForceEffect<ForceEffectType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation11ForceEffectV": true;
+    };
 }
 /**
  * protocol ForceEffectBase
@@ -7120,6 +7678,9 @@ export interface ForceEffectBase {
  * @availability iOS 18.0+
  */
 export declare class ForceEffectBounds extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation17ForceEffectBoundsO": true;
+    };
 }
 /**
  * struct ForceEffectComponent
@@ -7132,6 +7693,9 @@ export declare class ForceEffectComponent extends SDKHandle {
      */
     get simulationState(): $SDK60;
     set simulationState(value: $SDK60);
+    readonly $type: {
+        "s:17RealityFoundation20ForceEffectComponentV": true;
+    };
 }
 /**
  * enum SimulationState
@@ -7143,6 +7707,9 @@ export type ForceEffectComponent_SimulationState = "start" | "pause" | "resume";
  * @availability iOS 18.0+
  */
 export declare class ForceEffectEvent<ForceEffectType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation16ForceEffectEventV": true;
+    };
 }
 /**
  * struct ForceEffectParameters
@@ -7214,6 +7781,9 @@ export declare class ForceEffectParameters extends SDKHandle {
      * @availability iOS 18.0+
      */
     setTorque(torque: SDKHandle, index: number): void;
+    readonly $type: {
+        "s:17RealityFoundation21ForceEffectParametersV": true;
+    };
 }
 /**
  * protocol ForceEffectProtocol
@@ -7313,6 +7883,9 @@ export declare class FromToByAction<Value = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     get mode(): (FromToByAction_TransformMode<Transform>) | null;
+    readonly $type: {
+        "s:17RealityFoundation14FromToByActionV": true;
+    };
 }
 /**
  * enum DecodingErrors
@@ -7334,6 +7907,9 @@ export declare class FromToByAction_TransformMode<Value = unknown> extends SDKHa
      * @availability iOS 18.0+
      */
     static get default(): FromToByAction_TransformMode<number>;
+    readonly $type: {
+        "s:17RealityFoundation14FromToByActionV13TransformModeO": true;
+    };
 }
 /**
  * struct FromToByAnimation<Value> where Value : AnimatableData
@@ -7631,6 +8207,9 @@ export declare class FromToByAnimation<Value = unknown> extends SDKHandle {
      */
     get fromValue99140(): (SDKHandle) | null;
     set fromValue99140(value: (SDKHandle) | null);
+    readonly $type: {
+        "s:17RealityFoundation17FromToByAnimationV": true;
+    };
 }
 /**
  * struct GeometricPin
@@ -7690,6 +8269,9 @@ export declare class GeometricPin extends SDKHandle {
      * @availability iOS 18.0+
      */
     get position(): Promise<(SDKHandle) | null>;
+    readonly $type: {
+        "s:17RealityFoundation12GeometricPinV": true;
+    };
 }
 /**
  * struct GeometricPinsComponent
@@ -7721,12 +8303,18 @@ export declare class GeometricPinsComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(name: string): (GeometricPin) | null;
+    readonly $type: {
+        "s:17RealityFoundation22GeometricPinsComponentV": true;
+    };
 }
 /**
  * struct GestureComponent
  * @availability iOS 26.0+
  */
 export declare class GestureComponent extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation16GestureComponentV": true;
+    };
 }
 /**
  * struct GroundingShadowComponent
@@ -7766,6 +8354,9 @@ export declare class GroundingShadowComponent extends SDKHandle {
      */
     get fadeBehaviorNearPhysicalObjects(): GroundingShadowComponent_FadeBehaviorNearPhysicalObjects;
     set fadeBehaviorNearPhysicalObjects(value: GroundingShadowComponent_FadeBehaviorNearPhysicalObjects);
+    readonly $type: {
+        "s:17RealityFoundation24GroundingShadowComponentV": true;
+    };
 }
 /**
  * enum FadeBehaviorNearPhysicalObjects
@@ -7782,6 +8373,9 @@ export declare class HairLightingModel extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): HairLightingModel;
+    readonly $type: {
+        "s:17RealityFoundation17HairLightingModelV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol HasAnchoring : Entity
@@ -7939,6 +8533,9 @@ export declare class HoverEffectComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init33333(hoverEffect: HoverEffectComponent_HoverEffect): HoverEffectComponent;
+    readonly $type: {
+        "s:17RealityFoundation20HoverEffectComponentV": true;
+    };
 }
 /**
  * struct GroupID
@@ -7950,6 +8547,9 @@ export declare class HoverEffectComponent_GroupID extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): HoverEffectComponent_GroupID;
+    readonly $type: {
+        "s:17RealityFoundation20HoverEffectComponentV7GroupIDV": true;
+    };
 }
 /**
  * struct HighlightHoverEffectStyle
@@ -7973,6 +8573,9 @@ export declare class HoverEffectComponent_HighlightHoverEffectStyle extends SDKH
      */
     get strength(): number;
     set strength(value: number);
+    readonly $type: {
+        "s:17RealityFoundation20HoverEffectComponentV09HighlightcD5StyleV": true;
+    };
 }
 /**
  * struct HoverEffect
@@ -8015,6 +8618,9 @@ export declare class HoverEffectComponent_HoverEffect extends SDKHandle {
      * @availability iOS 18.0+
      */
     static spotlight(style: HoverEffectComponent_SpotlightHoverEffectStyle): HoverEffectComponent_HoverEffect;
+    readonly $type: {
+        "s:17RealityFoundation20HoverEffectComponentV0cD0V": true;
+    };
 }
 /**
  * enum OpacityFunction
@@ -8048,6 +8654,9 @@ export declare class HoverEffectComponent_ShaderHoverEffectInputs extends SDKHan
      * @availability iOS 18.0+
      */
     static get default(): HoverEffectComponent_ShaderHoverEffectInputs;
+    readonly $type: {
+        "s:17RealityFoundation20HoverEffectComponentV06ShadercD6InputsV": true;
+    };
 }
 /**
  * struct SpotlightHoverEffectStyle
@@ -8071,6 +8680,9 @@ export declare class HoverEffectComponent_SpotlightHoverEffectStyle extends SDKH
      */
     get strength(): number;
     set strength(value: number);
+    readonly $type: {
+        "s:17RealityFoundation20HoverEffectComponentV09SpotlightcD5StyleV": true;
+    };
 }
 /**
  * struct IKComponent
@@ -8094,6 +8706,9 @@ export declare class IKComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(resource?: (IKResource) | null): IKComponent;
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV": true;
+    };
 }
 /**
  * class Constraint
@@ -8144,6 +8759,9 @@ export declare class IKComponent_Constraint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get jointID(): IKRig_Joint_ID;
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV10ConstraintC": true;
+    };
 }
 /**
  * struct DemandOptions
@@ -8242,6 +8860,9 @@ export declare class IKComponent_ConstraintCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript65015(position: number): IKComponent_Constraint;
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV20ConstraintCollectionV": true;
+    };
 }
 /**
  * typealias Element = IKComponent.Constraint
@@ -8268,6 +8889,9 @@ export declare class IKComponent_ConstraintCollection_Iterator extends SDKHandle
      * @availability iOS 18.0+
      */
     next(): $SDK73;
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV20ConstraintCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = IKComponent.ConstraintCollection.Element
@@ -8306,6 +8930,9 @@ export declare class IKComponent_Joint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get name(): string;
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV5JointC": true;
+    };
 }
 /**
  * typealias ID = IKRig.Joint.ID
@@ -8372,6 +8999,9 @@ export declare class IKComponent_JointCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript5106(position: number): IKComponent_Joint;
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV15JointCollectionV": true;
+    };
 }
 /**
  * typealias Element = IKComponent.Joint
@@ -8398,6 +9028,9 @@ export declare class IKComponent_JointCollection_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): $SDK74;
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV15JointCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = IKComponent.JointCollection.Element
@@ -8448,12 +9081,18 @@ export declare class IKComponent_Solver extends SDKHandle {
      */
     get joints(): IKComponent_JointCollection;
     set joints(value: IKComponent_JointCollection);
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV6SolverC": true;
+    };
 }
 /**
  * struct ID
  * @availability iOS 18.0+
  */
 export declare class IKComponent_Solver_ID extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV6SolverC2IDV": true;
+    };
 }
 /**
  * struct SolverCollection
@@ -8510,6 +9149,9 @@ export declare class IKComponent_SolverCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript23528(position: number): IKComponent_Solver;
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV16SolverCollectionV": true;
+    };
 }
 /**
  * typealias Element = IKComponent.Solver
@@ -8536,6 +9178,9 @@ export declare class IKComponent_SolverCollection_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): $SDK75;
+    readonly $type: {
+        "s:17RealityFoundation11IKComponentV16SolverCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = IKComponent.SolverCollection.Element
@@ -8562,6 +9207,9 @@ export declare class IKResource extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(rig: IKRig): IKResource;
+    readonly $type: {
+        "s:17RealityFoundation10IKResourceC": true;
+    };
 }
 /**
  * struct IKRig
@@ -8608,6 +9256,9 @@ export declare class IKRig extends SDKHandle {
      */
     get joints(): IKRig_JointCollection;
     set joints(value: IKRig_JointCollection);
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV": true;
+    };
 }
 /**
  * struct Constraint
@@ -8674,12 +9325,18 @@ export declare class IKRig_Constraint extends SDKHandle {
      */
     get jointName(): string;
     set jointName(value: string);
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV10ConstraintV": true;
+    };
 }
 /**
  * struct ID
  * @availability iOS 18.0+
  */
 export declare class IKRig_Constraint_ID extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV10ConstraintV2IDV": true;
+    };
 }
 /**
  * struct IKOrientationDemand
@@ -8709,12 +9366,18 @@ export declare class IKRig_Constraint_IKOrientationDemand extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): IKRig_Constraint_IKOrientationDemand;
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV10ConstraintV19IKOrientationDemandV": true;
+    };
 }
 /**
  * enum Mode
  * @availability iOS 18.0+
  */
 export declare class IKRig_Constraint_IKOrientationDemand_Mode extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV10ConstraintV19IKOrientationDemandV4ModeO": true;
+    };
 }
 /**
  * struct IKPositionDemand
@@ -8744,6 +9407,9 @@ export declare class IKRig_Constraint_IKPositionDemand extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): IKRig_Constraint_IKPositionDemand;
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV10ConstraintV16IKPositionDemandV": true;
+    };
 }
 /**
  * enum Mode
@@ -8815,6 +9481,9 @@ export declare class IKRig_ConstraintsCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(elements: Array<IKRig_Constraint>): IKRig_ConstraintsCollection;
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV21ConstraintsCollectionV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = IKRig.ConstraintsCollection.Element
@@ -8846,6 +9515,9 @@ export declare class IKRig_ConstraintsCollection_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): $SDK79;
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV21ConstraintsCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = IKRig.ConstraintsCollection.Element
@@ -8913,12 +9585,18 @@ export declare class IKRig_Joint extends SDKHandle {
      */
     get parentID(): (IKRig_Joint_ID) | null;
     set parentID(value: (IKRig_Joint_ID) | null);
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV5JointV": true;
+    };
 }
 /**
  * struct ID
  * @availability iOS 18.0+
  */
 export declare class IKRig_Joint_ID extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV5JointV2IDV": true;
+    };
 }
 /**
  * struct LimitsDefinition
@@ -8954,6 +9632,9 @@ export declare class IKRig_Joint_LimitsDefinition extends SDKHandle {
      */
     get boneAxis(): IKRig_Joint_LimitsDefinition_Axis;
     set boneAxis(value: IKRig_Joint_LimitsDefinition_Axis);
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV5JointV16LimitsDefinitionV": true;
+    };
 }
 /**
  * enum Axis
@@ -9025,6 +9706,9 @@ export declare class IKRig_JointCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript87199(position: number): IKRig_Joint;
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV15JointCollectionV": true;
+    };
 }
 /**
  * typealias Element = IKRig.Joint
@@ -9051,6 +9735,9 @@ export declare class IKRig_JointCollection_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): (IKRig_Joint) | null;
+    readonly $type: {
+        "s:17RealityFoundation5IKRigV15JointCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = IKRig.JointCollection.Element
@@ -9083,6 +9770,9 @@ export declare class IKSolverDefinition extends SDKHandle {
      * @availability iOS 18.0+
      */
     get id(): number;
+    readonly $type: {
+        "s:17RealityFoundation18IKSolverDefinitionV": true;
+    };
 }
 /**
  * typealias ID = Int
@@ -9117,12 +9807,18 @@ export declare class ImageBasedLightComponent extends SDKHandle {
      */
     get source(): ImageBasedLightComponent_Source;
     set source(value: ImageBasedLightComponent_Source);
+    readonly $type: {
+        "s:17RealityFoundation24ImageBasedLightComponentV": true;
+    };
 }
 /**
  * enum Source
  * @availability iOS 18.0+
  */
 export declare class ImageBasedLightComponent_Source extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation24ImageBasedLightComponentV6SourceO": true;
+    };
 }
 /**
  * struct ImageBasedLightReceiverComponent
@@ -9140,6 +9836,9 @@ export declare class ImageBasedLightReceiverComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(imageBasedLight: Entity): ImageBasedLightReceiverComponent;
+    readonly $type: {
+        "s:17RealityFoundation32ImageBasedLightReceiverComponentV": true;
+    };
 }
 /**
  * struct ImpulseAction
@@ -9163,6 +9862,9 @@ export declare class ImpulseAction extends SDKHandle {
      */
     get targetEntity(): ActionEntityResolution;
     set targetEntity(value: ActionEntityResolution);
+    readonly $type: {
+        "s:17RealityFoundation13ImpulseActionV": true;
+    };
 }
 /**
  * typealias EventParameterType = Never
@@ -9191,6 +9893,9 @@ export declare class InputTargetComponent extends SDKHandle {
      */
     get isEnabled(): boolean;
     set isEnabled(value: boolean);
+    readonly $type: {
+        "s:17RealityFoundation20InputTargetComponentV": true;
+    };
 }
 /**
  * struct InputType
@@ -9244,6 +9949,9 @@ export type InputTargetComponent_InputType_RawValue = number;
  * @availability iOS 15.0+
  */
 export declare class InternalBindPath extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation16InternalBindPathV": true;
+    };
 }
 /**
  * struct JointTransforms
@@ -9285,6 +9993,9 @@ export declare class JointTransforms extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init93259(transforms: Array<Transform>): JointTransforms;
+    readonly $type: {
+        "s:17RealityFoundation15JointTransformsV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Transform
@@ -9336,6 +10047,9 @@ export declare class LensDistortionData extends SDKHandle {
      * @availability iOS 26.0+
      */
     get center(): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation18LensDistortionDataV": true;
+    };
 }
 /**
  * struct LevelOfDetailComponent
@@ -9389,6 +10103,9 @@ export declare class LevelOfDetailComponent extends SDKHandle {
      */
     get strategy(): LevelOfDetailComponent_SelectionStrategy;
     set strategy(value: LevelOfDetailComponent_SelectionStrategy);
+    readonly $type: {
+        "s:17RealityFoundation22LevelOfDetailComponentV": true;
+    };
 }
 /**
  * typealias DetailLevel = [Entity]
@@ -9410,6 +10127,9 @@ export declare class LevelOfDetailComponent_LevelSelection extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get automatic(): LevelOfDetailComponent_LevelSelection;
+    readonly $type: {
+        "s:17RealityFoundation22LevelOfDetailComponentV0C9SelectionV": true;
+    };
 }
 /**
  * struct SelectionStrategy
@@ -9431,6 +10151,9 @@ export declare class LevelOfDetailComponent_SelectionStrategy extends SDKHandle 
      * @availability iOS 27.0+
      */
     static resolutionMetric(switchingResolutions: $SDK85, boundingBox: BoundingBox): LevelOfDetailComponent_SelectionStrategy;
+    readonly $type: {
+        "s:17RealityFoundation22LevelOfDetailComponentV17SelectionStrategyV": true;
+    };
 }
 /**
  * struct ResolutionMetric
@@ -9453,6 +10176,9 @@ export declare class LevelOfDetailComponent_SelectionStrategy_ResolutionMetric e
      */
     get switchingResolutions(): $SDK85;
     set switchingResolutions(value: $SDK85);
+    readonly $type: {
+        "s:17RealityFoundation22LevelOfDetailComponentV17SelectionStrategyV16ResolutionMetricV": true;
+    };
 }
 /**
  * struct DirectionalSwitchingResolutions
@@ -9505,6 +10231,9 @@ export declare class LevelOfDetailComponent_SelectionStrategy_ResolutionMetric_D
      * @availability iOS 27.0+
      */
     static init(): LevelOfDetailComponent_SelectionStrategy_ResolutionMetric_DirectionalSwitchingResolutions;
+    readonly $type: {
+        "s:17RealityFoundation22LevelOfDetailComponentV17SelectionStrategyV16ResolutionMetricV31DirectionalSwitchingResolutionsV": true;
+    };
 }
 /**
  * enum LightingModel
@@ -9526,6 +10255,9 @@ export declare class LightingModel extends SDKHandle {
      * @availability iOS 27.0+
      */
     static unlit(isTonemappingEnabled?: boolean): LightingModel;
+    readonly $type: {
+        "s:17RealityFoundation13LightingModelO": true;
+    };
 }
 /**
  * struct LightmapComponent
@@ -9555,6 +10287,9 @@ export declare class LightmapComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(resource: LightmapResource): LightmapComponent;
+    readonly $type: {
+        "s:17RealityFoundation17LightmapComponentV": true;
+    };
 }
 /**
  * typealias EntityIndex = Int
@@ -9571,6 +10306,9 @@ export declare class LightmapComponent_FinalShadedColorBakeMaterial extends SDKH
      * @availability iOS 27.0+
      */
     static init(): LightmapComponent_FinalShadedColorBakeMaterial;
+    readonly $type: {
+        "s:17RealityFoundation17LightmapComponentV28FinalShadedColorBakeMaterialV": true;
+    };
 }
 /**
  * typealias Parameters = MaterialParameters
@@ -9602,6 +10340,9 @@ export declare class LightmapResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     get bakeTypes(): Array<LightmapResource_BakeType>;
+    readonly $type: {
+        "s:17RealityFoundation16LightmapResourceC": true;
+    };
 }
 /**
  * struct AmbientOcclusionBakeDescriptor
@@ -9613,6 +10354,9 @@ export declare class LightmapResource_AmbientOcclusionBakeDescriptor extends SDK
      * @availability iOS 27.0+
      */
     static init(sourceAtlasReference: LightmapResource_AtlasReference): LightmapResource_AmbientOcclusionBakeDescriptor;
+    readonly $type: {
+        "s:17RealityFoundation16LightmapResourceC30AmbientOcclusionBakeDescriptorV": true;
+    };
 }
 /**
  * struct AtlasReference
@@ -9648,6 +10392,9 @@ export declare class LightmapResource_AtlasReference extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): LightmapResource_AtlasReference;
+    readonly $type: {
+        "s:17RealityFoundation16LightmapResourceC14AtlasReferenceV": true;
+    };
 }
 /**
  * enum BakeDescriptor
@@ -9659,6 +10406,9 @@ export declare class LightmapResource_BakeDescriptor extends SDKHandle {
      * @availability iOS 27.0+
      */
     get bakeType(): LightmapResource_BakeType;
+    readonly $type: {
+        "s:17RealityFoundation16LightmapResourceC14BakeDescriptorO": true;
+    };
 }
 /**
  * enum BakeType
@@ -9675,6 +10425,9 @@ export declare class LightmapResource_EntityLightmapDescriptor extends SDKHandle
      * @availability iOS 27.0+
      */
     static init(perPartData: Array<LightmapResource_MeshPartLightmapDescriptor>): LightmapResource_EntityLightmapDescriptor;
+    readonly $type: {
+        "s:17RealityFoundation16LightmapResourceC06EntityC10DescriptorV": true;
+    };
 }
 /**
  * struct FinalShadedColorBakeDescriptor
@@ -9686,6 +10439,9 @@ export declare class LightmapResource_FinalShadedColorBakeDescriptor extends SDK
      * @availability iOS 27.0+
      */
     static init(sourceAtlasReference: LightmapResource_AtlasReference): LightmapResource_FinalShadedColorBakeDescriptor;
+    readonly $type: {
+        "s:17RealityFoundation16LightmapResourceC30FinalShadedColorBakeDescriptorV": true;
+    };
 }
 /**
  * struct IndirectDiffuseIrradianceBakeDescriptor
@@ -9697,6 +10453,9 @@ export declare class LightmapResource_IndirectDiffuseIrradianceBakeDescriptor ex
      * @availability iOS 27.0+
      */
     static init(sourceAtlasReference: LightmapResource_AtlasReference): LightmapResource_IndirectDiffuseIrradianceBakeDescriptor;
+    readonly $type: {
+        "s:17RealityFoundation16LightmapResourceC39IndirectDiffuseIrradianceBakeDescriptorV": true;
+    };
 }
 /**
  * struct MeshPartLightmapDescriptor
@@ -9708,6 +10467,9 @@ export declare class LightmapResource_MeshPartLightmapDescriptor extends SDKHand
      * @availability iOS 27.0+
      */
     static init(bakeDescriptor: LightmapResource_BakeDescriptor): LightmapResource_MeshPartLightmapDescriptor;
+    readonly $type: {
+        "s:17RealityFoundation16LightmapResourceC08MeshPartC10DescriptorV": true;
+    };
 }
 /**
  * struct LitLightingModel
@@ -9755,6 +10517,9 @@ export declare class LitLightingModel extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): LitLightingModel;
+    readonly $type: {
+        "s:17RealityFoundation16LitLightingModelV": true;
+    };
 }
 /**
  * enum DiffuseModel
@@ -9778,6 +10543,9 @@ export declare class LoadRequest<Output = unknown> extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get result(): (SDKHandle) | null;
+    readonly $type: {
+        "s:17RealityFoundation11LoadRequestC": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -9832,6 +10600,9 @@ export declare class LowLevelBuffer extends SDKHandle {
      */
     get bytesUsed(): number;
     set bytesUsed(value: number);
+    readonly $type: {
+        "s:17RealityFoundation14LowLevelBufferC": true;
+    };
 }
 /**
  * struct Descriptor
@@ -9855,6 +10626,9 @@ export declare class LowLevelBuffer_Descriptor extends SDKHandle {
      */
     get capacity(): number;
     set capacity(value: number);
+    readonly $type: {
+        "s:17RealityFoundation14LowLevelBufferC10DescriptorV": true;
+    };
 }
 /**
  * final class LowLevelDeviceResource
@@ -9871,6 +10645,9 @@ export declare class LowLevelDeviceResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initTexture(texture: SDKHandle): LowLevelDeviceResource;
+    readonly $type: {
+        "s:17RealityFoundation22LowLevelDeviceResourceC": true;
+    };
 }
 /**
  * final class LowLevelInstanceData
@@ -9923,6 +10700,9 @@ export declare class LowLevelInstanceData extends SDKHandle {
      * @availability iOS 26.0+
      */
     replace(commandBuffer: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation20LowLevelInstanceDataC": true;
+    };
 }
 /**
  * @MainActor class LowLevelMesh
@@ -10005,6 +10785,9 @@ export declare class LowLevelMesh extends SDKHandle {
      * @availability iOS 18.0+
      */
     replace(index: number, commandBuffer: SDKHandle): Promise<SDKHandle>;
+    readonly $type: {
+        "s:17RealityFoundation12LowLevelMeshC": true;
+    };
 }
 /**
  * struct Attribute
@@ -10040,6 +10823,9 @@ export declare class LowLevelMesh_Attribute extends SDKHandle {
      */
     get semantic(): Promise<LowLevelMesh_VertexSemantic>;
     setSemantic(value: LowLevelMesh_VertexSemantic): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation12LowLevelMeshC9AttributeV": true;
+    };
 }
 /**
  * struct Descriptor
@@ -10108,6 +10894,9 @@ export declare class LowLevelMesh_Descriptor extends SDKHandle {
      */
     get indexType(): Promise<_Metal_MTLIndexType>;
     setIndexType(value: _Metal_MTLIndexType): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation12LowLevelMeshC10DescriptorV": true;
+    };
 }
 /**
  * struct Layout
@@ -10154,6 +10943,9 @@ export declare class LowLevelMesh_Layout extends SDKHandle {
      */
     get stepRate(): Promise<number>;
     setStepRate(value: number): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation12LowLevelMeshC6LayoutV": true;
+    };
 }
 /**
  * struct Part
@@ -10195,6 +10987,9 @@ export declare class LowLevelMesh_Part extends SDKHandle {
      */
     get topology(): Promise<_Metal_MTLPrimitiveType>;
     setTopology(value: _Metal_MTLPrimitiveType): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation12LowLevelMeshC4PartV": true;
+    };
 }
 /**
  * struct PartsCollection
@@ -10246,6 +11041,9 @@ export declare class LowLevelMesh_PartsCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(position: number): Promise<LowLevelMesh_Part>;
+    readonly $type: {
+        "s:17RealityFoundation12LowLevelMeshC15PartsCollectionV": true;
+    };
 }
 /**
  * typealias Element = LowLevelMesh.Part
@@ -10312,6 +11110,9 @@ export declare class LowLevelTexture extends SDKHandle {
      * @availability iOS 18.0+
      */
     replaceUsing(commandBuffer: SDKHandle): Promise<SDKHandle>;
+    readonly $type: {
+        "s:17RealityFoundation15LowLevelTextureC": true;
+    };
 }
 /**
  * struct Descriptor
@@ -10382,6 +11183,9 @@ export declare class LowLevelTexture_Descriptor extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(mtlDescriptor: _Metal_MTLTextureDescriptor): Promise<LowLevelTexture_Descriptor>;
+    readonly $type: {
+        "s:17RealityFoundation15LowLevelTextureC10DescriptorV": true;
+    };
 }
 /**
  * protocol Material
@@ -10405,12 +11209,18 @@ export interface MaterialFunction {
  * @availability iOS 15.0+
  */
 export declare class MaterialParameters extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation18MaterialParametersV": true;
+    };
 }
 /**
  * struct Handle
  * @availability iOS 18.0+
  */
 export declare class MaterialParameters_Handle extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation18MaterialParametersV6HandleV": true;
+    };
 }
 /**
  * struct Texture
@@ -10451,6 +11261,9 @@ export declare class MaterialParameters_Texture extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(resource: TextureResource): MaterialParameters_Texture;
+    readonly $type: {
+        "s:17RealityFoundation18MaterialParametersV7TextureV": true;
+    };
 }
 /**
  * struct Sampler
@@ -10477,18 +11290,27 @@ export declare class MaterialParameters_Texture_Sampler extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init54802(v: _Metal_MTLSamplerDescriptor): MaterialParameters_Texture_Sampler;
+    readonly $type: {
+        "s:17RealityFoundation18MaterialParametersV7TextureV7SamplerV": true;
+    };
 }
 /**
  * enum Value
  * @availability iOS 18.0+
  */
 export declare class MaterialParameters_Value extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation18MaterialParametersV5ValueO": true;
+    };
 }
 /**
  * struct MaterialParameterTypes
  * @availability iOS 15.0+
  */
 export declare class MaterialParameterTypes extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation22MaterialParameterTypesV": true;
+    };
 }
 /**
  * enum BlendMode
@@ -10528,6 +11350,9 @@ export declare class MaterialParameterTypes_TextureCoordinateTransform extends S
      */
     get rotation(): number;
     set rotation(value: number);
+    readonly $type: {
+        "s:17RealityFoundation22MaterialParameterTypesV26TextureCoordinateTransformV": true;
+    };
 }
 /**
  * enum TriangleFillMode
@@ -10549,6 +11374,9 @@ export declare class MaterialScalarParameter extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initIntegerLiteral(value: number): MaterialScalarParameter;
+    readonly $type: {
+        "s:17RealityFoundation23MaterialScalarParameterO": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -10786,6 +11614,9 @@ export declare class MeshBuffer<Element = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init36754(sequence: Array<number>): MeshBuffer<number>;
+    readonly $type: {
+        "s:17RealityFoundation10MeshBufferV": true;
+    };
 }
 /**
  * typealias Element = Element
@@ -10802,6 +11633,9 @@ export declare class MeshBuffer_Iterator<Element = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): (unknown) | null;
+    readonly $type: {
+        "s:17RealityFoundation10MeshBufferV8IteratorV": true;
+    };
 }
 /**
  * protocol MeshBufferContainer
@@ -10929,6 +11763,9 @@ export declare class MeshBuffers extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get positions(): $SDK102;
+    readonly $type: {
+        "s:17RealityFoundation11MeshBuffersO": true;
+    };
 }
 /**
  * typealias BlendShapeOffsets = MeshBuffer<SIMD3<Float>>
@@ -11065,6 +11902,9 @@ export declare class MeshBuffers_Identifier extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get positions(): MeshBuffers_Identifier;
+    readonly $type: {
+        "s:17RealityFoundation11MeshBuffersO10IdentifierV": true;
+    };
 }
 /**
  * typealias JointInfluences = MeshBuffer<MeshJointInfluence>
@@ -11096,6 +11936,9 @@ export declare class MeshBuffers_Semantic<Element = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     get id(): MeshBuffers_Identifier;
+    readonly $type: {
+        "s:17RealityFoundation11MeshBuffersO8SemanticV": true;
+    };
 }
 /**
  * typealias ID = MeshBuffers.Identifier
@@ -11155,6 +11998,9 @@ export declare class MeshDeformationStack extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): MeshDeformationStack;
+    readonly $type: {
+        "s:17RealityFoundation20MeshDeformationStackV": true;
+    };
 }
 /**
  * typealias MeshDeformCPUBufferInput = UnsafeBufferPointer<UInt8>
@@ -11198,6 +12044,9 @@ export declare class MeshDeformerComponent extends SDKHandle {
      */
     get deformations(): Array<MeshDeformationStack>;
     set deformations(value: Array<MeshDeformationStack>);
+    readonly $type: {
+        "s:17RealityFoundation21MeshDeformerComponentV": true;
+    };
 }
 /**
  * enum MeshDeformerExecutionMode
@@ -11234,6 +12083,9 @@ export declare class MeshDeformerOptions extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): MeshDeformerOptions;
+    readonly $type: {
+        "s:17RealityFoundation19MeshDeformerOptionsV": true;
+    };
 }
 /**
  * enum Cadence
@@ -11375,6 +12227,9 @@ export declare class MeshDeformParameter<InputBuffer = unknown, OutputBuffer = u
      */
     get outputBuffers(): $SDK107;
     set outputBuffers(value: $SDK107);
+    readonly $type: {
+        "s:17RealityFoundation19MeshDeformParameterV": true;
+    };
 }
 /**
  * struct VertexBuffers<Buffer>
@@ -11446,6 +12301,9 @@ export declare class MeshDeformParameter_VertexBuffers<InputBuffer = unknown, Ou
      * @availability iOS 27.0+
      */
     get positions(): $SDK108;
+    readonly $type: {
+        "s:17RealityFoundation19MeshDeformParameterV13VertexBuffersV": true;
+    };
 }
 /**
  * struct Data
@@ -11472,6 +12330,9 @@ export declare class MeshDeformParameter_VertexBuffers_Data<InputBuffer = unknow
      * @availability iOS 27.0+
      */
     get stride(): number;
+    readonly $type: {
+        "s:17RealityFoundation19MeshDeformParameterV13VertexBuffersV4DataV": true;
+    };
 }
 /**
  * typealias MeshDeformParameterCPU = MeshDeformParameter<MeshDeformCPUBufferInput, MeshDeformCPUBufferOutput>
@@ -11526,18 +12387,27 @@ export declare class MeshDescriptor extends SDKHandle {
      */
     get materials(): MeshDescriptor_Materials;
     set materials(value: MeshDescriptor_Materials);
+    readonly $type: {
+        "s:17RealityFoundation14MeshDescriptorV": true;
+    };
 }
 /**
  * enum Materials
  * @availability iOS 15.0+
  */
 export declare class MeshDescriptor_Materials extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation14MeshDescriptorV9MaterialsO": true;
+    };
 }
 /**
  * enum Primitives
  * @availability iOS 15.0+
  */
 export declare class MeshDescriptor_Primitives extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation14MeshDescriptorV10PrimitivesO": true;
+    };
 }
 /**
  * struct MeshInstanceCollection
@@ -11624,6 +12494,9 @@ export declare class MeshInstanceCollection extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init17600(instances: Array<MeshResource_Instance>): MeshInstanceCollection;
+    readonly $type: {
+        "s:17RealityFoundation22MeshInstanceCollectionV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = MeshResource.Instance
@@ -11655,6 +12528,9 @@ export declare class MeshInstanceCollection_Iterator extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): $SDK113;
+    readonly $type: {
+        "s:17RealityFoundation22MeshInstanceCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = MeshResource.Instance
@@ -11686,6 +12562,9 @@ export declare class MeshInstancesComponent extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): MeshInstancesComponent;
+    readonly $type: {
+        "s:17RealityFoundation22MeshInstancesComponentV": true;
+    };
 }
 /**
  * struct Part
@@ -11709,6 +12588,9 @@ export declare class MeshInstancesComponent_Part extends SDKHandle {
      */
     get bounds(): (BoundingBox) | null;
     set bounds(value: (BoundingBox) | null);
+    readonly $type: {
+        "s:17RealityFoundation22MeshInstancesComponentV4PartV": true;
+    };
 }
 /**
  * struct MeshJointInfluence
@@ -11737,6 +12619,9 @@ export declare class MeshJointInfluence extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): MeshJointInfluence;
+    readonly $type: {
+        "s:17RealityFoundation18MeshJointInfluenceV": true;
+    };
 }
 /**
  * struct MeshModelCollection
@@ -11823,6 +12708,9 @@ export declare class MeshModelCollection extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init33784(models: Array<MeshResource_Model>): MeshModelCollection;
+    readonly $type: {
+        "s:17RealityFoundation19MeshModelCollectionV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = MeshResource.Model
@@ -11854,6 +12742,9 @@ export declare class MeshModelCollection_Iterator extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): $SDK116;
+    readonly $type: {
+        "s:17RealityFoundation19MeshModelCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = MeshResource.Model
@@ -11950,6 +12841,9 @@ export declare class MeshPartCollection extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init18469(parts: Array<MeshResource_Part>): MeshPartCollection;
+    readonly $type: {
+        "s:17RealityFoundation18MeshPartCollectionV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = MeshResource.Part
@@ -11981,6 +12875,9 @@ export declare class MeshPartCollection_Iterator extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): $SDK118;
+    readonly $type: {
+        "s:17RealityFoundation18MeshPartCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = MeshResource.Part
@@ -12125,6 +13022,9 @@ export declare class MeshResource extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initExtrudingTextOptionsExtrusionOptions68213(string: _Foundation_AttributedString, textOptions?: MeshResource_GenerateTextOptions, extrusionOptions?: MeshResource_ShapeExtrusionOptions): Promise<MeshResource>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC": true;
+    };
 }
 /**
  * struct Contents
@@ -12154,6 +13054,9 @@ export declare class MeshResource_Contents extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): Promise<MeshResource_Contents>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC8ContentsV": true;
+    };
 }
 /**
  * struct GenerateTextOptions
@@ -12171,6 +13074,9 @@ export declare class MeshResource_GenerateTextOptions extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): Promise<MeshResource_GenerateTextOptions>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC19GenerateTextOptionsV": true;
+    };
 }
 /**
  * struct Instance
@@ -12200,6 +13106,9 @@ export declare class MeshResource_Instance extends SDKHandle {
      */
     get transform(): Promise<SDKHandle>;
     setTransform(value: SDKHandle): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC8InstanceV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -12221,6 +13130,9 @@ export declare class MeshResource_JointInfluences extends SDKHandle {
      * @availability iOS 18.0+
      */
     get influences(): Promise<$SDK100>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC15JointInfluencesV": true;
+    };
 }
 /**
  * struct Model
@@ -12249,6 +13161,9 @@ export declare class MeshResource_Model extends SDKHandle {
      */
     get parts(): Promise<MeshPartCollection>;
     setParts(value: MeshPartCollection): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC5ModelV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -12300,6 +13215,9 @@ export declare class MeshResource_Part extends SDKHandle {
      * @availability iOS 15.0+
      */
     get buffers(): Promise<$SDK112>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC4PartV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -12352,6 +13270,9 @@ export declare class MeshResource_ShapeExtrusionOptions extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): Promise<MeshResource_ShapeExtrusionOptions>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC21ShapeExtrusionOptionsV": true;
+    };
 }
 /**
  * enum ChamferMode
@@ -12363,12 +13284,18 @@ export type MeshResource_ShapeExtrusionOptions_ChamferMode = "front" | "back" | 
  * @availability iOS 18.0+
  */
 export declare class MeshResource_ShapeExtrusionOptions_CurveStrokeResolution extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC21ShapeExtrusionOptionsV21CurveStrokeResolutionO": true;
+    };
 }
 /**
  * enum ExtrusionMethod
  * @availability iOS 18.0+
  */
 export declare class MeshResource_ShapeExtrusionOptions_ExtrusionMethod extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC21ShapeExtrusionOptionsV0F6MethodO": true;
+    };
 }
 /**
  * struct MaterialAssignment
@@ -12385,6 +13312,9 @@ export declare class MeshResource_ShapeExtrusionOptions_MaterialAssignment exten
      * @availability iOS 18.0+
      */
     static initAssignAll(all: number): Promise<MeshResource_ShapeExtrusionOptions_MaterialAssignment>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC21ShapeExtrusionOptionsV18MaterialAssignmentV": true;
+    };
 }
 /**
  * struct Skeleton
@@ -12413,6 +13343,9 @@ export declare class MeshResource_Skeleton extends SDKHandle {
      */
     get joints(): Promise<$SDK126>;
     setJoints(value: $SDK126): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC8SkeletonV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -12453,6 +13386,9 @@ export declare class MeshResource_Skeleton_Joint extends SDKHandle {
      */
     get name(): Promise<string>;
     setName(value: string): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC8SkeletonV5JointV": true;
+    };
 }
 /**
  * struct MeshScope
@@ -12494,6 +13430,9 @@ export declare class MeshScope extends SDKHandle {
      * @availability iOS 27.0+
      */
     static instance(name: string, part?: (string) | null): MeshScope;
+    readonly $type: {
+        "s:17RealityFoundation9MeshScopeV": true;
+    };
 }
 /**
  * struct MeshSkeletonCollection
@@ -12580,6 +13519,9 @@ export declare class MeshSkeletonCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init44980(skeletons: Array<MeshResource_Skeleton>): MeshSkeletonCollection;
+    readonly $type: {
+        "s:17RealityFoundation22MeshSkeletonCollectionV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = MeshResource.Skeleton
@@ -12611,6 +13553,9 @@ export declare class MeshSkeletonCollection_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): $SDK127;
+    readonly $type: {
+        "s:17RealityFoundation22MeshSkeletonCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = MeshResource.Skeleton
@@ -12650,6 +13595,9 @@ export declare class ModelComponent extends SDKHandle {
      */
     get materials(): Array<SDKHandle>;
     set materials(value: Array<SDKHandle>);
+    readonly $type: {
+        "s:17RealityFoundation14ModelComponentV": true;
+    };
 }
 /**
  * struct ModelDebugOptionsComponent
@@ -12666,6 +13614,9 @@ export declare class ModelDebugOptionsComponent extends SDKHandle {
      * @availability iOS 14.0+
      */
     get visualizationMode(): ModelDebugOptionsComponent_VisualizationMode;
+    readonly $type: {
+        "s:17RealityFoundation26ModelDebugOptionsComponentV": true;
+    };
 }
 /**
  * enum VisualizationMode
@@ -12715,6 +13666,10 @@ export declare class ModelEntity extends ModelEntity_base {
      * @availability iOS 13.0+
      */
     static init(): Promise<ModelEntity>;
+    readonly $type: {
+        "s:17RealityFoundation11ModelEntityC": true;
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * struct ModelSortGroup
@@ -12751,6 +13706,9 @@ export declare class ModelSortGroup extends SDKHandle {
      * @availability iOS 18.0+
      */
     get depthPass(): $SDK130;
+    readonly $type: {
+        "s:17RealityFoundation14ModelSortGroupV": true;
+    };
 }
 /**
  * enum DepthPass
@@ -12784,6 +13742,9 @@ export declare class ModelSortGroupComponent extends SDKHandle {
      */
     get order(): number;
     set order(value: number);
+    readonly $type: {
+        "s:17RealityFoundation23ModelSortGroupComponentV": true;
+    };
 }
 export interface MTLCommandBuffer {
     "enqueue"?: () => void;
@@ -12833,6 +13794,9 @@ export declare class NavigationComponent extends SDKHandle {
      */
     get filter(): $SDK137;
     set filter(value: $SDK137);
+    readonly $type: {
+        "s:17RealityFoundation19NavigationComponentV": true;
+    };
 }
 /**
  * struct Filter
@@ -12862,6 +13826,9 @@ export declare class NavigationComponent_Filter extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): NavigationComponent_Filter;
+    readonly $type: {
+        "s:17RealityFoundation19NavigationComponentV6FilterV": true;
+    };
 }
 /**
  * struct NavigationController
@@ -12908,6 +13875,9 @@ export declare class NavigationController extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(entity: Entity): NavigationController;
+    readonly $type: {
+        "s:17RealityFoundation20NavigationControllerV": true;
+    };
 }
 /**
  * enum PathfindStatus
@@ -12930,6 +13900,9 @@ export declare class NavigationMeshComponent extends SDKHandle {
      */
     get navigationMeshes(): $SDK141;
     set navigationMeshes(value: $SDK141);
+    readonly $type: {
+        "s:17RealityFoundation23NavigationMeshComponentV": true;
+    };
 }
 /**
  * class NavigationMeshResource
@@ -13102,6 +14075,9 @@ export declare class NavigationMeshResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     get vertices(): Array<SDKHandle>;
+    readonly $type: {
+        "s:17RealityFoundation22NavigationMeshResourceC": true;
+    };
 }
 /**
  * struct Area
@@ -13224,6 +14200,9 @@ export declare class NavigationMeshResource_Configuration extends SDKHandle {
      */
     get cellSize(): number;
     set cellSize(value: number);
+    readonly $type: {
+        "s:17RealityFoundation22NavigationMeshResourceC13ConfigurationV": true;
+    };
 }
 /**
  * enum PartitionMethod
@@ -13333,6 +14312,9 @@ export declare class NavigationMeshResource_HeightData extends SDKHandle {
      */
     get vertices(): Array<SDKHandle>;
     set vertices(value: Array<SDKHandle>);
+    readonly $type: {
+        "s:17RealityFoundation22NavigationMeshResourceC10HeightDataV": true;
+    };
 }
 /**
  * struct Layer
@@ -13401,6 +14383,9 @@ export declare class NavigationMeshResource_OffMeshConnection extends SDKHandle 
      */
     get endPoint(): SDKHandle;
     set endPoint(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation22NavigationMeshResourceC03OffD10ConnectionV": true;
+    };
 }
 /**
  * struct PathNode
@@ -13430,6 +14415,9 @@ export declare class NavigationMeshResource_PathNode extends SDKHandle {
      */
     get position(): SDKHandle;
     set position(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation22NavigationMeshResourceC8PathNodeV": true;
+    };
 }
 /**
  * enum Category
@@ -13451,6 +14439,9 @@ export declare class NetworkCompatibilityToken extends SDKHandle {
      * @availability iOS 13.4+
      */
     static get local(): NetworkCompatibilityToken;
+    readonly $type: {
+        "s:17RealityFoundation25NetworkCompatibilityTokenC": true;
+    };
 }
 /**
  * enum Compatibility
@@ -13473,6 +14464,9 @@ export declare class OcclusionCullingComponent extends SDKHandle {
      */
     get isEnabled(): boolean;
     set isEnabled(value: boolean);
+    readonly $type: {
+        "s:17RealityFoundation25OcclusionCullingComponentV": true;
+    };
 }
 /**
  * struct OcclusionMaterial
@@ -13501,6 +14495,9 @@ export declare class OcclusionMaterial extends SDKHandle {
      * @availability iOS 13.0+
      */
     get receivesDynamicLighting(): boolean;
+    readonly $type: {
+        "s:17RealityFoundation17OcclusionMaterialV": true;
+    };
 }
 /**
  * typealias FaceCulling = MaterialParameterTypes.FaceCulling
@@ -13528,6 +14525,9 @@ export declare class OpacityComponent extends SDKHandle {
      */
     get opacity(): number;
     set opacity(value: number);
+    readonly $type: {
+        "s:17RealityFoundation16OpacityComponentV": true;
+    };
 }
 /**
  * struct OrbitAnimation
@@ -13647,6 +14647,9 @@ export declare class OrbitAnimation extends SDKHandle {
      */
     get trimStart(): (number) | null;
     set trimStart(value: (number) | null);
+    readonly $type: {
+        "s:17RealityFoundation14OrbitAnimationV": true;
+    };
 }
 /**
  * struct OrbitEntityAction
@@ -13688,6 +14691,9 @@ export declare class OrbitEntityAction extends SDKHandle {
      */
     get isOrientedToPath(): boolean;
     set isOrientedToPath(value: boolean);
+    readonly $type: {
+        "s:17RealityFoundation17OrbitEntityActionV": true;
+    };
 }
 /**
  * typealias EventParameterType = Never
@@ -13716,6 +14722,9 @@ export declare class OrientedBoundingBox extends SDKHandle {
      */
     get orientation(): SDKHandle;
     set orientation(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation19OrientedBoundingBoxV": true;
+    };
 }
 /**
  * struct OrthographicCameraComponent
@@ -13751,6 +14760,9 @@ export declare class OrthographicCameraComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): OrthographicCameraComponent;
+    readonly $type: {
+        "s:17RealityFoundation27OrthographicCameraComponentV": true;
+    };
 }
 /**
  * struct ParameterSet
@@ -13762,6 +14774,9 @@ export declare class ParameterSet extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript(name: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK39>;
+    readonly $type: {
+        "s:17RealityFoundation12ParameterSetV": true;
+    };
 }
 /**
  * struct ParticleEmitterComponent
@@ -13915,6 +14930,9 @@ export declare class ParticleEmitterComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): ParticleEmitterComponent;
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV": true;
+    };
 }
 /**
  * enum BirthDirection
@@ -13926,6 +14944,9 @@ export type ParticleEmitterComponent_BirthDirection = "world" | "local" | "norma
  * @availability iOS 18.0+
  */
 export declare class ParticleEmitterComponent_BirthLocation extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV13BirthLocationO": true;
+    };
 }
 /**
  * enum EmitterShape
@@ -14140,12 +15161,18 @@ export declare class ParticleEmitterComponent_ParticleEmitter extends SDKHandle 
      * @availability iOS 18.0+
      */
     static init(): ParticleEmitterComponent_ParticleEmitter;
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV0cD0V": true;
+    };
 }
 /**
  * enum BillboardMode
  * @availability iOS 18.0+
  */
 export declare class ParticleEmitterComponent_ParticleEmitter_BillboardMode extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV0cD0V13BillboardModeO": true;
+    };
 }
 /**
  * enum BlendMode
@@ -14204,6 +15231,9 @@ export declare class ParticleEmitterComponent_ParticleEmitter_ImageSequence exte
      * @availability iOS 18.0+
      */
     static init(): ParticleEmitterComponent_ParticleEmitter_ImageSequence;
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV0cD0V13ImageSequenceV": true;
+    };
 }
 /**
  * enum AnimationRepeatMode
@@ -14246,6 +15276,10 @@ export declare class PerspectiveCamera extends PerspectiveCamera_base {
      * @availability iOS 13.0+
      */
     static init(): Promise<PerspectiveCamera>;
+    readonly $type: {
+        "s:17RealityFoundation17PerspectiveCameraC": true;
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * struct PerspectiveCameraComponent
@@ -14286,6 +15320,9 @@ export declare class PerspectiveCameraComponent extends SDKHandle {
      */
     get near(): number;
     set near(value: number);
+    readonly $type: {
+        "s:17RealityFoundation26PerspectiveCameraComponentV": true;
+    };
 }
 /**
  * struct PhotogrammetrySample
@@ -14381,6 +15418,9 @@ export declare class PhotogrammetrySample extends SDKHandle {
      * @availability iOS 18.0+
      */
     get sessionID(): (string) | null;
+    readonly $type: {
+        "s:17RealityFoundation20PhotogrammetrySampleV": true;
+    };
 }
 /**
  * struct Camera
@@ -14411,6 +15451,9 @@ export declare class PhotogrammetrySample_Camera extends SDKHandle {
      */
     get transform(): SDKHandle;
     set transform(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation20PhotogrammetrySampleV6CameraV": true;
+    };
 }
 /**
  * typealias ID = Int
@@ -14477,6 +15520,9 @@ export declare class PhotogrammetrySession extends SDKHandle {
      * @availability iOS 17.0+
      */
     process(requests: $SDK152): void;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC": true;
+    };
 }
 /**
  * struct Configuration
@@ -14523,6 +15569,9 @@ export declare class PhotogrammetrySession_Configuration extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): PhotogrammetrySession_Configuration;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC13ConfigurationV": true;
+    };
 }
 /**
  * enum FeatureSensitivity
@@ -14544,6 +15593,9 @@ export declare class PhotogrammetrySession_Error extends SDKHandle {
      * @availability iOS 17.0+
      */
     get localizedDescription(): string;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC5ErrorO": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -14565,6 +15617,9 @@ export declare class PhotogrammetrySession_Limits extends SDKHandle {
      * @availability iOS 17.0+
      */
     get maximumNumberOfInputImages(): number;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC6LimitsV": true;
+    };
 }
 /**
  * enum Output
@@ -14576,6 +15631,9 @@ export declare class PhotogrammetrySession_Output extends SDKHandle {
      * @availability iOS 17.0+
      */
     get localizedDescription(): string;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC6OutputO": true;
+    };
 }
 /**
  * enum ProcessingStage
@@ -14597,6 +15655,9 @@ export declare class PhotogrammetrySession_Output_ProgressInfo extends SDKHandle
      * @availability iOS 17.0+
      */
     get estimatedRemainingTime(): (number) | null;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC6OutputO12ProgressInfoV": true;
+    };
 }
 /**
  * struct Outputs
@@ -14608,6 +15669,9 @@ export declare class PhotogrammetrySession_Outputs extends SDKHandle {
      * @availability iOS 17.0+
      */
     makeAsyncIterator(): PhotogrammetrySession_Outputs_Iterator;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC7OutputsV": true;
+    };
     readonly $element: PhotogrammetrySession_Output;
 }
 /**
@@ -14630,6 +15694,9 @@ export declare class PhotogrammetrySession_Outputs_Iterator extends SDKHandle {
      * @availability iOS 17.0+
      */
     next(): Promise<(PhotogrammetrySession_Output) | null>;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC7OutputsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = PhotogrammetrySession.Outputs.Element
@@ -14646,6 +15713,9 @@ export declare class PhotogrammetrySession_PointCloud extends SDKHandle {
      * @availability iOS 17.0+
      */
     get points(): Array<PhotogrammetrySession_PointCloud_Point>;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC10PointCloudV": true;
+    };
 }
 /**
  * struct Point
@@ -14662,6 +15732,9 @@ export declare class PhotogrammetrySession_PointCloud_Point extends SDKHandle {
      * @availability iOS 17.0+
      */
     get position(): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC10PointCloudV0E0V": true;
+    };
 }
 /**
  * struct Pose
@@ -14693,6 +15766,9 @@ export declare class PhotogrammetrySession_Pose extends SDKHandle {
      * @availability iOS 17.0+
      */
     get transform(): Transform;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC4PoseV": true;
+    };
 }
 /**
  * struct Poses
@@ -14709,6 +15785,9 @@ export declare class PhotogrammetrySession_Poses extends SDKHandle {
      * @availability iOS 17.0+
      */
     get posesBySample(): Record<number, PhotogrammetrySession_Pose>;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC5PosesV": true;
+    };
 }
 /**
  * enum Request
@@ -14720,6 +15799,9 @@ export declare class PhotogrammetrySession_Request extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(modelFile: string): PhotogrammetrySession_Request;
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC7RequestO": true;
+    };
 }
 /**
  * enum Detail
@@ -14776,12 +15858,18 @@ export declare class PhotogrammetrySession_Request_Geometry extends SDKHandle {
      */
     get transform(): Transform;
     set transform(value: Transform);
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC7RequestO8GeometryV": true;
+    };
 }
 /**
  * enum Result
  * @availability iOS 17.0+
  */
 export declare class PhotogrammetrySession_Result extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation21PhotogrammetrySessionC6ResultO": true;
+    };
 }
 /**
  * struct PhysicallyBasedDecalComponent
@@ -14864,6 +15952,9 @@ export declare class PhysicallyBasedDecalComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): PhysicallyBasedDecalComponent;
+    readonly $type: {
+        "s:17RealityFoundation29PhysicallyBasedDecalComponentV": true;
+    };
 }
 /**
  * struct PhysicallyBasedMaterial
@@ -15060,6 +16151,9 @@ export declare class PhysicallyBasedMaterial extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): PhysicallyBasedMaterial;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV": true;
+    };
 }
 /**
  * struct AmbientOcclusion
@@ -15087,6 +16181,9 @@ export declare class PhysicallyBasedMaterial_AmbientOcclusion extends SDKHandle 
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_AmbientOcclusion): PhysicallyBasedMaterial_AmbientOcclusion;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV16AmbientOcclusionV": true;
+    };
 }
 /**
  * struct AnisotropyAngle
@@ -15120,6 +16217,9 @@ export declare class PhysicallyBasedMaterial_AnisotropyAngle extends SDKHandle {
      */
     get texture(): $SDK167;
     set texture(value: $SDK167);
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV15AnisotropyAngleV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15158,6 +16258,9 @@ export declare class PhysicallyBasedMaterial_AnisotropyLevel extends SDKHandle {
      */
     get texture(): $SDK167;
     set texture(value: $SDK167);
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV15AnisotropyLevelV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15185,6 +16288,9 @@ export declare class PhysicallyBasedMaterial_BaseColor extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_BaseColor): PhysicallyBasedMaterial_BaseColor;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV9BaseColorV": true;
+    };
 }
 /**
  * struct BentNormal
@@ -15212,6 +16318,9 @@ export declare class PhysicallyBasedMaterial_BentNormal extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(texture?: $SDK167): PhysicallyBasedMaterial_BentNormal;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV10BentNormalV": true;
+    };
 }
 /**
  * enum Blending
@@ -15223,6 +16332,9 @@ export declare class PhysicallyBasedMaterial_Blending extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_Blending): PhysicallyBasedMaterial_Blending;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV8BlendingO": true;
+    };
 }
 /**
  * struct Clearcoat
@@ -15261,6 +16373,9 @@ export declare class PhysicallyBasedMaterial_Clearcoat extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_Clearcoat): PhysicallyBasedMaterial_Clearcoat;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV9ClearcoatV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15293,6 +16408,9 @@ export declare class PhysicallyBasedMaterial_ClearcoatNormal extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(value: CustomMaterial_ClearcoatNormal): PhysicallyBasedMaterial_ClearcoatNormal;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV15ClearcoatNormalV": true;
+    };
 }
 /**
  * struct ClearcoatRoughness
@@ -15331,6 +16449,9 @@ export declare class PhysicallyBasedMaterial_ClearcoatRoughness extends SDKHandl
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_ClearcoatRoughness): PhysicallyBasedMaterial_ClearcoatRoughness;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV18ClearcoatRoughnessV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15358,6 +16479,9 @@ export declare class PhysicallyBasedMaterial_EmissiveColor extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_EmissiveColor): PhysicallyBasedMaterial_EmissiveColor;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV13EmissiveColorV": true;
+    };
 }
 /**
  * typealias FaceCulling = MaterialParameterTypes.FaceCulling
@@ -15401,6 +16525,9 @@ export declare class PhysicallyBasedMaterial_Metallic extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_Metallic): PhysicallyBasedMaterial_Metallic;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV8MetallicV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15433,6 +16560,9 @@ export declare class PhysicallyBasedMaterial_Normal extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_Normal): PhysicallyBasedMaterial_Normal;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV6NormalV": true;
+    };
 }
 /**
  * struct Opacity
@@ -15471,6 +16601,9 @@ export declare class PhysicallyBasedMaterial_Opacity extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_Opacity): PhysicallyBasedMaterial_Opacity;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV7OpacityV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15497,6 +16630,9 @@ export declare class PhysicallyBasedMaterial_Program extends SDKHandle {
      * @availability iOS 18.0+
      */
     get descriptor(): PhysicallyBasedMaterial_Program_Descriptor;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV7ProgramC": true;
+    };
 }
 /**
  * struct Descriptor
@@ -15514,6 +16650,9 @@ export declare class PhysicallyBasedMaterial_Program_Descriptor extends SDKHandl
      * @availability iOS 18.0+
      */
     static init(): PhysicallyBasedMaterial_Program_Descriptor;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV7ProgramC10DescriptorV": true;
+    };
 }
 /**
  * struct Roughness
@@ -15552,6 +16691,9 @@ export declare class PhysicallyBasedMaterial_Roughness extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_Roughness): PhysicallyBasedMaterial_Roughness;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV9RoughnessV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15574,6 +16716,9 @@ export declare class PhysicallyBasedMaterial_SheenColor extends SDKHandle {
      */
     get texture(): $SDK167;
     set texture(value: $SDK167);
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV10SheenColorV": true;
+    };
 }
 /**
  * struct Specular
@@ -15612,6 +16757,9 @@ export declare class PhysicallyBasedMaterial_Specular extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(value: CustomMaterial_Specular): PhysicallyBasedMaterial_Specular;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV8SpecularV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15655,6 +16803,9 @@ export declare class PhysicallyBasedMaterial_SubsurfaceColor extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get colorKey(): string;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV15SubsurfaceColorV": true;
+    };
 }
 /**
  * struct SubsurfaceRadius
@@ -15698,6 +16849,9 @@ export declare class PhysicallyBasedMaterial_SubsurfaceRadius extends SDKHandle 
      * @availability iOS 27.0+
      */
     static get scaleKey(): string;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV16SubsurfaceRadiusV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15741,6 +16895,9 @@ export declare class PhysicallyBasedMaterial_SubsurfaceRadiusScale extends SDKHa
      * @availability iOS 27.0+
      */
     static get colorKey(): string;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV21SubsurfaceRadiusScaleV": true;
+    };
 }
 /**
  * struct SubsurfaceScatterAnisotropy
@@ -15784,6 +16941,9 @@ export declare class PhysicallyBasedMaterial_SubsurfaceScatterAnisotropy extends
      * @availability iOS 27.0+
      */
     static get scaleKey(): string;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV27SubsurfaceScatterAnisotropyV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15832,6 +16992,9 @@ export declare class PhysicallyBasedMaterial_SubsurfaceWeight extends SDKHandle 
      * @availability iOS 27.0+
      */
     static get scaleKey(): string;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV16SubsurfaceWeightV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Float
@@ -15932,6 +17095,9 @@ export declare class PhysicsBodyComponent extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): PhysicsBodyComponent;
+    readonly $type: {
+        "s:17RealityFoundation20PhysicsBodyComponentV": true;
+    };
 }
 /**
  * enum PhysicsBodyMode
@@ -16074,12 +17240,18 @@ export declare class PhysicsCustomJoint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isActive(): boolean;
+    readonly $type: {
+        "s:17RealityFoundation18PhysicsCustomJointV": true;
+    };
 }
 /**
  * enum MotionLimit
  * @availability iOS 18.0+
  */
 export declare class PhysicsCustomJoint_MotionLimit extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation18PhysicsCustomJointV11MotionLimitO": true;
+    };
 }
 /**
  * struct PhysicsDistanceJoint
@@ -16126,6 +17298,9 @@ export declare class PhysicsDistanceJoint extends SDKHandle {
      */
     get tolerance(): number;
     set tolerance(value: number);
+    readonly $type: {
+        "s:17RealityFoundation20PhysicsDistanceJointV": true;
+    };
 }
 /**
  * struct PhysicsFixedJoint
@@ -16159,6 +17334,9 @@ export declare class PhysicsFixedJoint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isActive(): boolean;
+    readonly $type: {
+        "s:17RealityFoundation17PhysicsFixedJointV": true;
+    };
 }
 /**
  * protocol PhysicsJoint : Equatable
@@ -16216,6 +17394,9 @@ export declare class PhysicsJoints extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init93291(sequence: SDKHandle): PhysicsJoints;
+    readonly $type: {
+        "s:17RealityFoundation13PhysicsJointsV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = any PhysicsJoint
@@ -16263,6 +17444,9 @@ export declare class PhysicsJointsComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): PhysicsJointsComponent;
+    readonly $type: {
+        "s:17RealityFoundation22PhysicsJointsComponentV": true;
+    };
 }
 /**
  * struct PhysicsMassProperties
@@ -16312,6 +17496,9 @@ export declare class PhysicsMassProperties extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): PhysicsMassProperties;
+    readonly $type: {
+        "s:17RealityFoundation21PhysicsMassPropertiesV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class PhysicsMaterialResource
@@ -16333,6 +17520,9 @@ export declare class PhysicsMaterialResource extends SDKHandle {
      * @availability iOS 13.0+
      */
     static generateFrictionRestitution(friction?: number, restitution?: number): Promise<PhysicsMaterialResource>;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicsMaterialResourceC": true;
+    };
 }
 /**
  * struct PhysicsMotionComponent
@@ -16361,6 +17551,9 @@ export declare class PhysicsMotionComponent extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): PhysicsMotionComponent;
+    readonly $type: {
+        "s:17RealityFoundation22PhysicsMotionComponentV": true;
+    };
 }
 /**
  * struct PhysicsPrismaticJoint
@@ -16401,6 +17594,9 @@ export declare class PhysicsPrismaticJoint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isActive(): boolean;
+    readonly $type: {
+        "s:17RealityFoundation21PhysicsPrismaticJointV": true;
+    };
 }
 /**
  * struct PhysicsRevoluteJoint
@@ -16441,6 +17637,9 @@ export declare class PhysicsRevoluteJoint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isActive(): boolean;
+    readonly $type: {
+        "s:17RealityFoundation20PhysicsRevoluteJointV": true;
+    };
 }
 /**
  * struct PhysicsSimulationComponent
@@ -16481,6 +17680,9 @@ export declare class PhysicsSimulationComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): PhysicsSimulationComponent;
+    readonly $type: {
+        "s:17RealityFoundation26PhysicsSimulationComponentV": true;
+    };
 }
 /**
  * struct CollisionOptions
@@ -16556,12 +17758,18 @@ export declare class PhysicsSimulationComponent_SolverIterations extends SDKHand
      */
     get velocityIterations(): number;
     set velocityIterations(value: number);
+    readonly $type: {
+        "s:17RealityFoundation26PhysicsSimulationComponentV16SolverIterationsV": true;
+    };
 }
 /**
  * enum PhysicsSimulationEvents
  * @availability iOS 18.0+
  */
 export declare class PhysicsSimulationEvents extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation23PhysicsSimulationEventsO": true;
+    };
 }
 /**
  * struct DidSimulate
@@ -16584,6 +17792,9 @@ export declare class PhysicsSimulationEvents_DidSimulate extends SDKHandle {
      * @availability iOS 18.0+
      */
     get deltaTime(): number;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicsSimulationEventsO11DidSimulateV": true;
+    };
 }
 /**
  * struct WillSimulate
@@ -16606,6 +17817,9 @@ export declare class PhysicsSimulationEvents_WillSimulate extends SDKHandle {
      * @availability iOS 18.0+
      */
     get deltaTime(): number;
+    readonly $type: {
+        "s:17RealityFoundation23PhysicsSimulationEventsO12WillSimulateV": true;
+    };
 }
 /**
  * struct PhysicsSphericalJoint
@@ -16646,6 +17860,9 @@ export declare class PhysicsSphericalJoint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isActive(): boolean;
+    readonly $type: {
+        "s:17RealityFoundation21PhysicsSphericalJointV": true;
+    };
 }
 /**
  * struct PixelCastHit
@@ -16687,6 +17904,9 @@ export declare class PixelCastHit extends SDKHandle {
      * @availability iOS 18.0+
      */
     get primitive(): number;
+    readonly $type: {
+        "s:17RealityFoundation12PixelCastHitV": true;
+    };
 }
 /**
  * struct PlayAnimationAction
@@ -16740,6 +17960,9 @@ export declare class PlayAnimationAction extends SDKHandle {
      */
     get useParentedControllers(): boolean;
     set useParentedControllers(value: boolean);
+    readonly $type: {
+        "s:17RealityFoundation19PlayAnimationActionV": true;
+    };
 }
 /**
  * typealias EventParameterType = Never
@@ -16780,6 +18003,9 @@ export declare class PlayAudioAction extends SDKHandle {
      */
     get gain(): number;
     set gain(value: number);
+    readonly $type: {
+        "s:17RealityFoundation15PlayAudioActionV": true;
+    };
 }
 /**
  * typealias EventParameterType = Never
@@ -16797,6 +18023,10 @@ export declare class PointLight extends PointLight_base {
      * @availability iOS 13.0+
      */
     static init(): Promise<PointLight>;
+    readonly $type: {
+        "s:17RealityFoundation10PointLightC": true;
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * struct PointLightComponent
@@ -16832,6 +18062,9 @@ export declare class PointLightComponent extends SDKHandle {
      */
     get intensity(): number;
     set intensity(value: number);
+    readonly $type: {
+        "s:17RealityFoundation19PointLightComponentV": true;
+    };
 }
 /**
  * struct PortalComponent
@@ -16893,6 +18126,9 @@ export declare class PortalComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static configure(world: Entity, portalEntity: Entity, surfaceStyle: PortalComponent_SurfaceStyle, boundaryStyle?: PortalComponent_BoundaryStyle, boundaryMode?: PortalComponent_BoundaryMode): void;
+    readonly $type: {
+        "s:17RealityFoundation15PortalComponentV": true;
+    };
 }
 /**
  * enum BoundaryMode
@@ -16914,12 +18150,18 @@ export declare class PortalComponent_BoundaryStyle extends SDKHandle {
      * @availability iOS 27.0+
      */
     static infinitePlane(): PortalComponent_BoundaryStyle;
+    readonly $type: {
+        "s:17RealityFoundation15PortalComponentV13BoundaryStyleV": true;
+    };
 }
 /**
  * enum ClippingMode
  * @availability iOS 18.0+
  */
 export declare class PortalComponent_ClippingMode extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation15PortalComponentV12ClippingModeO": true;
+    };
 }
 /**
  * struct ClippingPlane
@@ -16943,12 +18185,18 @@ export declare class PortalComponent_ClippingPlane extends SDKHandle {
      */
     get position(): SDKHandle;
     set position(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation15PortalComponentV13ClippingPlaneV": true;
+    };
 }
 /**
  * enum CrossingMode
  * @availability iOS 18.0+
  */
 export declare class PortalComponent_CrossingMode extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation15PortalComponentV12CrossingModeO": true;
+    };
 }
 /**
  * struct Options
@@ -17044,6 +18292,9 @@ export declare class PortalComponent_Plane extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get positiveZ(): PortalComponent_Plane;
+    readonly $type: {
+        "s:17RealityFoundation15PortalComponentV5PlaneV": true;
+    };
 }
 /**
  * struct Portal
@@ -17060,6 +18311,9 @@ export declare class PortalComponent_Portal extends SDKHandle {
      * @availability iOS 27.0+
      */
     get portalEntity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation15PortalComponentV0C0V": true;
+    };
 }
 /**
  * struct SurfaceStyle
@@ -17083,6 +18337,9 @@ export declare class PortalComponent_SurfaceStyle extends SDKHandle {
      */
     get height(): number;
     set height(value: number);
+    readonly $type: {
+        "s:17RealityFoundation15PortalComponentV12SurfaceStyleV": true;
+    };
 }
 /**
  * struct Volume
@@ -17106,6 +18363,9 @@ export declare class PortalComponent_Volume extends SDKHandle {
      */
     get position(): SDKHandle;
     set position(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation15PortalComponentV6VolumeV": true;
+    };
 }
 /**
  * struct PortalCrossingComponent
@@ -17117,6 +18377,9 @@ export declare class PortalCrossingComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): PortalCrossingComponent;
+    readonly $type: {
+        "s:17RealityFoundation23PortalCrossingComponentV": true;
+    };
 }
 /**
  * struct PortalMaterial
@@ -17176,6 +18439,9 @@ export declare class PortalMaterial extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): PortalMaterial;
+    readonly $type: {
+        "s:17RealityFoundation14PortalMaterialV": true;
+    };
 }
 /**
  * typealias FaceCulling = MaterialParameterTypes.FaceCulling
@@ -17202,6 +18468,9 @@ export declare class PortalMaterial_Program extends SDKHandle {
      * @availability iOS 27.0+
      */
     get descriptor(): PortalMaterial_Program_Descriptor;
+    readonly $type: {
+        "s:17RealityFoundation14PortalMaterialV7ProgramV": true;
+    };
 }
 /**
  * struct Descriptor
@@ -17231,6 +18500,9 @@ export declare class PortalMaterial_Program_Descriptor extends SDKHandle {
      */
     get constantValues(): _Metal_MTLFunctionConstantValues;
     set constantValues(value: _Metal_MTLFunctionConstantValues);
+    readonly $type: {
+        "s:17RealityFoundation14PortalMaterialV7ProgramV10DescriptorV": true;
+    };
 }
 /**
  * typealias TriangleFillMode = MaterialParameterTypes.TriangleFillMode
@@ -17258,6 +18530,9 @@ export interface PostProcessEffect {
  * @availability iOS 26.0+
  */
 export declare class PostProcessEffectContext<CommandBuffer = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation24PostProcessEffectContextV": true;
+    };
 }
 /**
  * struct ProjectiveTransformCameraComponent
@@ -17275,12 +18550,18 @@ export declare class ProjectiveTransformCameraComponent extends SDKHandle {
      */
     get transform(): SDKHandle;
     set transform(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation34ProjectiveTransformCameraComponentV": true;
+    };
 }
 /**
  * struct QueryPredicate<Value>
  * @availability iOS 15.0+
  */
 export declare class QueryPredicate<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation14QueryPredicateV": true;
+    };
 }
 /**
  * struct QueryResult<Element>
@@ -17292,6 +18573,9 @@ export declare class QueryResult<Element = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeIterator(): QueryResult_Iterator<unknown>;
+    readonly $type: {
+        "s:17RealityFoundation11QueryResultV": true;
+    };
 }
 /**
  * struct Iterator
@@ -17303,6 +18587,9 @@ export declare class QueryResult_Iterator<Element = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): (unknown) | null;
+    readonly $type: {
+        "s:17RealityFoundation11QueryResultV8IteratorV": true;
+    };
 }
 /**
  * struct RadialForceEffect
@@ -17345,6 +18632,9 @@ export declare class RadialForceEffect extends SDKHandle {
      */
     get forceMode(): ForceMode;
     set forceMode(value: ForceMode);
+    readonly $type: {
+        "s:17RealityFoundation17RadialForceEffectV": true;
+    };
 }
 /**
  * protocol RealityCoordinateSpace
@@ -17414,6 +18704,9 @@ export declare class RealityRenderer extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): Promise<RealityRenderer>;
+    readonly $type: {
+        "s:17RealityFoundation0A8RendererC": true;
+    };
 }
 /**
  * struct CameraOutput
@@ -17435,6 +18728,9 @@ export declare class RealityRenderer_CameraOutput extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(descriptor: RealityRenderer_CameraOutput_Descriptor): RealityRenderer_CameraOutput;
+    readonly $type: {
+        "s:17RealityFoundation0A8RendererC12CameraOutputV": true;
+    };
 }
 /**
  * struct Descriptor
@@ -17458,6 +18754,9 @@ export declare class RealityRenderer_CameraOutput_Descriptor extends SDKHandle {
      */
     get viewports(): $SDK179;
     set viewports(value: $SDK179);
+    readonly $type: {
+        "s:17RealityFoundation0A8RendererC12CameraOutputV10DescriptorV": true;
+    };
 }
 /**
  * struct RelativeViewport
@@ -17493,6 +18792,9 @@ export declare class RealityRenderer_CameraOutput_RelativeViewport extends SDKHa
      */
     get originY(): number;
     set originY(value: number);
+    readonly $type: {
+        "s:17RealityFoundation0A8RendererC12CameraOutputV16RelativeViewportV": true;
+    };
 }
 /**
  * struct CameraSettings
@@ -17517,6 +18819,9 @@ export declare class RealityRenderer_CameraSettings extends SDKHandle {
      */
     get isToneMappingEnabled(): boolean;
     set isToneMappingEnabled(value: boolean);
+    readonly $type: {
+        "s:17RealityFoundation0A8RendererC14CameraSettingsV": true;
+    };
 }
 /**
  * struct ColorBackground
@@ -17533,6 +18838,9 @@ export declare class RealityRenderer_CameraSettings_ColorBackground extends SDKH
      * @availability iOS 18.0+
      */
     static color(color: _CoreGraphics_CGColor): RealityRenderer_CameraSettings_ColorBackground;
+    readonly $type: {
+        "s:17RealityFoundation0A8RendererC14CameraSettingsV15ColorBackgroundV": true;
+    };
 }
 /**
  * @MainActor struct EntityCollection
@@ -17594,6 +18902,9 @@ export declare class RealityRenderer_EntityCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(index: number): Promise<Entity>;
+    readonly $type: {
+        "s:17RealityFoundation0A8RendererC16EntityCollectionV": true;
+    };
 }
 /**
  * typealias Element = Entity
@@ -17637,6 +18948,9 @@ export declare class RealityRenderer_ImageBasedLight extends SDKHandle {
      */
     get resource(): (EnvironmentResource) | null;
     set resource(value: (EnvironmentResource) | null);
+    readonly $type: {
+        "s:17RealityFoundation0A8RendererC15ImageBasedLightV": true;
+    };
 }
 /**
  * struct MetalEventAction
@@ -17663,6 +18977,9 @@ export declare class RealityRenderer_MetalEventAction extends SDKHandle {
      * @availability iOS 18.0+
      */
     static signal(event: SDKHandle, value: number): RealityRenderer_MetalEventAction;
+    readonly $type: {
+        "s:17RealityFoundation0A8RendererC16MetalEventActionV": true;
+    };
 }
 export declare class Rect3D extends SDKHandle {
     /**
@@ -17670,6 +18987,9 @@ export declare class Rect3D extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(bounds: BoundingBox): _Spatial_Rect3D;
+    readonly $type: {
+        "c:@SA@SPRect3D": true;
+    };
 }
 /**
  * struct ReferenceComponent
@@ -17721,6 +19041,9 @@ export declare class ReferenceComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     get reference(): (Entity) | null;
+    readonly $type: {
+        "s:17RealityFoundation18ReferenceComponentV": true;
+    };
 }
 /**
  * enum LoadingPolicy
@@ -17754,6 +19077,9 @@ export declare class RenderLayer extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(rawValue: SDKHandle): RenderLayer;
+    readonly $type: {
+        "s:17RealityFoundation11RenderLayerV": true;
+    };
 }
 /**
  * struct Set
@@ -17803,6 +19129,9 @@ export declare class RenderLayer_Set extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init17557(sequence: Array<RenderLayer>): RenderLayer_Set;
+    readonly $type: {
+        "s:17RealityFoundation11RenderLayerV3SetV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = RenderLayer
@@ -17824,6 +19153,9 @@ export declare class RenderLayer_Set_Iterator extends SDKHandle {
      * @availability iOS 27.0+
      */
     next(): (RenderLayer) | null;
+    readonly $type: {
+        "s:17RealityFoundation11RenderLayerV3SetV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = RenderLayer
@@ -17856,6 +19188,9 @@ export declare class RenderLayerComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initLayers(layers: RenderLayer_Set): RenderLayerComponent;
+    readonly $type: {
+        "s:17RealityFoundation20RenderLayerComponentV": true;
+    };
 }
 /**
  * struct RenormalizingDeformer
@@ -17882,6 +19217,9 @@ export declare class RenormalizingDeformer extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): RenormalizingDeformer;
+    readonly $type: {
+        "s:17RealityFoundation21RenormalizingDeformerV": true;
+    };
 }
 /**
  * @preconcurrency protocol Resource : Sendable
@@ -17919,6 +19257,9 @@ export declare class RetargetingConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     static automatchQuadruped(sourceSkeleton: SkeletonResource, sourceTransform: Transform, targetSkeleton: SkeletonResource, targetTransform?: Transform, jointOffsets?: $SDK182): RetargetingConfiguration;
+    readonly $type: {
+        "s:17RealityFoundation24RetargetingConfigurationC": true;
+    };
 }
 /**
  * struct Reverb
@@ -17940,6 +19281,9 @@ export declare class Reverb extends SDKHandle {
      * @availability iOS 27.0+
      */
     static simulated(mesh: ReverbMeshResource, materials?: Array<Audio_Material>): Reverb;
+    readonly $type: {
+        "s:17RealityFoundation6ReverbV": true;
+    };
 }
 /**
  * struct Preset
@@ -17996,6 +19340,9 @@ export declare class Reverb_Preset extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get smallRoom(): Reverb_Preset;
+    readonly $type: {
+        "s:17RealityFoundation6ReverbV6PresetV": true;
+    };
 }
 /**
  * struct ReverbComponent
@@ -18013,6 +19360,9 @@ export declare class ReverbComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(reverb: Reverb): ReverbComponent;
+    readonly $type: {
+        "s:17RealityFoundation15ReverbComponentV": true;
+    };
 }
 /**
  * final class ReverbMeshResource
@@ -18039,6 +19389,9 @@ export declare class ReverbMeshResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(positions: Array<SDKHandle>, triangleIndices: Array<number>, materials: Array<number>): ReverbMeshResource;
+    readonly $type: {
+        "s:17RealityFoundation18ReverbMeshResourceC": true;
+    };
 }
 /**
  * struct SampledAnimation<Value> where Value : AnimatableData
@@ -18256,6 +19609,9 @@ export declare class SampledAnimation<Value = unknown> extends SDKHandle {
      */
     get frames50169(): Array<SDKHandle>;
     set frames50169(value: Array<SDKHandle>);
+    readonly $type: {
+        "s:17RealityFoundation16SampledAnimationV": true;
+    };
 }
 /**
  * struct SkeletalAnimationOperation
@@ -18287,6 +19643,9 @@ export declare class SampledAnimation_SkeletalAnimationOperation<Value = unknown
      * @availability iOS 27.0+
      */
     static convertToAdditiveUsingFirstSample(): $SDK189;
+    readonly $type: {
+        "s:17RealityFoundation16SampledAnimationVA2A15JointTransformsVRszrlE08SkeletalD9OperationV": true;
+    };
 }
 /**
  * struct RootMotionOptions
@@ -18447,6 +19806,9 @@ export declare class Scene extends SDKHandle {
      * @availability iOS 18.0+
      */
     pixelCastOriginDirectionLength(origin: SDKHandle, direction: SDKHandle, length?: number): Promise<(PixelCastHit) | null>;
+    readonly $type: {
+        "s:17RealityFoundation5SceneC": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct AnchorCollection
@@ -18528,6 +19890,9 @@ export declare class Scene_AnchorCollection extends SDKHandle {
      * @availability iOS 13.0+
      */
     subscript(index: number): Promise<SDKHandle>;
+    readonly $type: {
+        "s:17RealityFoundation5SceneC16AnchorCollectionV": true;
+    };
 }
 /**
  * typealias Element = HasAnchoring
@@ -18564,6 +19929,9 @@ export type Scene_ID = number;
  * @availability iOS 13.0+
  */
 export declare class Scene_Publisher<E = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation5SceneC9PublisherV": true;
+    };
     readonly $element: unknown;
 }
 /**
@@ -18581,6 +19949,9 @@ export type Scene_Publisher_Output<E = unknown> = unknown;
  * @availability iOS 13.0+
  */
 export declare class SceneEvents extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation11SceneEventsO": true;
+    };
 }
 /**
  * struct AnchoredStateChanged
@@ -18597,6 +19968,9 @@ export declare class SceneEvents_AnchoredStateChanged extends SDKHandle {
      * @availability iOS 13.0+
      */
     get anchor(): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation11SceneEventsO20AnchoredStateChangedV": true;
+    };
 }
 /**
  * struct DidActivateEntity
@@ -18608,6 +19982,9 @@ export declare class SceneEvents_DidActivateEntity extends SDKHandle {
      * @availability iOS 15.0+
      */
     get entity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation11SceneEventsO17DidActivateEntityV": true;
+    };
 }
 /**
  * struct DidAddEntity
@@ -18619,6 +19996,9 @@ export declare class SceneEvents_DidAddEntity extends SDKHandle {
      * @availability iOS 15.0+
      */
     get entity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation11SceneEventsO12DidAddEntityV": true;
+    };
 }
 /**
  * struct DidReparentEntity
@@ -18635,6 +20015,9 @@ export declare class SceneEvents_DidReparentEntity extends SDKHandle {
      * @availability iOS 15.0+
      */
     get child(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation11SceneEventsO17DidReparentEntityV": true;
+    };
 }
 /**
  * struct Update
@@ -18651,6 +20034,9 @@ export declare class SceneEvents_Update extends SDKHandle {
      * @availability iOS 13.0+
      */
     get deltaTime(): number;
+    readonly $type: {
+        "s:17RealityFoundation11SceneEventsO6UpdateV": true;
+    };
 }
 /**
  * struct WillDeactivateEntity
@@ -18662,6 +20048,9 @@ export declare class SceneEvents_WillDeactivateEntity extends SDKHandle {
      * @availability iOS 15.0+
      */
     get entity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation11SceneEventsO20WillDeactivateEntityV": true;
+    };
 }
 /**
  * struct WillRemoveEntity
@@ -18673,6 +20062,9 @@ export declare class SceneEvents_WillRemoveEntity extends SDKHandle {
      * @availability iOS 15.0+
      */
     get entity(): Entity;
+    readonly $type: {
+        "s:17RealityFoundation11SceneEventsO16WillRemoveEntityV": true;
+    };
 }
 /**
  * struct SceneRealityCoordinateSpace
@@ -18684,6 +20076,9 @@ export declare class SceneRealityCoordinateSpace extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): SceneRealityCoordinateSpace;
+    readonly $type: {
+        "s:17RealityFoundation05SceneA15CoordinateSpaceV": true;
+    };
 }
 /**
  * struct SceneUnderstandingComponent
@@ -18711,6 +20106,9 @@ export declare class SceneUnderstandingComponent extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): SceneUnderstandingComponent;
+    readonly $type: {
+        "s:17RealityFoundation27SceneUnderstandingComponentV": true;
+    };
 }
 /**
  * enum EntityType
@@ -18744,6 +20142,9 @@ export declare class SceneUpdateContext extends SDKHandle {
      */
     get deltaTime(): number;
     set deltaTime(value: number);
+    readonly $type: {
+        "s:17RealityFoundation18SceneUpdateContextV": true;
+    };
 }
 /**
  * struct SetEntityEnabledAction
@@ -18767,6 +20168,9 @@ export declare class SetEntityEnabledAction extends SDKHandle {
      */
     get targetEntity(): ActionEntityResolution;
     set targetEntity(value: ActionEntityResolution);
+    readonly $type: {
+        "s:17RealityFoundation22SetEntityEnabledActionV": true;
+    };
 }
 /**
  * typealias EventParameterType = Never
@@ -18863,6 +20267,9 @@ export declare class ShaderGraphMaterial extends SDKHandle {
      */
     get program(): ShaderGraphMaterial_Program;
     set program(value: ShaderGraphMaterial_Program);
+    readonly $type: {
+        "s:17RealityFoundation19ShaderGraphMaterialV": true;
+    };
 }
 /**
  * enum Error
@@ -18899,6 +20306,9 @@ export declare class ShaderGraphMaterial_Program extends SDKHandle {
      * @availability iOS 27.0+
      */
     get descriptor(): ShaderGraphMaterial_Program_Descriptor;
+    readonly $type: {
+        "s:17RealityFoundation19ShaderGraphMaterialV7ProgramV": true;
+    };
 }
 /**
  * struct Descriptor
@@ -18951,6 +20361,9 @@ export declare class ShaderGraphMaterial_Program_Descriptor extends SDKHandle {
      */
     get blendMode(): $SDK47;
     set blendMode(value: $SDK47);
+    readonly $type: {
+        "s:17RealityFoundation19ShaderGraphMaterialV7ProgramV10DescriptorV": true;
+    };
 }
 /**
  * typealias TriangleFillMode = MaterialParameterTypes.TriangleFillMode
@@ -19022,6 +20435,9 @@ export declare class ShapeResource extends SDKHandle {
      * @availability iOS 13.0+
      */
     offsetByRotation(rotation: SDKHandle): Promise<ShapeResource>;
+    readonly $type: {
+        "s:17RealityFoundation13ShapeResourceC": true;
+    };
 }
 /**
  * enum ShapeResourceError
@@ -19087,6 +20503,9 @@ export declare class SimpleMaterial extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): SimpleMaterial;
+    readonly $type: {
+        "s:17RealityFoundation14SimpleMaterialV": true;
+    };
 }
 /**
  * typealias BaseColor = PhysicallyBasedMaterial.BaseColor
@@ -19151,6 +20570,9 @@ export declare class SkeletalPose extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(joint: string): (Transform) | null;
+    readonly $type: {
+        "s:17RealityFoundation12SkeletalPoseV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -19173,6 +20595,9 @@ export declare class SkeletalPosesComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(poses: Array<SkeletalPose>): SkeletalPosesComponent;
+    readonly $type: {
+        "s:17RealityFoundation22SkeletalPosesComponentV": true;
+    };
 }
 /**
  * struct SkeletalPoseSet
@@ -19245,6 +20670,9 @@ export declare class SkeletalPoseSet extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript3367(index: number): SkeletalPose;
+    readonly $type: {
+        "s:17RealityFoundation15SkeletalPoseSetV": true;
+    };
 }
 /**
  * typealias Element = SkeletalPose
@@ -19271,6 +20699,9 @@ export declare class SkeletalPoseSet_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): (SkeletalPose) | null;
+    readonly $type: {
+        "s:17RealityFoundation15SkeletalPoseSetV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = SkeletalPoseSet.Element
@@ -19307,6 +20738,9 @@ export declare class SkeletonResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     get rootJoint(): SkeletonResource_Joint;
+    readonly $type: {
+        "s:17RealityFoundation16SkeletonResourceC": true;
+    };
 }
 /**
  * struct AnimationEvaluation
@@ -19328,6 +20762,9 @@ export declare class SkeletonResource_AnimationEvaluation extends SDKHandle {
      * @availability iOS 27.0+
      */
     get ikResources(): Array<IKResource>;
+    readonly $type: {
+        "s:17RealityFoundation16SkeletonResourceC19AnimationEvaluationV": true;
+    };
 }
 /**
  * struct BlendMask
@@ -19355,6 +20792,9 @@ export declare class SkeletonResource_BlendMask extends SDKHandle {
      * @availability iOS 27.0+
      */
     get name(): string;
+    readonly $type: {
+        "s:17RealityFoundation16SkeletonResourceC9BlendMaskV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -19392,6 +20832,9 @@ export declare class SkeletonResource_Joint extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(name: string, restPoseTransform?: Transform, children?: (() => Array<SkeletonResource_Joint>)): SkeletonResource_Joint;
+    readonly $type: {
+        "s:17RealityFoundation16SkeletonResourceC5JointV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -19413,6 +20856,9 @@ export declare class SkeletonResource_JointBuilder extends SDKHandle {
      * @availability iOS 27.0+
      */
     static buildExpression41642(expression: $SDK195): $SDK195;
+    readonly $type: {
+        "s:17RealityFoundation16SkeletonResourceC12JointBuilderV": true;
+    };
 }
 /**
  * struct SkinningDeformer
@@ -19445,6 +20891,9 @@ export declare class SkinningDeformer extends SDKHandle {
      * @availability iOS 27.0+
      */
     deform(parameter: $SDK41, encoder: SDKHandle): void;
+    readonly $type: {
+        "s:17RealityFoundation16SkinningDeformerV": true;
+    };
 }
 /**
  * struct SpatialAudioComponent
@@ -19491,6 +20940,9 @@ export declare class SpatialAudioComponent extends SDKHandle {
      */
     get gain(): number;
     set gain(value: number);
+    readonly $type: {
+        "s:17RealityFoundation21SpatialAudioComponentV": true;
+    };
 }
 /**
  * struct SpatialForceFalloff
@@ -19520,6 +20972,9 @@ export declare class SpatialForceFalloff extends SDKHandle {
      */
     get bounds(): ForceEffectBounds;
     set bounds(value: ForceEffectBounds);
+    readonly $type: {
+        "s:17RealityFoundation19SpatialForceFalloffV": true;
+    };
 }
 /**
  * final class SpatialTrackingSession
@@ -19541,6 +20996,9 @@ export declare class SpatialTrackingSession extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): SpatialTrackingSession;
+    readonly $type: {
+        "s:17RealityFoundation22SpatialTrackingSessionC": true;
+    };
 }
 /**
  * struct Configuration
@@ -19562,6 +21020,9 @@ export declare class SpatialTrackingSession_Configuration extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(anchorCapabilities?: $SDK198, sceneUnderstanding?: $SDK199, camera?: SpatialTrackingSession_Configuration_Camera): SpatialTrackingSession_Configuration;
+    readonly $type: {
+        "s:17RealityFoundation22SpatialTrackingSessionC13ConfigurationV": true;
+    };
 }
 /**
  * struct AnchorCapability
@@ -19613,6 +21074,9 @@ export declare class SpatialTrackingSession_Configuration_AnchorCapability exten
      * @availability iOS 18.0+
      */
     static get object(): SpatialTrackingSession_Configuration_AnchorCapability;
+    readonly $type: {
+        "s:17RealityFoundation22SpatialTrackingSessionC13ConfigurationV16AnchorCapabilityV": true;
+    };
 }
 /**
  * enum Camera
@@ -19654,6 +21118,9 @@ export declare class SpatialTrackingSession_Configuration_SceneUnderstandingCapa
      * @availability iOS 18.0+
      */
     static get occlusion(): SpatialTrackingSession_Configuration_SceneUnderstandingCapability;
+    readonly $type: {
+        "s:17RealityFoundation22SpatialTrackingSessionC13ConfigurationV28SceneUnderstandingCapabilityV": true;
+    };
 }
 /**
  * struct UnavailableCapabilities
@@ -19680,6 +21147,9 @@ export declare class SpatialTrackingSession_UnavailableCapabilities extends SDKH
      * @availability iOS 18.0+
      */
     static init(): SpatialTrackingSession_UnavailableCapabilities;
+    readonly $type: {
+        "s:17RealityFoundation22SpatialTrackingSessionC23UnavailableCapabilitiesV": true;
+    };
 }
 /**
  * struct SpinAction
@@ -19715,6 +21185,9 @@ export declare class SpinAction extends SDKHandle {
      */
     get localAxis(): SDKHandle;
     set localAxis(value: SDKHandle);
+    readonly $type: {
+        "s:17RealityFoundation10SpinActionV": true;
+    };
 }
 /**
  * typealias EventParameterType = Never
@@ -19732,6 +21205,10 @@ export declare class SpotLight extends SpotLight_base {
      * @availability iOS 13.0+
      */
     static init(): Promise<SpotLight>;
+    readonly $type: {
+        "s:17RealityFoundation9SpotLightC": true;
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * struct SpotLightComponent
@@ -19774,6 +21251,9 @@ export declare class SpotLightComponent extends SDKHandle {
      */
     get intensity(): number;
     set intensity(value: number);
+    readonly $type: {
+        "s:17RealityFoundation18SpotLightComponentV": true;
+    };
 }
 /**
  * struct ProjectiveTexture
@@ -19807,6 +21287,9 @@ export declare class SpotLightComponent_ProjectiveTexture extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initTexture(texture: TextureResource): SpotLightComponent_ProjectiveTexture;
+    readonly $type: {
+        "s:17RealityFoundation18SpotLightComponentV17ProjectiveTextureV": true;
+    };
 }
 /**
  * typealias TextureCoordinateTransform = MaterialParameterTypes.TextureCoordinateTransform
@@ -19870,6 +21353,9 @@ export declare class SpotLightComponent_Shadow extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): SpotLightComponent_Shadow;
+    readonly $type: {
+        "s:17RealityFoundation18SpotLightComponentV6ShadowV": true;
+    };
 }
 /**
  * struct QualityMode
@@ -19909,6 +21395,9 @@ export declare const SpotLightComponent_Shadow_QualityMode: {
  * @availability iOS 18.0+
  */
 export declare class SpotLightComponent_Shadow_ShadowClippingPlane extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation18SpotLightComponentV6ShadowV0F13ClippingPlaneO": true;
+    };
 }
 /**
  * typealias ShadowMapCullMode = MaterialParameterTypes.FaceCulling
@@ -19940,6 +21429,9 @@ export declare class SubdivisionSurfaceDeformer extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): SubdivisionSurfaceDeformer;
+    readonly $type: {
+        "s:17RealityFoundation26SubdivisionSurfaceDeformerV": true;
+    };
 }
 /**
  * struct SynchronizationComponent
@@ -19967,6 +21459,9 @@ export declare class SynchronizationComponent extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): SynchronizationComponent;
+    readonly $type: {
+        "s:17RealityFoundation24SynchronizationComponentV": true;
+    };
 }
 /**
  * enum OwnershipTransferCompletionResult
@@ -19983,6 +21478,9 @@ export type SynchronizationComponent_OwnershipTransferMode = "autoAccept" | "man
  * @availability iOS 13.0+
  */
 export declare class SynchronizationEvents extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation21SynchronizationEventsO": true;
+    };
 }
 /**
  * struct OwnershipChanged
@@ -19999,6 +21497,9 @@ export declare class SynchronizationEvents_OwnershipChanged extends SDKHandle {
      * @availability iOS 13.0+
      */
     get newOwner(): (SDKHandle) | null;
+    readonly $type: {
+        "s:17RealityFoundation21SynchronizationEventsO16OwnershipChangedV": true;
+    };
 }
 /**
  * struct OwnershipRequest
@@ -20020,6 +21521,9 @@ export declare class SynchronizationEvents_OwnershipRequest extends SDKHandle {
      * @availability iOS 13.0+
      */
     get requester(): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation21SynchronizationEventsO16OwnershipRequestV": true;
+    };
 }
 /**
  * protocol SynchronizationPeerID
@@ -20074,6 +21578,9 @@ export interface System {
  * @availability iOS 15.0+
  */
 export declare class SystemDependency extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation16SystemDependencyO": true;
+    };
 }
 /**
  * struct SystemUpdateCondition
@@ -20085,6 +21592,9 @@ export declare class SystemUpdateCondition extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get rendering(): SystemUpdateCondition;
+    readonly $type: {
+        "s:17RealityFoundation21SystemUpdateConditionV": true;
+    };
 }
 /**
  * struct TextComponent
@@ -20120,6 +21630,9 @@ export declare class TextComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): TextComponent;
+    readonly $type: {
+        "s:17RealityFoundation13TextComponentV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class TextureResource
@@ -20357,6 +21870,9 @@ export declare class TextureResource extends SDKHandle {
      * @availability iOS 18.0+
      */
     static texture3DSlicesNamedOptions94552(slices: $SDK206, resourceName: (string) | null, options: TextureResource_CreateOptions): Promise<TextureResource>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC": true;
+    };
 }
 /**
  * struct Compression
@@ -20373,6 +21889,9 @@ export declare class TextureResource_Compression extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get default(): Promise<TextureResource_Compression>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC11CompressionV": true;
+    };
 }
 /**
  * enum ASTCBlockSize
@@ -20394,6 +21913,9 @@ export declare class TextureResource_Contents extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(mipmapLevels: Array<TextureResource_Contents_MipmapLevel>): Promise<TextureResource_Contents>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC8ContentsV": true;
+    };
 }
 /**
  * struct MipmapLevel
@@ -20425,6 +21947,9 @@ export declare class TextureResource_Contents_MipmapLevel extends SDKHandle {
      * @availability iOS 18.0+
      */
     static mipSlices(slices: Array<TextureResource_Contents_Slice>): Promise<TextureResource_Contents_MipmapLevel>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC8ContentsV11MipmapLevelV": true;
+    };
 }
 /**
  * struct Slice
@@ -20441,6 +21966,9 @@ export declare class TextureResource_Contents_Slice extends SDKHandle {
      * @availability iOS 18.0+
      */
     static sliceDataBytesPerRow(data: ArrayBuffer, bytesPerRow: number): Promise<TextureResource_Contents_Slice>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC8ContentsV5SliceV": true;
+    };
 }
 /**
  * struct CreateOptions
@@ -20475,6 +22003,9 @@ export declare class TextureResource_CreateOptions extends SDKHandle {
      */
     get semantic(): Promise<$SDK207>;
     setSemantic(value?: $SDK207): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC13CreateOptionsV": true;
+    };
 }
 /**
  * struct Dimensions2D
@@ -20486,6 +22017,9 @@ export declare class TextureResource_Dimensions2D extends SDKHandle {
      * @availability iOS 18.0+
      */
     static dimensions(width: number, height: number): Promise<TextureResource_Dimensions2D>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC12Dimensions2DV": true;
+    };
 }
 /**
  * struct Dimensions2DArray
@@ -20497,6 +22031,9 @@ export declare class TextureResource_Dimensions2DArray extends SDKHandle {
      * @availability iOS 18.0+
      */
     static dimensions(width: number, height: number, length: number): Promise<TextureResource_Dimensions2DArray>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC17Dimensions2DArrayV": true;
+    };
 }
 /**
  * struct Dimensions3D
@@ -20508,6 +22045,9 @@ export declare class TextureResource_Dimensions3D extends SDKHandle {
      * @availability iOS 18.0+
      */
     static dimensions(width: number, height: number, depth: number): Promise<TextureResource_Dimensions3D>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC12Dimensions3DV": true;
+    };
 }
 /**
  * struct DimensionsCube
@@ -20519,6 +22059,9 @@ export declare class TextureResource_DimensionsCube extends SDKHandle {
      * @availability iOS 18.0+
      */
     static dimensions(faceSize: number): Promise<TextureResource_DimensionsCube>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC14DimensionsCubeV": true;
+    };
 }
 /**
  * class Drawable
@@ -20545,6 +22088,9 @@ export declare class TextureResource_Drawable extends SDKHandle {
      * @availability iOS 15.0+
      */
     get texture(): Promise<SDKHandle>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC8DrawableC": true;
+    };
 }
 /**
  * class DrawableQueue
@@ -20592,6 +22138,9 @@ export declare class TextureResource_DrawableQueue extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(descriptor: TextureResource_DrawableQueue_Descriptor): Promise<TextureResource_DrawableQueue>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC13DrawableQueueC": true;
+    };
 }
 /**
  * struct Descriptor
@@ -20644,6 +22193,9 @@ export declare class TextureResource_DrawableQueue_Descriptor extends SDKHandle 
      */
     get timeout(): Promise<SDKHandle>;
     setTimeout(value: SDKHandle): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC13DrawableQueueC10DescriptorV": true;
+    };
 }
 /**
  * struct Format
@@ -20665,6 +22217,9 @@ export declare class TextureResource_Format extends SDKHandle {
      * @availability iOS 18.0+
      */
     static normal(encoding: TextureResource_Format_NormalEncoding, pixelFormat: _Metal_MTLPixelFormat): Promise<TextureResource_Format>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC6FormatV": true;
+    };
 }
 /**
  * enum ColorSpace
@@ -20713,6 +22268,9 @@ export declare class TimedForceFalloff extends SDKHandle {
      */
     get duration(): number;
     set duration(value: number);
+    readonly $type: {
+        "s:17RealityFoundation17TimedForceFalloffV": true;
+    };
 }
 /**
  * struct ToneMappingComponent
@@ -20760,6 +22318,9 @@ export declare class ToneMappingComponent extends SDKHandle {
      */
     get toeLength(): number;
     set toeLength(value: number);
+    readonly $type: {
+        "s:17RealityFoundation20ToneMappingComponentV": true;
+    };
 }
 /**
  * @frozen struct Transform
@@ -20835,6 +22396,9 @@ export declare class Transform extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init58499(transform: _Spatial_AffineTransform3D): Transform;
+    readonly $type: {
+        "s:17RealityFoundation9TransformV": true;
+    };
 }
 /**
  * protocol TransientComponent : Component
@@ -20863,6 +22427,10 @@ export declare class TriggerVolume extends TriggerVolume_base {
      * @availability iOS 13.0+
      */
     static init(): Promise<TriggerVolume>;
+    readonly $type: {
+        "s:17RealityFoundation13TriggerVolumeC": true;
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * struct TurbulenceForceEffect
@@ -20910,6 +22478,9 @@ export declare class TurbulenceForceEffect extends SDKHandle {
      */
     get forceMode(): ForceMode;
     set forceMode(value: ForceMode);
+    readonly $type: {
+        "s:17RealityFoundation21TurbulenceForceEffectV": true;
+    };
 }
 /**
  * enum TweenMode
@@ -20932,6 +22503,9 @@ export declare class UnlitLightingModel extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): UnlitLightingModel;
+    readonly $type: {
+        "s:17RealityFoundation18UnlitLightingModelV": true;
+    };
 }
 /**
  * struct UnlitMaterial
@@ -21018,6 +22592,9 @@ export declare class UnlitMaterial extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): UnlitMaterial;
+    readonly $type: {
+        "s:17RealityFoundation13UnlitMaterialV": true;
+    };
 }
 /**
  * typealias BaseColor = PhysicallyBasedMaterial.BaseColor
@@ -21054,6 +22631,9 @@ export declare class UnlitMaterial_Program extends SDKHandle {
      * @availability iOS 18.0+
      */
     get descriptor(): UnlitMaterial_Program_Descriptor;
+    readonly $type: {
+        "s:17RealityFoundation13UnlitMaterialV7ProgramC": true;
+    };
 }
 /**
  * struct Descriptor
@@ -21077,6 +22657,9 @@ export declare class UnlitMaterial_Program_Descriptor extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): UnlitMaterial_Program_Descriptor;
+    readonly $type: {
+        "s:17RealityFoundation13UnlitMaterialV7ProgramC10DescriptorV": true;
+    };
 }
 /**
  * typealias Texture = PhysicallyBasedMaterial.Texture
@@ -21113,6 +22696,9 @@ export declare class UnsafeForceEffectBuffer<T = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(index: number): unknown;
+    readonly $type: {
+        "s:17RealityFoundation23UnsafeForceEffectBufferV": true;
+    };
 }
 /**
  * typealias Element = T
@@ -21129,6 +22715,9 @@ export declare class UnsafeForceEffectBuffer_Iterator<T = unknown> extends SDKHa
      * @availability iOS 18.0+
      */
     next(): (unknown) | null;
+    readonly $type: {
+        "s:17RealityFoundation23UnsafeForceEffectBufferV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = T
@@ -21190,6 +22779,9 @@ export declare class VideoMaterial extends SDKHandle {
      */
     get avPlayer(): Promise<$SDK213>;
     setAvPlayer(value?: $SDK213): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation13VideoMaterialV": true;
+    };
 }
 /**
  * typealias FaceCulling = MaterialParameterTypes.FaceCulling
@@ -21244,6 +22836,9 @@ export declare class VideoPlaybackController extends SDKHandle {
      */
     get preferredViewingMode(): Promise<VideoPlaybackController_ViewingMode>;
     setPreferredViewingMode(value: VideoPlaybackController_ViewingMode): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation23VideoPlaybackControllerC": true;
+    };
 }
 /**
  * enum ViewingMode
@@ -21301,6 +22896,9 @@ export declare class VideoPlayerComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     get currentRenderingStatus(): VideoPlayerComponent_RenderingStatus;
+    readonly $type: {
+        "s:17RealityFoundation20VideoPlayerComponentV": true;
+    };
 }
 /**
  * enum RenderingStatus
@@ -21312,6 +22910,9 @@ export type VideoPlayerComponent_RenderingStatus = "loading" | "ready";
  * @availability iOS 18.0+
  */
 export declare class VideoPlayerEvents extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation17VideoPlayerEventsO": true;
+    };
 }
 /**
  * struct ContentTypeDidChange
@@ -21328,6 +22929,9 @@ export declare class VideoPlayerEvents_ContentTypeDidChange extends SDKHandle {
      * @availability iOS 18.0+
      */
     get previousType(): VideoPlayerEvents_ContentTypeDidChange_ContentType;
+    readonly $type: {
+        "s:17RealityFoundation17VideoPlayerEventsO20ContentTypeDidChangeV": true;
+    };
 }
 /**
  * enum ContentType
@@ -21366,6 +22970,9 @@ export declare class VideoPlayerEvents_RenderingStatusDidChange extends SDKHandl
      * @availability iOS 18.0+
      */
     get previousStatus(): VideoPlayerComponent_RenderingStatus;
+    readonly $type: {
+        "s:17RealityFoundation17VideoPlayerEventsO24RenderingStatusDidChangeV": true;
+    };
 }
 /**
  * struct VideoSizeDidChange
@@ -21382,6 +22989,9 @@ export declare class VideoPlayerEvents_VideoSizeDidChange extends SDKHandle {
      * @availability iOS 18.0+
      */
     get videoDimension(): SDKHandle;
+    readonly $type: {
+        "s:17RealityFoundation17VideoPlayerEventsO0C13SizeDidChangeV": true;
+    };
 }
 /**
  * struct ViewingModeDidChange
@@ -21398,6 +23008,9 @@ export declare class VideoPlayerEvents_ViewingModeDidChange extends SDKHandle {
      * @availability iOS 18.0+
      */
     get previousViewingMode(): $SDK215;
+    readonly $type: {
+        "s:17RealityFoundation17VideoPlayerEventsO20ViewingModeDidChangeV": true;
+    };
 }
 /**
  * struct VirtualEnvironmentProbeComponent
@@ -21426,6 +23039,9 @@ export declare class VirtualEnvironmentProbeComponent extends SDKHandle {
      */
     get influence(): VirtualEnvironmentProbeComponent_Influence;
     set influence(value: VirtualEnvironmentProbeComponent_Influence);
+    readonly $type: {
+        "s:17RealityFoundation32VirtualEnvironmentProbeComponentV": true;
+    };
 }
 /**
  * struct Influence
@@ -21447,6 +23063,9 @@ export declare class VirtualEnvironmentProbeComponent_Influence extends SDKHandl
      * @availability iOS 27.0+
      */
     static get global(): VirtualEnvironmentProbeComponent_Influence;
+    readonly $type: {
+        "s:17RealityFoundation32VirtualEnvironmentProbeComponentV9InfluenceV": true;
+    };
 }
 /**
  * struct Probe
@@ -21470,12 +23089,18 @@ export declare class VirtualEnvironmentProbeComponent_Probe extends SDKHandle {
      */
     get intensityExponent(): number;
     set intensityExponent(value: number);
+    readonly $type: {
+        "s:17RealityFoundation32VirtualEnvironmentProbeComponentV0E0V": true;
+    };
 }
 /**
  * enum Source
  * @availability iOS 18.0+
  */
 export declare class VirtualEnvironmentProbeComponent_Source extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation32VirtualEnvironmentProbeComponentV6SourceO": true;
+    };
 }
 /**
  * struct VortexForceEffect
@@ -21518,6 +23143,9 @@ export declare class VortexForceEffect extends SDKHandle {
      */
     get forceMode(): ForceMode;
     set forceMode(value: ForceMode);
+    readonly $type: {
+        "s:17RealityFoundation17VortexForceEffectV": true;
+    };
 }
 /**
  * struct WorldComponent
@@ -21529,6 +23157,9 @@ export declare class WorldComponent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): WorldComponent;
+    readonly $type: {
+        "s:17RealityFoundation14WorldComponentV": true;
+    };
 }
 /**
  * func blend(sources: [any BlendTreeNode], name: String = "", isAdditive: Bool = false) -> any BlendTreeNode

@@ -21,6 +21,9 @@ export declare class ManagedAppCertificatesProvider extends SDKHandle {
      * @availability iOS 18.4+
      */
     static init(): ManagedAppCertificatesProvider;
+    readonly $type: {
+        "s:10ManagedApp0aB20CertificatesProviderC": true;
+    };
 }
 /**
  * protocol ManagedAppConfigurationDecodingError : Decodable, Encodable, Error
@@ -95,6 +98,9 @@ export declare class ManagedAppConfigurationProvider extends SDKHandle {
      * @availability iOS 18.4+
      */
     static init(): ManagedAppConfigurationProvider;
+    readonly $type: {
+        "s:10ManagedApp0aB21ConfigurationProviderC": true;
+    };
 }
 /**
  * enum ManagedAppError
@@ -121,6 +127,9 @@ export declare class ManagedAppIdentitiesProvider extends SDKHandle {
      * @availability iOS 18.4+
      */
     static init(): ManagedAppIdentitiesProvider;
+    readonly $type: {
+        "s:10ManagedApp0aB18IdentitiesProviderC": true;
+    };
 }
 /**
  * class ManagedAppPasswordsProvider
@@ -142,4 +151,7 @@ export declare class ManagedAppPasswordsProvider extends SDKHandle {
      * @availability iOS 18.4+
      */
     static init(): ManagedAppPasswordsProvider;
+    readonly $type: {
+        "s:10ManagedApp0aB17PasswordsProviderC": true;
+    };
 }

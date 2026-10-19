@@ -14,6 +14,10 @@ export declare class BEAvailability extends SDKHandle {
     static isEligible(context: BEAvailability_Context, completionHandler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void;
     /** init() */
     static init(): BEAvailability;
+    readonly $type: {
+        "c:objc(cs)BEAvailability": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Context
@@ -39,6 +43,10 @@ export declare class BEBrowserContentFilter extends SDKHandle {
     evaluateURL(url: string, completionHandler: ((arg0: boolean) => void)): void;
     /** init() */
     static init(): BEBrowserContentFilter;
+    readonly $type: {
+        "c:objc(cs)BEBrowserContentFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class BEBrowserData
@@ -60,6 +68,10 @@ export declare class BEBrowserData extends SDKHandle {
      * @availability iOS 26.4+
      */
     get sourceApplicationLocalizedName(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)BEBrowserData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sourceApplicationBundleIdentifier": true;
         "sourceApplicationLocalizedName": true;
@@ -101,6 +113,11 @@ export declare class BEBrowserDataBookmark extends BEBrowserDataBookmark_base {
      * @availability iOS 26.4+
      */
     get url(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)BEBrowserDataBookmark": true;
+        "c:objc(cs)BEBrowserData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sourceApplicationBundleIdentifier": true;
         "sourceApplicationLocalizedName": true;
@@ -136,6 +153,9 @@ export declare class BEBrowserDataExchangeError extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get unknown(): BEBrowserDataExchangeError_Code;
+    readonly $type: {
+        "s:SC26BEBrowserDataExchangeErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -189,6 +209,10 @@ export declare class BEBrowserDataExportManager extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get exportTokenUserInfoKey45680(): string;
+    readonly $type: {
+        "c:objc(cs)BEBrowserDataExportManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const BEBrowserDataExtension_base: Omit<typeof BEBrowserData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => BEBrowserData);
 /**
@@ -221,6 +245,11 @@ export declare class BEBrowserDataExtension extends BEBrowserDataExtension_base 
      * @availability iOS 26.4+
      */
     get storeIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)BEBrowserDataExtension": true;
+        "c:objc(cs)BEBrowserData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sourceApplicationBundleIdentifier": true;
         "sourceApplicationLocalizedName": true;
@@ -291,6 +320,11 @@ export declare class BEBrowserDataHistoryVisit extends BEBrowserDataHistoryVisit
      * @availability iOS 26.4+
      */
     get visitCount(): number;
+    readonly $type: {
+        "c:objc(cs)BEBrowserDataHistoryVisit": true;
+        "c:objc(cs)BEBrowserData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sourceApplicationBundleIdentifier": true;
         "sourceApplicationLocalizedName": true;
@@ -351,6 +385,10 @@ export declare class BEBrowserDataImportManager extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get importTokenUserInfoKey9918(): string;
+    readonly $type: {
+        "c:objc(cs)BEBrowserDataImportManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const BEBrowserDataReadingListItem_base: Omit<typeof BEBrowserData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => BEBrowserData);
 /**
@@ -378,6 +416,11 @@ export declare class BEBrowserDataReadingListItem extends BEBrowserDataReadingLi
      * @availability iOS 26.4+
      */
     get url(): string;
+    readonly $type: {
+        "c:objc(cs)BEBrowserDataReadingListItem": true;
+        "c:objc(cs)BEBrowserData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sourceApplicationBundleIdentifier": true;
         "sourceApplicationLocalizedName": true;
@@ -421,6 +464,10 @@ export declare class BEExportMetadata extends SDKHandle {
      * @availability iOS 26.4+
      */
     get supportExportToFiles(): boolean;
+    readonly $type: {
+        "c:objc(cs)BEExportMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bookmarksCount": true;
         "extensionsCount": true;
@@ -449,6 +496,10 @@ export declare class BEExportOptions extends SDKHandle {
      * @availability iOS 26.4+
      */
     get exportToFiles(): boolean;
+    readonly $type: {
+        "c:objc(cs)BEExportOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataTypes": true;
         "exportToFiles": true;
@@ -506,6 +557,10 @@ export declare class BEImportMetadata extends SDKHandle {
      * @availability iOS 26.4+
      */
     get supportImportFromFiles(): boolean;
+    readonly $type: {
+        "c:objc(cs)BEImportMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "supportImportFromFiles": true;
     };
@@ -525,6 +580,10 @@ export declare class BEImportOptions extends SDKHandle {
      * @availability iOS 26.4+
      */
     get importFromFiles(): boolean;
+    readonly $type: {
+        "c:objc(cs)BEImportOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "importFromFiles": true;
     };

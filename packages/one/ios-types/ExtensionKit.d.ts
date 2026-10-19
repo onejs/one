@@ -15,6 +15,9 @@ export interface AppExtensionScene {
  * @availability iOS 16.0+
  */
 export declare class AppExtensionSceneBuilder extends SDKHandle {
+    readonly $type: {
+        "s:12ExtensionKit03AppA12SceneBuilderV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct AppExtensionSceneConfiguration
@@ -26,6 +29,9 @@ export declare class AppExtensionSceneConfiguration extends SDKHandle {
      * @availability iOS 16.0+
      */
     accept(connection: _Foundation_NSXPCConnection): Promise<boolean>;
+    readonly $type: {
+        "s:12ExtensionKit03AppA18SceneConfigurationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -39,6 +45,12 @@ export type Array_Body<Element = unknown> = never;
 export declare class EXAppExtensionBrowserViewController extends SDKHandle {
     /** init() */
     static init(): EXAppExtensionBrowserViewController;
+    readonly $type: {
+        "c:objc(cs)EXAppExtensionBrowserViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class EXHostViewController
@@ -70,6 +82,12 @@ export declare class EXHostViewController extends SDKHandle {
      */
     get configuration(): Promise<$SDK1>;
     setConfiguration(value?: $SDK1): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)EXHostViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "placeholderView": true;
@@ -97,6 +115,9 @@ export declare class EXHostViewController_Configuration extends SDKHandle {
      */
     get sceneID(): string;
     set sceneID(value: string);
+    readonly $type: {
+        "s:So20EXHostViewControllerC12ExtensionKitE13ConfigurationV": true;
+    };
 }
 /**
  * protocol EXHostViewControllerDelegate : NSObjectProtocol
@@ -129,6 +150,9 @@ export declare class PrimitiveAppExtensionScene extends SDKHandle {
      * @availability iOS 16.0+
      */
     get body(): Promise<never>;
+    readonly $type: {
+        "s:12ExtensionKit012PrimitiveAppA5SceneV": true;
+    };
 }
 /**
  * typealias Body = Never

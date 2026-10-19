@@ -123,6 +123,9 @@ type $SDK168 = UIViewRepresentableContext<unknown>;
  * @availability iOS 13.0+
  */
 export declare class AccessibilityAttachmentModifier extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI31AccessibilityAttachmentModifierV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -149,6 +152,9 @@ export declare class AccessibilityChildBehavior extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get contain(): AccessibilityChildBehavior;
+    readonly $type: {
+        "s:7SwiftUI26AccessibilityChildBehaviorV": true;
+    };
 }
 /**
  * @propertyWrapper @frozen struct AccessibilityFocusState<Value> where Value : Hashable
@@ -186,6 +192,9 @@ export declare class AccessibilityFocusState<Value = unknown> extends SDKHandle 
      * @availability iOS 15.0+
      */
     static init72086(): $SDK2;
+    readonly $type: {
+        "s:7SwiftUI23AccessibilityFocusStateV": true;
+    };
 }
 /**
  * @propertyWrapper @frozen struct Binding
@@ -203,6 +212,9 @@ export declare class AccessibilityFocusState_Binding<Value = unknown> extends SD
      * @availability iOS 15.0+
      */
     get projectedValue(): $SDK0;
+    readonly $type: {
+        "s:7SwiftUI23AccessibilityFocusStateV7BindingV": true;
+    };
 }
 /**
  * @frozen enum AccessibilityLabeledPairRole
@@ -220,6 +232,9 @@ export interface AccessibilityRotorContent {
  * @availability iOS 15.0+
  */
 export declare class AccessibilityRotorContentBuilder extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI32AccessibilityRotorContentBuilderV": true;
+    };
 }
 /**
  * struct AccessibilityRotorEntry<ID> where ID : Hashable
@@ -291,6 +306,9 @@ export declare class AccessibilityRotorEntry<ID = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initInTextRangePrepare(label: string, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
+    readonly $type: {
+        "s:7SwiftUI23AccessibilityRotorEntryV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -367,6 +385,9 @@ export declare class AccessibilitySystemRotor extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get landmarks(): AccessibilitySystemRotor;
+    readonly $type: {
+        "s:7SwiftUI24AccessibilitySystemRotorV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct AccessoryCircularCapacityGaugeStyle
@@ -378,6 +399,9 @@ export declare class AccessoryCircularCapacityGaugeStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<AccessoryCircularCapacityGaugeStyle>;
+    readonly $type: {
+        "s:7SwiftUI35AccessoryCircularCapacityGaugeStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -394,6 +418,9 @@ export declare class AccessoryCircularGaugeStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<AccessoryCircularGaugeStyle>;
+    readonly $type: {
+        "s:7SwiftUI27AccessoryCircularGaugeStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -410,6 +437,9 @@ export declare class AccessoryLinearCapacityGaugeStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<AccessoryLinearCapacityGaugeStyle>;
+    readonly $type: {
+        "s:7SwiftUI33AccessoryLinearCapacityGaugeStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -426,6 +456,9 @@ export declare class AccessoryLinearGaugeStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<AccessoryLinearGaugeStyle>;
+    readonly $type: {
+        "s:7SwiftUI25AccessoryLinearGaugeStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -444,6 +477,9 @@ export declare class ActionSheet extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(title: _SwiftUICore_Text, message?: $SDK5, buttons?: Array<Alert_Button>): ActionSheet;
+    readonly $type: {
+        "s:7SwiftUI11ActionSheetV": true;
+    };
 }
 /**
  * typealias Button = Alert.Button
@@ -471,6 +507,9 @@ export declare class AdaptableTabBarPlacement extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): AdaptableTabBarPlacement;
+    readonly $type: {
+        "s:7SwiftUI24AdaptableTabBarPlacementV": true;
+    };
 }
 /**
  * struct Alert
@@ -490,6 +529,9 @@ export declare class Alert extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static initTitleMessagePrimaryButtonSecondaryButton(title: _SwiftUICore_Text, message: $SDK5, primaryButton: Alert_Button, secondaryButton: Alert_Button): Alert;
+    readonly $type: {
+        "s:7SwiftUI5AlertV": true;
+    };
 }
 /**
  * struct Button
@@ -521,6 +563,9 @@ export declare class Alert_Button extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static default(label: _SwiftUICore_Text, action?: ((() => void)) | null): Alert_Button;
+    readonly $type: {
+        "s:7SwiftUI5AlertV6ButtonV": true;
+    };
 }
 /**
  * protocol AnimatableModifier : Animatable, ViewModifier
@@ -545,6 +590,9 @@ export declare class AnimationTimelineSchedule extends SDKHandle {
      * @availability iOS 15.0+
      */
     entries(start: globalThis.Date, mode: _SwiftUICore_TimelineScheduleMode): AnimationTimelineSchedule_Entries;
+    readonly $type: {
+        "s:7SwiftUI25AnimationTimelineScheduleV": true;
+    };
 }
 /**
  * struct Entries
@@ -556,6 +604,9 @@ export declare class AnimationTimelineSchedule_Entries extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): $SDK6;
+    readonly $type: {
+        "s:7SwiftUI25AnimationTimelineScheduleV7EntriesV": true;
+    };
 }
 /**
  * typealias Element = Date
@@ -572,6 +623,9 @@ export type AnimationTimelineSchedule_Entries_Iterator = AnimationTimelineSchedu
  * @availability iOS 27.0+
  */
 export declare class AnyNavigationTransition extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23AnyNavigationTransitionV": true;
+    };
 }
 /**
  * @frozen struct AnyScrollTargetBehavior
@@ -599,12 +653,18 @@ export declare class AnyScrollTargetBehavior extends SDKHandle {
      */
     get base(): SDKHandle;
     set base(value: SDKHandle);
+    readonly $type: {
+        "s:7SwiftUI23AnyScrollTargetBehaviorV": true;
+    };
 }
 /**
  * nonisolated struct AnyTabContent<SelectionValue> where SelectionValue : Hashable
  * @availability iOS 18.0+
  */
 export declare class AnyTabContent<SelectionValue = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI13AnyTabContentV": true;
+    };
 }
 /**
  * typealias Body = AnyTabContent<SelectionValue>
@@ -723,12 +783,18 @@ export declare class AppStorage<Value = unknown> extends SDKHandle {
      * @availability iOS 14.0+
      */
     static initStore56582(key: string, store?: $SDK7): AppStorage<(number) | null>;
+    readonly $type: {
+        "s:7SwiftUI10AppStorageV": true;
+    };
 }
 /**
  * nonisolated struct AssistiveAccess<Content> where Content : View
  * @availability iOS 26.0+
  */
 export declare class AssistiveAccess<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI15AssistiveAccessV": true;
+    };
 }
 /**
  * typealias Body = some Scene
@@ -750,6 +816,9 @@ export declare class AsyncImage<Content = unknown> extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initRequestScale(request: _Foundation_URLRequest, scale?: number): $SDK17;
+    readonly $type: {
+        "s:7SwiftUI10AsyncImageV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -771,6 +840,9 @@ export declare class AsyncImagePhase extends SDKHandle {
      * @availability iOS 15.0+
      */
     get image(): (_SwiftUICore_Image) | null;
+    readonly $type: {
+        "s:7SwiftUI15AsyncImagePhaseO": true;
+    };
 }
 export declare class AttributedString extends SDKHandle {
     /**
@@ -803,6 +875,9 @@ export declare class AttributedString extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript(selection: AttributedTextSelection): _Foundation_DiscontiguousAttributedSubstring;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV": true;
+    };
 }
 /**
  * struct Transferable
@@ -814,6 +889,9 @@ export declare class AttributedTextFormatting_Transferable extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(text: _Foundation_AttributedString, environment: _SwiftUICore_EnvironmentValues): AttributedTextFormatting_Transferable;
+    readonly $type: {
+        "s:7SwiftUI24AttributedTextFormattingOAAE12TransferableV": true;
+    };
 }
 /**
  * typealias Representation = some TransferRepresentation
@@ -865,12 +943,18 @@ export declare class AttributedTextSelection extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): AttributedTextSelection;
+    readonly $type: {
+        "s:7SwiftUI23AttributedTextSelectionV": true;
+    };
 }
 /**
  * struct Attributes<Text>
  * @availability iOS 26.0+
  */
 export declare class AttributedTextSelection_Attributes<Text = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23AttributedTextSelectionV10AttributesV": true;
+    };
 }
 /**
  * typealias Element = AttributeContainer
@@ -887,12 +971,18 @@ export type AttributedTextSelection_Attributes_Iterator<Text = unknown> = SDKHan
  * @availability iOS 26.0+
  */
 export declare class AttributedTextSelection_Indices extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23AttributedTextSelectionV7IndicesO": true;
+    };
 }
 /**
  * nonisolated struct AutomaticControlGroupStyle
  * @availability iOS 15.0+
  */
 export declare class AutomaticControlGroupStyle extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI26AutomaticControlGroupStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -909,6 +999,9 @@ export declare class AutomaticDisclosureGroupStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<AutomaticDisclosureGroupStyle>;
+    readonly $type: {
+        "s:7SwiftUI29AutomaticDisclosureGroupStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -925,6 +1018,9 @@ export declare class AutomaticFormStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): AutomaticFormStyle;
+    readonly $type: {
+        "s:7SwiftUI18AutomaticFormStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -941,6 +1037,9 @@ export declare class AutomaticLabeledContentStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): AutomaticLabeledContentStyle;
+    readonly $type: {
+        "s:7SwiftUI28AutomaticLabeledContentStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -957,6 +1056,9 @@ export declare class AutomaticNavigationSplitViewStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<AutomaticNavigationSplitViewStyle>;
+    readonly $type: {
+        "s:7SwiftUI33AutomaticNavigationSplitViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -968,6 +1070,9 @@ export type AutomaticNavigationSplitViewStyle_Body = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class AutomaticNavigationTransition extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI29AutomaticNavigationTransitionV": true;
+    };
 }
 /**
  * struct AutomaticPresentationSizing
@@ -979,12 +1084,18 @@ export declare class AutomaticPresentationSizing extends SDKHandle {
      * @availability iOS 18.0+
      */
     proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize;
+    readonly $type: {
+        "s:7SwiftUI27AutomaticPresentationSizingV": true;
+    };
 }
 /**
  * nonisolated struct AutomaticTableStyle
  * @availability iOS 16.0+
  */
 export declare class AutomaticTableStyle extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI19AutomaticTableStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1006,12 +1117,18 @@ export declare class AutomaticTextEditorStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<AutomaticTextEditorStyle>;
+    readonly $type: {
+        "s:7SwiftUI24AutomaticTextEditorStyleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Body
  * @availability iOS 17.0+
  */
 export declare class AutomaticTextEditorStyle_Body extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24AutomaticTextEditorStyleV4BodyV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1043,6 +1160,9 @@ export declare class BackgroundTask<Request = unknown, Response = unknown> exten
      * @availability iOS 16.0+
      */
     static urlSession88335(identifier: string): $SDK23;
+    readonly $type: {
+        "s:7SwiftUI14BackgroundTaskV": true;
+    };
 }
 /**
  * struct BadgeProminence
@@ -1064,6 +1184,9 @@ export declare class BadgeProminence extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get increased(): BadgeProminence;
+    readonly $type: {
+        "s:7SwiftUI15BadgeProminenceV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct BalancedNavigationSplitViewStyle
@@ -1075,6 +1198,9 @@ export declare class BalancedNavigationSplitViewStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<BalancedNavigationSplitViewStyle>;
+    readonly $type: {
+        "s:7SwiftUI32BalancedNavigationSplitViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1091,6 +1217,9 @@ export declare class BorderedButtonStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): BorderedButtonStyle;
+    readonly $type: {
+        "s:7SwiftUI19BorderedButtonStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1107,6 +1236,9 @@ export declare class BorderedProminentButtonStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): BorderedProminentButtonStyle;
+    readonly $type: {
+        "s:7SwiftUI28BorderedProminentButtonStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1123,6 +1255,9 @@ export declare class BorderedTextFieldStyle extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): BorderedTextFieldStyle;
+    readonly $type: {
+        "s:7SwiftUI22BorderedTextFieldStyleV": true;
+    };
 }
 /**
  * nonisolated struct BorderlessButtonMenuStyle
@@ -1136,6 +1271,9 @@ export declare class BorderlessButtonMenuStyle extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(): BorderlessButtonMenuStyle;
+    readonly $type: {
+        "s:7SwiftUI25BorderlessButtonMenuStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1153,6 +1291,9 @@ export declare class BorderlessButtonStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): BorderlessButtonStyle;
+    readonly $type: {
+        "s:7SwiftUI21BorderlessButtonStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1204,6 +1345,9 @@ export declare class Button<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initAction1196(title: string, action: (() => void)): Promise<$SDK27>;
+    readonly $type: {
+        "s:7SwiftUI6ButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1245,6 +1389,9 @@ export declare class ButtonBorderShape extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get automatic(): ButtonBorderShape;
+    readonly $type: {
+        "s:7SwiftUI17ButtonBorderShapeV": true;
+    };
 }
 /**
  * typealias AnimatableData = EmptyAnimatableData
@@ -1271,6 +1418,9 @@ export declare class ButtonMenuStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): ButtonMenuStyle;
+    readonly $type: {
+        "s:7SwiftUI15ButtonMenuStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1297,6 +1447,9 @@ export declare class ButtonRepeatBehavior extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): ButtonRepeatBehavior;
+    readonly $type: {
+        "s:7SwiftUI20ButtonRepeatBehaviorV": true;
+    };
 }
 /**
  * struct ButtonRole
@@ -1323,6 +1476,9 @@ export declare class ButtonRole extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get confirm(): ButtonRole;
+    readonly $type: {
+        "s:7SwiftUI10ButtonRoleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol ButtonStyle
@@ -1360,12 +1516,18 @@ export declare class ButtonStyleConfiguration extends SDKHandle {
      * @availability iOS 13.0+
      */
     get isPressed(): boolean;
+    readonly $type: {
+        "s:7SwiftUI24ButtonStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Label
  * @availability iOS 13.0+
  */
 export declare class ButtonStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24ButtonStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1382,6 +1544,9 @@ export declare class ButtonToggleStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): ButtonToggleStyle;
+    readonly $type: {
+        "s:7SwiftUI17ButtonToggleStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1393,6 +1558,9 @@ export type ButtonToggleStyle_Body = SDKHandle;
  * @availability iOS 27.1+
  */
 export declare class CameraCaptureAccessory<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI22CameraCaptureAccessoryV": true;
+    };
 }
 /**
  * typealias Body = some SceneAccessoryContent
@@ -1415,6 +1583,9 @@ export declare class CircularProgressViewStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): CircularProgressViewStyle;
+    readonly $type: {
+        "s:7SwiftUI25CircularProgressViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1433,6 +1604,9 @@ export declare class Color extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(color: _UIKit_UIColor): _SwiftUICore_Color;
+    readonly $type: {
+        "s:7SwiftUI5ColorV": true;
+    };
 }
 /**
  * typealias Representation = some TransferRepresentation
@@ -1474,6 +1648,9 @@ export declare class ColorPicker<Label = unknown> extends SDKHandle {
      * @availability iOS 14.0+
      */
     static initSelectionSupportsOpacity18447(title: string, selection: $SDK31, supportsOpacity?: boolean): $SDK29;
+    readonly $type: {
+        "s:7SwiftUI11ColorPickerV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1502,6 +1679,9 @@ export declare const ColorSchemeContrast: {
  * @deprecated iOS 100000.0
  */
 export declare class ColumnNavigationViewStyle extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI25ColumnNavigationViewStyleV": true;
+    };
 }
 /**
  * nonisolated struct ColumnsFormStyle
@@ -1513,6 +1693,9 @@ export declare class ColumnsFormStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): ColumnsFormStyle;
+    readonly $type: {
+        "s:7SwiftUI16ColumnsFormStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1524,6 +1707,9 @@ export type ColumnsFormStyle_Body = SDKHandle;
  * @availability iOS 14.0+
  */
 export declare class CommandGroup<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI12CommandGroupV": true;
+    };
 }
 /**
  * typealias Body = some Commands
@@ -1625,12 +1811,18 @@ export declare class CommandGroupPlacement extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get printItem(): CommandGroupPlacement;
+    readonly $type: {
+        "s:7SwiftUI21CommandGroupPlacementV": true;
+    };
 }
 /**
  * nonisolated struct CommandMenu<Content> where Content : View
  * @availability iOS 14.0+
  */
 export declare class CommandMenu<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI11CommandMenuV": true;
+    };
 }
 /**
  * typealias Body = some Commands
@@ -1653,6 +1845,9 @@ export declare class CommandsBuilder extends SDKHandle {
      * @availability iOS 14.0+
      */
     static buildBlock(): EmptyCommands;
+    readonly $type: {
+        "s:7SwiftUI15CommandsBuilderV": true;
+    };
 }
 /**
  * nonisolated struct CompactDatePickerStyle
@@ -1664,6 +1859,9 @@ export declare class CompactDatePickerStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): CompactDatePickerStyle;
+    readonly $type: {
+        "s:7SwiftUI22CompactDatePickerStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1680,6 +1878,9 @@ export declare class CompactMenuControlGroupStyle extends SDKHandle {
      * @availability iOS 16.4+
      */
     static init(): CompactMenuControlGroupStyle;
+    readonly $type: {
+        "s:7SwiftUI28CompactMenuControlGroupStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1701,6 +1902,9 @@ export declare class ContainerBackgroundPlacement extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get navigationSplitView(): ContainerBackgroundPlacement;
+    readonly $type: {
+        "s:7SwiftUI28ContainerBackgroundPlacementV": true;
+    };
 }
 /**
  * struct ContentMarginPlacement
@@ -1722,6 +1926,9 @@ export declare class ContentMarginPlacement extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): ContentMarginPlacement;
+    readonly $type: {
+        "s:7SwiftUI22ContentMarginPlacementV": true;
+    };
 }
 export type ContentSizeCategory = "extraSmall" | "small" | "medium" | "large" | "extraLarge" | "extraExtraLarge" | "extraExtraExtraLarge" | "accessibilityMedium" | "accessibilityLarge" | "accessibilityExtraLarge" | "accessibilityExtraExtraLarge" | "accessibilityExtraExtraExtraLarge";
 export declare const ContentSizeCategory: {
@@ -1741,6 +1948,9 @@ export declare class ContentToolbarPlacement extends SDKHandle {
      * @availability iOS 18.4+
      */
     static get tabViewSidebar(): ContentToolbarPlacement;
+    readonly $type: {
+        "s:7SwiftUI23ContentToolbarPlacementV": true;
+    };
 }
 /**
  * nonisolated struct ContentUnavailableView<Label, Description, Actions> where Label : View, Description : View, Actions : View
@@ -1757,6 +1967,9 @@ export declare class ContentUnavailableView<Label = unknown, Description = unkno
      * @availability iOS 17.0+
      */
     static get search(): $SDK32;
+    readonly $type: {
+        "s:7SwiftUI22ContentUnavailableViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1769,6 +1982,9 @@ export type ContentUnavailableView_Body<Label = unknown, Description = unknown, 
  * @deprecated iOS 100000.0
  */
 export declare class ContextMenu<MenuItems = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI11ContextMenuV": true;
+    };
 }
 /**
  * nonisolated struct ControlGroup<Content> where Content : View
@@ -1780,6 +1996,9 @@ export declare class ControlGroup<Content = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(configuration: ControlGroupStyleConfiguration): ControlGroup<ControlGroupStyleConfiguration_Content>;
+    readonly $type: {
+        "s:7SwiftUI12ControlGroupV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1817,12 +2036,18 @@ export declare class ControlGroupStyleConfiguration extends SDKHandle {
      * @availability iOS 15.0+
      */
     get content(): ControlGroupStyleConfiguration_Content;
+    readonly $type: {
+        "s:7SwiftUI30ControlGroupStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Content
  * @availability iOS 15.0+
  */
 export declare class ControlGroupStyleConfiguration_Content extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI30ControlGroupStyleConfigurationV7ContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1834,6 +2059,9 @@ export type ControlGroupStyleConfiguration_Content_Body = never;
  * @availability iOS 16.0+
  */
 export declare class ControlGroupStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI30ControlGroupStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1867,6 +2095,9 @@ export declare class ControlWidgetConfigurationBuilder extends SDKHandle {
      * @availability iOS 18.0+
      */
     static buildExpression(content: EmptyControlWidgetConfiguration): EmptyControlWidgetConfiguration;
+    readonly $type: {
+        "s:7SwiftUI33ControlWidgetConfigurationBuilderV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol ControlWidgetTemplate
@@ -1884,12 +2115,18 @@ export declare class ControlWidgetTemplateBuilder extends SDKHandle {
      * @availability iOS 18.0+
      */
     static buildExpression(content: EmptyControlWidgetTemplate): EmptyControlWidgetTemplate;
+    readonly $type: {
+        "s:7SwiftUI28ControlWidgetTemplateBuilderV": true;
+    };
 }
 /**
  * struct CrossFadeNavigationTransition
  * @availability iOS 27.0+
  */
 export declare class CrossFadeNavigationTransition extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI29CrossFadeNavigationTransitionV": true;
+    };
 }
 /**
  * protocol CustomizableToolbarContent : ToolbarContent where Self.Body : CustomizableToolbarContent
@@ -1978,6 +2215,9 @@ export declare class DatePicker<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initSelectionInDisplayedComponents34807(title: string, selection: $SDK35, range: SDKHandle, displayedComponents?: DatePickerComponents): $SDK34;
+    readonly $type: {
+        "s:7SwiftUI10DatePickerV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2086,12 +2326,18 @@ export declare class DatePickerStyleConfiguration extends SDKHandle {
      */
     get selection(): globalThis.Date;
     set selection(value: globalThis.Date);
+    readonly $type: {
+        "s:7SwiftUI28DatePickerStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Label
  * @availability iOS 16.0+
  */
 export declare class DatePickerStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI28DatePickerStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2103,6 +2349,9 @@ export type DatePickerStyleConfiguration_Label_Body = never;
  * @availability iOS 26.0+
  */
 export declare class DefaultButtonLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI18DefaultButtonLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2119,6 +2368,9 @@ export declare class DefaultButtonStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): DefaultButtonStyle;
+    readonly $type: {
+        "s:7SwiftUI18DefaultButtonStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2135,6 +2387,9 @@ export declare class DefaultDatePickerStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): Promise<DefaultDatePickerStyle>;
+    readonly $type: {
+        "s:7SwiftUI22DefaultDatePickerStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2146,6 +2401,9 @@ export type DefaultDatePickerStyle_Body = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class DefaultDateProgressLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24DefaultDateProgressLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2162,6 +2420,9 @@ export declare class DefaultDocumentGroupLaunchActions extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): DefaultDocumentGroupLaunchActions;
+    readonly $type: {
+        "s:7SwiftUI33DefaultDocumentGroupLaunchActionsV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2183,6 +2444,9 @@ export declare class DefaultFocusEvaluationPriority extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): DefaultFocusEvaluationPriority;
+    readonly $type: {
+        "s:7SwiftUI30DefaultFocusEvaluationPriorityV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct DefaultGaugeStyle
@@ -2194,6 +2458,9 @@ export declare class DefaultGaugeStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<DefaultGaugeStyle>;
+    readonly $type: {
+        "s:7SwiftUI17DefaultGaugeStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2210,6 +2477,9 @@ export declare class DefaultGroupBoxStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): DefaultGroupBoxStyle;
+    readonly $type: {
+        "s:7SwiftUI20DefaultGroupBoxStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2226,6 +2496,9 @@ export declare class DefaultLabelStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): DefaultLabelStyle;
+    readonly $type: {
+        "s:7SwiftUI17DefaultLabelStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2242,6 +2515,9 @@ export declare class DefaultListStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): DefaultListStyle;
+    readonly $type: {
+        "s:7SwiftUI16DefaultListStyleV": true;
+    };
 }
 /**
  * nonisolated struct DefaultMenuStyle
@@ -2253,6 +2529,9 @@ export declare class DefaultMenuStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): DefaultMenuStyle;
+    readonly $type: {
+        "s:7SwiftUI16DefaultMenuStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2271,12 +2550,18 @@ export declare class DefaultNavigationViewStyle extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(): DefaultNavigationViewStyle;
+    readonly $type: {
+        "s:7SwiftUI26DefaultNavigationViewStyleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct DefaultNewDocumentButtonLabel
  * @availability iOS 27.0+
  */
 export declare class DefaultNewDocumentButtonLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI29DefaultNewDocumentButtonLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2293,6 +2578,9 @@ export declare class DefaultPickerStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): DefaultPickerStyle;
+    readonly $type: {
+        "s:7SwiftUI18DefaultPickerStyleV": true;
+    };
 }
 /**
  * nonisolated struct DefaultProgressViewStyle
@@ -2304,6 +2592,9 @@ export declare class DefaultProgressViewStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): DefaultProgressViewStyle;
+    readonly $type: {
+        "s:7SwiftUI24DefaultProgressViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2315,6 +2606,9 @@ export type DefaultProgressViewStyle_Body = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class DefaultShareLinkLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI21DefaultShareLinkLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2326,6 +2620,9 @@ export type DefaultShareLinkLabel_Body = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class DefaultTabLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI15DefaultTabLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2342,6 +2639,9 @@ export declare class DefaultTabViewStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): DefaultTabViewStyle;
+    readonly $type: {
+        "s:7SwiftUI19DefaultTabViewStyleV": true;
+    };
 }
 /**
  * struct DefaultTextFieldStyle
@@ -2353,6 +2653,9 @@ export declare class DefaultTextFieldStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): DefaultTextFieldStyle;
+    readonly $type: {
+        "s:7SwiftUI21DefaultTextFieldStyleV": true;
+    };
 }
 /**
  * nonisolated struct DefaultToggleStyle
@@ -2364,6 +2667,9 @@ export declare class DefaultToggleStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): DefaultToggleStyle;
+    readonly $type: {
+        "s:7SwiftUI18DefaultToggleStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2380,6 +2686,9 @@ export declare class DefaultToolbarItem extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(kind: ToolbarDefaultItemKind, placement?: ToolbarItemPlacement): DefaultToolbarItem;
+    readonly $type: {
+        "s:7SwiftUI18DefaultToolbarItemV": true;
+    };
 }
 /**
  * typealias Body = some ToolbarContent
@@ -2406,12 +2715,18 @@ export declare class DialogSeverity extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): DialogSeverity;
+    readonly $type: {
+        "s:7SwiftUI14DialogSeverityV": true;
+    };
 }
 /**
  * nonisolated struct DisclosureGroup<Label, Content> where Label : View, Content : View
  * @availability iOS 14.0+
  */
 export declare class DisclosureGroup<Label = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI15DisclosureGroupV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2460,12 +2775,18 @@ export declare class DisclosureGroupStyleConfiguration extends SDKHandle {
      * @availability iOS 16.0+
      */
     get content(): DisclosureGroupStyleConfiguration_Content;
+    readonly $type: {
+        "s:7SwiftUI33DisclosureGroupStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Content
  * @availability iOS 16.0+
  */
 export declare class DisclosureGroupStyleConfiguration_Content extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI33DisclosureGroupStyleConfigurationV7ContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2477,6 +2798,9 @@ export type DisclosureGroupStyleConfiguration_Content_Body = never;
  * @availability iOS 16.0+
  */
 export declare class DisclosureGroupStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI33DisclosureGroupStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2488,6 +2812,9 @@ export type DisclosureGroupStyleConfiguration_Label_Body = never;
  * @availability iOS 17.0+
  */
 export declare class DisclosureTableRow<Label = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI18DisclosureTableRowV": true;
+    };
 }
 /**
  * typealias TableRowBody = some TableRowContent
@@ -2509,6 +2836,9 @@ export declare class DismissAction extends SDKHandle {
      * @availability iOS 15.0+
      */
     callAsFunction(): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI13DismissActionV": true;
+    };
 }
 /**
  * struct DismissBehavior
@@ -2525,6 +2855,9 @@ export declare class DismissBehavior extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get interactive(): DismissBehavior;
+    readonly $type: {
+        "s:7SwiftUI15DismissBehaviorV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct DismissSearchAction
@@ -2536,6 +2869,9 @@ export declare class DismissSearchAction extends SDKHandle {
      * @availability iOS 15.0+
      */
     callAsFunction(): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI19DismissSearchActionV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct DismissWindowAction
@@ -2562,6 +2898,9 @@ export declare class DismissWindowAction extends SDKHandle {
      * @availability iOS 17.0+
      */
     callAsFunction(): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI19DismissWindowActionV": true;
+    };
 }
 /**
  * nonisolated struct Divider
@@ -2573,6 +2912,9 @@ export declare class Divider extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): Divider;
+    readonly $type: {
+        "s:7SwiftUI7DividerV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2626,6 +2968,9 @@ export declare class DocumentConfiguration extends SDKHandle {
      * @availability iOS 17.0+
      */
     get fileURL(): (string) | null;
+    readonly $type: {
+        "s:7SwiftUI21DocumentConfigurationV": true;
+    };
 }
 /**
  * struct DocumentCreationContext
@@ -2642,6 +2987,9 @@ export declare class DocumentCreationContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     get creationSource(): $SDK37;
+    readonly $type: {
+        "s:7SwiftUI23DocumentCreationContextV": true;
+    };
 }
 /**
  * struct DocumentCreationSource
@@ -2653,12 +3001,18 @@ export declare class DocumentCreationSource extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(id: string): DocumentCreationSource;
+    readonly $type: {
+        "s:7SwiftUI22DocumentCreationSourceV": true;
+    };
 }
 /**
  * nonisolated struct DocumentGroup<Document, Content> where Content : View
  * @availability iOS 14.0+
  */
 export declare class DocumentGroup<Document = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI13DocumentGroupV": true;
+    };
 }
 /**
  * typealias Body = some Scene
@@ -2670,6 +3024,9 @@ export type DocumentGroup_Body<Document = unknown, Content = unknown> = SDKHandl
  * @availability iOS 18.0+
  */
 export declare class DocumentGroupLaunchScene<Actions = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24DocumentGroupLaunchSceneV": true;
+    };
 }
 /**
  * typealias Body = some Scene
@@ -2693,12 +3050,18 @@ export declare class DocumentLaunchGeometryProxy extends SDKHandle {
      */
     get frame(): $SDK28;
     set frame(value: $SDK28);
+    readonly $type: {
+        "s:7SwiftUI27DocumentLaunchGeometryProxyV": true;
+    };
 }
 /**
  * nonisolated struct DocumentLaunchView<Actions, DocumentView> where Actions : View, DocumentView : View
  * @availability iOS 18.0+
  */
 export declare class DocumentLaunchView<Actions = unknown, DocumentView = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI18DocumentLaunchViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -2720,6 +3083,9 @@ export declare class DocumentReadConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:7SwiftUI25DocumentReadConfigurationV": true;
+    };
 }
 /**
  * protocol DocumentReader<Snapshot>
@@ -2747,6 +3113,9 @@ export declare class DocumentWriteConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:7SwiftUI26DocumentWriteConfigurationV": true;
+    };
 }
 /**
  * protocol DocumentWriter<Snapshot>
@@ -2771,6 +3140,9 @@ export declare class DoubleColumnNavigationViewStyle extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(): DoubleColumnNavigationViewStyle;
+    readonly $type: {
+        "s:7SwiftUI31DoubleColumnNavigationViewStyleV": true;
+    };
 }
 /**
  * struct DragConfiguration
@@ -2804,6 +3176,9 @@ export declare class DragConfiguration extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initAllowMove(allowMove: boolean): DragConfiguration;
+    readonly $type: {
+        "s:7SwiftUI17DragConfigurationV": true;
+    };
 }
 /**
  * struct OperationsOutsideApp
@@ -2815,6 +3190,9 @@ export declare class DragConfiguration_OperationsOutsideApp extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(allowCopy?: boolean): DragConfiguration_OperationsOutsideApp;
+    readonly $type: {
+        "s:7SwiftUI17DragConfigurationV20OperationsOutsideAppV": true;
+    };
 }
 /**
  * struct OperationsWithinApp
@@ -2826,6 +3204,9 @@ export declare class DragConfiguration_OperationsWithinApp extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(allowMove?: boolean): DragConfiguration_OperationsWithinApp;
+    readonly $type: {
+        "s:7SwiftUI17DragConfigurationV19OperationsWithinAppV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct DragGesture
@@ -2850,6 +3231,9 @@ export declare class DragGesture extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(minimumDistance?: number, coordinateSpace?: _SwiftUICore_CoordinateSpace): Promise<DragGesture>;
+    readonly $type: {
+        "s:7SwiftUI11DragGestureV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2899,6 +3283,9 @@ export declare class DragGesture_Value extends SDKHandle {
      * @availability iOS 13.0+
      */
     get velocity(): Promise<$SDK38>;
+    readonly $type: {
+        "s:7SwiftUI11DragGestureV5ValueV": true;
+    };
 }
 /**
  * struct DragSession
@@ -2931,6 +3318,9 @@ export declare class DragSession extends SDKHandle {
      */
     get location(): $SDK39;
     set location(value: $SDK39);
+    readonly $type: {
+        "s:7SwiftUI11DragSessionV": true;
+    };
 }
 /**
  * struct ID
@@ -2947,6 +3337,9 @@ export declare class DragSession_ID extends SDKHandle {
      * @availability iOS 26.0+
      */
     matches(dragSession: SDKHandle): boolean;
+    readonly $type: {
+        "s:7SwiftUI11DragSessionV2IDV": true;
+    };
 }
 /**
  * enum Phase
@@ -2958,6 +3351,9 @@ export declare class DragSession_Phase extends SDKHandle {
      * @availability iOS 26.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:7SwiftUI11DragSessionV5PhaseO": true;
+    };
 }
 /**
  * struct DropConfiguration
@@ -2974,6 +3370,9 @@ export declare class DropConfiguration extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(operation: DropOperation): DropConfiguration;
+    readonly $type: {
+        "s:7SwiftUI17DropConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol DropDelegate
@@ -3038,6 +3437,9 @@ export declare class DropInfo extends SDKHandle {
      * @availability iOS 13.4+
      */
     get location(): $SDK39;
+    readonly $type: {
+        "s:7SwiftUI8DropInfoV": true;
+    };
 }
 /**
  * enum DropOperation
@@ -3131,6 +3533,9 @@ export declare class DropProposal extends SDKHandle {
      * @availability iOS 13.4+
      */
     static initOperation(operation: DropOperation): DropProposal;
+    readonly $type: {
+        "s:7SwiftUI12DropProposalV": true;
+    };
 }
 /**
  * struct DropSession
@@ -3182,6 +3587,9 @@ export declare class DropSession extends SDKHandle {
      */
     get location(): $SDK39;
     set location(value: $SDK39);
+    readonly $type: {
+        "s:7SwiftUI11DropSessionV": true;
+    };
 }
 /**
  * struct ID
@@ -3198,6 +3606,9 @@ export declare class DropSession_ID extends SDKHandle {
      * @availability iOS 26.0+
      */
     matches(dropSession: SDKHandle): boolean;
+    readonly $type: {
+        "s:7SwiftUI11DropSessionV2IDV": true;
+    };
 }
 /**
  * struct LocalSession
@@ -3209,6 +3620,9 @@ export declare class DropSession_LocalSession extends SDKHandle {
      * @availability iOS 26.0+
      */
     draggedItemIDs(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Array<unknown>;
+    readonly $type: {
+        "s:7SwiftUI11DropSessionV05LocalD0V": true;
+    };
 }
 /**
  * enum Phase
@@ -3220,6 +3634,9 @@ export declare class DropSession_Phase extends SDKHandle {
      * @availability iOS 26.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:7SwiftUI11DropSessionV5PhaseO": true;
+    };
 }
 /**
  * protocol DynamicTableRowContent : TableRowContent
@@ -3241,12 +3658,18 @@ export declare class EdgeInsets extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(nsEdgeInsets: $SDK43): _SwiftUICore_EdgeInsets;
+    readonly $type: {
+        "s:7SwiftUI10EdgeInsetsV": true;
+    };
 }
 /**
  * struct EditableCollectionContent<Content, Data>
  * @availability iOS 16.0+
  */
 export declare class EditableCollectionContent<Content = unknown, Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI25EditableCollectionContentV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -3300,6 +3723,9 @@ export declare class EditButton extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): EditButton;
+    readonly $type: {
+        "s:7SwiftUI10EditButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -3328,6 +3754,9 @@ export declare class EmptyCommands extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): EmptyCommands;
+    readonly $type: {
+        "s:7SwiftUI13EmptyCommandsV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -3344,6 +3773,9 @@ export declare class EmptyControlWidgetConfiguration extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): Promise<EmptyControlWidgetConfiguration>;
+    readonly $type: {
+        "s:7SwiftUI31EmptyControlWidgetConfigurationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -3360,6 +3792,9 @@ export declare class EmptyControlWidgetTemplate extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): Promise<EmptyControlWidgetTemplate>;
+    readonly $type: {
+        "s:7SwiftUI26EmptyControlWidgetTemplateV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -3371,12 +3806,18 @@ export type EmptyControlWidgetTemplate_Body = never;
  * @availability iOS 18.0+
  */
 export declare class EmptyMatchedTransitionSourceConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI41EmptyMatchedTransitionSourceConfigurationV": true;
+    };
 }
 /**
  * nonisolated struct EmptyTableRowContent<Value> where Value : Identifiable
  * @availability iOS 16.0+
  */
 export declare class EmptyTableRowContent<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI20EmptyTableRowContentV": true;
+    };
 }
 /**
  * typealias TableRowBody = Never
@@ -3398,6 +3839,9 @@ export declare class EmptyWidgetConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): EmptyWidgetConfiguration;
+    readonly $type: {
+        "s:7SwiftUI24EmptyWidgetConfigurationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -3699,6 +4143,9 @@ export declare class EnvironmentValues extends SDKHandle {
      */
     get menuOrder(): MenuOrder;
     set menuOrder(value: MenuOrder);
+    readonly $type: {
+        "s:7SwiftUI17EnvironmentValuesV": true;
+    };
 }
 /**
  * @frozen nonisolated struct EquatableView<Content> where Content : Equatable, Content : View
@@ -3711,6 +4158,9 @@ export declare class EquatableView<Content = unknown> extends SDKHandle {
      */
     get content(): SDKHandle;
     set content(value: SDKHandle);
+    readonly $type: {
+        "s:7SwiftUI13EquatableViewV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -3722,6 +4172,9 @@ export type EquatableView_Body<Content = unknown> = never;
  * @availability iOS 27.0+
  */
 export declare class ExternalNonInteractiveAccessory<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI31ExternalNonInteractiveAccessoryV": true;
+    };
 }
 /**
  * typealias Body = some SceneAccessoryContent
@@ -3739,6 +4192,9 @@ export declare class FetchedResults<Result = unknown> extends SDKHandle {
      */
     get sortDescriptors(): Promise<$SDK53>;
     setSortDescriptors(value: $SDK53): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI14FetchedResultsV": true;
+    };
 }
 /**
  * typealias Element = Result
@@ -3780,6 +4236,9 @@ export declare class FetchRequest<Result = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initSortDescriptorsPredicateAnimation29941(sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK54>;
+    readonly $type: {
+        "s:7SwiftUI12FetchRequestV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Configuration
@@ -3792,6 +4251,9 @@ export declare class FetchRequest_Configuration<Result = unknown> extends SDKHan
      */
     get sortDescriptors(): Promise<$SDK53>;
     setSortDescriptors(value: $SDK53): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI12FetchRequestV13ConfigurationV": true;
+    };
 }
 /**
  * struct FileDialogBrowserOptions
@@ -3877,6 +4339,9 @@ export type FileDocument_WriteConfiguration = FileDocumentWriteConfiguration;
  * @deprecated iOS 100000.0
  */
 export declare class FileDocumentConfiguration<Document = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI25FileDocumentConfigurationV": true;
+    };
 }
 /**
  * struct FileDocumentReadConfiguration
@@ -3896,6 +4361,9 @@ export declare class FileDocumentReadConfiguration extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get file(): _Foundation_FileWrapper;
+    readonly $type: {
+        "s:7SwiftUI29FileDocumentReadConfigurationV": true;
+    };
 }
 /**
  * struct FileDocumentWriteConfiguration
@@ -3915,12 +4383,18 @@ export declare class FileDocumentWriteConfiguration extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get contentType(): _UniformTypeIdentifiers_UTType;
+    readonly $type: {
+        "s:7SwiftUI30FileDocumentWriteConfigurationV": true;
+    };
 }
 /**
  * struct FileWrapperDocumentReader<Snapshot>
  * @availability iOS 27.0+
  */
 export declare class FileWrapperDocumentReader<Snapshot = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI25FileWrapperDocumentReaderV": true;
+    };
 }
 /**
  * typealias ReadConfiguration = DocumentReadConfiguration
@@ -3937,6 +4411,9 @@ export type FileWrapperDocumentReader_Source<Snapshot = unknown> = string;
  * @availability iOS 27.0+
  */
 export declare class FileWrapperDocumentWriter<Snapshot = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI25FileWrapperDocumentWriterV": true;
+    };
 }
 /**
  * typealias Destination = URL
@@ -3965,6 +4442,9 @@ export declare class FindContext extends SDKHandle {
      */
     get supportsReplace(): boolean;
     set supportsReplace(value: boolean);
+    readonly $type: {
+        "s:7SwiftUI11FindContextV": true;
+    };
 }
 /**
  * struct FittedPresentationSizing
@@ -3976,6 +4456,9 @@ export declare class FittedPresentationSizing extends SDKHandle {
      * @availability iOS 18.0+
      */
     proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize;
+    readonly $type: {
+        "s:7SwiftUI24FittedPresentationSizingV": true;
+    };
 }
 /**
  * @propertyWrapper struct FocusedBinding<Value>
@@ -3998,18 +4481,27 @@ export declare class FocusedBinding<Value = unknown> extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(keyPath: SDKHandle): FocusedBinding<unknown>;
+    readonly $type: {
+        "s:7SwiftUI14FocusedBindingV": true;
+    };
 }
 /**
  * @MainActor @frozen @propertyWrapper @preconcurrency struct FocusedObject<ObjectType> where ObjectType : ObservableObject
  * @availability iOS 16.0+
  */
 export declare class FocusedObject<ObjectType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI13FocusedObjectV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency @dynamicMemberLookup @frozen struct Wrapper
  * @availability iOS 16.0+
  */
 export declare class FocusedObject_Wrapper<ObjectType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI13FocusedObjectV7WrapperV": true;
+    };
 }
 /**
  * @propertyWrapper struct FocusedValue<Value>
@@ -4026,6 +4518,9 @@ export declare class FocusedValue<Value = unknown> extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(keyPath: SDKHandle): FocusedValue<unknown>;
+    readonly $type: {
+        "s:7SwiftUI12FocusedValueV": true;
+    };
 }
 /**
  * protocol FocusedValueKey
@@ -4038,6 +4533,9 @@ export interface FocusedValueKey {
  * @availability iOS 14.0+
  */
 export declare class FocusedValues extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI13FocusedValuesV": true;
+    };
 }
 /**
  * struct FocusInteractions
@@ -4113,6 +4611,9 @@ export declare class FocusState<Value = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init79870(): FocusState<(number) | null>;
+    readonly $type: {
+        "s:7SwiftUI10FocusStateV": true;
+    };
 }
 /**
  * @frozen @propertyWrapper struct Binding
@@ -4130,6 +4631,9 @@ export declare class FocusState_Binding<Value = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     get projectedValue(): FocusState_Binding<number>;
+    readonly $type: {
+        "s:7SwiftUI10FocusStateV7BindingV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4161,6 +4665,9 @@ export declare class Form<Content = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(configuration: FormStyleConfiguration): Form<FormStyleConfiguration_Content>;
+    readonly $type: {
+        "s:7SwiftUI4FormV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -4177,6 +4684,9 @@ export declare class FormPresentationSizing extends SDKHandle {
      * @availability iOS 18.0+
      */
     proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize;
+    readonly $type: {
+        "s:7SwiftUI22FormPresentationSizingV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol FormStyle
@@ -4204,12 +4714,18 @@ export declare class FormStyleConfiguration extends SDKHandle {
      * @availability iOS 16.0+
      */
     get content(): FormStyleConfiguration_Content;
+    readonly $type: {
+        "s:7SwiftUI22FormStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Content
  * @availability iOS 16.0+
  */
 export declare class FormStyleConfiguration_Content extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI22FormStyleConfigurationV7ContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4221,6 +4737,9 @@ export type FormStyleConfiguration_Content_Body = never;
  * @availability iOS 16.0+
  */
 export declare class Gauge<Label = unknown, CurrentValueLabel = unknown, BoundsLabel = unknown, MarkedValueLabels = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI5GaugeV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -4278,12 +4797,18 @@ export declare class GaugeStyleConfiguration extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $type: {
+        "s:7SwiftUI23GaugeStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct CurrentValueLabel
  * @availability iOS 16.0+
  */
 export declare class GaugeStyleConfiguration_CurrentValueLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23GaugeStyleConfigurationV17CurrentValueLabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4295,6 +4820,9 @@ export type GaugeStyleConfiguration_CurrentValueLabel_Body = never;
  * @availability iOS 16.0+
  */
 export declare class GaugeStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23GaugeStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4306,6 +4834,9 @@ export type GaugeStyleConfiguration_Label_Body = never;
  * @availability iOS 16.0+
  */
 export declare class GaugeStyleConfiguration_MarkedValueLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23GaugeStyleConfigurationV16MarkedValueLabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4317,6 +4848,9 @@ export type GaugeStyleConfiguration_MarkedValueLabel_Body = never;
  * @availability iOS 16.0+
  */
 export declare class GaugeStyleConfiguration_MaximumValueLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23GaugeStyleConfigurationV17MaximumValueLabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4328,6 +4862,9 @@ export type GaugeStyleConfiguration_MaximumValueLabel_Body = never;
  * @availability iOS 16.0+
  */
 export declare class GaugeStyleConfiguration_MinimumValueLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23GaugeStyleConfigurationV17MinimumValueLabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4379,12 +4916,18 @@ export declare class GestureState<Value = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     get projectedValue(): GestureState<unknown>;
+    readonly $type: {
+        "s:7SwiftUI12GestureStateV": true;
+    };
 }
 /**
  * @frozen nonisolated struct GestureStateGesture<Base, State> where Base : Gesture
  * @availability iOS 13.0+
  */
 export declare class GestureStateGesture<Base = unknown, State = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI012GestureStateC0V": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4411,6 +4954,9 @@ export declare class GlassButtonStyle extends SDKHandle {
      * @availability iOS 26.1+
      */
     static init87555(glass: _SwiftUICore_Glass): GlassButtonStyle;
+    readonly $type: {
+        "s:7SwiftUI16GlassButtonStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -4427,6 +4973,9 @@ export declare class GlassProminentButtonStyle extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): GlassProminentButtonStyle;
+    readonly $type: {
+        "s:7SwiftUI25GlassProminentButtonStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -4443,6 +4992,9 @@ export declare class GraphicalDatePickerStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): GraphicalDatePickerStyle;
+    readonly $type: {
+        "s:7SwiftUI24GraphicalDatePickerStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -4454,6 +5006,9 @@ export type GraphicalDatePickerStyle_Body = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class Grid<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI4GridV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4488,12 +5043,18 @@ export declare class GridItem extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(size?: GridItem_Size, spacing?: (number) | null, alignment?: $SDK68): GridItem;
+    readonly $type: {
+        "s:7SwiftUI8GridItemV": true;
+    };
 }
 /**
  * enum Size
  * @availability iOS 14.0+
  */
 export declare class GridItem_Size extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI8GridItemV4SizeO": true;
+    };
 }
 /**
  * @frozen nonisolated struct GridLayout
@@ -4588,6 +5149,9 @@ export declare class GridLayout extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeCache(subviews: _SwiftUICore_LayoutSubviews): GridLayout_Cache;
+    readonly $type: {
+        "s:7SwiftUI10GridLayoutV": true;
+    };
 }
 /**
  * typealias AnimatableData = EmptyAnimatableData
@@ -4604,12 +5168,18 @@ export type GridLayout_Body = never;
  * @availability iOS 16.0+
  */
 export declare class GridLayout_Cache extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI10GridLayoutV5CacheV": true;
+    };
 }
 /**
  * @frozen nonisolated struct GridRow<Content> where Content : View
  * @availability iOS 16.0+
  */
 export declare class GridRow<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI7GridRowV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4656,6 +5226,9 @@ export declare class GroupBox<Label = unknown, Content = unknown> extends SDKHan
      * @availability iOS 14.0+
      */
     static init(configuration: GroupBoxStyleConfiguration): GroupBox<GroupBoxStyleConfiguration_Label, GroupBoxStyleConfiguration_Content>;
+    readonly $type: {
+        "s:7SwiftUI8GroupBoxV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -4693,12 +5266,18 @@ export declare class GroupBoxStyleConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get content(): GroupBoxStyleConfiguration_Content;
+    readonly $type: {
+        "s:7SwiftUI26GroupBoxStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Content
  * @availability iOS 14.0+
  */
 export declare class GroupBoxStyleConfiguration_Content extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI26GroupBoxStyleConfigurationV7ContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4710,6 +5289,9 @@ export type GroupBoxStyleConfiguration_Content_Body = never;
  * @availability iOS 14.0+
  */
 export declare class GroupBoxStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI26GroupBoxStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -4726,6 +5308,9 @@ export declare class GroupedFormStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): GroupedFormStyle;
+    readonly $type: {
+        "s:7SwiftUI16GroupedFormStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -4742,6 +5327,9 @@ export declare class GroupedListStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): GroupedListStyle;
+    readonly $type: {
+        "s:7SwiftUI16GroupedListStyleV": true;
+    };
 }
 /**
  * struct HandGestureShortcut
@@ -4753,12 +5341,18 @@ export declare class HandGestureShortcut extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get primaryAction(): HandGestureShortcut;
+    readonly $type: {
+        "s:7SwiftUI19HandGestureShortcutV": true;
+    };
 }
 /**
  * @frozen enum HoverPhase
  * @availability iOS 16.0+
  */
 export declare class HoverPhase extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI10HoverPhaseO": true;
+    };
 }
 /**
  * nonisolated struct IconOnlyLabelStyle
@@ -4770,6 +5364,9 @@ export declare class IconOnlyLabelStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): IconOnlyLabelStyle;
+    readonly $type: {
+        "s:7SwiftUI18IconOnlyLabelStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -4782,6 +5379,9 @@ export declare class Image extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(uiImage: _UIKit_UIImage): _SwiftUICore_Image;
+    readonly $type: {
+        "s:7SwiftUI5ImageV": true;
+    };
 }
 /**
  * typealias Representation = some TransferRepresentation
@@ -4794,18 +5394,27 @@ export declare class ImageRenderer<Content = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     get uiImage(): Promise<(_UIKit_UIImage) | null>;
+    readonly $type: {
+        "s:7SwiftUI13ImageRendererC": true;
+    };
 }
 /**
  * struct IndexedIdentifierCollection<Base, ID> where Base : Collection, ID : Hashable
  * @availability iOS 16.0+
  */
 export declare class IndexedIdentifierCollection<Base = unknown, ID = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI27IndexedIdentifierCollectionV": true;
+    };
 }
 /**
  * struct Element
  * @availability iOS 16.0+
  */
 export declare class IndexedIdentifierCollection_Element<Base = unknown, ID = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI27IndexedIdentifierCollectionV7ElementV": true;
+    };
 }
 /**
  * typealias Index = Base.Index
@@ -4843,6 +5452,9 @@ export declare class InlinePickerStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): InlinePickerStyle;
+    readonly $type: {
+        "s:7SwiftUI17InlinePickerStyleV": true;
+    };
 }
 /**
  * struct InsetGroupedListStyle
@@ -4854,6 +5466,9 @@ export declare class InsetGroupedListStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): InsetGroupedListStyle;
+    readonly $type: {
+        "s:7SwiftUI21InsetGroupedListStyleV": true;
+    };
 }
 /**
  * struct InsetListStyle
@@ -4865,6 +5480,9 @@ export declare class InsetListStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): InsetListStyle;
+    readonly $type: {
+        "s:7SwiftUI14InsetListStyleV": true;
+    };
 }
 /**
  * nonisolated struct InsetTableStyle
@@ -4876,6 +5494,9 @@ export declare class InsetTableStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): InsetTableStyle;
+    readonly $type: {
+        "s:7SwiftUI15InsetTableStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -4892,6 +5513,9 @@ export declare class InspectorCommands extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): InspectorCommands;
+    readonly $type: {
+        "s:7SwiftUI17InspectorCommandsV": true;
+    };
 }
 /**
  * typealias Body = some Commands
@@ -4933,6 +5557,9 @@ export declare class InterfaceOrientation extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get portrait(): InterfaceOrientation;
+    readonly $type: {
+        "s:7SwiftUI20InterfaceOrientationV": true;
+    };
 }
 /**
  * typealias AllCases = [InterfaceOrientation]
@@ -4954,6 +5581,9 @@ export declare class ItemProviderTableRowModifier extends SDKHandle {
      * @availability iOS 16.0+
      */
     get body(): Promise<SDKHandle>;
+    readonly $type: {
+        "s:7SwiftUI28ItemProviderTableRowModifierV": true;
+    };
 }
 /**
  * typealias Body = some _TableRowContentModifier
@@ -5003,6 +5633,9 @@ export declare class KeyboardShortcut extends SDKHandle {
      * @availability iOS 14.0+
      */
     static initModifiers(key: KeyEquivalent, modifiers?: _SwiftUICore_EventModifiers): KeyboardShortcut;
+    readonly $type: {
+        "s:7SwiftUI16KeyboardShortcutV": true;
+    };
 }
 /**
  * struct Localization
@@ -5024,6 +5657,9 @@ export declare class KeyboardShortcut_Localization extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get automatic(): KeyboardShortcut_Localization;
+    readonly $type: {
+        "s:7SwiftUI16KeyboardShortcutV12LocalizationV": true;
+    };
 }
 /**
  * struct KeyEquivalent
@@ -5121,6 +5757,9 @@ export declare class KeyEquivalent extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(character: string): KeyEquivalent;
+    readonly $type: {
+        "s:7SwiftUI13KeyEquivalentV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = Character
@@ -5162,6 +5801,9 @@ export declare class KeyPress extends SDKHandle {
      * @availability iOS 17.0+
      */
     get modifiers(): _SwiftUICore_EventModifiers;
+    readonly $type: {
+        "s:7SwiftUI8KeyPressV": true;
+    };
 }
 /**
  * struct Phases
@@ -5280,6 +5922,9 @@ export declare class Label<Title = unknown, Icon = unknown> extends SDKHandle {
      * @availability iOS 14.0+
      */
     static initImage13949(title: string, name: string): $SDK73;
+    readonly $type: {
+        "s:7SwiftUI5LabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5311,6 +5956,9 @@ export declare class LabeledContent<Label = unknown, Content = unknown> extends 
      * @availability iOS 16.0+
      */
     static initValue9836(title: string, value: string): $SDK75;
+    readonly $type: {
+        "s:7SwiftUI14LabeledContentV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5348,12 +5996,18 @@ export declare class LabeledContentStyleConfiguration extends SDKHandle {
      * @availability iOS 16.0+
      */
     get content(): LabeledContentStyleConfiguration_Content;
+    readonly $type: {
+        "s:7SwiftUI32LabeledContentStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Content
  * @availability iOS 16.0+
  */
 export declare class LabeledContentStyleConfiguration_Content extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI32LabeledContentStyleConfigurationV0D0V": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5365,6 +6019,9 @@ export type LabeledContentStyleConfiguration_Content_Body = never;
  * @availability iOS 16.0+
  */
 export declare class LabeledContentStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI32LabeledContentStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5376,6 +6033,9 @@ export type LabeledContentStyleConfiguration_Label_Body = never;
  * @availability iOS 16.0+
  */
 export declare class LabeledControlGroupContent<Content = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI26LabeledControlGroupContentV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5387,6 +6047,9 @@ export type LabeledControlGroupContent_Body<Content = unknown, Label = unknown> 
  * @availability iOS 16.0+
  */
 export declare class LabeledToolbarItemGroupContent<Content = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI30LabeledToolbarItemGroupContentV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5424,12 +6087,18 @@ export declare class LabelStyleConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get title(): LabelStyleConfiguration_Title;
+    readonly $type: {
+        "s:7SwiftUI23LabelStyleConfigurationV": true;
+    };
 }
 /**
  * struct Icon
  * @availability iOS 14.0+
  */
 export declare class LabelStyleConfiguration_Icon extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23LabelStyleConfigurationV4IconV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5441,6 +6110,9 @@ export type LabelStyleConfiguration_Icon_Body = never;
  * @availability iOS 14.0+
  */
 export declare class LabelStyleConfiguration_Title extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23LabelStyleConfigurationV5TitleV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5461,12 +6133,18 @@ export declare class LayoutSubview extends SDKHandle {
      * @availability iOS 18.0+
      */
     get containerValues(): _SwiftUICore_ContainerValues;
+    readonly $type: {
+        "s:7SwiftUI13LayoutSubviewV": true;
+    };
 }
 /**
  * nonisolated struct LazyHGrid<Content> where Content : View
  * @availability iOS 14.0+
  */
 export declare class LazyHGrid<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI9LazyHGridV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5478,6 +6156,9 @@ export type LazyHGrid_Body<Content = unknown> = never;
  * @availability iOS 14.0+
  */
 export declare class LazyVGrid<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI9LazyVGridV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5497,6 +6178,9 @@ export declare const LegibilityWeight: {
  * @availability iOS 16.1+
  */
 export declare class LimitedAvailabilityConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI32LimitedAvailabilityConfigurationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5513,6 +6197,9 @@ export declare class LinearCapacityGaugeStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<LinearCapacityGaugeStyle>;
+    readonly $type: {
+        "s:7SwiftUI24LinearCapacityGaugeStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5535,6 +6222,9 @@ export declare class LinearProgressViewStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): LinearProgressViewStyle;
+    readonly $type: {
+        "s:7SwiftUI23LinearProgressViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5561,6 +6251,9 @@ export declare class Link<Label = unknown> extends SDKHandle {
      * @availability iOS 14.0+
      */
     static initDestination68447(title: string, destination: string): Promise<Link<_SwiftUICore_Text>>;
+    readonly $type: {
+        "s:7SwiftUI4LinkV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5577,6 +6270,9 @@ export declare class LinkShapeStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): LinkShapeStyle;
+    readonly $type: {
+        "s:7SwiftUI14LinkShapeStyleV": true;
+    };
 }
 /**
  * typealias Resolved = Never
@@ -5588,6 +6284,9 @@ export type LinkShapeStyle_Resolved = never;
  * @availability iOS 13.0+
  */
 export declare class List<SelectionValue = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI4ListV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5614,6 +6313,9 @@ export declare class ListItemTint extends SDKHandle {
      * @availability iOS 14.0+
      */
     static preferred(tint: _SwiftUICore_Color): ListItemTint;
+    readonly $type: {
+        "s:7SwiftUI12ListItemTintV": true;
+    };
 }
 /**
  * struct ListSectionSpacing
@@ -5635,6 +6337,9 @@ export declare class ListSectionSpacing extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get default(): ListSectionSpacing;
+    readonly $type: {
+        "s:7SwiftUI18ListSectionSpacingV": true;
+    };
 }
 /**
  * protocol ListStyle
@@ -5669,6 +6374,9 @@ export declare class LongPressGesture extends SDKHandle {
      */
     get minimumDuration(): number;
     set minimumDuration(value: number);
+    readonly $type: {
+        "s:7SwiftUI16LongPressGestureV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5699,6 +6407,9 @@ export declare class MagnificationGesture extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(minimumScaleDelta?: number): MagnificationGesture;
+    readonly $type: {
+        "s:7SwiftUI20MagnificationGestureV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5733,6 +6444,9 @@ export declare class MagnifyGesture extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initMinimumScaleDelta(minimumScaleDelta?: number): MagnifyGesture;
+    readonly $type: {
+        "s:7SwiftUI14MagnifyGestureV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5774,6 +6488,9 @@ export declare class MagnifyGesture_Value extends SDKHandle {
      */
     get velocity(): number;
     set velocity(value: number);
+    readonly $type: {
+        "s:7SwiftUI14MagnifyGestureV5ValueV": true;
+    };
 }
 /**
  * protocol MatchedTransitionSourceConfiguration : Sendable
@@ -5791,6 +6508,9 @@ export declare class Menu<Label = unknown, Content = unknown> extends SDKHandle 
      * @availability iOS 14.0+
      */
     static init(configuration: MenuStyleConfiguration): Menu<MenuStyleConfiguration_Label, MenuStyleConfiguration_Content>;
+    readonly $type: {
+        "s:7SwiftUI4MenuV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5817,6 +6537,9 @@ export declare class MenuActionDismissBehavior extends SDKHandle {
      * @availability iOS 16.4+
      */
     static get automatic(): MenuActionDismissBehavior;
+    readonly $type: {
+        "s:7SwiftUI25MenuActionDismissBehaviorV": true;
+    };
 }
 /**
  * nonisolated struct MenuControlGroupStyle
@@ -5828,6 +6551,9 @@ export declare class MenuControlGroupStyle extends SDKHandle {
      * @availability iOS 16.4+
      */
     static init(): MenuControlGroupStyle;
+    readonly $type: {
+        "s:7SwiftUI21MenuControlGroupStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -5854,6 +6580,9 @@ export declare class MenuOrder extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): MenuOrder;
+    readonly $type: {
+        "s:7SwiftUI9MenuOrderV": true;
+    };
 }
 /**
  * struct MenuPickerStyle
@@ -5865,6 +6594,9 @@ export declare class MenuPickerStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): MenuPickerStyle;
+    readonly $type: {
+        "s:7SwiftUI15MenuPickerStyleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol MenuStyle
@@ -5887,12 +6619,18 @@ export type MenuStyle_Configuration = MenuStyleConfiguration;
  * @availability iOS 14.0+
  */
 export declare class MenuStyleConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI22MenuStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Content
  * @availability iOS 14.0+
  */
 export declare class MenuStyleConfiguration_Content extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI22MenuStyleConfigurationV7ContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -5904,6 +6642,9 @@ export type MenuStyleConfiguration_Content_Body = never;
  * @availability iOS 14.0+
  */
 export declare class MenuStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI22MenuStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -6403,6 +7144,9 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * @availability iOS 15.0+
      */
     accessibilityRespondsToUserInteraction(respondsToUserInteraction?: boolean): $SDK77;
+    readonly $type: {
+        "s:7SwiftUI15ModifiedContentV": true;
+    };
 }
 /**
  * typealias Data = Content.Data
@@ -6484,6 +7228,9 @@ export declare class MultiDatePicker<Label = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initSelection43777(title: string, selection: $SDK84): $SDK83;
+    readonly $type: {
+        "s:7SwiftUI15MultiDatePickerV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -6495,6 +7242,9 @@ export type MultiDatePicker_Body<Label = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class NavigationBarItem extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI17NavigationBarItemV": true;
+    };
 }
 /**
  * enum TitleDisplayMode
@@ -6511,6 +7261,9 @@ export declare class NavigationControlGroupStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): NavigationControlGroupStyle;
+    readonly $type: {
+        "s:7SwiftUI27NavigationControlGroupStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -6588,6 +7341,9 @@ export declare class NavigationLink<Label = unknown, Destination = unknown> exte
      * @availability iOS 16.0+
      */
     static initValue83067(title: string, value?: (number) | null): $SDK87;
+    readonly $type: {
+        "s:7SwiftUI14NavigationLinkV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -6604,6 +7360,9 @@ export declare class NavigationLinkPickerStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): NavigationLinkPickerStyle;
+    readonly $type: {
+        "s:7SwiftUI25NavigationLinkPickerStyleV": true;
+    };
 }
 /**
  * struct NavigationPath
@@ -6660,18 +7419,27 @@ export declare class NavigationPath extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init39645(elements: Array<number>): NavigationPath;
+    readonly $type: {
+        "s:7SwiftUI14NavigationPathV": true;
+    };
 }
 /**
  * struct CodableRepresentation
  * @availability iOS 16.0+
  */
 export declare class NavigationPath_CodableRepresentation extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI14NavigationPathV21CodableRepresentationV": true;
+    };
 }
 /**
  * nonisolated struct NavigationSplitView<Sidebar, Content, Detail> where Sidebar : View, Content : View, Detail : View
  * @availability iOS 16.0+
  */
 export declare class NavigationSplitView<Sidebar = unknown, Content = unknown, Detail = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI19NavigationSplitViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -6698,6 +7466,9 @@ export declare class NavigationSplitViewColumn extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get sidebar(): NavigationSplitViewColumn;
+    readonly $type: {
+        "s:7SwiftUI25NavigationSplitViewColumnV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol NavigationSplitViewStyle
@@ -6720,6 +7491,9 @@ export type NavigationSplitViewStyle_Configuration = NavigationSplitViewStyleCon
  * @availability iOS 16.0+
  */
 export declare class NavigationSplitViewStyleConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI37NavigationSplitViewStyleConfigurationV": true;
+    };
 }
 /**
  * struct NavigationSplitViewVisibility
@@ -6746,12 +7520,18 @@ export declare class NavigationSplitViewVisibility extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): NavigationSplitViewVisibility;
+    readonly $type: {
+        "s:7SwiftUI29NavigationSplitViewVisibilityV": true;
+    };
 }
 /**
  * nonisolated struct NavigationStack<Data, Root> where Root : View
  * @availability iOS 16.0+
  */
 export declare class NavigationStack<Data = unknown, Root = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI15NavigationStackV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -6770,6 +7550,9 @@ export interface NavigationTransition {
  * @deprecated iOS 100000.0
  */
 export declare class NavigationView<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI14NavigationViewV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -6849,6 +7632,9 @@ export declare class NewDocumentButton<Label = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initContentType91733(title: SDKHandle, contentType?: $SDK90): $SDK89;
+    readonly $type: {
+        "s:7SwiftUI17NewDocumentButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -6861,6 +7647,9 @@ export declare class NSDirectionalEdgeInsets extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(edgeInsets: _SwiftUICore_EdgeInsets): $SDK43;
+    readonly $type: {
+        "c:@S@NSDirectionalEdgeInsets": true;
+    };
 }
 export type NSUnderlineStyle = Array<"single" | "thick" | "double" | "patternDot" | "patternDash" | "patternDashDot" | "patternDashDotDot" | "byWord">;
 export declare const NSUnderlineStyle: {
@@ -6881,6 +7670,10 @@ export declare class NSUserActivity extends SDKHandle {
      * @availability iOS 14.0+
      */
     setTypedPayload(payload: number): void;
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum TypedPayloadError
@@ -6897,6 +7690,9 @@ export declare class OnInsertTableRowModifier extends SDKHandle {
      * @availability iOS 16.0+
      */
     get body(): Promise<SDKHandle>;
+    readonly $type: {
+        "s:7SwiftUI24OnInsertTableRowModifierV": true;
+    };
 }
 /**
  * typealias Body = some _TableRowContentModifier
@@ -6923,6 +7719,9 @@ export declare class OpenWindowAction extends SDKHandle {
      * @availability iOS 16.0+
      */
     callAsFunctionValue(value: number): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI16OpenWindowActionV": true;
+    };
 }
 /**
  * typealias Body = Optional<Wrapped>
@@ -6969,6 +7768,9 @@ export type Optional_Value<Wrapped = unknown> = SDKHandle;
  * @availability iOS 14.0+
  */
 export declare class OutlineGroup<Data = unknown, ID = unknown, Parent = unknown, Leaf = unknown, Subgroup = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI12OutlineGroupV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -6990,6 +7792,9 @@ export type OutlineGroup_TableRowValue<Data = unknown, ID = unknown, Parent = un
  * @availability iOS 14.0+
  */
 export declare class OutlineSubgroupChildren extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23OutlineSubgroupChildrenV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -7006,6 +7811,9 @@ export declare class PageIndexViewStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(backgroundDisplayMode?: PageIndexViewStyle_BackgroundDisplayMode): PageIndexViewStyle;
+    readonly $type: {
+        "s:7SwiftUI18PageIndexViewStyleV": true;
+    };
 }
 /**
  * struct BackgroundDisplayMode
@@ -7032,6 +7840,9 @@ export declare class PageIndexViewStyle_BackgroundDisplayMode extends SDKHandle 
      * @availability iOS 14.0+
      */
     static get automatic(): PageIndexViewStyle_BackgroundDisplayMode;
+    readonly $type: {
+        "s:7SwiftUI18PageIndexViewStyleV21BackgroundDisplayModeV": true;
+    };
 }
 /**
  * struct PagePresentationSizing
@@ -7043,6 +7854,9 @@ export declare class PagePresentationSizing extends SDKHandle {
      * @availability iOS 18.0+
      */
     proposedSize(root: PresentationSizingRoot, context: PresentationSizingContext): _SwiftUICore_ProposedViewSize;
+    readonly $type: {
+        "s:7SwiftUI22PagePresentationSizingV": true;
+    };
 }
 /**
  * nonisolated struct PageTabViewStyle
@@ -7054,6 +7868,9 @@ export declare class PageTabViewStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(indexDisplayMode?: PageTabViewStyle_IndexDisplayMode): PageTabViewStyle;
+    readonly $type: {
+        "s:7SwiftUI16PageTabViewStyleV": true;
+    };
 }
 /**
  * struct IndexDisplayMode
@@ -7075,6 +7892,9 @@ export declare class PageTabViewStyle_IndexDisplayMode extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get automatic(): PageTabViewStyle_IndexDisplayMode;
+    readonly $type: {
+        "s:7SwiftUI16PageTabViewStyleV16IndexDisplayModeV": true;
+    };
 }
 /**
  * struct PagingScrollTargetBehavior
@@ -7101,6 +7921,9 @@ export declare class PagingScrollTargetBehavior extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): PagingScrollTargetBehavior;
+    readonly $type: {
+        "s:7SwiftUI26PagingScrollTargetBehaviorV": true;
+    };
 }
 /**
  * nonisolated struct PaletteControlGroupStyle
@@ -7112,6 +7935,9 @@ export declare class PaletteControlGroupStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): PaletteControlGroupStyle;
+    readonly $type: {
+        "s:7SwiftUI24PaletteControlGroupStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -7128,6 +7954,9 @@ export declare class PalettePickerStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): PalettePickerStyle;
+    readonly $type: {
+        "s:7SwiftUI18PalettePickerStyleV": true;
+    };
 }
 /**
  * struct PaletteSelectionEffect
@@ -7149,6 +7978,9 @@ export declare class PaletteSelectionEffect extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): PaletteSelectionEffect;
+    readonly $type: {
+        "s:7SwiftUI22PaletteSelectionEffectV": true;
+    };
 }
 /**
  * nonisolated struct PasteButton
@@ -7160,6 +7992,9 @@ export declare class PasteButton extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(supportedContentTypes: $SDK41, payloadAction: ((arg0: Array<_Foundation_NSItemProvider>) => void)): PasteButton;
+    readonly $type: {
+        "s:7SwiftUI11PasteButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -7176,6 +8011,9 @@ export declare class PencilDoubleTapGestureValue extends SDKHandle {
      * @availability iOS 17.5+
      */
     get hoverPose(): (PencilHoverPose) | null;
+    readonly $type: {
+        "s:7SwiftUI27PencilDoubleTapGestureValueV": true;
+    };
 }
 /**
  * struct PencilHoverPose
@@ -7212,6 +8050,9 @@ export declare class PencilHoverPose extends SDKHandle {
      * @availability iOS 17.5+
      */
     get zDistance(): number;
+    readonly $type: {
+        "s:7SwiftUI15PencilHoverPoseV": true;
+    };
 }
 /**
  * struct PencilPreferredAction
@@ -7253,12 +8094,18 @@ export declare class PencilPreferredAction extends SDKHandle {
      * @availability iOS 17.5+
      */
     static get ignore(): PencilPreferredAction;
+    readonly $type: {
+        "s:7SwiftUI21PencilPreferredActionV": true;
+    };
 }
 /**
  * @frozen enum PencilSqueezeGesturePhase
  * @availability iOS 17.5+
  */
 export declare class PencilSqueezeGesturePhase extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI25PencilSqueezeGesturePhaseO": true;
+    };
 }
 /**
  * struct PencilSqueezeGestureValue
@@ -7270,12 +8117,18 @@ export declare class PencilSqueezeGestureValue extends SDKHandle {
      * @availability iOS 17.5+
      */
     get hoverPose(): (PencilHoverPose) | null;
+    readonly $type: {
+        "s:7SwiftUI25PencilSqueezeGestureValueV": true;
+    };
 }
 /**
  * nonisolated struct Picker<Label, SelectionValue, Content> where Label : View, SelectionValue : Hashable, Content : View
  * @availability iOS 13.0+
  */
 export declare class Picker<Label = unknown, SelectionValue = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI6PickerV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -7298,6 +8151,9 @@ export declare class PlaceholderTextShapeStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): PlaceholderTextShapeStyle;
+    readonly $type: {
+        "s:7SwiftUI25PlaceholderTextShapeStyleV": true;
+    };
 }
 /**
  * typealias Resolved = Never
@@ -7314,6 +8170,9 @@ export declare class PlainButtonStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): PlainButtonStyle;
+    readonly $type: {
+        "s:7SwiftUI16PlainButtonStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -7330,6 +8189,9 @@ export declare class PlainListStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): PlainListStyle;
+    readonly $type: {
+        "s:7SwiftUI14PlainListStyleV": true;
+    };
 }
 /**
  * nonisolated struct PlainTextEditorStyle
@@ -7341,6 +8203,9 @@ export declare class PlainTextEditorStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): PlainTextEditorStyle;
+    readonly $type: {
+        "s:7SwiftUI20PlainTextEditorStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -7357,12 +8222,18 @@ export declare class PlainTextFieldStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): PlainTextFieldStyle;
+    readonly $type: {
+        "s:7SwiftUI19PlainTextFieldStyleV": true;
+    };
 }
 /**
  * enum PopoverAttachmentAnchor
  * @availability iOS 13.0+
  */
 export declare class PopoverAttachmentAnchor extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23PopoverAttachmentAnchorO": true;
+    };
 }
 /**
  * struct PresentationAdaptation
@@ -7394,6 +8265,9 @@ export declare class PresentationAdaptation extends SDKHandle {
      * @availability iOS 16.4+
      */
     static get automatic(): PresentationAdaptation;
+    readonly $type: {
+        "s:7SwiftUI22PresentationAdaptationV": true;
+    };
 }
 /**
  * struct PresentationBackgroundInteraction
@@ -7420,6 +8294,9 @@ export declare class PresentationBackgroundInteraction extends SDKHandle {
      * @availability iOS 16.4+
      */
     static get automatic(): PresentationBackgroundInteraction;
+    readonly $type: {
+        "s:7SwiftUI33PresentationBackgroundInteractionV": true;
+    };
 }
 /**
  * struct PresentationContentInteraction
@@ -7441,6 +8318,9 @@ export declare class PresentationContentInteraction extends SDKHandle {
      * @availability iOS 16.4+
      */
     static get automatic(): PresentationContentInteraction;
+    readonly $type: {
+        "s:7SwiftUI30PresentationContentInteractionV": true;
+    };
 }
 /**
  * struct PresentationDetent
@@ -7467,6 +8347,9 @@ export declare class PresentationDetent extends SDKHandle {
      * @availability iOS 16.0+
      */
     static fraction(fraction: number): PresentationDetent;
+    readonly $type: {
+        "s:7SwiftUI18PresentationDetentV": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct Context
@@ -7483,6 +8366,9 @@ export declare class PresentationDetent_Context extends SDKHandle {
      * @availability iOS 16.0+
      */
     subscript(keyPath: SDKHandle): unknown;
+    readonly $type: {
+        "s:7SwiftUI18PresentationDetentV7ContextV": true;
+    };
 }
 /**
  * struct PresentationMode
@@ -7502,6 +8388,9 @@ export declare class PresentationMode extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     dismiss(): void;
+    readonly $type: {
+        "s:7SwiftUI16PresentationModeV": true;
+    };
 }
 /**
  * struct PresentationPlacement
@@ -7528,6 +8417,9 @@ export declare class PresentationPlacement extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get automatic(): PresentationPlacement;
+    readonly $type: {
+        "s:7SwiftUI21PresentationPlacementV": true;
+    };
 }
 /**
  * protocol PresentationSizing
@@ -7545,6 +8437,9 @@ export interface PresentationSizing {
  * @availability iOS 18.0+
  */
 export declare class PresentationSizingContext extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI25PresentationSizingContextV": true;
+    };
 }
 /**
  * struct PresentationSizingRoot
@@ -7556,12 +8451,18 @@ export declare class PresentationSizingRoot extends SDKHandle {
      * @availability iOS 18.0+
      */
     sizeThatFits(proposal: _SwiftUICore_ProposedViewSize): $SDK38;
+    readonly $type: {
+        "s:7SwiftUI22PresentationSizingRootV": true;
+    };
 }
 /**
  * nonisolated struct PresentedWindowContent<Data, Content> where Data : Decodable, Data : Encodable, Data : Hashable, Content : View
  * @availability iOS 16.0+
  */
 export declare class PresentedWindowContent<Data = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI22PresentedWindowContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -7664,6 +8565,9 @@ export type PreviewModifier_Content = PreviewModifierContent;
  * @availability iOS 18.0+
  */
 export declare class PreviewModifierContent extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI22PreviewModifierContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -7719,12 +8623,18 @@ export declare class PrimitiveButtonStyleConfiguration extends SDKHandle {
      * @availability iOS 13.0+
      */
     trigger(): void;
+    readonly $type: {
+        "s:7SwiftUI33PrimitiveButtonStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Label
  * @availability iOS 13.0+
  */
 export declare class PrimitiveButtonStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI33PrimitiveButtonStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -7791,6 +8701,9 @@ export declare class ProgressView<Label = unknown, CurrentValueLabel = unknown> 
      * @availability iOS 14.0+
      */
     static init65192(configuration: ProgressViewStyleConfiguration): ProgressView<ProgressViewStyleConfiguration_Label, ProgressViewStyleConfiguration_CurrentValueLabel>;
+    readonly $type: {
+        "s:7SwiftUI12ProgressViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -7835,12 +8748,18 @@ export declare class ProgressViewStyleConfiguration extends SDKHandle {
      */
     get label(): $SDK99;
     set label(value: $SDK99);
+    readonly $type: {
+        "s:7SwiftUI30ProgressViewStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct CurrentValueLabel
  * @availability iOS 14.0+
  */
 export declare class ProgressViewStyleConfiguration_CurrentValueLabel extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI30ProgressViewStyleConfigurationV17CurrentValueLabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -7852,6 +8771,9 @@ export type ProgressViewStyleConfiguration_CurrentValueLabel_Body = never;
  * @availability iOS 14.0+
  */
 export declare class ProgressViewStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI30ProgressViewStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -7868,6 +8790,9 @@ export declare class ProminentDetailNavigationSplitViewStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<ProminentDetailNavigationSplitViewStyle>;
+    readonly $type: {
+        "s:7SwiftUI39ProminentDetailNavigationSplitViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -7938,6 +8863,9 @@ export type ReferenceFileDocument_WriteConfiguration = FileDocumentWriteConfigur
  * @deprecated iOS 100000.0
  */
 export declare class ReferenceFileDocumentConfiguration<Document = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI34ReferenceFileDocumentConfigurationV": true;
+    };
 }
 /**
  * struct RefreshAction
@@ -7949,6 +8877,9 @@ export declare class RefreshAction extends SDKHandle {
      * @availability iOS 15.0+
      */
     callAsFunction(): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI13RefreshActionV": true;
+    };
 }
 /**
  * struct RenameAction
@@ -7960,12 +8891,18 @@ export declare class RenameAction extends SDKHandle {
      * @availability iOS 16.0+
      */
     callAsFunction(): void;
+    readonly $type: {
+        "s:7SwiftUI12RenameActionV": true;
+    };
 }
 /**
  * nonisolated struct RenameButton<Label> where Label : View
  * @availability iOS 16.0+
  */
 export declare class RenameButton<Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI12RenameButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -7977,6 +8914,9 @@ export type RenameButton_Body<Label = unknown> = SDKHandle;
  * @availability iOS 27.0+
  */
 export declare class ReorderableSingleCollectionIdentifier extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI37ReorderableSingleCollectionIdentifierV": true;
+    };
 }
 /**
  * struct ReorderDifference<ItemID, CollectionID>
@@ -7995,6 +8935,9 @@ export declare class ReorderDifference<ItemID = unknown, CollectionID = unknown>
      */
     get sources(): Array<unknown>;
     set sources(value: Array<unknown>);
+    readonly $type: {
+        "s:7SwiftUI17ReorderDifferenceV": true;
+    };
 }
 /**
  * struct Destination
@@ -8023,12 +8966,18 @@ export declare class ReorderDifference_Destination<ItemID = unknown, CollectionI
      * @availability iOS 27.0+
      */
     static initPosition(position: ReorderDifference_Destination_Position<unknown, ReorderableSingleCollectionIdentifier>): ReorderDifference_Destination<unknown, ReorderableSingleCollectionIdentifier>;
+    readonly $type: {
+        "s:7SwiftUI17ReorderDifferenceV11DestinationV": true;
+    };
 }
 /**
  * @frozen enum Position
  * @availability iOS 27.0+
  */
 export declare class ReorderDifference_Destination_Position<ItemID = unknown, CollectionID = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI17ReorderDifferenceV11DestinationV8PositionO": true;
+    };
 }
 /**
  * nonisolated struct RotateGesture
@@ -8051,6 +9000,9 @@ export declare class RotateGesture extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initMinimumAngleDelta(minimumAngleDelta?: _SwiftUICore_Angle): RotateGesture;
+    readonly $type: {
+        "s:7SwiftUI13RotateGestureV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -8092,6 +9044,9 @@ export declare class RotateGesture_Value extends SDKHandle {
      */
     get velocity(): _SwiftUICore_Angle;
     set velocity(value: _SwiftUICore_Angle);
+    readonly $type: {
+        "s:7SwiftUI13RotateGestureV5ValueV": true;
+    };
 }
 /**
  * nonisolated struct RotationGesture
@@ -8112,6 +9067,9 @@ export declare class RotationGesture extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(minimumAngleDelta?: _SwiftUICore_Angle): RotationGesture;
+    readonly $type: {
+        "s:7SwiftUI15RotationGestureV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -8137,6 +9095,9 @@ export declare class RoundedBorderTextFieldStyle extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(): RoundedBorderTextFieldStyle;
+    readonly $type: {
+        "s:7SwiftUI27RoundedBorderTextFieldStyleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol Scene
@@ -8155,6 +9116,9 @@ export interface SceneAccessoryContent {
  * @availability iOS 14.0+
  */
 export declare class SceneBuilder extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI12SceneBuilderV": true;
+    };
 }
 /**
  * struct ScenePadding
@@ -8166,6 +9130,9 @@ export declare class ScenePadding extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get minimum(): ScenePadding;
+    readonly $type: {
+        "s:7SwiftUI12ScenePaddingV": true;
+    };
 }
 /**
  * enum ScenePhase
@@ -8182,6 +9149,9 @@ export declare class SceneRestorationBehavior extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): SceneRestorationBehavior;
+    readonly $type: {
+        "s:7SwiftUI24SceneRestorationBehaviorV": true;
+    };
 }
 /**
  * @frozen @propertyWrapper struct SceneStorage<Value>
@@ -8274,6 +9244,9 @@ export declare class SceneStorage<Value = unknown> extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init52255(key: string): SceneStorage<(number) | null>;
+    readonly $type: {
+        "s:7SwiftUI12SceneStorageV": true;
+    };
 }
 /**
  * struct ScrollAnchorRole
@@ -8295,6 +9268,9 @@ export declare class ScrollAnchorRole extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get alignment(): ScrollAnchorRole;
+    readonly $type: {
+        "s:7SwiftUI16ScrollAnchorRoleV": true;
+    };
 }
 /**
  * struct ScrollBounceBehavior
@@ -8316,6 +9292,9 @@ export declare class ScrollBounceBehavior extends SDKHandle {
      * @availability iOS 16.4+
      */
     static get automatic(): ScrollBounceBehavior;
+    readonly $type: {
+        "s:7SwiftUI20ScrollBounceBehaviorV": true;
+    };
 }
 /**
  * struct ScrollDismissesKeyboardMode
@@ -8342,6 +9321,9 @@ export declare class ScrollDismissesKeyboardMode extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): ScrollDismissesKeyboardMode;
+    readonly $type: {
+        "s:7SwiftUI27ScrollDismissesKeyboardModeV": true;
+    };
 }
 /**
  * struct ScrollEdgeEffectStyle
@@ -8363,6 +9345,9 @@ export declare class ScrollEdgeEffectStyle extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get automatic(): ScrollEdgeEffectStyle;
+    readonly $type: {
+        "s:7SwiftUI21ScrollEdgeEffectStyleV": true;
+    };
 }
 /**
  * struct ScrollIndicatorVisibility
@@ -8389,6 +9374,9 @@ export declare class ScrollIndicatorVisibility extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): ScrollIndicatorVisibility;
+    readonly $type: {
+        "s:7SwiftUI25ScrollIndicatorVisibilityV": true;
+    };
 }
 /**
  * struct ScrollInputBehavior
@@ -8410,12 +9398,18 @@ export declare class ScrollInputBehavior extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): ScrollInputBehavior;
+    readonly $type: {
+        "s:7SwiftUI19ScrollInputBehaviorV": true;
+    };
 }
 /**
  * struct ScrollInputKind
  * @availability iOS 18.0+
  */
 export declare class ScrollInputKind extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI15ScrollInputKindV": true;
+    };
 }
 /**
  * struct ScrollPhaseChangeContext
@@ -8435,6 +9429,9 @@ export declare class ScrollPhaseChangeContext extends SDKHandle {
         dx: number;
         dy: number;
     }) | null;
+    readonly $type: {
+        "s:7SwiftUI24ScrollPhaseChangeContextV": true;
+    };
 }
 /**
  * protocol ScrollTargetBehavior
@@ -8505,6 +9502,9 @@ export declare class ScrollTargetBehaviorContext extends SDKHandle {
         dx: number;
         dy: number;
     };
+    readonly $type: {
+        "s:7SwiftUI27ScrollTargetBehaviorContextV": true;
+    };
 }
 /**
  * struct ScrollTargetBehaviorProperties
@@ -8522,6 +9522,9 @@ export declare class ScrollTargetBehaviorProperties extends SDKHandle {
      * @availability iOS 18.4+
      */
     static init(): ScrollTargetBehaviorProperties;
+    readonly $type: {
+        "s:7SwiftUI30ScrollTargetBehaviorPropertiesV": true;
+    };
 }
 /**
  * struct ScrollTargetBehaviorPropertiesContext
@@ -8538,6 +9541,9 @@ export declare class ScrollTargetBehaviorPropertiesContext extends SDKHandle {
      * @availability iOS 18.4+
      */
     get axes(): _SwiftUICore_Axis_Set;
+    readonly $type: {
+        "s:7SwiftUI37ScrollTargetBehaviorPropertiesContextV": true;
+    };
 }
 /**
  * struct ScrollTransitionConfiguration
@@ -8579,6 +9585,9 @@ export declare class ScrollTransitionConfiguration extends SDKHandle {
      * @availability iOS 17.0+
      */
     threshold(threshold: ScrollTransitionConfiguration_Threshold): ScrollTransitionConfiguration;
+    readonly $type: {
+        "s:7SwiftUI29ScrollTransitionConfigurationV": true;
+    };
 }
 /**
  * struct Threshold
@@ -8615,6 +9624,9 @@ export declare class ScrollTransitionConfiguration_Threshold extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get centered(): ScrollTransitionConfiguration_Threshold;
+    readonly $type: {
+        "s:7SwiftUI29ScrollTransitionConfigurationV9ThresholdV": true;
+    };
 }
 /**
  * @frozen enum ScrollTransitionPhase
@@ -8656,6 +9668,9 @@ export declare class ScrollView<Content = unknown> extends SDKHandle {
      */
     get content(): SDKHandle;
     set content(value: SDKHandle);
+    readonly $type: {
+        "s:7SwiftUI10ScrollViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -8672,6 +9687,9 @@ export declare class ScrollViewProxy extends SDKHandle {
      * @availability iOS 14.0+
      */
     scrollTo(id: number, anchor?: $SDK114): void;
+    readonly $type: {
+        "s:7SwiftUI15ScrollViewProxyV": true;
+    };
 }
 /**
  * @frozen nonisolated struct ScrollViewReader<Content> where Content : View
@@ -8683,6 +9701,9 @@ export declare class ScrollViewReader<Content = unknown> extends SDKHandle {
      * @availability iOS 14.0+
      */
     get content(): ((arg0: ScrollViewProxy) => Promise<SDKHandle>);
+    readonly $type: {
+        "s:7SwiftUI16ScrollViewReaderV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -8724,6 +9745,9 @@ export declare class SearchFieldPlacement extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get automatic(): SearchFieldPlacement;
+    readonly $type: {
+        "s:7SwiftUI20SearchFieldPlacementV": true;
+    };
 }
 /**
  * struct NavigationBarDrawerDisplayMode
@@ -8740,6 +9764,9 @@ export declare class SearchFieldPlacement_NavigationBarDrawerDisplayMode extends
      * @availability iOS 15.0+
      */
     static get automatic(): SearchFieldPlacement_NavigationBarDrawerDisplayMode;
+    readonly $type: {
+        "s:7SwiftUI20SearchFieldPlacementV30NavigationBarDrawerDisplayModeV": true;
+    };
 }
 /**
  * struct SearchPresentationToolbarBehavior
@@ -8756,6 +9783,9 @@ export declare class SearchPresentationToolbarBehavior extends SDKHandle {
      * @availability iOS 17.1+
      */
     static get automatic(): SearchPresentationToolbarBehavior;
+    readonly $type: {
+        "s:7SwiftUI33SearchPresentationToolbarBehaviorV": true;
+    };
 }
 /**
  * struct SearchScopeActivation
@@ -8777,6 +9807,9 @@ export declare class SearchScopeActivation extends SDKHandle {
      * @availability iOS 16.4+
      */
     static get automatic(): SearchScopeActivation;
+    readonly $type: {
+        "s:7SwiftUI21SearchScopeActivationV": true;
+    };
 }
 /**
  * struct SearchSuggestionsPlacement
@@ -8798,6 +9831,9 @@ export declare class SearchSuggestionsPlacement extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): SearchSuggestionsPlacement;
+    readonly $type: {
+        "s:7SwiftUI26SearchSuggestionsPlacementV": true;
+    };
 }
 /**
  * struct Set
@@ -8857,18 +9893,27 @@ export declare class SearchToolbarBehavior extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get automatic(): SearchToolbarBehavior;
+    readonly $type: {
+        "s:7SwiftUI21SearchToolbarBehaviorV": true;
+    };
 }
 /**
  * struct SearchUnavailableContent
  * @availability iOS 17.0+
  */
 export declare class SearchUnavailableContent extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24SearchUnavailableContentV": true;
+    };
 }
 /**
  * nonisolated struct Actions
  * @availability iOS 17.0+
  */
 export declare class SearchUnavailableContent_Actions extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24SearchUnavailableContentV7ActionsV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -8880,6 +9925,9 @@ export type SearchUnavailableContent_Actions_Body = SDKHandle;
  * @availability iOS 17.0+
  */
 export declare class SearchUnavailableContent_Description extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24SearchUnavailableContentV11DescriptionV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -8891,6 +9939,9 @@ export type SearchUnavailableContent_Description_Body = SDKHandle;
  * @availability iOS 17.0+
  */
 export declare class SearchUnavailableContent_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24SearchUnavailableContentV5LabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -8902,6 +9953,9 @@ export type SearchUnavailableContent_Label_Body = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Section<Parent = unknown, Content = unknown, Footer = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI7SectionV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -8924,12 +9978,18 @@ export declare class SectionConfiguration extends SDKHandle {
      * @availability iOS 18.0+
      */
     get actions(): SectionConfiguration_Actions;
+    readonly $type: {
+        "s:7SwiftUI20SectionConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Actions
  * @availability iOS 18.0+
  */
 export declare class SectionConfiguration_Actions extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI20SectionConfigurationVAAE7ActionsV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -8951,6 +10011,9 @@ export declare class SectionedFetchRequest<SectionIdentifier = unknown, Result =
      * @availability iOS 15.0+
      */
     static initSectionIdentifierSortDescriptorsPredicateAnimation94113(sectionIdentifier: "faultingState" | SDKHandle, sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK116>;
+    readonly $type: {
+        "s:7SwiftUI21SectionedFetchRequestV": true;
+    };
 }
 /**
  * struct Configuration
@@ -8963,6 +10026,9 @@ export declare class SectionedFetchRequest_Configuration<SectionIdentifier = unk
      */
     get sortDescriptors(): Promise<$SDK53>;
     setSortDescriptors(value: $SDK53): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI21SectionedFetchRequestV13ConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct SectionedFetchResults<SectionIdentifier, Result> where SectionIdentifier : Hashable, Result : NSFetchRequestResult
@@ -8975,6 +10041,9 @@ export declare class SectionedFetchResults<SectionIdentifier = unknown, Result =
      */
     get sortDescriptors(): Promise<$SDK53>;
     setSortDescriptors(value: $SDK53): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI21SectionedFetchResultsV": true;
+    };
 }
 /**
  * typealias Element = SectionedFetchResults<SectionIdentifier, Result>.Section
@@ -9001,6 +10070,9 @@ export type SectionedFetchResults_Iterator<SectionIdentifier = unknown, Result =
  * @availability iOS 15.0+
  */
 export declare class SectionedFetchResults_Section<SectionIdentifier = unknown, Result = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI21SectionedFetchResultsV7SectionV": true;
+    };
 }
 /**
  * typealias Element = Result
@@ -9084,6 +10156,9 @@ export declare class SecureField<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initText16995(title: string, text: $SDK120): $SDK119;
+    readonly $type: {
+        "s:7SwiftUI11SecureFieldV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -9100,6 +10175,9 @@ export declare class SegmentedPickerStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): SegmentedPickerStyle;
+    readonly $type: {
+        "s:7SwiftUI20SegmentedPickerStyleV": true;
+    };
 }
 /**
  * struct SelectionShapeStyle
@@ -9111,6 +10189,9 @@ export declare class SelectionShapeStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): SelectionShapeStyle;
+    readonly $type: {
+        "s:7SwiftUI19SelectionShapeStyleV": true;
+    };
 }
 /**
  * typealias Resolved = Never
@@ -9207,6 +10288,9 @@ export declare class SensoryFeedback extends SDKHandle {
      * @availability iOS 26.0+
      */
     static selection8389(feedback: SensoryFeedback_SelectionFeedback): SensoryFeedback;
+    readonly $type: {
+        "s:7SwiftUI15SensoryFeedbackV": true;
+    };
 }
 /**
  * struct Flexibility
@@ -9228,6 +10312,9 @@ export declare class SensoryFeedback_Flexibility extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get solid(): SensoryFeedback_Flexibility;
+    readonly $type: {
+        "s:7SwiftUI15SensoryFeedbackV11FlexibilityV": true;
+    };
 }
 /**
  * struct PressFeedback
@@ -9259,6 +10346,9 @@ export declare class SensoryFeedback_PressFeedback extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get toggle(): SensoryFeedback_PressFeedback;
+    readonly $type: {
+        "s:7SwiftUI15SensoryFeedbackV05PressD0V": true;
+    };
 }
 /**
  * struct ReleaseFeedback
@@ -9270,6 +10360,9 @@ export declare class SensoryFeedback_ReleaseFeedback extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get slider(): SensoryFeedback_ReleaseFeedback;
+    readonly $type: {
+        "s:7SwiftUI15SensoryFeedbackV07ReleaseD0V": true;
+    };
 }
 /**
  * struct SelectionFeedback
@@ -9296,6 +10389,9 @@ export declare class SensoryFeedback_SelectionFeedback extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get minimum(): SensoryFeedback_SelectionFeedback;
+    readonly $type: {
+        "s:7SwiftUI15SensoryFeedbackV09SelectionD0V": true;
+    };
 }
 /**
  * struct Weight
@@ -9317,12 +10413,18 @@ export declare class SensoryFeedback_Weight extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get medium(): SensoryFeedback_Weight;
+    readonly $type: {
+        "s:7SwiftUI15SensoryFeedbackV6WeightV": true;
+    };
 }
 /**
  * @frozen nonisolated struct SequenceGesture<First, Second> where First : Gesture, Second : Gesture
  * @availability iOS 13.0+
  */
 export declare class SequenceGesture<First = unknown, Second = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI15SequenceGestureV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -9334,6 +10436,9 @@ export type SequenceGesture_Body<First = unknown, Second = unknown> = never;
  * @availability iOS 13.0+
  */
 export declare class SequenceGesture_Value<First = unknown, Second = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI15SequenceGestureV5ValueO": true;
+    };
 }
 /**
  * nonisolated struct ShareLink<Data, PreviewImage, PreviewIcon, Label> where Data : RandomAccessCollection, PreviewImage : Transferable, PreviewIcon : Transferable, Label : View, Data.Element : Transferable
@@ -9465,6 +10570,9 @@ export declare class ShareLink<Data = unknown, PreviewImage = unknown, PreviewIc
      * @availability iOS 16.0+
      */
     static initItemSubjectMessage10880(title: string, item: string, subject?: $SDK5, message?: $SDK5): $SDK124;
+    readonly $type: {
+        "s:7SwiftUI9ShareLinkV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -9556,6 +10664,9 @@ export declare class SharePreview<Image = unknown, Icon = unknown> extends SDKHa
      * @availability iOS 16.0+
      */
     static initImageIcon4671(title: string, image: string, icon: string): $SDK122;
+    readonly $type: {
+        "s:7SwiftUI12SharePreviewV": true;
+    };
 }
 /**
  * nonisolated struct SidebarAdaptableTabViewStyle
@@ -9567,6 +10678,9 @@ export declare class SidebarAdaptableTabViewStyle extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): SidebarAdaptableTabViewStyle;
+    readonly $type: {
+        "s:7SwiftUI28SidebarAdaptableTabViewStyleV": true;
+    };
 }
 /**
  * nonisolated struct SidebarCommands
@@ -9578,6 +10692,9 @@ export declare class SidebarCommands extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): SidebarCommands;
+    readonly $type: {
+        "s:7SwiftUI15SidebarCommandsV": true;
+    };
 }
 /**
  * typealias Body = some Commands
@@ -9594,6 +10711,9 @@ export declare class SidebarListStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): SidebarListStyle;
+    readonly $type: {
+        "s:7SwiftUI16SidebarListStyleV": true;
+    };
 }
 /**
  * enum SidebarRowSize
@@ -9615,6 +10735,9 @@ export declare class Slider<Label = unknown, ValueLabel = unknown> extends SDKHa
      * @availability iOS 13.0+
      */
     static initValueInStepOnEditingChanged(value: _SwiftUICore_Binding<number>, bounds: SDKHandle, step?: number, onEditingChanged?: $SDK130): $SDK128;
+    readonly $type: {
+        "s:7SwiftUI6SliderV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -9656,6 +10779,9 @@ export declare class SliderTick<V = unknown> extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init99406(value: number): SliderTick<number>;
+    readonly $type: {
+        "s:7SwiftUI10SliderTickV": true;
+    };
 }
 /**
  * typealias Body = Array<SliderTick<V>>
@@ -9667,6 +10793,9 @@ export type SliderTick_Body<V = unknown> = $SDK132;
  * @availability iOS 26.0+
  */
 export declare class SliderTick_ID<V = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI10SliderTickV2IDV": true;
+    };
 }
 /**
  * typealias Value = V
@@ -9678,6 +10807,9 @@ export type SliderTick_Value<V = unknown> = unknown;
  * @availability iOS 26.0+
  */
 export declare class SliderTickBuilder<V = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI17SliderTickBuilderV": true;
+    };
 }
 /**
  * protocol SliderTickContent<Value>
@@ -9690,6 +10822,9 @@ export interface SliderTickContent {
  * @availability iOS 26.0+
  */
 export declare class SliderTickContentForEach<Data = unknown, ID = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24SliderTickContentForEachV": true;
+    };
 }
 /**
  * typealias Body = [SliderTick<SliderTickContentForEach<Data, ID, Content>.Value>]
@@ -9716,6 +10851,9 @@ export declare class SpacerSizing extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get flexible(): SpacerSizing;
+    readonly $type: {
+        "s:7SwiftUI12SpacerSizingV": true;
+    };
 }
 /**
  * struct SpatialEventCollection
@@ -9752,6 +10890,9 @@ export declare class SpatialEventCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript10166(index: SpatialEventCollection_Event_ID): $SDK134;
+    readonly $type: {
+        "s:7SwiftUI22SpatialEventCollectionV": true;
+    };
 }
 /**
  * typealias Element = SpatialEventCollection.Event
@@ -9805,12 +10946,18 @@ export declare class SpatialEventCollection_Event extends SDKHandle {
      */
     get timestamp(): number;
     set timestamp(value: number);
+    readonly $type: {
+        "s:7SwiftUI22SpatialEventCollectionV0D0V": true;
+    };
 }
 /**
  * struct ID
  * @availability iOS 18.0+
  */
 export declare class SpatialEventCollection_Event_ID extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI22SpatialEventCollectionV0D0V2IDV": true;
+    };
 }
 /**
  * struct InputDevicePose
@@ -9829,6 +10976,9 @@ export declare class SpatialEventCollection_Event_InputDevicePose extends SDKHan
      */
     get altitude(): _SwiftUICore_Angle;
     set altitude(value: _SwiftUICore_Angle);
+    readonly $type: {
+        "s:7SwiftUI22SpatialEventCollectionV0D0V15InputDevicePoseV": true;
+    };
 }
 /**
  * enum Kind
@@ -9845,6 +10995,9 @@ export type SpatialEventCollection_Event_Phase = "active" | "ended" | "cancelled
  * @availability iOS 18.0+
  */
 export declare class SpatialEventCollection_Index extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI22SpatialEventCollectionV5IndexV": true;
+    };
 }
 /**
  * typealias Indices = DefaultIndices<SpatialEventCollection>
@@ -9861,6 +11014,9 @@ export declare class SpatialEventCollection_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): $SDK134;
+    readonly $type: {
+        "s:7SwiftUI22SpatialEventCollectionV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = SpatialEventCollection.Event
@@ -9887,6 +11043,9 @@ export declare class SpatialEventGesture extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(coordinateSpace?: SDKHandle): SpatialEventGesture;
+    readonly $type: {
+        "s:7SwiftUI19SpatialEventGestureV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -9921,6 +11080,9 @@ export declare class SpatialTapGesture extends SDKHandle {
      */
     get count(): number;
     set count(value: number);
+    readonly $type: {
+        "s:7SwiftUI17SpatialTapGestureV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -9938,6 +11100,9 @@ export declare class SpatialTapGesture_Value extends SDKHandle {
      */
     get location(): $SDK39;
     set location(value: $SDK39);
+    readonly $type: {
+        "s:7SwiftUI17SpatialTapGestureV5ValueV": true;
+    };
 }
 /**
  * struct SpringLoadingBehavior
@@ -9959,6 +11124,9 @@ export declare class SpringLoadingBehavior extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): SpringLoadingBehavior;
+    readonly $type: {
+        "s:7SwiftUI21SpringLoadingBehaviorV": true;
+    };
 }
 /**
  * struct StackNavigationViewStyle
@@ -9972,6 +11140,9 @@ export declare class StackNavigationViewStyle extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static init(): StackNavigationViewStyle;
+    readonly $type: {
+        "s:7SwiftUI24StackNavigationViewStyleV": true;
+    };
 }
 /**
  * nonisolated struct Stepper<Label> where Label : View
@@ -9993,6 +11164,9 @@ export declare class Stepper<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initOnIncrementOnDecrementOnEditingChanged65471(title: string, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK130): $SDK136;
+    readonly $type: {
+        "s:7SwiftUI7StepperV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -10049,6 +11223,9 @@ export declare class SubmitLabel extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get continue(): SubmitLabel;
+    readonly $type: {
+        "s:7SwiftUI11SubmitLabelV": true;
+    };
 }
 /**
  * struct SubmitTriggers
@@ -10097,6 +11274,9 @@ export type SubmitTriggers_RawValue = number;
  * @availability iOS 13.0+
  */
 export declare class SubscriptionView<PublisherType = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI16SubscriptionViewV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -10108,6 +11288,9 @@ export type SubscriptionView_Body<PublisherType = unknown, Content = unknown> = 
  * @availability iOS 26.0+
  */
 export declare class Subview_ContainerSizingOptions extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI7SubviewVAAE22ContainerSizingOptionsO": true;
+    };
 }
 /**
  * nonisolated struct SwitchToggleStyle
@@ -10125,6 +11308,9 @@ export declare class SwitchToggleStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): SwitchToggleStyle;
+    readonly $type: {
+        "s:7SwiftUI17SwitchToggleStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -10141,6 +11327,9 @@ export declare class Tab<Value = unknown, Content = unknown, Label = unknown> ex
      * @availability iOS 18.0+
      */
     get body(): Promise<Tab<number, SDKHandle, SDKHandle>>;
+    readonly $type: {
+        "s:7SwiftUI3TabV": true;
+    };
 }
 /**
  * typealias Body = Tab<Value, Content, Label>
@@ -10177,6 +11366,9 @@ export declare class TabBarMinimizeBehavior extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get automatic(): TabBarMinimizeBehavior;
+    readonly $type: {
+        "s:7SwiftUI22TabBarMinimizeBehaviorV": true;
+    };
 }
 /**
  * nonisolated struct TabBarOnlyTabViewStyle
@@ -10188,6 +11380,9 @@ export declare class TabBarOnlyTabViewStyle extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): TabBarOnlyTabViewStyle;
+    readonly $type: {
+        "s:7SwiftUI010TabBarOnlyC9ViewStyleV": true;
+    };
 }
 /**
  * struct TabBarPlacement
@@ -10219,6 +11414,9 @@ export declare class TabBarPlacement extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get ornament(): TabBarPlacement;
+    readonly $type: {
+        "s:7SwiftUI15TabBarPlacementV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol TabContent<TabValue>
@@ -10231,12 +11429,18 @@ export interface TabContent {
  * @availability iOS 18.0+
  */
 export declare class TabContentBuilder<TabValue = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI17TabContentBuilderV": true;
+    };
 }
 /**
  * nonisolated struct Content<C> where C : TabContent
  * @availability iOS 18.0+
  */
 export declare class TabContentBuilder_Content<TabValue = unknown, C = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI17TabContentBuilderV0D0V": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -10263,12 +11467,18 @@ export declare class TabCustomizationBehavior extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): TabCustomizationBehavior;
+    readonly $type: {
+        "s:7SwiftUI24TabCustomizationBehaviorV": true;
+    };
 }
 /**
  * nonisolated struct Table<Value, Rows, Columns> where Value == Rows.TableRowValue, Rows : TableRowContent, Columns : TableColumnContent, Rows.TableRowValue == Columns.TableRowValue
  * @availability iOS 16.0+
  */
 export declare class Table<Value = unknown, Rows = unknown, Columns = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI5TableV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -10280,6 +11490,9 @@ export type Table_Body<Value = unknown, Rows = unknown, Columns = unknown> = nev
  * @availability iOS 16.0+
  */
 export declare class TableColumn<RowValue = unknown, Sort = unknown, Content = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI11TableColumnV": true;
+    };
 }
 /**
  * typealias TableColumnBody = Never
@@ -10331,12 +11544,18 @@ export declare class TableColumnAlignment extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): TableColumnAlignment;
+    readonly $type: {
+        "s:7SwiftUI20TableColumnAlignmentV": true;
+    };
 }
 /**
  * @resultBuilder struct TableColumnBuilder<RowValue, Sort> where RowValue : Identifiable, Sort : SortComparator
  * @availability iOS 16.0+
  */
 export declare class TableColumnBuilder<RowValue = unknown, Sort = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI18TableColumnBuilderV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol TableColumnContent<TableRowValue, TableColumnSortComparator>
@@ -10349,6 +11568,9 @@ export interface TableColumnContent {
  * @availability iOS 17.0+
  */
 export declare class TableColumnCustomization<RowValue = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24TableColumnCustomizationV": true;
+    };
 }
 /**
  * struct TableColumnCustomizationBehavior
@@ -10433,6 +11655,9 @@ export declare class TableColumnCustomizationBehavior extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): TableColumnCustomizationBehavior;
+    readonly $type: {
+        "s:7SwiftUI32TableColumnCustomizationBehaviorV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = TableColumnCustomizationBehavior.Element
@@ -10449,6 +11674,9 @@ export type TableColumnCustomizationBehavior_Element = TableColumnCustomizationB
  * @availability iOS 17.4+
  */
 export declare class TableColumnForEach<Data = unknown, ID = unknown, RowValue = unknown, Sort = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI18TableColumnForEachV": true;
+    };
 }
 /**
  * typealias TableColumnBody = Never
@@ -10470,6 +11698,9 @@ export type TableColumnForEach_TableRowValue<Data = unknown, ID = unknown, RowVa
  * @availability iOS 16.0+
  */
 export declare class TableForEachContent<Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI19TableForEachContentV": true;
+    };
 }
 /**
  * typealias TableRowBody = some TableRowContent
@@ -10486,6 +11717,9 @@ export type TableForEachContent_TableRowValue<Data = unknown> = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class TableHeaderRowContent<Value = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI21TableHeaderRowContentV": true;
+    };
 }
 /**
  * typealias TableRowBody = some TableRowContent
@@ -10502,6 +11736,9 @@ export type TableHeaderRowContent_TableRowValue<Value = unknown, Content = unkno
  * @availability iOS 17.0+
  */
 export declare class TableOutlineGroupContent<Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24TableOutlineGroupContentV": true;
+    };
 }
 /**
  * typealias TableRowBody = some TableRowContent
@@ -10518,6 +11755,9 @@ export type TableOutlineGroupContent_TableRowValue<Data = unknown> = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class TableRow<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI8TableRowV": true;
+    };
 }
 /**
  * typealias TableRowBody = Never
@@ -10534,6 +11774,9 @@ export type TableRow_TableRowValue<Value = unknown> = unknown;
  * @availability iOS 16.0+
  */
 export declare class TableRowBuilder<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI15TableRowBuilderV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol TableRowContent<TableRowValue>
@@ -10562,6 +11805,9 @@ export type TableStyle_Configuration = TableStyleConfiguration;
  * @availability iOS 16.0+
  */
 export declare class TableStyleConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23TableStyleConfigurationV": true;
+    };
 }
 /**
  * struct TabPlacement
@@ -10583,6 +11829,9 @@ export declare class TabPlacement extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): TabPlacement;
+    readonly $type: {
+        "s:7SwiftUI12TabPlacementV": true;
+    };
 }
 /**
  * struct TabRole
@@ -10599,6 +11848,9 @@ export declare class TabRole extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get prominent(): TabRole;
+    readonly $type: {
+        "s:7SwiftUI7TabRoleV": true;
+    };
 }
 /**
  * struct TabSearchActivation
@@ -10615,12 +11867,18 @@ export declare class TabSearchActivation extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get automatic(): TabSearchActivation;
+    readonly $type: {
+        "s:7SwiftUI19TabSearchActivationV": true;
+    };
 }
 /**
  * struct TabSection<Header, Content, Footer, SelectionValue>
  * @availability iOS 18.0+
  */
 export declare class TabSection<Header = unknown, Content = unknown, Footer = unknown, SelectionValue = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI10TabSectionV": true;
+    };
 }
 /**
  * typealias Body = TabSection<Header, Content, Footer, SelectionValue>
@@ -10652,6 +11910,9 @@ export declare class TabSectionExpansion extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get collapsed(): TabSectionExpansion;
+    readonly $type: {
+        "s:7SwiftUI19TabSectionExpansionV": true;
+    };
 }
 /**
  * struct TabsPickerStyle
@@ -10663,12 +11924,18 @@ export declare class TabsPickerStyle extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): TabsPickerStyle;
+    readonly $type: {
+        "s:7SwiftUI15TabsPickerStyleV": true;
+    };
 }
 /**
  * nonisolated struct TabView<SelectionValue, Content> where SelectionValue : Hashable, Content : View
  * @availability iOS 13.0+
  */
 export declare class TabView<SelectionValue = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI7TabViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -10728,6 +11995,9 @@ export declare class TabViewCustomization extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): TabViewCustomization;
+    readonly $type: {
+        "s:7SwiftUI20TabViewCustomizationV": true;
+    };
 }
 /**
  * struct SectionCustomization
@@ -10744,6 +12014,9 @@ export declare class TabViewCustomization_SectionCustomization extends SDKHandle
      * @availability iOS 18.4+
      */
     get tabOrder(): (Array<string>) | null;
+    readonly $type: {
+        "s:7SwiftUI20TabViewCustomizationV07SectionE0V": true;
+    };
 }
 /**
  * struct TabCustomization
@@ -10761,6 +12034,9 @@ export declare class TabViewCustomization_TabCustomization extends SDKHandle {
      */
     get sidebarVisibility(): _SwiftUICore_Visibility;
     set sidebarVisibility(value: _SwiftUICore_Visibility);
+    readonly $type: {
+        "s:7SwiftUI20TabViewCustomizationV0cE0V": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol TabViewStyle
@@ -10799,6 +12075,9 @@ export declare class Text extends SDKHandle {
      * @availability iOS 15.0+
      */
     accessibilityHeading(level: _SwiftUICore_AccessibilityHeadingLevel): _SwiftUICore_Text;
+    readonly $type: {
+        "s:7SwiftUI4TextV": true;
+    };
 }
 export declare class Text_LineStyle extends SDKHandle {
     /**
@@ -10806,6 +12085,9 @@ export declare class Text_LineStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(nsUnderlineStyle: _UIKit_NSUnderlineStyle): (_SwiftUICore_Text_LineStyle) | null;
+    readonly $type: {
+        "s:7SwiftUI4TextV9LineStyleV": true;
+    };
 }
 /**
  * nonisolated struct TextEditingCommands
@@ -10817,6 +12099,9 @@ export declare class TextEditingCommands extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): TextEditingCommands;
+    readonly $type: {
+        "s:7SwiftUI19TextEditingCommandsV": true;
+    };
 }
 /**
  * typealias Body = some Commands
@@ -10843,6 +12128,9 @@ export declare class TextEditor extends SDKHandle {
      * @availability iOS 14.0+
      */
     static initText(text: $SDK120): TextEditor;
+    readonly $type: {
+        "s:7SwiftUI10TextEditorV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -10870,6 +12158,9 @@ export type TextEditorStyle_Configuration = TextEditorStyleConfiguration;
  * @availability iOS 17.0+
  */
 export declare class TextEditorStyleConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI28TextEditorStyleConfigurationV": true;
+    };
 }
 /**
  * nonisolated struct TextField<Label> where Label : View
@@ -11053,6 +12344,9 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initValueFormatter80476(title: string, value: $SDK11, formatter: _Foundation_Formatter): $SDK145;
+    readonly $type: {
+        "s:7SwiftUI9TextFieldV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -11075,6 +12369,9 @@ export declare class TextFormattingCommands extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): TextFormattingCommands;
+    readonly $type: {
+        "s:7SwiftUI22TextFormattingCommandsV": true;
+    };
 }
 /**
  * typealias Body = some Commands
@@ -11111,6 +12408,9 @@ export declare class TextInputAutocapitalization extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(type: _UIKit_UITextAutocapitalizationType): (TextInputAutocapitalization) | null;
+    readonly $type: {
+        "s:7SwiftUI27TextInputAutocapitalizationV": true;
+    };
 }
 /**
  * struct TextInputDictationActivation
@@ -11127,6 +12427,9 @@ export declare class TextInputDictationActivation extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get onSelect(): TextInputDictationActivation;
+    readonly $type: {
+        "s:7SwiftUI28TextInputDictationActivationV": true;
+    };
 }
 /**
  * struct TextInputDictationBehavior
@@ -11143,12 +12446,18 @@ export declare class TextInputDictationBehavior extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): TextInputDictationBehavior;
+    readonly $type: {
+        "s:7SwiftUI26TextInputDictationBehaviorV": true;
+    };
 }
 /**
  * struct TextInputFormattingControlPlacement
  * @availability iOS 26.0+
  */
 export declare class TextInputFormattingControlPlacement extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI35TextInputFormattingControlPlacementV": true;
+    };
 }
 /**
  * struct Set
@@ -11238,12 +12547,18 @@ export declare class TextSelection extends SDKHandle {
      * @availability iOS 18.0+
      */
     get affinity(): TextSelectionAffinity;
+    readonly $type: {
+        "s:7SwiftUI13TextSelectionV": true;
+    };
 }
 /**
  * enum Indices
  * @availability iOS 18.0+
  */
 export declare class TextSelection_Indices extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI13TextSelectionV7IndicesO": true;
+    };
 }
 /**
  * enum TextSelectionAffinity
@@ -11255,6 +12570,9 @@ export type TextSelectionAffinity = "automatic" | "upstream" | "downstream";
  * @availability iOS 15.0+
  */
 export declare class TimelineView<Schedule = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI12TimelineViewV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -11266,6 +12584,9 @@ export type TimelineView_Body<Schedule = unknown, Content = unknown> = never;
  * @availability iOS 15.0+
  */
 export declare class TimelineView_Context<Schedule = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI12TimelineViewV7ContextV": true;
+    };
 }
 /**
  * enum Cadence
@@ -11287,6 +12608,9 @@ export declare class TitleAndIconLabelStyle extends SDKHandle {
      * @availability iOS 14.5+
      */
     static init(): TitleAndIconLabelStyle;
+    readonly $type: {
+        "s:7SwiftUI22TitleAndIconLabelStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -11303,6 +12627,9 @@ export declare class TitleOnlyLabelStyle extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): TitleOnlyLabelStyle;
+    readonly $type: {
+        "s:7SwiftUI19TitleOnlyLabelStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -11334,6 +12661,9 @@ export declare class Toggle<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initIsOn19415(title: string, isOn: $SDK36): $SDK149;
+    readonly $type: {
+        "s:7SwiftUI6ToggleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -11383,12 +12713,18 @@ export declare class ToggleStyleConfiguration extends SDKHandle {
      */
     get isMixed(): boolean;
     set isMixed(value: boolean);
+    readonly $type: {
+        "s:7SwiftUI24ToggleStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Label
  * @availability iOS 13.0+
  */
 export declare class ToggleStyleConfiguration_Label extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24ToggleStyleConfigurationV5LabelV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -11405,6 +12741,9 @@ export declare class ToolbarCommands extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): ToolbarCommands;
+    readonly $type: {
+        "s:7SwiftUI15ToolbarCommandsV": true;
+    };
 }
 /**
  * typealias Body = some Commands
@@ -11428,6 +12767,9 @@ export declare class ToolbarContentBuilder extends SDKHandle {
      * @availability iOS 17.5+
      */
     static buildLimitedAvailability(content: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:7SwiftUI21ToolbarContentBuilderV": true;
+    };
 }
 /**
  * struct ToolbarCustomizationBehavior
@@ -11449,6 +12791,9 @@ export declare class ToolbarCustomizationBehavior extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get disabled(): ToolbarCustomizationBehavior;
+    readonly $type: {
+        "s:7SwiftUI28ToolbarCustomizationBehaviorV": true;
+    };
 }
 /**
  * struct ToolbarCustomizationOptions
@@ -11508,6 +12853,9 @@ export declare class ToolbarDefaultItemKind extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get search(): ToolbarDefaultItemKind;
+    readonly $type: {
+        "s:7SwiftUI22ToolbarDefaultItemKindV": true;
+    };
 }
 /**
  * nonisolated struct ToolbarItem<ID, Content> where Content : View
@@ -11519,6 +12867,9 @@ export declare class ToolbarItem<ID = unknown, Content = unknown> extends SDKHan
      * @availability iOS 14.0+
      */
     get id(): number;
+    readonly $type: {
+        "s:7SwiftUI11ToolbarItemV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -11545,12 +12896,18 @@ export declare class ToolbarItemAxisBehavior extends SDKHandle {
      * @availability iOS 27.1+
      */
     static get automatic(): ToolbarItemAxisBehavior;
+    readonly $type: {
+        "s:7SwiftUI23ToolbarItemAxisBehaviorV": true;
+    };
 }
 /**
  * nonisolated struct ToolbarItemGroup<Content> where Content : View
  * @availability iOS 14.0+
  */
 export declare class ToolbarItemGroup<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI16ToolbarItemGroupV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -11666,6 +13023,9 @@ export declare class ToolbarItemPlacement extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get principal(): ToolbarItemPlacement;
+    readonly $type: {
+        "s:7SwiftUI20ToolbarItemPlacementV": true;
+    };
 }
 /**
  * struct ToolbarItemVisibilityPriority
@@ -11697,6 +13057,9 @@ export declare class ToolbarItemVisibilityPriority extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initLowerThan(other: ToolbarItemVisibilityPriority): ToolbarItemVisibilityPriority;
+    readonly $type: {
+        "s:7SwiftUI29ToolbarItemVisibilityPriorityV": true;
+    };
 }
 /**
  * struct ToolbarLabelStyle
@@ -11708,6 +13071,9 @@ export declare class ToolbarLabelStyle extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): ToolbarLabelStyle;
+    readonly $type: {
+        "s:7SwiftUI17ToolbarLabelStyleV": true;
+    };
 }
 /**
  * struct ToolbarMinimizationBehavior
@@ -11734,6 +13100,9 @@ export declare class ToolbarMinimizationBehavior extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get automatic(): ToolbarMinimizationBehavior;
+    readonly $type: {
+        "s:7SwiftUI27ToolbarMinimizationBehaviorV": true;
+    };
 }
 /**
  * struct ToolbarMinimizationRestoration
@@ -11750,6 +13119,9 @@ export declare class ToolbarMinimizationRestoration extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get automatic(): ToolbarMinimizationRestoration;
+    readonly $type: {
+        "s:7SwiftUI30ToolbarMinimizationRestorationV": true;
+    };
 }
 /**
  * struct ToolbarMinimizationSafeAreaAdjustment
@@ -11771,12 +13143,18 @@ export declare class ToolbarMinimizationSafeAreaAdjustment extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get automatic(): ToolbarMinimizationSafeAreaAdjustment;
+    readonly $type: {
+        "s:7SwiftUI37ToolbarMinimizationSafeAreaAdjustmentV": true;
+    };
 }
 /**
  * nonisolated struct ToolbarOverflowMenu<Content> where Content : View
  * @availability iOS 27.0+
  */
 export declare class ToolbarOverflowMenu<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI19ToolbarOverflowMenuV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -11813,6 +13191,9 @@ export declare class ToolbarPlacement extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get statusBar(): ToolbarPlacement;
+    readonly $type: {
+        "s:7SwiftUI16ToolbarPlacementV": true;
+    };
 }
 /**
  * struct ToolbarRole
@@ -11839,6 +13220,9 @@ export declare class ToolbarRole extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): ToolbarRole;
+    readonly $type: {
+        "s:7SwiftUI11ToolbarRoleV": true;
+    };
 }
 /**
  * nonisolated struct ToolbarSpacer
@@ -11850,6 +13234,9 @@ export declare class ToolbarSpacer extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(sizing?: SpacerSizing, placement?: ToolbarItemPlacement): ToolbarSpacer;
+    readonly $type: {
+        "s:7SwiftUI13ToolbarSpacerV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -11881,6 +13268,9 @@ export declare class ToolbarTitleDisplayMode extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): ToolbarTitleDisplayMode;
+    readonly $type: {
+        "s:7SwiftUI23ToolbarTitleDisplayModeV": true;
+    };
 }
 /**
  * nonisolated struct ToolbarTitleMenu<Content> where Content : View
@@ -11892,6 +13282,9 @@ export declare class ToolbarTitleMenu<Content = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): ToolbarTitleMenu<_SwiftUICore_EmptyView>;
+    readonly $type: {
+        "s:7SwiftUI16ToolbarTitleMenuV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -11913,6 +13306,9 @@ export declare class ToolbarVerticalBehavior extends SDKHandle {
      * @availability iOS 27.1+
      */
     static get automatic(): ToolbarVerticalBehavior;
+    readonly $type: {
+        "s:7SwiftUI23ToolbarVerticalBehaviorV": true;
+    };
 }
 /**
  * struct ToolbarVerticalCompressionBehavior
@@ -11934,6 +13330,9 @@ export declare class ToolbarVerticalCompressionBehavior extends SDKHandle {
      * @availability iOS 27.1+
      */
     static get automatic(): ToolbarVerticalCompressionBehavior;
+    readonly $type: {
+        "s:7SwiftUI34ToolbarVerticalCompressionBehaviorV": true;
+    };
 }
 export declare class Transaction extends SDKHandle {
     /**
@@ -11942,6 +13341,9 @@ export declare class Transaction extends SDKHandle {
      */
     get dismissBehavior(): DismissBehavior;
     set dismissBehavior(value: DismissBehavior);
+    readonly $type: {
+        "s:7SwiftUI11TransactionV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -11964,6 +13366,9 @@ export declare class TupleSliderTickContent<V = unknown, T = unknown> extends SD
      */
     get value(): unknown;
     set value(value: unknown);
+    readonly $type: {
+        "s:7SwiftUI22TupleSliderTickContentV": true;
+    };
 }
 /**
  * typealias Body = [SliderTick<V>]
@@ -11985,6 +13390,9 @@ export type TupleSliderTickContent_Value<V = unknown, T = unknown> = unknown;
  * @availability iOS 16.0+
  */
 export declare class TupleTableColumnContent<RowValue = unknown, Sort = unknown, T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI23TupleTableColumnContentV": true;
+    };
 }
 /**
  * typealias TableColumnBody = Never
@@ -12006,6 +13414,9 @@ export type TupleTableColumnContent_TableRowValue<RowValue = unknown, Sort = unk
  * @availability iOS 16.0+
  */
 export declare class TupleTableRowContent<Value = unknown, T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI20TupleTableRowContentV": true;
+    };
 }
 /**
  * typealias TableRowBody = Never
@@ -12030,6 +13441,9 @@ export declare const UIAccessibilityContrast: {
  * @availability iOS 14.0+
  */
 export declare class UIApplicationDelegateAdaptor<DelegateType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI28UIApplicationDelegateAdaptorV": true;
+    };
 }
 export declare class UIColor extends SDKHandle {
     /**
@@ -12037,6 +13451,10 @@ export declare class UIColor extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(color: _SwiftUICore_Color): _UIKit_UIColor;
+    readonly $type: {
+        "c:objc(cs)UIColor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export type UIContentSizeCategory = "unspecified" | "extraSmall" | "small" | "medium" | "large" | "extraLarge" | "extraExtraLarge" | "extraExtraExtraLarge" | "accessibilityMedium" | "accessibilityLarge" | "accessibilityExtraLarge" | "accessibilityExtraExtraLarge" | "accessibilityExtraExtraExtraLarge" | (string & {});
 export declare const UIContentSizeCategory: {
@@ -12092,6 +13510,9 @@ export type UIGestureRecognizerRepresentable_CoordinateSpaceConverter = UIGestur
  * @availability iOS 18.0+
  */
 export declare class UIGestureRecognizerRepresentableContext<Representable = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI39UIGestureRecognizerRepresentableContextV": true;
+    };
 }
 /**
  * struct UIGestureRecognizerRepresentableCoordinateSpaceConverter
@@ -12113,6 +13534,9 @@ export declare class UIGestureRecognizerRepresentableCoordinateSpaceConverter ex
      * @availability iOS 18.0+
      */
     get localTranslation(): $SDK155;
+    readonly $type: {
+        "s:7SwiftUI56UIGestureRecognizerRepresentableCoordinateSpaceConverterV": true;
+    };
 }
 /**
  * struct UIHostingConfiguration<Content, Background> where Content : View, Background : View
@@ -12154,6 +13578,9 @@ export declare class UIHostingConfiguration<Content = unknown, Background = unkn
      * @availability iOS 16.0+
      */
     updated(state: SDKHandle): $SDK156;
+    readonly $type: {
+        "s:7SwiftUI22UIHostingConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency class UIHostingController<Content> where Content : View
@@ -12309,6 +13736,12 @@ export declare class UIHostingController<Content = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     willMove(parent?: $SDK159): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI19UIHostingControllerC": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct UIHostingControllerSizingOptions
@@ -12414,6 +13847,11 @@ export declare class UIView extends SDKHandle {
      * @availability iOS 18.0+
      */
     static animate(animation: _SwiftUICore_Animation, changes: (() => void), completion?: ((() => void)) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol UIViewControllerRepresentable : View where Self.Body == Never
@@ -12461,6 +13899,9 @@ export type UIViewControllerRepresentable_LayoutOptions = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class UIViewControllerRepresentableContext<Representable = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI36UIViewControllerRepresentableContextV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol UIViewRepresentable : View where Self.Body == Never
@@ -12508,6 +13949,9 @@ export type UIViewRepresentable_LayoutOptions = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class UIViewRepresentableContext<Representable = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI26UIViewRepresentableContextV": true;
+    };
 }
 /**
  * @MainActor final class URLDocumentConfiguration
@@ -12541,6 +13985,9 @@ export declare class URLDocumentConfiguration extends SDKHandle {
      */
     get fileURL(): Promise<(string) | null>;
     setFileURL(value?: (string) | null): Promise<void>;
+    readonly $type: {
+        "s:7SwiftUI24URLDocumentConfigurationC": true;
+    };
 }
 export type UserInterfaceSizeClass = "compact" | "regular";
 export declare const UserInterfaceSizeClass: {
@@ -12585,6 +14032,9 @@ export declare class ViewAlignedScrollTargetBehavior extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initAnchor(anchor?: $SDK114): ViewAlignedScrollTargetBehavior;
+    readonly $type: {
+        "s:7SwiftUI31ViewAlignedScrollTargetBehaviorV": true;
+    };
 }
 /**
  * struct LimitBehavior
@@ -12616,6 +14066,9 @@ export declare class ViewAlignedScrollTargetBehavior_LimitBehavior extends SDKHa
      * @availability iOS 17.0+
      */
     static get automatic(): ViewAlignedScrollTargetBehavior_LimitBehavior;
+    readonly $type: {
+        "s:7SwiftUI31ViewAlignedScrollTargetBehaviorV05LimitG0V": true;
+    };
 }
 export declare class ViewBuilder extends SDKHandle {
     /**
@@ -12624,12 +14077,18 @@ export declare class ViewBuilder extends SDKHandle {
      * @availability iOS 17.5+
      */
     static buildLimitedAvailability(content: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:7SwiftUI11ViewBuilderV": true;
+    };
 }
 /**
  * @frozen nonisolated struct ViewThatFits<Content> where Content : View
  * @availability iOS 16.0+
  */
 export declare class ViewThatFits<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI12ViewThatFitsV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -12646,6 +14105,9 @@ export declare class WheelDatePickerStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): Promise<WheelDatePickerStyle>;
+    readonly $type: {
+        "s:7SwiftUI20WheelDatePickerStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -12662,6 +14124,9 @@ export declare class WheelPickerStyle extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): WheelPickerStyle;
+    readonly $type: {
+        "s:7SwiftUI16WheelPickerStyleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol Widget
@@ -12690,6 +14155,9 @@ export interface WidgetBundle {
  * @availability iOS 14.0+
  */
 export declare class WidgetBundleBuilder extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI19WidgetBundleBuilderV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol WidgetConfiguration
@@ -12707,6 +14175,9 @@ export declare class WindowBackgroundShapeStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): WindowBackgroundShapeStyle;
+    readonly $type: {
+        "s:7SwiftUI26WindowBackgroundShapeStyleV": true;
+    };
 }
 /**
  * typealias Resolved = Never
@@ -12718,6 +14189,9 @@ export type WindowBackgroundShapeStyle_Resolved = never;
  * @availability iOS 14.0+
  */
 export declare class WindowGroup<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI11WindowGroupV": true;
+    };
 }
 /**
  * typealias Body = some Scene
@@ -12734,6 +14208,9 @@ export declare class WindowManagerRole extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): WindowManagerRole;
+    readonly $type: {
+        "s:7SwiftUI17WindowManagerRoleV": true;
+    };
 }
 /**
  * struct WindowResizability
@@ -12758,6 +14235,9 @@ export declare class WindowResizability extends SDKHandle {
      */
     static get automatic(): WindowResizability;
     static set automatic(value: WindowResizability);
+    readonly $type: {
+        "s:7SwiftUI18WindowResizabilityV": true;
+    };
 }
 /**
  * struct WindowToolbarFullScreenVisibility
@@ -12769,6 +14249,9 @@ export declare class WindowToolbarFullScreenVisibility extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): WindowToolbarFullScreenVisibility;
+    readonly $type: {
+        "s:7SwiftUI33WindowToolbarFullScreenVisibilityV": true;
+    };
 }
 /**
  * protocol WritableDocument : AnyObject
@@ -12816,11 +14299,17 @@ export declare class WritingToolsBehavior extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): WritingToolsBehavior;
+    readonly $type: {
+        "s:7SwiftUI20WritingToolsBehaviorV": true;
+    };
 }
 /**
  * struct ZoomNavigationTransition
  * @availability iOS 18.0+
  */
 export declare class ZoomNavigationTransition extends SDKHandle {
+    readonly $type: {
+        "s:7SwiftUI24ZoomNavigationTransitionV": true;
+    };
 }
 export {};

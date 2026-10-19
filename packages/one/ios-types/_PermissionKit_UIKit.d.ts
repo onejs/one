@@ -20,6 +20,9 @@ export declare class AskCenter extends SDKHandle {
      * @availability iOS 26.2+
      */
     askIn61031(question: $SDK0, viewController: _UIKit_UIViewController): Promise<void>;
+    readonly $type: {
+        "s:13PermissionKit9AskCenterC": true;
+    };
 }
 export declare class CommunicationLimits extends SDKHandle {
     /**
@@ -27,5 +30,8 @@ export declare class CommunicationLimits extends SDKHandle {
      * @availability iOS 26.0+
      */
     ask(question: $SDK1, viewController: _UIKit_UIViewController): Promise<void>;
+    readonly $type: {
+        "s:13PermissionKit19CommunicationLimitsC": true;
+    };
 }
 export {};

@@ -91,10 +91,16 @@ export declare class ReportableMetadataValue extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init92134(value: number): ReportableMetadataValue;
+    readonly $type: {
+        "s:14StateReporting23ReportableMetadataValueO": true;
+    };
 }
 /**
  * final class StateReporter<StableMetadata, VolatileMetadata> where StableMetadata : ReportableMetadata, VolatileMetadata : ReportableMetadata
  * @availability iOS 27.0+
  */
 export declare class StateReporter<StableMetadata = unknown, VolatileMetadata = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:14StateReporting0A8ReporterC": true;
+    };
 }

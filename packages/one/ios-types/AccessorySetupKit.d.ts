@@ -50,6 +50,10 @@ export declare class ASAccessory extends SDKHandle {
      * @availability iOS 26.0+
      */
     get wifiAwarePairedDeviceID(): number;
+    readonly $type: {
+        "c:objc(cs)ASAccessory": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ssid": true;
         "bluetoothIdentifier": true;
@@ -114,6 +118,10 @@ export declare class ASAccessoryEvent extends SDKHandle {
      * @availability iOS 18.0+
      */
     get eventType(): ASAccessoryEventType;
+    readonly $type: {
+        "c:objc(cs)ASAccessoryEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessory": true;
         "error": true;
@@ -199,6 +207,10 @@ export declare class ASAccessorySession extends SDKHandle {
      */
     get pickerDisplaySettings(): $SDK4;
     set pickerDisplaySettings(value: $SDK4);
+    readonly $type: {
+        "c:objc(cs)ASAccessorySession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessories": true;
         "pickerDisplaySettings": true;
@@ -228,6 +240,10 @@ export declare class ASAccessorySettings extends SDKHandle {
      */
     get bluetoothTransportBridgingIdentifier(): (ArrayBuffer) | null;
     set bluetoothTransportBridgingIdentifier(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "c:objc(cs)ASAccessorySettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ssid": true;
         "bluetoothTransportBridgingIdentifier": true;
@@ -259,6 +275,11 @@ export declare class ASDiscoveredAccessory extends ASDiscoveredAccessory_base {
      * @availability iOS 26.1+
      */
     get bluetoothRSSI(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)ASDiscoveredAccessory": true;
+        "c:objc(cs)ASAccessory": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ssid": true;
         "bluetoothIdentifier": true;
@@ -307,6 +328,10 @@ export declare class ASPickerDisplayItem extends SDKHandle {
      */
     get setupOptions(): ASPickerDisplayItem_SetupOptions;
     set setupOptions(value: ASPickerDisplayItem_SetupOptions);
+    readonly $type: {
+        "c:objc(cs)ASPickerDisplayItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "descriptor": true;
         "name": true;
@@ -326,6 +351,11 @@ export declare class ASDiscoveredDisplayItem extends ASDiscoveredDisplayItem_bas
      * @availability iOS 26.1+
      */
     static init(name: string, productImage: _UIKit_UIImage, accessory: ASDiscoveredAccessory): ASDiscoveredDisplayItem;
+    readonly $type: {
+        "c:objc(cs)ASDiscoveredDisplayItem": true;
+        "c:objc(cs)ASPickerDisplayItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "descriptor": true;
         "name": true;
@@ -437,6 +467,10 @@ export declare class ASDiscoveryDescriptor extends SDKHandle {
      */
     get wifiAwareVendorNameMatch(): $SDK7;
     set wifiAwareVendorNameMatch(value: $SDK7);
+    readonly $type: {
+        "c:objc(cs)ASDiscoveryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ssid": true;
         "ssidPrefix": true;
@@ -538,6 +572,9 @@ export declare class ASError extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get unknown(): ASError_Code;
+    readonly $type: {
+        "s:SC11ASErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -574,6 +611,11 @@ export declare class ASMigrationDisplayItem extends ASPickerDisplayItem {
      */
     get wifiAwarePairedDeviceID(): number;
     set wifiAwarePairedDeviceID(value: number);
+    readonly $type: {
+        "c:objc(cs)ASMigrationDisplayItem": true;
+        "c:objc(cs)ASPickerDisplayItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "descriptor": true;
         "name": true;
@@ -621,6 +663,10 @@ export declare class ASPickerDisplaySettings extends SDKHandle {
      */
     get options(): ASPickerDisplaySettings_Options;
     set options(value: ASPickerDisplaySettings_Options);
+    readonly $type: {
+        "c:objc(cs)ASPickerDisplaySettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "discoveryTimeout": true;
         "options": true;
@@ -686,6 +732,10 @@ export declare class ASPropertyCompareString extends SDKHandle {
      * @availability iOS 26.0+
      */
     get string(): string;
+    readonly $type: {
+        "c:objc(cs)ASPropertyCompareString": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "compareOptions": true;
         "string": true;

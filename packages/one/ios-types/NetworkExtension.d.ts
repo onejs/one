@@ -4,6 +4,7 @@ import type { ASAccessory as _AccessorySetupKit_ASAccessory } from "one/ios/Acce
 import type { DispatchQueue as _Dispatch_DispatchQueue } from "one/ios/Dispatch";
 import type { NSXPCConnection as _Foundation_NSXPCConnection, URLRequest as _Foundation_URLRequest, URLResponse as _Foundation_URLResponse, NSNumber as _Foundation_NSNumber, LocalizedStringResource as _Foundation_LocalizedStringResource, NSNotification_Name as _Foundation_NSNotification_Name } from "one/ios/Foundation";
 import type { OS_nw_interface as _Network_OS_nw_interface, NWParameters as _Network_NWParameters, NWInterface as _Network_NWInterface, NWEndpoint as _Network_NWEndpoint } from "one/ios/Network";
+import type { NSObject as _ObjectiveC_NSObject } from "one/ios/ObjectiveC";
 import type { SecIdentity as _Security_SecIdentity } from "one/ios/Security";
 type $SDK0 = ((arg0: (NativeError) | null) => void);
 type $SDK2 = (_Network_NWInterface) | null;
@@ -12,24 +13,24 @@ type $SDK6 = (((arg0: (NativeError) | null) => void)) | null;
 type $SDK8 = (Record<string, unknown>) | null;
 type $SDK9 = (Array<NEOnDemandRule>) | null;
 type $SDK12 = ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void);
-type $SDK14 = (_Network_NWEndpoint) | null;
-type $SDK15 = NativeMap<unknown, unknown>;
-type $SDK19 = (NEDNSProxyProviderProtocol) | null;
-type $SDK21 = (NEProxySettings) | null;
-type $SDK24 = ((arg0: NEFilterControlVerdict) => void);
-type $SDK25 = (Record<string, string>) | null;
-type $SDK26 = (Record<string, Record<string, SDKHandle>>) | null;
-type $SDK27 = (NEFilterProviderConfiguration) | null;
-type $SDK29 = Array<_Foundation_NSNumber>;
-type $SDK30 = (Record<string, SDKHandle>) | null;
-type $SDK36 = (Array<NEIPv4Route>) | null;
-type $SDK37 = (Array<NEIPv6Route>) | null;
-type $SDK38 = (Array<NEEvaluateConnectionRule>) | null;
-type $SDK41 = (_Foundation_NSNumber) | null;
-type $SDK48 = (_Foundation_LocalizedStringResource) | null;
-type $SDK49 = Array<NEVPNIKEv2PostQuantumKeyExchangeMethod>;
-type $SDK50 = (NEVPNIKEv2PPKConfiguration) | null;
-type $SDK51 = (Array<_Foundation_NSNumber>) | null;
+type $SDK13 = (_Network_NWEndpoint) | null;
+type $SDK14 = NativeMap<unknown, unknown>;
+type $SDK18 = (NEDNSProxyProviderProtocol) | null;
+type $SDK20 = (NEProxySettings) | null;
+type $SDK23 = ((arg0: NEFilterControlVerdict) => void);
+type $SDK24 = (Record<string, string>) | null;
+type $SDK25 = (Record<string, Record<string, _ObjectiveC_NSObject>>) | null;
+type $SDK26 = (NEFilterProviderConfiguration) | null;
+type $SDK28 = Array<_Foundation_NSNumber>;
+type $SDK29 = (Record<string, _ObjectiveC_NSObject>) | null;
+type $SDK35 = (Array<NEIPv4Route>) | null;
+type $SDK36 = (Array<NEIPv6Route>) | null;
+type $SDK37 = (Array<NEEvaluateConnectionRule>) | null;
+type $SDK40 = (_Foundation_NSNumber) | null;
+type $SDK47 = (_Foundation_LocalizedStringResource) | null;
+type $SDK48 = Array<NEVPNIKEv2PostQuantumKeyExchangeMethod>;
+type $SDK49 = (NEVPNIKEv2PPKConfiguration) | null;
+type $SDK50 = (Array<_Foundation_NSNumber>) | null;
 /**
  * @MainActor @preconcurrency class NEAppExtensionConfiguration
  * @availability iOS 26.0+
@@ -40,6 +41,9 @@ export declare class NEAppExtensionConfiguration extends SDKHandle {
      * @availability iOS 26.0+
      */
     accept(connection: _Foundation_NSXPCConnection): Promise<boolean>;
+    readonly $type: {
+        "s:16NetworkExtension05NEAppB13ConfigurationC": true;
+    };
 }
 /**
  * class NEAppProxyFlow
@@ -96,6 +100,10 @@ export declare class NEAppProxyFlow extends SDKHandle {
      */
     get interface(): $SDK2;
     set interface(value: $SDK2);
+    readonly $type: {
+        "c:objc(cs)NEAppProxyFlow": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isBound": true;
         "metaData": true;
@@ -163,6 +171,9 @@ export declare class NEAppProxyFlowError extends SDKHandle {
      * @availability iOS 9.0+
      */
     static get peerReset(): NEAppProxyFlowError_Code;
+    readonly $type: {
+        "s:SC19NEAppProxyFlowErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -205,6 +216,10 @@ export declare class NEProvider extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get defaultPath(): (NWPath) | null;
+    readonly $type: {
+        "c:objc(cs)NEProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultPath": true;
     };
@@ -248,6 +263,11 @@ export declare class NETunnelProvider extends NETunnelProvider_base {
      * @availability iOS 9.0+
      */
     get routingMethod(): NETunnelProviderRoutingMethod;
+    readonly $type: {
+        "c:objc(cs)NETunnelProvider": true;
+        "c:objc(cs)NEProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultPath": true;
         "appRules": true;
@@ -284,6 +304,12 @@ export declare class NEAppProxyProvider extends NEAppProxyProvider_base {
      * @availability iOS 9.0+
      */
     stopProxy(reason: NEProviderStopReason, completionHandler: (() => void)): void;
+    readonly $type: {
+        "c:objc(cs)NEAppProxyProvider": true;
+        "c:objc(cs)NETunnelProvider": true;
+        "c:objc(cs)NEProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultPath": true;
         "appRules": true;
@@ -361,6 +387,10 @@ export declare class NEVPNManager extends SDKHandle {
      */
     get protocolConfiguration(): (NEVPNProtocol) | null;
     set protocolConfiguration(value: (NEVPNProtocol) | null);
+    readonly $type: {
+        "c:objc(cs)NEVPNManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connection": true;
         "isEnabled": true;
@@ -394,6 +424,11 @@ export declare class NETunnelProviderManager extends NETunnelProviderManager_bas
      * @availability iOS 9.0+
      */
     get routingMethod(): NETunnelProviderRoutingMethod;
+    readonly $type: {
+        "c:objc(cs)NETunnelProviderManager": true;
+        "c:objc(cs)NEVPNManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connection": true;
         "isEnabled": true;
@@ -418,6 +453,12 @@ export declare class NEAppProxyProviderManager extends NEAppProxyProviderManager
     static loadAllFromPreferences(completionHandler: ((arg0: (Array<NEAppProxyProviderManager>) | null, arg1: (NativeError) | null) => void)): void;
     /** init() */
     static init(): NEAppProxyProviderManager;
+    readonly $type: {
+        "c:objc(cs)NEAppProxyProviderManager": true;
+        "c:objc(cs)NETunnelProviderManager": true;
+        "c:objc(cs)NEVPNManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connection": true;
         "isEnabled": true;
@@ -458,6 +499,11 @@ export declare class NEAppProxyTCPFlow extends NEAppProxyTCPFlow_base {
      * @availability iOS 18.0+
      */
     get remoteFlowEndpoint(): _Network_NWEndpoint;
+    readonly $type: {
+        "c:objc(cs)NEAppProxyTCPFlow": true;
+        "c:objc(cs)NEAppProxyFlow": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isBound": true;
         "metaData": true;
@@ -481,15 +527,15 @@ export declare class NEAppProxyUDPFlow extends NEAppProxyUDPFlow_base {
      */
     get localEndpoint(): (NWEndpoint) | null;
     /**
-     * func readDatagrams() async -> ([(Data, NWEndpoint)]?, (any Error)?)
-     * @availability iOS 18.0+
-     */
-    readDatagrams(): Promise<[(Array<[ArrayBuffer, _Network_NWEndpoint]>) | null, (NativeError) | null]>;
-    /**
      * var localFlowEndpoint: NWEndpoint? { get }
      * @availability iOS 18.0+
      */
-    get localFlowEndpoint(): $SDK14;
+    get localFlowEndpoint(): $SDK13;
+    readonly $type: {
+        "c:objc(cs)NEAppProxyUDPFlow": true;
+        "c:objc(cs)NEAppProxyFlow": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isBound": true;
         "metaData": true;
@@ -518,7 +564,7 @@ export interface NEAppPushDelegate {
      * func appPushManager(_ manager: NEAppPushManager, didReceiveIncomingCallWithUserInfo userInfo: [AnyHashable : Any] = [:])
      * @availability iOS 14.0+
      */
-    "appPushManagerDidReceiveIncomingCallWithUserInfo"?: (arg0: NEAppPushManager, arg1: $SDK15) => void;
+    "appPushManagerDidReceiveIncomingCallWithUserInfo"?: (arg0: NEAppPushManager, arg1: $SDK14) => void;
 }
 /**
  * class NEAppPushManager
@@ -606,6 +652,10 @@ export declare class NEAppPushManager extends SDKHandle {
      */
     get providerConfiguration(): Record<string, unknown>;
     set providerConfiguration(value: Record<string, unknown>);
+    readonly $type: {
+        "c:objc(cs)NEAppPushManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "delegate": true;
@@ -649,6 +699,9 @@ export declare class NEAppPushManagerError extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get configurationNotLoaded(): NEAppPushManagerError_Code;
+    readonly $type: {
+        "s:SC21NEAppPushManagerErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -679,12 +732,12 @@ export declare class NEAppPushProvider extends NEAppPushProvider_base {
      * func reportIncomingCall(userInfo: [AnyHashable : Any] = [:])
      * @availability iOS 14.0+
      */
-    reportIncomingCall(userInfo?: $SDK15): void;
+    reportIncomingCall(userInfo?: $SDK14): void;
     /**
      * func reportPushToTalkMessage(userInfo: [AnyHashable : Any] = [:])
      * @availability iOS 16.4+
      */
-    reportPushToTalkMessage(userInfo?: $SDK15): void;
+    reportPushToTalkMessage(userInfo?: $SDK14): void;
     /**
      * func start()
      * @availability iOS 15.0+
@@ -711,6 +764,11 @@ export declare class NEAppPushProvider extends NEAppPushProvider_base {
      * @availability iOS 14.0+
      */
     get providerConfiguration(): $SDK8;
+    readonly $type: {
+        "c:objc(cs)NEAppPushProvider": true;
+        "c:objc(cs)NEProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultPath": true;
         "providerConfiguration": true;
@@ -721,13 +779,11 @@ export declare class NEAppPushProvider extends NEAppPushProvider_base {
  * @availability iOS 9.0+
  */
 export declare class NEAppRule extends SDKHandle {
-    /** init() */
-    static init(): NEAppRule;
     /**
      * init(signingIdentifier: String)
      * @availability iOS 9.0+
      */
-    static initSigningIdentifier(signingIdentifier: string): NEAppRule;
+    static init(signingIdentifier: string): NEAppRule;
     /**
      * var matchDomains: [Any]? { get set }
      * @availability iOS 9.0+
@@ -745,6 +801,10 @@ export declare class NEAppRule extends SDKHandle {
      * @availability iOS 9.0+
      */
     get matchSigningIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)NEAppRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchDomains": true;
         "matchPath": true;
@@ -756,13 +816,11 @@ export declare class NEAppRule extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class NEDNSSettings extends SDKHandle {
-    /** init() */
-    static init(): NEDNSSettings;
     /**
      * init(servers: [String])
      * @availability iOS 9.0+
      */
-    static initServers(servers: Array<string>): NEDNSSettings;
+    static init(servers: Array<string>): NEDNSSettings;
     /**
      * var allowFailover: Bool { get set }
      * @availability iOS 26.0+
@@ -803,6 +861,10 @@ export declare class NEDNSSettings extends SDKHandle {
      * @availability iOS 9.0+
      */
     get servers(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)NEDNSSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowFailover": true;
         "dnsProtocol": true;
@@ -833,6 +895,11 @@ export declare class NEDNSOverHTTPSSettings extends NEDNSOverHTTPSSettings_base 
      */
     get serverURL(): (string) | null;
     set serverURL(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NEDNSOverHTTPSSettings": true;
+        "c:objc(cs)NEDNSSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowFailover": true;
         "dnsProtocol": true;
@@ -865,6 +932,11 @@ export declare class NEDNSOverTLSSettings extends NEDNSOverTLSSettings_base {
      */
     get serverName(): (string) | null;
     set serverName(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NEDNSOverTLSSettings": true;
+        "c:objc(cs)NEDNSSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowFailover": true;
         "dnsProtocol": true;
@@ -932,8 +1004,12 @@ export declare class NEDNSProxyManager extends SDKHandle {
      * var providerProtocol: NEDNSProxyProviderProtocol? { get set }
      * @availability iOS 11.0+
      */
-    get providerProtocol(): $SDK19;
-    set providerProtocol(value: $SDK19);
+    get providerProtocol(): $SDK18;
+    set providerProtocol(value: $SDK18);
+    readonly $type: {
+        "c:objc(cs)NEDNSProxyManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "localizedDescription": true;
@@ -985,6 +1061,11 @@ export declare class NEDNSProxyProvider extends NEDNSProxyProvider_base {
      * @availability iOS 11.0+
      */
     get systemDNSSettings(): (Array<NEDNSSettings>) | null;
+    readonly $type: {
+        "c:objc(cs)NEDNSProxyProvider": true;
+        "c:objc(cs)NEProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultPath": true;
         "systemDNSSettings": true;
@@ -1067,8 +1148,8 @@ export declare class NEVPNProtocol extends SDKHandle {
      * @NSCopying var proxySettings: NEProxySettings? { get set }
      * @availability iOS 9.0+
      */
-    get proxySettings(): $SDK21;
-    set proxySettings(value: $SDK21);
+    get proxySettings(): $SDK20;
+    set proxySettings(value: $SDK20);
     /**
      * var serverAddress: String? { get set }
      * @availability iOS 8.0+
@@ -1087,6 +1168,10 @@ export declare class NEVPNProtocol extends SDKHandle {
      */
     get username(): (string) | null;
     set username(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NEVPNProtocol": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "disconnectOnSleep": true;
         "enforceRoutes": true;
@@ -1125,6 +1210,11 @@ export declare class NEDNSProxyProviderProtocol extends NEDNSProxyProviderProtoc
      */
     get providerConfiguration(): $SDK8;
     set providerConfiguration(value: $SDK8);
+    readonly $type: {
+        "c:objc(cs)NEDNSProxyProviderProtocol": true;
+        "c:objc(cs)NEVPNProtocol": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "disconnectOnSleep": true;
         "enforceRoutes": true;
@@ -1195,6 +1285,10 @@ export declare class NEDNSSettingsManager extends SDKHandle {
      */
     get onDemandRules(): $SDK9;
     set onDemandRules(value: $SDK9);
+    readonly $type: {
+        "c:objc(cs)NEDNSSettingsManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dnsSettings": true;
         "isEnabled": true;
@@ -1219,13 +1313,11 @@ export declare const NEDNSSettingsManagerError: {
  * @availability iOS 8.0+
  */
 export declare class NEEvaluateConnectionRule extends SDKHandle {
-    /** init() */
-    static init(): NEEvaluateConnectionRule;
     /**
      * init(matchDomains domains: [String], andAction action: NEEvaluateConnectionRuleAction)
      * @availability iOS 8.0+
      */
-    static initMatchDomainsAndAction(domains: Array<string>, action: NEEvaluateConnectionRuleAction): NEEvaluateConnectionRule;
+    static init(domains: Array<string>, action: NEEvaluateConnectionRuleAction): NEEvaluateConnectionRule;
     /**
      * var action: NEEvaluateConnectionRuleAction { get }
      * @availability iOS 8.0+
@@ -1248,6 +1340,10 @@ export declare class NEEvaluateConnectionRule extends SDKHandle {
      */
     get useDNSServers(): (Array<string>) | null;
     set useDNSServers(value: (Array<string>) | null);
+    readonly $type: {
+        "c:objc(cs)NEEvaluateConnectionRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "action": true;
         "matchDomains": true;
@@ -1316,6 +1412,10 @@ export declare class NEFilterFlow extends SDKHandle {
      * @availability iOS 11.0+
      */
     get sourceAppVersion(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)NEFilterFlow": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "direction": true;
@@ -1348,6 +1448,11 @@ export declare class NEFilterBrowserFlow extends NEFilterBrowserFlow_base {
      * @availability iOS 9.0+
      */
     get response(): (_Foundation_URLResponse) | null;
+    readonly $type: {
+        "c:objc(cs)NEFilterBrowserFlow": true;
+        "c:objc(cs)NEFilterFlow": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "direction": true;
@@ -1388,6 +1493,11 @@ export declare class NEFilterProvider extends NEFilterProvider_base {
      * @availability iOS 9.0+
      */
     get filterConfiguration(): NEFilterProviderConfiguration;
+    readonly $type: {
+        "c:objc(cs)NEFilterProvider": true;
+        "c:objc(cs)NEProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultPath": true;
         "filterConfiguration": true;
@@ -1403,12 +1513,12 @@ export declare class NEFilterControlProvider extends NEFilterControlProvider_bas
      * func handleNewFlow(_ flow: NEFilterFlow) async -> NEFilterControlVerdict
      * @availability iOS 9.0+
      */
-    handleNewFlow(flow: NEFilterFlow, completionHandler: $SDK24): void;
+    handleNewFlow(flow: NEFilterFlow, completionHandler: $SDK23): void;
     /**
      * func handleRemediation(for flow: NEFilterFlow) async -> NEFilterControlVerdict
      * @availability iOS 9.0+
      */
-    handleRemediation(flow: NEFilterFlow, completionHandler: $SDK24): void;
+    handleRemediation(flow: NEFilterFlow, completionHandler: $SDK23): void;
     /** init() */
     static init(): NEFilterControlProvider;
     /**
@@ -1420,14 +1530,20 @@ export declare class NEFilterControlProvider extends NEFilterControlProvider_bas
      * var urlAppendStringMap: [String : String]? { get set }
      * @availability iOS 9.0+
      */
-    get urlAppendStringMap(): $SDK25;
-    set urlAppendStringMap(value: $SDK25);
+    get urlAppendStringMap(): $SDK24;
+    set urlAppendStringMap(value: $SDK24);
     /**
      * var remediationMap: [String : [String : NSObject]]? { get set }
      * @availability iOS 9.0+
      */
-    get remediationMap(): $SDK26;
-    set remediationMap(value: $SDK26);
+    get remediationMap(): $SDK25;
+    set remediationMap(value: $SDK25);
+    readonly $type: {
+        "c:objc(cs)NEFilterControlProvider": true;
+        "c:objc(cs)NEFilterProvider": true;
+        "c:objc(cs)NEProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultPath": true;
         "filterConfiguration": true;
@@ -1448,6 +1564,10 @@ export declare class NEFilterVerdict extends SDKHandle {
      */
     get shouldReport(): boolean;
     set shouldReport(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NEFilterVerdict": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "shouldReport": true;
     };
@@ -1490,6 +1610,11 @@ export declare class NEFilterNewFlowVerdict extends NEFilterNewFlowVerdict_base 
     static remediateVerdict(remediationURLMapKey: string, remediationButtonTextMapKey: string): NEFilterNewFlowVerdict;
     /** init() */
     static init(): NEFilterNewFlowVerdict;
+    readonly $type: {
+        "c:objc(cs)NEFilterNewFlowVerdict": true;
+        "c:objc(cs)NEFilterVerdict": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "shouldReport": true;
     };
@@ -1517,6 +1642,12 @@ export declare class NEFilterControlVerdict extends NEFilterControlVerdict_base 
     static updateRules(): NEFilterControlVerdict;
     /** init() */
     static init(): NEFilterControlVerdict;
+    readonly $type: {
+        "c:objc(cs)NEFilterControlVerdict": true;
+        "c:objc(cs)NEFilterNewFlowVerdict": true;
+        "c:objc(cs)NEFilterVerdict": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "shouldReport": true;
     };
@@ -1564,6 +1695,12 @@ export declare class NEFilterDataProvider extends NEFilterDataProvider_base {
     handleRulesChanged(): void;
     /** init() */
     static init(): NEFilterDataProvider;
+    readonly $type: {
+        "c:objc(cs)NEFilterDataProvider": true;
+        "c:objc(cs)NEFilterProvider": true;
+        "c:objc(cs)NEProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultPath": true;
         "filterConfiguration": true;
@@ -1584,7 +1721,7 @@ export declare class NEFilterDataVerdict extends NEFilterDataVerdict_base {
      * init(passBytes: Int, peekBytes: Int)
      * @availability iOS 9.0+
      */
-    static initPassBytesPeekBytes(passBytes: number, peekBytes: number): NEFilterDataVerdict;
+    static init(passBytes: number, peekBytes: number): NEFilterDataVerdict;
     /**
      * class func drop() -> NEFilterDataVerdict
      * @availability iOS 9.0+
@@ -1600,8 +1737,11 @@ export declare class NEFilterDataVerdict extends NEFilterDataVerdict_base {
      * @availability iOS 9.0+
      */
     static remediateVerdict(remediationURLMapKey?: (string) | null, remediationButtonTextMapKey?: (string) | null): NEFilterDataVerdict;
-    /** init() */
-    static init(): NEFilterDataVerdict;
+    readonly $type: {
+        "c:objc(cs)NEFilterDataVerdict": true;
+        "c:objc(cs)NEFilterVerdict": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "shouldReport": true;
     };
@@ -1649,8 +1789,12 @@ export declare class NEFilterManager extends SDKHandle {
      * var providerConfiguration: NEFilterProviderConfiguration? { get set }
      * @availability iOS 9.0+
      */
-    get providerConfiguration(): $SDK27;
-    set providerConfiguration(value: $SDK27);
+    get providerConfiguration(): $SDK26;
+    set providerConfiguration(value: $SDK26);
+    readonly $type: {
+        "c:objc(cs)NEFilterManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "localizedDescription": true;
@@ -1724,6 +1868,10 @@ export declare class NEFilterProviderConfiguration extends SDKHandle {
      */
     get vendorConfiguration(): $SDK8;
     set vendorConfiguration(value: $SDK8);
+    readonly $type: {
+        "c:objc(cs)NEFilterProviderConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "filterBrowsers": true;
         "filterSockets": true;
@@ -1758,6 +1906,11 @@ export declare class NEFilterRemediationVerdict extends NEFilterRemediationVerdi
     static needRules(): NEFilterRemediationVerdict;
     /** init() */
     static init(): NEFilterRemediationVerdict;
+    readonly $type: {
+        "c:objc(cs)NEFilterRemediationVerdict": true;
+        "c:objc(cs)NEFilterVerdict": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "shouldReport": true;
     };
@@ -1794,6 +1947,10 @@ export declare class NEFilterReport extends SDKHandle {
      * @availability iOS 11.0+
      */
     get flow(): (NEFilterFlow) | null;
+    readonly $type: {
+        "c:objc(cs)NEFilterReport": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "action": true;
         "bytesInboundCount": true;
@@ -1858,12 +2015,17 @@ export declare class NEFilterSocketFlow extends NEFilterSocketFlow_base {
      * var localFlowEndpoint: NWEndpoint? { get }
      * @availability iOS 18.0+
      */
-    get localFlowEndpoint(): $SDK14;
+    get localFlowEndpoint(): $SDK13;
     /**
      * var remoteFlowEndpoint: NWEndpoint? { get }
      * @availability iOS 18.0+
      */
-    get remoteFlowEndpoint(): $SDK14;
+    get remoteFlowEndpoint(): $SDK13;
+    readonly $type: {
+        "c:objc(cs)NEFilterSocketFlow": true;
+        "c:objc(cs)NEFilterFlow": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "direction": true;
@@ -1896,6 +2058,10 @@ export declare class NEFlowMetaData extends SDKHandle {
      * @availability iOS 9.0+
      */
     get sourceAppUniqueIdentifier(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)NEFlowMetaData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sourceAppSigningIdentifier": true;
         "sourceAppUniqueIdentifier": true;
@@ -1928,14 +2094,16 @@ export interface NEHotspotAuthenticationProvider {
  * @availability iOS 26.0+
  */
 export declare class NEHotspotAuthenticationProviderConfiguration extends NEAppExtensionConfiguration {
+    readonly $type: {
+        "s:16NetworkExtension44NEHotspotAuthenticationProviderConfigurationC": true;
+        "s:16NetworkExtension05NEAppB13ConfigurationC": true;
+    };
 }
 /**
  * class NEHotspotConfiguration
  * @availability iOS 11.0+
  */
 export declare class NEHotspotConfiguration extends SDKHandle {
-    /** init() */
-    static init(): NEHotspotConfiguration;
     /**
      * init(hs20Settings: NEHotspotHS20Settings, eapSettings: NEHotspotEAPSettings)
      * @availability iOS 11.0+
@@ -1994,6 +2162,10 @@ export declare class NEHotspotConfiguration extends SDKHandle {
      */
     get lifeTimeInDays(): _Foundation_NSNumber;
     set lifeTimeInDays(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)NEHotspotConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ssid": true;
         "ssidPrefix": true;
@@ -2056,6 +2228,10 @@ export declare class NEHotspotConfigurationManager extends SDKHandle {
      * @availability iOS 11.0+
      */
     removeConfigurationForSSID(SSID: string): void;
+    readonly $type: {
+        "c:objc(cs)NEHotspotConfigurationManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class NEHotspotEAPSettings
@@ -2096,8 +2272,8 @@ export declare class NEHotspotEAPSettings extends SDKHandle {
      * var supportedEAPTypes: [NSNumber] { get set }
      * @availability iOS 11.0+
      */
-    get supportedEAPTypes(): $SDK29;
-    set supportedEAPTypes(value: $SDK29);
+    get supportedEAPTypes(): $SDK28;
+    set supportedEAPTypes(value: $SDK28);
     /**
      * var isTLSClientCertificateRequired: Bool { get set }
      * @availability iOS 11.0+
@@ -2122,6 +2298,10 @@ export declare class NEHotspotEAPSettings extends SDKHandle {
      */
     get username(): string;
     set username(value: string);
+    readonly $type: {
+        "c:objc(cs)NEHotspotEAPSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "outerIdentity": true;
         "password": true;
@@ -2155,6 +2335,9 @@ export declare class NEHotspotEAPSettings_TLSVersion extends SDKHandle {
      * @availability iOS 11.0+
      */
     static init(rawValue: number): (NEHotspotEAPSettings_TLSVersion) | null;
+    readonly $type: {
+        "c:@E@NEHotspotConfigurationEAPTLSVersion": true;
+    };
 }
 /**
  * enum TTLSInnerAuthenticationType
@@ -2195,6 +2378,10 @@ export interface NEHotspotEvaluationProvider {
  * @availability iOS 26.0+
  */
 export declare class NEHotspotEvaluationProviderConfiguration extends NEAppExtensionConfiguration {
+    readonly $type: {
+        "s:16NetworkExtension40NEHotspotEvaluationProviderConfigurationC": true;
+        "s:16NetworkExtension05NEAppB13ConfigurationC": true;
+    };
 }
 /**
  * class NEHotspotHelper
@@ -2213,7 +2400,7 @@ export declare class NEHotspotHelper extends SDKHandle {
      * @availability iOS 9.0+
      * @deprecated iOS 26.0
      */
-    static register(options: $SDK30, queue: _Dispatch_DispatchQueue, handler: ((arg0: NEHotspotHelperCommand) => void)): boolean;
+    static register(options: $SDK29, queue: _Dispatch_DispatchQueue, handler: ((arg0: NEHotspotHelperCommand) => void)): boolean;
     /**
      * class func supportedNetworkInterfaces() -> [Any]?
      * @availability iOS 9.0+
@@ -2222,6 +2409,10 @@ export declare class NEHotspotHelper extends SDKHandle {
     static supportedNetworkInterfaces(): (Array<unknown>) | null;
     /** init() */
     static init(): NEHotspotHelper;
+    readonly $type: {
+        "c:objc(cs)NEHotspotHelper": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class NEHotspotHelperCommand
@@ -2255,6 +2446,10 @@ export declare class NEHotspotHelperCommand extends SDKHandle {
      * @availability iOS 18.0+
      */
     get interface(): _Network_NWInterface;
+    readonly $type: {
+        "c:objc(cs)NEHotspotHelperCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commandType": true;
         "network": true;
@@ -2313,6 +2508,10 @@ export declare class NEHotspotHelperResponse extends SDKHandle {
      * @availability iOS 9.0+
      */
     setNetworkList(networkList: Array<NEHotspotNetwork>): void;
+    readonly $type: {
+        "c:objc(cs)NEHotspotHelperResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum NEHotspotHelperResult
@@ -2331,13 +2530,11 @@ export declare const NEHotspotHelperResult: {
  * @availability iOS 11.0+
  */
 export declare class NEHotspotHS20Settings extends SDKHandle {
-    /** init() */
-    static init(): NEHotspotHS20Settings;
     /**
      * init(domainName: String, roamingEnabled: Bool)
      * @availability iOS 11.0+
      */
-    static initDomainNameRoamingEnabled(domainName: string, roamingEnabled: boolean): NEHotspotHS20Settings;
+    static init(domainName: string, roamingEnabled: boolean): NEHotspotHS20Settings;
     /**
      * var mccAndMNCs: [String] { get set }
      * @availability iOS 11.0+
@@ -2367,6 +2564,10 @@ export declare class NEHotspotHS20Settings extends SDKHandle {
      */
     get isRoamingEnabled(): boolean;
     set isRoamingEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NEHotspotHS20Settings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mccAndMNCs": true;
         "domainName": true;
@@ -2430,6 +2631,9 @@ export declare class NEHotspotManager extends SDKHandle {
      */
     get isEnabled(): boolean;
     set isEnabled(value: boolean);
+    readonly $type: {
+        "s:16NetworkExtension16NEHotspotManagerC": true;
+    };
 }
 /**
  * enum Error
@@ -2498,6 +2702,10 @@ export declare class NEHotspotNetwork extends SDKHandle {
      * @availability iOS 9.0+
      */
     get signalStrength(): number;
+    readonly $type: {
+        "c:objc(cs)NEHotspotNetwork": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bssid": true;
         "ssid": true;
@@ -2531,13 +2739,11 @@ export declare class NEIPv4Route extends SDKHandle {
      * @availability iOS 9.0+
      */
     static default(): NEIPv4Route;
-    /** init() */
-    static init(): NEIPv4Route;
     /**
      * init(destinationAddress address: String, subnetMask: String)
      * @availability iOS 9.0+
      */
-    static initDestinationAddressSubnetMask(address: string, subnetMask: string): NEIPv4Route;
+    static init(address: string, subnetMask: string): NEIPv4Route;
     /**
      * var destinationAddress: String { get }
      * @availability iOS 9.0+
@@ -2554,6 +2760,10 @@ export declare class NEIPv4Route extends SDKHandle {
      */
     get gatewayAddress(): (string) | null;
     set gatewayAddress(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NEIPv4Route": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "destinationAddress": true;
         "destinationSubnetMask": true;
@@ -2565,13 +2775,11 @@ export declare class NEIPv4Route extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class NEIPv4Settings extends SDKHandle {
-    /** init() */
-    static init(): NEIPv4Settings;
     /**
      * init(addresses: [String], subnetMasks: [String])
      * @availability iOS 9.0+
      */
-    static initAddressesSubnetMasks(addresses: Array<string>, subnetMasks: Array<string>): NEIPv4Settings;
+    static init(addresses: Array<string>, subnetMasks: Array<string>): NEIPv4Settings;
     /**
      * var addresses: [String] { get }
      * @availability iOS 9.0+
@@ -2581,19 +2789,23 @@ export declare class NEIPv4Settings extends SDKHandle {
      * var excludedRoutes: [NEIPv4Route]? { get set }
      * @availability iOS 9.0+
      */
-    get excludedRoutes(): $SDK36;
-    set excludedRoutes(value: $SDK36);
+    get excludedRoutes(): $SDK35;
+    set excludedRoutes(value: $SDK35);
     /**
      * var includedRoutes: [NEIPv4Route]? { get set }
      * @availability iOS 9.0+
      */
-    get includedRoutes(): $SDK36;
-    set includedRoutes(value: $SDK36);
+    get includedRoutes(): $SDK35;
+    set includedRoutes(value: $SDK35);
     /**
      * var subnetMasks: [String] { get }
      * @availability iOS 9.0+
      */
     get subnetMasks(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)NEIPv4Settings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addresses": true;
         "excludedRoutes": true;
@@ -2611,13 +2823,11 @@ export declare class NEIPv6Route extends SDKHandle {
      * @availability iOS 9.0+
      */
     static default(): NEIPv6Route;
-    /** init() */
-    static init(): NEIPv6Route;
     /**
      * init(destinationAddress address: String, networkPrefixLength: NSNumber)
      * @availability iOS 9.0+
      */
-    static initDestinationAddressNetworkPrefixLength(address: string, networkPrefixLength: _Foundation_NSNumber): NEIPv6Route;
+    static init(address: string, networkPrefixLength: _Foundation_NSNumber): NEIPv6Route;
     /**
      * var destinationAddress: String { get }
      * @availability iOS 9.0+
@@ -2634,6 +2844,10 @@ export declare class NEIPv6Route extends SDKHandle {
      */
     get gatewayAddress(): (string) | null;
     set gatewayAddress(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NEIPv6Route": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "destinationAddress": true;
         "destinationNetworkPrefixLength": true;
@@ -2645,13 +2859,11 @@ export declare class NEIPv6Route extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class NEIPv6Settings extends SDKHandle {
-    /** init() */
-    static init(): NEIPv6Settings;
     /**
      * init(addresses: [String], networkPrefixLengths: [NSNumber])
      * @availability iOS 9.0+
      */
-    static initAddressesNetworkPrefixLengths(addresses: Array<string>, networkPrefixLengths: $SDK29): NEIPv6Settings;
+    static init(addresses: Array<string>, networkPrefixLengths: $SDK28): NEIPv6Settings;
     /**
      * var addresses: [String] { get }
      * @availability iOS 9.0+
@@ -2661,19 +2873,23 @@ export declare class NEIPv6Settings extends SDKHandle {
      * var excludedRoutes: [NEIPv6Route]? { get set }
      * @availability iOS 9.0+
      */
-    get excludedRoutes(): $SDK37;
-    set excludedRoutes(value: $SDK37);
+    get excludedRoutes(): $SDK36;
+    set excludedRoutes(value: $SDK36);
     /**
      * var includedRoutes: [NEIPv6Route]? { get set }
      * @availability iOS 9.0+
      */
-    get includedRoutes(): $SDK37;
-    set includedRoutes(value: $SDK37);
+    get includedRoutes(): $SDK36;
+    set includedRoutes(value: $SDK36);
     /**
      * var networkPrefixLengths: [NSNumber] { get }
      * @availability iOS 9.0+
      */
-    get networkPrefixLengths(): $SDK29;
+    get networkPrefixLengths(): $SDK28;
+    readonly $type: {
+        "c:objc(cs)NEIPv6Settings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addresses": true;
         "excludedRoutes": true;
@@ -2723,6 +2939,10 @@ export declare class NEOnDemandRule extends SDKHandle {
      */
     get probeURL(): (string) | null;
     set probeURL(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NEOnDemandRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dnsSearchDomainMatch": true;
         "dnsServerAddressMatch": true;
@@ -2752,6 +2972,11 @@ declare const NEOnDemandRuleConnect_base: Omit<typeof NEOnDemandRule, "init" | "
 export declare class NEOnDemandRuleConnect extends NEOnDemandRuleConnect_base {
     /** init() */
     static init(): NEOnDemandRuleConnect;
+    readonly $type: {
+        "c:objc(cs)NEOnDemandRuleConnect": true;
+        "c:objc(cs)NEOnDemandRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dnsSearchDomainMatch": true;
         "dnsServerAddressMatch": true;
@@ -2769,6 +2994,11 @@ declare const NEOnDemandRuleDisconnect_base: Omit<typeof NEOnDemandRule, "init" 
 export declare class NEOnDemandRuleDisconnect extends NEOnDemandRuleDisconnect_base {
     /** init() */
     static init(): NEOnDemandRuleDisconnect;
+    readonly $type: {
+        "c:objc(cs)NEOnDemandRuleDisconnect": true;
+        "c:objc(cs)NEOnDemandRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dnsSearchDomainMatch": true;
         "dnsServerAddressMatch": true;
@@ -2790,8 +3020,13 @@ export declare class NEOnDemandRuleEvaluateConnection extends NEOnDemandRuleEval
      * var connectionRules: [NEEvaluateConnectionRule]? { get set }
      * @availability iOS 8.0+
      */
-    get connectionRules(): $SDK38;
-    set connectionRules(value: $SDK38);
+    get connectionRules(): $SDK37;
+    set connectionRules(value: $SDK37);
+    readonly $type: {
+        "c:objc(cs)NEOnDemandRuleEvaluateConnection": true;
+        "c:objc(cs)NEOnDemandRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dnsSearchDomainMatch": true;
         "dnsServerAddressMatch": true;
@@ -2810,6 +3045,11 @@ declare const NEOnDemandRuleIgnore_base: Omit<typeof NEOnDemandRule, "init" | "p
 export declare class NEOnDemandRuleIgnore extends NEOnDemandRuleIgnore_base {
     /** init() */
     static init(): NEOnDemandRuleIgnore;
+    readonly $type: {
+        "c:objc(cs)NEOnDemandRuleIgnore": true;
+        "c:objc(cs)NEOnDemandRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dnsSearchDomainMatch": true;
         "dnsServerAddressMatch": true;
@@ -2836,13 +3076,11 @@ export declare const NEOnDemandRuleInterfaceType: {
  * @availability iOS 10.0+
  */
 export declare class NEPacket extends SDKHandle {
-    /** init() */
-    static init(): NEPacket;
     /**
      * init(data: Data, protocolFamily: sa_family_t)
      * @availability iOS 10.0+
      */
-    static initDataProtocolFamily(data: ArrayBuffer, protocolFamily: SDKHandle): NEPacket;
+    static init(data: ArrayBuffer, protocolFamily: SDKHandle): NEPacket;
     /**
      * var data: Data { get }
      * @availability iOS 10.0+
@@ -2858,6 +3096,10 @@ export declare class NEPacket extends SDKHandle {
      * @availability iOS 10.0+
      */
     get protocolFamily(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)NEPacket": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "metadata": true;
@@ -2890,20 +3132,22 @@ export declare class NEPacketTunnelFlow extends SDKHandle {
      * func writePackets(_ packets: [Data], withProtocols protocols: [NSNumber]) -> Bool
      * @availability iOS 9.0+
      */
-    writePackets(packets: Array<ArrayBuffer>, protocols: $SDK29): boolean;
+    writePackets(packets: Array<ArrayBuffer>, protocols: $SDK28): boolean;
+    readonly $type: {
+        "c:objc(cs)NEPacketTunnelFlow": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class NETunnelNetworkSettings
  * @availability iOS 9.0+
  */
 export declare class NETunnelNetworkSettings extends SDKHandle {
-    /** init() */
-    static init(): NETunnelNetworkSettings;
     /**
      * init(tunnelRemoteAddress address: String)
      * @availability iOS 9.0+
      */
-    static initTunnelRemoteAddress(address: string): NETunnelNetworkSettings;
+    static init(address: string): NETunnelNetworkSettings;
     /**
      * @NSCopying var dnsSettings: NEDNSSettings? { get set }
      * @availability iOS 9.0+
@@ -2914,13 +3158,17 @@ export declare class NETunnelNetworkSettings extends SDKHandle {
      * @NSCopying var proxySettings: NEProxySettings? { get set }
      * @availability iOS 9.0+
      */
-    get proxySettings(): $SDK21;
-    set proxySettings(value: $SDK21);
+    get proxySettings(): $SDK20;
+    set proxySettings(value: $SDK20);
     /**
      * var tunnelRemoteAddress: String { get }
      * @availability iOS 9.0+
      */
     get tunnelRemoteAddress(): string;
+    readonly $type: {
+        "c:objc(cs)NETunnelNetworkSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dnsSettings": true;
         "proxySettings": true;
@@ -2951,14 +3199,19 @@ export declare class NEPacketTunnelNetworkSettings extends NEPacketTunnelNetwork
      * @NSCopying var mtu: NSNumber? { get set }
      * @availability iOS 9.0+
      */
-    get mtu(): $SDK41;
-    set mtu(value: $SDK41);
+    get mtu(): $SDK40;
+    set mtu(value: $SDK40);
     /**
      * @NSCopying var tunnelOverheadBytes: NSNumber? { get set }
      * @availability iOS 9.0+
      */
-    get tunnelOverheadBytes(): $SDK41;
-    set tunnelOverheadBytes(value: $SDK41);
+    get tunnelOverheadBytes(): $SDK40;
+    set tunnelOverheadBytes(value: $SDK40);
+    readonly $type: {
+        "c:objc(cs)NEPacketTunnelNetworkSettings": true;
+        "c:objc(cs)NETunnelNetworkSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dnsSettings": true;
         "proxySettings": true;
@@ -2986,7 +3239,7 @@ export declare class NEPacketTunnelProvider extends NEPacketTunnelProvider_base 
      * func startTunnel(options: [String : NSObject]? = nil) async throws
      * @availability iOS 9.0+
      */
-    startTunnel(options: $SDK30, completionHandler: $SDK0): void;
+    startTunnel(options: $SDK29, completionHandler: $SDK0): void;
     /**
      * func stopTunnel(with reason: NEProviderStopReason) async
      * @availability iOS 9.0+
@@ -3002,6 +3255,12 @@ export declare class NEPacketTunnelProvider extends NEPacketTunnelProvider_base 
      * @availability iOS 18.0+
      */
     get virtualInterface(): $SDK2;
+    readonly $type: {
+        "c:objc(cs)NEPacketTunnelProvider": true;
+        "c:objc(cs)NETunnelProvider": true;
+        "c:objc(cs)NEProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultPath": true;
         "appRules": true;
@@ -3036,6 +3295,10 @@ export declare class NEPrivateLTENetwork extends SDKHandle {
      */
     get trackingAreaCode(): (string) | null;
     set trackingAreaCode(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NEPrivateLTENetwork": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mobileCountryCode": true;
         "mobileNetworkCode": true;
@@ -3059,13 +3322,11 @@ export declare const NEProviderStopReason: {
  * @availability iOS 9.0+
  */
 export declare class NEProxyServer extends SDKHandle {
-    /** init() */
-    static init(): NEProxyServer;
     /**
      * init(address: String, port: Int)
      * @availability iOS 9.0+
      */
-    static initAddressPort(address: string, port: number): NEProxyServer;
+    static init(address: string, port: number): NEProxyServer;
     /**
      * var address: String { get }
      * @availability iOS 9.0+
@@ -3094,6 +3355,10 @@ export declare class NEProxyServer extends SDKHandle {
      */
     get username(): (string) | null;
     set username(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NEProxyServer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "address": true;
         "authenticationRequired": true;
@@ -3169,6 +3434,10 @@ export declare class NEProxySettings extends SDKHandle {
      */
     get proxyAutoConfigurationURL(): (string) | null;
     set proxyAutoConfigurationURL(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NEProxySettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "httpEnabled": true;
         "httpsEnabled": true;
@@ -3243,6 +3512,10 @@ export declare class NERelay extends SDKHandle {
      */
     get syntheticDNSAnswerIPv6Prefix(): (string) | null;
     set syntheticDNSAnswerIPv6Prefix(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NERelay": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "http2RelayURL": true;
         "http3RelayURL": true;
@@ -3352,6 +3625,10 @@ export declare class NERelayManager extends SDKHandle {
      */
     get relays(): (Array<NERelay>) | null;
     set relays(value: (Array<NERelay>) | null);
+    readonly $type: {
+        "c:objc(cs)NERelayManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isUIToggleEnabled": true;
         "isDNSFailoverAllowed": true;
@@ -3426,6 +3703,9 @@ export declare class NETunnelProviderError extends SDKHandle {
      * @availability iOS 9.0+
      */
     static get networkSettingsCanceled(): NETunnelProviderError_Code;
+    readonly $type: {
+        "s:SC21NETunnelProviderErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -3459,6 +3739,11 @@ export declare class NETunnelProviderProtocol extends NETunnelProviderProtocol_b
      */
     get providerConfiguration(): $SDK8;
     set providerConfiguration(value: $SDK8);
+    readonly $type: {
+        "c:objc(cs)NETunnelProviderProtocol": true;
+        "c:objc(cs)NEVPNProtocol": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "disconnectOnSleep": true;
         "enforceRoutes": true;
@@ -3512,7 +3797,7 @@ export declare class NEVPNConnection extends SDKHandle {
      * func startVPNTunnel(options: [String : NSObject]? = nil) throws
      * @availability iOS 9.0+
      */
-    startVPNTunnelOptions(options?: $SDK30): void;
+    startVPNTunnelOptions(options?: $SDK29): void;
     /**
      * func stopVPNTunnel()
      * @availability iOS 8.0+
@@ -3533,6 +3818,10 @@ export declare class NEVPNConnection extends SDKHandle {
      * @availability iOS 8.0+
      */
     get status(): NEVPNStatus;
+    readonly $type: {
+        "c:objc(cs)NEVPNConnection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connectedDate": true;
         "manager": true;
@@ -3562,6 +3851,11 @@ export declare class NETunnelProviderSession extends NETunnelProviderSession_bas
      * @availability iOS 9.0+
      */
     stopTunnel(): void;
+    readonly $type: {
+        "c:objc(cs)NETunnelProviderSession": true;
+        "c:objc(cs)NEVPNConnection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connectedDate": true;
         "manager": true;
@@ -3575,6 +3869,10 @@ export declare class NEURLFilter extends SDKHandle {
      * @availability iOS 26.0+
      */
     static verdict(url: string): Promise<NEURLFilter_Verdict>;
+    readonly $type: {
+        "c:objc(cs)NEURLFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Verdict
@@ -3615,6 +3913,10 @@ export interface NEURLFilterControlProvider {
  * @availability iOS 26.0+
  */
 export declare class NEURLFilterControlProviderConfiguration extends NEAppExtensionConfiguration {
+    readonly $type: {
+        "s:16NetworkExtension39NEURLFilterControlProviderConfigurationC": true;
+        "s:16NetworkExtension05NEAppB13ConfigurationC": true;
+    };
 }
 /**
  * class NEURLFilterManager
@@ -3694,8 +3996,8 @@ export declare class NEURLFilterManager extends SDKHandle {
      * var localizedDescription: LocalizedStringResource?
      * @availability iOS 26.0+
      */
-    get localizedDescription(): $SDK48;
-    set localizedDescription(value: $SDK48);
+    get localizedDescription(): $SDK47;
+    set localizedDescription(value: $SDK47);
     /**
      * func refreshPIRParameters() async throws
      * @availability iOS 26.0+
@@ -3759,6 +4061,9 @@ export declare class NEURLFilterManager extends SDKHandle {
      */
     get isEnabled(): boolean;
     set isEnabled(value: boolean);
+    readonly $type: {
+        "s:16NetworkExtension18NEURLFilterManagerC": true;
+    };
 }
 /**
  * enum Error
@@ -3834,6 +4139,9 @@ export declare class NEURLFilterManager_ParsingConfiguration extends SDKHandle {
      */
     get domain(): NEURLFilterManager_ParsingConfiguration_DomainOptions;
     set domain(value: NEURLFilterManager_ParsingConfiguration_DomainOptions);
+    readonly $type: {
+        "s:16NetworkExtension18NEURLFilterManagerC20ParsingConfigurationV": true;
+    };
 }
 /**
  * struct DomainOptions
@@ -3869,6 +4177,9 @@ export declare class NEURLFilterManager_ParsingConfiguration_DomainOptions exten
      */
     get stripWWW(): boolean;
     set stripWWW(value: boolean);
+    readonly $type: {
+        "s:16NetworkExtension18NEURLFilterManagerC20ParsingConfigurationV13DomainOptionsV": true;
+    };
 }
 /**
  * struct PathOptions
@@ -3898,6 +4209,9 @@ export declare class NEURLFilterManager_ParsingConfiguration_PathOptions extends
      */
     get segments(): number;
     set segments(value: number);
+    readonly $type: {
+        "s:16NetworkExtension18NEURLFilterManagerC20ParsingConfigurationV11PathOptionsV": true;
+    };
 }
 /**
  * struct QueryOptions
@@ -3921,6 +4235,9 @@ export declare class NEURLFilterManager_ParsingConfiguration_QueryOptions extend
      */
     get excluded(): boolean;
     set excluded(value: boolean);
+    readonly $type: {
+        "s:16NetworkExtension18NEURLFilterManagerC20ParsingConfigurationV12QueryOptionsV": true;
+    };
 }
 /**
  * enum ReportFormat
@@ -3984,12 +4301,18 @@ export declare class NEURLFilterPrefilter extends SDKHandle {
      * @availability iOS 26.0+
      */
     get hashCount(): number;
+    readonly $type: {
+        "s:16NetworkExtension20NEURLFilterPrefilterV": true;
+    };
 }
 /**
  * enum PrefilterData
  * @availability iOS 26.0+
  */
 export declare class NEURLFilterPrefilter_PrefilterData extends SDKHandle {
+    readonly $type: {
+        "s:16NetworkExtension20NEURLFilterPrefilterV0D4DataO": true;
+    };
 }
 /**
  * enum NEVPNConnectionError
@@ -4043,6 +4366,9 @@ export declare class NEVPNError extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get configurationReadWriteFailed(): NEVPNError_Code;
+    readonly $type: {
+        "s:SC10NEVPNErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -4145,13 +4471,11 @@ export declare const NEVPNIKEv2PostQuantumKeyExchangeMethod: {
  * @availability iOS 18.0+
  */
 export declare class NEVPNIKEv2PPKConfiguration extends SDKHandle {
-    /** init() */
-    static init(): NEVPNIKEv2PPKConfiguration;
     /**
      * init(identifier: String, keychainReference: Data)
      * @availability iOS 18.0+
      */
-    static initIdentifierKeychainReference(identifier: string, keychainReference: ArrayBuffer): NEVPNIKEv2PPKConfiguration;
+    static init(identifier: string, keychainReference: ArrayBuffer): NEVPNIKEv2PPKConfiguration;
     /**
      * var identifier: String { get }
      * @availability iOS 18.0+
@@ -4168,6 +4492,10 @@ export declare class NEVPNIKEv2PPKConfiguration extends SDKHandle {
      * @availability iOS 18.0+
      */
     get keychainReference(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)NEVPNIKEv2PPKConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "isMandatory": true;
@@ -4209,8 +4537,12 @@ export declare class NEVPNIKEv2SecurityAssociationParameters extends SDKHandle {
      * var postQuantumKeyExchangeMethods: [NEVPNIKEv2PostQuantumKeyExchangeMethod] { get set }
      * @availability iOS 26.0+
      */
-    get postQuantumKeyExchangeMethods(): $SDK49;
-    set postQuantumKeyExchangeMethods(value: $SDK49);
+    get postQuantumKeyExchangeMethods(): $SDK48;
+    set postQuantumKeyExchangeMethods(value: $SDK48);
+    readonly $type: {
+        "c:objc(cs)NEVPNIKEv2SecurityAssociationParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "diffieHellmanGroup": true;
         "encryptionAlgorithm": true;
@@ -4268,6 +4600,11 @@ export declare class NEVPNProtocolIPSec extends NEVPNProtocolIPSec_base {
      */
     get useExtendedAuthentication(): boolean;
     set useExtendedAuthentication(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NEVPNProtocolIPSec": true;
+        "c:objc(cs)NEVPNProtocol": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "disconnectOnSleep": true;
         "enforceRoutes": true;
@@ -4379,8 +4716,8 @@ export declare class NEVPNProtocolIKEv2 extends NEVPNProtocolIKEv2_base {
      * @NSCopying var ppkConfiguration: NEVPNIKEv2PPKConfiguration? { get set }
      * @availability iOS 18.0+
      */
-    get ppkConfiguration(): $SDK50;
-    set ppkConfiguration(value: $SDK50);
+    get ppkConfiguration(): $SDK49;
+    set ppkConfiguration(value: $SDK49);
     /**
      * var serverCertificateCommonName: String? { get set }
      * @availability iOS 8.0+
@@ -4405,6 +4742,12 @@ export declare class NEVPNProtocolIKEv2 extends NEVPNProtocolIKEv2_base {
      */
     get useConfigurationAttributeInternalIPSubnet(): boolean;
     set useConfigurationAttributeInternalIPSubnet(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NEVPNProtocolIKEv2": true;
+        "c:objc(cs)NEVPNProtocolIPSec": true;
+        "c:objc(cs)NEVPNProtocol": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "disconnectOnSleep": true;
         "enforceRoutes": true;
@@ -4464,8 +4807,13 @@ export declare class NSMutableURLRequest extends SDKHandle {
      * @availability iOS 9.0+
      */
     bind(command: NEHotspotHelperCommand): void;
+    readonly $type: {
+        "c:objc(cs)NSMutableURLRequest": true;
+        "c:objc(cs)NSURLRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let NEDNSProxyConfigurationDidChange: NSNotification.Name
@@ -4516,6 +4864,10 @@ export declare const NSNotification_Name: {
 export declare class NWEndpoint extends SDKHandle {
     /** init() */
     static init(): NWEndpoint;
+    readonly $type: {
+        "c:objc(cs)NWEndpoint": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const NWBonjourServiceEndpoint_base: Omit<typeof NWEndpoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NWEndpoint);
 /**
@@ -4529,9 +4881,7 @@ export declare class NWBonjourServiceEndpoint extends NWBonjourServiceEndpoint_b
      * @availability iOS 9.0+
      * @deprecated iOS 18.0
      */
-    static initNameTypeDomain(name: string, type: string, domain: string): NWBonjourServiceEndpoint;
-    /** init() */
-    static init(): NWBonjourServiceEndpoint;
+    static init(name: string, type: string, domain: string): NWBonjourServiceEndpoint;
     /**
      * var domain: String { get }
      * @availability iOS 9.0+
@@ -4550,6 +4900,11 @@ export declare class NWBonjourServiceEndpoint extends NWBonjourServiceEndpoint_b
      * @deprecated iOS 18.0
      */
     get type(): string;
+    readonly $type: {
+        "c:objc(cs)NWBonjourServiceEndpoint": true;
+        "c:objc(cs)NWEndpoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "domain": true;
         "name": true;
@@ -4568,9 +4923,7 @@ export declare class NWHostEndpoint extends NWHostEndpoint_base {
      * @availability iOS 9.0+
      * @deprecated iOS 18.0
      */
-    static initHostnamePort(hostname: string, port: string): NWHostEndpoint;
-    /** init() */
-    static init(): NWHostEndpoint;
+    static init(hostname: string, port: string): NWHostEndpoint;
     /**
      * var hostname: String { get }
      * @availability iOS 9.0+
@@ -4583,6 +4936,11 @@ export declare class NWHostEndpoint extends NWHostEndpoint_base {
      * @deprecated iOS 18.0
      */
     get port(): string;
+    readonly $type: {
+        "c:objc(cs)NWHostEndpoint": true;
+        "c:objc(cs)NWEndpoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hostname": true;
         "port": true;
@@ -4596,6 +4954,10 @@ export declare class NWHostEndpoint extends NWHostEndpoint_base {
 export declare class NWPath extends SDKHandle {
     /** init() */
     static init(): NWPath;
+    readonly $type: {
+        "c:objc(cs)NWPath": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum NWPathStatus
@@ -4623,14 +4985,12 @@ export declare class NWTCPConnection extends SDKHandle {
      * @deprecated iOS 18.0
      */
     cancel(): void;
-    /** init() */
-    static init(): NWTCPConnection;
     /**
      * init(upgradeFor connection: NWTCPConnection)
      * @availability iOS 9.0+
      * @deprecated iOS 18.0
      */
-    static initUpgradeFor(connection: NWTCPConnection): NWTCPConnection;
+    static init(connection: NWTCPConnection): NWTCPConnection;
     /**
      * func readLength(_ length: Int, completionHandler completion: @escaping (Data?, (any Error)?) -> Void)
      * @availability iOS 9.0+
@@ -4709,6 +5069,10 @@ export declare class NWTCPConnection extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get isViable(): boolean;
+    readonly $type: {
+        "c:objc(cs)NWTCPConnection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connectedPath": true;
         "endpoint": true;
@@ -4755,8 +5119,8 @@ export declare class NWTLSParameters extends SDKHandle {
      * @availability iOS 9.0+
      * @deprecated iOS 18.0
      */
-    get sslCipherSuites(): $SDK51;
-    set sslCipherSuites(value: $SDK51);
+    get sslCipherSuites(): $SDK50;
+    set sslCipherSuites(value: $SDK50);
     /**
      * var tlsSessionID: Data? { get set }
      * @availability iOS 9.0+
@@ -4778,6 +5142,10 @@ export declare class NWTLSParameters extends SDKHandle {
      */
     get minimumSSLProtocolVersion(): number;
     set minimumSSLProtocolVersion(value: number);
+    readonly $type: {
+        "c:objc(cs)NWTLSParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sslCipherSuites": true;
         "tlsSessionID": true;
@@ -4797,14 +5165,12 @@ export declare class NWUDPSession extends SDKHandle {
      * @deprecated iOS 18.0
      */
     cancel(): void;
-    /** init() */
-    static init(): NWUDPSession;
     /**
      * init(upgradeFor session: NWUDPSession)
      * @availability iOS 9.0+
      * @deprecated iOS 18.0
      */
-    static initUpgradeFor(session: NWUDPSession): NWUDPSession;
+    static init(session: NWUDPSession): NWUDPSession;
     /**
      * func setReadHandler(_ handler: @escaping ([Data]?, (any Error)?) -> Void, maxDatagrams: Int)
      * @availability iOS 9.0+
@@ -4871,6 +5237,10 @@ export declare class NWUDPSession extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get isViable(): boolean;
+    readonly $type: {
+        "c:objc(cs)NWUDPSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentPath": true;
         "endpoint": true;

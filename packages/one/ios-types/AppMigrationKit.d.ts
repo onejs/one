@@ -36,6 +36,9 @@ export declare class AppMigrationTester extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(platform: MigrationPlatform): Promise<AppMigrationTester>;
+    readonly $type: {
+        "s:15AppMigrationKit0aB6TesterC": true;
+    };
 }
 /**
  * final class AppExportController
@@ -47,6 +50,9 @@ export declare class AppMigrationTester_AppExportController extends SDKHandle {
      * @availability iOS 26.0+
      */
     exportResources(request?: (MigrationRequestWithOptions<MigrationDefaultSupportedOptions>) | null, progress?: $SDK1): Promise<AppMigrationTester_ResourcesExportResult>;
+    readonly $type: {
+        "s:15AppMigrationKit0aB6TesterC0A16ExportControllerC": true;
+    };
 }
 /**
  * final class AppImportController
@@ -63,6 +69,9 @@ export declare class AppMigrationTester_AppImportController extends SDKHandle {
      * @availability iOS 26.0+
      */
     importResources(extractedResourceURL: string, importRequest?: (ResourcesImportRequest) | null, progress?: $SDK1): Promise<void>;
+    readonly $type: {
+        "s:15AppMigrationKit0aB6TesterC0A16ImportControllerC": true;
+    };
 }
 /**
  * struct DeviceToDeviceExportProperties
@@ -89,6 +98,9 @@ export declare class AppMigrationTester_DeviceToDeviceExportProperties extends S
      * @availability iOS 26.0+
      */
     get version(): string;
+    readonly $type: {
+        "s:15AppMigrationKit0aB6TesterC08DeviceToE16ExportPropertiesV": true;
+    };
 }
 /**
  * struct ResourcesExportResult
@@ -105,6 +117,9 @@ export declare class AppMigrationTester_ResourcesExportResult extends SDKHandle 
      * @availability iOS 26.0+
      */
     get exportProperties(): AppMigrationTester_DeviceToDeviceExportProperties;
+    readonly $type: {
+        "s:15AppMigrationKit0aB6TesterC21ResourcesExportResultV": true;
+    };
 }
 /**
  * struct MigrationAppIdentifier
@@ -131,6 +146,9 @@ export declare class MigrationAppIdentifier extends SDKHandle {
      * @availability iOS 26.0+
      */
     get platform(): MigrationPlatform;
+    readonly $type: {
+        "s:15AppMigrationKit0bA10IdentifierV": true;
+    };
 }
 /**
  * struct StoreIdentifier
@@ -191,6 +209,9 @@ export declare class MigrationDataContainer extends SDKHandle {
      */
     get applicationSupportDirectory(): string;
     set applicationSupportDirectory(value: string);
+    readonly $type: {
+        "s:15AppMigrationKit0B13DataContainerV": true;
+    };
 }
 /**
  * enum MigrationDefaultSupportedOptions
@@ -212,6 +233,9 @@ export declare class MigrationDefaultSupportedOptions extends SDKHandle {
      * @availability iOS 26.0+
      */
     get rawValue(): string;
+    readonly $type: {
+        "s:15AppMigrationKit0B23DefaultSupportedOptionsO": true;
+    };
 }
 /**
  * typealias AllCases = [MigrationDefaultSupportedOptions]
@@ -265,6 +289,9 @@ export type MigrationRequest = MigrationRequestWithOptions<MigrationDefaultSuppo
  * @availability iOS 26.0+
  */
 export declare class MigrationRequestWithOptions<OptionsType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15AppMigrationKit0B18RequestWithOptionsV": true;
+    };
 }
 /**
  * enum MigrationStatus
@@ -281,6 +308,9 @@ export declare class MigrationStatus extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get importStatus(): (MigrationStatus) | null;
+    readonly $type: {
+        "s:15AppMigrationKit0B6StatusO": true;
+    };
 }
 /**
  * final class ResourcesArchiver
@@ -292,6 +322,9 @@ export declare class ResourcesArchiver extends SDKHandle {
      * @availability iOS 26.0+
      */
     appendItem(url: string, pathInArchive?: (string) | null): Promise<void>;
+    readonly $type: {
+        "s:15AppMigrationKit17ResourcesArchiverC": true;
+    };
 }
 /**
  * protocol ResourcesExporting : ResourcesExportingWithOptions where Self.OptionsType == MigrationDefaultSupportedOptions
@@ -349,5 +382,8 @@ export declare class ResourcesImportRequest extends SDKHandle {
      * @availability iOS 26.0+
      */
     get sourceVersion(): string;
+    readonly $type: {
+        "s:15AppMigrationKit22ResourcesImportRequestV": true;
+    };
 }
 export {};

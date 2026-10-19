@@ -21,6 +21,10 @@ export declare class AVCustomDeviceRoute extends SDKHandle {
      * @availability iOS 16.0+
      */
     get networkEndpoint(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)AVCustomDeviceRoute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bluetoothIdentifier": true;
         "networkEndpoint": true;
@@ -39,6 +43,10 @@ export declare class AVCustomRoutingActionItem extends SDKHandle {
      */
     get overrideTitle(): (string) | null;
     set overrideTitle(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)AVCustomRoutingActionItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "overrideTitle": true;
     };
@@ -93,6 +101,10 @@ export declare class AVCustomRoutingController extends SDKHandle {
      */
     get knownRouteIPs(): $SDK2;
     set knownRouteIPs(value: $SDK2);
+    readonly $type: {
+        "c:objc(cs)AVCustomRoutingController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorizedRoutes": true;
         "customActionItems": true;
@@ -138,6 +150,10 @@ export declare class AVCustomRoutingEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get route(): AVCustomDeviceRoute;
+    readonly $type: {
+        "c:objc(cs)AVCustomRoutingEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reason": true;
         "route": true;
@@ -169,6 +185,10 @@ export declare class AVCustomRoutingPartialIP extends SDKHandle {
      * @availability iOS 16.1+
      */
     get mask(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)AVCustomRoutingPartialIP": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "address": true;
         "mask": true;
@@ -196,6 +216,10 @@ export declare class AVRoutingPlaybackArbiter extends SDKHandle {
      */
     get preferredParticipantForNonMixableAudioRoutes(): (SDKHandle) | null;
     set preferredParticipantForNonMixableAudioRoutes(value: $SDK3);
+    readonly $type: {
+        "c:objc(cs)AVRoutingPlaybackArbiter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "preferredParticipantForExternalPlayback": true;
         "preferredParticipantForNonMixableAudioRoutes": true;

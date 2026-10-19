@@ -95,6 +95,9 @@ export declare class AccessoryNotification extends SDKHandle {
      * @availability iOS 26.5+
      */
     get subtitle(): (string) | null;
+    readonly $type: {
+        "s:22AccessoryNotifications0A12NotificationV": true;
+    };
 }
 /**
  * struct Action
@@ -121,12 +124,18 @@ export declare class AccessoryNotification_Action extends SDKHandle {
      * @availability iOS 26.5+
      */
     get title(): (string) | null;
+    readonly $type: {
+        "s:22AccessoryNotifications0A12NotificationV6ActionV": true;
+    };
 }
 /**
  * enum ActionType
  * @availability iOS 26.5+
  */
 export declare class AccessoryNotification_Action_ActionType extends SDKHandle {
+    readonly $type: {
+        "s:22AccessoryNotifications0A12NotificationV6ActionV0D4TypeO": true;
+    };
 }
 /**
  * struct Attributes
@@ -180,6 +189,9 @@ export type AccessoryNotification_Attributes_RawValue = number;
  * @availability iOS 26.5+
  */
 export declare class AccessoryNotification_DisplayDate extends SDKHandle {
+    readonly $type: {
+        "s:22AccessoryNotifications0A12NotificationV11DisplayDateO": true;
+    };
 }
 /**
  * struct File
@@ -196,6 +208,9 @@ export declare class AccessoryNotification_File extends SDKHandle {
      * @availability iOS 26.5+
      */
     get type(): _UniformTypeIdentifiers_UTType;
+    readonly $type: {
+        "s:22AccessoryNotifications0A12NotificationV4FileV": true;
+    };
 }
 /**
  * struct Identifier
@@ -217,6 +232,9 @@ export declare class AccessoryNotification_Identifier extends SDKHandle {
      * @availability iOS 26.5+
      */
     get sourceIdentifier(): string;
+    readonly $type: {
+        "s:22AccessoryNotifications0A12NotificationV10IdentifierV": true;
+    };
 }
 /**
  * class AccessoryNotificationCenter
@@ -243,6 +261,9 @@ export declare class AccessoryNotificationCenter extends SDKHandle {
      * @availability iOS 26.5+
      */
     static init(): AccessoryNotificationCenter;
+    readonly $type: {
+        "s:22AccessoryNotifications0A18NotificationCenterC": true;
+    };
 }
 /**
  * struct AlertingContext
@@ -280,6 +301,9 @@ export declare class AlertingContext extends SDKHandle {
      * @availability iOS 26.5+
      */
     get sound(): $SDK4;
+    readonly $type: {
+        "s:22AccessoryNotifications15AlertingContextV": true;
+    };
 }
 /**
  * enum Kind
@@ -297,6 +321,9 @@ export declare class AlertingContext_Sound extends SDKHandle {
      */
     get shouldIgnoreSilentMode(): boolean;
     set shouldIgnoreSilentMode(value: boolean);
+    readonly $type: {
+        "s:22AccessoryNotifications15AlertingContextV5SoundV": true;
+    };
 }
 /**
  * enum ForwardingDecision
@@ -344,6 +371,9 @@ export declare class NotificationResponse extends SDKHandle {
      */
     get userText(): (string) | null;
     set userText(value: (string) | null);
+    readonly $type: {
+        "s:22AccessoryNotifications20NotificationResponseV": true;
+    };
 }
 /**
  * final class NotificationsForwarding
@@ -355,6 +385,9 @@ export declare class NotificationsForwarding extends SDKHandle {
      * @availability iOS 26.5+
      */
     static get featureID(): string;
+    readonly $type: {
+        "s:22AccessoryNotifications0B10ForwardingC": true;
+    };
 }
 /**
  * protocol AccessoryNotificationsHandler : Sendable
@@ -443,5 +476,8 @@ export declare class NotificationsForwarding_Session extends SDKHandle {
      * @availability iOS 26.5+
      */
     send(message: _AccessoryTransportExtension_AccessoryMessage): Promise<void>;
+    readonly $type: {
+        "s:22AccessoryNotifications0B10ForwardingC7SessionC": true;
+    };
 }
 export {};

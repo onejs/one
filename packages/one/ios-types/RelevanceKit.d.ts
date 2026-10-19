@@ -58,6 +58,9 @@ export declare class RelevantContext extends SDKHandle {
      * @availability iOS 17.0+
      */
     static location(exact: _CoreLocation_CLRegion): RelevantContext;
+    readonly $type: {
+        "s:12RelevanceKit15RelevantContextV": true;
+    };
 }
 /**
  * struct DateKind
@@ -79,6 +82,9 @@ export declare class RelevantContext_DateKind extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get scheduled(): RelevantContext_DateKind;
+    readonly $type: {
+        "s:12RelevanceKit15RelevantContextV8DateKindV": true;
+    };
 }
 /**
  * struct FitnessCondition
@@ -95,6 +101,9 @@ export declare class RelevantContext_FitnessCondition extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get activityRingsIncomplete(): RelevantContext_FitnessCondition;
+    readonly $type: {
+        "s:12RelevanceKit15RelevantContextV16FitnessConditionV": true;
+    };
 }
 /**
  * struct HeadphonesCondition
@@ -106,6 +115,9 @@ export declare class RelevantContext_HeadphonesCondition extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get connected(): RelevantContext_HeadphonesCondition;
+    readonly $type: {
+        "s:12RelevanceKit15RelevantContextV19HeadphonesConditionV": true;
+    };
 }
 /**
  * struct InferredLocation
@@ -132,6 +144,9 @@ export declare class RelevantContext_InferredLocation extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get commute(): RelevantContext_InferredLocation;
+    readonly $type: {
+        "s:12RelevanceKit15RelevantContextV16InferredLocationV": true;
+    };
 }
 /**
  * struct SleepCondition
@@ -148,4 +163,7 @@ export declare class RelevantContext_SleepCondition extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get bedtime(): RelevantContext_SleepCondition;
+    readonly $type: {
+        "s:12RelevanceKit15RelevantContextV14SleepConditionV": true;
+    };
 }

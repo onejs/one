@@ -181,15 +181,18 @@ export declare class SKNode extends SDKHandle {
     /** var zRotation: CGFloat { get set } */
     get zRotation(): Promise<number>;
     setZRotation(value: number): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const SK3DNode_base: Omit<typeof SKNode, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
+declare const SK3DNode_base: Omit<typeof SKNode, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
 /**
  * class SK3DNode
  * @availability iOS 8.0+
  */
 export declare class SK3DNode extends SK3DNode_base {
-    /** init() */
-    static init(): SK3DNode;
     /**
      * init?(coder aDecoder: NSCoder)
      * @availability iOS 8.0+
@@ -240,6 +243,12 @@ export declare class SK3DNode extends SK3DNode_base {
      */
     get viewportSize(): $SDK7;
     set viewportSize(value: $SDK7);
+    readonly $type: {
+        "c:objc(cs)SK3DNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "autoenablesDefaultLighting": true;
         "loops": true;
@@ -583,8 +592,6 @@ export declare class SKAction extends SDKHandle {
      * @availability iOS 10.0+
      */
     static warp(warp: SKWarpGeometry, duration: number): (SKAction) | null;
-    /** init() */
-    static init(): SKAction;
     /** func reversed() -> SKAction */
     reversed(): SKAction;
     /** var duration: TimeInterval { get set } */
@@ -601,6 +608,10 @@ export declare class SKAction extends SDKHandle {
     /** var timingMode: SKActionTimingMode { get set } */
     get timingMode(): SKActionTimingMode;
     set timingMode(value: SKActionTimingMode);
+    readonly $type: {
+        "c:objc(cs)SKAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "speed": true;
@@ -626,13 +637,11 @@ export declare const SKActionTimingMode: {
  * @availability iOS 9.0+
  */
 export declare class SKAttribute extends SDKHandle {
-    /** init() */
-    static init(): SKAttribute;
     /**
      * init(name: String, type: SKAttributeType)
      * @availability iOS 9.0+
      */
-    static initNameType(name: string, type: SKAttributeType): SKAttribute;
+    static init(name: string, type: SKAttributeType): SKAttribute;
     /**
      * var name: String { get }
      * @availability iOS 9.0+
@@ -643,6 +652,10 @@ export declare class SKAttribute extends SDKHandle {
      * @availability iOS 9.0+
      */
     get type(): SKAttributeType;
+    readonly $type: {
+        "c:objc(cs)SKAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "type": true;
@@ -714,6 +727,10 @@ export declare class SKAttributeValue extends SDKHandle {
      */
     get vectorFloat4Value(): SDKHandle;
     set vectorFloat4Value(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)SKAttributeValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "floatValue": true;
         "vectorFloat2Value": true;
@@ -721,14 +738,12 @@ export declare class SKAttributeValue extends SDKHandle {
         "vectorFloat4Value": true;
     };
 }
-declare const SKAudioNode_base: Omit<typeof SKNode, "init" | "initCoder" | "initFileNamed" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
+declare const SKAudioNode_base: Omit<typeof SKNode, "initCoder" | "initFileNamed" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
 /**
  * class SKAudioNode
  * @availability iOS 9.0+
  */
 export declare class SKAudioNode extends SKAudioNode_base {
-    /** init() */
-    static init(): SKAudioNode;
     /**
      * init(avAudioNode node: AVAudioNode?)
      * @availability iOS 9.0+
@@ -767,6 +782,12 @@ export declare class SKAudioNode extends SKAudioNode_base {
      */
     get isPositional(): boolean;
     set isPositional(value: boolean);
+    readonly $type: {
+        "c:objc(cs)SKAudioNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "autoplayLooped": true;
         "avAudioNode": true;
@@ -803,6 +824,12 @@ export declare class SKCameraNode extends SKCameraNode_base {
     contains(node: SKNode): boolean;
     /** init() */
     static init(): SKCameraNode;
+    readonly $type: {
+        "c:objc(cs)SKCameraNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** typealias SKColor = UIColor */
 export type SKColor = _UIKit_UIColor;
@@ -875,6 +902,10 @@ export declare class SKConstraint extends SDKHandle {
      */
     get referenceNode(): (SKNode) | null;
     set referenceNode(value: (SKNode) | null);
+    readonly $type: {
+        "c:objc(cs)SKConstraint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enabled": true;
         "referenceNode": true;
@@ -888,6 +919,12 @@ export declare class SKCropNode extends SKCropNode_base {
     /** var maskNode: SKNode? { get set } */
     get maskNode(): (SKNode) | null;
     set maskNode(value: (SKNode) | null);
+    readonly $type: {
+        "c:objc(cs)SKCropNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "maskNode": true;
     };
@@ -931,6 +968,12 @@ export declare class SKEffectNode extends SKEffectNode_base {
     /** var shouldRasterize: Bool { get set } */
     get shouldRasterize(): boolean;
     set shouldRasterize(value: boolean);
+    readonly $type: {
+        "c:objc(cs)SKEffectNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeValues": true;
         "blendMode": true;
@@ -1121,6 +1164,12 @@ export declare class SKEmitterNode extends SKEmitterNode_base {
     /** var yAcceleration: CGFloat { get set } */
     get yAcceleration(): number;
     set yAcceleration(value: number);
+    readonly $type: {
+        "c:objc(cs)SKEmitterNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeValues": true;
         "emissionAngle": true;
@@ -1304,6 +1353,12 @@ export declare class SKFieldNode extends SKFieldNode_base {
      */
     get texture(): (SKTexture) | null;
     set texture(value: (SKTexture) | null);
+    readonly $type: {
+        "c:objc(cs)SKFieldNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animationSpeed": true;
         "categoryBitMask": true;
@@ -1334,8 +1389,6 @@ export declare class SKKeyframeSequence extends SDKHandle {
     getKeyframeTime(index: number): number;
     /** func getKeyframeValue(for index: Int) -> Any */
     getKeyframeValue(index: number): unknown;
-    /** init() */
-    static init(): SKKeyframeSequence;
     /** convenience init(capacity numItems: Int) */
     static initCapacity(numItems: number): SKKeyframeSequence;
     /** init?(coder aDecoder: NSCoder) */
@@ -1360,6 +1413,10 @@ export declare class SKKeyframeSequence extends SDKHandle {
     /** var repeatMode: SKRepeatMode { get set } */
     get repeatMode(): SKRepeatMode;
     set repeatMode(value: SKRepeatMode);
+    readonly $type: {
+        "c:objc(cs)SKKeyframeSequence": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolationMode": true;
         "repeatMode": true;
@@ -1377,9 +1434,8 @@ export declare const SKLabelHorizontalAlignmentMode: {
      */
     init(rawValue: number): (SKLabelHorizontalAlignmentMode) | null;
 };
-declare const SKLabelNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
 /** class SKLabelNode */
-export declare class SKLabelNode extends SKLabelNode_base {
+export declare class SKLabelNode extends SKNode {
     /**
      * convenience init(attributedText: NSAttributedString?)
      * @availability iOS 11.0+
@@ -1387,8 +1443,6 @@ export declare class SKLabelNode extends SKLabelNode_base {
     static initAttributedText(attributedText?: $SDK16): SKLabelNode;
     /** convenience init(text: String?) */
     static initText(text?: (string) | null): SKLabelNode;
-    /** init() */
-    static init(): SKLabelNode;
     /** init(fontNamed fontName: String?) */
     static initFontNamed(fontName?: (string) | null): SKLabelNode;
     /**
@@ -1442,6 +1496,12 @@ export declare class SKLabelNode extends SKLabelNode_base {
     /** var verticalAlignmentMode: SKLabelVerticalAlignmentMode { get set } */
     get verticalAlignmentMode(): SKLabelVerticalAlignmentMode;
     set verticalAlignmentMode(value: SKLabelVerticalAlignmentMode);
+    readonly $type: {
+        "c:objc(cs)SKLabelNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributedText": true;
         "blendMode": true;
@@ -1514,6 +1574,12 @@ export declare class SKLightNode extends SKLightNode_base {
      */
     get shadowColor(): _UIKit_UIColor;
     set shadowColor(value: _UIKit_UIColor);
+    readonly $type: {
+        "c:objc(cs)SKLightNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ambientColor": true;
         "categoryBitMask": true;
@@ -1556,8 +1622,6 @@ export declare class SKTexture extends SDKHandle {
      * @availability iOS 9.0+
      */
     cgImage(): _CoreGraphics_CGImage;
-    /** init() */
-    static init(): SKTexture;
     /** func preload() async */
     preloadCompletionHandler(completionHandler: (() => void)): void;
     /** func size() -> CGSize */
@@ -1584,19 +1648,20 @@ export declare class SKTexture extends SDKHandle {
     set usesMipmaps(value: boolean);
     /** var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)SKTexture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "filteringMode": true;
         "usesMipmaps": true;
     };
 }
-declare const SKMutableTexture_base: Omit<typeof SKTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKTexture);
 /**
  * class SKMutableTexture
  * @availability iOS 8.0+
  */
-export declare class SKMutableTexture extends SKMutableTexture_base {
-    /** init() */
-    static init(): SKMutableTexture;
+export declare class SKMutableTexture extends SKTexture {
     /**
      * init(size: CGSize)
      * @availability iOS 8.0+
@@ -1612,6 +1677,11 @@ export declare class SKMutableTexture extends SKMutableTexture_base {
      * @availability iOS 8.0+
      */
     modifyPixelData(block: ((arg0: (SDKHandle) | null, arg1: number) => void)): void;
+    readonly $type: {
+        "c:objc(cs)SKMutableTexture": true;
+        "c:objc(cs)SKTexture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "filteringMode": true;
         "usesMipmaps": true;
@@ -1687,8 +1757,6 @@ export declare class SKPhysicsBody extends SDKHandle {
     applyImpulseAt(impulse: $SDK9, point: $SDK1): void;
     /** func applyTorque(_ torque: CGFloat) */
     applyTorque(torque: number): void;
-    /** init() */
-    static init(): SKPhysicsBody;
     /** var affectedByGravity: Bool { get set } */
     get affectedByGravity(): boolean;
     set affectedByGravity(value: boolean);
@@ -1761,6 +1829,10 @@ export declare class SKPhysicsBody extends SDKHandle {
     /** var velocity: CGVector { get set } */
     get velocity(): $SDK9;
     set velocity(value: $SDK9);
+    readonly $type: {
+        "c:objc(cs)SKPhysicsBody": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "affectedByGravity": true;
         "allowsRotation": true;
@@ -1800,6 +1872,10 @@ export declare class SKPhysicsContact extends SDKHandle {
     get contactNormal(): $SDK9;
     /** var contactPoint: CGPoint { get } */
     get contactPoint(): $SDK1;
+    readonly $type: {
+        "c:objc(cs)SKPhysicsContact": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bodyA": true;
         "bodyB": true;
@@ -1829,6 +1905,10 @@ export declare class SKPhysicsJoint extends SDKHandle {
     get reactionForce(): $SDK9;
     /** var reactionTorque: CGFloat { get } */
     get reactionTorque(): number;
+    readonly $type: {
+        "c:objc(cs)SKPhysicsJoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bodyA": true;
         "bodyB": true;
@@ -1843,6 +1923,11 @@ export declare class SKPhysicsJointFixed extends SKPhysicsJointFixed_base {
     static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: $SDK1): SKPhysicsJointFixed;
     /** init() */
     static init(): SKPhysicsJointFixed;
+    readonly $type: {
+        "c:objc(cs)SKPhysicsJointFixed": true;
+        "c:objc(cs)SKPhysicsJoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bodyA": true;
         "bodyB": true;
@@ -1860,6 +1945,11 @@ export declare class SKPhysicsJointLimit extends SKPhysicsJointLimit_base {
     /** var maxLength: CGFloat { get set } */
     get maxLength(): number;
     set maxLength(value: number);
+    readonly $type: {
+        "c:objc(cs)SKPhysicsJointLimit": true;
+        "c:objc(cs)SKPhysicsJoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bodyA": true;
         "bodyB": true;
@@ -1890,6 +1980,11 @@ export declare class SKPhysicsJointPin extends SKPhysicsJointPin_base {
     /** var upperAngleLimit: CGFloat { get set } */
     get upperAngleLimit(): number;
     set upperAngleLimit(value: number);
+    readonly $type: {
+        "c:objc(cs)SKPhysicsJointPin": true;
+        "c:objc(cs)SKPhysicsJoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bodyA": true;
         "bodyB": true;
@@ -1918,6 +2013,11 @@ export declare class SKPhysicsJointSliding extends SKPhysicsJointSliding_base {
     /** var upperDistanceLimit: CGFloat { get set } */
     get upperDistanceLimit(): number;
     set upperDistanceLimit(value: number);
+    readonly $type: {
+        "c:objc(cs)SKPhysicsJointSliding": true;
+        "c:objc(cs)SKPhysicsJoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bodyA": true;
         "bodyB": true;
@@ -1941,6 +2041,11 @@ export declare class SKPhysicsJointSpring extends SKPhysicsJointSpring_base {
     /** var frequency: CGFloat { get set } */
     get frequency(): number;
     set frequency(value: number);
+    readonly $type: {
+        "c:objc(cs)SKPhysicsJointSpring": true;
+        "c:objc(cs)SKPhysicsJoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bodyA": true;
         "bodyB": true;
@@ -1980,6 +2085,10 @@ export declare class SKPhysicsWorld extends SDKHandle {
     /** var speed: CGFloat { get set } */
     get speed(): number;
     set speed(value: number);
+    readonly $type: {
+        "c:objc(cs)SKPhysicsWorld": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contactDelegate": true;
         "gravity": true;
@@ -2016,8 +2125,6 @@ export declare class SKRange extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initValueVariance(value: number, variance: number): SKRange;
-    /** init() */
-    static init(): SKRange;
     /**
      * init(lowerLimit lower: CGFloat, upperLimit upper: CGFloat)
      * @availability iOS 8.0+
@@ -2035,6 +2142,10 @@ export declare class SKRange extends SDKHandle {
      */
     get upperLimit(): number;
     set upperLimit(value: number);
+    readonly $type: {
+        "c:objc(cs)SKRange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "lowerLimit": true;
         "upperLimit": true;
@@ -2045,13 +2156,11 @@ export declare class SKRange extends SDKHandle {
  * @availability iOS 8.0+
  */
 export declare class SKReachConstraints extends SDKHandle {
-    /** init() */
-    static init(): SKReachConstraints;
     /**
      * init(lowerAngleLimit: CGFloat, upperAngleLimit: CGFloat)
      * @availability iOS 8.0+
      */
-    static initLowerAngleLimitUpperAngleLimit(lowerAngleLimit: number, upperAngleLimit: number): SKReachConstraints;
+    static init(lowerAngleLimit: number, upperAngleLimit: number): SKReachConstraints;
     /**
      * var lowerAngleLimit: CGFloat { get set }
      * @availability iOS 8.0+
@@ -2064,12 +2173,16 @@ export declare class SKReachConstraints extends SDKHandle {
      */
     get upperAngleLimit(): number;
     set upperAngleLimit(value: number);
+    readonly $type: {
+        "c:objc(cs)SKReachConstraints": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "lowerAngleLimit": true;
         "upperAngleLimit": true;
     };
 }
-declare const SKReferenceNode_base: Omit<typeof SKNode, "init" | "initCoder" | "initFileNamed" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
+declare const SKReferenceNode_base: Omit<typeof SKNode, "initCoder" | "initFileNamed" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
 /**
  * class SKReferenceNode
  * @availability iOS 9.0+
@@ -2090,8 +2203,6 @@ export declare class SKReferenceNode extends SKReferenceNode_base {
      * @availability iOS 9.0+
      */
     didLoad(node?: (SKNode) | null): void;
-    /** init() */
-    static init(): SKReferenceNode;
     /**
      * init?(coder aDecoder: NSCoder)
      * @availability iOS 9.0+
@@ -2112,6 +2223,12 @@ export declare class SKReferenceNode extends SKReferenceNode_base {
      * @availability iOS 9.0+
      */
     resolve(): void;
+    readonly $type: {
+        "c:objc(cs)SKReferenceNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class SKRegion
@@ -2128,8 +2245,6 @@ export declare class SKRegion extends SDKHandle {
      * @availability iOS 8.0+
      */
     contains(point: $SDK1): boolean;
-    /** init() */
-    static init(): SKRegion;
     /**
      * init(path: CGPath)
      * @availability iOS 8.0+
@@ -2170,6 +2285,10 @@ export declare class SKRegion extends SDKHandle {
      * @availability iOS 8.0+
      */
     get path(): $SDK19;
+    readonly $type: {
+        "c:objc(cs)SKRegion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "path": true;
     };
@@ -2183,9 +2302,7 @@ export declare class SKRenderer extends SDKHandle {
      * init(device: any MTLDevice)
      * @availability iOS 11.0+
      */
-    static initDevice(device: SDKHandle): SKRenderer;
-    /** init() */
-    static init(): SKRenderer;
+    static init(device: SDKHandle): SKRenderer;
     /**
      * func render(withViewport viewport: CGRect, commandBuffer: any MTLCommandBuffer, renderPassDescriptor: MTLRenderPassDescriptor)
      * @availability iOS 11.0+
@@ -2249,6 +2366,10 @@ export declare class SKRenderer extends SDKHandle {
      */
     get showsQuadCount(): boolean;
     set showsQuadCount(value: boolean);
+    readonly $type: {
+        "c:objc(cs)SKRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ignoresSiblingOrder": true;
         "scene": true;
@@ -2291,10 +2412,8 @@ export declare class SKScene extends SKScene_base {
     didMove(view: SKView): void;
     /** func didSimulatePhysics() */
     didSimulatePhysics(): void;
-    /** init() */
-    static init(): SKScene;
     /** init(size: CGSize) */
-    static initSize(size: $SDK7): SKScene;
+    static init(size: $SDK7): SKScene;
     /**
      * func sceneDidLoad()
      * @availability iOS 10.0+
@@ -2343,6 +2462,13 @@ export declare class SKScene extends SKScene_base {
     set size(value: $SDK7);
     /** weak var view: SKView? { get } */
     get view(): (SKView) | null;
+    readonly $type: {
+        "c:objc(cs)SKScene": true;
+        "c:objc(cs)SKEffectNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeValues": true;
         "blendMode": true;
@@ -2421,8 +2547,6 @@ export declare class SKShader extends SDKHandle {
      * @availability iOS 8.0+
      */
     addUniform(uniform: SKUniform): void;
-    /** init() */
-    static init(): SKShader;
     /**
      * init(source: String)
      * @availability iOS 8.0+
@@ -2461,13 +2585,17 @@ export declare class SKShader extends SDKHandle {
      */
     get uniforms(): Array<SKUniform>;
     set uniforms(value: Array<SKUniform>);
+    readonly $type: {
+        "c:objc(cs)SKShader": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributes": true;
         "source": true;
         "uniforms": true;
     };
 }
-declare const SKShapeNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
+declare const SKShapeNode_base: Omit<typeof SKNode, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
 /** class SKShapeNode */
 export declare class SKShapeNode extends SKShapeNode_base {
     /**
@@ -2525,8 +2653,6 @@ export declare class SKShapeNode extends SKShapeNode_base {
      * @availability iOS 8.0+
      */
     static initSplinePointsCount(points: "animatableData" | SDKHandle, numPoints: number): SKShapeNode;
-    /** init() */
-    static init(): SKShapeNode;
     /**
      * func setValue(_ value: SKAttributeValue, forAttribute key: String)
      * @availability iOS 10.0+
@@ -2601,6 +2727,12 @@ export declare class SKShapeNode extends SKShapeNode_base {
     set strokeTexture(value: (SKTexture) | null);
     /** @MainActor @preconcurrency var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): Promise<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)SKShapeNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAntialiased": true;
         "attributeValues": true;
@@ -2620,7 +2752,7 @@ export declare class SKShapeNode extends SKShapeNode_base {
         "strokeTexture": true;
     };
 }
-declare const SKSpriteNode_base: Omit<typeof SKNode, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
+declare const SKSpriteNode_base: Omit<typeof SKNode, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
 /** class SKSpriteNode */
 export declare class SKSpriteNode extends SKSpriteNode_base {
     /** convenience init(imageNamed name: String, normalMapped generateNormalMap: Bool) */
@@ -2629,8 +2761,6 @@ export declare class SKSpriteNode extends SKSpriteNode_base {
     static initTextureNormalMap(texture?: (SKTexture) | null, normalMap?: (SKTexture) | null): SKSpriteNode;
     /** convenience init(texture: SKTexture?, size: CGSize) */
     static initTextureSize(texture: (SKTexture) | null, size: $SDK7): SKSpriteNode;
-    /** init() */
-    static init(): SKSpriteNode;
     /** init?(coder aDecoder: NSCoder) */
     static initCoder(aDecoder: _Foundation_NSCoder): (SKSpriteNode) | null;
     /** convenience init(color: UIColor, size: CGSize) */
@@ -2715,6 +2845,12 @@ export declare class SKSpriteNode extends SKSpriteNode_base {
     set texture(value: (SKTexture) | null);
     /** @MainActor @preconcurrency var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): Promise<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)SKSpriteNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchorPoint": true;
         "attributeValues": true;
@@ -2747,8 +2883,6 @@ export declare class SKTextureAtlas extends SDKHandle {
      * @availability iOS 9.0+
      */
     static preloadTextureAtlasesNamed(atlasNames: Array<string>, completionHandler: ((arg0: (NativeError) | null, arg1: Array<SKTextureAtlas>) => void)): void;
-    /** init() */
-    static init(): SKTextureAtlas;
     /** func preload() async */
     preload(completionHandler: (() => void)): void;
     /** func textureNamed(_ name: String) -> SKTexture */
@@ -2757,6 +2891,10 @@ export declare class SKTextureAtlas extends SDKHandle {
     get textureNames(): Array<string>;
     /** var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)SKTextureAtlas": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "textureNames": true;
     };
@@ -2965,8 +3103,6 @@ export declare const SKTileAdjacencyMask: {
  * @availability iOS 10.0+
  */
 export declare class SKTileDefinition extends SDKHandle {
-    /** init() */
-    static init(): SKTileDefinition;
     /**
      * init(texture: SKTexture)
      * @availability iOS 10.0+
@@ -3052,6 +3188,10 @@ export declare class SKTileDefinition extends SDKHandle {
      */
     get userData(): $SDK6;
     set userData(value: $SDK6);
+    readonly $type: {
+        "c:objc(cs)SKTileDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "flipHorizontally": true;
         "flipVertically": true;
@@ -3087,8 +3227,6 @@ export declare class SKTileGroup extends SDKHandle {
      * @availability iOS 10.0+
      */
     static empty(): SKTileGroup;
-    /** init() */
-    static init(): SKTileGroup;
     /**
      * init(rules: [SKTileGroupRule])
      * @availability iOS 10.0+
@@ -3111,6 +3249,10 @@ export declare class SKTileGroup extends SDKHandle {
      */
     get rules(): Array<SKTileGroupRule>;
     set rules(value: Array<SKTileGroupRule>);
+    readonly $type: {
+        "c:objc(cs)SKTileGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "rules": true;
@@ -3121,13 +3263,11 @@ export declare class SKTileGroup extends SDKHandle {
  * @availability iOS 10.0+
  */
 export declare class SKTileGroupRule extends SDKHandle {
-    /** init() */
-    static init(): SKTileGroupRule;
     /**
      * init(adjacency: SKTileAdjacencyMask, tileDefinitions: [SKTileDefinition])
      * @availability iOS 10.0+
      */
-    static initAdjacencyTileDefinitions(adjacency: SKTileAdjacencyMask, tileDefinitions: Array<SKTileDefinition>): SKTileGroupRule;
+    static init(adjacency: SKTileAdjacencyMask, tileDefinitions: Array<SKTileDefinition>): SKTileGroupRule;
     /**
      * var adjacency: SKTileAdjacencyMask { get set }
      * @availability iOS 10.0+
@@ -3146,13 +3286,17 @@ export declare class SKTileGroupRule extends SDKHandle {
      */
     get tileDefinitions(): Array<SKTileDefinition>;
     set tileDefinitions(value: Array<SKTileDefinition>);
+    readonly $type: {
+        "c:objc(cs)SKTileGroupRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adjacency": true;
         "name": true;
         "tileDefinitions": true;
     };
 }
-declare const SKTileMapNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
+declare const SKTileMapNode_base: Omit<typeof SKNode, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
 /**
  * class SKTileMapNode
  * @availability iOS 10.0+
@@ -3168,8 +3312,6 @@ export declare class SKTileMapNode extends SKTileMapNode_base {
      * @availability iOS 10.0+
      */
     fill(tileGroup?: (SKTileGroup) | null): void;
-    /** init() */
-    static init(): SKTileMapNode;
     /**
      * init(tileSet: SKTileSet, columns: Int, rows: Int, tileSize: CGSize)
      * @availability iOS 10.0+
@@ -3302,6 +3444,12 @@ export declare class SKTileMapNode extends SKTileMapNode_base {
      */
     get tileSize(): $SDK7;
     set tileSize(value: $SDK7);
+    readonly $type: {
+        "c:objc(cs)SKTileMapNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchorPoint": true;
         "attributeValues": true;
@@ -3328,8 +3476,6 @@ export declare class SKTileSet extends SDKHandle {
      * @availability iOS 10.0+
      */
     static initNamed(name: string): (SKTileSet) | null;
-    /** init() */
-    static init(): SKTileSet;
     /**
      * init(tileGroups: [SKTileGroup])
      * @availability iOS 10.0+
@@ -3370,6 +3516,10 @@ export declare class SKTileSet extends SDKHandle {
      */
     get type(): SKTileSetType;
     set type(value: SKTileSetType);
+    readonly $type: {
+        "c:objc(cs)SKTileSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultTileGroup": true;
         "defaultTileSize": true;
@@ -3440,6 +3590,12 @@ export declare class SKTransformNode extends SKTransformNode_base {
      */
     get yRotation(): number;
     set yRotation(value: number);
+    readonly $type: {
+        "c:objc(cs)SKTransformNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "xRotation": true;
         "yRotation": true;
@@ -3474,15 +3630,17 @@ export declare class SKTransition extends SDKHandle {
     /** class func reveal(with direction: SKTransitionDirection, duration sec: TimeInterval) -> SKTransition */
     static reveal(direction: SKTransitionDirection, sec: number): SKTransition;
     /** init(ciFilter filter: CIFilter, duration sec: TimeInterval) */
-    static initCiFilterDuration(filter: _CoreImage_CIFilter, sec: number): SKTransition;
-    /** init() */
-    static init(): SKTransition;
+    static init(filter: _CoreImage_CIFilter, sec: number): SKTransition;
     /** var pausesIncomingScene: Bool { get set } */
     get pausesIncomingScene(): boolean;
     set pausesIncomingScene(value: boolean);
     /** var pausesOutgoingScene: Bool { get set } */
     get pausesOutgoingScene(): boolean;
     set pausesOutgoingScene(value: boolean);
+    readonly $type: {
+        "c:objc(cs)SKTransition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pausesIncomingScene": true;
         "pausesOutgoingScene": true;
@@ -3505,8 +3663,6 @@ export declare const SKTransitionDirection: {
  * @availability iOS 8.0+
  */
 export declare class SKUniform extends SDKHandle {
-    /** init() */
-    static init(): SKUniform;
     /**
      * init(name: String)
      * @availability iOS 8.0+
@@ -3688,6 +3844,10 @@ export declare class SKUniform extends SDKHandle {
      */
     get vectorFloat4Value(): SDKHandle;
     set vectorFloat4Value(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)SKUniform": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "floatMatrix2Value": true;
         "floatMatrix3Value": true;
@@ -3719,11 +3879,9 @@ export declare const SKUniformType: {
      */
     init(rawValue: number): (SKUniformType) | null;
 };
-declare const SKVideoNode_base: Omit<typeof SKNode, "init" | "initCoder" | "initFileNamed" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
+declare const SKVideoNode_base: Omit<typeof SKNode, "initCoder" | "initFileNamed" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
 /** class SKVideoNode */
 export declare class SKVideoNode extends SKVideoNode_base {
-    /** init() */
-    static init(): SKVideoNode;
     /** init(avPlayer player: AVPlayer) */
     static initAvPlayer(player: _AVFoundation_AVPlayer): SKVideoNode;
     /** init?(coder aDecoder: NSCoder) */
@@ -3760,6 +3918,12 @@ export declare class SKVideoNode extends SKVideoNode_base {
     /** var size: CGSize { get set } */
     get size(): $SDK7;
     set size(value: $SDK7);
+    readonly $type: {
+        "c:objc(cs)SKVideoNode": true;
+        "c:objc(cs)SKNode": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchorPoint": true;
         "size": true;
@@ -3860,6 +4024,12 @@ export declare class SKView extends SDKHandle {
      */
     get showsQuadCount(): boolean;
     set showsQuadCount(value: boolean);
+    readonly $type: {
+        "c:objc(cs)SKView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsTransparency": true;
         "isAsynchronous": true;
@@ -3899,13 +4069,16 @@ export interface SKWarpable {
 export declare class SKWarpGeometry extends SDKHandle {
     /** init() */
     static init(): SKWarpGeometry;
+    readonly $type: {
+        "c:objc(cs)SKWarpGeometry": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const SKWarpGeometryGrid_base: Omit<typeof SKWarpGeometry, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKWarpGeometry);
 /**
  * class SKWarpGeometryGrid
  * @availability iOS 10.0+
  */
-export declare class SKWarpGeometryGrid extends SKWarpGeometryGrid_base {
+export declare class SKWarpGeometryGrid extends SKWarpGeometry {
     /**
      * convenience init(columns cols: Int, rows: Int)
      * @availability iOS 10.0+
@@ -3916,8 +4089,6 @@ export declare class SKWarpGeometryGrid extends SKWarpGeometryGrid_base {
      * @availability iOS 10.0+
      */
     destPosition(index: number): SDKHandle;
-    /** init() */
-    static init(): SKWarpGeometryGrid;
     /**
      * init?(coder aDecoder: NSCoder)
      * @availability iOS 10.0+
@@ -3958,6 +4129,11 @@ export declare class SKWarpGeometryGrid extends SKWarpGeometryGrid_base {
      * @availability iOS 10.0+
      */
     static initColumnsRowsSourcePositionsDestinationPositions(columns: number, rows: number, sourcePositions?: Array<SDKHandle>, destinationPositions?: Array<SDKHandle>): SKWarpGeometryGrid;
+    readonly $type: {
+        "c:objc(cs)SKWarpGeometryGrid": true;
+        "c:objc(cs)SKWarpGeometry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "numberOfColumns": true;
         "numberOfRows": true;
@@ -3969,6 +4145,10 @@ export declare class UITouch extends SDKHandle {
     location(node: SKNode): Promise<$SDK1>;
     /** func previousLocation(in node: SKNode) -> CGPoint */
     previousLocation(node: SKNode): Promise<$SDK1>;
+    readonly $type: {
+        "c:objc(cs)UITouch": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** var PHYSICSKIT_MINUS_GL_IMPORTS: Int32 { get } */
 export declare const PHYSICSKIT_MINUS_GL_IMPORTS: number;

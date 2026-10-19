@@ -100,6 +100,9 @@ export declare class FaceGroupAnalyzer extends SDKHandle {
      * @availability iOS 27.0+
      */
     get allFaces(): SDKHandle;
+    readonly $type: {
+        "s:17MediaIntelligence17FaceGroupAnalyzerC": true;
+    };
 }
 /**
  * struct Entity
@@ -111,6 +114,9 @@ export declare class FaceGroupAnalyzer_Entity extends SDKHandle {
      * @availability iOS 27.0+
      */
     get id(): FaceGroupAnalyzer_Entity_ID;
+    readonly $type: {
+        "s:17MediaIntelligence17FaceGroupAnalyzerC6EntityV": true;
+    };
 }
 /**
  * struct ID
@@ -169,6 +175,9 @@ export declare class FaceGroupAnalyzer_Face extends SDKHandle {
      * @availability iOS 27.0+
      */
     get entityID(): (FaceGroupAnalyzer_Entity_ID) | null;
+    readonly $type: {
+        "s:17MediaIntelligence17FaceGroupAnalyzerC0C0V": true;
+    };
 }
 /**
  * struct ID
@@ -229,6 +238,9 @@ export declare class HighlightAnalysisRequest extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): HighlightAnalysisRequest;
+    readonly $type: {
+        "s:17MediaIntelligence24HighlightAnalysisRequestC": true;
+    };
 }
 /**
  * struct Result
@@ -240,14 +252,9 @@ export declare class HighlightAnalysisRequest_Result extends SDKHandle {
      * @availability iOS 27.0+
      */
     get highlights(): Array<_CoreMedia_CMTimeRange>;
-    /**
-     * let levels: [(timeRange: CMTimeRange, level: Float)]
-     * @availability iOS 27.0+
-     */
-    get levels(): Array<{
-        "timeRange": _CoreMedia_CMTimeRange;
-        "level": number;
-    }>;
+    readonly $type: {
+        "s:17MediaIntelligence24HighlightAnalysisRequestC6ResultV": true;
+    };
 }
 /**
  * final class KeyFrameAnalysisRequest
@@ -259,6 +266,9 @@ export declare class KeyFrameAnalysisRequest extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): KeyFrameAnalysisRequest;
+    readonly $type: {
+        "s:17MediaIntelligence23KeyFrameAnalysisRequestC": true;
+    };
 }
 /**
  * struct Result
@@ -270,6 +280,9 @@ export declare class KeyFrameAnalysisRequest_Result extends SDKHandle {
      * @availability iOS 27.0+
      */
     get timestamp(): _CoreMedia_CMTime;
+    readonly $type: {
+        "s:17MediaIntelligence23KeyFrameAnalysisRequestC6ResultV": true;
+    };
 }
 /**
  * enum MediaIntelligenceError
@@ -303,6 +316,9 @@ export declare class MediaIntelligenceImageAsset extends SDKHandle {
      * @availability iOS 27.0+
      */
     get kind(): MediaIntelligenceImageAsset_Kind;
+    readonly $type: {
+        "s:17MediaIntelligence0aB10ImageAssetV": true;
+    };
 }
 /**
  * struct ID
@@ -336,6 +352,9 @@ export type MediaIntelligenceImageAsset_ID_RawValue = string;
  * @availability iOS 27.0+
  */
 export declare class MediaIntelligenceImageAsset_Kind extends SDKHandle {
+    readonly $type: {
+        "s:17MediaIntelligence0aB10ImageAssetV4KindO": true;
+    };
 }
 /**
  * struct MediaIntelligenceVideoAsset
@@ -357,6 +376,9 @@ export declare class MediaIntelligenceVideoAsset extends SDKHandle {
      * @availability iOS 27.0+
      */
     get kind(): MediaIntelligenceVideoAsset_Kind;
+    readonly $type: {
+        "s:17MediaIntelligence0aB10VideoAssetV": true;
+    };
 }
 /**
  * struct ID
@@ -390,6 +412,9 @@ export type MediaIntelligenceVideoAsset_ID_RawValue = string;
  * @availability iOS 27.0+
  */
 export declare class MediaIntelligenceVideoAsset_Kind extends SDKHandle {
+    readonly $type: {
+        "s:17MediaIntelligence0aB10VideoAssetV4KindO": true;
+    };
 }
 /**
  * final class VideoAnalyzer
@@ -401,6 +426,9 @@ export declare class VideoAnalyzer extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get shared(): VideoAnalyzer;
+    readonly $type: {
+        "s:17MediaIntelligence13VideoAnalyzerC": true;
+    };
 }
 /**
  * protocol Request : Sendable

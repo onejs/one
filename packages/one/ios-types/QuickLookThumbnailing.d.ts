@@ -35,6 +35,10 @@ export declare class QLFileThumbnailRequest extends SDKHandle {
      * @availability iOS 11.0+
      */
     get scale(): number;
+    readonly $type: {
+        "c:objc(cs)QLFileThumbnailRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fileURL": true;
         "maximumSize": true;
@@ -82,6 +86,9 @@ export declare class QLThumbnailError extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get savingToURLFailed(): QLThumbnailError_Code;
+    readonly $type: {
+        "s:SC16QLThumbnailErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -133,6 +140,10 @@ export declare class QLThumbnailGenerator extends SDKHandle {
      * @deprecated iOS 18.0
      */
     saveBestRepresentationForToContentTypeCompletion(request: QLThumbnailGenerator_Request, fileURL: string, contentType: string, completionHandler: $SDK3): void;
+    readonly $type: {
+        "c:objc(cs)QLThumbnailGenerator": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class Request
@@ -177,6 +188,10 @@ export declare class QLThumbnailGenerator_Request extends SDKHandle {
      * @availability iOS 13.0+
      */
     get size(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)QLThumbnailGenerationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentType": true;
         "iconMode": true;
@@ -230,6 +245,10 @@ export declare class QLThumbnailProvider extends SDKHandle {
      * @availability iOS 11.0+
      */
     provideThumbnail(request: QLFileThumbnailRequest, handler: ((arg0: (QLThumbnailReply) | null, arg1: (NativeError) | null) => void)): void;
+    readonly $type: {
+        "c:objc(cs)QLThumbnailProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class QLThumbnailReply
@@ -247,6 +266,10 @@ export declare class QLThumbnailReply extends SDKHandle {
      */
     get extensionBadge(): string;
     set extensionBadge(value: string);
+    readonly $type: {
+        "c:objc(cs)QLThumbnailReply": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extensionBadge": true;
     };
@@ -278,6 +301,10 @@ export declare class QLThumbnailRepresentation extends SDKHandle {
      * @availability iOS 13.0+
      */
     get type(): QLThumbnailRepresentation_RepresentationType;
+    readonly $type: {
+        "c:objc(cs)QLThumbnailRepresentation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cgImage": true;
         "contentRect": true;

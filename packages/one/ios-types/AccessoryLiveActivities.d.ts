@@ -61,6 +61,9 @@ export declare class AccessoryLiveActivity extends SDKHandle {
      * @availability iOS 26.5+
      */
     get content(): (AccessoryLiveActivity_Content) | null;
+    readonly $type: {
+        "s:23AccessoryLiveActivities0aB8ActivityV": true;
+    };
 }
 /**
  * struct Content
@@ -72,6 +75,9 @@ export declare class AccessoryLiveActivity_Content extends SDKHandle {
      * @availability iOS 26.5+
      */
     get alert(): (AccessoryLiveActivity_Content_AlertMessage) | null;
+    readonly $type: {
+        "s:23AccessoryLiveActivities0aB8ActivityV7ContentV": true;
+    };
 }
 /**
  * struct AlertMessage
@@ -88,6 +94,9 @@ export declare class AccessoryLiveActivity_Content_AlertMessage extends SDKHandl
      * @availability iOS 26.5+
      */
     get title(): string;
+    readonly $type: {
+        "s:23AccessoryLiveActivities0aB8ActivityV7ContentV12AlertMessageV": true;
+    };
 }
 /**
  * struct IconFile
@@ -99,6 +108,9 @@ export declare class AccessoryLiveActivity_IconFile extends SDKHandle {
      * @availability iOS 26.5+
      */
     get url(): Promise<string>;
+    readonly $type: {
+        "s:23AccessoryLiveActivities0aB8ActivityV8IconFileV": true;
+    };
 }
 /**
  * final class LiveActivityForwarding
@@ -120,6 +132,9 @@ export declare class LiveActivityForwarding extends SDKHandle {
      * @availability iOS 26.5+
      */
     static get featureID(): string;
+    readonly $type: {
+        "s:23AccessoryLiveActivities0B18ActivityForwardingC": true;
+    };
 }
 /**
  * protocol AccessoryLiveActivitiesHandler : Sendable
@@ -172,5 +187,8 @@ export declare class LiveActivityForwarding_Session extends SDKHandle {
      * @availability iOS 26.5+
      */
     send(message: _AccessoryTransportExtension_AccessoryMessage): Promise<void>;
+    readonly $type: {
+        "s:23AccessoryLiveActivities0B18ActivityForwardingC7SessionC": true;
+    };
 }
 export {};

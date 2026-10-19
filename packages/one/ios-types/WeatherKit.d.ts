@@ -38,6 +38,9 @@ export declare class CloudCoverByAltitude extends SDKHandle {
      */
     get medium(): number;
     set medium(value: number);
+    readonly $type: {
+        "s:10WeatherKit20CloudCoverByAltitudeV": true;
+    };
 }
 /**
  * struct CurrentWeather
@@ -146,6 +149,9 @@ export declare class CurrentWeather extends SDKHandle {
      */
     get condition(): WeatherCondition;
     set condition(value: WeatherCondition);
+    readonly $type: {
+        "s:10WeatherKit07CurrentA0V": true;
+    };
 }
 /**
  * struct DailyWeatherStatistics<T> where T : Decodable, T : Encodable, T : Equatable, T : Sendable
@@ -185,6 +191,9 @@ export declare class DailyWeatherStatistics<T = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(position: number): DailyWeatherStatistics<number>;
+    readonly $type: {
+        "s:10WeatherKit05DailyA10StatisticsV": true;
+    };
 }
 /**
  * typealias Element = T
@@ -226,6 +235,9 @@ export declare class DailyWeatherStatisticsQuery<T = unknown> extends SDKHandle 
      * @availability iOS 18.0+
      */
     static get precipitation(): DailyWeatherStatisticsQuery<DayPrecipitationStatistics>;
+    readonly $type: {
+        "s:10WeatherKit05DailyA15StatisticsQueryV": true;
+    };
 }
 /**
  * struct DailyWeatherSummary<T> where T : Decodable, T : Encodable, T : Equatable, T : Sendable
@@ -259,6 +271,9 @@ export declare class DailyWeatherSummary<T = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(position: number): DailyWeatherSummary<number>;
+    readonly $type: {
+        "s:10WeatherKit05DailyA7SummaryV": true;
+    };
 }
 /**
  * typealias Element = T
@@ -300,6 +315,9 @@ export declare class DailyWeatherSummaryQuery<T = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get precipitation(): DailyWeatherSummaryQuery<DayPrecipitationSummary>;
+    readonly $type: {
+        "s:10WeatherKit05DailyA12SummaryQueryV": true;
+    };
 }
 /**
  * struct DayPartForecast
@@ -390,6 +408,9 @@ export declare class DayPartForecast extends SDKHandle {
      */
     get condition(): WeatherCondition;
     set condition(value: WeatherCondition);
+    readonly $type: {
+        "s:10WeatherKit15DayPartForecastV": true;
+    };
 }
 /**
  * struct DayPrecipitationStatistics
@@ -420,6 +441,9 @@ export declare class DayPrecipitationStatistics extends SDKHandle {
      */
     get day(): number;
     set day(value: number);
+    readonly $type: {
+        "s:10WeatherKit26DayPrecipitationStatisticsV": true;
+    };
 }
 /**
  * struct DayPrecipitationSummary
@@ -444,6 +468,9 @@ export declare class DayPrecipitationSummary extends SDKHandle {
      */
     get date(): globalThis.Date;
     set date(value: globalThis.Date);
+    readonly $type: {
+        "s:10WeatherKit23DayPrecipitationSummaryV": true;
+    };
 }
 /**
  * struct DayTemperatureStatistics
@@ -468,6 +495,9 @@ export declare class DayTemperatureStatistics extends SDKHandle {
      */
     get day(): number;
     set day(value: number);
+    readonly $type: {
+        "s:10WeatherKit24DayTemperatureStatisticsV": true;
+    };
 }
 /**
  * struct DayTemperatureSummary
@@ -492,6 +522,9 @@ export declare class DayTemperatureSummary extends SDKHandle {
      */
     get date(): globalThis.Date;
     set date(value: globalThis.Date);
+    readonly $type: {
+        "s:10WeatherKit21DayTemperatureSummaryV": true;
+    };
 }
 /**
  * struct DayWeather
@@ -651,6 +684,9 @@ export declare class DayWeather extends SDKHandle {
      */
     get condition(): WeatherCondition;
     set condition(value: WeatherCondition);
+    readonly $type: {
+        "s:10WeatherKit03DayA0V": true;
+    };
 }
 /**
  * enum Deviation
@@ -694,6 +730,9 @@ export declare class Forecast<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     subscript(position: number): number;
+    readonly $type: {
+        "s:10WeatherKit8ForecastV": true;
+    };
 }
 /**
  * typealias Index = Int
@@ -720,6 +759,9 @@ export type Forecast_SubSequence<Element = unknown> = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class HistoricalComparison extends SDKHandle {
+    readonly $type: {
+        "s:10WeatherKit20HistoricalComparisonO": true;
+    };
 }
 /**
  * struct HistoricalComparisons
@@ -753,6 +795,9 @@ export declare class HistoricalComparisons extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(position: number): HistoricalComparison;
+    readonly $type: {
+        "s:10WeatherKit21HistoricalComparisonsV": true;
+    };
 }
 /**
  * typealias Element = HistoricalComparison
@@ -817,6 +862,9 @@ export declare class HourlyWeatherStatistics<T = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(position: number): HourlyWeatherStatistics<number>;
+    readonly $type: {
+        "s:10WeatherKit06HourlyA10StatisticsV": true;
+    };
 }
 /**
  * typealias Element = T
@@ -853,6 +901,9 @@ export declare class HourlyWeatherStatisticsQuery<T = unknown> extends SDKHandle
      * @availability iOS 18.0+
      */
     static get temperature(): HourlyWeatherStatisticsQuery<HourTemperatureStatistics>;
+    readonly $type: {
+        "s:10WeatherKit06HourlyA15StatisticsQueryV": true;
+    };
 }
 /**
  * struct HourTemperatureStatistics
@@ -871,6 +922,9 @@ export declare class HourTemperatureStatistics extends SDKHandle {
      */
     get hour(): number;
     set hour(value: number);
+    readonly $type: {
+        "s:10WeatherKit25HourTemperatureStatisticsV": true;
+    };
 }
 /**
  * struct HourWeather
@@ -991,6 +1045,9 @@ export declare class HourWeather extends SDKHandle {
      */
     get condition(): WeatherCondition;
     set condition(value: WeatherCondition);
+    readonly $type: {
+        "s:10WeatherKit04HourA0V": true;
+    };
 }
 /**
  * struct MinuteWeather
@@ -1021,6 +1078,9 @@ export declare class MinuteWeather extends SDKHandle {
      */
     get date(): globalThis.Date;
     set date(value: globalThis.Date);
+    readonly $type: {
+        "s:10WeatherKit06MinuteA0V": true;
+    };
 }
 /**
  * struct MonthlyWeatherStatistics<T> where T : Decodable, T : Encodable, T : Equatable, T : Sendable
@@ -1060,6 +1120,9 @@ export declare class MonthlyWeatherStatistics<T = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(position: number): MonthlyWeatherStatistics<number>;
+    readonly $type: {
+        "s:10WeatherKit07MonthlyA10StatisticsV": true;
+    };
 }
 /**
  * typealias Element = T
@@ -1101,6 +1164,9 @@ export declare class MonthlyWeatherStatisticsQuery<T = unknown> extends SDKHandl
      * @availability iOS 18.0+
      */
     static get precipitation(): MonthlyWeatherStatisticsQuery<MonthPrecipitationStatistics>;
+    readonly $type: {
+        "s:10WeatherKit07MonthlyA15StatisticsQueryV": true;
+    };
 }
 /**
  * struct MonthPrecipitationStatistics
@@ -1131,6 +1197,9 @@ export declare class MonthPrecipitationStatistics extends SDKHandle {
      */
     get month(): number;
     set month(value: number);
+    readonly $type: {
+        "s:10WeatherKit28MonthPrecipitationStatisticsV": true;
+    };
 }
 /**
  * struct MonthTemperatureStatistics
@@ -1155,6 +1224,9 @@ export declare class MonthTemperatureStatistics extends SDKHandle {
      */
     get month(): number;
     set month(value: number);
+    readonly $type: {
+        "s:10WeatherKit26MonthTemperatureStatisticsV": true;
+    };
 }
 /**
  * struct MoonEvents
@@ -1179,6 +1251,9 @@ export declare class MoonEvents extends SDKHandle {
      */
     get moonrise(): $SDK12;
     set moonrise(value: $SDK12);
+    readonly $type: {
+        "s:10WeatherKit10MoonEventsV": true;
+    };
 }
 /**
  * @frozen enum MoonPhase
@@ -1250,6 +1325,9 @@ export declare class Percentiles<Dimension = unknown> extends SDKHandle {
      */
     get p90(): $SDK20;
     set p90(value: $SDK20);
+    readonly $type: {
+        "s:10WeatherKit11PercentilesV": true;
+    };
 }
 /**
  * enum Precipitation
@@ -1334,6 +1412,9 @@ export declare class PrecipitationAmountByType extends SDKHandle {
      */
     get rainfall(): $SDK0;
     set rainfall(value: $SDK0);
+    readonly $type: {
+        "s:10WeatherKit25PrecipitationAmountByTypeV": true;
+    };
 }
 /**
  * enum PressureTrend
@@ -1418,6 +1499,9 @@ export declare class SnowfallAmount extends SDKHandle {
      */
     get minimum(): $SDK0;
     set minimum(value: $SDK0);
+    readonly $type: {
+        "s:10WeatherKit14SnowfallAmountV": true;
+    };
 }
 /**
  * struct SunEvents
@@ -1484,6 +1568,9 @@ export declare class SunEvents extends SDKHandle {
      */
     get solarNoon(): $SDK12;
     set solarNoon(value: $SDK12);
+    readonly $type: {
+        "s:10WeatherKit9SunEventsV": true;
+    };
 }
 /**
  * struct Trend<Dimension> where Dimension : Dimension
@@ -1508,6 +1595,9 @@ export declare class Trend<Dimension = unknown> extends SDKHandle {
      */
     get deviation(): Deviation;
     set deviation(value: Deviation);
+    readonly $type: {
+        "s:10WeatherKit5TrendV": true;
+    };
 }
 /**
  * struct TrendBaseline<Dimension> where Dimension : Dimension
@@ -1529,6 +1619,9 @@ export declare class TrendBaseline<Dimension = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "s:10WeatherKit13TrendBaselineV": true;
+    };
 }
 /**
  * enum Kind
@@ -1552,6 +1645,9 @@ export declare class UVIndex extends SDKHandle {
      */
     get category(): UVIndex_ExposureCategory;
     set category(value: UVIndex_ExposureCategory);
+    readonly $type: {
+        "s:10WeatherKit7UVIndexV": true;
+    };
 }
 /**
  * @frozen enum ExposureCategory
@@ -1641,6 +1737,9 @@ export declare class Weather extends SDKHandle {
      */
     get minuteForecast(): $SDK24;
     set minuteForecast(value: $SDK24);
+    readonly $type: {
+        "s:10WeatherKit0A0V": true;
+    };
 }
 /**
  * struct WeatherAlert
@@ -1683,6 +1782,9 @@ export declare class WeatherAlert extends SDKHandle {
      */
     get severity(): WeatherSeverity;
     set severity(value: WeatherSeverity);
+    readonly $type: {
+        "s:10WeatherKit0A5AlertV": true;
+    };
 }
 /**
  * struct WeatherAttribution
@@ -1724,6 +1826,9 @@ export declare class WeatherAttribution extends SDKHandle {
      */
     get combinedMarkLightURL(): string;
     set combinedMarkLightURL(value: string);
+    readonly $type: {
+        "s:10WeatherKit0A11AttributionV": true;
+    };
 }
 /**
  * struct WeatherAvailability
@@ -1742,6 +1847,9 @@ export declare class WeatherAvailability extends SDKHandle {
      */
     get minuteAvailability(): WeatherAvailability_AvailabilityKind;
     set minuteAvailability(value: WeatherAvailability_AvailabilityKind);
+    readonly $type: {
+        "s:10WeatherKit0A12AvailabilityV": true;
+    };
 }
 /**
  * enum AvailabilityKind
@@ -1800,6 +1908,9 @@ export declare class WeatherChange extends SDKHandle {
      */
     get date(): globalThis.Date;
     set date(value: globalThis.Date);
+    readonly $type: {
+        "s:10WeatherKit0A6ChangeV": true;
+    };
 }
 /**
  * @frozen enum Direction
@@ -1838,6 +1949,9 @@ export declare class WeatherChanges extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(position: number): WeatherChange;
+    readonly $type: {
+        "s:10WeatherKit0A7ChangesV": true;
+    };
 }
 /**
  * typealias Element = WeatherChange
@@ -1955,6 +2069,9 @@ export declare class WeatherMetadata extends SDKHandle {
      * @availability iOS 16.0+
      */
     get location(): __LocationEssentials_CLLocation;
+    readonly $type: {
+        "s:10WeatherKit0A8MetadataV": true;
+    };
 }
 /**
  * struct WeatherQuery<T>
@@ -2011,6 +2128,9 @@ export declare class WeatherQuery<T = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static hourlyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK29;
+    readonly $type: {
+        "s:10WeatherKit0A5QueryV": true;
+    };
 }
 /**
  * final class WeatherService
@@ -2067,6 +2187,9 @@ export declare class WeatherService extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): WeatherService;
+    readonly $type: {
+        "s:10WeatherKit0A7ServiceC": true;
+    };
 }
 /**
  * enum WeatherSeverity
@@ -2139,6 +2262,9 @@ export declare class Wind extends SDKHandle {
      */
     get direction(): $SDK37;
     set direction(value: $SDK37);
+    readonly $type: {
+        "s:10WeatherKit4WindV": true;
+    };
 }
 /**
  * @frozen enum CompassDirection

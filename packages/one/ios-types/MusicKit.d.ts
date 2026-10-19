@@ -198,6 +198,9 @@ export declare class Album extends SDKHandle {
      * @availability iOS 15.0+
      */
     get copyright(): (string) | null;
+    readonly $type: {
+        "s:8MusicKit5AlbumV": true;
+    };
 }
 /**
  * typealias FilterType = AlbumFilter
@@ -230,6 +233,9 @@ export interface AlbumFilter {
  * @availability iOS 15.0+
  */
 export declare class AnyMusicProperty extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit03AnyA8PropertyC": true;
+    };
 }
 /**
  * class MusicPlayer
@@ -302,6 +308,9 @@ export declare class MusicPlayer extends SDKHandle {
      * @availability iOS 15.0+
      */
     get state(): MusicPlayer_State;
+    readonly $type: {
+        "s:8MusicKit0A6PlayerC": true;
+    };
 }
 /**
  * class ApplicationMusicPlayer
@@ -325,6 +334,10 @@ export declare class ApplicationMusicPlayer extends MusicPlayer {
      * @availability iOS 15.0+
      */
     static get shared(): ApplicationMusicPlayer;
+    readonly $type: {
+        "s:8MusicKit011ApplicationA6PlayerC": true;
+        "s:8MusicKit0A6PlayerC": true;
+    };
 }
 /**
  * class Queue
@@ -373,6 +386,9 @@ export declare class MusicPlayer_Queue extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initStartingAt(entries: $SDK11, startEntry?: $SDK9): MusicPlayer_Queue;
+    readonly $type: {
+        "s:8MusicKit0A6PlayerC5QueueC": true;
+    };
     readonly $observable: {
         "currentEntry": true;
         "objectWillChange": true;
@@ -406,6 +422,10 @@ export declare class ApplicationMusicPlayer_Queue extends ApplicationMusicPlayer
      * @availability iOS 15.0+
      */
     static initStartingAt(entries: $SDK11, startEntry?: $SDK9): ApplicationMusicPlayer_Queue;
+    readonly $type: {
+        "s:8MusicKit011ApplicationA6PlayerC5QueueC": true;
+        "s:8MusicKit0A6PlayerC5QueueC": true;
+    };
     readonly $observable: {
         "currentEntry": true;
         "objectWillChange": true;
@@ -503,6 +523,9 @@ export declare class ApplicationMusicPlayer_Queue_Entries extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript45748(bounds: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:8MusicKit011ApplicationA6PlayerC5QueueC7EntriesV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = MusicPlayer.Queue.Entry
@@ -664,6 +687,9 @@ export declare class Artist extends SDKHandle {
      * @availability iOS 15.0+
      */
     get playlists(): $SDK8;
+    readonly $type: {
+        "s:8MusicKit6ArtistV": true;
+    };
 }
 /**
  * typealias FilterType = ArtistFilter
@@ -751,6 +777,9 @@ export declare class Artwork extends SDKHandle {
      * @availability iOS 15.0+
      */
     url(width: number, height: number): (string) | null;
+    readonly $type: {
+        "s:8MusicKit7ArtworkV": true;
+    };
 }
 /**
  * enum AudioVariant
@@ -829,6 +858,9 @@ export declare class Curator extends SDKHandle {
      * @availability iOS 15.4+
      */
     get playlists(): $SDK8;
+    readonly $type: {
+        "s:8MusicKit7CuratorV": true;
+    };
 }
 /**
  * typealias FilterType = CuratorFilter
@@ -866,6 +898,9 @@ export declare class MusicUserTokenProvider extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): MusicUserTokenProvider;
+    readonly $type: {
+        "s:8MusicKit0A17UserTokenProviderC": true;
+    };
 }
 declare const DefaultMusicTokenProvider_base: Omit<typeof MusicUserTokenProvider, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MusicUserTokenProvider);
 /**
@@ -883,6 +918,10 @@ export declare class DefaultMusicTokenProvider extends DefaultMusicTokenProvider
      * @availability iOS 15.0+
      */
     static init(): DefaultMusicTokenProvider;
+    readonly $type: {
+        "s:8MusicKit07DefaultA13TokenProviderC": true;
+        "s:8MusicKit0A17UserTokenProviderC": true;
+    };
 }
 /**
  * struct EditorialNotes
@@ -919,6 +958,9 @@ export declare class EditorialNotes extends SDKHandle {
      * @availability iOS 15.0+
      */
     get standard(): (string) | null;
+    readonly $type: {
+        "s:8MusicKit14EditorialNotesV": true;
+    };
 }
 /**
  * protocol FilterableMusicItem : MusicItem
@@ -961,6 +1003,9 @@ export declare class Genre extends SDKHandle {
      * @availability iOS 15.0+
      */
     get parent(): (Genre) | null;
+    readonly $type: {
+        "s:8MusicKit5GenreV": true;
+    };
 }
 /**
  * typealias FilterType = GenreFilter
@@ -1344,6 +1389,10 @@ export declare class PartialMusicProperty<Root = unknown> extends AnyMusicProper
      * @availability iOS 15.4+
      */
     static get playlists53095(): MusicRelationshipProperty<RadioShow, Playlist>;
+    readonly $type: {
+        "s:8MusicKit07PartialA8PropertyC": true;
+        "s:8MusicKit03AnyA8PropertyC": true;
+    };
 }
 /**
  * class MusicAttributeProperty<Root, Value> where Value : Decodable
@@ -1355,6 +1404,11 @@ export declare class MusicAttributeProperty<Root = unknown, Value = unknown> ext
      * @availability iOS 15.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:8MusicKit0A17AttributePropertyC": true;
+        "s:8MusicKit07PartialA8PropertyC": true;
+        "s:8MusicKit03AnyA8PropertyC": true;
+    };
 }
 /**
  * struct MusicAuthorization
@@ -1371,6 +1425,9 @@ export declare class MusicAuthorization extends SDKHandle {
      * @availability iOS 15.0+
      */
     static request(): Promise<MusicAuthorization_Status>;
+    readonly $type: {
+        "s:8MusicKit0A13AuthorizationV": true;
+    };
 }
 /**
  * enum Status
@@ -1404,6 +1461,9 @@ export type MusicAuthorization_Status_RawValue = string;
  * @availability iOS 16.0+
  */
 export declare class MusicCatalogChart<MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A12CatalogChartV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -1470,6 +1530,9 @@ export declare class MusicCatalogChartsRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     response(): Promise<MusicCatalogChartsResponse>;
+    readonly $type: {
+        "s:8MusicKit0A20CatalogChartsRequestV": true;
+    };
 }
 /**
  * struct MusicCatalogChartsResponse
@@ -1506,12 +1569,18 @@ export declare class MusicCatalogChartsResponse extends SDKHandle {
      * @availability iOS 16.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:8MusicKit0A21CatalogChartsResponseV": true;
+    };
 }
 /**
  * struct MusicCatalogResourceRequest<MusicItemType> where MusicItemType : MusicItem, MusicItemType : Decodable
  * @availability iOS 15.0+
  */
 export declare class MusicCatalogResourceRequest<MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A22CatalogResourceRequestV": true;
+    };
 }
 /**
  * struct MusicCatalogResourceRequestOption
@@ -1528,12 +1597,18 @@ export declare class MusicCatalogResourceRequestOption extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get findEquivalents(): MusicCatalogResourceRequestOption;
+    readonly $type: {
+        "s:8MusicKit0A28CatalogResourceRequestOptionV": true;
+    };
 }
 /**
  * struct MusicCatalogResourceResponse<MusicItemType> where MusicItemType : MusicItem
  * @availability iOS 15.0+
  */
 export declare class MusicCatalogResourceResponse<MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A23CatalogResourceResponseV": true;
+    };
 }
 /**
  * protocol MusicCatalogSearchable : MusicItem
@@ -1574,6 +1649,9 @@ export declare class MusicCatalogSearchRequest extends SDKHandle {
      * @availability iOS 15.0+
      */
     response(): Promise<MusicCatalogSearchResponse>;
+    readonly $type: {
+        "s:8MusicKit0A20CatalogSearchRequestV": true;
+    };
 }
 /**
  * struct MusicCatalogSearchResponse
@@ -1640,6 +1718,9 @@ export declare class MusicCatalogSearchResponse extends SDKHandle {
      * @availability iOS 15.0+
      */
     get playlists(): $SDK66;
+    readonly $type: {
+        "s:8MusicKit0A21CatalogSearchResponseV": true;
+    };
 }
 /**
  * enum TopResult
@@ -1671,6 +1752,9 @@ export declare class MusicCatalogSearchResponse_TopResult extends SDKHandle {
      * @availability iOS 16.0+
      */
     get artwork(): (Artwork) | null;
+    readonly $type: {
+        "s:8MusicKit0A21CatalogSearchResponseV9TopResultO": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -1703,6 +1787,9 @@ export declare class MusicCatalogSearchSuggestionsRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     response(): Promise<MusicCatalogSearchSuggestionsResponse>;
+    readonly $type: {
+        "s:8MusicKit0A31CatalogSearchSuggestionsRequestV": true;
+    };
 }
 /**
  * struct MusicCatalogSearchSuggestionsResponse
@@ -1729,6 +1816,9 @@ export declare class MusicCatalogSearchSuggestionsResponse extends SDKHandle {
      * @availability iOS 16.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:8MusicKit0A32CatalogSearchSuggestionsResponseV": true;
+    };
 }
 /**
  * struct Suggestion
@@ -1760,6 +1850,9 @@ export declare class MusicCatalogSearchSuggestionsResponse_Suggestion extends SD
      * @availability iOS 16.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:8MusicKit0A32CatalogSearchSuggestionsResponseV10SuggestionV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -1813,6 +1906,9 @@ export declare class MusicDataRequest extends SDKHandle {
      * @availability iOS 15.0+
      */
     response(): Promise<MusicDataResponse>;
+    readonly $type: {
+        "s:8MusicKit0A11DataRequestV": true;
+    };
 }
 /**
  * struct Error
@@ -1859,6 +1955,9 @@ export declare class MusicDataRequest_Error extends SDKHandle {
      * @availability iOS 15.0+
      */
     get status(): number;
+    readonly $type: {
+        "s:8MusicKit0A11DataRequestV5ErrorV": true;
+    };
 }
 /**
  * enum Source
@@ -1870,6 +1969,9 @@ export declare class MusicDataRequest_Error_Source extends SDKHandle {
      * @availability iOS 15.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:8MusicKit0A11DataRequestV5ErrorV6SourceO": true;
+    };
 }
 /**
  * struct MusicDataResponse
@@ -1896,6 +1998,9 @@ export declare class MusicDataResponse extends SDKHandle {
      * @availability iOS 15.0+
      */
     get data(): ArrayBuffer;
+    readonly $type: {
+        "s:8MusicKit0A12DataResponseV": true;
+    };
 }
 /**
  * protocol MusicDeveloperTokenProvider : Sendable
@@ -1913,6 +2018,11 @@ export interface MusicDeveloperTokenProvider {
  * @availability iOS 15.0+
  */
 export declare class PartialMusicAsyncProperty<Root = unknown> extends PartialMusicProperty {
+    readonly $type: {
+        "s:8MusicKit07PartialA13AsyncPropertyC": true;
+        "s:8MusicKit07PartialA8PropertyC": true;
+        "s:8MusicKit03AnyA8PropertyC": true;
+    };
 }
 /**
  * class MusicExtendedAttributeProperty<Root, Value> where Value : Decodable
@@ -1924,6 +2034,12 @@ export declare class MusicExtendedAttributeProperty<Root = unknown, Value = unkn
      * @availability iOS 15.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:8MusicKit0A25ExtendedAttributePropertyC": true;
+        "s:8MusicKit07PartialA13AsyncPropertyC": true;
+        "s:8MusicKit07PartialA8PropertyC": true;
+        "s:8MusicKit03AnyA8PropertyC": true;
+    };
 }
 /**
  * protocol MusicItem : Sendable
@@ -1936,6 +2052,9 @@ export interface MusicItem {
  * @availability iOS 15.0+
  */
 export declare class MusicItemCollection<MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A14ItemCollectionV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = MusicItemType
@@ -2039,6 +2158,9 @@ export declare class MusicLibrary extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get shared(): MusicLibrary;
+    readonly $type: {
+        "s:8MusicKit0A7LibraryC": true;
+    };
 }
 /**
  * enum Error
@@ -2098,6 +2220,9 @@ export interface MusicLibraryAddable {
  * @availability iOS 16.0+
  */
 export declare class MusicLibraryRequest<MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A14LibraryRequestV": true;
+    };
 }
 /**
  * protocol MusicLibraryRequestable : MusicItem
@@ -2122,6 +2247,9 @@ export interface MusicLibraryRequestFilterValueMembershipComparable {
  * @availability iOS 16.0+
  */
 export declare class MusicLibraryResponse<MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A15LibraryResponseV": true;
+    };
 }
 /**
  * protocol MusicLibrarySearchable : MusicItem
@@ -2156,6 +2284,9 @@ export declare class MusicLibrarySearchRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     response(): Promise<MusicLibrarySearchResponse>;
+    readonly $type: {
+        "s:8MusicKit0A20LibrarySearchRequestV": true;
+    };
 }
 /**
  * struct MusicLibrarySearchResponse
@@ -2202,6 +2333,9 @@ export declare class MusicLibrarySearchResponse extends SDKHandle {
      * @availability iOS 16.0+
      */
     get playlists(): $SDK66;
+    readonly $type: {
+        "s:8MusicKit0A21LibrarySearchResponseV": true;
+    };
 }
 /**
  * enum TopResult
@@ -2233,6 +2367,9 @@ export declare class MusicLibrarySearchResponse_TopResult extends SDKHandle {
      * @availability iOS 16.0+
      */
     get artwork(): (Artwork) | null;
+    readonly $type: {
+        "s:8MusicKit0A21LibrarySearchResponseV9TopResultO": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -2244,6 +2381,9 @@ export type MusicLibrarySearchResponse_TopResult_ID = MusicItemID;
  * @availability iOS 16.0+
  */
 export declare class MusicLibrarySection<SectionType = unknown, MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A14LibrarySectionV": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -2255,12 +2395,18 @@ export type MusicLibrarySection_ID<SectionType = unknown, MusicItemType = unknow
  * @availability iOS 16.0+
  */
 export declare class MusicLibrarySectionedRequest<SectionType = unknown, MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A23LibrarySectionedRequestV": true;
+    };
 }
 /**
  * struct MusicLibrarySectionedResponse<SectionType, MusicItemType> where SectionType : MusicLibrarySectionRequestable, MusicItemType : MusicLibraryRequestable
  * @availability iOS 16.0+
  */
 export declare class MusicLibrarySectionedResponse<SectionType = unknown, MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A24LibrarySectionedResponseV": true;
+    };
 }
 /**
  * protocol MusicLibrarySectionRequestable
@@ -2323,6 +2469,9 @@ export declare class MusicPersonalRecommendation extends SDKHandle {
      * @availability iOS 16.0+
      */
     get playlists(): $SDK66;
+    readonly $type: {
+        "s:8MusicKit0A22PersonalRecommendationV": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -2364,6 +2513,9 @@ export declare class MusicPersonalRecommendation_Item extends SDKHandle {
      * @availability iOS 16.0+
      */
     get subtitle(): (string) | null;
+    readonly $type: {
+        "s:8MusicKit0A22PersonalRecommendationV4ItemO": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -2408,6 +2560,9 @@ export declare class MusicPersonalRecommendationsRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): MusicPersonalRecommendationsRequest;
+    readonly $type: {
+        "s:8MusicKit0A30PersonalRecommendationsRequestV": true;
+    };
 }
 /**
  * struct MusicPersonalRecommendationsResponse
@@ -2429,6 +2584,9 @@ export declare class MusicPersonalRecommendationsResponse extends SDKHandle {
      * @availability iOS 16.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:8MusicKit0A31PersonalRecommendationsResponseV": true;
+    };
 }
 /**
  * enum PlaybackStatus
@@ -2500,6 +2658,9 @@ export declare class MusicPlayer_Queue_Entry extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(playableMusicItem: SDKHandle, startTime?: (number) | null, endTime?: (number) | null): MusicPlayer_Queue_Entry;
+    readonly $type: {
+        "s:8MusicKit0A6PlayerC5QueueC5EntryV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -2531,6 +2692,9 @@ export declare class MusicPlayer_Queue_Entry_Item extends SDKHandle {
      * @availability iOS 15.0+
      */
     get id(): MusicItemID;
+    readonly $type: {
+        "s:8MusicKit0A6PlayerC5QueueC5EntryV4ItemO": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -2595,6 +2759,9 @@ export declare class MusicPlayer_State extends SDKHandle {
      * @availability iOS 15.0+
      */
     get objectWillChange(): $SDK10;
+    readonly $type: {
+        "s:8MusicKit0A6PlayerC5StateC": true;
+    };
     readonly $observable: {
         "repeatMode": true;
         "shuffleMode": true;
@@ -2629,6 +2796,9 @@ export declare class MusicPlayer_Transition extends SDKHandle {
      * @availability iOS 18.0+
      */
     static crossfade(duration?: (number) | null): MusicPlayer_Transition;
+    readonly $type: {
+        "s:8MusicKit0A6PlayerC10TransitionO": true;
+    };
 }
 /**
  * struct CrossfadeOptions
@@ -2650,6 +2820,9 @@ export declare class MusicPlayer_Transition_CrossfadeOptions extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(duration?: (number) | null): MusicPlayer_Transition_CrossfadeOptions;
+    readonly $type: {
+        "s:8MusicKit0A6PlayerC10TransitionO16CrossfadeOptionsV": true;
+    };
 }
 /**
  * protocol MusicPlaylistAddable : MusicItem
@@ -2705,6 +2878,9 @@ export type MusicRecentlyPlayedContainerResponse = MusicRecentlyPlayedResponse<R
  * @availability iOS 16.0+
  */
 export declare class MusicRecentlyPlayedRequest<MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A21RecentlyPlayedRequestV": true;
+    };
 }
 /**
  * protocol MusicRecentlyPlayedRequestable : MusicItem
@@ -2717,12 +2893,21 @@ export interface MusicRecentlyPlayedRequestable {
  * @availability iOS 16.0+
  */
 export declare class MusicRecentlyPlayedResponse<MusicItemType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit0A22RecentlyPlayedResponseV": true;
+    };
 }
 /**
  * class MusicRelationshipProperty<Root, RelatedMusicItemType> where RelatedMusicItemType : MusicItem, RelatedMusicItemType : Decodable
  * @availability iOS 15.0+
  */
 export declare class MusicRelationshipProperty<Root = unknown, RelatedMusicItemType = unknown> extends PartialMusicAsyncProperty {
+    readonly $type: {
+        "s:8MusicKit0A20RelationshipPropertyC": true;
+        "s:8MusicKit07PartialA13AsyncPropertyC": true;
+        "s:8MusicKit07PartialA8PropertyC": true;
+        "s:8MusicKit03AnyA8PropertyC": true;
+    };
 }
 /**
  * struct MusicSubscription
@@ -2759,6 +2944,9 @@ export declare class MusicSubscription extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get current(): Promise<MusicSubscription>;
+    readonly $type: {
+        "s:8MusicKit0A12SubscriptionV": true;
+    };
 }
 /**
  * enum Error
@@ -2817,6 +3005,9 @@ export declare class MusicSubscription_Updates extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): MusicSubscription_Updates_Iterator;
+    readonly $type: {
+        "s:8MusicKit0A12SubscriptionV7UpdatesV": true;
+    };
     readonly $element: MusicSubscription;
 }
 /**
@@ -2839,6 +3030,9 @@ export declare class MusicSubscription_Updates_Iterator extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): Promise<(MusicSubscription) | null>;
+    readonly $type: {
+        "s:8MusicKit0A12SubscriptionV7UpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = MusicSubscription
@@ -3104,6 +3298,9 @@ export declare class MusicVideo extends SDKHandle {
      * @availability iOS 26.4+
      */
     get startTime(): (number) | null;
+    readonly $type: {
+        "s:8MusicKit0A5VideoV": true;
+    };
 }
 /**
  * typealias FilterType = MusicVideoFilter
@@ -3247,6 +3444,9 @@ export declare class Playlist extends SDKHandle {
      * @availability iOS 16.0+
      */
     get radioShow(): (RadioShow) | null;
+    readonly $type: {
+        "s:8MusicKit8PlaylistV": true;
+    };
 }
 /**
  * struct Entry
@@ -3363,6 +3563,9 @@ export declare class Playlist_Entry extends SDKHandle {
      * @availability iOS 16.0+
      */
     get playCount(): (number) | null;
+    readonly $type: {
+        "s:8MusicKit8PlaylistV5EntryV": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -3474,6 +3677,9 @@ export declare class Playlist_Entry_Item extends SDKHandle {
      * @availability iOS 16.0+
      */
     get playCount(): (number) | null;
+    readonly $type: {
+        "s:8MusicKit8PlaylistV5EntryV4ItemO": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -3526,6 +3732,9 @@ export interface PlaylistFilter {
  * @availability iOS 15.0+
  */
 export declare class PlayParameters extends SDKHandle {
+    readonly $type: {
+        "s:8MusicKit14PlayParametersV": true;
+    };
 }
 /**
  * struct PreviewAsset
@@ -3557,6 +3766,9 @@ export declare class PreviewAsset extends SDKHandle {
      * @availability iOS 15.0+
      */
     get artwork(): (Artwork) | null;
+    readonly $type: {
+        "s:8MusicKit12PreviewAssetV": true;
+    };
 }
 /**
  * struct RadioShow
@@ -3608,6 +3820,9 @@ export declare class RadioShow extends SDKHandle {
      * @availability iOS 15.4+
      */
     get playlists(): $SDK8;
+    readonly $type: {
+        "s:8MusicKit9RadioShowV": true;
+    };
 }
 /**
  * typealias FilterType = RadioShowFilter
@@ -3665,6 +3880,9 @@ export declare class RecentlyPlayedMusicItem extends SDKHandle {
      * @availability iOS 16.0+
      */
     get subtitle(): (string) | null;
+    readonly $type: {
+        "s:8MusicKit014RecentlyPlayedA4ItemO": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -3726,6 +3944,9 @@ export declare class RecordLabel extends SDKHandle {
      * @availability iOS 15.0+
      */
     get artwork(): (Artwork) | null;
+    readonly $type: {
+        "s:8MusicKit11RecordLabelV": true;
+    };
 }
 /**
  * typealias FilterType = RecordLabelFilter
@@ -3943,6 +4164,9 @@ export declare class Song extends SDKHandle {
      * @availability iOS 26.4+
      */
     get startTime(): (number) | null;
+    readonly $type: {
+        "s:8MusicKit4SongV": true;
+    };
 }
 /**
  * typealias FilterType = SongFilter
@@ -4040,6 +4264,9 @@ export declare class Station extends SDKHandle {
      * @availability iOS 15.0+
      */
     get duration(): (number) | null;
+    readonly $type: {
+        "s:8MusicKit7StationV": true;
+    };
 }
 /**
  * typealias FilterType = StationFilter
@@ -4073,6 +4300,10 @@ export declare class SystemMusicPlayer extends MusicPlayer {
      * @availability iOS 15.0+
      */
     static get shared(): SystemMusicPlayer;
+    readonly $type: {
+        "s:8MusicKit06SystemA6PlayerC": true;
+        "s:8MusicKit0A6PlayerC": true;
+    };
 }
 /**
  * struct TitledSection
@@ -4089,6 +4320,9 @@ export declare class TitledSection extends SDKHandle {
      * @availability iOS 16.0+
      */
     get title(): string;
+    readonly $type: {
+        "s:8MusicKit13TitledSectionV": true;
+    };
 }
 /**
  * typealias ID = MusicItemID
@@ -4240,6 +4474,9 @@ export declare class Track extends SDKHandle {
      * @availability iOS 26.4+
      */
     get startTime(): (number) | null;
+    readonly $type: {
+        "s:8MusicKit5TrackO": true;
+    };
 }
 /**
  * typealias ID = MusicItemID

@@ -44,6 +44,10 @@ export declare class MatterAddDeviceExtensionRequestHandler extends SDKHandle {
      * @availability iOS 16.1+
      */
     rooms(home?: $SDK0): Promise<Array<MatterAddDeviceRequest_Room>>;
+    readonly $type: {
+        "c:@M@MatterSupport@objc(cs)MatterAddDeviceExtensionRequestHandler": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct DeviceCredential
@@ -73,6 +77,9 @@ export declare class MatterAddDeviceExtensionRequestHandler_DeviceCredential ext
      */
     get productAttestationIntermediateCertificate(): ArrayBuffer;
     set productAttestationIntermediateCertificate(value: ArrayBuffer);
+    readonly $type: {
+        "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC0D10CredentialV": true;
+    };
 }
 /**
  * struct ThreadNetworkAssociation
@@ -89,6 +96,9 @@ export declare class MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssocia
      * @availability iOS 16.1+
      */
     static network(extendedPANID: number): MatterAddDeviceExtensionRequestHandler_ThreadNetworkAssociation;
+    readonly $type: {
+        "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC24ThreadNetworkAssociationV": true;
+    };
 }
 /**
  * struct ThreadScanResult
@@ -148,6 +158,9 @@ export declare class MatterAddDeviceExtensionRequestHandler_ThreadScanResult ext
      */
     get version(): number;
     set version(value: number);
+    readonly $type: {
+        "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC16ThreadScanResultV": true;
+    };
 }
 /**
  * struct WiFiNetworkAssociation
@@ -164,6 +177,9 @@ export declare class MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociati
      * @availability iOS 16.1+
      */
     static network(ssid: ArrayBuffer, credentials: ArrayBuffer): MatterAddDeviceExtensionRequestHandler_WiFiNetworkAssociation;
+    readonly $type: {
+        "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC22WiFiNetworkAssociationV": true;
+    };
 }
 /**
  * struct WiFiScanResult
@@ -199,6 +215,9 @@ export declare class MatterAddDeviceExtensionRequestHandler_WiFiScanResult exten
      */
     get security(): _Matter_MTRNetworkCommissioningWiFiSecurity;
     set security(value: _Matter_MTRNetworkCommissioningWiFiSecurity);
+    readonly $type: {
+        "s:13MatterSupport0A32AddDeviceExtensionRequestHandlerC14WiFiScanResultV": true;
+    };
 }
 /**
  * struct MatterAddDeviceRequest
@@ -249,12 +268,18 @@ export declare class MatterAddDeviceRequest extends SDKHandle {
      */
     get topology(): MatterAddDeviceRequest_Topology;
     set topology(value: MatterAddDeviceRequest_Topology);
+    readonly $type: {
+        "s:13MatterSupport0A16AddDeviceRequestV": true;
+    };
 }
 /**
  * enum DeviceCriteria
  * @availability iOS 16.1+
  */
 export declare class MatterAddDeviceRequest_DeviceCriteria extends SDKHandle {
+    readonly $type: {
+        "s:13MatterSupport0A16AddDeviceRequestV0D8CriteriaO": true;
+    };
 }
 /**
  * struct Home
@@ -272,6 +297,9 @@ export declare class MatterAddDeviceRequest_Home extends SDKHandle {
      */
     get displayName(): string;
     set displayName(value: string);
+    readonly $type: {
+        "s:13MatterSupport0A16AddDeviceRequestV4HomeV": true;
+    };
 }
 /**
  * struct Room
@@ -289,6 +317,9 @@ export declare class MatterAddDeviceRequest_Room extends SDKHandle {
      */
     get displayName(): string;
     set displayName(value: string);
+    readonly $type: {
+        "s:13MatterSupport0A16AddDeviceRequestV4RoomV": true;
+    };
 }
 /**
  * struct Topology
@@ -312,5 +343,8 @@ export declare class MatterAddDeviceRequest_Topology extends SDKHandle {
      */
     get homes(): $SDK6;
     set homes(value: $SDK6);
+    readonly $type: {
+        "s:13MatterSupport0A16AddDeviceRequestV8TopologyV": true;
+    };
 }
 export {};

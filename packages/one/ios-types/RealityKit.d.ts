@@ -46,18 +46,27 @@ export declare class AccessibilityComponent extends SDKHandle {
      */
     get traits(): _UIKit_UIAccessibilityTraits;
     set traits(value: _UIKit_UIAccessibilityTraits);
+    readonly $type: {
+        "s:17RealityFoundation22AccessibilityComponentV": true;
+    };
 }
 /**
  * enum RotorType
  * @availability iOS 17.0+
  */
 export declare class AccessibilityComponent_RotorType extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation22AccessibilityComponentV0A3KitE9RotorTypeO": true;
+    };
 }
 /**
  * enum AccessibilityEvents
  * @availability iOS 17.0+
  */
 export declare class AccessibilityEvents extends SDKHandle {
+    readonly $type: {
+        "s:10RealityKit19AccessibilityEventsO": true;
+    };
 }
 /**
  * struct Activate
@@ -75,6 +84,9 @@ export declare class AccessibilityEvents_Activate extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(entity: _RealityFoundation_Entity): AccessibilityEvents_Activate;
+    readonly $type: {
+        "s:10RealityKit19AccessibilityEventsO8ActivateV": true;
+    };
 }
 /**
  * struct CustomAction
@@ -98,6 +110,9 @@ export declare class AccessibilityEvents_CustomAction extends SDKHandle {
      */
     get entity(): _RealityFoundation_Entity;
     set entity(value: _RealityFoundation_Entity);
+    readonly $type: {
+        "s:10RealityKit19AccessibilityEventsO12CustomActionV": true;
+    };
 }
 /**
  * struct Decrement
@@ -115,6 +130,9 @@ export declare class AccessibilityEvents_Decrement extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(entity: _RealityFoundation_Entity): AccessibilityEvents_Decrement;
+    readonly $type: {
+        "s:10RealityKit19AccessibilityEventsO9DecrementV": true;
+    };
 }
 /**
  * struct Increment
@@ -132,6 +150,9 @@ export declare class AccessibilityEvents_Increment extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(entity: _RealityFoundation_Entity): AccessibilityEvents_Increment;
+    readonly $type: {
+        "s:10RealityKit19AccessibilityEventsO9IncrementV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct RotorNavigation
@@ -168,6 +189,9 @@ export declare class AccessibilityEvents_RotorNavigation extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(rotorType: AccessibilityComponent_RotorType, hostEntity: _RealityFoundation_Entity, currentItem: (unknown) | null, searchDirection: _UIKit_UIAccessibilityCustomRotor_Direction, resultHandler: ((arg0: unknown) => void)): Promise<AccessibilityEvents_RotorNavigation>;
+    readonly $type: {
+        "s:10RealityKit19AccessibilityEventsO15RotorNavigationV": true;
+    };
 }
 export declare class AnchorEntity extends SDKHandle {
     /**
@@ -180,6 +204,10 @@ export declare class AnchorEntity extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initAnchor(anchor: _ARKit_ARAnchor): Promise<_RealityFoundation_AnchorEntity>;
+    readonly $type: {
+        "s:17RealityFoundation12AnchorEntityC": true;
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 export declare class AnchoringComponent extends SDKHandle {
     /**
@@ -187,6 +215,9 @@ export declare class AnchoringComponent extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(anchor: _ARKit_ARAnchor): _RealityFoundation_AnchoringComponent;
+    readonly $type: {
+        "s:17RealityFoundation18AnchoringComponentV": true;
+    };
 }
 /**
  * struct ARKitAnchorComponent
@@ -198,6 +229,9 @@ export declare class ARKitAnchorComponent extends SDKHandle {
      * @availability iOS 26.0+
      */
     get arAnchor(): _ARKit_ARAnchor;
+    readonly $type: {
+        "s:10RealityKit20ARKitAnchorComponentV": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency class ARView
@@ -416,6 +450,12 @@ export declare class ARView extends SDKHandle {
      * @availability iOS 13.0+
      */
     unprojectOntoPlane(point: $SDK6, planeTransform: SDKHandle): Promise<(SDKHandle) | null>;
+    readonly $type: {
+        "c:@M@RealityKit@objc(cs)ARView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum CameraMode
@@ -579,6 +619,9 @@ export declare class ARView_Environment extends SDKHandle {
      */
     get lighting(): Promise<ARView_Environment_ImageBasedLight>;
     setLighting(value: ARView_Environment_ImageBasedLight): Promise<void>;
+    readonly $type: {
+        "s:10RealityKit6ARViewC11EnvironmentV": true;
+    };
 }
 /**
  * struct Background
@@ -600,6 +643,9 @@ export declare class ARView_Environment_Background extends SDKHandle {
      * @availability iOS 13.0+
      */
     static skybox(resource: _RealityFoundation_EnvironmentResource): Promise<ARView_Environment_Background>;
+    readonly $type: {
+        "s:10RealityKit6ARViewC11EnvironmentV10BackgroundV": true;
+    };
 }
 /**
  * typealias Color = UIColor
@@ -623,6 +669,9 @@ export declare class ARView_Environment_ImageBasedLight extends SDKHandle {
      */
     get resource(): Promise<$SDK17>;
     setResource(value?: $SDK17): Promise<void>;
+    readonly $type: {
+        "s:10RealityKit6ARViewC11EnvironmentV15ImageBasedLightV": true;
+    };
 }
 /**
  * enum Reverb
@@ -634,6 +683,9 @@ export declare class ARView_Environment_Reverb extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get automatic(): Promise<ARView_Environment_Reverb>;
+    readonly $type: {
+        "s:10RealityKit6ARViewC11EnvironmentV6ReverbO": true;
+    };
 }
 /**
  * enum Preset
@@ -663,6 +715,9 @@ export declare class ARView_Environment_SceneUnderstanding extends SDKHandle {
      */
     get options(): Promise<ARView_Environment_SceneUnderstanding_Options>;
     setOptions(value: ARView_Environment_SceneUnderstanding_Options): Promise<void>;
+    readonly $type: {
+        "s:10RealityKit6ARViewC11EnvironmentV18SceneUnderstandingV": true;
+    };
 }
 /**
  * struct Options
@@ -778,6 +833,9 @@ export declare class ARView_PostProcessContext extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(device: SDKHandle, commandBuffer: SDKHandle, sourceColorTexture: SDKHandle, sourceDepthTexture: SDKHandle, targetColorTexture: SDKHandle, projection: SDKHandle, time: number): Promise<ARView_PostProcessContext>;
+    readonly $type: {
+        "s:10RealityKit6ARViewC18PostProcessContextV": true;
+    };
 }
 /**
  * struct RenderCallbacks
@@ -801,6 +859,9 @@ export declare class ARView_RenderCallbacks extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): Promise<ARView_RenderCallbacks>;
+    readonly $type: {
+        "s:10RealityKit6ARViewC15RenderCallbacksV": true;
+    };
 }
 /**
  * struct RenderOptions
@@ -903,6 +964,9 @@ export declare class CustomMaterial_BaseColor extends SDKHandle {
      */
     get tint(): _UIKit_UIColor;
     set tint(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV9BaseColorV": true;
+    };
 }
 export declare class CustomMaterial_EmissiveColor extends SDKHandle {
     /**
@@ -916,6 +980,9 @@ export declare class CustomMaterial_EmissiveColor extends SDKHandle {
      */
     get color(): _UIKit_UIColor;
     set color(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation14CustomMaterialV13EmissiveColorV": true;
+    };
 }
 export declare class DirectionalLightComponent extends SDKHandle {
     /**
@@ -929,6 +996,9 @@ export declare class DirectionalLightComponent extends SDKHandle {
      */
     get color(): _UIKit_UIColor;
     set color(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation25DirectionalLightComponentV": true;
+    };
 }
 /**
  * typealias Color = UIColor
@@ -978,6 +1048,9 @@ export declare class Entity extends SDKHandle {
      */
     get accessibilitySystemActions(): Promise<_RealityFoundation_AccessibilityComponent_SupportedActions>;
     setAccessibilitySystemActions(value: _RealityFoundation_AccessibilityComponent_SupportedActions): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * protocol EntityGestureRecognizer : UIGestureRecognizer
@@ -1011,6 +1084,12 @@ export declare class EntityRotationGestureRecognizer extends SDKHandle {
      */
     get entity(): Promise<(SDKHandle) | null>;
     setEntity(value?: $SDK27): Promise<void>;
+    readonly $type: {
+        "c:@M@RealityKit@objc(cs)EntityRotationGestureRecognizer": true;
+        "c:objc(cs)UIRotationGestureRecognizer": true;
+        "c:objc(cs)UIGestureRecognizer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency class EntityScaleGestureRecognizer
@@ -1033,6 +1112,12 @@ export declare class EntityScaleGestureRecognizer extends SDKHandle {
      */
     get entity(): Promise<(SDKHandle) | null>;
     setEntity(value?: $SDK27): Promise<void>;
+    readonly $type: {
+        "c:@M@RealityKit@objc(cs)EntityScaleGestureRecognizer": true;
+        "c:objc(cs)UIPinchGestureRecognizer": true;
+        "c:objc(cs)UIGestureRecognizer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency class EntityTranslationGestureRecognizer
@@ -1095,6 +1180,11 @@ export declare class EntityTranslationGestureRecognizer extends SDKHandle {
      * @availability iOS 13.0+
      */
     velocity(entity?: $SDK4): Promise<SDKHandle>;
+    readonly $type: {
+        "c:@M@RealityKit@objc(cs)EntityTranslationGestureRecognizer": true;
+        "c:objc(cs)UIGestureRecognizer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export declare class HoverEffectComponent_HighlightHoverEffectStyle extends SDKHandle {
     /**
@@ -1113,6 +1203,9 @@ export declare class HoverEffectComponent_HighlightHoverEffectStyle extends SDKH
      */
     get color(): _UIKit_UIColor;
     set color(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation20HoverEffectComponentV09HighlightcD5StyleV": true;
+    };
 }
 export declare class HoverEffectComponent_SpotlightHoverEffectStyle extends SDKHandle {
     /**
@@ -1131,6 +1224,9 @@ export declare class HoverEffectComponent_SpotlightHoverEffectStyle extends SDKH
      */
     get color(): _UIKit_UIColor;
     set color(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation20HoverEffectComponentV09SpotlightcD5StyleV": true;
+    };
 }
 /**
  * typealias Color = UIColor
@@ -1142,6 +1238,9 @@ export type Material_Color = _UIKit_UIColor;
  * @availability iOS 13.0+
  */
 export declare class MaterialColorParameter extends SDKHandle {
+    readonly $type: {
+        "s:10RealityKit22MaterialColorParameterO": true;
+    };
 }
 export declare class MaterialParameters_Value extends SDKHandle {
     /**
@@ -1154,6 +1253,9 @@ export declare class MaterialParameters_Value extends SDKHandle {
      * @availability iOS 18.0+
      */
     static color(color: _UIKit_UIColor): _RealityFoundation_MaterialParameters_Value;
+    readonly $type: {
+        "s:17RealityFoundation18MaterialParametersV5ValueO": true;
+    };
 }
 /**
  * typealias Font = UIFont
@@ -1205,6 +1307,9 @@ export declare class MultipeerConnectivityService extends SDKHandle {
      * @availability iOS 13.0+
      */
     startSync(): void;
+    readonly $type: {
+        "s:10RealityKit28MultipeerConnectivityServiceC": true;
+    };
 }
 export declare class ParticleEmitterComponent extends SDKHandle {
     /**
@@ -1213,6 +1318,9 @@ export declare class ParticleEmitterComponent extends SDKHandle {
      */
     get timing(): ParticleEmitterComponent_Timing;
     set timing(value: ParticleEmitterComponent_Timing);
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV": true;
+    };
 }
 export declare class ParticleEmitterComponent_ParticleEmitter extends SDKHandle {
     /**
@@ -1221,6 +1329,9 @@ export declare class ParticleEmitterComponent_ParticleEmitter extends SDKHandle 
      */
     get color(): ParticleEmitterComponent_ParticleEmitter_ParticleColor;
     set color(value: ParticleEmitterComponent_ParticleEmitter_ParticleColor);
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV0cD0V": true;
+    };
 }
 /**
  * typealias Color = UIColor
@@ -1232,12 +1343,18 @@ export type ParticleEmitterComponent_ParticleEmitter_Color = _UIKit_UIColor;
  * @availability iOS 18.0+
  */
 export declare class ParticleEmitterComponent_ParticleEmitter_ParticleColor extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE0C5ColorO": true;
+    };
 }
 /**
  * enum ColorValue
  * @availability iOS 18.0+
  */
 export declare class ParticleEmitterComponent_ParticleEmitter_ParticleColor_ColorValue extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV0cD0V0A3KitE0C5ColorO0G5ValueO": true;
+    };
 }
 /**
  * struct Presets
@@ -1274,12 +1391,18 @@ export declare class ParticleEmitterComponent_Presets extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get fireworks(): _RealityFoundation_ParticleEmitterComponent;
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV0A3KitE7PresetsV": true;
+    };
 }
 /**
  * enum Timing
  * @availability iOS 18.0+
  */
 export declare class ParticleEmitterComponent_Timing extends SDKHandle {
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV0A3KitE6TimingO": true;
+    };
 }
 /**
  * struct VariableDuration
@@ -1301,6 +1424,9 @@ export declare class ParticleEmitterComponent_Timing_VariableDuration extends SD
      * @availability iOS 18.0+
      */
     get variation(): (number) | null;
+    readonly $type: {
+        "s:17RealityFoundation24ParticleEmitterComponentV0A3KitE6TimingO16VariableDurationV": true;
+    };
 }
 export declare class PhysicallyBasedMaterial_BaseColor extends SDKHandle {
     /**
@@ -1314,6 +1440,9 @@ export declare class PhysicallyBasedMaterial_BaseColor extends SDKHandle {
      */
     get tint(): _UIKit_UIColor;
     set tint(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV9BaseColorV": true;
+    };
 }
 export declare class PhysicallyBasedMaterial_EmissiveColor extends SDKHandle {
     /**
@@ -1327,6 +1456,9 @@ export declare class PhysicallyBasedMaterial_EmissiveColor extends SDKHandle {
      */
     get color(): _UIKit_UIColor;
     set color(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV13EmissiveColorV": true;
+    };
 }
 export declare class PhysicallyBasedMaterial_SheenColor extends SDKHandle {
     /**
@@ -1340,6 +1472,9 @@ export declare class PhysicallyBasedMaterial_SheenColor extends SDKHandle {
      */
     get tint(): _UIKit_UIColor;
     set tint(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation23PhysicallyBasedMaterialV10SheenColorV": true;
+    };
 }
 export declare class PointLightComponent extends SDKHandle {
     /**
@@ -1358,6 +1493,9 @@ export declare class PointLightComponent extends SDKHandle {
      */
     get color(): _UIKit_UIColor;
     set color(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation19PointLightComponentV": true;
+    };
 }
 /**
  * typealias Color = UIColor
@@ -1370,6 +1508,9 @@ export declare class ShapeResource extends SDKHandle {
      * @availability iOS 18.0+
      */
     static generateStaticMesh(meshAnchor: _ARKit_ARMeshAnchor): Promise<_RealityFoundation_ShapeResource>;
+    readonly $type: {
+        "s:17RealityFoundation13ShapeResourceC": true;
+    };
 }
 export declare class SimpleMaterial extends SDKHandle {
     /**
@@ -1391,6 +1532,9 @@ export declare class SimpleMaterial extends SDKHandle {
      */
     get tintColor(): _UIKit_UIColor;
     set tintColor(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation14SimpleMaterialV": true;
+    };
 }
 export declare class SpotLightComponent extends SDKHandle {
     /**
@@ -1409,6 +1553,9 @@ export declare class SpotLightComponent extends SDKHandle {
      */
     get color(): _UIKit_UIColor;
     set color(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation18SpotLightComponentV": true;
+    };
 }
 /**
  * typealias Color = UIColor
@@ -1422,6 +1569,9 @@ export declare class TextComponent extends SDKHandle {
      */
     get edgeInsets(): $SDK30;
     set edgeInsets(value: $SDK30);
+    readonly $type: {
+        "s:17RealityFoundation13TextComponentV": true;
+    };
 }
 /**
  * typealias EdgeInsets = UIEdgeInsets
@@ -1461,6 +1611,9 @@ export declare class TextureResource extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static loadAsyncNamedIn(name: string, bundle?: $SDK31): Promise<$SDK32>;
+    readonly $type: {
+        "s:17RealityFoundation15TextureResourceC": true;
+    };
 }
 export declare class UnlitMaterial extends SDKHandle {
     /**
@@ -1487,5 +1640,8 @@ export declare class UnlitMaterial extends SDKHandle {
      */
     get tintColor(): _UIKit_UIColor;
     set tintColor(value: _UIKit_UIColor);
+    readonly $type: {
+        "s:17RealityFoundation13UnlitMaterialV": true;
+    };
 }
 export {};

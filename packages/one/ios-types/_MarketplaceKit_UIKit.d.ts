@@ -93,12 +93,22 @@ export declare class ActionButton extends SDKHandle {
      */
     get imageName(): Promise<(string) | null>;
     setImageName(value?: (string) | null): Promise<void>;
+    readonly $type: {
+        "c:@M@_MarketplaceKit_UIKit@objc(cs)ActionButton": true;
+        "c:objc(cs)UIControl": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Action
  * @availability iOS 17.4+
  */
 export declare class ActionButton_Action extends SDKHandle {
+    readonly $type: {
+        "s:21_MarketplaceKit_UIKit12ActionButtonC0D0O": true;
+    };
 }
 /**
  * enum ButtonImagePlacement
@@ -128,6 +138,9 @@ export declare class AppLibrary_App extends SDKHandle {
      * @availability iOS 26.4+
      */
     requestDeletion(scene: _UIKit_UIWindowScene): Promise<void>;
+    readonly $type: {
+        "s:14MarketplaceKit10AppLibraryC0C0C": true;
+    };
 }
 /**
  * struct BatchInstallConfiguration
@@ -144,12 +157,18 @@ export declare class BatchInstallConfiguration extends SDKHandle {
      * @availability iOS 17.4+
      */
     get installs(): Array<InstallMetadata>;
+    readonly $type: {
+        "s:21_MarketplaceKit_UIKit25BatchInstallConfigurationV": true;
+    };
 }
 /**
  * enum BatchInstallConfirmationResult
  * @availability iOS 17.4+
  */
 export declare class BatchInstallConfirmationResult extends SDKHandle {
+    readonly $type: {
+        "s:21_MarketplaceKit_UIKit30BatchInstallConfirmationResultO": true;
+    };
 }
 /**
  * struct InstallConfiguration
@@ -166,12 +185,18 @@ export declare class InstallConfiguration extends SDKHandle {
      * @availability iOS 17.4+
      */
     get install(): InstallMetadata;
+    readonly $type: {
+        "s:21_MarketplaceKit_UIKit20InstallConfigurationV": true;
+    };
 }
 /**
  * enum InstallConfirmationResult
  * @availability iOS 17.4+
  */
 export declare class InstallConfirmationResult extends SDKHandle {
+    readonly $type: {
+        "s:21_MarketplaceKit_UIKit25InstallConfirmationResultO": true;
+    };
 }
 /**
  * struct InstallMetadata
@@ -220,12 +245,18 @@ export declare class InstallMetadata extends SDKHandle {
      * @availability iOS 17.4+
      */
     get isUpdate(): boolean;
+    readonly $type: {
+        "s:21_MarketplaceKit_UIKit15InstallMetadataV": true;
+    };
 }
 /**
  * enum MarketplaceDisplayOption
  * @availability iOS 17.4+
  */
 export declare class MarketplaceDisplayOption extends SDKHandle {
+    readonly $type: {
+        "s:21_MarketplaceKit_UIKit0A13DisplayOptionO": true;
+    };
 }
 /**
  * protocol MarketplaceSceneDelegate
@@ -248,6 +279,9 @@ export declare class RequestAppDeletionAction extends SDKHandle {
      * @availability iOS 26.4+
      */
     callAsFunction(app: _MarketplaceKit_AppLibrary_App): Promise<void>;
+    readonly $type: {
+        "s:21_MarketplaceKit_UIKit24RequestAppDeletionActionV": true;
+    };
 }
 export declare class UIScene_ConnectionOptions extends SDKHandle {
     /**
@@ -255,5 +289,9 @@ export declare class UIScene_ConnectionOptions extends SDKHandle {
      * @availability iOS 17.4+
      */
     get marketplaceDisplayOption(): Promise<(MarketplaceDisplayOption) | null>;
+    readonly $type: {
+        "c:objc(cs)UISceneConnectionOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

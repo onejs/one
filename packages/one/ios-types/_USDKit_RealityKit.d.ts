@@ -24,6 +24,9 @@ export declare class USDPlayer extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initStage(stage: _USDKit_USDStage): USDPlayer;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC": true;
+    };
 }
 /**
  * struct DeformationData
@@ -50,6 +53,9 @@ export declare class USDPlayer_DeformationData extends SDKHandle {
      * @availability iOS 27.0+
      */
     get skinning(): (USDPlayer_DeformationData_SkinningData) | null;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV": true;
+    };
 }
 /**
  * struct BlendShapeData
@@ -66,6 +72,9 @@ export declare class USDPlayer_DeformationData_BlendShapeData extends SDKHandle 
      * @availability iOS 27.0+
      */
     get weights(): Array<number>;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV010BlendShapeF0V": true;
+    };
 }
 /**
  * struct Update
@@ -82,6 +91,9 @@ export declare class USDPlayer_DeformationData_BlendShapeData_Update extends SDK
      * @availability iOS 27.0+
      */
     get weights(): (Array<number>) | null;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV010BlendShapeF0V6UpdateV": true;
+    };
 }
 /**
  * struct RenormalizationData
@@ -103,6 +115,9 @@ export declare class USDPlayer_DeformationData_RenormalizationData extends SDKHa
      * @availability iOS 27.0+
      */
     get vertexAdjacencyEndIndices(): Array<number>;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV015RenormalizationF0V": true;
+    };
 }
 /**
  * struct Update
@@ -124,6 +139,9 @@ export declare class USDPlayer_DeformationData_RenormalizationData_Update extend
      * @availability iOS 27.0+
      */
     get vertexAdjacencyEndIndices(): (Array<number>) | null;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV015RenormalizationF0V6UpdateV": true;
+    };
 }
 /**
  * struct SkinningData
@@ -160,6 +178,9 @@ export declare class USDPlayer_DeformationData_SkinningData extends SDKHandle {
      * @availability iOS 27.0+
      */
     get influencePerVertexCount(): number;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV08SkinningF0V": true;
+    };
 }
 /**
  * struct Update
@@ -191,6 +212,9 @@ export declare class USDPlayer_DeformationData_SkinningData_Update extends SDKHa
      * @availability iOS 27.0+
      */
     get influenceJointIndices(): (Array<number>) | null;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV08SkinningF0V6UpdateV": true;
+    };
 }
 /**
  * struct Update
@@ -217,6 +241,9 @@ export declare class USDPlayer_DeformationData_Update extends SDKHandle {
      * @availability iOS 27.0+
      */
     get skinning(): (USDPlayer_DeformationData_SkinningData_Update) | null;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC15DeformationDataV6UpdateV": true;
+    };
 }
 /**
  * struct DeformationID
@@ -228,12 +255,18 @@ export declare class USDPlayer_DeformationID extends SDKHandle {
      * @availability iOS 27.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC13DeformationIDV": true;
+    };
 }
 /**
  * struct FrameUpdate
  * @availability iOS 27.0+
  */
 export declare class USDPlayer_FrameUpdate extends SDKHandle {
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC11FrameUpdateV": true;
+    };
 }
 /**
  * struct MaterialData
@@ -260,6 +293,9 @@ export declare class USDPlayer_MaterialData extends SDKHandle {
      * @availability iOS 27.0+
      */
     get primPath(): string;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC12MaterialDataV": true;
+    };
 }
 /**
  * struct Update
@@ -276,6 +312,9 @@ export declare class USDPlayer_MaterialData_Update extends SDKHandle {
      * @availability iOS 27.0+
      */
     get id(): USDPlayer_MaterialID;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC12MaterialDataV6UpdateV": true;
+    };
 }
 /**
  * struct MaterialID
@@ -287,6 +326,9 @@ export declare class USDPlayer_MaterialID extends SDKHandle {
      * @availability iOS 27.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC10MaterialIDV": true;
+    };
 }
 /**
  * struct MeshData
@@ -338,12 +380,18 @@ export declare class USDPlayer_MeshData extends SDKHandle {
      * @availability iOS 27.0+
      */
     get primPath(): string;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC8MeshDataV": true;
+    };
 }
 /**
  * enum MeshType
  * @availability iOS 27.0+
  */
 export declare class USDPlayer_MeshData_MeshType extends SDKHandle {
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC8MeshDataV0E4TypeO": true;
+    };
 }
 /**
  * struct Update
@@ -385,6 +433,9 @@ export declare class USDPlayer_MeshData_Update extends SDKHandle {
      * @availability iOS 27.0+
      */
     get meshType(): (USDPlayer_MeshData_MeshType) | null;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC8MeshDataV6UpdateV": true;
+    };
 }
 /**
  * struct MeshID
@@ -396,6 +447,9 @@ export declare class USDPlayer_MeshID extends SDKHandle {
      * @availability iOS 27.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC6MeshIDV": true;
+    };
 }
 /**
  * struct TextureData
@@ -427,6 +481,9 @@ export declare class USDPlayer_TextureData extends SDKHandle {
      * @availability iOS 27.0+
      */
     get assetPath(): string;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC11TextureDataV": true;
+    };
 }
 /**
  * struct TextureID
@@ -438,6 +495,9 @@ export declare class USDPlayer_TextureID extends SDKHandle {
      * @availability iOS 27.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC9TextureIDV": true;
+    };
 }
 /**
  * struct TextureLevelInfo
@@ -459,6 +519,9 @@ export declare class USDPlayer_TextureLevelInfo extends SDKHandle {
      * @availability iOS 27.0+
      */
     get byteCountPerImage(): number;
+    readonly $type: {
+        "s:18_USDKit_RealityKit9USDPlayerC16TextureLevelInfoV": true;
+    };
 }
 /**
  * struct USDRenderError
@@ -470,6 +533,9 @@ export declare class USDRenderError extends SDKHandle {
      * @availability iOS 27.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18_USDKit_RealityKit14USDRenderErrorV": true;
+    };
 }
 /**
  * struct USDStageComponent
@@ -517,6 +583,9 @@ export declare class USDStageComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initTimeCodeAllowsHitTesting(stage: _USDKit_USDStage, timeCode?: _USDKit_USDStage_TimeCode, allowsHitTesting?: boolean): Promise<USDStageComponent>;
+    readonly $type: {
+        "s:18_USDKit_RealityKit17USDStageComponentV": true;
+    };
 }
 /**
  * struct RenderResult
@@ -533,6 +602,9 @@ export declare class USDStageComponent_RenderResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get status(): USDStageComponent_RenderResult_Status;
+    readonly $type: {
+        "s:18_USDKit_RealityKit17USDStageComponentV12RenderResultV": true;
+    };
 }
 /**
  * enum Status

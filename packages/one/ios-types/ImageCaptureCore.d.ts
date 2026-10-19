@@ -154,6 +154,10 @@ export declare class ICDevice extends SDKHandle {
      * @availability iOS 13.0+
      */
     get userData(): $SDK4;
+    readonly $type: {
+        "c:objc(cs)ICDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuidString": true;
         "capabilities": true;
@@ -266,6 +270,11 @@ export declare class ICCameraDevice extends ICCameraDevice_base {
      * @availability iOS 13.0+
      */
     get timeOffset(): number;
+    readonly $type: {
+        "c:objc(cs)ICCameraDevice": true;
+        "c:objc(cs)ICDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuidString": true;
         "capabilities": true;
@@ -523,6 +532,10 @@ export declare class ICCameraItem extends SDKHandle {
      * @availability iOS 13.0+
      */
     get userData(): $SDK4;
+    readonly $type: {
+        "c:objc(cs)ICCameraItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uti": true;
         "wasAddedAfterContentCatalogCompleted": true;
@@ -707,6 +720,11 @@ export declare class ICCameraFile extends ICCameraFile_base {
      * @availability iOS 13.0+
      */
     get width(): number;
+    readonly $type: {
+        "c:objc(cs)ICCameraFile": true;
+        "c:objc(cs)ICCameraItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uti": true;
         "wasAddedAfterContentCatalogCompleted": true;
@@ -764,6 +782,11 @@ export declare class ICCameraFolder extends ICCameraFolder_base {
      * @availability iOS 13.0+
      */
     get contents(): $SDK9;
+    readonly $type: {
+        "c:objc(cs)ICCameraFolder": true;
+        "c:objc(cs)ICCameraItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uti": true;
         "wasAddedAfterContentCatalogCompleted": true;
@@ -955,6 +978,10 @@ export declare class ICDeviceBrowser extends SDKHandle {
      * @availability iOS 14.0+
      */
     get isSuspended(): boolean;
+    readonly $type: {
+        "c:objc(cs)ICDeviceBrowser": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "browsedDeviceTypeMask": true;
         "isBrowsing": true;
@@ -1009,7 +1036,7 @@ export interface ICDeviceBrowserDelegate {
     "deviceBrowserDidResumeOperations"?: (arg0: ICDeviceBrowser) => void;
 }
 /** struct ICDeviceCapability */
-export type ICDeviceCapability = "cameraDeviceCanTakePicture" | "cameraDeviceCanTakePictureUsingShutterReleaseOnCamera" | "cameraDeviceCanDeleteOneFile" | "cameraDeviceCanDeleteAllFiles" | "cameraDeviceCanSyncClock" | "cameraDeviceCanReceiveFile" | "cameraDeviceCanAcceptPTPCommands" | "cameraDeviceSupportsHEIF" | "canEjectOrDisconnect" | (string & {});
+export type ICDeviceCapability = "canEjectOrDisconnect" | "cameraDeviceCanTakePicture" | "cameraDeviceCanTakePictureUsingShutterReleaseOnCamera" | "cameraDeviceCanDeleteOneFile" | "cameraDeviceCanDeleteAllFiles" | "cameraDeviceCanSyncClock" | "cameraDeviceCanReceiveFile" | "cameraDeviceCanAcceptPTPCommands" | "cameraDeviceSupportsHEIF" | (string & {});
 export declare const ICDeviceCapability: {
     /**
      * static let cameraDeviceCanAcceptPTPCommands: ICDeviceCapability
@@ -1325,6 +1352,9 @@ export declare class ICLegacyReturn extends SDKHandle {
     static get deviceLocationIDNotFoundErr(): ICLegacyReturn_Code;
     /** static var deviceIOServicePathNotFoundErr: ICLegacyReturn.Code { get } */
     static get deviceIOServicePathNotFoundErr(): ICLegacyReturn_Code;
+    readonly $type: {
+        "s:SC18ICLegacyReturnCodeLeV": true;
+    };
 }
 /** enum Code */
 export type ICLegacyReturn_Code = "communicationErr" | "deviceNotFoundErr" | "deviceNotOpenErr" | "fileCorruptedErr" | "ioPendingErr" | "invalidObjectErr" | "invalidPropertyErr" | "indexOutOfRangeErr" | "propertyTypeNotFoundErr" | "cannotYieldDevice" | "dataTypeNotFoundErr" | "deviceMemoryAllocationErr" | "deviceInternalErr" | "deviceInvalidParamErr" | "deviceAlreadyOpenErr" | "deviceLocationIDNotFoundErr" | "deviceGUIDNotFoundErr" | "deviceIOServicePathNotFoundErr" | "deviceUnsupportedErr" | "frameworkInternalErr" | "extensionInternalErr" | "invalidSessionErr";
@@ -1428,6 +1458,9 @@ export declare class ICReturn extends SDKHandle {
     static get receivedUnsolicitedScannerStatusInfo(): ICReturn_Code;
     /** static var success: ICReturn.Code { get } */
     static get success(): ICReturn_Code;
+    readonly $type: {
+        "s:SC12ICReturnCodeLeV": true;
+    };
 }
 /** enum Code */
 export type ICReturn_Code = "success" | "invalidParam" | "communicationTimedOut" | "scanOperationCanceled" | "scannerInUseByLocalUser" | "scannerInUseByRemoteUser" | "deviceFailedToOpenSession" | "deviceFailedToCloseSession" | "scannerFailedToSelectFunctionalUnit" | "scannerFailedToCompleteOverviewScan" | "scannerFailedToCompleteScan" | "receivedUnsolicitedScannerStatusInfo" | "receivedUnsolicitedScannerErrorInfo" | "downloadFailed" | "uploadFailed" | "failedToCompletePassThroughCommand" | "downloadCanceled" | "failedToEnabeTethering" | "failedToDisabeTethering" | "failedToCompleteSendMessageRequest" | "deleteFilesFailed" | "deleteFilesCanceled" | "deviceIsPasscodeLocked" | "deviceFailedToTakePicture" | "deviceSoftwareNotInstalled" | "deviceSoftwareIsBeingInstalled" | "deviceSoftwareInstallationCompleted" | "deviceSoftwareInstallationCanceled" | "deviceSoftwareInstallationFailed" | "deviceSoftwareNotAvailable" | "deviceCouldNotPair" | "deviceCouldNotUnpair" | "deviceNeedsCredentials" | "deviceIsBusyEnumerating" | "deviceCommandGeneralFailure" | "deviceFailedToCompleteTransfer" | "deviceFailedToSendData" | "sessionNotOpened" | "exFATVolumeInvalid" | "multiErrorDictionary";
@@ -1461,6 +1494,9 @@ export declare class ICReturnConnectionError extends SDKHandle {
     static get closedSessionSuddenly(): ICReturnConnectionError_Code;
     /** static var notAuthorizedToOpenDevice: ICReturnConnectionError.Code { get } */
     static get notAuthorizedToOpenDevice(): ICReturnConnectionError_Code;
+    readonly $type: {
+        "s:SC27ICReturnConnectionErrorCodeLeV": true;
+    };
 }
 /** enum Code */
 export type ICReturnConnectionError_Code = "driverExited" | "closedSessionSuddenly" | "ejectedSuddenly" | "sessionAlreadyOpen" | "ejectFailed" | "failedToOpen" | "failedToOpenDevice" | "notAuthorizedToOpenDevice";
@@ -1476,6 +1512,9 @@ export declare class ICReturnDownloadError extends SDKHandle {
     static get pathInvalid(): ICReturnDownloadError_Code;
     /** static var fileWritable: ICReturnDownloadError.Code { get } */
     static get fileWritable(): ICReturnDownloadError_Code;
+    readonly $type: {
+        "s:SC25ICReturnDownloadErrorCodeLeV": true;
+    };
 }
 /** enum Code */
 export type ICReturnDownloadError_Code = "pathInvalid" | "fileWritable";
@@ -1495,6 +1534,9 @@ export declare class ICReturnMetadataError extends SDKHandle {
     static get invalid(): ICReturnMetadataError_Code;
     /** static var canceled: ICReturnMetadataError.Code { get } */
     static get canceled(): ICReturnMetadataError_Code;
+    readonly $type: {
+        "s:SC25ICReturnMetadataErrorCodeLeV": true;
+    };
 }
 /** enum Code */
 export type ICReturnMetadataError_Code = "notAvailable" | "alreadyFetching" | "canceled" | "invalid";
@@ -1516,6 +1558,9 @@ export declare class ICReturnObjectError extends SDKHandle {
     static get codeObjectDataEmpty(): ICReturnObjectError_Code;
     /** static var errorDomain: String { get } */
     static get errorDomain(): string;
+    readonly $type: {
+        "s:SC23ICReturnObjectErrorCodeLeV": true;
+    };
 }
 /** enum Code */
 export type ICReturnObjectError_Code = "codeObjectDoesNotExist" | "codeObjectDataOffsetInvalid" | "codeObjectCouldNotBeRead" | "codeObjectDataEmpty" | "codeObjectDataRequestTooLarge";
@@ -1531,6 +1576,9 @@ export declare class ICReturnPTPDeviceError extends SDKHandle {
     static get failedToSendCommand(): ICReturnPTPDeviceError_Code;
     /** static var notAuthorizedToSendCommand: ICReturnPTPDeviceError.Code { get } */
     static get notAuthorizedToSendCommand(): ICReturnPTPDeviceError_Code;
+    readonly $type: {
+        "s:SC26ICReturnPTPDeviceErrorCodeLeV": true;
+    };
 }
 /** enum Code */
 export type ICReturnPTPDeviceError_Code = "failedToSendCommand" | "notAuthorizedToSendCommand";
@@ -1550,6 +1598,9 @@ export declare class ICReturnThumbnailError extends SDKHandle {
     static get invalid(): ICReturnThumbnailError_Code;
     /** static var canceled: ICReturnThumbnailError.Code { get } */
     static get canceled(): ICReturnThumbnailError_Code;
+    readonly $type: {
+        "s:SC26ICReturnThumbnailErrorCodeLeV": true;
+    };
 }
 /** enum Code */
 export type ICReturnThumbnailError_Code = "notAvailable" | "alreadyFetching" | "canceled" | "invalid";

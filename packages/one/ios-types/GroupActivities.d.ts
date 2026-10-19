@@ -148,6 +148,9 @@ export declare class GroupActivityMetadata extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): GroupActivityMetadata;
+    readonly $type: {
+        "s:15GroupActivities0A16ActivityMetadataV": true;
+    };
 }
 /**
  * struct ActivityType
@@ -204,6 +207,9 @@ export declare class GroupActivityMetadata_ActivityType extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get generic(): GroupActivityMetadata_ActivityType;
+    readonly $type: {
+        "s:15GroupActivities0A16ActivityMetadataV0C4TypeV": true;
+    };
 }
 /**
  * enum Experience
@@ -242,12 +248,18 @@ export declare class GroupActivityMetadata_LifetimePolicy extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): GroupActivityMetadata_LifetimePolicy;
+    readonly $type: {
+        "s:15GroupActivities0A16ActivityMetadataV14LifetimePolicyV": true;
+    };
 }
 /**
  * struct GroupActivityTransferRepresentation<Item> where Item : Transferable
  * @availability iOS 17.0+
  */
 export declare class GroupActivityTransferRepresentation<Item = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15GroupActivities0A30ActivityTransferRepresentationV": true;
+    };
 }
 /**
  * typealias Body = some TransferRepresentation
@@ -259,12 +271,18 @@ export type GroupActivityTransferRepresentation_Body<Item = unknown> = SDKHandle
  * @availability iOS 15.0+
  */
 export declare class GroupSession<ActivityType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15GroupActivities0A7SessionC": true;
+    };
 }
 /**
  * struct Event
  * @availability iOS 15.0+
  */
 export declare class GroupSession_Event<ActivityType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15GroupActivities0A7SessionC5EventV": true;
+    };
 }
 /**
  * typealias ObjectWillChangePublisher = ObservableObjectPublisher
@@ -276,6 +294,9 @@ export type GroupSession_ObjectWillChangePublisher<ActivityType = unknown> = _Co
  * @availability iOS 15.0+
  */
 export declare class GroupSession_Sessions<ActivityType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15GroupActivities0A7SessionC8SessionsV": true;
+    };
     readonly $element: GroupSession<unknown>;
 }
 /**
@@ -293,6 +314,9 @@ export type GroupSession_Sessions_Element<ActivityType = unknown> = GroupSession
  * @availability iOS 15.0+
  */
 export declare class GroupSession_Sessions_Iterator<ActivityType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15GroupActivities0A7SessionC8SessionsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = GroupSession<ActivityType>
@@ -304,6 +328,9 @@ export type GroupSession_Sessions_Iterator_Element<ActivityType = unknown> = Gro
  * @availability iOS 15.0+
  */
 export declare class GroupSession_State<ActivityType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15GroupActivities0A7SessionC5StateO": true;
+    };
 }
 /**
  * struct GroupSessionEvent
@@ -330,6 +357,9 @@ export declare class GroupSessionEvent extends SDKHandle {
      * @availability iOS 15.0+
      */
     get action(): GroupSessionEvent_Action;
+    readonly $type: {
+        "s:15GroupActivities0A12SessionEventV": true;
+    };
 }
 /**
  * struct Action
@@ -360,6 +390,9 @@ export declare class GroupSessionEvent_Action extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get pause(): GroupSessionEvent_Action;
+    readonly $type: {
+        "s:15GroupActivities0A12SessionEventV6ActionV": true;
+    };
 }
 /** struct QueueChange */
 export declare class GroupSessionEvent_Action_QueueChange extends SDKHandle {
@@ -367,6 +400,9 @@ export declare class GroupSessionEvent_Action_QueueChange extends SDKHandle {
     static added(item: GroupSessionEvent_Action_QueueChange_Item): GroupSessionEvent_Action_QueueChange;
     /** static func setUpNext(_ item: GroupSessionEvent.Action.QueueChange.Item) -> GroupSessionEvent.Action.QueueChange */
     static setUpNext(item: GroupSessionEvent_Action_QueueChange_Item): GroupSessionEvent_Action_QueueChange;
+    readonly $type: {
+        "s:15GroupActivities0A12SessionEventV6ActionV11QueueChangeV": true;
+    };
 }
 /** struct Item */
 export declare class GroupSessionEvent_Action_QueueChange_Item extends SDKHandle {
@@ -374,6 +410,9 @@ export declare class GroupSessionEvent_Action_QueueChange_Item extends SDKHandle
     static song(name: string): GroupSessionEvent_Action_QueueChange_Item;
     /** static func container(_ name: String) -> GroupSessionEvent.Action.QueueChange.Item */
     static container(name: string): GroupSessionEvent_Action_QueueChange_Item;
+    readonly $type: {
+        "s:15GroupActivities0A12SessionEventV6ActionV11QueueChangeV4ItemV": true;
+    };
 }
 /**
  * final class GroupSessionJournal
@@ -401,6 +440,9 @@ export declare class GroupSessionJournal extends SDKHandle {
      * @availability iOS 17.0+
      */
     remove(attachment: GroupSessionJournal_Attachment): Promise<void>;
+    readonly $type: {
+        "s:15GroupActivities0A14SessionJournalC": true;
+    };
 }
 /**
  * struct Attachment
@@ -418,6 +460,9 @@ export declare class GroupSessionJournal_Attachment extends SDKHandle {
      */
     get id(): string;
     set id(value: string);
+    readonly $type: {
+        "s:15GroupActivities0A14SessionJournalC10AttachmentV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -434,6 +479,9 @@ export declare class GroupSessionJournal_Attachments extends SDKHandle {
      * @availability iOS 17.0+
      */
     makeAsyncIterator(): GroupSessionJournal_Attachments_Iterator;
+    readonly $type: {
+        "s:15GroupActivities0A14SessionJournalC11AttachmentsV": true;
+    };
     readonly $element: $SDK4;
 }
 /**
@@ -456,6 +504,9 @@ export declare class GroupSessionJournal_Attachments_Iterator extends SDKHandle 
      * @availability iOS 17.0+
      */
     next(): Promise<(Array<GroupSessionJournal_Attachment>) | null>;
+    readonly $type: {
+        "s:15GroupActivities0A14SessionJournalC11AttachmentsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = GroupSessionJournal.Attachments.Element
@@ -482,6 +533,9 @@ export declare class GroupSessionMessenger extends SDKHandle {
     sendTo78309(value: number, participants?: Participants): Promise<void>;
     /** final func messages<Message>(of type: Message.Type) -> GroupSessionMessenger.Messages<Message> where Message : Decodable, Message : Encodable */
     messages(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): GroupSessionMessenger_Messages<unknown>;
+    readonly $type: {
+        "s:15GroupActivities0A16SessionMessengerC": true;
+    };
 }
 /**
  * enum DeliveryMode
@@ -499,6 +553,9 @@ export declare class GroupSessionMessenger_MessageContext extends SDKHandle {
      */
     get source(): Participant;
     set source(value: Participant);
+    readonly $type: {
+        "s:15GroupActivities0A16SessionMessengerC14MessageContextV": true;
+    };
 }
 /**
  * struct Messages<Message> where Message : Decodable, Message : Encodable
@@ -510,6 +567,9 @@ export declare class GroupSessionMessenger_Messages<Message = unknown> extends S
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): GroupSessionMessenger_Messages_Iterator<number>;
+    readonly $type: {
+        "s:15GroupActivities0A16SessionMessengerC8MessagesV": true;
+    };
     readonly $element: $SDK9;
 }
 /**
@@ -532,6 +592,9 @@ export declare class GroupSessionMessenger_Messages_Iterator<Message = unknown> 
      * @availability iOS 15.0+
      */
     next(): Promise<([number, GroupSessionMessenger_MessageContext]) | null>;
+    readonly $type: {
+        "s:15GroupActivities0A16SessionMessengerC8MessagesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = GroupSessionMessenger.Messages<Message>.Element
@@ -558,6 +621,9 @@ export declare class GroupStateObserver extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): GroupStateObserver;
+    readonly $type: {
+        "s:15GroupActivities0A13StateObserverC": true;
+    };
 }
 /**
  * typealias ObjectWillChangePublisher = ObservableObjectPublisher
@@ -581,6 +647,9 @@ export declare class Participant extends SDKHandle {
      * @availability iOS 15.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:15GroupActivities11ParticipantV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -594,6 +663,9 @@ export type Participant_ID = string;
 export declare class Participants extends SDKHandle {
     /** static func only(_ participant: Participant) -> Participants */
     static only(participant: Participant): Participants;
+    readonly $type: {
+        "s:15GroupActivities12ParticipantsO": true;
+    };
 }
 /**
  * struct SceneAssociationBehavior
@@ -615,5 +687,8 @@ export declare class SceneAssociationBehavior extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get default(): SceneAssociationBehavior;
+    readonly $type: {
+        "s:15GroupActivities24SceneAssociationBehaviorV": true;
+    };
 }
 export {};

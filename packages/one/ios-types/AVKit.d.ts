@@ -29,6 +29,10 @@ export declare class AVAudioSession extends SDKHandle {
      * @availability iOS 13.0+
      */
     prepareRouteSelectionForPlayback(completionHandler: ((arg0: boolean, arg1: AVAudioSession_RouteSelection) => void)): void;
+    readonly $type: {
+        "c:objc(cs)AVAudioSession": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum RouteSelection
@@ -72,6 +76,10 @@ export declare class AVCaptureDeviceDescriptor extends SDKHandle {
      * @availability iOS 27.1+
      */
     get uniqueID(): string;
+    readonly $type: {
+        "c:objc(cs)AVCaptureDeviceDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceType": true;
         "localizedName": true;
@@ -95,6 +103,10 @@ export declare class AVCaptureDeviceDirectionCoordinator extends SDKHandle {
      * @availability iOS 27.1+
      */
     get deviceDirections(): AVCaptureDeviceDirectionMap;
+    readonly $type: {
+        "c:objc(cs)AVCaptureDeviceDirectionCoordinator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceDirections": true;
     };
@@ -114,6 +126,10 @@ export declare class AVCaptureDeviceDirectionMap extends SDKHandle {
      * @availability iOS 27.1+
      */
     get forwardFacingDeviceDescriptors(): $SDK4;
+    readonly $type: {
+        "c:objc(cs)AVCaptureDeviceDirectionMap": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "backwardFacingDeviceDescriptors": true;
         "forwardFacingDeviceDescriptors": true;
@@ -139,6 +155,10 @@ export declare class AVCaptureEvent extends SDKHandle {
      * @availability iOS 26.0+
      */
     get shouldPlaySound(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVCaptureEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "phase": true;
         "shouldPlaySound": true;
@@ -171,6 +191,10 @@ export declare class AVCaptureEventInteraction extends SDKHandle {
      */
     get isEnabled(): Promise<boolean>;
     setIsEnabled(value: boolean): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)AVCaptureEventInteraction": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum AVCaptureEventPhase
@@ -209,6 +233,10 @@ export declare class AVCaptureEventSound extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(url: string): AVCaptureEventSound;
+    readonly $type: {
+        "c:objc(cs)AVCaptureEventSound": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum AVDisplayDynamicRange
@@ -264,6 +292,10 @@ export declare class AVInputPickerInteraction extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isPresented(): Promise<boolean>;
+    readonly $type: {
+        "c:objc(cs)AVInputPickerInteraction": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol Delegate : NSObjectProtocol
@@ -303,6 +335,10 @@ export declare class AVInterstitialTimeRange extends SDKHandle {
      * @availability iOS 16.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "c:objc(cs)AVInterstitialTimeRange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timeRange": true;
     };
@@ -327,6 +363,9 @@ export declare class AVKitError extends SDKHandle {
      * @availability iOS 9.0+
      */
     static get unknown(): AVKitError_Code;
+    readonly $type: {
+        "s:SC10AVKitErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -372,6 +411,10 @@ export declare class AVLegibleMediaOptionsMenuController extends SDKHandle {
      */
     get player(): _AVFoundation_AVPlayer;
     set player(value: _AVFoundation_AVPlayer);
+    readonly $type: {
+        "c:objc(cs)AVLegibleMediaOptionsMenuController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "menuState": true;
@@ -465,6 +508,9 @@ export declare class AVLegibleMediaOptionsMenuState extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init(): AVLegibleMediaOptionsMenuState;
+    readonly $type: {
+        "c:@S@AVLegibleMediaOptionsMenuState": true;
+    };
 }
 /**
  * class AVPictureInPictureController
@@ -496,8 +542,6 @@ export declare class AVPictureInPictureController extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get pictureInPictureButtonStopImage(): _UIKit_UIImage;
-    /** init() */
-    static init(): AVPictureInPictureController;
     /**
      * init(contentSource: AVPictureInPictureController.ContentSource)
      * @availability iOS 15.0+
@@ -567,6 +611,10 @@ export declare class AVPictureInPictureController extends SDKHandle {
      */
     get requiresLinearPlayback(): boolean;
     set requiresLinearPlayback(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVPictureInPictureController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "canStartPictureInPictureAutomaticallyFromInline": true;
         "contentSource": true;
@@ -623,6 +671,10 @@ export declare class AVPictureInPictureController_ContentSource extends SDKHandl
      * @availability iOS 15.0+
      */
     get sampleBufferPlaybackDelegate(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)AVPictureInPictureControllerContentSource": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeVideoCallContentViewController": true;
         "activeVideoCallSourceView": true;
@@ -700,6 +752,12 @@ export interface AVPictureInPictureSampleBufferPlaybackDelegate {
 export declare class AVPictureInPictureVideoCallViewController extends SDKHandle {
     /** init() */
     static init(): AVPictureInPictureVideoCallViewController;
+    readonly $type: {
+        "c:objc(cs)AVPictureInPictureVideoCallViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVPlaybackSpeed
@@ -731,6 +789,10 @@ export declare class AVPlaybackSpeed extends SDKHandle {
      * @availability iOS 16.0+
      */
     get rate(): number;
+    readonly $type: {
+        "c:objc(cs)AVPlaybackSpeed": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localizedName": true;
         "localizedNumericName": true;
@@ -752,6 +814,10 @@ export declare class AVPlaybackUserInterfaceContentArtwork extends SDKHandle {
      * @availability iOS 27.0+
      */
     get size(): $SDK15;
+    readonly $type: {
+        "c:objc(cs)AVPlaybackUserInterfaceContentArtwork": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "size": true;
     };
@@ -790,6 +856,9 @@ export declare class AVPlaybackUserInterfaceContentMetadata extends SDKHandle {
      */
     get subtitle(): (string) | null;
     set subtitle(value: (string) | null);
+    readonly $type: {
+        "s:5AVKit38AVPlaybackUserInterfaceContentMetadataV": true;
+    };
 }
 /**
  * struct VideoProperties
@@ -807,6 +876,9 @@ export declare class AVPlaybackUserInterfaceContentMetadata_VideoProperties exte
      */
     get presentationSize(): $SDK15;
     set presentationSize(value: $SDK15);
+    readonly $type: {
+        "s:5AVKit38AVPlaybackUserInterfaceContentMetadataV15VideoPropertiesV": true;
+    };
 }
 /**
  * class AVPlaybackUserInterfaceContentURLArtwork
@@ -823,6 +895,11 @@ export declare class AVPlaybackUserInterfaceContentURLArtwork extends AVPlayback
      * @availability iOS 27.0+
      */
     get url(): string;
+    readonly $type: {
+        "c:objc(cs)AVPlaybackUserInterfaceContentURLArtwork": true;
+        "c:objc(cs)AVPlaybackUserInterfaceContentArtwork": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "size": true;
         "contentType": true;
@@ -876,6 +953,10 @@ export declare class AVPlaybackUserInterfaceMediaSelectionOption extends SDKHand
      * @availability iOS 27.0+
      */
     get language(): $SDK19;
+    readonly $type: {
+        "c:objc(cs)AVPlaybackUserInterfaceMediaSelectionOption": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "identifier": true;
@@ -919,6 +1000,10 @@ export declare class AVPlaybackUserInterfacePlaybackPosition extends SDKHandle {
      * @availability iOS 27.0+
      */
     get rate(): number;
+    readonly $type: {
+        "c:objc(cs)AVPlaybackUserInterfacePlaybackPosition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hostTime": true;
         "position": true;
@@ -1010,6 +1095,10 @@ export declare class AVPlaybackUserInterfaceTimelineSegment extends SDKHandle {
      * @availability iOS 27.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "c:objc(cs)AVPlaybackUserInterfaceTimelineSegment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "isMarked": true;
@@ -1048,6 +1137,10 @@ export declare class AVPlayerItem extends SDKHandle {
      * @availability iOS 16.0+
      */
     get interstitialTimeRanges(): Promise<Array<AVInterstitialTimeRange>>;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class AVPlayerViewController
@@ -1192,6 +1285,12 @@ export declare class AVPlayerViewController extends SDKHandle {
      */
     get videoGravity(): Promise<_AVFoundation_AVLayerVideoGravity>;
     setVideoGravity(value: _AVFoundation_AVLayerVideoGravity): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)AVPlayerViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol AVPlayerViewControllerDelegate : NSObjectProtocol
@@ -1275,6 +1374,12 @@ export declare class AVRoutePickerView extends SDKHandle {
      */
     get prioritizesVideoDevices(): boolean;
     set prioritizesVideoDevices(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVRoutePickerView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeTintColor": true;
         "customRoutingController": true;

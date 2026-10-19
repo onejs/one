@@ -80,6 +80,9 @@ export declare class CGAffineTransform extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init58803(components: _CoreFoundation_CGAffineTransformComponents): _CoreFoundation_CGAffineTransform;
+    readonly $type: {
+        "c:@S@CGAffineTransform": true;
+    };
 }
 /** typealias CGBitmapContextReleaseDataCallback = (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?) -> Void */
 export type CGBitmapContextReleaseDataCallback = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null) => Promise<void>);
@@ -319,6 +322,9 @@ export declare class CGBitmapParameters extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscriptDynamicMember56275(keyPath: SDKHandle): unknown;
+    readonly $type: {
+        "s:12CoreGraphics18CGBitmapParametersV": true;
+    };
 }
 /** enum CGBlendMode */
 export type CGBlendMode = "normal" | "multiply" | "screen" | "overlay" | "darken" | "lighten" | "colorDodge" | "colorBurn" | "softLight" | "hardLight" | "difference" | "exclusion" | "hue" | "saturation" | "color" | "luminosity" | "clear" | "copy" | "sourceIn" | "sourceOut" | "sourceAtop" | "destinationOver" | "destinationIn" | "destinationOut" | "destinationAtop" | "xor" | "plusDarker" | "plusLighter";
@@ -428,6 +434,9 @@ export declare class CGColor extends SDKHandle {
      * @availability iOS 7.0+
      */
     get components(): (Array<number>) | null;
+    readonly $type: {
+        "c:@T@CGColorRef": true;
+    };
 }
 /** struct CGColorBufferFormat */
 export declare class CGColorBufferFormat extends SDKHandle {
@@ -450,6 +459,9 @@ export declare class CGColorBufferFormat extends SDKHandle {
     static initVersionBitmapInfoBitsPerComponentBitsPerPixelBytesPerRow(version: number, bitmapInfo: CGBitmapInfo, bitsPerComponent: number, bitsPerPixel: number, bytesPerRow: number): CGColorBufferFormat;
     /** init() */
     static init(): CGColorBufferFormat;
+    readonly $type: {
+        "c:@SA@CGColorBufferFormat": true;
+    };
 }
 /** class CGColorConversionInfo */
 export declare class CGColorConversionInfo extends SDKHandle {
@@ -480,6 +492,9 @@ export declare class CGColorConversionInfo extends SDKHandle {
     static initOptionsSrcDstOptions(src: CGColorSpace, dst: CGColorSpace, options?: $SDK3): (CGColorConversionInfo) | null;
     /** class var typeID: CFTypeID { get } */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CGColorConversionInfoRef": true;
+    };
 }
 /** enum CGColorConversionInfoTransformType */
 export type CGColorConversionInfoTransformType = "transformFromSpace" | "transformToSpace" | "transformApplySpace";
@@ -514,6 +529,9 @@ export declare class CGColorDataFormat extends SDKHandle {
     static initVersionColorspace_infoBitmap_infoBits_per_componentBytes_per_rowIntentDecode(version: number, colorspace_info: (SDKHandle) | null, bitmap_info: CGBitmapInfo, bits_per_component: number, bytes_per_row: number, intent: CGColorRenderingIntent, decode?: $SDK5): CGColorDataFormat;
     /** init() */
     static init(): CGColorDataFormat;
+    readonly $type: {
+        "c:@SA@CGColorDataFormat": true;
+    };
 }
 /** struct CGColorModel */
 export type CGColorModel = Array<"gray" | "rgb" | "cmyk" | "lab" | "deviceN">;
@@ -846,6 +864,9 @@ export declare class CGColorSpace extends SDKHandle {
      * @availability iOS 7.0+
      */
     get colorTable(): (Array<number>) | null;
+    readonly $type: {
+        "c:@T@CGColorSpaceRef": true;
+    };
 }
 /** enum CGColorSpaceModel */
 export type CGColorSpaceModel = "unknown" | "monochrome" | "rgb" | "cmyk" | "lab" | "deviceN" | "indexed" | "pattern" | "XYZ";
@@ -880,6 +901,9 @@ export declare class CGContentInfo extends SDKHandle {
     static initDeepestImageComponentContentColorModelsHasWideGamutHasTransparencyLargestContentHeadroom(deepestImageComponent: CGComponent, contentColorModels: CGColorModel, hasWideGamut: boolean, hasTransparency: boolean, largestContentHeadroom: number): CGContentInfo;
     /** init() */
     static init(): CGContentInfo;
+    readonly $type: {
+        "c:@SA@CGContentInfo": true;
+    };
 }
 /**
  * enum CGContentToneMappingInfo
@@ -891,6 +915,9 @@ export declare class CGContentToneMappingInfo extends SDKHandle {
      * @availability iOS 26.0+
      */
     get id(): CGToneMapping;
+    readonly $type: {
+        "s:12CoreGraphics24CGContentToneMappingInfoO": true;
+    };
 }
 /**
  * struct DefaultOptions
@@ -919,6 +946,9 @@ export declare class CGContentToneMappingInfo_DefaultOptions extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): CGContentToneMappingInfo_DefaultOptions;
+    readonly $type: {
+        "s:12CoreGraphics24CGContentToneMappingInfoO14DefaultOptionsV": true;
+    };
 }
 /**
  * enum DynamicRange
@@ -964,6 +994,9 @@ export declare class CGContentToneMappingInfo_EXRGammaOptions extends SDKHandle 
      * @availability iOS 26.0+
      */
     static init(): CGContentToneMappingInfo_EXRGammaOptions;
+    readonly $type: {
+        "s:12CoreGraphics24CGContentToneMappingInfoO15EXRGammaOptionsV": true;
+    };
 }
 /**
  * typealias ID = CGToneMapping
@@ -1009,12 +1042,18 @@ export declare class CGContentToneMappingInfo_ITURecommendedOptions extends SDKH
      * @availability iOS 26.0+
      */
     static init(): CGContentToneMappingInfo_ITURecommendedOptions;
+    readonly $type: {
+        "s:12CoreGraphics24CGContentToneMappingInfoO21ITURecommendedOptionsV": true;
+    };
 }
 /**
  * enum LightLevel
  * @availability iOS 26.0+
  */
 export declare class CGContentToneMappingInfo_LightLevel extends SDKHandle {
+    readonly $type: {
+        "s:12CoreGraphics24CGContentToneMappingInfoO10LightLevelO": true;
+    };
 }
 /** class CGContext */
 export declare class CGContext extends SDKHandle {
@@ -1710,6 +1749,9 @@ export declare class CGContext extends SDKHandle {
      * @availability iOS 7.0+
      */
     fillPath(rule?: CGPathFillRule): void;
+    readonly $type: {
+        "c:@T@CGContextRef": true;
+    };
 }
 /**
  * struct AuxiliaryInfo
@@ -1732,6 +1774,9 @@ export declare class CGContext_AuxiliaryInfo extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): CGContext_AuxiliaryInfo;
+    readonly $type: {
+        "s:So12CGContextRefa12CoreGraphicsE13AuxiliaryInfoV": true;
+    };
 }
 /** class CGDataConsumer */
 export declare class CGDataConsumer extends SDKHandle {
@@ -1755,6 +1800,9 @@ export declare class CGDataConsumer extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CGDataConsumerRef": true;
+    };
 }
 /** struct CGDataConsumerCallbacks */
 export declare class CGDataConsumerCallbacks extends SDKHandle {
@@ -1764,6 +1812,9 @@ export declare class CGDataConsumerCallbacks extends SDKHandle {
     get releaseConsumer(): $SDK15;
     /** init() */
     static init(): CGDataConsumerCallbacks;
+    readonly $type: {
+        "c:@S@CGDataConsumerCallbacks": true;
+    };
 }
 /** typealias CGDataConsumerPutBytesCallback = (UnsafeMutableRawPointer?, UnsafeRawPointer, Int) -> Int */
 export type CGDataConsumerPutBytesCallback = $SDK16;
@@ -1811,6 +1862,9 @@ export declare class CGDataProvider extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CGDataProviderRef": true;
+    };
 }
 /** struct CGDataProviderDirectCallbacks */
 export declare class CGDataProviderDirectCallbacks extends SDKHandle {
@@ -1827,6 +1881,9 @@ export declare class CGDataProviderDirectCallbacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CGDataProviderDirectCallbacks;
+    readonly $type: {
+        "c:@S@CGDataProviderDirectCallbacks": true;
+    };
 }
 /** typealias CGDataProviderGetBytePointerCallback = (UnsafeMutableRawPointer?) -> UnsafeRawPointer? */
 export type CGDataProviderGetBytePointerCallback = ((arg0: (SDKHandle) | null) => Promise<(SDKHandle) | null>);
@@ -1857,6 +1914,9 @@ export declare class CGDataProviderSequentialCallbacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CGDataProviderSequentialCallbacks;
+    readonly $type: {
+        "c:@S@CGDataProviderSequentialCallbacks": true;
+    };
 }
 /** typealias CGDataProviderSkipForwardCallback = (UnsafeMutableRawPointer?, off_t) -> off_t */
 export type CGDataProviderSkipForwardCallback = ((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<SDKHandle>);
@@ -2025,6 +2085,9 @@ export declare class CGFont extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get variationAxisName(): _CoreFoundation_CFString;
+    readonly $type: {
+        "c:@T@CGFontRef": true;
+    };
 }
 /** typealias CGFontIndex = UInt16 */
 export type CGFontIndex = number;
@@ -2046,6 +2109,9 @@ export declare class CGFunction extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CGFunctionRef": true;
+    };
 }
 /** struct CGFunctionCallbacks */
 export declare class CGFunctionCallbacks extends SDKHandle {
@@ -2058,6 +2124,9 @@ export declare class CGFunctionCallbacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CGFunctionCallbacks;
+    readonly $type: {
+        "c:@S@CGFunctionCallbacks": true;
+    };
 }
 /** typealias CGFunctionEvaluateCallback = (UnsafeMutableRawPointer?, UnsafePointer<CGFloat>, UnsafeMutablePointer<CGFloat>) -> Void */
 export type CGFunctionEvaluateCallback = ((arg0: (SDKHandle) | null, arg1: "animatableData" | SDKHandle, arg2: "animatableData" | SDKHandle) => Promise<void>);
@@ -2098,6 +2167,9 @@ export declare class CGGradient extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CGGradientRef": true;
+    };
 }
 /** struct CGGradientDrawingOptions */
 export type CGGradientDrawingOptions = Array<"drawsBeforeStartLocation" | "drawsAfterEndLocation">;
@@ -2286,6 +2358,9 @@ export declare class CGImage extends SDKHandle {
      * @availability iOS 7.0+
      */
     copyMaskingColorComponents(components: Array<number>): (CGImage) | null;
+    readonly $type: {
+        "c:@T@CGImageRef": true;
+    };
 }
 /** enum CGImageAlphaInfo */
 export type CGImageAlphaInfo = "none" | "premultipliedLast" | "premultipliedFirst" | "last" | "first" | "noneSkipLast" | "noneSkipFirst" | "alphaOnly";
@@ -2432,6 +2507,9 @@ export declare class CGLayer extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CGLayerRef": true;
+    };
 }
 /** enum CGLineCap */
 export type CGLineCap = "butt" | "round" | "square";
@@ -2582,6 +2660,9 @@ export declare class CGPath extends SDKHandle {
      * @availability iOS 16.0+
      */
     flattened(threshold: number): CGPath;
+    readonly $type: {
+        "c:@T@CGPathRef": true;
+    };
 }
 /** class CGMutablePath */
 export declare class CGMutablePath extends CGPath {
@@ -2660,6 +2741,10 @@ export declare class CGMutablePath extends CGPath {
      * @availability iOS 7.0+
      */
     addRects(rects: $SDK13, transform?: _CoreFoundation_CGAffineTransform): void;
+    readonly $type: {
+        "c:@T@CGMutablePathRef": true;
+        "c:@T@CGPathRef": true;
+    };
 }
 /** typealias CGPathApplierFunction = (UnsafeMutableRawPointer?, UnsafePointer<CGPathElement>) -> Void */
 export type CGPathApplierFunction = $SDK23;
@@ -2681,6 +2766,9 @@ export declare class CGPathElement extends SDKHandle {
     set type(value: CGPathElementType);
     /** init(type: CGPathElementType, points: UnsafeMutablePointer<CGPoint>) */
     static init(type: CGPathElementType, points: $SDK2): CGPathElement;
+    readonly $type: {
+        "c:@S@CGPathElement": true;
+    };
 }
 /** enum CGPathElementType */
 export type CGPathElementType = "moveToPoint" | "addLineToPoint" | "addQuadCurveToPoint" | "addCurveToPoint" | "closeSubpath";
@@ -2722,6 +2810,9 @@ export declare class CGPattern extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CGPatternRef": true;
+    };
 }
 /** struct CGPatternCallbacks */
 export declare class CGPatternCallbacks extends SDKHandle {
@@ -2734,6 +2825,9 @@ export declare class CGPatternCallbacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CGPatternCallbacks;
+    readonly $type: {
+        "c:@S@CGPatternCallbacks": true;
+    };
 }
 /** typealias CGPatternDrawPatternCallback = (UnsafeMutableRawPointer?, CGContext) -> Void */
 export type CGPatternDrawPatternCallback = ((arg0: (SDKHandle) | null, arg1: CGContext) => Promise<void>);
@@ -2887,6 +2981,9 @@ export declare class CGPDFDocument extends SDKHandle {
      * @availability iOS 2.0+
      */
     unlockWithPassword(password: SDKHandle): boolean;
+    readonly $type: {
+        "c:@T@CGPDFDocumentRef": true;
+    };
 }
 /** typealias CGPDFInteger = Int */
 export type CGPDFInteger = number;
@@ -2895,6 +2992,9 @@ export type CGPDFInteger = number;
  * @availability iOS 27.0+
  */
 export declare class CGPDFMarkedContentItem extends SDKHandle {
+    readonly $type: {
+        "c:@T@CGPDFMarkedContentItemRef": true;
+    };
 }
 /** struct CGPDFObjectRef */
 export type CGPDFObjectRef = (number & {});
@@ -2951,6 +3051,9 @@ export declare class CGPDFPage extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CGPDFPageRef": true;
+    };
 }
 /** typealias CGPDFReal = CGFloat */
 export type CGPDFReal = number;
@@ -2989,6 +3092,9 @@ export declare class CGPDFStructureElement extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(type: CGPDFTagType): CGPDFStructureElement;
+    readonly $type: {
+        "c:@T@CGPDFStructureElementRef": true;
+    };
 }
 /**
  * struct Attributes
@@ -3030,6 +3136,9 @@ export declare class CGPDFStructureElement_Attributes extends SDKHandle {
      */
     get language(): $SDK42;
     set language(value: $SDK42);
+    readonly $type: {
+        "s:So24CGPDFStructureElementRefa12CoreGraphicsE10AttributesV": true;
+    };
 }
 /** struct CGPDFTagProperty */
 export type CGPDFTagProperty = "actualText" | "alternativeText" | "titleText" | "languageText" | (number & {});
@@ -3116,6 +3225,9 @@ export declare class CGPoint extends SDKHandle {
     equalTo(point2: $SDK9): boolean;
     /** func applying(_ t: CGAffineTransform) -> CGPoint */
     applying(t: _CoreFoundation_CGAffineTransform): $SDK9;
+    readonly $type: {
+        "c:@S@CGPoint": true;
+    };
 }
 export declare class CGRect extends SDKHandle {
     /**
@@ -3298,9 +3410,15 @@ export declare class CGRect extends SDKHandle {
      * @availability iOS 7.0+
      */
     offsetBy(dx: number, dy: number): $SDK8;
+    readonly $type: {
+        "c:@S@CGRect": true;
+    };
 }
 /** class CGRenderingBufferProvider */
 export declare class CGRenderingBufferProvider extends SDKHandle {
+    readonly $type: {
+        "c:@T@CGRenderingBufferProviderRef": true;
+    };
 }
 /**
  * protocol Info : AnyObject
@@ -3350,6 +3468,9 @@ export declare class CGShading extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CGShadingRef": true;
+    };
 }
 export declare class CGSize extends SDKHandle {
     /**
@@ -3393,6 +3514,9 @@ export declare class CGSize extends SDKHandle {
     equalTo(size2: $SDK10): boolean;
     /** func applying(_ t: CGAffineTransform) -> CGSize */
     applying(t: _CoreFoundation_CGAffineTransform): $SDK10;
+    readonly $type: {
+        "c:@S@CGSize": true;
+    };
 }
 /** enum CGTextDrawingMode */
 export type CGTextDrawingMode = "fill" | "stroke" | "fillStroke" | "invisible" | "fillClip" | "strokeClip" | "fillStrokeClip" | "clip";
@@ -3433,9 +3557,15 @@ export declare class CGVector extends SDKHandle {
      * @availability iOS 7.0+
      */
     static get zero(): $SDK44;
+    readonly $type: {
+        "c:@S@CGVector": true;
+    };
 }
 /** class ColorSyncProfile */
 export declare class ColorSyncProfile extends SDKHandle {
+    readonly $type: {
+        "c:@T@ColorSyncProfileRef": true;
+    };
 }
 /**
  * func CGAffineTransformConcat(_ t1: CGAffineTransform, _ t2: CGAffineTransform) -> CGAffineTransform

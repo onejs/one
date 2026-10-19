@@ -80,6 +80,9 @@ export declare class CredentialSession extends SDKHandle {
      * @availability iOS 18.1+
      */
     static init(): CredentialSession;
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC": true;
+    };
 }
 /**
  * struct CardEmulationOptions
@@ -91,6 +94,9 @@ export declare class CredentialSession_CardEmulationOptions extends SDKHandle {
      * @availability iOS 18.1+
      */
     static init(): CredentialSession_CardEmulationOptions;
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC20CardEmulationOptionsV": true;
+    };
 }
 /**
  * struct ConnectivityEvent
@@ -107,6 +113,9 @@ export declare class CredentialSession_ConnectivityEvent extends SDKHandle {
      * @availability iOS 18.1+
      */
     get data(): ArrayBuffer;
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC17ConnectivityEventV": true;
+    };
 }
 /**
  * struct Credential
@@ -128,6 +137,9 @@ export declare class CredentialSession_Credential extends SDKHandle {
      * @availability iOS 18.1+
      */
     get state(): CredentialSession_Credential_State;
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC0C0V": true;
+    };
 }
 /**
  * struct InstanceInfo
@@ -174,6 +186,9 @@ export declare class CredentialSession_Credential_InstanceInfo extends SDKHandle
      * @availability iOS 18.1+
      */
     get moduleAID(): ArrayBuffer;
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC0C0V12InstanceInfoV": true;
+    };
 }
 /**
  * enum InstanceType
@@ -185,6 +200,9 @@ export type CredentialSession_Credential_InstanceInfo_InstanceType = "standalone
  * @availability iOS 18.1+
  */
 export declare class CredentialSession_Credential_State extends SDKHandle {
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC0C0V5StateO": true;
+    };
 }
 /**
  * enum ErrorCode
@@ -203,6 +221,9 @@ export declare const CredentialSession_ErrorCode: {
  * @availability iOS 18.1+
  */
 export declare class CredentialSession_Event extends SDKHandle {
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC5EventO": true;
+    };
 }
 /**
  * enum NFCFieldInformation
@@ -224,6 +245,9 @@ export declare class CredentialSession_PresentmentIntentAssertion extends SDKHan
      * @availability iOS 18.1+
      */
     get state(): Promise<CredentialSession_PresentmentIntentAssertion_State>;
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC26PresentmentIntentAssertionC": true;
+    };
 }
 /**
  * enum State
@@ -250,10 +274,16 @@ export declare class CredentialSession_SecureElementInfo extends SDKHandle {
      * @availability iOS 27.0+
      */
     get platformIdentifier(): string;
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC0aB4InfoV": true;
+    };
 }
 /**
  * enum State
  * @availability iOS 18.1+
  */
 export declare class CredentialSession_State extends SDKHandle {
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC5StateO": true;
+    };
 }

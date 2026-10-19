@@ -47,6 +47,9 @@ type $SDK96 = NativeMap<VideoCategory, DisplayRepresentation>;
  * @availability iOS 16.0+
  */
 export declare class AnyEntityQueryComparator<Entity = unknown, Subject = unknown, Property = unknown, PropertyType = unknown, ComparatorMappingType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents24AnyEntityQueryComparatorV": true;
+    };
 }
 /**
  * protocol AnyIntentValue : Sendable
@@ -75,6 +78,9 @@ export declare class AppDependency<Value = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(key?: (unknown) | null, manager?: AppDependencyManager): AppDependency<number>;
+    readonly $type: {
+        "s:10AppIntents0A10DependencyC": true;
+    };
 }
 /**
  * final class AppDependencyManager
@@ -91,6 +97,9 @@ export declare class AppDependencyManager extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): AppDependencyManager;
+    readonly $type: {
+        "s:10AppIntents0A17DependencyManagerC": true;
+    };
 }
 /**
  * enum Error<Value>
@@ -102,6 +111,9 @@ export declare class AppDependencyManager_Error<Value = unknown> extends SDKHand
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:10AppIntents0A17DependencyManagerC5ErrorO": true;
+    };
 }
 /**
  * protocol AppEntity : AppValue, DisplayRepresentable, Identifiable where Self == Self.ValueType, Self.ID : EntityIdentifierConvertible, Self.ID : Sendable
@@ -135,6 +147,9 @@ export declare class AppEntityContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     static audio(audioContext: AudioContext): AppEntityContext;
+    readonly $type: {
+        "s:10AppIntents0A13EntityContextV": true;
+    };
 }
 /**
  * struct AppEntityUIElement
@@ -170,6 +185,9 @@ export declare class AppEntityUIElement extends SDKHandle {
      */
     get bounds(): $SDK1;
     set bounds(value: $SDK1);
+    readonly $type: {
+        "s:10AppIntents0A15EntityUIElementV": true;
+    };
 }
 /**
  * struct State
@@ -187,6 +205,9 @@ export declare class AppEntityUIElement_State extends SDKHandle {
      */
     get isSelected(): boolean;
     set isSelected(value: boolean);
+    readonly $type: {
+        "s:10AppIntents0A15EntityUIElementV5StateV": true;
+    };
 }
 /**
  * struct AppEntityUIElementsContext
@@ -203,12 +224,18 @@ export declare class AppEntityUIElementsContext extends SDKHandle {
      * @availability iOS 18.4+
      */
     get requests(): Array<AppEntityUIElementsContext_ElementsRequest>;
+    readonly $type: {
+        "s:10AppIntents0A23EntityUIElementsContextV": true;
+    };
 }
 /**
  * enum ElementsRequest
  * @availability iOS 18.4+
  */
 export declare class AppEntityUIElementsContext_ElementsRequest extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A23EntityUIElementsContextV15ElementsRequestO": true;
+    };
 }
 /**
  * protocol AppEnum : AppValue, StaticDisplayRepresentable, RawRepresentable where Self.RawValue : LosslessStringConvertible
@@ -302,6 +329,9 @@ export declare class AppIntentError extends SDKHandle {
      * @availability iOS 18.0+
      */
     get localizedStringResource(): _Foundation_LocalizedStringResource;
+    readonly $type: {
+        "s:10AppIntents0A11IntentErrorV": true;
+    };
 }
 /**
  * enum PermissionRequired
@@ -338,6 +368,9 @@ export declare class AppIntentError_PermissionRequired extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get bluetooth(): AppIntentError;
+    readonly $type: {
+        "s:10AppIntents0A11IntentErrorV18PermissionRequiredO": true;
+    };
 }
 /**
  * enum Unrecoverable
@@ -379,6 +412,9 @@ export declare class AppIntentError_Unrecoverable extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get unknown(): AppIntentError;
+    readonly $type: {
+        "s:10AppIntents0A11IntentErrorV13UnrecoverableO": true;
+    };
 }
 /**
  * enum UserActionRequired
@@ -400,6 +436,9 @@ export declare class AppIntentError_UserActionRequired extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get signin(): AppIntentError;
+    readonly $type: {
+        "s:10AppIntents0A11IntentErrorV18UserActionRequiredO": true;
+    };
 }
 /**
  * protocol AppIntentsExtension : AppExtension
@@ -434,6 +473,9 @@ export declare class AppSchema extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init63367(schema: Implements<AppSchemaIntent> | SDKHandle): AppSchema;
+    readonly $type: {
+        "s:10AppIntents0A6SchemaV": true;
+    };
 }
 /**
  * protocol AssistantIntent : AppSchema.Kind
@@ -548,12 +590,18 @@ export interface AppSchema_ClockIntent {
  * @availability iOS 18.0+
  */
 export declare class AppSchema_Entity extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A6SchemaV6EntityV": true;
+    };
 }
 /**
  * struct Enum
  * @availability iOS 18.0+
  */
 export declare class AppSchema_Enum extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A6SchemaV4EnumV": true;
+    };
 }
 /**
  * protocol FilesEntity : AppSchema.Kind
@@ -572,6 +620,9 @@ export interface AppSchema_FilesIntent {
  * @availability iOS 18.0+
  */
 export declare class AppSchema_Intent extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A6SchemaV6IntentV": true;
+    };
 }
 /**
  * protocol JournalEntity : AppSchema.Kind
@@ -818,12 +869,18 @@ export interface AppSchemaIntent {
  * @availability iOS 16.0+
  */
 export declare class AppShortcut extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A8ShortcutV": true;
+    };
 }
 /**
  * struct AppShortcutOptionsCollection<Provider> where Provider : DynamicOptionsProvider
  * @availability iOS 17.0+
  */
 export declare class AppShortcutOptionsCollection<Provider = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A25ShortcutOptionsCollectionV": true;
+    };
 }
 /**
  * protocol AppShortcutOptionsCollectionProtocol
@@ -842,24 +899,36 @@ export interface AppShortcutOptionsCollectionSpecification {
  * @availability iOS 17.0+
  */
 export declare class AppShortcutOptionsCollectionSpecificationBuilder<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A45ShortcutOptionsCollectionSpecificationBuilderO": true;
+    };
 }
 /**
  * struct AppShortcutParameterPresentation<Intent, Value, Parameter, ParameterKeyPath> where Intent : AppIntent, Value : _IntentValue, Value : Sendable, Parameter : IntentParameter<Value>, ParameterKeyPath : KeyPath<Intent, Parameter>
  * @availability iOS 17.0+
  */
 export declare class AppShortcutParameterPresentation<Intent = unknown, Value = unknown, Parameter = unknown, ParameterKeyPath = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A29ShortcutParameterPresentationV": true;
+    };
 }
 /**
  * struct AppShortcutParameterPresentationSummary<Intent, Value, Parameter, ParameterKeyPath> where Intent : AppIntent, Value : _IntentValue, Value : Sendable, Parameter : IntentParameter<Value>, ParameterKeyPath : KeyPath<Intent, Parameter>
  * @availability iOS 17.0+
  */
 export declare class AppShortcutParameterPresentationSummary<Intent = unknown, Value = unknown, Parameter = unknown, ParameterKeyPath = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A36ShortcutParameterPresentationSummaryV": true;
+    };
 }
 /**
  * struct AppShortcutParameterPresentationSummaryString<Intent, Value, Parameter, ParameterKeyPath> where Intent : AppIntent, Value : _IntentValue, Value : Sendable, Parameter : IntentParameter<Value>, ParameterKeyPath : KeyPath<Intent, Parameter>
  * @availability iOS 17.0+
  */
 export declare class AppShortcutParameterPresentationSummaryString<Intent = unknown, Value = unknown, Parameter = unknown, ParameterKeyPath = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A42ShortcutParameterPresentationSummaryStringV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -871,6 +940,9 @@ export type AppShortcutParameterPresentationSummaryString_ExtendedGraphemeCluste
  * @availability iOS 17.0+
  */
 export declare class AppShortcutParameterPresentationSummaryString_StringInterpolation<Intent = unknown, Value = unknown, Parameter = unknown, ParameterKeyPath = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A42ShortcutParameterPresentationSummaryStringV0G13InterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -892,12 +964,18 @@ export type AppShortcutParameterPresentationSummaryString_UnicodeScalarLiteralTy
  * @availability iOS 17.0+
  */
 export declare class AppShortcutParameterPresentationTitle<Intent = unknown, Value = unknown, Parameter = unknown, ParameterKeyPath = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A34ShortcutParameterPresentationTitleV": true;
+    };
 }
 /**
  * struct AppShortcutParameterPresentationTitleString<Intent, Value, Parameter, ParameterKeyPath> where Intent : AppIntent, Value : _IntentValue, Value : Sendable, Parameter : IntentParameter<Value>, ParameterKeyPath : KeyPath<Intent, Parameter>
  * @availability iOS 17.0+
  */
 export declare class AppShortcutParameterPresentationTitleString<Intent = unknown, Value = unknown, Parameter = unknown, ParameterKeyPath = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A40ShortcutParameterPresentationTitleStringV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -909,6 +987,9 @@ export type AppShortcutParameterPresentationTitleString_ExtendedGraphemeClusterL
  * @availability iOS 17.0+
  */
 export declare class AppShortcutParameterPresentationTitleString_StringInterpolation<Intent = unknown, Value = unknown, Parameter = unknown, ParameterKeyPath = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A40ShortcutParameterPresentationTitleStringV0G13InterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -930,6 +1011,9 @@ export type AppShortcutParameterPresentationTitleString_UnicodeScalarLiteralType
  * @availability iOS 16.0+
  */
 export declare class AppShortcutPhrase<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A14ShortcutPhraseV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -941,6 +1025,9 @@ export type AppShortcutPhrase_ExtendedGraphemeClusterLiteralType<Intent = unknow
  * @availability iOS 16.0+
  */
 export declare class AppShortcutPhrase_StringInterpolation<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents0A14ShortcutPhraseV19StringInterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -997,6 +1084,9 @@ export declare class AppShortcutsBuilder extends SDKHandle {
      * @availability iOS 17.4+
      */
     static buildLimitedAvailability(components: Array<AppShortcut>): (SDKHandle) & (SDKHandle);
+    readonly $type: {
+        "s:10AppIntents0A16ShortcutsBuilderO": true;
+    };
 }
 /**
  * protocol AppShortcutsContent
@@ -1106,24 +1196,36 @@ export interface AssistantIntent {
  * @availability iOS 18.0+
  */
 export declare class AssistantSchema extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents15AssistantSchemaV": true;
+    };
 }
 /**
  * struct EntitySchema
  * @availability iOS 18.0+
  */
 export declare class AssistantSchema_EntitySchema extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents15AssistantSchemaV06EntityD0V": true;
+    };
 }
 /**
  * struct EnumSchema
  * @availability iOS 18.0+
  */
 export declare class AssistantSchema_EnumSchema extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents15AssistantSchemaV04EnumD0V": true;
+    };
 }
 /**
  * struct IntentSchema
  * @availability iOS 18.0+
  */
 export declare class AssistantSchema_IntentSchema extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents15AssistantSchemaV06IntentD0V": true;
+    };
 }
 /**
  * protocol AssistantSchemaEntity : AssistantEntity
@@ -1158,6 +1260,9 @@ export interface AssistantSchemaIntent {
  * @availability iOS 16.0+
  */
 export declare class AssistantSchemas extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents16AssistantSchemasO": true;
+    };
 }
 /**
  * protocol AssistantIntent : AssistantSchemas.Model
@@ -1224,6 +1329,9 @@ export interface AssistantSchemas_Entity {
  * @availability iOS 16.0+
  */
 export declare class AssistantSchemas_EntitySchema extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents16AssistantSchemasO12EntitySchemaV": true;
+    };
 }
 /**
  * protocol Enum : AssistantSchemas.Model
@@ -1236,6 +1344,9 @@ export interface AssistantSchemas_Enum {
  * @availability iOS 16.0+
  */
 export declare class AssistantSchemas_EnumSchema extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents16AssistantSchemasO10EnumSchemaV": true;
+    };
 }
 /**
  * protocol FilesEntity : AssistantSchemas.Model
@@ -1260,6 +1371,9 @@ export interface AssistantSchemas_Intent {
  * @availability iOS 16.0+
  */
 export declare class AssistantSchemas_IntentSchema extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents16AssistantSchemasO12IntentSchemaV": true;
+    };
 }
 /**
  * protocol JournalEntity : AssistantSchemas.Model
@@ -1418,6 +1532,9 @@ export declare class AttributedStringFromStringResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: string, context: IntentParameterContext<_Foundation_AttributedString>): Promise<(_Foundation_AttributedString) | null>;
+    readonly $type: {
+        "s:10AppIntents020AttributedStringFromD8ResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -1444,6 +1561,9 @@ export declare class AudioContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get nowPlaying(): AudioContext;
+    readonly $type: {
+        "s:10AppIntents12AudioContextV": true;
+    };
 }
 /**
  * protocol AudioPlaybackIntent : SystemIntent
@@ -1499,6 +1619,9 @@ export interface AudioStartingIntent {
  * @availability iOS 16.0+
  */
 export declare class Bool_IntentDisplayName extends SDKHandle {
+    readonly $type: {
+        "s:Sb10AppIntentsE17IntentDisplayNameV": true;
+    };
 }
 /**
  * typealias Specification = some ResolverSpecification
@@ -1525,6 +1648,9 @@ export declare class BoolFromStringResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: string, context: IntentParameterContext<boolean>): Promise<(boolean) | null>;
+    readonly $type: {
+        "s:10AppIntents22BoolFromStringResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -1792,6 +1918,9 @@ export declare class ConfirmationActionName extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get playSound(): ConfirmationActionName;
+    readonly $type: {
+        "s:10AppIntents22ConfirmationActionNameV": true;
+    };
 }
 /**
  * struct ConfirmationConditions
@@ -1835,12 +1964,19 @@ export type ConfirmationConditions_RawValue = number;
  * @availability iOS 16.0+
  */
 export declare class EntityQueryComparator<Property = unknown, PropertyType = unknown, InputType = unknown, ComparatorMappingType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * final class ContainsComparator<Property, PropertyType, InputType, ComparatorMappingType> where Property : EntityProperty<PropertyType>, PropertyType : _IntentValue, PropertyType : Sendable, InputType : _IntentValue
  * @availability iOS 16.0+
  */
 export declare class ContainsComparator<Property = unknown, PropertyType = unknown, InputType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents18ContainsComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * protocol ControlConfigurationIntent : AppIntent
@@ -1998,6 +2134,9 @@ export declare class DisplayRepresentation extends SDKHandle {
      */
     get synonyms(): $SDK26;
     set synonyms(value: $SDK26);
+    readonly $type: {
+        "s:10AppIntents21DisplayRepresentationV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -2054,6 +2193,9 @@ export declare class DisplayRepresentation_Image extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initNamedIsTemplate(name: string, isTemplate?: (boolean) | null): DisplayRepresentation_Image;
+    readonly $type: {
+        "s:10AppIntents21DisplayRepresentationV5ImageV": true;
+    };
 }
 /**
  * struct DisplayStyle
@@ -2070,6 +2212,9 @@ export declare class DisplayRepresentation_Image_DisplayStyle extends SDKHandle 
      * @availability iOS 17.0+
      */
     static get circular(): DisplayRepresentation_Image_DisplayStyle;
+    readonly $type: {
+        "s:10AppIntents21DisplayRepresentationV5ImageV0C5StyleV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -2106,6 +2251,9 @@ export declare class DoubleFromIntResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: number, context: $SDK29): Promise<(number) | null>;
+    readonly $type: {
+        "s:10AppIntents21DoubleFromIntResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -2132,6 +2280,9 @@ export declare class DoubleFromStringResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: string, context: $SDK29): Promise<(number) | null>;
+    readonly $type: {
+        "s:10AppIntents24DoubleFromStringResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -2158,6 +2309,9 @@ export declare class DoubleResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: number, context: $SDK29): Promise<(number) | null>;
+    readonly $type: {
+        "s:10AppIntents14DoubleResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -2230,6 +2384,9 @@ export type DynamicOptionsProvider_ParameterDependency = $SDK32;
  * @availability iOS 16.0+
  */
 export declare class EmptyResolverSpecification<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents26EmptyResolverSpecificationV": true;
+    };
 }
 /**
  * typealias Element = any Resolver
@@ -2274,6 +2431,9 @@ export declare class EmptySnippetIntent extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): EmptySnippetIntent;
+    readonly $type: {
+        "s:10AppIntents18EmptySnippetIntentV": true;
+    };
 }
 /**
  * typealias Case = ParameterSummaryCaseCondition
@@ -2335,6 +2495,9 @@ export type EmptySnippetIntent_When = $SDK9;
  * @availability iOS 27.0+
  */
 export declare class EntityCollection<Entity = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents16EntityCollectionV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Entity.ID
@@ -2412,6 +2575,9 @@ export declare class EntityIdentifier extends SDKHandle {
      */
     static get defaultResolverSpecification(): $SDK34;
     static set defaultResolverSpecification(value: $SDK34);
+    readonly $type: {
+        "s:10AppIntents16EntityIdentifierV": true;
+    };
 }
 /**
  * typealias Specification = EmptyResolverSpecification<EntityIdentifier>
@@ -2491,6 +2657,9 @@ export type EntityOwnership_RawValue = number;
  * @availability iOS 16.0+
  */
 export declare class EntityProperty<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents14EntityPropertyC": true;
+    };
 }
 /**
  * struct EntityPropertyModifiers
@@ -2657,30 +2826,46 @@ export type EntityQueryComparatorMode = "and" | "or";
  * @availability iOS 16.0+
  */
 export declare class EntityQueryComparatorsBuilder<Entity = unknown, Subject = unknown, Property = unknown, PropertyType = unknown, ComparatorMappingType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents29EntityQueryComparatorsBuilderO": true;
+    };
 }
 /**
  * struct EntityQueryProperties<Entity, ComparatorMappingType> where Entity : AppEntity
  * @availability iOS 16.0+
  */
 export declare class EntityQueryProperties<Entity = unknown, ComparatorMappingType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents21EntityQueryPropertiesV": true;
+    };
 }
 /**
  * @resultBuilder enum EntityQueryPropertiesBuilder<Entity, ComparatorMappingType> where Entity : AppEntity
  * @availability iOS 16.0+
  */
 export declare class EntityQueryPropertiesBuilder<Entity = unknown, ComparatorMappingType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents28EntityQueryPropertiesBuilderO": true;
+    };
 }
 /**
  * class EntityQueryPropertyDeclaration<Entity, ComparatorMappingType>
  * @availability iOS 16.0+
  */
 export declare class EntityQueryPropertyDeclaration<Entity = unknown, ComparatorMappingType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents30EntityQueryPropertyDeclarationC": true;
+    };
 }
 /**
  * final class EntityQueryProperty<Entity, Subject, Property, PropertyType, ComparatorMappingType> where Entity : AppEntity, Subject : AppEntity, Property : EntityProperty<PropertyType>, PropertyType : _IntentValue, PropertyType : Sendable
  * @availability iOS 16.0+
  */
 export declare class EntityQueryProperty<Entity = unknown, Subject = unknown, Property = unknown, PropertyType = unknown, ComparatorMappingType = unknown> extends EntityQueryPropertyDeclaration {
+    readonly $type: {
+        "s:10AppIntents19EntityQueryPropertyC": true;
+        "s:10AppIntents30EntityQueryPropertyDeclarationC": true;
+    };
 }
 /**
  * typealias QueryComparators = [AnyEntityQueryComparator<Entity, Subject, Property, PropertyType, ComparatorMappingType>]
@@ -2692,6 +2877,9 @@ export type EntityQueryProperty_QueryComparators<Entity = unknown, Subject = unk
  * @availability iOS 16.0+
  */
 export declare class EntityQuerySort<Entity = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents15EntityQuerySortV": true;
+    };
 }
 /**
  * @frozen enum Ordering
@@ -2703,18 +2891,27 @@ export type EntityQuerySort_Ordering<Entity = unknown> = "ascending" | "descendi
  * @availability iOS 16.0+
  */
 export declare class EntityQuerySortableByProperty<Entity = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents29EntityQuerySortableByPropertyV": true;
+    };
 }
 /**
  * struct EntityQuerySortingOptions<Entity> where Entity : AppEntity
  * @availability iOS 16.0+
  */
 export declare class EntityQuerySortingOptions<Entity = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents25EntityQuerySortingOptionsV": true;
+    };
 }
 /**
  * @resultBuilder enum EntityQuerySortingOptionsBuilder<Entity> where Entity : AppEntity
  * @availability iOS 16.0+
  */
 export declare class EntityQuerySortingOptionsBuilder<Entity = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents32EntityQuerySortingOptionsBuilderO": true;
+    };
 }
 /**
  * protocol EntityStringQuery : EntityQuery
@@ -2762,6 +2959,9 @@ export interface EntityStringQuery {
  * @availability iOS 18.0+
  */
 export declare class EntityURLRepresentation<Entity = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents23EntityURLRepresentationV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -2773,6 +2973,9 @@ export type EntityURLRepresentation_ExtendedGraphemeClusterLiteralType<Entity = 
  * @availability iOS 18.0+
  */
 export declare class EntityURLRepresentation_StringInterpolation<Entity = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents23EntityURLRepresentationV19StringInterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -2840,12 +3043,18 @@ export interface EnumerableEntityQuery {
  * @availability iOS 18.0+
  */
 export declare class EnumURLRepresentation<Enum = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents21EnumURLRepresentationV": true;
+    };
 }
 /**
  * struct EnumSingleURLRepresentation
  * @availability iOS 18.0+
  */
 export declare class EnumURLRepresentation_EnumSingleURLRepresentation<Enum = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents21EnumURLRepresentationV0c6SingleD0V": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = EnumURLRepresentation<Enum>.StringLiteralType
@@ -2877,6 +3086,9 @@ export type EnumURLRepresentation_ExtendedGraphemeClusterLiteralType<Enum = unkn
  * @availability iOS 18.0+
  */
 export declare class EnumURLRepresentation_StringInterpolation<Enum = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents21EnumURLRepresentationV19StringInterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -2903,6 +3115,10 @@ export type EnumURLRepresentation_UnicodeScalarLiteralType<Enum = unknown> = str
  * @availability iOS 16.0+
  */
 export declare class EqualToComparator<Property = unknown, PropertyType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents17EqualToComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * enum EquatableComparisonOperator
@@ -2955,6 +3171,9 @@ export declare class FileEntityIdentifier extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isDraft(): boolean;
+    readonly $type: {
+        "s:10AppIntents20FileEntityIdentifierV": true;
+    };
 }
 /**
  * struct FocusFilterAppContext
@@ -2981,12 +3200,18 @@ export declare class FocusFilterAppContext extends SDKHandle {
      * @availability iOS 17.0+
      */
     get targetContentIdentifierPrefix(): (string) | null;
+    readonly $type: {
+        "s:10AppIntents011FocusFilterA7ContextV": true;
+    };
 }
 /**
  * struct FocusFilterSuggestionContext
  * @availability iOS 16.0+
  */
 export declare class FocusFilterSuggestionContext extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents28FocusFilterSuggestionContextV": true;
+    };
 }
 /**
  * protocol ForegroundContinuableIntent : AppIntent
@@ -3010,24 +3235,40 @@ export interface ForegroundContinuableIntent {
  * @availability iOS 16.0+
  */
 export declare class GreaterThanComparator<Property = unknown, PropertyType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents21GreaterThanComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * final class GreaterThanOrEqualToComparator<Property, PropertyType, ComparatorMappingType> where Property : EntityProperty<PropertyType>, PropertyType : _IntentValue, PropertyType : Sendable, PropertyType.UnwrappedType : Comparable
  * @availability iOS 16.0+
  */
 export declare class GreaterThanOrEqualToComparator<Property = unknown, PropertyType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents30GreaterThanOrEqualToComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * final class HasPrefixComparator<Property, PropertyType, InputType, ComparatorMappingType> where Property : EntityProperty<PropertyType>, PropertyType : _IntentValue, PropertyType : Sendable, InputType : _IntentValue
  * @availability iOS 16.0+
  */
 export declare class HasPrefixComparator<Property = unknown, PropertyType = unknown, InputType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents19HasPrefixComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * final class HasSuffixComparator<Property, PropertyType, InputType, ComparatorMappingType> where Property : EntityProperty<PropertyType>, PropertyType : _IntentValue, PropertyType : Sendable, InputType : _IntentValue
  * @availability iOS 16.0+
  */
 export declare class HasSuffixComparator<Property = unknown, PropertyType = unknown, InputType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents19HasSuffixComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * enum HasValueComparisonOperator
@@ -3137,6 +3378,9 @@ export declare class IntentCancellationReason extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get timeout(): IntentCancellationReason;
+    readonly $type: {
+        "s:10AppIntents24IntentCancellationReasonV": true;
+    };
 }
 /**
  * struct IntentChoiceOption
@@ -3163,6 +3407,9 @@ export declare class IntentChoiceOption extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get cancel(): IntentChoiceOption;
+    readonly $type: {
+        "s:10AppIntents18IntentChoiceOptionV": true;
+    };
 }
 /**
  * struct Style
@@ -3184,6 +3431,9 @@ export declare class IntentChoiceOption_Style extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get default(): IntentChoiceOption_Style;
+    readonly $type: {
+        "s:10AppIntents18IntentChoiceOptionV5StyleV": true;
+    };
 }
 /**
  * struct IntentCollectionSize
@@ -3195,6 +3445,9 @@ export declare class IntentCollectionSize extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(value: number): IntentCollectionSize;
+    readonly $type: {
+        "s:10AppIntents20IntentCollectionSizeV": true;
+    };
 }
 /**
  * typealias IntegerLiteralType = Int
@@ -3236,6 +3489,9 @@ export declare class IntentCurrencyAmount extends SDKHandle {
      * @availability iOS 16.0+
      */
     get amount(): _Foundation_Decimal;
+    readonly $type: {
+        "s:10AppIntents20IntentCurrencyAmountV": true;
+    };
 }
 /**
  * typealias Specification = EmptyResolverSpecification<IntentCurrencyAmount>
@@ -3262,6 +3518,9 @@ export declare class IntentDeprecation<ReplacementIntent = unknown> extends SDKH
      * @availability iOS 17.0+
      */
     static init(message: _Foundation_LocalizedStringResource): IntentDeprecation<never>;
+    readonly $type: {
+        "s:10AppIntents17IntentDeprecationV": true;
+    };
 }
 /**
  * struct IntentDescription
@@ -3307,6 +3566,9 @@ export declare class IntentDescription extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initCategoryNameSearchKeywords(descriptionText: _Foundation_LocalizedStringResource, categoryName?: $SDK28, searchKeywords?: $SDK26): IntentDescription;
+    readonly $type: {
+        "s:10AppIntents17IntentDescriptionV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -3358,6 +3620,9 @@ export declare class IntentDialog extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(string: _Foundation_LocalizedStringResource): IntentDialog;
+    readonly $type: {
+        "s:10AppIntents12IntentDialogV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -3384,6 +3649,9 @@ export type IntentDialog_UnicodeScalarLiteralType = string;
  * @availability iOS 16.0+
  */
 export declare class IntentDonationIdentifier extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents24IntentDonationIdentifierV": true;
+    };
 }
 /**
  * struct IntentDonationManager
@@ -3400,6 +3668,9 @@ export declare class IntentDonationManager extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get shared(): IntentDonationManager;
+    readonly $type: {
+        "s:10AppIntents21IntentDonationManagerV": true;
+    };
 }
 /**
  * struct IntentDonationMatchingPredicate
@@ -3426,6 +3697,9 @@ export declare class IntentDonationMatchingPredicate extends SDKHandle {
      * @availability iOS 26.4+
      */
     static donationIdentifiers(identifiers: $SDK48): IntentDonationMatchingPredicate;
+    readonly $type: {
+        "s:10AppIntents31IntentDonationMatchingPredicateV": true;
+    };
 }
 /**
  * struct IntentExecutionTargets
@@ -3564,6 +3838,9 @@ export declare class IntentFile extends SDKHandle {
      * @availability iOS 16.0+
      */
     get filename(): string;
+    readonly $type: {
+        "s:10AppIntents10IntentFileV": true;
+    };
 }
 /**
  * enum IntentFileError
@@ -3607,30 +3884,45 @@ export type IntentFile_ValueType = IntentFile;
  * @availability iOS 16.0+
  */
 export declare class IntentItem<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents10IntentItemV": true;
+    };
 }
 /**
  * @resultBuilder enum Builder
  * @availability iOS 16.0+
  */
 export declare class IntentItem_Builder<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents10IntentItemV7BuilderO": true;
+    };
 }
 /**
  * struct IntentItemCollection<Result> where Result : _IntentValue
  * @availability iOS 16.0+
  */
 export declare class IntentItemCollection<Result = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents20IntentItemCollectionV": true;
+    };
 }
 /**
  * struct IntentItemSection<Result> where Result : _IntentValue
  * @availability iOS 16.0+
  */
 export declare class IntentItemSection<Result = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents17IntentItemSectionV": true;
+    };
 }
 /**
  * @resultBuilder enum Builder
  * @availability iOS 16.0+
  */
 export declare class IntentItemSection_Builder<Result = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents17IntentItemSectionV7BuilderO": true;
+    };
 }
 /**
  * struct IntentModes
@@ -3694,6 +3986,9 @@ export declare class IntentModes_Current extends SDKHandle {
      * @availability iOS 26.0+
      */
     get canContinueInForeground(): boolean;
+    readonly $type: {
+        "s:10AppIntents11IntentModesV7CurrentV": true;
+    };
 }
 /**
  * typealias Element = IntentModes
@@ -3720,6 +4015,9 @@ export declare class IntentModes_ForegroundMode extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get immediate(): IntentModes_ForegroundMode;
+    readonly $type: {
+        "s:10AppIntents11IntentModesV14ForegroundModeV": true;
+    };
 }
 /**
  * typealias RawValue = Int
@@ -3731,6 +4029,9 @@ export type IntentModes_RawValue = number;
  * @availability iOS 16.0+
  */
 export declare class IntentParameter<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents15IntentParameterC": true;
+    };
 }
 /**
  * enum Acceleration
@@ -3995,6 +4296,9 @@ export type IntentParameter_Temperature_AllCases<Value = unknown> = Array<Intent
  * @availability iOS 18.2+
  */
 export declare class IntentParameter_ValueState<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents15IntentParameterC10ValueStateO": true;
+    };
 }
 /**
  * enum Volume
@@ -4011,24 +4315,36 @@ export type IntentParameter_Volume_AllCases<Value = unknown> = Array<IntentParam
  * @availability iOS 16.0+
  */
 export declare class IntentParameterContext<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents22IntentParameterContextV": true;
+    };
 }
 /**
  * @propertyWrapper final class IntentParameterDependency<Intent> where Intent : AppIntent
  * @availability iOS 17.0+
  */
 export declare class IntentParameterDependency<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents25IntentParameterDependencyC": true;
+    };
 }
 /**
  * struct IntentParameterSummary<Intent> where Intent : AppIntent
  * @availability iOS 16.0+
  */
 export declare class IntentParameterSummary<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents22IntentParameterSummaryV": true;
+    };
 }
 /**
  * @resultBuilder enum ParameterKeyPathsBuilder
  * @availability iOS 16.0+
  */
 export declare class IntentParameterSummary_ParameterKeyPathsBuilder<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents22IntentParameterSummaryV0D15KeyPathsBuilderO": true;
+    };
 }
 /**
  * struct IntentPaymentMethod
@@ -4075,6 +4391,9 @@ export declare class IntentPaymentMethod extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(type: IntentPaymentMethod_PaymentType, name?: $SDK28, identificationHint?: (string) | null, icon?: $SDK27): IntentPaymentMethod;
+    readonly $type: {
+        "s:10AppIntents19IntentPaymentMethodV": true;
+    };
 }
 /**
  * enum PaymentType
@@ -4162,6 +4481,9 @@ export declare class IntentPerson extends SDKHandle {
      */
     get aliases(): $SDK78;
     set aliases(value: $SDK78);
+    readonly $type: {
+        "s:10AppIntents12IntentPersonV": true;
+    };
 }
 /**
  * struct Handle
@@ -4200,30 +4522,45 @@ export declare class IntentPerson_Handle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initLabel(value: IntentPerson_Handle_Value, label?: IntentPerson_Handle_Label): IntentPerson_Handle;
+    readonly $type: {
+        "s:10AppIntents12IntentPersonV6HandleV": true;
+    };
 }
 /**
  * enum Label
  * @availability iOS 16.0+
  */
 export declare class IntentPerson_Handle_Label extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents12IntentPersonV6HandleV5LabelO": true;
+    };
 }
 /**
  * enum Value
  * @availability iOS 16.0+
  */
 export declare class IntentPerson_Handle_Value extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents12IntentPersonV6HandleV5ValueO": true;
+    };
 }
 /**
  * enum Identifier
  * @availability iOS 16.0+
  */
 export declare class IntentPerson_Identifier extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents12IntentPersonV10IdentifierO": true;
+    };
 }
 /**
  * enum Name
  * @availability iOS 16.0+
  */
 export declare class IntentPerson_Name extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents12IntentPersonV4NameO": true;
+    };
 }
 /**
  * enum ParameterMode
@@ -4272,6 +4609,9 @@ export type IntentPerson_ValueType = IntentPerson;
  * @availability iOS 16.0+
  */
 export declare class IntentPrediction<Intent = unknown, T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents16IntentPredictionV": true;
+    };
 }
 /**
  * protocol IntentPredictionConfiguration
@@ -4284,18 +4624,27 @@ export interface IntentPredictionConfiguration {
  * @availability iOS 16.0+
  */
 export declare class IntentPredictionsBuilder<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents24IntentPredictionsBuilderO": true;
+    };
 }
 /**
  * @dynamicMemberLookup final class IntentProjection<Intent> where Intent : AppIntent
  * @availability iOS 17.0+
  */
 export declare class IntentProjection<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents16IntentProjectionC": true;
+    };
 }
 /**
  * struct IntentResponseStream<Value>
  * @availability iOS 27.0+
  */
 export declare class IntentResponseStream<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents20IntentResponseStreamV": true;
+    };
 }
 /**
  * protocol IntentResult : Sendable
@@ -4308,6 +4657,9 @@ export interface IntentResult {
  * @availability iOS 16.0+
  */
 export declare class IntentResultContainer<Value = unknown, OpensAppIntent = unknown, Snippet = unknown, Dialog = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents21IntentResultContainerV": true;
+    };
 }
 /**
  * struct IntentSystemContext
@@ -4334,12 +4686,18 @@ export declare class IntentSystemContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     get locale(): _Foundation_Locale;
+    readonly $type: {
+        "s:10AppIntents19IntentSystemContextV": true;
+    };
 }
 /**
  * struct IntentURLRepresentation<Intent> where Intent : AppIntent
  * @availability iOS 18.0+
  */
 export declare class IntentURLRepresentation<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents23IntentURLRepresentationV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -4351,6 +4709,9 @@ export type IntentURLRepresentation_ExtendedGraphemeClusterLiteralType<Intent = 
  * @availability iOS 18.0+
  */
 export declare class IntentURLRepresentation_StringInterpolation<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents23IntentURLRepresentationV19StringInterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -4393,6 +4754,9 @@ export type IntentValueQuery_ExecutionTargets = IntentExecutionTargets;
  * @availability iOS 26.4+
  */
 export declare class IntentValueRepresentation<Item = unknown, IntentValue = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents25IntentValueRepresentationV": true;
+    };
 }
 /**
  * typealias Body = some TransferRepresentation
@@ -4448,6 +4812,9 @@ export declare class IntFromDoubleResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: number, context: $SDK29): Promise<(number) | null>;
+    readonly $type: {
+        "s:10AppIntents21IntFromDoubleResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -4485,6 +4852,9 @@ export declare class IntFromStringResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: string, context: $SDK29): Promise<(number) | null>;
+    readonly $type: {
+        "s:10AppIntents21IntFromStringResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -4511,6 +4881,9 @@ export declare class IntResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: number, context: $SDK29): Promise<(number) | null>;
+    readonly $type: {
+        "s:10AppIntents11IntResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -4532,18 +4905,30 @@ export type IntResolver_Output = number;
  * @availability iOS 16.0+
  */
 export declare class IsBetweenComparator<Property = unknown, PropertyType = unknown, InputType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents19IsBetweenComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * final class LessThanComparator<Property, PropertyType, ComparatorMappingType> where Property : EntityProperty<PropertyType>, PropertyType : _IntentValue, PropertyType : Sendable, PropertyType.UnwrappedType : Comparable
  * @availability iOS 16.0+
  */
 export declare class LessThanComparator<Property = unknown, PropertyType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents18LessThanComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * final class LessThanOrEqualToComparator<Property, PropertyType, ComparatorMappingType> where Property : EntityProperty<PropertyType>, PropertyType : _IntentValue, PropertyType : Sendable, PropertyType.UnwrappedType : Comparable
  * @availability iOS 16.0+
  */
 export declare class LessThanOrEqualToComparator<Property = unknown, PropertyType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents27LessThanOrEqualToComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 /**
  * protocol LiveActivityIntent : SystemIntent
@@ -4666,6 +5051,9 @@ export declare class NegativeAppShortcutPhrase extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(phraseKey: string): NegativeAppShortcutPhrase;
+    readonly $type: {
+        "s:10AppIntents08NegativeA14ShortcutPhraseV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
@@ -4692,6 +5080,9 @@ export declare class NegativeAppShortcutPhrase_StringInterpolation extends SDKHa
      * @availability iOS 17.0+
      */
     static init(literalCapacity: number, interpolationCount: number): NegativeAppShortcutPhrase_StringInterpolation;
+    readonly $type: {
+        "s:10AppIntents08NegativeA14ShortcutPhraseV19StringInterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -4718,6 +5109,9 @@ export declare class NegativeAppShortcutPhrases extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(phrases: Array<NegativeAppShortcutPhrase>): NegativeAppShortcutPhrases;
+    readonly $type: {
+        "s:10AppIntents08NegativeA15ShortcutPhrasesV": true;
+    };
 }
 /**
  * typealias Case = ParameterSummaryCaseCondition
@@ -4819,6 +5213,10 @@ export type Never_When = $SDK9;
  * @availability iOS 16.0+
  */
 export declare class NotEqualToComparator<Property = unknown, PropertyType = unknown, ComparatorMappingType = unknown> extends EntityQueryComparator {
+    readonly $type: {
+        "s:10AppIntents20NotEqualToComparatorC": true;
+        "s:10AppIntents21EntityQueryComparatorC": true;
+    };
 }
 export declare class NSUserActivity extends SDKHandle {
     /**
@@ -4827,6 +5225,10 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get appEntityIdentifier(): (EntityIdentifier) | null;
     set appEntityIdentifier(value: (EntityIdentifier) | null);
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum OneOfComparisonOperator
@@ -4887,6 +5289,9 @@ export declare class OpenURLIntent extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init42381(url: string): OpenURLIntent;
+    readonly $type: {
+        "s:10AppIntents13OpenURLIntentV": true;
+    };
 }
 /**
  * typealias Case = ParameterSummaryCaseCondition
@@ -4980,30 +5385,45 @@ export interface ParameterSummary {
  * @availability iOS 16.0+
  */
 export declare class ParameterSummaryBuilder<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents23ParameterSummaryBuilderO": true;
+    };
 }
 /**
  * @resultBuilder enum ParameterSummaryCaseBuilder<Intent, Value> where Intent : AppIntent, Value : _IntentValue
  * @availability iOS 16.0+
  */
 export declare class ParameterSummaryCaseBuilder<Intent = unknown, Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents27ParameterSummaryCaseBuilderO": true;
+    };
 }
 /**
  * struct ParameterSummaryCaseCondition<Intent, Value, Summary> where Intent : AppIntent, Value : _IntentValue, Summary : ParameterSummary
  * @availability iOS 16.0+
  */
 export declare class ParameterSummaryCaseCondition<Intent = unknown, Value = unknown, Summary = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents29ParameterSummaryCaseConditionV": true;
+    };
 }
 /**
  * struct ParameterSummaryDefaultCaseCondition<Intent, Value, Summary> where Intent : AppIntent, Value : _IntentValue, Summary : ParameterSummary
  * @availability iOS 16.0+
  */
 export declare class ParameterSummaryDefaultCaseCondition<Intent = unknown, Value = unknown, Summary = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents36ParameterSummaryDefaultCaseConditionV": true;
+    };
 }
 /**
  * struct ParameterSummaryString<Intent> where Intent : AppIntent
  * @availability iOS 16.0+
  */
 export declare class ParameterSummaryString<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents22ParameterSummaryStringV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -5015,6 +5435,9 @@ export type ParameterSummaryString_ExtendedGraphemeClusterLiteralType<Intent = u
  * @availability iOS 16.0+
  */
 export declare class ParameterSummaryString_StringInterpolation<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents22ParameterSummaryStringV0E13InterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -5036,6 +5459,9 @@ export type ParameterSummaryString_UnicodeScalarLiteralType<Intent = unknown> = 
  * @availability iOS 16.0+
  */
 export declare class ParameterSummarySwitchCondition<Intent = unknown, Value = unknown, CaseCondition = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents31ParameterSummarySwitchConditionV": true;
+    };
 }
 /**
  * enum WidgetFamily
@@ -5047,6 +5473,9 @@ export type ParameterSummarySwitchCondition_WidgetFamily<Intent = unknown, Value
  * @availability iOS 16.0+
  */
 export declare class ParameterSummaryTupleCaseCondition<Intent = unknown, Value = unknown, ValueType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents34ParameterSummaryTupleCaseConditionV": true;
+    };
 }
 /**
  * typealias Summary = Never
@@ -5058,6 +5487,9 @@ export type ParameterSummaryTupleCaseCondition_Summary<Intent = unknown, Value =
  * @availability iOS 16.0+
  */
 export declare class ParameterSummaryWhenCondition<Intent = unknown, WhenCondition = unknown, Otherwise = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents29ParameterSummaryWhenConditionV": true;
+    };
 }
 /**
  * protocol PauseWorkoutIntent : SystemIntent
@@ -5093,6 +5525,9 @@ export declare class PersonNameComponents extends SDKHandle {
      */
     static get typeDisplayRepresentation(): TypeDisplayRepresentation;
     static set typeDisplayRepresentation(value: TypeDisplayRepresentation);
+    readonly $type: {
+        "s:10Foundation20PersonNameComponentsV": true;
+    };
 }
 /**
  * typealias Specification = some ResolverSpecification
@@ -5216,6 +5651,9 @@ export declare class RelevantEntities extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get shared(): RelevantEntities;
+    readonly $type: {
+        "s:10AppIntents16RelevantEntitiesV": true;
+    };
 }
 /**
  * struct RelevantIntent
@@ -5227,6 +5665,9 @@ export declare class RelevantIntent extends SDKHandle {
      * @availability iOS 17.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:10AppIntents14RelevantIntentV": true;
+    };
 }
 /**
  * final class RelevantIntentManager
@@ -5243,6 +5684,9 @@ export declare class RelevantIntentManager extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get shared(): RelevantIntentManager;
+    readonly $type: {
+        "s:10AppIntents21RelevantIntentManagerC": true;
+    };
 }
 /**
  * protocol Resolver : Hashable, Sendable
@@ -5271,12 +5715,18 @@ export interface ResolverSpecification {
  * @availability iOS 16.0+
  */
 export declare class ResolverSpecificationBuilder<Property = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents28ResolverSpecificationBuilderO": true;
+    };
 }
 /**
  * struct Specification<Output, each R> where Output : _IntentValue, repeat each R : Resolver
  * @availability iOS 18.0+
  */
 export declare class ResolverSpecificationBuilder_Specification<Property = unknown, Output = unknown, R = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents28ResolverSpecificationBuilderO0D0V": true;
+    };
 }
 /**
  * typealias Element = any Resolver
@@ -5346,6 +5796,9 @@ export declare class RunSystemShortcutIntent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): RunSystemShortcutIntent;
+    readonly $type: {
+        "s:10AppIntents23RunSystemShortcutIntentV": true;
+    };
 }
 /**
  * typealias Case = ParameterSummaryCaseCondition
@@ -5546,6 +5999,9 @@ export interface StaticDisplayRepresentable {
  * @availability iOS 16.0+
  */
 export declare class String_IntentInputOptions extends SDKHandle {
+    readonly $type: {
+        "s:SS10AppIntentsE18IntentInputOptionsV": true;
+    };
 }
 /**
  * enum CapitalizationType
@@ -5587,6 +6043,9 @@ export declare class StringFromDoubleResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: number, context: $SDK88): Promise<(string) | null>;
+    readonly $type: {
+        "s:10AppIntents24StringFromDoubleResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -5608,6 +6067,9 @@ export type StringFromDoubleResolver_Output = string;
  * @availability iOS 16.0+
  */
 export declare class StringFromIntResolver<Input = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents21StringFromIntResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -5630,6 +6092,9 @@ export declare class StringSearchCriteria extends SDKHandle {
      */
     get term(): string;
     set term(value: string);
+    readonly $type: {
+        "s:10AppIntents20StringSearchCriteriaV": true;
+    };
 }
 /**
  * typealias SearchScopes = [StringSearchScope]
@@ -5661,6 +6126,9 @@ export declare class StringSearchCriteriaFromStringResolverSpecificification ext
      * @availability iOS 17.2+
      */
     resolve(input: string, context: IntentParameterContext<StringSearchCriteria>): Promise<(StringSearchCriteria) | null>;
+    readonly $type: {
+        "s:10AppIntents024StringSearchCriteriaFromC25ResolverSpecificificationV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -5747,6 +6215,9 @@ export interface SyncableEntity {
  * @availability iOS 27.0+
  */
 export declare class SyncableEntityIdentifier<LocalID = unknown, StableID = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents24SyncableEntityIdentifierV": true;
+    };
 }
 /**
  * protocol SystemIntent : AppIntent
@@ -5789,6 +6260,9 @@ export declare class SystemShortcut extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get defaultResolverSpecification(): $SDK93;
+    readonly $type: {
+        "s:10AppIntents14SystemShortcutV": true;
+    };
 }
 /**
  * typealias Specification = EmptyResolverSpecification<SystemShortcut>
@@ -5837,6 +6311,9 @@ export interface TransientAppEntity {
  * @availability iOS 16.0+
  */
 export declare class TupleIntentPrediction<Intent = unknown, T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents21TupleIntentPredictionV": true;
+    };
 }
 /**
  * protocol TypeDisplayRepresentable
@@ -5882,6 +6359,9 @@ export declare class TypeDisplayRepresentation extends SDKHandle {
      */
     get synonyms(): $SDK26;
     set synonyms(value: $SDK26);
+    readonly $type: {
+        "s:10AppIntents25TypeDisplayRepresentationV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -5925,6 +6405,9 @@ export interface UniqueAppEntity {
  * @availability iOS 18.0+
  */
 export declare class UniqueAppEntityProvider<Entity = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10AppIntents06UniqueA14EntityProviderV": true;
+    };
 }
 /**
  * typealias DefaultValue = Array<Entity>.Result
@@ -6018,6 +6501,9 @@ export declare class URL extends SDKHandle {
      * @availability iOS 18.0+
      */
     get urlRepresentationParameter(): (string) | null;
+    readonly $type: {
+        "s:10Foundation3URLV": true;
+    };
 }
 /**
  * typealias Specification = some ResolverSpecification
@@ -6044,6 +6530,9 @@ export declare class URLFromStringResolver extends SDKHandle {
      * @availability iOS 16.0+
      */
     resolve(input: string, context: $SDK88): Promise<(string) | null>;
+    readonly $type: {
+        "s:10AppIntents21URLFromStringResolverV": true;
+    };
 }
 /**
  * typealias Context = IntentParameterContext
@@ -6114,6 +6603,9 @@ export declare class UUID extends SDKHandle {
      * @availability iOS 16.0+
      */
     get entityIdentifierString(): string;
+    readonly $type: {
+        "s:10Foundation4UUIDV": true;
+    };
 }
 /**
  * enum VideoCategory

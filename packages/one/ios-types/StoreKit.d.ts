@@ -77,6 +77,9 @@ export declare class AdvancedCommerceProduct extends SDKHandle {
      * @availability iOS 18.4+
      */
     purchase(compactJWS: string, viewController: _UIKit_UIViewController, options?: Array<AdvancedCommerceProduct_PurchaseOption>): Promise<Product_PurchaseResult>;
+    readonly $type: {
+        "s:8StoreKit23AdvancedCommerceProductV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -98,6 +101,9 @@ export declare class AdvancedCommerceProduct_PurchaseOption extends SDKHandle {
      * @availability iOS 18.4+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:8StoreKit23AdvancedCommerceProductV14PurchaseOptionV": true;
+    };
 }
 /**
  * typealias PurchaseResult = Product.PurchaseResult
@@ -160,6 +166,9 @@ export declare class AppStore extends SDKHandle {
      * @availability iOS 15.0+
      */
     static sync(): Promise<void>;
+    readonly $type: {
+        "s:8StoreKit03AppA0O": true;
+    };
 }
 /**
  * struct Environment
@@ -256,12 +265,18 @@ export declare class AppStoreMerchandisingKind extends SDKHandle {
      * @availability iOS 26.0+
      */
     static subscriptionBundle(groupID: string): AppStoreMerchandisingKind;
+    readonly $type: {
+        "s:8StoreKit03AppA17MerchandisingKindV": true;
+    };
 }
 /**
  * enum PresentationResult
  * @availability iOS 26.0+
  */
 export declare class AppStoreMerchandisingKind_PresentationResult extends SDKHandle {
+    readonly $type: {
+        "s:8StoreKit03AppA17MerchandisingKindV18PresentationResultO": true;
+    };
 }
 /**
  * struct AppTransaction
@@ -384,6 +399,9 @@ export declare class AppTransaction extends SDKHandle {
      * @availability iOS 27.0+
      */
     get storeType(): AppTransaction_StoreType;
+    readonly $type: {
+        "s:8StoreKit14AppTransactionV": true;
+    };
 }
 /**
  * struct AppTransactions
@@ -395,6 +413,9 @@ export declare class AppTransaction_AppTransactions extends SDKHandle {
      * @availability iOS 27.0+
      */
     makeAsyncIterator(): AppTransaction_AppTransactions_AsyncIterator;
+    readonly $type: {
+        "s:8StoreKit14AppTransactionV0C12TransactionsV": true;
+    };
     readonly $element: $SDK4;
 }
 /**
@@ -407,6 +428,9 @@ export declare class AppTransaction_AppTransactions_AsyncIterator extends SDKHan
      * @availability iOS 27.0+
      */
     next(): Promise<(VerificationResult<AppTransaction>) | null>;
+    readonly $type: {
+        "s:8StoreKit14AppTransactionV0C12TransactionsV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = VerificationResult<AppTransaction>
@@ -461,6 +485,9 @@ export declare class DateComponents extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(period: Product_SubscriptionPeriod): _Foundation_DateComponents;
+    readonly $type: {
+        "s:10Foundation14DateComponentsV": true;
+    };
 }
 /**
  * enum ExternalLinkAccount
@@ -477,6 +504,9 @@ export declare class ExternalLinkAccount extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get canOpen(): Promise<boolean>;
+    readonly $type: {
+        "s:8StoreKit19ExternalLinkAccountO": true;
+    };
 }
 /**
  * enum ExternalPurchase
@@ -493,12 +523,18 @@ export declare class ExternalPurchase extends SDKHandle {
      * @availability iOS 15.4+
      */
     static presentNoticeSheet(): Promise<ExternalPurchase_NoticeResult>;
+    readonly $type: {
+        "s:8StoreKit16ExternalPurchaseO": true;
+    };
 }
 /**
  * enum NoticeResult
  * @availability iOS 15.4+
  */
 export declare class ExternalPurchase_NoticeResult extends SDKHandle {
+    readonly $type: {
+        "s:8StoreKit16ExternalPurchaseO12NoticeResultO": true;
+    };
 }
 /**
  * enum ExternalPurchaseCustomLink
@@ -520,6 +556,9 @@ export declare class ExternalPurchaseCustomLink extends SDKHandle {
      * @availability iOS 18.1+
      */
     static token(tokenType: string): Promise<(ExternalPurchaseCustomLink_Token) | null>;
+    readonly $type: {
+        "s:8StoreKit26ExternalPurchaseCustomLinkO": true;
+    };
 }
 /**
  * enum NoticeResult
@@ -558,6 +597,9 @@ export declare class ExternalPurchaseCustomLink_Token extends SDKHandle {
      * @availability iOS 18.1+
      */
     get value(): string;
+    readonly $type: {
+        "s:8StoreKit26ExternalPurchaseCustomLinkO5TokenV": true;
+    };
 }
 /**
  * enum ExternalPurchaseLink
@@ -584,6 +626,9 @@ export declare class ExternalPurchaseLink extends SDKHandle {
      * @availability iOS 15.4+
      */
     static get canOpen(): Promise<boolean>;
+    readonly $type: {
+        "s:8StoreKit20ExternalPurchaseLinkO": true;
+    };
 }
 /**
  * struct InvalidRequestError
@@ -600,6 +645,9 @@ export declare class InvalidRequestError extends SDKHandle {
      * @availability iOS 18.4+
      */
     get message(): string;
+    readonly $type: {
+        "s:8StoreKit19InvalidRequestErrorV": true;
+    };
 }
 /**
  * struct Message
@@ -621,6 +669,9 @@ export declare class Message extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get messages(): Message_Messages;
+    readonly $type: {
+        "s:8StoreKit7MessageV": true;
+    };
 }
 /**
  * struct Messages
@@ -632,6 +683,9 @@ export declare class Message_Messages extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): Message_Messages_AsyncIterator;
+    readonly $type: {
+        "s:8StoreKit7MessageV8MessagesV": true;
+    };
     readonly $element: Message;
 }
 /**
@@ -644,6 +698,9 @@ export declare class Message_Messages_AsyncIterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(Message) | null>;
+    readonly $type: {
+        "s:8StoreKit7MessageV8MessagesV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = Message.Messages.Element
@@ -702,7 +759,7 @@ export declare const Message_Reason: {
  * @availability iOS 16.0+
  */
 export type Message_Reason_RawValue = number;
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let SKCloudServiceCapabilitiesDidChange: NSNotification.Name
@@ -743,6 +800,9 @@ export declare class PaymentMethodBinding extends SDKHandle {
      * @availability iOS 16.4+
      */
     bind(): Promise<void>;
+    readonly $type: {
+        "s:8StoreKit20PaymentMethodBindingV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -880,6 +940,9 @@ export declare class Product extends SDKHandle {
      * @availability iOS 17.0+
      */
     purchaseConfirmInOptions44435(scene: _UIKit_UIScene, options?: $SDK8): Promise<Product_PurchaseResult>;
+    readonly $type: {
+        "s:8StoreKit7ProductV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -974,6 +1037,9 @@ export declare class Product_PromotionInfo extends SDKHandle {
      * @availability iOS 16.4+
      */
     get productID(): string;
+    readonly $type: {
+        "s:8StoreKit7ProductV13PromotionInfoV": true;
+    };
 }
 /**
  * enum Visibility
@@ -1098,12 +1164,18 @@ export declare class Product_PurchaseOption extends SDKHandle {
      * @availability iOS 15.0+
      */
     static quantity(quantity: number): Product_PurchaseOption;
+    readonly $type: {
+        "s:8StoreKit7ProductV14PurchaseOptionV": true;
+    };
 }
 /**
  * enum PurchaseResult
  * @availability iOS 15.0+
  */
 export declare class Product_PurchaseResult extends SDKHandle {
+    readonly $type: {
+        "s:8StoreKit7ProductV14PurchaseResultO": true;
+    };
 }
 /**
  * struct SubscriptionInfo
@@ -1182,6 +1254,9 @@ export declare class Product_SubscriptionInfo extends SDKHandle {
      * @availability iOS 15.0+
      */
     get status(): Promise<$SDK15>;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV": true;
+    };
 }
 /**
  * typealias BillingPeriod = SubscriptionPeriod
@@ -1270,6 +1345,9 @@ export declare class Product_SubscriptionInfo_BundledSubscription extends SDKHan
      * @availability iOS 27.0+
      */
     get price(): _Foundation_Decimal;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV07BundledD0V": true;
+    };
 }
 /**
  * struct CommitmentInfo
@@ -1291,6 +1369,9 @@ export declare class Product_SubscriptionInfo_CommitmentInfo extends SDKHandle {
      * @availability iOS 26.4+
      */
     get period(): Product_SubscriptionPeriod;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV010CommitmentE0V": true;
+    };
 }
 /**
  * struct PricingTerms
@@ -1332,6 +1413,9 @@ export declare class Product_SubscriptionInfo_PricingTerms extends SDKHandle {
      * @availability iOS 26.4+
      */
     subscript(type: Product_SubscriptionOffer_OfferType): $SDK11;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV12PricingTermsV": true;
+    };
 }
 /**
  * struct RenewalInfo
@@ -1533,6 +1617,9 @@ export declare class Product_SubscriptionInfo_RenewalInfo extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get offerType(): $SDK23;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V": true;
+    };
 }
 /**
  * struct AdvancedCommerceInfo
@@ -1574,6 +1661,9 @@ export declare class Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo e
      * @availability iOS 18.4+
      */
     get taxCode(): string;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V016AdvancedCommerceE0V": true;
+    };
 }
 /**
  * struct Item
@@ -1590,6 +1680,9 @@ export declare class Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_I
      * @availability iOS 18.4+
      */
     get details(): Transaction_AdvancedCommerceInfo_Item_Details;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V016AdvancedCommerceE0V4ItemV": true;
+    };
 }
 /**
  * typealias Details = Transaction.AdvancedCommerceInfo.Item.Details
@@ -1616,6 +1709,9 @@ export declare class Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_I
      * @availability iOS 26.2+
      */
     get status(): Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V016AdvancedCommerceE0V4ItemV013PriceIncreaseE0V": true;
+    };
 }
 /**
  * struct Status
@@ -1684,6 +1780,9 @@ export declare class Product_SubscriptionInfo_RenewalInfo_CommitmentInfo extends
      * @availability iOS 26.4+
      */
     get renewalBillingPlanType(): Product_SubscriptionInfo_BillingPlanType;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV07RenewalE0V010CommitmentE0V": true;
+    };
 }
 /**
  * struct ExpirationReason
@@ -1840,6 +1939,9 @@ export declare class Product_SubscriptionInfo_Status extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get updates(): Product_SubscriptionInfo_Status_Statuses;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV6StatusV": true;
+    };
 }
 /**
  * struct Statuses
@@ -1851,6 +1953,9 @@ export declare class Product_SubscriptionInfo_Status_Statuses extends SDKHandle 
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): Product_SubscriptionInfo_Status_Statuses_AsyncIterator;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV6StatusV8StatusesV": true;
+    };
     readonly $element: Product_SubscriptionInfo_Status;
 }
 /**
@@ -1863,6 +1968,9 @@ export declare class Product_SubscriptionInfo_Status_Statuses_AsyncIterator exte
      * @availability iOS 15.0+
      */
     next(): Promise<$SDK14>;
+    readonly $type: {
+        "s:8StoreKit7ProductV16SubscriptionInfoV6StatusV8StatusesV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = Product.SubscriptionInfo.Status.Statuses.Element
@@ -1914,6 +2022,9 @@ export declare class Product_SubscriptionOffer extends SDKHandle {
      * @availability iOS 15.0+
      */
     get period(): Product_SubscriptionPeriod;
+    readonly $type: {
+        "s:8StoreKit7ProductV17SubscriptionOfferV": true;
+    };
 }
 /**
  * struct OfferType
@@ -2039,6 +2150,9 @@ export declare class Product_SubscriptionOffer_Signature extends SDKHandle {
      */
     get timestamp(): number;
     set timestamp(value: number);
+    readonly $type: {
+        "s:8StoreKit7ProductV17SubscriptionOfferV9SignatureV": true;
+    };
 }
 /**
  * struct SubscriptionPeriod
@@ -2114,6 +2228,9 @@ export declare class Product_SubscriptionPeriod extends SDKHandle {
      * @availability iOS 15.0+
      */
     dateRange(referenceDate?: globalThis.Date): SDKHandle;
+    readonly $type: {
+        "s:8StoreKit7ProductV18SubscriptionPeriodV": true;
+    };
 }
 /**
  * enum Unit
@@ -2147,6 +2264,9 @@ export declare class Product_SubscriptionPeriod_Unit_FormatStyle extends SDKHand
      * @availability iOS 16.0+
      */
     locale(locale: _Foundation_Locale): Product_SubscriptionPeriod_Unit_FormatStyle;
+    readonly $type: {
+        "s:8StoreKit7ProductV18SubscriptionPeriodV4UnitO11FormatStyleV": true;
+    };
 }
 /**
  * typealias FormatInput = Product.SubscriptionPeriod.Unit
@@ -2184,6 +2304,9 @@ export declare class PurchaseIntent extends SDKHandle {
      * @availability iOS 16.4+
      */
     get product(): Product;
+    readonly $type: {
+        "s:8StoreKit14PurchaseIntentV": true;
+    };
 }
 /**
  * typealias ID = Product.ID
@@ -2200,6 +2323,9 @@ export declare class PurchaseIntent_PurchaseIntents extends SDKHandle {
      * @availability iOS 16.4+
      */
     makeAsyncIterator(): PurchaseIntent_PurchaseIntents_AsyncIterator;
+    readonly $type: {
+        "s:8StoreKit14PurchaseIntentV0C7IntentsV": true;
+    };
     readonly $element: PurchaseIntent;
 }
 /**
@@ -2212,6 +2338,9 @@ export declare class PurchaseIntent_PurchaseIntents_AsyncIterator extends SDKHan
      * @availability iOS 16.4+
      */
     next(): Promise<(PurchaseIntent) | null>;
+    readonly $type: {
+        "s:8StoreKit14PurchaseIntentV0C7IntentsV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = PurchaseIntent.PurchaseIntents.Element
@@ -2228,19 +2357,20 @@ export type PurchaseIntent_PurchaseIntents_Element = PurchaseIntent;
  * @availability iOS 27.0+
  */
 export declare class RedeemOption extends SDKHandle {
+    readonly $type: {
+        "s:8StoreKit12RedeemOptionV": true;
+    };
 }
 /**
  * class SKAdImpression
  * @availability iOS 14.5+
  */
 export declare class SKAdImpression extends SDKHandle {
-    /** init() */
-    static init(): SKAdImpression;
     /**
      * init(sourceAppStoreItemIdentifier: NSNumber, advertisedAppStoreItemIdentifier: NSNumber, adNetworkIdentifier: String, adCampaignIdentifier: NSNumber, adImpressionIdentifier: String, timestamp: NSNumber, signature: String, version: String)
      * @availability iOS 16.0+
      */
-    static initSourceAppStoreItemIdentifierAdvertisedAppStoreItemIdentifierAdNetworkIdentifierAdCampaignIdentifierAdImpressionIdentifierTimestampSignatureVersion(sourceAppStoreItemIdentifier: _Foundation_NSNumber, advertisedAppStoreItemIdentifier: _Foundation_NSNumber, adNetworkIdentifier: string, adCampaignIdentifier: _Foundation_NSNumber, adImpressionIdentifier: string, timestamp: _Foundation_NSNumber, signature: string, version: string): SKAdImpression;
+    static init(sourceAppStoreItemIdentifier: _Foundation_NSNumber, advertisedAppStoreItemIdentifier: _Foundation_NSNumber, adNetworkIdentifier: string, adCampaignIdentifier: _Foundation_NSNumber, adImpressionIdentifier: string, timestamp: _Foundation_NSNumber, signature: string, version: string): SKAdImpression;
     /**
      * var adCampaignIdentifier: NSNumber { get set }
      * @availability iOS 14.5+
@@ -2313,6 +2443,10 @@ export declare class SKAdImpression extends SDKHandle {
      */
     get version(): string;
     set version(value: string);
+    readonly $type: {
+        "c:objc(cs)SKAdImpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adCampaignIdentifier": true;
         "adDescription": true;
@@ -2372,6 +2506,10 @@ export declare class SKAdNetwork extends SDKHandle {
     static updatePostbackConversionValueCompletionHandler(conversionValue: number, completion?: $SDK28): void;
     /** init() */
     static init(): SKAdNetwork;
+    readonly $type: {
+        "c:objc(cs)SKAdNetwork": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct CoarseConversionValue
@@ -2470,6 +2608,9 @@ export declare class SKANError extends SDKHandle {
      * @availability iOS 15.4+
      */
     static get unknown(): SKANError_Code;
+    readonly $type: {
+        "s:SC9SKANErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2505,6 +2646,10 @@ export declare class SKArcadeService extends SDKHandle {
     static repairArcadeApp(): void;
     /** init() */
     static init(): SKArcadeService;
+    readonly $type: {
+        "c:objc(cs)SKArcadeService": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum SKCloudServiceAuthorizationStatus
@@ -2596,6 +2741,10 @@ export declare class SKCloudServiceController extends SDKHandle {
      * @deprecated iOS 18.0
      */
     requestUserToken(developerToken: string, completionHandler: $SDK31): void;
+    readonly $type: {
+        "c:objc(cs)SKCloudServiceController": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct SKCloudServiceSetupAction */
 export type SKCloudServiceSetupAction = "subscribe" | (string & {});
@@ -2696,6 +2845,12 @@ export declare class SKCloudServiceSetupViewController extends SDKHandle {
      */
     get delegate(): Promise<(SDKHandle) | null>;
     setDelegate(value?: (Implements<SKCloudServiceSetupViewControllerDelegate> | SDKHandle) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)SKCloudServiceSetupViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol SKCloudServiceSetupViewControllerDelegate : NSObjectProtocol
@@ -2784,6 +2939,10 @@ export declare class SKDownload extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get transaction(): SKPaymentTransaction;
+    readonly $type: {
+        "c:objc(cs)SKDownload": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentIdentifier": true;
         "contentLength": true;
@@ -2932,6 +3091,9 @@ export declare class SKError extends SDKHandle {
      * @availability iOS 3.0+
      */
     static get unknown(): SKError_Code;
+    readonly $type: {
+        "s:SC11SKErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2956,9 +3118,7 @@ export declare class SKPayment extends SDKHandle {
      * @availability iOS 3.0+
      * @deprecated iOS 18.0
      */
-    static initProduct(product: SKProduct): SKPayment;
-    /** init() */
-    static init(): SKPayment;
+    static init(product: SKProduct): SKPayment;
     /**
      * var applicationUsername: String? { get }
      * @availability iOS 7.0+
@@ -2995,6 +3155,10 @@ export declare class SKPayment extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get simulatesAskToBuyInSandbox(): boolean;
+    readonly $type: {
+        "c:objc(cs)SKPayment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationUsername": true;
         "paymentDiscount": true;
@@ -3055,6 +3219,11 @@ export declare class SKMutablePayment extends SKMutablePayment_base {
      */
     get simulatesAskToBuyInSandbox(): boolean;
     set simulatesAskToBuyInSandbox(value: boolean);
+    readonly $type: {
+        "c:objc(cs)SKMutablePayment": true;
+        "c:objc(cs)SKPayment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationUsername": true;
         "paymentDiscount": true;
@@ -3095,6 +3264,10 @@ export declare class SKOverlay extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<SKOverlayDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)SKOverlay": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
         "delegate": true;
@@ -3105,6 +3278,10 @@ export declare class SKOverlay extends SDKHandle {
  * @availability iOS 14.0+
  */
 export declare class SKOverlay_Configuration extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)SKOverlayConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AppClipConfiguration
@@ -3156,6 +3333,11 @@ export declare class SKOverlay_AppClipConfiguration extends SKOverlay_Configurat
      */
     get providerToken(): (string) | null;
     set providerToken(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)SKOverlayAppClipConfiguration": true;
+        "c:objc(cs)SKOverlayConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "campaignToken": true;
         "customProductPageIdentifier": true;
@@ -3231,6 +3413,11 @@ export declare class SKOverlay_AppConfiguration extends SKOverlay_Configuration 
      */
     get userDismissible(): boolean;
     set userDismissible(value: boolean);
+    readonly $type: {
+        "c:objc(cs)SKOverlayAppConfiguration": true;
+        "c:objc(cs)SKOverlayConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "appIdentifier": true;
         "campaignToken": true;
@@ -3273,6 +3460,10 @@ export declare class SKOverlay_TransitionContext extends SDKHandle {
      * @availability iOS 14.0+
      */
     get startFrame(): $SDK37;
+    readonly $type: {
+        "c:objc(cs)SKOverlayTransitionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endFrame": true;
         "startFrame": true;
@@ -3315,14 +3506,12 @@ export interface SKOverlayDelegate {
  * @deprecated iOS 18.0
  */
 export declare class SKPaymentDiscount extends SDKHandle {
-    /** init() */
-    static init(): SKPaymentDiscount;
     /**
      * init(identifier: String, keyIdentifier: String, nonce: UUID, signature: String, timestamp: NSNumber)
      * @availability iOS 12.2+
      * @deprecated iOS 18.0
      */
-    static initIdentifierKeyIdentifierNonceSignatureTimestamp(identifier: string, keyIdentifier: string, nonce: string, signature: string, timestamp: _Foundation_NSNumber): SKPaymentDiscount;
+    static init(identifier: string, keyIdentifier: string, nonce: string, signature: string, timestamp: _Foundation_NSNumber): SKPaymentDiscount;
     /**
      * var identifier: String { get }
      * @availability iOS 12.2+
@@ -3353,6 +3542,10 @@ export declare class SKPaymentDiscount extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get timestamp(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)SKPaymentDiscount": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "keyIdentifier": true;
@@ -3478,6 +3671,10 @@ export declare class SKPaymentQueue extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get transactions(): $SDK40;
+    readonly $type: {
+        "c:objc(cs)SKPaymentQueue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "storefront": true;
@@ -3542,6 +3739,10 @@ export declare class SKPaymentTransaction extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get transactionState(): SKPaymentTransactionState;
+    readonly $type: {
+        "c:objc(cs)SKPaymentTransaction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "downloads": true;
         "error": true;
@@ -3707,6 +3908,10 @@ export declare class SKProduct extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get subscriptionPeriod(): (SKProductSubscriptionPeriod) | null;
+    readonly $type: {
+        "c:objc(cs)SKProduct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentVersion": true;
         "discounts": true;
@@ -3788,6 +3993,10 @@ export declare class SKProductDiscount extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get type(): SKProductDiscount_Type;
+    readonly $type: {
+        "c:objc(cs)SKProductDiscount": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "numberOfPeriods": true;
@@ -3845,6 +4054,10 @@ export declare class SKRequest extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<SKRequestDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)SKRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -3856,14 +4069,12 @@ declare const SKProductsRequest_base: Omit<typeof SKRequest, "init" | "prototype
  * @deprecated iOS 18.0
  */
 export declare class SKProductsRequest extends SKProductsRequest_base {
-    /** init() */
-    static init(): SKProductsRequest;
     /**
      * init(productIdentifiers: Set<String>)
      * @availability iOS 3.0+
      * @deprecated iOS 18.0
      */
-    static initProductIdentifiers(productIdentifiers: Array<string>): SKProductsRequest;
+    static init(productIdentifiers: Array<string>): SKProductsRequest;
     /**
      * weak var delegate: (any SKProductsRequestDelegate)? { get set }
      * @availability iOS 3.0+
@@ -3871,6 +4082,11 @@ export declare class SKProductsRequest extends SKProductsRequest_base {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<SKProductsRequestDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)SKProductsRequest": true;
+        "c:objc(cs)SKRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -3920,6 +4136,10 @@ export declare class SKProductsResponse extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get products(): Array<SKProduct>;
+    readonly $type: {
+        "c:objc(cs)SKProductsResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "invalidProductIdentifiers": true;
         "products": true;
@@ -3963,6 +4183,10 @@ export declare class SKProductStorePromotionController extends SDKHandle {
      * @deprecated iOS 18.0
      */
     updateStorePromotionVisibilityForCompletionHandler(promotionVisibility: SKProductStorePromotionVisibility, product: SKProduct, completionHandler?: $SDK28): void;
+    readonly $type: {
+        "c:objc(cs)SKProductStorePromotionController": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @frozen enum SKProductStorePromotionVisibility
@@ -3998,6 +4222,10 @@ export declare class SKProductSubscriptionPeriod extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get unit(): SKProduct_PeriodUnit;
+    readonly $type: {
+        "c:objc(cs)SKProductSubscriptionPeriod": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "numberOfUnits": true;
         "unit": true;
@@ -4010,20 +4238,23 @@ declare const SKReceiptRefreshRequest_base: Omit<typeof SKRequest, "init" | "pro
  * @deprecated iOS 18.0
  */
 export declare class SKReceiptRefreshRequest extends SKReceiptRefreshRequest_base {
-    /** init() */
-    static init(): SKReceiptRefreshRequest;
     /**
      * init(receiptProperties properties: [String : Any]?)
      * @availability iOS 7.0+
      * @deprecated iOS 18.0
      */
-    static initReceiptProperties(properties?: $SDK50): SKReceiptRefreshRequest;
+    static init(properties?: $SDK50): SKReceiptRefreshRequest;
     /**
      * var receiptProperties: [String : Any]? { get }
      * @availability iOS 7.0+
      * @deprecated iOS 18.0
      */
     get receiptProperties(): $SDK50;
+    readonly $type: {
+        "c:objc(cs)SKReceiptRefreshRequest": true;
+        "c:objc(cs)SKRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "receiptProperties": true;
@@ -4068,6 +4299,10 @@ export declare class SKStorefront extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get identifier(): string;
+    readonly $type: {
+        "c:objc(cs)SKStorefront": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "countryCode": true;
         "identifier": true;
@@ -4096,6 +4331,12 @@ export declare class SKStoreProductViewController extends SDKHandle {
      */
     get delegate(): Promise<(SDKHandle) | null>;
     setDelegate(value?: (Implements<SKStoreProductViewControllerDelegate> | SDKHandle) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)SKStoreProductViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol SKStoreProductViewControllerDelegate : NSObjectProtocol
@@ -4128,6 +4369,10 @@ export declare class SKStoreReviewController extends SDKHandle {
     static requestReviewIn(windowScene: _UIKit_UIWindowScene): Promise<void>;
     /** init() */
     static init(): SKStoreReviewController;
+    readonly $type: {
+        "c:objc(cs)SKStoreReviewController": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol StoreDownloaderExtension : ManagedDownloaderExtension
@@ -4173,6 +4418,9 @@ export declare class Storefront extends SDKHandle {
      * @availability iOS 17.0+
      */
     get currency(): $SDK22;
+    readonly $type: {
+        "s:8StoreKit10StorefrontV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -4189,6 +4437,9 @@ export declare class Storefront_Storefronts extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): Storefront_Storefronts_AsyncIterator;
+    readonly $type: {
+        "s:8StoreKit10StorefrontV11StorefrontsV": true;
+    };
     readonly $element: Storefront;
 }
 /**
@@ -4201,6 +4452,9 @@ export declare class Storefront_Storefronts_AsyncIterator extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): Promise<(Storefront) | null>;
+    readonly $type: {
+        "s:8StoreKit10StorefrontV11StorefrontsV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = Storefront
@@ -4232,6 +4486,9 @@ export declare class StoreKitError extends SDKHandle {
      * @availability iOS 15.4+
      */
     get recoverySuggestion(): (string) | null;
+    readonly $type: {
+        "s:8StoreKit0aB5ErrorO": true;
+    };
 }
 /**
  * typealias SubscriptionInfo = Product.SubscriptionInfo
@@ -4584,6 +4841,9 @@ export declare class Transaction extends SDKHandle {
      * @availability iOS 15.0+
      */
     get productID(): string;
+    readonly $type: {
+        "s:8StoreKit11TransactionV": true;
+    };
 }
 /**
  * struct AdvancedCommerceInfo
@@ -4635,6 +4895,9 @@ export declare class Transaction_AdvancedCommerceInfo extends SDKHandle {
      * @availability iOS 18.4+
      */
     get taxRate(): _Foundation_Decimal;
+    readonly $type: {
+        "s:8StoreKit11TransactionV20AdvancedCommerceInfoV": true;
+    };
 }
 /**
  * struct Item
@@ -4656,6 +4919,9 @@ export declare class Transaction_AdvancedCommerceInfo_Item extends SDKHandle {
      * @availability iOS 18.4+
      */
     get refunds(): (Array<Transaction_AdvancedCommerceInfo_Refund>) | null;
+    readonly $type: {
+        "s:8StoreKit11TransactionV20AdvancedCommerceInfoV4ItemV": true;
+    };
 }
 /**
  * struct Details
@@ -4692,6 +4958,9 @@ export declare class Transaction_AdvancedCommerceInfo_Item_Details extends SDKHa
      * @availability iOS 27.0+
      */
     get partners(): Array<Transaction_AdvancedCommerceInfo_Partner>;
+    readonly $type: {
+        "s:8StoreKit11TransactionV20AdvancedCommerceInfoV4ItemV7DetailsV": true;
+    };
 }
 /**
  * struct Offer
@@ -4718,6 +4987,9 @@ export declare class Transaction_AdvancedCommerceInfo_Offer extends SDKHandle {
      * @availability iOS 18.4+
      */
     get reason(): Transaction_AdvancedCommerceInfo_Offer_Reason;
+    readonly $type: {
+        "s:8StoreKit11TransactionV20AdvancedCommerceInfoV5OfferV": true;
+    };
 }
 /**
  * struct Reason
@@ -4771,6 +5043,9 @@ export declare class Transaction_AdvancedCommerceInfo_Partner extends SDKHandle 
      * @availability iOS 27.0+
      */
     get name(): (string) | null;
+    readonly $type: {
+        "s:8StoreKit11TransactionV20AdvancedCommerceInfoV7PartnerV": true;
+    };
 }
 /**
  * struct Refund
@@ -4797,6 +5072,9 @@ export declare class Transaction_AdvancedCommerceInfo_Refund extends SDKHandle {
      * @availability iOS 18.4+
      */
     get reason(): Transaction_AdvancedCommerceInfo_Refund_Reason;
+    readonly $type: {
+        "s:8StoreKit11TransactionV20AdvancedCommerceInfoV6RefundV": true;
+    };
 }
 /**
  * struct Reason
@@ -4912,6 +5190,9 @@ export declare class Transaction_CommitmentInfo extends SDKHandle {
      * @availability iOS 26.4+
      */
     get price(): _Foundation_Decimal;
+    readonly $type: {
+        "s:8StoreKit11TransactionV14CommitmentInfoV": true;
+    };
 }
 /**
  * typealias ID = UInt64
@@ -4943,6 +5224,9 @@ export declare class Transaction_Offer extends SDKHandle {
      * @availability iOS 18.4+
      */
     get period(): $SDK59;
+    readonly $type: {
+        "s:8StoreKit11TransactionV5OfferV": true;
+    };
 }
 /**
  * struct PaymentMode
@@ -5233,6 +5517,9 @@ export declare class Transaction_Transactions extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): Transaction_Transactions_AsyncIterator;
+    readonly $type: {
+        "s:8StoreKit11TransactionV12TransactionsV": true;
+    };
     readonly $element: $SDK2;
 }
 /**
@@ -5245,6 +5532,9 @@ export declare class Transaction_Transactions_AsyncIterator extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): Promise<$SDK0>;
+    readonly $type: {
+        "s:8StoreKit11TransactionV12TransactionsV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = VerificationResult<Transaction>
@@ -5406,6 +5696,9 @@ export declare class VerificationResult<SignedType = unknown> extends SDKHandle 
      * @availability iOS 15.0+
      */
     get signature3169(): _CryptoKit_P256_Signing_ECDSASignature;
+    readonly $type: {
+        "s:8StoreKit18VerificationResultO": true;
+    };
 }
 /**
  * enum VerificationError

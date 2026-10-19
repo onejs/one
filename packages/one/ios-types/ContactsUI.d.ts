@@ -66,6 +66,12 @@ export declare class CNContactPickerViewController extends SDKHandle {
      */
     get predicateForSelectionOfProperty(): $SDK3;
     set predicateForSelectionOfProperty(value: $SDK3);
+    readonly $type: {
+        "c:objc(cs)CNContactPickerViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "displayedPropertyKeys": true;
@@ -104,8 +110,6 @@ export declare class CNContactViewController extends SDKHandle {
      * @availability iOS 9.0+
      */
     highlightProperty(key: string, identifier?: (string) | null): void;
-    /** init() */
-    static init(): CNContactViewController;
     /**
      * var allowsActions: Bool { get set }
      * @availability iOS 9.0+
@@ -171,6 +175,12 @@ export declare class CNContactViewController extends SDKHandle {
      */
     get shouldShowLinkedContacts(): boolean;
     set shouldShowLinkedContacts(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CNContactViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsActions": true;
         "allowsEditing": true;
@@ -202,6 +212,11 @@ export declare class CNMutableContact extends SDKHandle {
      * @availability iOS 16.0+
      */
     get id(): string;
+    readonly $type: {
+        "c:objc(cs)CNMutableContact": true;
+        "c:objc(cs)CNContact": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct ContactAccessButton
@@ -213,6 +228,9 @@ export declare class ContactAccessButton extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(query: string, ignoredEmails?: (Array<string>) | null, ignoredPhoneNumbers?: (Array<string>) | null, approvalCallback?: (((arg0: Array<string>) => void)) | null): Promise<ContactAccessButton>;
+    readonly $type: {
+        "s:10ContactsUI19ContactAccessButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -256,6 +274,9 @@ export declare class ContactAccessButton_Style extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): Promise<ContactAccessButton_Style>;
+    readonly $type: {
+        "s:10ContactsUI19ContactAccessButtonV5StyleV": true;
+    };
 }
 export declare class UIApplicationShortcutIcon extends SDKHandle {
     /**
@@ -263,5 +284,9 @@ export declare class UIApplicationShortcutIcon extends SDKHandle {
      * @availability iOS 9.0+
      */
     static init(contact: _Contacts_CNContact): _UIKit_UIApplicationShortcutIcon;
+    readonly $type: {
+        "c:objc(cs)UIApplicationShortcutIcon": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

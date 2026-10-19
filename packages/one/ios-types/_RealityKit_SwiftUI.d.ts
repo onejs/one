@@ -15,6 +15,9 @@ export declare class Entity extends SDKHandle {
      * @availability iOS 26.0+
      */
     static animate(animation: _SwiftUICore_Animation, body: (() => void), completion?: ((() => void)) | null): Promise<void>;
+    readonly $type: {
+        "s:17RealityFoundation6EntityC": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct EntityTargetValue<Value>
@@ -38,6 +41,9 @@ export declare class EntityTargetValue<Value = unknown> extends SDKHandle {
      */
     get entity(): _RealityFoundation_Entity;
     set entity(value: _RealityFoundation_Entity);
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI17EntityTargetValueV": true;
+    };
 }
 export declare class EnvironmentValues extends SDKHandle {
     /**
@@ -46,6 +52,9 @@ export declare class EnvironmentValues extends SDKHandle {
      */
     get realityViewCameraControls(): _RealityFoundation_CameraControls;
     set realityViewCameraControls(value: _RealityFoundation_CameraControls);
+    readonly $type: {
+        "s:7SwiftUI17EnvironmentValuesV": true;
+    };
 }
 export declare class MeshResource extends SDKHandle {
     /**
@@ -58,6 +67,9 @@ export declare class MeshResource extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initExtrudingExtrusionOptions95500(path: _SwiftUICore_Path, extrusionOptions?: _RealityFoundation_MeshResource_ShapeExtrusionOptions): Promise<_RealityFoundation_MeshResource>;
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC": true;
+    };
 }
 export declare class MeshResource_ShapeExtrusionOptions extends SDKHandle {
     /**
@@ -66,6 +78,9 @@ export declare class MeshResource_ShapeExtrusionOptions extends SDKHandle {
      */
     get chamferProfile(): (_SwiftUICore_Path) | null;
     set chamferProfile(value: (_SwiftUICore_Path) | null);
+    readonly $type: {
+        "s:17RealityFoundation12MeshResourceC21ShapeExtrusionOptionsV": true;
+    };
 }
 /**
  * @MainActor struct ObjectCapturePointCloudView
@@ -82,6 +97,9 @@ export declare class ObjectCapturePointCloudView extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(session: ObjectCaptureSession): Promise<ObjectCapturePointCloudView>;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI27ObjectCapturePointCloudViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -250,12 +268,18 @@ export declare class ObjectCaptureSession extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<ObjectCaptureSession>;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC": true;
+    };
 }
 /**
  * enum CaptureState
  * @availability iOS 17.0+
  */
 export declare class ObjectCaptureSession_CaptureState extends SDKHandle {
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC0F5StateO": true;
+    };
 }
 /**
  * struct Configuration
@@ -279,6 +303,9 @@ export declare class ObjectCaptureSession_Configuration extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<ObjectCaptureSession_Configuration>;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC13ConfigurationV": true;
+    };
 }
 /**
  * enum Error
@@ -290,6 +317,9 @@ export declare class ObjectCaptureSession_Error extends SDKHandle {
      * @availability iOS 17.0+
      */
     get localizedDescription(): Promise<string>;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC5ErrorO": true;
+    };
 }
 /**
  * enum Feedback
@@ -306,6 +336,9 @@ export type ObjectCaptureSession_ID = unknown;
  * @availability iOS 17.0+
  */
 export declare class ObjectCaptureSession_Tracking extends SDKHandle {
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC8TrackingO": true;
+    };
 }
 /**
  * enum Reason
@@ -322,6 +355,9 @@ export declare class ObjectCaptureSession_Updates<Element = unknown> extends SDK
      * @availability iOS 17.0+
      */
     makeAsyncIterator(): Promise<ObjectCaptureSession_Updates_Iterator<number>>;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC7UpdatesV": true;
+    };
     readonly $element: Element;
 }
 /**
@@ -339,6 +375,9 @@ export declare class ObjectCaptureSession_Updates_Iterator<Element = unknown> ex
      * @availability iOS 17.0+
      */
     next(): Promise<(number) | null>;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI20ObjectCaptureSessionC7UpdatesV8IteratorV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct ObjectCaptureView<Overlay> where Overlay : View
@@ -355,6 +394,9 @@ export declare class ObjectCaptureView<Overlay = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(session: ObjectCaptureSession): Promise<ObjectCaptureView<_SwiftUICore_EmptyView>>;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI17ObjectCaptureViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -408,6 +450,9 @@ export interface RealityCoordinateSpaceProjecting {
  * @availability iOS 18.0+
  */
 export declare class RealityView<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A4ViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -434,6 +479,9 @@ export declare class RealityViewCamera extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get virtual(): RealityViewCamera;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A10ViewCameraV": true;
+    };
 }
 /**
  * struct RealityViewCameraContent
@@ -481,12 +529,18 @@ export declare class RealityViewCameraContent extends SDKHandle {
      */
     get entities(): RealityViewEntityCollection;
     set entities(value: RealityViewEntityCollection);
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A17ViewCameraContentV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Body<Placeholder> where Placeholder : View
  * @availability iOS 18.0+
  */
 export declare class RealityViewCameraContent_Body<Placeholder = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A17ViewCameraContentV4BodyV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -514,6 +568,9 @@ export interface RealityViewContentProtocol {
  * @availability iOS 18.0+
  */
 export declare class RealityViewDefaultPlaceholder extends SDKHandle {
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A22ViewDefaultPlaceholderV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -535,6 +592,9 @@ export declare class RealityViewDynamicRange extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get standard(): RealityViewDynamicRange;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A16ViewDynamicRangeV": true;
+    };
 }
 /**
  * struct RealityViewEntityCollection
@@ -596,6 +656,9 @@ export declare class RealityViewEntityCollection extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(index: number): _RealityFoundation_Entity;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A20ViewEntityCollectionV": true;
+    };
 }
 /**
  * typealias Element = Entity
@@ -637,6 +700,9 @@ export declare class RealityViewEnvironment extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get default(): RealityViewEnvironment;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A15ViewEnvironmentV": true;
+    };
 }
 /**
  * struct RealityViewLayoutOption
@@ -658,6 +724,9 @@ export declare class RealityViewLayoutOption extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get fixedSize(): RealityViewLayoutOption;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A16ViewLayoutOptionV": true;
+    };
 }
 /**
  * struct RealityViewPostProcessEffect
@@ -669,6 +738,9 @@ export declare class RealityViewPostProcessEffect extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get none(): RealityViewPostProcessEffect;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A21ViewPostProcessEffectV": true;
+    };
 }
 /**
  * struct RealityViewRenderingEffectMode
@@ -690,6 +762,9 @@ export declare class RealityViewRenderingEffectMode extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get disabled(): RealityViewRenderingEffectMode;
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A23ViewRenderingEffectModeV": true;
+    };
 }
 /**
  * struct RealityViewRenderingEffects
@@ -732,5 +807,8 @@ export declare class RealityViewRenderingEffects extends SDKHandle {
      */
     get customPostProcessing(): RealityViewPostProcessEffect;
     set customPostProcessing(value: RealityViewPostProcessEffect);
+    readonly $type: {
+        "s:19_RealityKit_SwiftUI0A20ViewRenderingEffectsV": true;
+    };
 }
 export {};

@@ -17,6 +17,10 @@ export declare class CLKWatchFaceLibrary extends SDKHandle {
     addWatchFace(fileURL: string, handler: ((arg0: (NativeError) | null) => void)): void;
     /** init() */
     static init(): CLKWatchFaceLibrary;
+    readonly $type: {
+        "c:objc(cs)CLKWatchFaceLibrary": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum ErrorCode

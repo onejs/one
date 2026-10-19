@@ -6,16 +6,25 @@ export declare class ModelContext extends SDKHandle {
      * @availability iOS 17.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:9SwiftData12ModelContextC": true;
+    };
 }
 /**
  * struct ModelDocument
  * @availability iOS 17.0+
  */
 export declare class ModelDocument extends SDKHandle {
+    readonly $type: {
+        "s:011_SwiftData_A2UI13ModelDocumentV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Query<Element, Result> where Element : PersistentModel
  * @availability iOS 17.0+
  */
 export declare class Query<Element = unknown, Result = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:011_SwiftData_A2UI5QueryV": true;
+    };
 }

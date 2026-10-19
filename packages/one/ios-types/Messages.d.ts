@@ -85,6 +85,10 @@ export declare class MSConversation extends SDKHandle {
      * @availability iOS 10.0+
      */
     get selectedMessage(): (MSMessage) | null;
+    readonly $type: {
+        "c:objc(cs)MSConversation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localParticipantIdentifier": true;
         "remoteParticipantIdentifiers": true;
@@ -107,6 +111,9 @@ export declare class MSCriticalMessage extends SDKHandle {
      */
     get messageText(): string;
     set messageText(value: string);
+    readonly $type: {
+        "s:8Messages17MSCriticalMessageV": true;
+    };
 }
 /**
  * enum MSCriticalMessagingAuthorizationStatus
@@ -197,6 +204,10 @@ export declare class MSCriticalSMSMessenger extends SDKHandle {
      * @availability iOS 18.2+
      */
     send(message: MSCriticalMessage, recipient: MSRecipient): Promise<boolean>;
+    readonly $type: {
+        "c:@M@Messages@objc(cs)MSCriticalSMSMessenger": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MSMessage
@@ -264,6 +275,10 @@ export declare class MSMessage extends SDKHandle {
      */
     get summaryText(): (string) | null;
     set summaryText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MSMessage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "accessibilityLabel": true;
@@ -295,6 +310,10 @@ export declare const MSMessageErrorCode: {
 export declare class MSMessageLayout extends SDKHandle {
     /** init() */
     static init(): MSMessageLayout;
+    readonly $type: {
+        "c:objc(cs)MSMessageLayout": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MSMessageLiveLayout_base: Omit<typeof MSMessageLayout, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MSMessageLayout);
 /**
@@ -312,6 +331,11 @@ export declare class MSMessageLiveLayout extends MSMessageLiveLayout_base {
      * @availability iOS 11.0+
      */
     get alternateLayout(): MSMessageTemplateLayout;
+    readonly $type: {
+        "c:objc(cs)MSMessageLiveLayout": true;
+        "c:objc(cs)MSMessageLayout": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alternateLayout": true;
     };
@@ -443,6 +467,12 @@ export declare class MSMessagesAppViewController extends SDKHandle {
      * @availability iOS 10.0+
      */
     get presentationStyle(): MSMessagesAppPresentationStyle;
+    readonly $type: {
+        "c:objc(cs)MSMessagesAppViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeConversation": true;
         "presentationContext": true;
@@ -505,6 +535,11 @@ export declare class MSMessageTemplateLayout extends MSMessageTemplateLayout_bas
      */
     get trailingSubcaption(): (string) | null;
     set trailingSubcaption(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MSMessageTemplateLayout": true;
+        "c:objc(cs)MSMessageLayout": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "caption": true;
         "image": true;
@@ -532,6 +567,9 @@ export declare class MSRecipient extends SDKHandle {
      */
     get phoneNumber(): string;
     set phoneNumber(value: string);
+    readonly $type: {
+        "s:8Messages11MSRecipientV": true;
+    };
 }
 /**
  * class MSSession
@@ -540,6 +578,10 @@ export declare class MSRecipient extends SDKHandle {
 export declare class MSSession extends SDKHandle {
     /** init() */
     static init(): MSSession;
+    readonly $type: {
+        "c:objc(cs)MSSession": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MSSticker
@@ -561,6 +603,10 @@ export declare class MSSticker extends SDKHandle {
      * @availability iOS 10.0+
      */
     get localizedDescription(): string;
+    readonly $type: {
+        "c:objc(cs)MSSticker": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "imageFileURL": true;
         "localizedDescription": true;
@@ -571,8 +617,6 @@ export declare class MSSticker extends SDKHandle {
  * @availability iOS 10.0+
  */
 export declare class MSStickerBrowserView extends SDKHandle {
-    /** init() */
-    static init(): MSStickerBrowserView;
     /**
      * init(frame: CGRect)
      * @availability iOS 10.0+
@@ -616,6 +660,12 @@ export declare class MSStickerBrowserView extends SDKHandle {
      * @availability iOS 10.0+
      */
     get stickerSize(): MSStickerSize;
+    readonly $type: {
+        "c:objc(cs)MSStickerBrowserView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentInset": true;
         "contentOffset": true;
@@ -628,13 +678,11 @@ export declare class MSStickerBrowserView extends SDKHandle {
  * @availability iOS 10.0+
  */
 export declare class MSStickerBrowserViewController extends SDKHandle {
-    /** init() */
-    static init(): MSStickerBrowserViewController;
     /**
      * init(stickerSize: MSStickerSize)
      * @availability iOS 10.0+
      */
-    static initStickerSize(stickerSize: MSStickerSize): MSStickerBrowserViewController;
+    static init(stickerSize: MSStickerSize): MSStickerBrowserViewController;
     /**
      * var stickerBrowserView: MSStickerBrowserView { get }
      * @availability iOS 10.0+
@@ -645,6 +693,12 @@ export declare class MSStickerBrowserViewController extends SDKHandle {
      * @availability iOS 10.0+
      */
     get stickerSize(): MSStickerSize;
+    readonly $type: {
+        "c:objc(cs)MSStickerBrowserViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "stickerBrowserView": true;
         "stickerSize": true;
@@ -683,13 +737,11 @@ export declare const MSStickerSize: {
  * @availability iOS 10.0+
  */
 export declare class MSStickerView extends SDKHandle {
-    /** init() */
-    static init(): MSStickerView;
     /**
      * init(frame: CGRect, sticker: MSSticker?)
      * @availability iOS 10.0+
      */
-    static initFrameSticker(frame: $SDK4, sticker?: (MSSticker) | null): MSStickerView;
+    static init(frame: $SDK4, sticker?: (MSSticker) | null): MSStickerView;
     /**
      * func isAnimating() -> Bool
      * @availability iOS 10.0+
@@ -716,6 +768,12 @@ export declare class MSStickerView extends SDKHandle {
      */
     get sticker(): (MSSticker) | null;
     set sticker(value: (MSSticker) | null);
+    readonly $type: {
+        "c:objc(cs)MSStickerView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animationDuration": true;
         "sticker": true;
@@ -726,13 +784,11 @@ export declare class MSStickerView extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class MSUPIRequest extends SDKHandle {
-    /** init() */
-    static init(): MSUPIRequest;
     /**
      * init(validationToken: String, recipients: [String])
      * @availability iOS 27.0+
      */
-    static initValidationTokenRecipients(validationToken: string, recipients: Array<string>): MSUPIRequest;
+    static init(validationToken: string, recipients: Array<string>): MSUPIRequest;
     /**
      * func send() async -> Bool
      * @availability iOS 27.0+
@@ -748,6 +804,10 @@ export declare class MSUPIRequest extends SDKHandle {
      * @availability iOS 27.0+
      */
     get validationToken(): string;
+    readonly $type: {
+        "c:objc(cs)MSUPIRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "recipients": true;
         "validationToken": true;

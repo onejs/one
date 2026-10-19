@@ -18,6 +18,9 @@ export declare class gss_buffer_desc_struct extends SDKHandle {
     static initLengthValue(length: number, value?: (SDKHandle) | null): gss_buffer_desc_struct;
     /** init() */
     static init(): gss_buffer_desc_struct;
+    readonly $type: {
+        "c:@S@gss_buffer_desc_struct": true;
+    };
 }
 /** typealias gss_buffer_set_desc = gss_buffer_set_desc_struct */
 export type gss_buffer_set_desc = gss_buffer_set_desc_struct;
@@ -33,6 +36,9 @@ export declare class gss_buffer_set_desc_struct extends SDKHandle {
     static initCountElements(count: number, elements?: (SDKHandle) | null): gss_buffer_set_desc_struct;
     /** init() */
     static init(): gss_buffer_set_desc_struct;
+    readonly $type: {
+        "c:@S@gss_buffer_set_desc_struct": true;
+    };
 }
 /** typealias gss_buffer_set_t = UnsafeMutablePointer<gss_buffer_set_desc_struct> */
 export type gss_buffer_set_t = SDKHandle;
@@ -59,6 +65,9 @@ export declare class gss_channel_bindings_struct extends SDKHandle {
     static initInitiator_addrtypeInitiator_addressAcceptor_addrtypeAcceptor_addressApplication_data(initiator_addrtype: number, initiator_address: gss_buffer_desc_struct, acceptor_addrtype: number, acceptor_address: gss_buffer_desc_struct, application_data: gss_buffer_desc_struct): gss_channel_bindings_struct;
     /** init() */
     static init(): gss_channel_bindings_struct;
+    readonly $type: {
+        "c:@S@gss_channel_bindings_struct": true;
+    };
 }
 /** typealias gss_channel_bindings_t = UnsafeMutablePointer<gss_channel_bindings_struct> */
 export type gss_channel_bindings_t = SDKHandle;
@@ -94,6 +103,9 @@ export declare class gss_iov_buffer_desc_struct extends SDKHandle {
     static initTypeBuffer(type: number, buffer: gss_buffer_desc_struct): gss_iov_buffer_desc_struct;
     /** init() */
     static init(): gss_iov_buffer_desc_struct;
+    readonly $type: {
+        "c:@S@gss_iov_buffer_desc_struct": true;
+    };
 }
 /** typealias gss_iov_buffer_t = UnsafeMutablePointer<gss_iov_buffer_desc_struct> */
 export type gss_iov_buffer_t = SDKHandle;
@@ -112,6 +124,9 @@ export declare class gss_krb5_cfx_keydata extends SDKHandle {
     static initHave_acceptor_subkeyCtx_keyAcceptor_subkey(have_acceptor_subkey: number, ctx_key: gss_krb5_lucid_key, acceptor_subkey: gss_krb5_lucid_key): gss_krb5_cfx_keydata;
     /** init() */
     static init(): gss_krb5_cfx_keydata;
+    readonly $type: {
+        "c:@S@gss_krb5_cfx_keydata": true;
+    };
 }
 /** typealias gss_krb5_cfx_keydata_t = gss_krb5_cfx_keydata */
 export type gss_krb5_cfx_keydata_t = gss_krb5_cfx_keydata;
@@ -145,6 +160,9 @@ export declare class gss_krb5_lucid_context_v1 extends SDKHandle {
     static initVersionInitiateEndtimeSend_seqRecv_seqProtocolRfc1964_kdCfx_kd(version: number, initiate: number, endtime: number, send_seq: number, recv_seq: number, protocol: number, rfc1964_kd: gss_krb5_rfc1964_keydata, cfx_kd: gss_krb5_cfx_keydata): gss_krb5_lucid_context_v1;
     /** init() */
     static init(): gss_krb5_lucid_context_v1;
+    readonly $type: {
+        "c:@S@gss_krb5_lucid_context_v1": true;
+    };
 }
 /** typealias gss_krb5_lucid_context_v1_t = gss_krb5_lucid_context_v1 */
 export type gss_krb5_lucid_context_v1_t = gss_krb5_lucid_context_v1;
@@ -157,6 +175,9 @@ export declare class gss_krb5_lucid_context_version extends SDKHandle {
     static initVersion(version: number): gss_krb5_lucid_context_version;
     /** init() */
     static init(): gss_krb5_lucid_context_version;
+    readonly $type: {
+        "c:@S@gss_krb5_lucid_context_version": true;
+    };
 }
 /** typealias gss_krb5_lucid_context_version_t = gss_krb5_lucid_context_version */
 export type gss_krb5_lucid_context_version_t = gss_krb5_lucid_context_version;
@@ -175,6 +196,9 @@ export declare class gss_krb5_lucid_key extends SDKHandle {
     static initTypeLengthData(type: number, length: number, data?: (SDKHandle) | null): gss_krb5_lucid_key;
     /** init() */
     static init(): gss_krb5_lucid_key;
+    readonly $type: {
+        "c:@S@gss_krb5_lucid_key": true;
+    };
 }
 /** typealias gss_krb5_lucid_key_t = gss_krb5_lucid_key */
 export type gss_krb5_lucid_key_t = gss_krb5_lucid_key;
@@ -193,6 +217,9 @@ export declare class gss_krb5_rfc1964_keydata extends SDKHandle {
     static initSign_algSeal_algCtx_key(sign_alg: number, seal_alg: number, ctx_key: gss_krb5_lucid_key): gss_krb5_rfc1964_keydata;
     /** init() */
     static init(): gss_krb5_rfc1964_keydata;
+    readonly $type: {
+        "c:@S@gss_krb5_rfc1964_keydata": true;
+    };
 }
 /** typealias gss_krb5_rfc1964_keydata_t = gss_krb5_rfc1964_keydata */
 export type gss_krb5_rfc1964_keydata_t = gss_krb5_rfc1964_keydata;
@@ -214,6 +241,9 @@ export declare class gss_OID_desc_struct extends SDKHandle {
     static initLengthElements(length: number, elements?: (SDKHandle) | null): gss_OID_desc_struct;
     /** init() */
     static init(): gss_OID_desc_struct;
+    readonly $type: {
+        "c:@S@gss_OID_desc_struct": true;
+    };
 }
 /** typealias gss_OID_set = UnsafeMutablePointer<gss_OID_set_desc_struct> */
 export type gss_OID_set = SDKHandle;
@@ -231,6 +261,9 @@ export declare class gss_OID_set_desc_struct extends SDKHandle {
     static initCountElements(count: number, elements?: (SDKHandle) | null): gss_OID_set_desc_struct;
     /** init() */
     static init(): gss_OID_set_desc_struct;
+    readonly $type: {
+        "c:@S@gss_OID_set_desc_struct": true;
+    };
 }
 /** typealias gss_qop_t = OM_uint32 */
 export type gss_qop_t = number;

@@ -23,6 +23,10 @@ export type NCUpdateResult = "newData" | "noData" | "failed";
  * @deprecated iOS 14.0
  */
 export declare class NCWidgetController extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)NCWidgetController": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum NCWidgetDisplayMode
@@ -75,6 +79,10 @@ export declare class NSExtensionContext extends SDKHandle {
      */
     get widgetLargestAvailableDisplayMode(): NCWidgetDisplayMode;
     set widgetLargestAvailableDisplayMode(value: NCWidgetDisplayMode);
+    readonly $type: {
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "widgetActiveDisplayMode": true;
         "widgetLargestAvailableDisplayMode": true;
@@ -105,5 +113,10 @@ export declare class UIVibrancyEffect extends SDKHandle {
      * @deprecated iOS 13.0
      */
     static widgetSecondary(): Promise<_UIKit_UIVibrancyEffect>;
+    readonly $type: {
+        "c:objc(cs)UIVibrancyEffect": true;
+        "c:objc(cs)UIVisualEffect": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

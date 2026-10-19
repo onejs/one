@@ -14,6 +14,9 @@ export declare class PlaceDescriptor extends SDKHandle {
      */
     static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation;
     static set typeDisplayRepresentation(value: _AppIntents_TypeDisplayRepresentation);
+    readonly $type: {
+        "s:10GeoToolbox15PlaceDescriptorV": true;
+    };
 }
 /**
  * typealias Specification = some ResolverSpecification

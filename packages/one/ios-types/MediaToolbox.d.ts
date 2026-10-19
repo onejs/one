@@ -10,6 +10,9 @@ type $SDK8 = (_CoreFoundation_CFAllocator) | null;
 type $SDK10 = (_CoreFoundation_CFString) | null;
 /** class MTAudioProcessingTap */
 export declare class MTAudioProcessingTap extends SDKHandle {
+    readonly $type: {
+        "c:@T@MTAudioProcessingTapRef": true;
+    };
 }
 /**
  * struct MTAudioProcessingTapCallbacks
@@ -53,6 +56,9 @@ export declare class MTAudioProcessingTapCallbacks extends SDKHandle {
      */
     get version(): number;
     set version(value: number);
+    readonly $type: {
+        "c:@SA@MTAudioProcessingTapCallbacks": true;
+    };
 }
 /** typealias MTAudioProcessingTapCreationFlags = UInt32 */
 export type MTAudioProcessingTapCreationFlags = number;

@@ -21,6 +21,9 @@ export declare class AccessoryWidgetBackground extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Promise<AccessoryWidgetBackground>;
+    readonly $type: {
+        "s:9WidgetKit09AccessoryA10BackgroundV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -32,6 +35,9 @@ export type AccessoryWidgetBackground_Body = SDKHandle;
  * @availability iOS 16.1+
  */
 export declare class ActivityConfiguration<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit21ActivityConfigurationV": true;
+    };
 }
 /**
  * typealias Body = some WidgetConfiguration
@@ -70,6 +76,9 @@ export type ActivityFamily_RawValue = number;
  * @availability iOS 16.2+
  */
 export declare class ActivityPreviewViewKind extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit23ActivityPreviewViewKindO": true;
+    };
 }
 /**
  * @preconcurrency enum DynamicIslandPreviewViewState
@@ -81,12 +90,18 @@ export type ActivityPreviewViewKind_DynamicIslandPreviewViewState = "compact" | 
  * @availability iOS 16.1+
  */
 export declare class ActivityViewContext<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit19ActivityViewContextV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct AppIntentConfiguration<Intent, Content> where Intent : WidgetConfigurationIntent, Content : View
  * @availability iOS 17.0+
  */
 export declare class AppIntentConfiguration<Intent = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit22AppIntentConfigurationV": true;
+    };
 }
 /**
  * typealias Body = some WidgetConfiguration
@@ -98,6 +113,9 @@ export type AppIntentConfiguration_Body<Intent = unknown, Content = unknown> = S
  * @availability iOS 18.0+
  */
 export declare class AppIntentControlConfiguration<Configuration = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit29AppIntentControlConfigurationV": true;
+    };
 }
 /**
  * typealias Body = some ControlWidgetConfiguration
@@ -125,6 +143,9 @@ export interface AppIntentControlValueProvider {
  * @availability iOS 17.0+
  */
 export declare class AppIntentRecommendation<Intent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit23AppIntentRecommendationV": true;
+    };
 }
 /**
  * protocol AppIntentTimelineProvider
@@ -168,6 +189,9 @@ export declare class ContainerBackgroundPlacement extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get widget(): _SwiftUI_ContainerBackgroundPlacement;
+    readonly $type: {
+        "s:7SwiftUI28ContainerBackgroundPlacementV": true;
+    };
 }
 /**
  * class ControlCenter
@@ -194,6 +218,9 @@ export declare class ControlCenter extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get shared(): ControlCenter;
+    readonly $type: {
+        "s:9WidgetKit13ControlCenterC": true;
+    };
 }
 /**
  * struct ControlInfo
@@ -216,6 +243,9 @@ export declare class ControlInfo extends SDKHandle {
      * @availability iOS 18.0+
      */
     get kind(): string;
+    readonly $type: {
+        "s:9WidgetKit11ControlInfoV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -248,6 +278,9 @@ export declare class ControlPushInfo extends SDKHandle {
      * @availability iOS 18.0+
      */
     get token(): ArrayBuffer;
+    readonly $type: {
+        "s:9WidgetKit15ControlPushInfoV": true;
+    };
 }
 /**
  * protocol ControlValueProvider
@@ -265,6 +298,9 @@ export interface ControlValueProvider {
  * @availability iOS 18.0+
  */
 export declare class ControlWidgetButton<Label = unknown, ActionLabel = unknown, Action = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit07ControlA6ButtonV": true;
+    };
 }
 /**
  * typealias Body = some ControlWidgetTemplate
@@ -276,6 +312,9 @@ export type ControlWidgetButton_Body<Label = unknown, ActionLabel = unknown, Act
  * @availability iOS 18.0+
  */
 export declare class ControlWidgetButtonDefaultActionLabel extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit07ControlA24ButtonDefaultActionLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -287,6 +326,9 @@ export type ControlWidgetButtonDefaultActionLabel_Body = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class ControlWidgetToggle<Label = unknown, ValueLabel = unknown, Action = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit07ControlA6ToggleV": true;
+    };
 }
 /**
  * typealias Body = some ControlWidgetTemplate
@@ -298,6 +340,9 @@ export type ControlWidgetToggle_Body<Label = unknown, ValueLabel = unknown, Acti
  * @availability iOS 18.0+
  */
 export declare class ControlWidgetToggleDefaultLabel extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit07ControlA18ToggleDefaultLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -324,18 +369,27 @@ export declare class DynamicIsland extends SDKHandle {
      * @availability iOS 16.1+
      */
     widgetURL(url?: (string) | null): DynamicIsland;
+    readonly $type: {
+        "s:9WidgetKit13DynamicIslandV": true;
+    };
 }
 /**
  * struct DynamicIslandExpandedContent<Content> where Content : View
  * @availability iOS 16.1+
  */
 export declare class DynamicIslandExpandedContent<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit28DynamicIslandExpandedContentV": true;
+    };
 }
 /**
  * @resultBuilder struct DynamicIslandExpandedContentBuilder
  * @availability iOS 16.1+
  */
 export declare class DynamicIslandExpandedContentBuilder extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit35DynamicIslandExpandedContentBuilderV": true;
+    };
 }
 /**
  * struct DynamicIslandExpandedRegion<Content> where Content : View
@@ -347,6 +401,9 @@ export declare class DynamicIslandExpandedRegion<Content = unknown> extends SDKH
      * @availability iOS 16.1+
      */
     contentMargins(edges: _SwiftUICore_Edge_Set, length: number): DynamicIslandExpandedRegion<SDKHandle>;
+    readonly $type: {
+        "s:9WidgetKit27DynamicIslandExpandedRegionV": true;
+    };
 }
 /**
  * struct DynamicIslandExpandedRegionPosition
@@ -373,6 +430,9 @@ export declare class DynamicIslandExpandedRegionPosition extends SDKHandle {
      * @availability iOS 16.1+
      */
     static get trailing(): DynamicIslandExpandedRegionPosition;
+    readonly $type: {
+        "s:9WidgetKit35DynamicIslandExpandedRegionPositionV": true;
+    };
 }
 /**
  * struct DynamicIslandExpandedRegionVerticalPlacement
@@ -389,6 +449,9 @@ export declare class DynamicIslandExpandedRegionVerticalPlacement extends SDKHan
      * @availability iOS 16.1+
      */
     static get default(): DynamicIslandExpandedRegionVerticalPlacement;
+    readonly $type: {
+        "s:9WidgetKit44DynamicIslandExpandedRegionVerticalPlacementV": true;
+    };
 }
 /**
  * struct DynamicIslandMode
@@ -415,6 +478,9 @@ export declare class DynamicIslandMode extends SDKHandle {
      * @availability iOS 16.1+
      */
     static get expanded(): DynamicIslandMode;
+    readonly $type: {
+        "s:9WidgetKit17DynamicIslandModeV": true;
+    };
 }
 export declare class EnvironmentValues extends SDKHandle {
     /**
@@ -479,12 +545,18 @@ export declare class EnvironmentValues extends SDKHandle {
      * @availability iOS 27.0+
      */
     get isDynamicIslandLimitedInWidth(): boolean;
+    readonly $type: {
+        "s:7SwiftUI17EnvironmentValuesV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct IntentConfiguration<Intent, Content> where Intent : INIntent, Content : View
  * @availability iOS 14.0+
  */
 export declare class IntentConfiguration<Intent = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit19IntentConfigurationV": true;
+    };
 }
 /**
  * typealias Body = some WidgetConfiguration
@@ -516,6 +588,9 @@ export declare class IntentRecommendation<T = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initIntentDescription44801(intent: _Intents_INIntent, description: string): $SDK5;
+    readonly $type: {
+        "s:9WidgetKit20IntentRecommendationV": true;
+    };
 }
 /**
  * protocol IntentTimelineProvider
@@ -568,12 +643,18 @@ export declare class LevelOfDetail extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get default(): LevelOfDetail;
+    readonly $type: {
+        "s:9WidgetKit13LevelOfDetailV": true;
+    };
 }
 /**
  * @resultBuilder struct PreviewActivityBuilder<A> where A : ActivityAttributes
  * @availability iOS 17.0+
  */
 export declare class PreviewActivityBuilder<A = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit22PreviewActivityBuilderV": true;
+    };
 }
 /**
  * @resultBuilder struct PreviewTimelineBuilder
@@ -595,12 +676,18 @@ export declare class PreviewTimelineBuilder extends SDKHandle {
      * @availability iOS 17.0+
      */
     static buildPartialBlockFirst(first: Array<SDKHandle>): Array<SDKHandle>;
+    readonly $type: {
+        "s:9WidgetKit22PreviewTimelineBuilderV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct StaticConfiguration<Content> where Content : View
  * @availability iOS 14.0+
  */
 export declare class StaticConfiguration<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit19StaticConfigurationV": true;
+    };
 }
 /**
  * typealias Body = some WidgetConfiguration
@@ -612,6 +699,9 @@ export type StaticConfiguration_Body<Content = unknown> = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class StaticControlConfiguration<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit26StaticControlConfigurationV": true;
+    };
 }
 /**
  * typealias Body = some ControlWidgetConfiguration
@@ -628,6 +718,9 @@ export declare class SupportedActivityFamiliesEnvironmentKey extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get defaultValue(): Array<ActivityFamily>;
+    readonly $type: {
+        "s:9WidgetKit39SupportedActivityFamiliesEnvironmentKeyV": true;
+    };
 }
 /**
  * typealias Value = Set<ActivityFamily>
@@ -639,6 +732,9 @@ export type SupportedActivityFamiliesEnvironmentKey_Value = Array<ActivityFamily
  * @availability iOS 14.0+
  */
 export declare class Timeline<EntryType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9WidgetKit8TimelineV": true;
+    };
 }
 /**
  * protocol TimelineEntry
@@ -668,6 +764,9 @@ export declare class TimelineEntryRelevance extends SDKHandle {
      */
     get duration(): number;
     set duration(value: number);
+    readonly $type: {
+        "s:9WidgetKit22TimelineEntryRelevanceV": true;
+    };
 }
 /**
  * protocol TimelineProvider
@@ -728,6 +827,9 @@ export declare class TimelineProviderContext extends SDKHandle {
      * @availability iOS 14.0+
      */
     get isPreview(): boolean;
+    readonly $type: {
+        "s:9WidgetKit23TimelineProviderContextV": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct EnvironmentVariants
@@ -744,6 +846,9 @@ export declare class TimelineProviderContext_EnvironmentVariants extends SDKHand
      * @availability iOS 14.0+
      */
     subscript(keyPath: SDKHandle): (Array<unknown>) | null;
+    readonly $type: {
+        "s:9WidgetKit23TimelineProviderContextV19EnvironmentVariantsV": true;
+    };
 }
 /**
  * struct TimelineReloadPolicy
@@ -765,6 +870,9 @@ export declare class TimelineReloadPolicy extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get never(): TimelineReloadPolicy;
+    readonly $type: {
+        "s:9WidgetKit20TimelineReloadPolicyV": true;
+    };
 }
 /**
  * struct WidgetAccentedRenderingMode
@@ -791,6 +899,9 @@ export declare class WidgetAccentedRenderingMode extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get fullColor(): WidgetAccentedRenderingMode;
+    readonly $type: {
+        "s:9WidgetKit0A21AccentedRenderingModeV": true;
+    };
 }
 /**
  * class WidgetCenter
@@ -837,6 +948,9 @@ export declare class WidgetCenter extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get shared(): WidgetCenter;
+    readonly $type: {
+        "s:9WidgetKit0A6CenterC": true;
+    };
 }
 /**
  * struct UserInfoKey
@@ -858,6 +972,9 @@ export declare class WidgetCenter_UserInfoKey extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get family(): string;
+    readonly $type: {
+        "s:9WidgetKit0A6CenterC11UserInfoKeyV": true;
+    };
 }
 /**
  * @preconcurrency enum WidgetFamily
@@ -921,6 +1038,9 @@ export declare class WidgetInfo extends SDKHandle {
      * @availability iOS 14.0+
      */
     get family(): WidgetFamily;
+    readonly $type: {
+        "s:9WidgetKit0A4InfoV": true;
+    };
 }
 /**
  * typealias ID = WidgetInfo
@@ -957,6 +1077,9 @@ export declare class WidgetLocation extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get standBy(): WidgetLocation;
+    readonly $type: {
+        "s:9WidgetKit0A8LocationV": true;
+    };
 }
 /**
  * struct WidgetMountingStyle
@@ -973,6 +1096,9 @@ export declare class WidgetMountingStyle extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get recessed(): WidgetMountingStyle;
+    readonly $type: {
+        "s:9WidgetKit0A13MountingStyleV": true;
+    };
 }
 /**
  * struct WidgetPreviewContext
@@ -984,6 +1110,9 @@ export declare class WidgetPreviewContext extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(family: WidgetFamily): WidgetPreviewContext;
+    readonly $type: {
+        "s:9WidgetKit0A14PreviewContextV": true;
+    };
 }
 /**
  * protocol WidgetPushHandler
@@ -1011,6 +1140,9 @@ export declare class WidgetPushInfo extends SDKHandle {
      * @availability iOS 26.0+
      */
     get token(): ArrayBuffer;
+    readonly $type: {
+        "s:9WidgetKit0A8PushInfoV": true;
+    };
 }
 /**
  * struct WidgetRelevance<Configuration>
@@ -1022,6 +1154,9 @@ export declare class WidgetRelevance<Configuration = unknown> extends SDKHandle 
      * @availability iOS 18.0+
      */
     static init(attributes: Array<WidgetRelevanceAttribute<unknown>>): $SDK1;
+    readonly $type: {
+        "s:9WidgetKit0A9RelevanceV": true;
+    };
 }
 /**
  * struct WidgetRelevanceAttribute<Configuration>
@@ -1048,6 +1183,9 @@ export declare class WidgetRelevanceAttribute<Configuration = unknown> extends S
      * @availability iOS 18.0+
      */
     static initContext(context: _RelevanceKit_RelevantContext): $SDK14;
+    readonly $type: {
+        "s:9WidgetKit0A18RelevanceAttributeV": true;
+    };
 }
 /**
  * struct WidgetRelevanceGroup
@@ -1069,6 +1207,9 @@ export declare class WidgetRelevanceGroup extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get ungrouped(): WidgetRelevanceGroup;
+    readonly $type: {
+        "s:9WidgetKit0A14RelevanceGroupV": true;
+    };
 }
 /**
  * struct WidgetRenderingMode
@@ -1095,6 +1236,9 @@ export declare class WidgetRenderingMode extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get fullColor(): WidgetRenderingMode;
+    readonly $type: {
+        "s:9WidgetKit0A13RenderingModeV": true;
+    };
 }
 /** let NSUserActivityTypeLiveActivity: String */
 export declare const NSUserActivityTypeLiveActivity: string;

@@ -98,6 +98,13 @@ export declare class PKCanvasView extends SDKHandle {
      */
     get tool(): Promise<SDKHandle>;
     setTool(value: $SDK1): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)PKCanvasView": true;
+        "c:objc(cs)UIScrollView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsFingerDrawing": true;
         "delegate": true;
@@ -201,6 +208,10 @@ export declare class PKConvertedBezierPointReference extends SDKHandle {
      * @availability iOS 27.0+
      */
     get pointCount(): number;
+    readonly $type: {
+        "c:objc(cs)PKConvertedBezierPoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bezierSegmentIndex": true;
         "index": true;
@@ -289,6 +300,9 @@ export declare class PKDrawing extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): PKDrawing;
+    readonly $type: {
+        "s:9PencilKit9PKDrawingV": true;
+    };
 }
 /**
  * class PKDrawingReference
@@ -355,6 +369,10 @@ export declare class PKDrawingReference extends SDKHandle {
      * @availability iOS 14.0+
      */
     get strokes(): Array<PKStroke>;
+    readonly $type: {
+        "c:objc(cs)PKDrawing": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "requiredContentVersion": true;
@@ -388,6 +406,9 @@ export declare class PKEraserTool extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(eraserType: PKEraserTool_EraserType): PKEraserTool;
+    readonly $type: {
+        "s:9PencilKit12PKEraserToolV": true;
+    };
 }
 /**
  * enum EraserType
@@ -446,6 +467,9 @@ export declare class PKEraserToolReference extends SDKHandle {
      * @availability iOS 16.4+
      */
     get width(): number;
+    readonly $type: {
+        "c:objc(cs)PKEraserTool": true;
+    };
     readonly $observable: {
         "eraserType": true;
         "width": true;
@@ -478,6 +502,9 @@ export declare class PKInk extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(inkType: PKInkingTool_InkType, color?: _UIKit_UIColor): PKInk;
+    readonly $type: {
+        "s:9PencilKit5PKInkV": true;
+    };
 }
 /**
  * typealias InkType = PKInkingTool.InkType
@@ -543,6 +570,9 @@ export declare class PKInkingTool extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initColorWidth(inkType: PKInkingTool_InkType, color?: _UIKit_UIColor, width?: (number) | null): PKInkingTool;
+    readonly $type: {
+        "s:9PencilKit12PKInkingToolV": true;
+    };
 }
 /**
  * enum InkType
@@ -656,6 +686,9 @@ export declare class PKInkingToolReference extends SDKHandle {
      * @availability iOS 13.0+
      */
     get width(): number;
+    readonly $type: {
+        "c:objc(cs)PKInkingTool": true;
+    };
     readonly $observable: {
         "azimuth": true;
         "color": true;
@@ -670,13 +703,11 @@ export declare class PKInkingToolReference extends SDKHandle {
  * @availability iOS 14.0+
  */
 export declare class PKInkReference extends SDKHandle {
-    /** init() */
-    static init(): PKInkReference;
     /**
      * init(inkType type: __PKInkType, color: UIColor)
      * @availability iOS 14.0+
      */
-    static initInkTypeColor(type: SDKHandle, color: _UIKit_UIColor): PKInkReference;
+    static init(type: SDKHandle, color: _UIKit_UIColor): PKInkReference;
     /**
      * var color: UIColor { get }
      * @availability iOS 14.0+
@@ -692,6 +723,10 @@ export declare class PKInkReference extends SDKHandle {
      * @availability iOS 17.0+
      */
     get requiredContentVersion(): PKContentVersion;
+    readonly $type: {
+        "c:objc(cs)PKInk": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "color": true;
         "inkType": true;
@@ -708,6 +743,9 @@ export declare class PKLassoTool extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): PKLassoTool;
+    readonly $type: {
+        "s:9PencilKit11PKLassoToolV": true;
+    };
 }
 /**
  * class PKLassoToolReference
@@ -719,6 +757,9 @@ export declare class PKLassoToolReference extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): PKLassoToolReference;
+    readonly $type: {
+        "c:objc(cs)PKLassoTool": true;
+    };
 }
 /**
  * class PKResponderState
@@ -739,6 +780,10 @@ export declare class PKResponderState extends SDKHandle {
      */
     get toolPickerVisibility(): $SDK6;
     set toolPickerVisibility(value: $SDK6);
+    readonly $type: {
+        "c:objc(cs)PKResponderState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeToolPicker": true;
     };
@@ -831,6 +876,9 @@ export declare class PKStroke extends SDKHandle {
      */
     get transform(): _CoreFoundation_CGAffineTransform;
     set transform(value: _CoreFoundation_CGAffineTransform);
+    readonly $type: {
+        "s:9PencilKit8PKStrokeV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -858,6 +906,9 @@ export declare class PKStroke_RenderState extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(objcValue: PKStrokeRenderStateReference): PKStroke_RenderState;
+    readonly $type: {
+        "s:9PencilKit8PKStrokeV11RenderStateV": true;
+    };
 }
 /**
  * struct PKStrokePath
@@ -934,6 +985,9 @@ export declare class PKStrokePath extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript52479(range: $SDK3): PKStrokePath;
+    readonly $type: {
+        "s:9PencilKit12PKStrokePathV": true;
+    };
 }
 /**
  * struct ConvertedBezierPoint
@@ -960,6 +1014,9 @@ export declare class PKStrokePath_ConvertedBezierPoint extends SDKHandle {
      * @availability iOS 27.0+
      */
     get location(): $SDK2;
+    readonly $type: {
+        "s:9PencilKit12PKStrokePathV20ConvertedBezierPointV": true;
+    };
 }
 /**
  * typealias Element = PKStrokePoint
@@ -991,6 +1048,9 @@ export declare class PKStrokePath_InterpolatedSlice extends SDKHandle {
      * @availability iOS 14.0+
      */
     next(): (PKStrokePoint) | null;
+    readonly $type: {
+        "s:9PencilKit12PKStrokePathV17InterpolatedSliceV": true;
+    };
 }
 /**
  * typealias Element = PKStrokePoint
@@ -1007,6 +1067,9 @@ export type PKStrokePath_InterpolatedSlice_Iterator = PKStrokePath_InterpolatedS
  * @availability iOS 14.0+
  */
 export declare class PKStrokePath_InterpolatedSlice_Stride extends SDKHandle {
+    readonly $type: {
+        "s:9PencilKit12PKStrokePathV17InterpolatedSliceV6StrideO": true;
+    };
 }
 /**
  * typealias Iterator = IndexingIterator<PKStrokePath>
@@ -1023,8 +1086,6 @@ export type PKStrokePath_SubSequence = SDKHandle;
  * @availability iOS 14.0+
  */
 export declare class PKStrokePathReference extends SDKHandle {
-    /** init() */
-    static init(): PKStrokePathReference;
     /**
      * init(controlPoints: [PKStrokePoint], creationDate: Date)
      * @availability iOS 14.0+
@@ -1090,6 +1151,10 @@ export declare class PKStrokePathReference extends SDKHandle {
      * @availability iOS 27.0+
      */
     get strokePathID(): string;
+    readonly $type: {
+        "c:objc(cs)PKStrokePath": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bezierRepresentation": true;
         "count": true;
@@ -1172,6 +1237,9 @@ export declare class PKStrokePoint extends SDKHandle {
      * @availability iOS 26.0+
      */
     get threshold(): number;
+    readonly $type: {
+        "s:9PencilKit13PKStrokePointV": true;
+    };
 }
 /**
  * class PKStrokePointReference
@@ -1248,6 +1316,10 @@ export declare class PKStrokePointReference extends SDKHandle {
      * @availability iOS 14.0+
      */
     get timeOffset(): number;
+    readonly $type: {
+        "c:objc(cs)PKStrokePoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "altitude": true;
         "azimuth": true;
@@ -1306,6 +1378,9 @@ export declare class PKStrokeRecognizer extends SDKHandle {
      * @availability iOS 27.0+
      */
     search(query: string, fullWordsOnly?: boolean, caseMatchingOnly?: boolean): Promise<Array<PKStrokeRecognizer_SearchResult>>;
+    readonly $type: {
+        "s:9PencilKit18PKStrokeRecognizerC": true;
+    };
 }
 /**
  * struct SearchResult
@@ -1322,14 +1397,15 @@ export declare class PKStrokeRecognizer_SearchResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get strokes(): Array<string>;
+    readonly $type: {
+        "s:9PencilKit18PKStrokeRecognizerC12SearchResultV": true;
+    };
 }
 /**
  * class PKStrokeReference
  * @availability iOS 14.0+
  */
 export declare class PKStrokeReference extends SDKHandle {
-    /** init() */
-    static init(): PKStrokeReference;
     /**
      * init(ink: PKInk, strokePath: PKStrokePath, transform: CGAffineTransform, mask: UIBezierPath?)
      * @availability iOS 14.0+
@@ -1405,6 +1481,10 @@ export declare class PKStrokeReference extends SDKHandle {
      * @availability iOS 14.0+
      */
     get transform(): _CoreFoundation_CGAffineTransform;
+    readonly $type: {
+        "c:objc(cs)PKStroke": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ink": true;
         "mask": true;
@@ -1424,8 +1504,6 @@ export declare class PKStrokeReference extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class PKStrokeRenderStateReference extends SDKHandle {
-    /** init() */
-    static init(): PKStrokeRenderStateReference;
     /**
      * var grainOffset: CGPoint { get set }
      * @availability iOS 27.0+
@@ -1436,7 +1514,11 @@ export declare class PKStrokeRenderStateReference extends SDKHandle {
      * convenience init(_ swiftValue: PKStroke.RenderState)
      * @availability iOS 27.0+
      */
-    static init10417(swiftValue: PKStroke_RenderState): PKStrokeRenderStateReference;
+    static init(swiftValue: PKStroke_RenderState): PKStrokeRenderStateReference;
+    readonly $type: {
+        "c:objc(cs)PKStrokeRenderState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "grainOffset": true;
     };
@@ -1576,6 +1658,10 @@ export declare class PKToolPicker extends SDKHandle {
      */
     get selectedTool(): SDKHandle;
     set selectedTool(value: $SDK1);
+    readonly $type: {
+        "c:objc(cs)PKToolPicker": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessoryItem": true;
         "colorMaximumLinearExposure": true;
@@ -1613,6 +1699,10 @@ export declare class PKToolPickerItem extends SDKHandle {
      * @availability iOS 26.0+
      */
     get tool(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)PKToolPickerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -1655,6 +1745,11 @@ export declare class PKToolPickerCustomItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     get configuration(): PKToolPickerCustomItem_Configuration;
+    readonly $type: {
+        "c:objc(cs)PKToolPickerCustomItem": true;
+        "c:objc(cs)PKToolPickerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsColorSelection": true;
@@ -1724,6 +1819,9 @@ export declare class PKToolPickerCustomItem_Configuration extends SDKHandle {
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "s:So22PKToolPickerCustomItemC9PencilKitE13ConfigurationV": true;
+    };
 }
 /**
  * struct ControlOptions
@@ -1767,6 +1865,11 @@ export declare class PKToolPickerEraserItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     static initType(type: PKEraserTool_EraserType): PKToolPickerEraserItem;
+    readonly $type: {
+        "c:objc(cs)PKToolPickerEraserItem": true;
+        "c:objc(cs)PKToolPickerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -1797,6 +1900,11 @@ export declare class PKToolPickerInkingItem extends PKToolPickerItem {
      * @availability iOS 26.0+
      */
     static initTypeColorWidthAzimuthIdentifier(type: PKInkingTool_InkType, color?: (_UIKit_UIColor) | null, width?: (number) | null, azimuth?: (number) | null, identifier?: (string) | null): PKToolPickerInkingItem;
+    readonly $type: {
+        "c:objc(cs)PKToolPickerInkingItem": true;
+        "c:objc(cs)PKToolPickerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsColorSelection": true;
@@ -1817,6 +1925,11 @@ export declare class PKToolPickerLassoItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     get lassoTool(): PKLassoTool;
+    readonly $type: {
+        "c:objc(cs)PKToolPickerLassoItem": true;
+        "c:objc(cs)PKToolPickerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -1863,6 +1976,11 @@ export declare class PKToolPickerRulerItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     static init(): PKToolPickerRulerItem;
+    readonly $type: {
+        "c:objc(cs)PKToolPickerRulerItem": true;
+        "c:objc(cs)PKToolPickerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -1877,6 +1995,11 @@ export declare class PKToolPickerScribbleItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     static init(): PKToolPickerScribbleItem;
+    readonly $type: {
+        "c:objc(cs)PKToolPickerScribbleItem": true;
+        "c:objc(cs)PKToolPickerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -1904,6 +2027,10 @@ export declare class UIResponder extends SDKHandle {
      * @availability iOS 26.0+
      */
     get pencilKitResponderState(): Promise<PKResponderState>;
+    readonly $type: {
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * let PKAppleDrawingTypeIdentifier: CFString

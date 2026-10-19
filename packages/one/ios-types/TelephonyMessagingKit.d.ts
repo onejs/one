@@ -25,6 +25,9 @@ export declare class CellularServiceID extends SDKHandle {
      * @availability iOS 26.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit17CellularServiceIDV": true;
+    };
 }
 /**
  * struct CellularServiceState
@@ -41,6 +44,9 @@ export declare class CellularServiceState extends SDKHandle {
      * @availability iOS 26.0+
      */
     get label(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit20CellularServiceStateV": true;
+    };
 }
 /**
  * typealias ID = CellularServiceID
@@ -92,6 +98,9 @@ export declare class MMSContent extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): MMSContent;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10MMSContentV": true;
+    };
 }
 /**
  * struct MMSHandle
@@ -109,6 +118,9 @@ export declare class MMSHandle extends SDKHandle {
      */
     get phoneNumber(): string;
     set phoneNumber(value: string);
+    readonly $type: {
+        "s:21TelephonyMessagingKit9MMSHandleV": true;
+    };
 }
 /**
  * struct MMSMessage
@@ -148,6 +160,9 @@ export declare class MMSMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     get totalSize(): $SDK0;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10MMSMessageV": true;
+    };
 }
 /**
  * struct MMSMessageID
@@ -227,6 +242,9 @@ export declare class MMSPartContent extends SDKHandle {
      */
     get contentID(): string;
     set contentID(value: string);
+    readonly $type: {
+        "s:21TelephonyMessagingKit14MMSPartContentV": true;
+    };
 }
 /**
  * struct MMSCustomHeader
@@ -243,6 +261,9 @@ export declare class MMSPartContent_MMSCustomHeader extends SDKHandle {
      * @availability iOS 26.0+
      */
     get value(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit14MMSPartContentV15MMSCustomHeaderV": true;
+    };
 }
 /**
  * enum MMSDispositionType
@@ -290,6 +311,9 @@ export declare class MMSService extends SDKHandle {
      * @availability iOS 26.0+
      */
     isViable(cellularServiceID: CellularServiceID): boolean;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10MMSServiceC": true;
+    };
 }
 /**
  * struct Configuration
@@ -326,6 +350,9 @@ export declare class MMSService_Configuration extends SDKHandle {
      */
     get smsSizeToBeSentAsMMSInstead(): $SDK3;
     set smsSizeToBeSentAsMMSInstead(value: $SDK3);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10MMSServiceC13ConfigurationV": true;
+    };
 }
 /**
  * enum Error
@@ -354,6 +381,9 @@ export declare class MMSService_IncomingMessageNotification extends SDKHandle {
      * @deprecated iOS 26.1
      */
     get messageID(): MMSMessageID;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10MMSServiceC27IncomingMessageNotificationV": true;
+    };
 }
 /**
  * struct ViabilityNotification
@@ -370,6 +400,9 @@ export declare class MMSService_ViabilityNotification extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isViable(): boolean;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10MMSServiceC21ViabilityNotificationV": true;
+    };
 }
 /**
  * struct RCSFileTransferMetadata
@@ -413,6 +446,9 @@ export declare class RCSFileTransferMetadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get fileSize(): number;
+    readonly $type: {
+        "s:21TelephonyMessagingKit23RCSFileTransferMetadataV": true;
+    };
 }
 /**
  * enum Disposition
@@ -434,6 +470,9 @@ export declare class RCSGroupContext extends SDKHandle {
      * @availability iOS 26.0+
      */
     get handle(): RCSHandle_Group;
+    readonly $type: {
+        "s:21TelephonyMessagingKit15RCSGroupContextV": true;
+    };
 }
 /**
  * enum RCSHandle
@@ -450,6 +489,9 @@ export declare class RCSHandle extends SDKHandle {
      * @availability iOS 26.0+
      */
     static phoneNumber(phoneNumber: string): (RCSHandle) | null;
+    readonly $type: {
+        "s:21TelephonyMessagingKit9RCSHandleO": true;
+    };
 }
 /**
  * struct Group
@@ -466,6 +508,9 @@ export declare class RCSHandle_Group extends SDKHandle {
      * @availability iOS 26.0+
      */
     get focus(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit9RCSHandleO5GroupV": true;
+    };
 }
 /**
  * struct URI
@@ -539,6 +584,9 @@ export declare class RCSMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     get content(): RCSMessage_Content;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV": true;
+    };
 }
 /**
  * struct ComposingIndicator
@@ -580,6 +628,9 @@ export declare class RCSMessage_ComposingIndicator extends SDKHandle {
      */
     get state(): RCSMessage_ComposingIndicator_State;
     set state(value: RCSMessage_ComposingIndicator_State);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV18ComposingIndicatorV": true;
+    };
 }
 /**
  * enum State
@@ -591,6 +642,9 @@ export type RCSMessage_ComposingIndicator_State = "idle" | "active";
  * @availability iOS 26.0+
  */
 export declare class RCSMessage_Content extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV7ContentO": true;
+    };
 }
 /**
  * struct CustomReaction
@@ -625,12 +679,18 @@ export declare class RCSMessage_CustomReaction extends SDKHandle {
      */
     get operation(): RCSMessage_CustomReaction_Operation;
     set operation(value: RCSMessage_CustomReaction_Operation);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV14CustomReactionV": true;
+    };
 }
 /**
  * enum Operation
  * @availability iOS 27.0+
  */
 export declare class RCSMessage_CustomReaction_Operation extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV14CustomReactionV9OperationO": true;
+    };
 }
 /**
  * enum Disposition
@@ -663,6 +723,9 @@ export declare class RCSMessage_DispositionNotification extends SDKHandle {
      * @availability iOS 26.0+
      */
     get disposedMessageID(): RCSMessageID;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV23DispositionNotificationV": true;
+    };
 }
 /**
  * struct FileTransfer
@@ -692,6 +755,9 @@ export declare class RCSMessage_FileTransfer extends SDKHandle {
      */
     get thumbnailMetadata(): $SDK6;
     set thumbnailMetadata(value: $SDK6);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV12FileTransferV": true;
+    };
 }
 /**
  * struct GeolocationPush
@@ -727,6 +793,9 @@ export declare class RCSMessage_GeolocationPush extends SDKHandle {
      */
     get longitude(): number;
     set longitude(value: number);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV15GeolocationPushV": true;
+    };
 }
 /**
  * typealias ID = RCSMessageID
@@ -766,12 +835,18 @@ export declare class RCSMessage_Reaction extends SDKHandle {
      */
     get operation(): RCSMessage_Reaction_Operation;
     set operation(value: RCSMessage_Reaction_Operation);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV8ReactionV": true;
+    };
 }
 /**
  * enum Operation
  * @availability iOS 27.0+
  */
 export declare class RCSMessage_Reaction_Operation extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV8ReactionV9OperationO": true;
+    };
 }
 /**
  * struct Reply
@@ -795,12 +870,18 @@ export declare class RCSMessage_Reply extends SDKHandle {
      */
     get content(): RCSMessage_Reply_Content;
     set content(value: RCSMessage_Reply_Content);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV5ReplyV": true;
+    };
 }
 /**
  * enum Content
  * @availability iOS 27.0+
  */
 export declare class RCSMessage_Reply_Content extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV5ReplyV7ContentO": true;
+    };
 }
 /**
  * struct SecureSendReceipt
@@ -812,6 +893,9 @@ export declare class RCSMessage_SecureSendReceipt extends SDKHandle {
      * @availability iOS 26.5+
      */
     get id(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV17SecureSendReceiptV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -845,6 +929,9 @@ export declare class RCSMessage_Text extends SDKHandle {
      */
     get body(): string;
     set body(value: string);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSMessageV4TextV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -1033,6 +1120,9 @@ export declare class RCSService extends SDKHandle {
      * @availability iOS 26.0+
      */
     isViable(cellularServiceID: CellularServiceID): boolean;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC": true;
+    };
 }
 /**
  * struct AddGroupChatParticipantsRequest
@@ -1068,6 +1158,9 @@ export declare class RCSService_AddGroupChatParticipantsRequest extends SDKHandl
      */
     get cellularServiceID(): CellularServiceID;
     set cellularServiceID(value: CellularServiceID);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC31AddGroupChatParticipantsRequestV": true;
+    };
 }
 /**
  * struct Result
@@ -1079,6 +1172,9 @@ export declare class RCSService_AddGroupChatParticipantsRequest_Result extends S
      * @availability iOS 26.0+
      */
     get added(): Array<RCSHandle_URI>;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC31AddGroupChatParticipantsRequestV6ResultV": true;
+    };
 }
 /**
  * struct Business
@@ -1175,6 +1271,9 @@ export declare class RCSService_Business extends SDKHandle {
      * @availability iOS 26.0+
      */
     get version(): (string) | null;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV": true;
+    };
 }
 /**
  * struct AddressEntry
@@ -1191,6 +1290,9 @@ export declare class RCSService_Business_AddressEntry extends SDKHandle {
      * @availability iOS 26.0+
      */
     get address(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV12AddressEntryV": true;
+    };
 }
 /**
  * struct Capabilities
@@ -1207,6 +1309,9 @@ export declare class RCSService_Business_Capabilities extends SDKHandle {
      * @availability iOS 27.0+
      */
     get versionID(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV12CapabilitiesV": true;
+    };
 }
 /**
  * struct Card
@@ -1243,6 +1348,9 @@ export declare class RCSService_Business_Card extends SDKHandle {
      * @availability iOS 26.0+
      */
     get content(): RCSService_Business_Card_Content;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV4CardV": true;
+    };
 }
 /**
  * struct Content
@@ -1269,6 +1377,9 @@ export declare class RCSService_Business_Card_Content extends SDKHandle {
      * @availability iOS 26.0+
      */
     get title(): (string) | null;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV4CardV7ContentV": true;
+    };
 }
 /**
  * struct FontStyle
@@ -1367,6 +1478,9 @@ export declare class RCSService_Business_Card_Media extends SDKHandle {
      * @availability iOS 26.0+
      */
     get fileSize(): $SDK0;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV4CardV5MediaV": true;
+    };
 }
 /**
  * enum Height
@@ -1413,6 +1527,9 @@ export declare class RCSService_Business_CardCarousel extends SDKHandle {
      * @availability iOS 26.0+
      */
     get contents(): Array<RCSService_Business_Card_Content>;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV12CardCarouselV": true;
+    };
 }
 /**
  * struct CommunicationAddress
@@ -1429,6 +1546,9 @@ export declare class RCSService_Business_CommunicationAddress extends SDKHandle 
      * @availability iOS 26.0+
      */
     get telephoneDetails(): RCSService_Business_TelephoneDetails;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV20CommunicationAddressV": true;
+    };
 }
 /**
  * struct ComposeRecordingAction
@@ -1445,6 +1565,9 @@ export declare class RCSService_Business_ComposeRecordingAction extends SDKHandl
      * @availability iOS 26.0+
      */
     get mediaType(): RCSService_Business_ComposeRecordingAction_MediaType;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV22ComposeRecordingActionV": true;
+    };
 }
 /**
  * enum MediaType
@@ -1466,6 +1589,9 @@ export declare class RCSService_Business_ComposeTextAction extends SDKHandle {
      * @availability iOS 26.0+
      */
     get text(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV17ComposeTextActionV": true;
+    };
 }
 /**
  * struct CreateCalendarEventAction
@@ -1497,6 +1623,9 @@ export declare class RCSService_Business_CreateCalendarEventAction extends SDKHa
      * @availability iOS 26.0+
      */
     get startTime(): globalThis.Date;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV25CreateCalendarEventActionV": true;
+    };
 }
 /**
  * struct DialPhoneNumberAction
@@ -1513,6 +1642,9 @@ export declare class RCSService_Business_DialPhoneNumberAction extends SDKHandle
      * @availability iOS 26.0+
      */
     get fallbackURL(): (string) | null;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV21DialPhoneNumberActionV": true;
+    };
 }
 /**
  * enum Feature
@@ -1534,6 +1666,9 @@ export declare class RCSService_Business_Media extends SDKHandle {
      * @availability iOS 26.0+
      */
     get url(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV5MediaV": true;
+    };
 }
 /**
  * struct MediaEntry
@@ -1555,6 +1690,9 @@ export declare class RCSService_Business_MediaEntry extends SDKHandle {
      * @availability iOS 26.0+
      */
     get media(): RCSService_Business_Media;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV10MediaEntryV": true;
+    };
 }
 /**
  * enum ContentType
@@ -1581,12 +1719,18 @@ export declare class RCSService_Business_Menu extends SDKHandle {
      * @availability iOS 26.0+
      */
     get contents(): Array<RCSService_Business_Menu_Content>;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV4MenuV": true;
+    };
 }
 /**
  * enum Content
  * @availability iOS 26.0+
  */
 export declare class RCSService_Business_Menu_Content extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV4MenuV7ContentO": true;
+    };
 }
 /**
  * struct OpenURLAction
@@ -1603,6 +1747,9 @@ export declare class RCSService_Business_OpenURLAction extends SDKHandle {
      * @availability iOS 26.0+
      */
     get target(): RCSService_Business_OpenURLAction_Target;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV13OpenURLActionV": true;
+    };
 }
 /**
  * enum Detent
@@ -1614,6 +1761,9 @@ export type RCSService_Business_OpenURLAction_Detent = "large" | "medium" | "med
  * @availability iOS 26.0+
  */
 export declare class RCSService_Business_OpenURLAction_Target extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV13OpenURLActionV6TargetO": true;
+    };
 }
 /**
  * struct OrganizationName
@@ -1630,6 +1780,9 @@ export declare class RCSService_Business_OrganizationName extends SDKHandle {
      * @availability iOS 26.0+
      */
     get nameType(): RCSService_Business_OrganizationName_NameType;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV16OrganizationNameV": true;
+    };
 }
 /**
  * enum NameType
@@ -1656,12 +1809,18 @@ export declare class RCSService_Business_ShowLocationAction extends SDKHandle {
      * @availability iOS 26.0+
      */
     get method(): RCSService_Business_ShowLocationAction_Method;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV18ShowLocationActionV": true;
+    };
 }
 /**
  * enum Method
  * @availability iOS 26.0+
  */
 export declare class RCSService_Business_ShowLocationAction_Method extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV18ShowLocationActionV6MethodO": true;
+    };
 }
 /**
  * struct SuggestedAction
@@ -1678,12 +1837,18 @@ export declare class RCSService_Business_SuggestedAction extends SDKHandle {
      * @availability iOS 26.0+
      */
     get action(): RCSService_Business_SuggestedAction_Action;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV15SuggestedActionV": true;
+    };
 }
 /**
  * enum Action
  * @availability iOS 26.0+
  */
 export declare class RCSService_Business_SuggestedAction_Action extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV15SuggestedActionV0G0O": true;
+    };
 }
 /**
  * struct SuggestedReply
@@ -1695,12 +1860,18 @@ export declare class RCSService_Business_SuggestedReply extends SDKHandle {
      * @availability iOS 26.0+
      */
     get displayText(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV14SuggestedReplyV": true;
+    };
 }
 /**
  * enum Suggestion
  * @availability iOS 26.0+
  */
 export declare class RCSService_Business_Suggestion extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV10SuggestionO": true;
+    };
 }
 /**
  * struct TelephoneDetails
@@ -1722,6 +1893,9 @@ export declare class RCSService_Business_TelephoneDetails extends SDKHandle {
      * @availability iOS 26.0+
      */
     get label(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV16TelephoneDetailsV": true;
+    };
 }
 /**
  * struct URIEntry
@@ -1743,6 +1917,9 @@ export declare class RCSService_Business_URIEntry extends SDKHandle {
      * @availability iOS 26.0+
      */
     get label(): RCSService_Business_URIEntry_Label;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV8URIEntryV": true;
+    };
 }
 /**
  * enum Label
@@ -1774,6 +1951,9 @@ export declare class RCSService_Business_VerificationDetails extends SDKHandle {
      * @availability iOS 26.0+
      */
     get expirationDate(): $SDK5;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV19VerificationDetailsV": true;
+    };
 }
 /**
  * struct WelcomeMessage
@@ -1785,12 +1965,18 @@ export declare class RCSService_Business_WelcomeMessage extends SDKHandle {
      * @availability iOS 27.0+
      */
     get content(): RCSService_Business_WelcomeMessage_Content;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV14WelcomeMessageV": true;
+    };
 }
 /**
  * enum Content
  * @availability iOS 27.0+
  */
 export declare class RCSService_Business_WelcomeMessage_Content extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC8BusinessV14WelcomeMessageV7ContentO": true;
+    };
 }
 /**
  * struct BusinessInformationRequest
@@ -1826,6 +2012,9 @@ export declare class RCSService_BusinessInformationRequest extends SDKHandle {
      */
     get handle(): RCSHandle_URI;
     set handle(value: RCSHandle_URI);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC26BusinessInformationRequestV": true;
+    };
 }
 /**
  * enum CachePolicy
@@ -1854,6 +2043,9 @@ export declare class RCSService_BusinessInformationRequest_WelcomeMessageInforma
      */
     get identifier(): string;
     set identifier(value: string);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC26BusinessInformationRequestV014WelcomeMessageF0V": true;
+    };
 }
 /**
  * struct ChangeGroupChatSubjectRequest
@@ -1889,6 +2081,9 @@ export declare class RCSService_ChangeGroupChatSubjectRequest extends SDKHandle 
      */
     get cellularServiceID(): CellularServiceID;
     set cellularServiceID(value: CellularServiceID);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC29ChangeGroupChatSubjectRequestV": true;
+    };
 }
 /**
  * struct Configuration
@@ -1925,6 +2120,9 @@ export declare class RCSService_Configuration extends SDKHandle {
      * @availability iOS 26.0+
      */
     get maximumFileTransferSize(): $SDK3;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC13ConfigurationV": true;
+    };
 }
 /**
  * struct CreateGroupChatRequest
@@ -1960,6 +2158,9 @@ export declare class RCSService_CreateGroupChatRequest extends SDKHandle {
      */
     get subject(): string;
     set subject(value: string);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC22CreateGroupChatRequestV": true;
+    };
 }
 /**
  * struct Result
@@ -1986,6 +2187,9 @@ export declare class RCSService_CreateGroupChatRequest_Result extends SDKHandle 
      * @availability iOS 26.0+
      */
     get subject(): (string) | null;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC22CreateGroupChatRequestV6ResultV": true;
+    };
 }
 /**
  * enum Error
@@ -2025,6 +2229,9 @@ export declare class RCSService_FileDownloadRequest extends SDKHandle {
      */
     get fileURL(): string;
     set fileURL(value: string);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC19FileDownloadRequestV": true;
+    };
 }
 /**
  * struct Metadata
@@ -2041,6 +2248,9 @@ export declare class RCSService_FileDownloadRequest_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get contentType(): $SDK1;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC19FileDownloadRequestV8MetadataV": true;
+    };
 }
 /**
  * struct FileUploadRequest
@@ -2088,6 +2298,9 @@ export declare class RCSService_FileUploadRequest extends SDKHandle {
      */
     get fileURL(): string;
     set fileURL(value: string);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC17FileUploadRequestV": true;
+    };
 }
 /**
  * struct Metadata
@@ -2109,6 +2322,9 @@ export declare class RCSService_FileUploadRequest_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get transactionID(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC17FileUploadRequestV8MetadataV": true;
+    };
 }
 /**
  * struct GroupChatEndedEvent
@@ -2135,12 +2351,18 @@ export declare class RCSService_GroupChatEndedEvent extends SDKHandle {
      * @availability iOS 26.0+
      */
     get endedBy(): RCSHandle_URI;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC19GroupChatEndedEventV": true;
+    };
 }
 /**
  * enum GroupChatEvent
  * @availability iOS 26.0+
  */
 export declare class RCSService_GroupChatEvent extends SDKHandle {
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC14GroupChatEventO": true;
+    };
 }
 /**
  * struct GroupChatParticipantsAddedEvent
@@ -2172,6 +2394,9 @@ export declare class RCSService_GroupChatParticipantsAddedEvent extends SDKHandl
      * @availability iOS 26.0+
      */
     get addedBy(): RCSHandle_URI;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC31GroupChatParticipantsAddedEventV": true;
+    };
 }
 /**
  * struct GroupChatParticipantsRemovedEvent
@@ -2208,6 +2433,9 @@ export declare class RCSService_GroupChatParticipantsRemovedEvent extends SDKHan
      * @availability iOS 26.0+
      */
     get removedBy(): RCSHandle_URI;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC33GroupChatParticipantsRemovedEventV": true;
+    };
 }
 /**
  * struct GroupChatStartedEvent
@@ -2244,6 +2472,9 @@ export declare class RCSService_GroupChatStartedEvent extends SDKHandle {
      * @availability iOS 26.0+
      */
     get subject(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC21GroupChatStartedEventV": true;
+    };
 }
 /**
  * struct GroupChatSubjectInvalidatedEvent
@@ -2260,6 +2491,9 @@ export declare class RCSService_GroupChatSubjectInvalidatedEvent extends SDKHand
      * @availability iOS 26.5+
      */
     get cellularServiceID(): CellularServiceID;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC32GroupChatSubjectInvalidatedEventV": true;
+    };
 }
 /**
  * struct GroupChatSubjectUpdatedEvent
@@ -2291,6 +2525,9 @@ export declare class RCSService_GroupChatSubjectUpdatedEvent extends SDKHandle {
      * @availability iOS 26.0+
      */
     get changedBy(): RCSHandle_URI;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC28GroupChatSubjectUpdatedEventV": true;
+    };
 }
 /**
  * struct IncomingMessageNotification
@@ -2317,6 +2554,9 @@ export declare class RCSService_IncomingMessageNotification extends SDKHandle {
      * @availability iOS 26.0+
      */
     get message(): RCSMessage;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC27IncomingMessageNotificationV": true;
+    };
 }
 /**
  * struct LeaveGroupChatRequest
@@ -2340,6 +2580,9 @@ export declare class RCSService_LeaveGroupChatRequest extends SDKHandle {
      */
     get cellularServiceID(): CellularServiceID;
     set cellularServiceID(value: CellularServiceID);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC21LeaveGroupChatRequestV": true;
+    };
 }
 /**
  * struct RemoteCapabilities
@@ -2401,6 +2644,9 @@ export declare class RCSService_RemoteCapabilities extends SDKHandle {
      * @availability iOS 26.0+
      */
     get supportsFileTransfer(): boolean;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC18RemoteCapabilitiesV": true;
+    };
 }
 /**
  * enum Availability
@@ -2435,6 +2681,9 @@ export declare class RCSService_RemoteCapabilitiesRequest extends SDKHandle {
      */
     get handle(): RCSHandle;
     set handle(value: RCSHandle);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC25RemoteCapabilitiesRequestV": true;
+    };
 }
 /**
  * enum CachePolicy
@@ -2478,6 +2727,9 @@ export declare class RCSService_RemoteHandleUpdate extends SDKHandle {
      * @availability iOS 26.0+
      */
     get handle(): RCSHandle;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC18RemoteHandleUpdateV": true;
+    };
 }
 /**
  * struct RemoveGroupChatParticipantsRequest
@@ -2513,6 +2765,9 @@ export declare class RCSService_RemoveGroupChatParticipantsRequest extends SDKHa
      */
     get cellularServiceID(): CellularServiceID;
     set cellularServiceID(value: CellularServiceID);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC34RemoveGroupChatParticipantsRequestV": true;
+    };
 }
 /**
  * struct Result
@@ -2524,6 +2779,9 @@ export declare class RCSService_RemoveGroupChatParticipantsRequest_Result extend
      * @availability iOS 26.0+
      */
     get removed(): Array<RCSHandle_URI>;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC34RemoveGroupChatParticipantsRequestV6ResultV": true;
+    };
 }
 /**
  * struct ReportSpamRequest
@@ -2559,6 +2817,9 @@ export declare class RCSService_ReportSpamRequest extends SDKHandle {
      */
     get category(): $SDK30;
     set category(value: $SDK30);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC17ReportSpamRequestV": true;
+    };
 }
 /**
  * enum Category
@@ -2593,6 +2854,9 @@ export declare class RCSService_RevokeMessageRequest extends SDKHandle {
      */
     get messageID(): RCSMessageID;
     set messageID(value: RCSMessageID);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC20RevokeMessageRequestV": true;
+    };
 }
 /**
  * struct SendEncryptedMessageRequest
@@ -2635,6 +2899,9 @@ export declare class RCSService_SendEncryptedMessageRequest extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initContentDestinationCellularServiceIDMessageID82708(content: RCSMessage_Reaction, destination: RCSHandle, cellularServiceID: CellularServiceID, messageID: RCSMessageID): RCSService_SendEncryptedMessageRequest;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC27SendEncryptedMessageRequestV": true;
+    };
 }
 /**
  * struct Result
@@ -2646,6 +2913,9 @@ export declare class RCSService_SendEncryptedMessageRequest_Result extends SDKHa
      * @availability iOS 26.5+
      */
     get secureSendReceipt(): $SDK31;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC27SendEncryptedMessageRequestV6ResultV": true;
+    };
 }
 /**
  * struct SuggestionResponse
@@ -2687,6 +2957,9 @@ export declare class RCSService_SuggestionResponse extends SDKHandle {
      */
     get messageID(): RCSMessageID;
     set messageID(value: RCSMessageID);
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC18SuggestionResponseV": true;
+    };
 }
 /**
  * struct ViabilityNotification
@@ -2703,6 +2976,9 @@ export declare class RCSService_ViabilityNotification extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isViable(): boolean;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10RCSServiceC21ViabilityNotificationV": true;
+    };
 }
 /**
  * struct SMSContent
@@ -2719,6 +2995,9 @@ export declare class SMSContent extends SDKHandle {
      * @availability iOS 26.0+
      */
     get body(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10SMSContentV": true;
+    };
 }
 /**
  * struct SMSHandle
@@ -2735,6 +3014,9 @@ export declare class SMSHandle extends SDKHandle {
      * @availability iOS 26.0+
      */
     get phoneNumber(): string;
+    readonly $type: {
+        "s:21TelephonyMessagingKit9SMSHandleV": true;
+    };
 }
 /**
  * struct SMSMessage
@@ -2766,6 +3048,9 @@ export declare class SMSMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     get messageID(): SMSMessageID;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10SMSMessageV": true;
+    };
 }
 /**
  * struct SMSMessageID
@@ -2829,6 +3114,9 @@ export declare class SMSService extends SDKHandle {
      * @availability iOS 26.0+
      */
     isViable(cellularServiceID: CellularServiceID): boolean;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10SMSServiceC": true;
+    };
 }
 /**
  * struct CriticalMessageStateNotification
@@ -2850,6 +3138,9 @@ export declare class SMSService_CriticalMessageStateNotification extends SDKHand
      * @availability iOS 26.0+
      */
     get messageID(): SMSMessageID;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10SMSServiceC32CriticalMessageStateNotificationV": true;
+    };
 }
 /**
  * enum State
@@ -2871,6 +3162,9 @@ export declare class SMSService_IncomingMessageNotification extends SDKHandle {
      * @availability iOS 26.0+
      */
     get message(): SMSMessage;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10SMSServiceC27IncomingMessageNotificationV": true;
+    };
 }
 /**
  * struct ViabilityNotification
@@ -2887,6 +3181,9 @@ export declare class SMSService_ViabilityNotification extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isViable(): boolean;
+    readonly $type: {
+        "s:21TelephonyMessagingKit10SMSServiceC21ViabilityNotificationV": true;
+    };
 }
 /**
  * final class TelephonyMessagingSession
@@ -2933,6 +3230,9 @@ export declare class TelephonyMessagingSession extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get shared(): TelephonyMessagingSession;
+    readonly $type: {
+        "s:21TelephonyMessagingKit0aB7SessionC": true;
+    };
 }
 /**
  * enum Error

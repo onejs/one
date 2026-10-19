@@ -17,6 +17,9 @@ export declare class CredentialSession extends SDKHandle {
      * @availability iOS 18.1+
      */
     configuration(): Promise<CredentialTransaction_Configuration>;
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC": true;
+    };
 }
 /**
  * class CredentialTransaction
@@ -38,6 +41,9 @@ export declare class CredentialTransaction extends SDKHandle {
      * @availability iOS 18.1+
      */
     performTransactionInWiredMode(credential: _SecureElementCredential_CredentialSession_Credential, instanceAID: ArrayBuffer): Promise<void>;
+    readonly $type: {
+        "s:32_SecureElementCredential_SwiftUI0C11TransactionC": true;
+    };
 }
 /**
  * class Configuration
@@ -49,4 +55,7 @@ export declare class CredentialTransaction_Configuration extends SDKHandle {
      * @availability iOS 18.1+
      */
     invalidate(): Promise<void>;
+    readonly $type: {
+        "s:32_SecureElementCredential_SwiftUI0C11TransactionC13ConfigurationC": true;
+    };
 }

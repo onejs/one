@@ -118,6 +118,9 @@ export declare class CMAttachmentBearerAttachments extends SDKHandle {
      * @availability iOS 13.0+
      */
     subscript92196(key: CMSampleBuffer_AttachmentKey): $SDK1;
+    readonly $type: {
+        "s:9CoreMedia29CMAttachmentBearerAttachmentsV": true;
+    };
 }
 /**
  * enum Mode
@@ -156,6 +159,9 @@ export declare class CMAttachmentBearerAttachments_Value extends SDKHandle {
      * @availability iOS 13.0+
      */
     get value(): unknown;
+    readonly $type: {
+        "s:9CoreMedia29CMAttachmentBearerAttachmentsV5ValueO": true;
+    };
 }
 /**
  * protocol CMAttachmentBearerProtocol
@@ -291,6 +297,9 @@ export declare class CMBlockBuffer extends SDKHandle {
      * @availability iOS 13.0+
      */
     get endIndex(): number;
+    readonly $type: {
+        "c:@T@CMBlockBufferRef": true;
+    };
 }
 /**
  * typealias CustomBlockAllocator = (Int) -> UnsafeMutableRawPointer?
@@ -352,6 +361,9 @@ export declare class CMBlockBuffer_Error extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get structureAllocationFailed(): _Foundation_NSError;
+    readonly $type: {
+        "s:So16CMBlockBufferRefa9CoreMediaE5ErrorV": true;
+    };
 }
 /**
  * struct Flags
@@ -425,6 +437,9 @@ export declare class CMBlockBuffer_Slice extends SDKHandle {
      * @availability iOS 13.0+
      */
     get endIndex(): number;
+    readonly $type: {
+        "s:So16CMBlockBufferRefa9CoreMediaE5SliceV": true;
+    };
 }
 /**
  * typealias T = CMBlockBuffer
@@ -436,6 +451,9 @@ export type CMBlockBuffer_T = CMBlockBuffer;
  * @availability iOS 27.0+
  */
 export declare class CMBlockBufferAttachmentKeyDefinitions extends SDKHandle {
+    readonly $type: {
+        "s:9CoreMedia37CMBlockBufferAttachmentKeyDefinitionsO": true;
+    };
 }
 /**
  * struct CMBlockBufferCustomBlockSource
@@ -469,6 +487,9 @@ export declare class CMBlockBufferCustomBlockSource extends SDKHandle {
      * @availability iOS 4.0+
      */
     static init(): CMBlockBufferCustomBlockSource;
+    readonly $type: {
+        "c:@SA@CMBlockBufferCustomBlockSource": true;
+    };
 }
 /**
  * typealias CMBlockBufferFlags = UInt32
@@ -539,6 +560,9 @@ export declare class CMBufferCallbacks extends SDKHandle {
      */
     get version(): number;
     set version(value: number);
+    readonly $type: {
+        "c:@SA@CMBufferCallbacks": true;
+    };
 }
 /**
  * typealias CMBufferCompareCallback = (CMBuffer, CMBuffer, UnsafeMutableRawPointer?) -> CFComparisonResult
@@ -715,6 +739,9 @@ export declare class CMBufferQueue extends SDKHandle {
      * @availability iOS 13.0+
      */
     get totalSize(): number;
+    readonly $type: {
+        "c:@T@CMBufferQueueRef": true;
+    };
 }
 /**
  * struct Buffers
@@ -726,6 +753,9 @@ export declare class CMBufferQueue_Buffers extends SDKHandle {
      * @availability iOS 13.0+
      */
     makeIterator(): CMBufferQueue_Buffers_Iterator;
+    readonly $type: {
+        "s:So16CMBufferQueueRefa9CoreMediaE7BuffersV": true;
+    };
 }
 /**
  * typealias Element
@@ -742,6 +772,9 @@ export declare class CMBufferQueue_Buffers_Iterator extends SDKHandle {
      * @availability iOS 13.0+
      */
     next(): (unknown) | null;
+    readonly $type: {
+        "s:So16CMBufferQueueRefa9CoreMediaE7BuffersV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AnyObject
@@ -803,6 +836,9 @@ export declare class CMBufferQueue_Error extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get requiredParameterMissing(): _Foundation_NSError;
+    readonly $type: {
+        "s:So16CMBufferQueueRefa9CoreMediaE5ErrorV": true;
+    };
 }
 /**
  * struct Handlers
@@ -864,6 +900,9 @@ export declare class CMBufferQueue_Handlers extends SDKHandle {
      * @availability iOS 13.0+
      */
     get getSize(): (((arg0: unknown) => Promise<number>)) | null;
+    readonly $type: {
+        "s:So16CMBufferQueueRefa9CoreMediaE8HandlersV": true;
+    };
 }
 /**
  * struct Builder
@@ -876,6 +915,9 @@ export declare class CMBufferQueue_Handlers_Builder extends SDKHandle {
      */
     get dataBecameReadyNotification(): (string) | null;
     set dataBecameReadyNotification(value: (string) | null);
+    readonly $type: {
+        "s:So16CMBufferQueueRefa9CoreMediaE8HandlersV7BuilderV": true;
+    };
 }
 /**
  * typealias T = CMBufferQueue
@@ -887,6 +929,9 @@ export type CMBufferQueue_T = CMBufferQueue;
  * @availability iOS 13.0+
  */
 export declare class CMBufferQueue_TriggerCondition extends SDKHandle {
+    readonly $type: {
+        "s:So16CMBufferQueueRefa9CoreMediaE16TriggerConditionO": true;
+    };
 }
 /**
  * typealias TriggerToken = CMBufferQueueTriggerToken
@@ -944,6 +989,9 @@ export declare class CMCameraIntrinsicMatrix extends SDKHandle {
      */
     get matrix(): SDKHandle;
     set matrix(value: SDKHandle);
+    readonly $type: {
+        "s:9CoreMedia23CMCameraIntrinsicMatrixV": true;
+    };
 }
 /**
  * class CMClock
@@ -1008,6 +1056,9 @@ export declare class CMClock extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get typeID(): number;
+    readonly $type: {
+        "c:@T@CMClockRef": true;
+    };
 }
 /**
  * struct Error
@@ -1039,6 +1090,9 @@ export declare class CMClock_Error extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get preferredStartTimeNotAvailable(): _Foundation_NSError;
+    readonly $type: {
+        "s:So10CMClockRefa9CoreMediaE5ErrorV": true;
+    };
 }
 /**
  * struct StartTimePattern
@@ -1068,6 +1122,9 @@ export declare class CMClock_StartTimePattern extends SDKHandle {
      */
     get hostClockStartTime(): CMTime;
     set hostClockStartTime(value: CMTime);
+    readonly $type: {
+        "s:So10CMClockRefa9CoreMediaE16StartTimePatternV": true;
+    };
 }
 /**
  * typealias CMClockOrTimebase = CFTypeRef
@@ -1127,6 +1184,9 @@ export declare class CMCustomNotificationInfo extends SDKHandle {
      * @availability iOS 27.0+
      */
     get rawAttachmentValueRepresentation(): _CoreVideo_CVAttachmentRawValue;
+    readonly $type: {
+        "s:9CoreMedia24CMCustomNotificationInfoV": true;
+    };
 }
 /**
  * typealias Key = String
@@ -1362,6 +1422,9 @@ export declare class CMFormatDescription extends SDKHandle {
      * @availability iOS 13.0+
      */
     get mediaType(): CMFormatDescription_MediaType;
+    readonly $type: {
+        "c:@T@CMFormatDescriptionRef": true;
+    };
 }
 /**
  * struct EqualityMask
@@ -1440,6 +1503,9 @@ export declare class CMFormatDescription_Error extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get valueNotAvailable(): _Foundation_NSError;
+    readonly $type: {
+        "s:So22CMFormatDescriptionRefa9CoreMediaE5ErrorV": true;
+    };
 }
 /**
  * struct Extensions
@@ -1486,6 +1552,9 @@ export declare class CMFormatDescription_Extensions extends SDKHandle {
      * @availability iOS 13.0+
      */
     subscript43355(key: _CoreFoundation_CFString): (unknown) | null;
+    readonly $type: {
+        "s:So22CMFormatDescriptionRefa9CoreMediaE10ExtensionsV": true;
+    };
 }
 /**
  * typealias Element = (key: CFString, value: CFPropertyList)
@@ -1497,6 +1566,9 @@ export type CMFormatDescription_Extensions_Element = $SDK54;
  * @availability iOS 13.0+
  */
 export declare class CMFormatDescription_Extensions_Index extends SDKHandle {
+    readonly $type: {
+        "s:So22CMFormatDescriptionRefa9CoreMediaE10ExtensionsV5IndexV": true;
+    };
 }
 /**
  * typealias Indices = DefaultIndices<CMFormatDescription.Extensions>
@@ -2003,6 +2075,9 @@ export declare class CMFormatDescription_Extensions_Value extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(plist: unknown): CMFormatDescription_Extensions_Value;
+    readonly $type: {
+        "s:So22CMFormatDescriptionRefa9CoreMediaE10ExtensionsV5ValueV": true;
+    };
 }
 /**
  * struct AlphaChannelMode
@@ -2052,6 +2127,9 @@ export declare class CMFormatDescription_Extensions_Value_CameraCalibrationDataL
      * @availability iOS 26.0+
      */
     get rawValue(): _CoreFoundation_CFArray;
+    readonly $type: {
+        "s:So22CMFormatDescriptionRefa9CoreMediaE10ExtensionsV5ValueV35CameraCalibrationDataLensCollectionO": true;
+    };
 }
 /**
  * enum AlgorithmKind
@@ -2430,6 +2508,9 @@ export declare class CMFormatDescription_Extensions_Value_ContentColorVolume_Col
      */
     get y(): CMFormatDescription_Extensions_Value_ContentColorVolume_ColorVolume;
     set y(value: CMFormatDescription_Extensions_Value_ContentColorVolume_ColorVolume);
+    readonly $type: {
+        "s:So22CMFormatDescriptionRefa9CoreMediaE10ExtensionsV5ValueV18ContentColorVolumeV0I9PrimariesV": true;
+    };
 }
 /**
  * @frozen struct ColorVolume
@@ -2459,6 +2540,9 @@ export declare class CMFormatDescription_Extensions_Value_ContentColorVolume_Col
      */
     get green(): number;
     set green(value: number);
+    readonly $type: {
+        "s:So22CMFormatDescriptionRefa9CoreMediaE10ExtensionsV5ValueV18ContentColorVolumeV0iJ0V": true;
+    };
 }
 /**
  * typealias RawValue = CMFormatDescription.Extensions.Value
@@ -3867,6 +3951,9 @@ export declare class CMFormatDescription_ParameterSetCollection extends SDKHandl
      * @availability iOS 13.0+
      */
     subscript(position: number): ArrayBuffer;
+    readonly $type: {
+        "s:So22CMFormatDescriptionRefa9CoreMediaE22ParameterSetCollectionV": true;
+    };
 }
 /**
  * typealias Element = Data
@@ -3903,6 +3990,9 @@ export type CMFormatDescription_T = CMFormatDescription;
  * @availability iOS 13.0+
  */
 export declare class CMFormatDescription_TimeCode extends SDKHandle {
+    readonly $type: {
+        "s:So22CMFormatDescriptionRefa9CoreMediaE8TimeCodeV": true;
+    };
 }
 /**
  * struct Flag
@@ -4002,6 +4092,9 @@ export type CMMediaType = SDKHandle;
  * @availability iOS 6.0+
  */
 export declare class CMMemoryPool extends SDKHandle {
+    readonly $type: {
+        "c:@T@CMMemoryPoolRef": true;
+    };
 }
 /**
  * struct CMMetadataDescriptionFlavor
@@ -4035,6 +4128,9 @@ export type CMMetadataFormatType = SDKHandle;
  * @availability iOS 26.0+
  */
 export declare class CMMutableDataBlockBuffer extends SDKHandle {
+    readonly $type: {
+        "s:9CoreMedia24CMMutableDataBlockBufferV": true;
+    };
 }
 /**
  * typealias Attachments = CVAttachmentAccess<CMBlockBufferAttachmentKeyDefinitions>
@@ -4081,6 +4177,9 @@ export declare class CMMutableDataBlockBuffer_BlockRegion extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript(position: number): number;
+    readonly $type: {
+        "s:9CoreMedia24CMMutableDataBlockBufferV0E6RegionV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -4128,6 +4227,9 @@ export declare class CMMutableDataBlockBuffer_BlockSource extends SDKHandle {
      * @availability iOS 26.0+
      */
     get allocate(): ((arg0: number) => Promise<ArrayBuffer>);
+    readonly $type: {
+        "s:9CoreMedia24CMMutableDataBlockBufferV0E6SourceV": true;
+    };
 }
 /**
  * typealias Index = Int
@@ -4154,6 +4256,9 @@ export declare class CMMutableDataBlockBuffer_MemoryPool extends SDKHandle {
      * @availability iOS 26.0+
      */
     flush(): void;
+    readonly $type: {
+        "s:9CoreMedia24CMMutableDataBlockBufferV10MemoryPoolC": true;
+    };
 }
 /**
  * typealias CMMuxedFormatDescription = CMFormatDescription
@@ -4286,6 +4391,9 @@ export declare class CMReadOnlyDataBlockBuffer extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript25927(position: number): number;
+    readonly $type: {
+        "s:9CoreMedia25CMReadOnlyDataBlockBufferV": true;
+    };
 }
 /**
  * typealias Attachments = CVAttachmentAccess<CMBlockBufferAttachmentKeyDefinitions>
@@ -4332,6 +4440,9 @@ export declare class CMReadOnlyDataBlockBuffer_BlockRegion extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript(position: number): number;
+    readonly $type: {
+        "s:9CoreMedia25CMReadOnlyDataBlockBufferV0F6RegionV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -4571,6 +4682,9 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init67888(other: $SDK69): ($SDK75) | null;
+    readonly $type: {
+        "s:9CoreMedia19CMReadySampleBufferV": true;
+    };
 }
 /**
  * typealias Attachments = CVAttachmentAccess<CMSampleBufferAttachmentKeyDefinitions>
@@ -4779,6 +4893,9 @@ export declare class CMSampleBuffer extends SDKHandle {
      * @availability iOS 13.0+
      */
     get duration(): CMTime;
+    readonly $type: {
+        "c:@T@CMSampleBufferRef": true;
+    };
 }
 /**
  * struct AttachmentKey
@@ -4935,12 +5052,18 @@ export interface CMSampleBuffer_ContentWithFormatDescription {
  * @availability iOS 13.0+
  */
 export declare class CMSampleBuffer_DataReadiness extends SDKHandle {
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE13DataReadinessO": true;
+    };
 }
 /**
  * enum DynamicContent
  * @availability iOS 26.0+
  */
 export declare class CMSampleBuffer_DynamicContent extends SDKHandle {
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE14DynamicContentO": true;
+    };
 }
 /**
  * struct Error
@@ -5032,6 +5155,9 @@ export declare class CMSampleBuffer_Error extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get bufferHasNoSampleTimingInfo(): _Foundation_NSError;
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE5ErrorV": true;
+    };
 }
 /**
  * struct Flags
@@ -5122,6 +5248,9 @@ export declare class CMSampleBuffer_HEVCTemporalInfo extends SDKHandle {
      */
     get tierFlag(): number;
     set tierFlag(value: number);
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE16HEVCTemporalInfoV": true;
+    };
 }
 /**
  * protocol MultiSampleContent : CMSampleBuffer.Content
@@ -5172,6 +5301,9 @@ export declare class CMSampleBuffer_PerSampleAttachmentsDictionary extends SDKHa
      * @availability iOS 13.0+
      */
     subscript(key: CMSampleBuffer_PerSampleAttachmentsDictionary_Key): (unknown) | null;
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE30PerSampleAttachmentsDictionaryV": true;
+    };
 }
 /**
  * typealias Element = (key: CMSampleBuffer.PerSampleAttachmentsDictionary.Key, value: Any)
@@ -5191,6 +5323,9 @@ export declare class CMSampleBuffer_PerSampleAttachmentsDictionary_Iterator exte
         "key": CMSampleBuffer_PerSampleAttachmentsDictionary_Key;
         "value": unknown;
     }) | null;
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE30PerSampleAttachmentsDictionaryV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = (key: CMSampleBuffer.PerSampleAttachmentsDictionary.Key, value: Any)
@@ -5395,6 +5530,9 @@ export declare class CMSampleBuffer_SampleAttachments extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(dictionaryRepresentation?: $SDK37): CMSampleBuffer_SampleAttachments;
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE17SampleAttachmentsV": true;
+    };
 }
 /**
  * struct SampleAttachmentsArray
@@ -5423,6 +5561,9 @@ export declare class CMSampleBuffer_SampleAttachmentsArray extends SDKHandle {
      * @availability iOS 13.0+
      */
     subscript(sample: number): CMSampleBuffer_PerSampleAttachmentsDictionary;
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE22SampleAttachmentsArrayV": true;
+    };
 }
 /**
  * typealias Element = CMSampleBuffer.PerSampleAttachmentsDictionary
@@ -5477,6 +5618,9 @@ export declare class CMSampleBuffer_SampleProperties extends SDKHandle {
      */
     get timing(): CMSampleTimingInfo;
     set timing(value: CMSampleTimingInfo);
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE16SamplePropertiesV": true;
+    };
 }
 /**
  * struct SamplePropertiesCollection
@@ -5531,6 +5675,9 @@ export declare class CMSampleBuffer_SamplePropertiesCollection extends SDKHandle
      * @availability iOS 26.0+
      */
     subscript(position: number): CMSampleBuffer_SampleProperties;
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE26SamplePropertiesCollectionV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = CMSampleBuffer.SamplePropertiesCollection.Element
@@ -5572,6 +5719,9 @@ export declare class CMSampleBuffer_SingleSampleBuffers extends SDKHandle {
      * @availability iOS 13.0+
      */
     makeIterator(): CMSampleBuffer_SingleSampleBuffers_Iterator;
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE19SingleSampleBuffersV": true;
+    };
 }
 /**
  * typealias Element = CMSampleBuffer
@@ -5588,6 +5738,9 @@ export declare class CMSampleBuffer_SingleSampleBuffers_Iterator extends SDKHand
      * @availability iOS 13.0+
      */
     next(): (CMSampleBuffer) | null;
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE19SingleSampleBuffersV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = CMSampleBuffer
@@ -5599,6 +5752,9 @@ export type CMSampleBuffer_SingleSampleBuffers_Iterator_Element = CMSampleBuffer
  * @availability iOS 26.0+
  */
 export declare class CMSampleBuffer_SizePerSample extends SDKHandle {
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE13SizePerSampleO": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Int
@@ -5620,6 +5776,9 @@ export declare class CMSampleBuffer_TimingPerSample extends SDKHandle {
      * @availability iOS 26.0+
      */
     static sequential(presentationTimeOfFirstSample: CMTime, uniformDuration: CMTime, decodeTimeOfFirstSample?: CMTime): CMSampleBuffer_TimingPerSample;
+    readonly $type: {
+        "s:So17CMSampleBufferRefa9CoreMediaE15TimingPerSampleO": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = CMSampleTimingInfo
@@ -5731,6 +5890,9 @@ export declare class CMSampleBufferAttachmentKeyDefinitions extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get reverse(): $SDK90;
+    readonly $type: {
+        "s:9CoreMedia38CMSampleBufferAttachmentKeyDefinitionsO": true;
+    };
 }
 /**
  * typealias CMSampleBufferInvalidateCallback = (CMSampleBuffer, UInt64) -> Void
@@ -5774,6 +5936,9 @@ export declare class CMSampleDataReference extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(containerLocation: string, byteOffset: number): CMSampleDataReference;
+    readonly $type: {
+        "s:9CoreMedia21CMSampleDataReferenceV": true;
+    };
 }
 /**
  * struct CMSampleTimingInfo
@@ -5813,6 +5978,9 @@ export declare class CMSampleTimingInfo extends SDKHandle {
      * @availability iOS 4.0+
      */
     static init(): CMSampleTimingInfo;
+    readonly $type: {
+        "c:@SA@CMSampleTimingInfo": true;
+    };
 }
 /**
  * class CMSimpleQueue
@@ -5864,6 +6032,9 @@ export declare class CMSimpleQueue extends SDKHandle {
      * @availability iOS 13.0+
      */
     get fullness(): number;
+    readonly $type: {
+        "c:@T@CMSimpleQueueRef": true;
+    };
 }
 /**
  * struct Error
@@ -5890,6 +6061,9 @@ export declare class CMSimpleQueue_Error extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get requiredParameterMissing(): _Foundation_NSError;
+    readonly $type: {
+        "s:So16CMSimpleQueueRefa9CoreMediaE5ErrorV": true;
+    };
 }
 /**
  * typealias T = CMSimpleQueue
@@ -6011,6 +6185,9 @@ export type CMSubtitleFormatType = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class CMSync extends SDKHandle {
+    readonly $type: {
+        "s:9CoreMedia6CMSyncV": true;
+    };
 }
 /**
  * struct Error
@@ -6037,6 +6214,9 @@ export declare class CMSync_Error extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get missingRequiredParameter(): _Foundation_NSError;
+    readonly $type: {
+        "s:9CoreMedia6CMSyncV5ErrorV": true;
+    };
 }
 /**
  * protocol CMSyncProtocol : Sendable
@@ -6148,6 +6328,9 @@ export declare class CMTag extends SDKHandle {
      * @availability iOS 17.0+
      */
     static mediaType(value: CMFormatDescription_MediaType): CMTypedTag<CMFormatDescription_MediaType>;
+    readonly $type: {
+        "s:9CoreMedia5CMTagC": true;
+    };
 }
 /**
  * typealias RawCategory = FourCharCode
@@ -6159,6 +6342,9 @@ export type CMTag_RawCategory = SDKHandle;
  * @availability iOS 17.0+
  */
 export declare class CMTag_Value extends SDKHandle {
+    readonly $type: {
+        "s:9CoreMedia5CMTagC5ValueO": true;
+    };
 }
 /**
  * struct CMTaggedBuffer
@@ -6195,12 +6381,18 @@ export declare class CMTaggedBuffer extends SDKHandle {
      * @availability iOS 17.0+
      */
     get buffer(): CMTaggedBuffer_Buffer;
+    readonly $type: {
+        "s:9CoreMedia14CMTaggedBufferV": true;
+    };
 }
 /**
  * enum Buffer
  * @availability iOS 17.0+
  */
 export declare class CMTaggedBuffer_Buffer extends SDKHandle {
+    readonly $type: {
+        "s:9CoreMedia14CMTaggedBufferV0D0O": true;
+    };
 }
 /** typealias CMTaggedBufferGroupFormatDescription = CMFormatDescription */
 export type CMTaggedBufferGroupFormatDescription = CMFormatDescription;
@@ -6253,12 +6445,18 @@ export declare class CMTaggedDynamicBuffer extends SDKHandle {
      */
     get content(): CMTaggedDynamicBuffer_Content;
     set content(value: CMTaggedDynamicBuffer_Content);
+    readonly $type: {
+        "s:9CoreMedia21CMTaggedDynamicBufferV": true;
+    };
 }
 /**
  * enum Content
  * @availability iOS 26.0+
  */
 export declare class CMTaggedDynamicBuffer_Content extends SDKHandle {
+    readonly $type: {
+        "s:9CoreMedia21CMTaggedDynamicBufferV7ContentO": true;
+    };
 }
 /**
  * struct CMTextDescriptionFlavor
@@ -6421,6 +6619,9 @@ export declare class CMTime extends SDKHandle {
      * @availability iOS 4.0+
      */
     static init(): CMTime;
+    readonly $type: {
+        "c:@SA@CMTime": true;
+    };
 }
 /**
  * class CMTimebase
@@ -6596,6 +6797,9 @@ export declare class CMTimebase extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get farFuture(): number;
+    readonly $type: {
+        "c:@T@CMTimebaseRef": true;
+    };
 }
 /**
  * struct Error
@@ -6627,6 +6831,9 @@ export declare class CMTimebase_Error extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get readOnly(): _Foundation_NSError;
+    readonly $type: {
+        "s:So13CMTimebaseRefa9CoreMediaE5ErrorV": true;
+    };
 }
 /**
  * struct NotificationKey
@@ -6767,6 +6974,9 @@ export declare class CMTimeMapping extends SDKHandle {
      * @availability iOS 4.0+
      */
     static init(): CMTimeMapping;
+    readonly $type: {
+        "c:@SA@CMTimeMapping": true;
+    };
 }
 /**
  * struct CMTimeRange
@@ -6860,6 +7070,9 @@ export declare class CMTimeRange extends SDKHandle {
      * @availability iOS 4.0+
      */
     static init(): CMTimeRange;
+    readonly $type: {
+        "c:@SA@CMTimeRange": true;
+    };
 }
 /**
  * enum CMTimeRoundingMethod
@@ -6914,6 +7127,10 @@ export declare class CMTypedTag<TypedValue = unknown> extends CMTypedTag_base {
      * @availability iOS 17.0+
      */
     value70334(category: $SDK110): (number) | null;
+    readonly $type: {
+        "s:9CoreMedia10CMTypedTagC": true;
+        "s:9CoreMedia5CMTagC": true;
+    };
 }
 /**
  * struct Category
@@ -6985,6 +7202,9 @@ export declare class CMTypedTag_Category<TypedValue = unknown> extends SDKHandle
      * @availability iOS 17.0+
      */
     static get mediaType(): CMTypedTag_Category<CMFormatDescription_MediaType>;
+    readonly $type: {
+        "s:9CoreMedia10CMTypedTagC8CategoryV": true;
+    };
 }
 /**
  * typealias CMVideoCodecType = FourCharCode
@@ -7018,6 +7238,9 @@ export declare class CMVideoDimensions extends SDKHandle {
      * @availability iOS 4.0+
      */
     static init(): CMVideoDimensions;
+    readonly $type: {
+        "c:@SA@CMVideoDimensions": true;
+    };
 }
 /**
  * typealias CMVideoFormatDescription = CMFormatDescription
@@ -7031,6 +7254,9 @@ export declare class CVBuffer extends SDKHandle {
      */
     get attachments(): CMAttachmentBearerAttachments;
     set attachments(value: CMAttachmentBearerAttachments);
+    readonly $type: {
+        "c:@T@CVBufferRef": true;
+    };
 }
 /**
  * func CMAudioClockCreate(allocator: CFAllocator?, clockOut: UnsafeMutablePointer<CMClock?>) -> OSStatus

@@ -22,6 +22,9 @@ export declare class AIVUValidator extends SDKHandle {
      * @availability iOS 26.4+
      */
     static validate(url: string): Promise<boolean>;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport13AIVUValidatorV": true;
+    };
 }
 /**
  * struct FadeCommand
@@ -68,6 +71,9 @@ export declare class FadeCommand extends SDKHandle {
      */
     get direction(): FadeCommand_FadeDirection;
     set direction(value: FadeCommand_FadeDirection);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport11FadeCommandV": true;
+    };
 }
 /**
  * enum FadeDirection
@@ -141,6 +147,9 @@ export declare class FadeEnvironmentCommand extends SDKHandle {
      */
     get direction(): FadeEnvironmentCommand_FadeDirection;
     set direction(value: FadeEnvironmentCommand_FadeDirection);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport22FadeEnvironmentCommandV": true;
+    };
 }
 /**
  * enum FadeDirection
@@ -209,6 +218,9 @@ export declare class ImmersiveCamera extends SDKHandle {
      */
     get type(): ImmersiveCamera_CameraType;
     set type(value: ImmersiveCamera_CameraType);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A6CameraV": true;
+    };
 }
 /**
  * enum CameraType
@@ -271,12 +283,18 @@ export declare class ImmersiveCameraCalibration extends SDKHandle {
      */
     get origin(): ImmersiveCameraCalibration_CameraOrigin;
     set origin(value: ImmersiveCameraCalibration_CameraOrigin);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A17CameraCalibrationV": true;
+    };
 }
 /**
  * enum CalibrationType
  * @availability iOS 26.4+
  */
 export declare class ImmersiveCameraCalibration_CalibrationType extends SDKHandle {
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A17CameraCalibrationV0E4TypeO": true;
+    };
 }
 /**
  * struct CameraOrigin
@@ -293,6 +311,9 @@ export declare class ImmersiveCameraCalibration_CameraOrigin extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get zero(): ImmersiveCameraCalibration_CameraOrigin;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A17CameraCalibrationV0D6OriginV": true;
+    };
 }
 /**
  * struct CameraTextureMapping
@@ -309,6 +330,9 @@ export declare class ImmersiveCameraCalibration_CameraTextureMapping extends SDK
      * @availability iOS 26.4+
      */
     static get identity(): ImmersiveCameraCalibration_CameraTextureMapping;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A17CameraCalibrationV0D14TextureMappingV": true;
+    };
 }
 /**
  * struct ImmersiveCameraLensDefinition
@@ -326,6 +350,9 @@ export declare class ImmersiveCameraLensDefinition extends SDKHandle {
      */
     get cameraID(): string;
     set cameraID(value: string);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A20CameraLensDefinitionV": true;
+    };
 }
 /**
  * enum Eye
@@ -342,6 +369,9 @@ export type ImmersiveCameraLensDefinition_STMapType = "equirectangular" | "equid
  * @availability iOS 26.4+
  */
 export declare class ImmersiveCameraMask extends SDKHandle {
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A10CameraMaskO": true;
+    };
 }
 /**
  * final class ImmersiveCameraMeshCalibration
@@ -363,6 +393,9 @@ export declare class ImmersiveCameraMeshCalibration extends SDKHandle {
      * @availability iOS 26.4+
      */
     get usdzData(): ArrayBuffer;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A21CameraMeshCalibrationC": true;
+    };
 }
 /**
  * struct ImmersiveCameraViewModel
@@ -394,6 +427,9 @@ export declare class ImmersiveCameraViewModel extends SDKHandle {
      * @availability iOS 26.4+
      */
     get rightEye(): _ModelIO_MDLMesh;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A15CameraViewModelV": true;
+    };
 }
 /**
  * struct ImmersiveDynamicMask
@@ -447,6 +483,9 @@ export declare class ImmersiveDynamicMask extends SDKHandle {
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A11DynamicMaskV": true;
+    };
 }
 /**
  * enum ControlPointInterpolation
@@ -488,6 +527,9 @@ export declare class ImmersiveImageMask extends SDKHandle {
      * @availability iOS 26.4+
      */
     get maskData(): (ArrayBuffer) | null;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A9ImageMaskC": true;
+    };
 }
 /**
  * struct ImmersiveVideoMask
@@ -514,6 +556,9 @@ export declare class ImmersiveVideoMask extends SDKHandle {
      * @availability iOS 26.4+
      */
     get texture(): SDKHandle;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport0A9VideoMaskV": true;
+    };
 }
 /**
  * enum Layout
@@ -550,6 +595,9 @@ export declare class ParametricImmersiveAssetInfo extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init(asset: _AVFoundation_AVURLAsset, computeFormatDescription?: boolean): Promise<ParametricImmersiveAssetInfo>;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport010ParametricA9AssetInfoC": true;
+    };
 }
 /**
  * struct Error
@@ -566,6 +614,9 @@ export declare class ParametricImmersiveAssetInfo_Error extends SDKHandle {
      * @availability iOS 26.4+
      */
     get errorType(): ParametricImmersiveAssetInfo_Error_ErrorType;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport010ParametricA9AssetInfoC5ErrorV": true;
+    };
 }
 /**
  * enum ErrorType
@@ -598,6 +649,9 @@ export declare class PresentationCommand extends SDKHandle {
      * @availability iOS 26.4+
      */
     get duration(): _CoreMedia_CMTime;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport19PresentationCommandO": true;
+    };
 }
 /**
  * struct PresentationDescriptor
@@ -626,6 +680,9 @@ export declare class PresentationDescriptor extends SDKHandle {
      */
     get duration(): $SDK0;
     set duration(value: $SDK0);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport22PresentationDescriptorV": true;
+    };
 }
 /**
  * class PresentationDescriptorReader
@@ -707,6 +764,9 @@ export declare class PresentationDescriptorReader extends SDKHandle {
      * @availability iOS 26.4+
      */
     get colorFade(): SDKHandle;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport28PresentationDescriptorReaderC": true;
+    };
     readonly $observable: {
         "presentationDescriptor": true;
         "isSideloaded": true;
@@ -770,6 +830,9 @@ export declare class SetCameraCommand extends SDKHandle {
      */
     get overrides(): $SDK11;
     set overrides(value: $SDK11);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport16SetCameraCommandV": true;
+    };
 }
 /**
  * struct Overrides
@@ -799,6 +862,9 @@ export declare class SetCameraCommand_Overrides extends SDKHandle {
      */
     get rotation(): $SDK14;
     set rotation(value: $SDK14);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport16SetCameraCommandV9OverridesV": true;
+    };
 }
 /**
  * struct ShotFlipCommand
@@ -833,6 +899,9 @@ export declare class ShotFlipCommand extends SDKHandle {
      */
     get duration(): _CoreMedia_CMTime;
     set duration(value: _CoreMedia_CMTime);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport15ShotFlipCommandV": true;
+    };
 }
 /**
  * struct ShotFlopCommand
@@ -867,6 +936,9 @@ export declare class ShotFlopCommand extends SDKHandle {
      */
     get duration(): _CoreMedia_CMTime;
     set duration(value: _CoreMedia_CMTime);
+    readonly $type: {
+        "s:21ImmersiveMediaSupport15ShotFlopCommandV": true;
+    };
 }
 /**
  * final actor VenueDescriptor
@@ -893,5 +965,8 @@ export declare class VenueDescriptor extends SDKHandle {
      * @availability iOS 26.4+
      */
     static initAimeDataDevice(aimeData: ArrayBuffer, device?: (SDKHandle) | null): Promise<VenueDescriptor>;
+    readonly $type: {
+        "s:21ImmersiveMediaSupport15VenueDescriptorC": true;
+    };
 }
 export {};

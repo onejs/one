@@ -37,6 +37,9 @@ export declare class AVAudio3DAngularOrientation extends SDKHandle {
     static initYawPitchRoll(yaw: number, pitch: number, roll: number): AVAudio3DAngularOrientation;
     /** init() */
     static init(): AVAudio3DAngularOrientation;
+    readonly $type: {
+        "c:@S@AVAudio3DAngularOrientation": true;
+    };
 }
 /** protocol AVAudio3DMixing : NSObjectProtocol, Sendable */
 export interface AVAudio3DMixing {
@@ -92,6 +95,9 @@ export declare class AVAudio3DPoint extends SDKHandle {
     static initXYZ(x: number, y: number, z: number): AVAudio3DPoint;
     /** init() */
     static init(): AVAudio3DPoint;
+    readonly $type: {
+        "c:@S@AVAudio3DPoint": true;
+    };
 }
 /** typealias AVAudio3DVector = AVAudio3DPoint */
 export type AVAudio3DVector = AVAudio3DPoint;
@@ -107,6 +113,9 @@ export declare class AVAudio3DVectorOrientation extends SDKHandle {
     static initForwardUp(forward: AVAudio3DPoint, up: AVAudio3DPoint): AVAudio3DVectorOrientation;
     /** init() */
     static init(): AVAudio3DVectorOrientation;
+    readonly $type: {
+        "c:@S@AVAudio3DVectorOrientation": true;
+    };
 }
 /**
  * class AVAudioApplication
@@ -153,6 +162,10 @@ export declare class AVAudioApplication extends SDKHandle {
      * @availability iOS 18.2+
      */
     get microphoneInjectionPermission(): AVAudioApplication_MicrophoneInjectionPermission;
+    readonly $type: {
+        "c:objc(cs)AVAudioApplication": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isInputMuted": true;
         "microphoneInjectionPermission": true;
@@ -192,6 +205,10 @@ export declare class AVAudioBuffer extends SDKHandle {
      * @availability iOS 8.0+
      */
     get mutableAudioBufferList(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)AVAudioBuffer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioBufferList": true;
         "format": true;
@@ -235,6 +252,10 @@ export declare class AVAudioChannelLayout extends SDKHandle {
      * @availability iOS 8.0+
      */
     get layoutTag(): number;
+    readonly $type: {
+        "c:objc(cs)AVAudioChannelLayout": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelCount": true;
         "layout": true;
@@ -253,14 +274,11 @@ export declare const AVAudioCommonFormat: {
      */
     init(rawValue: number): (AVAudioCommonFormat) | null;
 };
-declare const AVAudioCompressedBuffer_base: Omit<typeof AVAudioBuffer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioBuffer);
 /**
  * class AVAudioCompressedBuffer
  * @availability iOS 9.0+
  */
-export declare class AVAudioCompressedBuffer extends AVAudioCompressedBuffer_base {
-    /** init() */
-    static init(): AVAudioCompressedBuffer;
+export declare class AVAudioCompressedBuffer extends AVAudioBuffer {
     /**
      * init(format: AVAudioFormat, packetCapacity: AVAudioPacketCount)
      * @availability iOS 9.0+
@@ -313,6 +331,11 @@ export declare class AVAudioCompressedBuffer extends AVAudioCompressedBuffer_bas
      * @availability iOS 26.0+
      */
     get packetDependencies(): (Array<_CoreAudioTypes_AudioStreamPacketDependencyDescription>) | null;
+    readonly $type: {
+        "c:objc(cs)AVAudioCompressedBuffer": true;
+        "c:objc(cs)AVAudioBuffer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioBufferList": true;
         "format": true;
@@ -346,6 +369,10 @@ export declare class AVAudioConnectionPoint extends SDKHandle {
      * @availability iOS 9.0+
      */
     get node(): (AVAudioNode) | null;
+    readonly $type: {
+        "c:objc(cs)AVAudioConnectionPoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bus": true;
         "node": true;
@@ -373,13 +400,11 @@ export declare class AVAudioConverter extends SDKHandle {
      * @availability iOS 9.0+
      */
     convert(outputBuffer: AVAudioPCMBuffer, inputBuffer: AVAudioPCMBuffer): void;
-    /** init() */
-    static init(): AVAudioConverter;
     /**
      * init?(from fromFormat: AVAudioFormat, to toFormat: AVAudioFormat)
      * @availability iOS 9.0+
      */
-    static initFromTo(fromFormat: AVAudioFormat, toFormat: AVAudioFormat): (AVAudioConverter) | null;
+    static init(fromFormat: AVAudioFormat, toFormat: AVAudioFormat): (AVAudioConverter) | null;
     /**
      * func reset()
      * @availability iOS 9.0+
@@ -479,6 +504,10 @@ export declare class AVAudioConverter extends SDKHandle {
      */
     get sampleRateConverterQuality(): number;
     set sampleRateConverterQuality(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioConverter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicableEncodeBitRates": true;
         "applicableEncodeSampleRates": true;
@@ -541,6 +570,9 @@ export declare class AVAudioConverterPrimeInfo extends SDKHandle {
     static initLeadingFramesTrailingFrames(leadingFrames: number, trailingFrames: number): AVAudioConverterPrimeInfo;
     /** init() */
     static init(): AVAudioConverterPrimeInfo;
+    readonly $type: {
+        "c:@S@AVAudioConverterPrimeInfo": true;
+    };
 }
 /** enum AVAudioConverterPrimeMethod */
 export type AVAudioConverterPrimeMethod = "pre" | "normal" | "none";
@@ -786,6 +818,10 @@ export declare class AVAudioEngine extends SDKHandle {
      * @availability iOS 27.0+
      */
     withMusicSequence(body: $SDK9): unknown;
+    readonly $type: {
+        "c:objc(cs)AVAudioEngine": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attachedNodes": true;
         "isAutoShutdownEnabled": true;
@@ -882,6 +918,10 @@ export declare class AVAudioEnvironmentDistanceAttenuationParameters extends SDK
      */
     get rolloffFactor(): number;
     set rolloffFactor(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioEnvironmentDistanceAttenuationParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "distanceAttenuationModel": true;
         "maximumDistance": true;
@@ -978,6 +1018,10 @@ export declare class AVAudioNode extends SDKHandle {
      * @availability iOS 27.0+
      */
     withAUAudioUnit(body: ((arg0: _AudioToolbox_AUAudioUnit) => unknown)): unknown;
+    readonly $type: {
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -1054,6 +1098,11 @@ export declare class AVAudioEnvironmentNode extends AVAudioEnvironmentNode_base 
      * @availability iOS 8.0+
      */
     get reverbParameters(): AVAudioEnvironmentReverbParameters;
+    readonly $type: {
+        "c:objc(cs)AVAudioEnvironmentNode": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -1112,6 +1161,10 @@ export declare class AVAudioEnvironmentReverbParameters extends SDKHandle {
      */
     get level(): number;
     set level(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioEnvironmentReverbParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enable": true;
         "filterParameters": true;
@@ -1210,6 +1263,10 @@ export declare class AVAudioFile extends SDKHandle {
      * @availability iOS 27.0+
      */
     writeFrom78254(buffer: AVReadOnlyAudioPCMBuffer): void;
+    readonly $type: {
+        "c:objc(cs)AVAudioFile": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fileFormat": true;
         "framePosition": true;
@@ -1224,8 +1281,6 @@ export declare class AVAudioFile extends SDKHandle {
  * @availability iOS 8.0+
  */
 export declare class AVAudioFormat extends SDKHandle {
-    /** init() */
-    static init(): AVAudioFormat;
     /**
      * init(standardFormatWithSampleRate sampleRate: Double, channelLayout layout: AVAudioChannelLayout)
      * @availability iOS 8.0+
@@ -1328,6 +1383,10 @@ export declare class AVAudioFormat extends SDKHandle {
      * @availability iOS 8.0+
      */
     get streamDescription(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)AVAudioFormat": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelCount": true;
         "channelLayout": true;
@@ -1379,6 +1438,11 @@ export declare class AVAudioIONode extends AVAudioIONode_base {
      * @deprecated iOS 27.0
      */
     get audioUnit(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)AVAudioIONode": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -1424,6 +1488,12 @@ export declare class AVAudioInputNode extends AVAudioIONode {
      */
     get voiceProcessingOtherAudioDuckingConfiguration(): AVAudioVoiceProcessingOtherAudioDuckingConfiguration;
     set voiceProcessingOtherAudioDuckingConfiguration(value: AVAudioVoiceProcessingOtherAudioDuckingConfiguration);
+    readonly $type: {
+        "c:objc(cs)AVAudioInputNode": true;
+        "c:objc(cs)AVAudioIONode": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -1466,6 +1536,11 @@ export declare class AVAudioMixerNode extends AVAudioMixerNode_base {
      */
     get outputVolume(): number;
     set outputVolume(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioMixerNode": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -1498,6 +1573,10 @@ export declare class AVAudioMixingDestination extends SDKHandle {
      * @availability iOS 9.0+
      */
     get connectionPoint(): AVAudioConnectionPoint;
+    readonly $type: {
+        "c:objc(cs)AVAudioMixingDestination": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connectionPoint": true;
     };
@@ -1513,6 +1592,12 @@ export type AVAudioNodeTapBlock = ((arg0: AVAudioPCMBuffer, arg1: AVAudioTime) =
  * @availability iOS 8.0+
  */
 export declare class AVAudioOutputNode extends AVAudioIONode {
+    readonly $type: {
+        "c:objc(cs)AVAudioOutputNode": true;
+        "c:objc(cs)AVAudioIONode": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -1526,14 +1611,11 @@ export declare class AVAudioOutputNode extends AVAudioIONode {
 }
 /** typealias AVAudioPacketCount = UInt32 */
 export type AVAudioPacketCount = number;
-declare const AVAudioPCMBuffer_base: Omit<typeof AVAudioBuffer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioBuffer);
 /**
  * class AVAudioPCMBuffer
  * @availability iOS 8.0+
  */
-export declare class AVAudioPCMBuffer extends AVAudioPCMBuffer_base {
-    /** init() */
-    static init(): AVAudioPCMBuffer;
+export declare class AVAudioPCMBuffer extends AVAudioBuffer {
     /**
      * init?(pcmFormat format: AVAudioFormat, bufferListNoCopy bufferList: UnsafePointer<AudioBufferList>, deallocator: ((UnsafePointer<AudioBufferList>) -> Void)? = nil)
      * @availability iOS 15.0+
@@ -1575,6 +1657,11 @@ export declare class AVAudioPCMBuffer extends AVAudioPCMBuffer_base {
      * @availability iOS 27.0+
      */
     static initCopying63595(readOnlyBuffer: AVReadOnlyAudioPCMBuffer): AVAudioPCMBuffer;
+    readonly $type: {
+        "c:objc(cs)AVAudioPCMBuffer": true;
+        "c:objc(cs)AVAudioBuffer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioBufferList": true;
         "format": true;
@@ -1589,12 +1676,18 @@ export declare class AVAudioPCMBuffer extends AVAudioPCMBuffer_base {
  * @availability iOS 27.0+
  */
 export declare class AVAudioPCMBuffer_ChannelData extends SDKHandle {
+    readonly $type: {
+        "s:So16AVAudioPCMBufferC8AVFAudioE11ChannelDataO": true;
+    };
 }
 /**
  * enum MutableChannelData
  * @availability iOS 27.0+
  */
 export declare class AVAudioPCMBuffer_MutableChannelData extends SDKHandle {
+    readonly $type: {
+        "s:So16AVAudioPCMBufferC8AVFAudioE18MutableChannelDataO": true;
+    };
 }
 /**
  * class AVAudioPlayer
@@ -1606,8 +1699,6 @@ export declare class AVAudioPlayer extends SDKHandle {
      * @availability iOS 2.2+
      */
     averagePower(channelNumber: number): number;
-    /** init() */
-    static init(): AVAudioPlayer;
     /**
      * init(contentsOf url: URL) throws
      * @availability iOS 2.2+
@@ -1762,6 +1853,10 @@ export declare class AVAudioPlayer extends SDKHandle {
      */
     get volume(): number;
     set volume(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioPlayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelAssignments": true;
         "currentTime": true;
@@ -1920,6 +2015,11 @@ export declare class AVAudioPlayerNode extends AVAudioPlayerNode_base {
      * @availability iOS 27.0+
      */
     scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler5497(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void;
+    readonly $type: {
+        "c:objc(cs)AVAudioPlayerNode": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -1974,8 +2074,6 @@ export declare class AVAudioRecorder extends SDKHandle {
      * @availability iOS 3.0+
      */
     deleteRecording(): boolean;
-    /** init() */
-    static init(): AVAudioRecorder;
     /**
      * init(url: URL, format: AVAudioFormat) throws
      * @availability iOS 10.0+
@@ -2079,6 +2177,10 @@ export declare class AVAudioRecorder extends SDKHandle {
      * @availability iOS 3.0+
      */
     get url(): string;
+    readonly $type: {
+        "c:objc(cs)AVAudioRecorder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelAssignments": true;
         "currentTime": true;
@@ -2262,6 +2364,10 @@ export declare class AVAudioSequencer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get userInfo(): Record<string, unknown>;
+    readonly $type: {
+        "c:objc(cs)AVAudioSequencer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentPositionInBeats": true;
         "currentPositionInSeconds": true;
@@ -2873,6 +2979,10 @@ export declare class AVAudioSession extends SDKHandle {
      * @availability iOS 15.0+
      */
     get supportsMultichannelContent(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVAudioSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ioBufferDuration": true;
         "allowHapticsAndSystemSoundsDuringRecording": true;
@@ -3033,6 +3143,10 @@ export declare class AVAudioSession_DeactivationContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     get source(): AVAudioSession_DeactivationSource;
+    readonly $type: {
+        "c:objc(cs)AVAudioSessionDeactivationContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interruptionContext": true;
         "source": true;
@@ -3043,6 +3157,9 @@ export declare class AVAudioSession_DeactivationContext extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class AVAudioSession_DeactivationResult extends SDKHandle {
+    readonly $type: {
+        "s:So14AVAudioSessionC8AVFAudioE18DeactivationResultO": true;
+    };
 }
 /**
  * enum DeactivationSource
@@ -3076,6 +3193,9 @@ export declare class AVAudioSession_DidBecomeActiveMessage extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get nameValue(): _Foundation_NSNotification_Name;
+    readonly $type: {
+        "s:So14AVAudioSessionC8AVFAudioE22DidBecomeActiveMessageV": true;
+    };
 }
 /**
  * typealias Subject = AVAudioSession
@@ -3107,6 +3227,9 @@ export declare class AVAudioSession_DidBecomeInactiveMessage extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get nameValue(): _Foundation_NSNotification_Name;
+    readonly $type: {
+        "s:So14AVAudioSessionC8AVFAudioE24DidBecomeInactiveMessageV": true;
+    };
 }
 /**
  * typealias Subject = AVAudioSession
@@ -3123,6 +3246,10 @@ export declare class AVAudioSession_InterruptionContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     get reason(): AVAudioSession_InterruptionReason;
+    readonly $type: {
+        "c:objc(cs)AVAudioSessionInterruptionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reason": true;
     };
@@ -3522,6 +3649,10 @@ export declare class AVAudioSession_ResumptionContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     get recommendation(): AVAudioSession_ResumptionRecommendation;
+    readonly $type: {
+        "c:objc(cs)AVAudioSessionResumptionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "recommendation": true;
     };
@@ -3563,6 +3694,9 @@ export declare class AVAudioSession_ResumptionRecommendationMessage extends SDKH
      * @availability iOS 27.0+
      */
     static get nameValue(): _Foundation_NSNotification_Name;
+    readonly $type: {
+        "s:So14AVAudioSessionC8AVFAudioE31ResumptionRecommendationMessageV": true;
+    };
 }
 /**
  * typealias Subject = AVAudioSession
@@ -3630,6 +3764,10 @@ export declare class AVAudioSessionCapability extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isSupported(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVAudioSessionCapability": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "isSupported": true;
@@ -3662,6 +3800,10 @@ export declare class AVAudioSessionChannelDescription extends SDKHandle {
      * @availability iOS 6.0+
      */
     get owningPortUID(): string;
+    readonly $type: {
+        "c:objc(cs)AVAudioSessionChannelDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelLabel": true;
         "channelName": true;
@@ -3716,6 +3858,10 @@ export declare class AVAudioSessionDataSourceDescription extends SDKHandle {
      * @availability iOS 7.0+
      */
     get supportedPolarPatterns(): (Array<AVAudioSession_PolarPattern>) | null;
+    readonly $type: {
+        "c:objc(cs)AVAudioSessionDataSourceDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataSourceID": true;
         "dataSourceName": true;
@@ -3799,6 +3945,10 @@ export declare class AVAudioSessionPortDescription extends SDKHandle {
      * @availability iOS 15.0+
      */
     get isSpatialAudioEnabled(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVAudioSessionPortDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uid": true;
         "bluetoothMicrophoneExtension": true;
@@ -3829,6 +3979,10 @@ export declare class AVAudioSessionPortExtensionBluetoothMicrophone extends SDKH
      * @availability iOS 26.0+
      */
     get highQualityRecording(): AVAudioSessionCapability;
+    readonly $type: {
+        "c:objc(cs)AVAudioSessionPortExtensionBluetoothMicrophone": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "farFieldCapture": true;
         "highQualityRecording": true;
@@ -3851,6 +4005,10 @@ export declare class AVAudioSessionRouteDescription extends SDKHandle {
      * @availability iOS 6.0+
      */
     get outputs(): $SDK44;
+    readonly $type: {
+        "c:objc(cs)AVAudioSessionRouteDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputs": true;
         "outputs": true;
@@ -3861,6 +4019,11 @@ export declare class AVAudioSessionRouteDescription extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class AVAudioSinkNode extends AVAudioNode {
+    readonly $type: {
+        "c:objc(cs)AVAudioSinkNode": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -3880,6 +4043,11 @@ export type AVAudioSinkNodeReceiverBlock = ((arg0: SDKHandle, arg1: number, arg2
  * @availability iOS 13.0+
  */
 export declare class AVAudioSourceNode extends AVAudioNode {
+    readonly $type: {
+        "c:objc(cs)AVAudioSourceNode": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -3920,8 +4088,6 @@ export declare class AVAudioTime extends SDKHandle {
      * @availability iOS 8.0+
      */
     extrapolateTime(anchorTime: AVAudioTime): (AVAudioTime) | null;
-    /** init() */
-    static init(): AVAudioTime;
     /**
      * init(audioTimeStamp ts: UnsafePointer<AudioTimeStamp>, sampleRate: Double)
      * @availability iOS 8.0+
@@ -3972,6 +4138,10 @@ export declare class AVAudioTime extends SDKHandle {
      * @availability iOS 8.0+
      */
     get isSampleTimeValid(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVAudioTime": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioTimeStamp": true;
         "hostTime": true;
@@ -4030,6 +4200,11 @@ export declare class AVAudioUnit extends AVAudioUnit_base {
      * @availability iOS 27.0+
      */
     withAudioUnit(body: $SDK19): unknown;
+    readonly $type: {
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4120,6 +4295,10 @@ export declare class AVAudioUnitComponent extends SDKHandle {
      * @availability iOS 9.0+
      */
     get versionString(): string;
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitComponent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allTagNames": true;
         "audioComponent": true;
@@ -4174,6 +4353,10 @@ export declare class AVAudioUnitComponentManager extends SDKHandle {
      * @availability iOS 9.0+
      */
     get tagNames(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitComponentManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "standardLocalizedTagNames": true;
         "tagNames": true;
@@ -4199,6 +4382,9 @@ export declare class AVAudioUnitComponentManager_RegistrationsChangedMessage ext
      * @availability iOS 27.0+
      */
     static get nameValue(): _Foundation_NSNotification_Name;
+    readonly $type: {
+        "s:So27AVAudioUnitComponentManagerC8AVFAudioE27RegistrationsChangedMessageV": true;
+    };
 }
 /**
  * typealias Subject = AVAudioUnitComponentManager
@@ -4211,19 +4397,23 @@ declare const AVAudioUnitEffect_base: Omit<typeof AVAudioUnit, "init" | "prototy
  * @availability iOS 8.0+
  */
 export declare class AVAudioUnitEffect extends AVAudioUnitEffect_base {
-    /** init() */
-    static init(): AVAudioUnitEffect;
     /**
      * init(audioComponentDescription: AudioComponentDescription)
      * @availability iOS 8.0+
      */
-    static initAudioComponentDescription(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitEffect;
+    static init(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitEffect;
     /**
      * var bypass: Bool { get set }
      * @availability iOS 8.0+
      */
     get bypass(): boolean;
     set bypass(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitEffect": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4270,6 +4460,13 @@ export declare class AVAudioUnitDelay extends AVAudioUnitDelay_base {
      */
     get wetDryMix(): number;
     set wetDryMix(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitDelay": true;
+        "c:objc(cs)AVAudioUnitEffect": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4313,6 +4510,13 @@ export declare class AVAudioUnitDistortion extends AVAudioUnitDistortion_base {
      */
     get wetDryMix(): number;
     set wetDryMix(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitDistortion": true;
+        "c:objc(cs)AVAudioUnitEffect": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4347,13 +4551,11 @@ declare const AVAudioUnitEQ_base: Omit<typeof AVAudioUnitEffect, "init" | "proto
  * @availability iOS 8.0+
  */
 export declare class AVAudioUnitEQ extends AVAudioUnitEQ_base {
-    /** init() */
-    static init(): AVAudioUnitEQ;
     /**
      * init(numberOfBands: Int)
      * @availability iOS 8.0+
      */
-    static initNumberOfBands(numberOfBands: number): AVAudioUnitEQ;
+    static init(numberOfBands: number): AVAudioUnitEQ;
     /**
      * var bands: [AVAudioUnitEQFilterParameters] { get }
      * @availability iOS 8.0+
@@ -4365,6 +4567,13 @@ export declare class AVAudioUnitEQ extends AVAudioUnitEQ_base {
      */
     get globalGain(): number;
     set globalGain(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitEQ": true;
+        "c:objc(cs)AVAudioUnitEffect": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4416,6 +4625,10 @@ export declare class AVAudioUnitEQFilterParameters extends SDKHandle {
      */
     get gain(): number;
     set gain(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitEQFilterParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bandwidth": true;
         "bypass": true;
@@ -4442,19 +4655,23 @@ declare const AVAudioUnitGenerator_base: Omit<typeof AVAudioUnit, "init" | "prot
  * @availability iOS 8.0+
  */
 export declare class AVAudioUnitGenerator extends AVAudioUnitGenerator_base {
-    /** init() */
-    static init(): AVAudioUnitGenerator;
     /**
      * init(audioComponentDescription: AudioComponentDescription)
      * @availability iOS 8.0+
      */
-    static initAudioComponentDescription(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitGenerator;
+    static init(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitGenerator;
     /**
      * var bypass: Bool { get set }
      * @availability iOS 8.0+
      */
     get bypass(): boolean;
     set bypass(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitGenerator": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4475,13 +4692,11 @@ declare const AVAudioUnitMIDIInstrument_base: Omit<typeof AVAudioUnit, "init" | 
  * @availability iOS 8.0+
  */
 export declare class AVAudioUnitMIDIInstrument extends AVAudioUnitMIDIInstrument_base {
-    /** init() */
-    static init(): AVAudioUnitMIDIInstrument;
     /**
      * init(audioComponentDescription description: AudioComponentDescription)
      * @availability iOS 8.0+
      */
-    static initAudioComponentDescription(description: _AudioToolbox_AudioComponentDescription): AVAudioUnitMIDIInstrument;
+    static init(description: _AudioToolbox_AudioComponentDescription): AVAudioUnitMIDIInstrument;
     /**
      * func sendController(_ controller: UInt8, withValue value: UInt8, onChannel channel: UInt8)
      * @availability iOS 8.0+
@@ -4542,6 +4757,12 @@ export declare class AVAudioUnitMIDIInstrument extends AVAudioUnitMIDIInstrument
      * @availability iOS 8.0+
      */
     stopNote(note: number, channel: number): void;
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitMIDIInstrument": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4574,6 +4795,13 @@ export declare class AVAudioUnitReverb extends AVAudioUnitReverb_base {
      */
     get wetDryMix(): number;
     set wetDryMix(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitReverb": true;
+        "c:objc(cs)AVAudioUnitEffect": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4649,6 +4877,13 @@ export declare class AVAudioUnitSampler extends AVAudioUnitSampler_base {
      */
     get stereoPan(): number;
     set stereoPan(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitSampler": true;
+        "c:objc(cs)AVAudioUnitMIDIInstrument": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4672,19 +4907,23 @@ declare const AVAudioUnitTimeEffect_base: Omit<typeof AVAudioUnit, "init" | "pro
  * @availability iOS 8.0+
  */
 export declare class AVAudioUnitTimeEffect extends AVAudioUnitTimeEffect_base {
-    /** init() */
-    static init(): AVAudioUnitTimeEffect;
     /**
      * init(audioComponentDescription: AudioComponentDescription)
      * @availability iOS 8.0+
      */
-    static initAudioComponentDescription(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitTimeEffect;
+    static init(audioComponentDescription: _AudioToolbox_AudioComponentDescription): AVAudioUnitTimeEffect;
     /**
      * var bypass: Bool { get set }
      * @availability iOS 8.0+
      */
     get bypass(): boolean;
     set bypass(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitTimeEffect": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4725,6 +4964,13 @@ export declare class AVAudioUnitTimePitch extends AVAudioUnitTimePitch_base {
      */
     get rate(): number;
     set rate(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitTimePitch": true;
+        "c:objc(cs)AVAudioUnitTimeEffect": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4756,6 +5002,13 @@ export declare class AVAudioUnitVarispeed extends AVAudioUnitVarispeed_base {
      */
     get rate(): number;
     set rate(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAudioUnitVarispeed": true;
+        "c:objc(cs)AVAudioUnitTimeEffect": true;
+        "c:objc(cs)AVAudioUnit": true;
+        "c:objc(cs)AVAudioNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "engine": true;
         "lastRenderTime": true;
@@ -4798,6 +5051,9 @@ export declare class AVAudioVoiceProcessingOtherAudioDuckingConfiguration extend
      * @availability iOS 17.0+
      */
     static init(): AVAudioVoiceProcessingOtherAudioDuckingConfiguration;
+    readonly $type: {
+        "c:@S@AVAudioVoiceProcessingOtherAudioDuckingConfiguration": true;
+    };
 }
 /**
  * enum Level
@@ -4830,6 +5086,10 @@ export declare const AVAudioVoiceProcessingSpeechActivityEvent: {
 export declare class AVMusicEvent extends SDKHandle {
     /** init() */
     static init(): AVMusicEvent;
+    readonly $type: {
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const AVAUPresetEvent_base: Omit<typeof AVMusicEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMusicEvent);
 /**
@@ -4837,13 +5097,11 @@ declare const AVAUPresetEvent_base: Omit<typeof AVMusicEvent, "init" | "prototyp
  * @availability iOS 16.0+
  */
 export declare class AVAUPresetEvent extends AVAUPresetEvent_base {
-    /** init() */
-    static init(): AVAUPresetEvent;
     /**
      * init(scope: UInt32, element: UInt32, dictionary presetDictionary: [AnyHashable : Any])
      * @availability iOS 16.0+
      */
-    static initScopeElementDictionary(scope: number, element: number, presetDictionary: NativeMap<unknown, unknown>): AVAUPresetEvent;
+    static init(scope: number, element: number, presetDictionary: NativeMap<unknown, unknown>): AVAUPresetEvent;
     /**
      * var element: UInt32 { get set }
      * @availability iOS 16.0+
@@ -4861,6 +5119,11 @@ export declare class AVAUPresetEvent extends AVAUPresetEvent_base {
      */
     get scope(): number;
     set scope(value: number);
+    readonly $type: {
+        "c:objc(cs)AVAUPresetEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "element": true;
         "presetDictionary": true;
@@ -4869,19 +5132,16 @@ export declare class AVAUPresetEvent extends AVAUPresetEvent_base {
 }
 /** typealias AVBeatRange = _AVBeatRange */
 export type AVBeatRange = SDKHandle;
-declare const AVExtendedNoteOnEvent_base: Omit<typeof AVMusicEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMusicEvent);
 /**
  * class AVExtendedNoteOnEvent
  * @availability iOS 16.0+
  */
-export declare class AVExtendedNoteOnEvent extends AVExtendedNoteOnEvent_base {
+export declare class AVExtendedNoteOnEvent extends AVMusicEvent {
     /**
      * class let defaultInstrument: UInt32
      * @availability iOS 16.0+
      */
     static get defaultInstrument(): number;
-    /** init() */
-    static init(): AVExtendedNoteOnEvent;
     /**
      * init(midiNote: Float, velocity: Float, groupID: UInt32, duration: AVMusicTimeStamp)
      * @availability iOS 16.0+
@@ -4922,6 +5182,11 @@ export declare class AVExtendedNoteOnEvent extends AVExtendedNoteOnEvent_base {
      */
     get velocity(): number;
     set velocity(value: number);
+    readonly $type: {
+        "c:objc(cs)AVExtendedNoteOnEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "groupID": true;
@@ -4936,19 +5201,22 @@ declare const AVExtendedTempoEvent_base: Omit<typeof AVMusicEvent, "init" | "pro
  * @availability iOS 16.0+
  */
 export declare class AVExtendedTempoEvent extends AVExtendedTempoEvent_base {
-    /** init() */
-    static init(): AVExtendedTempoEvent;
     /**
      * init(tempo: Double)
      * @availability iOS 16.0+
      */
-    static initTempo(tempo: number): AVExtendedTempoEvent;
+    static init(tempo: number): AVExtendedTempoEvent;
     /**
      * var tempo: Double { get set }
      * @availability iOS 16.0+
      */
     get tempo(): number;
     set tempo(value: number);
+    readonly $type: {
+        "c:objc(cs)AVExtendedTempoEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "tempo": true;
     };
@@ -4967,6 +5235,11 @@ export declare class AVMIDIChannelEvent extends AVMIDIChannelEvent_base {
      */
     get channel(): number;
     set channel(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMIDIChannelEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channel": true;
     };
@@ -4977,19 +5250,23 @@ declare const AVMIDIChannelPressureEvent_base: Omit<typeof AVMIDIChannelEvent, "
  * @availability iOS 16.0+
  */
 export declare class AVMIDIChannelPressureEvent extends AVMIDIChannelPressureEvent_base {
-    /** init() */
-    static init(): AVMIDIChannelPressureEvent;
     /**
      * init(channel: UInt32, pressure: UInt32)
      * @availability iOS 16.0+
      */
-    static initChannelPressure(channel: number, pressure: number): AVMIDIChannelPressureEvent;
+    static init(channel: number, pressure: number): AVMIDIChannelPressureEvent;
     /**
      * var pressure: UInt32 { get set }
      * @availability iOS 16.0+
      */
     get pressure(): number;
     set pressure(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMIDIChannelPressureEvent": true;
+        "c:objc(cs)AVMIDIChannelEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channel": true;
         "pressure": true;
@@ -5001,13 +5278,11 @@ declare const AVMIDIControlChangeEvent_base: Omit<typeof AVMIDIChannelEvent, "in
  * @availability iOS 16.0+
  */
 export declare class AVMIDIControlChangeEvent extends AVMIDIControlChangeEvent_base {
-    /** init() */
-    static init(): AVMIDIControlChangeEvent;
     /**
      * init(channel: UInt32, messageType: AVMIDIControlChangeEvent.MessageType, value: UInt32)
      * @availability iOS 16.0+
      */
-    static initChannelMessageTypeValue(channel: number, messageType: AVMIDIControlChangeEvent_MessageType, value: number): AVMIDIControlChangeEvent;
+    static init(channel: number, messageType: AVMIDIControlChangeEvent_MessageType, value: number): AVMIDIControlChangeEvent;
     /**
      * var messageType: AVMIDIControlChangeEvent.MessageType { get }
      * @availability iOS 16.0+
@@ -5018,6 +5293,12 @@ export declare class AVMIDIControlChangeEvent extends AVMIDIControlChangeEvent_b
      * @availability iOS 16.0+
      */
     get value(): number;
+    readonly $type: {
+        "c:objc(cs)AVMIDIControlChangeEvent": true;
+        "c:objc(cs)AVMIDIChannelEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channel": true;
         "messageType": true;
@@ -5047,18 +5328,21 @@ declare const AVMIDIMetaEvent_base: Omit<typeof AVMusicEvent, "init" | "prototyp
  * @availability iOS 16.0+
  */
 export declare class AVMIDIMetaEvent extends AVMIDIMetaEvent_base {
-    /** init() */
-    static init(): AVMIDIMetaEvent;
     /**
      * init(type: AVMIDIMetaEvent.EventType, data: Data)
      * @availability iOS 16.0+
      */
-    static initTypeData(type: AVMIDIMetaEvent_EventType, data: ArrayBuffer): AVMIDIMetaEvent;
+    static init(type: AVMIDIMetaEvent_EventType, data: ArrayBuffer): AVMIDIMetaEvent;
     /**
      * var type: AVMIDIMetaEvent.EventType { get }
      * @availability iOS 16.0+
      */
     get type(): AVMIDIMetaEvent_EventType;
+    readonly $type: {
+        "c:objc(cs)AVMIDIMetaEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "type": true;
     };
@@ -5081,13 +5365,11 @@ declare const AVMIDINoteEvent_base: Omit<typeof AVMusicEvent, "init" | "prototyp
  * @availability iOS 16.0+
  */
 export declare class AVMIDINoteEvent extends AVMIDINoteEvent_base {
-    /** init() */
-    static init(): AVMIDINoteEvent;
     /**
      * init(channel: UInt32, key keyNum: UInt32, velocity: UInt32, duration: AVMusicTimeStamp)
      * @availability iOS 16.0+
      */
-    static initChannelKeyVelocityDuration(channel: number, keyNum: number, velocity: number, duration: number): AVMIDINoteEvent;
+    static init(channel: number, keyNum: number, velocity: number, duration: number): AVMIDINoteEvent;
     /**
      * var channel: UInt32 { get set }
      * @availability iOS 16.0+
@@ -5112,6 +5394,11 @@ export declare class AVMIDINoteEvent extends AVMIDINoteEvent_base {
      */
     get velocity(): number;
     set velocity(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMIDINoteEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channel": true;
         "duration": true;
@@ -5125,19 +5412,23 @@ declare const AVMIDIPitchBendEvent_base: Omit<typeof AVMIDIChannelEvent, "init" 
  * @availability iOS 16.0+
  */
 export declare class AVMIDIPitchBendEvent extends AVMIDIPitchBendEvent_base {
-    /** init() */
-    static init(): AVMIDIPitchBendEvent;
     /**
      * init(channel: UInt32, value: UInt32)
      * @availability iOS 16.0+
      */
-    static initChannelValue(channel: number, value: number): AVMIDIPitchBendEvent;
+    static init(channel: number, value: number): AVMIDIPitchBendEvent;
     /**
      * var value: UInt32 { get set }
      * @availability iOS 16.0+
      */
     get value(): number;
     set value(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMIDIPitchBendEvent": true;
+        "c:objc(cs)AVMIDIChannelEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channel": true;
         "value": true;
@@ -5148,8 +5439,6 @@ export declare class AVMIDIPitchBendEvent extends AVMIDIPitchBendEvent_base {
  * @availability iOS 8.0+
  */
 export declare class AVMIDIPlayer extends SDKHandle {
-    /** init() */
-    static init(): AVMIDIPlayer;
     /**
      * init(contentsOf inURL: URL, soundBankURL bankURL: URL?) throws
      * @availability iOS 8.0+
@@ -5197,6 +5486,10 @@ export declare class AVMIDIPlayer extends SDKHandle {
      */
     get rate(): number;
     set rate(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMIDIPlayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentPosition": true;
         "duration": true;
@@ -5212,13 +5505,11 @@ declare const AVMIDIPolyPressureEvent_base: Omit<typeof AVMIDIChannelEvent, "ini
  * @availability iOS 16.0+
  */
 export declare class AVMIDIPolyPressureEvent extends AVMIDIPolyPressureEvent_base {
-    /** init() */
-    static init(): AVMIDIPolyPressureEvent;
     /**
      * init(channel: UInt32, key: UInt32, pressure: UInt32)
      * @availability iOS 16.0+
      */
-    static initChannelKeyPressure(channel: number, key: number, pressure: number): AVMIDIPolyPressureEvent;
+    static init(channel: number, key: number, pressure: number): AVMIDIPolyPressureEvent;
     /**
      * var key: UInt32 { get set }
      * @availability iOS 16.0+
@@ -5231,6 +5522,12 @@ export declare class AVMIDIPolyPressureEvent extends AVMIDIPolyPressureEvent_bas
      */
     get pressure(): number;
     set pressure(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMIDIPolyPressureEvent": true;
+        "c:objc(cs)AVMIDIChannelEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channel": true;
         "key": true;
@@ -5243,19 +5540,23 @@ declare const AVMIDIProgramChangeEvent_base: Omit<typeof AVMIDIChannelEvent, "in
  * @availability iOS 16.0+
  */
 export declare class AVMIDIProgramChangeEvent extends AVMIDIProgramChangeEvent_base {
-    /** init() */
-    static init(): AVMIDIProgramChangeEvent;
     /**
      * init(channel: UInt32, programNumber: UInt32)
      * @availability iOS 16.0+
      */
-    static initChannelProgramNumber(channel: number, programNumber: number): AVMIDIProgramChangeEvent;
+    static init(channel: number, programNumber: number): AVMIDIProgramChangeEvent;
     /**
      * var programNumber: UInt32 { get set }
      * @availability iOS 16.0+
      */
     get programNumber(): number;
     set programNumber(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMIDIProgramChangeEvent": true;
+        "c:objc(cs)AVMIDIChannelEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channel": true;
         "programNumber": true;
@@ -5267,18 +5568,21 @@ declare const AVMIDISysexEvent_base: Omit<typeof AVMusicEvent, "init" | "prototy
  * @availability iOS 16.0+
  */
 export declare class AVMIDISysexEvent extends AVMIDISysexEvent_base {
-    /** init() */
-    static init(): AVMIDISysexEvent;
     /**
      * init(data: Data)
      * @availability iOS 16.0+
      */
-    static initData(data: ArrayBuffer): AVMIDISysexEvent;
+    static init(data: ArrayBuffer): AVMIDISysexEvent;
     /**
      * var sizeInBytes: UInt32 { get }
      * @availability iOS 16.0+
      */
     get sizeInBytes(): number;
+    readonly $type: {
+        "c:objc(cs)AVMIDISysexEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sizeInBytes": true;
     };
@@ -5408,6 +5712,10 @@ export declare class AVMusicTrack extends SDKHandle {
      */
     get usesAutomatedParameters(): boolean;
     set usesAutomatedParameters(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVMusicTrack": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "destinationAudioUnit": true;
         "destinationMIDIEndpoint": true;
@@ -5441,18 +5749,21 @@ declare const AVMusicUserEvent_base: Omit<typeof AVMusicEvent, "init" | "prototy
  * @availability iOS 16.0+
  */
 export declare class AVMusicUserEvent extends AVMusicUserEvent_base {
-    /** init() */
-    static init(): AVMusicUserEvent;
     /**
      * init(data: Data)
      * @availability iOS 16.0+
      */
-    static initData(data: ArrayBuffer): AVMusicUserEvent;
+    static init(data: ArrayBuffer): AVMusicUserEvent;
     /**
      * var sizeInBytes: UInt32 { get }
      * @availability iOS 16.0+
      */
     get sizeInBytes(): number;
+    readonly $type: {
+        "c:objc(cs)AVMusicUserEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sizeInBytes": true;
     };
@@ -5463,13 +5774,11 @@ declare const AVParameterEvent_base: Omit<typeof AVMusicEvent, "init" | "prototy
  * @availability iOS 16.0+
  */
 export declare class AVParameterEvent extends AVParameterEvent_base {
-    /** init() */
-    static init(): AVParameterEvent;
     /**
      * init(parameterID: UInt32, scope: UInt32, element: UInt32, value: Float)
      * @availability iOS 16.0+
      */
-    static initParameterIDScopeElementValue(parameterID: number, scope: number, element: number, value: number): AVParameterEvent;
+    static init(parameterID: number, scope: number, element: number, value: number): AVParameterEvent;
     /**
      * var element: UInt32 { get set }
      * @availability iOS 16.0+
@@ -5494,6 +5803,11 @@ export declare class AVParameterEvent extends AVParameterEvent_base {
      */
     get value(): number;
     set value(value: number);
+    readonly $type: {
+        "c:objc(cs)AVParameterEvent": true;
+        "c:objc(cs)AVMusicEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "element": true;
         "parameterID": true;
@@ -5546,12 +5860,18 @@ export declare class AVReadOnlyAudioPCMBuffer extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initCopying(buffer: AVAudioPCMBuffer): AVReadOnlyAudioPCMBuffer;
+    readonly $type: {
+        "s:8AVFAudio24AVReadOnlyAudioPCMBufferV": true;
+    };
 }
 /**
  * enum ChannelData
  * @availability iOS 27.0+
  */
 export declare class AVReadOnlyAudioPCMBuffer_ChannelData extends SDKHandle {
+    readonly $type: {
+        "s:8AVFAudio24AVReadOnlyAudioPCMBufferV11ChannelDataO": true;
+    };
 }
 /**
  * enum AVSpeechBoundary
@@ -5570,8 +5890,6 @@ export declare const AVSpeechBoundary: {
  * @availability iOS 16.0+
  */
 export declare class AVSpeechSynthesisMarker extends SDKHandle {
-    /** init() */
-    static init(): AVSpeechSynthesisMarker;
     /**
      * init(bookmarkName mark: String, atByteSampleOffset byteSampleOffset: Int)
      * @availability iOS 17.0+
@@ -5632,6 +5950,10 @@ export declare class AVSpeechSynthesisMarker extends SDKHandle {
      */
     get textRange(): SDKHandle;
     set textRange(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)AVSpeechSynthesisMarker": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bookmarkName": true;
         "byteSampleOffset": true;
@@ -5679,6 +6001,11 @@ export declare class AVSpeechSynthesisProviderAudioUnit extends SDKHandle {
      */
     get speechVoices(): $SDK58;
     set speechVoices(value: $SDK58);
+    readonly $type: {
+        "c:objc(cs)AVSpeechSynthesisProviderAudioUnit": true;
+        "c:objc(cs)AUAudioUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "speechVoices": true;
     };
@@ -5708,6 +6035,10 @@ export declare class AVSpeechSynthesisProviderRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     get voice(): AVSpeechSynthesisProviderVoice;
+    readonly $type: {
+        "c:objc(cs)AVSpeechSynthesisProviderRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ssmlRepresentation": true;
         "voice": true;
@@ -5772,6 +6103,10 @@ export declare class AVSpeechSynthesisProviderVoice extends SDKHandle {
      */
     get voiceSize(): number;
     set voiceSize(value: number);
+    readonly $type: {
+        "c:objc(cs)AVSpeechSynthesisProviderVoice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "age": true;
         "gender": true;
@@ -5808,8 +6143,6 @@ export declare class AVSpeechSynthesisVoice extends SDKHandle {
      * @availability iOS 7.0+
      */
     static initLanguage(languageCode?: (string) | null): (AVSpeechSynthesisVoice) | null;
-    /** init() */
-    static init(): AVSpeechSynthesisVoice;
     /**
      * var audioFileSettings: [String : Any] { get }
      * @availability iOS 13.0+
@@ -5845,6 +6178,10 @@ export declare class AVSpeechSynthesisVoice extends SDKHandle {
      * @availability iOS 17.0+
      */
     get voiceTraits(): AVSpeechSynthesisVoice_Traits;
+    readonly $type: {
+        "c:objc(cs)AVSpeechSynthesisVoice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioFileSettings": true;
         "gender": true;
@@ -5987,6 +6324,10 @@ export declare class AVSpeechSynthesizer extends SDKHandle {
      */
     get usesApplicationAudioSession(): boolean;
     set usesApplicationAudioSession(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVSpeechSynthesizer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "mixToTelephonyUplink": true;
@@ -6058,8 +6399,6 @@ export interface AVSpeechSynthesizerDelegate {
  * @availability iOS 7.0+
  */
 export declare class AVSpeechUtterance extends SDKHandle {
-    /** init() */
-    static init(): AVSpeechUtterance;
     /**
      * init(attributedString string: NSAttributedString)
      * @availability iOS 10.0+
@@ -6127,6 +6466,10 @@ export declare class AVSpeechUtterance extends SDKHandle {
      */
     get volume(): number;
     set volume(value: number);
+    readonly $type: {
+        "c:objc(cs)AVSpeechUtterance": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributedSpeechString": true;
         "pitchMultiplier": true;
@@ -6139,7 +6482,7 @@ export declare class AVSpeechUtterance extends SDKHandle {
         "volume": true;
     };
 }
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let AVAudioEngineConfigurationChange: NSNotification.Name

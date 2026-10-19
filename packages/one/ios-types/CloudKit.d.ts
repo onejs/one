@@ -122,6 +122,11 @@ export declare class CKOperation extends SDKHandle {
      * @availability iOS 9.3+
      */
     get operationID(): string;
+    readonly $type: {
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -180,6 +185,12 @@ export declare class CKAcceptSharesOperation extends CKAcceptSharesOperation_bas
      */
     get perShareResultBlock(): (((arg0: CKShare_Metadata, arg1: SDKHandle) => Promise<void>)) | null;
     set perShareResultBlock(value: (((arg0: CKShare_Metadata, arg1: SDKHandle) => void)) | null);
+    readonly $type: {
+        "c:objc(cs)CKAcceptSharesOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -213,13 +224,11 @@ export declare class CKAllowedSharingOptions extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get standard(): CKAllowedSharingOptions;
-    /** init() */
-    static init(): CKAllowedSharingOptions;
     /**
      * init(allowedParticipantPermissionOptions: CKSharingParticipantPermissionOption, allowedParticipantAccessOptions: CKSharingParticipantAccessOption)
      * @availability iOS 16.0+
      */
-    static initAllowedParticipantPermissionOptionsAllowedParticipantAccessOptions(allowedParticipantPermissionOptions: CKSharingParticipantPermissionOption, allowedParticipantAccessOptions: CKSharingParticipantAccessOption): CKAllowedSharingOptions;
+    static init(allowedParticipantPermissionOptions: CKSharingParticipantPermissionOption, allowedParticipantAccessOptions: CKSharingParticipantAccessOption): CKAllowedSharingOptions;
     /**
      * var allowedParticipantAccessOptions: CKSharingParticipantAccessOption { get set }
      * @availability iOS 16.0+
@@ -244,6 +253,10 @@ export declare class CKAllowedSharingOptions extends SDKHandle {
      */
     get allowsParticipantsToInviteOthers(): boolean;
     set allowsParticipantsToInviteOthers(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CKAllowedSharingOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedParticipantAccessOptions": true;
         "allowedParticipantPermissionOptions": true;
@@ -271,6 +284,10 @@ export declare class CKAsset extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initImporting(exportedAssetID: CKAsset_ExportedAssetID): CKAsset;
+    readonly $type: {
+        "c:objc(cs)CKAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fileURL": true;
     };
@@ -280,6 +297,9 @@ export declare class CKAsset extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class CKAsset_ExportedAssetID extends SDKHandle {
+    readonly $type: {
+        "s:So7CKAssetC8CloudKitE15ExportedAssetIDV": true;
+    };
 }
 /**
  * class CKContainer
@@ -555,6 +575,10 @@ export declare class CKContainer extends SDKHandle {
      * @availability iOS 15.0+
      */
     accept27794(metadata: CKShare_Metadata): Promise<CKShare>;
+    readonly $type: {
+        "c:objc(cs)CKContainer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "containerIdentifier": true;
         "privateCloudDatabase": true;
@@ -585,6 +609,9 @@ export type CKContainer_Application_PermissionStatus = CKContainer_ApplicationPe
  * @availability iOS 8.0+
  */
 export declare class CKContainer_Application extends SDKHandle {
+    readonly $type: {
+        "s:So11CKContainerC8CloudKitE11ApplicationO": true;
+    };
 }
 /**
  * typealias ApplicationPermissionBlock = (CKContainer.ApplicationPermissionStatus, (any Error)?) -> Void
@@ -870,6 +897,10 @@ export declare class CKDatabase extends SDKHandle {
      * @deprecated iOS 15.0
      */
     recordsMatchingInZoneWith(query: CKQuery, zoneID?: $SDK37): Promise<Array<CKRecord>>;
+    readonly $type: {
+        "c:objc(cs)CKDatabase": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "databaseScope": true;
     };
@@ -879,6 +910,9 @@ export declare class CKDatabase extends SDKHandle {
  * @availability iOS 15.0+
  */
 export declare class CKDatabase_DatabaseChange extends SDKHandle {
+    readonly $type: {
+        "s:So10CKDatabaseC8CloudKitE14DatabaseChangeO": true;
+    };
 }
 /**
  * struct Deletion
@@ -901,6 +935,9 @@ export declare class CKDatabase_DatabaseChange_Deletion extends SDKHandle {
      * @availability iOS 15.0+
      */
     get zoneID(): CKRecordZone_ID;
+    readonly $type: {
+        "s:So10CKDatabaseC8CloudKitE14DatabaseChangeO8DeletionV": true;
+    };
 }
 /**
  * enum Reason
@@ -917,12 +954,18 @@ export declare class CKDatabase_DatabaseChange_Modification extends SDKHandle {
      * @availability iOS 15.0+
      */
     get zoneID(): CKRecordZone_ID;
+    readonly $type: {
+        "s:So10CKDatabaseC8CloudKitE14DatabaseChangeO12ModificationV": true;
+    };
 }
 /**
  * enum RecordZoneChange
  * @availability iOS 15.0+
  */
 export declare class CKDatabase_RecordZoneChange extends SDKHandle {
+    readonly $type: {
+        "s:So10CKDatabaseC8CloudKitE16RecordZoneChangeO": true;
+    };
 }
 /**
  * struct Deletion
@@ -939,6 +982,9 @@ export declare class CKDatabase_RecordZoneChange_Deletion extends SDKHandle {
      * @availability iOS 15.0+
      */
     get recordID(): CKRecord_ID;
+    readonly $type: {
+        "s:So10CKDatabaseC8CloudKitE16RecordZoneChangeO8DeletionV": true;
+    };
 }
 /**
  * struct Modification
@@ -950,6 +996,9 @@ export declare class CKDatabase_RecordZoneChange_Modification extends SDKHandle 
      * @availability iOS 15.0+
      */
     get record(): CKRecord;
+    readonly $type: {
+        "s:So10CKDatabaseC8CloudKitE16RecordZoneChangeO12ModificationV": true;
+    };
 }
 /**
  * enum Scope
@@ -1087,6 +1136,10 @@ export declare class CKNotification extends SDKHandle {
      * @availability iOS 9.0+
      */
     get subscriptionID(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)CKNotification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alertActionLocalizationKey": true;
         "alertBody": true;
@@ -1119,6 +1172,11 @@ export declare class CKDatabaseNotification extends CKNotification {
      * @availability iOS 10.0+
      */
     get databaseScope(): CKDatabase_Scope;
+    readonly $type: {
+        "c:objc(cs)CKDatabaseNotification": true;
+        "c:objc(cs)CKNotification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alertActionLocalizationKey": true;
         "alertBody": true;
@@ -1156,6 +1214,12 @@ export declare class CKDatabaseOperation extends CKDatabaseOperation_base {
      */
     get database(): (CKDatabase) | null;
     set database(value: (CKDatabase) | null);
+    readonly $type: {
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -1188,6 +1252,10 @@ export declare class CKSubscription extends SDKHandle {
      * @availability iOS 8.0+
      */
     get subscriptionID(): string;
+    readonly $type: {
+        "c:objc(cs)CKSubscription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "notificationInfo": true;
         "subscriptionType": true;
@@ -1220,6 +1288,11 @@ export declare class CKDatabaseSubscription extends CKSubscription {
      * @availability iOS 10.0+
      */
     static initSubscriptionID(subscriptionID: string): CKDatabaseSubscription;
+    readonly $type: {
+        "c:objc(cs)CKDatabaseSubscription": true;
+        "c:objc(cs)CKSubscription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "notificationInfo": true;
         "subscriptionType": true;
@@ -1259,6 +1332,12 @@ export declare class CKDiscoverAllUserIdentitiesOperation extends CKDiscoverAllU
      */
     get discoverAllUserIdentitiesResultBlock(): $SDK8;
     set discoverAllUserIdentitiesResultBlock(value: $SDK9);
+    readonly $type: {
+        "c:objc(cs)CKDiscoverAllUserIdentitiesOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -1316,6 +1395,12 @@ export declare class CKDiscoverUserIdentitiesOperation extends CKDiscoverUserIde
      */
     get discoverUserIdentitiesResultBlock(): $SDK8;
     set discoverUserIdentitiesResultBlock(value: $SDK9);
+    readonly $type: {
+        "c:objc(cs)CKDiscoverUserIdentitiesOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -1548,6 +1633,9 @@ export declare class CKError extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get zoneBusy(): CKError_Code;
+    readonly $type: {
+        "s:SC11CKErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1638,6 +1726,13 @@ export declare class CKFetchDatabaseChangesOperation extends CKFetchDatabaseChan
      */
     get fetchDatabaseChangesResultBlock(): $SDK8;
     set fetchDatabaseChangesResultBlock(value: $SDK9);
+    readonly $type: {
+        "c:objc(cs)CKFetchDatabaseChangesOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -1726,6 +1821,13 @@ export declare class CKFetchRecordChangesOperation extends CKFetchRecordChangesO
      */
     get resultsLimit(): number;
     set resultsLimit(value: number);
+    readonly $type: {
+        "c:objc(cs)CKFetchRecordChangesOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -1807,6 +1909,13 @@ export declare class CKFetchRecordsOperation extends CKFetchRecordsOperation_bas
      */
     get perRecordResultBlock(): $SDK78;
     set perRecordResultBlock(value: $SDK79);
+    readonly $type: {
+        "c:objc(cs)CKFetchRecordsOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -1917,6 +2026,13 @@ export declare class CKFetchRecordZoneChangesOperation extends CKFetchRecordZone
      */
     get recordWithIDWasDeletedBlock(): (((arg0: CKRecord_ID, arg1: string) => Promise<void>)) | null;
     set recordWithIDWasDeletedBlock(value: (((arg0: CKRecord_ID, arg1: string) => void)) | null);
+    readonly $type: {
+        "c:objc(cs)CKFetchRecordZoneChangesOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -1937,8 +2053,6 @@ export declare class CKFetchRecordZoneChangesOperation extends CKFetchRecordZone
  * @availability iOS 12.0+
  */
 export declare class CKFetchRecordZoneChangesOperation_ZoneConfiguration extends SDKHandle {
-    /** init() */
-    static init(): CKFetchRecordZoneChangesOperation_ZoneConfiguration;
     /**
      * @NSCopying var previousServerChangeToken: CKServerChangeToken? { get set }
      * @availability iOS 12.0+
@@ -1961,7 +2075,11 @@ export declare class CKFetchRecordZoneChangesOperation_ZoneConfiguration extends
      * convenience init(previousServerChangeToken: CKServerChangeToken? = nil, resultsLimit: Int? = nil, desiredKeys: [CKRecord.FieldKey]? = nil)
      * @availability iOS 12.0+
      */
-    static initPreviousServerChangeTokenResultsLimitDesiredKeys(previousServerChangeToken?: $SDK44, resultsLimit?: (number) | null, desiredKeys?: (Array<string>) | null): CKFetchRecordZoneChangesOperation_ZoneConfiguration;
+    static init(previousServerChangeToken?: $SDK44, resultsLimit?: (number) | null, desiredKeys?: (Array<string>) | null): CKFetchRecordZoneChangesOperation_ZoneConfiguration;
+    readonly $type: {
+        "c:objc(cs)CKFetchRecordZoneChangesConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "previousServerChangeToken": true;
         "resultsLimit": true;
@@ -1996,6 +2114,10 @@ export declare class CKFetchRecordZoneChangesOperation_ZoneOptions extends SDKHa
      */
     get resultsLimit(): number;
     set resultsLimit(value: number);
+    readonly $type: {
+        "c:objc(cs)CKFetchRecordZoneChangesOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "desiredKeys": true;
         "previousServerChangeToken": true;
@@ -2048,6 +2170,13 @@ export declare class CKFetchRecordZonesOperation extends CKFetchRecordZonesOpera
      */
     get fetchRecordZonesResultBlock(): $SDK8;
     set fetchRecordZonesResultBlock(value: $SDK9);
+    readonly $type: {
+        "c:objc(cs)CKFetchRecordZonesOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -2120,6 +2249,12 @@ export declare class CKFetchShareMetadataOperation extends CKFetchShareMetadataO
      */
     get rootRecordDesiredKeys(): (Array<string>) | null;
     set rootRecordDesiredKeys(value: (Array<string>) | null);
+    readonly $type: {
+        "c:objc(cs)CKFetchShareMetadataOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -2180,6 +2315,12 @@ export declare class CKFetchShareParticipantsOperation extends CKFetchShareParti
      */
     get fetchShareParticipantsResultBlock(): $SDK8;
     set fetchShareParticipantsResultBlock(value: $SDK9);
+    readonly $type: {
+        "c:objc(cs)CKFetchShareParticipantsOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -2237,6 +2378,13 @@ export declare class CKFetchSubscriptionsOperation extends CKFetchSubscriptionsO
      */
     get fetchSubscriptionCompletionBlock(): (((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => Promise<void>)) | null;
     set fetchSubscriptionCompletionBlock(value: (((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => void)) | null);
+    readonly $type: {
+        "c:objc(cs)CKFetchSubscriptionsOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -2283,6 +2431,13 @@ export declare class CKFetchWebAuthTokenOperation extends CKFetchWebAuthTokenOpe
      */
     get fetchWebAuthTokenResultBlock(): $SDK8;
     set fetchWebAuthTokenResultBlock(value: $SDK9);
+    readonly $type: {
+        "c:objc(cs)CKFetchWebAuthTokenOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -2315,6 +2470,11 @@ export declare class CKLocationSortDescriptor extends SDKHandle {
      * @availability iOS 8.0+
      */
     get relativeLocation(): __LocationEssentials_CLLocation;
+    readonly $type: {
+        "c:objc(cs)CKLocationSortDescriptor": true;
+        "c:objc(cs)NSSortDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "relativeLocation": true;
     };
@@ -2403,6 +2563,13 @@ export declare class CKModifyRecordsOperation extends CKModifyRecordsOperation_b
      */
     get perRecordDeleteBlock(): $SDK78;
     set perRecordDeleteBlock(value: $SDK79);
+    readonly $type: {
+        "c:objc(cs)CKModifyRecordsOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -2484,6 +2651,13 @@ export declare class CKModifyRecordZonesOperation extends CKModifyRecordZonesOpe
      * @availability iOS 8.0+
      */
     static initRecordZonesToSaveRecordZoneIDsToDelete(recordZonesToSave?: $SDK115, recordZoneIDsToDelete?: $SDK86): CKModifyRecordZonesOperation;
+    readonly $type: {
+        "c:objc(cs)CKModifyRecordZonesOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -2550,6 +2724,13 @@ export declare class CKModifySubscriptionsOperation extends CKModifySubscription
      */
     get perSubscriptionDeleteBlock(): $SDK95;
     set perSubscriptionDeleteBlock(value: $SDK96);
+    readonly $type: {
+        "c:objc(cs)CKModifySubscriptionsOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -2569,6 +2750,10 @@ export declare class CKModifySubscriptionsOperation extends CKModifySubscription
 export declare class CKNotification_ID extends SDKHandle {
     /** init() */
     static init(): CKNotification_ID;
+    readonly $type: {
+        "c:objc(cs)CKNotificationID": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum NotificationType
@@ -2625,6 +2810,10 @@ export declare class CKOperation_Configuration extends SDKHandle {
      */
     get timeoutIntervalForResource(): number;
     set timeoutIntervalForResource(value: number);
+    readonly $type: {
+        "c:objc(cs)CKOperationConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "container": true;
@@ -2689,6 +2878,10 @@ export declare class CKOperationGroup extends SDKHandle {
      */
     get quantity(): number;
     set quantity(value: number);
+    readonly $type: {
+        "c:objc(cs)CKOperationGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultConfiguration": true;
         "expectedReceiveSize": true;
@@ -2741,6 +2934,10 @@ export declare class CKQuery extends SDKHandle {
      * @availability iOS 8.0+
      */
     get recordType(): string;
+    readonly $type: {
+        "c:objc(cs)CKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "predicate": true;
         "sortDescriptors": true;
@@ -2771,6 +2968,11 @@ export declare class CKQueryNotification extends CKNotification {
      * @availability iOS 8.0+
      */
     get recordID(): (CKRecord_ID) | null;
+    readonly $type: {
+        "c:objc(cs)CKQueryNotification": true;
+        "c:objc(cs)CKNotification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alertActionLocalizationKey": true;
         "alertBody": true;
@@ -2891,6 +3093,13 @@ export declare class CKQueryOperation extends CKQueryOperation_base {
      */
     get recordMatchedBlock(): $SDK78;
     set recordMatchedBlock(value: $SDK79);
+    readonly $type: {
+        "c:objc(cs)CKQueryOperation": true;
+        "c:objc(cs)CKDatabaseOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -2911,6 +3120,10 @@ export declare class CKQueryOperation extends CKQueryOperation_base {
  * @availability iOS 8.0+
  */
 export declare class CKQueryOperation_Cursor extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)CKQueryCursor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CKQuerySubscription
@@ -2954,6 +3167,11 @@ export declare class CKQuerySubscription extends CKSubscription {
      * @availability iOS 10.0+
      */
     get recordType(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)CKQuerySubscription": true;
+        "c:objc(cs)CKSubscription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "notificationInfo": true;
         "subscriptionType": true;
@@ -3115,6 +3333,10 @@ export declare class CKRecord extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript3079(key: string): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)CKRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "creationDate": true;
         "creatorUserRecordID": true;
@@ -3148,8 +3370,6 @@ export type CKRecord_FieldKey = string;
  * @availability iOS 8.0+
  */
 export declare class CKRecord_ID extends SDKHandle {
-    /** init() */
-    static init(): CKRecord_ID;
     /**
      * convenience init(recordName: String)
      * @availability iOS 8.0+
@@ -3170,6 +3390,10 @@ export declare class CKRecord_ID extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initRecordNameZoneID(recordName?: string, zoneID?: CKRecordZone_ID): CKRecord_ID;
+    readonly $type: {
+        "c:objc(cs)CKRecordID": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "recordName": true;
         "zoneID": true;
@@ -3210,6 +3434,10 @@ export declare class CKRecord_Reference extends SDKHandle {
      * @availability iOS 8.0+
      */
     get action(): CKRecord_ReferenceAction;
+    readonly $type: {
+        "c:objc(cs)CKReference": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "recordID": true;
         "action": true;
@@ -3272,6 +3500,9 @@ export declare class CKRecord_SystemFieldKey extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get recordID(): string;
+    readonly $type: {
+        "s:So8CKRecordC8CloudKitE14SystemFieldKeyO": true;
+    };
 }
 /**
  * enum SystemType
@@ -3288,6 +3519,9 @@ export declare class CKRecord_SystemType extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get share(): string;
+    readonly $type: {
+        "s:So8CKRecordC8CloudKitE10SystemTypeO": true;
+    };
 }
 /**
  * struct CKRecordKeyValueIterator
@@ -3299,6 +3533,9 @@ export declare class CKRecordKeyValueIterator extends SDKHandle {
      * @availability iOS 8.0+
      */
     next(): ([string, SDKHandle]) | null;
+    readonly $type: {
+        "s:8CloudKit24CKRecordKeyValueIteratorV": true;
+    };
 }
 /**
  * typealias Element = (CKRecord.FieldKey, any CKRecordValueProtocol)
@@ -3388,6 +3625,10 @@ export declare class CKRecordZone extends SDKHandle {
      * @availability iOS 8.0+
      */
     get zoneID(): CKRecordZone_ID;
+    readonly $type: {
+        "c:objc(cs)CKRecordZone": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "capabilities": true;
         "encryptionScope": true;
@@ -3444,8 +3685,6 @@ export declare const CKRecordZone_EncryptionScope: {
  * @availability iOS 8.0+
  */
 export declare class CKRecordZone_ID extends SDKHandle {
-    /** init() */
-    static init(): CKRecordZone_ID;
     /**
      * var ownerName: String { get }
      * @availability iOS 8.0+
@@ -3477,6 +3716,10 @@ export declare class CKRecordZone_ID extends SDKHandle {
      * @availability iOS 10.0+
      */
     static initZoneNameOwnerName33926(zoneName?: string, ownerName?: string): CKRecordZone_ID;
+    readonly $type: {
+        "c:objc(cs)CKRecordZoneID": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ownerName": true;
         "zoneName": true;
@@ -3497,6 +3740,11 @@ export declare class CKRecordZoneNotification extends CKNotification {
      * @availability iOS 8.0+
      */
     get recordZoneID(): $SDK37;
+    readonly $type: {
+        "c:objc(cs)CKRecordZoneNotification": true;
+        "c:objc(cs)CKNotification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alertActionLocalizationKey": true;
         "alertBody": true;
@@ -3553,6 +3801,11 @@ export declare class CKRecordZoneSubscription extends CKSubscription {
      * @availability iOS 10.0+
      */
     static initZoneIDSubscriptionID(zoneID: CKRecordZone_ID, subscriptionID: string): CKRecordZoneSubscription;
+    readonly $type: {
+        "c:objc(cs)CKRecordZoneSubscription": true;
+        "c:objc(cs)CKSubscription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "notificationInfo": true;
         "subscriptionType": true;
@@ -3564,6 +3817,10 @@ export declare class CKRecordZoneSubscription extends CKSubscription {
  * @availability iOS 8.0+
  */
 export declare class CKServerChangeToken extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)CKServerChangeToken": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CKShare
@@ -3662,6 +3919,11 @@ export declare class CKShare extends CKRecord {
      * @availability iOS 26.0+
      */
     oneTimeURL(participantID: string): (string) | null;
+    readonly $type: {
+        "c:objc(cs)CKShare": true;
+        "c:objc(cs)CKRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "creationDate": true;
         "creatorUserRecordID": true;
@@ -3721,6 +3983,10 @@ export declare class CKShare_AccessRequester extends SDKHandle {
      * @availability iOS 26.0+
      */
     get userIdentity(): CKUserIdentity;
+    readonly $type: {
+        "c:objc(cs)CKShareAccessRequester": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "participantLookupInfo": true;
         "userIdentity": true;
@@ -3736,6 +4002,10 @@ export declare class CKShare_BlockedIdentity extends SDKHandle {
      * @availability iOS 26.0+
      */
     get userIdentity(): CKUserIdentity;
+    readonly $type: {
+        "c:objc(cs)CKShareBlockedIdentity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "userIdentity": true;
     };
@@ -3791,6 +4061,10 @@ export declare class CKShare_Metadata extends SDKHandle {
      * @availability iOS 10.0+
      */
     get share(): CKShare;
+    readonly $type: {
+        "c:objc(cs)CKShareMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "containerIdentifier": true;
         "hierarchicalRootRecordID": true;
@@ -3856,6 +4130,10 @@ export declare class CKShare_Participant extends SDKHandle {
      * @availability iOS 10.0+
      */
     get participantID(): string;
+    readonly $type: {
+        "c:objc(cs)CKShareParticipant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "acceptanceStatus": true;
         "dateAddedToShare": true;
@@ -3932,6 +4210,9 @@ export declare class CKShare_SystemFieldKey extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get shareType(): string;
+    readonly $type: {
+        "s:So7CKShareC8CloudKitE14SystemFieldKeyO": true;
+    };
 }
 declare const CKShareRequestAccessOperation_base: Omit<typeof CKOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKOperation);
 /**
@@ -3967,6 +4248,12 @@ export declare class CKShareRequestAccessOperation extends CKShareRequestAccessO
      */
     get perShareAccessRequestResultBlock(): $SDK95;
     set perShareAccessRequestResultBlock(value: $SDK96);
+    readonly $type: {
+        "c:objc(cs)CKShareRequestAccessOperation": true;
+        "c:objc(cs)CKOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCellularAccess": true;
         "configuration": true;
@@ -3983,6 +4270,9 @@ export declare class CKShareRequestAccessOperation extends CKShareRequestAccessO
  * @availability iOS 16.0+
  */
 export declare class CKShareTransferRepresentation<Item = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8CloudKit29CKShareTransferRepresentationV": true;
+    };
 }
 /**
  * typealias Body = some TransferRepresentation
@@ -3999,6 +4289,9 @@ export declare class CKShareTransferRepresentation_ExportedShare<Item = unknown>
      * @availability iOS 16.0+
      */
     static existing(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): CKShareTransferRepresentation_ExportedShare<string>;
+    readonly $type: {
+        "s:8CloudKit29CKShareTransferRepresentationV13ExportedShareV": true;
+    };
 }
 /**
  * typealias Representation = some TransferRepresentation
@@ -4069,8 +4362,6 @@ export type CKSubscription_ID = string;
  * @availability iOS 8.0+
  */
 export declare class CKSubscription_NotificationInfo extends SDKHandle {
-    /** init() */
-    static init(): CKSubscription_NotificationInfo;
     /**
      * var alertActionLocalizationKey: String? { get set }
      * @availability iOS 8.0+
@@ -4183,7 +4474,11 @@ export declare class CKSubscription_NotificationInfo extends SDKHandle {
      * convenience init(alertBody: String? = nil, alertLocalizationKey: String? = nil, alertLocalizationArgs: [CKRecord.FieldKey] = [], title: String? = nil, titleLocalizationKey: String? = nil, titleLocalizationArgs: [CKRecord.FieldKey] = [], subtitle: String? = nil, subtitleLocalizationKey: String? = nil, subtitleLocalizationArgs: [CKRecord.FieldKey] = [], alertActionLocalizationKey: String? = nil, alertLaunchImage: String? = nil, soundName: String? = nil, desiredKeys: [CKRecord.FieldKey] = [], shouldBadge: Bool = false, shouldSendContentAvailable: Bool = false, shouldSendMutableContent: Bool = false, category: String? = nil, collapseIDKey: String? = nil)
      * @availability iOS 8.0+
      */
-    static initAlertBodyAlertLocalizationKeyAlertLocalizationArgsTitleTitleLocalizationKeyTitleLocalizationArgsSubtitleSubtitleLocalizationKeySubtitleLocalizationArgsAlertActionLocalizationKeyAlertLaunchImageSoundNameDesiredKeysShouldBadgeShouldSendContentAvailableShouldSendMutableContentCategoryCollapseIDKey(alertBody?: (string) | null, alertLocalizationKey?: (string) | null, alertLocalizationArgs?: Array<string>, title?: (string) | null, titleLocalizationKey?: (string) | null, titleLocalizationArgs?: Array<string>, subtitle?: (string) | null, subtitleLocalizationKey?: (string) | null, subtitleLocalizationArgs?: Array<string>, alertActionLocalizationKey?: (string) | null, alertLaunchImage?: (string) | null, soundName?: (string) | null, desiredKeys?: Array<string>, shouldBadge?: boolean, shouldSendContentAvailable?: boolean, shouldSendMutableContent?: boolean, category?: (string) | null, collapseIDKey?: (string) | null): CKSubscription_NotificationInfo;
+    static init(alertBody?: (string) | null, alertLocalizationKey?: (string) | null, alertLocalizationArgs?: Array<string>, title?: (string) | null, titleLocalizationKey?: (string) | null, titleLocalizationArgs?: Array<string>, subtitle?: (string) | null, subtitleLocalizationKey?: (string) | null, subtitleLocalizationArgs?: Array<string>, alertActionLocalizationKey?: (string) | null, alertLaunchImage?: (string) | null, soundName?: (string) | null, desiredKeys?: Array<string>, shouldBadge?: boolean, shouldSendContentAvailable?: boolean, shouldSendMutableContent?: boolean, category?: (string) | null, collapseIDKey?: (string) | null): CKSubscription_NotificationInfo;
+    readonly $type: {
+        "c:objc(cs)CKNotificationInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alertActionLocalizationKey": true;
         "alertBody": true;
@@ -4253,6 +4548,9 @@ export declare class CKSyncEngine extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(configuration: CKSyncEngine_Configuration): CKSyncEngine;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC": true;
+    };
 }
 /**
  * struct Configuration
@@ -4299,6 +4597,9 @@ export declare class CKSyncEngine_Configuration extends SDKHandle {
      */
     get delegate(): SDKHandle;
     set delegate(value: SDKHandle);
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC13ConfigurationV": true;
+    };
 }
 /**
  * enum Event
@@ -4310,6 +4611,9 @@ export declare class CKSyncEngine_Event extends SDKHandle {
      * @availability iOS 17.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO": true;
+    };
 }
 /**
  * struct AccountChange
@@ -4326,12 +4630,18 @@ export declare class CKSyncEngine_Event_AccountChange extends SDKHandle {
      * @availability iOS 17.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO13AccountChangeV": true;
+    };
 }
 /**
  * enum ChangeType
  * @availability iOS 17.0+
  */
 export declare class CKSyncEngine_Event_AccountChange_ChangeType extends SDKHandle {
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO13AccountChangeV0G4TypeO": true;
+    };
 }
 /**
  * struct DidFetchChanges
@@ -4348,6 +4658,9 @@ export declare class CKSyncEngine_Event_DidFetchChanges extends SDKHandle {
      * @availability iOS 17.2+
      */
     get context(): CKSyncEngine_FetchChangesContext;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO15DidFetchChangesV": true;
+    };
 }
 /**
  * struct DidFetchRecordZoneChanges
@@ -4369,6 +4682,9 @@ export declare class CKSyncEngine_Event_DidFetchRecordZoneChanges extends SDKHan
      * @availability iOS 17.0+
      */
     get zoneID(): CKRecordZone_ID;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO25DidFetchRecordZoneChangesV": true;
+    };
 }
 /**
  * struct DidSendChanges
@@ -4385,6 +4701,9 @@ export declare class CKSyncEngine_Event_DidSendChanges extends SDKHandle {
      * @availability iOS 17.0+
      */
     get context(): CKSyncEngine_SendChangesContext;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO14DidSendChangesV": true;
+    };
 }
 /**
  * struct FetchedDatabaseChanges
@@ -4406,6 +4725,9 @@ export declare class CKSyncEngine_Event_FetchedDatabaseChanges extends SDKHandle
      * @availability iOS 17.0+
      */
     get deletions(): Array<CKDatabase_DatabaseChange_Deletion>;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO22FetchedDatabaseChangesV": true;
+    };
 }
 /**
  * struct FetchedRecordZoneChanges
@@ -4427,6 +4749,9 @@ export declare class CKSyncEngine_Event_FetchedRecordZoneChanges extends SDKHand
      * @availability iOS 17.0+
      */
     get deletions(): Array<CKDatabase_RecordZoneChange_Deletion>;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO24FetchedRecordZoneChangesV": true;
+    };
 }
 /**
  * struct SentDatabaseChanges
@@ -4458,6 +4783,9 @@ export declare class CKSyncEngine_Event_SentDatabaseChanges extends SDKHandle {
      * @availability iOS 17.0+
      */
     get failedZoneDeletes(): NativeMap<CKRecordZone_ID, CKError_Code>;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO19SentDatabaseChangesV": true;
+    };
 }
 /**
  * struct FailedZoneSave
@@ -4479,6 +4807,9 @@ export declare class CKSyncEngine_Event_SentDatabaseChanges_FailedZoneSave exten
      * @availability iOS 17.0+
      */
     get error(): CKError_Code;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO19SentDatabaseChangesV14FailedZoneSaveV": true;
+    };
 }
 /**
  * struct SentRecordZoneChanges
@@ -4510,6 +4841,9 @@ export declare class CKSyncEngine_Event_SentRecordZoneChanges extends SDKHandle 
      * @availability iOS 17.0+
      */
     get savedRecords(): Array<CKRecord>;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO21SentRecordZoneChangesV": true;
+    };
 }
 /**
  * struct FailedRecordSave
@@ -4531,6 +4865,9 @@ export declare class CKSyncEngine_Event_SentRecordZoneChanges_FailedRecordSave e
      * @availability iOS 17.0+
      */
     get record(): CKRecord;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO21SentRecordZoneChangesV06FailedG4SaveV": true;
+    };
 }
 /**
  * struct StateUpdate
@@ -4547,6 +4884,9 @@ export declare class CKSyncEngine_Event_StateUpdate extends SDKHandle {
      * @availability iOS 17.0+
      */
     get stateSerialization(): CKSyncEngine_State_Serialization;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO11StateUpdateV": true;
+    };
 }
 /**
  * struct WillFetchChanges
@@ -4563,6 +4903,9 @@ export declare class CKSyncEngine_Event_WillFetchChanges extends SDKHandle {
      * @availability iOS 17.2+
      */
     get context(): CKSyncEngine_FetchChangesContext;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO16WillFetchChangesV": true;
+    };
 }
 /**
  * struct WillFetchRecordZoneChanges
@@ -4579,6 +4922,9 @@ export declare class CKSyncEngine_Event_WillFetchRecordZoneChanges extends SDKHa
      * @availability iOS 17.0+
      */
     get zoneID(): CKRecordZone_ID;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO26WillFetchRecordZoneChangesV": true;
+    };
 }
 /**
  * struct WillSendChanges
@@ -4595,6 +4941,9 @@ export declare class CKSyncEngine_Event_WillSendChanges extends SDKHandle {
      * @availability iOS 17.0+
      */
     get context(): CKSyncEngine_SendChangesContext;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5EventO15WillSendChangesV": true;
+    };
 }
 /**
  * struct FetchChangesContext
@@ -4616,6 +4965,9 @@ export declare class CKSyncEngine_FetchChangesContext extends SDKHandle {
      * @availability iOS 17.0+
      */
     get options(): CKSyncEngine_FetchChangesOptions;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC19FetchChangesContextV": true;
+    };
 }
 /**
  * struct FetchChangesOptions
@@ -4650,6 +5002,9 @@ export declare class CKSyncEngine_FetchChangesOptions extends SDKHandle {
      */
     get scope(): CKSyncEngine_FetchChangesOptions_Scope;
     set scope(value: CKSyncEngine_FetchChangesOptions_Scope);
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC19FetchChangesOptionsV": true;
+    };
 }
 /**
  * enum Scope
@@ -4666,6 +5021,9 @@ export declare class CKSyncEngine_FetchChangesOptions_Scope extends SDKHandle {
      * @availability iOS 17.0+
      */
     contains(zoneID: CKRecordZone_ID): boolean;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC19FetchChangesOptionsV5ScopeO": true;
+    };
 }
 /**
  * enum PendingDatabaseChange
@@ -4677,6 +5035,9 @@ export declare class CKSyncEngine_PendingDatabaseChange extends SDKHandle {
      * @availability iOS 17.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC21PendingDatabaseChangeO": true;
+    };
 }
 /**
  * enum PendingRecordZoneChange
@@ -4688,6 +5049,9 @@ export declare class CKSyncEngine_PendingRecordZoneChange extends SDKHandle {
      * @availability iOS 17.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC23PendingRecordZoneChangeO": true;
+    };
 }
 /**
  * struct RecordZoneChangeBatch
@@ -4722,6 +5086,9 @@ export declare class CKSyncEngine_RecordZoneChangeBatch extends SDKHandle {
      */
     get recordIDsToDelete(): Array<CKRecord_ID>;
     set recordIDsToDelete(value: Array<CKRecord_ID>);
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC21RecordZoneChangeBatchV": true;
+    };
 }
 /**
  * struct SendChangesContext
@@ -4743,6 +5110,9 @@ export declare class CKSyncEngine_SendChangesContext extends SDKHandle {
      * @availability iOS 17.0+
      */
     get options(): CKSyncEngine_SendChangesOptions;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC18SendChangesContextV": true;
+    };
 }
 /**
  * struct SendChangesOptions
@@ -4771,6 +5141,9 @@ export declare class CKSyncEngine_SendChangesOptions extends SDKHandle {
      */
     get scope(): CKSyncEngine_SendChangesOptions_Scope;
     set scope(value: CKSyncEngine_SendChangesOptions_Scope);
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC18SendChangesOptionsV": true;
+    };
 }
 /**
  * enum Scope
@@ -4792,6 +5165,9 @@ export declare class CKSyncEngine_SendChangesOptions_Scope extends SDKHandle {
      * @availability iOS 17.0+
      */
     contains86583(recordID: CKRecord_ID): boolean;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC18SendChangesOptionsV5ScopeO": true;
+    };
 }
 /**
  * final class State
@@ -4839,12 +5215,18 @@ export declare class CKSyncEngine_State extends SDKHandle {
      * @availability iOS 17.0+
      */
     removePendingRecordZoneChanges(pendingRecordZoneChanges: $SDK143): void;
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5StateC": true;
+    };
 }
 /**
  * struct Serialization
  * @availability iOS 17.0+
  */
 export declare class CKSyncEngine_State_Serialization extends SDKHandle {
+    readonly $type: {
+        "s:8CloudKit12CKSyncEngineC5StateC13SerializationV": true;
+    };
 }
 /**
  * enum SyncReason
@@ -4973,6 +5355,10 @@ export declare class CKSystemSharingUIObserver extends SDKHandle {
      */
     get systemSharingUIDidStopSharingBlock(): $SDK78;
     set systemSharingUIDidStopSharingBlock(value: $SDK79);
+    readonly $type: {
+        "c:objc(cs)CKSystemSharingUIObserver": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CKUserIdentity
@@ -5005,6 +5391,10 @@ export declare class CKUserIdentity extends SDKHandle {
      * @availability iOS 10.0+
      */
     get userRecordID(): (CKRecord_ID) | null;
+    readonly $type: {
+        "c:objc(cs)CKUserIdentity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contactIdentifiers": true;
         "hasiCloudAccount": true;
@@ -5063,6 +5453,10 @@ export declare class CKUserIdentity_LookupInfo extends SDKHandle {
      * @availability iOS 10.0+
      */
     get userRecordID(): (CKRecord_ID) | null;
+    readonly $type: {
+        "c:objc(cs)CKUserIdentityLookupInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "emailAddress": true;
         "phoneNumber": true;
@@ -5075,8 +5469,12 @@ export declare class NSItemProvider extends SDKHandle {
      * @availability iOS 16.0+
      */
     registerCKShare(share: CKShare, container: CKContainer, allowedSharingOptions?: CKAllowedSharingOptions): void;
+    readonly $type: {
+        "c:objc(cs)NSItemProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let CKAccountChanged: NSNotification.Name

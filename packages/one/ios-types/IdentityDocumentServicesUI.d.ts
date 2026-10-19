@@ -44,6 +44,9 @@ export interface IdentityDocumentRequestScene {
  * @availability iOS 26.0+
  */
 export declare class IdentityDocumentRequestSceneBuilder extends SDKHandle {
+    readonly $type: {
+        "s:26IdentityDocumentServicesUI0aB19RequestSceneBuilderV": true;
+    };
 }
 /**
  * @MainActor final class IdentityDocumentWebPresentmentController
@@ -72,6 +75,9 @@ export declare class IdentityDocumentWebPresentmentController extends SDKHandle 
      * @availability iOS 26.0+
      */
     static init(): Promise<IdentityDocumentWebPresentmentController>;
+    readonly $type: {
+        "s:26IdentityDocumentServicesUI0aB24WebPresentmentControllerC": true;
+    };
 }
 /**
  * @MainActor protocol IdentityDocumentWebPresentmentControllerDelegate : AnyObject
@@ -104,12 +110,18 @@ export declare class ISO18013MobileDocumentRequestContext extends SDKHandle {
      * @availability iOS 26.0+
      */
     get request(): _IdentityDocumentServices_ISO18013MobileDocumentRequest;
+    readonly $type: {
+        "s:26IdentityDocumentServicesUI014ISO18013MobileB14RequestContextV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct ISO18013MobileDocumentRequestScene<Content> where Content : Sendable, Content : View
  * @availability iOS 26.0+
  */
 export declare class ISO18013MobileDocumentRequestScene<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:26IdentityDocumentServicesUI014ISO18013MobileB12RequestSceneV": true;
+    };
 }
 /**
  * typealias Body = some AppExtensionScene

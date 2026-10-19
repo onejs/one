@@ -9,5 +9,9 @@ export declare class NSManagedObjectModel extends SDKHandle {
      * @availability iOS 26.0+
      */
     static makeManagedObjectModel(schema: _SwiftData_Schema, managedObjectModel?: $SDK0): $SDK0;
+    readonly $type: {
+        "c:objc(cs)NSManagedObjectModel": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

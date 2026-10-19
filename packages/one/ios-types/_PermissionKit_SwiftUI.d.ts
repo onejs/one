@@ -5,12 +5,18 @@ import { SDKHandle } from 'one/ios-runtime';
  * @availability iOS 26.5+
  */
 export declare class AskPermissionAction extends SDKHandle {
+    readonly $type: {
+        "s:22_PermissionKit_SwiftUI03AskA6ActionV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct CommunicationLimitsButton<Label> where Label : View
  * @availability iOS 26.0+
  */
 export declare class CommunicationLimitsButton<Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:22_PermissionKit_SwiftUI25CommunicationLimitsButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -22,6 +28,9 @@ export type CommunicationLimitsButton_Body<Label = unknown> = SDKHandle;
  * @availability iOS 26.2+
  */
 export declare class PermissionButton<Topic = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:22_PermissionKit_SwiftUI0A6ButtonV": true;
+    };
 }
 /**
  * typealias Body = some View

@@ -8,4 +8,8 @@ export declare class NSPersistentCloudKitContainerOptions extends SDKHandle {
      */
     get databaseScope(): _CloudKit_CKDatabase_Scope;
     set databaseScope(value: _CloudKit_CKDatabase_Scope);
+    readonly $type: {
+        "c:objc(cs)NSPersistentCloudKitContainerOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
 }

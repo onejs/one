@@ -23,6 +23,10 @@ export declare class BGTask extends SDKHandle {
      * @availability iOS 13.0+
      */
     get identifier(): string;
+    readonly $type: {
+        "c:objc(cs)BGTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -32,6 +36,11 @@ export declare class BGTask extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class BGAppRefreshTask extends BGTask {
+    readonly $type: {
+        "c:objc(cs)BGAppRefreshTask": true;
+        "c:objc(cs)BGTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -52,6 +61,10 @@ export declare class BGTaskRequest extends SDKHandle {
      * @availability iOS 13.0+
      */
     get identifier(): string;
+    readonly $type: {
+        "c:objc(cs)BGTaskRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "earliestBeginDate": true;
         "identifier": true;
@@ -67,6 +80,11 @@ export declare class BGAppRefreshTaskRequest extends BGTaskRequest {
      * @availability iOS 13.0+
      */
     static init(identifier: string): BGAppRefreshTaskRequest;
+    readonly $type: {
+        "c:objc(cs)BGAppRefreshTaskRequest": true;
+        "c:objc(cs)BGTaskRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "earliestBeginDate": true;
         "identifier": true;
@@ -92,6 +110,11 @@ export declare class BGContinuedProcessingTask extends BGTask {
      * @availability iOS 26.0+
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)BGContinuedProcessingTask": true;
+        "c:objc(cs)BGTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "subtitle": true;
@@ -132,6 +155,11 @@ export declare class BGContinuedProcessingTaskRequest extends BGTaskRequest {
      */
     get title(): string;
     set title(value: string);
+    readonly $type: {
+        "c:objc(cs)BGContinuedProcessingTaskRequest": true;
+        "c:objc(cs)BGTaskRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "earliestBeginDate": true;
         "identifier": true;
@@ -175,6 +203,11 @@ export declare const BGContinuedProcessingTaskRequest_SubmissionStrategy: {
  * @availability iOS 13.0+
  */
 export declare class BGProcessingTask extends BGTask {
+    readonly $type: {
+        "c:objc(cs)BGProcessingTask": true;
+        "c:objc(cs)BGTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -184,6 +217,12 @@ export declare class BGProcessingTask extends BGTask {
  * @availability iOS 17.0+
  */
 export declare class BGHealthResearchTask extends BGProcessingTask {
+    readonly $type: {
+        "c:objc(cs)BGHealthResearchTask": true;
+        "c:objc(cs)BGProcessingTask": true;
+        "c:objc(cs)BGTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -210,6 +249,11 @@ export declare class BGProcessingTaskRequest extends BGTaskRequest {
      */
     get requiresNetworkConnectivity(): boolean;
     set requiresNetworkConnectivity(value: boolean);
+    readonly $type: {
+        "c:objc(cs)BGProcessingTaskRequest": true;
+        "c:objc(cs)BGTaskRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "earliestBeginDate": true;
         "identifier": true;
@@ -228,6 +272,12 @@ export declare class BGHealthResearchTaskRequest extends BGProcessingTaskRequest
      */
     get protectionTypeOfRequiredData(): _Foundation_NSString;
     set protectionTypeOfRequiredData(value: _Foundation_NSString);
+    readonly $type: {
+        "c:objc(cs)BGHealthResearchTaskRequest": true;
+        "c:objc(cs)BGProcessingTaskRequest": true;
+        "c:objc(cs)BGTaskRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "earliestBeginDate": true;
         "identifier": true;
@@ -287,6 +337,10 @@ export declare class BGTaskScheduler extends SDKHandle {
      * @deprecated iOS 27.0
      */
     submit(taskRequest: BGTaskRequest): void;
+    readonly $type: {
+        "c:objc(cs)BGTaskScheduler": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct Error
@@ -318,6 +372,9 @@ export declare class BGTaskScheduler_Error extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get tooManyPendingTaskRequests(): BGTaskScheduler_Error_Code;
+    readonly $type: {
+        "s:SC24BGTaskSchedulerErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code

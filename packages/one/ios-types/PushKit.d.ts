@@ -18,6 +18,10 @@ export declare class PKPushCredentials extends SDKHandle {
      * @availability iOS 8.0+
      */
     get type(): PKPushType;
+    readonly $type: {
+        "c:objc(cs)PKPushCredentials": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "token": true;
         "type": true;
@@ -40,6 +44,10 @@ export declare class PKPushPayload extends SDKHandle {
      * @availability iOS 8.0+
      */
     get type(): PKPushType;
+    readonly $type: {
+        "c:objc(cs)PKPushPayload": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dictionaryPayload": true;
         "type": true;
@@ -72,6 +80,10 @@ export declare class PKPushRegistry extends SDKHandle {
      */
     get desiredPushTypes(): (Array<PKPushType>) | null;
     set desiredPushTypes(value: (Array<PKPushType>) | null);
+    readonly $type: {
+        "c:objc(cs)PKPushRegistry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "desiredPushTypes": true;
@@ -130,6 +142,10 @@ export declare class PKVoIPPushMetadata extends SDKHandle {
      * @availability iOS 26.4+
      */
     get mustReport(): boolean;
+    readonly $type: {
+        "c:objc(cs)PKVoIPPushMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mustReport": true;
     };

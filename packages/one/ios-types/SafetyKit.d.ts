@@ -44,6 +44,10 @@ export declare class SACrashDetectionEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get response(): SACrashDetectionEvent_Response;
+    readonly $type: {
+        "c:objc(cs)SACrashDetectionEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "location": true;
@@ -90,6 +94,10 @@ export declare class SACrashDetectionManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<SACrashDetectionDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)SACrashDetectionManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorizationStatus": true;
         "delegate": true;
@@ -124,6 +132,10 @@ export declare class SAEmergencyResponseManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<SAEmergencyResponseDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)SAEmergencyResponseManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -170,6 +182,9 @@ export declare class SAError extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get operationFailed(): SAError_Code;
+    readonly $type: {
+        "s:SC11SAErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code

@@ -10,6 +10,9 @@ export declare class AddOrderToWalletButton extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(signedArchive: ArrayBuffer, onCompletion: ((arg0: SDKHandle) => void)): Promise<AddOrderToWalletButton>;
+    readonly $type: {
+        "s:12FinanceKitUI22AddOrderToWalletButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -31,6 +34,9 @@ export declare class AddOrderToWalletButtonStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get black(): AddOrderToWalletButtonStyle;
+    readonly $type: {
+        "s:12FinanceKitUI27AddOrderToWalletButtonStyleV": true;
+    };
 }
 /**
  * typealias FinancialConnectionExtensionAuthorizationParams = [String : String]
@@ -58,6 +64,9 @@ export declare class FinancialConnectionExtensionAuthorizationRequest extends SD
      * @availability iOS 17.0+
      */
     completeError(error: NativeError): void;
+    readonly $type: {
+        "s:12FinanceKitUI48FinancialConnectionExtensionAuthorizationRequestV": true;
+    };
 }
 /**
  * typealias CompletionHandler = @Sendable (FinancialConnectionExtensionAuthorizationRequest.CompletionHandlerResult) -> Void
@@ -84,6 +93,9 @@ export declare class FinancialConnectionExtensionAuthorizationResult extends SDK
      * @availability iOS 17.0+
      */
     get params(): Record<string, string>;
+    readonly $type: {
+        "s:12FinanceKitUI47FinancialConnectionExtensionAuthorizationResultV": true;
+    };
 }
 /**
  * protocol FinancialConnectionUIExtension : AppExtension, FinancialConnectionUIExtensionProviding
@@ -102,6 +114,9 @@ export interface FinancialConnectionUIExtension {
  * @availability iOS 17.0+
  */
 export declare class FinancialConnectionUIExtensionAuthorizationScene<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:12FinanceKitUI48FinancialConnectionUIExtensionAuthorizationSceneV": true;
+    };
 }
 /**
  * typealias Body = some AppExtensionScene
@@ -130,6 +145,9 @@ export interface FinancialConnectionUIExtensionScene {
  * @availability iOS 18.0+
  */
 export declare class TransactionPicker<Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:12FinanceKitUI17TransactionPickerV": true;
+    };
 }
 /**
  * typealias Body = some View

@@ -53,6 +53,9 @@ export declare class CBATTError extends SDKHandle {
      * @availability iOS 6.0+
      */
     static get success(): CBATTError_Code;
+    readonly $type: {
+        "s:SC10CBATTErrorLeV": true;
+    };
 }
 /** enum Code */
 export type CBATTError_Code = "success" | "invalidHandle" | "readNotPermitted" | "writeNotPermitted" | "invalidPdu" | "insufficientAuthentication" | "requestNotSupported" | "invalidOffset" | "insufficientAuthorization" | "prepareQueueFull" | "attributeNotFound" | "attributeNotLong" | "insufficientEncryptionKeySize" | "invalidAttributeValueLength" | "unlikelyError" | "insufficientEncryption" | "unsupportedGroupType" | "insufficientResources";
@@ -86,6 +89,10 @@ export declare class CBATTRequest extends SDKHandle {
      */
     get value(): (ArrayBuffer) | null;
     set value(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "c:objc(cs)CBATTRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "central": true;
         "characteristic": true;
@@ -103,6 +110,10 @@ export declare class CBAttribute extends SDKHandle {
      * @availability iOS 8.0+
      */
     get uuid(): CBUUID;
+    readonly $type: {
+        "c:objc(cs)CBAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
     };
@@ -149,6 +160,10 @@ export declare class CBPeer extends SDKHandle {
      * @availability iOS 7.0+
      */
     get identifier(): string;
+    readonly $type: {
+        "c:objc(cs)CBPeer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -163,6 +178,11 @@ export declare class CBCentral extends CBPeer {
      * @availability iOS 6.0+
      */
     get maximumUpdateValueLength(): number;
+    readonly $type: {
+        "c:objc(cs)CBCentral": true;
+        "c:objc(cs)CBPeer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "maximumUpdateValueLength": true;
@@ -189,6 +209,10 @@ export declare class CBManager extends SDKHandle {
      * @availability iOS 10.0+
      */
     get state(): CBManagerState;
+    readonly $type: {
+        "c:objc(cs)CBManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorization8916": true;
         "state": true;
@@ -265,6 +289,11 @@ export declare class CBCentralManager extends CBManager {
      * @availability iOS 9.0+
      */
     get isScanning(): boolean;
+    readonly $type: {
+        "c:objc(cs)CBCentralManager": true;
+        "c:objc(cs)CBManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorization8916": true;
         "state": true;
@@ -360,6 +389,10 @@ export declare class CBChannelSoundingProcedureResults extends SDKHandle {
      * @availability iOS 27.0+
      */
     get distance(): number;
+    readonly $type: {
+        "c:objc(cs)CBChannelSoundingProcedureResults": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "distance": true;
     };
@@ -379,6 +412,10 @@ export declare class CBChannelSoundingSessionConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get role(): CBChannelSoundingSessionConfiguration_Role;
+    readonly $type: {
+        "c:objc(cs)CBChannelSoundingSessionConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "role": true;
     };
@@ -431,6 +468,11 @@ export declare class CBCharacteristic extends CBAttribute {
      * @availability iOS 5.0+
      */
     get value(): (ArrayBuffer) | null;
+    readonly $type: {
+        "c:objc(cs)CBCharacteristic": true;
+        "c:objc(cs)CBAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "descriptors": true;
@@ -516,6 +558,11 @@ export declare class CBDescriptor extends CBAttribute {
      * @availability iOS 5.0+
      */
     get value(): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)CBDescriptor": true;
+        "c:objc(cs)CBAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "characteristic": true;
@@ -624,6 +671,9 @@ export declare class CBError extends SDKHandle {
     static get channelSoundingConfigurationFailed(): CBError_Code;
     /** static var unknown: CBError.Code { get } */
     static get unknown(): CBError_Code;
+    readonly $type: {
+        "s:SC7CBErrorLeV": true;
+    };
 }
 /** enum Code */
 export type CBError_Code = "unknown" | "invalidParameters" | "invalidHandle" | "notConnected" | "outOfSpace" | "operationCancelled" | "connectionTimeout" | "peripheralDisconnected" | "uuidNotAllowed" | "alreadyAdvertising" | "connectionFailed" | "connectionLimitReached" | "unkownDevice" | "operationNotSupported" | "peerRemovedPairingInformation" | "encryptionTimedOut" | "tooManyLEPairedDevices" | "channelSoundingConfigurationFailed" | "channelSoundingProcedureFailed";
@@ -663,6 +713,10 @@ export declare class CBL2CAPChannel extends SDKHandle {
      * @availability iOS 11.0+
      */
     get peer(): (CBPeer) | null;
+    readonly $type: {
+        "c:objc(cs)CBL2CAPChannel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "psm": true;
         "inputStream": true;
@@ -736,6 +790,12 @@ export declare class CBMutableCharacteristic extends CBMutableCharacteristic_bas
      */
     get value(): (ArrayBuffer) | null;
     set value(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "c:objc(cs)CBMutableCharacteristic": true;
+        "c:objc(cs)CBCharacteristic": true;
+        "c:objc(cs)CBAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "descriptors": true;
@@ -758,6 +818,12 @@ export declare class CBMutableDescriptor extends CBDescriptor {
      * @availability iOS 6.0+
      */
     static init(UUID: CBUUID, value?: (unknown) | null): CBMutableDescriptor;
+    readonly $type: {
+        "c:objc(cs)CBMutableDescriptor": true;
+        "c:objc(cs)CBDescriptor": true;
+        "c:objc(cs)CBAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "characteristic": true;
@@ -789,6 +855,11 @@ export declare class CBService extends CBAttribute {
      * @availability iOS 5.0+
      */
     get peripheral(): (CBPeripheral) | null;
+    readonly $type: {
+        "c:objc(cs)CBService": true;
+        "c:objc(cs)CBAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "characteristics": true;
@@ -820,6 +891,12 @@ export declare class CBMutableService extends CBMutableService_base {
      */
     get includedServices(): $SDK10;
     set includedServices(value: $SDK10);
+    readonly $type: {
+        "c:objc(cs)CBMutableService": true;
+        "c:objc(cs)CBService": true;
+        "c:objc(cs)CBAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "characteristics": true;
@@ -940,6 +1017,11 @@ export declare class CBPeripheral extends CBPeer {
      * @availability iOS 5.0+
      */
     get state(): CBPeripheralState;
+    readonly $type: {
+        "c:objc(cs)CBPeripheral": true;
+        "c:objc(cs)CBPeer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "rssi": true;
@@ -1117,6 +1199,11 @@ export declare class CBPeripheralManager extends CBManager {
      * @availability iOS 6.0+
      */
     get isAdvertising(): boolean;
+    readonly $type: {
+        "c:objc(cs)CBPeripheralManager": true;
+        "c:objc(cs)CBManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorization8916": true;
         "state": true;
@@ -1265,8 +1352,6 @@ export declare class CBUUID extends SDKHandle {
      * @availability iOS 5.0+
      */
     static initString(theString: string): CBUUID;
-    /** init() */
-    static init(): CBUUID;
     /**
      * var uuidString: String { get }
      * @availability iOS 7.1+
@@ -1277,6 +1362,10 @@ export declare class CBUUID extends SDKHandle {
      * @availability iOS 5.0+
      */
     get data(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)CBUUID": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuidString": true;
         "data": true;

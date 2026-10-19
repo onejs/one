@@ -28,10 +28,18 @@ type $SDK28 = Array<MPNowPlayingInfoLanguageOption>;
 export declare class AVMediaSelectionGroup extends SDKHandle {
     /** func makeNowPlayingInfoLanguageOptionGroup() -> MPNowPlayingInfoLanguageOptionGroup */
     makeNowPlayingInfoLanguageOptionGroup(): MPNowPlayingInfoLanguageOptionGroup;
+    readonly $type: {
+        "c:objc(cs)AVMediaSelectionGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export declare class AVMediaSelectionOption extends SDKHandle {
     /** func makeNowPlayingInfoLanguageOption() -> MPNowPlayingInfoLanguageOption? */
     makeNowPlayingInfoLanguageOption(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)AVMediaSelectionOption": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export declare class AVPlayerItem extends SDKHandle {
     /**
@@ -40,6 +48,10 @@ export declare class AVPlayerItem extends SDKHandle {
      */
     get nowPlayingInfo(): Promise<$SDK1>;
     setNowPlayingInfo(value?: $SDK1): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MPAdTimeRange
@@ -57,6 +69,10 @@ export declare class MPAdTimeRange extends SDKHandle {
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $type: {
+        "c:objc(cs)MPAdTimeRange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timeRange": true;
     };
@@ -78,6 +94,10 @@ export declare class MPRemoteCommandEvent extends SDKHandle {
      * @availability iOS 7.1+
      */
     get timestamp(): number;
+    readonly $type: {
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -101,6 +121,11 @@ export declare class MPChangeLanguageOptionCommandEvent extends MPChangeLanguage
      * @availability iOS 9.0+
      */
     get setting(): MPChangeLanguageOptionSetting;
+    readonly $type: {
+        "c:objc(cs)MPChangeLanguageOptionCommandEvent": true;
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -136,6 +161,10 @@ export declare class MPRemoteCommand extends SDKHandle {
      */
     get isEnabled(): boolean;
     set isEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPRemoteCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
     };
@@ -145,6 +174,11 @@ export declare class MPRemoteCommand extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class MPChangePlaybackPositionCommand extends MPRemoteCommand {
+    readonly $type: {
+        "c:objc(cs)MPChangePlaybackPositionCommand": true;
+        "c:objc(cs)MPRemoteCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
     };
@@ -162,6 +196,11 @@ export declare class MPChangePlaybackPositionCommandEvent extends MPChangePlayba
      * @availability iOS 8.0+
      */
     get positionTime(): number;
+    readonly $type: {
+        "c:objc(cs)MPChangePlaybackPositionCommandEvent": true;
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -179,6 +218,11 @@ export declare class MPChangePlaybackRateCommand extends MPRemoteCommand {
      */
     get supportedPlaybackRates(): $SDK2;
     set supportedPlaybackRates(value: $SDK2);
+    readonly $type: {
+        "c:objc(cs)MPChangePlaybackRateCommand": true;
+        "c:objc(cs)MPRemoteCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "supportedPlaybackRates": true;
@@ -197,6 +241,11 @@ export declare class MPChangePlaybackRateCommandEvent extends MPChangePlaybackRa
      * @availability iOS 7.1+
      */
     get playbackRate(): number;
+    readonly $type: {
+        "c:objc(cs)MPChangePlaybackRateCommandEvent": true;
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -214,6 +263,11 @@ export declare class MPChangeRepeatModeCommand extends MPRemoteCommand {
      */
     get currentRepeatType(): MPRepeatType;
     set currentRepeatType(value: MPRepeatType);
+    readonly $type: {
+        "c:objc(cs)MPChangeRepeatModeCommand": true;
+        "c:objc(cs)MPRemoteCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "currentRepeatType": true;
@@ -237,6 +291,11 @@ export declare class MPChangeRepeatModeCommandEvent extends MPChangeRepeatModeCo
      * @availability iOS 8.0+
      */
     get repeatType(): MPRepeatType;
+    readonly $type: {
+        "c:objc(cs)MPChangeRepeatModeCommandEvent": true;
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -255,6 +314,11 @@ export declare class MPChangeShuffleModeCommand extends MPRemoteCommand {
      */
     get currentShuffleType(): MPShuffleType;
     set currentShuffleType(value: MPShuffleType);
+    readonly $type: {
+        "c:objc(cs)MPChangeShuffleModeCommand": true;
+        "c:objc(cs)MPRemoteCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "currentShuffleType": true;
@@ -278,6 +342,11 @@ export declare class MPChangeShuffleModeCommandEvent extends MPChangeShuffleMode
      * @availability iOS 8.0+
      */
     get shuffleType(): MPShuffleType;
+    readonly $type: {
+        "c:objc(cs)MPChangeShuffleModeCommandEvent": true;
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -290,13 +359,11 @@ export declare class MPChangeShuffleModeCommandEvent extends MPChangeShuffleMode
  * @availability iOS 7.1+
  */
 export declare class MPContentItem extends SDKHandle {
-    /** init() */
-    static init(): MPContentItem;
     /**
      * init(identifier: String)
      * @availability iOS 7.1+
      */
-    static initIdentifier(identifier: string): MPContentItem;
+    static init(identifier: string): MPContentItem;
     /**
      * var artwork: MPMediaItemArtwork? { get set }
      * @availability iOS 7.1+
@@ -350,6 +417,10 @@ export declare class MPContentItem extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MPContentItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "artwork": true;
         "isContainer": true;
@@ -412,6 +483,9 @@ export declare class MPError extends SDKHandle {
      * @availability iOS 10.1+
      */
     static get cancelled(): MPError_Code;
+    readonly $type: {
+        "s:SC11MPErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -448,6 +522,11 @@ export declare class MPFeedbackCommand extends MPRemoteCommand {
      */
     get localizedTitle(): string;
     set localizedTitle(value: string);
+    readonly $type: {
+        "c:objc(cs)MPFeedbackCommand": true;
+        "c:objc(cs)MPRemoteCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "isActive": true;
@@ -468,6 +547,11 @@ export declare class MPFeedbackCommandEvent extends MPFeedbackCommandEvent_base 
      * @availability iOS 7.1+
      */
     get isNegative(): boolean;
+    readonly $type: {
+        "c:objc(cs)MPFeedbackCommandEvent": true;
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -501,6 +585,10 @@ export declare class MPMediaEntity extends SDKHandle {
      * @availability iOS 7.0+
      */
     get persistentID(): number;
+    readonly $type: {
+        "c:objc(cs)MPMediaEntity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "persistentID": true;
     };
@@ -732,6 +820,11 @@ export declare class MPMediaItem extends MPMediaItem_base {
      * @availability iOS 8.0+
      */
     get userGrouping(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)MPMediaItem": true;
+        "c:objc(cs)MPMediaEntity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "persistentID": true;
         "albumArtist": true;
@@ -790,6 +883,10 @@ export declare class MPMediaItemAnimatedArtwork extends SDKHandle {
         width: number;
         height: number;
     }, arg1: ((arg0: (string) | null) => Promise<void>)) => void)): MPMediaItemAnimatedArtwork;
+    readonly $type: {
+        "c:objc(cs)MPMediaItemAnimatedArtwork": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MPMediaItemArtwork
@@ -818,6 +915,10 @@ export declare class MPMediaItemArtwork extends SDKHandle {
      * @deprecated iOS 10.0
      */
     get imageCropRect(): $SDK8;
+    readonly $type: {
+        "c:objc(cs)MPMediaItemArtwork": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "imageCropRect": true;
@@ -829,13 +930,11 @@ declare const MPMediaItemCollection_base: Omit<typeof MPMediaEntity, "init" | "p
  * @availability iOS 3.0+
  */
 export declare class MPMediaItemCollection extends MPMediaItemCollection_base {
-    /** init() */
-    static init(): MPMediaItemCollection;
     /**
      * init(items: [MPMediaItem])
      * @availability iOS 3.0+
      */
-    static initItems(items: Array<MPMediaItem>): MPMediaItemCollection;
+    static init(items: Array<MPMediaItem>): MPMediaItemCollection;
     /**
      * var count: Int { get }
      * @availability iOS 3.0+
@@ -856,6 +955,11 @@ export declare class MPMediaItemCollection extends MPMediaItemCollection_base {
      * @availability iOS 3.0+
      */
     get representativeItem(): (MPMediaItem) | null;
+    readonly $type: {
+        "c:objc(cs)MPMediaItemCollection": true;
+        "c:objc(cs)MPMediaEntity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "persistentID": true;
         "count": true;
@@ -911,6 +1015,10 @@ export declare class MPMediaLibrary extends SDKHandle {
      * @availability iOS 3.0+
      */
     get lastModifiedDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)MPMediaLibrary": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "lastModifiedDate": true;
     };
@@ -932,13 +1040,11 @@ export declare const MPMediaLibraryAuthorizationStatus: {
  * @availability iOS 3.0+
  */
 export declare class MPMediaPickerController extends SDKHandle {
-    /** init() */
-    static init(): MPMediaPickerController;
     /**
      * init(mediaTypes: MPMediaType)
      * @availability iOS 3.0+
      */
-    static initMediaTypes(mediaTypes: MPMediaType): MPMediaPickerController;
+    static init(mediaTypes: MPMediaType): MPMediaPickerController;
     /**
      * var allowsPickingMultipleItems: Bool { get set }
      * @availability iOS 3.0+
@@ -974,6 +1080,12 @@ export declare class MPMediaPickerController extends SDKHandle {
      */
     get showsItemsWithProtectedAssets(): boolean;
     set showsItemsWithProtectedAssets(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPMediaPickerController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsPickingMultipleItems": true;
         "delegate": true;
@@ -1090,6 +1202,12 @@ export declare class MPMediaPlaylist extends MPMediaPlaylist_base {
      * @availability iOS 8.0+
      */
     get seedItems(): (Array<MPMediaItem>) | null;
+    readonly $type: {
+        "c:objc(cs)MPMediaPlaylist": true;
+        "c:objc(cs)MPMediaItemCollection": true;
+        "c:objc(cs)MPMediaEntity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "persistentID": true;
         "count": true;
@@ -1158,6 +1276,10 @@ export declare class MPMediaPlaylistCreationMetadata extends SDKHandle {
      * @availability iOS 9.3+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MPMediaPlaylistCreationMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorDisplayName": true;
         "descriptionText": true;
@@ -1171,6 +1293,10 @@ export declare class MPMediaPlaylistCreationMetadata extends SDKHandle {
 export declare class MPMediaPredicate extends SDKHandle {
     /** init() */
     static init(): MPMediaPredicate;
+    readonly $type: {
+        "c:objc(cs)MPMediaPredicate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum MPMediaPredicateComparison
@@ -1184,12 +1310,11 @@ export declare const MPMediaPredicateComparison: {
      */
     init(rawValue: number): (MPMediaPredicateComparison) | null;
 };
-declare const MPMediaPropertyPredicate_base: Omit<typeof MPMediaPredicate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPMediaPredicate);
 /**
  * class MPMediaPropertyPredicate
  * @availability iOS 3.0+
  */
-export declare class MPMediaPropertyPredicate extends MPMediaPropertyPredicate_base {
+export declare class MPMediaPropertyPredicate extends MPMediaPredicate {
     /**
      * init(value: Any?, forProperty property: String)
      * @availability iOS 3.0+
@@ -1200,8 +1325,6 @@ export declare class MPMediaPropertyPredicate extends MPMediaPropertyPredicate_b
      * @availability iOS 3.0+
      */
     static initValueForPropertyComparisonType(value: (unknown) | null, property: string, comparisonType: MPMediaPredicateComparison): MPMediaPropertyPredicate;
-    /** init() */
-    static init(): MPMediaPropertyPredicate;
     /**
      * var comparisonType: MPMediaPredicateComparison { get }
      * @availability iOS 3.0+
@@ -1217,6 +1340,11 @@ export declare class MPMediaPropertyPredicate extends MPMediaPropertyPredicate_b
      * @availability iOS 3.0+
      */
     get value(): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)MPMediaPropertyPredicate": true;
+        "c:objc(cs)MPMediaPredicate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "comparisonType": true;
         "property": true;
@@ -1278,13 +1406,11 @@ export declare class MPMediaQuery extends SDKHandle {
      * @availability iOS 3.0+
      */
     addFilterPredicate(predicate: MPMediaPredicate): void;
-    /** init() */
-    static init(): MPMediaQuery;
     /**
      * init(filterPredicates: Set<MPMediaPredicate>?)
      * @availability iOS 3.0+
      */
-    static initFilterPredicates(filterPredicates?: $SDK16): MPMediaQuery;
+    static init(filterPredicates?: $SDK16): MPMediaQuery;
     /**
      * func removeFilterPredicate(_ predicate: MPMediaPredicate)
      * @availability iOS 3.0+
@@ -1322,6 +1448,10 @@ export declare class MPMediaQuery extends SDKHandle {
      * @availability iOS 3.0+
      */
     get items(): (Array<MPMediaItem>) | null;
+    readonly $type: {
+        "c:objc(cs)MPMediaQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "collectionSections": true;
         "collections": true;
@@ -1348,6 +1478,10 @@ export declare class MPMediaQuerySection extends SDKHandle {
      * @availability iOS 4.2+
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)MPMediaQuerySection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "range": true;
         "title": true;
@@ -1456,6 +1590,10 @@ export declare class MPMovieAccessLog extends SDKHandle {
      * @deprecated iOS 9.0
      */
     get extendedLogDataStringEncoding(): number;
+    readonly $type: {
+        "c:objc(cs)MPMovieAccessLog": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "events": true;
         "extendedLogData": true;
@@ -1554,6 +1692,10 @@ export declare class MPMovieAccessLogEvent extends SDKHandle {
      * @deprecated iOS 9.0
      */
     get serverAddress(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)MPMovieAccessLogEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uri": true;
         "durationWatched": true;
@@ -1617,6 +1759,10 @@ export declare class MPMovieErrorLog extends SDKHandle {
      * @deprecated iOS 9.0
      */
     get extendedLogDataStringEncoding(): number;
+    readonly $type: {
+        "c:objc(cs)MPMovieErrorLog": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "events": true;
         "extendedLogData": true;
@@ -1673,6 +1819,10 @@ export declare class MPMovieErrorLogEvent extends SDKHandle {
      * @deprecated iOS 9.0
      */
     get serverAddress(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)MPMovieErrorLogEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uri": true;
         "date": true;
@@ -1781,14 +1931,12 @@ export declare class MPMoviePlayerController extends SDKHandle {
      * @deprecated iOS 9.0
      */
     cancelAllThumbnailImageRequests(): void;
-    /** init() */
-    static init(): MPMoviePlayerController;
     /**
      * init!(contentURL url: URL!)
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static initContentURL(url?: (string) | null): MPMoviePlayerController;
+    static init(url?: (string) | null): MPMoviePlayerController;
     /**
      * func requestThumbnailImages(atTimes playbackTimes: [Any]!, timeOption option: MPMovieTimeOption)
      * @availability iOS 3.2+
@@ -1962,6 +2110,10 @@ export declare class MPMoviePlayerController extends SDKHandle {
      * @deprecated iOS 9.0
      */
     get view(): (_UIKit_UIView) | null;
+    readonly $type: {
+        "c:objc(cs)MPMoviePlayerController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessLog": true;
         "isAirPlayVideoActive": true;
@@ -1995,20 +2147,24 @@ export declare class MPMoviePlayerController extends SDKHandle {
  * @deprecated iOS 9.0
  */
 export declare class MPMoviePlayerViewController extends SDKHandle {
-    /** init() */
-    static init(): MPMoviePlayerViewController;
     /**
      * init!(contentURL: URL!)
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static initContentURL(contentURL?: (string) | null): MPMoviePlayerViewController;
+    static init(contentURL?: (string) | null): MPMoviePlayerViewController;
     /**
      * var moviePlayer: MPMoviePlayerController! { get }
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
     get moviePlayer(): (MPMoviePlayerController) | null;
+    readonly $type: {
+        "c:objc(cs)MPMoviePlayerViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "moviePlayer": true;
     };
@@ -2195,6 +2351,10 @@ export declare class MPMusicPlayerController extends SDKHandle {
      */
     get shuffleMode(): MPMusicShuffleMode;
     set shuffleMode(value: MPMusicShuffleMode);
+    readonly $type: {
+        "c:objc(cs)MPMusicPlayerController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "indexOfNowPlayingItem": true;
         "nowPlayingItem": true;
@@ -2213,6 +2373,11 @@ export declare class MPMusicPlayerApplicationController extends MPMusicPlayerCon
      * @availability iOS 10.3+
      */
     perform(queueTransaction: ((arg0: MPMusicPlayerControllerMutableQueue) => void), completionHandler: ((arg0: MPMusicPlayerControllerQueue, arg1: (NativeError) | null) => void)): void;
+    readonly $type: {
+        "c:objc(cs)MPMusicPlayerApplicationController": true;
+        "c:objc(cs)MPMusicPlayerController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "indexOfNowPlayingItem": true;
         "nowPlayingItem": true;
@@ -2231,6 +2396,10 @@ export declare class MPMusicPlayerControllerQueue extends SDKHandle {
      * @availability iOS 10.3+
      */
     get items(): Array<MPMediaItem>;
+    readonly $type: {
+        "c:objc(cs)MPMusicPlayerControllerQueue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "items": true;
     };
@@ -2250,6 +2419,11 @@ export declare class MPMusicPlayerControllerMutableQueue extends MPMusicPlayerCo
      * @availability iOS 10.3+
      */
     remove(item: MPMediaItem): void;
+    readonly $type: {
+        "c:objc(cs)MPMusicPlayerControllerMutableQueue": true;
+        "c:objc(cs)MPMusicPlayerControllerQueue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "items": true;
     };
@@ -2259,6 +2433,10 @@ export declare class MPMusicPlayerControllerMutableQueue extends MPMusicPlayerCo
  * @availability iOS 10.1+
  */
 export declare class MPMusicPlayerQueueDescriptor extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)MPMusicPlayerQueueDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MPMusicPlayerMediaItemQueueDescriptor
@@ -2301,6 +2479,11 @@ export declare class MPMusicPlayerMediaItemQueueDescriptor extends MPMusicPlayer
      */
     get startItem(): (MPMediaItem) | null;
     set startItem(value: (MPMediaItem) | null);
+    readonly $type: {
+        "c:objc(cs)MPMusicPlayerMediaItemQueueDescriptor": true;
+        "c:objc(cs)MPMusicPlayerQueueDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "itemCollection": true;
         "query": true;
@@ -2312,18 +2495,20 @@ export declare class MPMusicPlayerMediaItemQueueDescriptor extends MPMusicPlayer
  * @availability iOS 11.0+
  */
 export declare class MPMusicPlayerPlayParameters extends SDKHandle {
-    /** init() */
-    static init(): MPMusicPlayerPlayParameters;
     /**
      * init?(dictionary: [String : Any])
      * @availability iOS 11.0+
      */
-    static initDictionary(dictionary: Record<string, unknown>): (MPMusicPlayerPlayParameters) | null;
+    static init(dictionary: Record<string, unknown>): (MPMusicPlayerPlayParameters) | null;
     /**
      * var dictionary: [String : Any] { get }
      * @availability iOS 11.0+
      */
     get dictionary(): Record<string, unknown>;
+    readonly $type: {
+        "c:objc(cs)MPMusicPlayerPlayParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dictionary": true;
     };
@@ -2360,6 +2545,11 @@ export declare class MPMusicPlayerPlayParametersQueueDescriptor extends MPMusicP
      */
     get startItemPlayParameters(): $SDK27;
     set startItemPlayParameters(value: $SDK27);
+    readonly $type: {
+        "c:objc(cs)MPMusicPlayerPlayParametersQueueDescriptor": true;
+        "c:objc(cs)MPMusicPlayerQueueDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "playParametersQueue": true;
         "startItemPlayParameters": true;
@@ -2397,6 +2587,11 @@ export declare class MPMusicPlayerStoreQueueDescriptor extends MPMusicPlayerQueu
      */
     get storeIDs(): (Array<string>) | null;
     set storeIDs(value: (Array<string>) | null);
+    readonly $type: {
+        "c:objc(cs)MPMusicPlayerStoreQueueDescriptor": true;
+        "c:objc(cs)MPMusicPlayerQueueDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "startItemID": true;
         "storeIDs": true;
@@ -2453,6 +2648,10 @@ export declare class MPNowPlayingInfoCenter extends SDKHandle {
      */
     get playbackState(): MPNowPlayingPlaybackState;
     set playbackState(value: MPNowPlayingPlaybackState);
+    readonly $type: {
+        "c:objc(cs)MPNowPlayingInfoCenter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nowPlayingInfo": true;
         "playbackState": true;
@@ -2463,13 +2662,11 @@ export declare class MPNowPlayingInfoCenter extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class MPNowPlayingInfoLanguageOption extends SDKHandle {
-    /** init() */
-    static init(): MPNowPlayingInfoLanguageOption;
     /**
      * init(type languageOptionType: MPNowPlayingInfoLanguageOptionType, languageTag: String, characteristics languageOptionCharacteristics: [String]?, displayName: String, identifier: String)
      * @availability iOS 9.0+
      */
-    static initTypeLanguageTagCharacteristicsDisplayNameIdentifier(languageOptionType: MPNowPlayingInfoLanguageOptionType, languageTag: string, languageOptionCharacteristics: (Array<string>) | null, displayName: string, identifier: string): MPNowPlayingInfoLanguageOption;
+    static init(languageOptionType: MPNowPlayingInfoLanguageOptionType, languageTag: string, languageOptionCharacteristics: (Array<string>) | null, displayName: string, identifier: string): MPNowPlayingInfoLanguageOption;
     /**
      * func isAutomaticAudibleLanguageOption() -> Bool
      * @availability iOS 9.0+
@@ -2505,6 +2702,10 @@ export declare class MPNowPlayingInfoLanguageOption extends SDKHandle {
      * @availability iOS 9.0+
      */
     get languageTag(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)MPNowPlayingInfoLanguageOption": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "identifier": true;
@@ -2518,13 +2719,11 @@ export declare class MPNowPlayingInfoLanguageOption extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class MPNowPlayingInfoLanguageOptionGroup extends SDKHandle {
-    /** init() */
-    static init(): MPNowPlayingInfoLanguageOptionGroup;
     /**
      * init(languageOptions: [MPNowPlayingInfoLanguageOption], defaultLanguageOption: MPNowPlayingInfoLanguageOption?, allowEmptySelection: Bool)
      * @availability iOS 9.0+
      */
-    static initLanguageOptionsDefaultLanguageOptionAllowEmptySelection(languageOptions: $SDK28, defaultLanguageOption: $SDK0, allowEmptySelection: boolean): MPNowPlayingInfoLanguageOptionGroup;
+    static init(languageOptions: $SDK28, defaultLanguageOption: $SDK0, allowEmptySelection: boolean): MPNowPlayingInfoLanguageOptionGroup;
     /**
      * var allowEmptySelection: Bool { get }
      * @availability iOS 9.0+
@@ -2540,6 +2739,10 @@ export declare class MPNowPlayingInfoLanguageOptionGroup extends SDKHandle {
      * @availability iOS 9.0+
      */
     get languageOptions(): $SDK28;
+    readonly $type: {
+        "c:objc(cs)MPNowPlayingInfoLanguageOptionGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowEmptySelection": true;
         "defaultLanguageOption": true;
@@ -2644,6 +2847,10 @@ export declare class MPNowPlayingSession extends SDKHandle {
      * @availability iOS 16.0+
      */
     get remoteCommandCenter(): MPRemoteCommandCenter;
+    readonly $type: {
+        "c:objc(cs)MPNowPlayingSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "automaticallyPublishesNowPlayingInfo": true;
@@ -2761,6 +2968,10 @@ export declare class MPPlayableContentManager extends SDKHandle {
      */
     get nowPlayingIdentifiers(): Array<string>;
     set nowPlayingIdentifiers(value: Array<string>);
+    readonly $type: {
+        "c:objc(cs)MPPlayableContentManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "context": true;
         "dataSource": true;
@@ -2806,6 +3017,10 @@ export declare class MPPlayableContentManagerContext extends SDKHandle {
      * @deprecated iOS 14.0
      */
     get enforcedContentTreeDepth(): number;
+    readonly $type: {
+        "c:objc(cs)MPPlayableContentManagerContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentLimitsEnabled": true;
         "contentLimitsEnforced": true;
@@ -2831,6 +3046,11 @@ export declare class MPRatingCommand extends MPRemoteCommand {
      */
     get minimumRating(): number;
     set minimumRating(value: number);
+    readonly $type: {
+        "c:objc(cs)MPRatingCommand": true;
+        "c:objc(cs)MPRemoteCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "maximumRating": true;
@@ -2850,6 +3070,11 @@ export declare class MPRatingCommandEvent extends MPRatingCommandEvent_base {
      * @availability iOS 7.1+
      */
     get rating(): number;
+    readonly $type: {
+        "c:objc(cs)MPRatingCommandEvent": true;
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -2966,6 +3191,10 @@ export declare class MPRemoteCommandCenter extends SDKHandle {
      * @availability iOS 7.1+
      */
     get togglePlayPauseCommand(): MPRemoteCommand;
+    readonly $type: {
+        "c:objc(cs)MPRemoteCommandCenter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bookmarkCommand": true;
         "changePlaybackPositionCommand": true;
@@ -3026,6 +3255,11 @@ export declare class MPSeekCommandEvent extends MPSeekCommandEvent_base {
      * @availability iOS 7.1+
      */
     get type(): MPSeekCommandEventType;
+    readonly $type: {
+        "c:objc(cs)MPSeekCommandEvent": true;
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -3067,6 +3301,11 @@ export declare class MPSkipIntervalCommand extends MPRemoteCommand {
      */
     get preferredIntervals(): $SDK2;
     set preferredIntervals(value: $SDK2);
+    readonly $type: {
+        "c:objc(cs)MPSkipIntervalCommand": true;
+        "c:objc(cs)MPRemoteCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "preferredIntervals": true;
@@ -3085,6 +3324,11 @@ export declare class MPSkipIntervalCommandEvent extends MPSkipIntervalCommandEve
      * @availability iOS 7.1+
      */
     get interval(): number;
+    readonly $type: {
+        "c:objc(cs)MPSkipIntervalCommandEvent": true;
+        "c:objc(cs)MPRemoteCommandEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "command": true;
         "timestamp": true;
@@ -3137,6 +3381,10 @@ export declare class MPTimedMetadata extends SDKHandle {
      * @deprecated iOS 9.0
      */
     get value(): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)MPTimedMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMetadata": true;
         "key": true;
@@ -3242,6 +3490,12 @@ export declare class MPVolumeView extends SDKHandle {
      * @deprecated iOS 13.0
      */
     get areWirelessRoutesAvailable(): boolean;
+    readonly $type: {
+        "c:objc(cs)MPVolumeView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "showsRouteButton": true;
         "showsVolumeSlider": true;
@@ -3250,7 +3504,7 @@ export declare class MPVolumeView extends SDKHandle {
         "areWirelessRoutesAvailable": true;
     };
 }
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /** static let MPMediaLibraryDidChange: NSNotification.Name */
     readonly MPMediaLibraryDidChange: _Foundation_NSNotification_Name;
@@ -3402,6 +3656,10 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get externalMediaContentIdentifier(): (string) | null;
     set externalMediaContentIdentifier(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "externalMediaContentIdentifier": true;
     };
@@ -3419,6 +3677,11 @@ export declare class UIViewController extends SDKHandle {
      * @deprecated iOS 9.0
      */
     presentMoviePlayerViewControllerAnimated(moviePlayerViewController?: (MPMoviePlayerViewController) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * func MPVolumeSettingsAlertHide()

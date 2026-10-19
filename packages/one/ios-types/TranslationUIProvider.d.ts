@@ -6,6 +6,9 @@ import type { AttributedString as _Foundation_AttributedString } from "one/ios/F
  * @availability iOS 18.4+
  */
 export declare class TranslationProviderUIExtensionConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:21TranslationUIProvider0A32ProviderUIExtensionConfigurationV": true;
+    };
 }
 /**
  * protocol TranslationUIProviderContext : Observable
@@ -41,6 +44,9 @@ export interface TranslationUIProviderExtensionScene {
  * @availability iOS 18.4+
  */
 export declare class TranslationUIProviderSelectedTextScene<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:21TranslationUIProvider0aB17SelectedTextSceneV": true;
+    };
 }
 /**
  * typealias Body = some AppExtensionScene

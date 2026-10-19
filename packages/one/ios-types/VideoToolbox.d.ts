@@ -21,6 +21,9 @@ export type VTCompressionOutputCallback = ((arg0: (SDKHandle) | null, arg1: (SDK
 export type VTCompressionOutputHandler = ((arg0: number, arg1: VTEncodeInfoFlags, arg2: (_CoreMedia_CMSampleBuffer) | null) => Promise<void>);
 /** class VTCompressionSession */
 export declare class VTCompressionSession extends SDKHandle {
+    readonly $type: {
+        "c:@T@VTCompressionSessionRef": true;
+    };
 }
 /**
  * struct VTCompressionSessionOptionFlags
@@ -87,6 +90,9 @@ export declare class VTDecompressionOutputCallbackRecord extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): VTDecompressionOutputCallbackRecord;
+    readonly $type: {
+        "c:@S@VTDecompressionOutputCallbackRecord": true;
+    };
 }
 /**
  * typealias VTDecompressionOutputHandler = @Sendable (OSStatus, VTDecodeInfoFlags, CVImageBuffer?, CMTime, CMTime) -> Void
@@ -100,6 +106,9 @@ export type VTDecompressionOutputHandler = ((arg0: number, arg1: VTDecodeInfoFla
 export type VTDecompressionOutputMultiImageCallback = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: number, arg3: VTDecodeInfoFlags, arg4: (SDKHandle) | null, arg5: _CoreMedia_CMTime, arg6: _CoreMedia_CMTime) => Promise<void>);
 /** class VTDecompressionSession */
 export declare class VTDecompressionSession extends SDKHandle {
+    readonly $type: {
+        "c:@T@VTDecompressionSessionRef": true;
+    };
 }
 /** struct VTEncodeInfoFlags */
 export type VTEncodeInfoFlags = Array<"asynchronous" | "frameDropped">;
@@ -147,6 +156,10 @@ export declare class VTFrameProcessor extends SDKHandle {
      * @availability iOS 26.0+
      */
     processParameters(parameters: SDKHandle): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)VTFrameProcessor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol VTFrameProcessorConfiguration : NSObjectProtocol, Sendable
@@ -186,6 +199,9 @@ export declare class VTFrameProcessorError extends SDKHandle {
     static get unsupportedResolution(): VTFrameProcessorError_Code;
     /** static var memoryAllocationFailure: VTFrameProcessorError.Code { get } */
     static get memoryAllocationFailure(): VTFrameProcessorError_Code;
+    readonly $type: {
+        "s:SC21VTFrameProcessorErrorLeV": true;
+    };
 }
 /** enum Code */
 export type VTFrameProcessorError_Code = "unknownError" | "unsupportedResolution" | "sessionNotStarted" | "sessionAlreadyActive" | "fatalError" | "sessionLevelError" | "initializationFailed" | "unsupportedInput" | "memoryAllocationFailure" | "revisionNotSupported" | "processingError" | "invalidParameterError" | "invalidFrameTiming" | "assetDownloadFailed";
@@ -213,6 +229,10 @@ export declare class VTFrameProcessorFrame extends SDKHandle {
      * @availability iOS 26.0+
      */
     get presentationTimeStamp(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)VTFrameProcessorFrame": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "buffer": true;
         "presentationTimeStamp": true;
@@ -240,6 +260,9 @@ export declare class VTFrameProcessorFrame_ReadOnlyFrame extends SDKHandle {
      */
     get timeStamp(): _CoreMedia_CMTime;
     set timeStamp(value: _CoreMedia_CMTime);
+    readonly $type: {
+        "s:So21VTFrameProcessorFrameC12VideoToolboxE08ReadOnlyC0V": true;
+    };
 }
 /**
  * class VTFrameProcessorOpticalFlow
@@ -261,6 +284,10 @@ export declare class VTFrameProcessorOpticalFlow extends SDKHandle {
      * @availability iOS 26.0+
      */
     get forwardFlow(): _CoreVideo_CVBuffer;
+    readonly $type: {
+        "c:objc(cs)VTFrameProcessorOpticalFlow": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "backwardFlow": true;
         "forwardFlow": true;
@@ -274,6 +301,9 @@ export interface VTFrameProcessorParameters {
 }
 /** class VTFrameSilo */
 export declare class VTFrameSilo extends SDKHandle {
+    readonly $type: {
+        "c:@T@VTFrameSiloRef": true;
+    };
 }
 /**
  * struct VTHDRPerFrameMetadataGenerationHDRFormatType
@@ -304,6 +334,9 @@ export declare class VTInt32Point extends SDKHandle {
     static initXY(x: number, y: number): VTInt32Point;
     /** init() */
     static init(): VTInt32Point;
+    readonly $type: {
+        "c:@S@VTInt32Point": true;
+    };
 }
 /** struct VTInt32Size */
 export declare class VTInt32Size extends SDKHandle {
@@ -317,6 +350,9 @@ export declare class VTInt32Size extends SDKHandle {
     static initWidthHeight(width: number, height: number): VTInt32Size;
     /** init() */
     static init(): VTInt32Size;
+    readonly $type: {
+        "c:@S@VTInt32Size": true;
+    };
 }
 /** typealias VTMotionEstimationOutputHandler = (OSStatus, __VTMotionEstimationInfoFlags, CFDictionary?, CVPixelBuffer?) -> Void */
 export type VTMotionEstimationOutputHandler = ((arg0: number, arg1: SDKHandle, arg2: (_CoreFoundation_CFDictionary) | null, arg3: (_CoreVideo_CVBuffer) | null) => Promise<void>);
@@ -355,6 +391,9 @@ export declare class VTMotionEstimationSession extends SDKHandle {
      * @availability iOS 26.0+
      */
     motion(currentImage: _CoreVideo_CVReadOnlyPixelBuffer, referenceImage: _CoreVideo_CVReadOnlyPixelBuffer, flags?: VTMotionEstimationSession_FrameFlags): Promise<VTMotionEstimationSession_Motion>;
+    readonly $type: {
+        "s:12VideoToolbox25VTMotionEstimationSessionC": true;
+    };
 }
 /**
  * enum BlockSize
@@ -426,21 +465,33 @@ export declare class VTMotionEstimationSession_Motion extends SDKHandle {
      * @availability iOS 26.0+
      */
     get motionVector(): _CoreVideo_CVReadOnlyPixelBuffer;
+    readonly $type: {
+        "s:12VideoToolbox25VTMotionEstimationSessionC6MotionV": true;
+    };
 }
 /** class VTMultiPassStorage */
 export declare class VTMultiPassStorage extends SDKHandle {
+    readonly $type: {
+        "c:@T@VTMultiPassStorageRef": true;
+    };
 }
 /**
  * class VTPixelRotationSession
  * @availability iOS 16.0+
  */
 export declare class VTPixelRotationSession extends SDKHandle {
+    readonly $type: {
+        "c:@T@VTPixelRotationSessionRef": true;
+    };
 }
 /**
  * class VTPixelTransferSession
  * @availability iOS 16.0+
  */
 export declare class VTPixelTransferSession extends SDKHandle {
+    readonly $type: {
+        "c:@T@VTPixelTransferSessionRef": true;
+    };
 }
 /** typealias VTSession = CFTypeRef */
 export type VTSession = unknown;

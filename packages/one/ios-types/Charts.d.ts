@@ -43,6 +43,9 @@ export declare class AnnotationContext extends SDKHandle {
      * @availability iOS 16.0+
      */
     get targetSize(): $SDK0;
+    readonly $type: {
+        "s:6Charts17AnnotationContextV": true;
+    };
 }
 /**
  * struct AnnotationOverflowResolution
@@ -59,6 +62,9 @@ export declare class AnnotationOverflowResolution extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): AnnotationOverflowResolution;
+    readonly $type: {
+        "s:6Charts28AnnotationOverflowResolutionV": true;
+    };
 }
 /**
  * struct Boundary
@@ -80,6 +86,9 @@ export declare class AnnotationOverflowResolution_Boundary extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): AnnotationOverflowResolution_Boundary;
+    readonly $type: {
+        "s:6Charts28AnnotationOverflowResolutionV8BoundaryV": true;
+    };
 }
 /**
  * struct Strategy
@@ -111,6 +120,9 @@ export declare class AnnotationOverflowResolution_Strategy extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): AnnotationOverflowResolution_Strategy;
+    readonly $type: {
+        "s:6Charts28AnnotationOverflowResolutionV8StrategyV": true;
+    };
 }
 /**
  * struct AnnotationPosition
@@ -167,6 +179,9 @@ export declare class AnnotationPosition extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): AnnotationPosition;
+    readonly $type: {
+        "s:6Charts18AnnotationPositionV": true;
+    };
 }
 /**
  * @frozen struct AnyAxisContent
@@ -183,6 +198,9 @@ export declare class AnyAxisContent extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(content: SDKHandle): AnyAxisContent;
+    readonly $type: {
+        "s:6Charts14AnyAxisContentV": true;
+    };
 }
 /**
  * @frozen struct AnyAxisMark
@@ -194,12 +212,18 @@ export declare class AnyAxisMark extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(content: SDKHandle): AnyAxisMark;
+    readonly $type: {
+        "s:6Charts11AnyAxisMarkV": true;
+    };
 }
 /**
  * @MainActor @frozen @preconcurrency struct AnyChartContent
  * @availability iOS 16.0+
  */
 export declare class AnyChartContent extends SDKHandle {
+    readonly $type: {
+        "s:6Charts15AnyChartContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -226,6 +250,9 @@ export declare class AnyChartSymbolShape extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(content: SDKHandle): AnyChartSymbolShape;
+    readonly $type: {
+        "s:6Charts19AnyChartSymbolShapeV": true;
+    };
 }
 /**
  * typealias AnimatableData = EmptyAnimatableData
@@ -277,6 +304,9 @@ export declare class AreaMark extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initXStartXEndY(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>): Promise<AreaMark>;
+    readonly $type: {
+        "s:6Charts8AreaMarkV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -288,6 +318,9 @@ export type AreaMark_Body = never;
  * @availability iOS 18.0+
  */
 export declare class AreaPlot<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts8AreaPlotV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -314,6 +347,9 @@ export type ArraySlice_VisualValue<Element = unknown> = unknown;
  * @availability iOS 16.0+
  */
 export declare class AutomaticScaleDomain extends SDKHandle {
+    readonly $type: {
+        "s:6Charts20AutomaticScaleDomainV": true;
+    };
 }
 /**
  * protocol AxisContent
@@ -362,6 +398,9 @@ export declare class AxisContentBuilder extends SDKHandle {
      * @availability iOS 16.0+
      */
     static buildIf(content?: (AnyAxisContent) | null): (AnyAxisContent) | null;
+    readonly $type: {
+        "s:6Charts18AxisContentBuilderV": true;
+    };
 }
 /**
  * struct AxisGridLine
@@ -373,6 +412,9 @@ export declare class AxisGridLine extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(centered?: (boolean) | null, stroke?: $SDK3): AxisGridLine;
+    readonly $type: {
+        "s:6Charts12AxisGridLineV": true;
+    };
 }
 /**
  * protocol AxisMark
@@ -391,6 +433,9 @@ export declare class AxisMarkBuilder extends SDKHandle {
      * @availability iOS 16.0+
      */
     static buildBlock(): SDKHandle;
+    readonly $type: {
+        "s:6Charts15AxisMarkBuilderV": true;
+    };
 }
 /**
  * struct AxisMarkPosition
@@ -427,6 +472,9 @@ export declare class AxisMarkPosition extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): AxisMarkPosition;
+    readonly $type: {
+        "s:6Charts16AxisMarkPositionV": true;
+    };
 }
 /**
  * struct AxisMarkPreset
@@ -458,6 +506,9 @@ export declare class AxisMarkPreset extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): AxisMarkPreset;
+    readonly $type: {
+        "s:6Charts14AxisMarkPresetV": true;
+    };
 }
 /**
  * struct AxisMarks<Content> where Content : AxisMark
@@ -474,6 +525,9 @@ export declare class AxisMarks<Content = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initPresetPositionValuesStroke14330(preset: AxisMarkPreset, position: AxisMarkPosition, values: Array<number>, stroke?: $SDK3): AxisMarks<never>;
+    readonly $type: {
+        "s:6Charts9AxisMarksV": true;
+    };
 }
 /**
  * struct AxisMarkValues
@@ -510,6 +564,9 @@ export declare class AxisMarkValues extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): AxisMarkValues;
+    readonly $type: {
+        "s:6Charts14AxisMarkValuesV": true;
+    };
 }
 /**
  * struct AxisTick
@@ -526,6 +583,9 @@ export declare class AxisTick extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initCenteredLengthStroke60252(centered?: (boolean) | null, length?: AxisTick_Length, stroke?: $SDK3): AxisTick;
+    readonly $type: {
+        "s:6Charts8AxisTickV": true;
+    };
 }
 /**
  * struct Length
@@ -562,6 +622,9 @@ export declare class AxisTick_Length extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): AxisTick_Length;
+    readonly $type: {
+        "s:6Charts8AxisTickV6LengthV": true;
+    };
 }
 /**
  * struct AxisValue
@@ -583,6 +646,9 @@ export declare class AxisValue extends SDKHandle {
      * @availability iOS 16.0+
      */
     get index(): number;
+    readonly $type: {
+        "s:6Charts9AxisValueV": true;
+    };
 }
 /**
  * struct AxisValueLabel<Content> where Content : View
@@ -609,6 +675,9 @@ export declare class AxisValueLabel<Content = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing60146(title: string, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7;
+    readonly $type: {
+        "s:6Charts14AxisValueLabelV": true;
+    };
 }
 /**
  * struct AxisValueLabelCollisionResolution
@@ -645,6 +714,9 @@ export declare class AxisValueLabelCollisionResolution extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): AxisValueLabelCollisionResolution;
+    readonly $type: {
+        "s:6Charts33AxisValueLabelCollisionResolutionV": true;
+    };
 }
 /**
  * struct AxisValueLabelOrientation
@@ -676,6 +748,9 @@ export declare class AxisValueLabelOrientation extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): AxisValueLabelOrientation;
+    readonly $type: {
+        "s:6Charts25AxisValueLabelOrientationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct BarMark
@@ -717,6 +792,9 @@ export declare class BarMark extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initXStartXEndYHeight(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, height?: MarkDimension): Promise<BarMark>;
+    readonly $type: {
+        "s:6Charts7BarMarkV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -728,6 +806,9 @@ export type BarMark_Body = never;
  * @availability iOS 18.0+
  */
 export declare class BarPlot<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts7BarPlotV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -744,12 +825,18 @@ export type BarPlot_DataElement<Content = unknown> = SDKHandle;
  * @availability iOS 26.0+
  */
 export declare class BasicChart3DSurfaceStyle extends SDKHandle {
+    readonly $type: {
+        "s:6Charts24BasicChart3DSurfaceStyleV": true;
+    };
 }
 /**
  * struct BasicChart3DSymbolShape
  * @availability iOS 26.0+
  */
 export declare class BasicChart3DSymbolShape extends SDKHandle {
+    readonly $type: {
+        "s:6Charts23BasicChart3DSymbolShapeV": true;
+    };
 }
 /**
  * struct BasicChartSymbolShape
@@ -772,6 +859,9 @@ export declare class BasicChartSymbolShape extends SDKHandle {
      * @availability iOS 16.0+
      */
     path(rect: $SDK1): _SwiftUICore_Path;
+    readonly $type: {
+        "s:6Charts21BasicChartSymbolShapeV": true;
+    };
 }
 /**
  * typealias AnimatableData = EmptyAnimatableData
@@ -788,6 +878,9 @@ export type BasicChartSymbolShape_Body = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class BuilderConditional<TrueContent = unknown, FalseContent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts18BuilderConditionalV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -799,6 +892,9 @@ export type BuilderConditional_Body<TrueContent = unknown, FalseContent = unknow
  * @availability iOS 16.0+
  */
 export declare class Chart<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts5ChartV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -810,6 +906,9 @@ export type Chart_Body<Content = unknown> = SDKHandle;
  * @availability iOS 26.0+
  */
 export declare class Chart3D<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts7Chart3DV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -836,6 +935,9 @@ export declare class Chart3DCameraProjection extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get automatic(): Chart3DCameraProjection;
+    readonly $type: {
+        "s:6Charts23Chart3DCameraProjectionV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol Chart3DContent
@@ -848,6 +950,9 @@ export interface Chart3DContent {
  * @availability iOS 26.0+
  */
 export declare class Chart3DContentBuilder extends SDKHandle {
+    readonly $type: {
+        "s:6Charts21Chart3DContentBuilderV": true;
+    };
 }
 /**
  * struct Chart3DPose
@@ -904,6 +1009,9 @@ export declare class Chart3DPose extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get default(): Chart3DPose;
+    readonly $type: {
+        "s:6Charts11Chart3DPoseV": true;
+    };
 }
 /**
  * protocol Chart3DSurfaceStyle : Hashable
@@ -922,6 +1030,9 @@ export interface Chart3DSymbolShape {
  * @availability iOS 17.0+
  */
 export declare class ChartAxisContent extends SDKHandle {
+    readonly $type: {
+        "s:6Charts16ChartAxisContentV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -933,6 +1044,9 @@ export type ChartAxisContent_Body = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class ChartBinRange<Bound = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts13ChartBinRangeV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol ChartContent
@@ -945,12 +1059,18 @@ export interface ChartContent {
  * @availability iOS 16.0+
  */
 export declare class ChartContentBuilder extends SDKHandle {
+    readonly $type: {
+        "s:6Charts19ChartContentBuilderV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct ChartPlotContent
  * @availability iOS 16.0+
  */
 export declare class ChartPlotContent extends SDKHandle {
+    readonly $type: {
+        "s:6Charts16ChartPlotContentV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1144,6 +1264,9 @@ export declare class ChartProxy extends SDKHandle {
      * @availability iOS 17.0+
      */
     get plotFrame(): $SDK13;
+    readonly $type: {
+        "s:6Charts10ChartProxyV": true;
+    };
 }
 /**
  * protocol ChartScrollTargetBehavior : ScrollTargetBehavior
@@ -1168,6 +1291,9 @@ export declare class ChartScrollTargetBehaviorContext extends SDKHandle {
      * @availability iOS 17.0+
      */
     subscript(keyPath: SDKHandle): unknown;
+    readonly $type: {
+        "s:6Charts32ChartScrollTargetBehaviorContextV": true;
+    };
 }
 /**
  * protocol ChartSymbolShape : Shape
@@ -1183,6 +1309,9 @@ export declare class Circle extends SDKHandle {
      * @availability iOS 16.0+
      */
     get perceptualUnitRect(): $SDK1;
+    readonly $type: {
+        "s:7SwiftUI6CircleV": true;
+    };
 }
 /**
  * typealias VisualValue = Bound
@@ -1254,6 +1383,9 @@ export declare class DateBins extends SDKHandle {
      * @availability iOS 16.0+
      */
     subscript(position: number): $SDK18;
+    readonly $type: {
+        "s:6Charts8DateBinsV": true;
+    };
 }
 /**
  * typealias Element = ChartBinRange<Date>
@@ -1291,6 +1423,9 @@ export declare class Decimal extends SDKHandle {
      * @availability iOS 16.0+
      */
     get primitivePlottable(): number;
+    readonly $type: {
+        "c:@SA@NSDecimal": true;
+    };
 }
 /**
  * typealias PrimitivePlottable = Double
@@ -1308,6 +1443,9 @@ export declare class EmptyView extends SDKHandle {
      * @availability iOS 27.0+
      */
     get body(): never;
+    readonly $type: {
+        "s:7SwiftUI9EmptyViewV": true;
+    };
 }
 /**
  * typealias PrimitivePlottable = Float
@@ -1329,6 +1467,9 @@ export type ForEach_Body<Data = unknown, ID = unknown, Content = unknown> = neve
  * @availability iOS 18.0+
  */
 export declare class FunctionAreaPlotContent extends SDKHandle {
+    readonly $type: {
+        "s:6Charts23FunctionAreaPlotContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1340,6 +1481,9 @@ export type FunctionAreaPlotContent_Body = never;
  * @availability iOS 18.0+
  */
 export declare class FunctionLinePlotContent extends SDKHandle {
+    readonly $type: {
+        "s:6Charts23FunctionLinePlotContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1431,6 +1575,9 @@ export declare class InterpolationMethod extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get stepStart(): InterpolationMethod;
+    readonly $type: {
+        "s:6Charts19InterpolationMethodV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct LineMark
@@ -1447,6 +1594,9 @@ export declare class LineMark extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initXY(x: PlottableValue<number>, y: PlottableValue<number>): Promise<LineMark>;
+    readonly $type: {
+        "s:6Charts8LineMarkV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1458,6 +1608,9 @@ export type LineMark_Body = never;
  * @availability iOS 18.0+
  */
 export declare class LinePlot<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts8LinePlotV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -1489,6 +1642,9 @@ export declare class MajorValueAlignment<Value = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     static matching(components: _Foundation_DateComponents): MajorValueAlignment<globalThis.Date>;
+    readonly $type: {
+        "s:6Charts19MajorValueAlignmentV": true;
+    };
 }
 /**
  * @frozen struct MarkDimension
@@ -1530,6 +1686,9 @@ export declare class MarkDimension extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): MarkDimension;
+    readonly $type: {
+        "s:6Charts13MarkDimensionV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Double
@@ -1591,6 +1750,9 @@ export declare class MarkDimensions<DataElement = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): MarkDimensions<unknown>;
+    readonly $type: {
+        "s:6Charts14MarkDimensionsV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Double
@@ -1632,6 +1794,9 @@ export declare class MarkStackingMethod extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get unstacked(): MarkStackingMethod;
+    readonly $type: {
+        "s:6Charts18MarkStackingMethodV": true;
+    };
 }
 /**
  * typealias PrimitivePlottable = Never
@@ -1718,6 +1883,9 @@ export declare class NumberBins<Value = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     subscript(position: number): ChartBinRange<number>;
+    readonly $type: {
+        "s:6Charts10NumberBinsV": true;
+    };
 }
 /**
  * typealias Element = ChartBinRange<Value>
@@ -1760,12 +1928,18 @@ export declare class PagingScrollTargetBehavior extends SDKHandle {
             "target": _SwiftUICore_ScrollTarget;
         };
     };
+    readonly $type: {
+        "s:7SwiftUI26PagingScrollTargetBehaviorV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Plot<Content> where Content : ChartContent
  * @availability iOS 16.0+
  */
 export declare class Plot<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts4PlotV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1777,6 +1951,9 @@ export type Plot_Body<Content = unknown> = never;
  * @availability iOS 16.0+
  */
 export declare class PlotDimensionScaleRange extends SDKHandle {
+    readonly $type: {
+        "s:6Charts23PlotDimensionScaleRangeV": true;
+    };
 }
 /**
  * typealias VisualValue = CGFloat
@@ -1859,6 +2036,9 @@ export declare class PlottableProjection<DataElement = unknown, DataValue = unkn
      * @availability iOS 18.0+
      */
     static valueUnitCalendar29526(label: SDKHandle, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22;
+    readonly $type: {
+        "s:6Charts19PlottableProjectionV": true;
+    };
 }
 /**
  * struct PlottableValue<Value> where Value : Plottable
@@ -1905,6 +2085,9 @@ export declare class PlottableValue<Value = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static value4073(label: string, value: number): PlottableValue<number>;
+    readonly $type: {
+        "s:6Charts14PlottableValueV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct PointMark
@@ -1926,6 +2109,9 @@ export declare class PointMark extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initXY94402(x: PlottableValue<number>, y: PlottableValue<number>): Promise<PointMark>;
+    readonly $type: {
+        "s:6Charts9PointMarkV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1937,6 +2123,9 @@ export type PointMark_Body = never;
  * @availability iOS 18.0+
  */
 export declare class PointPlot<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts9PointPlotV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -2015,6 +2204,9 @@ export declare class RectangleMark extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initXStartXEndYHeight17286(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, height?: MarkDimension): Promise<RectangleMark>;
+    readonly $type: {
+        "s:6Charts13RectangleMarkV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2026,6 +2218,9 @@ export type RectangleMark_Body = never;
  * @availability iOS 18.0+
  */
 export declare class RectanglePlot<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts13RectanglePlotV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -2072,6 +2267,9 @@ export declare class RuleMark extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initXStartXEndY78706(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>): Promise<RuleMark>;
+    readonly $type: {
+        "s:6Charts8RuleMarkV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2083,6 +2281,9 @@ export type RuleMark_Body = never;
  * @availability iOS 18.0+
  */
 export declare class RulePlot<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts8RulePlotV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -2151,12 +2352,18 @@ export declare class ScaleType extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get category(): ScaleType;
+    readonly $type: {
+        "s:6Charts9ScaleTypeV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct SectorMark
  * @availability iOS 17.0+
  */
 export declare class SectorMark extends SDKHandle {
+    readonly $type: {
+        "s:6Charts10SectorMarkV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2168,6 +2375,9 @@ export type SectorMark_Body = never;
  * @availability iOS 18.0+
  */
 export declare class SectorPlot<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts10SectorPlotV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -2194,6 +2404,9 @@ export declare class SurfacePlot extends SDKHandle {
      * @availability iOS 26.0+
      */
     get body(): Promise<never>;
+    readonly $type: {
+        "s:6Charts11SurfacePlotV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2206,6 +2419,9 @@ export declare class TupleContent<Content = unknown> extends SDKHandle {
      * @availability iOS 27.0+
      */
     get body(): Promise<never>;
+    readonly $type: {
+        "s:7SwiftUI12TupleContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2282,6 +2498,9 @@ export declare class ValueAlignedChartScrollTargetBehavior extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initXMatchingYUnitXMajorAlignmentYMajorAlignmentLimitBehavior(xComponents: _Foundation_DateComponents, yUnit: number, xMajorAlignment?: $SDK25, yMajorAlignment?: $SDK24, limitBehavior?: ValueAlignedLimitBehavior): ValueAlignedChartScrollTargetBehavior;
+    readonly $type: {
+        "s:6Charts37ValueAlignedChartScrollTargetBehaviorV": true;
+    };
 }
 /**
  * struct ValueAlignedLimitBehavior
@@ -2303,12 +2522,18 @@ export declare class ValueAlignedLimitBehavior extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): ValueAlignedLimitBehavior;
+    readonly $type: {
+        "s:6Charts25ValueAlignedLimitBehaviorV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct VectorizedAreaPlotContent<Data> where Data : RandomAccessCollection
  * @availability iOS 18.0+
  */
 export declare class VectorizedAreaPlotContent<Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts25VectorizedAreaPlotContentV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -2325,6 +2550,9 @@ export type VectorizedAreaPlotContent_DataElement<Data = unknown> = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class VectorizedBarPlotContent<Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts24VectorizedBarPlotContentV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -2347,6 +2575,9 @@ export interface VectorizedChartContent {
  * @availability iOS 18.0+
  */
 export declare class VectorizedLinePlotContent<Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts25VectorizedLinePlotContentV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent
@@ -2363,6 +2594,9 @@ export type VectorizedLinePlotContent_DataElement<Data = unknown> = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class VectorizedPointPlotContent<Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts26VectorizedPointPlotContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2379,6 +2613,9 @@ export type VectorizedPointPlotContent_DataElement<Data = unknown> = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class VectorizedRectanglePlotContent<Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts30VectorizedRectanglePlotContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2395,6 +2632,9 @@ export type VectorizedRectanglePlotContent_DataElement<Data = unknown> = SDKHand
  * @availability iOS 18.0+
  */
 export declare class VectorizedRulePlotContent<Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts25VectorizedRulePlotContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2411,6 +2651,9 @@ export type VectorizedRulePlotContent_DataElement<Data = unknown> = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class VectorizedSectorPlotContent<Data = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6Charts27VectorizedSectorPlotContentV": true;
+    };
 }
 /**
  * typealias Body = some ChartContent

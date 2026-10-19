@@ -10,6 +10,9 @@ export declare class RegistrationError extends SDKHandle {
     static get rateLimited(): RegistrationError_Code;
     /** static var failed: RegistrationError.Code { get } */
     static get failed(): RegistrationError_Code;
+    readonly $type: {
+        "s:SC20SALRegistrationErrorLeV": true;
+    };
 }
 /** enum Code */
 export type RegistrationError_Code = "notEligible" | "failed" | "rateLimited";
@@ -33,6 +36,9 @@ export declare class ResellerAccount extends SDKHandle {
     static registerIdentifier(identifier: string): Promise<void>;
     /** init() */
     static init(): ResellerAccount;
+    readonly $type: {
+        "c:@SA@SALResellerAccount": true;
+    };
 }
 /** let RegistrationErrorDomain: String */
 export declare const RegistrationErrorDomain: string;

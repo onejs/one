@@ -8,6 +8,9 @@ export declare class DeviceActivityData extends SDKHandle {
      * @availability iOS 16.0+
      */
     get activitySegments(): DeviceActivityResults<_DeviceActivity_DeviceActivityData_ActivitySegment>;
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV": true;
+    };
 }
 export declare class DeviceActivityData_ActivitySegment extends SDKHandle {
     /**
@@ -15,6 +18,9 @@ export declare class DeviceActivityData_ActivitySegment extends SDKHandle {
      * @availability iOS 16.0+
      */
     get categories(): DeviceActivityResults<_DeviceActivity_DeviceActivityData_CategoryActivity>;
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV0B7SegmentV": true;
+    };
 }
 export declare class DeviceActivityData_CategoryActivity extends SDKHandle {
     /**
@@ -27,6 +33,9 @@ export declare class DeviceActivityData_CategoryActivity extends SDKHandle {
      * @availability iOS 16.0+
      */
     get applications(): DeviceActivityResults<_DeviceActivity_DeviceActivityData_ApplicationActivity>;
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV08CategoryB0V": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct DeviceActivityReport
@@ -38,6 +47,9 @@ export declare class DeviceActivityReport extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(context: DeviceActivityReport_Context, filter?: _DeviceActivity_DeviceActivityFilter): Promise<DeviceActivityReport>;
+    readonly $type: {
+        "s:23_DeviceActivity_SwiftUI0aB6ReportV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -77,6 +89,9 @@ export type DeviceActivityReport_Context_RawValue = string;
  * @availability iOS 16.0+
  */
 export declare class DeviceActivityReportBuilder extends SDKHandle {
+    readonly $type: {
+        "s:23_DeviceActivity_SwiftUI0aB13ReportBuilderV": true;
+    };
 }
 /**
  * protocol DeviceActivityReportExtension : AppExtension
@@ -106,6 +121,9 @@ export declare class DeviceActivityResults<Element = unknown> extends SDKHandle 
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): $SDK5;
+    readonly $type: {
+        "s:23_DeviceActivity_SwiftUI0aB7ResultsV": true;
+    };
     readonly $element: Element;
 }
 /**
@@ -123,6 +141,9 @@ export declare class DeviceActivityResults_Iterator<Element = unknown, IteratorE
      * @availability iOS 16.0+
      */
     next(): Promise<(unknown) | null>;
+    readonly $type: {
+        "s:23_DeviceActivity_SwiftUI0aB7ResultsV8IteratorC": true;
+    };
 }
 /**
  * typealias Element = IteratorElement

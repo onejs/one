@@ -31,6 +31,13 @@ export declare class CLLocationButton extends SDKHandle {
      */
     get label(): CLLocationButtonLabel;
     set label(value: CLLocationButtonLabel);
+    readonly $type: {
+        "c:objc(cs)CLLocationButton": true;
+        "c:objc(cs)UIControl": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cornerRadius": true;
         "fontSize": true;

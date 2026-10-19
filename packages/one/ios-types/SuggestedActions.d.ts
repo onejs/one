@@ -17,6 +17,9 @@ export declare class SuggestedActionsMessage extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(id: SDKHandle, date: globalThis.Date, subject: (_Foundation_AttributedString) | null, body: _Foundation_AttributedString, sender: SuggestedActionsMessage_Participant, recipients: Array<SuggestedActionsMessage_Participant>): SuggestedActionsMessage;
+    readonly $type: {
+        "s:16SuggestedActions0aB7MessageV": true;
+    };
 }
 /**
  * struct Participant
@@ -28,6 +31,9 @@ export declare class SuggestedActionsMessage_Participant extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(name: string, handle: string, isUser: boolean): SuggestedActionsMessage_Participant;
+    readonly $type: {
+        "s:16SuggestedActions0aB7MessageV11ParticipantV": true;
+    };
 }
 /**
  * @MainActor struct SuggestedActionsView
@@ -44,6 +50,9 @@ export declare class SuggestedActionsView extends SDKHandle {
      * @availability iOS 27.0+
      */
     static generate(message: SuggestedActionsMessage, previousMessages?: $SDK2): Promise<void>;
+    readonly $type: {
+        "s:16SuggestedActions0aB4ViewV": true;
+    };
 }
 /**
  * typealias Body = some View

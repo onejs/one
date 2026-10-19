@@ -10,6 +10,9 @@ export type AttributedString_Representation = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class CodableRepresentation<Item = unknown, Encoder = unknown, Decoder = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16CoreTransferable21CodableRepresentationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -26,6 +29,9 @@ export type Data_Representation = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class DataRepresentation<Item = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16CoreTransferable18DataRepresentationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -37,6 +43,9 @@ export type DataRepresentation_Body<Item = unknown> = never;
  * @availability iOS 16.0+
  */
 export declare class FileRepresentation<Item = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16CoreTransferable18FileRepresentationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -63,6 +72,9 @@ export type Never_Representation = never;
  * @availability iOS 16.0+
  */
 export declare class ProxyRepresentation<Item = unknown, ProxyRepresentation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16CoreTransferable19ProxyRepresentationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -84,6 +96,9 @@ export declare class ReceivedTransferredFile extends SDKHandle {
      * @availability iOS 16.0+
      */
     get file(): string;
+    readonly $type: {
+        "s:16CoreTransferable23ReceivedTransferredFileV": true;
+    };
 }
 /**
  * struct SentTransferredFile
@@ -105,6 +120,9 @@ export declare class SentTransferredFile extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(file: string, allowAccessingOriginalFile?: boolean): SentTransferredFile;
+    readonly $type: {
+        "s:16CoreTransferable19SentTransferredFileV": true;
+    };
 }
 /**
  * typealias Representation = some TransferRepresentation
@@ -128,6 +146,9 @@ export interface TransferRepresentation {
  * @availability iOS 16.0+
  */
 export declare class TransferRepresentationBuilder<Item = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16CoreTransferable29TransferRepresentationBuilderV": true;
+    };
 }
 /**
  * struct TransferRepresentationVisibility
@@ -149,12 +170,18 @@ export declare class TransferRepresentationVisibility extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get team(): TransferRepresentationVisibility;
+    readonly $type: {
+        "s:16CoreTransferable32TransferRepresentationVisibilityV": true;
+    };
 }
 /**
  * struct TupleTransferRepresentation<Item, Value> where Item : Transferable, Value : Sendable
  * @availability iOS 16.0+
  */
 export declare class TupleTransferRepresentation<Item = unknown, Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16CoreTransferable27TupleTransferRepresentationV": true;
+    };
 }
 /**
  * typealias Body = some TransferRepresentation

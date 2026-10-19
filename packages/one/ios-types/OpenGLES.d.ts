@@ -80,6 +80,10 @@ export declare class EAGLContext extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get sharegroup(): EAGLSharegroup;
+    readonly $type: {
+        "c:objc(cs)EAGLContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "api": true;
         "debugLabel": true;
@@ -115,6 +119,10 @@ export declare class EAGLSharegroup extends SDKHandle {
      */
     get debugLabel(): (string) | null;
     set debugLabel(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)EAGLSharegroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "debugLabel": true;
     };

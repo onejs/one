@@ -55,6 +55,9 @@ export declare class CLBackgroundActivitySession extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): CLBackgroundActivitySession;
+    readonly $type: {
+        "s:12CoreLocation27CLBackgroundActivitySessionC": true;
+    };
 }
 /**
  * struct Diagnostic
@@ -91,6 +94,9 @@ export declare class CLBackgroundActivitySession_Diagnostic extends SDKHandle {
      * @availability iOS 18.0+
      */
     get authorizationRequestInProgress(): boolean;
+    readonly $type: {
+        "s:12CoreLocation27CLBackgroundActivitySessionC10DiagnosticV": true;
+    };
 }
 /**
  * final class Diagnostics
@@ -102,6 +108,9 @@ export declare class CLBackgroundActivitySession_Diagnostics extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): CLBackgroundActivitySession_Diagnostics_Iterator;
+    readonly $type: {
+        "s:12CoreLocation27CLBackgroundActivitySessionC11DiagnosticsC": true;
+    };
     readonly $element: CLBackgroundActivitySession_Diagnostic;
 }
 /**
@@ -124,6 +133,9 @@ export declare class CLBackgroundActivitySession_Diagnostics_Iterator extends SD
      * @availability iOS 18.0+
      */
     next(): Promise<(CLBackgroundActivitySession_Diagnostic) | null>;
+    readonly $type: {
+        "s:12CoreLocation27CLBackgroundActivitySessionC11DiagnosticsC8IteratorV": true;
+    };
 }
 /**
  * typealias Element = CLBackgroundActivitySession.Diagnostics.Element
@@ -178,6 +190,10 @@ export declare class CLBeacon extends SDKHandle {
      * @availability iOS 13.0+
      */
     get timestamp(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CLBeacon": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "accuracy": true;
@@ -205,6 +221,9 @@ export declare class CLBeaconIdentityConstraint extends SDKHandle {
      * @availability iOS 13.0+
      */
     get minor(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)CLBeaconIdentityConstraint": true;
+    };
 }
 /** typealias CLBeaconMajorValue = UInt16 */
 export type CLBeaconMajorValue = number;
@@ -234,21 +253,22 @@ export declare class CLRegion extends SDKHandle {
      */
     get notifyOnExit(): boolean;
     set notifyOnExit(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CLRegion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "notifyOnEntry": true;
         "notifyOnExit": true;
     };
 }
-declare const CLBeaconRegion_base: Omit<typeof CLRegion, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CLRegion);
 /**
  * class CLBeaconRegion
  * @availability iOS 7.0+
  * @deprecated iOS 100000.0
  */
-export declare class CLBeaconRegion extends CLBeaconRegion_base {
-    /** init() */
-    static init(): CLBeaconRegion;
+export declare class CLBeaconRegion extends CLRegion {
     /**
      * init(beaconIdentityConstraint: CLBeaconIdentityConstraint, identifier: String)
      * @availability iOS 13.0+
@@ -334,6 +354,11 @@ export declare class CLBeaconRegion extends CLBeaconRegion_base {
      * @deprecated iOS 13.0
      */
     get proximityUUID(): string;
+    readonly $type: {
+        "c:objc(cs)CLBeaconRegion": true;
+        "c:objc(cs)CLRegion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "notifyOnEntry": true;
@@ -365,14 +390,12 @@ export declare class CLCircularRegion extends CLCircularRegion_base {
      * @deprecated iOS 100000.0
      */
     contains(coordinate: $SDK2): boolean;
-    /** init() */
-    static init(): CLCircularRegion;
     /**
      * init(center: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String)
      * @availability iOS 7.0+
      * @deprecated iOS 100000.0
      */
-    static initCenterRadiusIdentifier(center: $SDK2, radius: number, identifier: string): CLCircularRegion;
+    static init(center: $SDK2, radius: number, identifier: string): CLCircularRegion;
     /**
      * var center: CLLocationCoordinate2D { get }
      * @availability iOS 7.0+
@@ -385,6 +408,11 @@ export declare class CLCircularRegion extends CLCircularRegion_base {
      * @deprecated iOS 100000.0
      */
     get radius(): number;
+    readonly $type: {
+        "c:objc(cs)CLCircularRegion": true;
+        "c:objc(cs)CLRegion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "notifyOnEntry": true;
@@ -449,6 +477,9 @@ export declare class CLError extends SDKHandle {
     static get denied(): CLError_Code;
     /** static var network: CLError.Code { get } */
     static get network(): CLError_Code;
+    readonly $type: {
+        "s:SC7CLErrorLeV": true;
+    };
 }
 /** enum Code */
 export type CLError_Code = "locationUnknown" | "denied" | "network" | "headingFailure" | "regionMonitoringDenied" | "regionMonitoringFailure" | "regionMonitoringSetupDelayed" | "regionMonitoringResponseDelayed" | "geocodeFoundNoResult" | "geocodeFoundPartialResult" | "geocodeCanceled" | "deferredFailed" | "deferredNotUpdatingLocation" | "deferredAccuracyTooLow" | "deferredDistanceFiltered" | "deferredCanceled" | "rangingUnavailable" | "rangingFailure" | "promptDeclined" | "historicalLocationError";
@@ -526,6 +557,10 @@ export declare class CLGeocoder extends SDKHandle {
      * @deprecated iOS 26.0
      */
     get isGeocoding(): boolean;
+    readonly $type: {
+        "c:objc(cs)CLGeocoder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isGeocoding": true;
     };
@@ -572,6 +607,10 @@ export declare class CLHeading extends SDKHandle {
      * @availability iOS 3.0+
      */
     get z(): number;
+    readonly $type: {
+        "c:objc(cs)CLHeading": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "headingAccuracy": true;
         "magneticHeading": true;
@@ -867,6 +906,10 @@ export declare class CLLocationManager extends SDKHandle {
      */
     get showsBackgroundLocationIndicator(): boolean;
     set showsBackgroundLocationIndicator(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CLLocationManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accuracyAuthorization": true;
         "activityType": true;
@@ -1020,6 +1063,9 @@ export declare class CLLocationPushServiceError extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get unknown(): CLLocationPushServiceError_Code;
+    readonly $type: {
+        "s:SC26CLLocationPushServiceErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1114,6 +1160,9 @@ export declare class CLLocationUpdate extends SDKHandle {
      * @availability iOS 17.0+
      */
     get location(): $SDK11;
+    readonly $type: {
+        "s:12CoreLocation16CLLocationUpdateV": true;
+    };
 }
 /**
  * enum LiveConfiguration
@@ -1130,6 +1179,9 @@ export declare class CLLocationUpdate_Updates extends SDKHandle {
      * @availability iOS 17.0+
      */
     makeAsyncIterator(): CLLocationUpdate_Updates_Iterator;
+    readonly $type: {
+        "s:12CoreLocation16CLLocationUpdateV7UpdatesV": true;
+    };
     readonly $element: CLLocationUpdate;
 }
 /**
@@ -1152,6 +1204,9 @@ export declare class CLLocationUpdate_Updates_Iterator extends SDKHandle {
      * @availability iOS 17.0+
      */
     next(): Promise<(CLLocationUpdate) | null>;
+    readonly $type: {
+        "s:12CoreLocation16CLLocationUpdateV7UpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = CLLocationUpdate.Updates.Element
@@ -1173,6 +1228,9 @@ export declare class CLMonitor extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(name: string): Promise<CLMonitor>;
+    readonly $type: {
+        "s:12CoreLocation9CLMonitorC": true;
+    };
 }
 /**
  * struct BeaconIdentityCondition
@@ -1209,6 +1267,9 @@ export declare class CLMonitor_BeaconIdentityCondition extends SDKHandle {
      * @availability iOS 17.0+
      */
     get minor(): (number) | null;
+    readonly $type: {
+        "s:12CoreLocation9CLMonitorC23BeaconIdentityConditionV": true;
+    };
 }
 /**
  * struct CircularGeographicCondition
@@ -1230,6 +1291,9 @@ export declare class CLMonitor_CircularGeographicCondition extends SDKHandle {
      * @availability iOS 17.0+
      */
     get radius(): number;
+    readonly $type: {
+        "s:12CoreLocation9CLMonitorC27CircularGeographicConditionV": true;
+    };
 }
 /**
  * struct Event
@@ -1306,6 +1370,9 @@ export declare class CLMonitor_Event extends SDKHandle {
      * @availability iOS 17.0+
      */
     get state(): CLMonitor_Event;
+    readonly $type: {
+        "s:12CoreLocation9CLMonitorC5EventV": true;
+    };
 }
 /**
  * typealias State = __CLMonitoringState
@@ -1322,6 +1389,9 @@ export declare class CLMonitor_Events extends SDKHandle {
      * @availability iOS 17.0+
      */
     makeAsyncIterator(): CLMonitor_Events_Iterator;
+    readonly $type: {
+        "s:12CoreLocation9CLMonitorC6EventsV": true;
+    };
     readonly $element: CLMonitor_Event;
 }
 /**
@@ -1344,6 +1414,9 @@ export declare class CLMonitor_Events_Iterator extends SDKHandle {
      * @availability iOS 17.0+
      */
     next(): Promise<(CLMonitor_Event) | null>;
+    readonly $type: {
+        "s:12CoreLocation9CLMonitorC6EventsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = CLMonitor.Events.Element
@@ -1365,6 +1438,9 @@ export declare class CLMonitor_Record extends SDKHandle {
      * @availability iOS 17.0+
      */
     get lastEvent(): CLMonitor_Event;
+    readonly $type: {
+        "s:12CoreLocation9CLMonitorC6RecordV": true;
+    };
 }
 /**
  * class CLPlacemark
@@ -1486,6 +1562,10 @@ export declare class CLPlacemark extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get timeZone(): (_Foundation_TimeZone) | null;
+    readonly $type: {
+        "c:objc(cs)CLPlacemark": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isoCountryCode": true;
         "addressDictionary": true;
@@ -1556,6 +1636,9 @@ export declare class CLServiceSession extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initAuthorization(authorization: CLServiceSession_AuthorizationRequirement): CLServiceSession;
+    readonly $type: {
+        "s:12CoreLocation16CLServiceSessionC": true;
+    };
 }
 /**
  * enum AuthorizationRequirement
@@ -1607,6 +1690,9 @@ export declare class CLServiceSession_Diagnostic extends SDKHandle {
      * @availability iOS 18.0+
      */
     get authorizationRequestInProgress(): boolean;
+    readonly $type: {
+        "s:12CoreLocation16CLServiceSessionC10DiagnosticV": true;
+    };
 }
 /**
  * final class Diagnostics
@@ -1618,6 +1704,9 @@ export declare class CLServiceSession_Diagnostics extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): CLServiceSession_Diagnostics_Iterator;
+    readonly $type: {
+        "s:12CoreLocation16CLServiceSessionC11DiagnosticsC": true;
+    };
     readonly $element: CLServiceSession_Diagnostic;
 }
 /**
@@ -1640,6 +1729,9 @@ export declare class CLServiceSession_Diagnostics_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): Promise<(CLServiceSession_Diagnostic) | null>;
+    readonly $type: {
+        "s:12CoreLocation16CLServiceSessionC11DiagnosticsC8IteratorV": true;
+    };
 }
 /**
  * typealias Element = CLServiceSession.Diagnostics.Element
@@ -1673,6 +1765,10 @@ export declare class CLVisit extends SDKHandle {
      * @availability iOS 8.0+
      */
     get horizontalAccuracy(): number;
+    readonly $type: {
+        "c:objc(cs)CLVisit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arrivalDate": true;
         "coordinate": true;

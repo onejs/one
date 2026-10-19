@@ -62,6 +62,9 @@ export declare class InstrumentActivityResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get activity(): NativeMap<InstrumentActivityResult_Instrument, Array<MusicUnderstandingSession_TimedValue<number>>>;
+    readonly $type: {
+        "s:18MusicUnderstanding24InstrumentActivityResultV": true;
+    };
 }
 /**
  * struct Instrument
@@ -110,6 +113,9 @@ export declare class KeyResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get ranges(): Array<MusicUnderstandingSession_RangedValue<KeyResult_KeySignature>>;
+    readonly $type: {
+        "s:18MusicUnderstanding9KeyResultV": true;
+    };
 }
 /**
  * struct KeySignature
@@ -126,6 +132,9 @@ export declare class KeyResult_KeySignature extends SDKHandle {
      * @availability iOS 27.0+
      */
     get tonic(): KeyResult_Tonic;
+    readonly $type: {
+        "s:18MusicUnderstanding9KeyResultV0C9SignatureV": true;
+    };
 }
 /**
  * enum Mode
@@ -196,6 +205,9 @@ export declare class LoudnessResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get shortTerm(): $SDK4;
+    readonly $type: {
+        "s:18MusicUnderstanding14LoudnessResultV": true;
+    };
 }
 /**
  * enum MusicUnderstandingError
@@ -237,6 +249,9 @@ export declare class MusicUnderstandingSession extends SDKHandle {
      * @availability iOS 27.0+
      */
     analyze(): Promise<MusicUnderstandingSession_SessionResult>;
+    readonly $type: {
+        "s:18MusicUnderstanding0aB7SessionC": true;
+    };
 }
 /**
  * struct RangedValue<Value> where Value : Decodable, Value : Encodable, Value : Equatable, Value : Sendable
@@ -253,6 +268,9 @@ export declare class MusicUnderstandingSession_RangedValue<Value = unknown> exte
      * @availability iOS 27.0+
      */
     get value(): number;
+    readonly $type: {
+        "s:18MusicUnderstanding0aB7SessionC11RangedValueV": true;
+    };
 }
 /**
  * struct SessionResult
@@ -289,6 +307,9 @@ export declare class MusicUnderstandingSession_SessionResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get structure(): (StructureResult) | null;
+    readonly $type: {
+        "s:18MusicUnderstanding0aB7SessionC0C6ResultV": true;
+    };
 }
 /**
  * struct TimedValue<Value> where Value : Decodable, Value : Encodable, Value : Equatable, Value : Sendable
@@ -305,6 +326,9 @@ export declare class MusicUnderstandingSession_TimedValue<Value = unknown> exten
      * @availability iOS 27.0+
      */
     get value(): number;
+    readonly $type: {
+        "s:18MusicUnderstanding0aB7SessionC10TimedValueV": true;
+    };
 }
 /**
  * struct PaceResult
@@ -316,6 +340,9 @@ export declare class PaceResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get ranges(): Array<MusicUnderstandingSession_RangedValue<number>>;
+    readonly $type: {
+        "s:18MusicUnderstanding10PaceResultV": true;
+    };
 }
 /**
  * struct RhythmResult
@@ -337,6 +364,9 @@ export declare class RhythmResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get beats(): Array<_CoreMedia_CMTime>;
+    readonly $type: {
+        "s:18MusicUnderstanding12RhythmResultV": true;
+    };
 }
 /**
  * struct StructureResult
@@ -358,5 +388,8 @@ export declare class StructureResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get segments(): $SDK11;
+    readonly $type: {
+        "s:18MusicUnderstanding15StructureResultV": true;
+    };
 }
 export {};

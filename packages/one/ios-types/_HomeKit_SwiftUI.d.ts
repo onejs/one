@@ -11,6 +11,9 @@ export declare class CameraView extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(source: _HomeKit_HMCameraSource): Promise<CameraView>;
+    readonly $type: {
+        "s:16_HomeKit_SwiftUI10CameraViewV": true;
+    };
 }
 /**
  * typealias Body = some View

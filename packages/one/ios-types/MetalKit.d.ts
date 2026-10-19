@@ -57,6 +57,10 @@ export declare class MTKMesh extends SDKHandle {
         "modelIOMeshes": Array<_ModelIO_MDLMesh>;
         "metalKitMeshes": Array<MTKMesh>;
     };
+    readonly $type: {
+        "c:objc(cs)MTKMesh": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "submeshes": true;
@@ -100,6 +104,10 @@ export declare class MTKMeshBuffer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get type(): _ModelIO_MDLMeshBufferType;
+    readonly $type: {
+        "c:objc(cs)MTKMeshBuffer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allocator": true;
         "buffer": true;
@@ -123,6 +131,10 @@ export declare class MTKMeshBufferAllocator extends SDKHandle {
      * @availability iOS 9.0+
      */
     get device(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MTKMeshBufferAllocator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -179,6 +191,10 @@ export declare class MTKSubmesh extends SDKHandle {
      * @availability iOS 9.0+
      */
     get primitiveType(): _Metal_MTLPrimitiveType;
+    readonly $type: {
+        "c:objc(cs)MTKSubmesh": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "indexBuffer": true;
         "indexCount": true;
@@ -273,6 +289,10 @@ export declare class MTKTextureLoader extends SDKHandle {
      * @availability iOS 9.0+
      */
     get device(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MTKTextureLoader": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -393,8 +413,6 @@ export declare class MTKView extends SDKHandle {
      * @availability iOS 9.0+
      */
     draw(): Promise<void>;
-    /** init() */
-    static init(): Promise<MTKView>;
     /**
      * init(coder: NSCoder)
      * @availability iOS 9.0+
@@ -558,6 +576,12 @@ export declare class MTKView extends SDKHandle {
      */
     get sampleCount(): Promise<number>;
     setSampleCount(value: number): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)MTKView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol MTKViewDelegate : NSObjectProtocol

@@ -70,6 +70,9 @@ export declare class USDArray<Element = unknown> extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDArrayV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Element
@@ -312,6 +315,9 @@ export declare class USDLayer extends SDKHandle {
      * @availability iOS 27.0+
      */
     attribute(path: USDLayer_Path): $SDK8;
+    readonly $type: {
+        "s:6USDKit8USDLayerV": true;
+    };
 }
 /**
  * struct AssetPath
@@ -353,6 +359,9 @@ export declare class USDLayer_AssetPath extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init37830(path: string): USDLayer_AssetPath;
+    readonly $type: {
+        "s:6USDKit8USDLayerV9AssetPathV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -389,6 +398,9 @@ export declare class USDLayer_ChangeList extends SDKHandle {
      * @availability iOS 27.0+
      */
     get entries(): Array<[USDLayer_Path, USDLayer_ChangeList_Entry]>;
+    readonly $type: {
+        "s:6USDKit8USDLayerV10ChangeListV": true;
+    };
 }
 /**
  * struct Entry
@@ -415,6 +427,9 @@ export declare class USDLayer_ChangeList_Entry extends SDKHandle {
      * @availability iOS 27.0+
      */
     get flags(): USDLayer_ChangeList_Entry_Flags;
+    readonly $type: {
+        "s:6USDKit8USDLayerV10ChangeListV5EntryV": true;
+    };
 }
 /**
  * struct Flags
@@ -551,6 +566,9 @@ export declare class USDLayer_ChangeList_Entry_Flags extends SDKHandle {
      * @availability iOS 27.0+
      */
     get didRename(): boolean;
+    readonly $type: {
+        "s:6USDKit8USDLayerV10ChangeListV5EntryV5FlagsV": true;
+    };
 }
 /**
  * struct InfoChange
@@ -567,6 +585,9 @@ export declare class USDLayer_ChangeList_Entry_InfoChange extends SDKHandle {
      * @availability iOS 27.0+
      */
     get oldValue(): (USDValue) | null;
+    readonly $type: {
+        "s:6USDKit8USDLayerV10ChangeListV5EntryV04InfoC0V": true;
+    };
 }
 /**
  * struct ListOperation<T> where T : USDLayer._ListOperationElement
@@ -593,6 +614,9 @@ export declare class USDLayer_ListOperation<T = unknown> extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initPrependedItemsAppendedItemsDeletedItems70000(prependedItems?: Array<number>, appendedItems?: Array<number>, deletedItems?: Array<number>): $SDK11;
+    readonly $type: {
+        "s:6USDKit8USDLayerV13ListOperationV": true;
+    };
 }
 /**
  * enum ListOperationType
@@ -614,6 +638,9 @@ export declare class USDLayer_OpenOptions extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): USDLayer_OpenOptions;
+    readonly $type: {
+        "s:6USDKit8USDLayerV11OpenOptionsV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = USDLayer.OpenOptions
@@ -793,6 +820,9 @@ export declare class USDLayer_Path extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init11239(path: string): USDLayer_Path;
+    readonly $type: {
+        "s:6USDKit8USDLayerV4PathV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -879,6 +909,9 @@ export declare class USDLayer_PathExpression extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init85788(expression: string): USDLayer_PathExpression;
+    readonly $type: {
+        "s:6USDKit8USDLayerV14PathExpressionV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -958,6 +991,9 @@ export declare class USDLayer_Spec extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init68150(primSpec: USDPrim_Spec): USDLayer_Spec;
+    readonly $type: {
+        "s:6USDKit8USDLayerV4SpecV": true;
+    };
 }
 /**
  * protocol FieldCollection
@@ -1006,6 +1042,9 @@ export declare class USDLayer_TimeCode extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(time: number): USDLayer_TimeCode;
+    readonly $type: {
+        "s:6USDKit8USDLayerV8TimeCodeV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Double
@@ -1044,6 +1083,9 @@ export declare class USDLayer_TimeOffset extends SDKHandle {
      * @availability iOS 27.0+
      */
     get isValid(): boolean;
+    readonly $type: {
+        "s:6USDKit8USDLayerV10TimeOffsetV": true;
+    };
 }
 /**
  * struct USDPrim
@@ -1340,6 +1382,9 @@ export declare class USDPrim extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init62301(object: USDStage_Object): (USDPrim) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV": true;
+    };
 }
 /**
  * struct Attribute
@@ -1437,6 +1482,9 @@ export declare class USDPrim_Attribute extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init98942(object: USDPrim_Property): (USDPrim_Attribute) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV9AttributeV": true;
+    };
 }
 /**
  * struct Spec
@@ -1543,6 +1591,9 @@ export declare class USDPrim_Attribute_Spec extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init27266(spec: USDLayer_Spec): (USDPrim_Attribute_Spec) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV9AttributeV4SpecV": true;
+    };
 }
 /**
  * protocol Value : Sendable
@@ -1865,6 +1916,9 @@ export declare class USDPrim_Attribute_ValueType extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get vector3h(): USDPrim_Attribute_ValueType;
+    readonly $type: {
+        "s:6USDKit7USDPrimV9AttributeV9ValueTypeV": true;
+    };
 }
 /**
  * enum TupleDimensions
@@ -1876,6 +1930,9 @@ export declare class USDPrim_Attribute_ValueType_TupleDimensions extends SDKHand
      * @availability iOS 27.0+
      */
     get componentCount(): number;
+    readonly $type: {
+        "s:6USDKit7USDPrimV9AttributeV9ValueTypeV15TupleDimensionsO": true;
+    };
 }
 /**
  * struct InheritCollection
@@ -1912,6 +1969,9 @@ export declare class USDPrim_InheritCollection extends SDKHandle {
      * @availability iOS 27.0+
      */
     remove(primPath: USDLayer_Path): void;
+    readonly $type: {
+        "s:6USDKit7USDPrimV17InheritCollectionV": true;
+    };
 }
 /**
  * enum ListPosition
@@ -1946,6 +2006,9 @@ export declare class USDPrim_Payload extends SDKHandle {
      */
     get assetPath(): (string) | null;
     set assetPath(value: (string) | null);
+    readonly $type: {
+        "s:6USDKit7USDPrimV7PayloadV": true;
+    };
 }
 /**
  * struct PayloadCollection
@@ -1987,6 +2050,9 @@ export declare class USDPrim_PayloadCollection extends SDKHandle {
      * @availability iOS 27.0+
      */
     remove(payload: USDPrim_Payload): void;
+    readonly $type: {
+        "s:6USDKit7USDPrimV17PayloadCollectionV": true;
+    };
 }
 /**
  * struct Predicate
@@ -2053,6 +2119,9 @@ export declare class USDPrim_Predicate extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get isDefined(): USDPrim_Predicate;
+    readonly $type: {
+        "s:6USDKit7USDPrimV9PredicateV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = USDPrim.Predicate
@@ -2145,6 +2214,9 @@ export declare class USDPrim_Property extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init8511(object: USDPrim_Attribute): USDPrim_Property;
+    readonly $type: {
+        "s:6USDKit7USDPrimV8PropertyV": true;
+    };
 }
 /**
  * struct Spec
@@ -2230,6 +2302,9 @@ export declare class USDPrim_Property_Spec extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init6968(spec: USDLayer_Spec): (USDPrim_Property_Spec) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV8PropertyV4SpecV": true;
+    };
 }
 /**
  * protocol SymmetryCollection
@@ -2263,6 +2338,9 @@ export declare class USDPrim_PseudoRootSpec extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init9208(spec: USDLayer_Spec): (USDPrim_PseudoRootSpec) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV14PseudoRootSpecV": true;
+    };
 }
 /**
  * struct Reference
@@ -2308,6 +2386,9 @@ export declare class USDPrim_Reference extends SDKHandle {
      */
     get assetPath(): (string) | null;
     set assetPath(value: (string) | null);
+    readonly $type: {
+        "s:6USDKit7USDPrimV9ReferenceV": true;
+    };
 }
 /**
  * struct ReferenceCollection
@@ -2349,6 +2430,9 @@ export declare class USDPrim_ReferenceCollection extends SDKHandle {
      * @availability iOS 27.0+
      */
     remove(reference: USDPrim_Reference): void;
+    readonly $type: {
+        "s:6USDKit7USDPrimV19ReferenceCollectionV": true;
+    };
 }
 /**
  * struct Relationship
@@ -2411,6 +2495,9 @@ export declare class USDPrim_Relationship extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init38946(object: USDPrim_Property): (USDPrim_Relationship) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV12RelationshipV": true;
+    };
 }
 /**
  * struct Spec
@@ -2527,6 +2614,9 @@ export declare class USDPrim_Relationship_Spec extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init24430(spec: USDLayer_Spec): (USDPrim_Relationship_Spec) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV12RelationshipV4SpecV": true;
+    };
 }
 /**
  * struct Spec
@@ -2892,6 +2982,9 @@ export declare class USDPrim_Spec extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init27140(pseudoRoot: USDPrim_PseudoRootSpec): USDPrim_Spec;
+    readonly $type: {
+        "s:6USDKit7USDPrimV4SpecV": true;
+    };
 }
 /**
  * struct SpecializeCollection
@@ -2923,6 +3016,9 @@ export declare class USDPrim_SpecializeCollection extends SDKHandle {
      * @availability iOS 27.0+
      */
     remove(primPath: USDLayer_Path): void;
+    readonly $type: {
+        "s:6USDKit7USDPrimV20SpecializeCollectionV": true;
+    };
 }
 /**
  * enum Specifier
@@ -2994,6 +3090,9 @@ export declare class USDPrim_VariantSet extends SDKHandle {
      * @availability iOS 27.0+
      */
     get selection(): (string) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV10VariantSetV": true;
+    };
 }
 /**
  * struct VariantSetCollection
@@ -3020,6 +3119,9 @@ export declare class USDPrim_VariantSetCollection extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(name: string): (USDPrim_VariantSet) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV20VariantSetCollectionV": true;
+    };
 }
 /**
  * struct VariantSetSpec
@@ -3066,6 +3168,9 @@ export declare class USDPrim_VariantSetSpec extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init11999(spec: USDLayer_Spec): (USDPrim_VariantSetSpec) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV14VariantSetSpecV": true;
+    };
 }
 /**
  * typealias VariantsMap = Dictionary<USDToken, [USDToken]>
@@ -3117,6 +3222,9 @@ export declare class USDPrim_VariantSpec extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init62147(spec: USDLayer_Spec): (USDPrim_VariantSpec) | null;
+    readonly $type: {
+        "s:6USDKit7USDPrimV11VariantSpecV": true;
+    };
 }
 /**
  * struct USDStage
@@ -3324,6 +3432,9 @@ export declare class USDStage extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initTypeLoadingPayloads(buffer: ArrayBuffer, type: _UniformTypeIdentifiers_UTType, loadingPayloads?: USDStage_InitialLoadRule): USDStage;
+    readonly $type: {
+        "s:6USDKit8USDStageV": true;
+    };
 }
 /**
  * struct EditTarget
@@ -3340,6 +3451,9 @@ export declare class USDStage_EditTarget extends SDKHandle {
      * @availability iOS 27.0+
      */
     get layer(): (USDLayer) | null;
+    readonly $type: {
+        "s:6USDKit8USDStageV10EditTargetV": true;
+    };
 }
 /**
  * struct ExportOptions
@@ -3361,6 +3475,9 @@ export declare class USDStage_ExportOptions extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get preferSmallTextureFiles(): USDStage_ExportOptions;
+    readonly $type: {
+        "s:6USDKit8USDStageV13ExportOptionsV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = USDStage.ExportOptions
@@ -3387,6 +3504,9 @@ export declare class USDStage_ExportOptions_TextureQuality extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get standard(): USDStage_ExportOptions_TextureQuality;
+    readonly $type: {
+        "s:6USDKit8USDStageV13ExportOptionsV14TextureQualityV": true;
+    };
 }
 /**
  * enum InitialLoadRule
@@ -3464,6 +3584,9 @@ export declare class USDStage_Object extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init67664(prim: USDPrim): USDStage_Object;
+    readonly $type: {
+        "s:6USDKit8USDStageV6ObjectV": true;
+    };
 }
 /**
  * protocol MetadataCollection
@@ -3497,12 +3620,18 @@ export declare class USDStage_ObjectsDidChange extends SDKHandle {
      * @availability iOS 27.0+
      */
     get stage(): USDStage;
+    readonly $type: {
+        "s:6USDKit8USDStageV16ObjectsDidChangeV": true;
+    };
 }
 /**
  * struct ObservationToken
  * @availability iOS 27.0+
  */
 export declare class USDStage_ObservationToken extends SDKHandle {
+    readonly $type: {
+        "s:6USDKit8USDStageV16ObservationTokenV": true;
+    };
 }
 /**
  * struct OpenOptions
@@ -3519,6 +3648,9 @@ export declare class USDStage_OpenOptions extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get createNew(): USDStage_OpenOptions;
+    readonly $type: {
+        "s:6USDKit8USDStageV11OpenOptionsV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = USDStage.OpenOptions
@@ -3585,6 +3717,9 @@ export declare class USDStage_TimeCode extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init28332(timeCode: USDLayer_TimeCode): USDStage_TimeCode;
+    readonly $type: {
+        "s:6USDKit8USDStageV8TimeCodeV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Double
@@ -3661,6 +3796,9 @@ export declare class USDToken extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init36178(name: string): USDToken;
+    readonly $type: {
+        "s:6USDKit8USDTokenV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -3742,6 +3880,9 @@ export declare class USDTransformOperation extends SDKHandle {
      * @availability iOS 27.0+
      */
     transform(time: USDStage_TimeCode): USDValue_Matrix4d;
+    readonly $type: {
+        "s:6USDKit21USDTransformOperationV": true;
+    };
 }
 /**
  * enum Kind
@@ -3803,6 +3944,9 @@ export declare class USDValue extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init9821(value: number): USDValue;
+    readonly $type: {
+        "s:6USDKit8USDValueV": true;
+    };
 }
 /**
  * @frozen struct Matrix2d
@@ -3839,6 +3983,9 @@ export declare class USDValue_Matrix2d extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number[];
+    readonly $type: {
+        "s:6USDKit8USDValueV8Matrix2dV": true;
+    };
 }
 /**
  * typealias VectorType = InlineArray<2, Double>
@@ -3875,6 +4022,9 @@ export declare class USDValue_Matrix2f extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number[];
+    readonly $type: {
+        "s:6USDKit8USDValueV8Matrix2fV": true;
+    };
 }
 /**
  * typealias VectorType = InlineArray<2, Float>
@@ -3926,6 +4076,9 @@ export declare class USDValue_Matrix3d extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number[];
+    readonly $type: {
+        "s:6USDKit8USDValueV8Matrix3dV": true;
+    };
 }
 /**
  * typealias VectorType = InlineArray<3, Double>
@@ -3972,6 +4125,9 @@ export declare class USDValue_Matrix3f extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number[];
+    readonly $type: {
+        "s:6USDKit8USDValueV8Matrix3fV": true;
+    };
 }
 /**
  * typealias VectorType = InlineArray<3, Float>
@@ -4028,6 +4184,9 @@ export declare class USDValue_Matrix4d extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number[];
+    readonly $type: {
+        "s:6USDKit8USDValueV8Matrix4dV": true;
+    };
 }
 /**
  * typealias VectorType = InlineArray<4, Double>
@@ -4074,6 +4233,9 @@ export declare class USDValue_Matrix4f extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number[];
+    readonly $type: {
+        "s:6USDKit8USDValueV8Matrix4fV": true;
+    };
 }
 /**
  * typealias VectorType = InlineArray<4, Float>
@@ -4127,6 +4289,9 @@ export declare class USDValue_Quatd extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): USDValue_Quatd;
+    readonly $type: {
+        "s:6USDKit8USDValueV5QuatdV": true;
+    };
 }
 /**
  * @frozen struct Quatf
@@ -4175,6 +4340,9 @@ export declare class USDValue_Quatf extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): USDValue_Quatf;
+    readonly $type: {
+        "s:6USDKit8USDValueV5QuatfV": true;
+    };
 }
 /**
  * @frozen struct Quath
@@ -4223,6 +4391,9 @@ export declare class USDValue_Quath extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): USDValue_Quath;
+    readonly $type: {
+        "s:6USDKit8USDValueV5QuathV": true;
+    };
 }
 /**
  * @frozen struct Vec2d
@@ -4276,6 +4447,9 @@ export declare class USDValue_Vec2d extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec2dV": true;
+    };
 }
 /**
  * @frozen struct Vec2f
@@ -4329,6 +4503,9 @@ export declare class USDValue_Vec2f extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec2fV": true;
+    };
 }
 /**
  * @frozen struct Vec2h
@@ -4377,6 +4554,9 @@ export declare class USDValue_Vec2h extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec2hV": true;
+    };
 }
 /**
  * @frozen struct Vec2i
@@ -4435,6 +4615,9 @@ export declare class USDValue_Vec2i extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec2iV": true;
+    };
 }
 /**
  * @frozen struct Vec3d
@@ -4494,6 +4677,9 @@ export declare class USDValue_Vec3d extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec3dV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Double
@@ -4558,6 +4744,9 @@ export declare class USDValue_Vec3f extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec3fV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Float
@@ -4617,6 +4806,9 @@ export declare class USDValue_Vec3h extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec3hV": true;
+    };
 }
 /**
  * @frozen struct Vec3i
@@ -4681,6 +4873,9 @@ export declare class USDValue_Vec3i extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec3iV": true;
+    };
 }
 /**
  * @frozen struct Vec4d
@@ -4746,6 +4941,9 @@ export declare class USDValue_Vec4d extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec4dV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Double
@@ -4816,6 +5014,9 @@ export declare class USDValue_Vec4f extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec4fV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Float
@@ -4881,6 +5082,9 @@ export declare class USDValue_Vec4h extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec4hV": true;
+    };
 }
 /**
  * @frozen struct Vec4i
@@ -4951,6 +5155,9 @@ export declare class USDValue_Vec4i extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "s:6USDKit8USDValueV5Vec4iV": true;
+    };
 }
 /**
  * protocol USDValueProtocol

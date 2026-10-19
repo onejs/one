@@ -77,6 +77,9 @@ export declare class ALMXGlyphEntry extends SDKHandle {
      * @deprecated iOS 15.0
      */
     static init(): ALMXGlyphEntry;
+    readonly $type: {
+        "c:@S@ALMXGlyphEntry": true;
+    };
 }
 /**
  * struct ALMXHeader
@@ -132,6 +135,9 @@ export declare class ALMXHeader extends SDKHandle {
      * @deprecated iOS 15.0
      */
     static init(): ALMXHeader;
+    readonly $type: {
+        "c:@S@ALMXHeader": true;
+    };
 }
 /** struct AnchorPoint */
 export declare class AnchorPoint extends SDKHandle {
@@ -145,6 +151,9 @@ export declare class AnchorPoint extends SDKHandle {
     static initXY(x: number, y: number): AnchorPoint;
     /** init() */
     static init(): AnchorPoint;
+    readonly $type: {
+        "c:@S@AnchorPoint": true;
+    };
 }
 /** struct AnchorPointTable */
 export declare class AnchorPointTable extends SDKHandle {
@@ -158,6 +167,9 @@ export declare class AnchorPointTable extends SDKHandle {
     static initNPointsPoints(nPoints: number, points: AnchorPoint): AnchorPointTable;
     /** init() */
     static init(): AnchorPointTable;
+    readonly $type: {
+        "c:@S@AnchorPointTable": true;
+    };
 }
 /** struct AnkrTable */
 export declare class AnkrTable extends SDKHandle {
@@ -177,6 +189,9 @@ export declare class AnkrTable extends SDKHandle {
     static initVersionFlagsLookupTableOffsetAnchorPointTableOffset(version: number, flags: number, lookupTableOffset: number, anchorPointTableOffset: number): AnkrTable;
     /** init() */
     static init(): AnkrTable;
+    readonly $type: {
+        "c:@S@AnkrTable": true;
+    };
 }
 /** typealias ATSFontRef = UInt32 */
 export type ATSFontRef = number;
@@ -185,12 +200,18 @@ export type ATSFontRef = number;
  * @availability iOS 18.0+
  */
 export declare class AttributedString_AdaptiveImageGlyph extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV8CoreTextE18AdaptiveImageGlyphV": true;
+    };
 }
 /**
  * struct LineHeight
  * @availability iOS 26.0+
  */
 export declare class AttributedString_LineHeight extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV8CoreTextE10LineHeightV": true;
+    };
 }
 /**
  * enum TextAlignment
@@ -207,12 +228,18 @@ export type AttributedString_TextAlignment_AllCases = Array<AttributedString_Tex
  * @availability iOS 26.0+
  */
 export declare class AttributeScopes_CoreTextAttributes extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO8CoreTextE0dE10AttributesV": true;
+    };
 }
 /**
  * @frozen enum LineHeightAttribute
  * @availability iOS 26.0+
  */
 export declare class AttributeScopes_CoreTextAttributes_LineHeightAttribute extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO8CoreTextE0dE10AttributesV010LineHeightB0O": true;
+    };
 }
 /**
  * typealias Value = AttributedString.LineHeight
@@ -224,6 +251,9 @@ export type AttributeScopes_CoreTextAttributes_LineHeightAttribute_Value = Attri
  * @availability iOS 26.0+
  */
 export declare class AttributeScopes_CoreTextAttributes_TextAlignmentAttribute extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO8CoreTextE0dE10AttributesV0e9AlignmentB0O": true;
+    };
 }
 /**
  * typealias Value = AttributedString.TextAlignment
@@ -243,6 +273,9 @@ export declare class BslnFormat0Part extends SDKHandle {
     static initDeltas(deltas: $SDK2): BslnFormat0Part;
     /** init() */
     static init(): BslnFormat0Part;
+    readonly $type: {
+        "c:@S@BslnFormat0Part": true;
+    };
 }
 /** struct BslnFormat1Part */
 export declare class BslnFormat1Part extends SDKHandle {
@@ -256,6 +289,9 @@ export declare class BslnFormat1Part extends SDKHandle {
     static initDeltasMappingData(deltas: $SDK2, mappingData: SFNTLookupTable): BslnFormat1Part;
     /** init() */
     static init(): BslnFormat1Part;
+    readonly $type: {
+        "c:@S@BslnFormat1Part": true;
+    };
 }
 /** struct BslnFormat2Part */
 export declare class BslnFormat2Part extends SDKHandle {
@@ -269,6 +305,9 @@ export declare class BslnFormat2Part extends SDKHandle {
     static initStdGlyphCtlPoints(stdGlyph: number, ctlPoints: $SDK2): BslnFormat2Part;
     /** init() */
     static init(): BslnFormat2Part;
+    readonly $type: {
+        "c:@S@BslnFormat2Part": true;
+    };
 }
 /** struct BslnFormat3Part */
 export declare class BslnFormat3Part extends SDKHandle {
@@ -285,6 +324,9 @@ export declare class BslnFormat3Part extends SDKHandle {
     static initStdGlyphCtlPointsMappingData(stdGlyph: number, ctlPoints: $SDK2, mappingData: SFNTLookupTable): BslnFormat3Part;
     /** init() */
     static init(): BslnFormat3Part;
+    readonly $type: {
+        "c:@S@BslnFormat3Part": true;
+    };
 }
 /** struct BslnFormatUnion */
 export declare class BslnFormatUnion extends SDKHandle {
@@ -310,6 +352,9 @@ export declare class BslnFormatUnion extends SDKHandle {
     static initFmt3Part(fmt3Part: BslnFormat3Part): BslnFormatUnion;
     /** init() */
     static init(): BslnFormatUnion;
+    readonly $type: {
+        "c:@U@BslnFormatUnion": true;
+    };
 }
 /** struct BslnTable */
 export declare class BslnTable extends SDKHandle {
@@ -327,6 +372,9 @@ export declare class BslnTable extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): BslnTable;
+    readonly $type: {
+        "c:@S@BslnTable": true;
+    };
 }
 /** typealias BslnTableFormat = UInt16 */
 export type BslnTableFormat = number;
@@ -400,9 +448,15 @@ export declare class CTFont extends SDKHandle {
     static initSize91390(name: _CoreFoundation_CFString, size: number): CTFont;
     /** init(_ name: CFString, transform matrix: CGAffineTransform) */
     static initTransform95962(name: _CoreFoundation_CFString, matrix: _CoreFoundation_CGAffineTransform): CTFont;
+    readonly $type: {
+        "c:@T@CTFontRef": true;
+    };
 }
 /** class CTFontCollection */
 export declare class CTFontCollection extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTFontCollectionRef": true;
+    };
 }
 /**
  * struct CTFontCollectionCopyOptions
@@ -430,6 +484,9 @@ export declare const CTFontCollectionCopyOptions: {
 export type CTFontCollectionSortDescriptorsCallback = ((arg0: CTFontDescriptor, arg1: CTFontDescriptor, arg2: SDKHandle) => Promise<_CoreFoundation_CFComparisonResult>);
 /** class CTFontDescriptor */
 export declare class CTFontDescriptor extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTFontDescriptorRef": true;
+    };
 }
 /** enum CTFontDescriptorMatchingState */
 export type CTFontDescriptorMatchingState = "didBegin" | "didFinish" | "willBeginQuerying" | "stalled" | "willBeginDownloading" | "downloading" | "didFinishDownloading" | "didMatch" | "didFailWithError";
@@ -782,6 +839,9 @@ export declare const CTFontUIFontType: {
 };
 /** class CTFrame */
 export declare class CTFrame extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTFrameRef": true;
+    };
 }
 /** enum CTFramePathFillRule */
 export type CTFramePathFillRule = "evenOdd" | "windingNumber";
@@ -797,12 +857,21 @@ export declare const CTFrameProgression: {
 };
 /** class CTFramesetter */
 export declare class CTFramesetter extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTFramesetterRef": true;
+    };
 }
 /** class CTGlyphInfo */
 export declare class CTGlyphInfo extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTGlyphInfoRef": true;
+    };
 }
 /** class CTLine */
 export declare class CTLine extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTLineRef": true;
+    };
 }
 /** struct CTLineBoundsOptions */
 export type CTLineBoundsOptions = Array<"excludeTypographicLeading" | "excludeTypographicShifts" | "useHangingPunctuation" | "useGlyphPathBounds" | "useOpticalBounds" | "includeLanguageExtents">;
@@ -836,9 +905,16 @@ export declare const CTLineTruncationType: {
 };
 /** class CTMutableFontCollection */
 export declare class CTMutableFontCollection extends CTFontCollection {
+    readonly $type: {
+        "c:@T@CTMutableFontCollectionRef": true;
+        "c:@T@CTFontCollectionRef": true;
+    };
 }
 /** class CTParagraphStyle */
 export declare class CTParagraphStyle extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTParagraphStyleRef": true;
+    };
 }
 /** struct CTParagraphStyleSetting */
 export declare class CTParagraphStyleSetting extends SDKHandle {
@@ -853,6 +929,9 @@ export declare class CTParagraphStyleSetting extends SDKHandle {
     set valueSize(value: number);
     /** init(spec: CTParagraphStyleSpecifier, valueSize: Int, value: UnsafeRawPointer) */
     static init(spec: CTParagraphStyleSpecifier, valueSize: number, value: SDKHandle): CTParagraphStyleSetting;
+    readonly $type: {
+        "c:@S@CTParagraphStyleSetting": true;
+    };
 }
 /** enum CTParagraphStyleSpecifier */
 export type CTParagraphStyleSpecifier = "alignment" | "firstLineHeadIndent" | "headIndent" | "tailIndent" | "tabStops" | "defaultTabInterval" | "lineBreakMode" | "lineHeightMultiple" | "maximumLineHeight" | "minimumLineHeight" | "paragraphSpacing" | "paragraphSpacingBefore" | "baseWritingDirection" | "maximumLineSpacing" | "minimumLineSpacing" | "lineSpacingAdjustment" | "lineBoundsOptions" | "count";
@@ -874,6 +953,9 @@ export declare const CTRubyAlignment: {
 };
 /** class CTRubyAnnotation */
 export declare class CTRubyAnnotation extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTRubyAnnotationRef": true;
+    };
 }
 /**
  * enum CTRubyOverhang
@@ -901,9 +983,15 @@ export declare const CTRubyPosition: {
 };
 /** class CTRun */
 export declare class CTRun extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTRunRef": true;
+    };
 }
 /** class CTRunDelegate */
 export declare class CTRunDelegate extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTRunDelegateRef": true;
+    };
 }
 /** struct CTRunDelegateCallbacks */
 export declare class CTRunDelegateCallbacks extends SDKHandle {
@@ -918,6 +1006,9 @@ export declare class CTRunDelegateCallbacks extends SDKHandle {
     /** var version: CFIndex */
     get version(): number;
     set version(value: number);
+    readonly $type: {
+        "c:@SA@CTRunDelegateCallbacks": true;
+    };
 }
 /** typealias CTRunDelegateDeallocateCallback = (UnsafeMutableRawPointer) -> Void */
 export type CTRunDelegateDeallocateCallback = $SDK9;
@@ -977,9 +1068,15 @@ export declare const CTTextAlignment: {
 };
 /** class CTTextTab */
 export declare class CTTextTab extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTTextTabRef": true;
+    };
 }
 /** class CTTypesetter */
 export declare class CTTypesetter extends SDKHandle {
+    readonly $type: {
+        "c:@T@CTTypesetterRef": true;
+    };
 }
 /** struct CTUnderlineStyle */
 export type CTUnderlineStyle = Array<"single" | "thick" | "double">;
@@ -1033,6 +1130,9 @@ export declare class FontVariation extends SDKHandle {
     set value(value: SDKHandle);
     /** init() */
     static init(): FontVariation;
+    readonly $type: {
+        "c:@S@FontVariation": true;
+    };
 }
 /** struct JustDirectionTable */
 export declare class JustDirectionTable extends SDKHandle {
@@ -1052,6 +1152,9 @@ export declare class JustDirectionTable extends SDKHandle {
     static initJustClassWidthDeltaClustersPostcompLookup(justClass: number, widthDeltaClusters: number, postcomp: number, lookup: SFNTLookupTable): JustDirectionTable;
     /** init() */
     static init(): JustDirectionTable;
+    readonly $type: {
+        "c:@S@JustDirectionTable": true;
+    };
 }
 /** typealias JustificationFlags = UInt16 */
 export type JustificationFlags = number;
@@ -1067,6 +1170,9 @@ export declare class JustPCAction extends SDKHandle {
     static initActionCountActions(actionCount: number, actions: JustPCActionSubrecord): JustPCAction;
     /** init() */
     static init(): JustPCAction;
+    readonly $type: {
+        "c:@S@JustPCAction": true;
+    };
 }
 /** struct JustPCActionSubrecord */
 export declare class JustPCActionSubrecord extends SDKHandle {
@@ -1086,6 +1192,9 @@ export declare class JustPCActionSubrecord extends SDKHandle {
     static initTheClassTheTypeLengthData(theClass: number, theType: number, length: number, data: number): JustPCActionSubrecord;
     /** init() */
     static init(): JustPCActionSubrecord;
+    readonly $type: {
+        "c:@S@JustPCActionSubrecord": true;
+    };
 }
 /** typealias JustPCActionType = UInt16 */
 export type JustPCActionType = number;
@@ -1102,6 +1211,9 @@ export declare class JustPCConditionalAddAction extends SDKHandle {
     set substThreshold(value: SDKHandle);
     /** init() */
     static init(): JustPCConditionalAddAction;
+    readonly $type: {
+        "c:@S@JustPCConditionalAddAction": true;
+    };
 }
 /** struct JustPCDecompositionAction */
 export declare class JustPCDecompositionAction extends SDKHandle {
@@ -1122,6 +1234,9 @@ export declare class JustPCDecompositionAction extends SDKHandle {
     set upperLimit(value: SDKHandle);
     /** init() */
     static init(): JustPCDecompositionAction;
+    readonly $type: {
+        "c:@S@JustPCDecompositionAction": true;
+    };
 }
 /** struct JustPCDuctilityAction */
 export declare class JustPCDuctilityAction extends SDKHandle {
@@ -1139,6 +1254,9 @@ export declare class JustPCDuctilityAction extends SDKHandle {
     set noStretchValue(value: SDKHandle);
     /** init() */
     static init(): JustPCDuctilityAction;
+    readonly $type: {
+        "c:@S@JustPCDuctilityAction": true;
+    };
 }
 /** struct JustPCGlyphRepeatAddAction */
 export declare class JustPCGlyphRepeatAddAction extends SDKHandle {
@@ -1152,6 +1270,9 @@ export declare class JustPCGlyphRepeatAddAction extends SDKHandle {
     static initFlagsGlyph(flags: number, glyph: number): JustPCGlyphRepeatAddAction;
     /** init() */
     static init(): JustPCGlyphRepeatAddAction;
+    readonly $type: {
+        "c:@S@JustPCGlyphRepeatAddAction": true;
+    };
 }
 /** typealias JustPCUnconditionalAddAction = UInt16 */
 export type JustPCUnconditionalAddAction = number;
@@ -1164,6 +1285,9 @@ export declare class JustPostcompTable extends SDKHandle {
     static initLookupTable(lookupTable: SFNTLookupTable): JustPostcompTable;
     /** init() */
     static init(): JustPostcompTable;
+    readonly $type: {
+        "c:@S@JustPostcompTable": true;
+    };
 }
 /** struct JustTable */
 export declare class JustTable extends SDKHandle {
@@ -1181,6 +1305,9 @@ export declare class JustTable extends SDKHandle {
     set vertHeaderOffset(value: number);
     /** init() */
     static init(): JustTable;
+    readonly $type: {
+        "c:@S@JustTable": true;
+    };
 }
 /** struct JustWidthDeltaEntry */
 export declare class JustWidthDeltaEntry extends SDKHandle {
@@ -1207,6 +1334,9 @@ export declare class JustWidthDeltaEntry extends SDKHandle {
     set shrinkFlags(value: number);
     /** init() */
     static init(): JustWidthDeltaEntry;
+    readonly $type: {
+        "c:@S@JustWidthDeltaEntry": true;
+    };
 }
 /** struct JustWidthDeltaGroup */
 export declare class JustWidthDeltaGroup extends SDKHandle {
@@ -1220,6 +1350,9 @@ export declare class JustWidthDeltaGroup extends SDKHandle {
     static initCountEntries(count: number, entries: JustWidthDeltaEntry): JustWidthDeltaGroup;
     /** init() */
     static init(): JustWidthDeltaGroup;
+    readonly $type: {
+        "c:@S@JustWidthDeltaGroup": true;
+    };
 }
 /** typealias KernArrayOffset = UInt16 */
 export type KernArrayOffset = number;
@@ -1247,6 +1380,9 @@ export declare class KernFormatSpecificHeader extends SDKHandle {
     static initSimpleArray(simpleArray: KernSimpleArrayHeader): KernFormatSpecificHeader;
     /** init() */
     static init(): KernFormatSpecificHeader;
+    readonly $type: {
+        "c:@U@KernFormatSpecificHeader": true;
+    };
 }
 /** struct KernIndexArrayHeader */
 export declare class KernIndexArrayHeader extends SDKHandle {
@@ -1281,6 +1417,9 @@ export declare class KernIndexArrayHeader extends SDKHandle {
     static initGlyphCountKernValueCountLeftClassCountRightClassCountFlagsKernValueLeftClassRightClassKernIndex(glyphCount: number, kernValueCount: number, leftClassCount: number, rightClassCount: number, flags: number, kernValue: number, leftClass: number, rightClass: number, kernIndex: number): KernIndexArrayHeader;
     /** init() */
     static init(): KernIndexArrayHeader;
+    readonly $type: {
+        "c:@S@KernIndexArrayHeader": true;
+    };
 }
 /** struct KernKerningPair */
 export declare class KernKerningPair extends SDKHandle {
@@ -1294,6 +1433,9 @@ export declare class KernKerningPair extends SDKHandle {
     static initLeftRight(left: number, right: number): KernKerningPair;
     /** init() */
     static init(): KernKerningPair;
+    readonly $type: {
+        "c:@S@KernKerningPair": true;
+    };
 }
 /** typealias KernKerningValue = Int16 */
 export type KernKerningValue = number;
@@ -1312,6 +1454,9 @@ export declare class KernOffsetTable extends SDKHandle {
     static initFirstGlyphNGlyphsOffsetTable(firstGlyph: number, nGlyphs: number, offsetTable: number): KernOffsetTable;
     /** init() */
     static init(): KernOffsetTable;
+    readonly $type: {
+        "c:@S@KernOffsetTable": true;
+    };
 }
 /** typealias KernOffsetTablePtr = UnsafeMutablePointer<KernOffsetTable> */
 export type KernOffsetTablePtr = SDKHandle;
@@ -1327,6 +1472,9 @@ export declare class KernOrderedListEntry extends SDKHandle {
     static initPairValue(pair: KernKerningPair, value: number): KernOrderedListEntry;
     /** init() */
     static init(): KernOrderedListEntry;
+    readonly $type: {
+        "c:@S@KernOrderedListEntry": true;
+    };
 }
 /** typealias KernOrderedListEntryPtr = UnsafeMutablePointer<KernOrderedListEntry> */
 export type KernOrderedListEntryPtr = SDKHandle;
@@ -1351,6 +1499,9 @@ export declare class KernOrderedListHeader extends SDKHandle {
     static initNPairsSearchRangeEntrySelectorRangeShiftTable(nPairs: number, searchRange: number, entrySelector: number, rangeShift: number, table: number): KernOrderedListHeader;
     /** init() */
     static init(): KernOrderedListHeader;
+    readonly $type: {
+        "c:@S@KernOrderedListHeader": true;
+    };
 }
 /** struct KernSimpleArrayHeader */
 export declare class KernSimpleArrayHeader extends SDKHandle {
@@ -1373,6 +1524,9 @@ export declare class KernSimpleArrayHeader extends SDKHandle {
     static initRowWidthLeftOffsetTableRightOffsetTableTheArrayFirstTable(rowWidth: number, leftOffsetTable: number, rightOffsetTable: number, theArray: number, firstTable: number): KernSimpleArrayHeader;
     /** init() */
     static init(): KernSimpleArrayHeader;
+    readonly $type: {
+        "c:@S@KernSimpleArrayHeader": true;
+    };
 }
 /** struct KernStateEntry */
 export declare class KernStateEntry extends SDKHandle {
@@ -1386,6 +1540,9 @@ export declare class KernStateEntry extends SDKHandle {
     static initNewStateFlags(newState: number, flags: number): KernStateEntry;
     /** init() */
     static init(): KernStateEntry;
+    readonly $type: {
+        "c:@S@KernStateEntry": true;
+    };
 }
 /** struct KernStateHeader */
 export declare class KernStateHeader extends SDKHandle {
@@ -1402,6 +1559,9 @@ export declare class KernStateHeader extends SDKHandle {
     static initHeaderValueTableFirstTable(header: STHeader, valueTable: number, firstTable: number): KernStateHeader;
     /** init() */
     static init(): KernStateHeader;
+    readonly $type: {
+        "c:@S@KernStateHeader": true;
+    };
 }
 /** struct KernSubtableHeader */
 export declare class KernSubtableHeader extends SDKHandle {
@@ -1421,6 +1581,9 @@ export declare class KernSubtableHeader extends SDKHandle {
     static initLengthStInfoTupleIndexFsHeader(length: number, stInfo: number, tupleIndex: number, fsHeader: KernFormatSpecificHeader): KernSubtableHeader;
     /** init() */
     static init(): KernSubtableHeader;
+    readonly $type: {
+        "c:@S@KernSubtableHeader": true;
+    };
 }
 /** typealias KernSubtableHeaderPtr = UnsafeMutablePointer<KernSubtableHeader> */
 export type KernSubtableHeaderPtr = SDKHandle;
@@ -1441,6 +1604,9 @@ export declare class KernTableHeader extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): KernTableHeader;
+    readonly $type: {
+        "c:@S@KernTableHeader": true;
+    };
 }
 /** typealias KernTableHeaderHandle = UnsafeMutablePointer<KernTableHeaderPtr?> */
 export type KernTableHeaderHandle = unknown;
@@ -1461,6 +1627,9 @@ export declare class KernVersion0Header extends SDKHandle {
     static initVersionNTablesFirstSubtable(version: number, nTables: number, firstSubtable: number): KernVersion0Header;
     /** init() */
     static init(): KernVersion0Header;
+    readonly $type: {
+        "c:@S@KernVersion0Header": true;
+    };
 }
 /** struct KernVersion0SubtableHeader */
 export declare class KernVersion0SubtableHeader extends SDKHandle {
@@ -1480,6 +1649,9 @@ export declare class KernVersion0SubtableHeader extends SDKHandle {
     static initVersionLengthStInfoFsHeader(version: number, length: number, stInfo: number, fsHeader: KernFormatSpecificHeader): KernVersion0SubtableHeader;
     /** init() */
     static init(): KernVersion0SubtableHeader;
+    readonly $type: {
+        "c:@S@KernVersion0SubtableHeader": true;
+    };
 }
 /** struct KerxAnchorPointAction */
 export declare class KerxAnchorPointAction extends SDKHandle {
@@ -1493,6 +1665,9 @@ export declare class KerxAnchorPointAction extends SDKHandle {
     static initMarkAnchorPointCurrAnchorPoint(markAnchorPoint: number, currAnchorPoint: number): KerxAnchorPointAction;
     /** init() */
     static init(): KerxAnchorPointAction;
+    readonly $type: {
+        "c:@S@KerxAnchorPointAction": true;
+    };
 }
 /** typealias KerxArrayOffset = UInt32 */
 export type KerxArrayOffset = number;
@@ -1508,6 +1683,9 @@ export declare class KerxControlPointAction extends SDKHandle {
     static initMarkControlPointCurrControlPoint(markControlPoint: number, currControlPoint: number): KerxControlPointAction;
     /** init() */
     static init(): KerxControlPointAction;
+    readonly $type: {
+        "c:@S@KerxControlPointAction": true;
+    };
 }
 /** struct KerxControlPointEntry */
 export declare class KerxControlPointEntry extends SDKHandle {
@@ -1524,6 +1702,9 @@ export declare class KerxControlPointEntry extends SDKHandle {
     static initNewStateFlagsActionIndex(newState: number, flags: number, actionIndex: number): KerxControlPointEntry;
     /** init() */
     static init(): KerxControlPointEntry;
+    readonly $type: {
+        "c:@S@KerxControlPointEntry": true;
+    };
 }
 /** struct KerxControlPointHeader */
 export declare class KerxControlPointHeader extends SDKHandle {
@@ -1540,6 +1721,9 @@ export declare class KerxControlPointHeader extends SDKHandle {
     static initHeaderFlagsFirstTable(header: STXHeader, flags: number, firstTable: number): KerxControlPointHeader;
     /** init() */
     static init(): KerxControlPointHeader;
+    readonly $type: {
+        "c:@S@KerxControlPointHeader": true;
+    };
 }
 /** struct KerxCoordinateAction */
 export declare class KerxCoordinateAction extends SDKHandle {
@@ -1559,6 +1743,9 @@ export declare class KerxCoordinateAction extends SDKHandle {
     static initMarkXMarkYCurrXCurrY(markX: number, markY: number, currX: number, currY: number): KerxCoordinateAction;
     /** init() */
     static init(): KerxCoordinateAction;
+    readonly $type: {
+        "c:@S@KerxCoordinateAction": true;
+    };
 }
 /** struct KerxFormatSpecificHeader */
 export declare class KerxFormatSpecificHeader extends SDKHandle {
@@ -1589,6 +1776,9 @@ export declare class KerxFormatSpecificHeader extends SDKHandle {
     static initControlPoint(controlPoint: KerxControlPointHeader): KerxFormatSpecificHeader;
     /** init() */
     static init(): KerxFormatSpecificHeader;
+    readonly $type: {
+        "c:@U@KerxFormatSpecificHeader": true;
+    };
 }
 /** struct KerxIndexArrayHeader */
 export declare class KerxIndexArrayHeader extends SDKHandle {
@@ -1617,6 +1807,9 @@ export declare class KerxIndexArrayHeader extends SDKHandle {
     static initFlagsRowCountColumnCountRowIndexTableOffsetColumnIndexTableOffsetKerningArrayOffsetKerningVectorOffset(flags: number, rowCount: number, columnCount: number, rowIndexTableOffset: number, columnIndexTableOffset: number, kerningArrayOffset: number, kerningVectorOffset: number): KerxIndexArrayHeader;
     /** init() */
     static init(): KerxIndexArrayHeader;
+    readonly $type: {
+        "c:@S@KerxIndexArrayHeader": true;
+    };
 }
 /** struct KerxKerningPair */
 export declare class KerxKerningPair extends SDKHandle {
@@ -1630,6 +1823,9 @@ export declare class KerxKerningPair extends SDKHandle {
     static initLeftRight(left: number, right: number): KerxKerningPair;
     /** init() */
     static init(): KerxKerningPair;
+    readonly $type: {
+        "c:@S@KerxKerningPair": true;
+    };
 }
 /** struct KerxOrderedListEntry */
 export declare class KerxOrderedListEntry extends SDKHandle {
@@ -1643,6 +1839,9 @@ export declare class KerxOrderedListEntry extends SDKHandle {
     static initPairValue(pair: KerxKerningPair, value: number): KerxOrderedListEntry;
     /** init() */
     static init(): KerxOrderedListEntry;
+    readonly $type: {
+        "c:@S@KerxOrderedListEntry": true;
+    };
 }
 /** typealias KerxOrderedListEntryPtr = UnsafeMutablePointer<KerxOrderedListEntry> */
 export type KerxOrderedListEntryPtr = SDKHandle;
@@ -1667,6 +1866,9 @@ export declare class KerxOrderedListHeader extends SDKHandle {
     static initNPairsSearchRangeEntrySelectorRangeShiftTable(nPairs: number, searchRange: number, entrySelector: number, rangeShift: number, table: number): KerxOrderedListHeader;
     /** init() */
     static init(): KerxOrderedListHeader;
+    readonly $type: {
+        "c:@S@KerxOrderedListHeader": true;
+    };
 }
 /** struct KerxSimpleArrayHeader */
 export declare class KerxSimpleArrayHeader extends SDKHandle {
@@ -1689,6 +1891,9 @@ export declare class KerxSimpleArrayHeader extends SDKHandle {
     static initRowWidthLeftOffsetTableRightOffsetTableTheArrayFirstTable(rowWidth: number, leftOffsetTable: number, rightOffsetTable: number, theArray: number, firstTable: number): KerxSimpleArrayHeader;
     /** init() */
     static init(): KerxSimpleArrayHeader;
+    readonly $type: {
+        "c:@S@KerxSimpleArrayHeader": true;
+    };
 }
 /** struct KerxStateEntry */
 export declare class KerxStateEntry extends SDKHandle {
@@ -1705,6 +1910,9 @@ export declare class KerxStateEntry extends SDKHandle {
     static initNewStateFlagsValueIndex(newState: number, flags: number, valueIndex: number): KerxStateEntry;
     /** init() */
     static init(): KerxStateEntry;
+    readonly $type: {
+        "c:@S@KerxStateEntry": true;
+    };
 }
 /** struct KerxStateHeader */
 export declare class KerxStateHeader extends SDKHandle {
@@ -1721,6 +1929,9 @@ export declare class KerxStateHeader extends SDKHandle {
     static initHeaderValueTableFirstTable(header: STXHeader, valueTable: number, firstTable: number): KerxStateHeader;
     /** init() */
     static init(): KerxStateHeader;
+    readonly $type: {
+        "c:@S@KerxStateHeader": true;
+    };
 }
 /** typealias KerxSubtableCoverage = UInt32 */
 export type KerxSubtableCoverage = number;
@@ -1742,6 +1953,9 @@ export declare class KerxSubtableHeader extends SDKHandle {
     static initLengthStInfoTupleCountFsHeader(length: number, stInfo: number, tupleCount: number, fsHeader: KerxFormatSpecificHeader): KerxSubtableHeader;
     /** init() */
     static init(): KerxSubtableHeader;
+    readonly $type: {
+        "c:@S@KerxSubtableHeader": true;
+    };
 }
 /** typealias KerxSubtableHeaderPtr = UnsafeMutablePointer<KerxSubtableHeader> */
 export type KerxSubtableHeaderPtr = SDKHandle;
@@ -1758,6 +1972,9 @@ export declare class KerxTableHeader extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): KerxTableHeader;
+    readonly $type: {
+        "c:@S@KerxTableHeader": true;
+    };
 }
 /** typealias KerxTableHeaderHandle = UnsafeMutablePointer<KerxTableHeaderPtr?> */
 export type KerxTableHeaderHandle = unknown;
@@ -1775,6 +1992,9 @@ export declare class LcarCaretClassEntry extends SDKHandle {
     static initCountPartials(count: number, partials: number): LcarCaretClassEntry;
     /** init() */
     static init(): LcarCaretClassEntry;
+    readonly $type: {
+        "c:@S@LcarCaretClassEntry": true;
+    };
 }
 /** struct LcarCaretTable */
 export declare class LcarCaretTable extends SDKHandle {
@@ -1789,6 +2009,9 @@ export declare class LcarCaretTable extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): LcarCaretTable;
+    readonly $type: {
+        "c:@S@LcarCaretTable": true;
+    };
 }
 /** typealias LcarCaretTablePtr = UnsafeMutablePointer<LcarCaretTable> */
 export type LcarCaretTablePtr = SDKHandle;
@@ -1804,6 +2027,9 @@ export declare class LtagStringRange extends SDKHandle {
     static initOffsetLength(offset: number, length: number): LtagStringRange;
     /** init() */
     static init(): LtagStringRange;
+    readonly $type: {
+        "c:@S@LtagStringRange": true;
+    };
 }
 /** struct LtagTable */
 export declare class LtagTable extends SDKHandle {
@@ -1823,6 +2049,9 @@ export declare class LtagTable extends SDKHandle {
     static initVersionFlagsNumTagsTagRange(version: number, flags: number, numTags: number, tagRange: LtagStringRange): LtagTable;
     /** init() */
     static init(): LtagTable;
+    readonly $type: {
+        "c:@S@LtagTable": true;
+    };
 }
 /** struct MortChain */
 export declare class MortChain extends SDKHandle {
@@ -1845,6 +2074,9 @@ export declare class MortChain extends SDKHandle {
     static initDefaultFlagsLengthNFeaturesNSubtablesFeatureEntries(defaultFlags: number, length: number, nFeatures: number, nSubtables: number, featureEntries: MortFeatureEntry): MortChain;
     /** init() */
     static init(): MortChain;
+    readonly $type: {
+        "c:@S@MortChain": true;
+    };
 }
 /** struct MortContextualSubtable */
 export declare class MortContextualSubtable extends SDKHandle {
@@ -1858,6 +2090,9 @@ export declare class MortContextualSubtable extends SDKHandle {
     static initHeaderSubstitutionTableOffset(header: STHeader, substitutionTableOffset: number): MortContextualSubtable;
     /** init() */
     static init(): MortContextualSubtable;
+    readonly $type: {
+        "c:@S@MortContextualSubtable": true;
+    };
 }
 /** struct MortFeatureEntry */
 export declare class MortFeatureEntry extends SDKHandle {
@@ -1877,6 +2112,9 @@ export declare class MortFeatureEntry extends SDKHandle {
     static initFeatureTypeFeatureSelectorEnableFlagsDisableFlags(featureType: number, featureSelector: number, enableFlags: number, disableFlags: number): MortFeatureEntry;
     /** init() */
     static init(): MortFeatureEntry;
+    readonly $type: {
+        "c:@S@MortFeatureEntry": true;
+    };
 }
 /** struct MortInsertionSubtable */
 export declare class MortInsertionSubtable extends SDKHandle {
@@ -1887,6 +2125,9 @@ export declare class MortInsertionSubtable extends SDKHandle {
     static initHeader(header: STHeader): MortInsertionSubtable;
     /** init() */
     static init(): MortInsertionSubtable;
+    readonly $type: {
+        "c:@S@MortInsertionSubtable": true;
+    };
 }
 /** typealias MortLigatureActionEntry = UInt32 */
 export type MortLigatureActionEntry = number;
@@ -1908,6 +2149,9 @@ export declare class MortLigatureSubtable extends SDKHandle {
     static initHeaderLigatureActionTableOffsetComponentTableOffsetLigatureTableOffset(header: STHeader, ligatureActionTableOffset: number, componentTableOffset: number, ligatureTableOffset: number): MortLigatureSubtable;
     /** init() */
     static init(): MortLigatureSubtable;
+    readonly $type: {
+        "c:@S@MortLigatureSubtable": true;
+    };
 }
 /** struct MortRearrangementSubtable */
 export declare class MortRearrangementSubtable extends SDKHandle {
@@ -1918,6 +2162,9 @@ export declare class MortRearrangementSubtable extends SDKHandle {
     static initHeader(header: STHeader): MortRearrangementSubtable;
     /** init() */
     static init(): MortRearrangementSubtable;
+    readonly $type: {
+        "c:@S@MortRearrangementSubtable": true;
+    };
 }
 /** struct MortSpecificSubtable */
 export declare class MortSpecificSubtable extends SDKHandle {
@@ -1948,6 +2195,9 @@ export declare class MortSpecificSubtable extends SDKHandle {
     static initInsertion(insertion: MortInsertionSubtable): MortSpecificSubtable;
     /** init() */
     static init(): MortSpecificSubtable;
+    readonly $type: {
+        "c:@U@MortSpecificSubtable": true;
+    };
 }
 /** struct MortSubtable */
 export declare class MortSubtable extends SDKHandle {
@@ -1967,6 +2217,9 @@ export declare class MortSubtable extends SDKHandle {
     static initLengthCoverageFlagsU(length: number, coverage: number, flags: number, u: MortSpecificSubtable): MortSubtable;
     /** init() */
     static init(): MortSubtable;
+    readonly $type: {
+        "c:@S@MortSubtable": true;
+    };
 }
 /** typealias MortSubtableMaskFlags = UInt32 */
 export type MortSubtableMaskFlags = number;
@@ -1979,6 +2232,9 @@ export declare class MortSwashSubtable extends SDKHandle {
     static initLookup(lookup: SFNTLookupTable): MortSwashSubtable;
     /** init() */
     static init(): MortSwashSubtable;
+    readonly $type: {
+        "c:@S@MortSwashSubtable": true;
+    };
 }
 /** struct MortTable */
 export declare class MortTable extends SDKHandle {
@@ -1993,6 +2249,9 @@ export declare class MortTable extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): MortTable;
+    readonly $type: {
+        "c:@S@MortTable": true;
+    };
 }
 /** struct MorxChain */
 export declare class MorxChain extends SDKHandle {
@@ -2015,6 +2274,9 @@ export declare class MorxChain extends SDKHandle {
     static initDefaultFlagsLengthNFeaturesNSubtablesFeatureEntries(defaultFlags: number, length: number, nFeatures: number, nSubtables: number, featureEntries: MortFeatureEntry): MorxChain;
     /** init() */
     static init(): MorxChain;
+    readonly $type: {
+        "c:@S@MorxChain": true;
+    };
 }
 /** struct MorxContextualSubtable */
 export declare class MorxContextualSubtable extends SDKHandle {
@@ -2028,6 +2290,9 @@ export declare class MorxContextualSubtable extends SDKHandle {
     static initHeaderSubstitutionTableOffset(header: STXHeader, substitutionTableOffset: number): MorxContextualSubtable;
     /** init() */
     static init(): MorxContextualSubtable;
+    readonly $type: {
+        "c:@S@MorxContextualSubtable": true;
+    };
 }
 /** struct MorxInsertionSubtable */
 export declare class MorxInsertionSubtable extends SDKHandle {
@@ -2041,6 +2306,9 @@ export declare class MorxInsertionSubtable extends SDKHandle {
     static initHeaderInsertionGlyphTableOffset(header: STXHeader, insertionGlyphTableOffset: number): MorxInsertionSubtable;
     /** init() */
     static init(): MorxInsertionSubtable;
+    readonly $type: {
+        "c:@S@MorxInsertionSubtable": true;
+    };
 }
 /** struct MorxLigatureSubtable */
 export declare class MorxLigatureSubtable extends SDKHandle {
@@ -2060,6 +2328,9 @@ export declare class MorxLigatureSubtable extends SDKHandle {
     static initHeaderLigatureActionTableOffsetComponentTableOffsetLigatureTableOffset(header: STXHeader, ligatureActionTableOffset: number, componentTableOffset: number, ligatureTableOffset: number): MorxLigatureSubtable;
     /** init() */
     static init(): MorxLigatureSubtable;
+    readonly $type: {
+        "c:@S@MorxLigatureSubtable": true;
+    };
 }
 /** struct MorxRearrangementSubtable */
 export declare class MorxRearrangementSubtable extends SDKHandle {
@@ -2070,6 +2341,9 @@ export declare class MorxRearrangementSubtable extends SDKHandle {
     static initHeader(header: STXHeader): MorxRearrangementSubtable;
     /** init() */
     static init(): MorxRearrangementSubtable;
+    readonly $type: {
+        "c:@S@MorxRearrangementSubtable": true;
+    };
 }
 /** struct MorxSpecificSubtable */
 export declare class MorxSpecificSubtable extends SDKHandle {
@@ -2100,6 +2374,9 @@ export declare class MorxSpecificSubtable extends SDKHandle {
     static initInsertion(insertion: MorxInsertionSubtable): MorxSpecificSubtable;
     /** init() */
     static init(): MorxSpecificSubtable;
+    readonly $type: {
+        "c:@U@MorxSpecificSubtable": true;
+    };
 }
 /** struct MorxSubtable */
 export declare class MorxSubtable extends SDKHandle {
@@ -2119,6 +2396,9 @@ export declare class MorxSubtable extends SDKHandle {
     static initLengthCoverageFlagsU(length: number, coverage: number, flags: number, u: MorxSpecificSubtable): MorxSubtable;
     /** init() */
     static init(): MorxSubtable;
+    readonly $type: {
+        "c:@S@MorxSubtable": true;
+    };
 }
 /** struct MorxTable */
 export declare class MorxTable extends SDKHandle {
@@ -2133,6 +2413,9 @@ export declare class MorxTable extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): MorxTable;
+    readonly $type: {
+        "c:@S@MorxTable": true;
+    };
 }
 /** struct OpbdSideValues */
 export declare class OpbdSideValues extends SDKHandle {
@@ -2152,6 +2435,9 @@ export declare class OpbdSideValues extends SDKHandle {
     static initLeftSideShiftTopSideShiftRightSideShiftBottomSideShift(leftSideShift: number, topSideShift: number, rightSideShift: number, bottomSideShift: number): OpbdSideValues;
     /** init() */
     static init(): OpbdSideValues;
+    readonly $type: {
+        "c:@S@OpbdSideValues": true;
+    };
 }
 /** struct OpbdTable */
 export declare class OpbdTable extends SDKHandle {
@@ -2166,6 +2452,9 @@ export declare class OpbdTable extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): OpbdTable;
+    readonly $type: {
+        "c:@S@OpbdTable": true;
+    };
 }
 /** typealias OpbdTableFormat = UInt16 */
 export type OpbdTableFormat = number;
@@ -2186,6 +2475,9 @@ export declare class PropLookupSegment extends SDKHandle {
     static initLastGlyphFirstGlyphValue(lastGlyph: number, firstGlyph: number, value: number): PropLookupSegment;
     /** init() */
     static init(): PropLookupSegment;
+    readonly $type: {
+        "c:@S@PropLookupSegment": true;
+    };
 }
 /** struct PropLookupSingle */
 export declare class PropLookupSingle extends SDKHandle {
@@ -2199,6 +2491,9 @@ export declare class PropLookupSingle extends SDKHandle {
     static initGlyphProps(glyph: number, props: number): PropLookupSingle;
     /** init() */
     static init(): PropLookupSingle;
+    readonly $type: {
+        "c:@S@PropLookupSingle": true;
+    };
 }
 /** struct PropTable */
 export declare class PropTable extends SDKHandle {
@@ -2216,6 +2511,9 @@ export declare class PropTable extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): PropTable;
+    readonly $type: {
+        "c:@S@PropTable": true;
+    };
 }
 /**
  * struct ROTAGlyphEntry
@@ -2256,6 +2554,9 @@ export declare class ROTAGlyphEntry extends SDKHandle {
      * @deprecated iOS 15.0
      */
     static init(): ROTAGlyphEntry;
+    readonly $type: {
+        "c:@S@ROTAGlyphEntry": true;
+    };
 }
 /**
  * struct ROTAHeader
@@ -2311,6 +2612,9 @@ export declare class ROTAHeader extends SDKHandle {
      * @deprecated iOS 15.0
      */
     static init(): ROTAHeader;
+    readonly $type: {
+        "c:@S@ROTAHeader": true;
+    };
 }
 /** struct sfntCMapEncoding */
 export declare class sfntCMapEncoding extends SDKHandle {
@@ -2327,6 +2631,9 @@ export declare class sfntCMapEncoding extends SDKHandle {
     static initPlatformIDScriptIDOffset(platformID: number, scriptID: number, offset: number): sfntCMapEncoding;
     /** init() */
     static init(): sfntCMapEncoding;
+    readonly $type: {
+        "c:@S@sfntCMapEncoding": true;
+    };
 }
 /** struct sfntCMapExtendedSubHeader */
 export declare class sfntCMapExtendedSubHeader extends SDKHandle {
@@ -2346,6 +2653,9 @@ export declare class sfntCMapExtendedSubHeader extends SDKHandle {
     static initFormatReservedLengthLanguage(format: number, reserved: number, length: number, language: number): sfntCMapExtendedSubHeader;
     /** init() */
     static init(): sfntCMapExtendedSubHeader;
+    readonly $type: {
+        "c:@S@sfntCMapExtendedSubHeader": true;
+    };
 }
 /** struct sfntCMapHeader */
 export declare class sfntCMapHeader extends SDKHandle {
@@ -2362,6 +2672,9 @@ export declare class sfntCMapHeader extends SDKHandle {
     static initVersionNumTablesEncoding(version: number, numTables: number, encoding: sfntCMapEncoding): sfntCMapHeader;
     /** init() */
     static init(): sfntCMapHeader;
+    readonly $type: {
+        "c:@S@sfntCMapHeader": true;
+    };
 }
 /** struct sfntCMapSubHeader */
 export declare class sfntCMapSubHeader extends SDKHandle {
@@ -2378,6 +2691,9 @@ export declare class sfntCMapSubHeader extends SDKHandle {
     static initFormatLengthLanguageID(format: number, length: number, languageID: number): sfntCMapSubHeader;
     /** init() */
     static init(): sfntCMapSubHeader;
+    readonly $type: {
+        "c:@S@sfntCMapSubHeader": true;
+    };
 }
 /** struct sfntDescriptorHeader */
 export declare class sfntDescriptorHeader extends SDKHandle {
@@ -2392,6 +2708,9 @@ export declare class sfntDescriptorHeader extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): sfntDescriptorHeader;
+    readonly $type: {
+        "c:@S@sfntDescriptorHeader": true;
+    };
 }
 /** struct sfntDirectory */
 export declare class sfntDirectory extends SDKHandle {
@@ -2417,6 +2736,9 @@ export declare class sfntDirectory extends SDKHandle {
     static initFormatNumOffsetsSearchRangeEntrySelectorRangeShiftTable(format: SDKHandle, numOffsets: number, searchRange: number, entrySelector: number, rangeShift: number, table: sfntDirectoryEntry): sfntDirectory;
     /** init() */
     static init(): sfntDirectory;
+    readonly $type: {
+        "c:@S@sfntDirectory": true;
+    };
 }
 /** struct sfntDirectoryEntry */
 export declare class sfntDirectoryEntry extends SDKHandle {
@@ -2436,6 +2758,9 @@ export declare class sfntDirectoryEntry extends SDKHandle {
     static initTableTagCheckSumOffsetLength(tableTag: SDKHandle, checkSum: number, offset: number, length: number): sfntDirectoryEntry;
     /** init() */
     static init(): sfntDirectoryEntry;
+    readonly $type: {
+        "c:@S@sfntDirectoryEntry": true;
+    };
 }
 /** struct sfntFeatureHeader */
 export declare class sfntFeatureHeader extends SDKHandle {
@@ -2464,6 +2789,9 @@ export declare class sfntFeatureHeader extends SDKHandle {
     static initVersionFeatureNameCountFeatureSetCountReservedNamesSettingsRuns(version: number, featureNameCount: number, featureSetCount: number, reserved: number, names: sfntFeatureName, settings: sfntFontFeatureSetting, runs: sfntFontRunFeature): sfntFeatureHeader;
     /** init() */
     static init(): sfntFeatureHeader;
+    readonly $type: {
+        "c:@S@sfntFeatureHeader": true;
+    };
 }
 /** struct sfntFeatureName */
 export declare class sfntFeatureName extends SDKHandle {
@@ -2486,6 +2814,9 @@ export declare class sfntFeatureName extends SDKHandle {
     static initFeatureTypeSettingCountOffsetToSettingsFeatureFlagsNameID(featureType: number, settingCount: number, offsetToSettings: number, featureFlags: number, nameID: number): sfntFeatureName;
     /** init() */
     static init(): sfntFeatureName;
+    readonly $type: {
+        "c:@S@sfntFeatureName": true;
+    };
 }
 /** struct sfntFontDescriptor */
 export declare class sfntFontDescriptor extends SDKHandle {
@@ -2497,6 +2828,9 @@ export declare class sfntFontDescriptor extends SDKHandle {
     set value(value: SDKHandle);
     /** init() */
     static init(): sfntFontDescriptor;
+    readonly $type: {
+        "c:@S@sfntFontDescriptor": true;
+    };
 }
 /** struct sfntFontFeatureSetting */
 export declare class sfntFontFeatureSetting extends SDKHandle {
@@ -2510,6 +2844,9 @@ export declare class sfntFontFeatureSetting extends SDKHandle {
     static initSettingNameID(setting: number, nameID: number): sfntFontFeatureSetting;
     /** init() */
     static init(): sfntFontFeatureSetting;
+    readonly $type: {
+        "c:@S@sfntFontFeatureSetting": true;
+    };
 }
 /** struct sfntFontRunFeature */
 export declare class sfntFontRunFeature extends SDKHandle {
@@ -2523,6 +2860,9 @@ export declare class sfntFontRunFeature extends SDKHandle {
     static initFeatureTypeSetting(featureType: number, setting: number): sfntFontRunFeature;
     /** init() */
     static init(): sfntFontRunFeature;
+    readonly $type: {
+        "c:@S@sfntFontRunFeature": true;
+    };
 }
 /** struct sfntInstance */
 export declare class sfntInstance extends SDKHandle {
@@ -2537,6 +2877,9 @@ export declare class sfntInstance extends SDKHandle {
     set nameID(value: number);
     /** init() */
     static init(): sfntInstance;
+    readonly $type: {
+        "c:@S@sfntInstance": true;
+    };
 }
 /** struct SFNTLookupArrayHeader */
 export declare class SFNTLookupArrayHeader extends SDKHandle {
@@ -2547,6 +2890,9 @@ export declare class SFNTLookupArrayHeader extends SDKHandle {
     static initLookupValues(lookupValues: number): SFNTLookupArrayHeader;
     /** init() */
     static init(): SFNTLookupArrayHeader;
+    readonly $type: {
+        "c:@S@SFNTLookupArrayHeader": true;
+    };
 }
 /** struct SFNTLookupBinarySearchHeader */
 export declare class SFNTLookupBinarySearchHeader extends SDKHandle {
@@ -2569,6 +2915,9 @@ export declare class SFNTLookupBinarySearchHeader extends SDKHandle {
     static initUnitSizeNUnitsSearchRangeEntrySelectorRangeShift(unitSize: number, nUnits: number, searchRange: number, entrySelector: number, rangeShift: number): SFNTLookupBinarySearchHeader;
     /** init() */
     static init(): SFNTLookupBinarySearchHeader;
+    readonly $type: {
+        "c:@S@SFNTLookupBinarySearchHeader": true;
+    };
 }
 /** struct SFNTLookupFormatSpecificHeader */
 export declare class SFNTLookupFormatSpecificHeader extends SDKHandle {
@@ -2599,6 +2948,9 @@ export declare class SFNTLookupFormatSpecificHeader extends SDKHandle {
     static initTheArray(theArray: SFNTLookupArrayHeader): SFNTLookupFormatSpecificHeader;
     /** init() */
     static init(): SFNTLookupFormatSpecificHeader;
+    readonly $type: {
+        "c:@U@SFNTLookupFormatSpecificHeader": true;
+    };
 }
 /** typealias SFNTLookupKind = UInt32 */
 export type SFNTLookupKind = number;
@@ -2619,6 +2971,9 @@ export declare class SFNTLookupSegment extends SDKHandle {
     static initLastGlyphFirstGlyphValue(lastGlyph: number, firstGlyph: number, value: number): SFNTLookupSegment;
     /** init() */
     static init(): SFNTLookupSegment;
+    readonly $type: {
+        "c:@S@SFNTLookupSegment": true;
+    };
 }
 /** struct SFNTLookupSegmentHeader */
 export declare class SFNTLookupSegmentHeader extends SDKHandle {
@@ -2632,6 +2987,9 @@ export declare class SFNTLookupSegmentHeader extends SDKHandle {
     static initBinSearchSegments(binSearch: SFNTLookupBinarySearchHeader, segments: SFNTLookupSegment): SFNTLookupSegmentHeader;
     /** init() */
     static init(): SFNTLookupSegmentHeader;
+    readonly $type: {
+        "c:@S@SFNTLookupSegmentHeader": true;
+    };
 }
 /** struct SFNTLookupSingle */
 export declare class SFNTLookupSingle extends SDKHandle {
@@ -2645,6 +3003,9 @@ export declare class SFNTLookupSingle extends SDKHandle {
     static initGlyphValue(glyph: number, value: number): SFNTLookupSingle;
     /** init() */
     static init(): SFNTLookupSingle;
+    readonly $type: {
+        "c:@S@SFNTLookupSingle": true;
+    };
 }
 /** struct SFNTLookupSingleHeader */
 export declare class SFNTLookupSingleHeader extends SDKHandle {
@@ -2658,6 +3019,9 @@ export declare class SFNTLookupSingleHeader extends SDKHandle {
     static initBinSearchEntries(binSearch: SFNTLookupBinarySearchHeader, entries: SFNTLookupSingle): SFNTLookupSingleHeader;
     /** init() */
     static init(): SFNTLookupSingleHeader;
+    readonly $type: {
+        "c:@S@SFNTLookupSingleHeader": true;
+    };
 }
 /** struct SFNTLookupTable */
 export declare class SFNTLookupTable extends SDKHandle {
@@ -2671,6 +3035,9 @@ export declare class SFNTLookupTable extends SDKHandle {
     static initFormatFsHeader(format: number, fsHeader: SFNTLookupFormatSpecificHeader): SFNTLookupTable;
     /** init() */
     static init(): SFNTLookupTable;
+    readonly $type: {
+        "c:@S@SFNTLookupTable": true;
+    };
 }
 /** typealias SFNTLookupTableFormat = UInt16 */
 export type SFNTLookupTableFormat = number;
@@ -2693,6 +3060,9 @@ export declare class SFNTLookupTrimmedArrayHeader extends SDKHandle {
     static initFirstGlyphCountValueArray(firstGlyph: number, count: number, valueArray: number): SFNTLookupTrimmedArrayHeader;
     /** init() */
     static init(): SFNTLookupTrimmedArrayHeader;
+    readonly $type: {
+        "c:@S@SFNTLookupTrimmedArrayHeader": true;
+    };
 }
 /** typealias SFNTLookupValue = UInt16 */
 export type SFNTLookupValue = number;
@@ -2714,6 +3084,9 @@ export declare class SFNTLookupVectorHeader extends SDKHandle {
     static initValueSizeFirstGlyphCountValues(valueSize: number, firstGlyph: number, count: number, values: number): SFNTLookupVectorHeader;
     /** init() */
     static init(): SFNTLookupVectorHeader;
+    readonly $type: {
+        "c:@S@SFNTLookupVectorHeader": true;
+    };
 }
 /** struct sfntNameHeader */
 export declare class sfntNameHeader extends SDKHandle {
@@ -2733,6 +3106,9 @@ export declare class sfntNameHeader extends SDKHandle {
     static initFormatCountStringOffsetRec(format: number, count: number, stringOffset: number, rec: sfntNameRecord): sfntNameHeader;
     /** init() */
     static init(): sfntNameHeader;
+    readonly $type: {
+        "c:@S@sfntNameHeader": true;
+    };
 }
 /** struct sfntNameRecord */
 export declare class sfntNameRecord extends SDKHandle {
@@ -2758,6 +3134,9 @@ export declare class sfntNameRecord extends SDKHandle {
     static initPlatformIDScriptIDLanguageIDNameIDLengthOffset(platformID: number, scriptID: number, languageID: number, nameID: number, length: number, offset: number): sfntNameRecord;
     /** init() */
     static init(): sfntNameRecord;
+    readonly $type: {
+        "c:@S@sfntNameRecord": true;
+    };
 }
 /** struct sfntVariationAxis */
 export declare class sfntVariationAxis extends SDKHandle {
@@ -2781,6 +3160,9 @@ export declare class sfntVariationAxis extends SDKHandle {
     set nameID(value: number);
     /** init() */
     static init(): sfntVariationAxis;
+    readonly $type: {
+        "c:@S@sfntVariationAxis": true;
+    };
 }
 /** struct sfntVariationHeader */
 export declare class sfntVariationHeader extends SDKHandle {
@@ -2813,6 +3195,9 @@ export declare class sfntVariationHeader extends SDKHandle {
     set version(value: SDKHandle);
     /** init() */
     static init(): sfntVariationHeader;
+    readonly $type: {
+        "c:@S@sfntVariationHeader": true;
+    };
 }
 /** typealias STClass = UInt8 */
 export type STClass = number;
@@ -2831,6 +3216,9 @@ export declare class STClassTable extends SDKHandle {
     static initFirstGlyphNGlyphsClasses(firstGlyph: number, nGlyphs: number, classes: number): STClassTable;
     /** init() */
     static init(): STClassTable;
+    readonly $type: {
+        "c:@S@STClassTable": true;
+    };
 }
 /** typealias STEntryIndex = UInt8 */
 export type STEntryIndex = number;
@@ -2849,6 +3237,9 @@ export declare class STEntryOne extends SDKHandle {
     static initNewStateFlagsOffset1(newState: number, flags: number, offset1: number): STEntryOne;
     /** init() */
     static init(): STEntryOne;
+    readonly $type: {
+        "c:@S@STEntryOne": true;
+    };
 }
 /** struct STEntryTwo */
 export declare class STEntryTwo extends SDKHandle {
@@ -2868,6 +3259,9 @@ export declare class STEntryTwo extends SDKHandle {
     static initNewStateFlagsOffset1Offset2(newState: number, flags: number, offset1: number, offset2: number): STEntryTwo;
     /** init() */
     static init(): STEntryTwo;
+    readonly $type: {
+        "c:@S@STEntryTwo": true;
+    };
 }
 /** struct STEntryZero */
 export declare class STEntryZero extends SDKHandle {
@@ -2881,6 +3275,9 @@ export declare class STEntryZero extends SDKHandle {
     static initNewStateFlags(newState: number, flags: number): STEntryZero;
     /** init() */
     static init(): STEntryZero;
+    readonly $type: {
+        "c:@S@STEntryZero": true;
+    };
 }
 /** struct STHeader */
 export declare class STHeader extends SDKHandle {
@@ -2903,6 +3300,9 @@ export declare class STHeader extends SDKHandle {
     static initFillerNClassesClassTableOffsetStateArrayOffsetEntryTableOffset(filler: number, nClasses: number, classTableOffset: number, stateArrayOffset: number, entryTableOffset: number): STHeader;
     /** init() */
     static init(): STHeader;
+    readonly $type: {
+        "c:@S@STHeader": true;
+    };
 }
 /** typealias STXClass = UInt16 */
 export type STXClass = number;
@@ -2925,6 +3325,9 @@ export declare class STXEntryOne extends SDKHandle {
     static initNewStateFlagsIndex1(newState: number, flags: number, index1: number): STXEntryOne;
     /** init() */
     static init(): STXEntryOne;
+    readonly $type: {
+        "c:@S@STXEntryOne": true;
+    };
 }
 /** struct STXEntryTwo */
 export declare class STXEntryTwo extends SDKHandle {
@@ -2944,6 +3347,9 @@ export declare class STXEntryTwo extends SDKHandle {
     static initNewStateFlagsIndex1Index2(newState: number, flags: number, index1: number, index2: number): STXEntryTwo;
     /** init() */
     static init(): STXEntryTwo;
+    readonly $type: {
+        "c:@S@STXEntryTwo": true;
+    };
 }
 /** struct STXEntryZero */
 export declare class STXEntryZero extends SDKHandle {
@@ -2957,6 +3363,9 @@ export declare class STXEntryZero extends SDKHandle {
     static initNewStateFlags(newState: number, flags: number): STXEntryZero;
     /** init() */
     static init(): STXEntryZero;
+    readonly $type: {
+        "c:@S@STXEntryZero": true;
+    };
 }
 /** struct STXHeader */
 export declare class STXHeader extends SDKHandle {
@@ -2976,6 +3385,9 @@ export declare class STXHeader extends SDKHandle {
     static initNClassesClassTableOffsetStateArrayOffsetEntryTableOffset(nClasses: number, classTableOffset: number, stateArrayOffset: number, entryTableOffset: number): STXHeader;
     /** init() */
     static init(): STXHeader;
+    readonly $type: {
+        "c:@S@STXHeader": true;
+    };
 }
 /** typealias STXStateIndex = UInt16 */
 export type STXStateIndex = number;
@@ -2995,6 +3407,9 @@ export declare class TrakTable extends SDKHandle {
     set vertOffset(value: number);
     /** init() */
     static init(): TrakTable;
+    readonly $type: {
+        "c:@S@TrakTable": true;
+    };
 }
 /** struct TrakTableData */
 export declare class TrakTableData extends SDKHandle {
@@ -3014,6 +3429,9 @@ export declare class TrakTableData extends SDKHandle {
     static initNTracksNSizesSizeTableOffsetTrakTable(nTracks: number, nSizes: number, sizeTableOffset: number, trakTable: TrakTableEntry): TrakTableData;
     /** init() */
     static init(): TrakTableData;
+    readonly $type: {
+        "c:@S@TrakTableData": true;
+    };
 }
 /** struct TrakTableEntry */
 export declare class TrakTableEntry extends SDKHandle {
@@ -3028,6 +3446,9 @@ export declare class TrakTableEntry extends SDKHandle {
     set track(value: SDKHandle);
     /** init() */
     static init(): TrakTableEntry;
+    readonly $type: {
+        "c:@S@TrakTableEntry": true;
+    };
 }
 /** typealias TrakValue = Int16 */
 export type TrakValue = number;

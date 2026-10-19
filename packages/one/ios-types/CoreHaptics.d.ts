@@ -104,6 +104,10 @@ export declare class CHHapticDynamicParameter extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $type: {
+        "c:objc(cs)CHHapticDynamicParameter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "parameterID": true;
         "relativeTime": true;
@@ -288,6 +292,10 @@ export declare class CHHapticEngine extends SDKHandle {
      */
     get stoppedHandler(): $SDK5;
     set stoppedHandler(value: ((arg0: CHHapticEngine_StoppedReason) => void));
+    readonly $type: {
+        "c:objc(cs)CHHapticEngine": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAutoShutdownEnabled": true;
         "currentTime": true;
@@ -447,6 +455,9 @@ export declare class CHHapticError extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get invalidPatternDictionary(): CHHapticError_Code;
+    readonly $type: {
+        "s:SC17CHHapticErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -507,6 +518,10 @@ export declare class CHHapticEvent extends SDKHandle {
      * @availability iOS 13.0+
      */
     get type(): CHHapticEvent_EventType;
+    readonly $type: {
+        "c:objc(cs)CHHapticEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "eventParameters": true;
@@ -617,6 +632,10 @@ export declare class CHHapticEventParameter extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $type: {
+        "c:objc(cs)CHHapticEventParameter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "parameterID": true;
         "value": true;
@@ -639,6 +658,10 @@ export declare class CHHapticParameterCurve extends SDKHandle {
     /** var relativeTime: TimeInterval { get set } */
     get relativeTime(): number;
     set relativeTime(value: number);
+    readonly $type: {
+        "c:objc(cs)CHHapticParameterCurve": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "controlPoints": true;
         "parameterID": true;
@@ -667,6 +690,10 @@ export declare class CHHapticParameterCurve_ControlPoint extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $type: {
+        "c:objc(cs)CHHapticParameterCurveControlPoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "relativeTime": true;
         "value": true;
@@ -707,6 +734,10 @@ export declare class CHHapticPattern extends SDKHandle {
      * @availability iOS 13.0+
      */
     get duration(): number;
+    readonly $type: {
+        "c:objc(cs)CHHapticPattern": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
     };

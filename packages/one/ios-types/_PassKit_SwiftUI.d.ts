@@ -32,6 +32,9 @@ export declare class AddPassToWalletButton<Fallback = unknown> extends SDKHandle
      * @availability iOS 16.0+
      */
     static initOnCompletion63283(configuration: _PassKit_PKAddSecureElementPassConfiguration, onCompletion: $SDK1): Promise<$SDK0>;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI03AddA14ToWalletButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -58,6 +61,9 @@ export declare class AddPassToWalletButtonFilter extends SDKHandle {
      * @availability iOS 16.0+
      */
     static primaryAccountIdentifier(primaryAccountIdentifier: string): AddPassToWalletButtonFilter;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI03AddA20ToWalletButtonFilterV": true;
+    };
 }
 /**
  * struct AddPassToWalletButtonResponse
@@ -82,6 +88,9 @@ export declare class AddPassToWalletButtonResponse extends SDKHandle {
      */
     get nonce(): ArrayBuffer;
     set nonce(value: ArrayBuffer);
+    readonly $type: {
+        "s:16_PassKit_SwiftUI03AddA22ToWalletButtonResponseV": true;
+    };
 }
 /**
  * struct AddPassToWalletButtonStyle
@@ -98,6 +107,9 @@ export declare class AddPassToWalletButtonStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get black(): AddPassToWalletButtonStyle;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI03AddA19ToWalletButtonStyleV": true;
+    };
 }
 /**
  * struct ApplePayMerchandisingAction
@@ -147,6 +159,9 @@ export declare class ApplePayMerchandisingPartnerConfiguration extends SDKHandle
      * @availability iOS 27.0+
      */
     static limited(partnerIdentifiers: Array<string>): ApplePayMerchandisingPartnerConfiguration;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI41ApplePayMerchandisingPartnerConfigurationV": true;
+    };
 }
 /**
  * struct ApplePayMerchandisingStyle
@@ -181,6 +196,9 @@ export type ApplePayMerchandisingStyle_RawValue = string;
  * @availability iOS 27.0+
  */
 export declare class ApplePayMerchandisingView<Fallback = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16_PassKit_SwiftUI25ApplePayMerchandisingViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -192,6 +210,9 @@ export type ApplePayMerchandisingView_Body<Fallback = unknown> = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class AsyncShareablePassConfiguration<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16_PassKit_SwiftUI014AsyncShareableA13ConfigurationV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -203,6 +224,9 @@ export type AsyncShareablePassConfiguration_Body<Content = unknown> = SDKHandle;
  * @availability iOS 16.0+
  */
 export declare class AsyncShareablePassConfiguration_Result<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16_PassKit_SwiftUI014AsyncShareableA13ConfigurationV6ResultO": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct PayLaterView<FallbackView> where FallbackView : View
@@ -214,6 +238,9 @@ export declare class PayLaterView<FallbackView = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(amount: _Foundation_Decimal, currency: _Foundation_Locale_Currency): Promise<PayLaterView<_SwiftUICore_EmptyView>>;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI12PayLaterViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -235,6 +262,9 @@ export declare class PayLaterViewAction extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get learnMore(): PayLaterViewAction;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI18PayLaterViewActionV": true;
+    };
 }
 /**
  * struct PayLaterViewDisplayStyle
@@ -261,6 +291,9 @@ export declare class PayLaterViewDisplayStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get standard(): PayLaterViewDisplayStyle;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI24PayLaterViewDisplayStyleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct PayWithApplePayButton<Fallback> where Fallback : View
@@ -277,6 +310,9 @@ export declare class PayWithApplePayButton<Fallback = unknown> extends SDKHandle
      * @availability iOS 16.0+
      */
     static initRequestOnPaymentAuthorizationChange(label: PayWithApplePayButtonLabel, request: _PassKit_PKPaymentRequest, onPaymentAuthorizationChange: ((arg0: PayWithApplePayButtonPaymentAuthorizationPhase) => void)): Promise<$SDK4>;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI012PayWithAppleE6ButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -373,12 +409,18 @@ export declare class PayWithApplePayButtonLabel extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get subscribe(): PayWithApplePayButtonLabel;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI012PayWithAppleE11ButtonLabelV": true;
+    };
 }
 /**
  * enum PayWithApplePayButtonPaymentAuthorizationPhase
  * @availability iOS 16.0+
  */
 export declare class PayWithApplePayButtonPaymentAuthorizationPhase extends SDKHandle {
+    readonly $type: {
+        "s:16_PassKit_SwiftUI012PayWithAppleE31ButtonPaymentAuthorizationPhaseO": true;
+    };
 }
 /**
  * struct PayWithApplePayButtonStyle
@@ -405,6 +447,9 @@ export declare class PayWithApplePayButtonStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): PayWithApplePayButtonStyle;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI012PayWithAppleE11ButtonStyleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct VerifyIdentityWithWalletButton<Fallback> where Fallback : View
@@ -421,6 +466,9 @@ export declare class VerifyIdentityWithWalletButton<Fallback = unknown> extends 
      * @availability iOS 16.0+
      */
     static initRequestOnCompletion(label: VerifyIdentityWithWalletButtonLabel, request: _PassKit_PKIdentityRequest, onCompletion: $SDK1): Promise<$SDK6>;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI30VerifyIdentityWithWalletButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -452,6 +500,9 @@ export declare class VerifyIdentityWithWalletButtonLabel extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get verifyAge(): VerifyIdentityWithWalletButtonLabel;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI35VerifyIdentityWithWalletButtonLabelV": true;
+    };
 }
 /**
  * struct VerifyIdentityWithWalletButtonStyle
@@ -468,5 +519,8 @@ export declare class VerifyIdentityWithWalletButtonStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get black(): VerifyIdentityWithWalletButtonStyle;
+    readonly $type: {
+        "s:16_PassKit_SwiftUI35VerifyIdentityWithWalletButtonStyleV": true;
+    };
 }
 export {};

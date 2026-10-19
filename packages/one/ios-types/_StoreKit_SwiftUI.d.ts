@@ -18,6 +18,9 @@ type $SDK22 = SubscriptionStorePickerOption<AutomaticSubscriptionStorePickerOpti
  * @availability iOS 17.0+
  */
 export declare class AutomaticProductPlaceholderIcon extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI31AutomaticProductPlaceholderIconV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -34,6 +37,9 @@ export declare class AutomaticProductViewStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<AutomaticProductViewStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI25AutomaticProductViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -50,6 +56,9 @@ export declare class AutomaticSubscriptionOfferViewStyle extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Promise<AutomaticSubscriptionOfferViewStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI35AutomaticSubscriptionOfferViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -61,6 +70,9 @@ export type AutomaticSubscriptionOfferViewStyle_Body = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class AutomaticSubscriptionOptionGroupLabel extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI37AutomaticSubscriptionOptionGroupLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -77,6 +89,9 @@ export declare class AutomaticSubscriptionOptionGroupStyle extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): AutomaticSubscriptionOptionGroupStyle;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI37AutomaticSubscriptionOptionGroupStyleV": true;
+    };
 }
 /**
  * struct AutomaticSubscriptionStoreControlPlacement
@@ -130,6 +145,9 @@ export declare class AutomaticSubscriptionStoreControlStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<AutomaticSubscriptionStoreControlStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI021AutomaticSubscriptionA12ControlStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -183,6 +201,9 @@ export type AutomaticSubscriptionStoreControlStyle_SubscriptionPickerOption = $S
  * @availability iOS 17.0+
  */
 export declare class AutomaticSubscriptionStoreMarketingContent extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI021AutomaticSubscriptionA16MarketingContentV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -194,6 +215,9 @@ export type AutomaticSubscriptionStoreMarketingContent_Body = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class AutomaticSubscriptionStorePickerOptionLabel extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI021AutomaticSubscriptionA17PickerOptionLabelV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -210,6 +234,9 @@ export declare class ButtonsSubscriptionStoreControlStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<ButtonsSubscriptionStoreControlStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI019ButtonsSubscriptionA12ControlStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -278,6 +305,9 @@ export declare class CompactPickerSubscriptionStoreControlStyle extends SDKHandl
      * @availability iOS 18.0+
      */
     static init(): Promise<CompactPickerSubscriptionStoreControlStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI025CompactPickerSubscriptionA12ControlStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -351,6 +381,9 @@ export declare class CompactProductViewStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<CompactProductViewStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI23CompactProductViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -367,6 +400,9 @@ export declare class CompactSubscriptionOfferViewStyle extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Promise<CompactSubscriptionOfferViewStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI33CompactSubscriptionOfferViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -383,6 +419,9 @@ export declare class DisplayMessageAction extends SDKHandle {
      * @availability iOS 16.0+
      */
     callAsFunction(message: _StoreKit_Message): Promise<void>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI20DisplayMessageActionV": true;
+    };
 }
 /**
  * enum EntitlementTaskState<Value>
@@ -409,12 +448,18 @@ export declare class EntitlementTaskState<Value = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     get transaction(): (_StoreKit_VerificationResult<_StoreKit_Transaction>) | null;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI20EntitlementTaskStateO": true;
+    };
 }
 /**
  * struct IdentifiedStoreContent<IdentifiedView> where IdentifiedView : View
  * @availability iOS 18.0+
  */
 export declare class IdentifiedStoreContent<IdentifiedView = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI010IdentifiedA7ContentV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct LargeProductViewStyle
@@ -426,6 +471,9 @@ export declare class LargeProductViewStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<LargeProductViewStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI21LargeProductViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -442,6 +490,9 @@ export declare class LinksSubscriptionOptionGroupStyle extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): LinksSubscriptionOptionGroupStyle;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI33LinksSubscriptionOptionGroupStyleV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -458,6 +509,9 @@ export declare class PagedPickerSubscriptionStoreControlStyle extends SDKHandle 
      * @availability iOS 18.0+
      */
     static init(): Promise<PagedPickerSubscriptionStoreControlStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI023PagedPickerSubscriptionA12ControlStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -531,6 +585,9 @@ export declare class PagedProminentPickerSubscriptionStoreControlStyle extends S
      * @availability iOS 18.0+
      */
     static init(): Promise<PagedProminentPickerSubscriptionStoreControlStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI032PagedProminentPickerSubscriptionA12ControlStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -567,6 +624,9 @@ export declare class PickerSubscriptionStoreControlStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<PickerSubscriptionStoreControlStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI018PickerSubscriptionA12ControlStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -635,6 +695,9 @@ export declare class Product_CollectionTaskState extends SDKHandle {
      * @availability iOS 17.0+
      */
     get products(): $SDK6;
+    readonly $type: {
+        "s:8StoreKit7ProductV01_aB8_SwiftUIE19CollectionTaskStateO": true;
+    };
 }
 /**
  * struct SubscriptionRelationship
@@ -704,6 +767,9 @@ export declare class Product_TaskState extends SDKHandle {
      * @availability iOS 17.0+
      */
     get product(): $SDK7;
+    readonly $type: {
+        "s:8StoreKit7ProductV01_aB8_SwiftUIE9TaskStateO": true;
+    };
 }
 /**
  * enum ProductIconPhase
@@ -720,6 +786,9 @@ export declare class ProductIconPhase extends SDKHandle {
      * @availability iOS 17.0+
      */
     get error(): (NativeError) | null;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI16ProductIconPhaseO": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct ProductView<Icon, PlaceholderIcon> where Icon : View, PlaceholderIcon : View
@@ -731,6 +800,9 @@ export declare class ProductView<Icon = unknown, PlaceholderIcon = unknown> exte
      * @availability iOS 17.0+
      */
     static init(configuration: ProductViewStyleConfiguration): Promise<ProductView<ProductViewStyleConfiguration_Icon, ProductViewStyleConfiguration_Icon>>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI11ProductViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -788,12 +860,18 @@ export declare class ProductViewStyleConfiguration extends SDKHandle {
      * @availability iOS 17.0+
      */
     purchase(): void;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI29ProductViewStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Icon
  * @availability iOS 17.0+
  */
 export declare class ProductViewStyleConfiguration_Icon extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI29ProductViewStyleConfigurationV4IconV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -810,6 +888,9 @@ export declare class ProminentPickerSubscriptionStoreControlStyle extends SDKHan
      * @availability iOS 17.0+
      */
     static init(): Promise<ProminentPickerSubscriptionStoreControlStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI027ProminentPickerSubscriptionA12ControlStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -851,6 +932,9 @@ export declare class PurchaseAction extends SDKHandle {
      * @availability iOS 17.0+
      */
     callAsFunctionOptions(product: _StoreKit_Product, options?: Array<_StoreKit_Product_PurchaseOption>): Promise<_StoreKit_Product_PurchaseResult>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI14PurchaseActionV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct RegularProductViewStyle
@@ -862,6 +946,9 @@ export declare class RegularProductViewStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<RegularProductViewStyle>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI23RegularProductViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -878,6 +965,9 @@ export declare class RequestReviewAction extends SDKHandle {
      * @availability iOS 16.0+
      */
     callAsFunction(): Promise<void>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI19RequestReviewActionV": true;
+    };
 }
 /**
  * struct StoreButtonKind
@@ -909,6 +999,9 @@ export declare class StoreButtonKind extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get policies(): StoreButtonKind;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI0A10ButtonKindV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol StoreContent
@@ -921,12 +1014,18 @@ export interface StoreContent {
  * @availability iOS 18.0+
  */
 export declare class StoreContentBuilder extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI0A14ContentBuilderV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct StoreView<Icon, PlaceholderIcon> where Icon : View, PlaceholderIcon : View
  * @availability iOS 17.0+
  */
 export declare class StoreView<Icon = unknown, PlaceholderIcon = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI0A4ViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -943,6 +1042,9 @@ export declare class SubscriptionOfferView<Icon = unknown, PlaceholderIcon = unk
      * @availability iOS 26.0+
      */
     static init(configuration: SubscriptionOfferViewStyleConfiguration): Promise<SubscriptionOfferView<SubscriptionOfferViewStyleConfiguration_Icon, SubscriptionOfferViewStyleConfiguration_Icon>>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI21SubscriptionOfferViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -959,6 +1061,9 @@ export declare class SubscriptionOfferViewButtonKind extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get detailLink(): SubscriptionOfferViewButtonKind;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI31SubscriptionOfferViewButtonKindV": true;
+    };
 }
 /**
  * @MainActor protocol SubscriptionOfferViewStyle
@@ -1027,12 +1132,18 @@ export declare class SubscriptionOfferViewStyleConfiguration extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscribe(): void;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI39SubscriptionOfferViewStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Icon
  * @availability iOS 26.0+
  */
 export declare class SubscriptionOfferViewStyleConfiguration_Icon extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI39SubscriptionOfferViewStyleConfigurationV4IconV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1044,6 +1155,9 @@ export type SubscriptionOfferViewStyleConfiguration_Icon_Body = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class SubscriptionOptionGroup<Content = unknown, Label = unknown, MarketingContent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI23SubscriptionOptionGroupV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1055,6 +1169,9 @@ export type SubscriptionOptionGroup_Body<Content = unknown, Label = unknown, Mar
  * @availability iOS 18.0+
  */
 export declare class SubscriptionOptionGroupSet<GroupID = unknown, Label = unknown, MarketingContent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI26SubscriptionOptionGroupSetV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1072,12 +1189,18 @@ export interface SubscriptionOptionGroupStyle {
  * @availability iOS 18.0+
  */
 export declare class SubscriptionOptionGroupStyleOutput extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI34SubscriptionOptionGroupStyleOutputV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct SubscriptionOptionSection<Header, Content, Footer> where Header : View, Content : StoreContent, Footer : View
  * @availability iOS 18.0+
  */
 export declare class SubscriptionOptionSection<Header = unknown, Content = unknown, Footer = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI25SubscriptionOptionSectionV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1094,6 +1217,9 @@ export declare class SubscriptionPeriodGroupSet<Label = unknown, MarketingConten
      * @availability iOS 18.0+
      */
     static init(): Promise<SubscriptionPeriodGroupSet<AutomaticSubscriptionOptionGroupLabel, AutomaticSubscriptionStoreMarketingContent>>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI26SubscriptionPeriodGroupSetV": true;
+    };
 }
 /**
  * typealias Body = some StoreContent
@@ -1110,6 +1236,9 @@ export declare class SubscriptionStoreButton extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(option: SubscriptionStoreControlStyleConfiguration_Option): Promise<SubscriptionStoreButton>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA6ButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1176,12 +1305,18 @@ export declare class SubscriptionStoreButtonLabel extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get multiline93459(): SubscriptionStoreButtonLabel;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA11ButtonLabelV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct SubscriptionStoreContentView<Content> where Content : StoreContent
  * @availability iOS 18.0+
  */
 export declare class SubscriptionStoreContentView<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA11ContentViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1208,6 +1343,9 @@ export declare class SubscriptionStoreControlBackground extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): SubscriptionStoreControlBackground;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA17ControlBackgroundV": true;
+    };
 }
 /**
  * protocol SubscriptionStoreControlPlacement : RawRepresentable where Self.RawValue == SubscriptionStoreControlPlacementKey
@@ -1235,6 +1373,9 @@ export declare class SubscriptionStoreControlPlacementKey extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get bottomBar(): SubscriptionStoreControlPlacementKey;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA19ControlPlacementKeyV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol SubscriptionStoreControlStyle
@@ -1302,12 +1443,18 @@ export declare class SubscriptionStoreControlStyleConfiguration extends SDKHandl
      * @availability iOS 18.0+
      */
     get sections(): Array<SubscriptionStoreControlStyleConfiguration_Section>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Icon
  * @availability iOS 18.0+
  */
 export declare class SubscriptionStoreControlStyleConfiguration_Icon extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV4IconV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1359,6 +1506,9 @@ export declare class SubscriptionStoreControlStyleConfiguration_Option extends S
      * @availability iOS 18.0+
      */
     subscribe(): void;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV6OptionV": true;
+    };
 }
 /**
  * typealias ID = Product.ID
@@ -1410,6 +1560,9 @@ export declare class SubscriptionStoreControlStyleConfiguration_PickerOption ext
      * @availability iOS 18.0+
      */
     get icon(): $SDK19;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV12PickerOptionV": true;
+    };
 }
 /**
  * typealias ID = Product.ID
@@ -1445,12 +1598,18 @@ export declare class SubscriptionStoreControlStyleConfiguration_Section extends 
      */
     get options(): $SDK17;
     set options(value: $SDK17);
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV7SectionV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct Footer
  * @availability iOS 18.0+
  */
 export declare class SubscriptionStoreControlStyleConfiguration_Section_Footer extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV7SectionV6FooterV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1462,6 +1621,9 @@ export type SubscriptionStoreControlStyleConfiguration_Section_Footer_Body = SDK
  * @availability iOS 18.0+
  */
 export declare class SubscriptionStoreControlStyleConfiguration_Section_Header extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV7SectionV6HeaderV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1473,12 +1635,18 @@ export type SubscriptionStoreControlStyleConfiguration_Section_Header_Body = SDK
  * @availability iOS 18.0+
  */
 export declare class SubscriptionStoreControlStyleConfiguration_Section_ID extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA25ControlStyleConfigurationV7SectionV2IDV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct SubscriptionStorePicker<PickerContent, ConfirmationContent> where PickerContent : View, ConfirmationContent : View
  * @availability iOS 18.0+
  */
 export declare class SubscriptionStorePicker<PickerContent = unknown, ConfirmationContent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA6PickerV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1500,6 +1668,9 @@ export declare class SubscriptionStorePickerOption<Label = unknown> extends SDKH
      * @availability iOS 18.0+
      */
     static init43180(option: SubscriptionStoreControlStyleConfiguration_PickerOption): Promise<$SDK22>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA12PickerOptionV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1521,6 +1692,9 @@ export declare class SubscriptionStorePolicyKind extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get termsOfService(): SubscriptionStorePolicyKind;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA10PolicyKindV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct SubscriptionStoreView<Content> where Content : View
@@ -1532,6 +1706,9 @@ export declare class SubscriptionStoreView<Content = unknown> extends SDKHandle 
      * @availability iOS 17.0+
      */
     static init(groupID: string, visibleRelationships?: Product_SubscriptionRelationship): Promise<SubscriptionStoreView<AutomaticSubscriptionStoreMarketingContent>>;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI012SubscriptionA4ViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -1548,12 +1725,18 @@ export declare class TabsSubscriptionOptionGroupStyle extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): TabsSubscriptionOptionGroupStyle;
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI32TabsSubscriptionOptionGroupStyleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct TupleStoreContent<each Content> where repeat each Content : StoreContent
  * @availability iOS 18.0+
  */
 export declare class TupleStoreContent<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:17_StoreKit_SwiftUI05TupleA7ContentV": true;
+    };
 }
 /**
  * typealias Body = Never

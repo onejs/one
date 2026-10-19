@@ -32,8 +32,6 @@ type $SDK54 = ((arg0: MLUpdateContext) => void);
  * @availability iOS 12.0+
  */
 export declare class MLArrayBatchProvider extends SDKHandle {
-    /** init() */
-    static init(): MLArrayBatchProvider;
     /**
      * init(dictionary: [String : [Any]]) throws
      * @availability iOS 12.0+
@@ -49,6 +47,10 @@ export declare class MLArrayBatchProvider extends SDKHandle {
      * @availability iOS 12.0+
      */
     get array(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)MLArrayBatchProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "array": true;
     };
@@ -79,6 +81,9 @@ export declare class MLComputeDevice extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get allComputeDevices(): Array<MLComputeDevice>;
+    readonly $type: {
+        "s:6CoreML15MLComputeDeviceO": true;
+    };
 }
 /**
  * protocol MLComputeDeviceProtocol : NSObjectProtocol
@@ -121,6 +126,9 @@ export declare class MLComputePlan extends SDKHandle {
      * @availability iOS 17.4+
      */
     static loadAssetConfiguration(asset: MLModelAsset, configuration: MLModelConfiguration): Promise<MLComputePlan>;
+    readonly $type: {
+        "s:6CoreML13MLComputePlanC": true;
+    };
 }
 /**
  * struct Cost
@@ -132,6 +140,9 @@ export declare class MLComputePlan_Cost extends SDKHandle {
      * @availability iOS 17.4+
      */
     get weight(): number;
+    readonly $type: {
+        "s:6CoreML13MLComputePlanC4CostV": true;
+    };
 }
 /**
  * struct DeviceUsage
@@ -148,6 +159,9 @@ export declare class MLComputePlan_DeviceUsage extends SDKHandle {
      * @availability iOS 17.4+
      */
     get supported(): Array<MLComputeDevice>;
+    readonly $type: {
+        "s:6CoreML13MLComputePlanC11DeviceUsageV": true;
+    };
 }
 /**
  * struct MLComputePolicy
@@ -179,6 +193,9 @@ export declare class MLComputePolicy extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(computeUnits: MLComputeUnits): MLComputePolicy;
+    readonly $type: {
+        "s:6CoreML15MLComputePolicyV": true;
+    };
 }
 /**
  * enum MLComputeUnits
@@ -197,6 +214,10 @@ export declare const MLComputeUnits: {
  * @availability iOS 17.0+
  */
 export declare class MLCPUComputeDevice extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)MLCPUComputeDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol MLCustomLayer
@@ -257,6 +278,10 @@ export declare class MLDictionaryConstraint extends SDKHandle {
      * @availability iOS 11.0+
      */
     get keyType(): MLFeatureType;
+    readonly $type: {
+        "c:objc(cs)MLDictionaryConstraint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "keyType": true;
     };
@@ -266,13 +291,11 @@ export declare class MLDictionaryConstraint extends SDKHandle {
  * @availability iOS 11.0+
  */
 export declare class MLDictionaryFeatureProvider extends SDKHandle {
-    /** init() */
-    static init(): MLDictionaryFeatureProvider;
     /**
      * init(dictionary: [String : Any]) throws
      * @availability iOS 11.0+
      */
-    static initDictionary(dictionary: Record<string, unknown>): MLDictionaryFeatureProvider;
+    static init(dictionary: Record<string, unknown>): MLDictionaryFeatureProvider;
     /**
      * subscript(featureName: String) -> MLFeatureValue? { get }
      * @availability iOS 11.0+
@@ -283,6 +306,10 @@ export declare class MLDictionaryFeatureProvider extends SDKHandle {
      * @availability iOS 11.0+
      */
     get dictionary(): Record<string, MLFeatureValue>;
+    readonly $type: {
+        "c:objc(cs)MLDictionaryFeatureProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dictionary": true;
     };
@@ -339,6 +366,10 @@ export declare class MLFeatureDescription extends SDKHandle {
      * @availability iOS 11.0+
      */
     get type(): MLFeatureType;
+    readonly $type: {
+        "c:objc(cs)MLFeatureDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dictionaryConstraint": true;
         "imageConstraint": true;
@@ -458,8 +489,6 @@ export declare class MLFeatureValue extends SDKHandle {
      * @availability iOS 11.0+
      */
     static initUndefined(type: MLFeatureType): MLFeatureValue;
-    /** init() */
-    static init(): MLFeatureValue;
     /**
      * func isEqual(to value: MLFeatureValue) -> Bool
      * @availability iOS 11.0+
@@ -524,7 +553,11 @@ export declare class MLFeatureValue extends SDKHandle {
      * convenience init(_ value: MLSendableFeatureValue)
      * @availability iOS 18.0+
      */
-    static init26977(value: MLSendableFeatureValue): MLFeatureValue;
+    static init(value: MLSendableFeatureValue): MLFeatureValue;
+    readonly $type: {
+        "c:objc(cs)MLFeatureValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dictionaryValue": true;
         "doubleValue": true;
@@ -565,6 +598,10 @@ export declare class MLGPUComputeDevice extends SDKHandle {
      * @availability iOS 17.0+
      */
     get metalDevice(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)MLGPUComputeDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "metalDevice": true;
     };
@@ -594,6 +631,10 @@ export declare class MLImageConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get sizeConstraint(): MLImageSizeConstraint;
+    readonly $type: {
+        "c:objc(cs)MLImageConstraint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pixelFormatType": true;
         "pixelsHigh": true;
@@ -618,6 +659,10 @@ export declare class MLImageSize extends SDKHandle {
      * @availability iOS 12.0+
      */
     get pixelsWide(): number;
+    readonly $type: {
+        "c:objc(cs)MLImageSize": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pixelsHigh": true;
         "pixelsWide": true;
@@ -650,6 +695,10 @@ export declare class MLImageSizeConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): MLImageSizeConstraintType;
+    readonly $type: {
+        "c:objc(cs)MLImageSizeConstraint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enumeratedImageSizes": true;
         "pixelsHighRange": true;
@@ -684,6 +733,10 @@ export declare class MLKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     get scope(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)MLKey": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "scope": true;
@@ -709,6 +762,11 @@ export declare class MLMetricKey extends MLKey {
      * @availability iOS 13.0+
      */
     static get miniBatchIndex(): MLMetricKey;
+    readonly $type: {
+        "c:objc(cs)MLMetricKey": true;
+        "c:objc(cs)MLKey": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "scope": true;
@@ -745,8 +803,6 @@ export declare class MLModel extends SDKHandle {
      * @availability iOS 11.0+
      */
     static initContentsOf(url: string): MLModel;
-    /** init() */
-    static init(): MLModel;
     /**
      * func parameterValue(for key: MLParameterKey) throws -> Any
      * @availability iOS 13.0+
@@ -842,6 +898,10 @@ export declare class MLModel extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeState(): MLState;
+    readonly $type: {
+        "c:objc(cs)MLModel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
         "modelDescription": true;
@@ -882,6 +942,10 @@ export declare class MLModelAsset extends SDKHandle {
      * @availability iOS 18.0+
      */
     modelDescriptionCompletionHandler(handler: $SDK19): void;
+    readonly $type: {
+        "c:objc(cs)MLModelAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MLModelConfiguration
@@ -932,6 +996,10 @@ export declare class MLModelConfiguration extends SDKHandle {
      */
     get optimizationHints(): MLOptimizationHints;
     set optimizationHints(value: MLOptimizationHints);
+    readonly $type: {
+        "c:objc(cs)MLModelConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowLowPrecisionAccumulationOnGPU": true;
         "computeUnits": true;
@@ -998,6 +1066,10 @@ export declare class MLModelDescription extends SDKHandle {
      * @availability iOS 13.0+
      */
     get trainingInputDescriptionsByName(): $SDK21;
+    readonly $type: {
+        "c:objc(cs)MLModelDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "classLabels": true;
         "inputDescriptionsByName": true;
@@ -1076,6 +1148,9 @@ export declare class MLModelError extends SDKHandle {
      * @availability iOS 11.0+
      */
     static get generic(): MLModelError_Code;
+    readonly $type: {
+        "s:SC12MLModelErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1135,6 +1210,9 @@ export declare class MLModelStructure extends SDKHandle {
      * @availability iOS 17.4+
      */
     static loadAsset(asset: MLModelAsset): Promise<MLModelStructure>;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO": true;
+    };
 }
 /**
  * struct NeuralNetwork
@@ -1146,6 +1224,9 @@ export declare class MLModelStructure_NeuralNetwork extends SDKHandle {
      * @availability iOS 17.4+
      */
     get layers(): Array<MLModelStructure_NeuralNetwork_Layer>;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO13NeuralNetworkV": true;
+    };
 }
 /**
  * struct Layer
@@ -1172,6 +1253,9 @@ export declare class MLModelStructure_NeuralNetwork_Layer extends SDKHandle {
      * @availability iOS 17.4+
      */
     get type(): string;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO13NeuralNetworkV5LayerV": true;
+    };
 }
 /**
  * struct Pipeline
@@ -1188,6 +1272,9 @@ export declare class MLModelStructure_Pipeline extends SDKHandle {
      * @availability iOS 17.4+
      */
     get subModels(): Array<MLModelStructure>;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO8PipelineV": true;
+    };
 }
 /**
  * struct Program
@@ -1199,6 +1286,9 @@ export declare class MLModelStructure_Program extends SDKHandle {
      * @availability iOS 17.4+
      */
     get functions(): Record<string, MLModelStructure_Program_Function>;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO7ProgramV": true;
+    };
 }
 /**
  * struct Argument
@@ -1210,12 +1300,18 @@ export declare class MLModelStructure_Program_Argument extends SDKHandle {
      * @availability iOS 17.4+
      */
     get bindings(): Array<MLModelStructure_Program_Binding>;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO7ProgramV8ArgumentV": true;
+    };
 }
 /**
  * enum Binding
  * @availability iOS 17.4+
  */
 export declare class MLModelStructure_Program_Binding extends SDKHandle {
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO7ProgramV7BindingO": true;
+    };
 }
 /**
  * struct Block
@@ -1237,6 +1333,9 @@ export declare class MLModelStructure_Program_Block extends SDKHandle {
      * @availability iOS 17.4+
      */
     get inputs(): $SDK28;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO7ProgramV5BlockV": true;
+    };
 }
 /**
  * struct Function
@@ -1253,6 +1352,9 @@ export declare class MLModelStructure_Program_Function extends SDKHandle {
      * @availability iOS 17.4+
      */
     get inputs(): $SDK28;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO7ProgramV8FunctionV": true;
+    };
 }
 /**
  * struct NamedValueType
@@ -1269,6 +1371,9 @@ export declare class MLModelStructure_Program_NamedValueType extends SDKHandle {
      * @availability iOS 17.4+
      */
     get type(): MLModelStructure_Program_ValueType;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO7ProgramV14NamedValueTypeV": true;
+    };
 }
 /**
  * struct Operation
@@ -1295,18 +1400,27 @@ export declare class MLModelStructure_Program_Operation extends SDKHandle {
      * @availability iOS 17.4+
      */
     get outputs(): $SDK28;
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO7ProgramV9OperationV": true;
+    };
 }
 /**
  * struct Value
  * @availability iOS 17.4+
  */
 export declare class MLModelStructure_Program_Value extends SDKHandle {
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO7ProgramV5ValueV": true;
+    };
 }
 /**
  * struct ValueType
  * @availability iOS 17.4+
  */
 export declare class MLModelStructure_Program_ValueType extends SDKHandle {
+    readonly $type: {
+        "s:6CoreML16MLModelStructureO7ProgramV9ValueTypeV": true;
+    };
 }
 /**
  * class MLMultiArray
@@ -1318,8 +1432,6 @@ export declare class MLMultiArray extends SDKHandle {
      * @availability iOS 14.0+
      */
     static initConcatenatingAxisDataType(multiArrays: Array<MLMultiArray>, axis: number, dataType: MLMultiArrayDataType): MLMultiArray;
-    /** init() */
-    static init(): MLMultiArray;
     /** init(dataPointer: UnsafeMutableRawPointer, shape: [NSNumber], dataType: MLMultiArrayDataType, strides: [NSNumber], deallocator: ((UnsafeMutableRawPointer) -> Void)? = nil) throws */
     static initDataPointerShapeDataTypeStridesDeallocator(dataPointer: SDKHandle, shape: $SDK31, dataType: MLMultiArrayDataType, strides: $SDK31, deallocator?: (((arg0: SDKHandle) => void)) | null): MLMultiArray;
     /**
@@ -1388,7 +1500,7 @@ export declare class MLMultiArray extends SDKHandle {
      * convenience init<C>(_ data: C) throws where C : Collection, C.Element == Double
      * @availability iOS 13.0+
      */
-    static init65635(data: Array<number>): MLMultiArray;
+    static init(data: Array<number>): MLMultiArray;
     /**
      * convenience init<C>(_ data: C) throws where C : Collection, C.Element == Float
      * @availability iOS 13.0+
@@ -1399,6 +1511,10 @@ export declare class MLMultiArray extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init99583(data: Array<number>): MLMultiArray;
+    readonly $type: {
+        "c:objc(cs)MLMultiArray": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "count": true;
         "dataPointer": true;
@@ -1430,6 +1546,10 @@ export declare class MLMultiArrayConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get shapeConstraint(): MLMultiArrayShapeConstraint;
+    readonly $type: {
+        "c:objc(cs)MLMultiArrayConstraint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
         "shape": true;
@@ -1480,6 +1600,10 @@ export declare class MLMultiArrayShapeConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): MLMultiArrayShapeConstraintType;
+    readonly $type: {
+        "c:objc(cs)MLMultiArrayShapeConstraint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enumeratedShapes": true;
         "sizeRangeForDimension": true;
@@ -1508,6 +1632,10 @@ export declare class MLNeuralEngineComputeDevice extends SDKHandle {
      * @availability iOS 17.0+
      */
     get totalCoreCount(): number;
+    readonly $type: {
+        "c:objc(cs)MLNeuralEngineComputeDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "totalCoreCount": true;
     };
@@ -1534,6 +1662,10 @@ export declare class MLNumericConstraint extends SDKHandle {
      * @availability iOS 13.0+
      */
     get minNumber(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)MLNumericConstraint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enumeratedNumbers": true;
         "maxNumber": true;
@@ -1562,6 +1694,9 @@ export declare class MLOptimizationHints extends SDKHandle {
      * @availability iOS 17.4+
      */
     static init(): MLOptimizationHints;
+    readonly $type: {
+        "s:6CoreML19MLOptimizationHintsV": true;
+    };
 }
 /**
  * enum ReshapeFrequency
@@ -1629,6 +1764,10 @@ export declare class MLParameterDescription extends SDKHandle {
      * @availability iOS 13.0+
      */
     get numericConstraint(): (MLNumericConstraint) | null;
+    readonly $type: {
+        "c:objc(cs)MLParameterDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultValue": true;
         "key": true;
@@ -1700,6 +1839,11 @@ export declare class MLParameterKey extends MLKey {
     static get weights(): MLParameterKey;
     /** func scoped(to scope: String) -> MLParameterKey */
     scoped(scope: string): MLParameterKey;
+    readonly $type: {
+        "c:objc(cs)MLParameterKey": true;
+        "c:objc(cs)MLKey": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "scope": true;
@@ -1725,6 +1869,10 @@ export declare class MLPredictionOptions extends SDKHandle {
      */
     get usesCPUOnly(): boolean;
     set usesCPUOnly(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MLPredictionOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "outputBackings": true;
         "usesCPUOnly": true;
@@ -1875,6 +2023,9 @@ export declare class MLSendableFeatureValue extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init70181(value: MLShapedArray<number>): MLSendableFeatureValue;
+    readonly $type: {
+        "s:6CoreML22MLSendableFeatureValueV": true;
+    };
 }
 /**
  * class MLSequence
@@ -1896,8 +2047,6 @@ export declare class MLSequence extends SDKHandle {
      * @availability iOS 12.0+
      */
     static initStrings(stringValues: Array<string>): MLSequence;
-    /** init() */
-    static init(): MLSequence;
     /**
      * var int64Values: [NSNumber] { get }
      * @availability iOS 12.0+
@@ -1913,6 +2062,10 @@ export declare class MLSequence extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): MLFeatureType;
+    readonly $type: {
+        "c:objc(cs)MLSequence": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "int64Values": true;
         "stringValues": true;
@@ -1936,6 +2089,10 @@ export declare class MLSequenceConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get valueDescription(): MLFeatureDescription;
+    readonly $type: {
+        "c:objc(cs)MLSequenceConstraint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "countRange": true;
         "valueDescription": true;
@@ -2086,6 +2243,9 @@ export declare class MLShapedArray<Scalar = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(multiArray: MLMultiArray): MLShapedArray<number>;
+    readonly $type: {
+        "s:6CoreML13MLShapedArrayV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Scalar
@@ -2122,6 +2282,9 @@ export type MLShapedArray_SubSequence<Scalar = unknown> = $SDK44;
  * @availability iOS 18.0+
  */
 export declare class MLShapedArrayBufferLayout extends SDKHandle {
+    readonly $type: {
+        "s:6CoreML25MLShapedArrayBufferLayoutO": true;
+    };
 }
 /**
  * protocol MLShapedArrayProtocol<Scalar> : ExpressibleByArrayLiteral, MutableCollection, RandomAccessCollection where Self.Index == Int
@@ -2296,6 +2459,9 @@ export declare class MLShapedArraySlice<Scalar = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript96786(sliceRanges: Array<SDKHandle>): $SDK43;
+    readonly $type: {
+        "s:6CoreML18MLShapedArraySliceV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Scalar
@@ -2337,6 +2503,10 @@ export declare class MLState extends SDKHandle {
      * @availability iOS 18.0+
      */
     withMultiArray(stateName: string, body: ((arg0: MLMultiArray) => unknown)): unknown;
+    readonly $type: {
+        "c:objc(cs)MLState": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MLStateConstraint
@@ -2355,6 +2525,10 @@ export declare class MLStateConstraint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get bufferShape(): Array<number>;
+    readonly $type: {
+        "c:objc(cs)MLStateConstraint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
     };
@@ -2389,6 +2563,10 @@ export declare class MLTask extends SDKHandle {
      * @availability iOS 13.0+
      */
     get taskIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)MLTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "error": true;
         "state": true;
@@ -2873,6 +3051,9 @@ export declare class MLTensor extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(value: number): MLTensor;
+    readonly $type: {
+        "s:6CoreML8MLTensorV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = MLTensor
@@ -2904,6 +3085,9 @@ export declare class MLTensor_PaddingMode extends SDKHandle {
      * @availability iOS 18.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:6CoreML8MLTensorV11PaddingModeO": true;
+    };
 }
 /**
  * enum ResizeMethod
@@ -2915,6 +3099,9 @@ export declare class MLTensor_ResizeMethod extends SDKHandle {
      * @availability iOS 18.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:6CoreML8MLTensorV12ResizeMethodO": true;
+    };
 }
 /**
  * protocol MLTensorRangeExpression : Sendable
@@ -2960,6 +3147,10 @@ export declare class MLUpdateContext extends SDKHandle {
      * @availability iOS 13.0+
      */
     get task(): MLUpdateTask;
+    readonly $type: {
+        "c:objc(cs)MLUpdateContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "event": true;
         "metrics": true;
@@ -3005,6 +3196,10 @@ export declare class MLUpdateProgressHandlers extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(interestedEvents: MLUpdateProgressEvent, progressHandler: (((arg0: MLUpdateContext) => void)) | null, completionHandler: $SDK54): MLUpdateProgressHandlers;
+    readonly $type: {
+        "c:objc(cs)MLUpdateProgressHandlers": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MLUpdateTask_base: Omit<typeof MLTask, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MLTask, "resume">);
 /**
@@ -3037,6 +3232,11 @@ export declare class MLUpdateTask extends MLUpdateTask_base {
      * @availability iOS 13.0+
      */
     resume(updateParameters: $SDK52): void;
+    readonly $type: {
+        "c:objc(cs)MLUpdateTask": true;
+        "c:objc(cs)MLTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "error": true;
         "state": true;

@@ -291,6 +291,9 @@ export declare class AffineTransform3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init74606(): AffineTransform3D;
+    readonly $type: {
+        "c:@SA@SPAffineTransform3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -576,6 +579,9 @@ export declare class AffineTransform3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init25726(): AffineTransform3DFloat;
+    readonly $type: {
+        "c:@SA@SPAffineTransform3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -748,6 +754,9 @@ export declare class Angle2D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init77930(): Angle2D;
+    readonly $type: {
+        "c:@SA@SPAngle": true;
+    };
 }
 /**
  * struct Angle2DFloat
@@ -862,6 +871,9 @@ export declare class Angle2DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init40000(): Angle2DFloat;
+    readonly $type: {
+        "c:@SA@SPAngleFloat": true;
+    };
 }
 /** struct Axis3D */
 export type Axis3D = "x" | "y" | "z" | (number & {});
@@ -894,12 +906,18 @@ export declare const Axis3D: {
  * @availability iOS 16.0+
  */
 export declare class AxisWithFactors extends SDKHandle {
+    readonly $type: {
+        "s:7Spatial15AxisWithFactorsO": true;
+    };
 }
 /**
  * enum AxisWithFactorsFloat
  * @availability iOS 26.0+
  */
 export declare class AxisWithFactorsFloat extends SDKHandle {
+    readonly $type: {
+        "s:7Spatial20AxisWithFactorsFloatO": true;
+    };
 }
 /**
  * protocol ClampableWithinRectProtocol<Scalar> : SpatialTypeProtocol
@@ -1059,6 +1077,9 @@ export declare class EulerAngles extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): EulerAngles;
+    readonly $type: {
+        "c:@SA@SPEulerAngles": true;
+    };
 }
 /**
  * typealias Order = __SPEulerAngleOrder
@@ -1097,6 +1118,9 @@ export declare class EulerAnglesFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): EulerAnglesFloat;
+    readonly $type: {
+        "c:@SA@SPEulerAnglesFloat": true;
+    };
 }
 /**
  * typealias AncestorCoordinateSpace = Never
@@ -1329,6 +1353,9 @@ export declare class Point3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init19110(): Point3D;
+    readonly $type: {
+        "c:@UA@SPPoint3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -1578,6 +1605,9 @@ export declare class Point3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init70276(): Point3DFloat;
+    readonly $type: {
+        "c:@UA@SPPoint3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -1801,6 +1831,9 @@ export declare class Pose3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init39526(): Pose3D;
+    readonly $type: {
+        "c:@SA@SPPose3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -1999,6 +2032,9 @@ export declare class Pose3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init30730(): Pose3DFloat;
+    readonly $type: {
+        "c:@SA@SPPose3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -2392,6 +2428,9 @@ export declare class ProjectiveTransform3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init85817(): ProjectiveTransform3D;
+    readonly $type: {
+        "c:@SA@SPProjectiveTransform3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -2672,6 +2711,9 @@ export declare class ProjectiveTransform3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init31608(): ProjectiveTransform3DFloat;
+    readonly $type: {
+        "c:@SA@SPProjectiveTransform3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -2917,6 +2959,9 @@ export declare class Ray3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init39042(): Ray3D;
+    readonly $type: {
+        "c:@SA@SPRay3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -3130,6 +3175,9 @@ export declare class Ray3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init55560(): Ray3DFloat;
+    readonly $type: {
+        "c:@SA@SPRay3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -3523,6 +3571,9 @@ export declare class Rect3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init80175(): Rect3D;
+    readonly $type: {
+        "c:@SA@SPRect3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -3850,6 +3901,9 @@ export declare class Rect3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init22853(): Rect3DFloat;
+    readonly $type: {
+        "c:@SA@SPRect3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -4138,6 +4192,9 @@ export declare class Rotation3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init61098(): Rotation3D;
+    readonly $type: {
+        "c:@UA@SPRotation3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -4363,6 +4420,9 @@ export declare class Rotation3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init76481(): Rotation3DFloat;
+    readonly $type: {
+        "c:@UA@SPRotation3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -4554,6 +4614,9 @@ export declare class RotationAxis3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init72533(): RotationAxis3D;
+    readonly $type: {
+        "c:@UA@SPRotationAxis3D": true;
+    };
 }
 /**
  * struct RotationAxis3DFloat
@@ -4676,6 +4739,9 @@ export declare class RotationAxis3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init94713(): RotationAxis3DFloat;
+    readonly $type: {
+        "c:@UA@SPRotationAxis3DFloat": true;
+    };
 }
 /**
  * protocol Scalable3D
@@ -4887,6 +4953,9 @@ export declare class ScaledPose3D extends SDKHandle {
     static init64461(pose: ScaledPose3DFloat): ScaledPose3D;
     /** init() */
     static init73635(): ScaledPose3D;
+    readonly $type: {
+        "c:@SA@SPScaledPose3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -5068,6 +5137,9 @@ export declare class ScaledPose3DFloat extends SDKHandle {
     static initPositionRotationScale70319(position: Point3DFloat, rotation: Rotation3DFloat, scale: number): ScaledPose3DFloat;
     /** init() */
     static init34842(): ScaledPose3DFloat;
+    readonly $type: {
+        "c:@SA@SPScaledPose3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -5386,6 +5458,9 @@ export declare class Size3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init26542(): Size3D;
+    readonly $type: {
+        "c:@UA@SPSize3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -5655,6 +5730,9 @@ export declare class Size3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init30786(): Size3DFloat;
+    readonly $type: {
+        "c:@UA@SPSize3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -5801,6 +5879,9 @@ export declare class SphericalCoordinates3D extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init61341(): SphericalCoordinates3D;
+    readonly $type: {
+        "c:@UA@SPSphericalCoordinates3D": true;
+    };
 }
 /**
  * struct SphericalCoordinates3DFloat
@@ -5886,6 +5967,9 @@ export declare class SphericalCoordinates3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init2236(): SphericalCoordinates3DFloat;
+    readonly $type: {
+        "c:@UA@SPSphericalCoordinates3DFloat": true;
+    };
 }
 /**
  * protocol Transform3DProtocol : SpatialTypeProtocol
@@ -6239,6 +6323,9 @@ export declare class Vector3D extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init65919(): Vector3D;
+    readonly $type: {
+        "c:@UA@SPVector3D": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3D
@@ -6553,6 +6640,9 @@ export declare class Vector3DFloat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init34322(): Vector3DFloat;
+    readonly $type: {
+        "c:@UA@SPVector3DFloat": true;
+    };
 }
 /**
  * typealias AffineTransform = AffineTransform3DFloat
@@ -6716,6 +6806,9 @@ export declare class WorldReferenceCoordinateSpace extends SDKHandle {
      * @availability iOS 26.0+
      */
     get ancestorSpace(): (never) | null;
+    readonly $type: {
+        "s:7Spatial29WorldReferenceCoordinateSpaceV": true;
+    };
 }
 /**
  * typealias AncestorCoordinateSpace = Never

@@ -50,6 +50,9 @@ export declare class AnyDynamicInstructions extends SDKHandle {
      * @availability iOS 27.0+
      */
     get body(): never;
+    readonly $type: {
+        "s:16FoundationModels22AnyDynamicInstructionsV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -111,6 +114,9 @@ export declare class Attachment<Content = unknown> extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initOrientation7102(ciImage: _CoreImage_CIImage, orientation?: $SDK3): $SDK2;
+    readonly $type: {
+        "s:16FoundationModels10AttachmentV": true;
+    };
 }
 /**
  * typealias PartiallyGenerated = Self
@@ -122,6 +128,9 @@ export type Bool_PartiallyGenerated = unknown;
  * @availability iOS 27.0+
  */
 export declare class ConditionalDynamicInstructions<TrueContent = unknown, FalseContent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels30ConditionalDynamicInstructionsV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -133,6 +142,9 @@ export type ConditionalDynamicInstructions_Body<TrueContent = unknown, FalseCont
  * @availability iOS 27.0+
  */
 export declare class ConditionalDynamicInstructions_Branch<TrueContent = unknown, FalseContent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels30ConditionalDynamicInstructionsV6BranchO": true;
+    };
 }
 /**
  * typealias ForEach = DynamicInstructionsForEach
@@ -166,12 +178,18 @@ export declare class ContextOptions extends SDKHandle {
      */
     get includeSchemaInPrompt(): (boolean) | null;
     set includeSchemaInPrompt(value: (boolean) | null);
+    readonly $type: {
+        "s:16FoundationModels14ContextOptionsV": true;
+    };
 }
 /**
  * enum ReasoningLevel
  * @availability iOS 27.0+
  */
 export declare class ContextOptions_ReasoningLevel extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels14ContextOptionsV14ReasoningLevelO": true;
+    };
 }
 /**
  * protocol ConvertibleFromGeneratedContent : SendableMetatype
@@ -216,6 +234,9 @@ export declare class Decimal extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(content: GeneratedContent): _Foundation_Decimal;
+    readonly $type: {
+        "c:@SA@NSDecimal": true;
+    };
 }
 /**
  * typealias PartiallyGenerated = Self
@@ -267,6 +288,9 @@ export declare class DynamicGenerationSchema extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initArrayOfMinimumElementsMaximumElements(itemSchema: DynamicGenerationSchema, minimumElements?: (number) | null, maximumElements?: (number) | null): DynamicGenerationSchema;
+    readonly $type: {
+        "s:16FoundationModels23DynamicGenerationSchemaV": true;
+    };
 }
 /**
  * struct Property
@@ -278,6 +302,9 @@ export declare class DynamicGenerationSchema_Property extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(name: string, description: (string) | null, schema: DynamicGenerationSchema, isOptional?: boolean): DynamicGenerationSchema_Property;
+    readonly $type: {
+        "s:16FoundationModels23DynamicGenerationSchemaV8PropertyV": true;
+    };
 }
 /**
  * protocol DynamicInstructions
@@ -305,12 +332,18 @@ export declare class DynamicInstructionsBuilder extends SDKHandle {
      * @availability iOS 27.0+
      */
     static buildBlock(): EmptyDynamicInstructions;
+    readonly $type: {
+        "s:16FoundationModels26DynamicInstructionsBuilderV": true;
+    };
 }
 /**
  * struct DynamicInstructionsForEach<Data, ID, Content> where Data : RandomAccessCollection, ID : Hashable, Content : DynamicInstructions
  * @availability iOS 27.0+
  */
 export declare class DynamicInstructionsForEach<Data = unknown, ID = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels26DynamicInstructionsForEachV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -342,6 +375,9 @@ export declare class EmptyDynamicInstructions extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): EmptyDynamicInstructions;
+    readonly $type: {
+        "s:16FoundationModels24EmptyDynamicInstructionsV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -475,12 +511,18 @@ export declare class GeneratedContent extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init83790(value: SDKHandle): GeneratedContent;
+    readonly $type: {
+        "s:16FoundationModels16GeneratedContentV": true;
+    };
 }
 /**
  * enum Kind
  * @availability iOS 26.0+
  */
 export declare class GeneratedContent_Kind extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels16GeneratedContentV4KindO": true;
+    };
 }
 /**
  * struct ParsingError
@@ -515,6 +557,9 @@ export declare class GeneratedContent_ParsingError extends SDKHandle {
      * @availability iOS 27.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:16FoundationModels16GeneratedContentV12ParsingErrorV": true;
+    };
 }
 /**
  * typealias PartiallyGenerated = Self
@@ -626,6 +671,9 @@ export declare class GenerationGuide<Value = unknown> extends SDKHandle {
      * @availability iOS 26.0+
      */
     static minimum37386(value: _Foundation_Decimal): $SDK11;
+    readonly $type: {
+        "s:16FoundationModels15GenerationGuideV": true;
+    };
 }
 /**
  * struct GenerationID
@@ -637,6 +685,9 @@ export declare class GenerationID extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): GenerationID;
+    readonly $type: {
+        "s:16FoundationModels12GenerationIDV": true;
+    };
 }
 /**
  * struct GenerationOptions
@@ -690,6 +741,9 @@ export declare class GenerationOptions extends SDKHandle {
      */
     get sampling(): $SDK12;
     set sampling(value: $SDK12);
+    readonly $type: {
+        "s:16FoundationModels17GenerationOptionsV": true;
+    };
 }
 /**
  * struct SamplingMode
@@ -716,12 +770,18 @@ export declare class GenerationOptions_SamplingMode extends SDKHandle {
      * @availability iOS 26.0+
      */
     static randomTopSeed(k: number, seed?: (number) | null): GenerationOptions_SamplingMode;
+    readonly $type: {
+        "s:16FoundationModels17GenerationOptionsV12SamplingModeV": true;
+    };
 }
 /**
  * enum Kind
  * @availability iOS 27.0+
  */
 export declare class GenerationOptions_SamplingMode_Kind extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels17GenerationOptionsV12SamplingModeV4KindO": true;
+    };
 }
 /**
  * struct ToolCallingMode
@@ -749,6 +809,9 @@ export declare class GenerationOptions_ToolCallingMode extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get required(): GenerationOptions_ToolCallingMode;
+    readonly $type: {
+        "s:16FoundationModels17GenerationOptionsV15ToolCallingModeV": true;
+    };
 }
 /**
  * enum Kind
@@ -775,12 +838,18 @@ export declare class GenerationSchema extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(root: DynamicGenerationSchema, dependencies: $SDK6): GenerationSchema;
+    readonly $type: {
+        "s:16FoundationModels16GenerationSchemaV": true;
+    };
 }
 /**
  * struct Property
  * @availability iOS 26.0+
  */
 export declare class GenerationSchema_Property extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels16GenerationSchemaV8PropertyV": true;
+    };
 }
 /**
  * enum SchemaError
@@ -797,6 +866,9 @@ export declare class GenerationSchema_SchemaError extends SDKHandle {
      * @availability iOS 26.0+
      */
     get recoverySuggestion(): (string) | null;
+    readonly $type: {
+        "s:16FoundationModels16GenerationSchemaV0D5ErrorO": true;
+    };
 }
 /**
  * struct Context
@@ -813,12 +885,18 @@ export declare class GenerationSchema_SchemaError_Context extends SDKHandle {
      * @availability iOS 26.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:16FoundationModels16GenerationSchemaV0D5ErrorO7ContextV": true;
+    };
 }
 /**
  * struct ImageAttachmentContent
  * @availability iOS 27.0+
  */
 export declare class ImageAttachmentContent extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels22ImageAttachmentContentV": true;
+    };
 }
 /**
  * struct ImageReference
@@ -845,6 +923,9 @@ export declare class ImageReference extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(content: GeneratedContent): ImageReference;
+    readonly $type: {
+        "s:16FoundationModels14ImageReferenceV": true;
+    };
 }
 /**
  * typealias PartiallyGenerated = Self
@@ -876,6 +957,9 @@ export declare class Instructions extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init78303(content: SDKHandle): Instructions;
+    readonly $type: {
+        "s:16FoundationModels12InstructionsV": true;
+    };
 }
 /**
  * typealias Body = some DynamicInstructions
@@ -932,6 +1016,9 @@ export declare class InstructionsBuilder extends SDKHandle {
      * @availability iOS 26.0+
      */
     static buildLimitedAvailability(instructions: SDKHandle): Instructions;
+    readonly $type: {
+        "s:16FoundationModels19InstructionsBuilderV": true;
+    };
 }
 /**
  * protocol InstructionsRepresentable
@@ -965,6 +1052,9 @@ export declare class LanguageModelCapabilities extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(capabilities: Array<LanguageModelCapabilities_Capability>): LanguageModelCapabilities;
+    readonly $type: {
+        "s:16FoundationModels25LanguageModelCapabilitiesV": true;
+    };
 }
 /**
  * struct Capability
@@ -991,6 +1081,9 @@ export declare class LanguageModelCapabilities_Capability extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get reasoning(): LanguageModelCapabilities_Capability;
+    readonly $type: {
+        "s:16FoundationModels25LanguageModelCapabilitiesV10CapabilityV": true;
+    };
 }
 /**
  * enum LanguageModelError
@@ -1007,6 +1100,9 @@ export declare class LanguageModelError extends SDKHandle {
      * @availability iOS 27.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO": true;
+    };
 }
 /**
  * struct ContextSizeExceeded
@@ -1042,6 +1138,9 @@ export declare class LanguageModelError_ContextSizeExceeded extends SDKHandle {
      */
     get metadata(): $SDK15;
     set metadata(value: $SDK15);
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO19ContextSizeExceededV": true;
+    };
 }
 /**
  * struct GuardrailViolation
@@ -1065,6 +1164,9 @@ export declare class LanguageModelError_GuardrailViolation extends SDKHandle {
      */
     get metadata(): $SDK15;
     set metadata(value: $SDK15);
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO18GuardrailViolationV": true;
+    };
 }
 /**
  * struct RateLimited
@@ -1094,6 +1196,9 @@ export declare class LanguageModelError_RateLimited extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(resetDate: $SDK16, debugDescription: string, metadata?: $SDK15): LanguageModelError_RateLimited;
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO11RateLimitedV": true;
+    };
 }
 /**
  * struct Refusal
@@ -1127,6 +1232,9 @@ export declare class LanguageModelError_Refusal extends SDKHandle {
      */
     get metadata(): $SDK15;
     set metadata(value: $SDK15);
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO7RefusalV": true;
+    };
 }
 /**
  * struct Timeout
@@ -1150,6 +1258,9 @@ export declare class LanguageModelError_Timeout extends SDKHandle {
      */
     get metadata(): $SDK15;
     set metadata(value: $SDK15);
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO7TimeoutV": true;
+    };
 }
 /**
  * struct UnsupportedCapability
@@ -1179,6 +1290,9 @@ export declare class LanguageModelError_UnsupportedCapability extends SDKHandle 
      */
     get metadata(): $SDK15;
     set metadata(value: $SDK15);
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO21UnsupportedCapabilityV": true;
+    };
 }
 /**
  * struct UnsupportedGenerationGuide
@@ -1208,6 +1322,9 @@ export declare class LanguageModelError_UnsupportedGenerationGuide extends SDKHa
      */
     get metadata(): $SDK15;
     set metadata(value: $SDK15);
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO26UnsupportedGenerationGuideV": true;
+    };
 }
 /**
  * struct UnsupportedLanguageOrLocale
@@ -1237,6 +1354,9 @@ export declare class LanguageModelError_UnsupportedLanguageOrLocale extends SDKH
      */
     get metadata(): $SDK15;
     set metadata(value: $SDK15);
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO011UnsupportedC8OrLocaleV": true;
+    };
 }
 /**
  * struct UnsupportedTranscriptContent
@@ -1266,6 +1386,9 @@ export declare class LanguageModelError_UnsupportedTranscriptContent extends SDK
      */
     get metadata(): $SDK15;
     set metadata(value: $SDK15);
+    readonly $type: {
+        "s:16FoundationModels18LanguageModelErrorO28UnsupportedTranscriptContentV": true;
+    };
 }
 /**
  * protocol LanguageModelExecutor : Sendable
@@ -1308,6 +1431,9 @@ export declare class LanguageModelExecutorGenerationChannel extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): LanguageModelExecutorGenerationChannel;
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV": true;
+    };
     readonly $element: LanguageModelExecutorGenerationChannel_Event;
 }
 /**
@@ -1320,6 +1446,9 @@ export declare class LanguageModelExecutorGenerationChannel_AsyncIterator extend
      * @availability iOS 27.0+
      */
     next(actor?: (SDKHandle) | null): Promise<(LanguageModelExecutorGenerationChannel_Event) | null>;
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = LanguageModelExecutorGenerationChannel.Event
@@ -1351,6 +1480,9 @@ export declare class LanguageModelExecutorGenerationChannel_Event extends SDKHan
      * @availability iOS 27.0+
      */
     static toolCalls(entryID: (string) | null, action: LanguageModelExecutorGenerationChannel_ToolCalls_Action): LanguageModelExecutorGenerationChannel_Event;
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV5EventV": true;
+    };
 }
 /**
  * struct Metadata
@@ -1363,6 +1495,9 @@ export declare class LanguageModelExecutorGenerationChannel_Metadata extends SDK
      */
     get values(): $SDK20;
     set values(value: $SDK20);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV8MetadataV": true;
+    };
 }
 /**
  * struct Reasoning
@@ -1381,6 +1516,9 @@ export declare class LanguageModelExecutorGenerationChannel_Reasoning extends SD
      */
     get entryID(): (string) | null;
     set entryID(value: (string) | null);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ReasoningV": true;
+    };
 }
 /**
  * struct Action
@@ -1412,6 +1550,9 @@ export declare class LanguageModelExecutorGenerationChannel_Reasoning_Action ext
      * @availability iOS 27.0+
      */
     static replaceTextSegment(text: string, segmentID: (string) | null, tokenCount: number): LanguageModelExecutorGenerationChannel_Reasoning_Action;
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ReasoningV6ActionV": true;
+    };
 }
 /**
  * struct ReasoningSignature
@@ -1430,6 +1571,9 @@ export declare class LanguageModelExecutorGenerationChannel_ReasoningSignature e
      */
     get signature(): ArrayBuffer;
     set signature(value: ArrayBuffer);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV18ReasoningSignatureV": true;
+    };
 }
 /**
  * struct Response
@@ -1448,6 +1592,9 @@ export declare class LanguageModelExecutorGenerationChannel_Response extends SDK
      */
     get entryID(): (string) | null;
     set entryID(value: (string) | null);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV8ResponseV": true;
+    };
 }
 /**
  * struct Action
@@ -1484,6 +1631,9 @@ export declare class LanguageModelExecutorGenerationChannel_Response_Action exte
      * @availability iOS 27.0+
      */
     static removeAttachmentSegment(id: string): LanguageModelExecutorGenerationChannel_Response_Action;
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV8ResponseV6ActionV": true;
+    };
 }
 /**
  * struct TextFragment
@@ -1508,6 +1658,9 @@ export declare class LanguageModelExecutorGenerationChannel_TextFragment extends
      */
     get segmentID(): (string) | null;
     set segmentID(value: (string) | null);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV12TextFragmentV": true;
+    };
 }
 /**
  * struct TextSegmentReplacement
@@ -1532,6 +1685,9 @@ export declare class LanguageModelExecutorGenerationChannel_TextSegmentReplaceme
      */
     get segmentID(): (string) | null;
     set segmentID(value: (string) | null);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV22TextSegmentReplacementV": true;
+    };
 }
 /**
  * struct ToolCalls
@@ -1550,6 +1706,9 @@ export declare class LanguageModelExecutorGenerationChannel_ToolCalls extends SD
      */
     get entryID(): (string) | null;
     set entryID(value: (string) | null);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV": true;
+    };
 }
 /**
  * struct Action
@@ -1576,6 +1735,9 @@ export declare class LanguageModelExecutorGenerationChannel_ToolCalls_Action ext
      * @availability iOS 27.0+
      */
     static toolCall(id: string, name: string, action: LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action): LanguageModelExecutorGenerationChannel_ToolCalls_Action;
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV6ActionV": true;
+    };
 }
 /**
  * struct ToolCall
@@ -1600,6 +1762,9 @@ export declare class LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall e
      */
     get action(): LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action;
     set action(value: LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV0H4CallV": true;
+    };
 }
 /**
  * struct Action
@@ -1616,6 +1781,9 @@ export declare class LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_A
      * @availability iOS 27.0+
      */
     static appendArguments(content: string, tokenCount: number): LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_Action;
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV0H4CallV6ActionV": true;
+    };
 }
 /**
  * struct ArgumentsFragment
@@ -1634,6 +1802,9 @@ export declare class LanguageModelExecutorGenerationChannel_ToolCalls_ToolCall_A
      */
     get content(): string;
     set content(value: string);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV9ToolCallsV0H4CallV17ArgumentsFragmentV": true;
+    };
 }
 /**
  * struct Usage
@@ -1663,6 +1834,9 @@ export declare class LanguageModelExecutorGenerationChannel_Usage extends SDKHan
      */
     get metadata(): $SDK20;
     set metadata(value: $SDK20);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV5UsageV": true;
+    };
 }
 /**
  * struct Input
@@ -1686,6 +1860,9 @@ export declare class LanguageModelExecutorGenerationChannel_Usage_Input extends 
      */
     get cachedTokenCount(): number;
     set cachedTokenCount(value: number);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV5UsageV5InputV": true;
+    };
 }
 /**
  * struct Output
@@ -1709,6 +1886,9 @@ export declare class LanguageModelExecutorGenerationChannel_Usage_Output extends
      */
     get reasoningTokenCount(): number;
     set reasoningTokenCount(value: number);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationChannelV5UsageV6OutputV": true;
+    };
 }
 /**
  * struct LanguageModelExecutorGenerationRequest
@@ -1762,12 +1942,18 @@ export declare class LanguageModelExecutorGenerationRequest extends SDKHandle {
      */
     get metadata(): $SDK20;
     set metadata(value: $SDK20);
+    readonly $type: {
+        "s:16FoundationModels38LanguageModelExecutorGenerationRequestV": true;
+    };
 }
 /**
  * struct LanguageModelFeedback
  * @availability iOS 26.0+
  */
 export declare class LanguageModelFeedback extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels21LanguageModelFeedbackV": true;
+    };
 }
 /**
  * struct Issue
@@ -1779,6 +1965,9 @@ export declare class LanguageModelFeedback_Issue extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(category: LanguageModelFeedback_Issue_Category, explanation?: (string) | null): LanguageModelFeedback_Issue;
+    readonly $type: {
+        "s:16FoundationModels21LanguageModelFeedbackV5IssueV": true;
+    };
 }
 /**
  * enum Category
@@ -2037,6 +2226,9 @@ export declare class LanguageModelSession extends SDKHandle {
      * @availability iOS 26.0+
      */
     respondToOptions26720(prompt: string, options?: GenerationOptions): Promise<$SDK17>;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC": true;
+    };
     readonly $observable: {
         "properties": true;
         "transcript": true;
@@ -2055,6 +2247,9 @@ export declare class LanguageModelSession_AnyDynamicProfile extends SDKHandle {
      * @availability iOS 27.0+
      */
     get body(): never;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC17AnyDynamicProfileV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2081,6 +2276,9 @@ export type LanguageModelSession_AnyDynamicProfile_SessionProperty = $SDK1;
  * @availability iOS 27.0+
  */
 export declare class LanguageModelSession_ConditionalDynamicProfile<TrueContent = unknown, FalseContent = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC25ConditionalDynamicProfileV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2128,6 +2326,9 @@ export type LanguageModelSession_DynamicProfile_SessionProperty = $SDK1;
  * @availability iOS 27.0+
  */
 export declare class LanguageModelSession_DynamicProfileBuilder extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC21DynamicProfileBuilderV": true;
+    };
 }
 /**
  * protocol DynamicProfileModifier
@@ -2160,6 +2361,9 @@ export type LanguageModelSession_DynamicProfileModifier_SessionProperty = $SDK1;
  * @availability iOS 27.0+
  */
 export declare class LanguageModelSession_DynamicProfileModifierContent<Modifier = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC29DynamicProfileModifierContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2219,6 +2423,9 @@ export declare class LanguageModelSession_GenerationError extends SDKHandle {
      * @availability iOS 26.0+
      */
     get recoverySuggestion(): (string) | null;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC15GenerationErrorO": true;
+    };
 }
 /**
  * struct Context
@@ -2235,6 +2442,9 @@ export declare class LanguageModelSession_GenerationError_Context extends SDKHan
      * @availability iOS 26.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC15GenerationErrorO7ContextV": true;
+    };
 }
 /**
  * struct Refusal
@@ -2256,12 +2466,18 @@ export declare class LanguageModelSession_GenerationError_Refusal extends SDKHan
      * @availability iOS 26.0+
      */
     static init(transcriptEntries: Array<Transcript_Entry>): LanguageModelSession_GenerationError_Refusal;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC15GenerationErrorO7RefusalV": true;
+    };
 }
 /**
  * struct ModifiedDynamicProfile<Content, Modifier> where Content : LanguageModelSession.DynamicProfile, Modifier : LanguageModelSession.DynamicProfileModifier
  * @availability iOS 27.0+
  */
 export declare class LanguageModelSession_ModifiedDynamicProfile<Content = unknown, Modifier = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC22ModifiedDynamicProfileV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2293,6 +2509,9 @@ export declare class LanguageModelSession_Profile extends SDKHandle {
      * @availability iOS 27.0+
      */
     get body(): never;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC7ProfileV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2339,6 +2558,9 @@ export declare class LanguageModelSession_Response<Content = unknown> extends SD
      * @availability iOS 26.0+
      */
     get content(): number;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC8ResponseV": true;
+    };
 }
 /**
  * struct ResponseStream<Content> where Content : Generable
@@ -2355,6 +2577,9 @@ export declare class LanguageModelSession_ResponseStream<Content = unknown> exte
      * @availability iOS 26.0+
      */
     collect(): Promise<$SDK32>;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC14ResponseStreamV": true;
+    };
     readonly $element: $SDK37;
 }
 /**
@@ -2367,6 +2592,9 @@ export declare class LanguageModelSession_ResponseStream_AsyncIterator<Content =
      * @availability iOS 26.0+
      */
     next(): Promise<(LanguageModelSession_ResponseStream_Snapshot<number>) | null>;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC14ResponseStreamV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = LanguageModelSession.ResponseStream<Content>.Snapshot
@@ -2407,6 +2635,9 @@ export declare class LanguageModelSession_ResponseStream_Snapshot<Content = unkn
      */
     get content(): unknown;
     set content(value: unknown);
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC14ResponseStreamV8SnapshotV": true;
+    };
 }
 /**
  * @propertyWrapper struct SessionProperty<Value>
@@ -2424,6 +2655,9 @@ export declare class LanguageModelSession_SessionProperty<Value = unknown> exten
      * @availability iOS 27.0+
      */
     static init(keyPath: SDKHandle): $SDK1;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC0E8PropertyV": true;
+    };
 }
 /**
  * struct ToolCallError
@@ -2441,6 +2675,9 @@ export declare class LanguageModelSession_ToolCallError extends SDKHandle {
      * @availability iOS 26.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC13ToolCallErrorV": true;
+    };
 }
 /**
  * struct Usage
@@ -2475,6 +2712,9 @@ export declare class LanguageModelSession_Usage extends SDKHandle {
      */
     get metadata(): $SDK20;
     set metadata(value: $SDK20);
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC5UsageV": true;
+    };
 }
 /**
  * struct Input
@@ -2498,6 +2738,9 @@ export declare class LanguageModelSession_Usage_Input extends SDKHandle {
      */
     get cachedTokenCount(): number;
     set cachedTokenCount(value: number);
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC5UsageV5InputV": true;
+    };
 }
 /**
  * struct Output
@@ -2521,6 +2764,9 @@ export declare class LanguageModelSession_Usage_Output extends SDKHandle {
      */
     get reasoningTokenCount(): number;
     set reasoningTokenCount(value: number);
+    readonly $type: {
+        "s:16FoundationModels20LanguageModelSessionC5UsageV6OutputV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -2622,6 +2868,9 @@ export declare class PrivateCloudComputeLanguageModel extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): PrivateCloudComputeLanguageModel;
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC": true;
+    };
     readonly $observable: {
         "quotaUsage": true;
         "isAvailable": true;
@@ -2635,6 +2884,9 @@ export declare class PrivateCloudComputeLanguageModel extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class PrivateCloudComputeLanguageModel_Availability extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC12AvailabilityO": true;
+    };
 }
 /**
  * enum UnavailableReason
@@ -2656,6 +2908,9 @@ export declare class PrivateCloudComputeLanguageModel_Error extends SDKHandle {
      * @availability iOS 27.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC5ErrorO": true;
+    };
 }
 /**
  * struct NetworkFailure
@@ -2673,6 +2928,9 @@ export declare class PrivateCloudComputeLanguageModel_Error_NetworkFailure exten
      */
     get debugDescription(): string;
     set debugDescription(value: string);
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC5ErrorO14NetworkFailureV": true;
+    };
 }
 /**
  * struct QuotaLimitReached
@@ -2702,6 +2960,9 @@ export declare class PrivateCloudComputeLanguageModel_Error_QuotaLimitReached ex
      */
     get resetDate(): $SDK16;
     set resetDate(value: $SDK16);
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC5ErrorO17QuotaLimitReachedV": true;
+    };
 }
 /**
  * struct ServiceUnavailable
@@ -2719,6 +2980,9 @@ export declare class PrivateCloudComputeLanguageModel_Error_ServiceUnavailable e
      */
     get debugDescription(): string;
     set debugDescription(value: string);
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC5ErrorO18ServiceUnavailableV": true;
+    };
 }
 /**
  * struct Executor
@@ -2740,12 +3004,18 @@ export declare class PrivateCloudComputeLanguageModel_Executor extends SDKHandle
      * @availability iOS 27.0+
      */
     respond(request: LanguageModelExecutorGenerationRequest, model: PrivateCloudComputeLanguageModel, channel: LanguageModelExecutorGenerationChannel): Promise<void>;
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC8ExecutorV": true;
+    };
 }
 /**
  * struct Configuration
  * @availability iOS 27.0+
  */
 export declare class PrivateCloudComputeLanguageModel_Executor_Configuration extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC8ExecutorV13ConfigurationV": true;
+    };
 }
 /**
  * typealias Model = PrivateCloudComputeLanguageModel
@@ -2780,6 +3050,9 @@ export declare class PrivateCloudComputeLanguageModel_QuotaUsage extends SDKHand
      */
     get resetDate(): $SDK16;
     set resetDate(value: $SDK16);
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC10QuotaUsageV": true;
+    };
 }
 /**
  * struct LimitIncreaseSuggestion
@@ -2791,12 +3064,18 @@ export declare class PrivateCloudComputeLanguageModel_QuotaUsage_LimitIncreaseSu
      * @availability iOS 27.0+
      */
     show(): void;
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC10QuotaUsageV23LimitIncreaseSuggestionV": true;
+    };
 }
 /**
  * enum Status
  * @availability iOS 27.0+
  */
 export declare class PrivateCloudComputeLanguageModel_QuotaUsage_Status extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC10QuotaUsageV6StatusO": true;
+    };
 }
 /**
  * struct BelowLimit
@@ -2809,12 +3088,18 @@ export declare class PrivateCloudComputeLanguageModel_QuotaUsage_Status_BelowLim
      */
     get isApproachingLimit(): boolean;
     set isApproachingLimit(value: boolean);
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC10QuotaUsageV6StatusO10BelowLimitV": true;
+    };
 }
 /**
  * struct LimitReached
  * @availability iOS 27.0+
  */
 export declare class PrivateCloudComputeLanguageModel_QuotaUsage_Status_LimitReached extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels32PrivateCloudComputeLanguageModelC10QuotaUsageV6StatusO12LimitReachedV": true;
+    };
 }
 /**
  * struct Prompt
@@ -2836,6 +3121,9 @@ export declare class Prompt extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init35397(content: SDKHandle): Prompt;
+    readonly $type: {
+        "s:16FoundationModels6PromptV": true;
+    };
 }
 /**
  * @resultBuilder struct PromptBuilder
@@ -2877,6 +3165,9 @@ export declare class PromptBuilder extends SDKHandle {
      * @availability iOS 26.0+
      */
     static buildLimitedAvailability(prompt: SDKHandle): Prompt;
+    readonly $type: {
+        "s:16FoundationModels13PromptBuilderV": true;
+    };
 }
 /**
  * protocol PromptRepresentable
@@ -2901,6 +3192,9 @@ export declare class SessionPropertyValues extends SDKHandle {
      */
     get history(): Transcript_HistoryView;
     set history(value: Transcript_HistoryView);
+    readonly $type: {
+        "s:16FoundationModels21SessionPropertyValuesC": true;
+    };
     readonly $observable: {
         "history": true;
     };
@@ -2981,6 +3275,9 @@ export declare class SystemLanguageModel extends SDKHandle {
      * @availability iOS 27.0+
      */
     get variant(): SystemLanguageModel_Variant;
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC": true;
+    };
     readonly $observable: {
         "contextSize": true;
         "isAvailable": true;
@@ -2997,6 +3294,9 @@ export declare class SystemLanguageModel extends SDKHandle {
  * @deprecated iOS 26.4
  */
 export declare class SystemLanguageModel_Adapter extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC7AdapterV": true;
+    };
 }
 /**
  * enum AssetError
@@ -3016,6 +3316,9 @@ export declare class SystemLanguageModel_Adapter_AssetError extends SDKHandle {
      * @deprecated iOS 26.4
      */
     get recoverySuggestion(): (string) | null;
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC7AdapterV10AssetErrorO": true;
+    };
 }
 /**
  * struct Context
@@ -3035,12 +3338,18 @@ export declare class SystemLanguageModel_Adapter_AssetError_Context extends SDKH
      * @deprecated iOS 26.4
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC7AdapterV10AssetErrorO7ContextV": true;
+    };
 }
 /**
  * @frozen enum Availability
  * @availability iOS 26.0+
  */
 export declare class SystemLanguageModel_Availability extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC12AvailabilityO": true;
+    };
 }
 /**
  * enum UnavailableReason
@@ -3062,6 +3371,9 @@ export declare class SystemLanguageModel_Error extends SDKHandle {
      * @availability iOS 27.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC5ErrorO": true;
+    };
 }
 /**
  * struct AssetsUnavailable
@@ -3079,6 +3391,9 @@ export declare class SystemLanguageModel_Error_AssetsUnavailable extends SDKHand
      */
     get debugDescription(): string;
     set debugDescription(value: string);
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC5ErrorO17AssetsUnavailableV": true;
+    };
 }
 /**
  * struct Executor
@@ -3100,12 +3415,18 @@ export declare class SystemLanguageModel_Executor extends SDKHandle {
      * @availability iOS 27.0+
      */
     respond(request: LanguageModelExecutorGenerationRequest, model: SystemLanguageModel, channel: LanguageModelExecutorGenerationChannel): Promise<void>;
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC8ExecutorV": true;
+    };
 }
 /**
  * struct Configuration
  * @availability iOS 27.0+
  */
 export declare class SystemLanguageModel_Executor_Configuration extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC8ExecutorV13ConfigurationV": true;
+    };
 }
 /**
  * typealias Model = SystemLanguageModel
@@ -3127,6 +3448,9 @@ export declare class SystemLanguageModel_Guardrails extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get default(): SystemLanguageModel_Guardrails;
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC10GuardrailsV": true;
+    };
 }
 /**
  * struct UseCase
@@ -3143,6 +3467,9 @@ export declare class SystemLanguageModel_UseCase extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get general(): SystemLanguageModel_UseCase;
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC7UseCaseV": true;
+    };
 }
 /**
  * struct Variant
@@ -3164,6 +3491,9 @@ export declare class SystemLanguageModel_Variant extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get core3(): SystemLanguageModel_Variant;
+    readonly $type: {
+        "s:16FoundationModels19SystemLanguageModelC7VariantV": true;
+    };
 }
 /**
  * protocol Tool<Arguments, Output> : Sendable
@@ -3217,12 +3547,18 @@ export declare class Transcript extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript(index: number): Transcript_Entry;
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV": true;
+    };
 }
 /**
  * enum Attachment
  * @availability iOS 27.0+
  */
 export declare class Transcript_Attachment extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV10AttachmentO": true;
+    };
 }
 /**
  * struct AttachmentSegment
@@ -3257,6 +3593,9 @@ export declare class Transcript_AttachmentSegment extends SDKHandle {
      */
     get content(): Transcript_Attachment;
     set content(value: Transcript_Attachment);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV17AttachmentSegmentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3283,6 +3622,9 @@ export declare class Transcript_Entry extends SDKHandle {
      * @availability iOS 26.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV5EntryO": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3329,6 +3671,9 @@ export declare class Transcript_HistoryView extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript34821(bounds: SDKHandle): Transcript_HistoryView;
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV11HistoryViewV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Transcript.Entry
@@ -3355,6 +3700,9 @@ export declare class Transcript_HistoryView_Index extends SDKHandle {
      * @availability iOS 27.0+
      */
     distance(other: Transcript_HistoryView_Index): number;
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV11HistoryViewV5IndexV": true;
+    };
 }
 /**
  * typealias Stride = Int
@@ -3429,6 +3777,9 @@ export declare class Transcript_ImageAttachment extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initOrientation16012(ciImage: _CoreImage_CIImage, orientation?: $SDK3): Transcript_ImageAttachment;
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV15ImageAttachmentV": true;
+    };
 }
 /**
  * typealias Index = Int
@@ -3473,6 +3824,9 @@ export declare class Transcript_Instructions extends SDKHandle {
      */
     get segments(): $SDK42;
     set segments(value: $SDK42);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV12InstructionsV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3540,6 +3894,9 @@ export declare class Transcript_Prompt extends SDKHandle {
      */
     get segments(): $SDK42;
     set segments(value: $SDK42);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV6PromptV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3585,6 +3942,9 @@ export declare class Transcript_Reasoning extends SDKHandle {
      */
     get signature(): (ArrayBuffer) | null;
     set signature(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV9ReasoningV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3635,6 +3995,9 @@ export declare class Transcript_Response extends SDKHandle {
      */
     get segments(): $SDK42;
     set segments(value: $SDK42);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV8ResponseV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3666,12 +4029,18 @@ export declare class Transcript_ResponseFormat extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(schema: GenerationSchema): Transcript_ResponseFormat;
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV14ResponseFormatV": true;
+    };
 }
 /**
  * enum Kind
  * @availability iOS 27.0+
  */
 export declare class Transcript_ResponseFormat_Kind extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV14ResponseFormatV4KindO": true;
+    };
 }
 /**
  * enum Segment
@@ -3688,6 +4057,9 @@ export declare class Transcript_Segment extends SDKHandle {
      * @availability iOS 26.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV7SegmentO": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3741,6 +4113,9 @@ export declare class Transcript_StructuredSegment extends SDKHandle {
      */
     get content(): GeneratedContent;
     set content(value: GeneratedContent);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV17StructuredSegmentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3779,6 +4154,9 @@ export declare class Transcript_TextSegment extends SDKHandle {
      */
     get content(): string;
     set content(value: string);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV11TextSegmentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3829,6 +4207,9 @@ export declare class Transcript_ToolCall extends SDKHandle {
      */
     get arguments(): GeneratedContent;
     set arguments(value: GeneratedContent);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV8ToolCallV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3871,6 +4252,9 @@ export declare class Transcript_ToolCalls extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript(position: number): Transcript_ToolCall;
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV9ToolCallsV": true;
+    };
 }
 /**
  * typealias Element = Transcript.ToolCall
@@ -3930,6 +4314,9 @@ export declare class Transcript_ToolDefinition extends SDKHandle {
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV14ToolDefinitionV": true;
+    };
 }
 /**
  * struct ToolOutput
@@ -3964,6 +4351,9 @@ export declare class Transcript_ToolOutput extends SDKHandle {
      */
     get toolName(): string;
     set toolName(value: string);
+    readonly $type: {
+        "s:16FoundationModels10TranscriptV10ToolOutputV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3985,12 +4375,18 @@ export declare class TranscriptErrorHandlingPolicy extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get preserveTranscript(): TranscriptErrorHandlingPolicy;
+    readonly $type: {
+        "s:16FoundationModels29TranscriptErrorHandlingPolicyV": true;
+    };
 }
 /**
  * struct TupleDynamicInstructions<each Content> where repeat each Content : DynamicInstructions
  * @availability iOS 27.0+
  */
 export declare class TupleDynamicInstructions<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:16FoundationModels24TupleDynamicInstructionsV": true;
+    };
 }
 /**
  * typealias Body = Never

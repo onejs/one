@@ -84,6 +84,10 @@ export declare class NLContextualEmbedding extends SDKHandle {
      * @availability iOS 17.0+
      */
     get scripts(): Array<NLScript>;
+    readonly $type: {
+        "c:objc(cs)NLContextualEmbedding": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dimension": true;
         "hasAvailableAssets": true;
@@ -139,6 +143,10 @@ export declare class NLContextualEmbeddingResult extends SDKHandle {
      * @availability iOS 17.0+
      */
     tokenVector(index: SDKHandle): ([Array<number>, SDKHandle]) | null;
+    readonly $type: {
+        "c:objc(cs)NLContextualEmbeddingResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "language": true;
         "sequenceLength": true;
@@ -172,7 +180,7 @@ export declare class NLEmbedding extends SDKHandle {
      * convenience init(contentsOf url: URL) throws
      * @availability iOS 13.0+
      */
-    static initContentsOf(url: string): NLEmbedding;
+    static init(url: string): NLEmbedding;
     /**
      * class func sentenceEmbedding(for language: NLLanguage) -> NLEmbedding?
      * @availability iOS 14.0+
@@ -208,8 +216,6 @@ export declare class NLEmbedding extends SDKHandle {
      * @availability iOS 13.0+
      */
     contains(string: string): boolean;
-    /** init() */
-    static init(): NLEmbedding;
     /**
      * var dimension: Int { get }
      * @availability iOS 13.0+
@@ -255,6 +261,10 @@ export declare class NLEmbedding extends SDKHandle {
      * @availability iOS 13.0+
      */
     neighborsForMaximumCountDistanceType78787(vector: Array<number>, maxCount: number, distanceType?: NLDistanceType): Array<[string, number]>;
+    readonly $type: {
+        "c:objc(cs)NLEmbedding": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dimension": true;
         "language": true;
@@ -272,8 +282,6 @@ export declare class NLGazetteer extends SDKHandle {
      * @availability iOS 13.0+
      */
     static write(dictionary: $SDK5, language: (NLLanguage) | null, url: string): void;
-    /** init() */
-    static init(): NLGazetteer;
     /**
      * init(contentsOf url: URL) throws
      * @availability iOS 13.0+
@@ -304,6 +312,10 @@ export declare class NLGazetteer extends SDKHandle {
      * @availability iOS 13.0+
      */
     get language(): (NLLanguage) | null;
+    readonly $type: {
+        "c:objc(cs)NLGazetteer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "language": true;
@@ -654,6 +666,10 @@ export declare class NLLanguageRecognizer extends SDKHandle {
      * @availability iOS 12.0+
      */
     languageHypotheses(maxHypotheses: number): $SDK6;
+    readonly $type: {
+        "c:objc(cs)NLLanguageRecognizer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dominantLanguage": true;
         "languageConstraints": true;
@@ -674,8 +690,6 @@ export declare class NLModel extends SDKHandle {
      * @availability iOS 12.0+
      */
     static initMlModel(mlModel: _CoreML_MLModel): NLModel;
-    /** init() */
-    static init(): NLModel;
     /**
      * func predictedLabel(for string: String) -> String?
      * @availability iOS 12.0+
@@ -701,6 +715,10 @@ export declare class NLModel extends SDKHandle {
      * @availability iOS 14.0+
      */
     predictedLabelHypothesesForTokensMaximumCount(tokens: Array<string>, maxCount: number): Array<Record<string, number>>;
+    readonly $type: {
+        "c:objc(cs)NLModel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
     };
@@ -743,6 +761,10 @@ export declare class NLModelConfiguration extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): NLModel_ModelType;
+    readonly $type: {
+        "c:objc(cs)NLModelConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "language": true;
         "revision": true;
@@ -1095,13 +1117,11 @@ export declare class NLTagger extends SDKHandle {
      * @availability iOS 13.0+
      */
     gazetteers(tagScheme: NLTagScheme): Array<NLGazetteer>;
-    /** init() */
-    static init(): NLTagger;
     /**
      * init(tagSchemes: [NLTagScheme])
      * @availability iOS 12.0+
      */
-    static initTagSchemes(tagSchemes: Array<NLTagScheme>): NLTagger;
+    static init(tagSchemes: Array<NLTagScheme>): NLTagger;
     /**
      * func models(forTagScheme tagScheme: NLTagScheme) -> [NLModel]
      * @availability iOS 12.0+
@@ -1168,6 +1188,10 @@ export declare class NLTagger extends SDKHandle {
      * @availability iOS 12.0+
      */
     tags(range: SDKHandle, unit: NLTokenUnit, scheme: NLTagScheme, options?: NLTagger_Options): Array<[(NLTag) | null, SDKHandle]>;
+    readonly $type: {
+        "c:objc(cs)NLTagger": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dominantLanguage": true;
         "string": true;
@@ -1251,13 +1275,11 @@ export declare const NLTagScheme: {
  * @availability iOS 12.0+
  */
 export declare class NLTokenizer extends SDKHandle {
-    /** init() */
-    static init(): NLTokenizer;
     /**
      * init(unit: NLTokenUnit)
      * @availability iOS 12.0+
      */
-    static initUnit(unit: NLTokenUnit): NLTokenizer;
+    static init(unit: NLTokenUnit): NLTokenizer;
     /**
      * func setLanguage(_ language: NLLanguage)
      * @availability iOS 12.0+
@@ -1289,6 +1311,10 @@ export declare class NLTokenizer extends SDKHandle {
      * @availability iOS 12.0+
      */
     tokens(range: SDKHandle): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)NLTokenizer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "string": true;
         "unit": true;

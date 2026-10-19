@@ -22,6 +22,9 @@ export declare class ArtworkImage extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initHeight(artwork: _MusicKit_Artwork, height: number): Promise<ArtworkImage>;
+    readonly $type: {
+        "s:17_MusicKit_SwiftUI12ArtworkImageV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -33,6 +36,9 @@ export type ArtworkImage_Body = SDKHandle;
  * @availability iOS 15.0+
  */
 export declare class MusicSubscriptionOffer extends SDKHandle {
+    readonly $type: {
+        "s:17_MusicKit_SwiftUI0A17SubscriptionOfferV": true;
+    };
 }
 /**
  * struct Action
@@ -168,6 +174,9 @@ export declare class MusicSubscriptionOffer_Options extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get default(): MusicSubscriptionOffer_Options;
+    readonly $type: {
+        "s:17_MusicKit_SwiftUI0A17SubscriptionOfferV7OptionsV": true;
+    };
 }
 /**
  * protocol PickableMusicItem : MusicItem, Decodable, Encodable, Hashable

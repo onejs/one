@@ -5,6 +5,9 @@ import { SDKHandle } from 'one/ios-runtime';
  * @availability iOS 26.0+
  */
 export declare class DevicePairingView<Label = unknown, Fallback = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:024_DeviceDiscoveryUI_SwiftC00A11PairingViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -16,6 +19,9 @@ export type DevicePairingView_Body<Label = unknown, Fallback = unknown> = SDKHan
  * @availability iOS 26.0+
  */
 export declare class DevicePicker<Label = unknown, Fallback = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:024_DeviceDiscoveryUI_SwiftC00A6PickerV": true;
+    };
 }
 /**
  * typealias Body = some View

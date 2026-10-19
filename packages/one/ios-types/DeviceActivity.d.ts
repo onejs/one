@@ -46,6 +46,10 @@ export declare class DeviceActivityAuthorization extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): DeviceActivityAuthorization;
+    readonly $type: {
+        "c:@M@DeviceActivity@objc(cs)DeviceActivityAuthorization": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @objc protocol DeviceActivityAuthorizing
@@ -93,6 +97,9 @@ export declare class DeviceActivityCenter extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): DeviceActivityCenter;
+    readonly $type: {
+        "s:14DeviceActivity0aB6CenterV": true;
+    };
 }
 /**
  * enum MonitoringError
@@ -146,6 +153,9 @@ export declare class DeviceActivityData extends SDKHandle {
      */
     get device(): DeviceActivityData_Device;
     set device(value: DeviceActivityData_Device);
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV": true;
+    };
 }
 /**
  * struct ActivitySegment
@@ -182,6 +192,9 @@ export declare class DeviceActivityData_ActivitySegment extends SDKHandle {
      */
     get dateInterval(): _Foundation_DateInterval;
     set dateInterval(value: _Foundation_DateInterval);
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV0B7SegmentV": true;
+    };
 }
 /**
  * struct ApplicationActivity
@@ -212,6 +225,9 @@ export declare class DeviceActivityData_ApplicationActivity extends SDKHandle {
      */
     get numberOfNotifications(): number;
     set numberOfNotifications(value: number);
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV011ApplicationB0V": true;
+    };
 }
 /**
  * struct CategoryActivity
@@ -230,6 +246,9 @@ export declare class DeviceActivityData_CategoryActivity extends SDKHandle {
      */
     get category(): _ManagedSettings_ActivityCategory;
     set category(value: _ManagedSettings_ActivityCategory);
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV08CategoryB0V": true;
+    };
 }
 /**
  * struct Device
@@ -248,6 +267,9 @@ export declare class DeviceActivityData_Device extends SDKHandle {
      */
     get model(): DeviceActivityData_Device_Model;
     set model(value: DeviceActivityData_Device_Model);
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV0A0V": true;
+    };
 }
 /**
  * enum Model
@@ -311,6 +333,9 @@ export declare class DeviceActivityData_User extends SDKHandle {
      */
     get appleID(): (string) | null;
     set appleID(value: (string) | null);
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV4UserV": true;
+    };
 }
 /**
  * enum FamilyRole
@@ -351,6 +376,9 @@ export declare class DeviceActivityData_WebDomainActivity extends SDKHandle {
      */
     get totalActivityDuration(): number;
     set totalActivityDuration(value: number);
+    readonly $type: {
+        "s:14DeviceActivity0aB4DataV09WebDomainB0V": true;
+    };
 }
 /**
  * struct DeviceActivityEvent
@@ -397,6 +425,9 @@ export declare class DeviceActivityEvent extends SDKHandle {
      * @availability iOS 15.0+
      */
     get threshold(): _Foundation_DateComponents;
+    readonly $type: {
+        "s:14DeviceActivity0aB5EventV": true;
+    };
 }
 /**
  * struct Name
@@ -475,6 +506,9 @@ export declare class DeviceActivityFilter extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initSegmentDevicesApplicationsCategoriesWebDomains(segmentInterval?: DeviceActivityFilter_SegmentInterval, devices?: $SDK10, applications?: $SDK8, categories?: $SDK6, webDomains?: $SDK7): DeviceActivityFilter;
+    readonly $type: {
+        "s:14DeviceActivity0aB6FilterV": true;
+    };
 }
 /**
  * struct Devices
@@ -491,12 +525,18 @@ export declare class DeviceActivityFilter_Devices extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(models: Array<DeviceActivityData_Device_Model>): DeviceActivityFilter_Devices;
+    readonly $type: {
+        "s:14DeviceActivity0aB6FilterV7DevicesV": true;
+    };
 }
 /**
  * enum SegmentInterval
  * @availability iOS 16.0+
  */
 export declare class DeviceActivityFilter_SegmentInterval extends SDKHandle {
+    readonly $type: {
+        "s:14DeviceActivity0aB6FilterV15SegmentIntervalO": true;
+    };
 }
 /**
  * struct Users
@@ -513,6 +553,9 @@ export declare class DeviceActivityFilter_Users extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get children(): DeviceActivityFilter_Users;
+    readonly $type: {
+        "s:14DeviceActivity0aB6FilterV5UsersV": true;
+    };
 }
 /**
  * @objc class DeviceActivityMonitor
@@ -554,6 +597,10 @@ export declare class DeviceActivityMonitor extends SDKHandle {
      * @availability iOS 15.0+
      */
     eventWillReachThresholdWarning(event: DeviceActivityEvent_Name, activity: DeviceActivityName): void;
+    readonly $type: {
+        "c:@M@DeviceActivity@objc(cs)DeviceActivityMonitor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct DeviceActivityName
@@ -618,5 +665,8 @@ export declare class DeviceActivitySchedule extends SDKHandle {
      * @availability iOS 15.0+
      */
     get repeats(): boolean;
+    readonly $type: {
+        "s:14DeviceActivity0aB8ScheduleV": true;
+    };
 }
 export {};

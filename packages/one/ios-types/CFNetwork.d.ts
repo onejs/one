@@ -10,6 +10,9 @@ type $SDK10 = (_CoreFoundation_CFData) | null;
 type $SDK12 = (_CoreFoundation_CFArray) | null;
 /** class CFHost */
 export declare class CFHost extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFHostRef": true;
+    };
 }
 /** typealias CFHostClientCallBack = (CFHost, CFHostInfoType, UnsafePointer<CFStreamError>?, UnsafeMutableRawPointer?) -> Void */
 export type CFHostClientCallBack = ((arg0: CFHost, arg1: CFHostInfoType, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null) => Promise<void>);
@@ -29,6 +32,9 @@ export declare class CFHostClientContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFHostClientContext;
+    readonly $type: {
+        "c:@S@CFHostClientContext": true;
+    };
 }
 /** enum CFHostInfoType */
 export type CFHostInfoType = "addresses" | "names" | "reachability";
@@ -38,12 +44,21 @@ export declare const CFHostInfoType: {
 };
 /** class CFHTTPAuthentication */
 export declare class CFHTTPAuthentication extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFHTTPAuthenticationRef": true;
+    };
 }
 /** class CFHTTPMessage */
 export declare class CFHTTPMessage extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFHTTPMessageRef": true;
+    };
 }
 /** class CFNetDiagnostic */
 export declare class CFNetDiagnostic extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFNetDiagnosticRef": true;
+    };
 }
 /**
  * typealias CFNetDiagnosticStatus = CFIndex
@@ -67,9 +82,15 @@ export declare const CFNetDiagnosticStatusValues: {
 };
 /** class CFNetService */
 export declare class CFNetService extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFNetServiceRef": true;
+    };
 }
 /** class CFNetServiceBrowser */
 export declare class CFNetServiceBrowser extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFNetServiceBrowserRef": true;
+    };
 }
 /** typealias CFNetServiceBrowserClientCallBack = (CFNetServiceBrowser, CFOptionFlags, CFTypeRef?, UnsafeMutablePointer<CFStreamError>?, UnsafeMutableRawPointer?) -> Void */
 export type CFNetServiceBrowserClientCallBack = ((arg0: CFNetServiceBrowser, arg1: number, arg2: (unknown) | null, arg3: (SDKHandle) | null, arg4: (SDKHandle) | null) => Promise<void>);
@@ -105,9 +126,15 @@ export declare class CFNetServiceClientContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFNetServiceClientContext;
+    readonly $type: {
+        "c:@S@CFNetServiceClientContext": true;
+    };
 }
 /** class CFNetServiceMonitor */
 export declare class CFNetServiceMonitor extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFNetServiceMonitorRef": true;
+    };
 }
 /** typealias CFNetServiceMonitorClientCallBack = (CFNetServiceMonitor, CFNetService?, CFNetServiceMonitorType, CFData?, UnsafeMutablePointer<CFStreamError>?, UnsafeMutableRawPointer?) -> Void */
 export type CFNetServiceMonitorClientCallBack = ((arg0: CFNetServiceMonitor, arg1: (CFNetService) | null, arg2: CFNetServiceMonitorType, arg3: (_CoreFoundation_CFData) | null, arg4: (SDKHandle) | null, arg5: (SDKHandle) | null) => Promise<void>);

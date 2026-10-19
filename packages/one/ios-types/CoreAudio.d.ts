@@ -5,12 +5,18 @@ type $SDK0 = ((arg0: SDKHandle) => unknown);
 export declare class AudioBuffer extends SDKHandle {
     /** init<Element>(_ typedBuffer: UnsafeMutableBufferPointer<Element>, numberOfChannels: Int) */
     static init(typedBuffer: unknown[], numberOfChannels: number): _CoreAudioTypes_AudioBuffer;
+    readonly $type: {
+        "c:@S@AudioBuffer": true;
+    };
 }
 export declare class AudioBufferList extends SDKHandle {
     /** static func sizeInBytes(maximumBuffers: Int) -> Int */
     static sizeInBytes(maximumBuffers: number): number;
     /** static func allocate(maximumBuffers: Int) -> UnsafeMutableAudioBufferListPointer */
     static allocate(maximumBuffers: number): UnsafeMutableAudioBufferListPointer;
+    readonly $type: {
+        "c:@S@AudioBufferList": true;
+    };
 }
 export declare class AudioChannelLayout extends SDKHandle {
     /**
@@ -18,6 +24,9 @@ export declare class AudioChannelLayout extends SDKHandle {
      * @availability iOS 13.0+
      */
     static sizeInBytes(maximumDescriptions: number): number;
+    readonly $type: {
+        "c:@S@AudioChannelLayout": true;
+    };
 }
 /**
  * struct UnsafeMutablePointer
@@ -66,6 +75,9 @@ export declare class AudioChannelLayout_UnsafeMutablePointer extends SDKHandle {
      * @availability iOS 13.0+
      */
     subscript(index: number): _CoreAudioTypes_AudioChannelDescription;
+    readonly $type: {
+        "s:So18AudioChannelLayoutV04CoreA0E20UnsafeMutablePointerV": true;
+    };
 }
 /**
  * typealias Element = AudioChannelDescription
@@ -133,6 +145,9 @@ export declare class AudioChannelLayout_UnsafePointer extends SDKHandle {
      * @availability iOS 13.0+
      */
     subscript(index: number): _CoreAudioTypes_AudioChannelDescription;
+    readonly $type: {
+        "s:So18AudioChannelLayoutV04CoreA0E13UnsafePointerV": true;
+    };
 }
 /**
  * typealias Element = AudioChannelDescription
@@ -222,6 +237,9 @@ export declare class ManagedAudioChannelLayout extends SDKHandle {
      */
     get bitmap(): _CoreAudioTypes_AudioChannelBitmap;
     set bitmap(value: _CoreAudioTypes_AudioChannelBitmap);
+    readonly $type: {
+        "s:9CoreAudio07ManagedB13ChannelLayoutV": true;
+    };
 }
 /**
  * struct ChannelDescriptions
@@ -248,6 +266,9 @@ export declare class ManagedAudioChannelLayout_ChannelDescriptions extends SDKHa
      * @availability iOS 13.0+
      */
     subscript(index: number): _CoreAudioTypes_AudioChannelDescription;
+    readonly $type: {
+        "s:9CoreAudio07ManagedB13ChannelLayoutV0D12DescriptionsV": true;
+    };
 }
 /**
  * typealias Element = AudioChannelDescription
@@ -294,6 +315,9 @@ export declare class UnsafeMutableAudioBufferListPointer extends SDKHandle {
     static init13092(p: SDKHandle): UnsafeMutableAudioBufferListPointer;
     /** subscript(index: UnsafeMutableAudioBufferListPointer.Index) -> UnsafeMutableAudioBufferListPointer.Element { get nonmutating set } */
     subscript(index: number): _CoreAudioTypes_AudioBuffer;
+    readonly $type: {
+        "s:9CoreAudio013UnsafeMutableB17BufferListPointerV": true;
+    };
 }
 /** typealias Element = AudioBuffer */
 export type UnsafeMutableAudioBufferListPointer_Element = _CoreAudioTypes_AudioBuffer;

@@ -17,6 +17,9 @@ export declare class DDDevicePairingAccess extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get permanent(): DDDevicePairingAccess;
+    readonly $type: {
+        "s:17DeviceDiscoveryUI21DDDevicePairingAccessV": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency final class DDDevicePairingViewController
@@ -38,6 +41,12 @@ export declare class DDDevicePairingViewController extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(listenerProvider: SDKHandle, access: DDDevicePairingAccess): Promise<DDDevicePairingViewController>;
+    readonly $type: {
+        "c:@M@DeviceDiscoveryUI@objc(cs)DDDevicePairingViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class DDDevicePickerViewController
@@ -64,5 +73,11 @@ export declare class DDDevicePickerViewController extends SDKHandle {
      * @availability iOS 26.0+
      */
     get endpoint(): Promise<_Network_NWEndpoint>;
+    readonly $type: {
+        "c:objc(cs)DDDevicePickerViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

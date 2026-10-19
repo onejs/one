@@ -41,6 +41,9 @@ export declare class ImageCreator extends SDKHandle {
      * @deprecated iOS 27.0
      */
     static init(): Promise<ImageCreator>;
+    readonly $type: {
+        "s:15ImagePlayground0A7CreatorC": true;
+    };
 }
 /**
  * struct CreatedImage
@@ -54,6 +57,9 @@ export declare class ImageCreator_CreatedImage extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get cgImage(): _CoreGraphics_CGImage;
+    readonly $type: {
+        "s:15ImagePlayground0A7CreatorC07CreatedA0V": true;
+    };
 }
 /**
  * enum Error
@@ -114,6 +120,9 @@ export declare class ImagePlaygroundConcept extends SDKHandle {
      * @availability iOS 18.1+
      */
     static extracted(text: string, title?: (string) | null): ImagePlaygroundConcept;
+    readonly $type: {
+        "s:15ImagePlayground0aB7ConceptV": true;
+    };
 }
 /**
  * struct ImagePlaygroundOptions
@@ -149,6 +158,9 @@ export declare class ImagePlaygroundOptions extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init(): ImagePlaygroundOptions;
+    readonly $type: {
+        "s:15ImagePlayground0aB7OptionsV": true;
+    };
 }
 /**
  * enum CreationStrategy
@@ -226,6 +238,9 @@ export declare class ImagePlaygroundOptions_SizeSpecification extends SDKHandle 
      * @availability iOS 27.0+
      */
     static closest(size: $SDK4): ImagePlaygroundOptions_SizeSpecification;
+    readonly $type: {
+        "s:15ImagePlayground0aB7OptionsV17SizeSpecificationV": true;
+    };
 }
 /**
  * enum ImagePlaygroundPersonalizationPolicy
@@ -298,6 +313,9 @@ export declare class ImagePlaygroundStyle extends SDKHandle {
      * @availability iOS 18.4+
      */
     static get animation(): ImagePlaygroundStyle;
+    readonly $type: {
+        "s:15ImagePlayground0aB5StyleV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -390,6 +408,12 @@ export declare class ImagePlaygroundViewController extends SDKHandle {
      */
     get concepts(): Promise<$SDK1>;
     setConcepts(value: $SDK1): Promise<void>;
+    readonly $type: {
+        "c:@M@ImagePlayground@objc(cs)ImagePlaygroundViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @objc(ImageGenerationViewControllerDelegate) protocol Delegate : NSObjectProtocol

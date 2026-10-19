@@ -99,6 +99,9 @@ export declare class AppImpression extends SDKHandle {
      * @availability iOS 17.4+
      */
     get timestamp(): globalThis.Date;
+    readonly $type: {
+        "s:16AdAttributionKit13AppImpressionV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -157,6 +160,9 @@ export declare class Postback extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get reengagementOpenURLParameter(): string;
+    readonly $type: {
+        "s:16AdAttributionKit8PostbackV": true;
+    };
 }
 /**
  * struct PostbackUpdate
@@ -198,6 +204,9 @@ export declare class PostbackUpdate extends SDKHandle {
      * @availability iOS 18.0+
      */
     get coarseConversionValue(): $SDK1;
+    readonly $type: {
+        "s:16AdAttributionKit14PostbackUpdateV": true;
+    };
 }
 /**
  * enum ConversionType

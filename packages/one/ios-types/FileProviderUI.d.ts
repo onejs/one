@@ -23,6 +23,11 @@ export declare class FPUIActionExtensionContext extends SDKHandle {
      * @availability iOS 11.0+
      */
     get domainIdentifier(): (_FileProvider_NSFileProviderDomainIdentifier) | null;
+    readonly $type: {
+        "c:objc(cs)FPUIActionExtensionContext": true;
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "domainIdentifier": true;
     };
@@ -49,6 +54,12 @@ export declare class FPUIActionExtensionViewController extends SDKHandle {
      * @availability iOS 11.0+
      */
     get extensionContext(): FPUIActionExtensionContext;
+    readonly $type: {
+        "c:objc(cs)FPUIActionExtensionViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extensionContext": true;
     };

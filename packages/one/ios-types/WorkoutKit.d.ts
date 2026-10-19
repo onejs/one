@@ -39,6 +39,9 @@ export declare class CadenceRangeAlert extends SDKHandle {
      */
     get target(): SDKHandle;
     set target(value: SDKHandle);
+    readonly $type: {
+        "s:10WorkoutKit17CadenceRangeAlertV": true;
+    };
 }
 /**
  * struct CadenceThresholdAlert
@@ -66,6 +69,9 @@ export declare class CadenceThresholdAlert extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(target: $SDK0): CadenceThresholdAlert;
+    readonly $type: {
+        "s:10WorkoutKit21CadenceThresholdAlertV": true;
+    };
 }
 /**
  * struct CustomWorkout
@@ -128,6 +134,9 @@ export declare class CustomWorkout extends SDKHandle {
      */
     get location(): _HealthKit_HKWorkoutSessionLocationType;
     set location(value: _HealthKit_HKWorkoutSessionLocationType);
+    readonly $type: {
+        "s:10WorkoutKit06CustomA0V": true;
+    };
 }
 /**
  * struct HeartRateRangeAlert
@@ -160,6 +169,9 @@ export declare class HeartRateRangeAlert extends SDKHandle {
      */
     get target(): SDKHandle;
     set target(value: SDKHandle);
+    readonly $type: {
+        "s:10WorkoutKit19HeartRateRangeAlertV": true;
+    };
 }
 /**
  * struct HeartRateZoneAlert
@@ -182,6 +194,9 @@ export declare class HeartRateZoneAlert extends SDKHandle {
      * @availability iOS 17.0+
      */
     get metric(): WorkoutAlertMetric;
+    readonly $type: {
+        "s:10WorkoutKit18HeartRateZoneAlertV": true;
+    };
 }
 export declare class HKWorkout extends SDKHandle {
     /**
@@ -189,6 +204,12 @@ export declare class HKWorkout extends SDKHandle {
      * @availability iOS 17.0+
      */
     get workoutPlan(): Promise<(WorkoutPlan) | null>;
+    readonly $type: {
+        "c:objc(cs)HKWorkout": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct IntervalBlock
@@ -212,6 +233,9 @@ export declare class IntervalBlock extends SDKHandle {
      */
     get steps(): Array<IntervalStep>;
     set steps(value: Array<IntervalStep>);
+    readonly $type: {
+        "s:10WorkoutKit13IntervalBlockV": true;
+    };
 }
 /**
  * struct IntervalStep
@@ -240,6 +264,9 @@ export declare class IntervalStep extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initStep(purpose: IntervalStep_Purpose, step: WorkoutStep): IntervalStep;
+    readonly $type: {
+        "s:10WorkoutKit12IntervalStepV": true;
+    };
 }
 /**
  * enum Purpose
@@ -285,6 +312,9 @@ export declare class PacerWorkout extends SDKHandle {
      */
     get location(): _HealthKit_HKWorkoutSessionLocationType;
     set location(value: _HealthKit_HKWorkoutSessionLocationType);
+    readonly $type: {
+        "s:10WorkoutKit05PacerA0V": true;
+    };
 }
 /**
  * struct PowerRangeAlert
@@ -322,6 +352,9 @@ export declare class PowerRangeAlert extends SDKHandle {
      */
     get target(): SDKHandle;
     set target(value: SDKHandle);
+    readonly $type: {
+        "s:10WorkoutKit15PowerRangeAlertV": true;
+    };
 }
 /**
  * struct PowerThresholdAlert
@@ -354,6 +387,9 @@ export declare class PowerThresholdAlert extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initTarget(target: $SDK3): PowerThresholdAlert;
+    readonly $type: {
+        "s:10WorkoutKit19PowerThresholdAlertV": true;
+    };
 }
 /**
  * struct PowerZoneAlert
@@ -376,6 +412,9 @@ export declare class PowerZoneAlert extends SDKHandle {
      * @availability iOS 17.0+
      */
     get metric(): WorkoutAlertMetric;
+    readonly $type: {
+        "s:10WorkoutKit14PowerZoneAlertV": true;
+    };
 }
 /**
  * struct ScheduledWorkoutPlan
@@ -405,6 +444,9 @@ export declare class ScheduledWorkoutPlan extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(plan: WorkoutPlan, date: _Foundation_DateComponents): ScheduledWorkoutPlan;
+    readonly $type: {
+        "s:10WorkoutKit09ScheduledA4PlanV": true;
+    };
 }
 /**
  * struct SingleGoalWorkout
@@ -450,6 +492,9 @@ export declare class SingleGoalWorkout extends SDKHandle {
      */
     get location(): _HealthKit_HKWorkoutSessionLocationType;
     set location(value: _HealthKit_HKWorkoutSessionLocationType);
+    readonly $type: {
+        "s:10WorkoutKit010SingleGoalA0V": true;
+    };
 }
 /**
  * struct SpeedRangeAlert
@@ -483,6 +528,9 @@ export declare class SpeedRangeAlert extends SDKHandle {
      */
     get target(): SDKHandle;
     set target(value: SDKHandle);
+    readonly $type: {
+        "s:10WorkoutKit15SpeedRangeAlertV": true;
+    };
 }
 /**
  * struct SpeedThresholdAlert
@@ -511,6 +559,9 @@ export declare class SpeedThresholdAlert extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(target: $SDK4, metric: WorkoutAlertMetric): SpeedThresholdAlert;
+    readonly $type: {
+        "s:10WorkoutKit19SpeedThresholdAlertV": true;
+    };
 }
 /**
  * enum StateError
@@ -544,12 +595,18 @@ export declare class SwimBikeRunWorkout extends SDKHandle {
      * @availability iOS 17.0+
      */
     static supportsActivityOrdering(activities: $SDK5): boolean;
+    readonly $type: {
+        "s:10WorkoutKit011SwimBikeRunA0V": true;
+    };
 }
 /**
  * enum Activity
  * @availability iOS 17.0+
  */
 export declare class SwimBikeRunWorkout_Activity extends SDKHandle {
+    readonly $type: {
+        "s:10WorkoutKit011SwimBikeRunA0V8ActivityO": true;
+    };
 }
 /**
  * protocol WorkoutAlert : Hashable, Sendable
@@ -579,6 +636,9 @@ export declare const WorkoutAlertMetric: {
  * @availability iOS 17.0+
  */
 export declare class WorkoutGoal extends SDKHandle {
+    readonly $type: {
+        "s:10WorkoutKit0A4GoalO": true;
+    };
 }
 /**
  * struct WorkoutPlan
@@ -607,6 +667,9 @@ export declare class WorkoutPlan extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(workout: WorkoutPlan_Workout, id?: string): WorkoutPlan;
+    readonly $type: {
+        "s:10WorkoutKit0A4PlanV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -623,6 +686,9 @@ export declare class WorkoutPlan_Workout extends SDKHandle {
      * @availability iOS 17.0+
      */
     get activity(): _HealthKit_HKWorkoutActivityType;
+    readonly $type: {
+        "s:10WorkoutKit0A4PlanV0A0O": true;
+    };
 }
 /**
  * final class WorkoutScheduler
@@ -679,6 +745,9 @@ export declare class WorkoutScheduler extends SDKHandle {
      * @availability iOS 17.0+
      */
     schedule(workout: WorkoutPlan, at: _Foundation_DateComponents): Promise<void>;
+    readonly $type: {
+        "s:10WorkoutKit0A9SchedulerC": true;
+    };
 }
 /**
  * enum AuthorizationState
@@ -735,5 +804,8 @@ export declare class WorkoutStep extends SDKHandle {
      */
     get alert(): (SDKHandle) | null;
     set alert(value: (SDKHandle) | null);
+    readonly $type: {
+        "s:10WorkoutKit0A4StepV": true;
+    };
 }
 export {};

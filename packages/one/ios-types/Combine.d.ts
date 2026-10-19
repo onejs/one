@@ -52,6 +52,9 @@ export declare class AnyCancellable extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init89168(cancel: (() => void)): AnyCancellable;
+    readonly $type: {
+        "s:7Combine14AnyCancellableC": true;
+    };
 }
 /**
  * @frozen struct AnyPublisher<Output, Failure> where Failure : Error
@@ -68,6 +71,9 @@ export declare class AnyPublisher<Output = unknown, Failure = unknown> extends S
      * @availability iOS 13.0+
      */
     get playgroundDescription(): unknown;
+    readonly $type: {
+        "s:7Combine12AnyPublisherV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -115,12 +121,18 @@ export declare class AnySubscriber<Input = unknown, Failure = unknown> extends S
      * @availability iOS 13.0+
      */
     receive(value: unknown): Subscribers_Demand;
+    readonly $type: {
+        "s:7Combine13AnySubscriberV": true;
+    };
 }
 /**
  * struct AsyncPublisher<P> where P : Publisher, P.Failure == Never
  * @availability iOS 15.0+
  */
 export declare class AsyncPublisher<P = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine14AsyncPublisherV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -138,6 +150,9 @@ export type AsyncPublisher_Element<P = unknown> = SDKHandle;
  * @availability iOS 15.0+
  */
 export declare class AsyncPublisher_Iterator<P = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine14AsyncPublisherV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = P.Output
@@ -149,6 +164,9 @@ export type AsyncPublisher_Iterator_Element<P = unknown> = SDKHandle;
  * @availability iOS 15.0+
  */
 export declare class AsyncThrowingPublisher<P = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine22AsyncThrowingPublisherV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -166,6 +184,9 @@ export type AsyncThrowingPublisher_Element<P = unknown> = SDKHandle;
  * @availability iOS 15.0+
  */
 export declare class AsyncThrowingPublisher_Iterator<P = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine22AsyncThrowingPublisherV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = P.Output
@@ -203,6 +224,9 @@ export declare class CombineIdentifier extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init57701(obj: unknown): CombineIdentifier;
+    readonly $type: {
+        "s:7Combine0A10IdentifierV": true;
+    };
 }
 /**
  * protocol ConnectablePublisher<Output, Failure> : Publisher
@@ -251,6 +275,9 @@ export declare class CurrentValueSubject<Output = unknown, Failure = unknown> ex
      * @availability iOS 13.0+
      */
     static init(value: unknown): CurrentValueSubject<unknown, NativeError>;
+    readonly $type: {
+        "s:7Combine19CurrentValueSubjectC": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -264,6 +291,9 @@ export interface CustomCombineIdentifierConvertible {
  * @availability iOS 13.0+
  */
 export declare class Deferred<DeferredPublisher = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine8DeferredV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -291,6 +321,9 @@ export declare class Empty<Output = unknown, Failure = unknown> extends SDKHandl
      * @availability iOS 13.0+
      */
     get completeImmediately(): boolean;
+    readonly $type: {
+        "s:7Combine5EmptyV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -308,6 +341,9 @@ export declare class Fail<Output = unknown, Failure = unknown> extends SDKHandle
      * @availability iOS 13.0+
      */
     get error(): NativeError;
+    readonly $type: {
+        "s:7Combine4FailV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -330,6 +366,9 @@ export declare class Future<Output = unknown, Failure = unknown> extends SDKHand
      * @availability iOS 13.0+
      */
     static init(attemptToFulfill: ((arg0: ((arg0: SDKHandle) => Promise<void>)) => void)): Future<unknown, NativeError>;
+    readonly $type: {
+        "s:7Combine6FutureC": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -372,6 +411,9 @@ export declare class ImmediateScheduler extends SDKHandle {
      * @availability iOS 13.0+
      */
     scheduleOptions(options: (never) | null, action: (() => void)): void;
+    readonly $type: {
+        "s:7Combine18ImmediateSchedulerV": true;
+    };
 }
 /**
  * typealias SchedulerOptions = Never
@@ -393,6 +435,9 @@ export declare class ImmediateScheduler_SchedulerTimeType extends SDKHandle {
      * @availability iOS 13.0+
      */
     distance(other: ImmediateScheduler_SchedulerTimeType): ImmediateScheduler_SchedulerTimeType_Stride;
+    readonly $type: {
+        "s:7Combine18ImmediateSchedulerV0C8TimeTypeV": true;
+    };
 }
 /**
  * struct Stride
@@ -450,6 +495,9 @@ export declare class ImmediateScheduler_SchedulerTimeType_Stride extends SDKHand
      * @availability iOS 13.0+
      */
     static init(value: number): ImmediateScheduler_SchedulerTimeType_Stride;
+    readonly $type: {
+        "s:7Combine18ImmediateSchedulerV0C8TimeTypeV6StrideV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Double
@@ -581,6 +629,9 @@ export declare class Just<Output = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(output: unknown): Just<unknown>;
+    readonly $type: {
+        "s:7Combine4JustV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -609,6 +660,9 @@ export declare class ObservableObjectPublisher extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): ObservableObjectPublisher;
+    readonly $type: {
+        "s:7Combine25ObservableObjectPublisherC": true;
+    };
     readonly $element: void;
 }
 /**
@@ -626,6 +680,9 @@ export type ObservableObjectPublisher_Output = void;
  * @availability iOS 13.0+
  */
 export declare class Optional_Publisher<Wrapped = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:Sq7CombineE9PublisherV": true;
+    };
     readonly $element: unknown;
 }
 /**
@@ -663,6 +720,9 @@ export declare class PassthroughSubject<Output = unknown, Failure = unknown> ext
      * @availability iOS 13.0+
      */
     static init(): PassthroughSubject<unknown, NativeError>;
+    readonly $type: {
+        "s:7Combine18PassthroughSubjectC": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -685,12 +745,18 @@ export declare class Published<Value = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     set projectedValue(value: Published_Publisher<unknown>);
+    readonly $type: {
+        "s:7Combine9PublishedV": true;
+    };
 }
 /**
  * struct Publisher
  * @availability iOS 13.0+
  */
 export declare class Published_Publisher<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine9PublishedV9PublisherV": true;
+    };
     readonly $element: unknown;
 }
 /**
@@ -719,12 +785,18 @@ export interface Publisher {
  * @availability iOS 13.0+
  */
 export declare class Publishers extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO": true;
+    };
 }
 /**
  * struct AllSatisfy<Upstream> where Upstream : Publisher
  * @availability iOS 13.0+
  */
 export declare class Publishers_AllSatisfy<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO10AllSatisfyV": true;
+    };
     readonly $element: boolean;
 }
 /**
@@ -742,6 +814,9 @@ export type Publishers_AllSatisfy_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_AssertNoFailure<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO15AssertNoFailureV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -769,6 +844,9 @@ export declare class Publishers_Autoconnect<Upstream = unknown> extends SDKHandl
      * @availability iOS 13.0+
      */
     get upstream(): _Foundation_Timer_TimerPublisher;
+    readonly $type: {
+        "s:7Combine10PublishersO11AutoconnectC": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -786,6 +864,9 @@ export type Publishers_Autoconnect_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Breakpoint<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO10BreakpointV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -803,6 +884,9 @@ export type Publishers_Breakpoint_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Buffer<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6BufferV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -820,12 +904,18 @@ export type Publishers_Buffer_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_BufferingStrategy<Failure = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO17BufferingStrategyO": true;
+    };
 }
 /**
  * struct Catch<Upstream, NewPublisher> where Upstream : Publisher, NewPublisher : Publisher, Upstream.Output == NewPublisher.Output
  * @availability iOS 13.0+
  */
 export declare class Publishers_Catch<Upstream = unknown, NewPublisher = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO5CatchV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -843,6 +933,9 @@ export type Publishers_Catch_Output<Upstream = unknown, NewPublisher = unknown> 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Collect<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO7CollectV": true;
+    };
     readonly $element: Array<SDKHandle>;
 }
 /**
@@ -860,6 +953,9 @@ export type Publishers_Collect_Output<Upstream = unknown> = Array<SDKHandle>;
  * @availability iOS 13.0+
  */
 export declare class Publishers_CollectByCount<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO14CollectByCountV": true;
+    };
     readonly $element: Array<SDKHandle>;
 }
 /**
@@ -877,6 +973,9 @@ export type Publishers_CollectByCount_Output<Upstream = unknown> = Array<SDKHand
  * @availability iOS 13.0+
  */
 export declare class Publishers_CollectByTime<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO13CollectByTimeV": true;
+    };
     readonly $element: Array<SDKHandle>;
 }
 /**
@@ -894,6 +993,9 @@ export type Publishers_CollectByTime_Output<Upstream = unknown, Context = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_CombineLatest<A = unknown, B = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO0A6LatestV": true;
+    };
     readonly $element: [SDKHandle, SDKHandle];
 }
 /**
@@ -911,6 +1013,9 @@ export type Publishers_CombineLatest_Output<A = unknown, B = unknown> = [SDKHand
  * @availability iOS 13.0+
  */
 export declare class Publishers_CombineLatest3<A = unknown, B = unknown, C = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO0A7Latest3V": true;
+    };
     readonly $element: $SDK23;
 }
 /**
@@ -928,6 +1033,9 @@ export type Publishers_CombineLatest3_Output<A = unknown, B = unknown, C = unkno
  * @availability iOS 13.0+
  */
 export declare class Publishers_CombineLatest4<A = unknown, B = unknown, C = unknown, D = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO0A7Latest4V": true;
+    };
     readonly $element: $SDK24;
 }
 /**
@@ -945,6 +1053,9 @@ export type Publishers_CombineLatest4_Output<A = unknown, B = unknown, C = unkno
  * @availability iOS 13.0+
  */
 export declare class Publishers_CompactMap<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO10CompactMapV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -957,6 +1068,9 @@ export type Publishers_CompactMap_Failure<Upstream = unknown, Output = unknown> 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Comparison<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO10ComparisonV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -974,6 +1088,9 @@ export type Publishers_Comparison_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Concatenate<Prefix = unknown, Suffix = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO11ConcatenateV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -991,6 +1108,9 @@ export type Publishers_Concatenate_Output<Prefix = unknown, Suffix = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Contains<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO8ContainsV": true;
+    };
     readonly $element: boolean;
 }
 /**
@@ -1008,6 +1128,9 @@ export type Publishers_Contains_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_ContainsWhere<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO13ContainsWhereV": true;
+    };
     readonly $element: boolean;
 }
 /**
@@ -1025,6 +1148,9 @@ export type Publishers_ContainsWhere_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Count<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO5CountV": true;
+    };
     readonly $element: number;
 }
 /**
@@ -1042,6 +1168,9 @@ export type Publishers_Count_Output<Upstream = unknown> = number;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Debounce<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO8DebounceV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1059,6 +1188,9 @@ export type Publishers_Debounce_Output<Upstream = unknown, Context = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Decode<Upstream = unknown, Output = unknown, Coder = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6DecodeV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -1071,6 +1203,9 @@ export type Publishers_Decode_Failure<Upstream = unknown, Output = unknown, Code
  * @availability iOS 13.0+
  */
 export declare class Publishers_Delay<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO5DelayV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1088,6 +1223,9 @@ export type Publishers_Delay_Output<Upstream = unknown, Context = unknown> = SDK
  * @availability iOS 13.0+
  */
 export declare class Publishers_Drop<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO4DropV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1105,6 +1243,9 @@ export type Publishers_Drop_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_DropUntilOutput<Upstream = unknown, Other = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO15DropUntilOutputV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1122,6 +1263,9 @@ export type Publishers_DropUntilOutput_Output<Upstream = unknown, Other = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_DropWhile<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO9DropWhileV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1139,6 +1283,9 @@ export type Publishers_DropWhile_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Encode<Upstream = unknown, Coder = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6EncodeV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1156,6 +1303,9 @@ export type Publishers_Encode_Output<Upstream = unknown, Coder = unknown> = SDKH
  * @availability iOS 13.0+
  */
 export declare class Publishers_Filter<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6FilterV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1173,6 +1323,9 @@ export type Publishers_Filter_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_First<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO5FirstV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1190,6 +1343,9 @@ export type Publishers_First_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_FirstWhere<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO10FirstWhereV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1207,6 +1363,9 @@ export type Publishers_FirstWhere_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_FlatMap<NewPublisher = unknown, Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO7FlatMapV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1224,6 +1383,9 @@ export type Publishers_FlatMap_Output<NewPublisher = unknown, Upstream = unknown
  * @availability iOS 13.0+
  */
 export declare class Publishers_HandleEvents<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO12HandleEventsV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1241,6 +1403,9 @@ export type Publishers_HandleEvents_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_IgnoreOutput<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO12IgnoreOutputV": true;
+    };
     readonly $element: never;
 }
 /**
@@ -1258,6 +1423,9 @@ export type Publishers_IgnoreOutput_Output<Upstream = unknown> = never;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Last<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO4LastV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1275,6 +1443,9 @@ export type Publishers_Last_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_LastWhere<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO9LastWhereV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1292,6 +1463,9 @@ export type Publishers_LastWhere_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_MakeConnectable<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO15MakeConnectableV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1309,6 +1483,9 @@ export type Publishers_MakeConnectable_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Map<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO3MapV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -1321,6 +1498,9 @@ export type Publishers_Map_Failure<Upstream = unknown, Output = unknown> = SDKHa
  * @availability iOS 13.0+
  */
 export declare class Publishers_MapError<Upstream = unknown, Failure = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO8MapErrorV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1333,6 +1513,9 @@ export type Publishers_MapError_Output<Upstream = unknown, Failure = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_MapKeyPath<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO10MapKeyPathV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -1345,6 +1528,9 @@ export type Publishers_MapKeyPath_Failure<Upstream = unknown, Output = unknown> 
  * @availability iOS 13.0+
  */
 export declare class Publishers_MapKeyPath2<Upstream = unknown, Output0 = unknown, Output1 = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO11MapKeyPath2V": true;
+    };
     readonly $element: [unknown, unknown];
 }
 /**
@@ -1362,6 +1548,9 @@ export type Publishers_MapKeyPath2_Output<Upstream = unknown, Output0 = unknown,
  * @availability iOS 13.0+
  */
 export declare class Publishers_MapKeyPath3<Upstream = unknown, Output0 = unknown, Output1 = unknown, Output2 = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO11MapKeyPath3V": true;
+    };
     readonly $element: [unknown, unknown, unknown];
 }
 /**
@@ -1379,6 +1568,9 @@ export type Publishers_MapKeyPath3_Output<Upstream = unknown, Output0 = unknown,
  * @availability iOS 13.0+
  */
 export declare class Publishers_MeasureInterval<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO15MeasureIntervalV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1396,6 +1588,9 @@ export type Publishers_MeasureInterval_Output<Upstream = unknown, Context = unkn
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge<A = unknown, B = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO5MergeV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1413,6 +1608,9 @@ export type Publishers_Merge_Output<A = unknown, B = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge3<A = unknown, B = unknown, C = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6Merge3V": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1430,6 +1628,9 @@ export type Publishers_Merge3_Output<A = unknown, B = unknown, C = unknown> = SD
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge4<A = unknown, B = unknown, C = unknown, D = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6Merge4V": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1447,6 +1648,9 @@ export type Publishers_Merge4_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge5<A = unknown, B = unknown, C = unknown, D = unknown, E = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6Merge5V": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1464,6 +1668,9 @@ export type Publishers_Merge5_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge6<A = unknown, B = unknown, C = unknown, D = unknown, E = unknown, F = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6Merge6V": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1481,6 +1688,9 @@ export type Publishers_Merge6_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge7<A = unknown, B = unknown, C = unknown, D = unknown, E = unknown, F = unknown, G = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6Merge7V": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1498,6 +1708,9 @@ export type Publishers_Merge7_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge8<A = unknown, B = unknown, C = unknown, D = unknown, E = unknown, F = unknown, G = unknown, H = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6Merge8V": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1515,6 +1728,9 @@ export type Publishers_Merge8_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_MergeMany<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO9MergeManyV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1532,6 +1748,9 @@ export type Publishers_MergeMany_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Multicast<Upstream = unknown, SubjectType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO9MulticastC": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1549,6 +1768,9 @@ export type Publishers_Multicast_Output<Upstream = unknown, SubjectType = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_Output<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6OutputV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1571,6 +1793,9 @@ export type Publishers_PrefetchStrategy = "keepFull" | "byRequest";
  * @availability iOS 13.0+
  */
 export declare class Publishers_PrefixUntilOutput<Upstream = unknown, Other = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO17PrefixUntilOutputV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1588,6 +1813,9 @@ export type Publishers_PrefixUntilOutput_Output<Upstream = unknown, Other = unkn
  * @availability iOS 13.0+
  */
 export declare class Publishers_PrefixWhile<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO11PrefixWhileV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1605,6 +1833,9 @@ export type Publishers_PrefixWhile_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Print<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO5PrintV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1622,6 +1853,9 @@ export type Publishers_Print_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_ReceiveOn<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO9ReceiveOnV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1639,6 +1873,9 @@ export type Publishers_ReceiveOn_Output<Upstream = unknown, Context = unknown> =
  * @availability iOS 13.0+
  */
 export declare class Publishers_Reduce<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6ReduceV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -1651,6 +1888,9 @@ export type Publishers_Reduce_Failure<Upstream = unknown, Output = unknown> = SD
  * @availability iOS 13.0+
  */
 export declare class Publishers_RemoveDuplicates<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO16RemoveDuplicatesV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1668,6 +1908,9 @@ export type Publishers_RemoveDuplicates_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_ReplaceEmpty<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO12ReplaceEmptyV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1685,6 +1928,9 @@ export type Publishers_ReplaceEmpty_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_ReplaceError<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO12ReplaceErrorV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1702,6 +1948,9 @@ export type Publishers_ReplaceError_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Retry<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO5RetryV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1719,6 +1968,9 @@ export type Publishers_Retry_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Scan<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO4ScanV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -1741,6 +1993,9 @@ export declare class Publishers_Sequence<Elements = unknown, Failure = unknown> 
      * @availability iOS 13.0+
      */
     contains(output: number): $SDK13;
+    readonly $type: {
+        "s:7Combine10PublishersO8SequenceV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1753,6 +2008,9 @@ export type Publishers_Sequence_Output<Elements = unknown, Failure = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_SetFailureType<Upstream = unknown, Failure = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO14SetFailureTypeV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1765,6 +2023,9 @@ export type Publishers_SetFailureType_Output<Upstream = unknown, Failure = unkno
  * @availability iOS 13.0+
  */
 export declare class Publishers_Share<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO5ShareC": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1782,6 +2043,9 @@ export type Publishers_Share_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_SubscribeOn<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO11SubscribeOnV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1799,6 +2063,9 @@ export type Publishers_SubscribeOn_Output<Upstream = unknown, Context = unknown>
  * @availability iOS 13.0+
  */
 export declare class Publishers_SwitchToLatest<P = unknown, Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO14SwitchToLatestV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1816,6 +2083,9 @@ export type Publishers_SwitchToLatest_Output<P = unknown, Upstream = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Throttle<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO8ThrottleV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1833,12 +2103,18 @@ export type Publishers_Throttle_Output<Upstream = unknown, Context = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_TimeGroupingStrategy<Context = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO20TimeGroupingStrategyO": true;
+    };
 }
 /**
  * struct Timeout<Upstream, Context> where Upstream : Publisher, Context : Scheduler
  * @availability iOS 13.0+
  */
 export declare class Publishers_Timeout<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO7TimeoutV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1856,6 +2132,9 @@ export type Publishers_Timeout_Output<Upstream = unknown, Context = unknown> = S
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryAllSatisfy<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO13TryAllSatisfyV": true;
+    };
     readonly $element: boolean;
 }
 /**
@@ -1873,6 +2152,9 @@ export type Publishers_TryAllSatisfy_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryCatch<Upstream = unknown, NewPublisher = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO8TryCatchV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1890,6 +2172,9 @@ export type Publishers_TryCatch_Output<Upstream = unknown, NewPublisher = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryCompactMap<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO13TryCompactMapV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -1902,6 +2187,9 @@ export type Publishers_TryCompactMap_Failure<Upstream = unknown, Output = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryComparison<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO13TryComparisonV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1919,6 +2207,9 @@ export type Publishers_TryComparison_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryContainsWhere<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO16TryContainsWhereV": true;
+    };
     readonly $element: boolean;
 }
 /**
@@ -1936,6 +2227,9 @@ export type Publishers_TryContainsWhere_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryDropWhile<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO12TryDropWhileV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1953,6 +2247,9 @@ export type Publishers_TryDropWhile_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryFilter<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO9TryFilterV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1970,6 +2267,9 @@ export type Publishers_TryFilter_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryFirstWhere<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO13TryFirstWhereV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -1987,6 +2287,9 @@ export type Publishers_TryFirstWhere_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryLastWhere<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO12TryLastWhereV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -2004,6 +2307,9 @@ export type Publishers_TryLastWhere_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryMap<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO6TryMapV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -2016,6 +2322,9 @@ export type Publishers_TryMap_Failure<Upstream = unknown, Output = unknown> = Na
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryPrefixWhile<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO14TryPrefixWhileV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -2033,6 +2342,9 @@ export type Publishers_TryPrefixWhile_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryReduce<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO9TryReduceV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -2045,6 +2357,9 @@ export type Publishers_TryReduce_Failure<Upstream = unknown, Output = unknown> =
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryRemoveDuplicates<Upstream = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO19TryRemoveDuplicatesV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -2062,6 +2377,9 @@ export type Publishers_TryRemoveDuplicates_Output<Upstream = unknown> = SDKHandl
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryScan<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO7TryScanV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -2074,6 +2392,9 @@ export type Publishers_TryScan_Failure<Upstream = unknown, Output = unknown> = N
  * @availability iOS 13.0+
  */
 export declare class Publishers_Zip<A = unknown, B = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO3ZipV": true;
+    };
     readonly $element: [SDKHandle, SDKHandle];
 }
 /**
@@ -2091,6 +2412,9 @@ export type Publishers_Zip_Output<A = unknown, B = unknown> = [SDKHandle, SDKHan
  * @availability iOS 13.0+
  */
 export declare class Publishers_Zip3<A = unknown, B = unknown, C = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO4Zip3V": true;
+    };
     readonly $element: $SDK23;
 }
 /**
@@ -2108,6 +2432,9 @@ export type Publishers_Zip3_Output<A = unknown, B = unknown, C = unknown> = $SDK
  * @availability iOS 13.0+
  */
 export declare class Publishers_Zip4<A = unknown, B = unknown, C = unknown, D = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine10PublishersO4Zip4V": true;
+    };
     readonly $element: $SDK24;
 }
 /**
@@ -2145,6 +2472,9 @@ export declare class Record<Output = unknown, Failure = unknown> extends SDKHand
      * @availability iOS 13.0+
      */
     static initRecording(recording: $SDK29): $SDK27;
+    readonly $type: {
+        "s:7Combine6RecordV": true;
+    };
     readonly $element: Output;
 }
 /**
@@ -2182,6 +2512,9 @@ export declare class Record_Recording<Output = unknown, Failure = unknown> exten
      * @availability iOS 13.0+
      */
     static init(): $SDK29;
+    readonly $type: {
+        "s:7Combine6RecordV9RecordingV": true;
+    };
 }
 /**
  * typealias Input = Output
@@ -2193,6 +2526,9 @@ export type Record_Recording_Input<Output = unknown, Failure = unknown> = unknow
  * @availability iOS 13.0+
  */
 export declare class Result_Publisher<Success = unknown, Failure = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:s6ResultO7CombineE9PublisherV": true;
+    };
     readonly $element: unknown;
 }
 /**
@@ -2299,6 +2635,9 @@ export interface Subscriber {
  * @availability iOS 13.0+
  */
 export declare class Subscribers extends SDKHandle {
+    readonly $type: {
+        "s:7Combine11SubscribersO": true;
+    };
 }
 /**
  * final class Assign<Root, Input>
@@ -2355,6 +2694,9 @@ export declare class Subscribers_Assign<Root = unknown, Input = unknown> extends
      * @availability iOS 13.0+
      */
     receive(value: unknown): Subscribers_Demand;
+    readonly $type: {
+        "s:7Combine11SubscribersO6AssignC": true;
+    };
 }
 /**
  * typealias Failure = Never
@@ -2366,6 +2708,9 @@ export type Subscribers_Assign_Failure<Root = unknown, Input = unknown> = never;
  * @availability iOS 13.0+
  */
 export declare class Subscribers_Completion<Failure = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Combine11SubscribersO10CompletionO": true;
+    };
 }
 /**
  * @frozen struct Demand
@@ -2397,6 +2742,9 @@ export declare class Subscribers_Demand extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get unlimited(): Subscribers_Demand;
+    readonly $type: {
+        "s:7Combine11SubscribersO6DemandV": true;
+    };
 }
 /**
  * final class Sink<Input, Failure> where Failure : Error
@@ -2453,6 +2801,9 @@ export declare class Subscribers_Sink<Input = unknown, Failure = unknown> extend
      * @availability iOS 13.0+
      */
     receive(value: unknown): Subscribers_Demand;
+    readonly $type: {
+        "s:7Combine11SubscribersO4SinkC": true;
+    };
 }
 /**
  * protocol Subscription : Cancellable, CustomCombineIdentifierConvertible
@@ -2480,6 +2831,9 @@ export declare class Subscriptions extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get empty(): SDKHandle;
+    readonly $type: {
+        "s:7Combine13SubscriptionsO": true;
+    };
 }
 /**
  * protocol TopLevelDecoder

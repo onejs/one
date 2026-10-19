@@ -37,6 +37,10 @@ export declare class VSAccountApplicationProvider extends SDKHandle {
      * @availability iOS 14.2+
      */
     get localizedDisplayName(): string;
+    readonly $type: {
+        "c:objc(cs)VSAccountApplicationProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "localizedDisplayName": true;
@@ -65,6 +69,10 @@ export declare class VSAccountManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<VSAccountManagerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)VSAccountManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -95,6 +103,10 @@ export declare class VSAccountManagerResult extends SDKHandle {
      * @availability iOS 10.0+
      */
     cancel(): void;
+    readonly $type: {
+        "c:objc(cs)VSAccountManagerResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class VSAccountMetadata
@@ -128,6 +140,10 @@ export declare class VSAccountMetadata extends SDKHandle {
      * @availability iOS 10.0+
      */
     get verificationData(): (ArrayBuffer) | null;
+    readonly $type: {
+        "c:objc(cs)VSAccountMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "samlAttributeQueryResponse": true;
         "accountProviderIdentifier": true;
@@ -221,6 +237,10 @@ export declare class VSAccountMetadataRequest extends SDKHandle {
      */
     get verificationToken(): (string) | null;
     set verificationToken(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)VSAccountMetadataRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accountProviderAuthenticationToken": true;
         "applicationAccountProviders": true;
@@ -277,6 +297,10 @@ export declare class VSAccountProviderResponse extends SDKHandle {
      * @availability iOS 10.2+
      */
     get status(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)VSAccountProviderResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authenticationScheme": true;
         "body": true;
@@ -305,6 +329,9 @@ export declare class VSAppleSubscription extends SDKHandle {
      */
     get productCodes(): Array<string>;
     set productCodes(value: Array<string>);
+    readonly $type: {
+        "s:22VideoSubscriberAccount19VSAppleSubscriptionV": true;
+    };
 }
 /**
  * struct VSCheckAccessOption
@@ -373,6 +400,9 @@ export declare class VSError extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get rejected(): VSError_Code;
+    readonly $type: {
+        "s:SC11VSErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -422,6 +452,10 @@ export declare class VSSubscription extends SDKHandle {
      */
     get tierIdentifiers(): (Array<string>) | null;
     set tierIdentifiers(value: (Array<string>) | null);
+    readonly $type: {
+        "c:objc(cs)VSSubscription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessLevel": true;
         "billingIdentifier": true;
@@ -463,6 +497,10 @@ export declare class VSSubscriptionRegistrationCenter extends SDKHandle {
      * @deprecated iOS 18.0
      */
     setCurrentSubscription(currentSubscription?: (VSSubscription) | null): void;
+    readonly $type: {
+        "c:objc(cs)VSSubscriptionRegistrationCenter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct VSUserAccount
@@ -551,6 +589,9 @@ export declare class VSUserAccount extends SDKHandle {
      */
     get updateURL(): (string) | null;
     set updateURL(value: (string) | null);
+    readonly $type: {
+        "s:22VideoSubscriberAccount06VSUserC0V": true;
+    };
 }
 /**
  * enum AccountType
@@ -638,6 +679,10 @@ export declare class VSUserAccountManager extends SDKHandle {
      * @availability iOS 16.4+
      */
     update(account: VSUserAccount): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)VSUserAccountManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum AutoSignInAuthorization
@@ -659,6 +704,9 @@ export declare class VSUserAccountManager_AutoSignInToken extends SDKHandle {
      * @availability iOS 26.0+
      */
     get value(): (string) | null;
+    readonly $type: {
+        "s:So20VSUserAccountManagerC015VideoSubscriberB0E15AutoSignInTokenV": true;
+    };
 }
 /**
  * struct AutoSignInTokenUpdateContext
@@ -670,6 +718,9 @@ export declare class VSUserAccountManager_AutoSignInTokenUpdateContext extends S
      * @availability iOS 26.0+
      */
     get authorization(): VSUserAccountManager_AutoSignInAuthorization;
+    readonly $type: {
+        "s:So20VSUserAccountManagerC015VideoSubscriberB0E28AutoSignInTokenUpdateContextV": true;
+    };
 }
 /**
  * struct QueryOptions

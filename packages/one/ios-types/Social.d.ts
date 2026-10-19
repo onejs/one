@@ -95,6 +95,12 @@ export declare class SLComposeServiceViewController extends SDKHandle {
      * @availability iOS 8.0+
      */
     get textView(): (_UIKit_UITextView) | null;
+    readonly $type: {
+        "c:objc(cs)SLComposeServiceViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "autoCompletionViewController": true;
         "charactersRemaining": true;
@@ -137,6 +143,10 @@ export declare class SLComposeSheetConfigurationItem extends SDKHandle {
      */
     get valuePending(): boolean;
     set valuePending(value: boolean);
+    readonly $type: {
+        "c:objc(cs)SLComposeSheetConfigurationItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "title": true;
         "value": true;
@@ -154,7 +164,7 @@ export declare class SLComposeViewController extends SDKHandle {
      * init!(forServiceType serviceType: String!)
      * @availability iOS 6.0+
      */
-    static initForServiceType(serviceType?: (string) | null): SLComposeViewController;
+    static init(serviceType?: (string) | null): SLComposeViewController;
     /**
      * class func isAvailable(forServiceType serviceType: String!) -> Bool
      * @availability iOS 6.0+
@@ -170,8 +180,6 @@ export declare class SLComposeViewController extends SDKHandle {
      * @availability iOS 6.0+
      */
     add77170(url?: (string) | null): boolean;
-    /** init() */
-    static init(): SLComposeViewController;
     /**
      * func removeAllImages() -> Bool
      * @availability iOS 6.0+
@@ -198,6 +206,12 @@ export declare class SLComposeViewController extends SDKHandle {
      * @availability iOS 6.0+
      */
     get serviceType(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)SLComposeViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serviceType": true;
     };
@@ -219,14 +233,12 @@ export declare class SLRequest extends SDKHandle {
      * init!(forServiceType serviceType: String!, requestMethod: SLRequestMethod, url: URL!, parameters: [AnyHashable : Any]!)
      * @availability iOS 6.0+
      */
-    static initForServiceTypeRequestMethodUrlParameters(serviceType: (string) | null, requestMethod: SLRequestMethod, url?: (string) | null, parameters?: $SDK7): SLRequest;
+    static init(serviceType: (string) | null, requestMethod: SLRequestMethod, url?: (string) | null, parameters?: $SDK7): SLRequest;
     /**
      * func addMultipartData(_ data: Data!, withName name: String!, type: String!, filename: String!)
      * @availability iOS 6.0+
      */
     addMultipartData(data?: (ArrayBuffer) | null, name?: (string) | null, type?: (string) | null, filename?: (string) | null): void;
-    /** init() */
-    static init(): SLRequest;
     /**
      * func perform(handler: SLRequestHandler!)
      * @availability iOS 6.0+
@@ -252,6 +264,10 @@ export declare class SLRequest extends SDKHandle {
      * @availability iOS 6.0+
      */
     get requestMethod(): SLRequestMethod;
+    readonly $type: {
+        "c:objc(cs)SLRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "parameters": true;

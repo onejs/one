@@ -30,4 +30,8 @@ export declare class UIScene_ConnectionOptions extends SDKHandle {
      * @availability iOS 17.4+
      */
     get nfcEvent(): Promise<(NFCWindowSceneEvent) | null>;
+    readonly $type: {
+        "c:objc(cs)UISceneConnectionOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
 }

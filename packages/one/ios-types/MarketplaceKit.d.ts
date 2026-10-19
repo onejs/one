@@ -16,6 +16,9 @@ export declare class AppDistributor extends SDKHandle {
      * @availability iOS 17.4+
      */
     static get current(): Promise<AppDistributor>;
+    readonly $type: {
+        "s:14MarketplaceKit14AppDistributorO": true;
+    };
 }
 /** typealias AppleItemID = UInt64 */
 export type AppleItemID = number;
@@ -115,6 +118,9 @@ export declare class AppLibrary extends SDKHandle {
      * @availability iOS 17.4+
      */
     get isLoading(): Promise<boolean>;
+    readonly $type: {
+        "s:14MarketplaceKit10AppLibraryC": true;
+    };
 }
 /**
  * @MainActor final class App
@@ -161,6 +167,9 @@ export declare class AppLibrary_App extends SDKHandle {
      * @availability iOS 26.1+
      */
     presentAgeExceptionApproveInPersonSheet(): Promise<void>;
+    readonly $type: {
+        "s:14MarketplaceKit10AppLibraryC0C0C": true;
+    };
 }
 /**
  * typealias ID = AppleItemID
@@ -177,6 +186,9 @@ export declare class AppLibrary_App_Installation extends SDKHandle {
      * @availability iOS 17.4+
      */
     get progress(): Promise<_Foundation_Progress>;
+    readonly $type: {
+        "s:14MarketplaceKit10AppLibraryC0C0C12InstallationV": true;
+    };
 }
 /**
  * struct Metadata
@@ -203,6 +215,9 @@ export declare class AppLibrary_App_Metadata extends SDKHandle {
      * @availability iOS 17.4+
      */
     get version(): Promise<string>;
+    readonly $type: {
+        "s:14MarketplaceKit10AppLibraryC0C0C8MetadataV": true;
+    };
 }
 /**
  * struct ExceptionRequest
@@ -219,6 +234,9 @@ export declare class AppLibrary_ExceptionRequest extends SDKHandle {
      * @availability iOS 26.1+
      */
     get status(): Promise<AppLibrary_ExceptionRequest_Status>;
+    readonly $type: {
+        "s:14MarketplaceKit10AppLibraryC16ExceptionRequestV": true;
+    };
 }
 /**
  * enum Status
@@ -276,6 +294,9 @@ export declare class AppLibrary_InstallationRequest extends SDKHandle {
      */
     get account(): Promise<string>;
     setAccount(value: string): Promise<void>;
+    readonly $type: {
+        "s:14MarketplaceKit10AppLibraryC19InstallationRequestV": true;
+    };
 }
 /**
  * struct AppVersion
@@ -302,6 +323,9 @@ export declare class AppVersion extends SDKHandle {
      * @availability iOS 17.4+
      */
     get description(): string;
+    readonly $type: {
+        "s:14MarketplaceKit10AppVersionV": true;
+    };
 }
 /**
  * struct AutomaticUpdate
@@ -339,6 +363,9 @@ export declare class AutomaticUpdate extends SDKHandle {
      * @availability iOS 17.4+
      */
     get account(): string;
+    readonly $type: {
+        "s:14MarketplaceKit15AutomaticUpdateV": true;
+    };
 }
 /**
  * struct InstallRequirements
@@ -379,6 +406,9 @@ export declare class InstallRequirements extends SDKHandle {
      * @availability iOS 17.4+
      */
     static init(): InstallRequirements;
+    readonly $type: {
+        "s:14MarketplaceKit19InstallRequirementsV": true;
+    };
 }
 /**
  * protocol MarketplaceAppExtension : AppExtension, Sendable
@@ -457,6 +487,9 @@ export declare class MarketplaceKitError extends SDKHandle {
      * @availability iOS 17.4+
      */
     get description(): string;
+    readonly $type: {
+        "s:14MarketplaceKit0aB5ErrorO": true;
+    };
 }
 /**
  * enum TransactionReporting
@@ -468,6 +501,9 @@ export declare class TransactionReporting extends SDKHandle {
      * @availability iOS 26.0+
      */
     static token(tokenType: TransactionReporting_TokenType): Promise<string>;
+    readonly $type: {
+        "s:14MarketplaceKit20TransactionReportingO": true;
+    };
 }
 /**
  * struct TokenType

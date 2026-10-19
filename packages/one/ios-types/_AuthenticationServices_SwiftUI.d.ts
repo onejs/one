@@ -8,6 +8,9 @@ type $SDK3 = (WebAuthenticationSession_BrowserSession) | null;
  * @availability iOS 16.4+
  */
 export declare class ASAuthorizationResult extends SDKHandle {
+    readonly $type: {
+        "s:31_AuthenticationServices_SwiftUI21ASAuthorizationResultO": true;
+    };
 }
 /**
  * @MainActor struct AuthorizationController
@@ -44,6 +47,9 @@ export declare class AuthorizationController extends SDKHandle {
      * @availability iOS 16.4+
      */
     performAutoFillAssistedRequests(requests: $SDK0): Promise<ASAuthorizationResult>;
+    readonly $type: {
+        "s:31_AuthenticationServices_SwiftUI23AuthorizationControllerV": true;
+    };
 }
 /**
  * @MainActor struct CredentialDataManager
@@ -75,6 +81,9 @@ export declare class CredentialDataManager extends SDKHandle {
      * @availability iOS 26.2+
      */
     save(password: _AuthenticationServices_ASPasswordCredential, scope: _AuthenticationServices_ASAutoFillURLScope, title?: (string) | null): Promise<void>;
+    readonly $type: {
+        "s:31_AuthenticationServices_SwiftUI21CredentialDataManagerV": true;
+    };
 }
 /**
  * @MainActor struct DeliveredVerificationCodesManager
@@ -92,6 +101,9 @@ export declare class DeliveredVerificationCodesManager extends SDKHandle {
      * @availability iOS 27.0+
      */
     consumeOneTimeCode(oneTimeCode: _AuthenticationServices_ASVerificationCode): Promise<void>;
+    readonly $type: {
+        "s:31_AuthenticationServices_SwiftUI33DeliveredVerificationCodesManagerV": true;
+    };
 }
 /**
  * typealias VerificationError = ASDeliveredVerificationCodesManager.VerificationError
@@ -108,6 +120,9 @@ export declare class SignInWithAppleButton extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(label: SignInWithAppleButton_Label, onRequest: ((arg0: _AuthenticationServices_ASAuthorizationAppleIDRequest) => void), onCompletion: ((arg0: SDKHandle) => void)): Promise<SignInWithAppleButton>;
+    readonly $type: {
+        "s:31_AuthenticationServices_SwiftUI21SignInWithAppleButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -134,6 +149,9 @@ export declare class SignInWithAppleButton_Label extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get continue(): Promise<SignInWithAppleButton_Label>;
+    readonly $type: {
+        "s:31_AuthenticationServices_SwiftUI21SignInWithAppleButtonV5LabelV": true;
+    };
 }
 /**
  * struct Style
@@ -155,6 +173,9 @@ export declare class SignInWithAppleButton_Style extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get white(): Promise<SignInWithAppleButton_Style>;
+    readonly $type: {
+        "s:31_AuthenticationServices_SwiftUI21SignInWithAppleButtonV5StyleV": true;
+    };
 }
 /**
  * @MainActor struct WebAuthenticationSession
@@ -172,6 +193,9 @@ export declare class WebAuthenticationSession extends SDKHandle {
      * @availability iOS 17.4+
      */
     authenticateUsingCallbackPreferredBrowserSessionAdditionalHeaderFields(url: string, callback: _AuthenticationServices_ASWebAuthenticationSession_Callback, preferredBrowserSession: $SDK3, additionalHeaderFields: Record<string, string>): Promise<string>;
+    readonly $type: {
+        "s:31_AuthenticationServices_SwiftUI03WebA7SessionV": true;
+    };
 }
 /**
  * struct BrowserSession
@@ -188,5 +212,8 @@ export declare class WebAuthenticationSession_BrowserSession extends SDKHandle {
      * @availability iOS 16.4+
      */
     static get ephemeral(): Promise<WebAuthenticationSession_BrowserSession>;
+    readonly $type: {
+        "s:31_AuthenticationServices_SwiftUI03WebA7SessionV07BrowserF0V": true;
+    };
 }
 export {};

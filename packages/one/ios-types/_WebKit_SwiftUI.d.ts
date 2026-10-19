@@ -8,6 +8,9 @@ export declare class WebPage extends SDKHandle {
      * @availability iOS 26.0+
      */
     get themeColor(): Promise<(_SwiftUICore_Color) | null>;
+    readonly $type: {
+        "s:6WebKit0A4PageC": true;
+    };
 }
 export declare class WebPage_NavigationAction extends SDKHandle {
     /**
@@ -15,6 +18,9 @@ export declare class WebPage_NavigationAction extends SDKHandle {
      * @availability iOS 26.0+
      */
     get modifierFlags(): Promise<_SwiftUICore_EventModifiers>;
+    readonly $type: {
+        "s:6WebKit0A4PageC16NavigationActionV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct WebView
@@ -31,6 +37,9 @@ export declare class WebView extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(page: _WebKit_WebPage): Promise<WebView>;
+    readonly $type: {
+        "s:15_WebKit_SwiftUI0A4ViewV": true;
+    };
 }
 /**
  * struct ActivatedElementInfo
@@ -42,6 +51,9 @@ export declare class WebView_ActivatedElementInfo extends SDKHandle {
      * @availability iOS 26.0+
      */
     get linkURL(): Promise<(string) | null>;
+    readonly $type: {
+        "s:15_WebKit_SwiftUI0A4ViewV20ActivatedElementInfoV": true;
+    };
 }
 /**
  * struct BackForwardNavigationGesturesBehavior
@@ -63,6 +75,9 @@ export declare class WebView_BackForwardNavigationGesturesBehavior extends SDKHa
      * @availability iOS 26.0+
      */
     static get automatic(): Promise<WebView_BackForwardNavigationGesturesBehavior>;
+    readonly $type: {
+        "s:15_WebKit_SwiftUI0A4ViewV37BackForwardNavigationGesturesBehaviorV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -89,6 +104,9 @@ export declare class WebView_ElementFullscreenBehavior extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get automatic(): Promise<WebView_ElementFullscreenBehavior>;
+    readonly $type: {
+        "s:15_WebKit_SwiftUI0A4ViewV25ElementFullscreenBehaviorV": true;
+    };
 }
 /**
  * struct LinkPreviewBehavior
@@ -110,6 +128,9 @@ export declare class WebView_LinkPreviewBehavior extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get automatic(): Promise<WebView_LinkPreviewBehavior>;
+    readonly $type: {
+        "s:15_WebKit_SwiftUI0A4ViewV19LinkPreviewBehaviorV": true;
+    };
 }
 /**
  * struct MagnificationGesturesBehavior
@@ -131,4 +152,7 @@ export declare class WebView_MagnificationGesturesBehavior extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get automatic(): Promise<WebView_MagnificationGesturesBehavior>;
+    readonly $type: {
+        "s:15_WebKit_SwiftUI0A4ViewV29MagnificationGesturesBehaviorV": true;
+    };
 }

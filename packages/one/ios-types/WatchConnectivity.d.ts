@@ -108,6 +108,9 @@ export declare class WCError extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get companionAppNotInstalled(): WCError_Code;
+    readonly $type: {
+        "s:SC11WCErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -237,6 +240,10 @@ export declare class WCSession extends SDKHandle {
      * @availability iOS 9.0+
      */
     get watchDirectoryURL(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)WCSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activationState": true;
         "applicationContext": true;
@@ -340,6 +347,10 @@ export declare class WCSessionFile extends SDKHandle {
      * @availability iOS 9.0+
      */
     get metadata(): $SDK3;
+    readonly $type: {
+        "c:objc(cs)WCSessionFile": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fileURL": true;
         "metadata": true;
@@ -372,6 +383,10 @@ export declare class WCSessionFileTransfer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get isTransferring(): boolean;
+    readonly $type: {
+        "c:objc(cs)WCSessionFileTransfer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "file": true;
         "progress": true;
@@ -405,6 +420,10 @@ export declare class WCSessionUserInfoTransfer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get userInfo(): Record<string, unknown>;
+    readonly $type: {
+        "c:objc(cs)WCSessionUserInfoTransfer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCurrentComplicationInfo": true;
         "isTransferring": true;

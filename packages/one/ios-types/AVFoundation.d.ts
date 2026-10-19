@@ -175,6 +175,11 @@ export declare class AVAggregateAssetDownloadTask extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get urlAsset(): AVURLAsset;
+    readonly $type: {
+        "c:objc(cs)AVAggregateAssetDownloadTask": true;
+        "c:objc(cs)NSURLSessionTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "urlAsset": true;
     };
@@ -189,6 +194,9 @@ export declare class AVAnyAsyncProperty extends SDKHandle {
      * @availability iOS 15.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:12AVFoundation18AVAnyAsyncPropertyC": true;
+    };
 }
 /**
  * class AVAsset
@@ -200,7 +208,7 @@ export declare class AVAsset extends SDKHandle {
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static initUrl(URL: string): AVAsset;
+    static init(URL: string): AVAsset;
     /** func cancelLoading() */
     cancelLoading(): void;
     /**
@@ -220,8 +228,6 @@ export declare class AVAsset extends SDKHandle {
      * @availability iOS 15.0+
      */
     findUnusedTrackID(completionHandler: $SDK2): void;
-    /** init() */
-    static init(): AVAsset;
     /**
      * func loadChapterMetadataGroups(bestMatchingPreferredLanguages preferredLanguages: [String]) async throws -> [AVTimedMetadataGroup]
      * @availability iOS 15.0+
@@ -460,6 +466,10 @@ export declare class AVAsset extends SDKHandle {
      * @availability iOS 15.0+
      */
     loadChapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale: _Foundation_Locale, commonKeys?: Array<AVMetadataKey>): Promise<$SDK0>;
+    readonly $type: {
+        "c:objc(cs)AVAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMediaSelections": true;
         "availableChapterLocales": true;
@@ -516,6 +526,10 @@ export declare class AVAssetCache extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isPlayableOffline(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVAssetCache": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isPlayableOffline": true;
     };
@@ -564,6 +578,10 @@ export declare class AVAssetDownloadConfiguration extends SDKHandle {
      * @availability iOS 15.0+
      */
     get primaryContentConfiguration(): AVAssetDownloadContentConfiguration;
+    readonly $type: {
+        "c:objc(cs)AVAssetDownloadConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "artworkData": true;
         "auxiliaryContentConfigurations": true;
@@ -591,6 +609,10 @@ export declare class AVAssetDownloadContentConfiguration extends SDKHandle {
      */
     get variantQualifiers(): $SDK16;
     set variantQualifiers(value: $SDK16);
+    readonly $type: {
+        "c:objc(cs)AVAssetDownloadContentConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mediaSelections": true;
         "variantQualifiers": true;
@@ -699,6 +721,10 @@ export declare class AVAssetDownloadStorageManagementPolicy extends SDKHandle {
      * @availability iOS 11.0+
      */
     get priority(): AVAssetDownloadedAssetEvictionPriority;
+    readonly $type: {
+        "c:objc(cs)AVAssetDownloadStorageManagementPolicy": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expirationDate": true;
         "priority": true;
@@ -726,6 +752,10 @@ export declare class AVAssetDownloadStorageManager extends SDKHandle {
      * @availability iOS 11.0+
      */
     storageManagementPolicy(downloadStorageURL: string): (AVAssetDownloadStorageManagementPolicy) | null;
+    readonly $type: {
+        "c:objc(cs)AVAssetDownloadStorageManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVAssetDownloadTask
@@ -755,6 +785,11 @@ export declare class AVAssetDownloadTask extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get options(): $SDK19;
+    readonly $type: {
+        "c:objc(cs)AVAssetDownloadTask": true;
+        "c:objc(cs)NSURLSessionTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "urlAsset": true;
         "destinationURL": true;
@@ -795,6 +830,11 @@ export declare class AVAssetDownloadURLSession extends SDKHandle {
      * @deprecated iOS 10.0
      */
     makeAssetDownloadTaskAssetDestinationURLOptions(URLAsset: AVURLAsset, destinationURL: string, options?: $SDK19): (AVAssetDownloadTask) | null;
+    readonly $type: {
+        "c:objc(cs)AVAssetDownloadURLSession": true;
+        "c:objc(cs)NSURLSession": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVAssetExportSession
@@ -996,6 +1036,10 @@ export declare class AVAssetExportSession extends SDKHandle {
      * @availability iOS 18.0+
      */
     states(updateInterval?: number): $SDK29;
+    readonly $type: {
+        "c:objc(cs)AVAssetExportSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
         "audioMix": true;
@@ -1063,12 +1107,18 @@ export declare const AVAssetExportSession_ResumptionFailureReason: {
  * @availability iOS 27.0+
  */
 export declare class AVAssetExportSession_ResumptionState extends SDKHandle {
+    readonly $type: {
+        "s:So20AVAssetExportSessionC12AVFoundationE15ResumptionStateO": true;
+    };
 }
 /**
  * enum State
  * @availability iOS 18.0+
  */
 export declare class AVAssetExportSession_State extends SDKHandle {
+    readonly $type: {
+        "s:So20AVAssetExportSessionC12AVFoundationE5StateO": true;
+    };
 }
 /** enum Status */
 export type AVAssetExportSession_Status = "unknown" | "waiting" | "exporting" | "completed" | "failed" | "cancelled";
@@ -1172,6 +1222,10 @@ export declare class AVAssetImageGenerator extends SDKHandle {
      * @availability iOS 16.0+
      */
     images(times: Array<_CoreMedia_CMTime>): AVAssetImageGenerator_Images;
+    readonly $type: {
+        "c:objc(cs)AVAssetImageGenerator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "apertureMode": true;
         "appliesPreferredTrackTransform": true;
@@ -1248,6 +1302,9 @@ export declare class AVAssetImageGenerator_Images extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(AVAssetImageGenerator_Images_Element) | null>;
+    readonly $type: {
+        "s:So21AVAssetImageGeneratorC12AVFoundationE6ImagesV": true;
+    };
     readonly $element: AVAssetImageGenerator_Images_Element;
 }
 /**
@@ -1275,6 +1332,9 @@ export declare class AVAssetImageGenerator_Images_Element extends SDKHandle {
      * @availability iOS 16.0+
      */
     get image(): _CoreGraphics_CGImage;
+    readonly $type: {
+        "s:So21AVAssetImageGeneratorC12AVFoundationE6ImagesV7ElementO": true;
+    };
 }
 /** enum Result */
 export type AVAssetImageGenerator_Result = "succeeded" | "failed" | "cancelled";
@@ -1299,6 +1359,10 @@ export declare class AVAssetPlaybackAssistant extends SDKHandle {
      * @availability iOS 16.0+
      */
     loadPlaybackConfigurationOptions(completionHandler: ((arg0: Array<AVAssetPlaybackConfigurationOption>) => void)): void;
+    readonly $type: {
+        "c:objc(cs)AVAssetPlaybackAssistant": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct AVAssetPlaybackConfigurationOption
@@ -1425,6 +1489,10 @@ export declare class AVAssetReader extends SDKHandle {
      * @availability iOS 26.0+
      */
     start(): void;
+    readonly $type: {
+        "c:objc(cs)AVAssetReader": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
         "error": true;
@@ -1483,6 +1551,10 @@ export declare class AVAssetReaderOutput extends SDKHandle {
      */
     get supportsRandomAccess(): boolean;
     set supportsRandomAccess(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVAssetReaderOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alwaysCopiesSampleData": true;
         "mediaType": true;
@@ -1522,6 +1594,11 @@ export declare class AVAssetReaderAudioMixOutput extends AVAssetReaderAudioMixOu
      * @availability iOS 4.1+
      */
     get audioTracks(): Array<AVAssetTrack>;
+    readonly $type: {
+        "c:objc(cs)AVAssetReaderAudioMixOutput": true;
+        "c:objc(cs)AVAssetReaderOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alwaysCopiesSampleData": true;
         "mediaType": true;
@@ -1553,6 +1630,9 @@ export declare class AVAssetReaderOutput_Provider<Payload = unknown> extends SDK
      * @availability iOS 26.0+
      */
     captionsNotPresentInPreviousGroups(captionGroup: AVCaptionGroup): Array<AVCaption>;
+    readonly $type: {
+        "s:So19AVAssetReaderOutputC12AVFoundationE8ProviderC": true;
+    };
 }
 /**
  * class RandomAccessController
@@ -1569,6 +1649,9 @@ export declare class AVAssetReaderOutput_RandomAccessController extends SDKHandl
      * @availability iOS 26.0+
      */
     markConfigurationAsFinal(): void;
+    readonly $type: {
+        "s:So19AVAssetReaderOutputC12AVFoundationE22RandomAccessControllerC": true;
+    };
 }
 /**
  * protocol SupportedPayload
@@ -1612,6 +1695,10 @@ export declare class AVAssetReaderOutputCaptionAdaptor extends SDKHandle {
      */
     get validationDelegate(): (SDKHandle) | null;
     set validationDelegate(value: $SDK42);
+    readonly $type: {
+        "c:objc(cs)AVAssetReaderOutputCaptionAdaptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assetReaderTrackOutput": true;
         "validationDelegate": true;
@@ -1641,6 +1728,10 @@ export declare class AVAssetReaderOutputMetadataAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get assetReaderTrackOutput(): AVAssetReaderTrackOutput;
+    readonly $type: {
+        "c:objc(cs)AVAssetReaderOutputMetadataAdaptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assetReaderTrackOutput": true;
     };
@@ -1661,6 +1752,11 @@ export declare class AVAssetReaderSampleReferenceOutput extends AVAssetReaderSam
      * @availability iOS 8.0+
      */
     get track(): AVAssetTrack;
+    readonly $type: {
+        "c:objc(cs)AVAssetReaderSampleReferenceOutput": true;
+        "c:objc(cs)AVAssetReaderOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alwaysCopiesSampleData": true;
         "mediaType": true;
@@ -1695,6 +1791,11 @@ export declare class AVAssetReaderTrackOutput extends AVAssetReaderTrackOutput_b
      * @availability iOS 4.1+
      */
     get track(): AVAssetTrack;
+    readonly $type: {
+        "c:objc(cs)AVAssetReaderTrackOutput": true;
+        "c:objc(cs)AVAssetReaderOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alwaysCopiesSampleData": true;
         "mediaType": true;
@@ -1736,6 +1837,11 @@ export declare class AVAssetReaderVideoCompositionOutput extends AVAssetReaderVi
      * @availability iOS 4.1+
      */
     get videoTracks(): Array<AVAssetTrack>;
+    readonly $type: {
+        "c:objc(cs)AVAssetReaderVideoCompositionOutput": true;
+        "c:objc(cs)AVAssetReaderOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alwaysCopiesSampleData": true;
         "mediaType": true;
@@ -1796,6 +1902,10 @@ export declare class AVAssetResourceLoader extends SDKHandle {
      */
     get sendsCommonMediaClientDataAsHTTPHeaders(): boolean;
     set sendsCommonMediaClientDataAsHTTPHeaders(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVAssetResourceLoader": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "delegateQueue": true;
@@ -1851,6 +1961,10 @@ export declare class AVAssetResourceLoadingContentInformationRequest extends SDK
      */
     get renewalDate(): $SDK52;
     set renewalDate(value: $SDK52);
+    readonly $type: {
+        "c:objc(cs)AVAssetResourceLoadingContentInformationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedContentTypes": true;
         "isByteRangeAccessSupported": true;
@@ -1890,6 +2004,10 @@ export declare class AVAssetResourceLoadingDataRequest extends SDKHandle {
      * @availability iOS 9.0+
      */
     get requestsAllDataToEndOfResource(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVAssetResourceLoadingDataRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentOffset": true;
         "requestedLength": true;
@@ -1966,6 +2084,10 @@ export declare class AVAssetResourceLoadingRequest extends SDKHandle {
      */
     get response(): $SDK56;
     set response(value: $SDK56);
+    readonly $type: {
+        "c:objc(cs)AVAssetResourceLoadingRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancelled": true;
         "contentInformationRequest": true;
@@ -1987,6 +2109,10 @@ export declare class AVAssetResourceLoadingRequestor extends SDKHandle {
      * @availability iOS 12.0+
      */
     get providesExpiredSessionReports(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVAssetResourceLoadingRequestor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "providesExpiredSessionReports": true;
     };
@@ -1996,6 +2122,11 @@ export declare class AVAssetResourceLoadingRequestor extends SDKHandle {
  * @availability iOS 8.0+
  */
 export declare class AVAssetResourceRenewalRequest extends AVAssetResourceLoadingRequest {
+    readonly $type: {
+        "c:objc(cs)AVAssetResourceRenewalRequest": true;
+        "c:objc(cs)AVAssetResourceLoadingRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancelled": true;
         "contentInformationRequest": true;
@@ -2022,6 +2153,10 @@ export declare class AVAssetSegmentReport extends SDKHandle {
      * @availability iOS 14.0+
      */
     get trackReports(): Array<AVAssetSegmentTrackReport>;
+    readonly $type: {
+        "c:objc(cs)AVAssetSegmentReport": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "segmentType": true;
         "trackReports": true;
@@ -2052,6 +2187,10 @@ export declare class AVAssetSegmentReportSampleInformation extends SDKHandle {
      * @availability iOS 14.0+
      */
     get presentationTimeStamp(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)AVAssetSegmentReportSampleInformation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isSyncSample": true;
         "length": true;
@@ -2089,6 +2228,10 @@ export declare class AVAssetSegmentTrackReport extends SDKHandle {
      * @availability iOS 14.0+
      */
     get trackID(): number;
+    readonly $type: {
+        "c:objc(cs)AVAssetSegmentTrackReport": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "earliestPresentationTimeStamp": true;
@@ -2329,6 +2472,10 @@ export declare class AVAssetTrack extends SDKHandle {
      * @availability iOS 4.0+
      */
     get trackID(): number;
+    readonly $type: {
+        "c:objc(cs)AVAssetTrack": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
         "availableMetadataFormats": true;
@@ -2411,6 +2558,10 @@ export declare class AVAssetTrackGroup extends SDKHandle {
      * @availability iOS 7.0+
      */
     get trackIDs(): $SDK63;
+    readonly $type: {
+        "c:objc(cs)AVAssetTrackGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "trackIDs": true;
     };
@@ -2457,6 +2608,10 @@ export declare class AVAssetTrackPlan extends SDKHandle {
      * @availability iOS 27.0+
      */
     get segmentConfigurations(): $SDK64;
+    readonly $type: {
+        "c:objc(cs)AVAssetTrackPlan": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assemblyTrackID": true;
         "mediaType": true;
@@ -2478,6 +2633,10 @@ export declare class AVAssetTrackSegment extends SDKHandle {
      * @availability iOS 4.0+
      */
     get timeMapping(): _CoreMedia_CMTimeMapping;
+    readonly $type: {
+        "c:objc(cs)AVAssetTrackSegment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEmpty": true;
         "timeMapping": true;
@@ -2513,6 +2672,10 @@ export declare class AVAssetVariant extends SDKHandle {
      * @availability iOS 15.0+
      */
     get averageBitRate(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)AVAssetVariant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "audioAttributes": true;
@@ -2534,6 +2697,10 @@ export declare class AVAssetVariant_AudioAttributes extends SDKHandle {
      * @availability iOS 15.0+
      */
     get formatIDs(): Array<number>;
+    readonly $type: {
+        "c:objc(cs)AVAssetVariantAudioAttributes": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class RenditionSpecificAttributes
@@ -2562,6 +2729,10 @@ export declare class AVAssetVariant_AudioAttributes_RenditionSpecificAttributes 
      * @availability iOS 15.0+
      */
     get channelCount(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)AVAssetVariantAudioRenditionSpecificAttributes": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isBinaural": true;
         "isDownmix": true;
@@ -2598,6 +2769,10 @@ export declare class AVAssetVariant_VideoAttributes extends SDKHandle {
      * @availability iOS 15.0+
      */
     get nominalFrameRate(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)AVAssetVariantVideoAttributes": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "presentationSize": true;
         "videoLayoutAttributes": true;
@@ -2619,6 +2794,10 @@ export declare class AVAssetVariant_VideoAttributes_LayoutAttributes extends SDK
      * @availability iOS 17.0+
      */
     get stereoViewComponents(): _CoreMedia_CMStereoViewComponents;
+    readonly $type: {
+        "c:objc(cs)AVAssetVariantVideoLayoutAttributes": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "projectionType": true;
         "stereoViewComponents": true;
@@ -2699,6 +2878,10 @@ export declare class AVAssetVariantQualifier extends SDKHandle {
      * @availability iOS 15.0+
      */
     static predicateForPresentationWidthOperatorType(width: number, operatorType: _Foundation_NSComparisonPredicate_Operator): _Foundation_NSPredicate;
+    readonly $type: {
+        "c:objc(cs)AVAssetVariantQualifier": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const AVAssetVideoTrackPlan_base: Omit<typeof AVAssetTrackPlan, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAssetTrackPlan);
 /**
@@ -2716,6 +2899,11 @@ export declare class AVAssetVideoTrackPlan extends AVAssetVideoTrackPlan_base {
      * @availability iOS 27.0+
      */
     static init(videoCodecType: AVVideoCodecType, encoderSpecification: $SDK70, mediaType: AVMediaType, segmentConfigurations: $SDK71, assemblyTrackID: number): AVAssetVideoTrackPlan;
+    readonly $type: {
+        "c:objc(cs)AVAssetVideoTrackPlan": true;
+        "c:objc(cs)AVAssetTrackPlan": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assemblyTrackID": true;
         "mediaType": true;
@@ -2979,6 +3167,10 @@ export declare class AVAssetWriter extends SDKHandle {
      * @availability iOS 26.0+
      */
     start(): void;
+    readonly $type: {
+        "c:objc(cs)AVAssetWriter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "availableMediaTypes": true;
         "delegate": true;
@@ -3194,6 +3386,10 @@ export declare class AVAssetWriterInput extends SDKHandle {
      */
     get transform(): _CoreFoundation_CGAffineTransform;
     set transform(value: _CoreFoundation_CGAffineTransform);
+    readonly $type: {
+        "c:objc(cs)AVAssetWriterInput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "canPerformMultiplePasses": true;
         "currentPassDescription": true;
@@ -3247,6 +3443,9 @@ export declare class AVAssetWriterInput_CaptionReceiver extends SDKHandle {
      * @availability iOS 26.0+
      */
     finish(): void;
+    readonly $type: {
+        "s:So18AVAssetWriterInputC12AVFoundationE15CaptionReceiverC": true;
+    };
 }
 /**
  * struct MediaDataLocation
@@ -3295,6 +3494,9 @@ export declare class AVAssetWriterInput_MetadataReceiver extends SDKHandle {
      * @availability iOS 26.0+
      */
     finish(): void;
+    readonly $type: {
+        "s:So18AVAssetWriterInputC12AVFoundationE16MetadataReceiverC": true;
+    };
 }
 /**
  * class MultiPassController
@@ -3306,6 +3508,9 @@ export declare class AVAssetWriterInput_MultiPassController extends SDKHandle {
      * @availability iOS 26.0+
      */
     get passDescriptions(): (SDKHandle) | null;
+    readonly $type: {
+        "s:So18AVAssetWriterInputC12AVFoundationE19MultiPassControllerC": true;
+    };
 }
 /**
  * class PixelBufferReceiver
@@ -3337,6 +3542,9 @@ export declare class AVAssetWriterInput_PixelBufferReceiver extends SDKHandle {
      * @availability iOS 26.0+
      */
     finish(): void;
+    readonly $type: {
+        "s:So18AVAssetWriterInputC12AVFoundationE19PixelBufferReceiverC": true;
+    };
 }
 /**
  * class SampleBufferReceiver
@@ -3358,6 +3566,9 @@ export declare class AVAssetWriterInput_SampleBufferReceiver extends SDKHandle {
      * @availability iOS 26.0+
      */
     finish(): void;
+    readonly $type: {
+        "s:So18AVAssetWriterInputC12AVFoundationE20SampleBufferReceiverC": true;
+    };
 }
 /**
  * class TaggedPixelBufferGroupReceiver
@@ -3389,6 +3600,9 @@ export declare class AVAssetWriterInput_TaggedPixelBufferGroupReceiver extends S
      * @availability iOS 26.0+
      */
     finish(): void;
+    readonly $type: {
+        "s:So18AVAssetWriterInputC12AVFoundationE30TaggedPixelBufferGroupReceiverC": true;
+    };
 }
 /**
  * class AVAssetWriterInputCaptionAdaptor
@@ -3420,6 +3634,10 @@ export declare class AVAssetWriterInputCaptionAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get assetWriterInput(): AVAssetWriterInput;
+    readonly $type: {
+        "c:objc(cs)AVAssetWriterInputCaptionAdaptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assetWriterInput": true;
     };
@@ -3469,6 +3687,10 @@ export declare class AVMediaSelectionGroup extends SDKHandle {
      * @availability iOS 5.0+
      */
     get options(): $SDK13;
+    readonly $type: {
+        "c:objc(cs)AVMediaSelectionGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsEmptySelection": true;
         "customMediaSelectionScheme": true;
@@ -3497,6 +3719,11 @@ export declare class AVAssetWriterInputGroup extends AVAssetWriterInputGroup_bas
      * @availability iOS 7.0+
      */
     get inputs(): $SDK73;
+    readonly $type: {
+        "c:objc(cs)AVAssetWriterInputGroup": true;
+        "c:objc(cs)AVMediaSelectionGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsEmptySelection": true;
         "customMediaSelectionScheme": true;
@@ -3530,6 +3757,10 @@ export declare class AVAssetWriterInputMetadataAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get assetWriterInput(): AVAssetWriterInput;
+    readonly $type: {
+        "c:objc(cs)AVAssetWriterInputMetadataAdaptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assetWriterInput": true;
     };
@@ -3544,6 +3775,10 @@ export declare class AVAssetWriterInputPassDescription extends SDKHandle {
      * @availability iOS 8.0+
      */
     get sourceTimeRanges(): $SDK17;
+    readonly $type: {
+        "c:objc(cs)AVAssetWriterInputPassDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sourceTimeRanges": true;
     };
@@ -3584,6 +3819,10 @@ export declare class AVAssetWriterInputPixelBufferAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get sourcePixelBufferAttributes(): $SDK70;
+    readonly $type: {
+        "c:objc(cs)AVAssetWriterInputPixelBufferAdaptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assetWriterInput": true;
         "pixelBufferPool": true;
@@ -3632,6 +3871,10 @@ export declare class AVAssetWriterInputTaggedPixelBufferGroupAdaptor extends SDK
      * @deprecated iOS 26.0
      */
     appendTaggedBuffers(taggedBuffers: Array<_CoreMedia_CMTaggedBuffer>, withPresentationTime: _CoreMedia_CMTime): boolean;
+    readonly $type: {
+        "c:objc(cs)AVAssetWriterInputTaggedPixelBufferGroupAdaptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assetWriterInput": true;
         "pixelBufferPool": true;
@@ -3668,6 +3911,10 @@ export declare class AVAssetWritingPlanner extends SDKHandle {
      * @availability iOS 27.0+
      */
     static segmentBoundaryGuidelinesForVideo(codecType: AVVideoCodecType, encoderSpecification: $SDK91): AVAssetWritingPlanner_SegmentBoundaryGuidelines;
+    readonly $type: {
+        "c:objc(cs)AVAssetWritingPlanner": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "progress": true;
     };
@@ -3699,12 +3946,18 @@ export declare class AVAssetWritingPlanner_SegmentBoundaryGuidelines extends SDK
      * @availability iOS 27.0+
      */
     static init(): AVAssetWritingPlanner_SegmentBoundaryGuidelines;
+    readonly $type: {
+        "c:@SA@AVPlannedVideoSegmentBoundaryGuidelines": true;
+    };
 }
 /**
  * enum SegmentResult
  * @availability iOS 27.0+
  */
 export declare class AVAssetWritingPlanner_SegmentResult extends SDKHandle {
+    readonly $type: {
+        "s:So21AVAssetWritingPlannerC12AVFoundationE13SegmentResultO": true;
+    };
 }
 /**
  * class AVAssetWritingPlannerProgress
@@ -3723,6 +3976,10 @@ export declare class AVAssetWritingPlannerProgress extends SDKHandle {
      * @availability iOS 27.0+
      */
     get overallProgress(): number;
+    readonly $type: {
+        "c:objc(cs)AVAssetWritingPlannerProgress": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "overallProgress": true;
     };
@@ -3765,6 +4022,10 @@ export declare class AVAsynchronousCIImageFilteringRequest extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get sourceImage(): _CoreImage_CIImage;
+    readonly $type: {
+        "c:objc(cs)AVAsynchronousCIImageFilteringRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "compositionTime": true;
         "renderSize": true;
@@ -3876,6 +4137,10 @@ export declare class AVAsynchronousVideoCompositionRequest extends SDKHandle {
      * @availability iOS 26.0+
      */
     finishWithComposedTaggedBuffers(taggedBuffers: $SDK86): void;
+    readonly $type: {
+        "c:objc(cs)AVAsynchronousVideoCompositionRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "compositionTime": true;
         "renderContext": true;
@@ -4197,12 +4462,21 @@ export declare class AVPartialAsyncProperty<Root = unknown> extends AVPartialAsy
      * @availability iOS 15.0+
      */
     static get metadata69018(): $SDK123;
+    readonly $type: {
+        "s:12AVFoundation22AVPartialAsyncPropertyC": true;
+        "s:12AVFoundation18AVAnyAsyncPropertyC": true;
+    };
 }
 /**
  * class AVAsyncProperty<Root, Value>
  * @availability iOS 15.0+
  */
 export declare class AVAsyncProperty<Root = unknown, Value = unknown> extends AVPartialAsyncProperty {
+    readonly $type: {
+        "s:12AVFoundation15AVAsyncPropertyC": true;
+        "s:12AVFoundation22AVPartialAsyncPropertyC": true;
+        "s:12AVFoundation18AVAnyAsyncPropertyC": true;
+    };
 }
 /**
  * @frozen enum Status
@@ -4214,6 +4488,9 @@ export declare class AVAsyncProperty_Status<Root = unknown, Value = unknown> ext
      * @availability iOS 15.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:12AVFoundation15AVAsyncPropertyC6StatusO": true;
+    };
 }
 /**
  * class AVAudioMix
@@ -4227,6 +4504,10 @@ export declare class AVAudioMix extends SDKHandle {
      * @availability iOS 4.0+
      */
     get inputParameters(): $SDK132;
+    readonly $type: {
+        "c:objc(cs)AVAudioMix": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputParameters": true;
     };
@@ -4258,6 +4539,10 @@ export declare class AVAudioMixInputParameters extends SDKHandle {
      * @availability iOS 4.0+
      */
     get trackID(): number;
+    readonly $type: {
+        "c:objc(cs)AVAudioMixInputParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioTapProcessor": true;
         "audioTimePitchAlgorithm": true;
@@ -4367,6 +4652,10 @@ export declare class AVCameraCalibrationData extends SDKHandle {
      * @availability iOS 11.0+
      */
     get pixelSize(): number;
+    readonly $type: {
+        "c:objc(cs)AVCameraCalibrationData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extrinsicMatrix": true;
         "intrinsicMatrix": true;
@@ -4438,6 +4727,10 @@ export declare class AVCaption extends SDKHandle {
      * @availability iOS 18.0+
      */
     textColor(index: SDKHandle): $SDK140;
+    readonly $type: {
+        "c:objc(cs)AVCaption": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animation": true;
         "region": true;
@@ -4539,6 +4832,10 @@ export declare class AVCaption_Ruby extends SDKHandle {
      * @availability iOS 18.0+
      */
     get text(): string;
+    readonly $type: {
+        "c:objc(cs)AVCaptionRuby": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alignment": true;
         "position": true;
@@ -4603,6 +4900,10 @@ export declare class AVCaptionConversionAdjustment extends SDKHandle {
      * @availability iOS 18.0+
      */
     get adjustmentType(): AVCaptionConversionAdjustment_AdjustmentType;
+    readonly $type: {
+        "c:objc(cs)AVCaptionConversionAdjustment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adjustmentType": true;
     };
@@ -4639,6 +4940,11 @@ export declare class AVCaptionConversionTimeRangeAdjustment extends AVCaptionCon
      * @availability iOS 18.0+
      */
     get startTimeOffset(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)AVCaptionConversionTimeRangeAdjustment": true;
+        "c:objc(cs)AVCaptionConversionAdjustment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adjustmentType": true;
         "durationOffset": true;
@@ -4685,6 +4991,10 @@ export declare class AVCaptionConversionValidator extends SDKHandle {
      * @availability iOS 18.0+
      */
     get warnings(): Array<AVCaptionConversionWarning>;
+    readonly $type: {
+        "c:objc(cs)AVCaptionConversionValidator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "captions": true;
         "status": true;
@@ -4724,6 +5034,10 @@ export declare class AVCaptionConversionWarning extends SDKHandle {
      * @availability iOS 18.0+
      */
     get warningType(): AVCaptionConversionWarning_WarningType;
+    readonly $type: {
+        "c:objc(cs)AVCaptionConversionWarning": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adjustment": true;
         "rangeOfCaptions": true;
@@ -4759,6 +5073,9 @@ export declare class AVCaptionDimension extends SDKHandle {
     static initValueUnits(value: number, units: AVCaptionUnitsType): AVCaptionDimension;
     /** init() */
     static init(): AVCaptionDimension;
+    readonly $type: {
+        "c:@S@AVCaptionDimension": true;
+    };
 }
 /**
  * class AVCaptionFormatConformer
@@ -4781,6 +5098,10 @@ export declare class AVCaptionFormatConformer extends SDKHandle {
      */
     get conformsCaptionsToTimeRange(): boolean;
     set conformsCaptionsToTimeRange(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVCaptionFormatConformer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "conformsCaptionsToTimeRange": true;
     };
@@ -4790,8 +5111,6 @@ export declare class AVCaptionFormatConformer extends SDKHandle {
  * @availability iOS 18.0+
  */
 export declare class AVCaptionGroup extends SDKHandle {
-    /** init() */
-    static init(): AVCaptionGroup;
     /**
      * init(captions: [AVCaption], timeRange: CMTimeRange)
      * @availability iOS 18.0+
@@ -4812,6 +5131,10 @@ export declare class AVCaptionGroup extends SDKHandle {
      * @availability iOS 18.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "c:objc(cs)AVCaptionGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "captions": true;
         "timeRange": true;
@@ -4834,6 +5157,10 @@ export declare class AVCaptionGrouper extends SDKHandle {
     flushAddedCaptions(upToTime: _CoreMedia_CMTime): Array<AVCaptionGroup>;
     /** init() */
     static init(): AVCaptionGrouper;
+    readonly $type: {
+        "c:objc(cs)AVCaptionGrouper": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct AVCaptionPoint */
 export declare class AVCaptionPoint extends SDKHandle {
@@ -4847,6 +5174,9 @@ export declare class AVCaptionPoint extends SDKHandle {
     static initXY(x: AVCaptionDimension, y: AVCaptionDimension): AVCaptionPoint;
     /** init() */
     static init(): AVCaptionPoint;
+    readonly $type: {
+        "c:@S@AVCaptionPoint": true;
+    };
 }
 /**
  * class AVCaptionRegion
@@ -4925,6 +5255,10 @@ export declare class AVCaptionRegion extends SDKHandle {
      * @availability iOS 18.0+
      */
     get writingMode(): AVCaptionRegion_WritingMode;
+    readonly $type: {
+        "c:objc(cs)AVCaptionRegion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayAlignment": true;
         "identifier": true;
@@ -5007,6 +5341,10 @@ export declare class AVCaptionRenderer extends SDKHandle {
      */
     get captions(): Array<AVCaption>;
     set captions(value: Array<AVCaption>);
+    readonly $type: {
+        "c:objc(cs)AVCaptionRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "captions": true;
@@ -5032,6 +5370,10 @@ export declare class AVCaptionRenderer_Scene extends SDKHandle {
      * @availability iOS 18.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "c:objc(cs)AVCaptionRendererScene": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hasActiveCaptions": true;
         "needsPeriodicRefresh": true;
@@ -5082,6 +5424,9 @@ export declare class AVCaptionSize extends SDKHandle {
     static initWidthHeight(width: AVCaptionDimension, height: AVCaptionDimension): AVCaptionSize;
     /** init() */
     static init(): AVCaptionSize;
+    readonly $type: {
+        "c:@S@AVCaptionSize": true;
+    };
 }
 /** enum AVCaptionUnitsType */
 export type AVCaptionUnitsType = "unspecified" | "cells" | "percent";
@@ -5130,6 +5475,10 @@ export declare class AVCaptureAncillaryDataEncoder extends SDKHandle {
      * @availability iOS 27.0+
      */
     get userDefinedAncillaryDataSizeRemaining(): number;
+    readonly $type: {
+        "c:objc(cs)AVCaptureAncillaryDataEncoder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentUserDefinedAncillaryData": true;
         "isEnabled": true;
@@ -5178,6 +5527,10 @@ export declare class AVCaptureAudioChannel extends SDKHandle {
      * @availability iOS 4.0+
      */
     get peakHoldLevel(): number;
+    readonly $type: {
+        "c:objc(cs)AVCaptureAudioChannel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "averagePowerLevel": true;
         "peakHoldLevel": true;
@@ -5224,6 +5577,10 @@ export declare class AVCaptureOutput extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isDeferredStartSupported(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -5266,6 +5623,11 @@ export declare class AVCaptureAudioDataOutput extends AVCaptureOutput {
      */
     get spatialAudioChannelLayoutTag(): number;
     set spatialAudioChannelLayoutTag(value: number);
+    readonly $type: {
+        "c:objc(cs)AVCaptureAudioDataOutput": true;
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -5291,6 +5653,10 @@ export interface AVCaptureAudioDataOutputSampleBufferDelegate {
  * @availability iOS 8.0+
  */
 export declare class AVCaptureBracketedStillImageSettings extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)AVCaptureBracketedStillImageSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVCaptureAutoExposureBracketedStillImageSettings
@@ -5307,6 +5673,11 @@ export declare class AVCaptureAutoExposureBracketedStillImageSettings extends AV
      * @availability iOS 8.0+
      */
     get exposureTargetBias(): number;
+    readonly $type: {
+        "c:objc(cs)AVCaptureAutoExposureBracketedStillImageSettings": true;
+        "c:objc(cs)AVCaptureBracketedStillImageSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exposureTargetBias": true;
     };
@@ -5373,6 +5744,11 @@ export declare class AVCaptureBroadcastVideoOutput extends AVCaptureOutput {
      * @availability iOS 27.0+
      */
     get videoSettings(): $SDK19;
+    readonly $type: {
+        "c:objc(cs)AVCaptureBroadcastVideoOutput": true;
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -5587,6 +5963,10 @@ export declare class AVCaptureConnection extends SDKHandle {
      * @deprecated iOS 8.0
      */
     get isVideoStabilizationEnabled(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVCaptureConnection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "activeVideoStabilizationMode": true;
@@ -5625,6 +6005,10 @@ export declare class AVCaptureControl extends SDKHandle {
      */
     get isEnabled(): boolean;
     set isEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVCaptureControl": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
     };
@@ -5659,6 +6043,10 @@ export declare class AVCaptureDataOutputSynchronizer extends SDKHandle {
      * @availability iOS 11.0+
      */
     get delegateCallbackQueue(): $SDK51;
+    readonly $type: {
+        "c:objc(cs)AVCaptureDataOutputSynchronizer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataOutputs": true;
         "delegate": true;
@@ -5802,6 +6190,10 @@ export declare class AVCapturePhoto extends SDKHandle {
      * @availability iOS 11.0+
      */
     get timestamp(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)AVCapturePhoto": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bracketSettings": true;
         "cameraCalibrationData": true;
@@ -5828,6 +6220,11 @@ export declare class AVCapturePhoto extends SDKHandle {
  * @availability iOS 17.0+
  */
 export declare class AVCaptureDeferredPhotoProxy extends AVCapturePhoto {
+    readonly $type: {
+        "c:objc(cs)AVCaptureDeferredPhotoProxy": true;
+        "c:objc(cs)AVCapturePhoto": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bracketSettings": true;
         "cameraCalibrationData": true;
@@ -5886,6 +6283,11 @@ export declare class AVCaptureDepthDataOutput extends AVCaptureOutput {
      */
     get isFilteringEnabled(): boolean;
     set isFilteringEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVCaptureDepthDataOutput": true;
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -6928,6 +7330,10 @@ export declare class AVCaptureDevice extends SDKHandle {
      */
     get whiteBalanceMode(): AVCaptureDevice_WhiteBalanceMode;
     set whiteBalanceMode(value: AVCaptureDevice_WhiteBalanceMode);
+    readonly $type: {
+        "c:objc(cs)AVCaptureDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "iso": true;
         "activeColorSpace": true;
@@ -7239,6 +7645,10 @@ export declare class AVCaptureDevice_DiscoverySession extends SDKHandle {
      * @availability iOS 13.0+
      */
     get supportedMultiCamDeviceSets(): Array<Array<AVCaptureDevice>>;
+    readonly $type: {
+        "c:objc(cs)AVCaptureDeviceDiscoverySession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "devices": true;
         "supportedMultiCamDeviceSets": true;
@@ -7630,6 +8040,10 @@ export declare class AVCaptureDevice_Format extends SDKHandle {
      * @deprecated iOS 17.2
      */
     get supportedVideoZoomFactorsForDepthDataDelivery(): Array<number>;
+    readonly $type: {
+        "c:objc(cs)AVCaptureDeviceFormat": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "autoFocusSystem": true;
         "isAutoVideoFrameRateSupported": true;
@@ -7812,6 +8226,10 @@ export declare class AVCaptureDevice_RotationCoordinator extends SDKHandle {
      * @availability iOS 17.0+
      */
     get videoRotationAngleForHorizonLevelPreview(): number;
+    readonly $type: {
+        "c:objc(cs)AVCaptureDeviceRotationCoordinator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "previewLayer": true;
@@ -7834,6 +8252,10 @@ export declare class AVCaptureDevice_SystemPressureState extends SDKHandle {
      * @availability iOS 11.1+
      */
     get level(): AVCaptureDevice_SystemPressureState_Level;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSystemPressureState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "factors": true;
         "level": true;
@@ -7964,6 +8386,9 @@ export declare class AVCaptureDevice_WhiteBalanceChromaticityValues extends SDKH
      * @availability iOS 8.0+
      */
     static init(): AVCaptureDevice_WhiteBalanceChromaticityValues;
+    readonly $type: {
+        "c:@SA@AVCaptureWhiteBalanceChromaticityValues": true;
+    };
 }
 /**
  * struct WhiteBalanceGains
@@ -7998,6 +8423,9 @@ export declare class AVCaptureDevice_WhiteBalanceGains extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): AVCaptureDevice_WhiteBalanceGains;
+    readonly $type: {
+        "c:@SA@AVCaptureWhiteBalanceGains": true;
+    };
 }
 /**
  * enum WhiteBalanceMode
@@ -8063,6 +8491,9 @@ export declare class AVCaptureDevice_WhiteBalanceTemperatureAndTintValues extend
      * @availability iOS 8.0+
      */
     static init(): AVCaptureDevice_WhiteBalanceTemperatureAndTintValues;
+    readonly $type: {
+        "c:@SA@AVCaptureWhiteBalanceTemperatureAndTintValues": true;
+    };
 }
 /**
  * struct AVCaptureDeviceExposureSignal
@@ -8111,6 +8542,10 @@ export declare class AVCaptureInput extends SDKHandle {
      * @availability iOS 4.0+
      */
     get ports(): $SDK155;
+    readonly $type: {
+        "c:objc(cs)AVCaptureInput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ports": true;
     };
@@ -8239,6 +8674,11 @@ export declare class AVCaptureDeviceInput extends AVCaptureDeviceInput_base {
      * @availability iOS 4.0+
      */
     get ports88360(): $SDK155;
+    readonly $type: {
+        "c:objc(cs)AVCaptureDeviceInput": true;
+        "c:objc(cs)AVCaptureInput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ports": true;
         "activeExternalSyncVideoFrameDuration": true;
@@ -8285,6 +8725,10 @@ export declare class AVCaptureExternalDisplayConfiguration extends SDKHandle {
      */
     get shouldMatchFrameRate(): boolean;
     set shouldMatchFrameRate(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVCaptureExternalDisplayConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bypassColorSpaceConversion": true;
         "preferredResolution": true;
@@ -8341,6 +8785,10 @@ export declare class AVCaptureExternalDisplayConfigurator extends SDKHandle {
      * @availability iOS 26.0+
      */
     get previewLayer(): $SDK188;
+    readonly $type: {
+        "c:objc(cs)AVCaptureExternalDisplayConfigurator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "activeExternalDisplayFrameRate": true;
@@ -8416,6 +8864,11 @@ export declare class AVCaptureFileOutput extends AVCaptureOutput {
      * @availability iOS 18.0+
      */
     get isRecordingPaused(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVCaptureFileOutput": true;
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -8476,6 +8929,10 @@ export declare class AVCaptureFraming extends SDKHandle {
      * @availability iOS 26.0+
      */
     get zoomFactor(): number;
+    readonly $type: {
+        "c:objc(cs)AVCaptureFraming": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "aspectRatio": true;
         "zoomFactor": true;
@@ -8533,6 +8990,11 @@ export declare class AVCaptureIndexPicker extends AVCaptureControl {
      * @availability iOS 18.0+
      */
     setActionQueue(actionQueue: _Dispatch_DispatchQueue, action: $SDK192): void;
+    readonly $type: {
+        "c:objc(cs)AVCaptureIndexPicker": true;
+        "c:objc(cs)AVCaptureControl": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "accessibilityIdentifier": true;
@@ -8589,6 +9051,10 @@ export declare class AVCaptureInput_Port extends SDKHandle {
      * @availability iOS 13.0+
      */
     get sourceDeviceType(): $SDK166;
+    readonly $type: {
+        "c:objc(cs)AVCaptureInputPort": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "clock": true;
         "isEnabled": true;
@@ -8619,6 +9085,11 @@ export declare class AVCaptureManualExposureBracketedStillImageSettings extends 
      * @availability iOS 8.0+
      */
     get exposureDuration(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)AVCaptureManualExposureBracketedStillImageSettings": true;
+        "c:objc(cs)AVCaptureBracketedStillImageSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "iso": true;
         "exposureDuration": true;
@@ -8639,6 +9110,11 @@ export declare class AVCaptureMetadataInput extends AVCaptureInput {
      * @availability iOS 9.0+
      */
     static init(desc: _CoreMedia_CMFormatDescription, clock: _CoreMedia_CMClock): AVCaptureMetadataInput;
+    readonly $type: {
+        "c:objc(cs)AVCaptureMetadataInput": true;
+        "c:objc(cs)AVCaptureInput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ports": true;
     };
@@ -8690,6 +9166,11 @@ export declare class AVCaptureMetadataOutput extends AVCaptureOutput {
      * @availability iOS 26.0+
      */
     get requiredMetadataObjectTypesForCinematicVideoCapture(): $SDK195;
+    readonly $type: {
+        "c:objc(cs)AVCaptureMetadataOutput": true;
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -8825,6 +9306,12 @@ export declare class AVCaptureMovieFileOutput extends AVCaptureFileOutput {
      */
     get usesProVideoStorage(): boolean;
     set usesProVideoStorage(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVCaptureMovieFileOutput": true;
+        "c:objc(cs)AVCaptureFileOutput": true;
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -9128,6 +9615,10 @@ export declare class AVCaptureSession extends SDKHandle {
      */
     get usesApplicationAudioSession(): boolean;
     set usesApplicationAudioSession(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVCaptureSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "automaticallyConfiguresApplicationAudioSession": true;
         "automaticallyConfiguresCaptureDeviceForWideColor": true;
@@ -9179,6 +9670,11 @@ export declare class AVCaptureMultiCamSession extends AVCaptureMultiCamSession_b
      * @availability iOS 13.0+
      */
     get systemPressureCost(): number;
+    readonly $type: {
+        "c:objc(cs)AVCaptureMultiCamSession": true;
+        "c:objc(cs)AVCaptureSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "automaticallyConfiguresApplicationAudioSession": true;
         "automaticallyConfiguresCaptureDeviceForWideColor": true;
@@ -9257,8 +9753,6 @@ export declare class AVCapturePhotoSettings extends SDKHandle {
      * @availability iOS 11.0+
      */
     static initRawPixelFormatTypeRawFileTypeProcessedFormatProcessedFileType(rawPixelFormatType: SDKHandle, rawFileType?: (AVFileType) | null, processedFormat?: $SDK19, processedFileType?: (AVFileType) | null): AVCapturePhotoSettings;
-    /** init() */
-    static init(): AVCapturePhotoSettings;
     /**
      * var isAutoContentAwareDistortionCorrectionEnabled: Bool { get set }
      * @availability iOS 14.1+
@@ -9483,6 +9977,10 @@ export declare class AVCapturePhotoSettings extends SDKHandle {
      * @availability iOS 10.0+
      */
     get availablePreviewPhotoPixelFormatTypes(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)AVCapturePhotoSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAutoContentAwareDistortionCorrectionEnabled": true;
         "isAutoDualCameraFusionEnabled": true;
@@ -9523,12 +10021,11 @@ export declare class AVCapturePhotoSettings extends SDKHandle {
         "virtualDeviceConstituentPhotoDeliveryEnabledDevices": true;
     };
 }
-declare const AVCapturePhotoBracketSettings_base: Omit<typeof AVCapturePhotoSettings, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVCapturePhotoSettings);
 /**
  * class AVCapturePhotoBracketSettings
  * @availability iOS 10.0+
  */
-export declare class AVCapturePhotoBracketSettings extends AVCapturePhotoBracketSettings_base {
+export declare class AVCapturePhotoBracketSettings extends AVCapturePhotoSettings {
     /**
      * convenience init(rawPixelFormatType: OSType, processedFormat: [String : Any]?, bracketedSettings: [AVCaptureBracketedStillImageSettings])
      * @availability iOS 10.0+
@@ -9539,8 +10036,6 @@ export declare class AVCapturePhotoBracketSettings extends AVCapturePhotoBracket
      * @availability iOS 11.0+
      */
     static initRawPixelFormatTypeRawFileTypeProcessedFormatProcessedFileTypeBracketedSettings(rawPixelFormatType: SDKHandle, rawFileType: (AVFileType) | null, processedFormat: $SDK19, processedFileType: (AVFileType) | null, bracketedSettings: $SDK200): AVCapturePhotoBracketSettings;
-    /** init() */
-    static init(): AVCapturePhotoBracketSettings;
     /**
      * var bracketedSettings: [AVCaptureBracketedStillImageSettings] { get }
      * @availability iOS 10.0+
@@ -9552,6 +10047,11 @@ export declare class AVCapturePhotoBracketSettings extends AVCapturePhotoBracket
      */
     get isLensStabilizationEnabled(): boolean;
     set isLensStabilizationEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVCapturePhotoBracketSettings": true;
+        "c:objc(cs)AVCapturePhotoSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAutoContentAwareDistortionCorrectionEnabled": true;
         "isAutoDualCameraFusionEnabled": true;
@@ -10023,6 +10523,11 @@ export declare class AVCapturePhotoOutput extends AVCaptureOutput {
      * @availability iOS 10.0+
      */
     get supportedFlashModes(): Array<AVCaptureDevice_FlashMode>;
+    readonly $type: {
+        "c:objc(cs)AVCapturePhotoOutput": true;
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -10136,6 +10641,10 @@ export declare class AVCapturePhotoOutputReadinessCoordinator extends SDKHandle 
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<AVCapturePhotoOutputReadinessCoordinatorDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)AVCapturePhotoOutputReadinessCoordinator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "captureReadiness": true;
         "delegate": true;
@@ -10174,6 +10683,10 @@ export declare class AVCaptureReactionEffectState extends SDKHandle {
      * @availability iOS 17.0+
      */
     get startTime(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)AVCaptureReactionEffectState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endTime": true;
         "reactionType": true;
@@ -10339,6 +10852,10 @@ export declare class AVCaptureResolvedPhotoSettings extends SDKHandle {
      * @availability iOS 13.0+
      */
     get isVirtualDeviceFusionEnabled(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVCaptureResolvedPhotoSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isContentAwareDistortionCorrectionEnabled": true;
         "deferredPhotoProxyDimensions": true;
@@ -10562,6 +11079,11 @@ export declare class AVCaptureSlider extends AVCaptureControl {
      * @availability iOS 18.0+
      */
     static initSymbolNameValues(localizedTitle: string, symbolName: string, values: Array<number>): AVCaptureSlider;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSlider": true;
+        "c:objc(cs)AVCaptureControl": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "accessibilityIdentifier": true;
@@ -10607,6 +11129,10 @@ export declare class AVCaptureSmartFramingMonitor extends SDKHandle {
      * @availability iOS 26.0+
      */
     get supportedFramings(): Array<AVCaptureFraming>;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSmartFramingMonitor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enabledFramings": true;
         "isMonitoring": true;
@@ -10641,6 +11167,10 @@ export declare class AVCaptureSpatialAudioMetadataSampleGenerator extends SDKHan
      * @availability iOS 26.0+
      */
     get timedMetadataSampleBufferFormatDescription(): _CoreMedia_CMFormatDescription;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSpatialAudioMetadataSampleGenerator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timedMetadataSampleBufferFormatDescription": true;
     };
@@ -10764,6 +11294,11 @@ export declare class AVCaptureStillImageOutput extends AVCaptureOutput {
      * @deprecated iOS 10.0
      */
     get isStillImageStabilizationSupported(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVCaptureStillImageOutput": true;
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -10793,6 +11328,10 @@ export declare class AVCaptureSynchronizedData extends SDKHandle {
      * @availability iOS 11.0+
      */
     get timestamp(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSynchronizedData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
     };
@@ -10822,6 +11361,10 @@ export declare class AVCaptureSynchronizedDataCollection extends SDKHandle {
      * @availability iOS 11.0+
      */
     makeIterator(): AVCaptureSynchronizedDataCollection_Iterator;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSynchronizedDataCollection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "count": true;
     };
@@ -10841,6 +11384,9 @@ export declare class AVCaptureSynchronizedDataCollection_Iterator extends SDKHan
      * @availability iOS 11.0+
      */
     next(): $SDK213;
+    readonly $type: {
+        "s:So35AVCaptureSynchronizedDataCollectionC12AVFoundationE8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AVCaptureSynchronizedData
@@ -10867,6 +11413,11 @@ export declare class AVCaptureSynchronizedDepthData extends AVCaptureSynchronize
      * @availability iOS 11.0+
      */
     get droppedReason(): AVCaptureOutput_DataDroppedReason;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSynchronizedDepthData": true;
+        "c:objc(cs)AVCaptureSynchronizedData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "depthData": true;
@@ -10884,6 +11435,11 @@ export declare class AVCaptureSynchronizedMetadataObjectData extends AVCaptureSy
      * @availability iOS 11.0+
      */
     get metadataObjects(): Array<AVMetadataObject>;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSynchronizedMetadataObjectData": true;
+        "c:objc(cs)AVCaptureSynchronizedData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "metadataObjects": true;
@@ -10909,6 +11465,11 @@ export declare class AVCaptureSynchronizedSampleBufferData extends AVCaptureSync
      * @availability iOS 11.0+
      */
     get sampleBufferWasDropped(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSynchronizedSampleBufferData": true;
+        "c:objc(cs)AVCaptureSynchronizedData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "droppedReason": true;
@@ -10931,6 +11492,11 @@ export declare class AVCaptureSystemExposureBiasSlider extends AVCaptureControl 
      * @availability iOS 18.0+
      */
     static initDeviceAction(device: AVCaptureDevice, action: $SDK192): Promise<AVCaptureSystemExposureBiasSlider>;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSystemExposureBiasSlider": true;
+        "c:objc(cs)AVCaptureControl": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
     };
@@ -10950,6 +11516,11 @@ export declare class AVCaptureSystemZoomSlider extends AVCaptureControl {
      * @availability iOS 18.0+
      */
     static initDeviceAction(device: AVCaptureDevice, action: $SDK192): Promise<AVCaptureSystemZoomSlider>;
+    readonly $type: {
+        "c:objc(cs)AVCaptureSystemZoomSlider": true;
+        "c:objc(cs)AVCaptureControl": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
     };
@@ -11026,6 +11597,9 @@ export declare class AVCaptureTimecode extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): AVCaptureTimecode;
+    readonly $type: {
+        "c:@S@AVCaptureTimecode": true;
+    };
 }
 /**
  * class Source
@@ -11049,6 +11623,10 @@ export declare class AVCaptureTimecode_Source extends SDKHandle {
      * @availability iOS 26.0+
      */
     get uuid(): string;
+    readonly $type: {
+        "c:objc(cs)AVCaptureTimecodeSource": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "type": true;
@@ -11137,6 +11715,10 @@ export declare class AVCaptureTimecodeGenerator extends SDKHandle {
      */
     get timecodeFrameDuration(): _CoreMedia_CMTime;
     set timecodeFrameDuration(value: _CoreMedia_CMTime);
+    readonly $type: {
+        "c:objc(cs)AVCaptureTimecodeGenerator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "availableSources": true;
         "currentSource": true;
@@ -11281,6 +11863,11 @@ export declare class AVCaptureVideoDataOutput extends AVCaptureOutput {
      * @availability iOS 5.0+
      */
     get availableVideoPixelFormatTypes(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)AVCaptureVideoDataOutput": true;
+        "c:objc(cs)AVCaptureOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connections": true;
         "isDeferredStartEnabled": true;
@@ -11335,8 +11922,6 @@ export declare class AVCaptureVideoPreviewLayer extends SDKHandle {
      * @availability iOS 6.0+
      */
     captureDevicePointConverted(pointInLayer: $SDK135): $SDK135;
-    /** init() */
-    static init(): AVCaptureVideoPreviewLayer;
     /**
      * init(session: AVCaptureSession)
      * @availability iOS 4.0+
@@ -11405,6 +11990,11 @@ export declare class AVCaptureVideoPreviewLayer extends SDKHandle {
      */
     get videoGravity(): AVLayerVideoGravity;
     set videoGravity(value: AVLayerVideoGravity);
+    readonly $type: {
+        "c:objc(cs)AVCaptureVideoPreviewLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connection": true;
         "isDeferredStartEnabled": true;
@@ -11446,6 +12036,9 @@ export declare class AVCIImageFilteringParameters extends SDKHandle {
      * @availability iOS 26.0+
      */
     get compositionTime(): _CoreMedia_CMTime;
+    readonly $type: {
+        "s:12AVFoundation28AVCIImageFilteringParametersV": true;
+    };
 }
 /**
  * struct AVCIImageFilteringResult
@@ -11467,6 +12060,9 @@ export declare class AVCIImageFilteringResult extends SDKHandle {
      * @availability iOS 26.0+
      */
     get ciContext(): $SDK92;
+    readonly $type: {
+        "s:12AVFoundation24AVCIImageFilteringResultV": true;
+    };
 }
 declare const AVComposition_base: Omit<typeof AVAsset, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAsset, "chapterMetadataGroupsBestMatchingPreferredLanguages" | "chapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys" | "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "mediaSelectionGroup" | "metadataForFormat" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "unusedTrackID" | "allMediaSelections" | "availableChapterLocales" | "availableMediaCharacteristicsWithMediaSelectionOptions" | "availableMetadataFormats" | "canContainFragments" | "commonMetadata" | "isCompatibleWithAirPlayVideo" | "isCompatibleWithSavedPhotosAlbum" | "isComposable" | "containsFragments" | "creationDate" | "duration" | "isExportable" | "hasProtectedContent" | "lyrics" | "metadata" | "minimumTimeOffsetFromLive" | "overallDurationHint" | "isPlayable" | "preferredMediaSelection" | "preferredRate" | "preferredTransform" | "preferredVolume" | "providesPreciseDurationAndTiming" | "isReadable" | "trackGroups" | "tracks">);
 /**
@@ -11628,6 +12224,11 @@ export declare class AVComposition extends AVComposition_base {
      * @availability iOS 4.0+
      */
     get tracks(): $SDK221;
+    readonly $type: {
+        "c:objc(cs)AVComposition": true;
+        "c:objc(cs)AVAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMediaSelections": true;
         "availableChapterLocales": true;
@@ -11763,6 +12364,11 @@ export declare class AVCompositionTrack extends AVCompositionTrack_base {
     get timeRange(): _CoreMedia_CMTimeRange;
     /** var totalSampleDataLength: Int64 { get } */
     get totalSampleDataLength(): number;
+    readonly $type: {
+        "c:objc(cs)AVCompositionTrack": true;
+        "c:objc(cs)AVAssetTrack": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
         "availableMetadataFormats": true;
@@ -11811,6 +12417,10 @@ export declare class AVCompositionTrackFormatDescriptionReplacement extends SDKH
      * @availability iOS 13.0+
      */
     get replacementFormatDescription(): _CoreMedia_CMFormatDescription;
+    readonly $type: {
+        "c:objc(cs)AVCompositionTrackFormatDescriptionReplacement": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "originalFormatDescription": true;
         "replacementFormatDescription": true;
@@ -11847,6 +12457,11 @@ export declare class AVCompositionTrackSegment extends AVCompositionTrackSegment
      * @availability iOS 4.0+
      */
     get sourceURL(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVCompositionTrackSegment": true;
+        "c:objc(cs)AVAssetTrackSegment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEmpty": true;
         "timeMapping": true;
@@ -11876,6 +12491,10 @@ export declare class AVContentKey extends SDKHandle {
      * @availability iOS 17.4+
      */
     get externalContentProtectionStatus(): AVExternalContentProtectionStatus;
+    readonly $type: {
+        "c:objc(cs)AVContentKey": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentKeySpecifier": true;
         "externalContentProtectionStatus": true;
@@ -11982,6 +12601,10 @@ export declare class AVContentKeyRequest extends SDKHandle {
      * @availability iOS 10.3+
      */
     get status(): AVContentKeyRequest_Status;
+    readonly $type: {
+        "c:objc(cs)AVContentKeyRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "canBeFulfilledWithAdvisoryKey": true;
         "canProvidePersistableContentKey": true;
@@ -12055,8 +12678,10 @@ export declare class AVContentKeyResponse extends SDKHandle {
      * @availability iOS 10.3+
      */
     static initFairPlayStreamingKeyResponseData(keyResponseData: ArrayBuffer): AVContentKeyResponse;
-    /** init() */
-    static init(): AVContentKeyResponse;
+    readonly $type: {
+        "c:objc(cs)AVContentKeyResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVContentKeySession
@@ -12149,6 +12774,10 @@ export declare class AVContentKeySession extends SDKHandle {
      */
     get supportsAdvisoryKeys(): boolean;
     set supportsAdvisoryKeys(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVContentKeySession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentKeyRecipients": true;
         "contentProtectionSessionIdentifier": true;
@@ -12231,13 +12860,11 @@ export declare const AVContentKeySessionServerPlaybackContextOption: {
  * @availability iOS 14.5+
  */
 export declare class AVContentKeySpecifier extends SDKHandle {
-    /** init() */
-    static init(): AVContentKeySpecifier;
     /**
      * init(forKeySystem keySystem: AVContentKeySystem, identifier contentKeyIdentifier: Any, options: [String : Any] = [:])
      * @availability iOS 14.5+
      */
-    static initForKeySystemIdentifierOptions(keySystem: AVContentKeySystem, contentKeyIdentifier: unknown, options?: Record<string, unknown>): AVContentKeySpecifier;
+    static init(keySystem: AVContentKeySystem, contentKeyIdentifier: unknown, options?: Record<string, unknown>): AVContentKeySpecifier;
     /**
      * var identifier: any Sendable { get }
      * @availability iOS 14.5+
@@ -12253,6 +12880,10 @@ export declare class AVContentKeySpecifier extends SDKHandle {
      * @availability iOS 14.5+
      */
     get options(): $SDK91;
+    readonly $type: {
+        "c:objc(cs)AVContentKeySpecifier": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "keySystem": true;
@@ -12308,6 +12939,10 @@ export declare class AVCoordinatedPlaybackParticipant extends SDKHandle {
      * @availability iOS 15.0+
      */
     get suspensionReasons(): $SDK228;
+    readonly $type: {
+        "c:objc(cs)AVCoordinatedPlaybackParticipant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "isReadyToPlay": true;
@@ -12339,6 +12974,10 @@ export declare class AVCoordinatedPlaybackSuspension extends SDKHandle {
      * @availability iOS 15.0+
      */
     get reason(): AVCoordinatedPlaybackSuspension_Reason;
+    readonly $type: {
+        "c:objc(cs)AVCoordinatedPlaybackSuspension": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "beginDate": true;
         "reason": true;
@@ -12418,6 +13057,10 @@ export declare class AVCustomMediaSelectionScheme extends SDKHandle {
      * @availability iOS 26.0+
      */
     get shouldOfferLanguageSelection(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVCustomMediaSelectionScheme": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "availableLanguages": true;
         "selectors": true;
@@ -12446,6 +13089,10 @@ export declare class AVMetadataGroup extends SDKHandle {
      * @availability iOS 9.3+
      */
     get uniqueID(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVMetadataGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "classifyingLabel": true;
         "items": true;
@@ -12458,13 +13105,11 @@ declare const AVDateRangeMetadataGroup_base: Omit<typeof AVMetadataGroup, "init"
  * @availability iOS 9.0+
  */
 export declare class AVDateRangeMetadataGroup extends AVDateRangeMetadataGroup_base {
-    /** init() */
-    static init(): AVDateRangeMetadataGroup;
     /**
      * init(items: [AVMetadataItem], start startDate: Date, end endDate: Date?)
      * @availability iOS 9.0+
      */
-    static initItemsStartEnd(items: Array<AVMetadataItem>, startDate: globalThis.Date, endDate?: $SDK52): AVDateRangeMetadataGroup;
+    static init(items: Array<AVMetadataItem>, startDate: globalThis.Date, endDate?: $SDK52): AVDateRangeMetadataGroup;
     /**
      * var endDate: Date? { get }
      * @availability iOS 9.0+
@@ -12480,6 +13125,11 @@ export declare class AVDateRangeMetadataGroup extends AVDateRangeMetadataGroup_b
      * @availability iOS 9.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)AVDateRangeMetadataGroup": true;
+        "c:objc(cs)AVMetadataGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "classifyingLabel": true;
         "items": true;
@@ -12545,6 +13195,10 @@ export declare class AVPlaybackCoordinator extends SDKHandle {
      */
     get suspensionReasonsThatTriggerWaiting(): $SDK228;
     set suspensionReasonsThatTriggerWaiting(value: $SDK228);
+    readonly $type: {
+        "c:objc(cs)AVPlaybackCoordinator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "otherParticipants": true;
         "pauseSnapsToMediaTimeOfOriginator": true;
@@ -12592,6 +13246,11 @@ export declare class AVDelegatingPlaybackCoordinator extends AVPlaybackCoordinat
      * @availability iOS 15.0+
      */
     get playbackControlDelegate(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)AVDelegatingPlaybackCoordinator": true;
+        "c:objc(cs)AVPlaybackCoordinator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "otherParticipants": true;
         "pauseSnapsToMediaTimeOfOriginator": true;
@@ -12616,6 +13275,10 @@ export declare class AVDelegatingPlaybackCoordinatorPlaybackControlCommand exten
      * @availability iOS 15.0+
      */
     get originator(): (AVCoordinatedPlaybackParticipant) | null;
+    readonly $type: {
+        "c:objc(cs)AVDelegatingPlaybackCoordinatorPlaybackControlCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expectedCurrentItemIdentifier": true;
         "originator": true;
@@ -12636,6 +13299,11 @@ export declare class AVDelegatingPlaybackCoordinatorBufferingCommand extends AVD
      * @availability iOS 15.0+
      */
     get completionDueDate(): $SDK52;
+    readonly $type: {
+        "c:objc(cs)AVDelegatingPlaybackCoordinatorBufferingCommand": true;
+        "c:objc(cs)AVDelegatingPlaybackCoordinatorPlaybackControlCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expectedCurrentItemIdentifier": true;
         "originator": true;
@@ -12658,6 +13326,11 @@ export declare class AVDelegatingPlaybackCoordinatorPauseCommand extends AVDeleg
      * @availability iOS 15.0+
      */
     get shouldBufferInAnticipationOfPlayback(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVDelegatingPlaybackCoordinatorPauseCommand": true;
+        "c:objc(cs)AVDelegatingPlaybackCoordinatorPlaybackControlCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expectedCurrentItemIdentifier": true;
         "originator": true;
@@ -12685,6 +13358,11 @@ export declare class AVDelegatingPlaybackCoordinatorPlayCommand extends AVDelega
      * @availability iOS 15.0+
      */
     get rate(): number;
+    readonly $type: {
+        "c:objc(cs)AVDelegatingPlaybackCoordinatorPlayCommand": true;
+        "c:objc(cs)AVDelegatingPlaybackCoordinatorPlaybackControlCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expectedCurrentItemIdentifier": true;
         "originator": true;
@@ -12735,6 +13413,11 @@ export declare class AVDelegatingPlaybackCoordinatorSeekCommand extends AVDelega
      * @availability iOS 15.0+
      */
     get shouldBufferInAnticipationOfPlayback(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVDelegatingPlaybackCoordinatorSeekCommand": true;
+        "c:objc(cs)AVDelegatingPlaybackCoordinatorPlaybackControlCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expectedCurrentItemIdentifier": true;
         "originator": true;
@@ -12831,6 +13514,10 @@ export declare class AVDepthData extends SDKHandle {
      * @availability iOS 11.0+
      */
     get availableDepthDataTypes(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)AVDepthData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cameraCalibrationData": true;
         "depthDataAccuracy": true;
@@ -12882,6 +13569,9 @@ export declare class AVEdgeWidths extends SDKHandle {
     static initLeftTopRightBottom(left: number, top: number, right: number, bottom: number): AVEdgeWidths;
     /** init() */
     static init(): AVEdgeWidths;
+    readonly $type: {
+        "c:@SA@AVEdgeWidths": true;
+    };
 }
 /** struct AVError */
 export declare class AVError extends SDKHandle {
@@ -13204,6 +13894,9 @@ export declare class AVError extends SDKHandle {
     static get unknown(): AVError_Code;
     /** static var diskFull: AVError.Code { get } */
     static get diskFull(): AVError_Code;
+    readonly $type: {
+        "s:SC7AVErrorLeV": true;
+    };
 }
 /** enum Code */
 export type AVError_Code = "unknown" | "outOfMemory" | "sessionNotRunning" | "deviceAlreadyUsedByAnotherSession" | "noDataCaptured" | "sessionConfigurationChanged" | "diskFull" | "deviceWasDisconnected" | "mediaChanged" | "maximumDurationReached" | "maximumFileSizeReached" | "mediaDiscontinuity" | "maximumNumberOfSamplesForFileFormatReached" | "deviceNotConnected" | "deviceInUseByAnotherApplication" | "deviceLockedForConfigurationByAnotherProcess" | "sessionWasInterrupted" | "mediaServicesWereReset" | "exportFailed" | "decodeFailed" | "invalidSourceMedia" | "fileAlreadyExists" | "compositionTrackSegmentsNotContiguous" | "invalidCompositionTrackSegmentDuration" | "invalidCompositionTrackSegmentSourceStartTime" | "invalidCompositionTrackSegmentSourceDuration" | "fileFormatNotRecognized" | "fileFailedToParse" | "maximumStillImageCaptureRequestsExceeded" | "contentIsProtected" | "noImageAtTime" | "decoderNotFound" | "encoderNotFound" | "contentIsNotAuthorized" | "applicationIsNotAuthorized" | "deviceIsNotAvailableInBackground" | "operationNotSupportedForAsset" | "decoderTemporarilyUnavailable" | "encoderTemporarilyUnavailable" | "invalidVideoComposition" | "referenceForbiddenByReferencePolicy" | "invalidOutputURLPathExtension" | "screenCaptureFailed" | "displayWasDisabled" | "torchLevelUnavailable" | "operationInterrupted" | "incompatibleAsset" | "failedToLoadMediaData" | "serverIncorrectlyConfigured" | "applicationIsNotAuthorizedToUseDevice" | "failedToParse" | "fileTypeDoesNotSupportSampleReferences" | "undecodableMediaData" | "airPlayControllerRequiresInternet" | "airPlayReceiverRequiresInternet" | "videoCompositorFailed" | "recordingAlreadyInProgress" | "unsupportedOutputSettings" | "operationNotAllowed" | "contentIsUnavailable" | "formatUnsupported" | "malformedDepth" | "contentNotUpdated" | "noLongerPlayable" | "noCompatibleAlternatesForExternalDisplay" | "noSourceTrack" | "externalPlaybackNotSupportedForAsset" | "operationNotSupportedForPreset" | "sessionHardwareCostOverage" | "unsupportedDeviceActiveFormat" | "incorrectlyConfigured" | "segmentStartedWithNonSyncSample" | "rosettaNotInstalled" | "operationCancelled" | "contentKeyRequestCancelled" | "invalidSampleCursor" | "failedToLoadSampleData" | "airPlayReceiverTemporarilyUnavailable" | "encodeFailed" | "sandboxExtensionDenied" | "toneMappingFailed" | "noSmartFramingsEnabled" | "autoWhiteBalanceNotLocked" | "followExternalSyncDeviceTimedOut" | "followExternalSyncFailed" | "externalSyncDeviceFrequencyHigherThanSpecified" | "externalSyncDeviceFrequencyLowerThanSpecified" | "notEnoughSpaceForProVideoStorageReplenishment";
@@ -13279,6 +13972,10 @@ export declare class AVExternalStorageDevice extends SDKHandle {
      * @availability iOS 17.0+
      */
     get uuid(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVExternalStorageDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isConnected": true;
         "displayName": true;
@@ -13341,6 +14038,10 @@ export declare class AVExternalStorageDeviceDiscoverySession extends SDKHandle {
      * @availability iOS 17.0+
      */
     get externalStorageDevices(): Array<AVExternalStorageDevice>;
+    readonly $type: {
+        "c:objc(cs)AVExternalStorageDeviceDiscoverySession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "externalStorageDevices": true;
     };
@@ -13386,6 +14087,10 @@ export declare class AVExternalSyncDevice extends SDKHandle {
      * @availability iOS 26.0+
      */
     get vendorID(): number;
+    readonly $type: {
+        "c:objc(cs)AVExternalSyncDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "clock": true;
         "productID": true;
@@ -13416,6 +14121,10 @@ export declare class AVExternalSyncDevice_DiscoverySession extends SDKHandle {
      * @availability iOS 26.0+
      */
     get devices(): Array<AVExternalSyncDevice>;
+    readonly $type: {
+        "c:objc(cs)AVExternalSyncDeviceDiscoverySession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "devices": true;
     };
@@ -13602,12 +14311,11 @@ export declare const AVFileTypeProfile: {
     /** init(rawValue: String) */
     init(rawValue: string): AVFileTypeProfile;
 };
-declare const AVURLAsset_base: Omit<typeof AVAsset, "initUrl" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAsset);
 /**
  * class AVURLAsset
  * @availability iOS 4.0+
  */
-export declare class AVURLAsset extends AVURLAsset_base {
+export declare class AVURLAsset extends AVAsset {
     /**
      * class func audiovisualMIMETypes() -> [String]
      * @availability iOS 5.0+
@@ -13681,6 +14389,11 @@ export declare class AVURLAsset extends AVURLAsset_base {
      * @availability iOS 4.0+
      */
     static initUrl(url: string): AVURLAsset;
+    readonly $type: {
+        "c:objc(cs)AVURLAsset": true;
+        "c:objc(cs)AVAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMediaSelections": true;
         "availableChapterLocales": true;
@@ -13763,6 +14476,12 @@ export declare class AVFragmentedAsset extends AVFragmentedAsset_base {
      * @deprecated iOS 16.0
      */
     get tracks(): $SDK247;
+    readonly $type: {
+        "c:objc(cs)AVFragmentedAsset": true;
+        "c:objc(cs)AVURLAsset": true;
+        "c:objc(cs)AVAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMediaSelections": true;
         "availableChapterLocales": true;
@@ -13810,13 +14529,11 @@ export declare class AVFragmentedAssetMinder extends SDKHandle {
      * @availability iOS 12.0+
      */
     addFragmentedAsset(asset: (AVAsset) & (SDKHandle)): void;
-    /** init() */
-    static init(): AVFragmentedAssetMinder;
     /**
      * init(asset: any AVAsset & AVFragmentMinding, mindingInterval: TimeInterval)
      * @availability iOS 12.0+
      */
-    static initAssetMindingInterval(asset: (AVAsset) & (SDKHandle), mindingInterval: number): AVFragmentedAssetMinder;
+    static init(asset: (AVAsset) & (SDKHandle), mindingInterval: number): AVFragmentedAssetMinder;
     /**
      * func removeFragmentedAsset(_ asset: any AVAsset & AVFragmentMinding)
      * @availability iOS 12.0+
@@ -13833,6 +14550,10 @@ export declare class AVFragmentedAssetMinder extends SDKHandle {
      */
     get mindingInterval(): number;
     set mindingInterval(value: number);
+    readonly $type: {
+        "c:objc(cs)AVFragmentedAssetMinder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assets": true;
         "mindingInterval": true;
@@ -13843,6 +14564,11 @@ export declare class AVFragmentedAssetMinder extends SDKHandle {
  * @availability iOS 12.0+
  */
 export declare class AVFragmentedAssetTrack extends AVAssetTrack {
+    readonly $type: {
+        "c:objc(cs)AVFragmentedAssetTrack": true;
+        "c:objc(cs)AVAssetTrack": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
         "availableMetadataFormats": true;
@@ -13872,7 +14598,7 @@ export declare class AVFragmentedAssetTrack extends AVAssetTrack {
         "trackID": true;
     };
 }
-declare const AVMovie_base: Omit<typeof AVAsset, "init" | "initUrl" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAsset, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "tracks">);
+declare const AVMovie_base: Omit<typeof AVAsset, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAsset, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "tracks">);
 /**
  * class AVMovie
  * @availability iOS 13.0+
@@ -13883,8 +14609,6 @@ export declare class AVMovie extends AVMovie_base {
      * @availability iOS 13.0+
      */
     static movieTypes(): Array<AVFileType>;
-    /** init() */
-    static init(): AVMovie;
     /**
      * init(data: Data, options: [String : Any]? = nil)
      * @availability iOS 13.0+
@@ -13978,6 +14702,11 @@ export declare class AVMovie extends AVMovie_base {
      * @availability iOS 13.0+
      */
     static initUrl(url: string): AVMovie;
+    readonly $type: {
+        "c:objc(cs)AVMovie": true;
+        "c:objc(cs)AVAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMediaSelections": true;
         "availableChapterLocales": true;
@@ -14060,6 +14789,12 @@ export declare class AVFragmentedMovie extends AVFragmentedMovie_base {
      * @availability iOS 13.0+
      */
     get tracks(): $SDK255;
+    readonly $type: {
+        "c:objc(cs)AVFragmentedMovie": true;
+        "c:objc(cs)AVMovie": true;
+        "c:objc(cs)AVAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMediaSelections": true;
         "availableChapterLocales": true;
@@ -14107,13 +14842,11 @@ export declare class AVFragmentedMovieMinder extends AVFragmentedMovieMinder_bas
      * @availability iOS 13.0+
      */
     add(movie: AVFragmentedMovie): void;
-    /** init() */
-    static init(): AVFragmentedMovieMinder;
     /**
      * init(movie: AVFragmentedMovie, mindingInterval: TimeInterval)
      * @availability iOS 13.0+
      */
-    static initMovieMindingInterval(movie: AVFragmentedMovie, mindingInterval: number): AVFragmentedMovieMinder;
+    static init(movie: AVFragmentedMovie, mindingInterval: number): AVFragmentedMovieMinder;
     /**
      * func remove(_ movie: AVFragmentedMovie)
      * @availability iOS 13.0+
@@ -14130,6 +14863,11 @@ export declare class AVFragmentedMovieMinder extends AVFragmentedMovieMinder_bas
      * @availability iOS 13.0+
      */
     get movies(): Array<AVFragmentedMovie>;
+    readonly $type: {
+        "c:objc(cs)AVFragmentedMovieMinder": true;
+        "c:objc(cs)AVFragmentedAssetMinder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assets": true;
         "mindingInterval": true;
@@ -14161,6 +14899,11 @@ export declare class AVMovieTrack extends AVAssetTrack {
      * @availability iOS 13.0+
      */
     get mediaPresentationTimeRange(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "c:objc(cs)AVMovieTrack": true;
+        "c:objc(cs)AVAssetTrack": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
         "availableMetadataFormats": true;
@@ -14199,6 +14942,12 @@ export declare class AVMovieTrack extends AVAssetTrack {
  * @availability iOS 13.0+
  */
 export declare class AVFragmentedMovieTrack extends AVMovieTrack {
+    readonly $type: {
+        "c:objc(cs)AVFragmentedMovieTrack": true;
+        "c:objc(cs)AVMovieTrack": true;
+        "c:objc(cs)AVAssetTrack": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
         "availableMetadataFormats": true;
@@ -14260,6 +15009,10 @@ export declare class AVFrameRateRange extends SDKHandle {
      * @availability iOS 7.0+
      */
     get minFrameRate(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)AVFrameRateRange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "maxFrameDuration": true;
         "maxFrameRate": true;
@@ -14450,6 +15203,10 @@ export declare class AVMediaDataStorage extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(URL: string, options?: $SDK19): AVMediaDataStorage;
+    readonly $type: {
+        "c:objc(cs)AVMediaDataStorage": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVMediaPresentationSelector
@@ -14473,6 +15230,10 @@ export declare class AVMediaPresentationSelector extends SDKHandle {
      * @availability iOS 26.0+
      */
     get settings(): $SDK229;
+    readonly $type: {
+        "c:objc(cs)AVMediaPresentationSelector": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "settings": true;
@@ -14495,6 +15256,10 @@ export declare class AVMediaPresentationSetting extends SDKHandle {
      * @availability iOS 26.0+
      */
     get mediaCharacteristic(): AVMediaCharacteristic;
+    readonly $type: {
+        "c:objc(cs)AVMediaPresentationSetting": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mediaCharacteristic": true;
     };
@@ -14521,6 +15286,10 @@ export declare class AVMediaSelection extends SDKHandle {
      * @availability iOS 9.0+
      */
     get asset(): (AVAsset) | null;
+    readonly $type: {
+        "c:objc(cs)AVMediaSelection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
     };
@@ -14597,6 +15366,10 @@ export declare class AVMediaSelectionOption extends SDKHandle {
      * @availability iOS 5.0+
      */
     get isPlayable(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVMediaSelectionOption": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "availableMetadataFormats": true;
         "commonMetadata": true;
@@ -14681,6 +15454,9 @@ export declare const AVMediaType: {
  * @availability iOS 18.0+
  */
 export declare class AVMergedMetrics<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:12AVFoundation15AVMergedMetricsV": true;
+    };
     readonly $element: $SDK258;
 }
 /**
@@ -14693,6 +15469,9 @@ export declare class AVMergedMetrics_AsyncIterator<MetricEvent1 = unknown, Metri
      * @availability iOS 18.0+
      */
     next(): Promise<([AVMetricEvent, SDKHandle]) | null>;
+    readonly $type: {
+        "s:12AVFoundation15AVMergedMetricsV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = (AVMetricEvent, any AVMetricEventStreamPublisher)
@@ -14749,6 +15528,10 @@ export declare class AVMetadataObject extends SDKHandle {
      * @availability iOS 6.0+
      */
     get type(): AVMetadataObject_ObjectType;
+    readonly $type: {
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -14770,6 +15553,11 @@ export declare class AVMetadataBodyObject extends AVMetadataObject {
      * @availability iOS 13.0+
      */
     get bodyID(): number;
+    readonly $type: {
+        "c:objc(cs)AVMetadataBodyObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -14787,6 +15575,12 @@ export declare class AVMetadataBodyObject extends AVMetadataObject {
  * @availability iOS 13.0+
  */
 export declare class AVMetadataCatBodyObject extends AVMetadataBodyObject {
+    readonly $type: {
+        "c:objc(cs)AVMetadataCatBodyObject": true;
+        "c:objc(cs)AVMetadataBodyObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -14804,6 +15598,11 @@ export declare class AVMetadataCatBodyObject extends AVMetadataBodyObject {
  * @availability iOS 26.0+
  */
 export declare class AVMetadataCatHeadObject extends AVMetadataObject {
+    readonly $type: {
+        "c:objc(cs)AVMetadataCatHeadObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -14830,6 +15629,11 @@ export declare class AVMetadataCinematicVideoMetadataObject extends AVMetadataOb
      * @availability iOS 27.0+
      */
     get timedMetadataGroup(): $SDK49;
+    readonly $type: {
+        "c:objc(cs)AVMetadataCinematicVideoMetadataObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -14847,6 +15651,12 @@ export declare class AVMetadataCinematicVideoMetadataObject extends AVMetadataOb
  * @availability iOS 13.0+
  */
 export declare class AVMetadataDogBodyObject extends AVMetadataBodyObject {
+    readonly $type: {
+        "c:objc(cs)AVMetadataDogBodyObject": true;
+        "c:objc(cs)AVMetadataBodyObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -14864,6 +15674,11 @@ export declare class AVMetadataDogBodyObject extends AVMetadataBodyObject {
  * @availability iOS 26.0+
  */
 export declare class AVMetadataDogHeadObject extends AVMetadataObject {
+    readonly $type: {
+        "c:objc(cs)AVMetadataDogHeadObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -14928,6 +15743,11 @@ export declare class AVMetadataFaceObject extends AVMetadataObject {
      * @availability iOS 6.0+
      */
     get yawAngle(): number;
+    readonly $type: {
+        "c:objc(cs)AVMetadataFaceObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -14949,6 +15769,11 @@ export declare class AVMetadataFaceObject extends AVMetadataObject {
  * @availability iOS 27.0+
  */
 export declare class AVMetadataFocusTrackedObject extends AVMetadataObject {
+    readonly $type: {
+        "c:objc(cs)AVMetadataFocusTrackedObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -15006,6 +15831,12 @@ export declare const AVMetadataFormat: {
  * @availability iOS 13.0+
  */
 export declare class AVMetadataHumanBodyObject extends AVMetadataBodyObject {
+    readonly $type: {
+        "c:objc(cs)AVMetadataHumanBodyObject": true;
+        "c:objc(cs)AVMetadataBodyObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -15023,6 +15854,12 @@ export declare class AVMetadataHumanBodyObject extends AVMetadataBodyObject {
  * @availability iOS 17.0+
  */
 export declare class AVMetadataHumanFullBodyObject extends AVMetadataBodyObject {
+    readonly $type: {
+        "c:objc(cs)AVMetadataHumanFullBodyObject": true;
+        "c:objc(cs)AVMetadataBodyObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -16538,7 +17375,7 @@ export declare class AVMetadataItem extends SDKHandle {
      * init(propertiesOf metadataItem: AVMetadataItem, valueLoadingHandler handler: @escaping @Sendable (AVMetadataItemValueRequest) -> Void)
      * @availability iOS 9.0+
      */
-    static initPropertiesOfValueLoadingHandler(metadataItem: AVMetadataItem, handler: ((arg0: AVMetadataItemValueRequest) => void)): AVMetadataItem;
+    static init(metadataItem: AVMetadataItem, handler: ((arg0: AVMetadataItemValueRequest) => void)): AVMetadataItem;
     /**
      * class func metadataItems(from metadataItems: [AVMetadataItem], filteredAndSortedAccordingToPreferredLanguages preferredLanguages: [String]) -> [AVMetadataItem]
      * @availability iOS 6.0+
@@ -16558,8 +17395,6 @@ export declare class AVMetadataItem extends SDKHandle {
     static metadataItemsFromWithKeyKeySpace(metadataItems: Array<AVMetadataItem>, key?: (unknown) | null, keySpace?: $SDK261): Array<AVMetadataItem>;
     /** class func metadataItems(from metadataItems: [AVMetadataItem], with locale: Locale) -> [AVMetadataItem] */
     static metadataItemsFromWith(metadataItems: Array<AVMetadataItem>, locale: _Foundation_Locale): Array<AVMetadataItem>;
-    /** init() */
-    static init(): AVMetadataItem;
     /** var commonKey: AVMetadataKey? { get } */
     get commonKey(): (AVMetadataKey) | null;
     /**
@@ -16637,6 +17472,10 @@ export declare class AVMetadataItem extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get value(): $SDK264;
+    readonly $type: {
+        "c:objc(cs)AVMetadataItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commonKey": true;
         "dataType": true;
@@ -16668,6 +17507,10 @@ export declare class AVMetadataItemFilter extends SDKHandle {
     static forSharing(): AVMetadataItemFilter;
     /** init() */
     static init(): AVMetadataItemFilter;
+    readonly $type: {
+        "c:objc(cs)AVMetadataItemFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVMetadataItemValueRequest
@@ -16691,6 +17534,10 @@ export declare class AVMetadataItemValueRequest extends SDKHandle {
      * @availability iOS 9.0+
      */
     get metadataItem(): (AVMetadataItem) | null;
+    readonly $type: {
+        "c:objc(cs)AVMetadataItemValueRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "metadataItem": true;
     };
@@ -18175,6 +19022,11 @@ export declare class AVMetadataMachineReadableCodeObject extends AVMetadataObjec
         x: number;
         y: number;
     }>;
+    readonly $type: {
+        "c:objc(cs)AVMetadataMachineReadableCodeObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -18356,6 +19208,11 @@ export declare class AVMetadataSalientObject extends AVMetadataSalientObject_bas
      * @availability iOS 13.0+
      */
     get objectID(): number;
+    readonly $type: {
+        "c:objc(cs)AVMetadataSalientObject": true;
+        "c:objc(cs)AVMetadataObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "cinematicVideoFocusMode": true;
@@ -18387,6 +19244,10 @@ export declare class AVMetricEvent extends SDKHandle {
      * @availability iOS 18.0+
      */
     get sessionID(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18418,6 +19279,11 @@ export declare class AVMetricContentKeyRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get mediaType(): AVMediaType;
+    readonly $type: {
+        "c:objc(cs)AVMetricContentKeyRequestEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18463,6 +19329,11 @@ export declare class AVMetricDownloadSummaryEvent extends AVMetricEvent {
      * @availability iOS 26.0+
      */
     get variants(): Array<AVAssetVariant>;
+    readonly $type: {
+        "c:objc(cs)AVMetricDownloadSummaryEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18490,6 +19361,11 @@ export declare class AVMetricErrorEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get error(): NativeError;
+    readonly $type: {
+        "c:objc(cs)AVMetricErrorEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18544,6 +19420,11 @@ export declare class AVMetricHLSMediaSegmentRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get url(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVMetricHLSMediaSegmentRequestEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18582,6 +19463,11 @@ export declare class AVMetricHLSPlaylistRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get url(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVMetricHLSPlaylistRequestEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18607,6 +19493,10 @@ export declare class AVMetricMediaRendition extends SDKHandle {
      * @availability iOS 26.0+
      */
     get stableID(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVMetricMediaRendition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "stableID": true;
@@ -18667,6 +19557,11 @@ export declare class AVMetricMediaResourceRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get url(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVMetricMediaResourceRequestEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18699,6 +19594,11 @@ export declare class AVMetricPlaybackModeSwitchEvent extends AVMetricEvent {
      * @availability iOS 27.0+
      */
     get mode(): AVMetricPlaybackMode;
+    readonly $type: {
+        "c:objc(cs)AVMetricPlaybackModeSwitchEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18726,6 +19626,11 @@ export declare class AVMetricPlayerItemLikelyToKeepUpEvent extends AVMetricEvent
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $type: {
+        "c:objc(cs)AVMetricPlayerItemLikelyToKeepUpEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18754,6 +19659,12 @@ export declare class AVMetricPlayerItemInitialLikelyToKeepUpEvent extends AVMetr
      * @availability iOS 18.0+
      */
     get playlistRequestEvents(): Array<AVMetricHLSPlaylistRequestEvent>;
+    readonly $type: {
+        "c:objc(cs)AVMetricPlayerItemInitialLikelyToKeepUpEvent": true;
+        "c:objc(cs)AVMetricPlayerItemLikelyToKeepUpEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18820,6 +19731,11 @@ export declare class AVMetricPlayerItemPlaybackSummaryEvent extends AVMetricEven
      * @availability iOS 18.0+
      */
     get variantSwitchCount(): number;
+    readonly $type: {
+        "c:objc(cs)AVMetricPlayerItemPlaybackSummaryEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18856,6 +19772,11 @@ export declare class AVMetricPlayerItemRateChangeEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get variant(): (AVAssetVariant) | null;
+    readonly $type: {
+        "c:objc(cs)AVMetricPlayerItemRateChangeEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18875,6 +19796,12 @@ export declare class AVMetricPlayerItemSeekDidCompleteEvent extends AVMetricPlay
      * @availability iOS 18.0+
      */
     get didSeekInBuffer(): boolean;
+    readonly $type: {
+        "c:objc(cs)AVMetricPlayerItemSeekDidCompleteEvent": true;
+        "c:objc(cs)AVMetricPlayerItemRateChangeEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18890,6 +19817,12 @@ export declare class AVMetricPlayerItemSeekDidCompleteEvent extends AVMetricPlay
  * @availability iOS 18.0+
  */
 export declare class AVMetricPlayerItemSeekEvent extends AVMetricPlayerItemRateChangeEvent {
+    readonly $type: {
+        "c:objc(cs)AVMetricPlayerItemSeekEvent": true;
+        "c:objc(cs)AVMetricPlayerItemRateChangeEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18904,6 +19837,12 @@ export declare class AVMetricPlayerItemSeekEvent extends AVMetricPlayerItemRateC
  * @availability iOS 18.0+
  */
 export declare class AVMetricPlayerItemStallEvent extends AVMetricPlayerItemRateChangeEvent {
+    readonly $type: {
+        "c:objc(cs)AVMetricPlayerItemStallEvent": true;
+        "c:objc(cs)AVMetricPlayerItemRateChangeEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -18953,6 +19892,11 @@ export declare class AVMetricPlayerItemVariantSwitchEvent extends AVMetricEvent 
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $type: {
+        "c:objc(cs)AVMetricPlayerItemVariantSwitchEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -19000,6 +19944,11 @@ export declare class AVMetricPlayerItemVariantSwitchStartEvent extends AVMetricE
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $type: {
+        "c:objc(cs)AVMetricPlayerItemVariantSwitchStartEvent": true;
+        "c:objc(cs)AVMetricEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "mediaTime": true;
@@ -19021,6 +19970,9 @@ export declare class AVMetrics<MetricEvent = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): AVMetrics_AsyncIterator<AVMetricEvent>;
+    readonly $type: {
+        "s:12AVFoundation9AVMetricsV": true;
+    };
     readonly $element: unknown;
 }
 /**
@@ -19033,6 +19985,9 @@ export declare class AVMetrics_AsyncIterator<MetricEvent = unknown> extends SDKH
      * @availability iOS 18.0+
      */
     next(): Promise<(AVMetricEvent) | null>;
+    readonly $type: {
+        "s:12AVFoundation9AVMetricsV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = MetricEvent
@@ -19086,6 +20041,11 @@ export declare class AVMutableAssetDownloadStorageManagementPolicy extends AVMut
      */
     get priority(): AVAssetDownloadedAssetEvictionPriority;
     set priority(value: AVAssetDownloadedAssetEvictionPriority);
+    readonly $type: {
+        "c:objc(cs)AVMutableAssetDownloadStorageManagementPolicy": true;
+        "c:objc(cs)AVAssetDownloadStorageManagementPolicy": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expirationDate": true;
         "priority": true;
@@ -19105,6 +20065,11 @@ export declare class AVMutableAudioMix extends AVMutableAudioMix_base {
      */
     get inputParameters(): $SDK132;
     set inputParameters(value: $SDK132);
+    readonly $type: {
+        "c:objc(cs)AVMutableAudioMix": true;
+        "c:objc(cs)AVAudioMix": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputParameters": true;
     };
@@ -19119,9 +20084,7 @@ export declare class AVMutableAudioMixInputParameters extends AVMutableAudioMixI
      * convenience init(track: AVAssetTrack?)
      * @availability iOS 4.0+
      */
-    static initTrack(track?: (AVAssetTrack) | null): AVMutableAudioMixInputParameters;
-    /** init() */
-    static init(): AVMutableAudioMixInputParameters;
+    static init(track?: (AVAssetTrack) | null): AVMutableAudioMixInputParameters;
     /**
      * func setVolume(_ volume: Float, at time: CMTime)
      * @availability iOS 4.0+
@@ -19150,6 +20113,11 @@ export declare class AVMutableAudioMixInputParameters extends AVMutableAudioMixI
      */
     get trackID(): number;
     set trackID(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMutableAudioMixInputParameters": true;
+        "c:objc(cs)AVAudioMixInputParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioTapProcessor": true;
         "audioTimePitchAlgorithm": true;
@@ -19253,6 +20221,11 @@ export declare class AVMutableCaption extends AVMutableCaption_base {
      * @availability iOS 18.0+
      */
     setRuby(rubyText: AVCaption_Ruby, range: SDKHandle): void;
+    readonly $type: {
+        "c:objc(cs)AVMutableCaption": true;
+        "c:objc(cs)AVCaption": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animation": true;
         "region": true;
@@ -19307,6 +20280,11 @@ export declare class AVMutableCaptionRegion extends AVMutableCaptionRegion_base 
      */
     get writingMode(): AVCaptionRegion_WritingMode;
     set writingMode(value: AVCaptionRegion_WritingMode);
+    readonly $type: {
+        "c:objc(cs)AVMutableCaptionRegion": true;
+        "c:objc(cs)AVCaptionRegion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayAlignment": true;
         "identifier": true;
@@ -19326,11 +20304,9 @@ export declare class AVMutableComposition extends AVMutableComposition_base {
      * convenience init(urlAssetInitializationOptions URLAssetInitializationOptions: [String : Any]? = nil)
      * @availability iOS 9.0+
      */
-    static initUrlAssetInitializationOptions(URLAssetInitializationOptions?: $SDK19): AVMutableComposition;
+    static init(URLAssetInitializationOptions?: $SDK19): AVMutableComposition;
     /** func addMutableTrack(withMediaType mediaType: AVMediaType, preferredTrackID: CMPersistentTrackID) -> AVMutableCompositionTrack? */
     addMutableTrack(mediaType: AVMediaType, preferredTrackID: number): $SDK275;
-    /** init() */
-    static init(): AVMutableComposition;
     /** func insertEmptyTimeRange(_ timeRange: CMTimeRange) */
     insertEmptyTimeRange(timeRange: _CoreMedia_CMTimeRange): void;
     /**
@@ -19391,6 +20367,12 @@ export declare class AVMutableComposition extends AVMutableComposition_base {
      * @availability iOS 16.0+
      */
     insertTimeRangeOfAt11368(timeRange: _CoreMedia_CMTimeRange, asset: AVAsset, time: _CoreMedia_CMTime): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)AVMutableComposition": true;
+        "c:objc(cs)AVComposition": true;
+        "c:objc(cs)AVAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMediaSelections": true;
         "availableChapterLocales": true;
@@ -19517,6 +20499,12 @@ export declare class AVMutableCompositionTrack extends AVMutableCompositionTrack
      */
     get segments(): $SDK280;
     set segments(value: $SDK280);
+    readonly $type: {
+        "c:objc(cs)AVMutableCompositionTrack": true;
+        "c:objc(cs)AVCompositionTrack": true;
+        "c:objc(cs)AVAssetTrack": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
         "availableMetadataFormats": true;
@@ -19574,6 +20562,12 @@ export declare class AVMutableDateRangeMetadataGroup extends AVMutableDateRangeM
      */
     get startDate(): globalThis.Date;
     set startDate(value: globalThis.Date);
+    readonly $type: {
+        "c:objc(cs)AVMutableDateRangeMetadataGroup": true;
+        "c:objc(cs)AVDateRangeMetadataGroup": true;
+        "c:objc(cs)AVMetadataGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "classifyingLabel": true;
         "items": true;
@@ -19595,6 +20589,11 @@ export declare class AVMutableMediaSelection extends AVMutableMediaSelection_bas
      * @availability iOS 9.0+
      */
     select(mediaSelectionOption: $SDK69, mediaSelectionGroup: AVMediaSelectionGroup): void;
+    readonly $type: {
+        "c:objc(cs)AVMutableMediaSelection": true;
+        "c:objc(cs)AVMediaSelection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
     };
@@ -19675,6 +20674,11 @@ export declare class AVMutableMetadataItem extends AVMutableMetadataItem_base {
      */
     get value(): $SDK264;
     set value(value: $SDK264);
+    readonly $type: {
+        "c:objc(cs)AVMutableMetadataItem": true;
+        "c:objc(cs)AVMetadataItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commonKey": true;
         "dataType": true;
@@ -19694,7 +20698,7 @@ export declare class AVMutableMetadataItem extends AVMutableMetadataItem_base {
         "value": true;
     };
 }
-declare const AVMutableMovie_base: Omit<typeof AVMovie, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMovie, "chapterMetadataGroupsBestMatchingPreferredLanguages" | "chapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys" | "mediaSelectionGroup" | "metadataForFormat" | "unusedTrackID" | "allMediaSelections" | "availableChapterLocales" | "availableMediaCharacteristicsWithMediaSelectionOptions" | "availableMetadataFormats" | "canContainFragments" | "commonMetadata" | "isCompatibleWithAirPlayVideo" | "isCompatibleWithSavedPhotosAlbum" | "isComposable" | "containsFragments" | "creationDate" | "duration" | "isExportable" | "hasProtectedContent" | "lyrics" | "metadata" | "minimumTimeOffsetFromLive" | "overallDurationHint" | "isPlayable" | "preferredMediaSelection" | "preferredRate" | "preferredTransform" | "preferredVolume" | "providesPreciseDurationAndTiming" | "isReadable" | "trackGroups" | "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "defaultMediaDataStorage" | "tracks">);
+declare const AVMutableMovie_base: Omit<typeof AVMovie, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMovie, "chapterMetadataGroupsBestMatchingPreferredLanguages" | "chapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys" | "mediaSelectionGroup" | "metadataForFormat" | "unusedTrackID" | "allMediaSelections" | "availableChapterLocales" | "availableMediaCharacteristicsWithMediaSelectionOptions" | "availableMetadataFormats" | "canContainFragments" | "commonMetadata" | "isCompatibleWithAirPlayVideo" | "isCompatibleWithSavedPhotosAlbum" | "isComposable" | "containsFragments" | "creationDate" | "duration" | "isExportable" | "hasProtectedContent" | "lyrics" | "metadata" | "minimumTimeOffsetFromLive" | "overallDurationHint" | "isPlayable" | "preferredMediaSelection" | "preferredRate" | "preferredTransform" | "preferredVolume" | "providesPreciseDurationAndTiming" | "isReadable" | "trackGroups" | "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "defaultMediaDataStorage" | "tracks">);
 /**
  * class AVMutableMovie
  * @availability iOS 13.0+
@@ -19720,8 +20724,6 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * @availability iOS 13.0+
      */
     chapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale: _Foundation_Locale, commonKeys?: $SDK1): $SDK0;
-    /** init() */
-    static init(): AVMutableMovie;
     /**
      * init(data: Data, options: [String : Any]? = nil, error: ()) throws
      * @availability iOS 13.0+
@@ -19975,6 +20977,12 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * @availability iOS 13.0+
      */
     get tracks(): $SDK282;
+    readonly $type: {
+        "c:objc(cs)AVMutableMovie": true;
+        "c:objc(cs)AVMovie": true;
+        "c:objc(cs)AVAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMediaSelections": true;
         "availableChapterLocales": true;
@@ -20303,6 +21311,12 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
         "decodeTime": _CoreMedia_CMTime;
         "presentationTime": _CoreMedia_CMTime;
     };
+    readonly $type: {
+        "c:objc(cs)AVMutableMovieTrack": true;
+        "c:objc(cs)AVMovieTrack": true;
+        "c:objc(cs)AVAssetTrack": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
         "availableMetadataFormats": true;
@@ -20348,7 +21362,7 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
         "timescale": true;
     };
 }
-declare const AVTimedMetadataGroup_base: Omit<typeof AVMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMetadataGroup, "items">);
+declare const AVTimedMetadataGroup_base: Omit<typeof AVMetadataGroup, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMetadataGroup, "items">);
 /**
  * class AVTimedMetadataGroup
  * @availability iOS 4.3+
@@ -20359,8 +21373,6 @@ export declare class AVTimedMetadataGroup extends AVTimedMetadataGroup_base {
      * @availability iOS 8.0+
      */
     copyFormatDescription(): $SDK82;
-    /** init() */
-    static init(): AVTimedMetadataGroup;
     /**
      * init(items: [AVMetadataItem], timeRange: CMTimeRange)
      * @availability iOS 4.3+
@@ -20387,6 +21399,11 @@ export declare class AVTimedMetadataGroup extends AVTimedMetadataGroup_base {
      * @availability iOS 26.0+
      */
     static initSampleBuffer97876(sampleBuffer: $SDK85): (AVTimedMetadataGroup) | null;
+    readonly $type: {
+        "c:objc(cs)AVTimedMetadataGroup": true;
+        "c:objc(cs)AVMetadataGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "classifyingLabel": true;
         "items": true;
@@ -20414,6 +21431,12 @@ export declare class AVMutableTimedMetadataGroup extends AVMutableTimedMetadataG
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $type: {
+        "c:objc(cs)AVMutableTimedMetadataGroup": true;
+        "c:objc(cs)AVTimedMetadataGroup": true;
+        "c:objc(cs)AVMetadataGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "classifyingLabel": true;
         "items": true;
@@ -20460,8 +21483,6 @@ export declare class AVVideoComposition extends SDKHandle {
      * @deprecated iOS 18.0
      */
     determineValidity(asset: (AVAsset) | null, timeRange: _CoreMedia_CMTimeRange, validationDelegate: $SDK288, completionHandler: $SDK212): void;
-    /** init() */
-    static init(): AVVideoComposition;
     /**
      * func isValid(for asset: AVAsset?, timeRange: CMTimeRange, validationDelegate: (any AVVideoCompositionValidationHandling)?) -> Bool
      * @availability iOS 5.0+
@@ -20543,6 +21564,10 @@ export declare class AVVideoComposition extends SDKHandle {
      * @availability iOS 26.0+
      */
     get spatialVideoConfigurations(): $SDK291;
+    readonly $type: {
+        "c:objc(cs)AVVideoComposition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animationTool": true;
         "colorPrimaries": true;
@@ -20557,7 +21582,7 @@ export declare class AVVideoComposition extends SDKHandle {
         "sourceTrackIDForFrameTiming": true;
     };
 }
-declare const AVMutableVideoComposition_base: Omit<typeof AVVideoComposition, "init" | "initAssetApplyingCIFiltersWithHandler" | "initPropertiesOf" | "prototype" | "videoCompositionWithApplyingCIFiltersWithHandlerCompletionHandler" | "videoCompositionWithPropertiesOfCompletionHandler"> & (new ($handle: SDKHandle['$handle']) => Omit<AVVideoComposition, "sourceSampleDataTrackIDs" | "animationTool" | "colorPrimaries" | "colorTransferFunction" | "colorYCbCrMatrix" | "customVideoCompositorClass" | "frameDuration" | "instructions" | "perFrameHDRDisplayMetadataPolicy" | "renderScale" | "renderSize" | "sourceTrackIDForFrameTiming">);
+declare const AVMutableVideoComposition_base: Omit<typeof AVVideoComposition, "initAssetApplyingCIFiltersWithHandler" | "initPropertiesOf" | "prototype" | "videoCompositionWithApplyingCIFiltersWithHandlerCompletionHandler" | "videoCompositionWithPropertiesOfCompletionHandler"> & (new ($handle: SDKHandle['$handle']) => Omit<AVVideoComposition, "sourceSampleDataTrackIDs" | "animationTool" | "colorPrimaries" | "colorTransferFunction" | "colorYCbCrMatrix" | "customVideoCompositorClass" | "frameDuration" | "instructions" | "perFrameHDRDisplayMetadataPolicy" | "renderScale" | "renderSize" | "sourceTrackIDForFrameTiming">);
 /**
  * class AVMutableVideoComposition
  * @availability iOS 4.0+
@@ -20605,8 +21630,6 @@ export declare class AVMutableVideoComposition extends AVMutableVideoComposition
      * @deprecated iOS 26.0
      */
     static videoCompositionWithPropertiesOfPrototypeInstructionCompletionHandler(asset: AVAsset, prototypeInstruction: AVVideoCompositionInstruction, completionHandler: $SDK292): void;
-    /** init() */
-    static init(): AVMutableVideoComposition;
     /**
      * var animationTool: AVVideoCompositionCoreAnimationTool? { get set }
      * @availability iOS 4.0+
@@ -20680,6 +21703,11 @@ export declare class AVMutableVideoComposition extends AVMutableVideoComposition
      */
     get sourceTrackIDForFrameTiming(): number;
     set sourceTrackIDForFrameTiming(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMutableVideoComposition": true;
+        "c:objc(cs)AVVideoComposition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animationTool": true;
         "colorPrimaries": true;
@@ -20699,8 +21727,6 @@ export declare class AVMutableVideoComposition extends AVMutableVideoComposition
  * @availability iOS 4.0+
  */
 export declare class AVVideoCompositionInstruction extends SDKHandle {
-    /** init() */
-    static init(): AVVideoCompositionInstruction;
     /**
      * var backgroundColor: CGColor? { get }
      * @availability iOS 4.0+
@@ -20740,7 +21766,11 @@ export declare class AVVideoCompositionInstruction extends SDKHandle {
      * convenience init(configuration: AVVideoCompositionInstruction.Configuration)
      * @availability iOS 26.0+
      */
-    static initConfiguration(configuration: AVVideoCompositionInstruction_Configuration): AVVideoCompositionInstruction;
+    static init(configuration: AVVideoCompositionInstruction_Configuration): AVVideoCompositionInstruction;
+    readonly $type: {
+        "c:objc(cs)AVVideoCompositionInstruction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "backgroundColor": true;
         "enablePostProcessing": true;
@@ -20795,6 +21825,11 @@ export declare class AVMutableVideoCompositionInstruction extends AVMutableVideo
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $type: {
+        "c:objc(cs)AVMutableVideoCompositionInstruction": true;
+        "c:objc(cs)AVVideoCompositionInstruction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "backgroundColor": true;
         "enablePostProcessing": true;
@@ -20825,8 +21860,6 @@ export declare class AVVideoCompositionLayerInstruction extends SDKHandle {
      * @availability iOS 4.0+
      */
     getTransformRamp(time: _CoreMedia_CMTime, startTransform?: (SDKHandle) | null, endTransform?: (SDKHandle) | null, timeRange?: (SDKHandle) | null): boolean;
-    /** init() */
-    static init(): AVVideoCompositionLayerInstruction;
     /**
      * var trackID: CMPersistentTrackID { get }
      * @availability iOS 4.0+
@@ -20841,7 +21874,7 @@ export declare class AVVideoCompositionLayerInstruction extends SDKHandle {
      * convenience init(configuration: AVVideoCompositionLayerInstruction.Configuration)
      * @availability iOS 26.0+
      */
-    static initConfiguration(configuration: AVVideoCompositionLayerInstruction_Configuration): AVVideoCompositionLayerInstruction;
+    static init(configuration: AVVideoCompositionLayerInstruction_Configuration): AVVideoCompositionLayerInstruction;
     /**
      * func transformRamp(at time: CMTime) -> AVVideoCompositionLayerInstruction.TransformRamp?
      * @availability iOS 26.0+
@@ -20852,6 +21885,10 @@ export declare class AVVideoCompositionLayerInstruction extends SDKHandle {
      * @availability iOS 26.0+
      */
     cropRectangleRamp(time: _CoreMedia_CMTime): $SDK297;
+    readonly $type: {
+        "c:objc(cs)AVVideoCompositionLayerInstruction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "trackID": true;
     };
@@ -20868,9 +21905,7 @@ export declare class AVMutableVideoCompositionLayerInstruction extends AVMutable
      * @availability iOS 4.0+
      * @deprecated iOS 26.0
      */
-    static initAssetTrack(track: AVAssetTrack): AVMutableVideoCompositionLayerInstruction;
-    /** init() */
-    static init(): AVMutableVideoCompositionLayerInstruction;
+    static init(track: AVAssetTrack): AVMutableVideoCompositionLayerInstruction;
     /**
      * func setCropRectangle(_ cropRectangle: CGRect, at time: CMTime)
      * @availability iOS 7.0+
@@ -20914,6 +21949,11 @@ export declare class AVMutableVideoCompositionLayerInstruction extends AVMutable
      */
     get trackID(): number;
     set trackID(value: number);
+    readonly $type: {
+        "c:objc(cs)AVMutableVideoCompositionLayerInstruction": true;
+        "c:objc(cs)AVVideoCompositionLayerInstruction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "trackID": true;
     };
@@ -20972,6 +22012,10 @@ export declare class AVOutputSettingsAssistant extends SDKHandle {
      * @availability iOS 7.0+
      */
     get videoSettings(): $SDK19;
+    readonly $type: {
+        "c:objc(cs)AVOutputSettingsAssistant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioSettings": true;
         "outputFileType": true;
@@ -21076,6 +22120,11 @@ export declare class AVPersistableContentKeyRequest extends AVPersistableContent
      * @availability iOS 10.3+
      */
     persistableContentKey(keyVendorResponse: ArrayBuffer, options?: $SDK19): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)AVPersistableContentKeyRequest": true;
+        "c:objc(cs)AVContentKeyRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "canBeFulfilledWithAdvisoryKey": true;
         "canProvidePersistableContentKey": true;
@@ -21102,6 +22151,9 @@ export declare class AVPixelAspectRatio extends SDKHandle {
     static initHorizontalSpacingVerticalSpacing(horizontalSpacing: number, verticalSpacing: number): AVPixelAspectRatio;
     /** init() */
     static init(): AVPixelAspectRatio;
+    readonly $type: {
+        "c:@SA@AVPixelAspectRatio": true;
+    };
 }
 /**
  * class AVPlannedSegmentConfiguration
@@ -21118,6 +22170,10 @@ export declare class AVPlannedSegmentConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)AVPlannedSegmentConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
     };
@@ -21152,6 +22208,10 @@ export declare class AVPlannedSegmentWritingRequest extends SDKHandle {
      * @availability iOS 27.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "c:objc(cs)AVPlannedSegmentWritingRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assemblyTrackID": true;
         "clientStateToRestore": true;
@@ -21176,6 +22236,11 @@ export declare class AVPlannedVideoSegmentConfiguration extends AVPlannedVideoSe
      * @availability iOS 27.0+
      */
     get frameCount(): number;
+    readonly $type: {
+        "c:objc(cs)AVPlannedVideoSegmentConfiguration": true;
+        "c:objc(cs)AVPlannedSegmentConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "frameCount": true;
@@ -21201,6 +22266,11 @@ export declare class AVPlannedVideoSegmentWritingRequest extends AVPlannedSegmen
      * @availability iOS 27.0+
      */
     createResumableCompressionSession(width: number, height: number, codecType: SDKHandle, encoderSpecification: $SDK70, sourceImageBufferAttributes: $SDK70, outputHandler: ((arg0: number, arg1: _VideoToolbox_VTEncodeInfoFlags, arg2: (_CoreMedia_CMSampleBuffer) | null) => void)): _VideoToolbox_VTCompressionSession;
+    readonly $type: {
+        "c:objc(cs)AVPlannedVideoSegmentWritingRequest": true;
+        "c:objc(cs)AVPlannedSegmentWritingRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assemblyTrackID": true;
         "clientStateToRestore": true;
@@ -21225,6 +22295,10 @@ export declare class AVPlaybackCoordinationMedium extends SDKHandle {
      * @availability iOS 26.0+
      */
     get connectedPlaybackCoordinators(): Array<AVPlayerPlaybackCoordinator>;
+    readonly $type: {
+        "c:objc(cs)AVPlaybackCoordinationMedium": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connectedPlaybackCoordinators": true;
     };
@@ -21518,6 +22592,10 @@ export declare class AVPlayer extends SDKHandle {
      * @availability iOS 27.0+
      */
     setDisconnectedFromSystemAudio(disconnected: boolean, completionHandler?: ((() => void)) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)AVPlayer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** enum ActionAtItemEnd */
 export type AVPlayer_ActionAtItemEnd = "advance" | "pause" | "none";
@@ -21624,7 +22702,7 @@ export declare const AVPlayer_TimeControlStatus: {
     init(rawValue: number): Promise<(AVPlayer_TimeControlStatus) | null>;
 };
 /** struct WaitingReason */
-export type AVPlayer_WaitingReason = "toMinimizeStalls" | "evaluatingBufferingRate" | "noItemToPlay" | "waitingForCoordinatedPlayback" | "interstitialEvent" | (string & {});
+export type AVPlayer_WaitingReason = "interstitialEvent" | "toMinimizeStalls" | "evaluatingBufferingRate" | "noItemToPlay" | "waitingForCoordinatedPlayback" | (string & {});
 export declare const AVPlayer_WaitingReason: {
     /**
      * static let interstitialEvent: AVPlayer.WaitingReason
@@ -21835,6 +22913,10 @@ export declare class AVPlayerInterstitialEvent extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initPrimaryItemIdentifierTimeTemplateItemsRestrictionsResumptionOffsetPlayoutLimitUserDefinedAttributes(primaryItem: AVPlayerItem, identifier: (string) | null, time: _CoreMedia_CMTime, templateItems: Array<AVPlayerItem>, restrictions?: AVPlayerInterstitialEvent_Restrictions, resumptionOffset?: _CoreMedia_CMTime, playoutLimit?: _CoreMedia_CMTime, userDefinedAttributes?: Record<string, unknown>): AVPlayerInterstitialEvent;
+    readonly $type: {
+        "c:objc(cs)AVPlayerInterstitialEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alignsResumptionWithPrimarySegmentBoundary": true;
         "alignsStartWithPrimarySegmentBoundary": true;
@@ -22044,13 +23126,11 @@ export declare class AVPlayerInterstitialEventMonitor extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get interstitialEventWasUnscheduledNotification(): _Foundation_NSNotification_Name;
-    /** init() */
-    static init(): AVPlayerInterstitialEventMonitor;
     /**
      * init(primaryPlayer: AVPlayer)
      * @availability iOS 15.0+
      */
-    static initPrimaryPlayer(primaryPlayer: AVPlayer): AVPlayerInterstitialEventMonitor;
+    static init(primaryPlayer: AVPlayer): AVPlayerInterstitialEventMonitor;
     /**
      * var currentEvent: AVPlayerInterstitialEvent? { get }
      * @availability iOS 15.0+
@@ -22081,6 +23161,10 @@ export declare class AVPlayerInterstitialEventMonitor extends SDKHandle {
      * @availability iOS 15.0+
      */
     get primaryPlayer(): (AVPlayer) | null;
+    readonly $type: {
+        "c:objc(cs)AVPlayerInterstitialEventMonitor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentEvent": true;
         "currentEventSkipControlLabel": true;
@@ -22090,7 +23174,7 @@ export declare class AVPlayerInterstitialEventMonitor extends SDKHandle {
         "primaryPlayer": true;
     };
 }
-declare const AVPlayerInterstitialEventController_base: Omit<typeof AVPlayerInterstitialEventMonitor, "init" | "initPrimaryPlayer" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVPlayerInterstitialEventMonitor, "events">);
+declare const AVPlayerInterstitialEventController_base: Omit<typeof AVPlayerInterstitialEventMonitor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVPlayerInterstitialEventMonitor, "events">);
 /**
  * class AVPlayerInterstitialEventController
  * @availability iOS 15.0+
@@ -22101,13 +23185,11 @@ export declare class AVPlayerInterstitialEventController extends AVPlayerInterst
      * @availability iOS 15.0+
      */
     cancelCurrentEvent(resumptionOffset: _CoreMedia_CMTime): void;
-    /** init() */
-    static init(): AVPlayerInterstitialEventController;
     /**
      * init(primaryPlayer: AVPlayer)
      * @availability iOS 15.0+
      */
-    static initPrimaryPlayer(primaryPlayer: AVPlayer): AVPlayerInterstitialEventController;
+    static init(primaryPlayer: AVPlayer): AVPlayerInterstitialEventController;
     /**
      * func skipCurrentEvent()
      * @availability iOS 26.0+
@@ -22131,6 +23213,11 @@ export declare class AVPlayerInterstitialEventController extends AVPlayerInterst
      */
     get localizedStringsTableName(): (string) | null;
     set localizedStringsTableName(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)AVPlayerInterstitialEventController": true;
+        "c:objc(cs)AVPlayerInterstitialEventMonitor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentEvent": true;
         "currentEventSkipControlLabel": true;
@@ -22172,6 +23259,9 @@ export declare class AVPlayerInterstitialEventMonitor_ScheduleRequestCompleted e
      * @availability iOS 26.4+
      */
     get result(): SDKHandle;
+    readonly $type: {
+        "s:So32AVPlayerInterstitialEventMonitorC12AVFoundationE24ScheduleRequestCompletedV": true;
+    };
 }
 /**
  * typealias Subject = AVPlayerInterstitialEventMonitor
@@ -22657,6 +23747,10 @@ export declare class AVPlayerItem extends SDKHandle {
      * @availability iOS 4.0+
      */
     static initAsset5358(asset: (AVAsset) & (SDKHandle)): Promise<AVPlayerItem>;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItem": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** enum Status */
 export type AVPlayerItem_Status = "unknown" | "readyToPlay" | "failed";
@@ -22684,6 +23778,10 @@ export declare class AVPlayerItemAccessLog extends SDKHandle {
      * @availability iOS 4.3+
      */
     get extendedLogDataStringEncoding(): number;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemAccessLog": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "events": true;
         "extendedLogDataStringEncoding": true;
@@ -22826,6 +23924,10 @@ export declare class AVPlayerItemAccessLogEvent extends SDKHandle {
      * @availability iOS 7.0+
      */
     get transferDuration(): number;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemAccessLogEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uri": true;
         "averageAudioBitrate": true;
@@ -22875,6 +23977,10 @@ export declare class AVPlayerItemErrorLog extends SDKHandle {
      * @availability iOS 4.3+
      */
     get extendedLogDataStringEncoding(): number;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemErrorLog": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "events": true;
         "extendedLogDataStringEncoding": true;
@@ -22925,6 +24031,10 @@ export declare class AVPlayerItemErrorLogEvent extends SDKHandle {
      * @availability iOS 4.3+
      */
     get serverAddress(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemErrorLogEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uri": true;
         "allHTTPResponseHeaderFields": true;
@@ -22986,6 +24096,10 @@ export declare class AVPlayerItemIntegratedTimeline extends SDKHandle {
      * @availability iOS 18.0+
      */
     periodicTimes(forInterval: _CoreMedia_CMTime): AVPlayerItemIntegratedTimeline_PeriodicTimes;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemIntegratedTimeline": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentDate": true;
         "currentSnapshot": true;
@@ -23002,6 +24116,9 @@ export declare class AVPlayerItemIntegratedTimeline_BoundaryTimes extends SDKHan
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): AVPlayerItemIntegratedTimeline_BoundaryTimes_Iterator;
+    readonly $type: {
+        "s:So30AVPlayerItemIntegratedTimelineC12AVFoundationE13BoundaryTimesV": true;
+    };
     readonly $element: _CoreMedia_CMTime;
 }
 /**
@@ -23024,6 +24141,9 @@ export declare class AVPlayerItemIntegratedTimeline_BoundaryTimes_Iterator exten
      * @availability iOS 18.0+
      */
     next(): Promise<$SDK237>;
+    readonly $type: {
+        "s:So30AVPlayerItemIntegratedTimelineC12AVFoundationE13BoundaryTimesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AVPlayerItemIntegratedTimeline.BoundaryTimes.Element
@@ -23040,6 +24160,9 @@ export declare class AVPlayerItemIntegratedTimeline_PeriodicTimes extends SDKHan
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): AVPlayerItemIntegratedTimeline_PeriodicTimes_Iterator;
+    readonly $type: {
+        "s:So30AVPlayerItemIntegratedTimelineC12AVFoundationE13PeriodicTimesV": true;
+    };
     readonly $element: _CoreMedia_CMTime;
 }
 /**
@@ -23062,6 +24185,9 @@ export declare class AVPlayerItemIntegratedTimeline_PeriodicTimes_Iterator exten
      * @availability iOS 18.0+
      */
     next(): Promise<$SDK237>;
+    readonly $type: {
+        "s:So30AVPlayerItemIntegratedTimelineC12AVFoundationE13PeriodicTimesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AVPlayerItemIntegratedTimeline.PeriodicTimes.Element
@@ -23106,6 +24232,10 @@ export declare class AVPlayerItemIntegratedTimelineSnapshot extends SDKHandle {
      * @availability iOS 18.0+
      */
     segmentAndOffsetIntoSegment(forTimelineTime: _CoreMedia_CMTime): [AVPlayerItemSegment, _CoreMedia_CMTime];
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemIntegratedTimelineSnapshot": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentDate": true;
         "currentSegment": true;
@@ -23137,6 +24267,10 @@ export declare class AVPlayerItemOutput extends SDKHandle {
      */
     get suppressesPlayerRendering(): boolean;
     set suppressesPlayerRendering(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "suppressesPlayerRendering": true;
     };
@@ -23147,13 +24281,11 @@ declare const AVPlayerItemLegibleOutput_base: Omit<typeof AVPlayerItemOutput, "i
  * @availability iOS 7.0+
  */
 export declare class AVPlayerItemLegibleOutput extends AVPlayerItemLegibleOutput_base {
-    /** init() */
-    static init(): AVPlayerItemLegibleOutput;
     /**
      * init(mediaSubtypesForNativeRepresentation subtypes: [NSNumber])
      * @availability iOS 7.0+
      */
-    static initMediaSubtypesForNativeRepresentation(subtypes: $SDK63): AVPlayerItemLegibleOutput;
+    static init(subtypes: $SDK63): AVPlayerItemLegibleOutput;
     /**
      * func setDelegate(_ delegate: (any AVPlayerItemLegibleOutputPushDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 7.0+
@@ -23181,6 +24313,11 @@ export declare class AVPlayerItemLegibleOutput extends AVPlayerItemLegibleOutput
      */
     get textStylingResolution(): AVPlayerItemLegibleOutput_TextStylingResolution;
     set textStylingResolution(value: AVPlayerItemLegibleOutput_TextStylingResolution);
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemLegibleOutput": true;
+        "c:objc(cs)AVPlayerItemOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "suppressesPlayerRendering": true;
         "advanceIntervalForDelegateInvocation": true;
@@ -23225,6 +24362,10 @@ export interface AVPlayerItemLegibleOutputPushDelegate {
 export declare class AVPlayerItemMediaDataCollector extends SDKHandle {
     /** init() */
     static init(): AVPlayerItemMediaDataCollector;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemMediaDataCollector": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const AVPlayerItemMetadataCollector_base: Omit<typeof AVPlayerItemMediaDataCollector, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVPlayerItemMediaDataCollector);
 /**
@@ -23232,13 +24373,11 @@ declare const AVPlayerItemMetadataCollector_base: Omit<typeof AVPlayerItemMediaD
  * @availability iOS 9.3+
  */
 export declare class AVPlayerItemMetadataCollector extends AVPlayerItemMetadataCollector_base {
-    /** init() */
-    static init(): AVPlayerItemMetadataCollector;
     /**
      * init(identifiers: [String]?, classifyingLabels: [String]?)
      * @availability iOS 9.3+
      */
-    static initIdentifiersClassifyingLabels(identifiers?: (Array<string>) | null, classifyingLabels?: (Array<string>) | null): AVPlayerItemMetadataCollector;
+    static init(identifiers?: (Array<string>) | null, classifyingLabels?: (Array<string>) | null): AVPlayerItemMetadataCollector;
     /**
      * func setDelegate(_ delegate: (any AVPlayerItemMetadataCollectorPushDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 9.3+
@@ -23254,6 +24393,11 @@ export declare class AVPlayerItemMetadataCollector extends AVPlayerItemMetadataC
      * @availability iOS 9.3+
      */
     get delegateQueue(): $SDK51;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemMetadataCollector": true;
+        "c:objc(cs)AVPlayerItemMediaDataCollector": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "delegateQueue": true;
@@ -23273,13 +24417,11 @@ declare const AVPlayerItemMetadataOutput_base: Omit<typeof AVPlayerItemOutput, "
  * @availability iOS 8.0+
  */
 export declare class AVPlayerItemMetadataOutput extends AVPlayerItemMetadataOutput_base {
-    /** init() */
-    static init(): AVPlayerItemMetadataOutput;
     /**
      * init(identifiers: [String]?)
      * @availability iOS 8.0+
      */
-    static initIdentifiers(identifiers?: (Array<string>) | null): AVPlayerItemMetadataOutput;
+    static init(identifiers?: (Array<string>) | null): AVPlayerItemMetadataOutput;
     /**
      * func setDelegate(_ delegate: (any AVPlayerItemMetadataOutputPushDelegate)?, queue delegateQueue: dispatch_queue_t?)
      * @availability iOS 8.0+
@@ -23301,6 +24443,11 @@ export declare class AVPlayerItemMetadataOutput extends AVPlayerItemMetadataOutp
      * @availability iOS 8.0+
      */
     get delegateQueue(): $SDK51;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemMetadataOutput": true;
+        "c:objc(cs)AVPlayerItemOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "suppressesPlayerRendering": true;
         "advanceIntervalForDelegateInvocation": true;
@@ -23380,6 +24527,11 @@ export declare class AVPlayerItemRenderedLegibleOutput extends AVPlayerItemRende
      */
     get videoDisplaySize(): $SDK33;
     set videoDisplaySize(value: $SDK33);
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemRenderedLegibleOutput": true;
+        "c:objc(cs)AVPlayerItemOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "suppressesPlayerRendering": true;
         "advanceIntervalForDelegateInvocation": true;
@@ -23410,13 +24562,11 @@ declare const AVPlayerItemSampleBufferOutput_base: Omit<typeof AVPlayerItemOutpu
  * @availability iOS 27.0+
  */
 export declare class AVPlayerItemSampleBufferOutput extends AVPlayerItemSampleBufferOutput_base {
-    /** init() */
-    static init(): AVPlayerItemSampleBufferOutput;
     /**
      * init(configuration: AVPlayerItemSampleBufferOutputConfiguration?)
      * @availability iOS 27.0+
      */
-    static initConfiguration(configuration?: (AVPlayerItemSampleBufferOutputConfiguration) | null): AVPlayerItemSampleBufferOutput;
+    static init(configuration?: (AVPlayerItemSampleBufferOutputConfiguration) | null): AVPlayerItemSampleBufferOutput;
     /**
      * func nextAvailableSampleBuffer() -> AVPlayerItemSampleBufferOutput.SampleBufferInSequence?
      * @availability iOS 27.0+
@@ -23427,6 +24577,11 @@ export declare class AVPlayerItemSampleBufferOutput extends AVPlayerItemSampleBu
      * @availability iOS 27.0+
      */
     nextSampleBuffer(): Promise<$SDK335>;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemSampleBufferOutput": true;
+        "c:objc(cs)AVPlayerItemOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "suppressesPlayerRendering": true;
     };
@@ -23453,6 +24608,9 @@ export declare class AVPlayerItemSampleBufferOutput_SampleBufferInSequence exten
      */
     get sequenceWasRestarted(): boolean;
     set sequenceWasRestarted(value: boolean);
+    readonly $type: {
+        "s:So30AVPlayerItemSampleBufferOutputC12AVFoundationE0cD10InSequenceV": true;
+    };
 }
 /**
  * class AVPlayerItemSampleBufferOutputConfiguration
@@ -23461,6 +24619,10 @@ export declare class AVPlayerItemSampleBufferOutput_SampleBufferInSequence exten
 export declare class AVPlayerItemSampleBufferOutputConfiguration extends SDKHandle {
     /** init() */
     static init(): AVPlayerItemSampleBufferOutputConfiguration;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemSampleBufferOutputConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const AVPlayerItemSampleBufferOutputAudioConfiguration_base: Omit<typeof AVPlayerItemSampleBufferOutputConfiguration, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVPlayerItemSampleBufferOutputConfiguration);
 /**
@@ -23476,6 +24638,11 @@ export declare class AVPlayerItemSampleBufferOutputAudioConfiguration extends AV
      */
     get requestedAudioFormat(): $SDK82;
     set requestedAudioFormat(value: $SDK82);
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemSampleBufferOutputAudioConfiguration": true;
+        "c:objc(cs)AVPlayerItemSampleBufferOutputConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "requestedAudioFormat": true;
     };
@@ -23510,6 +24677,10 @@ export declare class AVPlayerItemSegment extends SDKHandle {
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemSegment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interstitialEvent": true;
         "segmentType": true;
@@ -23552,13 +24723,16 @@ export declare class AVPlayerItemTrack extends SDKHandle {
      */
     get isEnabled(): Promise<boolean>;
     setIsEnabled(value: boolean): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemTrack": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const AVPlayerItemVideoOutput_base: Omit<typeof AVPlayerItemOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVPlayerItemOutput);
 /**
  * class AVPlayerItemVideoOutput
  * @availability iOS 6.0+
  */
-export declare class AVPlayerItemVideoOutput extends AVPlayerItemVideoOutput_base {
+export declare class AVPlayerItemVideoOutput extends AVPlayerItemOutput {
     /**
      * func copyPixelBuffer(forItemTime itemTime: CMTime, itemTimeForDisplay outItemTimeForDisplay: UnsafeMutablePointer<CMTime>?) -> CVPixelBuffer?
      * @availability iOS 6.0+
@@ -23570,8 +24744,6 @@ export declare class AVPlayerItemVideoOutput extends AVPlayerItemVideoOutput_bas
      * @availability iOS 6.0+
      */
     hasNewPixelBuffer(itemTime: _CoreMedia_CMTime): boolean;
-    /** init() */
-    static init(): AVPlayerItemVideoOutput;
     /**
      * init(outputSettings: [String : any Sendable]?)
      * @availability iOS 10.0+
@@ -23616,6 +24788,11 @@ export declare class AVPlayerItemVideoOutput extends AVPlayerItemVideoOutput_bas
         "pixelBuffer": (_CoreVideo_CVReadOnlyPixelBuffer) | null;
         "itemTimeForDisplay": _CoreMedia_CMTime;
     };
+    readonly $type: {
+        "c:objc(cs)AVPlayerItemVideoOutput": true;
+        "c:objc(cs)AVPlayerItemOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "suppressesPlayerRendering": true;
         "delegate": true;
@@ -23631,15 +24808,13 @@ export declare class AVPlayerLayer extends SDKHandle {
      * init(player: AVPlayer?)
      * @availability iOS 4.0+
      */
-    static initPlayer(player?: (AVPlayer) | null): AVPlayerLayer;
+    static init(player?: (AVPlayer) | null): AVPlayerLayer;
     /**
      * func displayedPixelBuffer() -> CVPixelBuffer?
      * @availability iOS 16.0+
      * @deprecated iOS 27.0
      */
     displayedPixelBuffer(): $SDK93;
-    /** init() */
-    static init(): AVPlayerLayer;
     /**
      * func setCaptionPreviewProfileID(_ profileID: String, position: CGPoint, text: String?)
      * @availability iOS 26.4+
@@ -23683,6 +24858,11 @@ export declare class AVPlayerLayer extends SDKHandle {
      * @availability iOS 26.0+
      */
     displayedReadOnlyPixelBuffer(): $SDK95;
+    readonly $type: {
+        "c:objc(cs)AVPlayerLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pixelBufferAttributes": true;
         "player": true;
@@ -23736,6 +24916,10 @@ export declare class AVPlayerLooper extends SDKHandle {
      * @availability iOS 10.0+
      */
     get status(): AVPlayerLooper_Status;
+    readonly $type: {
+        "c:objc(cs)AVPlayerLooper": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "error": true;
         "loopCount": true;
@@ -23766,8 +24950,6 @@ export declare const AVPlayerLooper_Status: {
  * @availability iOS 7.0+
  */
 export declare class AVPlayerMediaSelectionCriteria extends SDKHandle {
-    /** init() */
-    static init(): AVPlayerMediaSelectionCriteria;
     /**
      * init(preferredLanguages: [String]?, preferredMediaCharacteristics: [AVMediaCharacteristic]?)
      * @availability iOS 7.0+
@@ -23793,6 +24975,10 @@ export declare class AVPlayerMediaSelectionCriteria extends SDKHandle {
      * @availability iOS 12.0+
      */
     get principalMediaCharacteristics(): $SDK337;
+    readonly $type: {
+        "c:objc(cs)AVPlayerMediaSelectionCriteria": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "preferredLanguages": true;
         "preferredMediaCharacteristics": true;
@@ -23825,6 +25011,11 @@ export declare class AVPlayerPlaybackCoordinator extends AVPlaybackCoordinator {
      * @availability iOS 15.0+
      */
     get player(): (AVPlayer) | null;
+    readonly $type: {
+        "c:objc(cs)AVPlayerPlaybackCoordinator": true;
+        "c:objc(cs)AVPlaybackCoordinator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "otherParticipants": true;
         "pauseSnapsToMediaTimeOfOriginator": true;
@@ -23866,6 +25057,10 @@ export declare class AVPlayerVideoOutput extends SDKHandle {
      * @availability iOS 26.0+
      */
     sample(hostTime: _CoreMedia_CMTime): (AVPlayerVideoOutput_Sample) | null;
+    readonly $type: {
+        "c:objc(cs)AVPlayerVideoOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class Configuration
@@ -23892,6 +25087,10 @@ export declare class AVPlayerVideoOutput_Configuration extends SDKHandle {
      * @availability iOS 17.2+
      */
     get dataChannelDescription(): $SDK341;
+    readonly $type: {
+        "c:objc(cs)AVPlayerVideoOutputConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activationTime": true;
         "preferredTransform": true;
@@ -23918,6 +25117,9 @@ export declare class AVPlayerVideoOutput_Sample extends SDKHandle {
      * @availability iOS 26.0+
      */
     get activeConfiguration(): AVPlayerVideoOutput_Configuration;
+    readonly $type: {
+        "s:So19AVPlayerVideoOutputC12AVFoundationE6SampleV": true;
+    };
 }
 /**
  * class AVPortraitEffectsMatte
@@ -23959,6 +25161,10 @@ export declare class AVPortraitEffectsMatte extends SDKHandle {
      * @availability iOS 12.0+
      */
     get pixelFormatType(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)AVPortraitEffectsMatte": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mattingImage": true;
         "pixelFormatType": true;
@@ -24006,6 +25212,10 @@ export declare class AVProVideoStorage extends SDKHandle {
      * @availability iOS 27.0+
      */
     get remainingCapacity(): number;
+    readonly $type: {
+        "c:objc(cs)AVProVideoStorage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "busyReasons": true;
         "initialCapacity": true;
@@ -24100,13 +25310,11 @@ export declare class AVQueuePlayer extends AVQueuePlayer_base {
      * @availability iOS 4.1+
      */
     canInsert(item: AVPlayerItem, afterItem?: (AVPlayerItem) | null): boolean;
-    /** init() */
-    static init(): AVQueuePlayer;
     /**
      * nonisolated init(items: [AVPlayerItem])
      * @availability iOS 4.1+
      */
-    static initItems(items: Array<AVPlayerItem>): AVQueuePlayer;
+    static init(items: Array<AVPlayerItem>): AVQueuePlayer;
     /**
      * nonisolated func insert(_ item: AVPlayerItem, after afterItem: AVPlayerItem?)
      * @availability iOS 4.1+
@@ -24127,6 +25335,11 @@ export declare class AVQueuePlayer extends AVQueuePlayer_base {
      * @availability iOS 4.1+
      */
     remove(item: AVPlayerItem): void;
+    readonly $type: {
+        "c:objc(cs)AVQueuePlayer": true;
+        "c:objc(cs)AVPlayer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVRenderedCaptionImage
@@ -24149,6 +25362,10 @@ export declare class AVRenderedCaptionImage extends SDKHandle {
      * @availability iOS 26.0+
      */
     get readOnlyPixelBuffer(): _CoreVideo_CVReadOnlyPixelBuffer;
+    readonly $type: {
+        "c:objc(cs)AVRenderedCaptionImage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pixelBuffer": true;
         "position": true;
@@ -24178,6 +25395,10 @@ export declare class AVRouteDetector extends SDKHandle {
      */
     get isRouteDetectionEnabled(): boolean;
     set isRouteDetectionEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AVRouteDetector": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "detectsCustomRoutes": true;
         "multipleRoutesDetected": true;
@@ -24263,6 +25484,10 @@ export declare class AVSampleBufferAudioRenderer extends SDKHandle {
     /** var volume: Float { get set } */
     get volume(): number;
     set volume(value: number);
+    readonly $type: {
+        "c:objc(cs)AVSampleBufferAudioRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedAudioSpatializationFormats": true;
         "audioTimePitchAlgorithm": true;
@@ -24304,24 +25529,36 @@ export declare class AVSampleBufferAudioRenderer_Receiver extends SDKHandle {
      * @availability iOS 27.0+
      */
     enqueue(sampleBuffer: $SDK85): Promise<AVSampleBufferAudioRenderer_Receiver_EnqueueResult>;
+    readonly $type: {
+        "s:So27AVSampleBufferAudioRendererC12AVFoundationE8ReceiverC": true;
+    };
 }
 /**
  * enum EnqueueResult
  * @availability iOS 27.0+
  */
 export declare class AVSampleBufferAudioRenderer_Receiver_EnqueueResult extends SDKHandle {
+    readonly $type: {
+        "s:So27AVSampleBufferAudioRendererC12AVFoundationE8ReceiverC13EnqueueResultO": true;
+    };
 }
 /**
  * enum RenderingEvent
  * @availability iOS 27.0+
  */
 export declare class AVSampleBufferAudioRenderer_Receiver_RenderingEvent extends SDKHandle {
+    readonly $type: {
+        "s:So27AVSampleBufferAudioRendererC12AVFoundationE8ReceiverC14RenderingEventO": true;
+    };
 }
 /**
  * enum SuggestedFlushReason
  * @availability iOS 27.0+
  */
 export declare class AVSampleBufferAudioRenderer_Receiver_SuggestedFlushReason extends SDKHandle {
+    readonly $type: {
+        "s:So27AVSampleBufferAudioRendererC12AVFoundationE8ReceiverC20SuggestedFlushReasonO": true;
+    };
 }
 /**
  * @MainActor class AVSampleBufferDisplayLayer
@@ -24435,6 +25672,11 @@ export declare class AVSampleBufferDisplayLayer extends SDKHandle {
      */
     get videoGravity(): Promise<AVLayerVideoGravity>;
     setVideoGravity(value: AVLayerVideoGravity): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)AVSampleBufferDisplayLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVSampleBufferGenerator
@@ -24466,6 +25708,10 @@ export declare class AVSampleBufferGenerator extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeBatch(): AVSampleBufferGeneratorBatch;
+    readonly $type: {
+        "c:objc(cs)AVSampleBufferGenerator": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVSampleBufferGeneratorBatch
@@ -24482,6 +25728,10 @@ export declare class AVSampleBufferGeneratorBatch extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeDataReady(completionHandler: $SDK276): void;
+    readonly $type: {
+        "c:objc(cs)AVSampleBufferGeneratorBatch": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AVSampleBufferRenderSynchronizer
@@ -24571,6 +25821,10 @@ export declare class AVSampleBufferRenderSynchronizer extends SDKHandle {
      * @availability iOS 27.0+
      */
     removeReceiverAt78322(receiver: AVSampleBufferVideoRenderer_Receiver, time: _CoreMedia_CMTime): Promise<boolean>;
+    readonly $type: {
+        "c:objc(cs)AVSampleBufferRenderSynchronizer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delaysRateChangeUntilHasSufficientMediaData": true;
         "rate": true;
@@ -24629,6 +25883,10 @@ export declare class AVSampleBufferRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     get startCursor(): AVSampleCursor;
+    readonly $type: {
+        "c:objc(cs)AVSampleBufferRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "direction": true;
         "limitCursor": true;
@@ -24756,6 +26014,10 @@ export declare class AVSampleBufferVideoRenderer extends SDKHandle {
      * @availability iOS 17.4+
      */
     set presentationTimeExpectation(value: AVSampleBufferVideoRenderer_PresentationTimeExpectation);
+    readonly $type: {
+        "c:objc(cs)AVSampleBufferVideoRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "error": true;
         "hasSufficientMediaDataForReliablePlaybackStart": true;
@@ -24769,6 +26031,9 @@ export declare class AVSampleBufferVideoRenderer extends SDKHandle {
  * @availability iOS 17.4+
  */
 export declare class AVSampleBufferVideoRenderer_PresentationTimeExpectation extends SDKHandle {
+    readonly $type: {
+        "s:So27AVSampleBufferVideoRendererC12AVFoundationE27PresentationTimeExpectationO": true;
+    };
 }
 /**
  * class Receiver
@@ -24800,18 +26065,27 @@ export declare class AVSampleBufferVideoRenderer_Receiver extends SDKHandle {
      * @availability iOS 27.0+
      */
     enqueue(sampleBuffer: $SDK85): Promise<AVSampleBufferVideoRenderer_Receiver_EnqueueResult>;
+    readonly $type: {
+        "s:So27AVSampleBufferVideoRendererC12AVFoundationE8ReceiverC": true;
+    };
 }
 /**
  * enum EnqueueResult
  * @availability iOS 27.0+
  */
 export declare class AVSampleBufferVideoRenderer_Receiver_EnqueueResult extends SDKHandle {
+    readonly $type: {
+        "s:So27AVSampleBufferVideoRendererC12AVFoundationE8ReceiverC13EnqueueResultO": true;
+    };
 }
 /**
  * enum RenderingEvent
  * @availability iOS 27.0+
  */
 export declare class AVSampleBufferVideoRenderer_Receiver_RenderingEvent extends SDKHandle {
+    readonly $type: {
+        "s:So27AVSampleBufferVideoRendererC12AVFoundationE8ReceiverC14RenderingEventO": true;
+    };
 }
 /**
  * class AVSampleCursor
@@ -24933,6 +26207,10 @@ export declare class AVSampleCursor extends SDKHandle {
      * @availability iOS 16.0+
      */
     get samplesRequiredForDecoderRefresh(): number;
+    readonly $type: {
+        "c:objc(cs)AVSampleCursor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentChunkInfo": true;
         "currentChunkStorageRange": true;
@@ -24961,6 +26239,9 @@ export declare class AVSampleCursorAudioDependencyInfo extends SDKHandle {
     static initAudioSampleIsIndependentlyDecodableAudioSamplePacketRefreshCount(audioSampleIsIndependentlyDecodable: boolean, audioSamplePacketRefreshCount: number): AVSampleCursorAudioDependencyInfo;
     /** init() */
     static init(): AVSampleCursorAudioDependencyInfo;
+    readonly $type: {
+        "c:@SA@AVSampleCursorAudioDependencyInfo": true;
+    };
 }
 /** struct AVSampleCursorChunkInfo */
 export declare class AVSampleCursorChunkInfo extends SDKHandle {
@@ -24980,6 +26261,9 @@ export declare class AVSampleCursorChunkInfo extends SDKHandle {
     static initChunkSampleCountChunkHasUniformSampleSizesChunkHasUniformSampleDurationsChunkHasUniformFormatDescriptions(chunkSampleCount: number, chunkHasUniformSampleSizes: boolean, chunkHasUniformSampleDurations: boolean, chunkHasUniformFormatDescriptions: boolean): AVSampleCursorChunkInfo;
     /** init() */
     static init(): AVSampleCursorChunkInfo;
+    readonly $type: {
+        "c:@SA@AVSampleCursorChunkInfo": true;
+    };
 }
 /** struct AVSampleCursorDependencyInfo */
 export declare class AVSampleCursorDependencyInfo extends SDKHandle {
@@ -25005,6 +26289,9 @@ export declare class AVSampleCursorDependencyInfo extends SDKHandle {
     static initSampleIndicatesWhetherItHasDependentSamplesSampleHasDependentSamplesSampleIndicatesWhetherItDependsOnOthersSampleDependsOnOthersSampleIndicatesWhetherItHasRedundantCodingSampleHasRedundantCoding(sampleIndicatesWhetherItHasDependentSamples: boolean, sampleHasDependentSamples: boolean, sampleIndicatesWhetherItDependsOnOthers: boolean, sampleDependsOnOthers: boolean, sampleIndicatesWhetherItHasRedundantCoding: boolean, sampleHasRedundantCoding: boolean): AVSampleCursorDependencyInfo;
     /** init() */
     static init(): AVSampleCursorDependencyInfo;
+    readonly $type: {
+        "c:@SA@AVSampleCursorDependencyInfo": true;
+    };
 }
 /** struct AVSampleCursorStorageRange */
 export declare class AVSampleCursorStorageRange extends SDKHandle {
@@ -25018,6 +26305,9 @@ export declare class AVSampleCursorStorageRange extends SDKHandle {
     static initOffsetLength(offset: number, length: number): AVSampleCursorStorageRange;
     /** init() */
     static init(): AVSampleCursorStorageRange;
+    readonly $type: {
+        "c:@SA@AVSampleCursorStorageRange": true;
+    };
 }
 /** struct AVSampleCursorSyncInfo */
 export declare class AVSampleCursorSyncInfo extends SDKHandle {
@@ -25034,6 +26324,9 @@ export declare class AVSampleCursorSyncInfo extends SDKHandle {
     static initSampleIsFullSyncSampleIsPartialSyncSampleIsDroppable(sampleIsFullSync: boolean, sampleIsPartialSync: boolean, sampleIsDroppable: boolean): AVSampleCursorSyncInfo;
     /** init() */
     static init(): AVSampleCursorSyncInfo;
+    readonly $type: {
+        "c:@SA@AVSampleCursorSyncInfo": true;
+    };
 }
 /**
  * class AVSemanticSegmentationMatte
@@ -25080,6 +26373,10 @@ export declare class AVSemanticSegmentationMatte extends SDKHandle {
      * @availability iOS 13.0+
      */
     get pixelFormatType(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)AVSemanticSegmentationMatte": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matteType": true;
         "mattingImage": true;
@@ -25178,6 +26475,9 @@ export declare class AVSpatialVideoConfiguration extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): AVSpatialVideoConfiguration;
+    readonly $type: {
+        "s:12AVFoundation27AVSpatialVideoConfigurationV": true;
+    };
 }
 /**
  * class AVSynchronizedLayer
@@ -25188,15 +26488,18 @@ export declare class AVSynchronizedLayer extends SDKHandle {
      * init(playerItem: AVPlayerItem)
      * @availability iOS 4.0+
      */
-    static initPlayerItem(playerItem: AVPlayerItem): AVSynchronizedLayer;
-    /** init() */
-    static init(): AVSynchronizedLayer;
+    static init(playerItem: AVPlayerItem): AVSynchronizedLayer;
     /**
      * var playerItem: AVPlayerItem? { get set }
      * @availability iOS 4.0+
      */
     get playerItem(): (AVPlayerItem) | null;
     set playerItem(value: (AVPlayerItem) | null);
+    readonly $type: {
+        "c:objc(cs)AVSynchronizedLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "playerItem": true;
     };
@@ -25216,8 +26519,6 @@ export declare class AVTextStyleRule extends SDKHandle {
      * @availability iOS 6.0+
      */
     static textStyleRules(plist: unknown): $SDK321;
-    /** init() */
-    static init(): AVTextStyleRule;
     /**
      * convenience init?(textMarkupAttributes: [String : Any] = [:])
      * @availability iOS 6.0+
@@ -25238,6 +26539,10 @@ export declare class AVTextStyleRule extends SDKHandle {
      * @availability iOS 6.0+
      */
     get textSelector(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AVTextStyleRule": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "textMarkupAttributes": true;
         "textSelector": true;
@@ -25482,6 +26787,9 @@ export declare class AVVideoComposition_Configuration extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initForPrototypeInstruction(asset: AVAsset, prototypeInstruction?: (AVVideoCompositionInstruction) | null): Promise<AVVideoComposition_Configuration>;
+    readonly $type: {
+        "s:So18AVVideoCompositionC12AVFoundationE13ConfigurationV": true;
+    };
 }
 /**
  * struct PerFrameHDRDisplayMetadataPolicy
@@ -25526,13 +26834,15 @@ export declare class AVVideoCompositionCoreAnimationTool extends SDKHandle {
      * @availability iOS 7.0+
      */
     static initPostProcessingAsVideoLayersIn(videoLayers: $SDK348, animationLayer: _QuartzCore_CALayer): AVVideoCompositionCoreAnimationTool;
-    /** init() */
-    static init(): AVVideoCompositionCoreAnimationTool;
     /**
      * convenience init(configuration: sending AVVideoCompositionCoreAnimationTool.Configuration)
      * @availability iOS 26.0+
      */
     static initConfiguration(configuration: AVVideoCompositionCoreAnimationTool_Configuration): AVVideoCompositionCoreAnimationTool;
+    readonly $type: {
+        "c:objc(cs)AVVideoCompositionCoreAnimationTool": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct Configuration
@@ -25561,6 +26871,9 @@ export declare class AVVideoCompositionCoreAnimationTool_Configuration extends S
      */
     get layers(): $SDK348;
     set layers(value: $SDK348);
+    readonly $type: {
+        "s:So35AVVideoCompositionCoreAnimationToolC12AVFoundationE13ConfigurationV": true;
+    };
 }
 /**
  * struct Configuration
@@ -25602,6 +26915,9 @@ export declare class AVVideoCompositionInstruction_Configuration extends SDKHand
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $type: {
+        "s:So29AVVideoCompositionInstructionC12AVFoundationE13ConfigurationV": true;
+    };
 }
 /**
  * protocol AVVideoCompositionInstructionProtocol : NSObjectProtocol, Sendable
@@ -25675,6 +26991,9 @@ export declare class AVVideoCompositionLayerInstruction_Configuration extends SD
      */
     get trackID(): number;
     set trackID(value: number);
+    readonly $type: {
+        "s:So34AVVideoCompositionLayerInstructionC12AVFoundationE13ConfigurationV": true;
+    };
 }
 /**
  * struct CropRectangleRamp
@@ -25704,6 +27023,9 @@ export declare class AVVideoCompositionLayerInstruction_CropRectangleRamp extend
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $type: {
+        "s:So34AVVideoCompositionLayerInstructionC12AVFoundationE17CropRectangleRampV": true;
+    };
 }
 /**
  * struct OpacityRamp
@@ -25733,6 +27055,9 @@ export declare class AVVideoCompositionLayerInstruction_OpacityRamp extends SDKH
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $type: {
+        "s:So34AVVideoCompositionLayerInstructionC12AVFoundationE11OpacityRampV": true;
+    };
 }
 /**
  * struct TransformRamp
@@ -25762,6 +27087,9 @@ export declare class AVVideoCompositionLayerInstruction_TransformRamp extends SD
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $type: {
+        "s:So34AVVideoCompositionLayerInstructionC12AVFoundationE13TransformRampV": true;
+    };
 }
 /**
  * class AVVideoCompositionRenderContext
@@ -25811,6 +27139,10 @@ export declare class AVVideoCompositionRenderContext extends SDKHandle {
      * @availability iOS 7.0+
      */
     get videoComposition(): AVVideoComposition;
+    readonly $type: {
+        "c:objc(cs)AVVideoCompositionRenderContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "edgeWidths": true;
         "highQualityRendering": true;
@@ -25838,6 +27170,10 @@ export declare class AVVideoCompositionRenderHint extends SDKHandle {
      * @availability iOS 13.0+
      */
     get startCompositionTime(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)AVVideoCompositionRenderHint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endCompositionTime": true;
         "startCompositionTime": true;
@@ -25888,6 +27224,10 @@ export declare class AVVideoOutputSpecification extends SDKHandle {
      * @availability iOS 17.2+
      */
     get preferredTagCollections(): $SDK341;
+    readonly $type: {
+        "c:objc(cs)AVVideoOutputSpecification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultOutputSettings": true;
         "defaultPixelBufferAttributes": true;
@@ -25923,6 +27263,10 @@ export declare class AVVideoPerformanceMetrics extends SDKHandle {
      * @availability iOS 17.4+
      */
     get totalNumberOfFrames(): number;
+    readonly $type: {
+        "c:objc(cs)AVVideoPerformanceMetrics": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "numberOfCorruptedFrames": true;
         "numberOfDroppedFrames": true;
@@ -25983,8 +27327,12 @@ export declare class NSCoder extends SDKHandle {
      * @availability iOS 4.0+
      */
     encodeForKey36886(timeRange: _CoreMedia_CMTimeRange, key: string): void;
+    readonly $type: {
+        "c:objc(cs)NSCoder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let AVAssetChapterMetadataGroupsDidChange: NSNotification.Name
@@ -26237,6 +27585,10 @@ export declare class NSValue extends SDKHandle {
      * @availability iOS 16.0+
      */
     get videoDimensionsValue(): _CoreMedia_CMVideoDimensions;
+    readonly $type: {
+        "c:objc(cs)NSValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timeMappingValue": true;
         "timeRangeValue": true;

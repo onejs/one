@@ -29,7 +29,7 @@ type $SDK14 = {
     bottom: number;
     right: number;
 };
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let PDFDocumentDidBeginFind: NSNotification.Name
@@ -165,6 +165,10 @@ export declare class PDFAction extends SDKHandle {
      * @availability iOS 11.0+
      */
     get type(): string;
+    readonly $type: {
+        "c:objc(cs)PDFAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "type": true;
     };
@@ -175,19 +179,22 @@ declare const PDFActionGoTo_base: Omit<typeof PDFAction, "init" | "prototype"> &
  * @availability iOS 11.0+
  */
 export declare class PDFActionGoTo extends PDFActionGoTo_base {
-    /** init() */
-    static init(): PDFActionGoTo;
     /**
      * init(destination: PDFDestination)
      * @availability iOS 11.0+
      */
-    static initDestination(destination: PDFDestination): PDFActionGoTo;
+    static init(destination: PDFDestination): PDFActionGoTo;
     /**
      * var destination: PDFDestination { get set }
      * @availability iOS 11.0+
      */
     get destination(): PDFDestination;
     set destination(value: PDFDestination);
+    readonly $type: {
+        "c:objc(cs)PDFActionGoTo": true;
+        "c:objc(cs)PDFAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "type": true;
         "destination": true;
@@ -199,19 +206,22 @@ declare const PDFActionNamed_base: Omit<typeof PDFAction, "init" | "prototype"> 
  * @availability iOS 11.0+
  */
 export declare class PDFActionNamed extends PDFActionNamed_base {
-    /** init() */
-    static init(): PDFActionNamed;
     /**
      * init(name: PDFActionNamedName)
      * @availability iOS 11.0+
      */
-    static initName(name: PDFActionNamedName): PDFActionNamed;
+    static init(name: PDFActionNamedName): PDFActionNamed;
     /**
      * var name: PDFActionNamedName { get set }
      * @availability iOS 11.0+
      */
     get name(): PDFActionNamedName;
     set name(value: PDFActionNamedName);
+    readonly $type: {
+        "c:objc(cs)PDFActionNamed": true;
+        "c:objc(cs)PDFAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "type": true;
         "name": true;
@@ -235,13 +245,11 @@ declare const PDFActionRemoteGoTo_base: Omit<typeof PDFAction, "init" | "prototy
  * @availability iOS 11.0+
  */
 export declare class PDFActionRemoteGoTo extends PDFActionRemoteGoTo_base {
-    /** init() */
-    static init(): PDFActionRemoteGoTo;
     /**
      * init(pageIndex: Int, at point: CGPoint, fileURL url: URL)
      * @availability iOS 11.0+
      */
-    static initPageIndexAtFileURL(pageIndex: number, point: $SDK0, url: string): PDFActionRemoteGoTo;
+    static init(pageIndex: number, point: $SDK0, url: string): PDFActionRemoteGoTo;
     /**
      * var url: URL { get set }
      * @availability iOS 11.0+
@@ -260,6 +268,11 @@ export declare class PDFActionRemoteGoTo extends PDFActionRemoteGoTo_base {
      */
     get point(): $SDK0;
     set point(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)PDFActionRemoteGoTo": true;
+        "c:objc(cs)PDFAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "type": true;
         "url": true;
@@ -290,6 +303,11 @@ export declare class PDFActionResetForm extends PDFActionResetForm_base {
      */
     get fieldsIncludedAreCleared(): boolean;
     set fieldsIncludedAreCleared(value: boolean);
+    readonly $type: {
+        "c:objc(cs)PDFActionResetForm": true;
+        "c:objc(cs)PDFAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "type": true;
         "fields": true;
@@ -302,19 +320,22 @@ declare const PDFActionURL_base: Omit<typeof PDFAction, "init" | "prototype"> & 
  * @availability iOS 11.0+
  */
 export declare class PDFActionURL extends PDFActionURL_base {
-    /** init() */
-    static init(): PDFActionURL;
     /**
      * init(url: URL)
      * @availability iOS 11.0+
      */
-    static initUrl(url: string): PDFActionURL;
+    static init(url: string): PDFActionURL;
     /**
      * var url: URL? { get set }
      * @availability iOS 11.0+
      */
     get url(): (string) | null;
     set url(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PDFActionURL": true;
+        "c:objc(cs)PDFAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "type": true;
         "url": true;
@@ -336,13 +357,11 @@ export declare class PDFAnnotation extends SDKHandle {
      * @availability iOS 11.0+
      */
     draw(box: PDFDisplayBox, context: _CoreGraphics_CGContext): void;
-    /** init() */
-    static init(): PDFAnnotation;
     /**
      * init(bounds: CGRect, forType annotationType: PDFAnnotationSubtype, withProperties properties: [AnyHashable : Any]?)
      * @availability iOS 11.0+
      */
-    static initBoundsForTypeWithProperties(bounds: $SDK1, annotationType: PDFAnnotationSubtype, properties?: $SDK2): PDFAnnotation;
+    static init(bounds: $SDK1, annotationType: PDFAnnotationSubtype, properties?: $SDK2): PDFAnnotation;
     /** func remove(_ path: UIBezierPath) */
     remove(path: _UIKit_UIBezierPath): void;
     /**
@@ -563,6 +582,10 @@ export declare class PDFAnnotation extends SDKHandle {
     /** var widgetStringValue: String? { get set } */
     get widgetStringValue(): (string) | null;
     set widgetStringValue(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PDFAnnotation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "action": true;
@@ -1087,6 +1110,10 @@ export declare class PDFAppearanceCharacteristics extends SDKHandle {
      */
     get rotation(): number;
     set rotation(value: number);
+    readonly $type: {
+        "c:objc(cs)PDFAppearanceCharacteristics": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "appearanceCharacteristicsKeyValues": true;
         "backgroundColor": true;
@@ -1231,6 +1258,10 @@ export declare class PDFBorder extends SDKHandle {
      */
     get style(): PDFBorderStyle;
     set style(value: PDFBorderStyle);
+    readonly $type: {
+        "c:objc(cs)PDFBorder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "borderKeyValues": true;
         "dashPattern": true;
@@ -1281,13 +1312,11 @@ export declare class PDFDestination extends SDKHandle {
      * @availability iOS 11.0+
      */
     compare(destination: PDFDestination): _Foundation_ComparisonResult;
-    /** init() */
-    static init(): PDFDestination;
     /**
      * init(page: PDFPage, at point: CGPoint)
      * @availability iOS 11.0+
      */
-    static initPageAt(page: PDFPage, point: $SDK0): PDFDestination;
+    static init(page: PDFPage, point: $SDK0): PDFDestination;
     /**
      * weak var page: PDFPage? { get }
      * @availability iOS 11.0+
@@ -1304,6 +1333,10 @@ export declare class PDFDestination extends SDKHandle {
      */
     get zoom(): number;
     set zoom(value: number);
+    readonly $type: {
+        "c:objc(cs)PDFDestination": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "page": true;
         "point": true;
@@ -1589,6 +1622,10 @@ export declare class PDFDocument extends SDKHandle {
      * @availability iOS 11.0+
      */
     get string(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)PDFDocument": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessPermissions": true;
         "allowsCommenting": true;
@@ -1845,6 +1882,10 @@ export declare class PDFOutline extends SDKHandle {
      * @availability iOS 11.0+
      */
     get parent(): (PDFOutline) | null;
+    readonly $type: {
+        "c:objc(cs)PDFOutline": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "action": true;
         "destination": true;
@@ -2008,6 +2049,10 @@ export declare class PDFPage extends SDKHandle {
      * @availability iOS 11.0+
      */
     get string(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)PDFPage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "annotations": true;
         "attributedString": true;
@@ -2113,13 +2158,11 @@ export declare class PDFSelection extends SDKHandle {
      * @availability iOS 11.0+
      */
     extendForLineBoundaries(): void;
-    /** init() */
-    static init(): PDFSelection;
     /**
      * init(document: PDFDocument)
      * @availability iOS 11.0+
      */
-    static initDocument(document: PDFDocument): PDFSelection;
+    static init(document: PDFDocument): PDFSelection;
     /**
      * func numberOfTextRanges(on page: PDFPage) -> Int
      * @availability iOS 11.0+
@@ -2156,6 +2199,10 @@ export declare class PDFSelection extends SDKHandle {
      * @availability iOS 11.0+
      */
     get string(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)PDFSelection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributedString": true;
         "color": true;
@@ -2235,6 +2282,12 @@ export declare class PDFThumbnailView extends SDKHandle {
      */
     get thumbnailSize(): $SDK11;
     set thumbnailSize(value: $SDK11);
+    readonly $type: {
+        "c:objc(cs)PDFThumbnailView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pdfView": true;
         "backgroundColor": true;
@@ -2614,6 +2667,12 @@ export declare class PDFView extends SDKHandle {
      * @availability iOS 11.0+
      */
     get visiblePages(): Array<PDFPage>;
+    readonly $type: {
+        "c:objc(cs)PDFView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "autoScales": true;
         "backgroundColor": true;

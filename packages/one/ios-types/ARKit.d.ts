@@ -9,31 +9,32 @@ import type { DispatchQueue as _Dispatch_DispatchQueue } from "one/ios/Dispatch"
 import type { NSNumber as _Foundation_NSNumber, Bundle as _Foundation_Bundle } from "one/ios/Foundation";
 import type { CGImagePropertyOrientation as _ImageIO_CGImagePropertyOrientation } from "one/ios/ImageIO";
 import type { MTLVertexFormat as _Metal_MTLVertexFormat } from "one/ios/Metal";
+import type { NSZone as _ObjectiveC_NSZone } from "one/ios/ObjectiveC";
 import type { CALayer as _QuartzCore_CALayer } from "one/ios/QuartzCore";
 import type { SCNDebugOptions as _SceneKit_SCNDebugOptions, SCNNode as _SceneKit_SCNNode, SCNScene as _SceneKit_SCNScene } from "one/ios/SceneKit";
 import type { SKNode as _SpriteKit_SKNode } from "one/ios/SpriteKit";
 import type { UIInterfaceOrientation as _UIKit_UIInterfaceOrientation, UIImage as _UIKit_UIImage } from "one/ios/UIKit";
 import type { VNRecognizedPointKey as _Vision_VNRecognizedPointKey } from "one/ios/Vision";
-type $SDK1 = (ARConfiguration_VideoFormat) | null;
-type $SDK3 = {
+type $SDK2 = (ARConfiguration_VideoFormat) | null;
+type $SDK4 = {
     x: number;
     y: number;
 };
-type $SDK4 = {
+type $SDK5 = {
     width: number;
     height: number;
 };
-type $SDK6 = (_CoreVideo_CVBuffer) | null;
-type $SDK7 = NativeMap<ARFaceAnchor_BlendShapeLocation, _Foundation_NSNumber>;
-type $SDK12 = {
+type $SDK7 = (_CoreVideo_CVBuffer) | null;
+type $SDK8 = NativeMap<ARFaceAnchor_BlendShapeLocation, _Foundation_NSNumber>;
+type $SDK13 = {
     latitude: number;
     longitude: number;
 };
-type $SDK13 = ((arg0: boolean, arg1: (NativeError) | null) => void);
-type $SDK14 = (Array<ARReferenceImage>) | null;
-type $SDK15 = Array<ARReferenceObject>;
-type $SDK23 = ((arg0: (ARFrame) | null, arg1: (NativeError) | null) => void);
-type $SDK31 = (_Dispatch_DispatchQueue) | null;
+type $SDK14 = ((arg0: boolean, arg1: (NativeError) | null) => void);
+type $SDK15 = (Array<ARReferenceImage>) | null;
+type $SDK16 = Array<ARReferenceObject>;
+type $SDK24 = ((arg0: (ARFrame) | null, arg1: (NativeError) | null) => void);
+type $SDK32 = (_Dispatch_DispatchQueue) | null;
 /**
  * class ARAnchor
  * @availability iOS 11.0+
@@ -69,6 +70,10 @@ export declare class ARAnchor extends SDKHandle {
      * @availability iOS 11.0+
      */
     get transform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -81,7 +86,7 @@ export declare class ARAnchor extends SDKHandle {
  * @availability iOS 12.0+
  */
 export interface ARAnchorCopying {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: (_ObjectiveC_NSZone) | null) => unknown;
     /**
      * init(anchor: ARAnchor)
      * @availability iOS 12.0+
@@ -108,6 +113,11 @@ export declare class ARAppClipCodeAnchor extends ARAnchor {
      * @availability iOS 14.3+
      */
     get urlDecodingState(): ARAppClipCodeAnchor_URLDecodingState;
+    readonly $type: {
+        "c:objc(cs)ARAppClipCodeAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -140,6 +150,10 @@ export declare class ARBody2D extends SDKHandle {
      * @availability iOS 13.0+
      */
     get skeleton(): ARSkeleton2D;
+    readonly $type: {
+        "c:objc(cs)ARBody2D": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "skeleton": true;
     };
@@ -159,6 +173,11 @@ export declare class ARBodyAnchor extends ARAnchor {
      * @availability iOS 13.0+
      */
     get skeleton(): ARSkeleton3D;
+    readonly $type: {
+        "c:objc(cs)ARBodyAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -192,12 +211,12 @@ export declare class ARConfiguration extends SDKHandle {
      * class var recommendedVideoFormatFor4KResolution: ARConfiguration.VideoFormat? { get }
      * @availability iOS 16.0+
      */
-    static get recommendedVideoFormatFor4KResolution(): $SDK1;
+    static get recommendedVideoFormatFor4KResolution(): $SDK2;
     /**
      * class var recommendedVideoFormatForHighResolutionFrameCapturing: ARConfiguration.VideoFormat? { get }
      * @availability iOS 16.0+
      */
-    static get recommendedVideoFormatForHighResolutionFrameCapturing(): $SDK1;
+    static get recommendedVideoFormatForHighResolutionFrameCapturing(): $SDK2;
     /**
      * class var supportedVideoFormats: [ARConfiguration.VideoFormat] { get }
      * @availability iOS 11.3+
@@ -239,6 +258,10 @@ export declare class ARConfiguration extends SDKHandle {
      */
     get worldAlignment(): ARConfiguration_WorldAlignment;
     set worldAlignment(value: ARConfiguration_WorldAlignment);
+    readonly $type: {
+        "c:objc(cs)ARConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameSemantics": true;
         "isLightEstimationEnabled": true;
@@ -323,6 +346,11 @@ export declare class ARBodyTrackingConfiguration extends ARConfiguration {
      */
     get wantsHDREnvironmentTextures(): boolean;
     set wantsHDREnvironmentTextures(value: boolean);
+    readonly $type: {
+        "c:objc(cs)ARBodyTrackingConfiguration": true;
+        "c:objc(cs)ARConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameSemantics": true;
         "isLightEstimationEnabled": true;
@@ -352,23 +380,23 @@ export declare class ARCamera extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    projectPointOrientationViewportSize(point: SDKHandle, orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK4): $SDK3;
+    projectPointOrientationViewportSize(point: SDKHandle, orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5): $SDK4;
     /**
      * func projectPoint(_ point: simd_float3, viewRotationAngle: CGFloat, viewportSize: CGSize) -> CGPoint
      * @availability iOS 27.0+
      */
-    projectPointViewRotationAngleViewportSize(point: SDKHandle, viewRotationAngle: number, viewportSize: $SDK4): $SDK3;
+    projectPointViewRotationAngleViewportSize(point: SDKHandle, viewRotationAngle: number, viewportSize: $SDK5): $SDK4;
     /**
      * func projectionMatrix(for orientation: UIInterfaceOrientation, viewportSize: CGSize, zNear: CGFloat, zFar: CGFloat) -> simd_float4x4
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    projectionMatrixForViewportSizeZNearZFar(orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK4, zNear: number, zFar: number): SDKHandle;
+    projectionMatrixForViewportSizeZNearZFar(orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5, zNear: number, zFar: number): SDKHandle;
     /**
      * func projectionMatrix(viewRotationAngle: CGFloat, viewportSize: CGSize, zNear: CGFloat, zFar: CGFloat) -> simd_float4x4
      * @availability iOS 27.0+
      */
-    projectionMatrixViewRotationAngleViewportSizeZNearZFar(viewRotationAngle: number, viewportSize: $SDK4, zNear: number, zFar: number): SDKHandle;
+    projectionMatrixViewRotationAngleViewportSizeZNearZFar(viewRotationAngle: number, viewportSize: $SDK5, zNear: number, zFar: number): SDKHandle;
     /**
      * func viewMatrix(for orientation: UIInterfaceOrientation) -> simd_float4x4
      * @availability iOS 11.0+
@@ -399,7 +427,7 @@ export declare class ARCamera extends SDKHandle {
      * var imageResolution: CGSize { get }
      * @availability iOS 11.0+
      */
-    get imageResolution(): $SDK4;
+    get imageResolution(): $SDK5;
     /**
      * var intrinsics: simd_float3x3 { get }
      * @availability iOS 11.0+
@@ -425,12 +453,16 @@ export declare class ARCamera extends SDKHandle {
      * @availability iOS 12.0+
      * @deprecated iOS 27.0
      */
-    unprojectPointOntoPlaneOrientationViewportSize(point: $SDK3, planeTransform: SDKHandle, orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK4): (SDKHandle) | null;
+    unprojectPointOntoPlaneOrientationViewportSize(point: $SDK4, planeTransform: SDKHandle, orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5): (SDKHandle) | null;
     /**
      * @nonobjc func unprojectPoint(_ point: CGPoint, ontoPlane planeTransform: simd_float4x4, viewRotationAngle: CGFloat, viewportSize: CGSize) -> simd_float3?
      * @availability iOS 27.0+
      */
-    unprojectPointOntoPlaneViewRotationAngleViewportSize(point: $SDK3, planeTransform: SDKHandle, viewRotationAngle: number, viewportSize: $SDK4): (SDKHandle) | null;
+    unprojectPointOntoPlaneViewRotationAngleViewportSize(point: $SDK4, planeTransform: SDKHandle, viewRotationAngle: number, viewportSize: $SDK5): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)ARCamera": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "eulerAngles": true;
         "exposureDuration": true;
@@ -446,6 +478,9 @@ export declare class ARCamera extends SDKHandle {
  * @availability iOS 11.0+
  */
 export declare class ARCamera_TrackingState extends SDKHandle {
+    readonly $type: {
+        "s:So8ARCameraC5ARKitE13TrackingStateO": true;
+    };
 }
 /**
  * enum Reason
@@ -499,6 +534,12 @@ export declare class ARCoachingOverlayView extends SDKHandle {
      */
     get sessionProvider(): (SDKHandle) | null;
     set sessionProvider(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)ARCoachingOverlayView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activatesAutomatically": true;
         "delegate": true;
@@ -646,7 +687,7 @@ export declare class ARConfiguration_VideoFormat extends SDKHandle {
      * var imageResolution: CGSize { get }
      * @availability iOS 11.3+
      */
-    get imageResolution(): $SDK4;
+    get imageResolution(): $SDK5;
     /**
      * var isRecommendedForHighResolutionFrameCapturing: Bool { get }
      * @availability iOS 16.0+
@@ -657,6 +698,10 @@ export declare class ARConfiguration_VideoFormat extends SDKHandle {
      * @availability iOS 16.0+
      */
     get isVideoHDRSupported(): boolean;
+    readonly $type: {
+        "c:objc(cs)ARVideoFormat": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "captureDevicePosition": true;
         "captureDeviceType": true;
@@ -691,12 +736,16 @@ export declare class ARDepthData extends SDKHandle {
      * unowned(unsafe) var confidenceMap: CVPixelBuffer? { get }
      * @availability iOS 14.0+
      */
-    get confidenceMap(): $SDK6;
+    get confidenceMap(): $SDK7;
     /**
      * unowned(unsafe) var depthMap: CVPixelBuffer { get }
      * @availability iOS 14.0+
      */
     get depthMap(): _CoreVideo_CVBuffer;
+    readonly $type: {
+        "c:objc(cs)ARDepthData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "confidenceMap": true;
         "depthMap": true;
@@ -717,6 +766,10 @@ export declare class ARLightEstimate extends SDKHandle {
      * @availability iOS 11.0+
      */
     get ambientIntensity(): number;
+    readonly $type: {
+        "c:objc(cs)ARLightEstimate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ambientColorTemperature": true;
         "ambientIntensity": true;
@@ -742,6 +795,11 @@ export declare class ARDirectionalLightEstimate extends ARLightEstimate {
      * @availability iOS 11.0+
      */
     get sphericalHarmonicsCoefficients(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)ARDirectionalLightEstimate": true;
+        "c:objc(cs)ARLightEstimate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ambientColorTemperature": true;
         "ambientIntensity": true;
@@ -775,6 +833,11 @@ export declare class AREnvironmentProbeAnchor extends ARAnchor {
      * @availability iOS 12.0+
      */
     get extent(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)AREnvironmentProbeAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -894,6 +957,9 @@ export declare class ARError extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get highResolutionFrameCaptureInProgress(): ARError_Code;
+    readonly $type: {
+        "s:SC11ARErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -916,7 +982,7 @@ export declare class ARFaceAnchor extends ARAnchor {
      * var blendShapes: [ARFaceAnchor.BlendShapeLocation : NSNumber] { get }
      * @availability iOS 11.0+
      */
-    get blendShapes(): $SDK7;
+    get blendShapes(): $SDK8;
     /**
      * var geometry: ARFaceGeometry { get }
      * @availability iOS 11.0+
@@ -937,6 +1003,11 @@ export declare class ARFaceAnchor extends ARAnchor {
      * @availability iOS 12.0+
      */
     get rightEyeTransform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)ARFaceAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -1230,7 +1301,7 @@ export declare class ARFaceGeometry extends SDKHandle {
      * init?(blendShapes: [ARFaceAnchor.BlendShapeLocation : NSNumber])
      * @availability iOS 11.0+
      */
-    static init(blendShapes: $SDK7): (ARFaceGeometry) | null;
+    static init(blendShapes: $SDK8): (ARFaceGeometry) | null;
     /**
      * var triangleCount: Int { get }
      * @availability iOS 11.0+
@@ -1251,6 +1322,10 @@ export declare class ARFaceGeometry extends SDKHandle {
      * @availability iOS 11.0+
      */
     get vertices(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)ARFaceGeometry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "triangleCount": true;
     };
@@ -1293,6 +1368,11 @@ export declare class ARFaceTrackingConfiguration extends ARConfiguration {
      */
     get isWorldTrackingEnabled(): boolean;
     set isWorldTrackingEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)ARFaceTrackingConfiguration": true;
+        "c:objc(cs)ARConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameSemantics": true;
         "isLightEstimationEnabled": true;
@@ -1315,23 +1395,23 @@ export declare class ARFrame extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    displayTransformForViewportSize(orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK4): _CoreFoundation_CGAffineTransform;
+    displayTransformForViewportSize(orientation: _UIKit_UIInterfaceOrientation, viewportSize: $SDK5): _CoreFoundation_CGAffineTransform;
     /**
      * func displayTransform(viewRotationAngle: CGFloat, viewportSize: CGSize) -> CGAffineTransform
      * @availability iOS 27.0+
      */
-    displayTransformViewRotationAngleViewportSize(viewRotationAngle: number, viewportSize: $SDK4): _CoreFoundation_CGAffineTransform;
+    displayTransformViewRotationAngleViewportSize(viewRotationAngle: number, viewportSize: $SDK5): _CoreFoundation_CGAffineTransform;
     /**
      * func hitTest(_ point: CGPoint, types: ARHitTestResult.ResultType) -> [ARHitTestResult]
      * @availability iOS 11.0+
      * @deprecated iOS 14.0
      */
-    hitTest(point: $SDK3, types: ARHitTestResult_ResultType): Array<ARHitTestResult>;
+    hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult>;
     /**
      * func raycastQuery(from point: CGPoint, allowing target: ARRaycastQuery.Target, alignment: ARRaycastQuery.TargetAlignment) -> ARRaycastQuery
      * @availability iOS 13.0+
      */
-    raycastQuery(point: $SDK3, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): ARRaycastQuery;
+    raycastQuery(point: $SDK4, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): ARRaycastQuery;
     /**
      * var anchors: [ARAnchor] { get }
      * @availability iOS 11.0+
@@ -1376,7 +1456,7 @@ export declare class ARFrame extends SDKHandle {
      * var estimatedDepthData: CVPixelBuffer? { get }
      * @availability iOS 13.0+
      */
-    get estimatedDepthData(): $SDK6;
+    get estimatedDepthData(): $SDK7;
     /**
      * var exifData: [String : Any] { get }
      * @availability iOS 16.0+
@@ -1411,7 +1491,7 @@ export declare class ARFrame extends SDKHandle {
      * var segmentationBuffer: CVPixelBuffer? { get }
      * @availability iOS 13.0+
      */
-    get segmentationBuffer(): $SDK6;
+    get segmentationBuffer(): $SDK7;
     /**
      * var smoothedSceneDepth: ARDepthData? { get }
      * @availability iOS 14.0+
@@ -1427,6 +1507,10 @@ export declare class ARFrame extends SDKHandle {
      * @availability iOS 12.0+
      */
     get worldMappingStatus(): ARFrame_WorldMappingStatus;
+    readonly $type: {
+        "c:objc(cs)ARFrame": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchors": true;
         "camera": true;
@@ -1482,7 +1566,7 @@ export declare class ARGeoAnchor extends ARAnchor {
      * init(name: String, coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance)
      * @availability iOS 14.0+
      */
-    static initNameCoordinateAltitude(name: string, coordinate: $SDK12, altitude: number): ARGeoAnchor;
+    static initNameCoordinateAltitude(name: string, coordinate: $SDK13, altitude: number): ARGeoAnchor;
     /**
      * var altitudeSource: ARGeoAnchor.AltitudeSource { get }
      * @availability iOS 14.0+
@@ -1492,22 +1576,27 @@ export declare class ARGeoAnchor extends ARAnchor {
      * var coordinate: CLLocationCoordinate2D { get }
      * @availability iOS 14.0+
      */
-    get coordinate(): $SDK12;
+    get coordinate(): $SDK13;
     /**
      * @nonobjc convenience init(coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil)
      * @availability iOS 14.0+
      */
-    static initCoordinateAltitude(coordinate: $SDK12, altitude?: (number) | null): ARGeoAnchor;
+    static initCoordinateAltitude(coordinate: $SDK13, altitude?: (number) | null): ARGeoAnchor;
     /**
      * @nonobjc convenience init(name: String, coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil)
      * @availability iOS 14.0+
      */
-    static initNameCoordinateAltitude88158(name: string, coordinate: $SDK12, altitude?: (number) | null): ARGeoAnchor;
+    static initNameCoordinateAltitude88158(name: string, coordinate: $SDK13, altitude?: (number) | null): ARGeoAnchor;
     /**
      * @nonobjc var altitude: CLLocationDistance? { get }
      * @availability iOS 14.0+
      */
     get altitude(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)ARGeoAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -1564,6 +1653,10 @@ export declare class ARGeometryElement extends SDKHandle {
      * @availability iOS 14.0+
      */
     subscript(index: number): Array<number>;
+    readonly $type: {
+        "c:objc(cs)ARGeometryElement": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "buffer": true;
         "bytesPerIndex": true;
@@ -1619,6 +1712,10 @@ export declare class ARGeometrySource extends SDKHandle {
      * @availability iOS 13.4+
      */
     get stride(): number;
+    readonly $type: {
+        "c:objc(cs)ARGeometrySource": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "buffer": true;
         "componentsPerVector": true;
@@ -1637,12 +1734,12 @@ export declare class ARGeoTrackingConfiguration extends ARConfiguration {
      * class func checkAvailability(at coordinate: CLLocationCoordinate2D, completionHandler: @escaping (Bool, (any Error)?) -> Void)
      * @availability iOS 14.0+
      */
-    static checkAvailabilityAtCompletionHandler(coordinate: $SDK12, completionHandler: $SDK13): void;
+    static checkAvailabilityAtCompletionHandler(coordinate: $SDK13, completionHandler: $SDK14): void;
     /**
      * class func checkAvailability(completionHandler: @escaping (Bool, (any Error)?) -> Void)
      * @availability iOS 14.0+
      */
-    static checkAvailabilityCompletionHandler(completionHandler: $SDK13): void;
+    static checkAvailabilityCompletionHandler(completionHandler: $SDK14): void;
     /**
      * class var supportsAppClipCodeTracking: Bool { get }
      * @availability iOS 14.3+
@@ -1669,14 +1766,14 @@ export declare class ARGeoTrackingConfiguration extends ARConfiguration {
      * var detectionImages: Set<ARReferenceImage>! { get set }
      * @availability iOS 14.0+
      */
-    get detectionImages(): $SDK14;
-    set detectionImages(value: $SDK14);
+    get detectionImages(): $SDK15;
+    set detectionImages(value: $SDK15);
     /**
      * var detectionObjects: Set<ARReferenceObject> { get set }
      * @availability iOS 14.0+
      */
-    get detectionObjects(): $SDK15;
-    set detectionObjects(value: $SDK15);
+    get detectionObjects(): $SDK16;
+    set detectionObjects(value: $SDK16);
     /**
      * var environmentTexturing: ARWorldTrackingConfiguration.EnvironmentTexturing { get set }
      * @availability iOS 14.0+
@@ -1699,14 +1796,19 @@ export declare class ARGeoTrackingConfiguration extends ARConfiguration {
      * var trackingObjects: Set<ARReferenceObject> { get set }
      * @availability iOS 27.0+
      */
-    get trackingObjects(): $SDK15;
-    set trackingObjects(value: $SDK15);
+    get trackingObjects(): $SDK16;
+    set trackingObjects(value: $SDK16);
     /**
      * var wantsHDREnvironmentTextures: Bool { get set }
      * @availability iOS 14.0+
      */
     get wantsHDREnvironmentTextures(): boolean;
     set wantsHDREnvironmentTextures(value: boolean);
+    readonly $type: {
+        "c:objc(cs)ARGeoTrackingConfiguration": true;
+        "c:objc(cs)ARConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameSemantics": true;
         "isLightEstimationEnabled": true;
@@ -1745,6 +1847,10 @@ export declare class ARGeoTrackingStatus extends SDKHandle {
      * @availability iOS 14.0+
      */
     get stateReason(): ARGeoTrackingStatus_StateReason;
+    readonly $type: {
+        "c:objc(cs)ARGeoTrackingStatus": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accuracy": true;
         "state": true;
@@ -1823,6 +1929,10 @@ export declare class ARHitTestResult extends SDKHandle {
      * @deprecated iOS 14.0
      */
     get worldTransform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)ARHitTestResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchor": true;
         "distance": true;
@@ -1896,6 +2006,11 @@ export declare class ARImageAnchor extends ARAnchor {
      * @availability iOS 11.3+
      */
     get referenceImage(): ARReferenceImage;
+    readonly $type: {
+        "c:objc(cs)ARImageAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -1933,6 +2048,11 @@ export declare class ARImageTrackingConfiguration extends ARConfiguration {
      */
     get trackingImages(): Array<ARReferenceImage>;
     set trackingImages(value: Array<ARReferenceImage>);
+    readonly $type: {
+        "c:objc(cs)ARImageTrackingConfiguration": true;
+        "c:objc(cs)ARConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameSemantics": true;
         "isLightEstimationEnabled": true;
@@ -1965,6 +2085,10 @@ export declare class ARMatteGenerator extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(device: SDKHandle, matteResolution: ARMatteGenerator_Resolution): ARMatteGenerator;
+    readonly $type: {
+        "c:objc(cs)ARMatteGenerator": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Resolution
@@ -1988,6 +2112,11 @@ export declare class ARMeshAnchor extends ARAnchor {
      * @availability iOS 13.4+
      */
     get geometry(): ARMeshGeometry;
+    readonly $type: {
+        "c:objc(cs)ARMeshAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -2033,6 +2162,10 @@ export declare class ARMeshGeometry extends SDKHandle {
      * @availability iOS 13.4+
      */
     get vertices(): ARGeometrySource;
+    readonly $type: {
+        "c:objc(cs)ARMeshGeometry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "classification": true;
         "faces": true;
@@ -2055,6 +2188,11 @@ export declare class ARObjectAnchor extends ARAnchor {
      * @availability iOS 12.0+
      */
     get referenceObject(): ARReferenceObject;
+    readonly $type: {
+        "c:objc(cs)ARObjectAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -2074,6 +2212,11 @@ export declare class ARObjectScanningConfiguration extends ARConfiguration {
     /** var planeDetection: ARWorldTrackingConfiguration.PlaneDetection { get set } */
     get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection;
     set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection);
+    readonly $type: {
+        "c:objc(cs)ARObjectScanningConfiguration": true;
+        "c:objc(cs)ARConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameSemantics": true;
         "isLightEstimationEnabled": true;
@@ -2101,6 +2244,11 @@ export declare class AROrientationTrackingConfiguration extends ARConfiguration 
      */
     get isAutoFocusEnabled(): boolean;
     set isAutoFocusEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AROrientationTrackingConfiguration": true;
+        "c:objc(cs)ARConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameSemantics": true;
         "isLightEstimationEnabled": true;
@@ -2116,6 +2264,11 @@ export declare class AROrientationTrackingConfiguration extends ARConfiguration 
  * @availability iOS 13.0+
  */
 export declare class ARParticipantAnchor extends ARAnchor {
+    readonly $type: {
+        "c:objc(cs)ARParticipantAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -2164,6 +2317,11 @@ export declare class ARPlaneAnchor extends ARAnchor {
      * @availability iOS 12.0+
      */
     get classification(): ARPlaneAnchor_Classification;
+    readonly $type: {
+        "c:objc(cs)ARPlaneAnchor": true;
+        "c:objc(cs)ARAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -2193,6 +2351,9 @@ export declare const ARPlaneAnchor_Alignment: {
  * @availability iOS 12.0+
  */
 export declare class ARPlaneAnchor_Classification extends SDKHandle {
+    readonly $type: {
+        "s:So13ARPlaneAnchorC5ARKitE14ClassificationO": true;
+    };
 }
 /**
  * enum Status
@@ -2221,6 +2382,10 @@ export declare class ARPlaneExtent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get width(): number;
+    readonly $type: {
+        "c:objc(cs)ARPlaneExtent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "height": true;
         "rotationOnYAxis": true;
@@ -2257,6 +2422,10 @@ export declare class ARPlaneGeometry extends SDKHandle {
      * @availability iOS 11.3+
      */
     get vertices(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)ARPlaneGeometry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "triangleCount": true;
     };
@@ -2276,6 +2445,10 @@ export declare class ARPointCloud extends SDKHandle {
      * @availability iOS 11.0+
      */
     get points(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)ARPointCloud": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ARPositionalTrackingConfiguration
@@ -2299,6 +2472,11 @@ export declare class ARPositionalTrackingConfiguration extends ARConfiguration {
      */
     get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection;
     set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection);
+    readonly $type: {
+        "c:objc(cs)ARPositionalTrackingConfiguration": true;
+        "c:objc(cs)ARConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameSemantics": true;
         "isLightEstimationEnabled": true;
@@ -2340,6 +2518,10 @@ export declare class ARRaycastQuery extends SDKHandle {
      * @availability iOS 13.0+
      */
     get targetAlignment(): ARRaycastQuery_TargetAlignment;
+    readonly $type: {
+        "c:objc(cs)ARRaycastQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "direction": true;
         "origin": true;
@@ -2396,6 +2578,10 @@ export declare class ARRaycastResult extends SDKHandle {
      * @availability iOS 13.0+
      */
     get worldTransform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)ARRaycastResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchor": true;
         "target": true;
@@ -2412,7 +2598,7 @@ export declare class ARReferenceImage extends SDKHandle {
      * class func referenceImages(inGroupNamed name: String, bundle: Bundle?) -> Set<ARReferenceImage>?
      * @availability iOS 11.3+
      */
-    static referenceImages(name: string, bundle?: (_Foundation_Bundle) | null): $SDK14;
+    static referenceImages(name: string, bundle?: (_Foundation_Bundle) | null): $SDK15;
     /**
      * init(_ image: CGImage, orientation: CGImagePropertyOrientation, physicalWidth: CGFloat)
      * @availability iOS 11.3+
@@ -2438,12 +2624,16 @@ export declare class ARReferenceImage extends SDKHandle {
      * var physicalSize: CGSize { get }
      * @availability iOS 11.3+
      */
-    get physicalSize(): $SDK4;
+    get physicalSize(): $SDK5;
     /**
      * var resourceGroupName: String? { get }
      * @availability iOS 13.0+
      */
     get resourceGroupName(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)ARReferenceImage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "physicalSize": true;
@@ -2527,6 +2717,10 @@ export declare class ARReferenceObject extends SDKHandle {
      * @availability iOS 27.0+
      */
     get usdzFile(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)ARReferenceObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "center": true;
         "extent": true;
@@ -2562,6 +2756,11 @@ export declare class ARSCNFaceGeometry extends SDKHandle {
      * @availability iOS 11.0+
      */
     update(faceGeometry: ARFaceGeometry): void;
+    readonly $type: {
+        "c:objc(cs)ARSCNFaceGeometry": true;
+        "c:objc(cs)SCNGeometry": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ARSCNPlaneGeometry
@@ -2572,14 +2771,17 @@ export declare class ARSCNPlaneGeometry extends SDKHandle {
      * convenience init?(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): (ARSCNPlaneGeometry) | null;
-    /** init() */
-    static init(): ARSCNPlaneGeometry;
+    static init(device: SDKHandle): (ARSCNPlaneGeometry) | null;
     /**
      * func update(from planeGeometry: ARPlaneGeometry)
      * @availability iOS 11.3+
      */
     update(planeGeometry: ARPlaneGeometry): void;
+    readonly $type: {
+        "c:objc(cs)ARSCNPlaneGeometry": true;
+        "c:objc(cs)SCNGeometry": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ARSCNView
@@ -2596,7 +2798,7 @@ export declare class ARSCNView extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 14.0
      */
-    hitTest(point: $SDK3, types: ARHitTestResult_ResultType): Array<ARHitTestResult>;
+    hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult>;
     /** init() */
     static init(): ARSCNView;
     /**
@@ -2608,7 +2810,7 @@ export declare class ARSCNView extends SDKHandle {
      * func raycastQuery(from point: CGPoint, allowing target: ARRaycastQuery.Target, alignment: ARRaycastQuery.TargetAlignment) -> ARRaycastQuery?
      * @availability iOS 13.0+
      */
-    raycastQuery(point: $SDK3, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): (ARRaycastQuery) | null;
+    raycastQuery(point: $SDK4, target: ARRaycastQuery_Target, alignment: ARRaycastQuery_TargetAlignment): (ARRaycastQuery) | null;
     /**
      * var automaticallyUpdatesLighting: Bool { get set }
      * @availability iOS 11.0+
@@ -2649,7 +2851,14 @@ export declare class ARSCNView extends SDKHandle {
      * @MainActor @nonobjc @preconcurrency func unprojectPoint(_ point: CGPoint, ontoPlane planeTransform: simd_float4x4) -> simd_float3?
      * @availability iOS 12.0+
      */
-    unprojectPoint(point: $SDK3, planeTransform: SDKHandle): Promise<(SDKHandle) | null>;
+    unprojectPoint(point: $SDK4, planeTransform: SDKHandle): Promise<(SDKHandle) | null>;
+    readonly $type: {
+        "c:objc(cs)ARSCNView": true;
+        "c:objc(cs)SCNView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "automaticallyUpdatesLighting": true;
         "delegate": true;
@@ -2745,12 +2954,12 @@ export declare class ARSession extends SDKHandle {
      * func captureHighResolutionFrame(using photoSettings: AVCapturePhotoSettings?) async throws -> ARFrame
      * @availability iOS 26.0+
      */
-    captureHighResolutionFrameUsingCompletion(photoSettings: (_AVFoundation_AVCapturePhotoSettings) | null, completion: $SDK23): void;
+    captureHighResolutionFrameUsingCompletion(photoSettings: (_AVFoundation_AVCapturePhotoSettings) | null, completion: $SDK24): void;
     /**
      * func captureHighResolutionFrame() async throws -> ARFrame
      * @availability iOS 16.0+
      */
-    captureHighResolutionFrameCompletion(completion: $SDK23): void;
+    captureHighResolutionFrameCompletion(completion: $SDK24): void;
     /**
      * func createReferenceObject(transform: simd_float4x4, center: simd_float3, extent: simd_float3) async throws -> ARReferenceObject
      * @availability iOS 12.0+
@@ -2827,8 +3036,8 @@ export declare class ARSession extends SDKHandle {
      * var delegateQueue: dispatch_queue_t? { get set }
      * @availability iOS 11.0+
      */
-    get delegateQueue(): $SDK31;
-    set delegateQueue(value: $SDK31);
+    get delegateQueue(): $SDK32;
+    set delegateQueue(value: $SDK32);
     /**
      * var identifier: UUID { get }
      * @availability iOS 13.0+
@@ -2845,6 +3054,10 @@ export declare class ARSession extends SDKHandle {
      * @availability iOS 27.0+
      */
     get viewRotationAngle(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)ARSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
         "currentFrame": true;
@@ -2864,6 +3077,10 @@ export declare class ARSession_CollaborationData extends SDKHandle {
      * @availability iOS 13.0+
      */
     get priority(): ARSession_CollaborationData_Priority;
+    readonly $type: {
+        "c:objc(cs)ARCollaborationData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "priority": true;
     };
@@ -3037,6 +3254,10 @@ export declare class ARSkeleton extends SDKHandle {
      * @availability iOS 13.0+
      */
     get definition(): ARSkeletonDefinition;
+    readonly $type: {
+        "c:objc(cs)ARSkeleton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "definition": true;
     };
@@ -3113,6 +3334,11 @@ export declare class ARSkeleton2D extends ARSkeleton {
      * @availability iOS 13.0+
      */
     landmark(jointName: ARSkeleton_JointName): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)ARSkeleton2D": true;
+        "c:objc(cs)ARSkeleton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "definition": true;
     };
@@ -3142,6 +3368,11 @@ export declare class ARSkeleton3D extends ARSkeleton {
      * @availability iOS 13.0+
      */
     get jointModelTransforms(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)ARSkeleton3D": true;
+        "c:objc(cs)ARSkeleton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "definition": true;
     };
@@ -3186,6 +3417,10 @@ export declare class ARSkeletonDefinition extends SDKHandle {
      * @availability iOS 13.0+
      */
     index(jointName: ARSkeleton_JointName): number;
+    readonly $type: {
+        "c:objc(cs)ARSkeletonDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "jointCount": true;
         "jointNames": true;
@@ -3207,7 +3442,7 @@ export declare class ARSKView extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 14.0
      */
-    hitTest(point: $SDK3, types: ARHitTestResult_ResultType): Array<ARHitTestResult>;
+    hitTest(point: $SDK4, types: ARHitTestResult_ResultType): Array<ARHitTestResult>;
     /** init() */
     static init(): ARSKView;
     /**
@@ -3227,6 +3462,13 @@ export declare class ARSKView extends SDKHandle {
      */
     get session(): ARSession;
     set session(value: ARSession);
+    readonly $type: {
+        "c:objc(cs)ARSKView": true;
+        "c:objc(cs)SKView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "session": true;
@@ -3314,6 +3556,10 @@ export declare class ARTrackedRaycast extends SDKHandle {
      * @availability iOS 13.0+
      */
     stopTracking(): void;
+    readonly $type: {
+        "c:objc(cs)ARTrackedRaycast": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ARWorldMap
@@ -3341,6 +3587,10 @@ export declare class ARWorldMap extends SDKHandle {
      * @availability iOS 12.0+
      */
     get rawFeaturePoints(): ARPointCloud;
+    readonly $type: {
+        "c:objc(cs)ARWorldMap": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchors": true;
         "center": true;
@@ -3401,14 +3651,14 @@ export declare class ARWorldTrackingConfiguration extends ARConfiguration {
      * var detectionImages: Set<ARReferenceImage>! { get set }
      * @availability iOS 11.3+
      */
-    get detectionImages(): $SDK14;
-    set detectionImages(value: $SDK14);
+    get detectionImages(): $SDK15;
+    set detectionImages(value: $SDK15);
     /**
      * var detectionObjects: Set<ARReferenceObject> { get set }
      * @availability iOS 12.0+
      */
-    get detectionObjects(): $SDK15;
-    set detectionObjects(value: $SDK15);
+    get detectionObjects(): $SDK16;
+    set detectionObjects(value: $SDK16);
     /**
      * var environmentTexturing: ARWorldTrackingConfiguration.EnvironmentTexturing { get set }
      * @availability iOS 12.0+
@@ -3443,8 +3693,8 @@ export declare class ARWorldTrackingConfiguration extends ARConfiguration {
      * var trackingObjects: Set<ARReferenceObject> { get set }
      * @availability iOS 27.0+
      */
-    get trackingObjects(): $SDK15;
-    set trackingObjects(value: $SDK15);
+    get trackingObjects(): $SDK16;
+    set trackingObjects(value: $SDK16);
     /**
      * var userFaceTrackingEnabled: Bool { get set }
      * @availability iOS 13.0+
@@ -3457,6 +3707,11 @@ export declare class ARWorldTrackingConfiguration extends ARConfiguration {
      */
     get wantsHDREnvironmentTextures(): boolean;
     set wantsHDREnvironmentTextures(value: boolean);
+    readonly $type: {
+        "c:objc(cs)ARWorldTrackingConfiguration": true;
+        "c:objc(cs)ARConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameSemantics": true;
         "isLightEstimationEnabled": true;

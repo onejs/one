@@ -5,12 +5,18 @@ import { SDKHandle } from 'one/ios-runtime';
  * @availability iOS 18.0+
  */
 export declare class Atomic<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15Synchronization6AtomicV": true;
+    };
 }
 /**
  * @frozen struct AtomicLazyReference<Instance> where Instance : AnyObject
  * @availability iOS 18.0+
  */
 export declare class AtomicLazyReference<Instance = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15Synchronization19AtomicLazyReferenceV": true;
+    };
 }
 /**
  * @frozen struct AtomicLoadOrdering
@@ -37,6 +43,9 @@ export declare class AtomicLoadOrdering extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get acquiring(): AtomicLoadOrdering;
+    readonly $type: {
+        "s:15Synchronization18AtomicLoadOrderingV": true;
+    };
 }
 /**
  * protocol AtomicOptionalRepresentable : AtomicRepresentable
@@ -105,6 +114,9 @@ export declare class AtomicStoreOrdering extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get releasing(): AtomicStoreOrdering;
+    readonly $type: {
+        "s:15Synchronization19AtomicStoreOrderingV": true;
+    };
 }
 /**
  * @frozen struct AtomicUpdateOrdering
@@ -141,6 +153,9 @@ export declare class AtomicUpdateOrdering extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get releasing(): AtomicUpdateOrdering;
+    readonly $type: {
+        "s:15Synchronization20AtomicUpdateOrderingV": true;
+    };
 }
 /**
  * typealias AtomicRepresentation
@@ -202,6 +217,9 @@ export type Int8_AtomicRepresentation = SDKHandle;
  * @availability iOS 18.0+
  */
 export declare class Mutex<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15Synchronization5MutexV": true;
+    };
 }
 /**
  * typealias AtomicRepresentation = Never
@@ -385,6 +403,9 @@ export declare class WordPair extends SDKHandle {
      */
     get second(): number;
     set second(value: number);
+    readonly $type: {
+        "s:15Synchronization8WordPairV": true;
+    };
 }
 /**
  * typealias AtomicRepresentation

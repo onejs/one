@@ -3,6 +3,7 @@ import { SDKHandle, type Implements, type NativeOut, type NativeMap, type Native
 import type { Published as _Combine_Published } from "one/ios/Combine";
 import type { CFRunLoop as _CoreFoundation_CFRunLoop } from "one/ios/CoreFoundation";
 import type { DispatchQueue as _Dispatch_DispatchQueue } from "one/ios/Dispatch";
+import type { NSObject as _ObjectiveC_NSObject, NSZone as _ObjectiveC_NSZone, Selector as _ObjectiveC_Selector } from "one/ios/ObjectiveC";
 import type { SecIdentity as _Security_SecIdentity, SecTrust as _Security_SecTrust, SSLProtocol as _Security_SSLProtocol, tls_protocol_version_t as _Security_tls_protocol_version_t, tls_ciphersuite_t as _Security_tls_ciphersuite_t } from "one/ios/Security";
 import type { FilePath as _System_FilePath } from "one/ios/System";
 type $SDK0 = (AttributedString_AttributeRunBoundaries) | null;
@@ -105,54 +106,56 @@ type $SDK144 = (Morphology_GrammaticalPerson) | null;
 type $SDK145 = (Morphology_GrammaticalNumber) | null;
 type $SDK151 = Record<string, NSNumber>;
 type $SDK155 = ((arg0: unknown, arg1: number, arg2: NativeOut<boolean>) => void);
-type $SDK163 = ((arg0: unknown, arg1: NativeOut<boolean>) => void);
-type $SDK165 = (((arg0: SDKHandle, arg1: number) => void)) | null;
-type $SDK171 = ((arg0: unknown, arg1: unknown, arg2: NativeOut<boolean>) => void);
-type $SDK172 = {
+type $SDK167 = ((arg0: unknown, arg1: NativeOut<boolean>) => void);
+type $SDK169 = (((arg0: SDKHandle, arg1: number) => void)) | null;
+type $SDK175 = ((arg0: unknown, arg1: unknown, arg2: NativeOut<boolean>) => void);
+type $SDK176 = {
     "key": unknown;
     "value": unknown;
 };
-type $SDK179 = (((arg0: boolean) => void)) | null;
-type $SDK185 = [number, number, number, number, number];
-type $SDK188 = ((arg0: string, arg1: string) => void);
-type $SDK193 = (PersonNameComponents) | null;
-type $SDK197 = (((arg0: NSHashTable<unknown>, arg1: SDKHandle) => Promise<void>)) | null;
-type $SDK198 = ((arg0: number, arg1: NativeOut<boolean>) => void);
-type $SDK199 = ((arg0: SDKHandle, arg1: NativeOut<boolean>) => void);
-type $SDK203 = (((arg0: (SDKHandle) | null, arg1: (NativeError) | null) => void)) | null;
-type $SDK213 = Array<NSLinguisticTagScheme>;
-type $SDK214 = ((arg0: (NSLinguisticTag) | null, arg1: SDKHandle, arg2: NativeOut<boolean>) => void);
-type $SDK215 = (NSLinguisticTag) | null;
-type $SDK216 = ((arg0: (NSLinguisticTag) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: NativeOut<boolean>) => void);
-type $SDK217 = (((arg0: NSMapTable<unknown, unknown>, arg1: SDKHandle) => Promise<(string) | null>)) | null;
-type $SDK220 = (((arg0: NSMapTable<unknown, unknown>, arg1: SDKHandle) => Promise<void>)) | null;
-type $SDK229 = Array<NSOrderedCollectionChange>;
-type $SDK235 = SortDescriptor<SDKHandle>;
-type $SDK238 = NativeMap<NSTextCheckingKey, string>;
-type $SDK240 = (NativeMap<NSTextCheckingKey, string>) | null;
-type $SDK245 = NativeMap<URLResourceKey, unknown>;
-type $SDK246 = (Array<URLQueryItem>) | null;
-type $SDK255 = (OperationQueue_SchedulerOptions) | null;
-type $SDK257 = PredicateExpressions_Variable<unknown>;
-type $SDK258 = PredicateExpressions_NilLiteral<unknown>;
-type $SDK259 = PredicateExpressions_Value<unknown>;
-type $SDK261 = Array<PresentationIntent_IntentType>;
-type $SDK266 = (Progress_FileOperationKind) | null;
-type $SDK272 = (RunLoop_SchedulerOptions) | null;
-type $SDK289 = URL_ParseStrategy_ComponentParseStrategy<string>;
-type $SDK290 = URL_ParseStrategy_ComponentParseStrategy<number>;
-type $SDK292 = (CachedURLResponse) | null;
-type $SDK308 = ((arg0: (ArrayBuffer) | null, arg1: (URLResponse) | null, arg2: (NativeError) | null) => void);
-type $SDK309 = ((arg0: (string) | null, arg1: (URLResponse) | null, arg2: (NativeError) | null) => void);
-type $SDK312 = [ArrayBuffer, URLResponse];
-type $SDK313 = [URLSession_AsyncBytes, URLResponse];
-type $SDK314 = {
+type $SDK183 = (((arg0: boolean) => void)) | null;
+type $SDK189 = [number, number, number, number, number];
+type $SDK192 = ((arg0: string, arg1: string) => void);
+type $SDK197 = (PersonNameComponents) | null;
+type $SDK201 = (((arg0: NSHashTable<unknown>, arg1: SDKHandle) => Promise<void>)) | null;
+type $SDK202 = ((arg0: number, arg1: NativeOut<boolean>) => void);
+type $SDK203 = ((arg0: SDKHandle, arg1: NativeOut<boolean>) => void);
+type $SDK207 = (((arg0: (SDKHandle) | null, arg1: (NativeError) | null) => void)) | null;
+type $SDK217 = Array<NSLinguisticTagScheme>;
+type $SDK218 = ((arg0: (NSLinguisticTag) | null, arg1: SDKHandle, arg2: NativeOut<boolean>) => void);
+type $SDK219 = (NSLinguisticTag) | null;
+type $SDK220 = ((arg0: (NSLinguisticTag) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: NativeOut<boolean>) => void);
+type $SDK221 = NSMapTable<SDKHandle, SDKHandle>;
+type $SDK223 = (((arg0: NSMapTable<unknown, unknown>, arg1: SDKHandle) => Promise<(string) | null>)) | null;
+type $SDK226 = (((arg0: NSMapTable<unknown, unknown>, arg1: SDKHandle) => Promise<void>)) | null;
+type $SDK238 = Array<NSOrderedCollectionChange>;
+type $SDK244 = SortDescriptor<_ObjectiveC_NSObject>;
+type $SDK247 = NativeMap<NSTextCheckingKey, string>;
+type $SDK249 = (NativeMap<NSTextCheckingKey, string>) | null;
+type $SDK254 = NativeMap<URLResourceKey, unknown>;
+type $SDK255 = (Array<URLQueryItem>) | null;
+type $SDK264 = (OperationQueue_SchedulerOptions) | null;
+type $SDK266 = PredicateExpressions_Variable<unknown>;
+type $SDK267 = PredicateExpressions_NilLiteral<unknown>;
+type $SDK268 = PredicateExpressions_Value<unknown>;
+type $SDK270 = Array<PresentationIntent_IntentType>;
+type $SDK275 = (Progress_FileOperationKind) | null;
+type $SDK281 = (RunLoop_SchedulerOptions) | null;
+type $SDK283 = ("browserAccessibilityCurrentStatus" | "browserAccessibilitySortDirection" | "browserAccessibilityRoleDescription" | "browserAccessibilityKeyboardShortcuts" | SDKHandle) & (SDKHandle);
+type $SDK302 = URL_ParseStrategy_ComponentParseStrategy<string>;
+type $SDK303 = URL_ParseStrategy_ComponentParseStrategy<number>;
+type $SDK305 = (CachedURLResponse) | null;
+type $SDK321 = ((arg0: (ArrayBuffer) | null, arg1: (URLResponse) | null, arg2: (NativeError) | null) => void);
+type $SDK322 = ((arg0: (string) | null, arg1: (URLResponse) | null, arg2: (NativeError) | null) => void);
+type $SDK325 = [ArrayBuffer, URLResponse];
+type $SDK326 = [URLSession_AsyncBytes, URLResponse];
+type $SDK327 = {
     "data": ArrayBuffer;
     "response": URLResponse;
 };
-type $SDK317 = ((arg0: (ArrayBuffer) | null) => void);
-type $SDK325 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
-type $SDK328 = NSMapTable<unknown, unknown>;
+type $SDK330 = ((arg0: (ArrayBuffer) | null) => void);
+type $SDK337 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+type $SDK340 = NSMapTable<unknown, unknown>;
 /**
  * typealias DecodingConfiguration = Element.DecodingConfiguration
  * @availability iOS 15.0+
@@ -178,6 +181,9 @@ export type ArraySlice_Regions<Element = unknown> = SDKHandle;
  * @availability iOS 15.0+
  */
 export declare class AsyncCharacterSequence<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation22AsyncCharacterSequenceV": true;
+    };
     readonly $element: string;
 }
 /**
@@ -185,6 +191,9 @@ export declare class AsyncCharacterSequence<Base = unknown> extends SDKHandle {
  * @availability iOS 15.0+
  */
 export declare class AsyncCharacterSequence_AsyncIterator<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation22AsyncCharacterSequenceV0B8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Character
@@ -201,6 +210,9 @@ export type AsyncCharacterSequence_Element<Base = unknown> = string;
  * @availability iOS 15.0+
  */
 export declare class AsyncLineSequence<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation17AsyncLineSequenceV": true;
+    };
     readonly $element: string;
 }
 /**
@@ -208,6 +220,9 @@ export declare class AsyncLineSequence<Base = unknown> extends SDKHandle {
  * @availability iOS 15.0+
  */
 export declare class AsyncLineSequence_AsyncIterator<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation17AsyncLineSequenceV0B8IteratorV": true;
+    };
 }
 /**
  * typealias Element = String
@@ -224,6 +239,9 @@ export type AsyncLineSequence_Element<Base = unknown> = string;
  * @availability iOS 15.0+
  */
 export declare class AsyncUnicodeScalarSequence<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation26AsyncUnicodeScalarSequenceV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -231,6 +249,9 @@ export declare class AsyncUnicodeScalarSequence<Base = unknown> extends SDKHandl
  * @availability iOS 15.0+
  */
 export declare class AsyncUnicodeScalarSequence_AsyncIterator<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation26AsyncUnicodeScalarSequenceV0B8IteratorV": true;
+    };
 }
 /**
  * typealias Element = UnicodeScalar
@@ -292,12 +313,18 @@ export declare class AttributeContainer extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init57744(dictionary: $SDK1): AttributeContainer;
+    readonly $type: {
+        "s:10Foundation18AttributeContainerV": true;
+    };
 }
 /**
  * struct Builder<T> where T : AttributedStringKey
  * @availability iOS 15.0+
  */
 export declare class AttributeContainer_Builder<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation18AttributeContainerV7BuilderV": true;
+    };
 }
 /**
  * typealias DecodingConfiguration = AttributeScopeCodableConfiguration
@@ -511,6 +538,9 @@ export declare class AttributedString extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init20282(substring: AttributedSubstring): AttributedString;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV": true;
+    };
 }
 /**
  * struct AttributeInvalidationCondition
@@ -522,6 +552,9 @@ export declare class AttributedString_AttributeInvalidationCondition extends SDK
      * @availability iOS 16.0+
      */
     static get textChanged(): AttributedString_AttributeInvalidationCondition;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV30AttributeInvalidationConditionV": true;
+    };
 }
 /**
  * enum AttributeMergePolicy
@@ -533,6 +566,9 @@ export type AttributedString_AttributeMergePolicy = "keepNew" | "keepCurrent";
  * @availability iOS 16.0+
  */
 export declare class AttributedString_AttributeRunBoundaries extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV22AttributeRunBoundariesO": true;
+    };
 }
 /**
  * struct CharacterView
@@ -594,6 +630,9 @@ export declare class AttributedString_CharacterView extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript29327(bounds: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV13CharacterViewV": true;
+    };
 }
 /**
  * typealias Element = Character
@@ -682,6 +721,9 @@ export declare class AttributedString_Index extends SDKHandle {
      * @availability iOS 26.0+
      */
     isValid(text: DiscontiguousAttributedSubstring): boolean;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV5IndexV": true;
+    };
 }
 /**
  * struct InterpolationOptions
@@ -764,6 +806,9 @@ export declare class AttributedString_LocalizationOptions extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): AttributedString_LocalizationOptions;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV19LocalizationOptionsV": true;
+    };
 }
 /**
  * struct MarkdownParsingOptions
@@ -810,6 +855,9 @@ export declare class AttributedString_MarkdownParsingOptions extends SDKHandle {
      */
     get appliesSourcePositionAttributes(): boolean;
     set appliesSourcePositionAttributes(value: boolean);
+    readonly $type: {
+        "s:10Foundation16AttributedStringV22MarkdownParsingOptionsV": true;
+    };
 }
 /**
  * enum FailurePolicy
@@ -885,6 +933,9 @@ export declare class AttributedString_MarkdownSourcePosition extends SDKHandle {
      * @availability iOS 16.0+
      */
     get startLine(): number;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV22MarkdownSourcePositionV": true;
+    };
 }
 /**
  * struct Runs
@@ -941,12 +992,18 @@ export declare class AttributedString_Runs extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript44362(position: AttributedString_Runs_Index): AttributedString_Runs_Run;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV": true;
+    };
 }
 /**
  * @preconcurrency struct AttributesSlice1<T> where T : AttributedStringKey, T.Value : Sendable
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice1<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice1V": true;
+    };
 }
 /**
  * typealias Element = (T.Value?, Range<AttributedString.Index>)
@@ -968,6 +1025,9 @@ export type AttributedString_Runs_AttributesSlice1_Indices<T = unknown> = SDKHan
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice1_Iterator<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice1V8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AttributedString.Runs.AttributesSlice1<T>.Element
@@ -984,6 +1044,9 @@ export type AttributedString_Runs_AttributesSlice1_SubSequence<T = unknown> = SD
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice2<T = unknown, U = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice2V": true;
+    };
 }
 /**
  * typealias Element = (T.Value?, U.Value?, Range<AttributedString.Index>)
@@ -1005,6 +1068,9 @@ export type AttributedString_Runs_AttributesSlice2_Indices<T = unknown, U = unkn
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice2_Iterator<T = unknown, U = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice2V8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AttributedString.Runs.AttributesSlice2<T, U>.Element
@@ -1021,6 +1087,9 @@ export type AttributedString_Runs_AttributesSlice2_SubSequence<T = unknown, U = 
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice3<T = unknown, U = unknown, V = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice3V": true;
+    };
 }
 /**
  * typealias Element = (T.Value?, U.Value?, V.Value?, Range<AttributedString.Index>)
@@ -1042,6 +1111,9 @@ export type AttributedString_Runs_AttributesSlice3_Indices<T = unknown, U = unkn
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice3_Iterator<T = unknown, U = unknown, V = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice3V8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AttributedString.Runs.AttributesSlice3<T, U, V>.Element
@@ -1058,6 +1130,9 @@ export type AttributedString_Runs_AttributesSlice3_SubSequence<T = unknown, U = 
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice4<T = unknown, U = unknown, V = unknown, W = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice4V": true;
+    };
 }
 /**
  * typealias Element = (T.Value?, U.Value?, V.Value?, W.Value?, Range<AttributedString.Index>)
@@ -1079,6 +1154,9 @@ export type AttributedString_Runs_AttributesSlice4_Indices<T = unknown, U = unkn
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice4_Iterator<T = unknown, U = unknown, V = unknown, W = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice4V8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AttributedString.Runs.AttributesSlice4<T, U, V, W>.Element
@@ -1095,6 +1173,9 @@ export type AttributedString_Runs_AttributesSlice4_SubSequence<T = unknown, U = 
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice5<T = unknown, U = unknown, V = unknown, W = unknown, X = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice5V": true;
+    };
 }
 /**
  * typealias Element = (T.Value?, U.Value?, V.Value?, W.Value?, X.Value?, Range<AttributedString.Index>)
@@ -1116,6 +1197,9 @@ export type AttributedString_Runs_AttributesSlice5_Indices<T = unknown, U = unkn
  * @availability iOS 15.0+
  */
 export declare class AttributedString_Runs_AttributesSlice5_Iterator<T = unknown, U = unknown, V = unknown, W = unknown, X = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV16AttributesSlice5V8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AttributedString.Runs.AttributesSlice5<T, U, V, W, X>.Element
@@ -1149,6 +1233,9 @@ export declare class AttributedString_Runs_Index extends SDKHandle {
      * @deprecated iOS 26.0
      */
     distance(other: AttributedString_Runs_Index): number;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV5IndexV": true;
+    };
 }
 /**
  * typealias Stride = Int
@@ -1186,6 +1273,9 @@ export declare class AttributedString_Runs_Run extends SDKHandle {
      * @availability iOS 15.0+
      */
     get range(): SDKHandle;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV4RunsV3RunV": true;
+    };
 }
 /**
  * typealias SubSequence = Slice<AttributedString.Runs>
@@ -1197,6 +1287,9 @@ export type AttributedString_Runs_SubSequence = SDKHandle;
  * @availability iOS 15.0+
  */
 export declare class AttributedString_SingleAttributeTransformer<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation16AttributedStringV26SingleAttributeTransformerV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -1268,6 +1361,9 @@ export declare class AttributedString_UnicodeScalarView extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript81819(bounds: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV17UnicodeScalarViewV": true;
+    };
 }
 /**
  * typealias Element = UnicodeScalar
@@ -1349,6 +1445,9 @@ export declare class AttributedString_UTF16View extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript40310(index: AttributedString_Index): SDKHandle;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV9UTF16ViewV": true;
+    };
 }
 /**
  * typealias Element = UTF16.CodeUnit
@@ -1435,6 +1534,9 @@ export declare class AttributedString_UTF8View extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript63526(index: AttributedString_Index): SDKHandle;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV8UTF8ViewV": true;
+    };
 }
 /**
  * typealias Element = UTF8.CodeUnit
@@ -1611,12 +1713,18 @@ export declare class AttributedSubstring extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): AttributedSubstring;
+    readonly $type: {
+        "s:10Foundation19AttributedSubstringV": true;
+    };
 }
 /**
  * @dynamicMemberLookup @frozen enum AttributeDynamicLookup
  * @availability iOS 15.0+
  */
 export declare class AttributeDynamicLookup extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation22AttributeDynamicLookupO": true;
+    };
 }
 /**
  * protocol AttributeScope : DecodingConfigurationProviding, EncodingConfigurationProviding, SendableMetatype
@@ -1629,12 +1737,18 @@ export interface AttributeScope {
  * @availability iOS 15.0+
  */
 export declare class AttributeScopeCodableConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation34AttributeScopeCodableConfigurationV": true;
+    };
 }
 /**
  * @frozen enum AttributeScopes
  * @availability iOS 15.0+
  */
 export declare class AttributeScopes extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO": true;
+    };
 }
 /**
  * struct FoundationAttributes
@@ -1761,6 +1875,9 @@ export declare class AttributeScopes_FoundationAttributes extends SDKHandle {
      * @availability iOS 15.0+
      */
     get dateField(): AttributeScopes_FoundationAttributes_DateFieldAttribute;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV": true;
+    };
 }
 /**
  * @frozen enum AgreementArgumentAttribute
@@ -1777,6 +1894,9 @@ export declare class AttributeScopes_FoundationAttributes_AgreementArgumentAttri
      * @availability iOS 17.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV017AgreementArgumentB0O": true;
+    };
 }
 /**
  * typealias Value = Int
@@ -1798,6 +1918,9 @@ export declare class AttributeScopes_FoundationAttributes_AgreementConceptAttrib
      * @availability iOS 17.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV016AgreementConceptB0O": true;
+    };
 }
 /**
  * typealias Value = Int
@@ -1814,6 +1937,9 @@ export declare class AttributeScopes_FoundationAttributes_AlternateDescriptionAt
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV020AlternateDescriptionB0O": true;
+    };
 }
 /**
  * typealias Value = String
@@ -1830,12 +1956,18 @@ export declare class AttributeScopes_FoundationAttributes_ByteCountAttribute ext
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV09ByteCountB0O": true;
+    };
 }
 /**
  * enum Component
  * @availability iOS 15.0+
  */
 export declare class AttributeScopes_FoundationAttributes_ByteCountAttribute_Component extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV09ByteCountB0O9ComponentO": true;
+    };
 }
 /**
  * enum Unit
@@ -1857,6 +1989,9 @@ export declare class AttributeScopes_FoundationAttributes_DateFieldAttribute ext
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV09DateFieldB0O": true;
+    };
 }
 /**
  * enum Field
@@ -1883,6 +2018,9 @@ export declare class AttributeScopes_FoundationAttributes_DurationFieldAttribute
      * @availability iOS 16.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV013DurationFieldB0O": true;
+    };
 }
 /**
  * enum Field
@@ -1926,6 +2064,9 @@ export declare class AttributeScopes_FoundationAttributes_ImageURLAttribute exte
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV17ImageURLAttributeO": true;
+    };
 }
 /**
  * typealias Value = URL
@@ -1951,7 +2092,7 @@ export declare class AttributeScopes_FoundationAttributes_InflectionAlternativeA
      * static func objectiveCValue(for value: AttributedString) throws -> NSObject
      * @availability iOS 15.0+
      */
-    static objectiveCValue(value: AttributedString): SDKHandle;
+    static objectiveCValue(value: AttributedString): _ObjectiveC_NSObject;
     /**
      * static let name: String
      * @availability iOS 15.0+
@@ -1961,13 +2102,16 @@ export declare class AttributeScopes_FoundationAttributes_InflectionAlternativeA
      * static func value(for object: NSObject) throws -> AttributedString
      * @availability iOS 15.0+
      */
-    static value(object: SDKHandle): AttributedString;
+    static value(object: _ObjectiveC_NSObject): AttributedString;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV021InflectionAlternativeB0O": true;
+    };
 }
 /**
  * typealias ObjectiveCValue = NSObject
  * @availability iOS 15.0+
  */
-export type AttributeScopes_FoundationAttributes_InflectionAlternativeAttribute_ObjectiveCValue = SDKHandle;
+export type AttributeScopes_FoundationAttributes_InflectionAlternativeAttribute_ObjectiveCValue = _ObjectiveC_NSObject;
 /**
  * typealias Value = AttributedString
  * @availability iOS 15.0+
@@ -1988,6 +2132,9 @@ export declare class AttributeScopes_FoundationAttributes_InflectionRuleAttribut
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV014InflectionRuleB0O": true;
+    };
 }
 /**
  * typealias Value = InflectionRule
@@ -2014,6 +2161,9 @@ export declare class AttributeScopes_FoundationAttributes_InlinePresentationInte
      * @availability iOS 15.0+
      */
     static value(object: NSNumber): InlinePresentationIntent;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV024InlinePresentationIntentB0O": true;
+    };
 }
 /**
  * typealias ObjectiveCValue = NSNumber
@@ -2040,6 +2190,9 @@ export declare class AttributeScopes_FoundationAttributes_LanguageIdentifierAttr
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV018LanguageIdentifierB0O": true;
+    };
 }
 /**
  * typealias Value = String
@@ -2055,7 +2208,7 @@ export declare class AttributeScopes_FoundationAttributes_LinkAttribute extends 
      * static func objectiveCValue(for value: URL) throws -> NSObject
      * @availability iOS 15.0+
      */
-    static objectiveCValue(value: string): SDKHandle;
+    static objectiveCValue(value: string): _ObjectiveC_NSObject;
     /**
      * static var name: String { get set }
      * @availability iOS 15.0+
@@ -2066,13 +2219,16 @@ export declare class AttributeScopes_FoundationAttributes_LinkAttribute extends 
      * static func value(for object: NSObject) throws -> URL
      * @availability iOS 15.0+
      */
-    static value(object: SDKHandle): string;
+    static value(object: _ObjectiveC_NSObject): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV04LinkB0O": true;
+    };
 }
 /**
  * typealias ObjectiveCValue = NSObject
  * @availability iOS 15.0+
  */
-export type AttributeScopes_FoundationAttributes_LinkAttribute_ObjectiveCValue = SDKHandle;
+export type AttributeScopes_FoundationAttributes_LinkAttribute_ObjectiveCValue = _ObjectiveC_NSObject;
 /**
  * typealias Value = URL
  * @availability iOS 15.0+
@@ -2108,6 +2264,9 @@ export declare class AttributeScopes_FoundationAttributes_ListItemDelimiterAttri
      * @availability iOS 26.0+
      */
     static encode(value: string, encoder: SDKHandle): void;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV017ListItemDelimiterB0O": true;
+    };
 }
 /**
  * typealias ObjectiveCValue = NSString
@@ -2134,6 +2293,9 @@ export declare class AttributeScopes_FoundationAttributes_LocalizedNumberFormatA
      * @availability iOS 18.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV021LocalizedNumberFormatB0O": true;
+    };
 }
 /**
  * struct Value
@@ -2145,6 +2307,9 @@ export declare class AttributeScopes_FoundationAttributes_LocalizedNumberFormatA
      * @availability iOS 18.0+
      */
     static get automatic(): AttributeScopes_FoundationAttributes_LocalizedNumberFormatAttribute_Value;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV021LocalizedNumberFormatB0O5ValueV": true;
+    };
 }
 /**
  * struct LocalizedStringArgumentAttributes
@@ -2171,6 +2336,9 @@ export declare class AttributeScopes_FoundationAttributes_LocalizedStringArgumen
      * @availability iOS 16.0+
      */
     get localizedURLArgument(): AttributeScopes_FoundationAttributes_LocalizedStringArgumentAttributes_LocalizedURLArgumentAttribute;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV023LocalizedStringArgumentD0V": true;
+    };
 }
 /**
  * @frozen enum LocalizedDateArgumentAttribute
@@ -2182,6 +2350,9 @@ export declare class AttributeScopes_FoundationAttributes_LocalizedStringArgumen
      * @availability iOS 16.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV023LocalizedStringArgumentD0V0e4DategB0O": true;
+    };
 }
 /**
  * typealias Value = Date
@@ -2198,6 +2369,9 @@ export declare class AttributeScopes_FoundationAttributes_LocalizedStringArgumen
      * @availability iOS 16.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV023LocalizedStringArgumentD0V0e12DateIntervalgB0O": true;
+    };
 }
 /**
  * typealias Value = Range<Date>
@@ -2214,12 +2388,18 @@ export declare class AttributeScopes_FoundationAttributes_LocalizedStringArgumen
      * @availability iOS 16.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV023LocalizedStringArgumentD0V0e7NumericgB0O": true;
+    };
 }
 /**
  * enum Value
  * @availability iOS 16.0+
  */
 export declare class AttributeScopes_FoundationAttributes_LocalizedStringArgumentAttributes_LocalizedNumericArgumentAttribute_Value extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV023LocalizedStringArgumentD0V0e7NumericgB0O5ValueO": true;
+    };
 }
 /**
  * @frozen enum LocalizedURLArgumentAttribute
@@ -2231,6 +2411,9 @@ export declare class AttributeScopes_FoundationAttributes_LocalizedStringArgumen
      * @availability iOS 16.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV023LocalizedStringArgumentD0V0e11URLArgumentB0O": true;
+    };
 }
 /**
  * typealias Value = URL
@@ -2247,6 +2430,9 @@ export declare class AttributeScopes_FoundationAttributes_MarkdownSourcePosition
      * @availability iOS 16.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV022MarkdownSourcePositionB0O": true;
+    };
 }
 /**
  * typealias Value = AttributedString.MarkdownSourcePosition
@@ -2263,6 +2449,9 @@ export declare class AttributeScopes_FoundationAttributes_MeasurementAttribute e
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV011MeasurementB0V": true;
+    };
 }
 /**
  * enum Component
@@ -2306,6 +2495,9 @@ export declare class AttributeScopes_FoundationAttributes_MorphologyAttribute ex
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV010MorphologyB0O": true;
+    };
 }
 /**
  * typealias Value = Morphology
@@ -2327,6 +2519,9 @@ export declare class AttributeScopes_FoundationAttributes_NumberFormatAttributes
      * @availability iOS 15.0+
      */
     get numberSymbol(): AttributeScopes_FoundationAttributes_NumberFormatAttributes_SymbolAttribute;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV012NumberFormatD0V": true;
+    };
 }
 /**
  * typealias DecodingConfiguration = AttributeScopeCodableConfiguration
@@ -2348,6 +2543,9 @@ export declare class AttributeScopes_FoundationAttributes_NumberFormatAttributes
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV012NumberFormatD0V0e4PartB0O": true;
+    };
 }
 /**
  * enum NumberPart
@@ -2386,6 +2584,9 @@ export declare class AttributeScopes_FoundationAttributes_NumberFormatAttributes
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV012NumberFormatD0V06SymbolB0O": true;
+    };
 }
 /**
  * enum Symbol
@@ -2424,6 +2625,9 @@ export declare class AttributeScopes_FoundationAttributes_PersonNameComponentAtt
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV019PersonNameComponentB0O": true;
+    };
 }
 /**
  * enum Component
@@ -2467,6 +2671,9 @@ export declare class AttributeScopes_FoundationAttributes_PresentationIntentAttr
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV018PresentationIntentB0O": true;
+    };
 }
 /**
  * typealias Value = PresentationIntent
@@ -2488,6 +2695,9 @@ export declare class AttributeScopes_FoundationAttributes_ReferentConceptAttribu
      * @availability iOS 17.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV015ReferentConceptB0O": true;
+    };
 }
 /**
  * typealias Value = Int
@@ -2504,6 +2714,9 @@ export declare class AttributeScopes_FoundationAttributes_ReplacementIndexAttrib
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV016ReplacementIndexB0O": true;
+    };
 }
 /**
  * typealias Value = Int
@@ -2530,6 +2743,9 @@ export declare class AttributeScopes_FoundationAttributes_WritingDirectionAttrib
      * @availability iOS 26.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO0A10AttributesV016WritingDirectionB0O": true;
+    };
 }
 /**
  * typealias Value = AttributedString.WritingDirection
@@ -2639,6 +2855,10 @@ export declare class Operation extends SDKHandle {
      */
     get threadPriority(): number;
     set threadPriority(value: number);
+    readonly $type: {
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAsynchronous": true;
         "isCancelled": true;
@@ -2663,19 +2883,22 @@ export declare class BlockOperation extends BlockOperation_base {
      * convenience init(block: @escaping @Sendable () -> Void)
      * @availability iOS 4.0+
      */
-    static initBlock(block: (() => void)): BlockOperation;
+    static init(block: (() => void)): BlockOperation;
     /**
      * func addExecutionBlock(_ block: @escaping @Sendable () -> Void)
      * @availability iOS 4.0+
      */
     addExecutionBlock(block: (() => void)): void;
-    /** init() */
-    static init(): BlockOperation;
     /**
      * var executionBlocks: [@Sendable () -> Void] { get }
      * @availability iOS 4.0+
      */
     get executionBlocks(): Array<(() => Promise<void>)>;
+    readonly $type: {
+        "c:objc(cs)NSBlockOperation": true;
+        "c:objc(cs)NSOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAsynchronous": true;
         "isCancelled": true;
@@ -2754,8 +2977,6 @@ export declare class Bundle extends SDKHandle {
     urlsForResourcesWithExtensionSubdirectoryLocalization(ext?: (string) | null, subpath?: (string) | null, localizationName?: (string) | null): (Array<string>) | null;
     /** func classNamed(_ className: String) -> AnyClass? */
     classNamed(className: string): (string) | null;
-    /** init() */
-    static init(): Bundle;
     /** init?(path: String) */
     static initPath(path: string): (Bundle) | null;
     /**
@@ -2886,6 +3107,10 @@ export declare class Bundle extends SDKHandle {
      * @availability iOS 18.4+
      */
     localizedStringForKeyValueTableLocalizations(key: string, value: (string) | null, tableName: (string) | null, localizations: Array<Locale_Language>): string;
+    readonly $type: {
+        "c:objc(cs)NSBundle": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "appStoreReceiptURL": true;
         "builtInPlugInsPath": true;
@@ -2933,6 +3158,9 @@ export declare class Bundle_DidLoadMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Bundle_DidLoadMessage;
+    readonly $type: {
+        "s:So8NSBundleC10FoundationE14DidLoadMessageV": true;
+    };
 }
 /**
  * typealias Subject = Bundle
@@ -2995,6 +3223,9 @@ export declare class ByteCountFormatStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     locale22027(locale: Locale): ByteCountFormatStyle;
+    readonly $type: {
+        "s:10Foundation20ByteCountFormatStyleV": true;
+    };
 }
 /**
  * struct Attributed
@@ -3041,6 +3272,9 @@ export declare class ByteCountFormatStyle_Attributed extends SDKHandle {
      * @availability iOS 15.0+
      */
     locale52754(locale: Locale): ByteCountFormatStyle_Attributed;
+    readonly $type: {
+        "s:10Foundation20ByteCountFormatStyleV10AttributedV": true;
+    };
 }
 /**
  * typealias FormatInput = Int64
@@ -3198,6 +3432,10 @@ export declare class Formatter extends SDKHandle {
     };
     /** func string(for obj: Any?) -> String? */
     string(obj?: (unknown) | null): (string) | null;
+    readonly $type: {
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const ByteCountFormatter_base: Omit<typeof Formatter, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Formatter);
 /**
@@ -3286,6 +3524,11 @@ export declare class ByteCountFormatter extends ByteCountFormatter_base {
      */
     get zeroPadsFractionDigits(): boolean;
     set zeroPadsFractionDigits(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NSByteCountFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAdaptive": true;
         "allowedUnits": true;
@@ -3335,8 +3578,6 @@ export declare const ByteCountFormatter_Units: {
  * @availability iOS 2.0+
  */
 export declare class CachedURLResponse extends SDKHandle {
-    /** init() */
-    static init(): CachedURLResponse;
     /**
      * init(response: URLResponse, data: Data)
      * @availability iOS 2.0+
@@ -3367,6 +3608,10 @@ export declare class CachedURLResponse extends SDKHandle {
      * @availability iOS 2.0+
      */
     get userInfo(): $SDK23;
+    readonly $type: {
+        "c:objc(cs)NSCachedURLResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "response": true;
@@ -3729,6 +3974,9 @@ export declare class Calendar extends SDKHandle {
      * @availability iOS 8.0+
      */
     component(component: Calendar_Component, date: globalThis.Date): number;
+    readonly $type: {
+        "s:10Foundation8CalendarV": true;
+    };
 }
 /**
  * struct CalendarDayChangedMessage
@@ -3750,6 +3998,9 @@ export declare class Calendar_CalendarDayChangedMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Calendar_CalendarDayChangedMessage;
+    readonly $type: {
+        "s:10Foundation8CalendarV0B17DayChangedMessageV": true;
+    };
 }
 /**
  * typealias Subject = Calendar
@@ -3938,6 +4189,9 @@ export declare class Calendar_RecurrenceRule extends SDKHandle {
      */
     get frequency(): Calendar_RecurrenceRule_Frequency;
     set frequency(value: Calendar_RecurrenceRule_Frequency);
+    readonly $type: {
+        "s:10Foundation8CalendarV14RecurrenceRuleV": true;
+    };
 }
 /**
  * struct End
@@ -3974,6 +4228,9 @@ export declare class Calendar_RecurrenceRule_End extends SDKHandle {
      * @availability iOS 18.0+
      */
     static afterDate(date: globalThis.Date): Calendar_RecurrenceRule_End;
+    readonly $type: {
+        "s:10Foundation8CalendarV14RecurrenceRuleV3EndV": true;
+    };
 }
 /**
  * enum Frequency
@@ -4024,6 +4281,9 @@ export declare class Calendar_RecurrenceRule_Month extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initIsLeap(index: number, isLeap?: boolean): Calendar_RecurrenceRule_Month;
+    readonly $type: {
+        "s:10Foundation8CalendarV14RecurrenceRuleV5MonthV": true;
+    };
 }
 /**
  * typealias IntegerLiteralType = Int
@@ -4035,6 +4295,9 @@ export type Calendar_RecurrenceRule_Month_IntegerLiteralType = number;
  * @availability iOS 18.0+
  */
 export declare class Calendar_RecurrenceRule_Weekday extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation8CalendarV14RecurrenceRuleV7WeekdayO": true;
+    };
 }
 /**
  * typealias ReferenceType = NSCalendar
@@ -4067,6 +4330,9 @@ export declare class CGFloat extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(number: NSNumber): number;
+    readonly $type: {
+        "s:14CoreFoundation7CGFloatV": true;
+    };
 }
 /**
  * struct CharacterSet
@@ -4336,6 +4602,9 @@ export declare class CharacterSet extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): CharacterSet;
+    readonly $type: {
+        "s:10Foundation12CharacterSetV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Unicode.Scalar
@@ -4872,6 +5141,9 @@ export declare class CocoaError extends SDKHandle {
      * @availability iOS 8.0+
      */
     get filePath(): (string) | null;
+    readonly $type: {
+        "s:10Foundation10CocoaErrorV": true;
+    };
 }
 /**
  * struct Code
@@ -5340,6 +5612,9 @@ export type CodableAttributedStringKey = $SDK27;
  * @availability iOS 15.0+
  */
 export declare class CodableConfiguration<T = unknown, ConfigurationProvider = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20CodableConfigurationV": true;
+    };
 }
 /**
  * typealias CodableWithConfiguration = DecodableWithConfiguration & EncodableWithConfiguration
@@ -5351,6 +5626,9 @@ export type CodableWithConfiguration = $SDK27;
  * @availability iOS 15.0+
  */
 export declare class ComparableComparator<Compared = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20ComparableComparatorV": true;
+    };
 }
 /** typealias Comparator = (Any, Any) -> ComparisonResult */
 export type Comparator = $SDK33;
@@ -5386,6 +5664,9 @@ export interface ContiguousBytes {
  * @availability iOS 15.0+
  */
 export declare class CurrencyFormatStyleConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation32CurrencyFormatStyleConfigurationO": true;
+    };
 }
 /**
  * typealias DecimalSeparatorDisplayStrategy = NumberFormatStyleConfiguration.DecimalSeparatorDisplayStrategy
@@ -5432,6 +5713,9 @@ export declare class CurrencyFormatStyleConfiguration_Presentation extends SDKHa
      * @availability iOS 15.0+
      */
     static get standard(): CurrencyFormatStyleConfiguration_Presentation;
+    readonly $type: {
+        "s:10Foundation32CurrencyFormatStyleConfigurationO12PresentationV": true;
+    };
 }
 /**
  * typealias RoundingRule = NumberFormatStyleConfiguration.RoundingRule
@@ -5468,6 +5752,9 @@ export declare class CurrencyFormatStyleConfiguration_SignDisplayStrategy extend
      * @availability iOS 15.0+
      */
     static get automatic(): CurrencyFormatStyleConfiguration_SignDisplayStrategy;
+    readonly $type: {
+        "s:10Foundation32CurrencyFormatStyleConfigurationO19SignDisplayStrategyV": true;
+    };
 }
 /**
  * protocol CustomLocalizedStringResourceConvertible
@@ -5772,6 +6059,9 @@ export declare class Data extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript89005(index: number): number;
+    readonly $type: {
+        "s:10Foundation4DataV": true;
+    };
 }
 /**
  * typealias Base64DecodingOptions = NSData.Base64DecodingOptions
@@ -5788,6 +6078,9 @@ export type Data_Base64EncodingOptions = NSData_Base64EncodingOptions;
  * @availability iOS 8.0+
  */
 export declare class Data_Deallocator extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation4DataV11DeallocatorO": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -5814,6 +6107,9 @@ export declare class Data_Iterator extends SDKHandle {
      * @availability iOS 8.0+
      */
     next(): (number) | null;
+    readonly $type: {
+        "s:10Foundation4DataV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -6017,6 +6313,9 @@ export declare class Date extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): globalThis.Date;
+    readonly $type: {
+        "s:10Foundation4DateV": true;
+    };
 }
 /**
  * struct AnchoredRelativeFormatStyle
@@ -6105,6 +6404,9 @@ export declare class Date_AnchoredRelativeFormatStyle extends SDKHandle {
      */
     get calendar(): Calendar;
     set calendar(value: Calendar);
+    readonly $type: {
+        "s:10Foundation4DateV27AnchoredRelativeFormatStyleV": true;
+    };
 }
 /**
  * typealias Field = Date.RelativeFormatStyle.Field
@@ -6149,6 +6451,9 @@ export declare class Date_AttributedStyle extends SDKHandle {
      * @deprecated iOS 18.0
      */
     locale(locale: Locale): Date_AttributedStyle;
+    readonly $type: {
+        "s:10Foundation4DateV15AttributedStyleV": true;
+    };
 }
 /**
  * typealias FormatInput = Date
@@ -6237,6 +6542,9 @@ export declare class Date_ComponentsFormatStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     calendar42553(calendar: Calendar): Date_ComponentsFormatStyle;
+    readonly $type: {
+        "s:10Foundation4DateV21ComponentsFormatStyleV": true;
+    };
 }
 /**
  * struct Field
@@ -6278,6 +6586,9 @@ export declare class Date_ComponentsFormatStyle_Field extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get second(): Date_ComponentsFormatStyle_Field;
+    readonly $type: {
+        "s:10Foundation4DateV21ComponentsFormatStyleV5FieldV": true;
+    };
 }
 /**
  * typealias FormatInput = Range<Date>
@@ -6319,6 +6630,9 @@ export declare class Date_ComponentsFormatStyle_Style extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get spellOut(): Date_ComponentsFormatStyle_Style;
+    readonly $type: {
+        "s:10Foundation4DateV21ComponentsFormatStyleV0E0V": true;
+    };
 }
 /**
  * struct FormatString
@@ -6335,6 +6649,9 @@ export declare class Date_FormatString extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initStringInterpolation(stringInterpolation: Date_FormatString_StringInterpolation): Date_FormatString;
+    readonly $type: {
+        "s:10Foundation4DateV12FormatStringV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -6451,6 +6768,9 @@ export declare class Date_FormatString_StringInterpolation extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(literalCapacity: number, interpolationCount: number): Date_FormatString_StringInterpolation;
+    readonly $type: {
+        "s:10Foundation4DateV12FormatStringV0D13InterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -6622,6 +6942,9 @@ export declare class Date_FormatStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     dayOfYear(format?: Date_FormatStyle_Symbol_DayOfYear): Date_FormatStyle;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct Attributed
@@ -6733,6 +7056,9 @@ export declare class Date_FormatStyle_Attributed extends SDKHandle {
      * @availability iOS 18.0+
      */
     dayOfYear(format?: Date_FormatStyle_Symbol_DayOfYear): Date_FormatStyle_Attributed;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV10AttributedV": true;
+    };
 }
 /**
  * typealias FormatInput = Date
@@ -6774,6 +7100,9 @@ export declare class Date_FormatStyle_DateStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get complete(): Date_FormatStyle_DateStyle;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV0bD0V": true;
+    };
 }
 /**
  * typealias FormatInput = Date
@@ -6810,6 +7139,9 @@ export type Date_FormatStyle_Strategy = Date_FormatStyle;
  * @availability iOS 15.0+
  */
 export declare class Date_FormatStyle_Symbol extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV": true;
+    };
 }
 /**
  * struct CyclicYear
@@ -6836,6 +7168,9 @@ export declare class Date_FormatStyle_Symbol_CyclicYear extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get omitted(): Date_FormatStyle_Symbol_CyclicYear;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV10CyclicYearV": true;
+    };
 }
 /**
  * struct Day
@@ -6867,6 +7202,9 @@ export declare class Date_FormatStyle_Symbol_Day extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_Day;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV3DayV": true;
+    };
 }
 /**
  * struct DayOfYear
@@ -6893,6 +7231,9 @@ export declare class Date_FormatStyle_Symbol_DayOfYear extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_DayOfYear;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV9DayOfYearV": true;
+    };
 }
 /**
  * struct DayPeriod
@@ -6919,6 +7260,9 @@ export declare class Date_FormatStyle_Symbol_DayPeriod extends SDKHandle {
      * @availability iOS 15.0+
      */
     static standard(width: Date_FormatStyle_Symbol_DayPeriod_Width): Date_FormatStyle_Symbol_DayPeriod;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV9DayPeriodV": true;
+    };
 }
 /**
  * enum Width
@@ -6950,6 +7294,9 @@ export declare class Date_FormatStyle_Symbol_Era extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get omitted(): Date_FormatStyle_Symbol_Era;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV3EraV": true;
+    };
 }
 /**
  * struct Hour
@@ -6991,6 +7338,9 @@ export declare class Date_FormatStyle_Symbol_Hour extends SDKHandle {
      * @availability iOS 15.0+
      */
     static twoDigits(amPM: Date_FormatStyle_Symbol_Hour_AMPMStyle): Date_FormatStyle_Symbol_Hour;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV4HourV": true;
+    };
 }
 /**
  * struct AMPMStyle
@@ -7017,6 +7367,9 @@ export declare class Date_FormatStyle_Symbol_Hour_AMPMStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get omitted(): Date_FormatStyle_Symbol_Hour_AMPMStyle;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV4HourV9AMPMStyleV": true;
+    };
 }
 /**
  * struct Minute
@@ -7038,6 +7391,9 @@ export declare class Date_FormatStyle_Symbol_Minute extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_Minute;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV6MinuteV": true;
+    };
 }
 /**
  * struct Month
@@ -7074,6 +7430,9 @@ export declare class Date_FormatStyle_Symbol_Month extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_Month;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV5MonthV": true;
+    };
 }
 /**
  * struct Quarter
@@ -7110,6 +7469,9 @@ export declare class Date_FormatStyle_Symbol_Quarter extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_Quarter;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV7QuarterV": true;
+    };
 }
 /**
  * struct Second
@@ -7131,6 +7493,9 @@ export declare class Date_FormatStyle_Symbol_Second extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_Second;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV6SecondV": true;
+    };
 }
 /**
  * struct SecondFraction
@@ -7152,6 +7517,9 @@ export declare class Date_FormatStyle_Symbol_SecondFraction extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get omitted(): Date_FormatStyle_Symbol_SecondFraction;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV14SecondFractionV": true;
+    };
 }
 /**
  * struct StandaloneMonth
@@ -7183,6 +7551,9 @@ export declare class Date_FormatStyle_Symbol_StandaloneMonth extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_StandaloneMonth;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV15StandaloneMonthV": true;
+    };
 }
 /**
  * struct StandaloneQuarter
@@ -7214,6 +7585,9 @@ export declare class Date_FormatStyle_Symbol_StandaloneQuarter extends SDKHandle
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_StandaloneQuarter;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV17StandaloneQuarterV": true;
+    };
 }
 /**
  * struct StandaloneWeekday
@@ -7245,6 +7619,9 @@ export declare class Date_FormatStyle_Symbol_StandaloneWeekday extends SDKHandle
      * @availability iOS 15.0+
      */
     static get oneDigit(): Date_FormatStyle_Symbol_StandaloneWeekday;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV17StandaloneWeekdayV": true;
+    };
 }
 /**
  * struct TimeZone
@@ -7291,6 +7668,9 @@ export declare class Date_FormatStyle_Symbol_TimeZone extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get omitted(): Date_FormatStyle_Symbol_TimeZone;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV8TimeZoneV": true;
+    };
 }
 /**
  * enum Width
@@ -7312,6 +7692,9 @@ export declare class Date_FormatStyle_Symbol_VerbatimHour extends SDKHandle {
      * @availability iOS 15.0+
      */
     static twoDigits(clock: Date_FormatStyle_Symbol_VerbatimHour_Clock, hourCycle: Date_FormatStyle_Symbol_VerbatimHour_HourCycle): Date_FormatStyle_Symbol_VerbatimHour;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV12VerbatimHourV": true;
+    };
 }
 /**
  * struct Clock
@@ -7328,6 +7711,9 @@ export declare class Date_FormatStyle_Symbol_VerbatimHour_Clock extends SDKHandl
      * @availability iOS 15.0+
      */
     static get twelveHour(): Date_FormatStyle_Symbol_VerbatimHour_Clock;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV12VerbatimHourV5ClockV": true;
+    };
 }
 /**
  * struct HourCycle
@@ -7344,6 +7730,9 @@ export declare class Date_FormatStyle_Symbol_VerbatimHour_HourCycle extends SDKH
      * @availability iOS 15.0+
      */
     static get zeroBased(): Date_FormatStyle_Symbol_VerbatimHour_HourCycle;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV12VerbatimHourV0G5CycleV": true;
+    };
 }
 /**
  * struct Week
@@ -7370,6 +7759,9 @@ export declare class Date_FormatStyle_Symbol_Week extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_Week;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV4WeekV": true;
+    };
 }
 /**
  * struct Weekday
@@ -7411,6 +7803,9 @@ export declare class Date_FormatStyle_Symbol_Weekday extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_Weekday;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV7WeekdayV": true;
+    };
 }
 /**
  * struct Year
@@ -7447,6 +7842,9 @@ export declare class Date_FormatStyle_Symbol_Year extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_Year;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV4YearV": true;
+    };
 }
 /**
  * struct YearForWeekOfYear
@@ -7473,6 +7871,9 @@ export declare class Date_FormatStyle_Symbol_YearForWeekOfYear extends SDKHandle
      * @availability iOS 15.0+
      */
     static get twoDigits(): Date_FormatStyle_Symbol_YearForWeekOfYear;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV6SymbolV013YearForWeekOfF0V": true;
+    };
 }
 /**
  * struct TimeStyle
@@ -7499,6 +7900,9 @@ export declare class Date_FormatStyle_TimeStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get shortened(): Date_FormatStyle_TimeStyle;
+    readonly $type: {
+        "s:10Foundation4DateV11FormatStyleV04TimeD0V": true;
+    };
 }
 /**
  * struct HTTPFormatStyle
@@ -7530,6 +7934,9 @@ export declare class Date_HTTPFormatStyle extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Date_HTTPFormatStyle;
+    readonly $type: {
+        "s:10Foundation4DateV15HTTPFormatStyleV": true;
+    };
 }
 /**
  * typealias FormatInput = Date
@@ -7639,6 +8046,9 @@ export declare class Date_IntervalFormatStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     timeZone13383(format?: Date_FormatStyle_Symbol_TimeZone): Date_IntervalFormatStyle;
+    readonly $type: {
+        "s:10Foundation4DateV19IntervalFormatStyleV": true;
+    };
 }
 /**
  * typealias DateStyle = Date.FormatStyle.DateStyle
@@ -7781,6 +8191,9 @@ export declare class Date_ISO8601FormatStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     consuming(input: string, index: SDKHandle, bounds: SDKHandle): $SDK44;
+    readonly $type: {
+        "s:10Foundation4DateV18ISO8601FormatStyleV": true;
+    };
 }
 /**
  * enum DateSeparator
@@ -7955,6 +8368,9 @@ export declare class Date_ParseStrategy extends SDKHandle {
      */
     get isLenient(): boolean;
     set isLenient(value: boolean);
+    readonly $type: {
+        "s:10Foundation4DateV13ParseStrategyV": true;
+    };
 }
 /**
  * typealias DateStyle = Date.FormatStyle.DateStyle
@@ -8047,6 +8463,9 @@ export declare class Date_RelativeFormatStyle extends SDKHandle {
      */
     get calendar(): Calendar;
     set calendar(value: Calendar);
+    readonly $type: {
+        "s:10Foundation4DateV19RelativeFormatStyleV": true;
+    };
 }
 /**
  * typealias Field = Date.ComponentsFormatStyle.Field
@@ -8078,6 +8497,9 @@ export declare class Date_RelativeFormatStyle_Presentation extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get numeric(): Date_RelativeFormatStyle_Presentation;
+    readonly $type: {
+        "s:10Foundation4DateV19RelativeFormatStyleV12PresentationV": true;
+    };
 }
 /**
  * struct UnitsStyle
@@ -8104,6 +8526,9 @@ export declare class Date_RelativeFormatStyle_UnitsStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get spellOut(): Date_RelativeFormatStyle_UnitsStyle;
+    readonly $type: {
+        "s:10Foundation4DateV19RelativeFormatStyleV05UnitsE0V": true;
+    };
 }
 /**
  * typealias Stride = TimeInterval
@@ -8130,6 +8555,9 @@ export declare class Date_SystemClockDidChangeMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Date_SystemClockDidChangeMessage;
+    readonly $type: {
+        "s:10Foundation4DateV27SystemClockDidChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = Date
@@ -8215,6 +8643,9 @@ export declare class Date_VerbatimFormatStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     consuming(input: string, index: SDKHandle, bounds: SDKHandle): $SDK44;
+    readonly $type: {
+        "s:10Foundation4DateV19VerbatimFormatStyleV": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct Attributed
@@ -8261,6 +8692,9 @@ export declare class Date_VerbatimFormatStyle_Attributed extends SDKHandle {
      * @availability iOS 18.0+
      */
     locale(locale: Locale): Date_VerbatimFormatStyle_Attributed;
+    readonly $type: {
+        "s:10Foundation4DateV19VerbatimFormatStyleV10AttributedV": true;
+    };
 }
 /**
  * typealias FormatInput = Date
@@ -8456,6 +8890,9 @@ export declare class DateComponents extends SDKHandle {
      */
     get dayOfYear(): (number) | null;
     set dayOfYear(value: (number) | null);
+    readonly $type: {
+        "s:10Foundation14DateComponentsV": true;
+    };
 }
 /**
  * struct HTTPFormatStyle
@@ -8487,6 +8924,9 @@ export declare class DateComponents_HTTPFormatStyle extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): DateComponents_HTTPFormatStyle;
+    readonly $type: {
+        "s:10Foundation14DateComponentsV15HTTPFormatStyleV": true;
+    };
 }
 /**
  * typealias FormatInput = DateComponents
@@ -8629,6 +9069,9 @@ export declare class DateComponents_ISO8601FormatStyle extends SDKHandle {
      * @availability iOS 26.0+
      */
     consuming(input: string, index: SDKHandle, bounds: SDKHandle): $SDK46;
+    readonly $type: {
+        "s:10Foundation14DateComponentsV18ISO8601FormatStyleV": true;
+    };
 }
 /**
  * typealias FormatInput = DateComponents
@@ -8775,6 +9218,11 @@ export declare class DateComponentsFormatter extends DateComponentsFormatter_bas
      */
     get zeroFormattingBehavior(): DateComponentsFormatter_ZeroFormattingBehavior;
     set zeroFormattingBehavior(value: DateComponentsFormatter_ZeroFormattingBehavior);
+    readonly $type: {
+        "c:objc(cs)NSDateComponentsFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedUnits": true;
         "allowsFractionalUnits": true;
@@ -9027,6 +9475,11 @@ export declare class DateFormatter extends DateFormatter_base {
     /** var weekdaySymbols: [String]! { get set } */
     get weekdaySymbols(): (Array<string>) | null;
     set weekdaySymbols(value: (Array<string>) | null);
+    readonly $type: {
+        "c:objc(cs)NSDateFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amSymbol": true;
         "pmSymbol": true;
@@ -9149,6 +9602,9 @@ export declare class DateInterval extends SDKHandle {
      * @availability iOS 10.0+
      */
     static init(): DateInterval;
+    readonly $type: {
+        "s:10Foundation12DateIntervalV": true;
+    };
 }
 /**
  * typealias ReferenceType = NSDateInterval
@@ -9209,6 +9665,11 @@ export declare class DateIntervalFormatter extends DateIntervalFormatter_base {
      */
     get timeZone(): (TimeZone) | null;
     set timeZone(value: (TimeZone) | null);
+    readonly $type: {
+        "c:objc(cs)NSDateIntervalFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "calendar": true;
         "dateStyle": true;
@@ -9509,6 +9970,9 @@ export declare class Decimal extends SDKHandle {
     static init26262(value: number): Decimal;
     /** init() */
     static init47032(): Decimal;
+    readonly $type: {
+        "c:@SA@NSDecimal": true;
+    };
 }
 /**
  * typealias CalculationError = NSDecimalNumber.CalculationError
@@ -9596,6 +10060,9 @@ export declare class Decimal_FormatStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     precision(p: NumberFormatStyleConfiguration_Precision): Decimal_FormatStyle;
+    readonly $type: {
+        "s:So9NSDecimala10FoundationE11FormatStyleV": true;
+    };
 }
 /**
  * struct Attributed
@@ -9612,6 +10079,9 @@ export declare class Decimal_FormatStyle_Attributed extends SDKHandle {
      * @availability iOS 15.0+
      */
     locale(locale: Locale): Decimal_FormatStyle_Attributed;
+    readonly $type: {
+        "s:So9NSDecimala10FoundationE11FormatStyleV10AttributedV": true;
+    };
 }
 /**
  * typealias FormatInput = Decimal
@@ -9715,6 +10185,9 @@ export declare class Decimal_FormatStyle_Currency extends SDKHandle {
      * @availability iOS 15.0+
      */
     precision(p: NumberFormatStyleConfiguration_Precision): Decimal_FormatStyle_Currency;
+    readonly $type: {
+        "s:So9NSDecimala10FoundationE11FormatStyleV8CurrencyV": true;
+    };
 }
 /**
  * typealias Configuration = CurrencyFormatStyleConfiguration
@@ -9827,6 +10300,9 @@ export declare class Decimal_FormatStyle_Percent extends SDKHandle {
      * @availability iOS 15.0+
      */
     precision(p: NumberFormatStyleConfiguration_Precision): Decimal_FormatStyle_Percent;
+    readonly $type: {
+        "s:So9NSDecimala10FoundationE11FormatStyleV7PercentV": true;
+    };
 }
 /**
  * typealias Configuration = NumberFormatStyleConfiguration
@@ -9893,6 +10369,9 @@ export declare class Decimal_ParseStrategy<Format = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initFormatLenient86719(format: Decimal_FormatStyle, lenient?: boolean): $SDK47;
+    readonly $type: {
+        "s:So9NSDecimala10FoundationE13ParseStrategyV": true;
+    };
 }
 /**
  * typealias ParseInput = String
@@ -9947,6 +10426,9 @@ export interface DecodingConfigurationProviding {
  * @availability iOS 15.0+
  */
 export declare class DescriptiveNumberFormatConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation36DescriptiveNumberFormatConfigurationO": true;
+    };
 }
 /**
  * typealias CapitalizationContext = FormatStyleCapitalizationContext
@@ -9968,6 +10450,9 @@ export declare class DescriptiveNumberFormatConfiguration_Presentation extends S
      * @availability iOS 15.0+
      */
     static get spellOut(): DescriptiveNumberFormatConfiguration_Presentation;
+    readonly $type: {
+        "s:10Foundation36DescriptiveNumberFormatConfigurationO12PresentationV": true;
+    };
 }
 /**
  * class Unit
@@ -9984,6 +10469,10 @@ export declare class Unit extends SDKHandle {
      * @availability iOS 10.0+
      */
     get symbol(): string;
+    readonly $type: {
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
     };
@@ -10013,6 +10502,11 @@ export declare class Dimension extends Unit {
      * @availability iOS 16.0+
      */
     static initForLocale(forLocale: Locale): Dimension;
+    readonly $type: {
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -10068,6 +10562,9 @@ export declare class DiscontiguousAttributedSubstring extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript(bounds: SDKHandle): DiscontiguousAttributedSubstring;
+    readonly $type: {
+        "s:10Foundation32DiscontiguousAttributedSubstringV": true;
+    };
 }
 /**
  * protocol DiscreteFormatStyle<FormatInput, FormatOutput> : FormatStyle
@@ -10111,6 +10608,9 @@ export declare class DispatchData extends SDKHandle {
      * @availability iOS 2.0+
      */
     get regions(): Array<DispatchData_Region>;
+    readonly $type: {
+        "s:8Dispatch0A4DataV": true;
+    };
 }
 /**
  * struct Region
@@ -10142,6 +10642,9 @@ export declare class DispatchData_Region extends SDKHandle {
      * @availability iOS 2.0+
      */
     subscript(position: number): number;
+    readonly $type: {
+        "s:8Dispatch0A4DataV10FoundationE6RegionV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -10183,12 +10686,18 @@ export type DispatchData_Regions = Array<DispatchData_Region>;
  * @availability iOS 16.0+
  */
 export declare class Duration_TimeFormatStyle extends SDKHandle {
+    readonly $type: {
+        "s:s8DurationV10FoundationE15TimeFormatStyleV": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct Attributed
  * @availability iOS 16.0+
  */
 export declare class Duration_TimeFormatStyle_Attributed extends SDKHandle {
+    readonly $type: {
+        "s:s8DurationV10FoundationE15TimeFormatStyleV10AttributedV": true;
+    };
 }
 /**
  * typealias FormatInput = Duration
@@ -10215,18 +10724,27 @@ export type Duration_TimeFormatStyle_FormatOutput = string;
  * @availability iOS 16.0+
  */
 export declare class Duration_TimeFormatStyle_Pattern extends SDKHandle {
+    readonly $type: {
+        "s:s8DurationV10FoundationE15TimeFormatStyleV7PatternV": true;
+    };
 }
 /**
  * struct UnitsFormatStyle
  * @availability iOS 16.0+
  */
 export declare class Duration_UnitsFormatStyle extends SDKHandle {
+    readonly $type: {
+        "s:s8DurationV10FoundationE16UnitsFormatStyleV": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct Attributed
  * @availability iOS 16.0+
  */
 export declare class Duration_UnitsFormatStyle_Attributed extends SDKHandle {
+    readonly $type: {
+        "s:s8DurationV10FoundationE16UnitsFormatStyleV10AttributedV": true;
+    };
 }
 /**
  * typealias FormatInput = Duration
@@ -10253,24 +10771,36 @@ export type Duration_UnitsFormatStyle_FormatOutput = string;
  * @availability iOS 16.0+
  */
 export declare class Duration_UnitsFormatStyle_FractionalPartDisplayStrategy extends SDKHandle {
+    readonly $type: {
+        "s:s8DurationV10FoundationE16UnitsFormatStyleV29FractionalPartDisplayStrategyV": true;
+    };
 }
 /**
  * struct Unit
  * @availability iOS 16.0+
  */
 export declare class Duration_UnitsFormatStyle_Unit extends SDKHandle {
+    readonly $type: {
+        "s:s8DurationV10FoundationE16UnitsFormatStyleV4UnitV": true;
+    };
 }
 /**
  * struct UnitWidth
  * @availability iOS 16.0+
  */
 export declare class Duration_UnitsFormatStyle_UnitWidth extends SDKHandle {
+    readonly $type: {
+        "s:s8DurationV10FoundationE16UnitsFormatStyleV9UnitWidthV": true;
+    };
 }
 /**
  * struct ZeroValueUnitsDisplayStrategy
  * @availability iOS 16.0+
  */
 export declare class Duration_UnitsFormatStyle_ZeroValueUnitsDisplayStrategy extends SDKHandle {
+    readonly $type: {
+        "s:s8DurationV10FoundationE16UnitsFormatStyleV09ZeroValueC15DisplayStrategyV": true;
+    };
 }
 /**
  * typealias Regions = EmptyCollection<Data>
@@ -10362,6 +10892,11 @@ export declare class EnergyFormatter extends EnergyFormatter_base {
      */
     get unitStyle(): Formatter_UnitStyle;
     set unitStyle(value: Formatter_UnitStyle);
+    readonly $type: {
+        "c:objc(cs)NSEnergyFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isForFoodEnergyUse": true;
         "numberFormatter": true;
@@ -10475,6 +11010,9 @@ export declare class Expression<Input = unknown, Output = unknown> extends SDKHa
      * @availability iOS 18.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:10Foundation10ExpressionV": true;
+    };
 }
 /**
  * typealias DecodingConfiguration = PredicateCodableConfiguration
@@ -10613,8 +11151,6 @@ export declare class FileHandle extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     closeFile(): void;
-    /** init() */
-    static init(): FileHandle;
     /** init?(coder: NSCoder) */
     static initCoder(coder: NSCoder): (FileHandle) | null;
     /** convenience init(fileDescriptor fd: Int32) */
@@ -10742,6 +11278,10 @@ export declare class FileHandle extends SDKHandle {
      * @availability iOS 13.4+
      */
     seekToEnd(): number;
+    readonly $type: {
+        "c:objc(cs)NSFileHandle": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "availableData": true;
         "fileDescriptor": true;
@@ -10758,6 +11298,9 @@ export declare class FileHandle_AsyncBytes extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): FileHandle_AsyncBytes_Iterator;
+    readonly $type: {
+        "s:So12NSFileHandleC10FoundationE10AsyncBytesV": true;
+    };
     readonly $element: number;
 }
 /**
@@ -10780,6 +11323,9 @@ export declare class FileHandle_AsyncBytes_Iterator extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): Promise<(number) | null>;
+    readonly $type: {
+        "s:So12NSFileHandleC10FoundationE10AsyncBytesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -10817,6 +11363,9 @@ export declare class FileHandle_ConnectionAcceptedMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get nameValue(): NSNotification_Name;
+    readonly $type: {
+        "s:So12NSFileHandleC10FoundationE25ConnectionAcceptedMessageV": true;
+    };
 }
 /**
  * typealias Subject = FileHandle
@@ -10843,6 +11392,9 @@ export declare class FileHandle_DataAvailableMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): FileHandle_DataAvailableMessage;
+    readonly $type: {
+        "s:So12NSFileHandleC10FoundationE20DataAvailableMessageV": true;
+    };
 }
 /**
  * typealias Subject = FileHandle
@@ -10880,6 +11432,9 @@ export declare class FileHandle_ReadCompletionMessage extends SDKHandle {
      */
     get dataItem(): SDKHandle;
     set dataItem(value: SDKHandle);
+    readonly $type: {
+        "s:So12NSFileHandleC10FoundationE21ReadCompletionMessageV": true;
+    };
 }
 /**
  * typealias Subject = FileHandle
@@ -10917,6 +11472,9 @@ export declare class FileHandle_ReadToEndOfFileCompletionMessage extends SDKHand
      */
     get dataItem(): SDKHandle;
     set dataItem(value: SDKHandle);
+    readonly $type: {
+        "s:So12NSFileHandleC10FoundationE32ReadToEndOfFileCompletionMessageV": true;
+    };
 }
 /**
  * typealias Subject = FileHandle
@@ -11204,6 +11762,10 @@ export declare class FileManager extends SDKHandle {
      * @availability iOS 8.0+
      */
     replaceItemAtURL(originalItemURL: NSURL, newItemURL: NSURL, backupItemName?: (string) | null, options?: FileManager_ItemReplacementOptions): (NSURL) | null;
+    readonly $type: {
+        "c:objc(cs)NSFileManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentDirectoryPath": true;
         "delegate": true;
@@ -11261,6 +11823,10 @@ export declare class NSEnumerator extends SDKHandle {
      * @availability iOS 8.0+
      */
     makeIterator(): NSFastEnumerationIterator;
+    readonly $type: {
+        "c:objc(cs)NSEnumerator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allObjects": true;
     };
@@ -11291,6 +11857,11 @@ export declare class FileManager_DirectoryEnumerator extends FileManager_Directo
      * @availability iOS 4.0+
      */
     get level(): number;
+    readonly $type: {
+        "c:objc(cs)NSDirectoryEnumerator": true;
+        "c:objc(cs)NSEnumerator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allObjects": true;
         "directoryAttributes": true;
@@ -11363,6 +11934,9 @@ export declare class FileManager_UbiquityIdentityDidChangeMessage extends SDKHan
      * @availability iOS 26.0+
      */
     static init(): FileManager_UbiquityIdentityDidChangeMessage;
+    readonly $type: {
+        "s:So13NSFileManagerC10FoundationE32UbiquityIdentityDidChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = FileManager
@@ -11412,6 +11986,9 @@ export declare class FilePath extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(url: string): (_System_FilePath) | null;
+    readonly $type: {
+        "s:6System8FilePathV": true;
+    };
 }
 /** struct FileProtectionType */
 export type FileProtectionType = "none" | "complete" | "completeUnlessOpen" | "completeUntilFirstUserAuthentication" | "completeWhenUserInactive" | (string & {});
@@ -11459,8 +12036,6 @@ export declare class FileWrapper extends SDKHandle {
      * @availability iOS 4.0+
      */
     addRegularFile(data: ArrayBuffer, fileName: string): string;
-    /** init() */
-    static init(): FileWrapper;
     /**
      * init(directoryWithFileWrappers childrenByPreferredName: [String : FileWrapper])
      * @availability iOS 4.0+
@@ -11569,6 +12144,10 @@ export declare class FileWrapper extends SDKHandle {
      * @availability iOS 4.0+
      */
     get symbolicLinkDestinationURL(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)NSFileWrapper": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isDirectory": true;
         "fileAttributes": true;
@@ -11702,6 +12281,9 @@ export declare class FloatingPointFormatStyle<Value = unknown> extends SDKHandle
      * @availability iOS 15.0+
      */
     precision(p: NumberFormatStyleConfiguration_Precision): $SDK74;
+    readonly $type: {
+        "s:10Foundation24FloatingPointFormatStyleV": true;
+    };
 }
 /**
  * struct Attributed
@@ -11718,6 +12300,9 @@ export declare class FloatingPointFormatStyle_Attributed<Value = unknown> extend
      * @availability iOS 15.0+
      */
     locale(locale: Locale): $SDK72;
+    readonly $type: {
+        "s:10Foundation24FloatingPointFormatStyleV10AttributedV": true;
+    };
 }
 /**
  * typealias FormatInput = Value
@@ -11820,6 +12405,9 @@ export declare class FloatingPointFormatStyle_Currency<Value = unknown> extends 
      * @availability iOS 15.0+
      */
     precision(p: NumberFormatStyleConfiguration_Precision): $SDK76;
+    readonly $type: {
+        "s:10Foundation24FloatingPointFormatStyleV8CurrencyV": true;
+    };
 }
 /**
  * typealias Configuration = CurrencyFormatStyleConfiguration
@@ -11932,6 +12520,9 @@ export declare class FloatingPointFormatStyle_Percent<Value = unknown> extends S
      * @availability iOS 15.0+
      */
     precision(p: NumberFormatStyleConfiguration_Precision): $SDK80;
+    readonly $type: {
+        "s:10Foundation24FloatingPointFormatStyleV7PercentV": true;
+    };
 }
 /**
  * typealias Configuration = NumberFormatStyleConfiguration
@@ -11973,6 +12564,9 @@ export type FloatingPointFormatStyle_Strategy<Value = unknown> = FloatingPointPa
  * @availability iOS 15.0+
  */
 export declare class FloatingPointParseStrategy<Format = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation26FloatingPointParseStrategyV": true;
+    };
 }
 /**
  * typealias ParseInput = String
@@ -12030,6 +12624,9 @@ export declare class FormatStyleCapitalizationContext extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get listItem(): FormatStyleCapitalizationContext;
+    readonly $type: {
+        "s:10Foundation32FormatStyleCapitalizationContextV": true;
+    };
 }
 /**
  * enum Context
@@ -12070,13 +12667,11 @@ export declare class HTTPCookie extends SDKHandle {
      * @availability iOS 2.0+
      */
     static requestHeaderFields(cookies: Array<HTTPCookie>): Record<string, string>;
-    /** init() */
-    static init(): HTTPCookie;
     /**
      * init?(properties: [HTTPCookiePropertyKey : Any])
      * @availability iOS 2.0+
      */
-    static initProperties(properties: NativeMap<HTTPCookiePropertyKey, unknown>): (HTTPCookie) | null;
+    static init(properties: NativeMap<HTTPCookiePropertyKey, unknown>): (HTTPCookie) | null;
     /**
      * var isHTTPOnly: Bool { get }
      * @availability iOS 2.0+
@@ -12147,6 +12742,10 @@ export declare class HTTPCookie extends SDKHandle {
      * @availability iOS 2.0+
      */
     get version(): number;
+    readonly $type: {
+        "c:objc(cs)NSHTTPCookie": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isHTTPOnly": true;
         "comment": true;
@@ -12321,6 +12920,10 @@ export declare class HTTPCookieStorage extends SDKHandle {
      * @availability iOS 2.0+
      */
     get cookies(): (Array<HTTPCookie>) | null;
+    readonly $type: {
+        "c:objc(cs)NSHTTPCookieStorage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cookieAcceptPolicy": true;
         "cookies": true;
@@ -12346,6 +12949,9 @@ export declare class HTTPCookieStorage_CookiesChangedMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): HTTPCookieStorage_CookiesChangedMessage;
+    readonly $type: {
+        "s:So19NSHTTPCookieStorageC10FoundationE21CookiesChangedMessageV": true;
+    };
 }
 /**
  * typealias Subject = HTTPCookieStorage
@@ -12373,13 +12979,11 @@ export declare const HTTPCookieStringPolicy: {
  * @availability iOS 2.0+
  */
 export declare class URLResponse extends SDKHandle {
-    /** init() */
-    static init(): URLResponse;
     /**
      * init(url URL: URL, mimeType MIMEType: String?, expectedContentLength length: Int, textEncodingName name: String?)
      * @availability iOS 2.0+
      */
-    static initUrlMimeTypeExpectedContentLengthTextEncodingName(URL: string, MIMEType: (string) | null, length: number, name?: (string) | null): URLResponse;
+    static init(URL: string, MIMEType: (string) | null, length: number, name?: (string) | null): URLResponse;
     /**
      * var mimeType: String? { get }
      * @availability iOS 2.0+
@@ -12405,6 +13009,10 @@ export declare class URLResponse extends SDKHandle {
      * @availability iOS 2.0+
      */
     get textEncodingName(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)NSURLResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mimeType": true;
         "url": true;
@@ -12424,13 +13032,11 @@ export declare class HTTPURLResponse extends HTTPURLResponse_base {
      * @availability iOS 2.0+
      */
     static localizedString(statusCode: number): string;
-    /** init() */
-    static init(): HTTPURLResponse;
     /**
      * init?(url: URL, statusCode: Int, httpVersion HTTPVersion: String?, headerFields: [String : String]?)
      * @availability iOS 5.0+
      */
-    static initUrlStatusCodeHttpVersionHeaderFields(url: string, statusCode: number, HTTPVersion?: (string) | null, headerFields?: $SDK89): (HTTPURLResponse) | null;
+    static init(url: string, statusCode: number, HTTPVersion?: (string) | null, headerFields?: $SDK89): (HTTPURLResponse) | null;
     /**
      * func value(forHTTPHeaderField field: String) -> String?
      * @availability iOS 13.0+
@@ -12446,6 +13052,11 @@ export declare class HTTPURLResponse extends HTTPURLResponse_base {
      * @availability iOS 2.0+
      */
     get statusCode(): number;
+    readonly $type: {
+        "c:objc(cs)NSHTTPURLResponse": true;
+        "c:objc(cs)NSURLResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mimeType": true;
         "url": true;
@@ -12576,6 +13187,9 @@ export declare class IndexPath extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript82543(index: SDKHandle): number;
+    readonly $type: {
+        "s:10Foundation9IndexPathV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = IndexPath.Element
@@ -12910,6 +13524,9 @@ export declare class IndexSet extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript4044(bounds: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:10Foundation8IndexSetV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = IndexSet.Element
@@ -12931,6 +13548,9 @@ export declare class IndexSet_Index extends SDKHandle {
      * @availability iOS 8.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:10Foundation8IndexSetV0B0V": true;
+    };
 }
 /**
  * typealias Indices = DefaultIndices<IndexSet>
@@ -12982,6 +13602,9 @@ export declare class IndexSet_RangeView extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript90807(bounds: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:10Foundation8IndexSetV9RangeViewV": true;
+    };
 }
 /**
  * typealias Element = Range<IndexSet.Element>
@@ -13023,6 +13646,9 @@ export type IndexSet_SubSequence = SDKHandle;
  * @availability iOS 17.0+
  */
 export declare class InflectionConcept extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation17InflectionConceptO": true;
+    };
 }
 /**
  * enum InflectionRule
@@ -13044,6 +13670,9 @@ export declare class InflectionRule extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get canInflectPreferredLocalization(): boolean;
+    readonly $type: {
+        "s:10Foundation14InflectionRuleO": true;
+    };
 }
 /**
  * struct InlinePresentationIntent
@@ -13143,15 +13772,18 @@ export declare class Stream extends SDKHandle {
     get streamError(): (NativeError) | null;
     /** var streamStatus: Stream.Status { get } */
     get streamStatus(): Stream_Status;
+    readonly $type: {
+        "c:objc(cs)NSStream": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "streamError": true;
         "streamStatus": true;
     };
 }
-declare const InputStream_base: Omit<typeof Stream, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Stream);
 /** class InputStream */
-export declare class InputStream extends InputStream_base {
+export declare class InputStream extends Stream {
     /** func getBuffer(_ buffer: UnsafeMutablePointer<UnsafeMutablePointer<UInt8>?>, length len: UnsafeMutablePointer<Int>) -> Bool */
     getBuffer(len: SDKHandle): {
         $ret: boolean;
@@ -13159,8 +13791,6 @@ export declare class InputStream extends InputStream_base {
             "buffer": (SDKHandle) | null;
         };
     };
-    /** init() */
-    static init(): InputStream;
     /** init(data: Data) */
     static initData(data: ArrayBuffer): InputStream;
     /** convenience init?(fileAtPath path: String) */
@@ -13174,6 +13804,11 @@ export declare class InputStream extends InputStream_base {
     read(buffer: SDKHandle, len: number): number;
     /** var hasBytesAvailable: Bool { get } */
     get hasBytesAvailable(): boolean;
+    readonly $type: {
+        "c:objc(cs)NSInputStream": true;
+        "c:objc(cs)NSStream": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "streamError": true;
@@ -13257,6 +13892,9 @@ export declare class IntegerFormatStyle<Value = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     precision(p: NumberFormatStyleConfiguration_Precision): $SDK97;
+    readonly $type: {
+        "s:10Foundation18IntegerFormatStyleV": true;
+    };
 }
 /**
  * struct Attributed
@@ -13273,6 +13911,9 @@ export declare class IntegerFormatStyle_Attributed<Value = unknown> extends SDKH
      * @availability iOS 15.0+
      */
     locale(locale: Locale): $SDK95;
+    readonly $type: {
+        "s:10Foundation18IntegerFormatStyleV10AttributedV": true;
+    };
 }
 /**
  * typealias FormatInput = Value
@@ -13375,6 +14016,9 @@ export declare class IntegerFormatStyle_Currency<Value = unknown> extends SDKHan
      * @availability iOS 15.0+
      */
     precision(p: NumberFormatStyleConfiguration_Precision): $SDK98;
+    readonly $type: {
+        "s:10Foundation18IntegerFormatStyleV8CurrencyV": true;
+    };
 }
 /**
  * typealias Configuration = CurrencyFormatStyleConfiguration
@@ -13487,6 +14131,9 @@ export declare class IntegerFormatStyle_Percent<Value = unknown> extends SDKHand
      * @availability iOS 15.0+
      */
     precision(p: NumberFormatStyleConfiguration_Precision): $SDK102;
+    readonly $type: {
+        "s:10Foundation18IntegerFormatStyleV7PercentV": true;
+    };
 }
 /**
  * typealias Configuration = NumberFormatStyleConfiguration
@@ -13528,6 +14175,9 @@ export type IntegerFormatStyle_Strategy<Value = unknown> = IntegerParseStrategy<
  * @availability iOS 15.0+
  */
 export declare class IntegerParseStrategy<Format = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20IntegerParseStrategyV": true;
+    };
 }
 /**
  * typealias ParseInput = String
@@ -13577,6 +14227,11 @@ export declare class ISO8601DateFormatter extends ISO8601DateFormatter_base {
      */
     get timeZone(): (TimeZone) | null;
     set timeZone(value: (TimeZone) | null);
+    readonly $type: {
+        "c:objc(cs)NSISO8601DateFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "formatOptions": true;
         "timeZone": true;
@@ -13715,18 +14370,27 @@ export declare class JSONDecoder extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): JSONDecoder;
+    readonly $type: {
+        "s:10Foundation11JSONDecoderC": true;
+    };
 }
 /**
  * enum DataDecodingStrategy
  * @availability iOS 8.0+
  */
 export declare class JSONDecoder_DataDecodingStrategy extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation11JSONDecoderC20DataDecodingStrategyO": true;
+    };
 }
 /**
  * enum DateDecodingStrategy
  * @availability iOS 8.0+
  */
 export declare class JSONDecoder_DateDecodingStrategy extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation11JSONDecoderC20DateDecodingStrategyO": true;
+    };
 }
 /**
  * typealias Input = Data
@@ -13738,12 +14402,18 @@ export type JSONDecoder_Input = ArrayBuffer;
  * @availability iOS 8.0+
  */
 export declare class JSONDecoder_KeyDecodingStrategy extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation11JSONDecoderC19KeyDecodingStrategyO": true;
+    };
 }
 /**
  * enum NonConformingFloatDecodingStrategy
  * @availability iOS 8.0+
  */
 export declare class JSONDecoder_NonConformingFloatDecodingStrategy extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation11JSONDecoderC34NonConformingFloatDecodingStrategyO": true;
+    };
 }
 /**
  * class JSONEncoder
@@ -13796,30 +14466,45 @@ export declare class JSONEncoder extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): JSONEncoder;
+    readonly $type: {
+        "s:10Foundation11JSONEncoderC": true;
+    };
 }
 /**
  * enum DataEncodingStrategy
  * @availability iOS 8.0+
  */
 export declare class JSONEncoder_DataEncodingStrategy extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation11JSONEncoderC20DataEncodingStrategyO": true;
+    };
 }
 /**
  * enum DateEncodingStrategy
  * @availability iOS 8.0+
  */
 export declare class JSONEncoder_DateEncodingStrategy extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation11JSONEncoderC20DateEncodingStrategyO": true;
+    };
 }
 /**
  * enum KeyEncodingStrategy
  * @availability iOS 8.0+
  */
 export declare class JSONEncoder_KeyEncodingStrategy extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation11JSONEncoderC19KeyEncodingStrategyO": true;
+    };
 }
 /**
  * enum NonConformingFloatEncodingStrategy
  * @availability iOS 8.0+
  */
 export declare class JSONEncoder_NonConformingFloatEncodingStrategy extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation11JSONEncoderC34NonConformingFloatEncodingStrategyO": true;
+    };
 }
 /**
  * typealias Output = Data
@@ -13910,6 +14595,10 @@ export declare class JSONSerialization extends SDKHandle {
     };
     /** init() */
     static init(): JSONSerialization;
+    readonly $type: {
+        "c:objc(cs)NSJSONSerialization": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct ReadingOptions
@@ -14007,6 +14696,9 @@ export declare class KeyPathComparator<Compared = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     compare(lhs: unknown, rhs: unknown): ComparisonResult;
+    readonly $type: {
+        "s:10Foundation17KeyPathComparatorV": true;
+    };
 }
 declare const LengthFormatter_base: Omit<typeof Formatter, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<Formatter, "getObjectValue">);
 /**
@@ -14065,6 +14757,11 @@ export declare class LengthFormatter extends LengthFormatter_base {
      */
     get unitStyle(): Formatter_UnitStyle;
     set unitStyle(value: Formatter_UnitStyle);
+    readonly $type: {
+        "c:objc(cs)NSLengthFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isForPersonHeightUse": true;
         "numberFormatter": true;
@@ -14088,6 +14785,9 @@ export declare const LengthFormatter_Unit: {
  * @availability iOS 15.0+
  */
 export declare class ListFormatStyle<Style = unknown, Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation15ListFormatStyleV": true;
+    };
 }
 /**
  * typealias FormatInput = Base
@@ -14154,6 +14854,11 @@ export declare class ListFormatter extends ListFormatter_base {
      */
     get locale(): (Locale) | null;
     set locale(value: (Locale) | null);
+    readonly $type: {
+        "c:objc(cs)NSListFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "itemFormatter": true;
         "locale": true;
@@ -14503,6 +15208,9 @@ export declare class Locale extends SDKHandle {
      * @availability iOS 16.0+
      */
     get hourCycle(): Locale_HourCycle;
+    readonly $type: {
+        "s:10Foundation6LocaleV": true;
+    };
 }
 /**
  * struct Collation
@@ -14550,6 +15258,9 @@ export declare class Locale_Collation extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): Locale_Collation;
+    readonly $type: {
+        "s:10Foundation6LocaleV9CollationV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -14658,6 +15369,9 @@ export declare class Locale_Components extends SDKHandle {
      */
     get hourCycle(): (Locale_HourCycle) | null;
     set hourCycle(value: (Locale_HourCycle) | null);
+    readonly $type: {
+        "s:10Foundation6LocaleV10ComponentsV": true;
+    };
 }
 /**
  * struct Currency
@@ -14700,6 +15414,9 @@ export declare class Locale_Currency extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): Locale_Currency;
+    readonly $type: {
+        "s:10Foundation6LocaleV8CurrencyV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -14736,6 +15453,9 @@ export declare class Locale_CurrentLocaleDidChangeMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Locale_CurrentLocaleDidChangeMessage;
+    readonly $type: {
+        "s:10Foundation6LocaleV07CurrentB16DidChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = Locale
@@ -14844,6 +15564,9 @@ export declare class Locale_Language extends SDKHandle {
      * @availability iOS 16.0+
      */
     get script(): (Locale_Script) | null;
+    readonly $type: {
+        "s:10Foundation6LocaleV8LanguageV": true;
+    };
 }
 /**
  * struct Components
@@ -14883,6 +15606,9 @@ export declare class Locale_Language_Components extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initLanguage(language: Locale_Language): Locale_Language_Components;
+    readonly $type: {
+        "s:10Foundation6LocaleV8LanguageV10ComponentsV": true;
+    };
 }
 /**
  * struct LanguageCode
@@ -15480,6 +16206,9 @@ export declare class Locale_LanguageCode extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): Locale_LanguageCode;
+    readonly $type: {
+        "s:10Foundation6LocaleV12LanguageCodeV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -15552,6 +16281,9 @@ export declare class Locale_MeasurementSystem extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): Locale_MeasurementSystem;
+    readonly $type: {
+        "s:10Foundation6LocaleV17MeasurementSystemV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -15599,6 +16331,9 @@ export declare class Locale_NumberingSystem extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): Locale_NumberingSystem;
+    readonly $type: {
+        "s:10Foundation6LocaleV15NumberingSystemV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -16971,6 +17706,9 @@ export declare class Locale_Region extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): Locale_Region;
+    readonly $type: {
+        "s:10Foundation6LocaleV6RegionV": true;
+    };
 }
 /**
  * struct Category
@@ -17007,6 +17745,9 @@ export declare class Locale_Region_Category extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get territory(): Locale_Region_Category;
+    readonly $type: {
+        "s:10Foundation6LocaleV6RegionV8CategoryV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -17244,6 +17985,9 @@ export declare class Locale_Script extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): Locale_Script;
+    readonly $type: {
+        "s:10Foundation6LocaleV6ScriptV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -17291,6 +18035,9 @@ export declare class Locale_Subdivision extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): Locale_Subdivision;
+    readonly $type: {
+        "s:10Foundation6LocaleV11SubdivisionV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -17338,6 +18085,9 @@ export declare class Locale_Variant extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): Locale_Variant;
+    readonly $type: {
+        "s:10Foundation6LocaleV7VariantV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -17448,12 +18198,18 @@ export declare class LocalizedStringResource extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initTableLocaleBundleComment87925(keyAndValue: String_LocalizationValue, table: (string) | null, locale: Locale, bundle: Bundle, comment?: (SDKHandle) | null): LocalizedStringResource;
+    readonly $type: {
+        "s:10Foundation23LocalizedStringResourceV": true;
+    };
 }
 /**
  * enum BundleDescription
  * @availability iOS 16.0+
  */
 export declare class LocalizedStringResource_BundleDescription extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation23LocalizedStringResourceV17BundleDescriptionO": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -17745,6 +18501,9 @@ export declare class MachError extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get lockOwned(): SDKHandle;
+    readonly $type: {
+        "s:10Foundation9MachErrorV": true;
+    };
 }
 /**
  * typealias Code = MachErrorCode
@@ -17819,6 +18578,11 @@ export declare class MassFormatter extends MassFormatter_base {
      */
     get unitStyle(): Formatter_UnitStyle;
     set unitStyle(value: Formatter_UnitStyle);
+    readonly $type: {
+        "c:objc(cs)NSMassFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isForPersonMassUse": true;
         "numberFormatter": true;
@@ -17888,6 +18652,9 @@ export declare class Measurement<UnitType = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     formatted(): string;
+    readonly $type: {
+        "s:10Foundation11MeasurementV": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct AttributedStyle
@@ -17914,6 +18681,9 @@ export declare class Measurement_AttributedStyle<UnitType = unknown> extends SDK
      * @availability iOS 15.0+
      */
     locale(locale: Locale): $SDK120;
+    readonly $type: {
+        "s:10Foundation11MeasurementVAASo11NSDimensionCRbzrlE15AttributedStyleV": true;
+    };
 }
 /**
  * struct ByteCount
@@ -17965,6 +18735,9 @@ export declare class Measurement_AttributedStyle_ByteCount<UnitType = unknown> e
      * @availability iOS 16.0+
      */
     locale776(locale: Locale): $SDK121;
+    readonly $type: {
+        "s:10Foundation11MeasurementVAASo11NSDimensionCRbzrlE15AttributedStyleVAASo24NSUnitInformationStorageCRszrlE9ByteCountV": true;
+    };
 }
 /**
  * typealias FormatInput = Measurement<UnitInformationStorage>
@@ -18056,6 +18829,9 @@ export declare class Measurement_FormatStyle<UnitType = unknown> extends SDKHand
      * @availability iOS 15.0+
      */
     static initWidthLocaleUsageHidesScaleNameNumberFormatStyle(width?: Measurement_FormatStyle_UnitWidth<UnitTemperature>, locale?: Locale, usage?: $SDK129, hidesScaleName?: boolean, numberFormatStyle?: $SDK122): Measurement_FormatStyle<UnitTemperature>;
+    readonly $type: {
+        "s:10Foundation11MeasurementVAASo11NSDimensionCRbzrlE11FormatStyleV": true;
+    };
 }
 /**
  * struct ByteCount
@@ -18112,6 +18888,9 @@ export declare class Measurement_FormatStyle_ByteCount<UnitType = unknown> exten
      * @availability iOS 16.0+
      */
     locale79277(locale: Locale): $SDK130;
+    readonly $type: {
+        "s:10Foundation11MeasurementVAASo11NSDimensionCRbzrlE11FormatStyleVAASo24NSUnitInformationStorageCRszrlE9ByteCountV": true;
+    };
 }
 /**
  * typealias FormatInput = Measurement<UnitInformationStorage>
@@ -18163,6 +18942,9 @@ export declare class Measurement_FormatStyle_UnitWidth<UnitType = unknown> exten
      * @availability iOS 15.0+
      */
     static get narrow(): $SDK125;
+    readonly $type: {
+        "s:10Foundation11MeasurementVAASo11NSDimensionCRbzrlE11FormatStyleV9UnitWidthV": true;
+    };
 }
 /**
  * typealias ReferenceType = NSMeasurement
@@ -18216,6 +18998,11 @@ export declare class MeasurementFormatter extends MeasurementFormatter_base {
      * @availability iOS 10.0+
      */
     stringFrom53753(measurement: Measurement<Unit>): string;
+    readonly $type: {
+        "c:objc(cs)NSMeasurementFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "locale": true;
         "numberFormatter": true;
@@ -18340,6 +19127,9 @@ export declare class MeasurementFormatUnitUsage<UnitType = unknown> extends SDKH
      * @availability iOS 15.0+
      */
     static get weather(): $SDK129;
+    readonly $type: {
+        "s:10Foundation26MeasurementFormatUnitUsageV": true;
+    };
 }
 /** class Port */
 export declare class Port extends SDKHandle {
@@ -18365,6 +19155,10 @@ export declare class Port extends SDKHandle {
     get reservedSpaceLength(): number;
     /** var isValid: Bool { get } */
     get isValid(): boolean;
+    readonly $type: {
+        "c:objc(cs)NSPort": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reservedSpaceLength": true;
         "isValid": true;
@@ -18375,6 +19169,11 @@ declare const MessagePort_base: Omit<typeof Port, "init" | "prototype"> & (new (
 export declare class MessagePort extends MessagePort_base {
     /** init() */
     static init(): MessagePort;
+    readonly $type: {
+        "c:objc(cs)NSMessagePort": true;
+        "c:objc(cs)NSPort": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reservedSpaceLength": true;
         "isValid": true;
@@ -18460,6 +19259,9 @@ export declare class Morphology extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): Morphology;
+    readonly $type: {
+        "s:10Foundation10MorphologyV": true;
+    };
 }
 /**
  * struct CustomPronoun
@@ -18520,6 +19322,9 @@ export declare class Morphology_CustomPronoun extends SDKHandle {
      * @deprecated iOS 17.0
      */
     static init(): Morphology_CustomPronoun;
+    readonly $type: {
+        "s:10Foundation10MorphologyV13CustomPronounV": true;
+    };
 }
 /**
  * enum Definiteness
@@ -18703,6 +19508,9 @@ export declare class Morphology_Pronoun extends SDKHandle {
      */
     get pronoun(): string;
     set pronoun(value: string);
+    readonly $type: {
+        "s:10Foundation10MorphologyV7PronounV": true;
+    };
 }
 /**
  * enum PronounType
@@ -18805,8 +19613,6 @@ export declare class NetService extends SDKHandle {
             "outputStream": (OutputStream) | null;
         };
     };
-    /** init() */
-    static init(): NetService;
     /**
      * convenience init(domain: String, type: String, name: String)
      * @availability iOS 2.0+
@@ -18923,6 +19729,10 @@ export declare class NetService extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get type(): string;
+    readonly $type: {
+        "c:objc(cs)NSNetService": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addresses": true;
         "delegate": true;
@@ -19030,6 +19840,10 @@ export declare class NetServiceBrowser extends SDKHandle {
      */
     get includesPeerToPeer(): boolean;
     set includesPeerToPeer(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NSNetServiceBrowser": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "includesPeerToPeer": true;
@@ -19175,6 +19989,9 @@ export declare class Notification extends SDKHandle {
      */
     get userInfo(): $SDK23;
     set userInfo(value: $SDK23);
+    readonly $type: {
+        "s:10Foundation12NotificationV": true;
+    };
 }
 /**
  * typealias Name = NSNotification.Name
@@ -19222,6 +20039,10 @@ export declare class NotificationCenter extends SDKHandle {
      * @availability iOS 13.0+
      */
     publisher(name: NSNotification_Name, object?: (unknown) | null): NotificationCenter_Publisher;
+    readonly $type: {
+        "c:objc(cs)NSNotificationCenter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol AsyncMessage : Sendable
@@ -19244,6 +20065,9 @@ export interface NotificationCenter_AsyncMessage {
  * @availability iOS 26.0+
  */
 export declare class NotificationCenter_BaseMessageIdentifier<MessageType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:So20NSNotificationCenterC10FoundationE21BaseMessageIdentifierV": true;
+    };
 }
 /**
  * protocol MainActorMessage : SendableMetatype
@@ -19277,6 +20101,9 @@ export declare class NotificationCenter_Notifications extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): NotificationCenter_Notifications_Iterator;
+    readonly $type: {
+        "s:So20NSNotificationCenterC10FoundationE13NotificationsC": true;
+    };
     readonly $element: Notification;
 }
 /**
@@ -19299,6 +20126,9 @@ export declare class NotificationCenter_Notifications_Iterator extends SDKHandle
      * @availability iOS 15.0+
      */
     next(): Promise<(Notification) | null>;
+    readonly $type: {
+        "s:So20NSNotificationCenterC10FoundationE13NotificationsC8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Notification
@@ -19310,6 +20140,9 @@ export type NotificationCenter_Notifications_Iterator_Element = Notification;
  * @availability iOS 26.0+
  */
 export declare class NotificationCenter_ObservationToken extends SDKHandle {
+    readonly $type: {
+        "s:So20NSNotificationCenterC10FoundationE16ObservationTokenV": true;
+    };
 }
 /**
  * struct Publisher
@@ -19336,6 +20169,9 @@ export declare class NotificationCenter_Publisher extends SDKHandle {
      * @availability iOS 13.0+
      */
     get object(): (unknown) | null;
+    readonly $type: {
+        "s:So20NSNotificationCenterC10FoundationE9PublisherV": true;
+    };
     readonly $element: Notification;
 }
 /**
@@ -19358,10 +20194,12 @@ export declare class NotificationQueue extends SDKHandle {
     enqueuePostingStyle(notification: Notification, postingStyle: NotificationQueue_PostingStyle): void;
     /** func enqueue(_ notification: Notification, postingStyle: NotificationQueue.PostingStyle, coalesceMask: NotificationQueue.NotificationCoalescing, forModes modes: [RunLoop.Mode]?) */
     enqueuePostingStyleCoalesceMaskForModes(notification: Notification, postingStyle: NotificationQueue_PostingStyle, coalesceMask: NotificationQueue_NotificationCoalescing, modes?: $SDK53): void;
-    /** init() */
-    static init(): NotificationQueue;
     /** init(notificationCenter: NotificationCenter) */
-    static initNotificationCenter(notificationCenter: NotificationCenter): NotificationQueue;
+    static init(notificationCenter: NotificationCenter): NotificationQueue;
+    readonly $type: {
+        "c:objc(cs)NSNotificationQueue": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct NotificationCoalescing */
 export type NotificationQueue_NotificationCoalescing = Array<"none" | "onName" | "onSender">;
@@ -19388,9 +20226,9 @@ export declare class NSArray extends SDKHandle {
     /** convenience init(objects: UnsafePointer<AnyObject>, count cnt: Int) */
     static initObjectsCount(objects: SDKHandle, cnt: number): NSArray;
     /** func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?) */
-    addObserverForKeyPathOptionsContext(observer: SDKHandle, keyPath: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
+    addObserverForKeyPathOptionsContext(observer: _ObjectiveC_NSObject, keyPath: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
     /** func addObserver(_ observer: NSObject, toObjectsAt indexes: IndexSet, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?) */
-    addObserverToObjectsAtForKeyPathOptionsContext(observer: SDKHandle, indexes: IndexSet, keyPath: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
+    addObserverToObjectsAtForKeyPathOptionsContext(observer: _ObjectiveC_NSObject, indexes: IndexSet, keyPath: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
     /** func adding(_ anObject: Any) -> [Any] */
     adding(anObject: unknown): Array<unknown>;
     /** func addingObjects(from otherArray: [Any]) -> [Any] */
@@ -19468,19 +20306,19 @@ export declare class NSArray extends SDKHandle {
     /** func pathsMatchingExtensions(_ filterTypes: [String]) -> [String] */
     pathsMatchingExtensions(filterTypes: Array<string>): Array<string>;
     /** func removeObserver(_ observer: NSObject, forKeyPath keyPath: String) */
-    removeObserverForKeyPath(observer: SDKHandle, keyPath: string): void;
+    removeObserverForKeyPath(observer: _ObjectiveC_NSObject, keyPath: string): void;
     /**
      * func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
      * @availability iOS 5.0+
      */
-    removeObserverForKeyPathContext(observer: SDKHandle, keyPath: string, context?: (SDKHandle) | null): void;
+    removeObserverForKeyPathContext(observer: _ObjectiveC_NSObject, keyPath: string, context?: (SDKHandle) | null): void;
     /** func removeObserver(_ observer: NSObject, fromObjectsAt indexes: IndexSet, forKeyPath keyPath: String) */
-    removeObserverFromObjectsAtForKeyPath(observer: SDKHandle, indexes: IndexSet, keyPath: string): void;
+    removeObserverFromObjectsAtForKeyPath(observer: _ObjectiveC_NSObject, indexes: IndexSet, keyPath: string): void;
     /**
      * func removeObserver(_ observer: NSObject, fromObjectsAt indexes: IndexSet, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
      * @availability iOS 5.0+
      */
-    removeObserverFromObjectsAtForKeyPathContext(observer: SDKHandle, indexes: IndexSet, keyPath: string, context?: (SDKHandle) | null): void;
+    removeObserverFromObjectsAtForKeyPathContext(observer: _ObjectiveC_NSObject, indexes: IndexSet, keyPath: string, context?: (SDKHandle) | null): void;
     /** func reverseObjectEnumerator() -> NSEnumerator */
     reverseObjectEnumerator(): NSEnumerator;
     /** func setValue(_ value: Any?, forKey key: String) */
@@ -19541,6 +20379,10 @@ export declare class NSArray extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initArray72863(anArray: NSArray): NSArray;
+    readonly $type: {
+        "c:objc(cs)NSArray": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "count": true;
         "description": true;
@@ -19570,6 +20412,10 @@ export declare class NSAssertionHandler extends SDKHandle {
     static get current(): NSAssertionHandler;
     /** init() */
     static init(): NSAssertionHandler;
+    readonly $type: {
+        "c:objc(cs)NSAssertionHandler": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class NSAttributedString
@@ -19604,8 +20450,6 @@ export declare class NSAttributedString extends SDKHandle {
      * @availability iOS 4.0+
      */
     enumerateAttributes(enumerationRange: SDKHandle, opts: NSAttributedString_EnumerationOptions, block: ((arg0: NativeMap<NSAttributedString_Key, unknown>, arg1: SDKHandle, arg2: NativeOut<boolean>) => void)): void;
-    /** init() */
-    static init(): NSAttributedString;
     /** init(attributedString attrStr: NSAttributedString) */
     static initAttributedString(attrStr: NSAttributedString): NSAttributedString;
     /** init(string str: String) */
@@ -19640,7 +20484,11 @@ export declare class NSAttributedString extends SDKHandle {
      * convenience init(_ attrStr: AttributedString)
      * @availability iOS 15.0+
      */
-    static init57071(attrStr: AttributedString): NSAttributedString;
+    static init(attrStr: AttributedString): NSAttributedString;
+    readonly $type: {
+        "c:objc(cs)NSAttributedString": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "length": true;
         "string": true;
@@ -19657,7 +20505,7 @@ export declare const NSAttributedString_EnumerationOptions: {
     init(rawValue: number): NSAttributedString_EnumerationOptions;
 };
 /** struct Key */
-export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "textItemTag" | (string & {});
+export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "textItemTag" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | (string & {});
 export declare const NSAttributedString_Key: {
     /**
      * static let alternateDescription: NSAttributedString.Key
@@ -19825,6 +20673,10 @@ export declare class NSBundleResourceRequest extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get tags(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)NSBundleResourceRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bundle": true;
         "loadingPriority": true;
@@ -19856,6 +20708,9 @@ export declare class NSBundleResourceRequest_LowDiskSpaceMessage extends SDKHand
      * @deprecated iOS 27.0
      */
     static init(): NSBundleResourceRequest_LowDiskSpaceMessage;
+    readonly $type: {
+        "s:So23NSBundleResourceRequestC10FoundationE19LowDiskSpaceMessageV": true;
+    };
 }
 /**
  * typealias Subject = NSBundleResourceRequest
@@ -19868,6 +20723,74 @@ export type NSBundleResourceRequest_LowDiskSpaceMessage_Subject = NSBundleResour
  * @availability iOS 4.0+
  */
 export declare class NSCache<KeyType = unknown, ObjectType = unknown> extends SDKHandle {
+    /** init() */
+    static init(): NSCache<SDKHandle, SDKHandle>;
+    /**
+     * func object(forKey key: KeyType) -> ObjectType?
+     * @availability iOS 4.0+
+     */
+    object(key: SDKHandle): (SDKHandle) | null;
+    /**
+     * func removeAllObjects()
+     * @availability iOS 4.0+
+     */
+    removeAllObjects(): void;
+    /**
+     * func removeObject(forKey key: KeyType)
+     * @availability iOS 4.0+
+     */
+    removeObject(key: SDKHandle): void;
+    /**
+     * func setObject(_ obj: ObjectType, forKey key: KeyType)
+     * @availability iOS 4.0+
+     */
+    setObjectForKey(obj: SDKHandle, key: SDKHandle): void;
+    /**
+     * func setObject(_ obj: ObjectType, forKey key: KeyType, cost g: Int)
+     * @availability iOS 4.0+
+     */
+    setObjectForKeyCost(obj: SDKHandle, key: SDKHandle, g: number): void;
+    /**
+     * var countLimit: Int { get set }
+     * @availability iOS 4.0+
+     */
+    get countLimit(): number;
+    set countLimit(value: number);
+    /**
+     * unowned(unsafe) var delegate: (any NSCacheDelegate)? { get set }
+     * @availability iOS 4.0+
+     */
+    get delegate(): (SDKHandle) | null;
+    set delegate(value: (Implements<NSCacheDelegate> | SDKHandle) | null);
+    /**
+     * var evictsObjectsWithDiscardedContent: Bool { get set }
+     * @availability iOS 4.0+
+     */
+    get evictsObjectsWithDiscardedContent(): boolean;
+    set evictsObjectsWithDiscardedContent(value: boolean);
+    /**
+     * var name: String { get set }
+     * @availability iOS 4.0+
+     */
+    get name(): string;
+    set name(value: string);
+    /**
+     * var totalCostLimit: Int { get set }
+     * @availability iOS 4.0+
+     */
+    get totalCostLimit(): number;
+    set totalCostLimit(value: number);
+    readonly $type: {
+        "c:objc(cs)NSCache": true;
+        "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "countLimit": true;
+        "delegate": true;
+        "evictsObjectsWithDiscardedContent": true;
+        "name": true;
+        "totalCostLimit": true;
+    };
 }
 /** protocol NSCacheDelegate : NSObjectProtocol */
 export interface NSCacheDelegate {
@@ -20173,6 +21096,10 @@ export declare class NSCalendar extends SDKHandle {
      * @availability iOS 5.0+
      */
     get weekdaySymbols(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)NSCalendar": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amSymbol": true;
         "pmSymbol": true;
@@ -20634,8 +21561,6 @@ export declare class NSCharacterSet extends SDKHandle {
     characterIsMember(aCharacter: number): boolean;
     /** func hasMemberInPlane(_ thePlane: UInt8) -> Bool */
     hasMemberInPlane(thePlane: number): boolean;
-    /** init() */
-    static init(): NSCharacterSet;
     /** init(coder: NSCoder) */
     static initCoder(coder: NSCoder): NSCharacterSet;
     /** func isSuperset(of theOtherSet: CharacterSet) -> Bool */
@@ -20646,6 +21571,10 @@ export declare class NSCharacterSet extends SDKHandle {
     get bitmapRepresentation(): ArrayBuffer;
     /** var inverted: CharacterSet { get } */
     get inverted(): CharacterSet;
+    readonly $type: {
+        "c:objc(cs)NSCharacterSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bitmapRepresentation": true;
         "inverted": true;
@@ -20816,6 +21745,10 @@ export declare class NSCoder extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     decodeTopLevelObject(): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)NSCoder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedClasses": true;
         "allowsKeyedCoding": true;
@@ -20891,8 +21824,6 @@ export declare class NSPredicate extends SDKHandle {
      * @availability iOS 3.0+
      */
     evaluateWithSubstitutionVariables(object?: (unknown) | null, bindings?: $SDK18): boolean;
-    /** init() */
-    static init(): NSPredicate;
     /**
      * func withSubstitutionVariables(_ variables: [String : Any]) -> Self
      * @availability iOS 3.0+
@@ -20907,19 +21838,20 @@ export declare class NSPredicate extends SDKHandle {
      * convenience init?<Input>(_ predicate: Predicate<Input>) where Input : NSObject
      * @availability iOS 17.0+
      */
-    static init45728(predicate: Predicate<SDKHandle>): (NSPredicate) | null;
+    static init(predicate: Predicate<_ObjectiveC_NSObject>): (NSPredicate) | null;
+    readonly $type: {
+        "c:objc(cs)NSPredicate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "predicateFormat": true;
     };
 }
-declare const NSComparisonPredicate_base: Omit<typeof NSPredicate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPredicate);
 /**
  * class NSComparisonPredicate
  * @availability iOS 3.0+
  */
-export declare class NSComparisonPredicate extends NSComparisonPredicate_base {
-    /** init() */
-    static init(): NSComparisonPredicate;
+export declare class NSComparisonPredicate extends NSPredicate {
     /**
      * init?(coder: NSCoder)
      * @availability iOS 3.0+
@@ -20955,6 +21887,11 @@ export declare class NSComparisonPredicate extends NSComparisonPredicate_base {
      * @availability iOS 3.0+
      */
     get rightExpression(): NSExpression;
+    readonly $type: {
+        "c:objc(cs)NSComparisonPredicate": true;
+        "c:objc(cs)NSPredicate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "predicateFormat": true;
         "comparisonPredicateModifier": true;
@@ -20991,12 +21928,11 @@ export declare const NSComparisonPredicate_Options: {
     /** init(rawValue: UInt) */
     init(rawValue: number): NSComparisonPredicate_Options;
 };
-declare const NSCompoundPredicate_base: Omit<typeof NSPredicate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPredicate);
 /**
  * class NSCompoundPredicate
  * @availability iOS 3.0+
  */
-export declare class NSCompoundPredicate extends NSCompoundPredicate_base {
+export declare class NSCompoundPredicate extends NSPredicate {
     /**
      * init(andPredicateWithSubpredicates subpredicates: [NSPredicate])
      * @availability iOS 3.0+
@@ -21012,8 +21948,6 @@ export declare class NSCompoundPredicate extends NSCompoundPredicate_base {
      * @availability iOS 3.0+
      */
     static initOrPredicateWithSubpredicates(subpredicates: Array<NSPredicate>): NSCompoundPredicate;
-    /** init() */
-    static init(): NSCompoundPredicate;
     /**
      * init?(coder: NSCoder)
      * @availability iOS 3.0+
@@ -21034,6 +21968,11 @@ export declare class NSCompoundPredicate extends NSCompoundPredicate_base {
      * @availability iOS 3.0+
      */
     get subpredicates(): Array<unknown>;
+    readonly $type: {
+        "c:objc(cs)NSCompoundPredicate": true;
+        "c:objc(cs)NSPredicate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "predicateFormat": true;
         "compoundPredicateType": true;
@@ -21079,16 +22018,18 @@ export declare class NSCondition extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSCondition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
     };
 }
 /** class NSConditionLock */
 export declare class NSConditionLock extends SDKHandle {
-    /** init() */
-    static init(): NSConditionLock;
     /** init(condition: Int) */
-    static initCondition(condition: number): NSConditionLock;
+    static init(condition: number): NSConditionLock;
     /** func lock(before limit: Date) -> Bool */
     lockBefore(limit: globalThis.Date): boolean;
     /** func lock(whenCondition condition: Int) */
@@ -21109,6 +22050,10 @@ export declare class NSConditionLock extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSConditionLock": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "condition": true;
         "name": true;
@@ -21120,7 +22065,7 @@ export interface NSCopying {
      * func copy(with zone: NSZone? = nil) -> Any
      * @availability iOS 1.0+
      */
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: (_ObjectiveC_NSZone) | null) => unknown;
 }
 /** class NSSet */
 export declare class NSSet extends SDKHandle {
@@ -21129,7 +22074,7 @@ export declare class NSSet extends SDKHandle {
     /** convenience init(objects: UnsafePointer<AnyObject>, count cnt: Int) */
     static initObjectsCount(objects: SDKHandle, cnt: number): NSSet;
     /** func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?) */
-    addObserver(observer: SDKHandle, keyPath: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
+    addObserver(observer: _ObjectiveC_NSObject, keyPath: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
     /** func anyObject() -> Any? */
     anyObject(): (unknown) | null;
     /** func contains(_ anObject: Any) -> Bool */
@@ -21140,12 +22085,12 @@ export declare class NSSet extends SDKHandle {
      * func enumerateObjects(_ block: (Any, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 4.0+
      */
-    enumerateObjects(block: $SDK163): void;
+    enumerateObjects(block: $SDK167): void;
     /**
      * func enumerateObjects(options opts: NSEnumerationOptions = [], using block: (Any, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 4.0+
      */
-    enumerateObjectsOptionsUsing(opts: NSEnumerationOptions, block: $SDK163): void;
+    enumerateObjectsOptionsUsing(opts: NSEnumerationOptions, block: $SDK167): void;
     /**
      * func filtered(using predicate: NSPredicate) -> Set<AnyHashable>
      * @availability iOS 3.0+
@@ -21174,12 +22119,12 @@ export declare class NSSet extends SDKHandle {
     /** func objectEnumerator() -> NSEnumerator */
     objectEnumerator(): NSEnumerator;
     /** func removeObserver(_ observer: NSObject, forKeyPath keyPath: String) */
-    removeObserverForKeyPath(observer: SDKHandle, keyPath: string): void;
+    removeObserverForKeyPath(observer: _ObjectiveC_NSObject, keyPath: string): void;
     /**
      * func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
      * @availability iOS 5.0+
      */
-    removeObserverForKeyPathContext(observer: SDKHandle, keyPath: string, context?: (SDKHandle) | null): void;
+    removeObserverForKeyPathContext(observer: _ObjectiveC_NSObject, keyPath: string, context?: (SDKHandle) | null): void;
     /**
      * func adding(_ anObject: Any) -> Set<AnyHashable>
      * @availability iOS 2.0+
@@ -21230,6 +22175,10 @@ export declare class NSSet extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initSet61343(anSet: NSSet): NSSet;
+    readonly $type: {
+        "c:objc(cs)NSSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allObjects": true;
         "count": true;
@@ -21266,21 +22215,24 @@ export declare class NSMutableSet extends NSMutableSet_base {
     setSet(otherSet: Array<unknown>): void;
     /** func union(_ otherSet: Set<AnyHashable>) */
     union(otherSet: Array<unknown>): void;
+    readonly $type: {
+        "c:objc(cs)NSMutableSet": true;
+        "c:objc(cs)NSSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allObjects": true;
         "count": true;
         "description": true;
     };
 }
-declare const NSCountedSet_base: Omit<typeof NSMutableSet, "init" | "initArray" | "initCapacity" | "initSet" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSMutableSet, "objectEnumerator" | "count" | "add" | "remove">);
+declare const NSCountedSet_base: Omit<typeof NSMutableSet, "initArray" | "initCapacity" | "initSet" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSMutableSet, "objectEnumerator" | "count" | "add" | "remove">);
 /** class NSCountedSet */
 export declare class NSCountedSet extends NSCountedSet_base {
     /** func add(_ object: Any) */
     add(object: unknown): void;
     /** func count(for object: Any) -> Int */
     count(object: unknown): number;
-    /** init() */
-    static init(): NSCountedSet;
     /** convenience init(array: [Any]) */
     static initArray(array: Array<unknown>): NSCountedSet;
     /** init(capacity numItems: Int) */
@@ -21293,6 +22245,12 @@ export declare class NSCountedSet extends NSCountedSet_base {
     remove(object: unknown): void;
     /** var count: Int { get } */
     get count11333(): number;
+    readonly $type: {
+        "c:objc(cs)NSCountedSet": true;
+        "c:objc(cs)NSMutableSet": true;
+        "c:objc(cs)NSSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allObjects": true;
         "count": true;
@@ -21343,8 +22301,6 @@ export declare class NSData extends SDKHandle {
     getBytesLength(buffer: SDKHandle, length: number): void;
     /** func getBytes(_ buffer: UnsafeMutableRawPointer, range: NSRange) */
     getBytesRange(buffer: SDKHandle, range: SDKHandle): void;
-    /** init() */
-    static init(): NSData;
     /**
      * init?(base64Encoded base64Data: Data, options: NSData.Base64DecodingOptions = [])
      * @availability iOS 7.0+
@@ -21363,7 +22319,7 @@ export declare class NSData extends SDKHandle {
      * init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, deallocator: ((UnsafeMutableRawPointer, Int) -> Void)? = nil)
      * @availability iOS 7.0+
      */
-    static initBytesNoCopyLengthDeallocator(bytes: SDKHandle, length: number, deallocator?: $SDK165): NSData;
+    static initBytesNoCopyLengthDeallocator(bytes: SDKHandle, length: number, deallocator?: $SDK169): NSData;
     /** init(bytesNoCopy bytes: UnsafeMutableRawPointer, length: Int, freeWhenDone b: Bool) */
     static initBytesNoCopyLengthFreeWhenDone(bytes: SDKHandle, length: number, b: boolean): NSData;
     /** init?(contentsOfFile path: String) */
@@ -21435,6 +22391,10 @@ export declare class NSData extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript(position: number): number;
+    readonly $type: {
+        "c:objc(cs)NSData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bytes": true;
         "description": true;
@@ -21698,13 +22658,11 @@ export declare class NSRegularExpression extends SDKHandle {
     static escapedTemplate(string: string): string;
     /** func firstMatch(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> NSTextCheckingResult? */
     firstMatch(string: string, options: NSRegularExpression_MatchingOptions, range: SDKHandle): (NSTextCheckingResult) | null;
-    /** init() */
-    static init(): NSRegularExpression;
     /**
      * init(pattern: String, options: NSRegularExpression.Options = []) throws
      * @availability iOS 4.0+
      */
-    static initPatternOptions(pattern: string, options?: NSRegularExpression_Options): NSRegularExpression;
+    static init(pattern: string, options?: NSRegularExpression_Options): NSRegularExpression;
     /** func matches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> [NSTextCheckingResult] */
     matches(string: string, options: NSRegularExpression_MatchingOptions, range: SDKHandle): Array<NSTextCheckingResult>;
     /** func numberOfMatches(in string: String, options: NSRegularExpression.MatchingOptions = [], range: NSRange) -> Int */
@@ -21732,6 +22690,10 @@ export declare class NSRegularExpression extends SDKHandle {
      * @availability iOS 4.0+
      */
     get pattern(): string;
+    readonly $type: {
+        "c:objc(cs)NSRegularExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "numberOfCaptureGroups": true;
         "options": true;
@@ -21744,18 +22706,21 @@ declare const NSDataDetector_base: Omit<typeof NSRegularExpression, "init" | "pr
  * @availability iOS 4.0+
  */
 export declare class NSDataDetector extends NSDataDetector_base {
-    /** init() */
-    static init(): NSDataDetector;
     /**
      * init(types checkingTypes: NSTextCheckingTypes) throws
      * @availability iOS 4.0+
      */
-    static initTypes(checkingTypes: number): NSDataDetector;
+    static init(checkingTypes: number): NSDataDetector;
     /**
      * var checkingTypes: NSTextCheckingTypes { get }
      * @availability iOS 4.0+
      */
     get checkingTypes(): number;
+    readonly $type: {
+        "c:objc(cs)NSDataDetector": true;
+        "c:objc(cs)NSRegularExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "numberOfCaptureGroups": true;
         "options": true;
@@ -21818,6 +22783,10 @@ export declare class NSDate extends SDKHandle {
      * @availability iOS 8.0+
      */
     get customPlaygroundQuickLook(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)NSDate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "description": true;
         "timeIntervalSince1970": true;
@@ -21941,6 +22910,10 @@ export declare class NSDateComponents extends SDKHandle {
      */
     get yearForWeekOfYear(): number;
     set yearForWeekOfYear(value: number);
+    readonly $type: {
+        "c:objc(cs)NSDateComponents": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "calendar": true;
         "date": true;
@@ -22030,6 +23003,10 @@ export declare class NSDateInterval extends SDKHandle {
      * @availability iOS 10.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)NSDateInterval": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "endDate": true;
@@ -22057,8 +23034,6 @@ export declare class NSValue extends SDKHandle {
      * @availability iOS 11.0+
      */
     getValueSize(value: SDKHandle, size: number): void;
-    /** init() */
-    static init(): NSValue;
     /** init(bytes value: UnsafeRawPointer, objCType type: UnsafePointer<CChar>) */
     static initBytesObjCType(value: SDKHandle, type: SDKHandle): NSValue;
     /** init?(coder: NSCoder) */
@@ -22073,6 +23048,10 @@ export declare class NSValue extends SDKHandle {
     get pointerValue(): (SDKHandle) | null;
     /** var rangeValue: NSRange { get } */
     get rangeValue(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)NSValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nonretainedObjectValue": true;
         "objCType": true;
@@ -22080,15 +23059,13 @@ export declare class NSValue extends SDKHandle {
         "rangeValue": true;
     };
 }
-declare const NSNumber_base: Omit<typeof NSValue, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSValue, "isEqual">);
+declare const NSNumber_base: Omit<typeof NSValue, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSValue, "isEqual">);
 /** class NSNumber */
 export declare class NSNumber extends NSNumber_base {
     /** func compare(_ otherNumber: NSNumber) -> ComparisonResult */
     compare(otherNumber: NSNumber): ComparisonResult;
     /** func description(withLocale locale: Any?) -> String */
     description(locale?: (unknown) | null): string;
-    /** init() */
-    static init(): NSNumber;
     /** init(value: Bool) */
     static initValue(value: boolean): NSNumber;
     /** init(value: CChar) */
@@ -22176,6 +23153,11 @@ export declare class NSNumber extends NSNumber_base {
      * @availability iOS 8.0+
      */
     static initIntegerLiteral(value: number): NSNumber;
+    readonly $type: {
+        "c:objc(cs)NSNumber": true;
+        "c:objc(cs)NSValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nonretainedObjectValue": true;
         "objCType": true;
@@ -22198,7 +23180,7 @@ export declare class NSNumber extends NSNumber_base {
         "uint16Value": true;
     };
 }
-declare const NSDecimalNumber_base: Omit<typeof NSNumber, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSNumber, "objCType" | "compare" | "description" | "decimalValue" | "doubleValue">);
+declare const NSDecimalNumber_base: Omit<typeof NSNumber, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSNumber, "objCType" | "compare" | "description" | "decimalValue" | "doubleValue">);
 /** class NSDecimalNumber */
 export declare class NSDecimalNumber extends NSDecimalNumber_base {
     /** class var defaultBehavior: any NSDecimalNumberBehaviors { get set } */
@@ -22244,8 +23226,6 @@ export declare class NSDecimalNumber extends NSDecimalNumber_base {
     subtractingWithBehavior(decimalNumber: NSDecimalNumber, behavior?: (SDKHandle) | null): NSDecimalNumber;
     /** func description(withLocale locale: Any?) -> String */
     description(locale?: (unknown) | null): string;
-    /** init() */
-    static init(): NSDecimalNumber;
     /** init(decimal dcm: Decimal) */
     static initDecimal(dcm: Decimal): NSDecimalNumber;
     /** convenience init(mantissa: UInt64, exponent: Int16, isNegative flag: Bool) */
@@ -22260,6 +23240,12 @@ export declare class NSDecimalNumber extends NSDecimalNumber_base {
     get doubleValue(): number;
     /** var objCType: UnsafePointer<CChar> { get } */
     get objCType(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)NSDecimalNumber": true;
+        "c:objc(cs)NSNumber": true;
+        "c:objc(cs)NSValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nonretainedObjectValue": true;
         "objCType": true;
@@ -22304,16 +23290,18 @@ export interface NSDecimalNumberBehaviors {
      * func exceptionDuringOperation(_ operation: Selector, error: NSDecimalNumber.CalculationError, leftOperand: NSDecimalNumber, rightOperand: NSDecimalNumber?) -> NSDecimalNumber?
      * @availability iOS 1.0+
      */
-    "exceptionDuringOperationErrorLeftOperandRightOperand"?: (arg0: unknown, arg1: NSDecimalNumber_CalculationError, arg2: NSDecimalNumber, arg3: (NSDecimalNumber) | null) => (NSDecimalNumber) | null;
+    "exceptionDuringOperationErrorLeftOperandRightOperand"?: (arg0: _ObjectiveC_Selector, arg1: NSDecimalNumber_CalculationError, arg2: NSDecimalNumber, arg3: (NSDecimalNumber) | null) => (NSDecimalNumber) | null;
 }
 /** class NSDecimalNumberHandler */
 export declare class NSDecimalNumberHandler extends SDKHandle {
     /** class var `default`: NSDecimalNumberHandler { get } */
     static get default(): NSDecimalNumberHandler;
-    /** init() */
-    static init(): NSDecimalNumberHandler;
     /** init(roundingMode: NSDecimalNumber.RoundingMode, scale: Int16, raiseOnExactness exact: Bool, raiseOnOverflow overflow: Bool, raiseOnUnderflow underflow: Bool, raiseOnDivideByZero divideByZero: Bool) */
-    static initRoundingModeScaleRaiseOnExactnessRaiseOnOverflowRaiseOnUnderflowRaiseOnDivideByZero(roundingMode: NSDecimalNumber_RoundingMode, scale: number, exact: boolean, overflow: boolean, underflow: boolean, divideByZero: boolean): NSDecimalNumberHandler;
+    static init(roundingMode: NSDecimalNumber_RoundingMode, scale: number, exact: boolean, overflow: boolean, underflow: boolean, divideByZero: boolean): NSDecimalNumberHandler;
+    readonly $type: {
+        "c:objc(cs)NSDecimalNumberHandler": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** class NSDictionary */
 export declare class NSDictionary extends SDKHandle {
@@ -22339,12 +23327,12 @@ export declare class NSDictionary extends SDKHandle {
      * func enumerateKeysAndObjects(_ block: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 4.0+
      */
-    enumerateKeysAndObjects(block: $SDK171): void;
+    enumerateKeysAndObjects(block: $SDK175): void;
     /**
      * func enumerateKeysAndObjects(options opts: NSEnumerationOptions = [], using block: (Any, Any, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 4.0+
      */
-    enumerateKeysAndObjectsOptionsUsing(opts: NSEnumerationOptions, block: $SDK171): void;
+    enumerateKeysAndObjectsOptionsUsing(opts: NSEnumerationOptions, block: $SDK175): void;
     /** func fileCreationDate() -> Date? */
     fileCreationDate(): $SDK26;
     /** func fileExtensionHidden() -> Bool */
@@ -22465,6 +23453,10 @@ export declare class NSDictionary extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript(key: unknown): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)NSDictionary": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allKeys": true;
         "allValues": true;
@@ -22477,7 +23469,7 @@ export declare class NSDictionary extends SDKHandle {
  * typealias Element = (key: Any, value: Any)
  * @availability iOS 8.0+
  */
-export type NSDictionary_Element = $SDK172;
+export type NSDictionary_Element = $SDK176;
 /**
  * final class Iterator
  * @availability iOS 8.0+
@@ -22491,12 +23483,15 @@ export declare class NSDictionary_Iterator extends SDKHandle {
         "key": unknown;
         "value": unknown;
     }) | null;
+    readonly $type: {
+        "s:So12NSDictionaryC10FoundationE8IteratorC": true;
+    };
 }
 /**
  * typealias Element = (key: Any, value: Any)
  * @availability iOS 8.0+
  */
-export type NSDictionary_Iterator_Element = $SDK172;
+export type NSDictionary_Iterator_Element = $SDK176;
 /**
  * typealias Key = Any
  * @availability iOS 8.0+
@@ -22587,6 +23582,10 @@ export declare class NSError extends SDKHandle {
     get underlyingErrors(): Array<NativeError>;
     /** var userInfo: [String : Any] { get } */
     get userInfo(): Record<string, unknown>;
+    readonly $type: {
+        "c:objc(cs)NSError": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "code": true;
         "domain": true;
@@ -22608,10 +23607,8 @@ export type NSErrorDomain = NSString;
 export type NSErrorPointer = (unknown) | null;
 /** class NSException */
 export declare class NSException extends SDKHandle {
-    /** init() */
-    static init(): NSException;
     /** init(name aName: NSExceptionName, reason aReason: String?, userInfo aUserInfo: [AnyHashable : Any]? = nil) */
-    static initNameReasonUserInfo(aName: NSExceptionName, aReason?: (string) | null, aUserInfo?: $SDK23): NSException;
+    static init(aName: NSExceptionName, aReason?: (string) | null, aUserInfo?: $SDK23): NSException;
     /** func raise() */
     raise(): void;
     /**
@@ -22630,6 +23627,10 @@ export declare class NSException extends SDKHandle {
     get reason(): (string) | null;
     /** var userInfo: [AnyHashable : Any]? { get } */
     get userInfo(): $SDK23;
+    readonly $type: {
+        "c:objc(cs)NSException": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "callStackReturnAddresses": true;
         "callStackSymbols": true;
@@ -22791,8 +23792,6 @@ export declare class NSExpression extends SDKHandle {
      * @availability iOS 3.0+
      */
     expressionValue(object?: (unknown) | null, context?: (NSMutableDictionary) | null): (unknown) | null;
-    /** init() */
-    static init(): NSExpression;
     /**
      * init?(coder: NSCoder)
      * @availability iOS 3.0+
@@ -22882,7 +23881,11 @@ export declare class NSExpression extends SDKHandle {
      * convenience init?<Input, Output>(_ expression: Expression<Input, Output>) where Input : NSObject
      * @availability iOS 18.0+
      */
-    static init43136(expression: Expression<SDKHandle, unknown>): (NSExpression) | null;
+    static init(expression: Expression<_ObjectiveC_NSObject, unknown>): (NSExpression) | null;
+    readonly $type: {
+        "c:objc(cs)NSExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arguments": true;
         "collection": true;
@@ -22919,19 +23922,23 @@ export declare class NSExtensionContext extends SDKHandle {
      * func completeRequest(returningItems items: [Any]?, completionHandler: (@Sendable (Bool) -> Void)? = nil)
      * @availability iOS 8.0+
      */
-    completeRequest(items?: (Array<unknown>) | null, completionHandler?: $SDK179): void;
+    completeRequest(items?: (Array<unknown>) | null, completionHandler?: $SDK183): void;
     /** init() */
     static init(): NSExtensionContext;
     /**
      * func open(_ URL: URL) async -> Bool
      * @availability iOS 8.0+
      */
-    open(URL: string, completionHandler?: $SDK179): void;
+    open(URL: string, completionHandler?: $SDK183): void;
     /**
      * var inputItems: [Any] { get }
      * @availability iOS 8.0+
      */
     get inputItems(): Array<unknown>;
+    readonly $type: {
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputItems": true;
     };
@@ -22956,6 +23963,9 @@ export declare class NSExtensionContext_DidBecomeActiveMessage extends SDKHandle
      * @availability iOS 26.0+
      */
     static init(): NSExtensionContext_DidBecomeActiveMessage;
+    readonly $type: {
+        "s:So18NSExtensionContextC10FoundationE22DidBecomeActiveMessageV": true;
+    };
 }
 /**
  * typealias Subject = NSExtensionContext
@@ -22982,6 +23992,9 @@ export declare class NSExtensionContext_DidEnterBackgroundMessage extends SDKHan
      * @availability iOS 26.0+
      */
     static init(): NSExtensionContext_DidEnterBackgroundMessage;
+    readonly $type: {
+        "s:So18NSExtensionContextC10FoundationE25DidEnterBackgroundMessageV": true;
+    };
 }
 /**
  * typealias Subject = NSExtensionContext
@@ -23008,6 +24021,9 @@ export declare class NSExtensionContext_WillEnterForegroundMessage extends SDKHa
      * @availability iOS 26.0+
      */
     static init(): NSExtensionContext_WillEnterForegroundMessage;
+    readonly $type: {
+        "s:So18NSExtensionContextC10FoundationE26WillEnterForegroundMessageV": true;
+    };
 }
 /**
  * typealias Subject = NSExtensionContext
@@ -23034,6 +24050,9 @@ export declare class NSExtensionContext_WillResignActiveMessage extends SDKHandl
      * @availability iOS 26.0+
      */
     static init(): NSExtensionContext_WillResignActiveMessage;
+    readonly $type: {
+        "s:So18NSExtensionContextC10FoundationE23WillResignActiveMessageV": true;
+    };
 }
 /**
  * typealias Subject = NSExtensionContext
@@ -23071,6 +24090,10 @@ export declare class NSExtensionItem extends SDKHandle {
      */
     get userInfo(): $SDK23;
     set userInfo(value: $SDK23);
+    readonly $type: {
+        "c:objc(cs)NSExtensionItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attachments": true;
         "attributedContentText": true;
@@ -23106,6 +24129,9 @@ export declare class NSFastEnumerationIterator extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(enumerable: SDKHandle): NSFastEnumerationIterator;
+    readonly $type: {
+        "s:10Foundation25NSFastEnumerationIteratorV": true;
+    };
 }
 /**
  * typealias Element = Any
@@ -23115,8 +24141,8 @@ export type NSFastEnumerationIterator_Element = unknown;
 /** struct NSFastEnumerationState */
 export declare class NSFastEnumerationState extends SDKHandle {
     /** var extra: (UInt, UInt, UInt, UInt, UInt) */
-    get extra(): $SDK185;
-    set extra(value: $SDK185);
+    get extra(): $SDK189;
+    set extra(value: $SDK189);
     /** var mutationsPtr: UnsafeMutablePointer<UInt>? */
     get mutationsPtr(): (SDKHandle) | null;
     set mutationsPtr(value: (SDKHandle) | null);
@@ -23124,7 +24150,7 @@ export declare class NSFastEnumerationState extends SDKHandle {
     get state(): number;
     set state(value: number);
     /** init(state: UInt, itemsPtr: AutoreleasingUnsafeMutablePointer<AnyObject?>?, mutationsPtr: UnsafeMutablePointer<UInt>?, extra: (UInt, UInt, UInt, UInt, UInt)) */
-    static initStateItemsPtrMutationsPtrExtra(state: number, mutationsPtr: (SDKHandle) | null, extra: $SDK185): {
+    static initStateItemsPtrMutationsPtrExtra(state: number, mutationsPtr: (SDKHandle) | null, extra: $SDK189): {
         $ret: NSFastEnumerationState;
         $out: {
             "itemsPtr": (unknown) | null;
@@ -23132,6 +24158,9 @@ export declare class NSFastEnumerationState extends SDKHandle {
     };
     /** init() */
     static init(): NSFastEnumerationState;
+    readonly $type: {
+        "c:@SA@NSFastEnumerationState": true;
+    };
 }
 /**
  * class NSFileAccessIntent
@@ -23155,6 +24184,10 @@ export declare class NSFileAccessIntent extends SDKHandle {
      * @availability iOS 8.0+
      */
     get url(): string;
+    readonly $type: {
+        "c:objc(cs)NSFileAccessIntent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
     };
@@ -23203,7 +24236,7 @@ export declare class NSFileCoordinator extends SDKHandle {
      * func coordinate(readingItemAt readingURL: URL, options readingOptions: NSFileCoordinator.ReadingOptions = [], writingItemAt writingURL: URL, options writingOptions: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor readerWriter: (URL, URL) -> Void)
      * @availability iOS 5.0+
      */
-    coordinateReadingItemAtOptionsWritingItemAtOptionsErrorByAccessor(readingURL: string, readingOptions: NSFileCoordinator_ReadingOptions, writingURL: string, writingOptions: NSFileCoordinator_WritingOptions, readerWriter: $SDK188): {
+    coordinateReadingItemAtOptionsWritingItemAtOptionsErrorByAccessor(readingURL: string, readingOptions: NSFileCoordinator_ReadingOptions, writingURL: string, writingOptions: NSFileCoordinator_WritingOptions, readerWriter: $SDK192): {
         $ret: null;
         $out: {
             "outError": (NSError) | null;
@@ -23223,19 +24256,17 @@ export declare class NSFileCoordinator extends SDKHandle {
      * func coordinate(writingItemAt url1: URL, options options1: NSFileCoordinator.WritingOptions = [], writingItemAt url2: URL, options options2: NSFileCoordinator.WritingOptions = [], error outError: NSErrorPointer, byAccessor writer: (URL, URL) -> Void)
      * @availability iOS 5.0+
      */
-    coordinateWritingItemAtOptionsWritingItemAtOptionsErrorByAccessor(url1: string, options1: NSFileCoordinator_WritingOptions, url2: string, options2: NSFileCoordinator_WritingOptions, writer: $SDK188): {
+    coordinateWritingItemAtOptionsWritingItemAtOptionsErrorByAccessor(url1: string, options1: NSFileCoordinator_WritingOptions, url2: string, options2: NSFileCoordinator_WritingOptions, writer: $SDK192): {
         $ret: null;
         $out: {
             "outError": (NSError) | null;
         };
     };
-    /** init() */
-    static init(): NSFileCoordinator;
     /**
      * init(filePresenter filePresenterOrNil: (any NSFilePresenter)?)
      * @availability iOS 5.0+
      */
-    static initFilePresenter(filePresenterOrNil?: (SDKHandle) | null): NSFileCoordinator;
+    static init(filePresenterOrNil?: (SDKHandle) | null): NSFileCoordinator;
     /**
      * func item(at url: URL, didChangeUbiquityAttributes attributes: Set<URLResourceKey>)
      * @availability iOS 11.0+
@@ -23267,6 +24298,10 @@ export declare class NSFileCoordinator extends SDKHandle {
      */
     get purposeIdentifier(): string;
     set purposeIdentifier(value: string);
+    readonly $type: {
+        "c:objc(cs)NSFileCoordinator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "purposeIdentifier": true;
     };
@@ -23433,6 +24468,10 @@ export declare class NSFileProviderService extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): NSFileProviderServiceName;
+    readonly $type: {
+        "c:objc(cs)NSFileProviderService": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
     };
@@ -23457,6 +24496,10 @@ export declare class NSFileSecurity extends SDKHandle {
      * @availability iOS 5.0+
      */
     static initCoder(coder: NSCoder): (NSFileSecurity) | null;
+    readonly $type: {
+        "c:objc(cs)NSFileSecurity": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class NSFileVersion
@@ -23493,8 +24536,6 @@ export declare class NSFileVersion extends SDKHandle {
      * @availability iOS 5.0+
      */
     static version(url: string, persistentIdentifier: unknown): (NSFileVersion) | null;
-    /** init() */
-    static init(): NSFileVersion;
     /**
      * func remove() throws
      * @availability iOS 5.0+
@@ -23544,7 +24585,7 @@ export declare class NSFileVersion extends SDKHandle {
      * var originatorNameComponents: PersonNameComponents? { get }
      * @availability iOS 10.0+
      */
-    get originatorNameComponents(): $SDK193;
+    get originatorNameComponents(): $SDK197;
     /**
      * var persistentIdentifier: any NSCoding { get }
      * @availability iOS 5.0+
@@ -23556,6 +24597,10 @@ export declare class NSFileVersion extends SDKHandle {
      */
     get isResolved(): boolean;
     set isResolved(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NSFileVersion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "isConflict": true;
@@ -23685,12 +24730,133 @@ export declare const NSGrammaticalPronounType: {
 export declare class NSHashEnumerator extends SDKHandle {
     /** init() */
     static init(): NSHashEnumerator;
+    readonly $type: {
+        "c:@SA@NSHashEnumerator": true;
+    };
 }
 /**
  * class NSHashTable<ObjectType> where ObjectType : AnyObject
  * @availability iOS 6.0+
  */
 export declare class NSHashTable<ObjectType = unknown> extends SDKHandle {
+    /**
+     * init(options: NSPointerFunctions.Options = [])
+     * @availability iOS 6.0+
+     */
+    static initOptions(options?: NSPointerFunctions_Options): NSHashTable<SDKHandle>;
+    /**
+     * class func weakObjects() -> NSHashTable<ObjectType>
+     * @availability iOS 6.0+
+     */
+    static weakObjects(): NSHashTable<SDKHandle>;
+    /**
+     * func add(_ object: ObjectType?)
+     * @availability iOS 6.0+
+     */
+    add(object?: (SDKHandle) | null): void;
+    /**
+     * func contains(_ anObject: ObjectType?) -> Bool
+     * @availability iOS 6.0+
+     */
+    contains(anObject?: (SDKHandle) | null): boolean;
+    /** init() */
+    static init(): NSHashTable<SDKHandle>;
+    /**
+     * init(options: NSPointerFunctions.Options = [], capacity initialCapacity: Int)
+     * @availability iOS 6.0+
+     */
+    static initOptionsCapacity(options: NSPointerFunctions_Options, initialCapacity: number): NSHashTable<SDKHandle>;
+    /**
+     * init(pointerFunctions functions: NSPointerFunctions, capacity initialCapacity: Int)
+     * @availability iOS 6.0+
+     */
+    static initPointerFunctionsCapacity(functions: NSPointerFunctions, initialCapacity: number): NSHashTable<SDKHandle>;
+    /**
+     * func intersect(_ other: NSHashTable<ObjectType>)
+     * @availability iOS 6.0+
+     */
+    intersect(other: NSHashTable<SDKHandle>): void;
+    /**
+     * func intersects(_ other: NSHashTable<ObjectType>) -> Bool
+     * @availability iOS 6.0+
+     */
+    intersects(other: NSHashTable<SDKHandle>): boolean;
+    /**
+     * func isEqual(to other: NSHashTable<ObjectType>) -> Bool
+     * @availability iOS 6.0+
+     */
+    isEqual(other: NSHashTable<SDKHandle>): boolean;
+    /**
+     * func isSubset(of other: NSHashTable<ObjectType>) -> Bool
+     * @availability iOS 6.0+
+     */
+    isSubset(other: NSHashTable<SDKHandle>): boolean;
+    /**
+     * func member(_ object: ObjectType?) -> ObjectType?
+     * @availability iOS 6.0+
+     */
+    member(object?: (SDKHandle) | null): (SDKHandle) | null;
+    /**
+     * func minus(_ other: NSHashTable<ObjectType>)
+     * @availability iOS 6.0+
+     */
+    minus(other: NSHashTable<SDKHandle>): void;
+    /**
+     * func objectEnumerator() -> NSEnumerator
+     * @availability iOS 6.0+
+     */
+    objectEnumerator(): NSEnumerator;
+    /**
+     * func removeAllObjects()
+     * @availability iOS 6.0+
+     */
+    removeAllObjects(): void;
+    /**
+     * func remove(_ object: ObjectType?)
+     * @availability iOS 6.0+
+     */
+    remove(object?: (SDKHandle) | null): void;
+    /**
+     * func union(_ other: NSHashTable<ObjectType>)
+     * @availability iOS 6.0+
+     */
+    union(other: NSHashTable<SDKHandle>): void;
+    /**
+     * var allObjects: [ObjectType] { get }
+     * @availability iOS 6.0+
+     */
+    get allObjects(): Array<SDKHandle>;
+    /**
+     * var anyObject: ObjectType? { get }
+     * @availability iOS 6.0+
+     */
+    get anyObject(): (SDKHandle) | null;
+    /**
+     * var count: Int { get }
+     * @availability iOS 6.0+
+     */
+    get count(): number;
+    /**
+     * @NSCopying var pointerFunctions: NSPointerFunctions { get }
+     * @availability iOS 6.0+
+     */
+    get pointerFunctions(): NSPointerFunctions;
+    /**
+     * var setRepresentation: Set<AnyHashable> { get }
+     * @availability iOS 6.0+
+     */
+    get setRepresentation(): Array<unknown>;
+    readonly $type: {
+        "c:objc(cs)NSHashTable": true;
+        "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "allObjects": true;
+        "anyObject": true;
+        "count": true;
+        "pointerFunctions": true;
+        "setRepresentation": true;
+    };
 }
 /** struct NSHashTableCallBacks */
 export declare class NSHashTableCallBacks extends SDKHandle {
@@ -23701,11 +24867,14 @@ export declare class NSHashTableCallBacks extends SDKHandle {
     /** var isEqual: ((NSHashTable<AnyObject>, UnsafeRawPointer, UnsafeRawPointer) -> ObjCBool)? */
     get isEqual(): (((arg0: NSHashTable<unknown>, arg1: SDKHandle, arg2: SDKHandle) => Promise<boolean>)) | null;
     /** var release: ((NSHashTable<AnyObject>, UnsafeMutableRawPointer) -> Void)? */
-    get release(): $SDK197;
+    get release(): $SDK201;
     /** var retain: ((NSHashTable<AnyObject>, UnsafeRawPointer) -> Void)? */
-    get retain(): $SDK197;
+    get retain(): $SDK201;
     /** init() */
     static init(): NSHashTableCallBacks;
+    readonly $type: {
+        "c:@SA@NSHashTableCallBacks": true;
+    };
 }
 /** typealias NSHashTableOptions = Int */
 export type NSHashTableOptions = number;
@@ -23730,14 +24899,16 @@ export declare class NSIndexPath extends SDKHandle {
     adding(index: number): IndexPath;
     /** func removingLastIndex() -> IndexPath */
     removingLastIndex(): IndexPath;
-    /** init() */
-    static init(): NSIndexPath;
     /** convenience init(index: Int) */
     static initIndex(index: number): NSIndexPath;
     /** init(indexes: UnsafePointer<Int>?, length: Int) */
     static initIndexesLength(indexes: (SDKHandle) | null, length: number): NSIndexPath;
     /** var length: Int { get } */
     get length(): number;
+    readonly $type: {
+        "c:objc(cs)NSIndexPath": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "length": true;
     };
@@ -23759,32 +24930,32 @@ export declare class NSIndexSet extends SDKHandle {
      * func enumerate(in range: NSRange, options opts: NSEnumerationOptions = [], using block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 4.0+
      */
-    enumerateInOptionsUsing(range: SDKHandle, opts: NSEnumerationOptions, block: $SDK198): void;
+    enumerateInOptionsUsing(range: SDKHandle, opts: NSEnumerationOptions, block: $SDK202): void;
     /**
      * func enumerate(_ block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 4.0+
      */
-    enumerate(block: $SDK198): void;
+    enumerate(block: $SDK202): void;
     /**
      * func enumerate(options opts: NSEnumerationOptions = [], using block: (Int, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 4.0+
      */
-    enumerateOptionsUsing(opts: NSEnumerationOptions, block: $SDK198): void;
+    enumerateOptionsUsing(opts: NSEnumerationOptions, block: $SDK202): void;
     /**
      * func enumerateRanges(in range: NSRange, options opts: NSEnumerationOptions = [], using block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 5.0+
      */
-    enumerateRangesInOptionsUsing(range: SDKHandle, opts: NSEnumerationOptions, block: $SDK199): void;
+    enumerateRangesInOptionsUsing(range: SDKHandle, opts: NSEnumerationOptions, block: $SDK203): void;
     /**
      * func enumerateRanges(_ block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 5.0+
      */
-    enumerateRanges(block: $SDK199): void;
+    enumerateRanges(block: $SDK203): void;
     /**
      * func enumerateRanges(options opts: NSEnumerationOptions = [], using block: (NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 5.0+
      */
-    enumerateRangesOptionsUsing(opts: NSEnumerationOptions, block: $SDK199): void;
+    enumerateRangesOptionsUsing(opts: NSEnumerationOptions, block: $SDK203): void;
     /** func getIndexes(_ indexBuffer: UnsafeMutablePointer<Int>, maxCount bufferSize: Int, inIndexRange range: NSRangePointer?) -> Int */
     getIndexes(indexBuffer: SDKHandle, bufferSize: number, range?: (SDKHandle) | null): number;
     /** func indexGreaterThanIndex(_ value: Int) -> Int */
@@ -23795,8 +24966,6 @@ export declare class NSIndexSet extends SDKHandle {
     indexLessThanIndex(value: number): number;
     /** func indexLessThanOrEqual(to value: Int) -> Int */
     indexLessThanOrEqual(value: number): number;
-    /** init() */
-    static init(): NSIndexSet;
     /** convenience init(index value: Int) */
     static initIndex(value: number): NSIndexSet;
     /** init(indexSet: IndexSet) */
@@ -23823,6 +24992,10 @@ export declare class NSIndexSet extends SDKHandle {
      * @availability iOS 8.0+
      */
     get underestimatedCount(): number;
+    readonly $type: {
+        "c:objc(cs)NSIndexSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "count": true;
         "firstIndex": true;
@@ -23849,6 +25022,9 @@ export declare class NSIndexSetIterator extends SDKHandle {
      * @availability iOS 8.0+
      */
     next(): (number) | null;
+    readonly $type: {
+        "s:10Foundation18NSIndexSetIteratorV": true;
+    };
 }
 /**
  * typealias Element = Int
@@ -23921,7 +25097,7 @@ export declare class NSItemProvider extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 27.0
      */
-    loadItem(typeIdentifier: string, options?: $SDK23, completionHandler?: $SDK203): void;
+    loadItem(typeIdentifier: string, options?: $SDK23, completionHandler?: $SDK207): void;
     /**
      * func loadObject(ofClass aClass: any NSItemProviderReading.Type, completionHandler: @escaping @Sendable ((any NSItemProviderReading)?, (any Error)?) -> Void) -> Progress
      * @availability iOS 11.0+
@@ -23931,7 +25107,7 @@ export declare class NSItemProvider extends SDKHandle {
      * func loadPreviewImage(options: [AnyHashable : Any]! = [:]) async throws -> any NSSecureCoding
      * @availability iOS 8.0+
      */
-    loadPreviewImage(options?: $SDK23, completionHandler?: $SDK203): void;
+    loadPreviewImage(options?: $SDK23, completionHandler?: $SDK207): void;
     /**
      * func registerItem(forTypeIdentifier typeIdentifier: String, loadHandler: @escaping NSItemProvider.LoadHandler)
      * @availability iOS 8.0+
@@ -23965,6 +25141,10 @@ export declare class NSItemProvider extends SDKHandle {
      */
     get suggestedName(): (string) | null;
     set suggestedName(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSItemProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "registeredTypeIdentifiers": true;
         "suggestedName": true;
@@ -24122,6 +25302,11 @@ export declare class NSKeyedArchiver extends NSKeyedArchiver_base {
      * @availability iOS 9.0+
      */
     encodeEncodable(value: number, key: string): void;
+    readonly $type: {
+        "c:objc(cs)NSKeyedArchiver": true;
+        "c:objc(cs)NSCoder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedClasses": true;
         "allowsKeyedCoding": true;
@@ -24254,6 +25439,11 @@ export declare class NSKeyedUnarchiver extends NSKeyedUnarchiver_base {
      * @deprecated iOS 12.0
      */
     static unarchiveTopLevelObjectWithData(data: ArrayBuffer): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)NSKeyedUnarchiver": true;
+        "c:objc(cs)NSCoder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedClasses": true;
         "allowsKeyedCoding": true;
@@ -24308,6 +25498,10 @@ export declare class NSKeyValueObservation extends SDKHandle {
      * @availability iOS 8.0+
      */
     invalidate(): void;
+    readonly $type: {
+        "c:@M@Foundation@objc(cs)_NSKeyValueObservation": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct NSKeyValueObservedChange<Value>
@@ -24339,6 +25533,9 @@ export declare class NSKeyValueObservedChange<Value = unknown> extends SDKHandle
      * @availability iOS 8.0+
      */
     get isPrior(): boolean;
+    readonly $type: {
+        "s:10Foundation24NSKeyValueObservedChangeV": true;
+    };
 }
 /**
  * typealias Kind = NSKeyValueChange
@@ -24424,7 +25621,7 @@ export declare class NSKeyValueSharedObservers extends SDKHandle {
      * func addSharedObserver(_ observer: NSObject, forKey key: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
      * @availability iOS 18.0+
      */
-    addSharedObserver(observer: SDKHandle, key: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
+    addSharedObserver(observer: _ObjectiveC_NSObject, key: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
     /**
      * init(observableClass: AnyClass)
      * @availability iOS 18.0+
@@ -24435,12 +25632,20 @@ export declare class NSKeyValueSharedObservers extends SDKHandle {
      * @availability iOS 18.0+
      */
     snapshot(): NSKeyValueSharedObserversSnapshot;
+    readonly $type: {
+        "c:objc(cs)NSKeyValueSharedObservers": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class NSKeyValueSharedObserversSnapshot
  * @availability iOS 18.0+
  */
 export declare class NSKeyValueSharedObserversSnapshot extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)NSKeyValueSharedObserversSnapshot": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct NSLinguisticTag */
 export type NSLinguisticTag = "word" | "punctuation" | "whitespace" | "other" | "noun" | "verb" | "adjective" | "adverb" | "pronoun" | "determiner" | "particle" | "preposition" | "number" | "conjunction" | "interjection" | "classifier" | "idiom" | "otherWord" | "sentenceTerminator" | "openQuote" | "closeQuote" | "openParenthesis" | "closeParenthesis" | "wordJoiner" | "dash" | "otherPunctuation" | "paragraphBreak" | "otherWhitespace" | "personalName" | "placeName" | "organizationName" | (string & {});
@@ -24647,13 +25852,13 @@ export declare class NSLinguisticTagger extends SDKHandle {
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static availableTagSchemesForLanguage(language: string): $SDK213;
+    static availableTagSchemesForLanguage(language: string): $SDK217;
     /**
      * class func availableTagSchemes(for unit: NSLinguisticTaggerUnit, language: String) -> [NSLinguisticTagScheme]
      * @availability iOS 11.0+
      * @deprecated iOS 100000.0
      */
-    static availableTagSchemesForLanguage1850(unit: NSLinguisticTaggerUnit, language: string): $SDK213;
+    static availableTagSchemesForLanguage1850(unit: NSLinguisticTaggerUnit, language: string): $SDK217;
     /**
      * class func dominantLanguage(for string: String) -> String?
      * @availability iOS 11.0+
@@ -24665,13 +25870,13 @@ export declare class NSLinguisticTagger extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 100000.0
      */
-    static enumerateTagsForRangeUnitSchemeOptionsOrthographyUsing(string: string, range: SDKHandle, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger_Options, orthography: (NSOrthography) | null, block: $SDK214): void;
+    static enumerateTagsForRangeUnitSchemeOptionsOrthographyUsing(string: string, range: SDKHandle, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger_Options, orthography: (NSOrthography) | null, block: $SDK218): void;
     /**
      * class func tag(for string: String, at charIndex: Int, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, orthography: NSOrthography?, tokenRange: NSRangePointer?) -> NSLinguisticTag?
      * @availability iOS 11.0+
      * @deprecated iOS 100000.0
      */
-    static tagForAtUnitSchemeOrthographyTokenRange(string: string, charIndex: number, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, orthography?: (NSOrthography) | null, tokenRange?: (SDKHandle) | null): $SDK215;
+    static tagForAtUnitSchemeOrthographyTokenRange(string: string, charIndex: number, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, orthography?: (NSOrthography) | null, tokenRange?: (SDKHandle) | null): $SDK219;
     /**
      * class func tags(for string: String, range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], orthography: NSOrthography?, tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [NSLinguisticTag]
      * @availability iOS 11.0+
@@ -24688,21 +25893,19 @@ export declare class NSLinguisticTagger extends SDKHandle {
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    enumerateTagsInSchemeOptionsUsing(range: SDKHandle, tagScheme: NSLinguisticTagScheme, opts: NSLinguisticTagger_Options, block: $SDK216): void;
+    enumerateTagsInSchemeOptionsUsing(range: SDKHandle, tagScheme: NSLinguisticTagScheme, opts: NSLinguisticTagger_Options, block: $SDK220): void;
     /**
      * func enumerateTags(in range: NSRange, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger.Options = [], using block: (NSLinguisticTag?, NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
      * @availability iOS 11.0+
      * @deprecated iOS 100000.0
      */
-    enumerateTagsInUnitSchemeOptionsUsing(range: SDKHandle, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger_Options, block: $SDK214): void;
-    /** init() */
-    static init(): NSLinguisticTagger;
+    enumerateTagsInUnitSchemeOptionsUsing(range: SDKHandle, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger_Options, block: $SDK218): void;
     /**
      * init(tagSchemes: [NSLinguisticTagScheme], options opts: Int)
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static initTagSchemesOptions(tagSchemes: $SDK213, opts: number): NSLinguisticTagger;
+    static init(tagSchemes: $SDK217, opts: number): NSLinguisticTagger;
     /**
      * func orthography(at charIndex: Int, effectiveRange: NSRangePointer?) -> NSOrthography?
      * @availability iOS 5.0+
@@ -24743,13 +25946,13 @@ export declare class NSLinguisticTagger extends SDKHandle {
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    tagAtSchemeTokenRangeSentenceRange(charIndex: number, scheme: NSLinguisticTagScheme, tokenRange?: (SDKHandle) | null, sentenceRange?: (SDKHandle) | null): $SDK215;
+    tagAtSchemeTokenRangeSentenceRange(charIndex: number, scheme: NSLinguisticTagScheme, tokenRange?: (SDKHandle) | null, sentenceRange?: (SDKHandle) | null): $SDK219;
     /**
      * func tag(at charIndex: Int, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, tokenRange: NSRangePointer?) -> NSLinguisticTag?
      * @availability iOS 11.0+
      * @deprecated iOS 100000.0
      */
-    tagAtUnitSchemeTokenRange(charIndex: number, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, tokenRange?: (SDKHandle) | null): $SDK215;
+    tagAtUnitSchemeTokenRange(charIndex: number, unit: NSLinguisticTaggerUnit, scheme: NSLinguisticTagScheme, tokenRange?: (SDKHandle) | null): $SDK219;
     /**
      * func tags(in range: NSRange, scheme tagScheme: String, options opts: NSLinguisticTagger.Options = [], tokenRanges: AutoreleasingUnsafeMutablePointer<NSArray?>?) -> [String]
      * @availability iOS 5.0+
@@ -24796,7 +25999,11 @@ export declare class NSLinguisticTagger extends SDKHandle {
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    get tagSchemes(): $SDK213;
+    get tagSchemes(): $SDK217;
+    readonly $type: {
+        "c:objc(cs)NSLinguisticTagger": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dominantLanguage": true;
         "string": true;
@@ -24939,8 +26146,6 @@ export declare class NSLocale extends SDKHandle {
     static get system(): Locale;
     /** func displayName(forKey key: NSLocale.Key, value: Any) -> String? */
     displayName(key: NSLocale_Key, value: unknown): (string) | null;
-    /** init() */
-    static init(): NSLocale;
     /** init?(coder: NSCoder) */
     static initCoder(coder: NSCoder): (NSLocale) | null;
     /** init(localeIdentifier string: String) */
@@ -25090,6 +26295,10 @@ export declare class NSLocale extends SDKHandle {
      * @availability iOS 10.0+
      */
     get variantCode(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)NSLocale": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alternateQuotationBeginDelimiter": true;
         "alternateQuotationEndDelimiter": true;
@@ -25192,6 +26401,10 @@ export declare class NSLock extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSLock": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
     };
@@ -25203,7 +26416,7 @@ export interface NSLocking {
     /** func unlock() */
     "unlock"?: () => void;
 }
-declare const NSMachPort_base: Omit<typeof Port, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<Port, "delegate" | "remove" | "schedule" | "setDelegate">);
+declare const NSMachPort_base: Omit<typeof Port, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<Port, "delegate" | "remove" | "schedule" | "setDelegate">);
 /** class NSMachPort */
 export declare class NSMachPort extends NSMachPort_base {
     /** class func port(withMachPort machPort: UInt32) -> Port */
@@ -25215,8 +26428,6 @@ export declare class NSMachPort extends NSMachPort_base {
     static portWithMachPortOptions(machPort: number, f?: NSMachPort_Options): Port;
     /** func delegate() -> (any NSMachPortDelegate)? */
     delegate(): (SDKHandle) | null;
-    /** init() */
-    static init(): NSMachPort;
     /** init(machPort: UInt32) */
     static initMachPort(machPort: number): NSMachPort;
     /**
@@ -25232,6 +26443,11 @@ export declare class NSMachPort extends NSMachPort_base {
     setDelegate(anObject?: (SDKHandle) | null): void;
     /** var machPort: UInt32 { get } */
     get machPort(): number;
+    readonly $type: {
+        "c:objc(cs)NSMachPort": true;
+        "c:objc(cs)NSPort": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reservedSpaceLength": true;
         "isValid": true;
@@ -25271,17 +26487,116 @@ export interface NSMachPortDelegate {
 export declare class NSMapEnumerator extends SDKHandle {
     /** init() */
     static init(): NSMapEnumerator;
+    readonly $type: {
+        "c:@SA@NSMapEnumerator": true;
+    };
 }
 /**
  * class NSMapTable<KeyType, ObjectType> where KeyType : AnyObject, ObjectType : AnyObject
  * @availability iOS 6.0+
  */
 export declare class NSMapTable<KeyType = unknown, ObjectType = unknown> extends SDKHandle {
+    /**
+     * init(keyOptions: NSPointerFunctions.Options = [], valueOptions: NSPointerFunctions.Options = [])
+     * @availability iOS 6.0+
+     */
+    static initKeyOptionsValueOptions(keyOptions?: NSPointerFunctions_Options, valueOptions?: NSPointerFunctions_Options): $SDK221;
+    /**
+     * class func strongToStrongObjects() -> NSMapTable<KeyType, ObjectType>
+     * @availability iOS 6.0+
+     */
+    static strongToStrongObjects(): $SDK221;
+    /**
+     * class func strongToWeakObjects() -> NSMapTable<KeyType, ObjectType>
+     * @availability iOS 6.0+
+     */
+    static strongToWeakObjects(): $SDK221;
+    /**
+     * class func weakToStrongObjects() -> NSMapTable<KeyType, ObjectType>
+     * @availability iOS 6.0+
+     */
+    static weakToStrongObjects(): $SDK221;
+    /**
+     * class func weakToWeakObjects() -> NSMapTable<KeyType, ObjectType>
+     * @availability iOS 6.0+
+     */
+    static weakToWeakObjects(): $SDK221;
+    /**
+     * func dictionaryRepresentation() -> [AnyHashable : ObjectType]
+     * @availability iOS 6.0+
+     */
+    dictionaryRepresentation(): NativeMap<unknown, SDKHandle>;
+    /** init() */
+    static init(): $SDK221;
+    /**
+     * init(keyOptions: NSPointerFunctions.Options = [], valueOptions: NSPointerFunctions.Options = [], capacity initialCapacity: Int)
+     * @availability iOS 6.0+
+     */
+    static initKeyOptionsValueOptionsCapacity(keyOptions: NSPointerFunctions_Options, valueOptions: NSPointerFunctions_Options, initialCapacity: number): $SDK221;
+    /**
+     * init(keyPointerFunctions keyFunctions: NSPointerFunctions, valuePointerFunctions valueFunctions: NSPointerFunctions, capacity initialCapacity: Int)
+     * @availability iOS 6.0+
+     */
+    static initKeyPointerFunctionsValuePointerFunctionsCapacity(keyFunctions: NSPointerFunctions, valueFunctions: NSPointerFunctions, initialCapacity: number): $SDK221;
+    /**
+     * func keyEnumerator() -> NSEnumerator
+     * @availability iOS 6.0+
+     */
+    keyEnumerator(): NSEnumerator;
+    /**
+     * func objectEnumerator() -> NSEnumerator?
+     * @availability iOS 6.0+
+     */
+    objectEnumerator(): (NSEnumerator) | null;
+    /**
+     * func object(forKey aKey: KeyType?) -> ObjectType?
+     * @availability iOS 6.0+
+     */
+    object(aKey?: (SDKHandle) | null): (SDKHandle) | null;
+    /**
+     * func removeAllObjects()
+     * @availability iOS 6.0+
+     */
+    removeAllObjects(): void;
+    /**
+     * func removeObject(forKey aKey: KeyType?)
+     * @availability iOS 6.0+
+     */
+    removeObject(aKey?: (SDKHandle) | null): void;
+    /**
+     * func setObject(_ anObject: ObjectType?, forKey aKey: KeyType?)
+     * @availability iOS 6.0+
+     */
+    setObject(anObject?: (SDKHandle) | null, aKey?: (SDKHandle) | null): void;
+    /**
+     * var count: Int { get }
+     * @availability iOS 6.0+
+     */
+    get count(): number;
+    /**
+     * @NSCopying var keyPointerFunctions: NSPointerFunctions { get }
+     * @availability iOS 6.0+
+     */
+    get keyPointerFunctions(): NSPointerFunctions;
+    /**
+     * @NSCopying var valuePointerFunctions: NSPointerFunctions { get }
+     * @availability iOS 6.0+
+     */
+    get valuePointerFunctions(): NSPointerFunctions;
+    readonly $type: {
+        "c:objc(cs)NSMapTable": true;
+        "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "count": true;
+        "keyPointerFunctions": true;
+        "valuePointerFunctions": true;
+    };
 }
 /** struct NSMapTableKeyCallBacks */
 export declare class NSMapTableKeyCallBacks extends SDKHandle {
     /** var describe: ((NSMapTable<AnyObject, AnyObject>, UnsafeRawPointer) -> String?)? */
-    get describe(): $SDK217;
+    get describe(): $SDK223;
     /** var hash: ((NSMapTable<AnyObject, AnyObject>, UnsafeRawPointer) -> Int)? */
     get hash(): (((arg0: NSMapTable<unknown, unknown>, arg1: SDKHandle) => Promise<number>)) | null;
     /** var isEqual: ((NSMapTable<AnyObject, AnyObject>, UnsafeRawPointer, UnsafeRawPointer) -> ObjCBool)? */
@@ -25290,24 +26605,30 @@ export declare class NSMapTableKeyCallBacks extends SDKHandle {
     get notAKeyMarker(): (SDKHandle) | null;
     set notAKeyMarker(value: (SDKHandle) | null);
     /** var release: ((NSMapTable<AnyObject, AnyObject>, UnsafeMutableRawPointer) -> Void)? */
-    get release(): $SDK220;
+    get release(): $SDK226;
     /** var retain: ((NSMapTable<AnyObject, AnyObject>, UnsafeRawPointer) -> Void)? */
-    get retain(): $SDK220;
+    get retain(): $SDK226;
     /** init() */
     static init(): NSMapTableKeyCallBacks;
+    readonly $type: {
+        "c:@SA@NSMapTableKeyCallBacks": true;
+    };
 }
 /** typealias NSMapTableOptions = Int */
 export type NSMapTableOptions = number;
 /** struct NSMapTableValueCallBacks */
 export declare class NSMapTableValueCallBacks extends SDKHandle {
     /** var describe: ((NSMapTable<AnyObject, AnyObject>, UnsafeRawPointer) -> String?)? */
-    get describe(): $SDK217;
+    get describe(): $SDK223;
     /** var release: ((NSMapTable<AnyObject, AnyObject>, UnsafeMutableRawPointer) -> Void)? */
-    get release(): $SDK220;
+    get release(): $SDK226;
     /** var retain: ((NSMapTable<AnyObject, AnyObject>, UnsafeRawPointer) -> Void)? */
-    get retain(): $SDK220;
+    get retain(): $SDK226;
     /** init() */
     static init(): NSMapTableValueCallBacks;
+    readonly $type: {
+        "c:@SA@NSMapTableValueCallBacks": true;
+    };
 }
 /**
  * class NSMeasurement
@@ -25349,6 +26670,10 @@ export declare class NSMeasurement extends SDKHandle {
      * @availability iOS 10.0+
      */
     get unit(): Unit;
+    readonly $type: {
+        "c:objc(cs)NSMeasurement": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "doubleValue": true;
         "unit": true;
@@ -25376,6 +26701,10 @@ export declare class NSMetadataItem extends SDKHandle {
      * @availability iOS 5.0+
      */
     get attributes(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)NSMetadataItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributes": true;
     };
@@ -25521,6 +26850,10 @@ export declare class NSMetadataQuery extends SDKHandle {
      * @availability iOS 5.0+
      */
     get valueLists(): Record<string, Array<NSMetadataQueryAttributeValueTuple>>;
+    readonly $type: {
+        "c:objc(cs)NSMetadataQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "isGathering": true;
@@ -25560,6 +26893,9 @@ export declare class NSMetadataQuery_DidFinishGatheringMessage extends SDKHandle
      * @availability iOS 26.0+
      */
     static init(): NSMetadataQuery_DidFinishGatheringMessage;
+    readonly $type: {
+        "s:So15NSMetadataQueryC10FoundationE25DidFinishGatheringMessageV": true;
+    };
 }
 /**
  * typealias Subject = NSMetadataQuery
@@ -25586,6 +26922,9 @@ export declare class NSMetadataQuery_DidStartGatheringMessage extends SDKHandle 
      * @availability iOS 26.0+
      */
     static init(): NSMetadataQuery_DidStartGatheringMessage;
+    readonly $type: {
+        "s:So15NSMetadataQueryC10FoundationE24DidStartGatheringMessageV": true;
+    };
 }
 /**
  * typealias Subject = NSMetadataQuery
@@ -25614,6 +26953,10 @@ export declare class NSMetadataQueryAttributeValueTuple extends SDKHandle {
      * @availability iOS 5.0+
      */
     get value(): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)NSMetadataQueryAttributeValueTuple": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attribute": true;
         "count": true;
@@ -25660,6 +27003,10 @@ export declare class NSMetadataQueryResultGroup extends SDKHandle {
      * @availability iOS 5.0+
      */
     get value(): unknown;
+    readonly $type: {
+        "c:objc(cs)NSMetadataQueryResultGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attribute": true;
         "resultCount": true;
@@ -25723,6 +27070,11 @@ export declare class NSMutableArray extends NSMutableArray_base {
     setArray(otherArray: Array<unknown>): void;
     /** func sort(using sortDescriptors: [NSSortDescriptor]) */
     sort(sortDescriptors: Array<NSSortDescriptor>): void;
+    readonly $type: {
+        "c:objc(cs)NSMutableArray": true;
+        "c:objc(cs)NSArray": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "count": true;
         "description": true;
@@ -25771,13 +27123,18 @@ export declare class NSMutableAttributedString extends NSMutableAttributedString
     setAttributes(attrs: $SDK21, range: SDKHandle): void;
     /** var mutableString: NSMutableString { get } */
     get mutableString(): NSMutableString;
+    readonly $type: {
+        "c:objc(cs)NSMutableAttributedString": true;
+        "c:objc(cs)NSAttributedString": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "length": true;
         "string": true;
         "mutableString": true;
     };
 }
-declare const NSMutableCharacterSet_base: Omit<typeof NSCharacterSet, "init" | "initBitmapRepresentation" | "initCharactersIn" | "initContentsOfFile" | "initRange" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSCharacterSet);
+declare const NSMutableCharacterSet_base: Omit<typeof NSCharacterSet, "initBitmapRepresentation" | "initCharactersIn" | "initContentsOfFile" | "initRange" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSCharacterSet);
 /** class NSMutableCharacterSet */
 export declare class NSMutableCharacterSet extends NSMutableCharacterSet_base {
     /** class func alphanumeric() -> NSMutableCharacterSet */
@@ -25829,14 +27186,17 @@ export declare class NSMutableCharacterSet extends NSMutableCharacterSet_base {
     formIntersection(otherSet: CharacterSet): void;
     /** func formUnion(with otherSet: CharacterSet) */
     formUnion(otherSet: CharacterSet): void;
-    /** init() */
-    static init(): NSMutableCharacterSet;
     /** func invert() */
     invert(): void;
     /** func removeCharacters(in aRange: NSRange) */
     removeCharactersIn(aRange: SDKHandle): void;
     /** func removeCharacters(in aString: String) */
     removeCharactersIn10(aString: string): void;
+    readonly $type: {
+        "c:objc(cs)NSMutableCharacterSet": true;
+        "c:objc(cs)NSCharacterSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bitmapRepresentation": true;
         "inverted": true;
@@ -25848,9 +27208,9 @@ export interface NSMutableCopying {
      * func mutableCopy(with zone: NSZone? = nil) -> Any
      * @availability iOS 1.0+
      */
-    "mutableCopyWith"?: (arg0: (unknown) | null) => unknown;
+    "mutableCopyWith"?: (arg0: (_ObjectiveC_NSZone) | null) => unknown;
 }
-declare const NSMutableData_base: Omit<typeof NSData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSData, "length">);
+declare const NSMutableData_base: Omit<typeof NSData, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSData, "length">);
 /** class NSMutableData */
 export declare class NSMutableData extends NSMutableData_base {
     /** func append(_ bytes: UnsafeRawPointer, length: Int) */
@@ -25869,8 +27229,6 @@ export declare class NSMutableData extends NSMutableData_base {
     decompress(algorithm: NSData_CompressionAlgorithm): void;
     /** func increaseLength(by extraLength: Int) */
     increaseLength(extraLength: number): void;
-    /** init() */
-    static init(): NSMutableData;
     /** init?(capacity: Int) */
     static initCapacity(capacity: number): (NSMutableData) | null;
     /** init?(length: Int) */
@@ -25888,6 +27246,11 @@ export declare class NSMutableData extends NSMutableData_base {
     set length(value: number);
     /** var mutableBytes: UnsafeMutableRawPointer { get } */
     get mutableBytes(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)NSMutableData": true;
+        "c:objc(cs)NSData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bytes": true;
         "description": true;
@@ -25930,6 +27293,11 @@ export declare class NSMutableDictionary extends NSMutableDictionary_base {
      * @availability iOS 8.0+
      */
     subscript7656(key: unknown): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)NSMutableDictionary": true;
+        "c:objc(cs)NSDictionary": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allKeys": true;
         "allValues": true;
@@ -25938,9 +27306,8 @@ export declare class NSMutableDictionary extends NSMutableDictionary_base {
         "descriptionInStringsFileFormat": true;
     };
 }
-declare const NSMutableIndexSet_base: Omit<typeof NSIndexSet, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSIndexSet);
 /** class NSMutableIndexSet */
-export declare class NSMutableIndexSet extends NSMutableIndexSet_base {
+export declare class NSMutableIndexSet extends NSIndexSet {
     /** func add(_ value: Int) */
     add(value: number): void;
     /** func add(_ indexSet: IndexSet) */
@@ -25959,6 +27326,11 @@ export declare class NSMutableIndexSet extends NSMutableIndexSet_base {
     removeIn(range: SDKHandle): void;
     /** func shiftIndexesStarting(at index: Int, by delta: Int) */
     shiftIndexesStarting(index: number, delta: number): void;
+    readonly $type: {
+        "c:objc(cs)NSMutableIndexSet": true;
+        "c:objc(cs)NSIndexSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "count": true;
         "firstIndex": true;
@@ -25973,7 +27345,7 @@ export declare class NSOrderedSet extends SDKHandle {
     /** convenience init(objects: UnsafePointer<AnyObject>, count cnt: Int) */
     static initObjectsCount(objects: SDKHandle, cnt: number): NSOrderedSet;
     /** func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?) */
-    addObserver(observer: SDKHandle, keyPath: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
+    addObserver(observer: _ObjectiveC_NSObject, keyPath: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
     /** func contains(_ object: Any) -> Bool */
     contains(object: unknown): boolean;
     /** func description(withLocale locale: Any?) -> String */
@@ -26049,12 +27421,12 @@ export declare class NSOrderedSet extends SDKHandle {
     /** func objects(at indexes: IndexSet) -> [Any] */
     objects(indexes: IndexSet): Array<unknown>;
     /** func removeObserver(_ observer: NSObject, forKeyPath keyPath: String) */
-    removeObserverForKeyPath(observer: SDKHandle, keyPath: string): void;
+    removeObserverForKeyPath(observer: _ObjectiveC_NSObject, keyPath: string): void;
     /**
      * func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
      * @availability iOS 5.0+
      */
-    removeObserverForKeyPathContext(observer: SDKHandle, keyPath: string, context?: (SDKHandle) | null): void;
+    removeObserverForKeyPathContext(observer: _ObjectiveC_NSObject, keyPath: string, context?: (SDKHandle) | null): void;
     /** func reverseObjectEnumerator() -> NSEnumerator */
     reverseObjectEnumerator(): NSEnumerator;
     /**
@@ -26099,6 +27471,10 @@ export declare class NSOrderedSet extends SDKHandle {
      * @availability iOS 8.0+
      */
     get underestimatedCount(): number;
+    readonly $type: {
+        "c:objc(cs)NSOrderedSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "array": true;
         "count": true;
@@ -26197,6 +27573,11 @@ export declare class NSMutableOrderedSet extends NSMutableOrderedSet_base {
     unionSet(other: Array<unknown>): void;
     /** subscript(idx: Int) -> Any { get set } */
     subscript(idx: number): unknown;
+    readonly $type: {
+        "c:objc(cs)NSMutableOrderedSet": true;
+        "c:objc(cs)NSOrderedSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "array": true;
         "count": true;
@@ -26280,7 +27661,7 @@ export declare class NSString extends SDKHandle {
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    enumerateLinguisticTags(range: SDKHandle, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger_Options, orthography: (NSOrthography) | null, block: $SDK216): void;
+    enumerateLinguisticTags(range: SDKHandle, scheme: NSLinguisticTagScheme, options: NSLinguisticTagger_Options, orthography: (NSOrthography) | null, block: $SDK220): void;
     /** func getBytes(_ buffer: UnsafeMutableRawPointer?, maxLength maxBufferCount: Int, usedLength usedBufferCount: UnsafeMutablePointer<Int>?, encoding: UInt, options: NSString.EncodingConversionOptions = [], range: NSRange, remaining leftover: NSRangePointer?) -> Bool */
     getBytes(buffer: (SDKHandle) | null, maxBufferCount: number, usedBufferCount: (SDKHandle) | null, encoding: number, options: NSString_EncodingConversionOptions, range: SDKHandle, leftover?: (SDKHandle) | null): boolean;
     /** func getCString(_ buffer: UnsafeMutablePointer<CChar>, maxLength maxBufferCount: Int, encoding: UInt) -> Bool */
@@ -26304,7 +27685,7 @@ export declare class NSString extends SDKHandle {
     /** convenience init?(bytes: UnsafeRawPointer, length len: Int, encoding: UInt) */
     static initBytesLengthEncoding(bytes: SDKHandle, len: number, encoding: number): (NSString) | null;
     /** convenience init?(bytesNoCopy bytes: UnsafeMutableRawPointer, length len: Int, encoding: UInt, deallocator: ((UnsafeMutableRawPointer, Int) -> Void)? = nil) */
-    static initBytesNoCopyLengthEncodingDeallocator(bytes: SDKHandle, len: number, encoding: number, deallocator?: $SDK165): (NSString) | null;
+    static initBytesNoCopyLengthEncodingDeallocator(bytes: SDKHandle, len: number, encoding: number, deallocator?: $SDK169): (NSString) | null;
     /** convenience init?(bytesNoCopy bytes: UnsafeMutableRawPointer, length len: Int, encoding: UInt, freeWhenDone freeBuffer: Bool) */
     static initBytesNoCopyLengthEncodingFreeWhenDone(bytes: SDKHandle, len: number, encoding: number, freeBuffer: boolean): (NSString) | null;
     /** convenience init?(cString nullTerminatedCString: UnsafePointer<CChar>, encoding: UInt) */
@@ -26312,7 +27693,7 @@ export declare class NSString extends SDKHandle {
     /** convenience init(characters: UnsafePointer<unichar>, length: Int) */
     static initCharactersLength(characters: SDKHandle, length: number): NSString;
     /** convenience init(charactersNoCopy chars: UnsafeMutablePointer<unichar>, length len: Int, deallocator: ((UnsafeMutablePointer<unichar>, Int) -> Void)? = nil) */
-    static initCharactersNoCopyLengthDeallocator(chars: SDKHandle, len: number, deallocator?: $SDK165): NSString;
+    static initCharactersNoCopyLengthDeallocator(chars: SDKHandle, len: number, deallocator?: $SDK169): NSString;
     /** convenience init(charactersNoCopy characters: UnsafeMutablePointer<unichar>, length: Int, freeWhenDone freeBuffer: Bool) */
     static initCharactersNoCopyLengthFreeWhenDone(characters: SDKHandle, length: number, freeBuffer: boolean): NSString;
     /** init?(coder: NSCoder) */
@@ -26587,6 +27968,10 @@ export declare class NSString extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initString92389(aString: NSString): NSString;
+    readonly $type: {
+        "c:objc(cs)NSString": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "utf8String": true;
         "isAbsolutePath": true;
@@ -26636,10 +28021,8 @@ export declare class NSMutableString extends NSMutableString_base {
     applyTransform(transform: StringTransform, reverse: boolean, range: SDKHandle, resultingRange?: (SDKHandle) | null): boolean;
     /** func deleteCharacters(in range: NSRange) */
     deleteCharacters(range: SDKHandle): void;
-    /** init() */
-    static init(): NSMutableString;
     /** init(capacity: Int) */
-    static initCapacity(capacity: number): NSMutableString;
+    static init(capacity: number): NSMutableString;
     /** func insert(_ aString: String, at loc: Int) */
     insert(aString: string, loc: number): void;
     /** func replaceCharacters(in range: NSRange, with aString: String) */
@@ -26648,6 +28031,11 @@ export declare class NSMutableString extends NSMutableString_base {
     replaceOccurrences(target: string, replacement: string, options: NSString_CompareOptions, searchRange: SDKHandle): number;
     /** func setString(_ aString: String) */
     setString(aString: string): void;
+    readonly $type: {
+        "c:objc(cs)NSMutableString": true;
+        "c:objc(cs)NSString": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "utf8String": true;
         "isAbsolutePath": true;
@@ -26695,8 +28083,6 @@ export declare class NSURLRequest extends SDKHandle {
      * @availability iOS 2.0+
      */
     static get supportsSecureCoding(): boolean;
-    /** init() */
-    static init(): NSURLRequest;
     /**
      * convenience init(url URL: URL)
      * @availability iOS 2.0+
@@ -26795,6 +28181,10 @@ export declare class NSURLRequest extends SDKHandle {
      * @availability iOS 2.0+
      */
     get timeoutInterval(): number;
+    readonly $type: {
+        "c:objc(cs)NSURLRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "httpBody": true;
         "httpBodyStream": true;
@@ -26818,7 +28208,7 @@ export declare class NSURLRequest extends SDKHandle {
         "timeoutInterval": true;
     };
 }
-declare const NSMutableURLRequest_base: Omit<typeof NSURLRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSURLRequest, "httpBody" | "httpBodyStream" | "httpMethod" | "httpShouldHandleCookies" | "httpShouldUsePipelining" | "url" | "allHTTPHeaderFields" | "allowsCellularAccess" | "allowsConstrainedNetworkAccess" | "allowsExpensiveNetworkAccess" | "allowsPersistentDNS" | "allowsUltraConstrainedNetworkAccess" | "assumesHTTP3Capable" | "attribution" | "cachePolicy" | "cookiePartitionIdentifier" | "mainDocumentURL" | "networkServiceType" | "requiresDNSSECValidation" | "timeoutInterval">);
+declare const NSMutableURLRequest_base: Omit<typeof NSURLRequest, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSURLRequest, "httpBody" | "httpBodyStream" | "httpMethod" | "httpShouldHandleCookies" | "httpShouldUsePipelining" | "url" | "allHTTPHeaderFields" | "allowsCellularAccess" | "allowsConstrainedNetworkAccess" | "allowsExpensiveNetworkAccess" | "allowsPersistentDNS" | "allowsUltraConstrainedNetworkAccess" | "assumesHTTP3Capable" | "attribution" | "cachePolicy" | "cookiePartitionIdentifier" | "mainDocumentURL" | "networkServiceType" | "requiresDNSSECValidation" | "timeoutInterval">);
 /**
  * class NSMutableURLRequest
  * @availability iOS 2.0+
@@ -26936,6 +28326,11 @@ export declare class NSMutableURLRequest extends NSMutableURLRequest_base {
      */
     get timeoutInterval(): number;
     set timeoutInterval(value: number);
+    readonly $type: {
+        "c:objc(cs)NSMutableURLRequest": true;
+        "c:objc(cs)NSURLRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "httpBody": true;
         "httpBodyStream": true;
@@ -26963,8 +28358,6 @@ export declare class NSMutableURLRequest extends NSMutableURLRequest_base {
 export declare class NSNotification extends SDKHandle {
     /** convenience init(name aName: NSNotification.Name, object anObject: Any?) */
     static initNameObject(aName: NSNotification_Name, anObject?: (unknown) | null): NSNotification;
-    /** init() */
-    static init(): NSNotification;
     /** init?(coder: NSCoder) */
     static initCoder(coder: NSCoder): (NSNotification) | null;
     /**
@@ -26978,6 +28371,10 @@ export declare class NSNotification extends SDKHandle {
     get object(): (unknown) | null;
     /** var userInfo: [AnyHashable : Any]? { get } */
     get userInfo(): $SDK23;
+    readonly $type: {
+        "c:objc(cs)NSNotification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "object": true;
@@ -26985,7 +28382,7 @@ export declare class NSNotification extends SDKHandle {
     };
 }
 /** struct Name */
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let NSBundleResourceRequestLowDiskSpace: NSNotification.Name
@@ -27148,6 +28545,10 @@ export declare const NSNotification_Name: {
 export declare class NSNull extends SDKHandle {
     /** init() */
     static init(): NSNull;
+    readonly $type: {
+        "c:objc(cs)NSNull": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias BooleanLiteralType = Bool
@@ -27164,6 +28565,134 @@ export type NSNumber_FloatLiteralType = number;
  * @availability iOS 8.0+
  */
 export type NSNumber_IntegerLiteralType = number;
+export declare class NSObject extends SDKHandle {
+    /** class func automaticallyNotifiesObservers(forKey key: String) -> Bool */
+    static automaticallyNotifiesObservers(key: string): boolean;
+    /** class func cancelPreviousPerformRequests(withTarget aTarget: Any) */
+    static cancelPreviousPerformRequests(aTarget: unknown): void;
+    /** class func classFallbacksForKeyedArchiver() -> [String] */
+    static classFallbacksForKeyedArchiver(): Array<string>;
+    /** class func classForKeyedUnarchiver() -> AnyClass */
+    static classForKeyedUnarchiver(): string;
+    /**
+     * class func keyPathsForValuesAffectingValue(forKey key: String) -> Set<String>
+     * @availability iOS 2.0+
+     */
+    static keyPathsForValuesAffectingValue(key: string): Array<string>;
+    /** class func setVersion(_ aVersion: Int) */
+    static setVersion(aVersion: number): void;
+    /** class func version() -> Int */
+    static version(): number;
+    /** class var accessInstanceVariablesDirectly: Bool { get } */
+    static get accessInstanceVariablesDirectly(): boolean;
+    /** func addObserver(_ observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?) */
+    addObserver(observer: _ObjectiveC_NSObject, keyPath: string, options?: NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
+    /** func attemptRecovery(fromError error: any Error, optionIndex recoveryOptionIndex: Int) -> Bool */
+    attemptRecovery(error: NativeError, recoveryOptionIndex: number): boolean;
+    /** func awakeAfter(using coder: NSCoder) -> Any? */
+    awakeAfter(coder: NSCoder): (unknown) | null;
+    /** func dictionaryWithValues(forKeys keys: [String]) -> [String : Any] */
+    dictionaryWithValues(keys: Array<string>): Record<string, unknown>;
+    /** func didChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String) */
+    didChange(changeKind: NSKeyValueChange, indexes: IndexSet, key: string): void;
+    /** func didChangeValue(forKey key: String) */
+    didChangeValueForKey(key: string): void;
+    /** func didChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>) */
+    didChangeValueForKeyWithSetMutationUsing(key: string, mutationKind: NSKeyValueSetMutationKind, objects: Array<unknown>): void;
+    /** func mutableArrayValue(forKey key: String) -> NSMutableArray */
+    mutableArrayValueForKey(key: string): NSMutableArray;
+    /** func mutableArrayValue(forKeyPath keyPath: String) -> NSMutableArray */
+    mutableArrayValueForKeyPath(keyPath: string): NSMutableArray;
+    /**
+     * func mutableOrderedSetValue(forKey key: String) -> NSMutableOrderedSet
+     * @availability iOS 5.0+
+     */
+    mutableOrderedSetValueForKey(key: string): NSMutableOrderedSet;
+    /**
+     * func mutableOrderedSetValue(forKeyPath keyPath: String) -> NSMutableOrderedSet
+     * @availability iOS 5.0+
+     */
+    mutableOrderedSetValueForKeyPath(keyPath: string): NSMutableOrderedSet;
+    /** func mutableSetValue(forKey key: String) -> NSMutableSet */
+    mutableSetValueForKey(key: string): NSMutableSet;
+    /** func mutableSetValue(forKeyPath keyPath: String) -> NSMutableSet */
+    mutableSetValueForKeyPath(keyPath: string): NSMutableSet;
+    /** func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) */
+    observeValue(keyPath?: (string) | null, object?: (unknown) | null, change?: (NativeMap<NSKeyValueChangeKey, unknown>) | null, context?: (SDKHandle) | null): void;
+    /** func removeObserver(_ observer: NSObject, forKeyPath keyPath: String) */
+    removeObserverForKeyPath(observer: _ObjectiveC_NSObject, keyPath: string): void;
+    /**
+     * func removeObserver(_ observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
+     * @availability iOS 5.0+
+     */
+    removeObserverForKeyPathContext(observer: _ObjectiveC_NSObject, keyPath: string, context?: (SDKHandle) | null): void;
+    /** func replacementObject(for coder: NSCoder) -> Any? */
+    replacementObjectFor(coder: NSCoder): (unknown) | null;
+    /** func replacementObject(for archiver: NSKeyedArchiver) -> Any? */
+    replacementObjectFor15764(archiver: NSKeyedArchiver): (unknown) | null;
+    /** func setNilValueForKey(_ key: String) */
+    setNilValueForKey(key: string): void;
+    /**
+     * func setSharedObservers(_ sharedObservers: NSKeyValueSharedObserversSnapshot?)
+     * @availability iOS 18.0+
+     */
+    setSharedObservers(sharedObservers?: (NSKeyValueSharedObserversSnapshot) | null): void;
+    /** func setValue(_ value: Any?, forKey key: String) */
+    setValueForKey(value: (unknown) | null, key: string): void;
+    /** func setValue(_ value: Any?, forKeyPath keyPath: String) */
+    setValueForKeyPath(value: (unknown) | null, keyPath: string): void;
+    /** func setValue(_ value: Any?, forUndefinedKey key: String) */
+    setValueForUndefinedKey(value: (unknown) | null, key: string): void;
+    /** func setValuesForKeys(_ keyedValues: [String : Any]) */
+    setValuesForKeys(keyedValues: Record<string, unknown>): void;
+    /** func validateValue(_ ioValue: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKey inKey: String) throws */
+    validateValueForKey(inKey: string): {
+        $ret: null;
+        $out: {
+            "ioValue": (unknown) | null;
+        };
+    };
+    /** func validateValue(_ ioValue: AutoreleasingUnsafeMutablePointer<AnyObject?>, forKeyPath inKeyPath: String) throws */
+    validateValueForKeyPath(inKeyPath: string): {
+        $ret: null;
+        $out: {
+            "ioValue": (unknown) | null;
+        };
+    };
+    /** func value(forKey key: String) -> Any? */
+    valueForKey(key: string): (unknown) | null;
+    /** func value(forKeyPath keyPath: String) -> Any? */
+    valueForKeyPath(keyPath: string): (unknown) | null;
+    /** func value(forUndefinedKey key: String) -> Any? */
+    valueForUndefinedKey(key: string): (unknown) | null;
+    /** func willChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String) */
+    willChange(changeKind: NSKeyValueChange, indexes: IndexSet, key: string): void;
+    /** func willChangeValue(forKey key: String) */
+    willChangeValueForKey(key: string): void;
+    /** func willChangeValue(forKey key: String, withSetMutation mutationKind: NSKeyValueSetMutationKind, using objects: Set<AnyHashable>) */
+    willChangeValueForKeyWithSetMutationUsing(key: string, mutationKind: NSKeyValueSetMutationKind, objects: Array<unknown>): void;
+    /**
+     * var autoContentAccessingProxy: Any { get }
+     * @availability iOS 4.0+
+     */
+    get autoContentAccessingProxy(): unknown;
+    /** var classForCoder: AnyClass { get } */
+    get classForCoder(): string;
+    /** var classForKeyedArchiver: AnyClass? { get } */
+    get classForKeyedArchiver(): (string) | null;
+    /** var observationInfo: UnsafeMutableRawPointer? { get set } */
+    get observationInfo(): (SDKHandle) | null;
+    set observationInfo(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "autoContentAccessingProxy": true;
+        "classForCoder": true;
+        "classForKeyedArchiver": true;
+        "observationInfo": true;
+    };
+}
 /**
  * struct KeyValueObservingPublisher<Subject, Value> where Subject : NSObject
  * @availability iOS 13.0+
@@ -27173,22 +28702,25 @@ export declare class NSObject_KeyValueObservingPublisher<Subject = unknown, Valu
      * init(object: Subject, keyPath: KeyPath<Subject, Value>, options: NSKeyValueObservingOptions)
      * @availability iOS 13.0+
      */
-    static init(object: SDKHandle, keyPath: SDKHandle, options: NSKeyValueObservingOptions): NSObject_KeyValueObservingPublisher<SDKHandle, unknown>;
+    static init(object: _ObjectiveC_NSObject, keyPath: "autoContentAccessingProxy" | SDKHandle, options: NSKeyValueObservingOptions): NSObject_KeyValueObservingPublisher<_ObjectiveC_NSObject, unknown>;
     /**
      * let object: Subject
      * @availability iOS 13.0+
      */
-    get object(): SDKHandle;
+    get object(): _ObjectiveC_NSObject;
     /**
      * let keyPath: KeyPath<Subject, Value>
      * @availability iOS 13.0+
      */
-    get keyPath(): SDKHandle;
+    get keyPath(): "autoContentAccessingProxy" | SDKHandle;
     /**
      * let options: NSKeyValueObservingOptions
      * @availability iOS 13.0+
      */
     get options(): NSKeyValueObservingOptions;
+    readonly $type: {
+        "s:So8NSObjectC10FoundationE26KeyValueObservingPublisherV": true;
+    };
     readonly $element: unknown;
 }
 /**
@@ -27236,6 +28768,10 @@ export declare class NSOrderedCollectionChange extends SDKHandle {
      * @availability iOS 13.0+
      */
     get object(): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)NSOrderedCollectionChange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "associatedIndex": true;
         "changeType": true;
@@ -27248,13 +28784,11 @@ export declare class NSOrderedCollectionChange extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class NSOrderedCollectionDifference extends SDKHandle {
-    /** init() */
-    static init(): NSOrderedCollectionDifference;
     /**
      * convenience init(changes: [NSOrderedCollectionChange])
      * @availability iOS 13.0+
      */
-    static initChanges(changes: $SDK229): NSOrderedCollectionDifference;
+    static initChanges(changes: $SDK238): NSOrderedCollectionDifference;
     /**
      * convenience init(insert inserts: IndexSet, insertedObjects: [Any]?, remove removes: IndexSet, removedObjects: [Any]?)
      * @availability iOS 13.0+
@@ -27264,7 +28798,7 @@ export declare class NSOrderedCollectionDifference extends SDKHandle {
      * init(insert inserts: IndexSet, insertedObjects: [Any]?, remove removes: IndexSet, removedObjects: [Any]?, additionalChanges changes: [NSOrderedCollectionChange])
      * @availability iOS 13.0+
      */
-    static initInsertInsertedObjectsRemoveRemovedObjectsAdditionalChanges(inserts: IndexSet, insertedObjects: (Array<unknown>) | null, removes: IndexSet, removedObjects: (Array<unknown>) | null, changes: $SDK229): NSOrderedCollectionDifference;
+    static initInsertInsertedObjectsRemoveRemovedObjectsAdditionalChanges(inserts: IndexSet, insertedObjects: (Array<unknown>) | null, removes: IndexSet, removedObjects: (Array<unknown>) | null, changes: $SDK238): NSOrderedCollectionDifference;
     /**
      * func inverse() -> Self
      * @availability iOS 13.0+
@@ -27279,12 +28813,16 @@ export declare class NSOrderedCollectionDifference extends SDKHandle {
      * var insertions: [NSOrderedCollectionChange] { get }
      * @availability iOS 13.0+
      */
-    get insertions(): $SDK229;
+    get insertions(): $SDK238;
     /**
      * var removals: [NSOrderedCollectionChange] { get }
      * @availability iOS 13.0+
      */
-    get removals(): $SDK229;
+    get removals(): $SDK238;
+    readonly $type: {
+        "c:objc(cs)NSOrderedCollectionDifference": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hasChanges": true;
         "insertions": true;
@@ -27348,8 +28886,6 @@ export declare class NSOrthography extends SDKHandle {
      * @availability iOS 4.0+
      */
     dominantLanguageForScript(script: string): (string) | null;
-    /** init() */
-    static init(): NSOrthography;
     /**
      * init?(coder: NSCoder)
      * @availability iOS 4.0+
@@ -27390,6 +28926,10 @@ export declare class NSOrthography extends SDKHandle {
      * @availability iOS 4.0+
      */
     get languageMap(): Record<string, Array<string>>;
+    readonly $type: {
+        "c:objc(cs)NSOrthography": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allLanguages": true;
         "allScripts": true;
@@ -27445,8 +28985,12 @@ export declare class NSPersonNameComponents extends SDKHandle {
      * var phoneticRepresentation: PersonNameComponents? { get set }
      * @availability iOS 9.0+
      */
-    get phoneticRepresentation(): $SDK193;
-    set phoneticRepresentation(value: $SDK193);
+    get phoneticRepresentation(): $SDK197;
+    set phoneticRepresentation(value: $SDK197);
+    readonly $type: {
+        "c:objc(cs)NSPersonNameComponents": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "familyName": true;
         "givenName": true;
@@ -27482,8 +29026,6 @@ export declare class NSPointerArray extends SDKHandle {
      * @availability iOS 6.0+
      */
     compact(): void;
-    /** init() */
-    static init(): NSPointerArray;
     /**
      * init(options: NSPointerFunctions.Options = [])
      * @availability iOS 6.0+
@@ -27527,6 +29069,10 @@ export declare class NSPointerArray extends SDKHandle {
      * @availability iOS 6.0+
      */
     get pointerFunctions(): NSPointerFunctions;
+    readonly $type: {
+        "c:objc(cs)NSPointerArray": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allObjects": true;
         "count": true;
@@ -27538,13 +29084,11 @@ export declare class NSPointerArray extends SDKHandle {
  * @availability iOS 6.0+
  */
 export declare class NSPointerFunctions extends SDKHandle {
-    /** init() */
-    static init(): NSPointerFunctions;
     /**
      * init(options: NSPointerFunctions.Options = [])
      * @availability iOS 6.0+
      */
-    static initOptions(options?: NSPointerFunctions_Options): NSPointerFunctions;
+    static init(options?: NSPointerFunctions_Options): NSPointerFunctions;
     /**
      * var descriptionFunction: ((UnsafeRawPointer) -> String?)? { get set }
      * @availability iOS 6.0+
@@ -27569,6 +29113,10 @@ export declare class NSPointerFunctions extends SDKHandle {
      */
     get usesWeakReadAndWriteBarriers(): boolean;
     set usesWeakReadAndWriteBarriers(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NSPointerFunctions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "usesStrongWriteBarrier": true;
         "usesWeakReadAndWriteBarriers": true;
@@ -27666,15 +29214,23 @@ export declare class NSProxy extends SDKHandle {
     dealloc(): void;
     /** func finalize() */
     finalize(): void;
+    readonly $type: {
+        "c:objc(cs)NSProxy": true;
+    };
 }
-declare const NSPurgeableData_base: Omit<typeof NSMutableData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSMutableData);
 /**
  * class NSPurgeableData
  * @availability iOS 4.0+
  */
-export declare class NSPurgeableData extends NSPurgeableData_base {
+export declare class NSPurgeableData extends NSMutableData {
     /** init() */
     static init(): NSPurgeableData;
+    readonly $type: {
+        "c:objc(cs)NSPurgeableData": true;
+        "c:objc(cs)NSMutableData": true;
+        "c:objc(cs)NSData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bytes": true;
         "description": true;
@@ -27700,6 +29256,10 @@ export declare class NSRecursiveLock extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSRecursiveLock": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
     };
@@ -27787,14 +29347,12 @@ export declare class ValueTransformer extends SDKHandle {
      * init?(forName name: NSValueTransformerName)
      * @availability iOS 3.0+
      */
-    static initForName(name: NSValueTransformerName): (ValueTransformer) | null;
+    static init(name: NSValueTransformerName): (ValueTransformer) | null;
     /**
      * class func valueTransformerNames() -> [NSValueTransformerName]
      * @availability iOS 3.0+
      */
     static valueTransformerNames(): Array<NSValueTransformerName>;
-    /** init() */
-    static init(): ValueTransformer;
     /**
      * func reverseTransformedValue(_ value: Any?) -> Any?
      * @availability iOS 3.0+
@@ -27805,6 +29363,10 @@ export declare class ValueTransformer extends SDKHandle {
      * @availability iOS 3.0+
      */
     transformedValue(value?: (unknown) | null): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)NSValueTransformer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const NSSecureUnarchiveFromDataTransformer_base: Omit<typeof ValueTransformer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ValueTransformer);
 /**
@@ -27819,6 +29381,11 @@ export declare class NSSecureUnarchiveFromDataTransformer extends NSSecureUnarch
     static get allowedTopLevelClasses(): Array<string>;
     /** init() */
     static init(): NSSecureUnarchiveFromDataTransformer;
+    readonly $type: {
+        "c:objc(cs)NSSecureUnarchiveFromDataTransformer": true;
+        "c:objc(cs)NSValueTransformer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Any
@@ -27844,8 +29411,6 @@ export declare class NSSortDescriptor extends SDKHandle {
     allowEvaluation(): void;
     /** func compare(_ object1: Any, to object2: Any) -> ComparisonResult */
     compare(object1: unknown, object2: unknown): ComparisonResult;
-    /** init() */
-    static init(): NSSortDescriptor;
     /** init?(coder: NSCoder) */
     static initCoder(coder: NSCoder): (NSSortDescriptor) | null;
     /** init(key: String?, ascending: Bool) */
@@ -27876,13 +29441,17 @@ export declare class NSSortDescriptor extends SDKHandle {
     convenience init<Compared>(_ sortDescriptor: SortDescriptor<Compared>) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static init91256(sortDescriptor: $SDK235): NSSortDescriptor;
+    static init(sortDescriptor: $SDK244): NSSortDescriptor;
     /**
      * convenience init<Compared>(_ sortDescriptor: SortDescriptor<Compared>)
      * @availability iOS 15.0+
      * @deprecated iOS 17.0
      */
     static init3797(sortDescriptor: SortDescriptor<unknown>): NSSortDescriptor;
+    readonly $type: {
+        "c:objc(cs)NSSortDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ascending": true;
         "key": true;
@@ -28018,6 +29587,9 @@ export declare class NSSwappedDouble extends SDKHandle {
     static initV(v: number): NSSwappedDouble;
     /** init() */
     static init(): NSSwappedDouble;
+    readonly $type: {
+        "c:@SA@NSSwappedDouble": true;
+    };
 }
 /** struct NSSwappedFloat */
 export declare class NSSwappedFloat extends SDKHandle {
@@ -28028,6 +29600,9 @@ export declare class NSSwappedFloat extends SDKHandle {
     static initV(v: number): NSSwappedFloat;
     /** init() */
     static init(): NSSwappedFloat;
+    readonly $type: {
+        "c:@SA@NSSwappedFloat": true;
+    };
 }
 /** struct NSTextCheckingKey */
 export type NSTextCheckingKey = "name" | "jobTitle" | "organization" | "street" | "city" | "state" | "zip" | "country" | "phone" | "airline" | "flight" | (string & {});
@@ -28098,7 +29673,7 @@ export declare const NSTextCheckingKey: {
  */
 export declare class NSTextCheckingResult extends SDKHandle {
     /** class func addressCheckingResult(range: NSRange, components: [NSTextCheckingKey : String]) -> NSTextCheckingResult */
-    static addressCheckingResult(range: SDKHandle, components: $SDK238): NSTextCheckingResult;
+    static addressCheckingResult(range: SDKHandle, components: $SDK247): NSTextCheckingResult;
     /** class func correctionCheckingResult(range: NSRange, replacementString: String) -> NSTextCheckingResult */
     static correctionCheckingResultRangeReplacementString(range: SDKHandle, replacementString: string): NSTextCheckingResult;
     /**
@@ -28138,7 +29713,7 @@ export declare class NSTextCheckingResult extends SDKHandle {
      * class func transitInformationCheckingResult(range: NSRange, components: [NSTextCheckingKey : String]) -> NSTextCheckingResult
      * @availability iOS 4.0+
      */
-    static transitInformationCheckingResult(range: SDKHandle, components: $SDK238): NSTextCheckingResult;
+    static transitInformationCheckingResult(range: SDKHandle, components: $SDK247): NSTextCheckingResult;
     /** init() */
     static init(): NSTextCheckingResult;
     /**
@@ -28159,7 +29734,7 @@ export declare class NSTextCheckingResult extends SDKHandle {
     /** var url: URL? { get } */
     get url(): (string) | null;
     /** var addressComponents: [NSTextCheckingKey : String]? { get } */
-    get addressComponents(): $SDK240;
+    get addressComponents(): $SDK249;
     /**
      * var alternativeStrings: [String]? { get }
      * @availability iOS 7.0+
@@ -28169,7 +29744,7 @@ export declare class NSTextCheckingResult extends SDKHandle {
      * var components: [NSTextCheckingKey : String]? { get }
      * @availability iOS 4.0+
      */
-    get components(): $SDK240;
+    get components(): $SDK249;
     /** var date: Date? { get } */
     get date(): $SDK26;
     /** var duration: TimeInterval { get } */
@@ -28207,6 +29782,10 @@ export declare class NSTextCheckingResult extends SDKHandle {
     get resultType(): NSTextCheckingResult_CheckingType;
     /** var timeZone: TimeZone? { get } */
     get timeZone(): (TimeZone) | null;
+    readonly $type: {
+        "c:objc(cs)NSTextCheckingResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "addressComponents": true;
@@ -28318,8 +29897,6 @@ export declare class NSTimeZone extends SDKHandle {
      * @availability iOS 2.0+
      */
     daylightSavingTimeOffsetFor(aDate: globalThis.Date): number;
-    /** init() */
-    static init(): NSTimeZone;
     /** init?(name tzName: String) */
     static initName(tzName: string): (NSTimeZone) | null;
     /** init?(name tzName: String, data aData: Data?) */
@@ -28362,6 +29939,10 @@ export declare class NSTimeZone extends SDKHandle {
     get nextDaylightSavingTimeTransition(): $SDK26;
     /** var secondsFromGMT: Int { get } */
     get secondsFromGMT(): number;
+    readonly $type: {
+        "c:objc(cs)NSTimeZone": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "abbreviation": true;
         "data": true;
@@ -28491,6 +30072,10 @@ export declare class NSUbiquitousKeyValueStore extends SDKHandle {
      * @availability iOS 5.0+
      */
     get dictionaryRepresentation(): Record<string, unknown>;
+    readonly $type: {
+        "c:objc(cs)NSUbiquitousKeyValueStore": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dictionaryRepresentation": true;
     };
@@ -28621,8 +30206,6 @@ export declare class NSURL extends SDKHandle {
             "value": (unknown) | null;
         };
     };
-    /** init() */
-    static init(): NSURL;
     /**
      * init(absoluteURLWithDataRepresentation data: Data, relativeTo baseURL: URL?)
      * @availability iOS 9.0+
@@ -28689,7 +30272,7 @@ export declare class NSURL extends SDKHandle {
      * func promisedItemResourceValues(forKeys keys: [URLResourceKey]) throws -> [URLResourceKey : Any]
      * @availability iOS 8.0+
      */
-    promisedItemResourceValues(keys: Array<URLResourceKey>): $SDK245;
+    promisedItemResourceValues(keys: Array<URLResourceKey>): $SDK254;
     /**
      * func removeAllCachedResourceValues()
      * @availability iOS 7.0+
@@ -28704,7 +30287,7 @@ export declare class NSURL extends SDKHandle {
      * func resourceValues(forKeys keys: [URLResourceKey]) throws -> [URLResourceKey : Any]
      * @availability iOS 4.0+
      */
-    resourceValuesForKeys(keys: Array<URLResourceKey>): $SDK245;
+    resourceValuesForKeys(keys: Array<URLResourceKey>): $SDK254;
     /**
      * func setResourceValue(_ value: Any?, forKey key: URLResourceKey) throws
      * @availability iOS 4.0+
@@ -28714,7 +30297,7 @@ export declare class NSURL extends SDKHandle {
      * func setResourceValues(_ keyedValues: [URLResourceKey : Any]) throws
      * @availability iOS 4.0+
      */
-    setResourceValues(keyedValues: $SDK245): void;
+    setResourceValues(keyedValues: $SDK254): void;
     /**
      * func setTemporaryResourceValue(_ value: (any Sendable)?, forKey key: URLResourceKey)
      * @availability iOS 7.0+
@@ -28828,6 +30411,10 @@ export declare class NSURL extends SDKHandle {
      * @availability iOS 8.0+
      */
     get customPlaygroundQuickLook(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)NSURL": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deletingLastPathComponent": true;
         "deletingPathExtension": true;
@@ -29015,8 +30602,8 @@ export declare class NSURLComponents extends SDKHandle {
      * var percentEncodedQueryItems: [URLQueryItem]? { get set }
      * @availability iOS 11.0+
      */
-    get percentEncodedQueryItems(): $SDK246;
-    set percentEncodedQueryItems(value: $SDK246);
+    get percentEncodedQueryItems(): $SDK255;
+    set percentEncodedQueryItems(value: $SDK255);
     /**
      * var percentEncodedUser: String? { get set }
      * @availability iOS 7.0+
@@ -29039,8 +30626,8 @@ export declare class NSURLComponents extends SDKHandle {
      * var queryItems: [URLQueryItem]? { get set }
      * @availability iOS 8.0+
      */
-    get queryItems(): $SDK246;
-    set queryItems(value: $SDK246);
+    get queryItems(): $SDK255;
+    set queryItems(value: $SDK255);
     /**
      * var rangeOfFragment: NSRange { get }
      * @availability iOS 9.0+
@@ -29098,6 +30685,10 @@ export declare class NSURLComponents extends SDKHandle {
      */
     get user(): (string) | null;
     set user(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSURLComponents": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "encodedHost": true;
@@ -29160,8 +30751,6 @@ export declare class NSURLConnection extends SDKHandle {
      * @availability iOS 2.0+
      */
     cancel(): void;
-    /** init() */
-    static init(): NSURLConnection;
     /**
      * init?(request: URLRequest, delegate: Any?)
      * @availability iOS 2.0+
@@ -29204,6 +30793,10 @@ export declare class NSURLConnection extends SDKHandle {
      * @availability iOS 5.0+
      */
     get originalRequest(): URLRequest;
+    readonly $type: {
+        "c:objc(cs)NSURLConnection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentRequest": true;
         "originalRequest": true;
@@ -29323,13 +30916,11 @@ export interface NSURLConnectionDownloadDelegate {
  * @availability iOS 8.0+
  */
 export declare class NSURLQueryItem extends SDKHandle {
-    /** init() */
-    static init(): NSURLQueryItem;
     /**
      * init(name: String, value: String?)
      * @availability iOS 8.0+
      */
-    static initNameValue(name: string, value?: (string) | null): NSURLQueryItem;
+    static init(name: string, value?: (string) | null): NSURLQueryItem;
     /**
      * var name: String { get }
      * @availability iOS 8.0+
@@ -29340,6 +30931,10 @@ export declare class NSURLQueryItem extends SDKHandle {
      * @availability iOS 8.0+
      */
     get value(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)NSURLQueryItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "value": true;
@@ -29523,6 +31118,10 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get webpageURL(): (string) | null;
     set webpageURL(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activityType": true;
         "delegate": true;
@@ -29601,6 +31200,10 @@ export declare class NSUUID extends SDKHandle {
      * @availability iOS 6.0+
      */
     get uuidString(): string;
+    readonly $type: {
+        "c:objc(cs)NSUUID": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuidString": true;
     };
@@ -29674,6 +31277,11 @@ export declare class NSXPCCoder extends NSXPCCoder_base {
      */
     get userInfo(): (SDKHandle) | null;
     set userInfo(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)NSXPCCoder": true;
+        "c:objc(cs)NSCoder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedClasses": true;
         "allowsKeyedCoding": true;
@@ -29700,13 +31308,11 @@ export declare class NSXPCConnection extends SDKHandle {
      * @availability iOS 14.0+
      */
     activate(): void;
-    /** init() */
-    static init(): NSXPCConnection;
     /**
      * init(listenerEndpoint endpoint: NSXPCListenerEndpoint)
      * @availability iOS 6.0+
      */
-    static initListenerEndpoint(endpoint: NSXPCListenerEndpoint): NSXPCConnection;
+    static init(endpoint: NSXPCListenerEndpoint): NSXPCConnection;
     /**
      * func invalidate()
      * @availability iOS 6.0+
@@ -29802,6 +31408,10 @@ export declare class NSXPCConnection extends SDKHandle {
      * @availability iOS 6.0+
      */
     get serviceName(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)NSXPCConnection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "auditSessionIdentifier": true;
         "effectiveGroupIdentifier": true;
@@ -29841,15 +31451,17 @@ export declare class NSXPCInterface extends SDKHandle {
      * init(with protocol: Protocol)
      * @availability iOS 6.0+
      */
-    static initWith(protocol: string): NSXPCInterface;
-    /** init() */
-    static init(): NSXPCInterface;
+    static init(protocol: string): NSXPCInterface;
     /**
      * unowned(unsafe) var `protocol`: Protocol { get set }
      * @availability iOS 6.0+
      */
     get protocol(): string;
     set protocol(value: string);
+    readonly $type: {
+        "c:objc(cs)NSXPCInterface": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "protocol": true;
     };
@@ -29902,6 +31514,10 @@ export declare class NSXPCListener extends SDKHandle {
      * @availability iOS 6.0+
      */
     get endpoint(): NSXPCListenerEndpoint;
+    readonly $type: {
+        "c:objc(cs)NSXPCListener": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "endpoint": true;
@@ -29917,6 +31533,10 @@ export interface NSXPCListenerDelegate {
 export declare class NSXPCListenerEndpoint extends SDKHandle {
     /** init() */
     static init(): NSXPCListenerEndpoint;
+    readonly $type: {
+        "c:objc(cs)NSXPCListenerEndpoint": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** protocol NSXPCProxyCreating */
 export interface NSXPCProxyCreating {
@@ -29930,6 +31550,9 @@ export interface NSXPCProxyCreating {
  * @availability iOS 15.0+
  */
 export declare class NumberFormatStyleConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation30NumberFormatStyleConfigurationO": true;
+    };
 }
 /**
  * struct DecimalSeparatorDisplayStrategy
@@ -29951,6 +31574,9 @@ export declare class NumberFormatStyleConfiguration_DecimalSeparatorDisplayStrat
      * @availability iOS 15.0+
      */
     static get automatic(): NumberFormatStyleConfiguration_DecimalSeparatorDisplayStrategy;
+    readonly $type: {
+        "s:10Foundation30NumberFormatStyleConfigurationO31DecimalSeparatorDisplayStrategyV": true;
+    };
 }
 /**
  * struct Grouping
@@ -29972,6 +31598,9 @@ export declare class NumberFormatStyleConfiguration_Grouping extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get automatic(): NumberFormatStyleConfiguration_Grouping;
+    readonly $type: {
+        "s:10Foundation30NumberFormatStyleConfigurationO8GroupingV": true;
+    };
 }
 /**
  * struct Notation
@@ -29998,6 +31627,9 @@ export declare class NumberFormatStyleConfiguration_Notation extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get automatic(): NumberFormatStyleConfiguration_Notation;
+    readonly $type: {
+        "s:10Foundation30NumberFormatStyleConfigurationO8NotationV": true;
+    };
 }
 /**
  * struct Precision
@@ -30039,6 +31671,9 @@ export declare class NumberFormatStyleConfiguration_Precision extends SDKHandle 
      * @availability iOS 15.0+
      */
     static integerAndFractionLengthIntegerLimitsFractionLimits(integerLimits: SDKHandle, fractionLimits: SDKHandle): NumberFormatStyleConfiguration_Precision;
+    readonly $type: {
+        "s:10Foundation30NumberFormatStyleConfigurationO9PrecisionV": true;
+    };
 }
 /**
  * typealias RoundingRule = FloatingPointRoundingRule
@@ -30070,6 +31705,9 @@ export declare class NumberFormatStyleConfiguration_SignDisplayStrategy extends 
      * @availability iOS 15.0+
      */
     static get automatic(): NumberFormatStyleConfiguration_SignDisplayStrategy;
+    readonly $type: {
+        "s:10Foundation30NumberFormatStyleConfigurationO19SignDisplayStrategyV": true;
+    };
 }
 declare const NumberFormatter_base: Omit<typeof Formatter, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<Formatter, "getObjectValue" | "string">);
 /** class NumberFormatter */
@@ -30294,6 +31932,11 @@ export declare class NumberFormatter extends NumberFormatter_base {
     /** var zeroSymbol: String? { get set } */
     get zeroSymbol(): (string) | null;
     set zeroSymbol(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)NSNumberFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsFloats": true;
         "alwaysShowsDecimalSeparator": true;
@@ -30415,6 +32058,9 @@ export declare class OperatingSystemVersion extends SDKHandle {
     static initMajorVersionMinorVersionPatchVersion(majorVersion: number, minorVersion: number, patchVersion: number): OperatingSystemVersion;
     /** init() */
     static init(): OperatingSystemVersion;
+    readonly $type: {
+        "c:@SA@NSOperatingSystemVersion": true;
+    };
 }
 /** enum QueuePriority */
 export type Operation_QueuePriority = "veryLow" | "low" | "normal" | "high" | "veryHigh";
@@ -30532,17 +32178,21 @@ export declare class OperationQueue extends SDKHandle {
      * func schedule(after date: OperationQueue.SchedulerTimeType, interval: OperationQueue.SchedulerTimeType.Stride, tolerance: OperationQueue.SchedulerTimeType.Stride, options: OperationQueue.SchedulerOptions?, _ action: @escaping () -> Void) -> any Cancellable
      * @availability iOS 13.0+
      */
-    scheduleAfterIntervalToleranceOptions(date: OperationQueue_SchedulerTimeType, interval: OperationQueue_SchedulerTimeType_Stride, tolerance: OperationQueue_SchedulerTimeType_Stride, options: $SDK255, action: (() => void)): SDKHandle;
+    scheduleAfterIntervalToleranceOptions(date: OperationQueue_SchedulerTimeType, interval: OperationQueue_SchedulerTimeType_Stride, tolerance: OperationQueue_SchedulerTimeType_Stride, options: $SDK264, action: (() => void)): SDKHandle;
     /**
      * func schedule(after date: OperationQueue.SchedulerTimeType, tolerance: OperationQueue.SchedulerTimeType.Stride, options: OperationQueue.SchedulerOptions?, _ action: @escaping () -> Void)
      * @availability iOS 13.0+
      */
-    scheduleAfterToleranceOptions(date: OperationQueue_SchedulerTimeType, tolerance: OperationQueue_SchedulerTimeType_Stride, options: $SDK255, action: (() => void)): void;
+    scheduleAfterToleranceOptions(date: OperationQueue_SchedulerTimeType, tolerance: OperationQueue_SchedulerTimeType_Stride, options: $SDK264, action: (() => void)): void;
     /**
      * func schedule(options: OperationQueue.SchedulerOptions?, _ action: @escaping () -> Void)
      * @availability iOS 13.0+
      */
-    scheduleOptions(options: $SDK255, action: (() => void)): void;
+    scheduleOptions(options: $SDK264, action: (() => void)): void;
+    readonly $type: {
+        "c:objc(cs)NSOperationQueue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "maxConcurrentOperationCount": true;
         "name": true;
@@ -30559,6 +32209,9 @@ export declare class OperationQueue extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class OperationQueue_SchedulerOptions extends SDKHandle {
+    readonly $type: {
+        "s:So16NSOperationQueueC10FoundationE16SchedulerOptionsV": true;
+    };
 }
 /**
  * struct SchedulerTimeType
@@ -30586,6 +32239,9 @@ export declare class OperationQueue_SchedulerTimeType extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(date: globalThis.Date): OperationQueue_SchedulerTimeType;
+    readonly $type: {
+        "s:So16NSOperationQueueC10FoundationE17SchedulerTimeTypeV": true;
+    };
 }
 /**
  * struct Stride
@@ -30648,6 +32304,9 @@ export declare class OperationQueue_SchedulerTimeType_Stride extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(timeInterval: number): OperationQueue_SchedulerTimeType_Stride;
+    readonly $type: {
+        "s:So16NSOperationQueueC10FoundationE17SchedulerTimeTypeV6StrideV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = TimeInterval
@@ -30674,13 +32333,10 @@ export type Optional_DecodingConfiguration<Wrapped = unknown> = SDKHandle;
  * @availability iOS 15.0+
  */
 export type Optional_EncodingConfiguration<Wrapped = unknown> = SDKHandle;
-declare const OutputStream_base: Omit<typeof Stream, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Stream);
 /** class OutputStream */
-export declare class OutputStream extends OutputStream_base {
+export declare class OutputStream extends Stream {
     /** class func toMemory() -> Self */
     static toMemory(): OutputStream;
-    /** init() */
-    static init(): OutputStream;
     /** init(toBuffer buffer: UnsafeMutablePointer<UInt8>, capacity: Int) */
     static initToBufferCapacity(buffer: SDKHandle, capacity: number): OutputStream;
     /** convenience init?(toFileAtPath path: String, append shouldAppend: Bool) */
@@ -30696,6 +32352,11 @@ export declare class OutputStream extends OutputStream_base {
     write(buffer: SDKHandle, len: number): number;
     /** var hasSpaceAvailable: Bool { get } */
     get hasSpaceAvailable(): boolean;
+    readonly $type: {
+        "c:objc(cs)NSOutputStream": true;
+        "c:objc(cs)NSStream": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "streamError": true;
@@ -30757,7 +32418,7 @@ export declare class PersonNameComponents extends SDKHandle {
      * init(namePrefix: String? = nil, givenName: String? = nil, middleName: String? = nil, familyName: String? = nil, nameSuffix: String? = nil, nickname: String? = nil, phoneticRepresentation: PersonNameComponents? = nil)
      * @availability iOS 15.0+
      */
-    static initNamePrefixGivenNameMiddleNameFamilyNameNameSuffixNicknamePhoneticRepresentation(namePrefix?: (string) | null, givenName?: (string) | null, middleName?: (string) | null, familyName?: (string) | null, nameSuffix?: (string) | null, nickname?: (string) | null, phoneticRepresentation?: $SDK193): PersonNameComponents;
+    static initNamePrefixGivenNameMiddleNameFamilyNameNameSuffixNicknamePhoneticRepresentation(namePrefix?: (string) | null, givenName?: (string) | null, middleName?: (string) | null, familyName?: (string) | null, nameSuffix?: (string) | null, nickname?: (string) | null, phoneticRepresentation?: $SDK197): PersonNameComponents;
     /**
      * var namePrefix: String? { get set }
      * @availability iOS 9.0+
@@ -30789,8 +32450,8 @@ export declare class PersonNameComponents extends SDKHandle {
      * var phoneticRepresentation: PersonNameComponents? { get set }
      * @availability iOS 9.0+
      */
-    get phoneticRepresentation(): $SDK193;
-    set phoneticRepresentation(value: $SDK193);
+    get phoneticRepresentation(): $SDK197;
+    set phoneticRepresentation(value: $SDK197);
     /**
      * var nickname: String? { get set }
      * @availability iOS 9.0+
@@ -30812,6 +32473,9 @@ export declare class PersonNameComponents extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init86470(value: string): PersonNameComponents;
+    readonly $type: {
+        "s:10Foundation20PersonNameComponentsV": true;
+    };
 }
 /**
  * struct AttributedStyle
@@ -30845,6 +32509,9 @@ export declare class PersonNameComponents_AttributedStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     locale46877(locale: Locale): PersonNameComponents_AttributedStyle;
+    readonly $type: {
+        "s:10Foundation20PersonNameComponentsV15AttributedStyleV": true;
+    };
 }
 /**
  * typealias FormatInput = PersonNameComponents
@@ -30898,6 +32565,9 @@ export declare class PersonNameComponents_FormatStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     locale92818(locale: Locale): PersonNameComponents_FormatStyle;
+    readonly $type: {
+        "s:10Foundation20PersonNameComponentsV11FormatStyleV": true;
+    };
 }
 /**
  * typealias FormatInput = PersonNameComponents
@@ -30951,6 +32621,9 @@ export declare class PersonNameComponents_ParseStrategy extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): PersonNameComponents_ParseStrategy;
+    readonly $type: {
+        "s:10Foundation20PersonNameComponentsV13ParseStrategyV": true;
+    };
 }
 /**
  * typealias ParseInput = String
@@ -31000,7 +32673,7 @@ export declare class PersonNameComponentsFormatter extends PersonNameComponentsF
      * func personNameComponents(from string: String) -> PersonNameComponents?
      * @availability iOS 10.0+
      */
-    personNameComponents(string: string): $SDK193;
+    personNameComponents(string: string): $SDK197;
     /**
      * func string(from components: PersonNameComponents) -> String
      * @availability iOS 9.0+
@@ -31024,6 +32697,11 @@ export declare class PersonNameComponentsFormatter extends PersonNameComponentsF
      */
     get style(): PersonNameComponentsFormatter_Style;
     set style(value: PersonNameComponentsFormatter_Style);
+    readonly $type: {
+        "c:objc(cs)NSPersonNameComponentsFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "locale": true;
         "isPhonetic": true;
@@ -31067,6 +32745,10 @@ export declare class Pipe extends SDKHandle {
     get fileHandleForReading(): FileHandle;
     /** var fileHandleForWriting: FileHandle { get } */
     get fileHandleForWriting(): FileHandle;
+    readonly $type: {
+        "c:objc(cs)NSPipe": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fileHandleForReading": true;
         "fileHandleForWriting": true;
@@ -31092,6 +32774,9 @@ export declare class Port_DidBecomeInvalidMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Port_DidBecomeInvalidMessage;
+    readonly $type: {
+        "s:So6NSPortC10FoundationE23DidBecomeInvalidMessageV": true;
+    };
 }
 /**
  * typealias Subject = Port
@@ -31643,6 +33328,9 @@ export declare class POSIXError extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get ETIMEDOUT(): SDKHandle;
+    readonly $type: {
+        "s:10Foundation10POSIXErrorV": true;
+    };
 }
 /**
  * typealias Code = POSIXErrorCode
@@ -31669,6 +33357,9 @@ export declare class Predicate<Input = unknown> extends SDKHandle {
      * @availability iOS 17.4+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:10Foundation9PredicateV": true;
+    };
 }
 /**
  * typealias DecodingConfiguration = PredicateCodableConfiguration
@@ -31689,12 +33380,15 @@ export declare class PredicateBindings extends SDKHandle {
      * func binding<T>(_ variable: PredicateExpressions.Variable<T>, to value: T) -> PredicateBindings
      * @availability iOS 17.0+
      */
-    binding(variable: $SDK257, value: unknown): PredicateBindings;
+    binding(variable: $SDK266, value: unknown): PredicateBindings;
     /**
      * subscript<T>(variable: PredicateExpressions.Variable<T>) -> T? { get set }
      * @availability iOS 17.0+
      */
-    subscript(variable: $SDK257): (unknown) | null;
+    subscript(variable: $SDK266): (unknown) | null;
+    readonly $type: {
+        "s:10Foundation17PredicateBindingsV": true;
+    };
 }
 /**
  * struct PredicateCodableConfiguration
@@ -31731,6 +33425,9 @@ export declare class PredicateCodableConfiguration extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): PredicateCodableConfiguration;
+    readonly $type: {
+        "s:10Foundation29PredicateCodableConfigurationV": true;
+    };
 }
 /**
  * protocol PredicateCodableKeyPathProviding
@@ -31768,6 +33465,9 @@ export declare class PredicateError extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get forceUnwrapFailure(): PredicateError;
+    readonly $type: {
+        "s:10Foundation14PredicateErrorV": true;
+    };
 }
 /**
  * protocol PredicateExpression<Output>
@@ -31789,18 +33489,24 @@ export declare class PredicateExpressions extends SDKHandle {
      * static func build_NilLiteral<Wrapped>() -> PredicateExpressions.NilLiteral<Wrapped>
      * @availability iOS 17.0+
      */
-    static build_NilLiteral(): $SDK258;
+    static build_NilLiteral(): $SDK267;
     /**
      * static func build_Arg<T>(_ arg: T) -> PredicateExpressions.Value<T>
      * @availability iOS 17.0+
      */
-    static build_Arg(arg: unknown): $SDK259;
+    static build_Arg(arg: unknown): $SDK268;
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO": true;
+    };
 }
 /**
  * struct Arithmetic<LHS, RHS> where LHS : PredicateExpression, RHS : PredicateExpression, LHS.Output : Numeric, LHS.Output == RHS.Output
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_Arithmetic<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO10ArithmeticV": true;
+    };
 }
 /**
  * typealias Output = LHS.Output
@@ -31817,6 +33523,9 @@ export type PredicateExpressions_ArithmeticOperator = "add" | "subtract" | "mult
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_ClosedRange<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO11ClosedRangeV": true;
+    };
 }
 /**
  * typealias Output = ClosedRange<LHS.Output>
@@ -31828,6 +33537,9 @@ export type PredicateExpressions_ClosedRange_Output<LHS = unknown, RHS = unknown
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_CollectionContainsCollection<Base = unknown, Other = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO018CollectionContainsD0V": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -31839,6 +33551,9 @@ export type PredicateExpressions_CollectionContainsCollection_Output<Base = unkn
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_CollectionIndexSubscript<Wrapped = unknown, Index = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO24CollectionIndexSubscriptV": true;
+    };
 }
 /**
  * typealias Output = Wrapped.Output.Element
@@ -31850,6 +33565,9 @@ export type PredicateExpressions_CollectionIndexSubscript_Output<Wrapped = unkno
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_CollectionRangeSubscript<Wrapped = unknown, Range = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO24CollectionRangeSubscriptV": true;
+    };
 }
 /**
  * typealias Output = Wrapped.Output.SubSequence
@@ -31861,6 +33579,9 @@ export type PredicateExpressions_CollectionRangeSubscript_Output<Wrapped = unkno
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_Comparison<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO10ComparisonV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -31877,6 +33598,9 @@ export type PredicateExpressions_ComparisonOperator = "lessThan" | "lessThanOrEq
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_Conditional<Test = unknown, If = unknown, Else = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO11ConditionalV": true;
+    };
 }
 /**
  * typealias Output = If.Output
@@ -31888,6 +33612,9 @@ export type PredicateExpressions_Conditional_Output<Test = unknown, If = unknown
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_ConditionalCast<Input = unknown, Desired = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO15ConditionalCastV": true;
+    };
 }
 /**
  * typealias Output = Optional<Desired>
@@ -31899,6 +33626,9 @@ export type PredicateExpressions_ConditionalCast_Output<Input = unknown, Desired
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_Conjunction<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO11ConjunctionV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -31910,6 +33640,9 @@ export type PredicateExpressions_Conjunction_Output<LHS = unknown, RHS = unknown
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_DictionaryKeyDefaultValueSubscript<Wrapped = unknown, Key = unknown, Default = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO34DictionaryKeyDefaultValueSubscriptV": true;
+    };
 }
 /**
  * typealias Output = Default.Output
@@ -31921,6 +33654,9 @@ export type PredicateExpressions_DictionaryKeyDefaultValueSubscript_Output<Wrapp
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_DictionaryKeySubscript<Wrapped = unknown, Key = unknown, Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO22DictionaryKeySubscriptV": true;
+    };
 }
 /**
  * typealias Output = Optional<Value>
@@ -31932,6 +33668,9 @@ export type PredicateExpressions_DictionaryKeySubscript_Output<Wrapped = unknown
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_Disjunction<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO11DisjunctionV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -31943,6 +33682,9 @@ export type PredicateExpressions_Disjunction_Output<LHS = unknown, RHS = unknown
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_Equal<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO5EqualV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -31954,12 +33696,18 @@ export type PredicateExpressions_Equal_Output<LHS = unknown, RHS = unknown> = bo
  * @availability iOS 18.0+
  */
 export declare class PredicateExpressions_ExpressionEvaluate<Transformation = unknown, Input = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO18ExpressionEvaluateV": true;
+    };
 }
 /**
  * struct Filter<LHS, RHS> where LHS : PredicateExpression, RHS : PredicateExpression, LHS.Output : Sequence, RHS.Output == Bool
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_Filter<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO6FilterV": true;
+    };
 }
 /**
  * typealias Element = LHS.Output.Element
@@ -31976,6 +33724,9 @@ export type PredicateExpressions_Filter_Output<LHS = unknown, RHS = unknown> = A
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_FloatDivision<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO13FloatDivisionV": true;
+    };
 }
 /**
  * typealias Output = LHS.Output
@@ -31987,6 +33738,9 @@ export type PredicateExpressions_FloatDivision_Output<LHS = unknown, RHS = unkno
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_ForceCast<Input = unknown, Desired = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO9ForceCastV": true;
+    };
 }
 /**
  * typealias Output = Desired
@@ -31998,6 +33752,9 @@ export type PredicateExpressions_ForceCast_Output<Input = unknown, Desired = unk
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_ForcedUnwrap<Inner = unknown, Wrapped = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO12ForcedUnwrapV": true;
+    };
 }
 /**
  * typealias Output = Wrapped
@@ -32009,6 +33766,9 @@ export type PredicateExpressions_ForcedUnwrap_Output<Inner = unknown, Wrapped = 
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_IntDivision<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO11IntDivisionV": true;
+    };
 }
 /**
  * typealias Output = LHS.Output
@@ -32020,6 +33780,9 @@ export type PredicateExpressions_IntDivision_Output<LHS = unknown, RHS = unknown
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_IntRemainder<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO12IntRemainderV": true;
+    };
 }
 /**
  * typealias Output = LHS.Output
@@ -32031,6 +33794,9 @@ export type PredicateExpressions_IntRemainder_Output<LHS = unknown, RHS = unknow
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_KeyPath<Root = unknown, Output = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO7KeyPathV": true;
+    };
 }
 /**
  * enum CommonKeyPathKind
@@ -32042,6 +33808,9 @@ export type PredicateExpressions_KeyPath_CommonKeyPathKind<Root = unknown, Outpu
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_Negation<Wrapped = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO8NegationV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -32053,6 +33822,9 @@ export type PredicateExpressions_Negation_Output<Wrapped = unknown> = boolean;
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_NilCoalesce<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO11NilCoalesceV": true;
+    };
 }
 /**
  * typealias Output = RHS.Output
@@ -32073,7 +33845,10 @@ export declare class PredicateExpressions_NilLiteral<Wrapped = unknown> extends 
      * init()
      * @availability iOS 17.0+
      */
-    static init(): $SDK258;
+    static init(): $SDK267;
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO10NilLiteralV": true;
+    };
 }
 /**
  * typealias Output = Optional<Wrapped>
@@ -32085,6 +33860,9 @@ export type PredicateExpressions_NilLiteral_Output<Wrapped = unknown> = (unknown
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_NotEqual<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO8NotEqualV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -32096,6 +33874,9 @@ export type PredicateExpressions_NotEqual_Output<LHS = unknown, RHS = unknown> =
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_OptionalFlatMap<LHS = unknown, Wrapped = unknown, RHS = unknown, Result = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO15OptionalFlatMapV": true;
+    };
 }
 /**
  * typealias Output = Optional<Result>
@@ -32107,6 +33888,9 @@ export type PredicateExpressions_OptionalFlatMap_Output<LHS = unknown, Wrapped =
  * @availability iOS 17.4+
  */
 export declare class PredicateExpressions_PredicateEvaluate<Condition = unknown, Input = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO0B8EvaluateV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -32133,6 +33917,9 @@ export declare class PredicateExpressions_PredicateRegex extends SDKHandle {
      * @availability iOS 18.0+
      */
     get regex(): SDKHandle;
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO0B5RegexV": true;
+    };
 }
 /**
  * typealias RegexOutput = AnyRegexOutput
@@ -32144,6 +33931,9 @@ export type PredicateExpressions_PredicateRegex_RegexOutput = SDKHandle;
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_Range<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO5RangeV": true;
+    };
 }
 /**
  * typealias Output = Range<LHS.Output>
@@ -32155,6 +33945,9 @@ export type PredicateExpressions_Range_Output<LHS = unknown, RHS = unknown> = SD
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_RangeExpressionContains<RangeExpression = unknown, Element = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO23RangeExpressionContainsV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -32166,6 +33959,9 @@ export type PredicateExpressions_RangeExpressionContains_Output<RangeExpression 
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_SequenceAllSatisfy<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO18SequenceAllSatisfyV": true;
+    };
 }
 /**
  * typealias Element = LHS.Output.Element
@@ -32182,6 +33978,9 @@ export type PredicateExpressions_SequenceAllSatisfy_Output<LHS = unknown, RHS = 
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_SequenceContains<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO16SequenceContainsV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -32193,6 +33992,9 @@ export type PredicateExpressions_SequenceContains_Output<LHS = unknown, RHS = un
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_SequenceContainsWhere<LHS = unknown, RHS = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO21SequenceContainsWhereV": true;
+    };
 }
 /**
  * typealias Element = LHS.Output.Element
@@ -32209,6 +34011,9 @@ export type PredicateExpressions_SequenceContainsWhere_Output<LHS = unknown, RHS
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_SequenceMaximum<Elements = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO15SequenceMaximumV": true;
+    };
 }
 /**
  * typealias Output = Optional<Elements.Output.Element>
@@ -32220,6 +34025,9 @@ export type PredicateExpressions_SequenceMaximum_Output<Elements = unknown> = (S
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_SequenceMinimum<Elements = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO15SequenceMinimumV": true;
+    };
 }
 /**
  * typealias Output = Optional<Elements.Output.Element>
@@ -32231,6 +34039,9 @@ export type PredicateExpressions_SequenceMinimum_Output<Elements = unknown> = (S
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_SequenceStartsWith<Base = unknown, Prefix = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO18SequenceStartsWithV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -32242,6 +34053,9 @@ export type PredicateExpressions_SequenceStartsWith_Output<Base = unknown, Prefi
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_StringCaseInsensitiveCompare<Root = unknown, Other = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO28StringCaseInsensitiveCompareV": true;
+    };
 }
 /**
  * typealias Output = ComparisonResult
@@ -32253,6 +34067,9 @@ export type PredicateExpressions_StringCaseInsensitiveCompare_Output<Root = unkn
  * @availability iOS 18.0+
  */
 export declare class PredicateExpressions_StringContainsRegex<Subject = unknown, Regex = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO19StringContainsRegexV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -32264,6 +34081,9 @@ export type PredicateExpressions_StringContainsRegex_Output<Subject = unknown, R
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_StringLocalizedCompare<Root = unknown, Other = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO22StringLocalizedCompareV": true;
+    };
 }
 /**
  * typealias Output = ComparisonResult
@@ -32275,6 +34095,9 @@ export type PredicateExpressions_StringLocalizedCompare_Output<Root = unknown, O
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_StringLocalizedStandardContains<Root = unknown, Other = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO31StringLocalizedStandardContainsV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -32286,6 +34109,9 @@ export type PredicateExpressions_StringLocalizedStandardContains_Output<Root = u
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_TypeCheck<Input = unknown, Desired = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO9TypeCheckV": true;
+    };
 }
 /**
  * typealias Output = Bool
@@ -32297,6 +34123,9 @@ export type PredicateExpressions_TypeCheck_Output<Input = unknown, Desired = unk
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_UnaryMinus<Wrapped = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO10UnaryMinusV": true;
+    };
 }
 /**
  * typealias Output = Wrapped.Output
@@ -32327,7 +34156,10 @@ export declare class PredicateExpressions_Value<Output = unknown> extends SDKHan
      * init(_ value: Output)
      * @availability iOS 17.0+
      */
-    static init(value: unknown): $SDK259;
+    static init(value: unknown): $SDK268;
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO5ValueV": true;
+    };
 }
 /**
  * struct Variable<Output>
@@ -32353,13 +34185,19 @@ export declare class PredicateExpressions_Variable<Output = unknown> extends SDK
      * init()
      * @availability iOS 17.0+
      */
-    static init(): $SDK257;
+    static init(): $SDK266;
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO8VariableV": true;
+    };
 }
 /**
  * struct VariableID
  * @availability iOS 17.0+
  */
 export declare class PredicateExpressions_VariableID extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation20PredicateExpressionsO10VariableIDV": true;
+    };
 }
 /**
  * struct PresentationIntent
@@ -32370,8 +34208,8 @@ export declare class PresentationIntent extends SDKHandle {
      * var components: [PresentationIntent.IntentType]
      * @availability iOS 15.0+
      */
-    get components(): $SDK261;
-    set components(value: $SDK261);
+    get components(): $SDK270;
+    set components(value: $SDK270);
     /**
      * var debugDescription: String { get }
      * @availability iOS 15.0+
@@ -32391,7 +34229,7 @@ export declare class PresentationIntent extends SDKHandle {
      * init(types: [PresentationIntent.IntentType])
      * @availability iOS 15.0+
      */
-    static initTypes(types: $SDK261): PresentationIntent;
+    static initTypes(types: $SDK270): PresentationIntent;
     /**
      * var isValid: Bool { get }
      * @availability iOS 15.0+
@@ -32402,6 +34240,9 @@ export declare class PresentationIntent extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initIdentityParent(kind: PresentationIntent_Kind, identity: number, parent?: (PresentationIntent) | null): PresentationIntent;
+    readonly $type: {
+        "s:10Foundation18PresentationIntentV": true;
+    };
 }
 /**
  * struct IntentType
@@ -32425,6 +34266,9 @@ export declare class PresentationIntent_IntentType extends SDKHandle {
      */
     get identity(): number;
     set identity(value: number);
+    readonly $type: {
+        "s:10Foundation18PresentationIntentV0C4TypeV": true;
+    };
 }
 /**
  * enum Kind
@@ -32436,6 +34280,9 @@ export declare class PresentationIntent_Kind extends SDKHandle {
      * @availability iOS 15.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:10Foundation18PresentationIntentV4KindO": true;
+    };
 }
 /**
  * struct TableColumn
@@ -32453,6 +34300,9 @@ export declare class PresentationIntent_TableColumn extends SDKHandle {
      */
     get alignment(): PresentationIntent_TableColumn_Alignment;
     set alignment(value: PresentationIntent_TableColumn_Alignment);
+    readonly $type: {
+        "s:10Foundation18PresentationIntentV11TableColumnV": true;
+    };
 }
 /**
  * enum Alignment
@@ -32589,6 +34439,10 @@ export declare class ProcessInfo extends SDKHandle {
      * @availability iOS 11.0+
      */
     get thermalState(): ProcessInfo_ThermalState;
+    readonly $type: {
+        "c:objc(cs)NSProcessInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeProcessorCount": true;
         "arguments": true;
@@ -32696,6 +34550,9 @@ export declare class ProcessInfo_PowerStateDidChangeMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): ProcessInfo_PowerStateDidChangeMessage;
+    readonly $type: {
+        "s:So13NSProcessInfoC10FoundationE26PowerStateDidChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = ProcessInfo
@@ -32734,6 +34591,9 @@ export declare class ProcessInfo_ThermalStateDidChangeMessage extends SDKHandle 
      * @availability iOS 26.0+
      */
     static init(): ProcessInfo_ThermalStateDidChangeMessage;
+    readonly $type: {
+        "s:So13NSProcessInfoC10FoundationE28ThermalStateDidChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = ProcessInfo
@@ -32780,8 +34640,6 @@ export declare class Progress extends SDKHandle {
      * @availability iOS 7.0+
      */
     cancel(): void;
-    /** init() */
-    static init(): Progress;
     /**
      * init(parent parentProgressOrNil: Progress?, userInfo userInfoOrNil: [ProgressUserInfoKey : Any]? = nil)
      * @availability iOS 7.0+
@@ -32834,8 +34692,8 @@ export declare class Progress extends SDKHandle {
      * var fileOperationKind: Progress.FileOperationKind? { get set }
      * @availability iOS 11.0+
      */
-    get fileOperationKind(): $SDK266;
-    set fileOperationKind(value: $SDK266);
+    get fileOperationKind(): $SDK275;
+    set fileOperationKind(value: $SDK275);
     /**
      * var fileURL: URL? { get set }
      * @availability iOS 11.0+
@@ -32943,6 +34801,10 @@ export declare class Progress extends SDKHandle {
      * @availability iOS 27.0+
      */
     addChildWithPendingUnitCount90133(reporter: ProgressReporter, count: number): void;
+    readonly $type: {
+        "c:objc(cs)NSProgress": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancellable": true;
         "isCancelled": true;
@@ -33086,6 +34948,9 @@ export declare class ProgressManager extends SDKHandle {
      * @availability iOS 27.0+
      */
     setCounts(counts: ((arg0: number, arg1: (number) | null) => void)): void;
+    readonly $type: {
+        "s:10Foundation15ProgressManagerC": true;
+    };
     readonly $observable: {
         "isFinished": true;
         "totalCount": true;
@@ -33102,6 +34967,9 @@ export declare class ProgressManager extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class ProgressManager_Properties extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation15ProgressManagerC10PropertiesO": true;
+    };
 }
 /**
  * @frozen enum CompletedByteCount
@@ -33142,6 +35010,9 @@ export declare class ProgressManager_Properties_CompletedByteCount extends SDKHa
         $out: {
             "summary": number;
         };
+    };
+    readonly $type: {
+        "s:10Foundation15ProgressManagerC10PropertiesO18CompletedByteCountO": true;
     };
 }
 /**
@@ -33194,6 +35065,9 @@ export declare class ProgressManager_Properties_CompletedFileCount extends SDKHa
             "summary": number;
         };
     };
+    readonly $type: {
+        "s:10Foundation15ProgressManagerC10PropertiesO18CompletedFileCountO": true;
+    };
 }
 /**
  * typealias Summary = Int
@@ -33244,6 +35118,9 @@ export declare class ProgressManager_Properties_EstimatedTimeRemaining extends S
         $out: {
             "summary": SDKHandle;
         };
+    };
+    readonly $type: {
+        "s:10Foundation15ProgressManagerC10PropertiesO22EstimatedTimeRemainingO": true;
     };
 }
 /**
@@ -33296,6 +35173,9 @@ export declare class ProgressManager_Properties_Throughput extends SDKHandle {
             "summary": Array<number>;
         };
     };
+    readonly $type: {
+        "s:10Foundation15ProgressManagerC10PropertiesO10ThroughputO": true;
+    };
 }
 /**
  * typealias Summary = [UInt64]
@@ -33347,6 +35227,9 @@ export declare class ProgressManager_Properties_TotalByteCount extends SDKHandle
             "summary": number;
         };
     };
+    readonly $type: {
+        "s:10Foundation15ProgressManagerC10PropertiesO14TotalByteCountO": true;
+    };
 }
 /**
  * typealias Summary = UInt64
@@ -33397,6 +35280,9 @@ export declare class ProgressManager_Properties_TotalFileCount extends SDKHandle
         $out: {
             "summary": number;
         };
+    };
+    readonly $type: {
+        "s:10Foundation15ProgressManagerC10PropertiesO14TotalFileCountO": true;
     };
 }
 /**
@@ -33470,6 +35356,9 @@ export declare class ProgressReporter extends SDKHandle {
      * @availability iOS 27.0+
      */
     get fractionCompleted(): number;
+    readonly $type: {
+        "s:10Foundation16ProgressReporterC": true;
+    };
     readonly $observable: {
         "isFinished": true;
         "totalCount": true;
@@ -33557,6 +35446,9 @@ export declare class PropertyListDecoder extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): PropertyListDecoder;
+    readonly $type: {
+        "s:10Foundation19PropertyListDecoderC": true;
+    };
 }
 /**
  * typealias Input = Data
@@ -33595,6 +35487,9 @@ export declare class PropertyListEncoder extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): PropertyListEncoder;
+    readonly $type: {
+        "s:10Foundation19PropertyListEncoderC": true;
+    };
 }
 /**
  * typealias Output = Data
@@ -33644,6 +35539,10 @@ export declare class PropertyListSerialization extends SDKHandle {
     };
     /** init() */
     static init(): PropertyListSerialization;
+    readonly $type: {
+        "c:objc(cs)NSPropertyListSerialization": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct MutabilityOptions */
 export type PropertyListSerialization_MutabilityOptions = Array<"mutableContainers" | "mutableContainersAndLeaves">;
@@ -33772,6 +35671,11 @@ export declare class RelativeDateTimeFormatter extends RelativeDateTimeFormatter
      */
     get unitsStyle(): RelativeDateTimeFormatter_UnitsStyle;
     set unitsStyle(value: RelativeDateTimeFormatter_UnitsStyle);
+    readonly $type: {
+        "c:objc(cs)NSRelativeDateTimeFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "calendar": true;
         "dateTimeStyle": true;
@@ -33866,17 +35770,21 @@ export declare class RunLoop extends SDKHandle {
      * func schedule(after date: RunLoop.SchedulerTimeType, interval: RunLoop.SchedulerTimeType.Stride, tolerance: RunLoop.SchedulerTimeType.Stride, options: RunLoop.SchedulerOptions?, _ action: @escaping () -> Void) -> any Cancellable
      * @availability iOS 13.0+
      */
-    scheduleAfterIntervalToleranceOptions(date: RunLoop_SchedulerTimeType, interval: RunLoop_SchedulerTimeType_Stride, tolerance: RunLoop_SchedulerTimeType_Stride, options: $SDK272, action: (() => void)): SDKHandle;
+    scheduleAfterIntervalToleranceOptions(date: RunLoop_SchedulerTimeType, interval: RunLoop_SchedulerTimeType_Stride, tolerance: RunLoop_SchedulerTimeType_Stride, options: $SDK281, action: (() => void)): SDKHandle;
     /**
      * func schedule(after date: RunLoop.SchedulerTimeType, tolerance: RunLoop.SchedulerTimeType.Stride, options: RunLoop.SchedulerOptions?, _ action: @escaping () -> Void)
      * @availability iOS 13.0+
      */
-    scheduleAfterToleranceOptions(date: RunLoop_SchedulerTimeType, tolerance: RunLoop_SchedulerTimeType_Stride, options: $SDK272, action: (() => void)): void;
+    scheduleAfterToleranceOptions(date: RunLoop_SchedulerTimeType, tolerance: RunLoop_SchedulerTimeType_Stride, options: $SDK281, action: (() => void)): void;
     /**
      * func schedule(options: RunLoop.SchedulerOptions?, _ action: @escaping () -> Void)
      * @availability iOS 13.0+
      */
-    scheduleOptions(options: $SDK272, action: (() => void)): void;
+    scheduleOptions(options: $SDK281, action: (() => void)): void;
+    readonly $type: {
+        "c:objc(cs)NSRunLoop": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentMode": true;
     };
@@ -33901,6 +35809,9 @@ export declare const RunLoop_Mode: {
  * @availability iOS 13.0+
  */
 export declare class RunLoop_SchedulerOptions extends SDKHandle {
+    readonly $type: {
+        "s:So9NSRunLoopC10FoundationE16SchedulerOptionsV": true;
+    };
 }
 /**
  * struct SchedulerTimeType
@@ -33928,6 +35839,9 @@ export declare class RunLoop_SchedulerTimeType extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(date: globalThis.Date): RunLoop_SchedulerTimeType;
+    readonly $type: {
+        "s:So9NSRunLoopC10FoundationE17SchedulerTimeTypeV": true;
+    };
 }
 /**
  * struct Stride
@@ -33990,6 +35904,9 @@ export declare class RunLoop_SchedulerTimeType_Stride extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(timeInterval: number): RunLoop_SchedulerTimeType_Stride;
+    readonly $type: {
+        "s:So9NSRunLoopC10FoundationE17SchedulerTimeTypeV6StrideV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = TimeInterval
@@ -34010,10 +35927,8 @@ export type RunLoop_SchedulerTimeType_Stride_Magnitude = number;
 export declare class Scanner extends SDKHandle {
     /** class func localizedScanner(with string: String) -> Any */
     static localizedScanner(string: string): unknown;
-    /** init() */
-    static init(): Scanner;
     /** init(string: String) */
-    static initString(string: string): Scanner;
+    static init(string: string): Scanner;
     /**
      * func scanCharacters(from set: CharacterSet, into result: AutoreleasingUnsafeMutablePointer<NSString?>?) -> Bool
      * @availability iOS 2.0+
@@ -34201,6 +36116,10 @@ export declare class Scanner extends SDKHandle {
      * @availability iOS 13.0+
      */
     scanInt64Representation(representation?: Scanner_NumberRepresentation): (number) | null;
+    readonly $type: {
+        "c:objc(cs)NSScanner": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAtEnd": true;
         "caseSensitive": true;
@@ -34220,6 +36139,9 @@ export type Scanner_NumberRepresentation = "decimal" | "hexadecimal";
  * @availability iOS 15.0+
  */
 export declare class ScopedAttributeContainer<S = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation24ScopedAttributeContainerV": true;
+    };
 }
 /**
  * typealias Regions = [Base.Regions.Element.SubSequence]
@@ -34253,6 +36175,11 @@ export declare class SocketPort extends SocketPort_base {
     get socket(): number;
     /** var socketType: Int32 { get } */
     get socketType(): number;
+    readonly $type: {
+        "c:objc(cs)NSSocketPort": true;
+        "c:objc(cs)NSPort": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reservedSpaceLength": true;
         "isValid": true;
@@ -34304,7 +36231,7 @@ export declare class SortDescriptor<Compared = unknown> extends SDKHandle {
      * init(_ keyPath: any KeyPath<Compared, String> & Sendable, comparator: String.StandardComparator = .localizedStandard, order: SortOrder) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initComparatorOrder(keyPath: $SDK27, comparator: String_StandardComparator, order: SortOrder): $SDK235;
+    static initComparatorOrder(keyPath: $SDK27, comparator: String_StandardComparator, order: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, String> & Sendable, comparator: String.StandardComparator = .localizedStandard, order: SortOrder)
      * @availability iOS 17.0+
@@ -34314,7 +36241,7 @@ export declare class SortDescriptor<Compared = unknown> extends SDKHandle {
      * init(_ keyPath: any KeyPath<Compared, String?> & Sendable, comparator: String.StandardComparator = .localizedStandard, order: SortOrder) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initComparatorOrder89753(keyPath: $SDK27, comparator: String_StandardComparator, order: SortOrder): $SDK235;
+    static initComparatorOrder89753(keyPath: $SDK283, comparator: String_StandardComparator, order: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, String?> & Sendable, comparator: String.StandardComparator = .localizedStandard, order: SortOrder)
      * @availability iOS 17.0+
@@ -34324,7 +36251,7 @@ export declare class SortDescriptor<Compared = unknown> extends SDKHandle {
      * init(_ keyPath: any KeyPath<Compared, String> & Sendable, comparator: String.StandardComparator = .localizedStandard) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initComparator(keyPath: $SDK27, comparator?: String_StandardComparator): $SDK235;
+    static initComparator(keyPath: $SDK27, comparator?: String_StandardComparator): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, String> & Sendable, comparator: String.StandardComparator = .localizedStandard)
      * @availability iOS 17.0+
@@ -34334,7 +36261,7 @@ export declare class SortDescriptor<Compared = unknown> extends SDKHandle {
      * init(_ keyPath: any KeyPath<Compared, String?> & Sendable, comparator: String.StandardComparator = .localizedStandard) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initComparator73582(keyPath: $SDK27, comparator?: String_StandardComparator): $SDK235;
+    static initComparator73582(keyPath: $SDK283, comparator?: String_StandardComparator): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, String?> & Sendable, comparator: String.StandardComparator = .localizedStandard)
      * @availability iOS 17.0+
@@ -34344,152 +36271,160 @@ export declare class SortDescriptor<Compared = unknown> extends SDKHandle {
      * init(_ keyPath: any KeyPath<Compared, Date> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Date?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder55349(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder55349(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UUID> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder9750(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder9750(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UUID?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder76628(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder76628(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Bool> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder74(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder74(keyPath: ("browserAccessibilityIsRequired" | "browserAccessibilityHasDOMFocus" | SDKHandle) & (SDKHandle), order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Bool?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder7888(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder7888(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Double> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder58468(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder58468(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Double?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder67402(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder67402(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Float> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder97990(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder97990(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Float?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder99748(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder99748(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder14091(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder14091(keyPath: ("hashValue" | SDKHandle) & (SDKHandle), order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder94833(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder94833(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder43231(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder43231(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder59277(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder59277(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int8> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder23705(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder23705(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int8?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder30135(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder30135(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int16> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder42251(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder42251(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int16?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder78801(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder78801(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int32> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder41313(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder41313(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int32?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder49055(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder49055(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int64> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder96712(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder96712(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, Int64?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder91126(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder91126(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt8> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder80341(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder80341(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt8?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder35627(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder35627(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt16> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder16127(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder16127(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt16?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder10509(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder10509(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt32> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder62717(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder62717(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt32?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder11315(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder11315(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt64> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder83444(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder83444(keyPath: $SDK27, order?: SortOrder): $SDK244;
     /**
      * init(_ keyPath: any KeyPath<Compared, UInt64?> & Sendable, order: SortOrder = .forward) where Compared : NSObject
      * @availability iOS 15.0+
      */
-    static initOrder50618(keyPath: $SDK27, order?: SortOrder): $SDK235;
+    static initOrder50618(keyPath: $SDK27, order?: SortOrder): $SDK244;
+    /**
+     * init?(_ descriptor: NSSortDescriptor, comparing comparedType: Compared.Type) where Compared : NSObject
+     * @availability iOS 15.0+
+     */
+    static initComparing(descriptor: NSSortDescriptor, comparedType: string): ($SDK244) | null;
+    readonly $type: {
+        "s:10Foundation14SortDescriptorV": true;
+    };
 }
 /**
  * @frozen enum SortOrder
@@ -34681,6 +36616,9 @@ export declare const StreamSOCKSProxyVersion: {
  * @availability iOS 15.0+
  */
 export declare class String_Comparator extends SDKHandle {
+    readonly $type: {
+        "s:SS10FoundationE10ComparatorV": true;
+    };
 }
 /**
  * typealias Compared = String
@@ -34717,12 +36655,18 @@ export type String_EnumerationOptions = NSString_EnumerationOptions;
  * @availability iOS 16.0+
  */
 export declare class String_LocalizationOptions extends SDKHandle {
+    readonly $type: {
+        "s:SS10FoundationE19LocalizationOptionsV": true;
+    };
 }
 /**
  * struct LocalizationValue
  * @availability iOS 15.0+
  */
 export declare class String_LocalizationValue extends SDKHandle {
+    readonly $type: {
+        "s:SS10FoundationE17LocalizationValueV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -34739,6 +36683,9 @@ export type String_LocalizationValue_Placeholder = "int" | "uint" | "float" | "d
  * @availability iOS 15.0+
  */
 export declare class String_LocalizationValue_StringInterpolation extends SDKHandle {
+    readonly $type: {
+        "s:SS10FoundationE17LocalizationValueV19StringInterpolationV": true;
+    };
 }
 /**
  * typealias StringLiteralType = String
@@ -34760,6 +36707,9 @@ export type String_LocalizationValue_UnicodeScalarLiteralType = string;
  * @availability iOS 15.0+
  */
 export declare class String_StandardComparator extends SDKHandle {
+    readonly $type: {
+        "s:SS10FoundationE18StandardComparatorV": true;
+    };
 }
 /**
  * typealias Compared = String
@@ -34817,6 +36767,9 @@ export declare class StringStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     format(value: string): string;
+    readonly $type: {
+        "s:10Foundation11StringStyleV": true;
+    };
 }
 /**
  * typealias FormatInput = String
@@ -34921,6 +36874,9 @@ export declare const StringTransform: {
  * @availability iOS 27.0+
  */
 export declare class Subprogress extends SDKHandle {
+    readonly $type: {
+        "s:10Foundation11SubprogressV": true;
+    };
 }
 /**
  * struct TermOfAddress
@@ -34962,6 +36918,9 @@ export declare class TermOfAddress extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get masculine(): TermOfAddress;
+    readonly $type: {
+        "s:10Foundation13TermOfAddressV": true;
+    };
 }
 /** class Thread */
 export declare class Thread extends SDKHandle {
@@ -35075,6 +37034,10 @@ export declare class Thread extends SDKHandle {
      */
     get threadPriority85030(): number;
     set threadPriority85030(value: number);
+    readonly $type: {
+        "c:objc(cs)NSThread": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancelled": true;
         "isExecuting": true;
@@ -35103,8 +37066,6 @@ export declare class Timer extends SDKHandle {
     static initTimeIntervalRepeatsBlock(interval: number, repeats: boolean, block: ((arg0: Timer) => void)): Timer;
     /** func fire() */
     fire(): void;
-    /** init() */
-    static init(): Timer;
     /**
      * convenience init(fire date: Date, interval: TimeInterval, repeats: Bool, block: @escaping @Sendable (Timer) -> Void)
      * @availability iOS 10.0+
@@ -35131,7 +37092,11 @@ export declare class Timer extends SDKHandle {
      * static func publish(every interval: TimeInterval, tolerance: TimeInterval? = nil, on runLoop: RunLoop, in mode: RunLoop.Mode, options: RunLoop.SchedulerOptions? = nil) -> Timer.TimerPublisher
      * @availability iOS 13.0+
      */
-    static publish(interval: number, tolerance: (number) | null, runLoop: RunLoop, mode: RunLoop_Mode, options?: $SDK272): Timer_TimerPublisher;
+    static publish(interval: number, tolerance: (number) | null, runLoop: RunLoop, mode: RunLoop_Mode, options?: $SDK281): Timer_TimerPublisher;
+    readonly $type: {
+        "c:objc(cs)NSTimer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fireDate": true;
         "timeInterval": true;
@@ -35159,7 +37124,7 @@ export declare class Timer_TimerPublisher extends SDKHandle {
      * final let options: RunLoop.SchedulerOptions?
      * @availability iOS 13.0+
      */
-    get options(): $SDK272;
+    get options(): $SDK281;
     /**
      * final let runLoop: RunLoop
      * @availability iOS 13.0+
@@ -35169,7 +37134,7 @@ export declare class Timer_TimerPublisher extends SDKHandle {
      * init(interval: TimeInterval, tolerance: TimeInterval? = nil, runLoop: RunLoop, mode: RunLoop.Mode, options: RunLoop.SchedulerOptions? = nil)
      * @availability iOS 13.0+
      */
-    static init(interval: number, tolerance: (number) | null, runLoop: RunLoop, mode: RunLoop_Mode, options?: $SDK272): Timer_TimerPublisher;
+    static init(interval: number, tolerance: (number) | null, runLoop: RunLoop, mode: RunLoop_Mode, options?: $SDK281): Timer_TimerPublisher;
     /**
      * final let interval: TimeInterval
      * @availability iOS 13.0+
@@ -35180,6 +37145,9 @@ export declare class Timer_TimerPublisher extends SDKHandle {
      * @availability iOS 13.0+
      */
     get tolerance(): (number) | null;
+    readonly $type: {
+        "s:So7NSTimerC10FoundationE14TimerPublisherC": true;
+    };
     readonly $element: globalThis.Date;
 }
 /**
@@ -35298,6 +37266,9 @@ export declare class TimeZone extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get current(): TimeZone;
+    readonly $type: {
+        "s:10Foundation8TimeZoneV": true;
+    };
 }
 /**
  * typealias NameStyle = NSTimeZone.NameStyle
@@ -35335,6 +37306,9 @@ export declare class TimeZone_SystemTimeZoneDidChangeMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get nameValue(): NSNotification_Name;
+    readonly $type: {
+        "s:10Foundation8TimeZoneV06SystembC16DidChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = TimeZone
@@ -35522,10 +37496,19 @@ export declare class UndoManager extends SDKHandle {
      */
     get isUndoing(): Promise<boolean>;
     /**
+     * @MainActor @preconcurrency func registerUndo<TargetType>(withTarget target: TargetType, handler: @escaping @MainActor (TargetType) -> Void) where TargetType : AnyObject
+     * @availability iOS 9.0+
+     */
+    registerUndo(target: SDKHandle, handler: ((arg0: SDKHandle) => void)): Promise<void>;
+    /**
      * @MainActor @preconcurrency final func setActionName(_ actionNameResource: LocalizedStringResource?)
      * @availability iOS 16.0+
      */
     setActionName72256(actionNameResource?: (LocalizedStringResource) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)NSUndoManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct CheckpointMessage
@@ -35547,6 +37530,9 @@ export declare class UndoManager_CheckpointMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Promise<UndoManager_CheckpointMessage>;
+    readonly $type: {
+        "s:So13NSUndoManagerC10FoundationE17CheckpointMessageV": true;
+    };
 }
 /**
  * typealias Subject = UndoManager
@@ -35584,6 +37570,9 @@ export declare class UndoManager_DidCloseUndoGroupMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get nameValue(): Promise<NSNotification_Name>;
+    readonly $type: {
+        "s:So13NSUndoManagerC10FoundationE24DidCloseUndoGroupMessageV": true;
+    };
 }
 /**
  * typealias Subject = UndoManager
@@ -35610,6 +37599,9 @@ export declare class UndoManager_DidOpenUndoGroupMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Promise<UndoManager_DidOpenUndoGroupMessage>;
+    readonly $type: {
+        "s:So13NSUndoManagerC10FoundationE23DidOpenUndoGroupMessageV": true;
+    };
 }
 /**
  * typealias Subject = UndoManager
@@ -35647,6 +37639,9 @@ export declare class UndoManager_DidRedoChangeMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get nameValue(): Promise<NSNotification_Name>;
+    readonly $type: {
+        "s:So13NSUndoManagerC10FoundationE20DidRedoChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = UndoManager
@@ -35684,6 +37679,9 @@ export declare class UndoManager_DidUndoChangeMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get nameValue(): Promise<NSNotification_Name>;
+    readonly $type: {
+        "s:So13NSUndoManagerC10FoundationE20DidUndoChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = UndoManager
@@ -35727,6 +37725,9 @@ export declare class UndoManager_WillCloseUndoGroupMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Promise<UndoManager_WillCloseUndoGroupMessage>;
+    readonly $type: {
+        "s:So13NSUndoManagerC10FoundationE25WillCloseUndoGroupMessageV": true;
+    };
 }
 /**
  * typealias Subject = UndoManager
@@ -35753,6 +37754,9 @@ export declare class UndoManager_WillRedoChangeMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Promise<UndoManager_WillRedoChangeMessage>;
+    readonly $type: {
+        "s:So13NSUndoManagerC10FoundationE21WillRedoChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = UndoManager
@@ -35779,6 +37783,9 @@ export declare class UndoManager_WillUndoChangeMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Promise<UndoManager_WillUndoChangeMessage>;
+    readonly $type: {
+        "s:So13NSUndoManagerC10FoundationE21WillUndoChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = UndoManager
@@ -35802,6 +37809,12 @@ export declare class UnitAcceleration extends Dimension {
      * @availability iOS 10.0+
      */
     static get metersPerSecondSquared(): UnitAcceleration;
+    readonly $type: {
+        "c:objc(cs)NSUnitAcceleration": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -35842,6 +37855,12 @@ export declare class UnitAngle extends Dimension {
      * @availability iOS 10.0+
      */
     static get revolutions(): UnitAngle;
+    readonly $type: {
+        "c:objc(cs)NSUnitAngle": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -35922,6 +37941,12 @@ export declare class UnitArea extends Dimension {
      * @availability iOS 10.0+
      */
     static get squareYards(): UnitArea;
+    readonly $type: {
+        "c:objc(cs)NSUnitArea": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -35947,6 +37972,12 @@ export declare class UnitConcentrationMass extends Dimension {
      * @availability iOS 10.0+
      */
     static get milligramsPerDeciliter(): UnitConcentrationMass;
+    readonly $type: {
+        "c:objc(cs)NSUnitConcentrationMass": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -35969,15 +38000,16 @@ export declare class UnitConverter extends SDKHandle {
      * @availability iOS 10.0+
      */
     value(baseUnitValue: number): number;
+    readonly $type: {
+        "c:objc(cs)NSUnitConverter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const UnitConverterLinear_base: Omit<typeof UnitConverter, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UnitConverter);
 /**
  * class UnitConverterLinear
  * @availability iOS 10.0+
  */
-export declare class UnitConverterLinear extends UnitConverterLinear_base {
-    /** init() */
-    static init(): UnitConverterLinear;
+export declare class UnitConverterLinear extends UnitConverter {
     /**
      * convenience init(coefficient: Double)
      * @availability iOS 10.0+
@@ -35998,6 +38030,11 @@ export declare class UnitConverterLinear extends UnitConverterLinear_base {
      * @availability iOS 10.0+
      */
     get constant(): number;
+    readonly $type: {
+        "c:objc(cs)NSUnitConverterLinear": true;
+        "c:objc(cs)NSUnitConverter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "coefficient": true;
         "constant": true;
@@ -36013,6 +38050,12 @@ export declare class UnitDispersion extends Dimension {
      * @availability iOS 10.0+
      */
     static get partsPerMillion(): UnitDispersion;
+    readonly $type: {
+        "c:objc(cs)NSUnitDispersion": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36058,6 +38101,12 @@ export declare class UnitDuration extends Dimension {
      * @availability iOS 10.0+
      */
     static get seconds(): UnitDuration;
+    readonly $type: {
+        "c:objc(cs)NSUnitDuration": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36098,6 +38147,12 @@ export declare class UnitElectricCharge extends Dimension {
      * @availability iOS 10.0+
      */
     static get milliampereHours(): UnitElectricCharge;
+    readonly $type: {
+        "c:objc(cs)NSUnitElectricCharge": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36133,6 +38188,12 @@ export declare class UnitElectricCurrent extends Dimension {
      * @availability iOS 10.0+
      */
     static get milliamperes(): UnitElectricCurrent;
+    readonly $type: {
+        "c:objc(cs)NSUnitElectricCurrent": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36168,6 +38229,12 @@ export declare class UnitElectricPotentialDifference extends Dimension {
      * @availability iOS 10.0+
      */
     static get volts(): UnitElectricPotentialDifference;
+    readonly $type: {
+        "c:objc(cs)NSUnitElectricPotentialDifference": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36203,6 +38270,12 @@ export declare class UnitElectricResistance extends Dimension {
      * @availability iOS 10.0+
      */
     static get ohms(): UnitElectricResistance;
+    readonly $type: {
+        "c:objc(cs)NSUnitElectricResistance": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36244,6 +38317,12 @@ export declare class UnitEnergy extends UnitEnergy_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK133): UnitEnergy;
+    readonly $type: {
+        "c:objc(cs)NSUnitEnergy": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36299,6 +38378,12 @@ export declare class UnitFrequency extends Dimension {
      * @availability iOS 10.0+
      */
     static get terahertz(): UnitFrequency;
+    readonly $type: {
+        "c:objc(cs)NSUnitFrequency": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36324,6 +38409,12 @@ export declare class UnitFuelEfficiency extends Dimension {
      * @availability iOS 10.0+
      */
     static get milesPerImperialGallon(): UnitFuelEfficiency;
+    readonly $type: {
+        "c:objc(cs)NSUnitFuelEfficiency": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36339,6 +38430,12 @@ export declare class UnitIlluminance extends Dimension {
      * @availability iOS 10.0+
      */
     static get lux(): UnitIlluminance;
+    readonly $type: {
+        "c:objc(cs)NSUnitIlluminance": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36524,6 +38621,12 @@ export declare class UnitInformationStorage extends Dimension {
      * @availability iOS 13.0+
      */
     static get zettabytes(): UnitInformationStorage;
+    readonly $type: {
+        "c:objc(cs)NSUnitInformationStorage": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36650,6 +38753,12 @@ export declare class UnitLength extends UnitLength_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK134): UnitLength;
+    readonly $type: {
+        "c:objc(cs)NSUnitLength": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36746,6 +38855,12 @@ export declare class UnitMass extends UnitMass_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK131): UnitMass;
+    readonly $type: {
+        "c:objc(cs)NSUnitMass": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36811,6 +38926,12 @@ export declare class UnitPower extends Dimension {
      * @availability iOS 10.0+
      */
     static get watts(): UnitPower;
+    readonly $type: {
+        "c:objc(cs)NSUnitPower": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36877,6 +38998,12 @@ export declare class UnitPressure extends UnitPressure_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK136): UnitPressure;
+    readonly $type: {
+        "c:objc(cs)NSUnitPressure": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36913,6 +39040,12 @@ export declare class UnitSpeed extends UnitSpeed_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK132): UnitSpeed;
+    readonly $type: {
+        "c:objc(cs)NSUnitSpeed": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -36944,6 +39077,12 @@ export declare class UnitTemperature extends UnitTemperature_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK129): UnitTemperature;
+    readonly $type: {
+        "c:objc(cs)NSUnitTemperature": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -37115,6 +39254,12 @@ export declare class UnitVolume extends UnitVolume_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK135): UnitVolume;
+    readonly $type: {
+        "c:objc(cs)NSUnitVolume": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "symbol": true;
         "converter": true;
@@ -37681,6 +39826,9 @@ export declare class URL extends SDKHandle {
      * @deprecated iOS 16.0
      */
     static init(path: _System_FilePath): (string) | null;
+    readonly $type: {
+        "s:10Foundation3URLV": true;
+    };
 }
 /**
  * struct AsyncBytes
@@ -37692,6 +39840,9 @@ export declare class URL_AsyncBytes extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): URL_AsyncBytes_AsyncIterator;
+    readonly $type: {
+        "s:10Foundation3URLV10AsyncBytesV": true;
+    };
     readonly $element: number;
 }
 /**
@@ -37704,6 +39855,9 @@ export declare class URL_AsyncBytes_AsyncIterator extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): Promise<(number) | null>;
+    readonly $type: {
+        "s:10Foundation3URLV10AsyncBytesV0C8IteratorV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -37790,6 +39944,9 @@ export declare class URL_FormatStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     password(strategy?: URL_FormatStyle_ComponentDisplayOption): URL_FormatStyle;
+    readonly $type: {
+        "s:10Foundation3URLV11FormatStyleV": true;
+    };
 }
 /**
  * enum Component
@@ -37853,6 +40010,9 @@ export declare class URL_FormatStyle_ComponentDisplayOption extends SDKHandle {
      * @availability iOS 16.0+
      */
     static omitWhen(component: URL_FormatStyle_Component, requirements: Array<string>): URL_FormatStyle_ComponentDisplayOption;
+    readonly $type: {
+        "s:10Foundation3URLV11FormatStyleV22ComponentDisplayOptionV": true;
+    };
 }
 /**
  * typealias FormatInput = URL
@@ -37909,6 +40069,9 @@ export declare class URL_FormatStyle_HostDisplayOption extends SDKHandle {
      * @availability iOS 16.0+
      */
     static omitWhen(component: URL_FormatStyle_Component, requirements: Array<string>): URL_FormatStyle_HostDisplayOption;
+    readonly $type: {
+        "s:10Foundation3URLV11FormatStyleV17HostDisplayOptionV": true;
+    };
 }
 /**
  * typealias Strategy = URL.ParseStrategy
@@ -37924,22 +40087,22 @@ export declare class URL_ParseStrategy extends SDKHandle {
      * func host(_ strategy: URL.ParseStrategy.ComponentParseStrategy<String> = .required) -> URL.ParseStrategy
      * @availability iOS 16.0+
      */
-    host(strategy?: $SDK289): URL_ParseStrategy;
+    host(strategy?: $SDK302): URL_ParseStrategy;
     /**
      * func path(_ strategy: URL.ParseStrategy.ComponentParseStrategy<String> = .optional) -> URL.ParseStrategy
      * @availability iOS 16.0+
      */
-    path(strategy?: $SDK289): URL_ParseStrategy;
+    path(strategy?: $SDK302): URL_ParseStrategy;
     /**
      * func port(_ strategy: URL.ParseStrategy.ComponentParseStrategy<Int> = .optional) -> URL.ParseStrategy
      * @availability iOS 16.0+
      */
-    port(strategy?: $SDK290): URL_ParseStrategy;
+    port(strategy?: $SDK303): URL_ParseStrategy;
     /**
      * func user(_ strategy: URL.ParseStrategy.ComponentParseStrategy<String> = .optional) -> URL.ParseStrategy
      * @availability iOS 16.0+
      */
-    user(strategy?: $SDK289): URL_ParseStrategy;
+    user(strategy?: $SDK302): URL_ParseStrategy;
     /**
      * func parse(_ value: String) throws -> URL
      * @availability iOS 16.0+
@@ -37949,27 +40112,27 @@ export declare class URL_ParseStrategy extends SDKHandle {
      * func query(_ strategy: URL.ParseStrategy.ComponentParseStrategy<String> = .optional) -> URL.ParseStrategy
      * @availability iOS 16.0+
      */
-    query(strategy?: $SDK289): URL_ParseStrategy;
+    query(strategy?: $SDK302): URL_ParseStrategy;
     /**
      * init(scheme: URL.ParseStrategy.ComponentParseStrategy<String> = .required, user: URL.ParseStrategy.ComponentParseStrategy<String> = .optional, password: URL.ParseStrategy.ComponentParseStrategy<String> = .optional, host: URL.ParseStrategy.ComponentParseStrategy<String> = .required, port: URL.ParseStrategy.ComponentParseStrategy<Int> = .optional, path: URL.ParseStrategy.ComponentParseStrategy<String> = .optional, query: URL.ParseStrategy.ComponentParseStrategy<String> = .optional, fragment: URL.ParseStrategy.ComponentParseStrategy<String> = .optional)
      * @availability iOS 16.0+
      */
-    static init(scheme?: $SDK289, user?: $SDK289, password?: $SDK289, host?: $SDK289, port?: $SDK290, path?: $SDK289, query?: $SDK289, fragment?: $SDK289): URL_ParseStrategy;
+    static init(scheme?: $SDK302, user?: $SDK302, password?: $SDK302, host?: $SDK302, port?: $SDK303, path?: $SDK302, query?: $SDK302, fragment?: $SDK302): URL_ParseStrategy;
     /**
      * func scheme(_ strategy: URL.ParseStrategy.ComponentParseStrategy<String> = .required) -> URL.ParseStrategy
      * @availability iOS 16.0+
      */
-    scheme(strategy?: $SDK289): URL_ParseStrategy;
+    scheme(strategy?: $SDK302): URL_ParseStrategy;
     /**
      * func fragment(_ strategy: URL.ParseStrategy.ComponentParseStrategy<String> = .optional) -> URL.ParseStrategy
      * @availability iOS 16.0+
      */
-    fragment(strategy?: $SDK289): URL_ParseStrategy;
+    fragment(strategy?: $SDK302): URL_ParseStrategy;
     /**
      * func password(_ strategy: URL.ParseStrategy.ComponentParseStrategy<String> = .optional) -> URL.ParseStrategy
      * @availability iOS 16.0+
      */
-    password(strategy?: $SDK289): URL_ParseStrategy;
+    password(strategy?: $SDK302): URL_ParseStrategy;
     /**
      * func consuming(_ input: String, startingAt index: String.Index, in bounds: Range<String.Index>) throws -> (upperBound: String.Index, output: URL)?
      * @availability iOS 16.0+
@@ -37978,6 +40141,9 @@ export declare class URL_ParseStrategy extends SDKHandle {
         "upperBound": SDKHandle;
         "output": string;
     }) | null;
+    readonly $type: {
+        "s:10Foundation3URLV13ParseStrategyV": true;
+    };
 }
 /**
  * enum ComponentParseStrategy<Component> where Component : Decodable, Component : Encodable, Component : Hashable, Component : Sendable
@@ -37989,6 +40155,9 @@ export declare class URL_ParseStrategy_ComponentParseStrategy<Component = unknow
      * @availability iOS 16.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:10Foundation3URLV13ParseStrategyV09ComponentcD0O": true;
+    };
 }
 /**
  * typealias ParseInput = String
@@ -38025,6 +40194,9 @@ export declare class URL_Template extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(template: string): (URL_Template) | null;
+    readonly $type: {
+        "s:10Foundation3URLV8TemplateV": true;
+    };
 }
 /**
  * struct Value
@@ -38046,6 +40218,9 @@ export declare class URL_Template_Value extends SDKHandle {
      * @availability iOS 26.0+
      */
     static text(text: string): URL_Template_Value;
+    readonly $type: {
+        "s:10Foundation3URLV8TemplateV5ValueV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = String
@@ -38092,14 +40267,15 @@ export declare class URL_Template_VariableName extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(key: string): URL_Template_VariableName;
+    readonly $type: {
+        "s:10Foundation3URLV8TemplateV12VariableNameV": true;
+    };
 }
 /**
  * class URLAuthenticationChallenge
  * @availability iOS 2.0+
  */
 export declare class URLAuthenticationChallenge extends SDKHandle {
-    /** init() */
-    static init(): URLAuthenticationChallenge;
     /**
      * init(authenticationChallenge challenge: URLAuthenticationChallenge, sender: any URLAuthenticationChallengeSender)
      * @availability iOS 2.0+
@@ -38140,6 +40316,10 @@ export declare class URLAuthenticationChallenge extends SDKHandle {
      * @availability iOS 2.0+
      */
     get sender(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)NSURLAuthenticationChallenge": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "error": true;
         "failureResponse": true;
@@ -38195,14 +40375,12 @@ export declare class URLCache extends SDKHandle {
      * func cachedResponse(for request: URLRequest) -> CachedURLResponse?
      * @availability iOS 2.0+
      */
-    cachedResponse(request: URLRequest): $SDK292;
+    cachedResponse(request: URLRequest): $SDK305;
     /**
      * func cachedResponse(for dataTask: URLSessionDataTask) async -> CachedURLResponse?
      * @availability iOS 8.0+
      */
     getCachedResponse(dataTask: URLSessionDataTask, completionHandler: ((arg0: (CachedURLResponse) | null) => void)): void;
-    /** init() */
-    static init(): URLCache;
     /**
      * init(memoryCapacity: Int, diskCapacity: Int, diskPath path: String?)
      * @availability iOS 2.0+
@@ -38266,6 +40444,10 @@ export declare class URLCache extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initMemoryCapacityDiskCapacityDirectory(memoryCapacity: number, diskCapacity: number, directory?: (string) | null): URLCache;
+    readonly $type: {
+        "c:objc(cs)NSURLCache": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentDiskUsage": true;
         "currentMemoryUsage": true;
@@ -38288,8 +40470,8 @@ export declare class URLComponents extends SDKHandle {
      * var queryItems: [URLQueryItem]? { get set }
      * @availability iOS 8.0+
      */
-    get queryItems(): $SDK246;
-    set queryItems(value: $SDK246);
+    get queryItems(): $SDK255;
+    set queryItems(value: $SDK255);
     /**
      * var description: String { get }
      * @availability iOS 8.0+
@@ -38392,8 +40574,8 @@ export declare class URLComponents extends SDKHandle {
      * var percentEncodedQueryItems: [URLQueryItem]? { get set }
      * @availability iOS 11.0+
      */
-    get percentEncodedQueryItems(): $SDK246;
-    set percentEncodedQueryItems(value: $SDK246);
+    get percentEncodedQueryItems(): $SDK255;
+    set percentEncodedQueryItems(value: $SDK255);
     /**
      * func url(relativeTo base: URL?) -> URL?
      * @availability iOS 8.0+
@@ -38477,6 +40659,9 @@ export declare class URLComponents extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): URLComponents;
+    readonly $type: {
+        "s:10Foundation13URLComponentsV": true;
+    };
 }
 /**
  * typealias ReferenceType = NSURLComponents
@@ -38488,8 +40673,6 @@ export type URLComponents_ReferenceType = NSURLComponents;
  * @availability iOS 2.0+
  */
 export declare class URLCredential extends SDKHandle {
-    /** init() */
-    static init(): URLCredential;
     /**
      * init(identity: SecIdentity, certificates certArray: [Any]?, persistence: URLCredential.Persistence)
      * @availability iOS 3.0+
@@ -38520,6 +40703,10 @@ export declare class URLCredential extends SDKHandle {
     get persistence(): URLCredential_Persistence;
     /** var user: String? { get } */
     get user(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)NSURLCredential": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "certificates": true;
         "hasPassword": true;
@@ -38607,6 +40794,10 @@ export declare class URLCredentialStorage extends SDKHandle {
      * @availability iOS 2.0+
      */
     get allCredentials(): NativeMap<URLProtectionSpace, Record<string, URLCredential>>;
+    readonly $type: {
+        "c:objc(cs)NSURLCredentialStorage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allCredentials": true;
     };
@@ -38897,6 +41088,9 @@ export declare class URLError extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get cancelled(): URLError_Code;
+    readonly $type: {
+        "s:10Foundation8URLErrorV": true;
+    };
 }
 /**
  * enum BackgroundTaskCancelledReason
@@ -39286,8 +41480,6 @@ export declare const URLFileResourceType: {
  * @availability iOS 2.0+
  */
 export declare class URLProtectionSpace extends SDKHandle {
-    /** init() */
-    static init(): URLProtectionSpace;
     /**
      * init(host: String, port: Int, protocol: String?, realm: String?, authenticationMethod: String?)
      * @availability iOS 2.0+
@@ -39348,6 +41540,10 @@ export declare class URLProtectionSpace extends SDKHandle {
      * @availability iOS 3.0+
      */
     get serverTrust(): (_Security_SecTrust) | null;
+    readonly $type: {
+        "c:objc(cs)NSURLProtectionSpace": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authenticationMethod": true;
         "distinguishedNames": true;
@@ -39410,18 +41606,16 @@ export declare class URLProtocol extends SDKHandle {
      * @availability iOS 2.0+
      */
     static unregisterClass(protocolClass: string): void;
-    /** init() */
-    static init(): URLProtocol;
     /**
      * init(request: URLRequest, cachedResponse: CachedURLResponse?, client: (any URLProtocolClient)?)
      * @availability iOS 2.0+
      */
-    static initRequestCachedResponseClient(request: URLRequest, cachedResponse?: $SDK292, client?: (SDKHandle) | null): URLProtocol;
+    static initRequestCachedResponseClient(request: URLRequest, cachedResponse?: $SDK305, client?: (SDKHandle) | null): URLProtocol;
     /**
      * convenience init(task: URLSessionTask, cachedResponse: CachedURLResponse?, client: (any URLProtocolClient)?)
      * @availability iOS 8.0+
      */
-    static initTaskCachedResponseClient(task: URLSessionTask, cachedResponse?: $SDK292, client?: (SDKHandle) | null): URLProtocol;
+    static initTaskCachedResponseClient(task: URLSessionTask, cachedResponse?: $SDK305, client?: (SDKHandle) | null): URLProtocol;
     /**
      * func startLoading()
      * @availability iOS 2.0+
@@ -39436,7 +41630,7 @@ export declare class URLProtocol extends SDKHandle {
      * @NSCopying var cachedResponse: CachedURLResponse? { get }
      * @availability iOS 2.0+
      */
-    get cachedResponse(): $SDK292;
+    get cachedResponse(): $SDK305;
     /**
      * var client: (any URLProtocolClient)? { get }
      * @availability iOS 2.0+
@@ -39452,6 +41646,10 @@ export declare class URLProtocol extends SDKHandle {
      * @availability iOS 8.0+
      */
     get task(): (URLSessionTask) | null;
+    readonly $type: {
+        "c:objc(cs)NSURLProtocol": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cachedResponse": true;
         "client": true;
@@ -39542,6 +41740,9 @@ export declare class URLQueryItem extends SDKHandle {
      */
     get value(): (string) | null;
     set value(value: (string) | null);
+    readonly $type: {
+        "s:10Foundation12URLQueryItemV": true;
+    };
 }
 /**
  * typealias ReferenceType = NSURLQueryItem
@@ -39709,6 +41910,9 @@ export declare class URLRequest extends SDKHandle {
      * @availability iOS 8.0+
      */
     setValue(value: (string) | null, field: string): void;
+    readonly $type: {
+        "s:10Foundation10URLRequestV": true;
+    };
 }
 /**
  * typealias Attribution = NSURLRequest.Attribution
@@ -39761,6 +41965,9 @@ export declare class URLResource extends SDKHandle {
      */
     get locale(): Locale;
     set locale(value: Locale);
+    readonly $type: {
+        "s:10Foundation11URLResourceV": true;
+    };
 }
 /** struct URLResourceKey */
 export type URLResourceKey = "keysOfUnsetValuesKey" | "nameKey" | "localizedNameKey" | "isRegularFileKey" | "isDirectoryKey" | "isSymbolicLinkKey" | "isVolumeKey" | "isPackageKey" | "isApplicationKey" | "isSystemImmutableKey" | "isUserImmutableKey" | "isHiddenKey" | "hasHiddenExtensionKey" | "creationDateKey" | "contentAccessDateKey" | "contentModificationDateKey" | "attributeModificationDateKey" | "linkCountKey" | "parentDirectoryURLKey" | "volumeURLKey" | "typeIdentifierKey" | "contentTypeKey" | "localizedTypeDescriptionKey" | "labelNumberKey" | "labelColorKey" | "localizedLabelKey" | "effectiveIconKey" | "customIconKey" | "fileResourceIdentifierKey" | "volumeIdentifierKey" | "preferredIOBlockSizeKey" | "isReadableKey" | "isWritableKey" | "isExecutableKey" | "fileSecurityKey" | "isExcludedFromBackupKey" | "pathKey" | "canonicalPathKey" | "isMountTriggerKey" | "generationIdentifierKey" | "documentIdentifierKey" | "addedToDirectoryDateKey" | "fileResourceTypeKey" | "fileIdentifierKey" | "fileContentIdentifierKey" | "mayShareFileContentKey" | "mayHaveExtendedAttributesKey" | "isPurgeableKey" | "isSparseKey" | "thumbnailDictionaryKey" | "fileSizeKey" | "fileAllocatedSizeKey" | "totalFileSizeKey" | "totalFileAllocatedSizeKey" | "isAliasFileKey" | "fileProtectionKey" | "directoryEntryCountKey" | "volumeLocalizedFormatDescriptionKey" | "volumeTotalCapacityKey" | "volumeAvailableCapacityKey" | "volumeResourceCountKey" | "volumeSupportsPersistentIDsKey" | "volumeSupportsSymbolicLinksKey" | "volumeSupportsHardLinksKey" | "volumeSupportsJournalingKey" | "volumeIsJournalingKey" | "volumeSupportsSparseFilesKey" | "volumeSupportsZeroRunsKey" | "volumeSupportsCaseSensitiveNamesKey" | "volumeSupportsCasePreservedNamesKey" | "volumeSupportsRootDirectoryDatesKey" | "volumeSupportsVolumeSizesKey" | "volumeSupportsRenamingKey" | "volumeSupportsAdvisoryFileLockingKey" | "volumeSupportsExtendedSecurityKey" | "volumeIsBrowsableKey" | "volumeMaximumFileSizeKey" | "volumeIsEjectableKey" | "volumeIsRemovableKey" | "volumeIsInternalKey" | "volumeIsAutomountedKey" | "volumeIsLocalKey" | "volumeIsReadOnlyKey" | "volumeCreationDateKey" | "volumeURLForRemountingKey" | "volumeUUIDStringKey" | "volumeNameKey" | "volumeLocalizedNameKey" | "volumeIsEncryptedKey" | "volumeIsRootFileSystemKey" | "volumeSupportsCompressionKey" | "volumeSupportsFileCloningKey" | "volumeSupportsSwapRenamingKey" | "volumeSupportsExclusiveRenamingKey" | "volumeSupportsImmutableFilesKey" | "volumeSupportsAccessPermissionsKey" | "volumeSupportsFileProtectionKey" | "volumeAvailableCapacityForImportantUsageKey" | "volumeAvailableCapacityForOpportunisticUsageKey" | "volumeTypeNameKey" | "volumeSubtypeKey" | "volumeMountFromLocationKey" | "isUbiquitousItemKey" | "ubiquitousItemHasUnresolvedConflictsKey" | "ubiquitousItemIsDownloadingKey" | "ubiquitousItemIsUploadedKey" | "ubiquitousItemIsUploadingKey" | "ubiquitousItemDownloadingStatusKey" | "ubiquitousItemDownloadingErrorKey" | "ubiquitousItemUploadingErrorKey" | "ubiquitousItemDownloadRequestedKey" | "ubiquitousItemContainerDisplayNameKey" | "ubiquitousItemIsExcludedFromSyncKey" | "ubiquitousItemIsSharedKey" | "ubiquitousSharedItemCurrentUserRoleKey" | "ubiquitousSharedItemCurrentUserPermissionsKey" | "ubiquitousSharedItemOwnerNameComponentsKey" | "ubiquitousSharedItemMostRecentEditorNameComponentsKey" | "ubiquitousItemSupportedSyncControlsKey" | "ubiquitousItemIsSyncPausedKey" | (string & {});
@@ -40381,7 +42588,7 @@ export declare class URLResourceValues extends SDKHandle {
      * var allValues: [URLResourceKey : Any] { get }
      * @availability iOS 8.0+
      */
-    get allValues(): $SDK245;
+    get allValues(): $SDK254;
     /**
      * var isReadable: Bool? { get }
      * @availability iOS 8.0+
@@ -40892,7 +43099,7 @@ export declare class URLResourceValues extends SDKHandle {
      * var ubiquitousSharedItemOwnerNameComponents: PersonNameComponents? { get }
      * @availability iOS 11.0+
      */
-    get ubiquitousSharedItemOwnerNameComponents(): $SDK193;
+    get ubiquitousSharedItemOwnerNameComponents(): $SDK197;
     /**
      * var volumeAvailableCapacityForImportantUsage: Int64? { get }
      * @availability iOS 11.0+
@@ -40923,7 +43130,7 @@ export declare class URLResourceValues extends SDKHandle {
      * var ubiquitousSharedItemMostRecentEditorNameComponents: PersonNameComponents? { get }
      * @availability iOS 11.0+
      */
-    get ubiquitousSharedItemMostRecentEditorNameComponents(): $SDK193;
+    get ubiquitousSharedItemMostRecentEditorNameComponents(): $SDK197;
     /**
      * var volume: URL? { get }
      * @availability iOS 8.0+
@@ -40966,6 +43173,9 @@ export declare class URLResourceValues extends SDKHandle {
      * @availability iOS 8.0+
      */
     static init(): URLResourceValues;
+    readonly $type: {
+        "s:10Foundation17URLResourceValuesV": true;
+    };
 }
 /**
  * class URLSession
@@ -40999,35 +43209,35 @@ export declare class URLSession extends SDKHandle {
      */
     dataTaskWith(request: URLRequest): URLSessionDataTask;
     /** func dataTask(with request: URLRequest, completionHandler: @escaping @Sendable (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionDataTask */
-    dataTaskWithCompletionHandler(request: URLRequest, completionHandler: $SDK308): URLSessionDataTask;
+    dataTaskWithCompletionHandler(request: URLRequest, completionHandler: $SDK321): URLSessionDataTask;
     /**
      * func dataTask(with url: URL) -> URLSessionDataTask
      * @availability iOS 7.0+
      */
     dataTaskWith52518(url: string): URLSessionDataTask;
     /** func dataTask(with url: URL, completionHandler: @escaping @Sendable (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionDataTask */
-    dataTaskWithCompletionHandler56310(url: string, completionHandler: $SDK308): URLSessionDataTask;
+    dataTaskWithCompletionHandler56310(url: string, completionHandler: $SDK321): URLSessionDataTask;
     /**
      * func downloadTask(with request: URLRequest) -> URLSessionDownloadTask
      * @availability iOS 7.0+
      */
     downloadTaskWith(request: URLRequest): URLSessionDownloadTask;
     /** func downloadTask(with request: URLRequest, completionHandler: @escaping @Sendable (URL?, URLResponse?, (any Error)?) -> Void) -> URLSessionDownloadTask */
-    downloadTaskWithCompletionHandler(request: URLRequest, completionHandler: $SDK309): URLSessionDownloadTask;
+    downloadTaskWithCompletionHandler(request: URLRequest, completionHandler: $SDK322): URLSessionDownloadTask;
     /**
      * func downloadTask(withResumeData resumeData: Data) -> URLSessionDownloadTask
      * @availability iOS 7.0+
      */
     downloadTaskWithResumeData(resumeData: ArrayBuffer): URLSessionDownloadTask;
     /** func downloadTask(withResumeData resumeData: Data, completionHandler: @escaping @Sendable (URL?, URLResponse?, (any Error)?) -> Void) -> URLSessionDownloadTask */
-    downloadTaskWithResumeDataCompletionHandler(resumeData: ArrayBuffer, completionHandler: $SDK309): URLSessionDownloadTask;
+    downloadTaskWithResumeDataCompletionHandler(resumeData: ArrayBuffer, completionHandler: $SDK322): URLSessionDownloadTask;
     /**
      * func downloadTask(with url: URL) -> URLSessionDownloadTask
      * @availability iOS 7.0+
      */
     downloadTaskWith32742(url: string): URLSessionDownloadTask;
     /** func downloadTask(with url: URL, completionHandler: @escaping @Sendable (URL?, URLResponse?, (any Error)?) -> Void) -> URLSessionDownloadTask */
-    downloadTaskWithCompletionHandler24406(url: string, completionHandler: $SDK309): URLSessionDownloadTask;
+    downloadTaskWithCompletionHandler24406(url: string, completionHandler: $SDK322): URLSessionDownloadTask;
     /**
      * func finishTasksAndInvalidate()
      * @availability iOS 7.0+
@@ -41081,14 +43291,14 @@ export declare class URLSession extends SDKHandle {
      */
     uploadTaskWithFrom(request: URLRequest, bodyData: ArrayBuffer): URLSessionUploadTask;
     /** func uploadTask(with request: URLRequest, from bodyData: Data?, completionHandler: @escaping @Sendable (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionUploadTask */
-    uploadTaskWithFromCompletionHandler(request: URLRequest, bodyData: (ArrayBuffer) | null, completionHandler: $SDK308): URLSessionUploadTask;
+    uploadTaskWithFromCompletionHandler(request: URLRequest, bodyData: (ArrayBuffer) | null, completionHandler: $SDK321): URLSessionUploadTask;
     /**
      * func uploadTask(with request: URLRequest, fromFile fileURL: URL) -> URLSessionUploadTask
      * @availability iOS 7.0+
      */
     uploadTaskWithFromFile(request: URLRequest, fileURL: string): URLSessionUploadTask;
     /** func uploadTask(with request: URLRequest, fromFile fileURL: URL, completionHandler: @escaping @Sendable (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionUploadTask */
-    uploadTaskWithFromFileCompletionHandler(request: URLRequest, fileURL: string, completionHandler: $SDK308): URLSessionUploadTask;
+    uploadTaskWithFromFileCompletionHandler(request: URLRequest, fileURL: string, completionHandler: $SDK321): URLSessionUploadTask;
     /**
      * func uploadTask(withResumeData resumeData: Data) -> URLSessionUploadTask
      * @availability iOS 17.0+
@@ -41098,7 +43308,7 @@ export declare class URLSession extends SDKHandle {
      * func uploadTask(withResumeData resumeData: Data, completionHandler: @escaping @Sendable (Data?, URLResponse?, (any Error)?) -> Void) -> URLSessionUploadTask
      * @availability iOS 17.0+
      */
-    uploadTaskWithResumeDataCompletionHandler(resumeData: ArrayBuffer, completionHandler: $SDK308): URLSessionUploadTask;
+    uploadTaskWithResumeDataCompletionHandler(resumeData: ArrayBuffer, completionHandler: $SDK321): URLSessionUploadTask;
     /**
      * func uploadTask(withStreamedRequest request: URLRequest) -> URLSessionUploadTask
      * @availability iOS 7.0+
@@ -41154,52 +43364,52 @@ export declare class URLSession extends SDKHandle {
      * func data(for request: URLRequest, delegate: (any URLSessionTaskDelegate)? = nil) async throws -> (Data, URLResponse)
      * @availability iOS 15.0+
      */
-    dataForDelegate(request: URLRequest, delegate?: (SDKHandle) | null): Promise<$SDK312>;
+    dataForDelegate(request: URLRequest, delegate?: (SDKHandle) | null): Promise<$SDK325>;
     /**
      * func data(for request: URLRequest) async throws -> (Data, URLResponse)
      * @availability iOS 13.0+
      */
-    dataFor(request: URLRequest): Promise<$SDK312>;
+    dataFor(request: URLRequest): Promise<$SDK325>;
     /**
      * func data(from url: URL, delegate: (any URLSessionTaskDelegate)? = nil) async throws -> (Data, URLResponse)
      * @availability iOS 15.0+
      */
-    dataFromDelegate(url: string, delegate?: (SDKHandle) | null): Promise<$SDK312>;
+    dataFromDelegate(url: string, delegate?: (SDKHandle) | null): Promise<$SDK325>;
     /**
      * func data(from url: URL) async throws -> (Data, URLResponse)
      * @availability iOS 13.0+
      */
-    dataFrom(url: string): Promise<$SDK312>;
+    dataFrom(url: string): Promise<$SDK325>;
     /**
      * func bytes(for request: URLRequest, delegate: (any URLSessionTaskDelegate)? = nil) async throws -> (URLSession.AsyncBytes, URLResponse)
      * @availability iOS 15.0+
      */
-    bytesForDelegate(request: URLRequest, delegate?: (SDKHandle) | null): Promise<$SDK313>;
+    bytesForDelegate(request: URLRequest, delegate?: (SDKHandle) | null): Promise<$SDK326>;
     /**
      * func bytes(from url: URL, delegate: (any URLSessionTaskDelegate)? = nil) async throws -> (URLSession.AsyncBytes, URLResponse)
      * @availability iOS 15.0+
      */
-    bytesFromDelegate(url: string, delegate?: (SDKHandle) | null): Promise<$SDK313>;
+    bytesFromDelegate(url: string, delegate?: (SDKHandle) | null): Promise<$SDK326>;
     /**
      * func upload(for request: URLRequest, from bodyData: Data, delegate: (any URLSessionTaskDelegate)? = nil) async throws -> (Data, URLResponse)
      * @availability iOS 15.0+
      */
-    uploadForFromDelegate(request: URLRequest, bodyData: ArrayBuffer, delegate?: (SDKHandle) | null): Promise<$SDK312>;
+    uploadForFromDelegate(request: URLRequest, bodyData: ArrayBuffer, delegate?: (SDKHandle) | null): Promise<$SDK325>;
     /**
      * func upload(for request: URLRequest, from bodyData: Data) async throws -> (Data, URLResponse)
      * @availability iOS 13.0+
      */
-    uploadForFrom(request: URLRequest, bodyData: ArrayBuffer): Promise<$SDK312>;
+    uploadForFrom(request: URLRequest, bodyData: ArrayBuffer): Promise<$SDK325>;
     /**
      * func upload(for request: URLRequest, fromFile fileURL: URL, delegate: (any URLSessionTaskDelegate)? = nil) async throws -> (Data, URLResponse)
      * @availability iOS 15.0+
      */
-    uploadForFromFileDelegate(request: URLRequest, fileURL: string, delegate?: (SDKHandle) | null): Promise<$SDK312>;
+    uploadForFromFileDelegate(request: URLRequest, fileURL: string, delegate?: (SDKHandle) | null): Promise<$SDK325>;
     /**
      * func upload(for request: URLRequest, fromFile fileURL: URL) async throws -> (Data, URLResponse)
      * @availability iOS 13.0+
      */
-    uploadForFromFile(request: URLRequest, fileURL: string): Promise<$SDK312>;
+    uploadForFromFile(request: URLRequest, fileURL: string): Promise<$SDK325>;
     /**
      * func download(resumeFrom resumeData: Data, delegate: (any URLSessionTaskDelegate)? = nil) async throws -> (URL, URLResponse)
      * @availability iOS 15.0+
@@ -41215,6 +43425,10 @@ export declare class URLSession extends SDKHandle {
      * @availability iOS 15.0+
      */
     downloadFromDelegate(url: string, delegate?: (SDKHandle) | null): Promise<[string, URLResponse]>;
+    readonly $type: {
+        "c:objc(cs)NSURLSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
         "delegate": true;
@@ -41237,6 +43451,9 @@ export declare class URLSession_AsyncBytes extends SDKHandle {
      * @availability iOS 15.0+
      */
     get task(): URLSessionDataTask;
+    readonly $type: {
+        "s:So12NSURLSessionC10FoundationE10AsyncBytesV": true;
+    };
     readonly $element: number;
 }
 /**
@@ -41259,6 +43476,9 @@ export declare class URLSession_AsyncBytes_Iterator extends SDKHandle {
      * @availability iOS 15.0+
      */
     next(): Promise<(number) | null>;
+    readonly $type: {
+        "s:So12NSURLSessionC10FoundationE10AsyncBytesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -41297,7 +43517,10 @@ export declare class URLSession_DataTaskPublisher extends SDKHandle {
      * @availability iOS 13.0+
      */
     get session(): URLSession;
-    readonly $element: $SDK314;
+    readonly $type: {
+        "s:So12NSURLSessionC10FoundationE17DataTaskPublisherV": true;
+    };
+    readonly $element: $SDK327;
 }
 /**
  * typealias Failure = URLError
@@ -41308,7 +43531,7 @@ export type URLSession_DataTaskPublisher_Failure = URLError;
  * typealias Output = (data: Data, response: URLResponse)
  * @availability iOS 13.0+
  */
-export type URLSession_DataTaskPublisher_Output = $SDK314;
+export type URLSession_DataTaskPublisher_Output = $SDK327;
 /**
  * enum DelayedRequestDisposition
  * @availability iOS 11.0+
@@ -41566,6 +43789,10 @@ export declare class URLSessionConfiguration extends SDKHandle {
      */
     get waitsForConnectivity(): boolean;
     set waitsForConnectivity(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NSURLSessionConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "httpAdditionalHeaders": true;
         "httpCookieAcceptPolicy": true;
@@ -41813,6 +44040,10 @@ export declare class URLSessionTask extends SDKHandle {
      * @availability iOS 7.0+
      */
     get taskIdentifier(): number;
+    readonly $type: {
+        "c:objc(cs)NSURLSessionTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "countOfBytesClientExpectsToReceive": true;
         "countOfBytesClientExpectsToSend": true;
@@ -41852,6 +44083,11 @@ export declare class URLSessionDataTask extends URLSessionDataTask_base {
      * @deprecated iOS 13.0
      */
     static init(): URLSessionDataTask;
+    readonly $type: {
+        "c:objc(cs)NSURLSessionDataTask": true;
+        "c:objc(cs)NSURLSessionTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "countOfBytesClientExpectsToReceive": true;
         "countOfBytesClientExpectsToSend": true;
@@ -41966,13 +44202,18 @@ export declare class URLSessionDownloadTask extends URLSessionDownloadTask_base 
      * func cancelByProducingResumeData() async -> Data?
      * @availability iOS 7.0+
      */
-    cancel(completionHandler: $SDK317): void;
+    cancel(completionHandler: $SDK330): void;
     /**
      * init()
      * @availability iOS 7.0+
      * @deprecated iOS 13.0
      */
     static init(): URLSessionDownloadTask;
+    readonly $type: {
+        "c:objc(cs)NSURLSessionDownloadTask": true;
+        "c:objc(cs)NSURLSessionTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "countOfBytesClientExpectsToReceive": true;
         "countOfBytesClientExpectsToSend": true;
@@ -42114,6 +44355,11 @@ export declare class URLSessionStreamTask extends URLSessionStreamTask_base {
      * @availability iOS 9.0+
      */
     write(data: ArrayBuffer, timeout: number, completionHandler: $SDK66): void;
+    readonly $type: {
+        "c:objc(cs)NSURLSessionStreamTask": true;
+        "c:objc(cs)NSURLSessionTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "countOfBytesClientExpectsToReceive": true;
         "countOfBytesClientExpectsToSend": true;
@@ -42225,6 +44471,10 @@ export declare class URLSessionTaskMetrics extends SDKHandle {
      * @availability iOS 10.0+
      */
     get transactionMetrics(): Array<URLSessionTaskTransactionMetrics>;
+    readonly $type: {
+        "c:objc(cs)NSURLSessionTaskMetrics": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "redirectCount": true;
         "taskInterval": true;
@@ -42442,6 +44692,10 @@ export declare class URLSessionTaskTransactionMetrics extends SDKHandle {
      * @availability iOS 13.0+
      */
     get localPort(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)NSURLSessionTaskTransactionMetrics": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCellular": true;
         "connectEndDate": true;
@@ -42491,13 +44745,19 @@ export declare class URLSessionUploadTask extends URLSessionUploadTask_base {
      * func cancelByProducingResumeData() async -> Data?
      * @availability iOS 17.0+
      */
-    cancel(completionHandler: $SDK317): void;
+    cancel(completionHandler: $SDK330): void;
     /**
      * init()
      * @availability iOS 7.0+
      * @deprecated iOS 13.0
      */
     static init(): URLSessionUploadTask;
+    readonly $type: {
+        "c:objc(cs)NSURLSessionUploadTask": true;
+        "c:objc(cs)NSURLSessionDataTask": true;
+        "c:objc(cs)NSURLSessionTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "countOfBytesClientExpectsToReceive": true;
         "countOfBytesClientExpectsToSend": true;
@@ -42627,6 +44887,11 @@ export declare class URLSessionWebSocketTask extends URLSessionWebSocketTask_bas
      * @availability iOS 13.0+
      */
     receive(): Promise<URLSessionWebSocketTask_Message>;
+    readonly $type: {
+        "c:objc(cs)NSURLSessionWebSocketTask": true;
+        "c:objc(cs)NSURLSessionTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "countOfBytesClientExpectsToReceive": true;
         "countOfBytesClientExpectsToSend": true;
@@ -42668,6 +44933,9 @@ export declare const URLSessionWebSocketTask_CloseCode: {
  * @availability iOS 13.0+
  */
 export declare class URLSessionWebSocketTask_Message extends SDKHandle {
+    readonly $type: {
+        "s:So25NSURLSessionWebSocketTaskC10FoundationE7MessageO": true;
+    };
 }
 /** struct URLThumbnailDictionaryItem */
 export type URLThumbnailDictionaryItem = "NSThumbnail1024x1024SizeKey" | (string & {});
@@ -42850,6 +45118,10 @@ export declare class UserDefaults extends SDKHandle {
     volatileDomain(domainName: string): Record<string, unknown>;
     /** var volatileDomainNames: [String] { get } */
     get volatileDomainNames(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)NSUserDefaults": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "volatileDomainNames": true;
     };
@@ -42874,6 +45146,9 @@ export declare class UserDefaults_DidChangeMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): UserDefaults_DidChangeMessage;
+    readonly $type: {
+        "s:So14NSUserDefaultsC10FoundationE16DidChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = UserDefaults
@@ -42900,6 +45175,9 @@ export declare class UserDefaults_SizeLimitExceededMessage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): UserDefaults_SizeLimitExceededMessage;
+    readonly $type: {
+        "s:So14NSUserDefaultsC10FoundationE24SizeLimitExceededMessageV": true;
+    };
 }
 /**
  * typealias Subject = UserDefaults
@@ -42940,22 +45218,25 @@ export declare class UUID extends SDKHandle {
      * init(uuid: uuid_t)
      * @availability iOS 6.0+
      */
-    static initUuid(uuid: $SDK325): string;
+    static initUuid(uuid: $SDK337): string;
     /**
      * var uuid: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) { get }
      * @availability iOS 6.0+
      */
-    get uuid(): $SDK325;
+    get uuid(): $SDK337;
     /**
      * init()
      * @availability iOS 6.0+
      */
     static init(): string;
+    readonly $type: {
+        "s:10Foundation4UUIDV": true;
+    };
 }
 /** typealias uuid_string_t = (Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8, Int8) */
 export type uuid_string_t = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
 /** typealias uuid_t = (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-export type uuid_t = $SDK325;
+export type uuid_t = $SDK337;
 /**
  * typealias ReferenceType = NSUUID
  * @availability iOS 8.0+
@@ -42970,8 +45251,6 @@ export declare class XMLParser extends SDKHandle {
     static get errorDomain(): string;
     /** func abortParsing() */
     abortParsing(): void;
-    /** init() */
-    static init(): XMLParser;
     /** convenience init?(contentsOf url: URL) */
     static initContentsOf(url: string): (XMLParser) | null;
     /** init(data: Data) */
@@ -43017,6 +45296,10 @@ export declare class XMLParser extends SDKHandle {
     set shouldResolveExternalEntities(value: boolean);
     /** var systemID: String? { get } */
     get systemID(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)NSXMLParser": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedExternalEntityURLs": true;
         "columnNumber": true;
@@ -43098,9 +45381,9 @@ export declare function CFBridgingRetain(X?: (unknown) | null): (unknown) | null
 /** func NSAllHashTableObjects(_ table: NSHashTable<AnyObject>) -> [Any] */
 export declare function NSAllHashTableObjects(table: NSHashTable<unknown>): Array<unknown>;
 /** func NSAllMapTableKeys(_ table: NSMapTable<AnyObject, AnyObject>) -> [Any] */
-export declare function NSAllMapTableKeys(table: $SDK328): Array<unknown>;
+export declare function NSAllMapTableKeys(table: $SDK340): Array<unknown>;
 /** func NSAllMapTableValues(_ table: NSMapTable<AnyObject, AnyObject>) -> [Any] */
-export declare function NSAllMapTableValues(table: $SDK328): Array<unknown>;
+export declare function NSAllMapTableValues(table: $SDK340): Array<unknown>;
 /** func NSAllocateMemoryPages(_ bytes: Int) -> UnsafeMutableRawPointer */
 export declare function NSAllocateMemoryPages(bytes: number): SDKHandle;
 /** func NSClassFromString(_ aClassName: String) -> AnyClass? */
@@ -43108,7 +45391,7 @@ export declare function NSClassFromString(aClassName: string): (string) | null;
 /** func NSCompareHashTables(_ table1: NSHashTable<AnyObject>, _ table2: NSHashTable<AnyObject>) -> Bool */
 export declare function NSCompareHashTables(table1: NSHashTable<unknown>, table2: NSHashTable<unknown>): boolean;
 /** func NSCompareMapTables(_ table1: NSMapTable<AnyObject, AnyObject>, _ table2: NSMapTable<AnyObject, AnyObject>) -> Bool */
-export declare function NSCompareMapTables(table1: $SDK328, table2: $SDK328): boolean;
+export declare function NSCompareMapTables(table1: $SDK340, table2: $SDK340): boolean;
 /** func NSConvertHostDoubleToSwapped(_ x: Double) -> NSSwappedDouble */
 export declare function NSConvertHostDoubleToSwapped(x: number): NSSwappedDouble;
 /** func NSConvertHostFloatToSwapped(_ x: Float) -> NSSwappedFloat */
@@ -43122,11 +45405,11 @@ export declare function NSCopyMemoryPages(source: SDKHandle, dest: SDKHandle, by
 /** func NSCountHashTable(_ table: NSHashTable<AnyObject>) -> Int */
 export declare function NSCountHashTable(table: NSHashTable<unknown>): number;
 /** func NSCountMapTable(_ table: NSMapTable<AnyObject, AnyObject>) -> Int */
-export declare function NSCountMapTable(table: $SDK328): number;
+export declare function NSCountMapTable(table: $SDK340): number;
 /** func NSCreateHashTable(_ callBacks: NSHashTableCallBacks, _ capacity: Int) -> NSHashTable<AnyObject> */
 export declare function NSCreateHashTable(callBacks: NSHashTableCallBacks, capacity: number): NSHashTable<unknown>;
 /** func NSCreateMapTable(_ keyCallBacks: NSMapTableKeyCallBacks, _ valueCallBacks: NSMapTableValueCallBacks, _ capacity: Int) -> NSMapTable<AnyObject, AnyObject> */
-export declare function NSCreateMapTable(keyCallBacks: NSMapTableKeyCallBacks, valueCallBacks: NSMapTableValueCallBacks, capacity: number): $SDK328;
+export declare function NSCreateMapTable(keyCallBacks: NSMapTableKeyCallBacks, valueCallBacks: NSMapTableValueCallBacks, capacity: number): $SDK340;
 /** func NSDeallocateMemoryPages(_ ptr: UnsafeMutableRawPointer, _ bytes: Int) */
 export declare function NSDeallocateMemoryPages(ptr: SDKHandle, bytes: number): void;
 /** func NSDecimalAdd(_ result: UnsafeMutablePointer<Decimal>, _ leftOperand: UnsafePointer<Decimal>, _ rightOperand: UnsafePointer<Decimal>, _ roundingMode: NSDecimalNumber.RoundingMode) -> NSDecimalNumber.CalculationError */
@@ -43162,13 +45445,13 @@ export declare function NSEndMapTableEnumeration(enumerator: SDKHandle): void;
 /** func NSEnumerateHashTable(_ table: NSHashTable<AnyObject>) -> NSHashEnumerator */
 export declare function NSEnumerateHashTable(table: NSHashTable<unknown>): NSHashEnumerator;
 /** func NSEnumerateMapTable(_ table: NSMapTable<AnyObject, AnyObject>) -> NSMapEnumerator */
-export declare function NSEnumerateMapTable(table: $SDK328): NSMapEnumerator;
+export declare function NSEnumerateMapTable(table: $SDK340): NSMapEnumerator;
 /** func NSEqualRanges(_ range1: NSRange, _ range2: NSRange) -> Bool */
 export declare function NSEqualRanges(range1: SDKHandle, range2: SDKHandle): boolean;
 /** func NSFreeHashTable(_ table: NSHashTable<AnyObject>) */
 export declare function NSFreeHashTable(table: NSHashTable<unknown>): void;
 /** func NSFreeMapTable(_ table: consuming NSMapTable<AnyObject, AnyObject>) */
-export declare function NSFreeMapTable(table: $SDK328): void;
+export declare function NSFreeMapTable(table: $SDK340): void;
 /** func NSFullUserName() -> String */
 export declare function NSFullUserName(): string;
 /** func NSGetSizeAndAlignment(_ typePtr: UnsafePointer<CChar>, _ sizep: UnsafeMutablePointer<Int>?, _ alignp: UnsafeMutablePointer<Int>?) -> UnsafePointer<CChar> */
@@ -43200,15 +45483,15 @@ export declare function NSLogPageSize(): number;
 /** func NSMakeRange(_ loc: Int, _ len: Int) -> NSRange */
 export declare function NSMakeRange(loc: number, len: number): SDKHandle;
 /** func NSMapGet(_ table: NSMapTable<AnyObject, AnyObject>, _ key: UnsafeRawPointer?) -> UnsafeMutableRawPointer? */
-export declare function NSMapGet(table: $SDK328, key?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function NSMapGet(table: $SDK340, key?: (SDKHandle) | null): (SDKHandle) | null;
 /** func NSMapInsert(_ table: NSMapTable<AnyObject, AnyObject>, _ key: UnsafeRawPointer?, _ value: UnsafeRawPointer?) */
-export declare function NSMapInsert(table: $SDK328, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void;
+export declare function NSMapInsert(table: $SDK340, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void;
 /** func NSMapInsertIfAbsent(_ table: NSMapTable<AnyObject, AnyObject>, _ key: UnsafeRawPointer?, _ value: UnsafeRawPointer?) -> UnsafeMutableRawPointer? */
-export declare function NSMapInsertIfAbsent(table: $SDK328, key?: (SDKHandle) | null, value?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function NSMapInsertIfAbsent(table: $SDK340, key?: (SDKHandle) | null, value?: (SDKHandle) | null): (SDKHandle) | null;
 /** func NSMapInsertKnownAbsent(_ table: NSMapTable<AnyObject, AnyObject>, _ key: UnsafeRawPointer?, _ value: UnsafeRawPointer?) */
-export declare function NSMapInsertKnownAbsent(table: $SDK328, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void;
+export declare function NSMapInsertKnownAbsent(table: $SDK340, key?: (SDKHandle) | null, value?: (SDKHandle) | null): void;
 /** func NSMapMember(_ table: NSMapTable<AnyObject, AnyObject>, _ key: UnsafeRawPointer, _ originalKey: UnsafeMutablePointer<UnsafeMutableRawPointer?>?, _ value: UnsafeMutablePointer<UnsafeMutableRawPointer?>?) -> Bool */
-export declare function NSMapMember(table: $SDK328, key: SDKHandle): {
+export declare function NSMapMember(table: $SDK340, key: SDKHandle): {
     $ret: boolean;
     $out: {
         "originalKey": (SDKHandle) | null;
@@ -43216,7 +45499,7 @@ export declare function NSMapMember(table: $SDK328, key: SDKHandle): {
     };
 };
 /** func NSMapRemove(_ table: NSMapTable<AnyObject, AnyObject>, _ key: UnsafeRawPointer?) */
-export declare function NSMapRemove(table: $SDK328, key?: (SDKHandle) | null): void;
+export declare function NSMapRemove(table: $SDK340, key?: (SDKHandle) | null): void;
 /** func NSMaxRange(_ range: NSRange) -> Int */
 export declare function NSMaxRange(range: SDKHandle): number;
 /** func NSNextHashEnumeratorItem(_ enumerator: UnsafeMutablePointer<NSHashEnumerator>) -> UnsafeMutableRawPointer? */
@@ -43243,7 +45526,7 @@ export declare function NSRangeFromString(aString: string): SDKHandle;
 /** func NSResetHashTable(_ table: NSHashTable<AnyObject>) */
 export declare function NSResetHashTable(table: NSHashTable<unknown>): void;
 /** func NSResetMapTable(_ table: NSMapTable<AnyObject, AnyObject>) */
-export declare function NSResetMapTable(table: $SDK328): void;
+export declare function NSResetMapTable(table: $SDK340): void;
 /** func NSRoundDownToMultipleOfPageSize(_ bytes: Int) -> Int */
 export declare function NSRoundDownToMultipleOfPageSize(bytes: number): number;
 /** func NSRoundUpToMultipleOfPageSize(_ bytes: Int) -> Int */
@@ -43255,7 +45538,7 @@ export declare function NSStringFromClass(aClass: string): string;
 /** func NSStringFromHashTable(_ table: NSHashTable<AnyObject>) -> String */
 export declare function NSStringFromHashTable(table: NSHashTable<unknown>): string;
 /** func NSStringFromMapTable(_ table: NSMapTable<AnyObject, AnyObject>) -> String */
-export declare function NSStringFromMapTable(table: $SDK328): string;
+export declare function NSStringFromMapTable(table: $SDK340): string;
 /**
  * func NSStringFromProtocol(_ proto: Protocol) -> String
  * @availability iOS 2.0+

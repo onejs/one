@@ -64,6 +64,9 @@ export declare class ShieldConfiguration extends SDKHandle {
      * @availability iOS 15.0+
      */
     get subtitle(): $SDK0;
+    readonly $type: {
+        "s:17ManagedSettingsUI19ShieldConfigurationV": true;
+    };
 }
 /**
  * struct Label
@@ -85,6 +88,9 @@ export declare class ShieldConfiguration_Label extends SDKHandle {
      * @availability iOS 15.0+
      */
     get color(): _UIKit_UIColor;
+    readonly $type: {
+        "s:17ManagedSettingsUI19ShieldConfigurationV5LabelV": true;
+    };
 }
 /**
  * @objc class ShieldConfigurationDataSource
@@ -116,5 +122,9 @@ export declare class ShieldConfigurationDataSource extends SDKHandle {
      * @availability iOS 15.0+
      */
     configurationShielding90850(webDomain: _ManagedSettings_WebDomain): ShieldConfiguration;
+    readonly $type: {
+        "c:@M@ManagedSettingsUI@objc(cs)ShieldConfigurationDataSource": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

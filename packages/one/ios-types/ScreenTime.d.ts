@@ -14,6 +14,10 @@ export declare class STScreenTimeConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get enforcesChildRestrictions(): boolean;
+    readonly $type: {
+        "c:objc(cs)STScreenTimeConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enforcesChildRestrictions": true;
     };
@@ -43,6 +47,10 @@ export declare class STScreenTimeConfigurationObserver extends SDKHandle {
      * @availability iOS 14.0+
      */
     get configuration(): (STScreenTimeConfiguration) | null;
+    readonly $type: {
+        "c:objc(cs)STScreenTimeConfigurationObserver": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
     };
@@ -77,8 +85,6 @@ export declare class STWebHistory extends SDKHandle {
      * @availability iOS 18.4+
      */
     fetchHistory(interval: _Foundation_DateInterval, completionHandler: $SDK1): void;
-    /** init() */
-    static init(): STWebHistory;
     /**
      * init(bundleIdentifier: String) throws
      * @availability iOS 14.0+
@@ -94,6 +100,10 @@ export declare class STWebHistory extends SDKHandle {
      * @availability iOS 18.4+
      */
     static initProfileIdentifier(profileIdentifier?: $SDK2): STWebHistory;
+    readonly $type: {
+        "c:objc(cs)STWebHistory": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct ProfileIdentifier
@@ -159,6 +169,12 @@ export declare class STWebpageController extends SDKHandle {
      */
     get suppressUsageRecording(): boolean;
     set suppressUsageRecording(value: boolean);
+    readonly $type: {
+        "c:objc(cs)STWebpageController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "urlIsBlocked": true;

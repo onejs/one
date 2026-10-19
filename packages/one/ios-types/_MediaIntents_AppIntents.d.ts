@@ -19,6 +19,9 @@ export declare class AudioSearch extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get defaultResolverSpecification(): $SDK0;
+    readonly $type: {
+        "s:12MediaIntents11AudioSearchV": true;
+    };
 }
 /**
  * typealias Specification = EmptyResolverSpecification<AudioSearch>

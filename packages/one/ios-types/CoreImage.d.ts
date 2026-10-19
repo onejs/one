@@ -41,6 +41,10 @@ type $SDK16 = (NativeMap<CIImageOption, unknown>) | null;
 export declare class CIBarcodeDescriptor extends SDKHandle {
     /** init() */
     static init(): CIBarcodeDescriptor;
+    readonly $type: {
+        "c:objc(cs)CIBarcodeDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const CIAztecCodeDescriptor_base: Omit<typeof CIBarcodeDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIBarcodeDescriptor);
 /**
@@ -48,13 +52,11 @@ declare const CIAztecCodeDescriptor_base: Omit<typeof CIBarcodeDescriptor, "init
  * @availability iOS 11.0+
  */
 export declare class CIAztecCodeDescriptor extends CIAztecCodeDescriptor_base {
-    /** init() */
-    static init(): CIAztecCodeDescriptor;
     /**
      * init?(payload errorCorrectedPayload: Data, isCompact: Bool, layerCount: Int, dataCodewordCount: Int)
      * @availability iOS 11.0+
      */
-    static initPayloadIsCompactLayerCountDataCodewordCount(errorCorrectedPayload: ArrayBuffer, isCompact: boolean, layerCount: number, dataCodewordCount: number): (CIAztecCodeDescriptor) | null;
+    static init(errorCorrectedPayload: ArrayBuffer, isCompact: boolean, layerCount: number, dataCodewordCount: number): (CIAztecCodeDescriptor) | null;
     /**
      * var dataCodewordCount: Int { get }
      * @availability iOS 11.0+
@@ -75,6 +77,11 @@ export declare class CIAztecCodeDescriptor extends CIAztecCodeDescriptor_base {
      * @availability iOS 11.0+
      */
     get layerCount(): number;
+    readonly $type: {
+        "c:objc(cs)CIAztecCodeDescriptor": true;
+        "c:objc(cs)CIBarcodeDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataCodewordCount": true;
         "errorCorrectedPayload": true;
@@ -119,41 +126,45 @@ export declare class CIKernel extends SDKHandle {
      * @deprecated iOS 12.0
      */
     static makeKernels(string: string): (Array<CIKernel>) | null;
-    /** init() */
-    static init(): CIKernel;
     /**
      * var name: String { get }
      * @availability iOS 8.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)CIKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
     };
 }
-declare const CIColorKernel_base: Omit<typeof CIKernel, "init" | "initSource" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIKernel);
 /**
  * class CIColorKernel
  * @availability iOS 8.0+
  */
-export declare class CIColorKernel extends CIColorKernel_base {
+export declare class CIColorKernel extends CIKernel {
     /**
      * convenience init?(source string: String)
      * @availability iOS 8.0+
      * @deprecated iOS 12.0
      */
-    static initSource(string: string): (CIColorKernel) | null;
+    static init(string: string): (CIColorKernel) | null;
     /**
      * func apply(extent: CGRect, arguments args: [Any]) -> CIImage?
      * @availability iOS 8.0+
      */
     apply(extent: $SDK1, args: Array<unknown>): (CIImage) | null;
-    /** init() */
-    static init(): CIColorKernel;
+    readonly $type: {
+        "c:objc(cs)CIColorKernel": true;
+        "c:objc(cs)CIKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
     };
 }
-declare const CIBlendKernel_base: Omit<typeof CIColorKernel, "init" | "initSource" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIColorKernel);
+declare const CIBlendKernel_base: Omit<typeof CIColorKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIColorKernel);
 /**
  * class CIBlendKernel
  * @availability iOS 11.0+
@@ -164,7 +175,7 @@ export declare class CIBlendKernel extends CIBlendKernel_base {
      * @availability iOS 8.0+
      * @deprecated iOS 12.0
      */
-    static initSource(string: string): (CIBlendKernel) | null;
+    static init(string: string): (CIBlendKernel) | null;
     /** class var clear: CIBlendKernel { get } */
     static get clear(): CIBlendKernel;
     /** class var color: CIBlendKernel { get } */
@@ -257,8 +268,12 @@ export declare class CIBlendKernel extends CIBlendKernel_base {
      * @availability iOS 13.0+
      */
     applyForegroundBackgroundColorSpace(foreground: CIImage, background: CIImage, colorSpace: _CoreGraphics_CGColorSpace): (CIImage) | null;
-    /** init() */
-    static init(): CIBlendKernel;
+    readonly $type: {
+        "c:objc(cs)CIBlendKernel": true;
+        "c:objc(cs)CIColorKernel": true;
+        "c:objc(cs)CIKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
     };
@@ -328,8 +343,6 @@ export declare class CIColor extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get yellow(): CIColor;
-    /** init() */
-    static init(): CIColor;
     /**
      * init(cgColor color: CGColor)
      * @availability iOS 5.0+
@@ -390,6 +403,10 @@ export declare class CIColor extends SDKHandle {
      * @availability iOS 5.0+
      */
     get stringRepresentation(): string;
+    readonly $type: {
+        "c:objc(cs)CIColor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blue80112": true;
@@ -652,6 +669,10 @@ export declare class CIContext extends SDKHandle {
      * @availability iOS 9.0+
      */
     get workingFormat(): CIFormat;
+    readonly $type: {
+        "c:objc(cs)CIContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "workingColorSpace": true;
         "workingFormat": true;
@@ -720,13 +741,11 @@ declare const CIDataMatrixCodeDescriptor_base: Omit<typeof CIBarcodeDescriptor, 
  * @availability iOS 11.0+
  */
 export declare class CIDataMatrixCodeDescriptor extends CIDataMatrixCodeDescriptor_base {
-    /** init() */
-    static init(): CIDataMatrixCodeDescriptor;
     /**
      * init?(payload errorCorrectedPayload: Data, rowCount: Int, columnCount: Int, eccVersion: CIDataMatrixCodeDescriptor.ECCVersion)
      * @availability iOS 11.0+
      */
-    static initPayloadRowCountColumnCountEccVersion(errorCorrectedPayload: ArrayBuffer, rowCount: number, columnCount: number, eccVersion: CIDataMatrixCodeDescriptor_ECCVersion): (CIDataMatrixCodeDescriptor) | null;
+    static init(errorCorrectedPayload: ArrayBuffer, rowCount: number, columnCount: number, eccVersion: CIDataMatrixCodeDescriptor_ECCVersion): (CIDataMatrixCodeDescriptor) | null;
     /**
      * var columnCount: Int { get }
      * @availability iOS 11.0+
@@ -747,6 +766,11 @@ export declare class CIDataMatrixCodeDescriptor extends CIDataMatrixCodeDescript
      * @availability iOS 11.0+
      */
     get rowCount(): number;
+    readonly $type: {
+        "c:objc(cs)CIDataMatrixCodeDescriptor": true;
+        "c:objc(cs)CIBarcodeDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "columnCount": true;
         "eccVersion": true;
@@ -769,7 +793,7 @@ export declare class CIDetector extends SDKHandle {
      * init?(ofType type: String, context: CIContext?, options: [String : Any]? = nil)
      * @availability iOS 5.0+
      */
-    static initOfTypeContextOptions(type: string, context?: (CIContext) | null, options?: $SDK10): (CIDetector) | null;
+    static init(type: string, context?: (CIContext) | null, options?: $SDK10): (CIDetector) | null;
     /**
      * func features(in image: CIImage) -> [CIFeature]
      * @availability iOS 5.0+
@@ -780,8 +804,10 @@ export declare class CIDetector extends SDKHandle {
      * @availability iOS 5.0+
      */
     featuresInOptions(image: CIImage, options?: $SDK10): Array<CIFeature>;
-    /** init() */
-    static init(): CIDetector;
+    readonly $type: {
+        "c:objc(cs)CIDetector": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct CIDynamicRangeOption */
 export type CIDynamicRangeOption = "standard" | "constrainedHigh" | "high" | (string & {});
@@ -821,6 +847,10 @@ export declare class CIFeature extends SDKHandle {
      * @availability iOS 5.0+
      */
     get type(): string;
+    readonly $type: {
+        "c:objc(cs)CIFeature": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "type": true;
@@ -914,6 +944,11 @@ export declare class CIFaceFeature extends CIFaceFeature_base {
      * @availability iOS 5.0+
      */
     get trackingID(): number;
+    readonly $type: {
+        "c:objc(cs)CIFaceFeature": true;
+        "c:objc(cs)CIFeature": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "type": true;
@@ -1016,8 +1051,6 @@ export declare class CIFilter extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static supportedRawCameraModels(): (Array<string>) | null;
-    /** init() */
-    static init(): CIFilter;
     /**
      * func setDefaults()
      * @availability iOS 5.0+
@@ -1049,6 +1082,10 @@ export declare class CIFilter extends SDKHandle {
      * @availability iOS 5.0+
      */
     get outputKeys(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)CIFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributes": true;
         "inputKeys": true;
@@ -1073,13 +1110,11 @@ export interface CIFilterProtocol {
  * @availability iOS 9.0+
  */
 export declare class CIFilterShape extends SDKHandle {
-    /** init() */
-    static init(): CIFilterShape;
     /**
      * init(rect r: CGRect)
      * @availability iOS 9.0+
      */
-    static initRect(r: $SDK1): CIFilterShape;
+    static init(r: $SDK1): CIFilterShape;
     /**
      * func insetBy(x dx: Int32, y dy: Int32) -> CIFilterShape
      * @availability iOS 9.0+
@@ -1115,6 +1150,10 @@ export declare class CIFilterShape extends SDKHandle {
      * @availability iOS 9.0+
      */
     get extent(): $SDK1;
+    readonly $type: {
+        "c:objc(cs)CIFilterShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extent": true;
     };
@@ -1496,8 +1535,6 @@ export declare class CIImage extends SDKHandle {
      * @availability iOS 8.0+
      */
     orientationTransformForExifOrientation(orientation: number): _CoreFoundation_CGAffineTransform;
-    /** init() */
-    static init(): CIImage;
     /**
      * init(bitmapData data: Data, bytesPerRow: Int, size: CGSize, format: CIFormat, colorSpace: CGColorSpace?)
      * @availability iOS 5.0+
@@ -1689,6 +1726,10 @@ export declare class CIImage extends SDKHandle {
      * @availability iOS 9.0+
      */
     get url(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)CIImage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cgImage": true;
         "colorSpace": true;
@@ -1720,8 +1761,6 @@ export declare class CIImageAccumulator extends SDKHandle {
      * @availability iOS 9.0+
      */
     image(): CIImage;
-    /** init() */
-    static init(): CIImageAccumulator;
     /**
      * init?(extent: CGRect, format: CIFormat)
      * @availability iOS 9.0+
@@ -1752,6 +1791,10 @@ export declare class CIImageAccumulator extends SDKHandle {
      * @availability iOS 9.0+
      */
     get format(): CIFormat;
+    readonly $type: {
+        "c:objc(cs)CIImageAccumulator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extent": true;
         "format": true;
@@ -1789,7 +1832,7 @@ export declare const CIImageAutoAdjustmentOption: {
     init(rawValue: string): CIImageAutoAdjustmentOption;
 };
 /** struct CIImageOption */
-export type CIImageOption = "colorSpace" | "applyCleanAperture" | "toneMapHDRtoSDR" | "expandToHDR" | "contentHeadroom" | "contentAverageLightLevel" | "nearestSampling" | "cacheImmediately" | "properties" | "applyOrientationProperty" | "subsampleFactor" | "typeIdentifierHint" | "useHardwareAcceleration" | "auxiliaryDepth" | "auxiliaryDisparity" | "auxiliaryPortraitEffectsMatte" | "auxiliarySemanticSegmentationSkinMatte" | "auxiliarySemanticSegmentationHairMatte" | "auxiliarySemanticSegmentationTeethMatte" | "auxiliarySemanticSegmentationGlassesMatte" | "auxiliarySemanticSegmentationSkyMatte" | "auxiliaryHDRGainMap" | "providerTileSize" | "providerUserInfo" | (string & {});
+export type CIImageOption = "providerTileSize" | "providerUserInfo" | "colorSpace" | "applyCleanAperture" | "toneMapHDRtoSDR" | "expandToHDR" | "contentHeadroom" | "contentAverageLightLevel" | "nearestSampling" | "cacheImmediately" | "properties" | "applyOrientationProperty" | "subsampleFactor" | "typeIdentifierHint" | "useHardwareAcceleration" | "auxiliaryDepth" | "auxiliaryDisparity" | "auxiliaryPortraitEffectsMatte" | "auxiliarySemanticSegmentationSkinMatte" | "auxiliarySemanticSegmentationHairMatte" | "auxiliarySemanticSegmentationTeethMatte" | "auxiliarySemanticSegmentationGlassesMatte" | "auxiliarySemanticSegmentationSkyMatte" | "auxiliaryHDRGainMap" | (string & {});
 export declare const CIImageOption: {
     /**
      * static let applyCleanAperture: CIImageOption
@@ -1981,6 +2024,10 @@ export declare class CIImageProcessorKernel extends SDKHandle {
     static get synchronizeInputs(): boolean;
     /** init() */
     static init(): CIImageProcessorKernel;
+    readonly $type: {
+        "c:objc(cs)CIImageProcessorKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol CIImageProcessorOutput
@@ -2092,13 +2139,11 @@ declare const CIPDF417CodeDescriptor_base: Omit<typeof CIBarcodeDescriptor, "ini
  * @availability iOS 11.0+
  */
 export declare class CIPDF417CodeDescriptor extends CIPDF417CodeDescriptor_base {
-    /** init() */
-    static init(): CIPDF417CodeDescriptor;
     /**
      * init?(payload errorCorrectedPayload: Data, isCompact: Bool, rowCount: Int, columnCount: Int)
      * @availability iOS 11.0+
      */
-    static initPayloadIsCompactRowCountColumnCount(errorCorrectedPayload: ArrayBuffer, isCompact: boolean, rowCount: number, columnCount: number): (CIPDF417CodeDescriptor) | null;
+    static init(errorCorrectedPayload: ArrayBuffer, isCompact: boolean, rowCount: number, columnCount: number): (CIPDF417CodeDescriptor) | null;
     /**
      * var columnCount: Int { get }
      * @availability iOS 11.0+
@@ -2119,6 +2164,11 @@ export declare class CIPDF417CodeDescriptor extends CIPDF417CodeDescriptor_base 
      * @availability iOS 11.0+
      */
     get rowCount(): number;
+    readonly $type: {
+        "c:objc(cs)CIPDF417CodeDescriptor": true;
+        "c:objc(cs)CIBarcodeDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "columnCount": true;
         "errorCorrectedPayload": true;
@@ -2132,13 +2182,11 @@ declare const CIQRCodeDescriptor_base: Omit<typeof CIBarcodeDescriptor, "init" |
  * @availability iOS 11.0+
  */
 export declare class CIQRCodeDescriptor extends CIQRCodeDescriptor_base {
-    /** init() */
-    static init(): CIQRCodeDescriptor;
     /**
      * init?(payload errorCorrectedPayload: Data, symbolVersion: Int, maskPattern: UInt8, errorCorrectionLevel: CIQRCodeDescriptor.ErrorCorrectionLevel)
      * @availability iOS 11.0+
      */
-    static initPayloadSymbolVersionMaskPatternErrorCorrectionLevel(errorCorrectedPayload: ArrayBuffer, symbolVersion: number, maskPattern: number, errorCorrectionLevel: CIQRCodeDescriptor_ErrorCorrectionLevel): (CIQRCodeDescriptor) | null;
+    static init(errorCorrectedPayload: ArrayBuffer, symbolVersion: number, maskPattern: number, errorCorrectionLevel: CIQRCodeDescriptor_ErrorCorrectionLevel): (CIQRCodeDescriptor) | null;
     /**
      * var errorCorrectedPayload: Data { get }
      * @availability iOS 11.0+
@@ -2159,6 +2207,11 @@ export declare class CIQRCodeDescriptor extends CIQRCodeDescriptor_base {
      * @availability iOS 11.0+
      */
     get symbolVersion(): number;
+    readonly $type: {
+        "c:objc(cs)CIQRCodeDescriptor": true;
+        "c:objc(cs)CIBarcodeDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "errorCorrectedPayload": true;
         "errorCorrectionLevel": true;
@@ -2215,6 +2268,11 @@ export declare class CIQRCodeFeature extends CIQRCodeFeature_base {
      * @availability iOS 8.0+
      */
     get topRight(): $SDK8;
+    readonly $type: {
+        "c:objc(cs)CIQRCodeFeature": true;
+        "c:objc(cs)CIFeature": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "type": true;
@@ -2250,12 +2308,11 @@ export declare const CIRAWDecoderVersion: {
     /** init(rawValue: String) */
     init(rawValue: string): CIRAWDecoderVersion;
 };
-declare const CIRAWFilter_base: Omit<typeof CIFilter, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIFilter);
 /**
  * class CIRAWFilter
  * @availability iOS 15.0+
  */
-export declare class CIRAWFilter extends CIRAWFilter_base {
+export declare class CIRAWFilter extends CIFilter {
     /**
      * convenience init?(cvPixelBuffer buffer: CVPixelBuffer, properties: [AnyHashable : Any])
      * @availability iOS 15.0+
@@ -2286,8 +2343,6 @@ export declare class CIRAWFilter extends CIRAWFilter_base {
      * @availability iOS 27.0+
      */
     downloadResources(timeout: number, completionHandler: ((arg0: (NativeError) | null) => void)): _Foundation_Progress;
-    /** init() */
-    static init(): CIRAWFilter;
     /**
      * var baselineExposure: Float { get set }
      * @availability iOS 15.0+
@@ -2544,6 +2599,11 @@ export declare class CIRAWFilter extends CIRAWFilter_base {
      * @availability iOS 15.0+
      */
     get supportedDecoderVersions(): Array<CIRAWDecoderVersion>;
+    readonly $type: {
+        "c:objc(cs)CIRAWFilter": true;
+        "c:objc(cs)CIFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributes": true;
         "inputKeys": true;
@@ -2831,6 +2891,11 @@ export declare class CIRectangleFeature extends CIRectangleFeature_base {
      * @availability iOS 8.0+
      */
     get topRight(): $SDK8;
+    readonly $type: {
+        "c:objc(cs)CIRectangleFeature": true;
+        "c:objc(cs)CIFeature": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "type": true;
@@ -2845,8 +2910,6 @@ export declare class CIRectangleFeature extends CIRectangleFeature_base {
  * @availability iOS 11.0+
  */
 export declare class CIRenderDestination extends SDKHandle {
-    /** init() */
-    static init(): CIRenderDestination;
     /**
      * init(bitmapData data: UnsafeMutableRawPointer, width: Int, height: Int, bytesPerRow: Int, format: CIFormat)
      * @availability iOS 11.0+
@@ -2935,6 +2998,10 @@ export declare class CIRenderDestination extends SDKHandle {
      * @availability iOS 11.0+
      */
     get width(): number;
+    readonly $type: {
+        "c:objc(cs)CIRenderDestination": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alphaMode": true;
         "blendKernel": true;
@@ -2981,6 +3048,10 @@ export declare class CIRenderInfo extends SDKHandle {
      * @availability iOS 11.0+
      */
     get pixelsProcessed(): number;
+    readonly $type: {
+        "c:objc(cs)CIRenderInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "kernelCompileTime": true;
         "kernelExecutionTime": true;
@@ -3020,6 +3091,10 @@ export declare class CIRenderTask extends SDKHandle {
      * @availability iOS 27.0+
      */
     get plannedPixelsProcessed(): number;
+    readonly $type: {
+        "c:objc(cs)CIRenderTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "plannedPassCount": true;
         "plannedPeakMemory": true;
@@ -3032,8 +3107,6 @@ export declare class CIRenderTask extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class CISampler extends SDKHandle {
-    /** init() */
-    static init(): CISampler;
     /**
      * convenience init(image im: CIImage)
      * @availability iOS 9.0+
@@ -3054,6 +3127,10 @@ export declare class CISampler extends SDKHandle {
      * @availability iOS 9.0+
      */
     get extent(): $SDK1;
+    readonly $type: {
+        "c:objc(cs)CISampler": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "definition": true;
         "extent": true;
@@ -3097,6 +3174,11 @@ export declare class CITextFeature extends CITextFeature_base {
      * @availability iOS 9.0+
      */
     get topRight(): $SDK8;
+    readonly $type: {
+        "c:objc(cs)CITextFeature": true;
+        "c:objc(cs)CIFeature": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "type": true;
@@ -3112,8 +3194,6 @@ export declare class CITextFeature extends CITextFeature_base {
  * @availability iOS 5.0+
  */
 export declare class CIVector extends SDKHandle {
-    /** init() */
-    static init(): CIVector;
     /**
      * convenience init(cgAffineTransform t: CGAffineTransform)
      * @availability iOS 5.0+
@@ -3209,6 +3289,10 @@ export declare class CIVector extends SDKHandle {
      * @availability iOS 5.0+
      */
     get stringRepresentation(): string;
+    readonly $type: {
+        "c:objc(cs)CIVector": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cgAffineTransformValue": true;
         "cgPointValue": true;
@@ -3221,22 +3305,36 @@ export declare class CIVector extends SDKHandle {
         "stringRepresentation": true;
     };
 }
-declare const CIWarpKernel_base: Omit<typeof CIKernel, "init" | "initSource" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIKernel);
 /**
  * class CIWarpKernel
  * @availability iOS 8.0+
  */
-export declare class CIWarpKernel extends CIWarpKernel_base {
+export declare class CIWarpKernel extends CIKernel {
     /**
      * convenience init?(source string: String)
      * @availability iOS 8.0+
      * @deprecated iOS 12.0
      */
-    static initSource(string: string): (CIWarpKernel) | null;
-    /** init() */
-    static init(): CIWarpKernel;
+    static init(string: string): (CIWarpKernel) | null;
+    readonly $type: {
+        "c:objc(cs)CIWarpKernel": true;
+        "c:objc(cs)CIKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
+    };
+}
+export declare class NSObject extends SDKHandle {
+    /** func provideImageData(_ data: UnsafeMutableRawPointer, bytesPerRow rowbytes: Int, origin originx: Int, _ originy: Int, size width: Int, _ height: Int, userInfo info: Any?) */
+    provideImageData(data: SDKHandle, rowbytes: number, originx: number, originy: number, width: number, height: number, info?: (unknown) | null): void;
+    /**
+     * func provideImage(to texture: any MTLTexture, commandBuffer: any MTLCommandBuffer, originx: Int, originy: Int, width: Int, height: Int, userInfo info: Any?)
+     * @availability iOS 26.0+
+     */
+    provideImage(texture: SDKHandle, commandBuffer: SDKHandle, originx: number, originy: number, width: number, height: number, info?: (unknown) | null): void;
+    readonly $type: {
+        "c:objc(cs)NSObject": true;
     };
 }
 export declare class NSUserActivity extends SDKHandle {
@@ -3245,6 +3343,10 @@ export declare class NSUserActivity extends SDKHandle {
      * @availability iOS 11.3+
      */
     get detectedBarcodeDescriptor(): (CIBarcodeDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "detectedBarcodeDescriptor": true;
     };

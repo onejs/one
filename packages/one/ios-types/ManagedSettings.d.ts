@@ -31,6 +31,9 @@ export declare class AccountSettings extends SDKHandle {
      */
     get lockAccounts30315(): (boolean) | null;
     set lockAccounts30315(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings07AccountB0V": true;
+    };
 }
 /**
  * struct ActivityCategory
@@ -52,6 +55,9 @@ export declare class ActivityCategory extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(token: Token<ActivityCategory>): ActivityCategory;
+    readonly $type: {
+        "s:15ManagedSettings16ActivityCategoryV": true;
+    };
 }
 /**
  * typealias ActivityCategoryToken = Token<ActivityCategory>
@@ -88,6 +94,9 @@ export declare class Application extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initToken(token: Token<Application>): Application;
+    readonly $type: {
+        "s:15ManagedSettings11ApplicationV": true;
+    };
 }
 /**
  * struct ApplicationSettings
@@ -127,6 +136,9 @@ export declare class ApplicationSettings extends SDKHandle {
      */
     get denyAppInstallation56640(): (boolean) | null;
     set denyAppInstallation56640(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings011ApplicationB0V": true;
+    };
 }
 /**
  * typealias ApplicationToken = Token<Application>
@@ -171,12 +183,18 @@ export declare class AppStoreSettings extends SDKHandle {
      */
     get requirePasswordForPurchases85277(): (boolean) | null;
     set requirePasswordForPurchases85277(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings08AppStoreB0V": true;
+    };
 }
 /**
  * struct BoundedSettingMetadata<Value> where Value : Comparable
  * @availability iOS 15.0+
  */
 export declare class BoundedSettingMetadata<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15ManagedSettings22BoundedSettingMetadataV": true;
+    };
 }
 /**
  * struct CellularSettings
@@ -216,6 +234,9 @@ export declare class CellularSettings extends SDKHandle {
      */
     get lockESIM78860(): (boolean) | null;
     set lockESIM78860(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings08CellularB0V": true;
+    };
 }
 /**
  * struct DateAndTimeSettings
@@ -233,6 +254,9 @@ export declare class DateAndTimeSettings extends SDKHandle {
      */
     get requireAutomaticDateAndTime66734(): (boolean) | null;
     set requireAutomaticDateAndTime66734(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings011DateAndTimeB0V": true;
+    };
 }
 /**
  * struct GameCenterSettings
@@ -261,6 +285,9 @@ export declare class GameCenterSettings extends SDKHandle {
      */
     get denyMultiplayerGaming29045(): (boolean) | null;
     set denyMultiplayerGaming29045(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings010GameCenterB0V": true;
+    };
 }
 /**
  * protocol ManagedSettingsGroup
@@ -441,6 +468,9 @@ export declare class ManagedSettingsStore extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): ManagedSettingsStore;
+    readonly $type: {
+        "s:15ManagedSettings0aB5StoreC": true;
+    };
 }
 /**
  * struct Name
@@ -490,6 +520,9 @@ export declare class ManagedSettingsStore_TokenExpiryMessage extends SDKHandle {
      */
     static get nameValue(): _Foundation_NSNotification_Name;
     static set nameValue(value: _Foundation_NSNotification_Name);
+    readonly $type: {
+        "s:15ManagedSettings0aB5StoreC18TokenExpiryMessageV": true;
+    };
 }
 /**
  * typealias Subject = ManagedSettingsStore
@@ -556,6 +589,9 @@ export declare class MediaSettings extends SDKHandle {
      */
     get denyBookstoreErotica265(): (boolean) | null;
     set denyBookstoreErotica265(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings05MediaB0V": true;
+    };
 }
 /**
  * struct PasscodeSettings
@@ -573,6 +609,9 @@ export declare class PasscodeSettings extends SDKHandle {
      */
     get lockPasscode90707(): (boolean) | null;
     set lockPasscode90707(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings08PasscodeB0V": true;
+    };
 }
 /**
  * struct SafariSettings
@@ -601,6 +640,9 @@ export declare class SafariSettings extends SDKHandle {
      */
     get denyAutoFill87254(): (boolean) | null;
     set denyAutoFill87254(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings06SafariB0V": true;
+    };
 }
 /**
  * enum CookiePolicy
@@ -639,6 +681,9 @@ export declare class SettingMetadata<Value = unknown> extends SDKHandle {
      * @availability iOS 15.0+
      */
     get defaultValue(): unknown;
+    readonly $type: {
+        "s:15ManagedSettings15SettingMetadataV": true;
+    };
 }
 /**
  * enum ShieldAction
@@ -687,6 +732,10 @@ export declare class ShieldActionDelegate extends SDKHandle {
      * @availability iOS 15.0+
      */
     handleActionForCompletionHandler21179(action: ShieldAction, webDomain: Token<WebDomain>, completionHandler: $SDK13): void;
+    readonly $type: {
+        "c:@M@ManagedSettings@objc(cs)ShieldActionDelegate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum ShieldActionResponse
@@ -759,12 +808,18 @@ export declare class ShieldSettings extends SDKHandle {
      */
     get applicationCategories61189(): $SDK21;
     set applicationCategories61189(value: $SDK21);
+    readonly $type: {
+        "s:15ManagedSettings06ShieldB0V": true;
+    };
 }
 /**
  * enum ActivityCategoryPolicy<Activity>
  * @availability iOS 15.0+
  */
 export declare class ShieldSettings_ActivityCategoryPolicy<Activity = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15ManagedSettings06ShieldB0V22ActivityCategoryPolicyO": true;
+    };
 }
 /**
  * struct SiriSettings
@@ -782,12 +837,18 @@ export declare class SiriSettings extends SDKHandle {
      */
     get denySiri19645(): (boolean) | null;
     set denySiri19645(value: (boolean) | null);
+    readonly $type: {
+        "s:15ManagedSettings04SiriB0V": true;
+    };
 }
 /**
  * struct Token<T>
  * @availability iOS 15.0+
  */
 export declare class Token<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15ManagedSettings5TokenV": true;
+    };
 }
 /**
  * struct WebContentSettings
@@ -805,12 +866,18 @@ export declare class WebContentSettings extends SDKHandle {
      */
     get blockedByFilter31965(): $SDK23;
     set blockedByFilter31965(value: $SDK23);
+    readonly $type: {
+        "s:15ManagedSettings010WebContentB0V": true;
+    };
 }
 /**
  * enum FilterPolicy
  * @availability iOS 15.0+
  */
 export declare class WebContentSettings_FilterPolicy extends SDKHandle {
+    readonly $type: {
+        "s:15ManagedSettings010WebContentB0V12FilterPolicyO": true;
+    };
 }
 /**
  * struct WebDomain
@@ -837,6 +904,9 @@ export declare class WebDomain extends SDKHandle {
      * @availability iOS 15.0+
      */
     get domain(): (string) | null;
+    readonly $type: {
+        "s:15ManagedSettings9WebDomainV": true;
+    };
 }
 /**
  * typealias WebDomainToken = Token<WebDomain>

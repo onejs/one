@@ -12,6 +12,9 @@ export declare class ColorResource extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(name: string, bundle: _Foundation_Bundle): ColorResource;
+    readonly $type: {
+        "s:21DeveloperToolsSupport13ColorResourceV": true;
+    };
 }
 /**
  * struct ImageResource
@@ -23,6 +26,9 @@ export declare class ImageResource extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(name: string, bundle: _Foundation_Bundle): ImageResource;
+    readonly $type: {
+        "s:21DeveloperToolsSupport13ImageResourceV": true;
+    };
 }
 /**
  * @resultBuilder struct LibraryContentBuilder
@@ -39,6 +45,9 @@ export declare class LibraryContentBuilder extends SDKHandle {
      * @availability iOS 14.0+
      */
     static buildExpression84173(items: Array<LibraryItem>): Array<LibraryItem>;
+    readonly $type: {
+        "s:21DeveloperToolsSupport21LibraryContentBuilderV": true;
+    };
 }
 /**
  * protocol LibraryContentProvider
@@ -56,6 +65,9 @@ export interface LibraryContentProvider {
  * @availability iOS 14.0+
  */
 export declare class LibraryItem extends SDKHandle {
+    readonly $type: {
+        "s:21DeveloperToolsSupport11LibraryItemV": true;
+    };
 }
 /**
  * struct Category
@@ -82,24 +94,36 @@ export declare class LibraryItem_Category extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get control(): LibraryItem_Category;
+    readonly $type: {
+        "s:21DeveloperToolsSupport11LibraryItemV8CategoryV": true;
+    };
 }
 /**
  * @MainActor struct Preview
  * @availability iOS 17.0+
  */
 export declare class Preview extends SDKHandle {
+    readonly $type: {
+        "s:21DeveloperToolsSupport7PreviewV": true;
+    };
 }
 /**
  * enum ViewTraits
  * @availability iOS 17.0+
  */
 export declare class Preview_ViewTraits extends SDKHandle {
+    readonly $type: {
+        "s:21DeveloperToolsSupport7PreviewV10ViewTraitsO": true;
+    };
 }
 /**
  * struct PreviewArguments<T>
  * @availability iOS 26.0+
  */
 export declare class PreviewArguments<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:21DeveloperToolsSupport16PreviewArgumentsV": true;
+    };
 }
 /**
  * @resultBuilder struct PreviewBodyBuilder<Content>
@@ -111,12 +135,18 @@ export declare class PreviewBodyBuilder<Content = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     static buildBlock(content: unknown): unknown;
+    readonly $type: {
+        "s:21DeveloperToolsSupport18PreviewBodyBuilderV": true;
+    };
 }
 /**
  * enum PreviewLayout
  * @availability iOS 13.0+
  */
 export declare class PreviewLayout extends SDKHandle {
+    readonly $type: {
+        "s:21DeveloperToolsSupport13PreviewLayoutO": true;
+    };
 }
 /**
  * @resultBuilder struct PreviewMacroBodyBuilder<Content>
@@ -128,6 +158,9 @@ export declare class PreviewMacroBodyBuilder<Content = unknown> extends SDKHandl
      * @availability iOS 17.0+
      */
     static buildBlock(arg0: unknown): unknown;
+    readonly $type: {
+        "s:21DeveloperToolsSupport23PreviewMacroBodyBuilderV": true;
+    };
 }
 /**
  * protocol PreviewRegistry
@@ -185,6 +218,9 @@ export declare class PreviewTrait<T = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get portrait(): Promise<$SDK0>;
+    readonly $type: {
+        "s:21DeveloperToolsSupport12PreviewTraitV": true;
+    };
 }
 /**
  * struct PreviewUnavailable
@@ -196,5 +232,8 @@ export declare class PreviewUnavailable extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): PreviewUnavailable;
+    readonly $type: {
+        "s:21DeveloperToolsSupport18PreviewUnavailableV": true;
+    };
 }
 export {};

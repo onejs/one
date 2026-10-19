@@ -52,6 +52,9 @@ export declare class LinkMetadata extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init(metadata: LPLinkMetadata): (LinkMetadata) | null;
+    readonly $type: {
+        "s:16LinkPresentation0A8MetadataV": true;
+    };
 }
 /**
  * nonisolated struct Attachment
@@ -73,6 +76,9 @@ export declare class LinkMetadata_Attachment extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get video(): LinkMetadata_Attachment;
+    readonly $type: {
+        "s:16LinkPresentation0A8MetadataV10AttachmentV": true;
+    };
 }
 /**
  * typealias Representation = some TransferRepresentation
@@ -114,6 +120,9 @@ export declare class LPError extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get unknown(): LPError_Code;
+    readonly $type: {
+        "s:SC11LPErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -176,6 +185,10 @@ export declare class LPLinkMetadata extends SDKHandle {
      */
     get videoProvider(): $SDK0;
     set videoProvider(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)LPLinkMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "iconProvider": true;
@@ -191,8 +204,6 @@ export declare class LPLinkMetadata extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class LPLinkView extends SDKHandle {
-    /** init() */
-    static init(): LPLinkView;
     /**
      * init(metadata: LPLinkMetadata)
      * @availability iOS 13.0+
@@ -209,6 +220,12 @@ export declare class LPLinkView extends SDKHandle {
      */
     get metadata(): LPLinkMetadata;
     set metadata(value: LPLinkMetadata);
+    readonly $type: {
+        "c:objc(cs)LPLinkView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "metadata": true;
     };
@@ -247,6 +264,10 @@ export declare class LPMetadataProvider extends SDKHandle {
      */
     get timeout(): number;
     set timeout(value: number);
+    readonly $type: {
+        "c:objc(cs)LPMetadataProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "shouldFetchSubresources": true;
         "timeout": true;

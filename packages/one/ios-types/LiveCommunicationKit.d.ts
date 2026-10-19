@@ -20,6 +20,9 @@ export declare class CellularService extends SDKHandle {
      * @availability iOS 26.0+
      */
     get label(): string;
+    readonly $type: {
+        "s:20LiveCommunicationKit15CellularServiceV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -51,6 +54,9 @@ export declare class Conversation extends SDKHandle {
      * @availability iOS 17.4+
      */
     get state(): Conversation_State;
+    readonly $type: {
+        "s:20LiveCommunicationKit12ConversationC": true;
+    };
     readonly $observable: {
         "localMember": true;
         "debugDescription": true;
@@ -143,6 +149,9 @@ export type Conversation_EndedReason_RawValue = number;
  * @availability iOS 17.4+
  */
 export declare class Conversation_Event extends SDKHandle {
+    readonly $type: {
+        "s:20LiveCommunicationKit12ConversationC5EventO": true;
+    };
 }
 /**
  * enum State
@@ -200,6 +209,9 @@ export declare class Conversation_Update extends SDKHandle {
      */
     get members(): (Array<Handle>) | null;
     set members(value: (Array<Handle>) | null);
+    readonly $type: {
+        "s:20LiveCommunicationKit12ConversationC6UpdateV": true;
+    };
 }
 /**
  * class ConversationAction
@@ -241,12 +253,18 @@ export declare class ConversationAction extends SDKHandle {
      * @availability iOS 17.4+
      */
     fulfill(): void;
+    readonly $type: {
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 /**
  * enum State
  * @availability iOS 17.4+
  */
 export declare class ConversationAction_State extends SDKHandle {
+    readonly $type: {
+        "s:20LiveCommunicationKit18ConversationActionC5StateO": true;
+    };
 }
 /**
  * final class ConversationHistoryManager
@@ -273,6 +291,9 @@ export declare class ConversationHistoryManager extends SDKHandle {
      * @availability iOS 26.0+
      */
     markConversationsAsRead(recentConversations: $SDK1): Promise<void>;
+    readonly $type: {
+        "s:20LiveCommunicationKit26ConversationHistoryManagerC": true;
+    };
 }
 /**
  * struct ConversationHistoryDidUpdate
@@ -294,6 +315,9 @@ export declare class ConversationHistoryManager_ConversationHistoryDidUpdate ext
      * @availability iOS 26.0+
      */
     static init(): ConversationHistoryManager_ConversationHistoryDidUpdate;
+    readonly $type: {
+        "s:20LiveCommunicationKit26ConversationHistoryManagerC0dE9DidUpdateV": true;
+    };
 }
 /**
  * typealias Subject = ConversationHistoryManager
@@ -340,6 +364,9 @@ export declare class ConversationHistoryManager_RecentConversation extends SDKHa
      * @availability iOS 26.0+
      */
     get direction(): ConversationHistoryManager_RecentConversation_Direction;
+    readonly $type: {
+        "s:20LiveCommunicationKit26ConversationHistoryManagerC06RecentD0V": true;
+    };
 }
 /**
  * enum Direction
@@ -417,6 +444,9 @@ export declare class ConversationManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<ConversationManagerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "s:20LiveCommunicationKit19ConversationManagerC": true;
+    };
     readonly $observable: {
         "configuration": true;
         "conversations": true;
@@ -487,6 +517,9 @@ export declare class ConversationManager_Configuration extends SDKHandle {
      */
     get supportsAudioTranslation(): boolean;
     set supportsAudioTranslation(value: boolean);
+    readonly $type: {
+        "s:20LiveCommunicationKit19ConversationManagerC13ConfigurationV": true;
+    };
 }
 /**
  * protocol ConversationManagerDelegate : AnyObject
@@ -545,6 +578,10 @@ export declare class EndConversationAction extends EndConversationAction_base {
      * @availability iOS 17.4+
      */
     fulfill(dateEnded: globalThis.Date): void;
+    readonly $type: {
+        "s:20LiveCommunicationKit21EndConversationActionC": true;
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 /**
  * struct Handle
@@ -574,6 +611,9 @@ export declare class Handle extends SDKHandle {
      */
     get value(): string;
     set value(value: string);
+    readonly $type: {
+        "s:20LiveCommunicationKit6HandleV": true;
+    };
 }
 /**
  * enum Kind
@@ -613,6 +653,10 @@ export declare class JoinConversationAction extends JoinConversationAction_base 
      * @availability iOS 17.4+
      */
     fulfill(dateConnected: globalThis.Date): void;
+    readonly $type: {
+        "s:20LiveCommunicationKit22JoinConversationActionC": true;
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 declare const MergeConversationAction_base: Omit<typeof ConversationAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ConversationAction);
 /**
@@ -630,6 +674,10 @@ export declare class MergeConversationAction extends MergeConversationAction_bas
      * @availability iOS 17.4+
      */
     static init(conversationUUID: string, conversationUUIDToMergeWith: string): MergeConversationAction;
+    readonly $type: {
+        "s:20LiveCommunicationKit23MergeConversationActionC": true;
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 declare const MuteConversationAction_base: Omit<typeof ConversationAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ConversationAction);
 /**
@@ -647,6 +695,10 @@ export declare class MuteConversationAction extends MuteConversationAction_base 
      * @availability iOS 17.4+
      */
     get isMuted(): boolean;
+    readonly $type: {
+        "s:20LiveCommunicationKit22MuteConversationActionC": true;
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 declare const PauseConversationAction_base: Omit<typeof ConversationAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ConversationAction);
 /**
@@ -664,6 +716,10 @@ export declare class PauseConversationAction extends PauseConversationAction_bas
      * @availability iOS 17.4+
      */
     get isPaused(): boolean;
+    readonly $type: {
+        "s:20LiveCommunicationKit23PauseConversationActionC": true;
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 declare const PlayToneAction_base: Omit<typeof ConversationAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ConversationAction);
 /**
@@ -686,6 +742,10 @@ export declare class PlayToneAction extends PlayToneAction_base {
      * @availability iOS 17.4+
      */
     get digits(): string;
+    readonly $type: {
+        "s:20LiveCommunicationKit14PlayToneActionC": true;
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 /**
  * enum Tone
@@ -740,6 +800,10 @@ export declare class SetTranslatingAction extends SetTranslatingAction_base {
      * @availability iOS 26.0+
      */
     fulfill(translationEngine: SetTranslatingAction_TranslationEngine): void;
+    readonly $type: {
+        "s:20LiveCommunicationKit20SetTranslatingActionC": true;
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 /**
  * enum TranslationEngine
@@ -761,6 +825,9 @@ export declare class StartCellularConversationAction extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(recentConversation: ConversationHistoryManager_RecentConversation): StartCellularConversationAction;
+    readonly $type: {
+        "s:20LiveCommunicationKit31StartCellularConversationActionV": true;
+    };
 }
 declare const StartConversationAction_base: Omit<typeof ConversationAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<ConversationAction, "fulfill">);
 /**
@@ -788,6 +855,10 @@ export declare class StartConversationAction extends StartConversationAction_bas
      * @availability iOS 17.4+
      */
     get isVideo(): boolean;
+    readonly $type: {
+        "s:20LiveCommunicationKit23StartConversationActionC": true;
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 /**
  * final class TelephonyConversationManager
@@ -809,6 +880,9 @@ export declare class TelephonyConversationManager extends SDKHandle {
      * @availability iOS 26.0+
      */
     get cellularServices(): Array<CellularService>;
+    readonly $type: {
+        "s:20LiveCommunicationKit28TelephonyConversationManagerC": true;
+    };
 }
 declare const UnmergeConversationAction_base: Omit<typeof ConversationAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ConversationAction);
 /**
@@ -821,5 +895,9 @@ export declare class UnmergeConversationAction extends UnmergeConversationAction
      * @availability iOS 17.4+
      */
     static init(conversationUUID: string): UnmergeConversationAction;
+    readonly $type: {
+        "s:20LiveCommunicationKit25UnmergeConversationActionC": true;
+        "s:20LiveCommunicationKit18ConversationActionC": true;
+    };
 }
 export {};

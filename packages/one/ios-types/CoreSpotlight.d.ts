@@ -52,6 +52,10 @@ export declare class CSCustomAttributeKey extends SDKHandle {
      * @availability iOS 9.0+
      */
     get isUnique(): boolean;
+    readonly $type: {
+        "c:objc(cs)CSCustomAttributeKey": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "keyName": true;
         "isMultiValued": true;
@@ -72,6 +76,10 @@ export declare class CSImportExtension extends SDKHandle {
      * @availability iOS 15.0+
      */
     update(attributes: CSSearchableItemAttributeSet, contentURL: string): void;
+    readonly $type: {
+        "c:objc(cs)CSImportExtension": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct CSIndexError
@@ -123,6 +131,9 @@ export declare class CSIndexError extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get mismatchedClientState(): CSIndexError_Code;
+    readonly $type: {
+        "s:SC16CSIndexErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -143,37 +154,42 @@ export declare const CSIndexError_Code: {
 export declare class CSIndexExtensionRequestHandler extends SDKHandle {
     /** init() */
     static init(): CSIndexExtensionRequestHandler;
+    readonly $type: {
+        "c:objc(cs)CSIndexExtensionRequestHandler": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CSLocalizedString
  * @availability iOS 9.0+
  */
 export declare class CSLocalizedString extends SDKHandle {
-    /** init() */
-    static init(): CSLocalizedString;
     /**
      * init(localizedStrings: [AnyHashable : Any])
      * @availability iOS 9.0+
      */
-    static initLocalizedStrings(localizedStrings: NativeMap<unknown, unknown>): CSLocalizedString;
+    static init(localizedStrings: NativeMap<unknown, unknown>): CSLocalizedString;
     /**
      * func localizedString() -> String
      * @availability iOS 9.0+
      */
     localizedString(): string;
+    readonly $type: {
+        "c:objc(cs)CSLocalizedString": true;
+        "c:objc(cs)NSString": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CSPerson
  * @availability iOS 9.0+
  */
 export declare class CSPerson extends SDKHandle {
-    /** init() */
-    static init(): CSPerson;
     /**
      * init(displayName: String?, handles: [String], handleIdentifier: String)
      * @availability iOS 9.0+
      */
-    static initDisplayNameHandlesHandleIdentifier(displayName: (string) | null, handles: Array<string>, handleIdentifier: string): CSPerson;
+    static init(displayName: (string) | null, handles: Array<string>, handleIdentifier: string): CSPerson;
     /**
      * var contactIdentifier: String? { get set }
      * @availability iOS 9.0+
@@ -195,6 +211,10 @@ export declare class CSPerson extends SDKHandle {
      * @availability iOS 9.0+
      */
     get handles(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)CSPerson": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contactIdentifier": true;
         "displayName": true;
@@ -257,8 +277,6 @@ export declare class CSSearchableIndex extends SDKHandle {
      * @availability iOS 9.0+
      */
     indexSearchableItems(items: Array<CSSearchableItem>, completionHandler?: $SDK1): void;
-    /** init() */
-    static init(): CSSearchableIndex;
     /**
      * init(name: String)
      * @availability iOS 9.0+
@@ -280,6 +298,10 @@ export declare class CSSearchableIndex extends SDKHandle {
      * @availability iOS 27.0+
      */
     get protectionClass(): _Foundation_FileProtectionType;
+    readonly $type: {
+        "c:objc(cs)CSSearchableIndex": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "indexDelegate": true;
         "protectionClass": true;
@@ -328,6 +350,10 @@ export declare class CSSearchableIndexDescription extends SDKHandle {
      * @availability iOS 27.0+
      */
     get protectionClass(): $SDK3;
+    readonly $type: {
+        "c:objc(cs)CSSearchableIndexDescription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "protectionClass": true;
     };
@@ -342,13 +368,11 @@ export declare class CSSearchableItem extends SDKHandle {
      * @availability iOS 16.0+
      */
     compare(other: CSSearchableItem): _Foundation_ComparisonResult;
-    /** init() */
-    static init(): CSSearchableItem;
     /**
      * init(uniqueIdentifier: String?, domainIdentifier: String?, attributeSet: CSSearchableItemAttributeSet)
      * @availability iOS 9.0+
      */
-    static initUniqueIdentifierDomainIdentifierAttributeSet(uniqueIdentifier: (string) | null, domainIdentifier: (string) | null, attributeSet: CSSearchableItemAttributeSet): CSSearchableItem;
+    static init(uniqueIdentifier: (string) | null, domainIdentifier: (string) | null, attributeSet: CSSearchableItemAttributeSet): CSSearchableItem;
     /**
      * var attributeSet: CSSearchableItemAttributeSet { get set }
      * @availability iOS 9.0+
@@ -385,6 +409,10 @@ export declare class CSSearchableItem extends SDKHandle {
      */
     get updateListenerOptions(): CSSearchableItem_UpdateListenerOptions;
     set updateListenerOptions(value: CSSearchableItem_UpdateListenerOptions);
+    readonly $type: {
+        "c:objc(cs)CSSearchableItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeSet": true;
         "domainIdentifier": true;
@@ -421,8 +449,6 @@ export declare const CSSearchableItem_UpdateListenerOptions: {
  * @availability iOS 9.0+
  */
 export declare class CSSearchableItemAttributeSet extends SDKHandle {
-    /** init() */
-    static init(): CSSearchableItemAttributeSet;
     /**
      * init(contentType: UTType)
      * @availability iOS 14.0+
@@ -1582,6 +1608,10 @@ export declare class CSSearchableItemAttributeSet extends SDKHandle {
      */
     get whiteBalance(): $SDK5;
     set whiteBalance(value: $SDK5);
+    readonly $type: {
+        "c:objc(cs)CSSearchableItemAttributeSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exifgpsVersion": true;
         "exifVersion": true;
@@ -1834,6 +1864,10 @@ export declare class CSSearchQuery extends SDKHandle {
      * @availability iOS 16.0+
      */
     get results(): CSSearchQuery_Results;
+    readonly $type: {
+        "c:objc(cs)CSSearchQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancelled": true;
         "foundItemCount": true;
@@ -1850,6 +1884,9 @@ export declare class CSSearchQuery_Results extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): CSSearchQuery_Results_Iterator;
+    readonly $type: {
+        "s:So13CSSearchQueryC13CoreSpotlightE7ResultsV": true;
+    };
     readonly $element: CSSearchQuery_Results_Item;
 }
 /**
@@ -1878,6 +1915,9 @@ export declare class CSSearchQuery_Results_Item extends SDKHandle {
      */
     get item(): CSSearchableItem;
     set item(value: CSSearchableItem);
+    readonly $type: {
+        "s:So13CSSearchQueryC13CoreSpotlightE7ResultsV4ItemV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -1894,6 +1934,9 @@ export declare class CSSearchQuery_Results_Iterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(CSSearchQuery_Results_Item) | null>;
+    readonly $type: {
+        "s:So13CSSearchQueryC13CoreSpotlightE7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = CSSearchQuery.Results.Item
@@ -1925,6 +1968,10 @@ export declare class CSSearchQueryContext extends SDKHandle {
      */
     get keyboardLanguage(): (string) | null;
     set keyboardLanguage(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)CSSearchQueryContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fetchAttributes": true;
         "filterQueries": true;
@@ -1961,6 +2008,9 @@ export declare class CSSearchQueryError extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get cancelled(): CSSearchQueryError_Code;
+    readonly $type: {
+        "s:SC22CSSearchQueryErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2001,6 +2051,10 @@ export declare class CSSuggestion extends SDKHandle {
      * @availability iOS 16.0+
      */
     get localizedAttributedSuggestion(): _Foundation_AttributedString;
+    readonly $type: {
+        "c:objc(cs)CSSuggestion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "suggestionKind": true;
     };
@@ -2079,6 +2133,11 @@ export declare class CSUserQuery extends CSUserQuery_base {
      * @availability iOS 16.0+
      */
     get responses(): CSUserQuery_Responses;
+    readonly $type: {
+        "c:objc(cs)CSUserQuery": true;
+        "c:objc(cs)CSSearchQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancelled": true;
         "foundItemCount": true;
@@ -2102,6 +2161,9 @@ export declare class CSUserQuery_Item extends SDKHandle {
      */
     get item(): CSSearchableItem;
     set item(value: CSSearchableItem);
+    readonly $type: {
+        "s:So11CSUserQueryC13CoreSpotlightE4ItemV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -2118,6 +2180,9 @@ export declare class CSUserQuery_Responses extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): CSUserQuery_Responses_Iterator;
+    readonly $type: {
+        "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV": true;
+    };
     readonly $element: CSUserQuery_Responses_Response;
 }
 /**
@@ -2140,6 +2205,9 @@ export declare class CSUserQuery_Responses_Iterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(CSUserQuery_Responses_Response) | null>;
+    readonly $type: {
+        "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = CSUserQuery.Responses.Element
@@ -2156,6 +2224,9 @@ export declare class CSUserQuery_Responses_Response extends SDKHandle {
      * @availability iOS 16.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:So11CSUserQueryC13CoreSpotlightE9ResponsesV8ResponseO": true;
+    };
 }
 /**
  * typealias ID = String
@@ -2178,6 +2249,9 @@ export declare class CSUserQuery_Suggestion extends SDKHandle {
      * @availability iOS 16.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:So11CSUserQueryC13CoreSpotlightE10SuggestionV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -2194,6 +2268,9 @@ export declare class CSUserQuery_Suggestions extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): CSUserQuery_Suggestions_Iterator;
+    readonly $type: {
+        "s:So11CSUserQueryC13CoreSpotlightE11SuggestionsV": true;
+    };
     readonly $element: CSUserQuery_Suggestion;
 }
 /**
@@ -2216,6 +2293,9 @@ export declare class CSUserQuery_Suggestions_Iterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(CSUserQuery_Suggestion) | null>;
+    readonly $type: {
+        "s:So11CSUserQueryC13CoreSpotlightE11SuggestionsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = CSUserQuery.Suggestions.Element
@@ -2249,9 +2329,7 @@ export declare class CSUserQueryContext extends CSUserQueryContext_base {
      * init(currentSuggestion: CSSuggestion?)
      * @availability iOS 16.0+
      */
-    static initCurrentSuggestion(currentSuggestion?: (CSSuggestion) | null): CSUserQueryContext;
-    /** init() */
-    static init(): CSUserQueryContext;
+    static init(currentSuggestion?: (CSSuggestion) | null): CSUserQueryContext;
     /**
      * var disableSemanticSearch: Bool { get set }
      * @availability iOS 18.0+
@@ -2282,6 +2360,11 @@ export declare class CSUserQueryContext extends CSUserQueryContext_base {
      */
     get maxSuggestionCount(): number;
     set maxSuggestionCount(value: number);
+    readonly $type: {
+        "c:objc(cs)CSUserQueryContext": true;
+        "c:objc(cs)CSSearchQueryContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fetchAttributes": true;
         "filterQueries": true;
@@ -2293,7 +2376,7 @@ export declare class CSUserQueryContext extends CSUserQueryContext_base {
         "maxSuggestionCount": true;
     };
 }
-export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "textItemTag" | (string & {});
+export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "textItemTag" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | (string & {});
 export declare const NSAttributedString_Key: {
     /**
      * static let suggestionHighlight: NSAttributedString.Key
@@ -2308,6 +2391,10 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get contentAttributeSet(): $SDK22;
     set contentAttributeSet(value: $SDK22);
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentAttributeSet": true;
     };
@@ -2322,6 +2409,9 @@ export declare class SearchableItem extends SDKHandle {
      * @availability iOS 27.0+
      */
     get item(): CSSearchableItem;
+    readonly $type: {
+        "s:13CoreSpotlight14SearchableItemV": true;
+    };
 }
 /**
  * struct SearchableItemAttribute

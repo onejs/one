@@ -20,6 +20,10 @@ export declare class AUAppleCustomViewLoader extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): AUAppleCustomViewLoader;
+    readonly $type: {
+        "c:@M@CoreAudioKit@objc(cs)AUAppleCustomViewLoader": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export declare class AUAudioUnit extends SDKHandle {
     /**
@@ -37,19 +41,21 @@ export declare class AUAudioUnit extends SDKHandle {
      * @availability iOS 11.0+
      */
     supportedViewConfigurations(availableViewConfigurations: Array<AUAudioUnitViewConfiguration>): _Foundation_IndexSet;
+    readonly $type: {
+        "c:objc(cs)AUAudioUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AUAudioUnitViewConfiguration
  * @availability iOS 11.0+
  */
 export declare class AUAudioUnitViewConfiguration extends SDKHandle {
-    /** init() */
-    static init(): AUAudioUnitViewConfiguration;
     /**
      * init(width: CGFloat, height: CGFloat, hostHasController: Bool)
      * @availability iOS 11.0+
      */
-    static initWidthHeightHostHasController(width: number, height: number, hostHasController: boolean): AUAudioUnitViewConfiguration;
+    static init(width: number, height: number, hostHasController: boolean): AUAudioUnitViewConfiguration;
     /**
      * var height: CGFloat { get }
      * @availability iOS 11.0+
@@ -65,6 +71,10 @@ export declare class AUAudioUnitViewConfiguration extends SDKHandle {
      * @availability iOS 11.0+
      */
     get width(): number;
+    readonly $type: {
+        "c:objc(cs)AUAudioUnitViewConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "height": true;
         "hostHasController": true;
@@ -84,6 +94,12 @@ export declare class AUGenericViewController extends SDKHandle {
      */
     get auAudioUnit(): $SDK1;
     set auAudioUnit(value: $SDK1);
+    readonly $type: {
+        "c:objc(cs)AUGenericViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "auAudioUnit": true;
     };
@@ -157,6 +173,12 @@ export declare class AUGenericViewInternal extends SDKHandle {
      */
     get showSingleClumpIndex(): Promise<(number) | null>;
     setShowSingleClumpIndex(value?: (number) | null): Promise<void>;
+    readonly $type: {
+        "c:@M@CoreAudioKit@objc(cs)AUGenericViewInternal": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** typealias AUGenericViewInternalBase = UIView */
 export type AUGenericViewInternalBase = _UIKit_UIView;
@@ -167,6 +189,12 @@ export type AUGenericViewInternalBase = _UIKit_UIView;
 export declare class AUViewController extends SDKHandle {
     /** init() */
     static init(): AUViewController;
+    readonly $type: {
+        "c:objc(cs)AUViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CABTMIDICentralViewController
@@ -175,6 +203,13 @@ export declare class AUViewController extends SDKHandle {
 export declare class CABTMIDICentralViewController extends SDKHandle {
     /** init() */
     static init(): CABTMIDICentralViewController;
+    readonly $type: {
+        "c:objc(cs)CABTMIDICentralViewController": true;
+        "c:objc(cs)UITableViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CABTMIDILocalPeripheralViewController
@@ -183,6 +218,12 @@ export declare class CABTMIDICentralViewController extends SDKHandle {
 export declare class CABTMIDILocalPeripheralViewController extends SDKHandle {
     /** init() */
     static init(): CABTMIDILocalPeripheralViewController;
+    readonly $type: {
+        "c:objc(cs)CABTMIDILocalPeripheralViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CAInterAppAudioSwitcherView
@@ -211,6 +252,12 @@ export declare class CAInterAppAudioSwitcherView extends SDKHandle {
      */
     get isShowingAppNames(): boolean;
     set isShowingAppNames(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CAInterAppAudioSwitcherView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isShowingAppNames": true;
     };
@@ -296,6 +343,12 @@ export declare class CAInterAppAudioTransportView extends SDKHandle {
      */
     get rewindButtonColor(): _UIKit_UIColor;
     set rewindButtonColor(value: _UIKit_UIColor);
+    readonly $type: {
+        "c:objc(cs)CAInterAppAudioTransportView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isConnected": true;
         "currentTimeLabelFont": true;

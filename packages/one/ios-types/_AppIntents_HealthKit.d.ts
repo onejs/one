@@ -18,6 +18,9 @@ export declare class AudioContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get workout(): _AppIntents_AudioContext;
+    readonly $type: {
+        "s:10AppIntents12AudioContextV": true;
+    };
 }
 /**
  * struct WorkoutIntensityLevel

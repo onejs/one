@@ -227,6 +227,9 @@ export declare class ENError extends SDKHandle {
      * @deprecated iOS 27.0
      */
     static get badFormat(): ENError_Code;
+    readonly $type: {
+        "s:SC11ENErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -437,6 +440,10 @@ export declare class ENExposureConfiguration extends SDKHandle {
      */
     get transmissionRiskWeight(): number;
     set transmissionRiskWeight(value: number);
+    readonly $type: {
+        "c:objc(cs)ENExposureConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attenuationDurationThresholds": true;
         "attenuationLevelValues": true;
@@ -509,6 +516,10 @@ export declare class ENExposureDaySummary extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get selfReportedSummary(): $SDK7;
+    readonly $type: {
+        "c:objc(cs)ENExposureDaySummary": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "confirmedClinicalDiagnosisSummary": true;
         "confirmedTestSummary": true;
@@ -574,6 +585,10 @@ export declare class ENExposureDetectionSummary extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get riskScoreSumFullRange(): number;
+    readonly $type: {
+        "c:objc(cs)ENExposureDetectionSummary": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attenuationDurations": true;
         "daySummaries": true;
@@ -653,6 +668,10 @@ export declare class ENExposureInfo extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get transmissionRiskLevel(): number;
+    readonly $type: {
+        "c:objc(cs)ENExposureInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attenuationDurations": true;
         "attenuationValue": true;
@@ -692,6 +711,10 @@ export declare class ENExposureSummaryItem extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get weightedDurationSum(): number;
+    readonly $type: {
+        "c:objc(cs)ENExposureSummaryItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "maximumScore": true;
         "scoreSum": true;
@@ -742,6 +765,10 @@ export declare class ENExposureWindow extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get variantOfConcernType(): ENVariantOfConcernType;
+    readonly $type: {
+        "c:objc(cs)ENExposureWindow": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "calibrationConfidence": true;
         "date": true;
@@ -914,6 +941,10 @@ export declare class ENManager extends SDKHandle {
      */
     get invalidationHandler(): ((() => Promise<void>)) | null;
     set invalidationHandler(value: ((() => void)) | null);
+    readonly $type: {
+        "c:objc(cs)ENManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dispatchQueue": true;
         "exposureNotificationEnabled": true;
@@ -964,6 +995,10 @@ export declare class ENScanInstance extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get typicalAttenuation(): number;
+    readonly $type: {
+        "c:objc(cs)ENScanInstance": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "minimumAttenuation": true;
         "secondsSinceLastScan": true;
@@ -1020,6 +1055,10 @@ export declare class ENTemporaryExposureKey extends SDKHandle {
      */
     get transmissionRiskLevel(): number;
     set transmissionRiskLevel(value: number);
+    readonly $type: {
+        "c:objc(cs)ENTemporaryExposureKey": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "keyData": true;
         "rollingPeriod": true;

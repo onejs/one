@@ -51,6 +51,9 @@ export declare class AccessoryMessage extends SDKHandle {
      * @availability iOS 26.5+
      */
     get payloads(): Array<AccessoryMessage_Payload>;
+    readonly $type: {
+        "s:27AccessoryTransportExtension0A7MessageV": true;
+    };
 }
 /**
  * @resultBuilder struct Builder
@@ -77,6 +80,9 @@ export declare class AccessoryMessage_Builder extends SDKHandle {
      * @availability iOS 26.5+
      */
     static buildExpression(expression: AccessoryMessage_Payload): AccessoryMessage;
+    readonly $type: {
+        "s:27AccessoryTransportExtension0A7MessageV7BuilderV": true;
+    };
 }
 /**
  * enum Error
@@ -108,12 +114,18 @@ export declare class AccessoryMessage_Payload extends SDKHandle {
      * @availability iOS 26.5+
      */
     get transport(): AccessoryTransport;
+    readonly $type: {
+        "s:27AccessoryTransportExtension0A7MessageV7PayloadV": true;
+    };
 }
 /**
  * enum Result
  * @availability iOS 26.5+
  */
 export declare class AccessoryMessage_Result extends SDKHandle {
+    readonly $type: {
+        "s:27AccessoryTransportExtension0A7MessageV6ResultO": true;
+    };
 }
 /**
  * class AccessorySecuritySession
@@ -135,6 +147,9 @@ export declare class AccessorySecuritySession extends SDKHandle {
      * @availability iOS 26.5+
      */
     cancel(error?: $SDK2): void;
+    readonly $type: {
+        "s:27AccessoryTransportExtension0A15SecuritySessionC": true;
+    };
 }
 /**
  * enum Error
@@ -179,12 +194,18 @@ export declare class AccessorySecuritySession_Request extends SDKHandle {
      * @availability iOS 26.5+
      */
     get session(): AccessorySecuritySession;
+    readonly $type: {
+        "s:27AccessoryTransportExtension0A15SecuritySessionC7RequestC": true;
+    };
 }
 /**
  * struct Decision
  * @availability iOS 26.5+
  */
 export declare class AccessorySecuritySession_Request_Decision extends SDKHandle {
+    readonly $type: {
+        "s:27AccessoryTransportExtension0A15SecuritySessionC7RequestC8DecisionV": true;
+    };
 }
 /**
  * enum AccessoryTransport
@@ -267,6 +288,9 @@ export declare class AccessoryTransportSession extends SDKHandle {
      */
     get transport(): $SDK5;
     set transport(value: $SDK5);
+    readonly $type: {
+        "s:27AccessoryTransportExtension0aB7SessionC": true;
+    };
 }
 /**
  * enum DataEvent
@@ -274,6 +298,9 @@ export declare class AccessoryTransportSession extends SDKHandle {
  * @deprecated iOS 26.5
  */
 export declare class AccessoryTransportSession_DataEvent extends SDKHandle {
+    readonly $type: {
+        "s:27AccessoryTransportExtension0aB7SessionC9DataEventO": true;
+    };
 }
 /**
  * enum Error
@@ -330,12 +357,18 @@ export declare class AccessoryTransportSession_Request extends SDKHandle {
      * @availability iOS 26.2+
      */
     get session(): AccessoryTransportSession;
+    readonly $type: {
+        "s:27AccessoryTransportExtension0aB7SessionC7RequestC": true;
+    };
 }
 /**
  * struct Decision
  * @availability iOS 26.2+
  */
 export declare class AccessoryTransportSession_Request_Decision extends SDKHandle {
+    readonly $type: {
+        "s:27AccessoryTransportExtension0aB7SessionC7RequestC8DecisionV": true;
+    };
 }
 /**
  * struct SecurityMessage
@@ -382,6 +415,9 @@ export declare class SecurityMessage extends SDKHandle {
      * @availability iOS 26.5+
      */
     get version(): SecurityMessage_CipherSuite_Version;
+    readonly $type: {
+        "s:27AccessoryTransportExtension15SecurityMessageV": true;
+    };
 }
 /**
  * enum CipherSuite
@@ -449,5 +485,8 @@ export declare class TransportMessage extends SDKHandle {
      * @availability iOS 26.5+
      */
     static init(sessionID: string, data: ArrayBuffer): TransportMessage;
+    readonly $type: {
+        "s:27AccessoryTransportExtension0B7MessageV": true;
+    };
 }
 export {};

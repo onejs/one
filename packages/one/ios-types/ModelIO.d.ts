@@ -3,6 +3,7 @@ import { SDKHandle, type Implements } from 'one/ios-runtime';
 import type { CFString as _CoreFoundation_CFString } from "one/ios/CoreFoundation";
 import type { CGColorSpace as _CoreGraphics_CGColorSpace, CGColor as _CoreGraphics_CGColor } from "one/ios/CoreGraphics";
 import type { NSNumber as _Foundation_NSNumber, NSError as _Foundation_NSError, Bundle as _Foundation_Bundle, NSMutableArray as _Foundation_NSMutableArray } from "one/ios/Foundation";
+import type { NSZone as _ObjectiveC_NSZone } from "one/ios/ObjectiveC";
 type $SDK0 = Array<_Foundation_NSNumber>;
 type $SDK3 = (_CoreGraphics_CGColor) | null;
 type $SDK4 = (MDLVertexDescriptor) | null;
@@ -15,7 +16,7 @@ type $SDK12 = Array<MDLMaterialPropertyNode>;
 type $SDK13 = Array<MDLMaterialPropertyConnection>;
 type $SDK14 = (MDLVertexAttributeData) | null;
 type $SDK15 = (_Foundation_NSMutableArray) | null;
-type $SDK16 = (MDLSubmeshTopology) | null;
+type $SDK17 = (MDLSubmeshTopology) | null;
 /**
  * class MDLAnimatedValue
  * @availability iOS 11.0+
@@ -69,6 +70,10 @@ export declare class MDLAnimatedValue extends SDKHandle {
      * @availability iOS 11.0+
      */
     get times(): Array<number>;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -126,6 +131,11 @@ export declare class MDLAnimatedMatrix4x4 extends MDLAnimatedMatrix4x4_base {
      * @availability iOS 11.0+
      */
     resetFloat4x4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedMatrix4x4": true;
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -183,6 +193,11 @@ export declare class MDLAnimatedQuaternion extends MDLAnimatedQuaternion_base {
      * @availability iOS 13.0+
      */
     resetDoubleQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedQuaternion": true;
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -198,13 +213,11 @@ declare const MDLAnimatedQuaternionArray_base: Omit<typeof MDLAnimatedValue, "in
  * @availability iOS 11.0+
  */
 export declare class MDLAnimatedQuaternionArray extends MDLAnimatedQuaternionArray_base {
-    /** init() */
-    static init(): MDLAnimatedQuaternionArray;
     /**
      * init(elementCount arrayElementCount: Int)
      * @availability iOS 11.0+
      */
-    static initElementCount(arrayElementCount: number): MDLAnimatedQuaternionArray;
+    static init(arrayElementCount: number): MDLAnimatedQuaternionArray;
     /**
      * var elementCount: Int { get }
      * @availability iOS 11.0+
@@ -250,6 +263,11 @@ export declare class MDLAnimatedQuaternionArray extends MDLAnimatedQuaternionArr
      * @availability iOS 11.0+
      */
     resetDoubleQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedQuaternionArray": true;
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -308,6 +326,11 @@ export declare class MDLAnimatedScalar extends MDLAnimatedScalar_base {
      * @availability iOS 11.0+
      */
     resetDoubleArrayAtTimes(array: Array<number>, times: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedScalar": true;
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -323,13 +346,11 @@ declare const MDLAnimatedScalarArray_base: Omit<typeof MDLAnimatedValue, "init" 
  * @availability iOS 11.0+
  */
 export declare class MDLAnimatedScalarArray extends MDLAnimatedScalarArray_base {
-    /** init() */
-    static init(): MDLAnimatedScalarArray;
     /**
      * init(elementCount arrayElementCount: Int)
      * @availability iOS 11.0+
      */
-    static initElementCount(arrayElementCount: number): MDLAnimatedScalarArray;
+    static init(arrayElementCount: number): MDLAnimatedScalarArray;
     /**
      * var elementCount: Int { get }
      * @availability iOS 11.0+
@@ -375,6 +396,11 @@ export declare class MDLAnimatedScalarArray extends MDLAnimatedScalarArray_base 
      * @availability iOS 11.0+
      */
     resetDoubleArrayAtTimes(array: Array<number>, times: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedScalarArray": true;
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -439,6 +465,11 @@ export declare class MDLAnimatedVector2 extends MDLAnimatedVector2_base {
      * @availability iOS 11.0+
      */
     resetDouble2ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedVector2": true;
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -496,6 +527,11 @@ export declare class MDLAnimatedVector3 extends MDLAnimatedVector3_base {
      * @availability iOS 11.0+
      */
     resetDouble3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedVector3": true;
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -511,13 +547,11 @@ declare const MDLAnimatedVector3Array_base: Omit<typeof MDLAnimatedValue, "init"
  * @availability iOS 11.0+
  */
 export declare class MDLAnimatedVector3Array extends MDLAnimatedVector3Array_base {
-    /** init() */
-    static init(): MDLAnimatedVector3Array;
     /**
      * init(elementCount arrayElementCount: Int)
      * @availability iOS 11.0+
      */
-    static initElementCount(arrayElementCount: number): MDLAnimatedVector3Array;
+    static init(arrayElementCount: number): MDLAnimatedVector3Array;
     /**
      * var elementCount: Int { get }
      * @availability iOS 11.0+
@@ -563,6 +597,11 @@ export declare class MDLAnimatedVector3Array extends MDLAnimatedVector3Array_bas
      * @availability iOS 11.0+
      */
     resetDouble3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedVector3Array": true;
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -621,6 +660,11 @@ export declare class MDLAnimatedVector4 extends MDLAnimatedVector4_base {
      * @availability iOS 11.0+
      */
     resetDouble4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MDLAnimatedVector4": true;
+        "c:objc(cs)MDLAnimatedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "interpolation": true;
         "keyTimes": true;
@@ -661,6 +705,10 @@ export declare class MDLAnimationBindComponent extends SDKHandle {
      */
     get skeleton(): (MDLSkeleton) | null;
     set skeleton(value: (MDLSkeleton) | null);
+    readonly $type: {
+        "c:objc(cs)MDLAnimationBindComponent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "geometryBindTransform": true;
         "jointAnimation": true;
@@ -745,6 +793,10 @@ export declare class MDLObject extends SDKHandle {
      */
     get transform(): (SDKHandle) | null;
     set transform(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -785,6 +837,11 @@ export declare class MDLLight extends MDLLight_base {
      */
     get lightType(): MDLLightType;
     set lightType(value: MDLLightType);
+    readonly $type: {
+        "c:objc(cs)MDLLight": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -846,6 +903,12 @@ export declare class MDLPhysicallyPlausibleLight extends MDLPhysicallyPlausibleL
      */
     get outerConeAngle(): number;
     set outerConeAngle(value: number);
+    readonly $type: {
+        "c:objc(cs)MDLPhysicallyPlausibleLight": true;
+        "c:objc(cs)MDLLight": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -890,6 +953,13 @@ export declare class MDLAreaLight extends MDLAreaLight_base {
      */
     get superEllipticPower(): SDKHandle;
     set superEllipticPower(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)MDLAreaLight": true;
+        "c:objc(cs)MDLPhysicallyPlausibleLight": true;
+        "c:objc(cs)MDLLight": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -948,8 +1018,6 @@ export declare class MDLAsset extends SDKHandle {
      * @availability iOS 9.0+
      */
     export(URL: string): void;
-    /** init() */
-    static init(): MDLAsset;
     /**
      * init(bufferAllocator: (any MDLMeshBufferAllocator)?)
      * @availability iOS 9.0+
@@ -1074,6 +1142,10 @@ export declare class MDLAsset extends SDKHandle {
      * @availability iOS 9.0+
      */
     get vertexDescriptor(): $SDK4;
+    readonly $type: {
+        "c:objc(cs)MDLAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
         "animations": true;
@@ -1118,25 +1190,30 @@ export declare class MDLAxisAlignedBoundingBox extends SDKHandle {
     static initMaxBoundsMinBounds(maxBounds: SDKHandle, minBounds: SDKHandle): MDLAxisAlignedBoundingBox;
     /** init() */
     static init(): MDLAxisAlignedBoundingBox;
+    readonly $type: {
+        "c:@SA@MDLAxisAlignedBoundingBox": true;
+    };
 }
 /**
  * class MDLBundleAssetResolver
  * @availability iOS 11.0+
  */
 export declare class MDLBundleAssetResolver extends SDKHandle {
-    /** init() */
-    static init(): MDLBundleAssetResolver;
     /**
      * init(bundle path: String)
      * @availability iOS 11.0+
      */
-    static initBundle(path: string): MDLBundleAssetResolver;
+    static init(path: string): MDLBundleAssetResolver;
     /**
      * var path: String { get set }
      * @availability iOS 11.0+
      */
     get path(): string;
     set path(value: string);
+    readonly $type: {
+        "c:objc(cs)MDLBundleAssetResolver": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "path": true;
     };
@@ -1311,6 +1388,11 @@ export declare class MDLCamera extends MDLCamera_base {
      */
     get worldToMetersConversionScale(): number;
     set worldToMetersConversionScale(value: number);
+    readonly $type: {
+        "c:objc(cs)MDLCamera": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -1487,6 +1569,10 @@ export declare class MDLTexture extends SDKHandle {
      * @availability iOS 9.0+
      */
     get rowStride(): number;
+    readonly $type: {
+        "c:objc(cs)MDLTexture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelCount": true;
         "channelEncoding": true;
@@ -1503,13 +1589,11 @@ declare const MDLCheckerboardTexture_base: Omit<typeof MDLTexture, "init" | "pro
  * @availability iOS 9.0+
  */
 export declare class MDLCheckerboardTexture extends MDLCheckerboardTexture_base {
-    /** init() */
-    static init(): MDLCheckerboardTexture;
     /**
      * init(divisions: Float, name: String?, dimensions: vector_int2, channelCount: Int32, channelEncoding: MDLTextureChannelEncoding, color1: CGColor, color2: CGColor)
      * @availability iOS 9.0+
      */
-    static initDivisionsNameDimensionsChannelCountChannelEncodingColor1Color2(divisions: number, name: (string) | null, dimensions: SDKHandle, channelCount: number, channelEncoding: MDLTextureChannelEncoding, color1: _CoreGraphics_CGColor, color2: _CoreGraphics_CGColor): MDLCheckerboardTexture;
+    static init(divisions: number, name: (string) | null, dimensions: SDKHandle, channelCount: number, channelEncoding: MDLTextureChannelEncoding, color1: _CoreGraphics_CGColor, color2: _CoreGraphics_CGColor): MDLCheckerboardTexture;
     /**
      * var color1: CGColor? { get set }
      * @availability iOS 9.0+
@@ -1528,6 +1612,11 @@ export declare class MDLCheckerboardTexture extends MDLCheckerboardTexture_base 
      */
     get divisions(): number;
     set divisions(value: number);
+    readonly $type: {
+        "c:objc(cs)MDLCheckerboardTexture": true;
+        "c:objc(cs)MDLTexture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelCount": true;
         "channelEncoding": true;
@@ -1541,14 +1630,11 @@ export declare class MDLCheckerboardTexture extends MDLCheckerboardTexture_base 
         "divisions": true;
     };
 }
-declare const MDLColorSwatchTexture_base: Omit<typeof MDLTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLTexture);
 /**
  * class MDLColorSwatchTexture
  * @availability iOS 9.0+
  */
-export declare class MDLColorSwatchTexture extends MDLColorSwatchTexture_base {
-    /** init() */
-    static init(): MDLColorSwatchTexture;
+export declare class MDLColorSwatchTexture extends MDLTexture {
     /**
      * init(colorGradientFrom color1: CGColor, to color2: CGColor, name: String?, textureDimensions: vector_int2)
      * @availability iOS 9.0+
@@ -1559,6 +1645,11 @@ export declare class MDLColorSwatchTexture extends MDLColorSwatchTexture_base {
      * @availability iOS 9.0+
      */
     static initColorTemperatureGradientFromToColorTemperatureNameTextureDimensions(colorTemperature1: number, colorTemperature2: number, name: (string) | null, textureDimensions: SDKHandle): MDLColorSwatchTexture;
+    readonly $type: {
+        "c:objc(cs)MDLColorSwatchTexture": true;
+        "c:objc(cs)MDLTexture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelCount": true;
         "channelEncoding": true;
@@ -1611,12 +1702,11 @@ export declare const MDLIndexBitDepth: {
  */
 export interface MDLJointAnimation {
 }
-declare const MDLLightProbe_base: Omit<typeof MDLLight, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLLight);
 /**
  * class MDLLightProbe
  * @availability iOS 9.0+
  */
-export declare class MDLLightProbe extends MDLLightProbe_base {
+export declare class MDLLightProbe extends MDLLight {
     /** init?(textureSize: Int, forLocation transform: MDLTransform, lightsToConsider: [MDLLight], objectsToConsider: [MDLObject], reflectiveCubemap: MDLTexture?, irradianceCubemap: MDLTexture?) */
     static initTextureSizeForLocationLightsToConsiderObjectsToConsiderReflectiveCubemapIrradianceCubemap(textureSize: number, transform: MDLTransform, lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, reflectiveCubemap?: (MDLTexture) | null, irradianceCubemap?: (MDLTexture) | null): (MDLLightProbe) | null;
     /**
@@ -1624,8 +1714,6 @@ export declare class MDLLightProbe extends MDLLightProbe_base {
      * @availability iOS 9.0+
      */
     generateSphericalHarmonics(sphericalHarmonicsLevel: number): void;
-    /** init() */
-    static init(): MDLLightProbe;
     /**
      * init(reflectiveTexture: MDLTexture?, irradianceTexture: MDLTexture?)
      * @availability iOS 9.0+
@@ -1651,6 +1739,12 @@ export declare class MDLLightProbe extends MDLLightProbe_base {
      * @availability iOS 9.0+
      */
     get sphericalHarmonicsLevel(): number;
+    readonly $type: {
+        "c:objc(cs)MDLLightProbe": true;
+        "c:objc(cs)MDLLight": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -1681,13 +1775,11 @@ export declare const MDLLightType: {
  * @availability iOS 9.0+
  */
 export declare class MDLMaterial extends SDKHandle {
-    /** init() */
-    static init(): MDLMaterial;
     /**
      * init(name: String, scatteringFunction: MDLScatteringFunction)
      * @availability iOS 9.0+
      */
-    static initNameScatteringFunction(name: string, scatteringFunction: MDLScatteringFunction): MDLMaterial;
+    static init(name: string, scatteringFunction: MDLScatteringFunction): MDLMaterial;
     /**
      * func loadTextures(using resolver: any MDLAssetResolver)
      * @availability iOS 11.0+
@@ -1766,6 +1858,10 @@ export declare class MDLMaterial extends SDKHandle {
      * @availability iOS 9.0+
      */
     get scatteringFunction(): MDLScatteringFunction;
+    readonly $type: {
+        "c:objc(cs)MDLMaterial": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "base": true;
         "count": true;
@@ -1924,6 +2020,10 @@ export declare class MDLMaterialProperty extends SDKHandle {
      */
     get type(): MDLMaterialPropertyType;
     set type(value: MDLMaterialPropertyType);
+    readonly $type: {
+        "c:objc(cs)MDLMaterialProperty": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "urlValue": true;
         "color": true;
@@ -1960,6 +2060,10 @@ export declare class MDLMaterialPropertyConnection extends SDKHandle {
      * @availability iOS 10.0+
      */
     get output(): $SDK7;
+    readonly $type: {
+        "c:objc(cs)MDLMaterialPropertyConnection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "input": true;
         "output": true;
@@ -1991,6 +2095,10 @@ export declare class MDLMaterialPropertyNode extends SDKHandle {
      * @availability iOS 10.0+
      */
     get outputs(): $SDK8;
+    readonly $type: {
+        "c:objc(cs)MDLMaterialPropertyNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputs": true;
         "outputs": true;
@@ -2022,6 +2130,11 @@ export declare class MDLMaterialPropertyGraph extends MDLMaterialPropertyGraph_b
      * @availability iOS 10.0+
      */
     get nodes(): $SDK12;
+    readonly $type: {
+        "c:objc(cs)MDLMaterialPropertyGraph": true;
+        "c:objc(cs)MDLMaterialPropertyNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputs": true;
         "outputs": true;
@@ -2063,13 +2176,11 @@ export declare class MDLMatrix4x4Array extends SDKHandle {
      * @availability iOS 11.0+
      */
     clear(): void;
-    /** init() */
-    static init(): MDLMatrix4x4Array;
     /**
      * init(elementCount arrayElementCount: Int)
      * @availability iOS 11.0+
      */
-    static initElementCount(arrayElementCount: number): MDLMatrix4x4Array;
+    static init(arrayElementCount: number): MDLMatrix4x4Array;
     /**
      * var elementCount: Int { get }
      * @availability iOS 11.0+
@@ -2092,12 +2203,16 @@ export declare class MDLMatrix4x4Array extends SDKHandle {
      */
     get double4x4Array(): Array<SDKHandle>;
     set double4x4Array(value: Array<SDKHandle>);
+    readonly $type: {
+        "c:objc(cs)MDLMatrix4x4Array": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "elementCount": true;
         "precision": true;
     };
 }
-declare const MDLMesh_base: Omit<typeof MDLObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MDLObject, "boundingBox">);
+declare const MDLMesh_base: Omit<typeof MDLObject, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MDLObject, "boundingBox">);
 /**
  * class MDLMesh
  * @availability iOS 9.0+
@@ -2165,8 +2280,6 @@ export declare class MDLMesh extends MDLMesh_base {
     generateLightMapTextureWithTextureSizeLightsToConsiderObjectsToConsiderVertexAttributeNamedMaterialPropertyNamed(textureSize: SDKHandle, lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, vertexAttributeName: string, materialPropertyName: string): boolean;
     /** func generateLightMapVertexColorsWithLights(toConsider lightsToConsider: [MDLLight], objectsToConsider: [MDLObject], vertexAttributeNamed vertexAttributeName: String) -> Bool */
     generateLightMapVertexColorsWithLights(lightsToConsider: Array<MDLLight>, objectsToConsider: Array<MDLObject>, vertexAttributeName: string): boolean;
-    /** init() */
-    static init(): MDLMesh;
     /** init(boxWithExtent extent: vector_float3, segments: vector_uint3, inwardNormals: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
     static initBoxWithExtentSegmentsInwardNormalsGeometryTypeAllocator(extent: SDKHandle, segments: SDKHandle, inwardNormals: boolean, geometryType: MDLGeometryType, allocator?: (SDKHandle) | null): MDLMesh;
     /** init(capsuleWithExtent extent: vector_float3, cylinderSegments segments: vector_uint2, hemisphereSegments: Int32, inwardNormals: Bool, geometryType: MDLGeometryType, allocator: (any MDLMeshBufferAllocator)?) */
@@ -2266,6 +2379,11 @@ export declare class MDLMesh extends MDLMesh_base {
      * @availability iOS 9.0+
      */
     boundingBox16697(time: number): MDLAxisAlignedBoundingBox;
+    readonly $type: {
+        "c:objc(cs)MDLMesh": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -2287,7 +2405,7 @@ export declare class MDLMesh extends MDLMesh_base {
  * @availability iOS 9.0+
  */
 export interface MDLMeshBuffer {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: (_ObjectiveC_NSZone) | null) => unknown;
     /**
      * func fill(_ data: Data, offset: Int)
      * @availability iOS 9.0+
@@ -2340,8 +2458,6 @@ export interface MDLMeshBufferAllocator {
  * @availability iOS 9.0+
  */
 export declare class MDLMeshBufferData extends SDKHandle {
-    /** init() */
-    static init(): MDLMeshBufferData;
     /**
      * init(type: MDLMeshBufferType, data: Data?)
      * @availability iOS 9.0+
@@ -2357,6 +2473,10 @@ export declare class MDLMeshBufferData extends SDKHandle {
      * @availability iOS 9.0+
      */
     get data(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)MDLMeshBufferData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
     };
@@ -2368,24 +2488,30 @@ export declare class MDLMeshBufferData extends SDKHandle {
 export declare class MDLMeshBufferDataAllocator extends SDKHandle {
     /** init() */
     static init(): MDLMeshBufferDataAllocator;
+    readonly $type: {
+        "c:objc(cs)MDLMeshBufferDataAllocator": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MDLMeshBufferMap
  * @availability iOS 9.0+
  */
 export declare class MDLMeshBufferMap extends SDKHandle {
-    /** init() */
-    static init(): MDLMeshBufferMap;
     /**
      * init(bytes: UnsafeMutableRawPointer, deallocator: (() -> Void)? = nil)
      * @availability iOS 9.0+
      */
-    static initBytesDeallocator(bytes: SDKHandle, deallocator?: ((() => void)) | null): MDLMeshBufferMap;
+    static init(bytes: SDKHandle, deallocator?: ((() => void)) | null): MDLMeshBufferMap;
     /**
      * var bytes: UnsafeMutableRawPointer { get }
      * @availability iOS 9.0+
      */
     get bytes(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MDLMeshBufferMap": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bytes": true;
     };
@@ -2419,6 +2545,10 @@ export declare class MDLMeshBufferZoneDefault extends SDKHandle {
      * @availability iOS 11.0+
      */
     get capacity(): number;
+    readonly $type: {
+        "c:objc(cs)MDLMeshBufferZoneDefault": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allocator": true;
         "capacity": true;
@@ -2430,14 +2560,11 @@ export declare class MDLMeshBufferZoneDefault extends SDKHandle {
  */
 export interface MDLNamed {
 }
-declare const MDLNoiseTexture_base: Omit<typeof MDLTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLTexture);
 /**
  * class MDLNoiseTexture
  * @availability iOS 9.0+
  */
-export declare class MDLNoiseTexture extends MDLNoiseTexture_base {
-    /** init() */
-    static init(): MDLNoiseTexture;
+export declare class MDLNoiseTexture extends MDLTexture {
     /**
      * init(cellularNoiseWithFrequency frequency: Float, name: String?, textureDimensions: vector_int2, channelEncoding: MDLTextureChannelEncoding)
      * @availability iOS 11.0+
@@ -2453,6 +2580,11 @@ export declare class MDLNoiseTexture extends MDLNoiseTexture_base {
      * @availability iOS 9.0+
      */
     static initVectorNoiseWithSmoothnessNameTextureDimensionsChannelEncoding(smoothness: number, name: (string) | null, textureDimensions: SDKHandle, channelEncoding: MDLTextureChannelEncoding): MDLNoiseTexture;
+    readonly $type: {
+        "c:objc(cs)MDLNoiseTexture": true;
+        "c:objc(cs)MDLTexture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelCount": true;
         "channelEncoding": true;
@@ -2469,13 +2601,16 @@ declare const MDLNormalMapTexture_base: Omit<typeof MDLTexture, "init" | "protot
  * @availability iOS 9.0+
  */
 export declare class MDLNormalMapTexture extends MDLNormalMapTexture_base {
-    /** init() */
-    static init(): MDLNormalMapTexture;
     /**
      * init(byGeneratingNormalMapWith sourceTexture: MDLTexture, name: String?, smoothness: Float, contrast: Float)
      * @availability iOS 9.0+
      */
-    static initByGeneratingNormalMapWithNameSmoothnessContrast(sourceTexture: MDLTexture, name: (string) | null, smoothness: number, contrast: number): MDLNormalMapTexture;
+    static init(sourceTexture: MDLTexture, name: (string) | null, smoothness: number, contrast: number): MDLNormalMapTexture;
+    readonly $type: {
+        "c:objc(cs)MDLNormalMapTexture": true;
+        "c:objc(cs)MDLTexture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelCount": true;
         "channelEncoding": true;
@@ -2493,6 +2628,10 @@ export declare class MDLNormalMapTexture extends MDLNormalMapTexture_base {
 export declare class MDLObjectContainer extends SDKHandle {
     /** init() */
     static init(): MDLObjectContainer;
+    readonly $type: {
+        "c:objc(cs)MDLObjectContainer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol MDLObjectContainerComponent : NSFastEnumeration, MDLComponent
@@ -2522,13 +2661,11 @@ declare const MDLPackedJointAnimation_base: Omit<typeof MDLObject, "init" | "pro
  * @availability iOS 11.0+
  */
 export declare class MDLPackedJointAnimation extends MDLPackedJointAnimation_base {
-    /** init() */
-    static init(): MDLPackedJointAnimation;
     /**
      * init(name: String, jointPaths: [String])
      * @availability iOS 11.0+
      */
-    static initNameJointPaths(name: string, jointPaths: Array<string>): MDLPackedJointAnimation;
+    static init(name: string, jointPaths: Array<string>): MDLPackedJointAnimation;
     /**
      * var jointPaths: [String] { get }
      * @availability iOS 11.0+
@@ -2549,6 +2686,11 @@ export declare class MDLPackedJointAnimation extends MDLPackedJointAnimation_bas
      * @availability iOS 11.0+
      */
     get translations(): MDLAnimatedVector3Array;
+    readonly $type: {
+        "c:objc(cs)MDLPackedJointAnimation": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -2568,19 +2710,21 @@ export declare class MDLPackedJointAnimation extends MDLPackedJointAnimation_bas
  * @availability iOS 11.0+
  */
 export declare class MDLPathAssetResolver extends SDKHandle {
-    /** init() */
-    static init(): MDLPathAssetResolver;
     /**
      * init(path: String)
      * @availability iOS 11.0+
      */
-    static initPath(path: string): MDLPathAssetResolver;
+    static init(path: string): MDLPathAssetResolver;
     /**
      * var path: String { get set }
      * @availability iOS 11.0+
      */
     get path(): string;
     set path(value: string);
+    readonly $type: {
+        "c:objc(cs)MDLPathAssetResolver": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "path": true;
     };
@@ -2606,13 +2750,11 @@ export declare class MDLPhotometricLight extends MDLPhotometricLight_base {
      * @availability iOS 11.0+
      */
     generateTexture(textureSize: number): MDLTexture;
-    /** init() */
-    static init(): MDLPhotometricLight;
     /**
      * init?(iesProfile URL: URL)
      * @availability iOS 9.0+
      */
-    static initIesProfile(URL: string): (MDLPhotometricLight) | null;
+    static init(URL: string): (MDLPhotometricLight) | null;
     /**
      * var lightCubeMap: MDLTexture? { get }
      * @availability iOS 9.0+
@@ -2628,6 +2770,13 @@ export declare class MDLPhotometricLight extends MDLPhotometricLight_base {
      * @availability iOS 9.0+
      */
     get sphericalHarmonicsLevel(): number;
+    readonly $type: {
+        "c:objc(cs)MDLPhotometricLight": true;
+        "c:objc(cs)MDLPhysicallyPlausibleLight": true;
+        "c:objc(cs)MDLLight": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -2702,6 +2851,10 @@ export declare class MDLScatteringFunction extends SDKHandle {
      * @availability iOS 9.0+
      */
     get specular(): MDLMaterialProperty;
+    readonly $type: {
+        "c:objc(cs)MDLScatteringFunction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ambientOcclusion": true;
         "ambientOcclusionScale": true;
@@ -2782,6 +2935,11 @@ export declare class MDLPhysicallyPlausibleScatteringFunction extends MDLPhysica
      * @availability iOS 9.0+
      */
     get version(): number;
+    readonly $type: {
+        "c:objc(cs)MDLPhysicallyPlausibleScatteringFunction": true;
+        "c:objc(cs)MDLScatteringFunction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ambientOcclusion": true;
         "ambientOcclusionScale": true;
@@ -2817,19 +2975,21 @@ export declare const MDLProbePlacement: {
  * @availability iOS 11.0+
  */
 export declare class MDLRelativeAssetResolver extends SDKHandle {
-    /** init() */
-    static init(): MDLRelativeAssetResolver;
     /**
      * init(asset: MDLAsset)
      * @availability iOS 11.0+
      */
-    static initAsset(asset: MDLAsset): MDLRelativeAssetResolver;
+    static init(asset: MDLAsset): MDLRelativeAssetResolver;
     /**
      * weak var asset: MDLAsset? { get set }
      * @availability iOS 11.0+
      */
     get asset(): (MDLAsset) | null;
     set asset(value: (MDLAsset) | null);
+    readonly $type: {
+        "c:objc(cs)MDLRelativeAssetResolver": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "asset": true;
     };
@@ -2840,13 +3000,11 @@ declare const MDLSkeleton_base: Omit<typeof MDLObject, "init" | "prototype"> & (
  * @availability iOS 11.0+
  */
 export declare class MDLSkeleton extends MDLSkeleton_base {
-    /** init() */
-    static init(): MDLSkeleton;
     /**
      * init(name: String, jointPaths: [String])
      * @availability iOS 11.0+
      */
-    static initNameJointPaths(name: string, jointPaths: Array<string>): MDLSkeleton;
+    static init(name: string, jointPaths: Array<string>): MDLSkeleton;
     /**
      * var jointBindTransforms: MDLMatrix4x4Array { get }
      * @availability iOS 11.0+
@@ -2862,6 +3020,11 @@ export declare class MDLSkeleton extends MDLSkeleton_base {
      * @availability iOS 11.0+
      */
     get jointRestTransforms(): MDLMatrix4x4Array;
+    readonly $type: {
+        "c:objc(cs)MDLSkeleton": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -2875,14 +3038,11 @@ export declare class MDLSkeleton extends MDLSkeleton_base {
         "jointRestTransforms": true;
     };
 }
-declare const MDLSkyCubeTexture_base: Omit<typeof MDLTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLTexture);
 /**
  * class MDLSkyCubeTexture
  * @availability iOS 9.0+
  */
-export declare class MDLSkyCubeTexture extends MDLSkyCubeTexture_base {
-    /** init() */
-    static init(): MDLSkyCubeTexture;
+export declare class MDLSkyCubeTexture extends MDLTexture {
     /**
      * init(name: String?, channelEncoding: MDLTextureChannelEncoding, textureDimensions: vector_int2, turbidity: Float, sunElevation: Float, sunAzimuth: Float, upperAtmosphereScattering: Float, groundAlbedo: Float)
      * @availability iOS 11.0+
@@ -2976,6 +3136,11 @@ export declare class MDLSkyCubeTexture extends MDLSkyCubeTexture_base {
      */
     get upperAtmosphereScattering(): number;
     set upperAtmosphereScattering(value: number);
+    readonly $type: {
+        "c:objc(cs)MDLSkyCubeTexture": true;
+        "c:objc(cs)MDLTexture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelCount": true;
         "channelEncoding": true;
@@ -3051,6 +3216,12 @@ export declare class MDLStereoscopicCamera extends MDLStereoscopicCamera_base {
      * @availability iOS 9.0+
      */
     get rightViewMatrix(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MDLStereoscopicCamera": true;
+        "c:objc(cs)MDLCamera": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -3102,8 +3273,6 @@ export declare class MDLSubmesh extends SDKHandle {
      * @availability iOS 9.0+
      */
     indexBufferAsIndexType(indexType: MDLIndexBitDepth): SDKHandle;
-    /** init() */
-    static init(): MDLSubmesh;
     /**
      * init(indexBuffer: any MDLMeshBuffer, indexCount: Int, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material: MDLMaterial?)
      * @availability iOS 9.0+
@@ -3123,7 +3292,7 @@ export declare class MDLSubmesh extends SDKHandle {
      * init(name: String, indexBuffer: any MDLMeshBuffer, indexCount: Int, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material: MDLMaterial?, topology: MDLSubmeshTopology?)
      * @availability iOS 9.0+
      */
-    static initNameIndexBufferIndexCountIndexTypeGeometryTypeMaterialTopology(name: string, indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null, topology?: $SDK16): MDLSubmesh;
+    static initNameIndexBufferIndexCountIndexTypeGeometryTypeMaterialTopology(name: string, indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null, topology?: $SDK17): MDLSubmesh;
     /**
      * var geometryType: MDLGeometryType { get }
      * @availability iOS 9.0+
@@ -3160,8 +3329,12 @@ export declare class MDLSubmesh extends SDKHandle {
      * var topology: MDLSubmeshTopology? { get set }
      * @availability iOS 9.0+
      */
-    get topology(): $SDK16;
-    set topology(value: $SDK16);
+    get topology(): $SDK17;
+    set topology(value: $SDK17);
+    readonly $type: {
+        "c:objc(cs)MDLSubmesh": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "geometryType": true;
         "indexBuffer": true;
@@ -3177,13 +3350,11 @@ export declare class MDLSubmesh extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class MDLSubmeshTopology extends SDKHandle {
-    /** init() */
-    static init(): MDLSubmeshTopology;
     /**
      * init(submesh: MDLSubmesh)
      * @availability iOS 9.0+
      */
-    static initSubmesh(submesh: MDLSubmesh): MDLSubmeshTopology;
+    static init(submesh: MDLSubmesh): MDLSubmeshTopology;
     /**
      * var edgeCreaseCount: Int { get set }
      * @availability iOS 9.0+
@@ -3244,6 +3415,10 @@ export declare class MDLSubmeshTopology extends SDKHandle {
      */
     get vertexCreases(): (SDKHandle) | null;
     set vertexCreases(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)MDLSubmeshTopology": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "edgeCreaseCount": true;
         "edgeCreaseIndices": true;
@@ -3314,6 +3489,10 @@ export declare class MDLTextureFilter extends SDKHandle {
      */
     get tWrapMode(): MDLMaterialTextureWrapMode;
     set tWrapMode(value: MDLMaterialTextureWrapMode);
+    readonly $type: {
+        "c:objc(cs)MDLTextureFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "magFilter": true;
         "minFilter": true;
@@ -3348,6 +3527,10 @@ export declare class MDLTextureSampler extends SDKHandle {
      */
     get transform(): (MDLTransform) | null;
     set transform(value: (MDLTransform) | null);
+    readonly $type: {
+        "c:objc(cs)MDLTextureSampler": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hardwareFilter": true;
         "texture": true;
@@ -3469,6 +3652,10 @@ export declare class MDLTransform extends SDKHandle {
      */
     get translation(): SDKHandle;
     set translation(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)MDLTransform": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "rotation": true;
         "scale": true;
@@ -3509,6 +3696,10 @@ export declare class MDLTransformMatrixOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MDLTransformMatrixOp": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animatedValue": true;
         "name": true;
@@ -3558,6 +3749,10 @@ export declare class MDLTransformOrientOp extends SDKHandle {
      * @availability iOS 12.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MDLTransformOrientOp": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animatedValue": true;
         "name": true;
@@ -3580,6 +3775,10 @@ export declare class MDLTransformRotateOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MDLTransformRotateOp": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animatedValue": true;
         "name": true;
@@ -3602,6 +3801,10 @@ export declare class MDLTransformRotateXOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MDLTransformRotateXOp": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animatedValue": true;
         "name": true;
@@ -3624,6 +3827,10 @@ export declare class MDLTransformRotateYOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MDLTransformRotateYOp": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animatedValue": true;
         "name": true;
@@ -3646,6 +3853,10 @@ export declare class MDLTransformRotateZOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MDLTransformRotateZOp": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animatedValue": true;
         "name": true;
@@ -3668,6 +3879,10 @@ export declare class MDLTransformScaleOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MDLTransformScaleOp": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animatedValue": true;
         "name": true;
@@ -3753,6 +3968,10 @@ export declare class MDLTransformStack extends SDKHandle {
      * @availability iOS 11.0+
      */
     get transformOps(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)MDLTransformStack": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "keyTimes": true;
         "transformOps": true;
@@ -3775,6 +3994,10 @@ export declare class MDLTransformTranslateOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MDLTransformTranslateOp": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animatedValue": true;
         "name": true;
@@ -3786,19 +4009,22 @@ declare const MDLURLTexture_base: Omit<typeof MDLTexture, "init" | "prototype"> 
  * @availability iOS 9.0+
  */
 export declare class MDLURLTexture extends MDLURLTexture_base {
-    /** init() */
-    static init(): MDLURLTexture;
     /**
      * init(url URL: URL, name: String?)
      * @availability iOS 9.0+
      */
-    static initUrlName(URL: string, name?: (string) | null): MDLURLTexture;
+    static init(URL: string, name?: (string) | null): MDLURLTexture;
     /**
      * var url: URL { get set }
      * @availability iOS 9.0+
      */
     get url(): string;
     set url(value: string);
+    readonly $type: {
+        "c:objc(cs)MDLURLTexture": true;
+        "c:objc(cs)MDLTexture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelCount": true;
         "channelEncoding": true;
@@ -3822,19 +4048,21 @@ export declare class MDLUtility extends SDKHandle {
     static convert(inputURL: string, outputURL: string): void;
     /** init() */
     static init(): MDLUtility;
+    readonly $type: {
+        "c:objc(cs)MDLUtility": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MDLVertexAttribute
  * @availability iOS 9.0+
  */
 export declare class MDLVertexAttribute extends SDKHandle {
-    /** init() */
-    static init(): MDLVertexAttribute;
     /**
      * init(name: String, format: MDLVertexFormat, offset: Int, bufferIndex: Int)
      * @availability iOS 9.0+
      */
-    static initNameFormatOffsetBufferIndex(name: string, format: MDLVertexFormat, offset: number, bufferIndex: number): MDLVertexAttribute;
+    static init(name: string, format: MDLVertexFormat, offset: number, bufferIndex: number): MDLVertexAttribute;
     /**
      * var bufferIndex: Int { get set }
      * @availability iOS 9.0+
@@ -3871,6 +4099,10 @@ export declare class MDLVertexAttribute extends SDKHandle {
      */
     get time(): number;
     set time(value: number);
+    readonly $type: {
+        "c:objc(cs)MDLVertexAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bufferIndex": true;
         "format": true;
@@ -3917,6 +4149,10 @@ export declare class MDLVertexAttributeData extends SDKHandle {
      */
     get stride(): number;
     set stride(value: number);
+    readonly $type: {
+        "c:objc(cs)MDLVertexAttributeData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bufferSize": true;
         "dataStart": true;
@@ -3930,19 +4166,21 @@ export declare class MDLVertexAttributeData extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class MDLVertexBufferLayout extends SDKHandle {
-    /** init() */
-    static init(): MDLVertexBufferLayout;
     /**
      * init(stride: Int)
      * @availability iOS 9.0+
      */
-    static initStride(stride: number): MDLVertexBufferLayout;
+    static init(stride: number): MDLVertexBufferLayout;
     /**
      * var stride: Int { get set }
      * @availability iOS 9.0+
      */
     get stride(): number;
     set stride(value: number);
+    readonly $type: {
+        "c:objc(cs)MDLVertexBufferLayout": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "stride": true;
     };
@@ -3962,13 +4200,11 @@ export declare class MDLVertexDescriptor extends SDKHandle {
      * @availability iOS 9.0+
      */
     attributeNamed(name: string): (MDLVertexAttribute) | null;
-    /** init() */
-    static init(): MDLVertexDescriptor;
     /**
      * init(vertexDescriptor: MDLVertexDescriptor)
      * @availability iOS 9.0+
      */
-    static initVertexDescriptor(vertexDescriptor: MDLVertexDescriptor): MDLVertexDescriptor;
+    static init(vertexDescriptor: MDLVertexDescriptor): MDLVertexDescriptor;
     /**
      * func removeAttributeNamed(_ name: String)
      * @availability iOS 9.0+
@@ -4001,6 +4237,10 @@ export declare class MDLVertexDescriptor extends SDKHandle {
      */
     get layouts(): _Foundation_NSMutableArray;
     set layouts(value: _Foundation_NSMutableArray);
+    readonly $type: {
+        "c:objc(cs)MDLVertexDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributes": true;
         "layouts": true;
@@ -4012,7 +4252,7 @@ export declare const MDLVertexFormat: {
     /** init?(rawValue: UInt) */
     init(rawValue: number): (MDLVertexFormat) | null;
 };
-declare const MDLVoxelArray_base: Omit<typeof MDLObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MDLObject, "boundingBox">);
+declare const MDLVoxelArray_base: Omit<typeof MDLObject, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MDLObject, "boundingBox">);
 /**
  * class MDLVoxelArray
  * @availability iOS 9.0+
@@ -4043,8 +4283,6 @@ export declare class MDLVoxelArray extends MDLVoxelArray_base {
      * @availability iOS 9.0+
      */
     index(location: SDKHandle): SDKHandle;
-    /** init() */
-    static init(): MDLVoxelArray;
     /**
      * init(asset: MDLAsset, divisions: Int32, patchRadius: Float)
      * @availability iOS 9.0+
@@ -4142,6 +4380,11 @@ export declare class MDLVoxelArray extends MDLVoxelArray_base {
      * @availability iOS 9.0+
      */
     boundingBox16697(time: number): MDLAxisAlignedBoundingBox;
+    readonly $type: {
+        "c:objc(cs)MDLVoxelArray": true;
+        "c:objc(cs)MDLObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "components": true;
@@ -4172,6 +4415,9 @@ export declare class MDLVoxelIndexExtent extends SDKHandle {
     static initMinimumExtentMaximumExtent(minimumExtent: SDKHandle, maximumExtent: SDKHandle): MDLVoxelIndexExtent;
     /** init() */
     static init(): MDLVoxelIndexExtent;
+    readonly $type: {
+        "c:@SA@MDLVoxelIndexExtent": true;
+    };
 }
 /** let MDLVertexAttributeAnisotropy: String */
 export declare const MDLVertexAttributeAnisotropy: string;

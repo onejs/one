@@ -61,6 +61,9 @@ type $SDK70 = (CFURLEnumerator) | null;
 export type CFAbsoluteTime = number;
 /** class CFAllocator */
 export declare class CFAllocator extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFAllocatorRef": true;
+    };
 }
 /** typealias CFAllocatorAllocateCallBack = (CFIndex, CFOptionFlags, UnsafeMutableRawPointer?) -> UnsafeMutableRawPointer? */
 export type CFAllocatorAllocateCallBack = ((arg0: number, arg1: number, arg2: (SDKHandle) | null) => Promise<(SDKHandle) | null>);
@@ -88,6 +91,9 @@ export declare class CFAllocatorContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFAllocatorContext;
+    readonly $type: {
+        "c:@SA@CFAllocatorContext": true;
+    };
 }
 /** typealias CFAllocatorCopyDescriptionCallBack = (UnsafeRawPointer?) -> Unmanaged<CFString>? */
 export type CFAllocatorCopyDescriptionCallBack = $SDK7;
@@ -105,6 +111,9 @@ export type CFAllocatorRetainCallBack = $SDK7;
 export type CFAllocatorTypeID = number;
 /** class CFArray */
 export declare class CFArray extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFArrayRef": true;
+    };
 }
 /** typealias CFArrayApplierFunction = (UnsafeRawPointer?, UnsafeMutableRawPointer?) -> Void */
 export type CFArrayApplierFunction = $SDK8;
@@ -123,6 +132,9 @@ export declare class CFArrayCallBacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFArrayCallBacks;
+    readonly $type: {
+        "c:@SA@CFArrayCallBacks": true;
+    };
 }
 /** typealias CFArrayCopyDescriptionCallBack = (UnsafeRawPointer?) -> Unmanaged<CFString>? */
 export type CFArrayCopyDescriptionCallBack = $SDK7;
@@ -134,9 +146,15 @@ export type CFArrayReleaseCallBack = $SDK16;
 export type CFArrayRetainCallBack = $SDK17;
 /** class CFAttributedString */
 export declare class CFAttributedString extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFAttributedStringRef": true;
+    };
 }
 /** class CFBag */
 export declare class CFBag extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFBagRef": true;
+    };
 }
 /** typealias CFBagApplierFunction = (UnsafeRawPointer?, UnsafeMutableRawPointer?) -> Void */
 export type CFBagApplierFunction = $SDK8;
@@ -157,6 +175,9 @@ export declare class CFBagCallBacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFBagCallBacks;
+    readonly $type: {
+        "c:@SA@CFBagCallBacks": true;
+    };
 }
 /** typealias CFBagCopyDescriptionCallBack = (UnsafeRawPointer?) -> Unmanaged<CFString>? */
 export type CFBagCopyDescriptionCallBack = $SDK7;
@@ -170,6 +191,9 @@ export type CFBagReleaseCallBack = $SDK16;
 export type CFBagRetainCallBack = $SDK17;
 /** class CFBinaryHeap */
 export declare class CFBinaryHeap extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFBinaryHeapRef": true;
+    };
 }
 /** typealias CFBinaryHeapApplierFunction = (UnsafeRawPointer?, UnsafeMutableRawPointer?) -> Void */
 export type CFBinaryHeapApplierFunction = $SDK8;
@@ -188,6 +212,9 @@ export declare class CFBinaryHeapCallBacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFBinaryHeapCallBacks;
+    readonly $type: {
+        "c:@SA@CFBinaryHeapCallBacks": true;
+    };
 }
 /** struct CFBinaryHeapCompareContext */
 export declare class CFBinaryHeapCompareContext extends SDKHandle {
@@ -205,17 +232,29 @@ export declare class CFBinaryHeapCompareContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFBinaryHeapCompareContext;
+    readonly $type: {
+        "c:@SA@CFBinaryHeapCompareContext": true;
+    };
 }
 /** typealias CFBit = UInt32 */
 export type CFBit = number;
 /** class CFBitVector */
 export declare class CFBitVector extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFBitVectorRef": true;
+    };
 }
 /** class CFBoolean */
 export declare class CFBoolean extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFBooleanRef": true;
+    };
 }
 /** class CFBundle */
 export declare class CFBundle extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFBundleRef": true;
+    };
 }
 /** typealias CFBundleRefNum = Int32 */
 export type CFBundleRefNum = number;
@@ -223,6 +262,9 @@ export type CFBundleRefNum = number;
 export type CFByteOrder = number;
 /** class CFCalendar */
 export declare class CFCalendar extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFCalendarRef": true;
+    };
 }
 /** struct CFCalendarIdentifier */
 export type CFCalendarIdentifier = "gregorianCalendar" | "buddhistCalendar" | "chineseCalendar" | "hebrewCalendar" | "islamicCalendar" | "islamicCivilCalendar" | "japaneseCalendar" | "republicOfChinaCalendar" | "persianCalendar" | "indianCalendar" | "cfiso8601Calendar" | "islamicTabularCalendar" | "islamicUmmAlQuraCalendar" | "banglaCalendar" | "gujaratiCalendar" | "kannadaCalendar" | "malayalamCalendar" | "marathiCalendar" | "odiaCalendar" | "tamilCalendar" | "teluguCalendar" | "vikramCalendar" | "dangiCalendar" | "vietnameseCalendar" | (number & {});
@@ -386,6 +428,9 @@ export declare const CFCalendarUnit: {
 };
 /** class CFCharacterSet */
 export declare class CFCharacterSet extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFCharacterSetRef": true;
+    };
 }
 /** enum CFCharacterSetPredefinedSet */
 export type CFCharacterSetPredefinedSet = "control" | "whitespace" | "whitespaceAndNewline" | "decimalDigit" | "letter" | "lowercaseLetter" | "uppercaseLetter" | "nonBase" | "decomposable" | "alphaNumeric" | "punctuation" | "capitalizedLetter" | "symbol" | "newline" | "illegal";
@@ -403,6 +448,9 @@ export declare const CFComparisonResult: {
 };
 /** class CFData */
 export declare class CFData extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFDataRef": true;
+    };
 }
 /**
  * struct CFDataSearchFlags
@@ -428,9 +476,15 @@ export declare const CFDataSearchFlags: {
 };
 /** class CFDate */
 export declare class CFDate extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFDateRef": true;
+    };
 }
 /** class CFDateFormatter */
 export declare class CFDateFormatter extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFDateFormatterRef": true;
+    };
 }
 /** struct CFDateFormatterKey */
 export type CFDateFormatterKey = "isLenient" | "timeZone" | "calendarName" | "defaultFormat" | "twoDigitStartDate" | "defaultDate" | "calendar" | "eraSymbols" | "monthSymbols" | "shortMonthSymbols" | "weekdaySymbols" | "shortWeekdaySymbols" | "amSymbol" | "pmSymbol" | "longEraSymbols" | "veryShortMonthSymbols" | "standaloneMonthSymbols" | "shortStandaloneMonthSymbols" | "veryShortStandaloneMonthSymbols" | "veryShortWeekdaySymbols" | "standaloneWeekdaySymbols" | "shortStandaloneWeekdaySymbols" | "veryShortStandaloneWeekdaySymbols" | "quarterSymbols" | "shortQuarterSymbols" | "standaloneQuarterSymbols" | "shortStandaloneQuarterSymbols" | "gregorianStartDate" | "doesRelativeDateFormattingKey" | (number & {});
@@ -549,6 +603,9 @@ export declare const CFDateFormatterStyle: {
 };
 /** class CFDictionary */
 export declare class CFDictionary extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFDictionaryRef": true;
+    };
 }
 /** typealias CFDictionaryApplierFunction = (UnsafeRawPointer?, UnsafeRawPointer?, UnsafeMutableRawPointer?) -> Void */
 export type CFDictionaryApplierFunction = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<void>);
@@ -575,6 +632,9 @@ export declare class CFDictionaryKeyCallBacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFDictionaryKeyCallBacks;
+    readonly $type: {
+        "c:@SA@CFDictionaryKeyCallBacks": true;
+    };
 }
 /** typealias CFDictionaryReleaseCallBack = (CFAllocator?, UnsafeRawPointer?) -> Void */
 export type CFDictionaryReleaseCallBack = $SDK16;
@@ -595,14 +655,23 @@ export declare class CFDictionaryValueCallBacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFDictionaryValueCallBacks;
+    readonly $type: {
+        "c:@SA@CFDictionaryValueCallBacks": true;
+    };
 }
 /** class CFError */
 export declare class CFError extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFErrorRef": true;
+    };
 }
 /** typealias CFErrorDomain = CFString */
 export type CFErrorDomain = CFString;
 /** class CFFileDescriptor */
 export declare class CFFileDescriptor extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFFileDescriptorRef": true;
+    };
 }
 /** typealias CFFileDescriptorCallBack = (CFFileDescriptor?, CFOptionFlags, UnsafeMutableRawPointer?) -> Void */
 export type CFFileDescriptorCallBack = ((arg0: (CFFileDescriptor) | null, arg1: number, arg2: (SDKHandle) | null) => Promise<void>);
@@ -622,11 +691,17 @@ export declare class CFFileDescriptorContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFFileDescriptorContext;
+    readonly $type: {
+        "c:@SA@CFFileDescriptorContext": true;
+    };
 }
 /** typealias CFFileDescriptorNativeDescriptor = Int32 */
 export type CFFileDescriptorNativeDescriptor = number;
 /** class CFFileSecurity */
 export declare class CFFileSecurity extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFFileSecurityRef": true;
+    };
 }
 /**
  * struct CFFileSecurityClearOptions
@@ -730,6 +805,9 @@ export declare class CFGregorianDate extends SDKHandle {
      * @deprecated iOS 8.0
      */
     static init(): CFGregorianDate;
+    readonly $type: {
+        "c:@SA@CFGregorianDate": true;
+    };
 }
 /** struct CFGregorianUnitFlags */
 export type CFGregorianUnitFlags = Array<"unitsYears" | "unitsMonths" | "unitsDays" | "unitsHours" | "unitsMinutes" | "unitsSeconds" | "allUnits">;
@@ -839,6 +917,9 @@ export declare class CFGregorianUnits extends SDKHandle {
      * @deprecated iOS 8.0
      */
     static init(): CFGregorianUnits;
+    readonly $type: {
+        "c:@SA@CFGregorianUnits": true;
+    };
 }
 /** typealias CFHashCode = UInt */
 export type CFHashCode = number;
@@ -922,6 +1003,9 @@ export declare const CFISO8601DateFormatOptions: {
 };
 /** class CFLocale */
 export declare class CFLocale extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFLocaleRef": true;
+    };
 }
 /** struct CFLocaleIdentifier */
 export type CFLocaleIdentifier = (number & {});
@@ -1000,6 +1084,9 @@ export declare const CFLocaleLanguageDirection: {
 };
 /** class CFMachPort */
 export declare class CFMachPort extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFMachPortRef": true;
+    };
 }
 /** typealias CFMachPortCallBack = (CFMachPort?, UnsafeMutableRawPointer?, CFIndex, UnsafeMutableRawPointer?) -> Void */
 export type CFMachPortCallBack = ((arg0: (CFMachPort) | null, arg1: (SDKHandle) | null, arg2: number, arg3: (SDKHandle) | null) => Promise<void>);
@@ -1019,11 +1106,17 @@ export declare class CFMachPortContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFMachPortContext;
+    readonly $type: {
+        "c:@SA@CFMachPortContext": true;
+    };
 }
 /** typealias CFMachPortInvalidationCallBack = (CFMachPort?, UnsafeMutableRawPointer?) -> Void */
 export type CFMachPortInvalidationCallBack = ((arg0: (CFMachPort) | null, arg1: (SDKHandle) | null) => Promise<void>);
 /** class CFMessagePort */
 export declare class CFMessagePort extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFMessagePortRef": true;
+    };
 }
 /** typealias CFMessagePortCallBack = (CFMessagePort?, Int32, CFData?, UnsafeMutableRawPointer?) -> Unmanaged<CFData>? */
 export type CFMessagePortCallBack = ((arg0: (CFMessagePort) | null, arg1: number, arg2: (CFData) | null, arg3: (SDKHandle) | null) => Promise<(SDKHandle) | null>);
@@ -1043,46 +1136,94 @@ export declare class CFMessagePortContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFMessagePortContext;
+    readonly $type: {
+        "c:@SA@CFMessagePortContext": true;
+    };
 }
 /** typealias CFMessagePortInvalidationCallBack = (CFMessagePort?, UnsafeMutableRawPointer?) -> Void */
 export type CFMessagePortInvalidationCallBack = ((arg0: (CFMessagePort) | null, arg1: (SDKHandle) | null) => Promise<void>);
 /** class CFMutableArray */
 export declare class CFMutableArray extends CFArray {
+    readonly $type: {
+        "c:@T@CFMutableArrayRef": true;
+        "c:@T@CFArrayRef": true;
+    };
 }
 /** class CFMutableAttributedString */
 export declare class CFMutableAttributedString extends CFAttributedString {
+    readonly $type: {
+        "c:@T@CFMutableAttributedStringRef": true;
+        "c:@T@CFAttributedStringRef": true;
+    };
 }
 /** class CFMutableBag */
 export declare class CFMutableBag extends CFBag {
+    readonly $type: {
+        "c:@T@CFMutableBagRef": true;
+        "c:@T@CFBagRef": true;
+    };
 }
 /** class CFMutableBitVector */
 export declare class CFMutableBitVector extends CFBitVector {
+    readonly $type: {
+        "c:@T@CFMutableBitVectorRef": true;
+        "c:@T@CFBitVectorRef": true;
+    };
 }
 /** class CFMutableCharacterSet */
 export declare class CFMutableCharacterSet extends CFCharacterSet {
+    readonly $type: {
+        "c:@T@CFMutableCharacterSetRef": true;
+        "c:@T@CFCharacterSetRef": true;
+    };
 }
 /** class CFMutableData */
 export declare class CFMutableData extends CFData {
+    readonly $type: {
+        "c:@T@CFMutableDataRef": true;
+        "c:@T@CFDataRef": true;
+    };
 }
 /** class CFMutableDictionary */
 export declare class CFMutableDictionary extends CFDictionary {
+    readonly $type: {
+        "c:@T@CFMutableDictionaryRef": true;
+        "c:@T@CFDictionaryRef": true;
+    };
 }
 /** class CFSet */
 export declare class CFSet extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFSetRef": true;
+    };
 }
 /** class CFMutableSet */
 export declare class CFMutableSet extends CFSet {
+    readonly $type: {
+        "c:@T@CFMutableSetRef": true;
+        "c:@T@CFSetRef": true;
+    };
 }
 /** class CFString */
 export declare class CFString extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFStringRef": true;
+    };
 }
 /** class CFMutableString */
 export declare class CFMutableString extends CFString {
+    readonly $type: {
+        "c:@T@CFMutableStringRef": true;
+        "c:@T@CFStringRef": true;
+    };
 }
 /** typealias CFNotificationCallback = (CFNotificationCenter?, UnsafeMutableRawPointer?, CFNotificationName?, UnsafeRawPointer?, CFDictionary?) -> Void */
 export type CFNotificationCallback = ((arg0: (CFNotificationCenter) | null, arg1: (SDKHandle) | null, arg2: (CFNotificationName) | null, arg3: (SDKHandle) | null, arg4: (CFDictionary) | null) => Promise<void>);
 /** class CFNotificationCenter */
 export declare class CFNotificationCenter extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFNotificationCenterRef": true;
+    };
 }
 /** struct CFNotificationName */
 export type CFNotificationName = "cfTimeZoneSystemTimeZoneDidChange" | "cfLocaleCurrentLocaleDidChange" | (number & {});
@@ -1110,12 +1251,21 @@ export declare const CFNotificationSuspensionBehavior: {
 };
 /** class CFNull */
 export declare class CFNull extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFNullRef": true;
+    };
 }
 /** class CFNumber */
 export declare class CFNumber extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFNumberRef": true;
+    };
 }
 /** class CFNumberFormatter */
 export declare class CFNumberFormatter extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFNumberFormatterRef": true;
+    };
 }
 /** struct CFNumberFormatterKey */
 export type CFNumberFormatterKey = "currencyCode" | "decimalSeparator" | "currencyDecimalSeparator" | "alwaysShowDecimalSeparator" | "groupingSeparator" | "useGroupingSeparator" | "percentSymbol" | "zeroSymbol" | "naNSymbol" | "infinitySymbol" | "minusSign" | "plusSign" | "currencySymbol" | "exponentSymbol" | "minIntegerDigits" | "maxIntegerDigits" | "minFractionDigits" | "maxFractionDigits" | "groupingSize" | "secondaryGroupingSize" | "roundingMode" | "roundingIncrement" | "formatWidth" | "paddingPosition" | "paddingCharacter" | "defaultFormat" | "multiplier" | "positivePrefix" | "positiveSuffix" | "negativePrefix" | "negativeSuffix" | "perMillSymbol" | "internationalCurrencySymbol" | "currencyGroupingSeparator" | "isLenient" | "useSignificantDigits" | "minSignificantDigits" | "maxSignificantDigits" | "minGroupingDigits" | (number & {});
@@ -1257,6 +1407,9 @@ export declare const CFNumberType: {
 export type CFOptionFlags = number;
 /** class CFPlugIn */
 export declare class CFPlugIn extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFPlugInRef": true;
+    };
 }
 /** typealias CFPlugInDynamicRegisterFunction = (CFPlugIn?) -> Void */
 export type CFPlugInDynamicRegisterFunction = $SDK33;
@@ -1264,6 +1417,9 @@ export type CFPlugInDynamicRegisterFunction = $SDK33;
 export type CFPlugInFactoryFunction = ((arg0: (CFAllocator) | null, arg1: (CFUUID) | null) => Promise<(SDKHandle) | null>);
 /** class CFPlugInInstance */
 export declare class CFPlugInInstance extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFPlugInInstanceRef": true;
+    };
 }
 /** typealias CFPlugInInstanceDeallocateInstanceDataFunction = (UnsafeMutableRawPointer?) -> Void */
 export type CFPlugInInstanceDeallocateInstanceDataFunction = $SDK11;
@@ -1301,14 +1457,23 @@ export declare class CFRange extends SDKHandle {
     static initLocationLength(location: number, length: number): CFRange;
     /** init() */
     static init(): CFRange;
+    readonly $type: {
+        "c:@SA@CFRange": true;
+    };
 }
 /** class CFReadStream */
 export declare class CFReadStream extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFReadStreamRef": true;
+    };
 }
 /** typealias CFReadStreamClientCallBack = (CFReadStream?, CFStreamEventType, UnsafeMutableRawPointer?) -> Void */
 export type CFReadStreamClientCallBack = ((arg0: (CFReadStream) | null, arg1: CFStreamEventType, arg2: (SDKHandle) | null) => Promise<void>);
 /** class CFRunLoop */
 export declare class CFRunLoop extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFRunLoopRef": true;
+    };
 }
 /** struct CFRunLoopActivity */
 export type CFRunLoopActivity = Array<"entry" | "beforeTimers" | "beforeSources" | "beforeWaiting" | "afterWaiting" | "exit" | "allActivities">;
@@ -1344,6 +1509,9 @@ export declare const CFRunLoopMode: {
 };
 /** class CFRunLoopObserver */
 export declare class CFRunLoopObserver extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFRunLoopObserverRef": true;
+    };
 }
 /** typealias CFRunLoopObserverCallBack = (CFRunLoopObserver?, CFRunLoopActivity, UnsafeMutableRawPointer?) -> Void */
 export type CFRunLoopObserverCallBack = ((arg0: (CFRunLoopObserver) | null, arg1: CFRunLoopActivity, arg2: (SDKHandle) | null) => Promise<void>);
@@ -1363,6 +1531,9 @@ export declare class CFRunLoopObserverContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFRunLoopObserverContext;
+    readonly $type: {
+        "c:@SA@CFRunLoopObserverContext": true;
+    };
 }
 /** enum CFRunLoopRunResult */
 export type CFRunLoopRunResult = "finished" | "stopped" | "timedOut" | "handledSource";
@@ -1372,6 +1543,9 @@ export declare const CFRunLoopRunResult: {
 };
 /** class CFRunLoopSource */
 export declare class CFRunLoopSource extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFRunLoopSourceRef": true;
+    };
 }
 /** struct CFRunLoopSourceContext */
 export declare class CFRunLoopSourceContext extends SDKHandle {
@@ -1399,6 +1573,9 @@ export declare class CFRunLoopSourceContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFRunLoopSourceContext;
+    readonly $type: {
+        "c:@SA@CFRunLoopSourceContext": true;
+    };
 }
 /** struct CFRunLoopSourceContext1 */
 export declare class CFRunLoopSourceContext1 extends SDKHandle {
@@ -1424,9 +1601,15 @@ export declare class CFRunLoopSourceContext1 extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFRunLoopSourceContext1;
+    readonly $type: {
+        "c:@SA@CFRunLoopSourceContext1": true;
+    };
 }
 /** class CFRunLoopTimer */
 export declare class CFRunLoopTimer extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFRunLoopTimerRef": true;
+    };
 }
 /** typealias CFRunLoopTimerCallBack = (CFRunLoopTimer?, UnsafeMutableRawPointer?) -> Void */
 export type CFRunLoopTimerCallBack = ((arg0: (CFRunLoopTimer) | null, arg1: (SDKHandle) | null) => Promise<void>);
@@ -1446,6 +1629,9 @@ export declare class CFRunLoopTimerContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFRunLoopTimerContext;
+    readonly $type: {
+        "c:@SA@CFRunLoopTimerContext": true;
+    };
 }
 /** typealias CFSetApplierFunction = (UnsafeRawPointer?, UnsafeMutableRawPointer?) -> Void */
 export type CFSetApplierFunction = $SDK8;
@@ -1466,6 +1652,9 @@ export declare class CFSetCallBacks extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFSetCallBacks;
+    readonly $type: {
+        "c:@SA@CFSetCallBacks": true;
+    };
 }
 /** typealias CFSetCopyDescriptionCallBack = (UnsafeRawPointer?) -> Unmanaged<CFString>? */
 export type CFSetCopyDescriptionCallBack = $SDK7;
@@ -1479,6 +1668,9 @@ export type CFSetReleaseCallBack = $SDK16;
 export type CFSetRetainCallBack = $SDK17;
 /** class CFSocket */
 export declare class CFSocket extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFSocketRef": true;
+    };
 }
 /** typealias CFSocketCallBack = (CFSocket?, CFSocketCallBackType, CFData?, UnsafeRawPointer?, UnsafeMutableRawPointer?) -> Void */
 export type CFSocketCallBack = ((arg0: (CFSocket) | null, arg1: CFSocketCallBackType, arg2: (CFData) | null, arg3: (SDKHandle) | null, arg4: (SDKHandle) | null) => Promise<void>);
@@ -1514,6 +1706,9 @@ export declare class CFSocketContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFSocketContext;
+    readonly $type: {
+        "c:@SA@CFSocketContext": true;
+    };
 }
 /** enum CFSocketError */
 export type CFSocketError = "success" | "error" | "timeout";
@@ -1541,6 +1736,9 @@ export declare class CFSocketSignature extends SDKHandle {
     static initProtocolFamilySocketTypeProtocolAddress(protocolFamily: number, socketType: number, protocol: number, address?: (SDKHandle) | null): CFSocketSignature;
     /** init() */
     static init(): CFSocketSignature;
+    readonly $type: {
+        "c:@SA@CFSocketSignature": true;
+    };
 }
 /** struct CFStreamClientContext */
 export declare class CFStreamClientContext extends SDKHandle {
@@ -1558,6 +1756,9 @@ export declare class CFStreamClientContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFStreamClientContext;
+    readonly $type: {
+        "c:@SA@CFStreamClientContext": true;
+    };
 }
 /** struct CFStreamError */
 export declare class CFStreamError extends SDKHandle {
@@ -1571,6 +1772,9 @@ export declare class CFStreamError extends SDKHandle {
     static initDomainError(domain: number, error: number): CFStreamError;
     /** init() */
     static init(): CFStreamError;
+    readonly $type: {
+        "c:@SA@CFStreamError": true;
+    };
 }
 /** enum CFStreamErrorDomain */
 export type CFStreamErrorDomain = "custom" | "POSIX" | "macOSStatus";
@@ -1698,6 +1902,9 @@ export declare class CFStringInlineBuffer extends SDKHandle {
     static initBufferTheStringDirectUniCharBufferDirectCStringBufferRangeToBufferBufferedRangeStartBufferedRangeEnd(buffer: $SDK44, theString: (SDKHandle) | null, directUniCharBuffer: (SDKHandle) | null, directCStringBuffer: (SDKHandle) | null, rangeToBuffer: CFRange, bufferedRangeStart: number, bufferedRangeEnd: number): CFStringInlineBuffer;
     /** init() */
     static init(): CFStringInlineBuffer;
+    readonly $type: {
+        "c:@SA@CFStringInlineBuffer": true;
+    };
 }
 /** enum CFStringNormalizationForm */
 export type CFStringNormalizationForm = "D" | "KD" | "C" | "KC";
@@ -1707,6 +1914,9 @@ export declare const CFStringNormalizationForm: {
 };
 /** class CFStringTokenizer */
 export declare class CFStringTokenizer extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFStringTokenizerRef": true;
+    };
 }
 /** struct CFStringTokenizerTokenType */
 export type CFStringTokenizerTokenType = Array<"normal" | "hasSubTokensMask" | "hasDerivedSubTokensMask" | "hasHasNumbersMask" | "hasNonLettersMask" | "isCJWordMask">;
@@ -1735,6 +1945,9 @@ export declare class CFSwappedFloat32 extends SDKHandle {
     static initV(v: number): CFSwappedFloat32;
     /** init() */
     static init(): CFSwappedFloat32;
+    readonly $type: {
+        "c:@SA@CFSwappedFloat32": true;
+    };
 }
 /** struct CFSwappedFloat64 */
 export declare class CFSwappedFloat64 extends SDKHandle {
@@ -1745,11 +1958,17 @@ export declare class CFSwappedFloat64 extends SDKHandle {
     static initV(v: number): CFSwappedFloat64;
     /** init() */
     static init(): CFSwappedFloat64;
+    readonly $type: {
+        "c:@SA@CFSwappedFloat64": true;
+    };
 }
 /** typealias CFTimeInterval = Double */
 export type CFTimeInterval = number;
 /** class CFTimeZone */
 export declare class CFTimeZone extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFTimeZoneRef": true;
+    };
 }
 /**
  * enum CFTimeZoneNameStyle
@@ -1765,6 +1984,9 @@ export declare const CFTimeZoneNameStyle: {
 };
 /** class CFTree */
 export declare class CFTree extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFTreeRef": true;
+    };
 }
 /** typealias CFTreeApplierFunction = (UnsafeRawPointer?, UnsafeMutableRawPointer?) -> Void */
 export type CFTreeApplierFunction = $SDK8;
@@ -1784,6 +2006,9 @@ export declare class CFTreeContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): CFTreeContext;
+    readonly $type: {
+        "c:@SA@CFTreeContext": true;
+    };
 }
 /** typealias CFTreeCopyDescriptionCallBack = (UnsafeRawPointer?) -> Unmanaged<CFString>? */
 export type CFTreeCopyDescriptionCallBack = $SDK7;
@@ -1797,6 +2022,9 @@ export type CFTypeID = number;
 export type CFTypeRef = unknown;
 /** class CFURL */
 export declare class CFURL extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFURLRef": true;
+    };
 }
 /**
  * struct CFURLBookmarkCreationOptions
@@ -1872,6 +2100,9 @@ export declare const CFURLComponentType: {
 };
 /** class CFURLEnumerator */
 export declare class CFURLEnumerator extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFURLEnumeratorRef": true;
+    };
 }
 /** struct CFURLEnumeratorOptions */
 export type CFURLEnumeratorOptions = Array<"descendRecursively" | "skipInvisibles" | "generateFileReferenceURLs" | "skipPackageContents" | "includeDirectoriesPreOrder" | "includeDirectoriesPostOrder" | "generateRelativePathURLs">;
@@ -1910,11 +2141,17 @@ export declare const CFURLPathStyle: {
 };
 /** class CFUserNotification */
 export declare class CFUserNotification extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFUserNotificationRef": true;
+    };
 }
 /** typealias CFUserNotificationCallBack = (CFUserNotification?, CFOptionFlags) -> Void */
 export type CFUserNotificationCallBack = ((arg0: (CFUserNotification) | null, arg1: number) => Promise<void>);
 /** class CFUUID */
 export declare class CFUUID extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFUUIDRef": true;
+    };
 }
 /** struct CFUUIDBytes */
 export declare class CFUUIDBytes extends SDKHandle {
@@ -1970,9 +2207,15 @@ export declare class CFUUIDBytes extends SDKHandle {
     static initByte0Byte1Byte2Byte3Byte4Byte5Byte6Byte7Byte8Byte9Byte10Byte11Byte12Byte13Byte14Byte15(byte0: number, byte1: number, byte2: number, byte3: number, byte4: number, byte5: number, byte6: number, byte7: number, byte8: number, byte9: number, byte10: number, byte11: number, byte12: number, byte13: number, byte14: number, byte15: number): CFUUIDBytes;
     /** init() */
     static init(): CFUUIDBytes;
+    readonly $type: {
+        "c:@SA@CFUUIDBytes": true;
+    };
 }
 /** class CFWriteStream */
 export declare class CFWriteStream extends SDKHandle {
+    readonly $type: {
+        "c:@T@CFWriteStreamRef": true;
+    };
 }
 /** typealias CFWriteStreamClientCallBack = (CFWriteStream?, CFStreamEventType, UnsafeMutableRawPointer?) -> Void */
 export type CFWriteStreamClientCallBack = ((arg0: (CFWriteStream) | null, arg1: CFStreamEventType, arg2: (SDKHandle) | null) => Promise<void>);
@@ -2000,6 +2243,9 @@ export declare class CGAffineTransform extends SDKHandle {
     static initABCDTxTy(a: number, b: number, c: number, d: number, tx: number, ty: number): CGAffineTransform;
     /** init() */
     static init(): CGAffineTransform;
+    readonly $type: {
+        "c:@S@CGAffineTransform": true;
+    };
 }
 /** struct CGAffineTransformComponents */
 export declare class CGAffineTransformComponents extends SDKHandle {
@@ -2019,6 +2265,9 @@ export declare class CGAffineTransformComponents extends SDKHandle {
     static initScaleHorizontalShearRotationTranslation(scale: $SDK47, horizontalShear: number, rotation: number, translation: $SDK48): CGAffineTransformComponents;
     /** init() */
     static init(): CGAffineTransformComponents;
+    readonly $type: {
+        "c:@S@CGAffineTransformComponents": true;
+    };
 }
 /**
  * @frozen struct CGFloat
@@ -2301,6 +2550,9 @@ export declare class CGFloat extends SDKHandle {
      * @availability iOS 2.0+
      */
     static init91565(source: number): number;
+    readonly $type: {
+        "s:14CoreFoundation7CGFloatV": true;
+    };
 }
 /**
  * typealias Exponent = Int
@@ -2354,6 +2606,9 @@ export declare class CGPoint extends SDKHandle {
     static initXY(x: number, y: number): $SDK49;
     /** init() */
     static init(): $SDK49;
+    readonly $type: {
+        "c:@S@CGPoint": true;
+    };
 }
 /** struct CGRect */
 export declare class CGRect extends SDKHandle {
@@ -2367,6 +2622,9 @@ export declare class CGRect extends SDKHandle {
     static initOriginSize(origin: $SDK49, size: $SDK47): $SDK50;
     /** init() */
     static init(): $SDK50;
+    readonly $type: {
+        "c:@S@CGRect": true;
+    };
 }
 /** @frozen enum CGRectEdge */
 export type CGRectEdge = "minXEdge" | "minYEdge" | "maxXEdge" | "maxYEdge";
@@ -2386,6 +2644,9 @@ export declare class CGSize extends SDKHandle {
     static initWidthHeight(width: number, height: number): $SDK47;
     /** init() */
     static init(): $SDK47;
+    readonly $type: {
+        "c:@S@CGSize": true;
+    };
 }
 /** struct CGVector */
 export declare class CGVector extends SDKHandle {
@@ -2399,6 +2660,9 @@ export declare class CGVector extends SDKHandle {
     static initDxDy(dx: number, dy: number): $SDK48;
     /** init() */
     static init(): $SDK48;
+    readonly $type: {
+        "c:@S@CGVector": true;
+    };
 }
 /**
  * func CFAbsoluteTimeAddGregorianUnits(_ at: CFAbsoluteTime, _ tz: CFTimeZone!, _ units: CFGregorianUnits) -> CFAbsoluteTime

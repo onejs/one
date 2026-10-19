@@ -46,6 +46,9 @@ export declare class GameSaveSyncedDirectory extends SDKHandle {
      * @availability iOS 26.0+
      */
     get state(): GameSaveSyncedDirectory_State;
+    readonly $type: {
+        "s:8GameSave0aB15SyncedDirectoryC": true;
+    };
     readonly $observable: {
         "id": true;
         "state": true;
@@ -66,6 +69,9 @@ export declare class GameSaveSyncedDirectory_State extends SDKHandle {
      * @availability iOS 26.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:8GameSave0aB15SyncedDirectoryC5StateO": true;
+    };
 }
 /**
  * class Version
@@ -103,6 +109,9 @@ export declare class GameSaveSyncedDirectory_Version extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isLocal(): boolean;
+    readonly $type: {
+        "s:8GameSave0aB15SyncedDirectoryC7VersionC": true;
+    };
 }
 /**
  * typealias ID = URL
@@ -125,6 +134,10 @@ export declare class GSSyncedDirectory extends SDKHandle {
     triggerPendingUpload(completion: ((arg0: boolean) => void)): void;
     /** var directoryState: GSSyncedDirectoryState { get } */
     get directoryState(): GSSyncedDirectoryState;
+    readonly $type: {
+        "c:objc(cs)GSSyncedDirectory": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "directoryState": true;
     };
@@ -139,6 +152,10 @@ export declare class GSSyncedDirectoryState extends SDKHandle {
     get state(): GSSyncState;
     /** var url: URL? { get } */
     get url(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)GSSyncedDirectoryState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "conflictedVersions": true;
         "error": true;
@@ -158,6 +175,10 @@ export declare class GSSyncedDirectoryVersion extends SDKHandle {
     get modifiedDate(): globalThis.Date;
     /** var url: URL { get } */
     get url(): string;
+    readonly $type: {
+        "c:objc(cs)GSSyncedDirectoryVersion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "description": true;
         "isLocal": true;

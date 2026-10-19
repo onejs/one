@@ -2,6 +2,7 @@
 import { SDKHandle } from 'one/ios-runtime';
 import type { CGImage as _CoreGraphics_CGImage, CGColor as _CoreGraphics_CGColor } from "one/ios/CoreGraphics";
 import type { AttributedString as _Foundation_AttributedString, NSAttributedString as _Foundation_NSAttributedString, NSNotification_Name as _Foundation_NSNotification_Name, Notification as _Foundation_Notification, NSNumber as _Foundation_NSNumber, NSString as _Foundation_NSString, AttributeScopeCodableConfiguration as _Foundation_AttributeScopeCodableConfiguration, Locale as _Foundation_Locale, Locale_Language as _Foundation_Locale_Language, NSAttributedString_Key as _Foundation_NSAttributedString_Key } from "one/ios/Foundation";
+import type { NSZone as _ObjectiveC_NSZone } from "one/ios/ObjectiveC";
 type $SDK2 = {
     x: number;
     y: number;
@@ -15,12 +16,15 @@ type $SDK6 = {
 };
 type $SDK7 = Array<AXDataSeriesDescriptor>;
 type $SDK8 = (AXNumericDataAxisDescriptor) | null;
-type $SDK12 = Array<AXMathExpressionSubSuperscript>;
+type $SDK13 = Array<AXMathExpressionSubSuperscript>;
 /**
  * enum AccessibilityNotification
  * @availability iOS 17.0+
  */
 export declare class AccessibilityNotification extends SDKHandle {
+    readonly $type: {
+        "s:13Accessibility0A12NotificationO": true;
+    };
 }
 /**
  * struct Announcement
@@ -42,6 +46,9 @@ export declare class AccessibilityNotification_Announcement extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init11535(announcement: _Foundation_NSAttributedString): AccessibilityNotification_Announcement;
+    readonly $type: {
+        "s:13Accessibility0A12NotificationO12AnnouncementV": true;
+    };
 }
 /**
  * struct LayoutChanged
@@ -53,6 +60,9 @@ export declare class AccessibilityNotification_LayoutChanged extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(element?: (unknown) | null): AccessibilityNotification_LayoutChanged;
+    readonly $type: {
+        "s:13Accessibility0A12NotificationO13LayoutChangedV": true;
+    };
 }
 /**
  * struct PageScrolled
@@ -74,6 +84,9 @@ export declare class AccessibilityNotification_PageScrolled extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init30647(announcement: _Foundation_NSAttributedString): AccessibilityNotification_PageScrolled;
+    readonly $type: {
+        "s:13Accessibility0A12NotificationO12PageScrolledV": true;
+    };
 }
 /**
  * struct ScreenChanged
@@ -85,6 +98,9 @@ export declare class AccessibilityNotification_ScreenChanged extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(element?: (unknown) | null): AccessibilityNotification_ScreenChanged;
+    readonly $type: {
+        "s:13Accessibility0A12NotificationO13ScreenChangedV": true;
+    };
 }
 /**
  * class AccessibilityRequest
@@ -101,6 +117,10 @@ export declare class AccessibilityRequest extends SDKHandle {
      * @availability iOS 18.0+
      */
     get technology(): AccessibilityTechnology;
+    readonly $type: {
+        "c:objc(cs)AXRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "technology": true;
     };
@@ -194,6 +214,9 @@ export declare class AccessibilitySettings extends SDKHandle {
     static get prefersHorizontalTextLayoutDidChangeNotification(): _Foundation_NSNotification_Name;
     /** init() */
     static init(): AccessibilitySettings;
+    readonly $type: {
+        "c:@S@AccessibilitySettings": true;
+    };
 }
 /**
  * struct ApplicationAccessibilityEnabledDidChangeMessage
@@ -215,6 +238,9 @@ export declare class AccessibilitySettings_ApplicationAccessibilityEnabledDidCha
      * @availability iOS 27.0+
      */
     static init(): AccessibilitySettings_ApplicationAccessibilityEnabledDidChangeMessage;
+    readonly $type: {
+        "s:So21AccessibilitySettingsV0A0E011ApplicationA23EnabledDidChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = AccessibilitySettings
@@ -334,6 +360,9 @@ export declare class AttributeScopes_AccessibilityAttributes extends SDKHandle {
      * @availability iOS 17.0+
      */
     get accessibilitySpeechAnnouncementPriority(): AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV": true;
+    };
 }
 /**
  * @frozen enum AdjustedPitchAttribute
@@ -360,6 +389,9 @@ export declare class AttributeScopes_AccessibilityAttributes_AdjustedPitchAttrib
      * @availability iOS 15.0+
      */
     static value(object: _Foundation_NSNumber): number;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV013AdjustedPitchB0O": true;
+    };
 }
 /**
  * typealias ObjectiveCValue = NSNumber
@@ -396,6 +428,9 @@ export declare class AttributeScopes_AccessibilityAttributes_AnnouncementPriorit
      * @availability iOS 17.0+
      */
     static value(object: _Foundation_NSString): AttributeScopes_AccessibilityAttributes_AnnouncementPriorityAttribute_AnnouncementPriority;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV020AnnouncementPriorityB0O": true;
+    };
 }
 /**
  * enum AnnouncementPriority
@@ -469,6 +504,9 @@ export declare class AttributeScopes_AccessibilityAttributes_HeadingLevelAttribu
      * @availability iOS 15.0+
      */
     static value(object: _Foundation_NSNumber): AttributeScopes_AccessibilityAttributes_HeadingLevelAttribute_HeadingLevel;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV012HeadingLevelB0O": true;
+    };
 }
 /**
  * enum HeadingLevel
@@ -517,6 +555,9 @@ export declare class AttributeScopes_AccessibilityAttributes_IncludesPunctuation
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV019IncludesPunctuationB0O": true;
+    };
 }
 /**
  * typealias Value = Bool
@@ -538,6 +579,9 @@ export declare class AttributeScopes_AccessibilityAttributes_IPANotationAttribut
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV011IPANotationB0O": true;
+    };
 }
 /**
  * typealias Value = String
@@ -559,6 +603,9 @@ export declare class AttributeScopes_AccessibilityAttributes_QueueAnnouncementAt
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV017QueueAnnouncementB0O": true;
+    };
 }
 /**
  * typealias Value = Bool
@@ -580,6 +627,9 @@ export declare class AttributeScopes_AccessibilityAttributes_SpeechSSMLAttribute
      * @availability iOS 27.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV19SpeechSSMLAttributeO": true;
+    };
 }
 /**
  * typealias Value = String
@@ -601,6 +651,9 @@ export declare class AttributeScopes_AccessibilityAttributes_SpellOutAttribute e
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV08SpellOutB0O": true;
+    };
 }
 /**
  * typealias Value = Bool
@@ -622,6 +675,9 @@ export declare class AttributeScopes_AccessibilityAttributes_TextCustomAttribute
      * @availability iOS 15.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV010TextCustomB0O": true;
+    };
 }
 /**
  * typealias Value = [String]
@@ -658,6 +714,9 @@ export declare class AttributeScopes_AccessibilityAttributes_TextualContextAttri
      * @availability iOS 15.0+
      */
     static value(object: _Foundation_NSString): AttributeScopes_AccessibilityAttributes_TextualContextAttribute_TextualContext;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO13AccessibilityE0D10AttributesV014TextualContextB0O": true;
+    };
 }
 /**
  * typealias ObjectiveCValue = NSString
@@ -724,6 +783,10 @@ export declare class AXBrailleMap extends SDKHandle {
      * @availability iOS 15.2+
      */
     subscript(point: $SDK2): number;
+    readonly $type: {
+        "c:objc(cs)AXBrailleMap": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dimensions": true;
     };
@@ -796,6 +859,10 @@ export declare class AXBrailleTable extends SDKHandle {
      * @availability iOS 26.0+
      */
     get language(): _Foundation_Locale_Language;
+    readonly $type: {
+        "c:objc(cs)AXBrailleTable": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "isEightDot": true;
@@ -820,6 +887,10 @@ export declare class AXBrailleTranslationResult extends SDKHandle {
      * @availability iOS 26.0+
      */
     inputIndex(resultIndex: SDKHandle): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)AXBrailleTranslationResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "resultString": true;
     };
@@ -844,6 +915,10 @@ export declare class AXBrailleTranslator extends SDKHandle {
      * @availability iOS 26.0+
      */
     translatePrintText(printText: string): AXBrailleTranslationResult;
+    readonly $type: {
+        "c:objc(cs)AXBrailleTranslator": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AXCategoricalDataAxisDescriptor
@@ -866,6 +941,10 @@ export declare class AXCategoricalDataAxisDescriptor extends SDKHandle {
      */
     get categoryOrder(): Array<string>;
     set categoryOrder(value: Array<string>);
+    readonly $type: {
+        "c:objc(cs)AXCategoricalDataAxisDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "categoryOrder": true;
     };
@@ -945,6 +1024,10 @@ export declare class AXChartDescriptor extends SDKHandle {
      */
     get xAxis(): SDKHandle;
     set xAxis(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)AXChartDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributedTitle": true;
         "contentDirection": true;
@@ -1008,6 +1091,10 @@ export declare class AXCustomContent extends SDKHandle {
      * @availability iOS 14.0+
      */
     get value(): string;
+    readonly $type: {
+        "c:objc(cs)AXCustomContent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributedLabel": true;
         "attributedValue": true;
@@ -1041,7 +1128,7 @@ export type AXCustomContentReturnBlock = (() => Promise<(Array<AXCustomContent>)
  * @availability iOS 15.0+
  */
 export interface AXDataAxisDescriptor {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: (_ObjectiveC_NSZone) | null) => unknown;
 }
 /**
  * class AXDataPoint
@@ -1082,6 +1169,10 @@ export declare class AXDataPoint extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initXYAdditionalValuesLabel66813(x: number, y?: (number) | null, additionalValues?: Array<AXDataPoint_Value>, label?: (string) | null): AXDataPoint;
+    readonly $type: {
+        "c:objc(cs)AXDataPoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributedLabel": true;
         "label": true;
@@ -1094,12 +1185,19 @@ export declare class AXDataPoint extends SDKHandle {
  * @availability iOS 15.0+
  */
 export declare class AXDataPoint_Value extends SDKHandle {
+    readonly $type: {
+        "s:So11AXDataPointC13AccessibilityE5ValueO": true;
+    };
 }
 /**
  * class AXDataPointValue
  * @availability iOS 15.0+
  */
 export declare class AXDataPointValue extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)AXDataPointValue": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AXDataSeriesDescriptor
@@ -1140,6 +1238,10 @@ export declare class AXDataSeriesDescriptor extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)AXDataSeriesDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributedName": true;
         "dataPoints": true;
@@ -1152,6 +1254,10 @@ export declare class AXDataSeriesDescriptor extends SDKHandle {
  * @availability iOS 18.2+
  */
 export declare class AXFeatureOverrideSession extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)AXFeatureOverrideSession": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct Options
@@ -1220,6 +1326,9 @@ export declare class AXFeatureOverrideSessionError extends SDKHandle {
      * @availability iOS 18.2+
      */
     static get undefined(): AXFeatureOverrideSessionError_Code;
+    readonly $type: {
+        "s:SC29AXFeatureOverrideSessionErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1253,6 +1362,10 @@ export declare class AXFeatureOverrideSessionManager extends SDKHandle {
      * @availability iOS 18.2+
      */
     end(session: AXFeatureOverrideSession): void;
+    readonly $type: {
+        "c:objc(cs)AXFeatureOverrideSessionManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AXLiveAudioGraph
@@ -1276,6 +1389,10 @@ export declare class AXLiveAudioGraph extends SDKHandle {
     static updateValue(value: number): void;
     /** init() */
     static init(): AXLiveAudioGraph;
+    readonly $type: {
+        "c:objc(cs)AXLiveAudioGraph": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class AXMathExpression
@@ -1284,6 +1401,10 @@ export declare class AXLiveAudioGraph extends SDKHandle {
 export declare class AXMathExpression extends SDKHandle {
     /** init() */
     static init(): AXMathExpression;
+    readonly $type: {
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const AXMathExpressionFenced_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1291,13 +1412,11 @@ declare const AXMathExpressionFenced_base: Omit<typeof AXMathExpression, "init" 
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionFenced extends AXMathExpressionFenced_base {
-    /** init() */
-    static init(): AXMathExpressionFenced;
     /**
      * init(expressions: [AXMathExpression], open openString: String, close closeString: String)
      * @availability iOS 18.2+
      */
-    static initExpressionsOpenClose(expressions: Array<AXMathExpression>, openString: string, closeString: string): AXMathExpressionFenced;
+    static init(expressions: Array<AXMathExpression>, openString: string, closeString: string): AXMathExpressionFenced;
     /**
      * var closeString: String { get }
      * @availability iOS 18.2+
@@ -1313,6 +1432,11 @@ export declare class AXMathExpressionFenced extends AXMathExpressionFenced_base 
      * @availability iOS 18.2+
      */
     get openString(): string;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionFenced": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "closeString": true;
         "expressions": true;
@@ -1325,13 +1449,11 @@ declare const AXMathExpressionFraction_base: Omit<typeof AXMathExpression, "init
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionFraction extends AXMathExpressionFraction_base {
-    /** init() */
-    static init(): AXMathExpressionFraction;
     /**
      * init(numeratorExpression: AXMathExpression, denimonatorExpression: AXMathExpression)
      * @availability iOS 18.2+
      */
-    static initNumeratorExpressionDenimonatorExpression(numeratorExpression: AXMathExpression, denimonatorExpression: AXMathExpression): AXMathExpressionFraction;
+    static init(numeratorExpression: AXMathExpression, denimonatorExpression: AXMathExpression): AXMathExpressionFraction;
     /**
      * var denimonatorExpression: AXMathExpression { get }
      * @availability iOS 18.2+
@@ -1342,6 +1464,11 @@ export declare class AXMathExpressionFraction extends AXMathExpressionFraction_b
      * @availability iOS 18.2+
      */
     get numeratorExpression(): AXMathExpression;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionFraction": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "denimonatorExpression": true;
         "numeratorExpression": true;
@@ -1353,18 +1480,21 @@ declare const AXMathExpressionIdentifier_base: Omit<typeof AXMathExpression, "in
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionIdentifier extends AXMathExpressionIdentifier_base {
-    /** init() */
-    static init(): AXMathExpressionIdentifier;
     /**
      * init(content: String)
      * @availability iOS 18.2+
      */
-    static initContent(content: string): AXMathExpressionIdentifier;
+    static init(content: string): AXMathExpressionIdentifier;
     /**
      * var content: String { get }
      * @availability iOS 18.2+
      */
     get content(): string;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionIdentifier": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "content": true;
     };
@@ -1375,13 +1505,11 @@ declare const AXMathExpressionMultiscript_base: Omit<typeof AXMathExpression, "i
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionMultiscript extends AXMathExpressionMultiscript_base {
-    /** init() */
-    static init(): AXMathExpressionMultiscript;
     /**
      * init(baseExpression: AXMathExpression, prescriptExpressions: [AXMathExpressionSubSuperscript], postscriptExpressions: [AXMathExpressionSubSuperscript])
      * @availability iOS 18.2+
      */
-    static initBaseExpressionPrescriptExpressionsPostscriptExpressions(baseExpression: AXMathExpression, prescriptExpressions: $SDK12, postscriptExpressions: $SDK12): AXMathExpressionMultiscript;
+    static init(baseExpression: AXMathExpression, prescriptExpressions: $SDK13, postscriptExpressions: $SDK13): AXMathExpressionMultiscript;
     /**
      * var baseExpression: AXMathExpression { get }
      * @availability iOS 18.2+
@@ -1391,12 +1519,17 @@ export declare class AXMathExpressionMultiscript extends AXMathExpressionMultisc
      * var postscriptExpressions: [AXMathExpressionSubSuperscript] { get }
      * @availability iOS 18.2+
      */
-    get postscriptExpressions(): $SDK12;
+    get postscriptExpressions(): $SDK13;
     /**
      * var prescriptExpressions: [AXMathExpressionSubSuperscript] { get }
      * @availability iOS 18.2+
      */
-    get prescriptExpressions(): $SDK12;
+    get prescriptExpressions(): $SDK13;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionMultiscript": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "baseExpression": true;
         "postscriptExpressions": true;
@@ -1409,18 +1542,21 @@ declare const AXMathExpressionNumber_base: Omit<typeof AXMathExpression, "init" 
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionNumber extends AXMathExpressionNumber_base {
-    /** init() */
-    static init(): AXMathExpressionNumber;
     /**
      * init(content: String)
      * @availability iOS 18.2+
      */
-    static initContent(content: string): AXMathExpressionNumber;
+    static init(content: string): AXMathExpressionNumber;
     /**
      * var content: String { get }
      * @availability iOS 18.2+
      */
     get content(): string;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionNumber": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "content": true;
     };
@@ -1431,18 +1567,21 @@ declare const AXMathExpressionOperator_base: Omit<typeof AXMathExpression, "init
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionOperator extends AXMathExpressionOperator_base {
-    /** init() */
-    static init(): AXMathExpressionOperator;
     /**
      * init(content: String)
      * @availability iOS 18.2+
      */
-    static initContent(content: string): AXMathExpressionOperator;
+    static init(content: string): AXMathExpressionOperator;
     /**
      * var content: String { get }
      * @availability iOS 18.2+
      */
     get content(): string;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionOperator": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "content": true;
     };
@@ -1461,13 +1600,11 @@ declare const AXMathExpressionRoot_base: Omit<typeof AXMathExpression, "init" | 
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionRoot extends AXMathExpressionRoot_base {
-    /** init() */
-    static init(): AXMathExpressionRoot;
     /**
      * init(radicandExpressions: [AXMathExpression], rootIndexExpression: AXMathExpression)
      * @availability iOS 18.2+
      */
-    static initRadicandExpressionsRootIndexExpression(radicandExpressions: Array<AXMathExpression>, rootIndexExpression: AXMathExpression): AXMathExpressionRoot;
+    static init(radicandExpressions: Array<AXMathExpression>, rootIndexExpression: AXMathExpression): AXMathExpressionRoot;
     /**
      * var radicandExpressions: [AXMathExpression] { get }
      * @availability iOS 18.2+
@@ -1478,6 +1615,11 @@ export declare class AXMathExpressionRoot extends AXMathExpressionRoot_base {
      * @availability iOS 18.2+
      */
     get rootIndexExpression(): AXMathExpression;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionRoot": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "radicandExpressions": true;
         "rootIndexExpression": true;
@@ -1489,18 +1631,21 @@ declare const AXMathExpressionRow_base: Omit<typeof AXMathExpression, "init" | "
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionRow extends AXMathExpressionRow_base {
-    /** init() */
-    static init(): AXMathExpressionRow;
     /**
      * init(expressions: [AXMathExpression])
      * @availability iOS 18.2+
      */
-    static initExpressions(expressions: Array<AXMathExpression>): AXMathExpressionRow;
+    static init(expressions: Array<AXMathExpression>): AXMathExpressionRow;
     /**
      * var expressions: [AXMathExpression] { get }
      * @availability iOS 18.2+
      */
     get expressions(): Array<AXMathExpression>;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionRow": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expressions": true;
     };
@@ -1511,13 +1656,11 @@ declare const AXMathExpressionSubSuperscript_base: Omit<typeof AXMathExpression,
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionSubSuperscript extends AXMathExpressionSubSuperscript_base {
-    /** init() */
-    static init(): AXMathExpressionSubSuperscript;
     /**
      * init(baseExpression: [AXMathExpression], subscriptExpressions: [AXMathExpression], superscriptExpressions: [AXMathExpression])
      * @availability iOS 18.2+
      */
-    static initBaseExpressionSubscriptExpressionsSuperscriptExpressions(baseExpression: Array<AXMathExpression>, subscriptExpressions: Array<AXMathExpression>, superscriptExpressions: Array<AXMathExpression>): AXMathExpressionSubSuperscript;
+    static init(baseExpression: Array<AXMathExpression>, subscriptExpressions: Array<AXMathExpression>, superscriptExpressions: Array<AXMathExpression>): AXMathExpressionSubSuperscript;
     /**
      * var baseExpression: AXMathExpression { get }
      * @availability iOS 18.2+
@@ -1533,6 +1676,11 @@ export declare class AXMathExpressionSubSuperscript extends AXMathExpressionSubS
      * @availability iOS 18.2+
      */
     get superscriptExpressions(): Array<AXMathExpression>;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionSubSuperscript": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "baseExpression": true;
         "subscriptExpressions": true;
@@ -1545,18 +1693,21 @@ declare const AXMathExpressionTable_base: Omit<typeof AXMathExpression, "init" |
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionTable extends AXMathExpressionTable_base {
-    /** init() */
-    static init(): AXMathExpressionTable;
     /**
      * init(expressions: [AXMathExpression])
      * @availability iOS 18.2+
      */
-    static initExpressions(expressions: Array<AXMathExpression>): AXMathExpressionTable;
+    static init(expressions: Array<AXMathExpression>): AXMathExpressionTable;
     /**
      * var expressions: [AXMathExpression] { get }
      * @availability iOS 18.2+
      */
     get expressions(): Array<AXMathExpression>;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionTable": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expressions": true;
     };
@@ -1567,18 +1718,21 @@ declare const AXMathExpressionTableCell_base: Omit<typeof AXMathExpression, "ini
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionTableCell extends AXMathExpressionTableCell_base {
-    /** init() */
-    static init(): AXMathExpressionTableCell;
     /**
      * init(expressions: [AXMathExpression])
      * @availability iOS 18.2+
      */
-    static initExpressions(expressions: Array<AXMathExpression>): AXMathExpressionTableCell;
+    static init(expressions: Array<AXMathExpression>): AXMathExpressionTableCell;
     /**
      * var expressions: [AXMathExpression] { get }
      * @availability iOS 18.2+
      */
     get expressions(): Array<AXMathExpression>;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionTableCell": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expressions": true;
     };
@@ -1589,18 +1743,21 @@ declare const AXMathExpressionTableRow_base: Omit<typeof AXMathExpression, "init
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionTableRow extends AXMathExpressionTableRow_base {
-    /** init() */
-    static init(): AXMathExpressionTableRow;
     /**
      * init(expressions: [AXMathExpression])
      * @availability iOS 18.2+
      */
-    static initExpressions(expressions: Array<AXMathExpression>): AXMathExpressionTableRow;
+    static init(expressions: Array<AXMathExpression>): AXMathExpressionTableRow;
     /**
      * var expressions: [AXMathExpression] { get }
      * @availability iOS 18.2+
      */
     get expressions(): Array<AXMathExpression>;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionTableRow": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "expressions": true;
     };
@@ -1611,18 +1768,21 @@ declare const AXMathExpressionText_base: Omit<typeof AXMathExpression, "init" | 
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionText extends AXMathExpressionText_base {
-    /** init() */
-    static init(): AXMathExpressionText;
     /**
      * init(content: String)
      * @availability iOS 18.2+
      */
-    static initContent(content: string): AXMathExpressionText;
+    static init(content: string): AXMathExpressionText;
     /**
      * var content: String { get }
      * @availability iOS 18.2+
      */
     get content(): string;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionText": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "content": true;
     };
@@ -1633,13 +1793,11 @@ declare const AXMathExpressionUnderOver_base: Omit<typeof AXMathExpression, "ini
  * @availability iOS 18.2+
  */
 export declare class AXMathExpressionUnderOver extends AXMathExpressionUnderOver_base {
-    /** init() */
-    static init(): AXMathExpressionUnderOver;
     /**
      * init(baseExpression: AXMathExpression, underExpression: AXMathExpression, overExpression: AXMathExpression)
      * @availability iOS 18.2+
      */
-    static initBaseExpressionUnderExpressionOverExpression(baseExpression: AXMathExpression, underExpression: AXMathExpression, overExpression: AXMathExpression): AXMathExpressionUnderOver;
+    static init(baseExpression: AXMathExpression, underExpression: AXMathExpression, overExpression: AXMathExpression): AXMathExpressionUnderOver;
     /**
      * var baseExpression: AXMathExpression { get }
      * @availability iOS 18.2+
@@ -1655,6 +1813,11 @@ export declare class AXMathExpressionUnderOver extends AXMathExpressionUnderOver
      * @availability iOS 18.2+
      */
     get underExpression(): AXMathExpression;
+    readonly $type: {
+        "c:objc(cs)AXMathExpressionUnderOver": true;
+        "c:objc(cs)AXMathExpression": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "baseExpression": true;
         "overExpression": true;
@@ -1688,6 +1851,9 @@ export declare class AXMFiHearingDevice extends SDKHandle {
      * @availability iOS 15.0+
      */
     static supportsBidirectionalStreaming(): boolean;
+    readonly $type: {
+        "c:@S@AXMFiHearingDevice": true;
+    };
 }
 /**
  * struct Ear
@@ -1744,6 +1910,10 @@ export declare class AXNumericDataAxisDescriptor extends SDKHandle {
      */
     get range(): SDKHandle;
     set range(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)AXNumericDataAxisDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "scaleType": true;
     };
@@ -1760,7 +1930,7 @@ export declare const AXNumericDataAxisDescriptor_ScaleType: {
      */
     init(rawValue: number): (AXNumericDataAxisDescriptor_ScaleType) | null;
 };
-export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "textItemTag" | (string & {});
+export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "textItemTag" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | (string & {});
 export declare const NSAttributedString_Key: {
     /**
      * static let AXSpeechAttributeSSML: NSAttributedString.Key
@@ -1768,7 +1938,7 @@ export declare const NSAttributedString_Key: {
      */
     readonly AXSpeechAttributeSSML: _Foundation_NSAttributedString_Key;
 };
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * @backDeployed(before: macOS 15.0, iOS 18.0, tvOS 18.0, watchOS 11.0, visionOS 2.0)

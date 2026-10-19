@@ -32,6 +32,10 @@ export declare class NSItemProvider extends SDKHandle {
      * @availability iOS 16.0+
      */
     loadFileRepresentation(contentType: UTType, openInPlace: boolean, completionHandler: ((arg0: (string) | null, arg1: boolean, arg2: (NativeError) | null) => void)): _Foundation_Progress;
+    readonly $type: {
+        "c:objc(cs)NSItemProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "registeredContentTypes": true;
         "registeredContentTypesForOpenInPlace": true;
@@ -48,6 +52,10 @@ export declare class NSString extends SDKHandle {
      * @availability iOS 14.0+
      */
     appendingPathExtension(contentType: UTType): string;
+    readonly $type: {
+        "c:objc(cs)NSString": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export declare class NSURL extends SDKHandle {
     /**
@@ -60,6 +68,10 @@ export declare class NSURL extends SDKHandle {
      * @availability iOS 14.0+
      */
     appendingPathExtension(contentType: UTType): string;
+    readonly $type: {
+        "c:objc(cs)NSURL": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export declare class URL extends SDKHandle {
     /**
@@ -82,6 +94,9 @@ export declare class URL extends SDKHandle {
      * @availability iOS 14.0+
      */
     appendingPathExtension(contentType: UTType): string;
+    readonly $type: {
+        "s:10Foundation3URLV": true;
+    };
 }
 export declare class URLResourceValues extends SDKHandle {
     /**
@@ -89,6 +104,9 @@ export declare class URLResourceValues extends SDKHandle {
      * @availability iOS 14.0+
      */
     get contentType(): (UTType) | null;
+    readonly $type: {
+        "s:10Foundation17URLResourceValuesV": true;
+    };
 }
 /**
  * struct UTTagClass
@@ -962,6 +980,9 @@ export declare class UTType extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(identifier: string): (UTType) | null;
+    readonly $type: {
+        "s:22UniformTypeIdentifiers6UTTypeV": true;
+    };
 }
 /**
  * typealias ReferenceType = UTTypeReference
@@ -1103,6 +1124,10 @@ export declare class UTTypeReference extends SDKHandle {
      * @availability iOS 14.0+
      */
     get version(): (_Foundation_NSNumber) | null;
+    readonly $type: {
+        "c:objc(cs)UTType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isDeclared": true;
         "isDynamic": true;

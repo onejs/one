@@ -20,6 +20,9 @@ type $SDK11 = {
  * @availability iOS 17.0+
  */
 export declare class CapturedElementCategory extends SDKHandle {
+    readonly $type: {
+        "s:8RoomPlan23CapturedElementCategoryO": true;
+    };
 }
 /**
  * struct CapturedRoom
@@ -86,6 +89,9 @@ export declare class CapturedRoom extends SDKHandle {
      * @availability iOS 17.0+
      */
     get sections(): $SDK3;
+    readonly $type: {
+        "s:8RoomPlan08CapturedA0V": true;
+    };
 }
 /**
  * struct AttributesCodableRepresentation
@@ -102,6 +108,9 @@ export declare class CapturedRoom_AttributesCodableRepresentation extends SDKHan
      * @availability iOS 17.0+
      */
     get attributes(): Array<SDKHandle>;
+    readonly $type: {
+        "s:8RoomPlan08CapturedA0V31AttributesCodableRepresentationV": true;
+    };
 }
 /**
  * enum Confidence
@@ -160,6 +169,9 @@ export declare class CapturedRoom_ModelProvider extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): CapturedRoom_ModelProvider;
+    readonly $type: {
+        "s:8RoomPlan08CapturedA0V13ModelProviderV": true;
+    };
 }
 /**
  * enum Error
@@ -171,6 +183,9 @@ export declare class CapturedRoom_ModelProvider_Error extends SDKHandle {
      * @availability iOS 17.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:8RoomPlan08CapturedA0V13ModelProviderV5ErrorO": true;
+    };
 }
 /**
  * struct Object
@@ -217,6 +232,9 @@ export declare class CapturedRoom_Object extends SDKHandle {
      * @availability iOS 16.0+
      */
     get transform(): SDKHandle;
+    readonly $type: {
+        "s:8RoomPlan08CapturedA0V6ObjectV": true;
+    };
 }
 /**
  * enum Category
@@ -265,6 +283,9 @@ export declare class CapturedRoom_Section extends SDKHandle {
      * @availability iOS 17.0+
      */
     get center(): SDKHandle;
+    readonly $type: {
+        "s:8RoomPlan08CapturedA0V7SectionV": true;
+    };
 }
 /**
  * enum Label
@@ -343,12 +364,18 @@ export declare class CapturedRoom_Surface extends SDKHandle {
      * @availability iOS 16.0+
      */
     get transform(): SDKHandle;
+    readonly $type: {
+        "s:8RoomPlan08CapturedA0V7SurfaceV": true;
+    };
 }
 /**
  * enum Category
  * @availability iOS 16.0+
  */
 export declare class CapturedRoom_Surface_Category extends SDKHandle {
+    readonly $type: {
+        "s:8RoomPlan08CapturedA0V7SurfaceV8CategoryO": true;
+    };
 }
 /**
  * struct Curve
@@ -375,6 +402,9 @@ export declare class CapturedRoom_Surface_Curve extends SDKHandle {
      * @availability iOS 16.0+
      */
     get endAngle(): $SDK7;
+    readonly $type: {
+        "s:8RoomPlan08CapturedA0V7SurfaceV5CurveV": true;
+    };
 }
 /**
  * enum Edge
@@ -451,6 +481,9 @@ export interface CapturedRoomAttribute {
  * @availability iOS 16.0+
  */
 export declare class CapturedRoomData extends SDKHandle {
+    readonly $type: {
+        "s:8RoomPlan08CapturedA4DataV": true;
+    };
 }
 /**
  * struct CapturedStructure
@@ -512,6 +545,9 @@ export declare class CapturedStructure extends SDKHandle {
      * @availability iOS 17.0+
      */
     get sections(): $SDK3;
+    readonly $type: {
+        "s:8RoomPlan17CapturedStructureV": true;
+    };
 }
 /**
  * typealias Error = CapturedRoom.Error
@@ -726,6 +762,9 @@ export declare class RoomBuilder extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(options: RoomBuilder_ConfigurationOptions): RoomBuilder;
+    readonly $type: {
+        "s:8RoomPlan0A7BuilderC": true;
+    };
 }
 /**
  * enum BuildError
@@ -823,6 +862,9 @@ export declare class RoomCaptureSession extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): RoomCaptureSession;
+    readonly $type: {
+        "s:8RoomPlan0A14CaptureSessionC": true;
+    };
 }
 /**
  * enum CaptureError
@@ -852,6 +894,9 @@ export declare class RoomCaptureSession_Configuration extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): RoomCaptureSession_Configuration;
+    readonly $type: {
+        "s:8RoomPlan0A14CaptureSessionC13ConfigurationV": true;
+    };
 }
 /**
  * enum Instruction
@@ -936,6 +981,12 @@ export declare class RoomCaptureView extends SDKHandle {
      */
     get delegate(): Promise<(SDKHandle) | null>;
     setDelegate(value?: (SDKHandle) | null): Promise<void>;
+    readonly $type: {
+        "c:@M@RoomPlan@objc(cs)RoomCaptureView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol RoomCaptureViewDelegate : NSCoding
@@ -1054,6 +1105,9 @@ export declare class StructureBuilder extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(options: RoomBuilder_ConfigurationOptions): StructureBuilder;
+    readonly $type: {
+        "s:8RoomPlan16StructureBuilderC": true;
+    };
 }
 /**
  * enum BuildError

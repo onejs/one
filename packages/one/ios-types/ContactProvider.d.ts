@@ -5,6 +5,9 @@ import { SDKHandle, type NativeError } from 'one/ios-runtime';
  * @availability iOS 18.0+
  */
 export declare class ContactItem extends SDKHandle {
+    readonly $type: {
+        "s:15ContactProvider0A4ItemO": true;
+    };
 }
 /**
  * struct Identifier
@@ -26,6 +29,9 @@ export declare class ContactItem_Identifier extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(value: string): ContactItem_Identifier;
+    readonly $type: {
+        "s:15ContactProvider0A4ItemO10IdentifierV": true;
+    };
 }
 /**
  * protocol ContactItemChangeObserver
@@ -138,6 +144,9 @@ export declare class ContactItemPage extends SDKHandle {
      */
     get offset(): number;
     set offset(value: number);
+    readonly $type: {
+        "s:15ContactProvider0A8ItemPageV": true;
+    };
 }
 /**
  * struct ContactItemSyncAnchor
@@ -161,6 +170,9 @@ export declare class ContactItemSyncAnchor extends SDKHandle {
      */
     get offset(): number;
     set offset(value: number);
+    readonly $type: {
+        "s:15ContactProvider0A14ItemSyncAnchorV": true;
+    };
 }
 /**
  * protocol ContactProviderDomain
@@ -262,6 +274,9 @@ export declare class ContactProviderManager extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isEnabled(): boolean;
+    readonly $type: {
+        "s:15ContactProvider0aB7ManagerC": true;
+    };
 }
 /**
  * struct DefaultContactProviderDomain
@@ -293,4 +308,7 @@ export declare class DefaultContactProviderDomain extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): DefaultContactProviderDomain;
+    readonly $type: {
+        "s:15ContactProvider07DefaultaB6DomainV": true;
+    };
 }

@@ -15,6 +15,10 @@ export declare class BCChatAction extends SDKHandle {
     static openTranscript(businessIdentifier: string, intentParameters: NativeMap<BCChatAction_Parameter, string>): void;
     /** init() */
     static init(): BCChatAction;
+    readonly $type: {
+        "c:objc(cs)BCChatAction": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct Parameter */
 export type BCChatAction_Parameter = "intent" | "group" | "body" | (string & {});
@@ -48,8 +52,6 @@ export declare const BCChatAction_Parameter: {
  * @deprecated iOS 16.1
  */
 export declare class BCChatButton extends SDKHandle {
-    /** init() */
-    static init(): BCChatButton;
     /**
      * init?(coder: NSCoder)
      * @availability iOS 11.3+
@@ -62,6 +64,13 @@ export declare class BCChatButton extends SDKHandle {
      * @deprecated iOS 16.1
      */
     static initStyle(style: BCChatButton_Style): BCChatButton;
+    readonly $type: {
+        "c:objc(cs)BCChatButton": true;
+        "c:objc(cs)UIControl": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Style

@@ -20,6 +20,10 @@ export declare class CLSObject extends SDKHandle {
      * @availability iOS 11.3+
      */
     get dateLastModified(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CLSObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateCreated": true;
         "dateLastModified": true;
@@ -82,6 +86,11 @@ export declare class CLSActivity extends CLSObject {
      * @availability iOS 11.3+
      */
     get isStarted(): boolean;
+    readonly $type: {
+        "c:objc(cs)CLSActivity": true;
+        "c:objc(cs)CLSObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateCreated": true;
         "dateLastModified": true;
@@ -108,6 +117,11 @@ export declare class CLSActivityItem extends CLSObject {
      */
     get title(): string;
     set title(value: string);
+    readonly $type: {
+        "c:objc(cs)CLSActivityItem": true;
+        "c:objc(cs)CLSObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateCreated": true;
         "dateLastModified": true;
@@ -136,6 +150,12 @@ export declare class CLSBinaryItem extends CLSActivityItem {
      * @availability iOS 11.3+
      */
     get valueType(): CLSBinaryValueType;
+    readonly $type: {
+        "c:objc(cs)CLSBinaryItem": true;
+        "c:objc(cs)CLSActivityItem": true;
+        "c:objc(cs)CLSObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateCreated": true;
         "dateLastModified": true;
@@ -310,6 +330,11 @@ export declare class CLSContext extends CLSObject {
      */
     get universalLinkURL(): (string) | null;
     set universalLinkURL(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)CLSContext": true;
+        "c:objc(cs)CLSObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateCreated": true;
         "dateLastModified": true;
@@ -474,6 +499,10 @@ export declare class CLSDataStore extends SDKHandle {
      * @availability iOS 11.3+
      */
     get runningActivity(): (CLSActivity) | null;
+    readonly $type: {
+        "c:objc(cs)CLSDataStore": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeContext": true;
         "delegate": true;
@@ -557,6 +586,9 @@ export declare class CLSError extends SDKHandle {
      * @availability iOS 11.3+
      */
     static get limits(): CLSError_Code;
+    readonly $type: {
+        "s:SC12CLSErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -669,6 +701,11 @@ export declare class CLSProgressReportingCapability extends CLSObject {
      * @availability iOS 14.0+
      */
     get kind(): CLSProgressReportingCapability_Kind;
+    readonly $type: {
+        "c:objc(cs)CLSProgressReportingCapability": true;
+        "c:objc(cs)CLSObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateCreated": true;
         "dateLastModified": true;
@@ -704,6 +741,12 @@ export declare class CLSQuantityItem extends CLSActivityItem {
      */
     get quantity(): number;
     set quantity(value: number);
+    readonly $type: {
+        "c:objc(cs)CLSQuantityItem": true;
+        "c:objc(cs)CLSActivityItem": true;
+        "c:objc(cs)CLSObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateCreated": true;
         "dateLastModified": true;
@@ -734,6 +777,12 @@ export declare class CLSScoreItem extends CLSActivityItem {
      */
     get score(): number;
     set score(value: number);
+    readonly $type: {
+        "c:objc(cs)CLSScoreItem": true;
+        "c:objc(cs)CLSActivityItem": true;
+        "c:objc(cs)CLSObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateCreated": true;
         "dateLastModified": true;
@@ -754,6 +803,10 @@ export declare class NSUserActivity extends SDKHandle {
      * @availability iOS 11.3+
      */
     get isClassKitDeepLink(): boolean;
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contextIdentifierPath": true;
         "isClassKitDeepLink": true;

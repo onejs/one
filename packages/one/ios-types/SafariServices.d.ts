@@ -34,6 +34,10 @@ export declare class SFAddToHomeScreenInfo extends SDKHandle {
      */
     get websiteCookies(): $SDK0;
     set websiteCookies(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)SFAddToHomeScreenInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "manifest": true;
         "websiteCookies": true;
@@ -57,6 +61,9 @@ export declare class SFAuthenticationError extends SDKHandle {
      * @deprecated iOS 12.0
      */
     static get canceledLogin(): SFAuthenticationError_Code;
+    readonly $type: {
+        "s:SC21SFAuthenticationErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -96,6 +103,10 @@ export declare class SFAuthenticationSession extends SDKHandle {
      * @deprecated iOS 12.0
      */
     start(): boolean;
+    readonly $type: {
+        "c:objc(cs)SFAuthenticationSession": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** typealias CompletionHandler = (URL?, (any Error)?) -> Void */
 export type SFAuthenticationSession_CompletionHandler = ((arg0: (string) | null, arg1: (NativeError) | null) => Promise<void>);
@@ -130,6 +141,10 @@ export declare class SFContentBlockerManager extends SDKHandle {
     static reloadContentBlocker(identifier: string, completionHandler?: $SDK4): void;
     /** init() */
     static init(): SFContentBlockerManager;
+    readonly $type: {
+        "c:objc(cs)SFContentBlockerManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class SFContentBlockerState
@@ -143,6 +158,10 @@ export declare class SFContentBlockerState extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isEnabled(): boolean;
+    readonly $type: {
+        "c:objc(cs)SFContentBlockerState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
     };
@@ -187,6 +206,9 @@ export declare class SFError extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get maximumAttemptsExceeded(): SFError_Code;
+    readonly $type: {
+        "s:SC11SFErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -210,6 +232,10 @@ export declare class SFSafariExtensionManager extends SDKHandle {
      * @availability iOS 26.2+
      */
     static getStateOfExtension(identifier: string, completionHandler: ((arg0: (SFSafariExtensionState) | null, arg1: (NativeError) | null) => void)): void;
+    readonly $type: {
+        "c:objc(cs)SFSafariExtensionManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class SFSafariExtensionState
@@ -223,6 +249,10 @@ export declare class SFSafariExtensionState extends SDKHandle {
      * @availability iOS 26.2+
      */
     get isEnabled(): boolean;
+    readonly $type: {
+        "c:objc(cs)SFSafariExtensionState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
     };
@@ -242,6 +272,10 @@ export declare class SFSafariSettings extends SDKHandle {
      * @availability iOS 26.2+
      */
     static openExtensionsSettings(extensionIdentifiers: Array<string>, completionHandler?: $SDK4): void;
+    readonly $type: {
+        "c:objc(cs)SFSafariSettings": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class SFSafariViewController
@@ -300,6 +334,12 @@ export declare class SFSafariViewController extends SDKHandle {
      */
     get preferredControlTintColor(): (_UIKit_UIColor) | null;
     set preferredControlTintColor(value: (_UIKit_UIColor) | null);
+    readonly $type: {
+        "c:objc(cs)SFSafariViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
         "delegate": true;
@@ -328,6 +368,10 @@ export declare class SFSafariViewController_ActivityButton extends SDKHandle {
      * @availability iOS 15.0+
      */
     get templateImage(): (_UIKit_UIImage) | null;
+    readonly $type: {
+        "c:objc(cs)SFSafariViewControllerActivityButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extensionIdentifier": true;
         "templateImage": true;
@@ -364,6 +408,10 @@ export declare class SFSafariViewController_Configuration extends SDKHandle {
      */
     get eventAttribution(): $SDK8;
     set eventAttribution(value: $SDK8);
+    readonly $type: {
+        "c:objc(cs)SFSafariViewControllerConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activityButton": true;
         "barCollapsingEnabled": true;
@@ -386,6 +434,10 @@ export declare class SFSafariViewController_DataStore extends SDKHandle {
      * @availability iOS 16.0+
      */
     clearWebsiteData(completion?: ((() => void)) | null): void;
+    readonly $type: {
+        "c:objc(cs)SFSafariViewControllerDataStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum DismissButtonStyle
@@ -409,6 +461,10 @@ export declare class SFSafariViewController_PrewarmingToken extends SDKHandle {
      * @availability iOS 15.0+
      */
     invalidate(): void;
+    readonly $type: {
+        "c:objc(cs)SFSafariViewControllerPrewarmingToken": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol SFSafariViewControllerDelegate : NSObjectProtocol
@@ -456,6 +512,10 @@ export declare class SSReadingList extends SDKHandle {
      * @availability iOS 7.0+
      */
     addItem(URL: string, title?: (string) | null, previewText?: (string) | null): void;
+    readonly $type: {
+        "c:objc(cs)SSReadingList": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct SSReadingListError
@@ -472,6 +532,9 @@ export declare class SSReadingListError extends SDKHandle {
      * @availability iOS 7.0+
      */
     static get urlSchemeNotAllowed(): SSReadingListError_Code;
+    readonly $type: {
+        "s:SC22SSReadingListErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code

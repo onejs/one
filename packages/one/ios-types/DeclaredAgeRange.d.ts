@@ -32,6 +32,9 @@ export declare class AgeRangeService extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get shared(): AgeRangeService;
+    readonly $type: {
+        "s:16DeclaredAgeRange0bC7ServiceV": true;
+    };
 }
 /**
  * struct AgeRange
@@ -62,6 +65,9 @@ export declare class AgeRangeService_AgeRange extends SDKHandle {
      */
     get activeParentalControls(): AgeRangeService_ParentalControls;
     set activeParentalControls(value: AgeRangeService_ParentalControls);
+    readonly $type: {
+        "s:16DeclaredAgeRange0bC7ServiceV0bC0V": true;
+    };
 }
 /**
  * enum AgeRangeDeclaration
@@ -131,6 +137,9 @@ export type AgeRangeService_RegulatoryFeature = "significantAppChangeRequiresAdu
  * @availability iOS 26.0+
  */
 export declare class AgeRangeService_Response extends SDKHandle {
+    readonly $type: {
+        "s:16DeclaredAgeRange0bC7ServiceV8ResponseO": true;
+    };
 }
 /**
  * struct DeclaredAgeRangeAction
@@ -142,6 +151,9 @@ export declare class DeclaredAgeRangeAction extends SDKHandle {
      * @availability iOS 26.0+
      */
     callAsFunction(threshold1: number, threshold2?: (number) | null, threshold3?: (number) | null): Promise<AgeRangeService_Response>;
+    readonly $type: {
+        "s:16DeclaredAgeRange0abC6ActionV": true;
+    };
 }
 /**
  * struct SignificantUpdateAction
@@ -153,5 +165,8 @@ export declare class SignificantUpdateAction extends SDKHandle {
      * @availability iOS 26.4+
      */
     callAsFunction(updateDescription: string): Promise<void>;
+    readonly $type: {
+        "s:16DeclaredAgeRange23SignificantUpdateActionV": true;
+    };
 }
 export {};

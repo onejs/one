@@ -12,6 +12,10 @@ export declare class AAAttribution extends SDKHandle {
     static attributionToken(): string;
     /** init() */
     static init(): AAAttribution;
+    readonly $type: {
+        "c:objc(cs)AAAttribution": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct AAAttributionError
@@ -38,6 +42,9 @@ export declare class AAAttributionError extends SDKHandle {
      * @availability iOS 14.3+
      */
     static get platformNotSupported(): AAAttributionError_Code;
+    readonly $type: {
+        "s:SC22AAAttributionErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code

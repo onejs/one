@@ -57,6 +57,9 @@ export declare class InsightEvaluation<InsightResult = unknown> extends SDKHandl
      * @availability iOS 27.0+
      */
     get requestID(): (string) | null;
+    readonly $type: {
+        "s:13TrustInsights17InsightEvaluationC": true;
+    };
 }
 /**
  * @nonexhaustive enum InsightEvaluationConsumptionStatus
@@ -90,6 +93,9 @@ export declare class InsightEvaluator extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): InsightEvaluator;
+    readonly $type: {
+        "s:13TrustInsights16InsightEvaluatorC": true;
+    };
 }
 /**
  * @nonexhaustive enum AuthorizationStatus
@@ -111,6 +117,9 @@ export declare class InsightEvaluator_EvaluationError extends SDKHandle {
      * @availability iOS 27.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:13TrustInsights16InsightEvaluatorC15EvaluationErrorO": true;
+    };
 }
 /**
  * struct InsightContext<each InsightRequest> where repeat each InsightRequest : InsightEvaluator.InsightRequestProtocol
@@ -129,6 +138,9 @@ export declare class InsightEvaluator_InsightContext<InsightRequest = unknown> e
      */
     get requestID(): (string) | null;
     set requestID(value: (string) | null);
+    readonly $type: {
+        "s:13TrustInsights16InsightEvaluatorC0C7ContextV": true;
+    };
 }
 /**
  * struct InsightRequest<InsightType> where InsightType : TrustInsight
@@ -156,6 +168,9 @@ export declare class InsightEvaluator_InsightRequest<InsightType = unknown> exte
      * @availability iOS 27.0+
      */
     get insightTypeIdentifier(): string;
+    readonly $type: {
+        "s:13TrustInsights16InsightEvaluatorC0C7RequestV": true;
+    };
 }
 /**
  * protocol InsightRequestProtocol : Sendable
@@ -168,6 +183,9 @@ export interface InsightEvaluator_InsightRequestProtocol {
  * @availability iOS 27.0+
  */
 export declare class InsightEvaluator_ModelVersion extends SDKHandle {
+    readonly $type: {
+        "s:13TrustInsights16InsightEvaluatorC12ModelVersionO": true;
+    };
 }
 /**
  * @nonexhaustive enum OperationCategory
@@ -207,6 +225,9 @@ export declare class IsLikelyBeingCoachedInsight extends SDKHandle {
      */
     get insightID(): string;
     set insightID(value: string);
+    readonly $type: {
+        "s:13TrustInsights27IsLikelyBeingCoachedInsightV": true;
+    };
 }
 /**
  * @nonexhaustive enum SchemaVersion

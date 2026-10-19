@@ -36,6 +36,10 @@ export declare class TCButton extends SDKHandle {
      */
     get highlightDuration(): number;
     set highlightDuration(value: number);
+    readonly $type: {
+        "c:objc(cs)TCButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colliderShape": true;
         "contents": true;
@@ -106,6 +110,10 @@ export declare class TCButtonDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)TCButtonDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchor": true;
         "anchorCoordinateSystem": true;
@@ -201,6 +209,10 @@ export declare class TCControlContents extends SDKHandle {
      * @availability iOS 26.0+
      */
     get images(): Array<TCControlImage>;
+    readonly $type: {
+        "c:objc(cs)TCControlContents": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "images": true;
     };
@@ -296,6 +308,10 @@ export declare class TCControlImage extends SDKHandle {
      */
     get tintColor(): _CoreGraphics_CGColor;
     set tintColor(value: _CoreGraphics_CGColor);
+    readonly $type: {
+        "c:objc(cs)TCControlImage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "highlightTexture": true;
         "offset": true;
@@ -399,6 +415,10 @@ export declare class TCControlLabel extends SDKHandle {
      * @availability iOS 26.0+
      */
     get role(): TCControlLabel_Role;
+    readonly $type: {
+        "c:objc(cs)TCControlLabel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "role": true;
@@ -534,6 +554,10 @@ export declare class TCDirectionPad extends SDKHandle {
      */
     get upLabel(): (TCControlLabel) | null;
     set upLabel(value: (TCControlLabel) | null);
+    readonly $type: {
+        "c:objc(cs)TCDirectionPad": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colliderShape": true;
         "compositeLabel": true;
@@ -675,6 +699,10 @@ export declare class TCDirectionPadDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)TCDirectionPadDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchor": true;
         "anchorCoordinateSystem": true;
@@ -730,6 +758,10 @@ export declare class TCSwitch extends SDKHandle {
      */
     get switchedOnContents(): $SDK0;
     set switchedOnContents(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)TCSwitch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colliderShape": true;
         "contents": true;
@@ -808,6 +840,10 @@ export declare class TCSwitchDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)TCSwitchDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchor": true;
         "anchorCoordinateSystem": true;
@@ -878,6 +914,10 @@ export declare class TCThrottle extends SDKHandle {
      */
     get throttleSize(): $SDK2;
     set throttleSize(value: $SDK2);
+    readonly $type: {
+        "c:objc(cs)TCThrottle": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "backgroundContents": true;
         "baseValue": true;
@@ -1002,6 +1042,10 @@ export declare class TCThrottleDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)TCThrottleDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchor": true;
         "anchorCoordinateSystem": true;
@@ -1060,6 +1104,10 @@ export declare class TCThumbstick extends SDKHandle {
      */
     get stickSize(): $SDK2;
     set stickSize(value: $SDK2);
+    readonly $type: {
+        "c:objc(cs)TCThumbstick": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "backgroundContents": true;
         "colliderShape": true;
@@ -1151,6 +1199,10 @@ export declare class TCThumbstickDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)TCThumbstickDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchor": true;
         "anchorCoordinateSystem": true;
@@ -1241,13 +1293,11 @@ export declare class TCTouchController extends SDKHandle {
      * @availability iOS 26.0+
      */
     handleTouchMoved(point: $SDK1, index: number): boolean;
-    /** init() */
-    static init(): TCTouchController;
     /**
      * init(descriptor: TCTouchControllerDescriptor)
      * @availability iOS 26.0+
      */
-    static initDescriptor(descriptor: TCTouchControllerDescriptor): TCTouchController;
+    static init(descriptor: TCTouchControllerDescriptor): TCTouchController;
     /**
      * func removeAllControls()
      * @availability iOS 26.0+
@@ -1325,6 +1375,10 @@ export declare class TCTouchController extends SDKHandle {
      * @availability iOS 26.0+
      */
     get touchpads(): Array<TCTouchpad>;
+    readonly $type: {
+        "c:objc(cs)TCTouchController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "buttons": true;
         "isConnected": true;
@@ -1397,6 +1451,10 @@ export declare class TCTouchControllerDescriptor extends SDKHandle {
      */
     get stencilAttachmentPixelFormat(): _Metal_MTLPixelFormat;
     set stencilAttachmentPixelFormat(value: _Metal_MTLPixelFormat);
+    readonly $type: {
+        "c:objc(cs)TCTouchControllerDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colorPixelFormat": true;
         "depthAttachmentPixelFormat": true;
@@ -1435,6 +1493,10 @@ export declare class TCTouchpad extends SDKHandle {
      */
     get reportsRelativeValues(): boolean;
     set reportsRelativeValues(value: boolean);
+    readonly $type: {
+        "c:objc(cs)TCTouchpad": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colliderShape": true;
         "contents": true;
@@ -1512,6 +1574,10 @@ export declare class TCTouchpadDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)TCTouchpadDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "anchor": true;
         "anchorCoordinateSystem": true;

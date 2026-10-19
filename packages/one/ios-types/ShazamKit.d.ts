@@ -20,6 +20,10 @@ export declare class SHCatalog extends SDKHandle {
      * @availability iOS 15.0+
      */
     get minimumQuerySignatureDuration(): number;
+    readonly $type: {
+        "c:objc(cs)SHCatalog": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "maximumQuerySignatureDuration": true;
         "minimumQuerySignatureDuration": true;
@@ -61,6 +65,11 @@ export declare class SHCustomCatalog extends SHCatalog {
      * @availability iOS 18.0+
      */
     get dataRepresentation(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)SHCustomCatalog": true;
+        "c:objc(cs)SHCatalog": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "maximumQuerySignatureDuration": true;
         "minimumQuerySignatureDuration": true;
@@ -127,6 +136,9 @@ export declare class SHError extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get signatureDurationInvalid(): SHError_Code;
+    readonly $type: {
+        "s:SC11SHErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -165,6 +177,9 @@ export declare class SHLibrary extends SDKHandle {
      * @availability iOS 17.0+
      */
     addItems(items: Array<SHMediaItem>): Promise<void>;
+    readonly $type: {
+        "s:9ShazamKit9SHLibraryC": true;
+    };
 }
 /**
  * final class SHManagedSession
@@ -206,6 +221,9 @@ export declare class SHManagedSession extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): SHManagedSession;
+    readonly $type: {
+        "s:9ShazamKit16SHManagedSessionC": true;
+    };
     readonly $observable: {
         "results": true;
     };
@@ -230,6 +248,10 @@ export declare class SHMatch extends SDKHandle {
      * @availability iOS 15.0+
      */
     get querySignature(): SHSignature;
+    readonly $type: {
+        "c:objc(cs)SHMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mediaItems": true;
         "querySignature": true;
@@ -346,6 +368,10 @@ export declare class SHMediaItem extends SDKHandle {
      * @availability iOS 27.0+
      */
     songs2497(): Promise<Array<_MusicKit_Song>>;
+    readonly $type: {
+        "c:objc(cs)SHMediaItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "appleMusicID": true;
         "appleMusicURL": true;
@@ -387,6 +413,11 @@ export declare class SHMatchedMediaItem extends SHMediaItem {
      * @availability iOS 15.0+
      */
     get predictedCurrentMatchOffset(): number;
+    readonly $type: {
+        "c:objc(cs)SHMatchedMediaItem": true;
+        "c:objc(cs)SHMediaItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "appleMusicID": true;
         "appleMusicURL": true;
@@ -537,6 +568,10 @@ export declare class SHMediaLibrary extends SDKHandle {
      * @deprecated iOS 18.0
      */
     add(mediaItems: Array<SHMediaItem>, completionHandler: ((arg0: (NativeError) | null) => void)): void;
+    readonly $type: {
+        "c:objc(cs)SHMediaLibrary": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class SHSession
@@ -584,6 +619,10 @@ export declare class SHSession extends SDKHandle {
      * @availability iOS 16.0+
      */
     get results(): SHSession_Results;
+    readonly $type: {
+        "c:objc(cs)SHSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "catalog": true;
         "delegate": true;
@@ -594,6 +633,9 @@ export declare class SHSession extends SDKHandle {
  * @availability iOS 16.0+
  */
 export declare class SHSession_Result extends SDKHandle {
+    readonly $type: {
+        "s:So9SHSessionC9ShazamKitE6ResultO": true;
+    };
 }
 /**
  * struct Results
@@ -605,6 +647,9 @@ export declare class SHSession_Results extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): SHSession_Results_Iterator;
+    readonly $type: {
+        "s:So9SHSessionC9ShazamKitE7ResultsV": true;
+    };
     readonly $element: SHSession_Result;
 }
 /**
@@ -627,6 +672,9 @@ export declare class SHSession_Results_Iterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(SHSession_Result) | null>;
+    readonly $type: {
+        "s:So9SHSessionC9ShazamKitE7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = SHSession.Results.Element
@@ -654,13 +702,11 @@ export interface SHSessionDelegate {
  * @availability iOS 15.0+
  */
 export declare class SHSignature extends SDKHandle {
-    /** init() */
-    static init(): SHSignature;
     /**
      * init(dataRepresentation: Data) throws
      * @availability iOS 15.0+
      */
-    static initDataRepresentation(dataRepresentation: ArrayBuffer): SHSignature;
+    static init(dataRepresentation: ArrayBuffer): SHSignature;
     /**
      * var dataRepresentation: Data { get }
      * @availability iOS 15.0+
@@ -676,6 +722,10 @@ export declare class SHSignature extends SDKHandle {
      * @availability iOS 18.0+
      */
     slices(start: number, duration: number, stride?: (number) | null): SHSignature_Slices;
+    readonly $type: {
+        "c:objc(cs)SHSignature": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataRepresentation": true;
         "duration": true;
@@ -691,6 +741,9 @@ export declare class SHSignature_Slices extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): SHSignature_Slices_Iterator;
+    readonly $type: {
+        "s:So11SHSignatureC9ShazamKitE6SlicesV": true;
+    };
     readonly $element: SHSignature;
 }
 /**
@@ -713,6 +766,9 @@ export declare class SHSignature_Slices_Iterator extends SDKHandle {
      * @availability iOS 18.0+
      */
     next(): Promise<(SHSignature) | null>;
+    readonly $type: {
+        "s:So11SHSignatureC9ShazamKitE6SlicesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = SHSignature.Slices.Element
@@ -741,6 +797,10 @@ export declare class SHSignatureGenerator extends SDKHandle {
      * @availability iOS 15.0+
      */
     signature(): SHSignature;
+    readonly $type: {
+        "c:objc(cs)SHSignatureGenerator": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export declare class UTType extends SDKHandle {
     /**
@@ -753,6 +813,9 @@ export declare class UTType extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get shazamCustomCatalog(): _UniformTypeIdentifiers_UTType;
+    readonly $type: {
+        "s:22UniformTypeIdentifiers6UTTypeV": true;
+    };
 }
 /**
  * let SHErrorDomain: String

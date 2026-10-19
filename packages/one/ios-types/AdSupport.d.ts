@@ -23,6 +23,10 @@ export declare class ASIdentifierManager extends SDKHandle {
      * @deprecated iOS 14.0
      */
     get isAdvertisingTrackingEnabled(): boolean;
+    readonly $type: {
+        "c:objc(cs)ASIdentifierManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "advertisingIdentifier": true;
         "isAdvertisingTrackingEnabled": true;

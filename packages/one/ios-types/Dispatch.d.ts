@@ -58,6 +58,10 @@ export declare class DispatchObject extends SDKHandle {
      * @availability iOS 4.0+
      */
     suspend(): void;
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_object": true;
+        "c:objc(cs)OS_object": true;
+    };
 }
 /** class DispatchQueue */
 export declare class DispatchQueue extends DispatchObject {
@@ -200,6 +204,11 @@ export declare class DispatchQueue extends DispatchObject {
      * @availability iOS 13.0+
      */
     scheduleOptions(options: $SDK2, action: (() => void)): void;
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_queue": true;
+        "c:objc(cs)OS_dispatch_object": true;
+        "c:objc(cs)OS_object": true;
+    };
 }
 declare const DispatchConcurrentQueue_base: Omit<typeof DispatchQueue, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => DispatchQueue);
 /**
@@ -212,6 +221,12 @@ export declare class DispatchConcurrentQueue extends DispatchConcurrentQueue_bas
      * @availability iOS 17.0+
      */
     static init(label: string, qos?: DispatchQoS, attributes?: DispatchConcurrentQueue_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, target?: (DispatchQueue) | null): DispatchConcurrentQueue;
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_queue_concurrent": true;
+        "c:objc(cs)OS_dispatch_queue": true;
+        "c:objc(cs)OS_dispatch_object": true;
+        "c:objc(cs)OS_object": true;
+    };
 }
 /**
  * struct Attributes
@@ -307,9 +322,15 @@ export declare class DispatchData extends SDKHandle {
     subscript(bounds: SDKHandle): SDKHandle;
     /** subscript(index: DispatchData.Index) -> UInt8 { get } */
     subscript22988(index: number): number;
+    readonly $type: {
+        "s:8Dispatch0A4DataV": true;
+    };
 }
 /** enum Deallocator */
 export declare class DispatchData_Deallocator extends SDKHandle {
+    readonly $type: {
+        "s:8Dispatch0A4DataV11DeallocatorO": true;
+    };
 }
 /** typealias Element = UInt8 */
 export type DispatchData_Element = number;
@@ -325,6 +346,9 @@ export type DispatchData_SubSequence = SDKHandle;
 export declare class DispatchDataIterator extends SDKHandle {
     /** mutating func next() -> DispatchData.Element? */
     next(): (number) | null;
+    readonly $type: {
+        "s:8Dispatch0A12DataIteratorV": true;
+    };
 }
 /** typealias Element = UInt8 */
 export type DispatchDataIterator_Element = number;
@@ -360,6 +384,11 @@ export declare class DispatchGroup extends DispatchObject {
      * @availability iOS 8.0+
      */
     notifyQueueWork(queue: DispatchQueue, work: DispatchWorkItem): void;
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_group": true;
+        "c:objc(cs)OS_dispatch_object": true;
+        "c:objc(cs)OS_object": true;
+    };
 }
 /** class DispatchIO */
 export declare class DispatchIO extends DispatchObject {
@@ -403,6 +432,11 @@ export declare class DispatchIO extends DispatchObject {
     static writeToFileDescriptorDataRunningHandlerOnHandler(toFileDescriptor: number, data: DispatchData, queue: DispatchQueue, handler: ((arg0: (DispatchData) | null, arg1: number) => void)): void;
     /** func write(offset: off_t, data: DispatchData, queue: DispatchQueue, ioHandler: @escaping (Bool, DispatchData?, Int32) -> Void) */
     writeOffsetDataQueueIoHandler(offset: SDKHandle, data: DispatchData, queue: DispatchQueue, ioHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_io": true;
+        "c:objc(cs)OS_dispatch_object": true;
+        "c:objc(cs)OS_object": true;
+    };
 }
 /** struct CloseFlags */
 export type DispatchIO_CloseFlags = Array<"stop">;
@@ -453,6 +487,9 @@ export type DispatchIO_StreamType_RawValue = number;
  * @availability iOS 10.0+
  */
 export declare class DispatchPredicate extends SDKHandle {
+    readonly $type: {
+        "s:8Dispatch0A9PredicateO": true;
+    };
 }
 /** struct DispatchQoS */
 export declare class DispatchQoS extends SDKHandle {
@@ -489,6 +526,9 @@ export declare class DispatchQoS extends SDKHandle {
     static init(qosClass: DispatchQoS_QoSClass, relativePriority: number): DispatchQoS;
     /** let qosClass: DispatchQoS.QoSClass */
     get qosClass(): DispatchQoS_QoSClass;
+    readonly $type: {
+        "s:8Dispatch0A3QoSV": true;
+    };
 }
 /** enum QoSClass */
 export type DispatchQoS_QoSClass = "background" | "utility" | "default" | "userInitiated" | "userInteractive" | "unspecified";
@@ -557,6 +597,9 @@ export declare class DispatchQueue_SchedulerOptions extends SDKHandle {
      */
     get group(): (DispatchGroup) | null;
     set group(value: (DispatchGroup) | null);
+    readonly $type: {
+        "s:So17OS_dispatch_queueC8DispatchE16SchedulerOptionsV": true;
+    };
 }
 /**
  * struct SchedulerTimeType
@@ -584,6 +627,9 @@ export declare class DispatchQueue_SchedulerTimeType extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(time: DispatchTime): DispatchQueue_SchedulerTimeType;
+    readonly $type: {
+        "s:So17OS_dispatch_queueC8DispatchE17SchedulerTimeTypeV": true;
+    };
 }
 /**
  * struct Stride
@@ -646,6 +692,9 @@ export declare class DispatchQueue_SchedulerTimeType_Stride extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(timeInterval: DispatchTimeInterval): DispatchQueue_SchedulerTimeType_Stride;
+    readonly $type: {
+        "s:So17OS_dispatch_queueC8DispatchE17SchedulerTimeTypeV6StrideV": true;
+    };
 }
 /**
  * typealias FloatLiteralType = Double
@@ -677,6 +726,11 @@ export declare class DispatchSemaphore extends DispatchObject {
     wait(): void;
     /** @discardableResult func signal() -> Int */
     signal(): number;
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_semaphore": true;
+        "c:objc(cs)OS_dispatch_object": true;
+        "c:objc(cs)OS_object": true;
+    };
 }
 /**
  * class DispatchSerialQueue
@@ -688,6 +742,9 @@ export declare class DispatchSerialQueue extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(label: string, qos?: DispatchQoS, attributes?: DispatchSerialQueue_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, target?: (DispatchQueue) | null): DispatchSerialQueue;
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_queue_serial": true;
+    };
 }
 /**
  * struct Attributes
@@ -752,6 +809,11 @@ export declare class DispatchSource extends DispatchObject {
     static makeUserDataReplaceSource(queue?: (DispatchQueue) | null): SDKHandle;
     /** class func makeFileSystemObjectSource(fileDescriptor: Int32, eventMask: DispatchSource.FileSystemEvent, queue: DispatchQueue? = nil) -> any DispatchSourceFileSystemObject */
     static makeFileSystemObjectSource(fileDescriptor: number, eventMask: DispatchSource_FileSystemEvent, queue?: (DispatchQueue) | null): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_source": true;
+        "c:objc(cs)OS_dispatch_object": true;
+        "c:objc(cs)OS_object": true;
+    };
 }
 /** typealias DispatchSourceHandler = () -> Void */
 export type DispatchSource_DispatchSourceHandler = (() => Promise<void>);
@@ -915,6 +977,9 @@ export interface DispatchSourceWrite {
 export declare class DispatchSpecificKey<T = unknown> extends SDKHandle {
     /** init() */
     static init(): DispatchSpecificKey<unknown>;
+    readonly $type: {
+        "s:8Dispatch0A11SpecificKeyC": true;
+    };
 }
 /** struct DispatchTime */
 export type DispatchTime = "distantFuture" | (number & {});
@@ -942,6 +1007,9 @@ export declare const DispatchTime: {
 };
 /** enum DispatchTimeInterval */
 export declare class DispatchTimeInterval extends SDKHandle {
+    readonly $type: {
+        "s:8Dispatch0A12TimeIntervalO": true;
+    };
 }
 /** @frozen enum DispatchTimeoutResult */
 export type DispatchTimeoutResult = "success" | "timedOut";
@@ -1012,6 +1080,9 @@ export declare class DispatchWorkItem extends SDKHandle {
      * @availability iOS 8.0+
      */
     perform(): void;
+    readonly $type: {
+        "s:8Dispatch0A8WorkItemC": true;
+    };
 }
 /** struct DispatchWorkItemFlags */
 export type DispatchWorkItemFlags = Array<"barrier" | "detached" | "assignCurrentContext" | "noQoS" | "inheritQoS" | "enforceQoS">;
@@ -1064,6 +1135,9 @@ export declare class DispatchWorkloop extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(label: string, attributes?: DispatchWorkloop_Attributes, autoreleaseFrequency?: DispatchQueue_AutoreleaseFrequency, osWorkgroup?: (SDKHandle) | null): DispatchWorkloop;
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_workloop": true;
+    };
 }
 /**
  * struct Attributes
@@ -1099,9 +1173,19 @@ export type DispatchWorkloop_Attributes_Element = DispatchWorkloop_Attributes;
 export type DispatchWorkloop_Attributes_RawValue = number;
 /** class OS_dispatch_queue_global */
 export declare class OS_dispatch_queue_global extends DispatchQueue {
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_queue_global": true;
+        "c:objc(cs)OS_dispatch_queue": true;
+        "c:objc(cs)OS_dispatch_object": true;
+        "c:objc(cs)OS_object": true;
+    };
 }
 /** class OS_dispatch_queue_main */
 export declare class OS_dispatch_queue_main extends DispatchSerialQueue {
+    readonly $type: {
+        "c:objc(cs)OS_dispatch_queue_main": true;
+        "c:objc(cs)OS_dispatch_queue_serial": true;
+    };
 }
 /**
  * func dispatch_allow_send_signals(_ preserve_signum: Int32) -> Int32

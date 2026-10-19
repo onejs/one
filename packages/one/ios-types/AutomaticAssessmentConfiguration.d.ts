@@ -25,6 +25,10 @@ export declare class AEAssessmentApplication extends SDKHandle {
      * @availability iOS 27.0+
      */
     get teamIdentifier(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)AEAssessmentApplication": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bundleIdentifier": true;
         "teamIdentifier": true;
@@ -148,6 +152,10 @@ export declare class AEAssessmentConfiguration extends SDKHandle {
      * @availability iOS 17.5+
      */
     get mainParticipantConfiguration(): AEAssessmentParticipantConfiguration;
+    readonly $type: {
+        "c:objc(cs)AEAssessmentConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsAccessibilityLiveCaptions": true;
         "allowsAccessibilityReader": true;
@@ -235,6 +243,9 @@ export declare class AEAssessmentError extends SDKHandle {
      * @availability iOS 13.4+
      */
     static get unknown(): AEAssessmentError_Code;
+    readonly $type: {
+        "s:SC21AEAssessmentErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -281,6 +292,10 @@ export declare class AEAssessmentParticipantConfiguration extends SDKHandle {
      */
     get isRequired(): boolean;
     set isRequired(value: boolean);
+    readonly $type: {
+        "c:objc(cs)AEAssessmentParticipantConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsNetworkAccess": true;
         "configurationInfo": true;
@@ -338,6 +353,10 @@ export declare class AEAssessmentSession extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<AEAssessmentSessionDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)AEAssessmentSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "configuration": true;

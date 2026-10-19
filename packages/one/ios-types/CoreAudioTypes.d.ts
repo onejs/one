@@ -16,6 +16,9 @@ export declare class AudioBuffer extends SDKHandle {
     static initMNumberChannelsMDataByteSizeMData(mNumberChannels: number, mDataByteSize: number, mData?: (SDKHandle) | null): AudioBuffer;
     /** init() */
     static init(): AudioBuffer;
+    readonly $type: {
+        "c:@S@AudioBuffer": true;
+    };
 }
 /** struct AudioBufferList */
 export declare class AudioBufferList extends SDKHandle {
@@ -29,6 +32,9 @@ export declare class AudioBufferList extends SDKHandle {
     static initMNumberBuffersMBuffers(mNumberBuffers: number, mBuffers: AudioBuffer): AudioBufferList;
     /** init() */
     static init(): AudioBufferList;
+    readonly $type: {
+        "c:@S@AudioBufferList": true;
+    };
 }
 /** struct AudioChannelBitmap */
 export type AudioChannelBitmap = Array<"bit_Left" | "bit_Right" | "bit_Center" | "bit_LFEScreen" | "bit_LeftSurround" | "bit_RightSurround" | "bit_LeftCenter" | "bit_RightCenter" | "bit_CenterSurround" | "bit_LeftSurroundDirect" | "bit_RightSurroundDirect" | "bit_TopCenterSurround" | "bit_VerticalHeightLeft" | "bit_VerticalHeightCenter" | "bit_VerticalHeightRight" | "bit_TopBackLeft" | "bit_TopBackCenter" | "bit_TopBackRight" | "bit_LeftTopFront" | "bit_CenterTopFront" | "bit_RightTopFront" | "bit_LeftTopMiddle" | "bit_CenterTopMiddle" | "bit_RightTopMiddle" | "bit_LeftTopRear" | "bit_CenterTopRear" | "bit_RightTopRear">;
@@ -117,6 +123,9 @@ export declare class AudioChannelDescription extends SDKHandle {
     static initMChannelLabelMChannelFlagsMCoordinates(mChannelLabel: number, mChannelFlags: AudioChannelFlags, mCoordinates: $SDK0): AudioChannelDescription;
     /** init() */
     static init(): AudioChannelDescription;
+    readonly $type: {
+        "c:@S@AudioChannelDescription": true;
+    };
 }
 /** struct AudioChannelFlags */
 export type AudioChannelFlags = Array<"rectangularCoordinates" | "sphericalCoordinates" | "meters">;
@@ -150,6 +159,9 @@ export declare class AudioChannelLayout extends SDKHandle {
     static initMChannelLayoutTagMChannelBitmapMNumberChannelDescriptionsMChannelDescriptions(mChannelLayoutTag: number, mChannelBitmap: AudioChannelBitmap, mNumberChannelDescriptions: number, mChannelDescriptions: AudioChannelDescription): AudioChannelLayout;
     /** init() */
     static init(): AudioChannelLayout;
+    readonly $type: {
+        "c:@S@AudioChannelLayout": true;
+    };
 }
 /** typealias AudioChannelLayoutTag = UInt32 */
 export type AudioChannelLayoutTag = number;
@@ -168,6 +180,9 @@ export declare class AudioClassDescription extends SDKHandle {
     static initMTypeMSubTypeMManufacturer(mType: SDKHandle, mSubType: SDKHandle, mManufacturer: SDKHandle): AudioClassDescription;
     /** init() */
     static init(): AudioClassDescription;
+    readonly $type: {
+        "c:@S@AudioClassDescription": true;
+    };
 }
 /** typealias AudioFormatFlags = UInt32 */
 export type AudioFormatFlags = number;
@@ -185,6 +200,9 @@ export declare class AudioFormatListItem extends SDKHandle {
     static initMASBDMChannelLayoutTag(mASBD: AudioStreamBasicDescription, mChannelLayoutTag: number): AudioFormatListItem;
     /** init() */
     static init(): AudioFormatListItem;
+    readonly $type: {
+        "c:@S@AudioFormatListItem": true;
+    };
 }
 /** typealias AudioSampleType = Int16 */
 export type AudioSampleType = number;
@@ -223,6 +241,9 @@ export declare class AudioStreamBasicDescription extends SDKHandle {
     static initMSampleRateMFormatIDMFormatFlagsMBytesPerPacketMFramesPerPacketMBytesPerFrameMChannelsPerFrameMBitsPerChannelMReserved(mSampleRate: SDKHandle, mFormatID: number, mFormatFlags: number, mBytesPerPacket: number, mFramesPerPacket: number, mBytesPerFrame: number, mChannelsPerFrame: number, mBitsPerChannel: number, mReserved: number): AudioStreamBasicDescription;
     /** init() */
     static init(): AudioStreamBasicDescription;
+    readonly $type: {
+        "c:@S@AudioStreamBasicDescription": true;
+    };
 }
 /** struct AudioStreamPacketDependencyDescription */
 export declare class AudioStreamPacketDependencyDescription extends SDKHandle {
@@ -242,6 +263,9 @@ export declare class AudioStreamPacketDependencyDescription extends SDKHandle {
     static initMIsIndependentlyDecodableMPreRollCountMFlagsMReserved(mIsIndependentlyDecodable: number, mPreRollCount: number, mFlags: number, mReserved: number): AudioStreamPacketDependencyDescription;
     /** init() */
     static init(): AudioStreamPacketDependencyDescription;
+    readonly $type: {
+        "c:@S@AudioStreamPacketDependencyDescription": true;
+    };
 }
 /** struct AudioStreamPacketDescription */
 export declare class AudioStreamPacketDescription extends SDKHandle {
@@ -258,6 +282,9 @@ export declare class AudioStreamPacketDescription extends SDKHandle {
     static initMStartOffsetMVariableFramesInPacketMDataByteSize(mStartOffset: number, mVariableFramesInPacket: number, mDataByteSize: number): AudioStreamPacketDescription;
     /** init() */
     static init(): AudioStreamPacketDescription;
+    readonly $type: {
+        "c:@S@AudioStreamPacketDescription": true;
+    };
 }
 /** struct AudioTimeStamp */
 export declare class AudioTimeStamp extends SDKHandle {
@@ -286,6 +313,9 @@ export declare class AudioTimeStamp extends SDKHandle {
     static initMSampleTimeMHostTimeMRateScalarMWordClockTimeMSMPTETimeMFlagsMReserved(mSampleTime: SDKHandle, mHostTime: number, mRateScalar: SDKHandle, mWordClockTime: number, mSMPTETime: SMPTETime, mFlags: AudioTimeStampFlags, mReserved: number): AudioTimeStamp;
     /** init() */
     static init(): AudioTimeStamp;
+    readonly $type: {
+        "c:@S@AudioTimeStamp": true;
+    };
 }
 /** struct AudioTimeStampFlags */
 export type AudioTimeStampFlags = Array<"sampleTimeValid" | "hostTimeValid" | "rateScalarValid" | "wordClockTimeValid" | "smpteTimeValid" | "sampleHostTimeValid">;
@@ -319,6 +349,9 @@ export declare class AudioValueRange extends SDKHandle {
     static initMMinimumMMaximum(mMinimum: SDKHandle, mMaximum: SDKHandle): AudioValueRange;
     /** init() */
     static init(): AudioValueRange;
+    readonly $type: {
+        "c:@S@AudioValueRange": true;
+    };
 }
 /** struct AudioValueTranslation */
 export declare class AudioValueTranslation extends SDKHandle {
@@ -336,6 +369,9 @@ export declare class AudioValueTranslation extends SDKHandle {
     set mOutputDataSize(value: number);
     /** init(mInputData: UnsafeMutableRawPointer, mInputDataSize: UInt32, mOutputData: UnsafeMutableRawPointer, mOutputDataSize: UInt32) */
     static init(mInputData: SDKHandle, mInputDataSize: number, mOutputData: SDKHandle, mOutputDataSize: number): AudioValueTranslation;
+    readonly $type: {
+        "c:@S@AudioValueTranslation": true;
+    };
 }
 /** typealias AVAudioInteger = Int */
 export type AVAudioInteger = number;
@@ -382,6 +418,9 @@ export declare class SMPTETime extends SDKHandle {
     static initMSubframesMSubframeDivisorMCounterMTypeMFlagsMHoursMMinutesMSecondsMFrames(mSubframes: number, mSubframeDivisor: number, mCounter: number, mType: SMPTETimeType, mFlags: SMPTETimeFlags, mHours: number, mMinutes: number, mSeconds: number, mFrames: number): SMPTETime;
     /** init() */
     static init(): SMPTETime;
+    readonly $type: {
+        "c:@S@SMPTETime": true;
+    };
 }
 /** struct SMPTETimeFlags */
 export type SMPTETimeFlags = Array<"valid" | "running">;

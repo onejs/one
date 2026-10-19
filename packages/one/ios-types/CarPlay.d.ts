@@ -97,6 +97,10 @@ export declare class CPTemplate extends SDKHandle {
      */
     get userInfo(): Promise<(unknown) | null>;
     setUserInfo(value?: (unknown) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const CPActionSheetTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -124,6 +128,11 @@ export declare class CPActionSheetTemplate extends CPActionSheetTemplate_base {
      * @availability iOS 12.0+
      */
     get title(): Promise<(string) | null>;
+    readonly $type: {
+        "c:objc(cs)CPActionSheetTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CPAlertAction
@@ -160,6 +169,10 @@ export declare class CPAlertAction extends SDKHandle {
      * @availability iOS 12.0+
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)CPAlertAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "color": true;
         "style": true;
@@ -206,6 +219,11 @@ export declare class CPAlertTemplate extends CPAlertTemplate_base {
      * @availability iOS 12.0+
      */
     get titleVariants(): Promise<Array<string>>;
+    readonly $type: {
+        "c:objc(cs)CPAlertTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol CPApplicationDelegate : UIApplicationDelegate
@@ -275,13 +293,11 @@ export declare const CPAssistantCellActionType: {
  * @availability iOS 15.0+
  */
 export declare class CPAssistantCellConfiguration extends SDKHandle {
-    /** init() */
-    static init(): CPAssistantCellConfiguration;
     /**
      * init(position: CPListItem.AssistantCellPosition, visibility: CPListItem.AssistantCellVisibility, assistantAction: CPAssistantCellActionType)
      * @availability iOS 15.0+
      */
-    static initPositionVisibilityAssistantAction(position: CPListItem_AssistantCellPosition, visibility: CPListItem_AssistantCellVisibility, assistantAction: CPAssistantCellActionType): CPAssistantCellConfiguration;
+    static init(position: CPListItem_AssistantCellPosition, visibility: CPListItem_AssistantCellVisibility, assistantAction: CPAssistantCellActionType): CPAssistantCellConfiguration;
     /**
      * var assistantAction: CPAssistantCellActionType { get }
      * @availability iOS 15.0+
@@ -297,6 +313,10 @@ export declare class CPAssistantCellConfiguration extends SDKHandle {
      * @availability iOS 15.0+
      */
     get visibility(): CPListItem_AssistantCellVisibility;
+    readonly $type: {
+        "c:objc(cs)CPAssistantCellConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assistantAction": true;
         "position": true;
@@ -348,6 +368,10 @@ export declare class CPBarButton extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)CPBarButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "buttonStyle": true;
         "buttonType": true;
@@ -408,6 +432,10 @@ export declare class CPButton extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)CPButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "image": true;
@@ -419,13 +447,11 @@ export declare class CPButton extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class CPChargingStationConnection extends SDKHandle {
-    /** init() */
-    static init(): CPChargingStationConnection;
     /**
      * init(connector: CPChargingStationConnection.Connector, voltage: Measurement<UnitElectricPotentialDifference>, power: Measurement<UnitPower>)
      * @availability iOS 27.0+
      */
-    static initConnectorVoltagePower(connector: CPChargingStationConnection_Connector, voltage: $SDK8, power: $SDK9): CPChargingStationConnection;
+    static init(connector: CPChargingStationConnection_Connector, voltage: $SDK8, power: $SDK9): CPChargingStationConnection;
     /**
      * var connector: CPChargingStationConnection.Connector { get }
      * @availability iOS 27.0+
@@ -441,6 +467,10 @@ export declare class CPChargingStationConnection extends SDKHandle {
      * @availability iOS 27.0+
      */
     get voltage(): $SDK8;
+    readonly $type: {
+        "c:objc(cs)CPChargingStationConnection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connector": true;
         "power": true;
@@ -458,13 +488,11 @@ export declare const CPChargingStationConnection_Connector: {
  * @availability iOS 14.0+
  */
 export declare class CPContact extends SDKHandle {
-    /** init() */
-    static init(): CPContact;
     /**
      * init(name: String, image: UIImage)
      * @availability iOS 14.0+
      */
-    static initNameImage(name: string, image: _UIKit_UIImage): CPContact;
+    static init(name: string, image: _UIKit_UIImage): CPContact;
     /**
      * var actions: [CPButton]? { get set }
      * @availability iOS 14.0+
@@ -495,6 +523,10 @@ export declare class CPContact extends SDKHandle {
      */
     get subtitle(): (string) | null;
     set subtitle(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)CPContact": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "image": true;
@@ -509,13 +541,16 @@ declare const CPContactCallButton_base: Omit<typeof CPButton, "init" | "prototyp
  * @availability iOS 14.0+
  */
 export declare class CPContactCallButton extends CPContactCallButton_base {
-    /** init() */
-    static init(): CPContactCallButton;
     /**
      * init(handler: ((CPButton) -> Void)? = nil)
      * @availability iOS 14.0+
      */
-    static initHandler(handler?: $SDK7): CPContactCallButton;
+    static init(handler?: $SDK7): CPContactCallButton;
+    readonly $type: {
+        "c:objc(cs)CPContactCallButton": true;
+        "c:objc(cs)CPButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "image": true;
@@ -528,13 +563,16 @@ declare const CPContactDirectionsButton_base: Omit<typeof CPButton, "init" | "pr
  * @availability iOS 14.0+
  */
 export declare class CPContactDirectionsButton extends CPContactDirectionsButton_base {
-    /** init() */
-    static init(): CPContactDirectionsButton;
     /**
      * init(handler: ((CPButton) -> Void)? = nil)
      * @availability iOS 14.0+
      */
-    static initHandler(handler?: $SDK7): CPContactDirectionsButton;
+    static init(handler?: $SDK7): CPContactDirectionsButton;
+    readonly $type: {
+        "c:objc(cs)CPContactDirectionsButton": true;
+        "c:objc(cs)CPButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "image": true;
@@ -557,6 +595,11 @@ export declare class CPContactMessageButton extends CPContactMessageButton_base 
      * @availability iOS 14.0+
      */
     get phoneOrEmail(): string;
+    readonly $type: {
+        "c:objc(cs)CPContactMessageButton": true;
+        "c:objc(cs)CPButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "image": true;
@@ -581,6 +624,11 @@ export declare class CPContactTemplate extends CPContactTemplate_base {
      */
     get contact(): Promise<CPContact>;
     setContact(value: CPContact): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPContactTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct CPContentStyle
@@ -629,6 +677,10 @@ export declare class CPDashboardButton extends SDKHandle {
      * @availability iOS 13.4+
      */
     get titleVariants(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)CPDashboardButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "image": true;
         "subtitleVariants": true;
@@ -646,6 +698,10 @@ export declare class CPDashboardController extends SDKHandle {
      */
     get shortcutButtons(): Array<CPDashboardButton>;
     set shortcutButtons(value: Array<CPDashboardButton>);
+    readonly $type: {
+        "c:objc(cs)CPDashboardController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "shortcutButtons": true;
     };
@@ -696,6 +752,10 @@ export declare class CPGridButton extends SDKHandle {
      * @availability iOS 12.0+
      */
     get titleVariants(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)CPGridButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "image": true;
@@ -739,6 +799,11 @@ export declare class CPGridTemplate extends CPGridTemplate_base {
      * @availability iOS 12.0+
      */
     get title(): Promise<string>;
+    readonly $type: {
+        "c:objc(cs)CPGridTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPImageOverlay
@@ -780,6 +845,10 @@ export declare class CPImageOverlay extends SDKHandle {
      * @availability iOS 26.4+
      */
     get textColor(): Promise<(_UIKit_UIColor) | null>;
+    readonly $type: {
+        "c:objc(cs)CPImageOverlay": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Alignment
@@ -813,6 +882,10 @@ export declare class CPImageSet extends SDKHandle {
      * @availability iOS 12.0+
      */
     get lightContentImage(): _UIKit_UIImage;
+    readonly $type: {
+        "c:objc(cs)CPImageSet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "darkContentImage": true;
         "lightContentImage": true;
@@ -838,6 +911,10 @@ export declare class CPInformationItem extends SDKHandle {
      * @availability iOS 14.0+
      */
     get title(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)CPInformationItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "detail": true;
         "title": true;
@@ -864,6 +941,11 @@ export declare class CPInformationRatingItem extends CPInformationRatingItem_bas
      * @availability iOS 14.0+
      */
     get rating(): $SDK16;
+    readonly $type: {
+        "c:objc(cs)CPInformationRatingItem": true;
+        "c:objc(cs)CPInformationItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "detail": true;
         "title": true;
@@ -905,6 +987,11 @@ export declare class CPInformationTemplate extends CPInformationTemplate_base {
      */
     get title(): Promise<string>;
     setTitle(value: string): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPInformationTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum CPInformationTemplateLayout
@@ -956,6 +1043,10 @@ export declare class CPInstrumentClusterController extends SDKHandle {
      * @availability iOS 15.4+
      */
     get speedLimitSetting(): CPInstrumentClusterSetting;
+    readonly $type: {
+        "c:objc(cs)CPInstrumentClusterController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributedInactiveDescriptionVariants": true;
         "compassSetting": true;
@@ -1100,6 +1191,10 @@ export declare class CPInterfaceController extends SDKHandle {
      * @availability iOS 12.0+
      */
     get topTemplate(): Promise<(CPTemplate) | null>;
+    readonly $type: {
+        "c:objc(cs)CPInterfaceController": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor protocol CPInterfaceControllerDelegate : NSObjectProtocol
@@ -1190,6 +1285,10 @@ export declare class CPLane extends SDKHandle {
      */
     get status(): CPLaneStatus;
     set status(value: CPLaneStatus);
+    readonly $type: {
+        "c:objc(cs)CPLane": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "angles": true;
         "highlightedAngle": true;
@@ -1217,6 +1316,10 @@ export declare class CPLaneGuidance extends SDKHandle {
      */
     get lanes(): Array<CPLane>;
     set lanes(value: Array<CPLane>);
+    readonly $type: {
+        "c:objc(cs)CPLaneGuidance": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "instructionVariants": true;
         "lanes": true;
@@ -1267,8 +1370,6 @@ export declare class CPListImageRowItem extends SDKHandle {
      * @deprecated iOS 26.0
      */
     static get maximumImageSize(): Promise<$SDK15>;
-    /** init() */
-    static init(): Promise<CPListImageRowItem>;
     /**
      * init(text: String?, cardElements elements: [CPListImageRowItemCardElement], allowsMultipleLines: Bool)
      * @availability iOS 26.0+
@@ -1363,6 +1464,10 @@ export declare class CPListImageRowItem extends SDKHandle {
      */
     get userInfo(): Promise<(unknown) | null>;
     setUserInfo(value?: (unknown) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPListImageRowItem": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPListImageRowItemElement
@@ -1392,6 +1497,10 @@ export declare class CPListImageRowItemElement extends SDKHandle {
      */
     get image(): Promise<_UIKit_UIImage>;
     setImage(value: _UIKit_UIImage): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPListImageRowItemElement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const CPListImageRowItemCardElement_base: Omit<typeof CPListImageRowItemElement, "maximumImageSize" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPListImageRowItemElement);
 /**
@@ -1448,6 +1557,11 @@ export declare class CPListImageRowItemCardElement extends CPListImageRowItemCar
      */
     get title(): Promise<string>;
     setTitle(value: string): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPListImageRowItemCardElement": true;
+        "c:objc(cs)CPListImageRowItemElement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPListImageRowItemCondensedElement
@@ -1482,6 +1596,11 @@ export declare class CPListImageRowItemCondensedElement extends CPListImageRowIt
      */
     get title(): Promise<string>;
     setTitle(value: string): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPListImageRowItemCondensedElement": true;
+        "c:objc(cs)CPListImageRowItemElement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Shape
@@ -1505,6 +1624,11 @@ export declare class CPListImageRowItemGridElement extends CPListImageRowItemEle
      * @availability iOS 26.0+
      */
     static init(image: _UIKit_UIImage): Promise<CPListImageRowItemGridElement>;
+    readonly $type: {
+        "c:objc(cs)CPListImageRowItemGridElement": true;
+        "c:objc(cs)CPListImageRowItemElement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPListImageRowItemImageGridElement
@@ -1533,6 +1657,11 @@ export declare class CPListImageRowItemImageGridElement extends CPListImageRowIt
      */
     get title(): Promise<string>;
     setTitle(value: string): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPListImageRowItemImageGridElement": true;
+        "c:objc(cs)CPListImageRowItemElement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Shape
@@ -1568,6 +1697,11 @@ export declare class CPListImageRowItemRowElement extends CPListImageRowItemElem
      */
     get title(): Promise<(string) | null>;
     setTitle(value?: (string) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPListImageRowItemRowElement": true;
+        "c:objc(cs)CPListImageRowItemElement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPListItem
@@ -1579,8 +1713,6 @@ export declare class CPListItem extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get maximumImageSize(): Promise<$SDK15>;
-    /** init() */
-    static init(): Promise<CPListItem>;
     /**
      * init(text: String?, detailText: String?)
      * @availability iOS 12.0+
@@ -1702,6 +1834,10 @@ export declare class CPListItem extends SDKHandle {
      */
     get userInfo(): Promise<(unknown) | null>;
     setUserInfo(value?: (unknown) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPListItem": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum AssistantCellPosition
@@ -1822,6 +1958,10 @@ export declare class CPListSection extends SDKHandle {
      * @availability iOS 12.0+
      */
     static initItems71363(items: Array<CPListItem>): CPListSection;
+    readonly $type: {
+        "c:objc(cs)CPListSection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "header": true;
         "headerButton": true;
@@ -1949,6 +2089,11 @@ export declare class CPListTemplate extends CPTemplate {
      * @availability iOS 12.0+
      */
     get title(): Promise<(string) | null>;
+    readonly $type: {
+        "c:objc(cs)CPListTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol CPListTemplateDelegate : NSObjectProtocol
@@ -1978,8 +2123,6 @@ export declare class CPListTemplateDetailsHeader extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get maximumActionButtonSize(): Promise<$SDK15>;
-    /** init() */
-    static init(): Promise<CPListTemplateDetailsHeader>;
     /**
      * init(thumbnail: CPThumbnailImage, title: String?, subtitle: String?, actionButtons actionButton: [CPButton])
      * @availability iOS 26.4+
@@ -2026,6 +2169,10 @@ export declare class CPListTemplateDetailsHeader extends SDKHandle {
      */
     get title(): Promise<(string) | null>;
     setTitle(value?: (string) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPListTemplateDetailsHeader": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol CPListTemplateItem : NSObjectProtocol
@@ -2066,6 +2213,9 @@ export declare class CPLocationCoordinate3D extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init(): CPLocationCoordinate3D;
+    readonly $type: {
+        "c:@SA@CPLocationCoordinate3D": true;
+    };
 }
 /**
  * class CPManeuver
@@ -2213,6 +2363,10 @@ export declare class CPManeuver extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $type: {
+        "c:objc(cs)CPManeuver": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributedInstructionVariants": true;
         "cardBackgroundColor": true;
@@ -2300,13 +2454,11 @@ export declare const CPManeuverType: {
  * @availability iOS 12.0+
  */
 export declare class CPMapButton extends SDKHandle {
-    /** init() */
-    static init(): Promise<CPMapButton>;
     /**
      * init(handler: ((CPMapButton) -> Void)? = nil)
      * @availability iOS 12.0+
      */
-    static initHandler(handler?: (((arg0: CPMapButton) => void)) | null): Promise<CPMapButton>;
+    static init(handler?: (((arg0: CPMapButton) => void)) | null): Promise<CPMapButton>;
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 12.0+
@@ -2331,6 +2483,10 @@ export declare class CPMapButton extends SDKHandle {
      */
     get image(): Promise<(_UIKit_UIImage) | null>;
     setImage(value?: (_UIKit_UIImage) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPMapButton": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CPPanel
@@ -2350,6 +2506,10 @@ export declare class CPPanel extends SDKHandle {
      */
     get showsCloseButton(): boolean;
     set showsCloseButton(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CPPanel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "showsCloseButton": true;
     };
@@ -2387,6 +2547,11 @@ export declare class CPMapPanel extends CPMapPanel_base {
      * @availability iOS 27.0+
      */
     get title(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)CPMapPanel": true;
+        "c:objc(cs)CPPanel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "showsCloseButton": true;
         "buttonConfiguration": true;
@@ -2431,6 +2596,10 @@ export declare class CPPanelButtonConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get secondaryAction(): (CPTextButton) | null;
+    readonly $type: {
+        "c:objc(cs)CPPanelButtonConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "primaryAction": true;
         "secondaryAction": true;
@@ -2458,6 +2627,11 @@ export declare class CPMapPanelButtonConfiguration extends CPMapPanelButtonConfi
      */
     get travelEstimates(): $SDK39;
     set travelEstimates(value: $SDK39);
+    readonly $type: {
+        "c:objc(cs)CPMapPanelButtonConfiguration": true;
+        "c:objc(cs)CPPanelButtonConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "primaryAction": true;
         "secondaryAction": true;
@@ -2498,6 +2672,10 @@ export declare class CPPanelItem extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $type: {
+        "c:objc(cs)CPPanelItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "showsBottomSeparator": true;
@@ -2539,6 +2717,11 @@ export declare class CPMapPanelItem extends CPPanelItem {
      * @availability iOS 27.0+
      */
     static initTripHandler(trip: CPTrip, handler?: $SDK45): CPMapPanelItem;
+    readonly $type: {
+        "c:objc(cs)CPMapPanelItem": true;
+        "c:objc(cs)CPPanelItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "showsBottomSeparator": true;
@@ -2567,6 +2750,10 @@ export declare class CPMapPanelSection extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)CPMapPanelSection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "items": true;
         "title": true;
@@ -2701,6 +2888,11 @@ export declare class CPMapTemplate extends CPMapTemplate_base {
      */
     get tripEstimateStyle(): Promise<CPTripEstimateStyle>;
     setTripEstimateStyle(value: CPTripEstimateStyle): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPMapTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct PanDirection
@@ -2932,6 +3124,10 @@ export declare class CPMapTemplateWaypoint extends SDKHandle {
      */
     get waypoint(): CPNavigationWaypoint;
     set waypoint(value: CPNavigationWaypoint);
+    readonly $type: {
+        "c:objc(cs)CPMapTemplateWaypoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "travelEstimates": true;
         "waypoint": true;
@@ -2952,6 +3148,11 @@ export declare class CPMessageComposeBarButton extends CPBarButton {
      * @availability iOS 14.0+
      */
     static initImage(image: _UIKit_UIImage): CPMessageComposeBarButton;
+    readonly $type: {
+        "c:objc(cs)CPMessageComposeBarButton": true;
+        "c:objc(cs)CPBarButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "buttonStyle": true;
         "buttonType": true;
@@ -2965,13 +3166,11 @@ export declare class CPMessageComposeBarButton extends CPBarButton {
  * @availability iOS 26.0+
  */
 export declare class CPMessageGridItemConfiguration extends SDKHandle {
-    /** init() */
-    static init(): CPMessageGridItemConfiguration;
     /**
      * init(conversationIdentifier: String, unread: Bool)
      * @availability iOS 26.0+
      */
-    static initConversationIdentifierUnread(conversationIdentifier: string, unread: boolean): CPMessageGridItemConfiguration;
+    static init(conversationIdentifier: string, unread: boolean): CPMessageGridItemConfiguration;
     /**
      * var conversationIdentifier: String { get }
      * @availability iOS 26.0+
@@ -2983,6 +3182,10 @@ export declare class CPMessageGridItemConfiguration extends SDKHandle {
      */
     get isUnread(): boolean;
     set isUnread(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CPMessageGridItemConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "conversationIdentifier": true;
         "isUnread": true;
@@ -2999,8 +3202,6 @@ export declare const CPMessageLeadingItem: {
  * @availability iOS 14.0+
  */
 export declare class CPMessageListItem extends SDKHandle {
-    /** init() */
-    static init(): CPMessageListItem;
     /**
      * init(conversationIdentifier: String, text: String, leadingConfiguration: CPMessageListItemLeadingConfiguration, trailingConfiguration: CPMessageListItemTrailingConfiguration?, detailText: String?, trailingText: String?)
      * @availability iOS 14.0+
@@ -3071,6 +3272,10 @@ export declare class CPMessageListItem extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $type: {
+        "c:objc(cs)CPMessageListItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "conversationIdentifier": true;
         "detailText": true;
@@ -3089,13 +3294,11 @@ export declare class CPMessageListItem extends SDKHandle {
  * @availability iOS 14.0+
  */
 export declare class CPMessageListItemLeadingConfiguration extends SDKHandle {
-    /** init() */
-    static init(): CPMessageListItemLeadingConfiguration;
     /**
      * init(leadingItem: CPMessageLeadingItem, leadingImage: UIImage?, unread: Bool)
      * @availability iOS 14.0+
      */
-    static initLeadingItemLeadingImageUnread(leadingItem: CPMessageLeadingItem, leadingImage: (_UIKit_UIImage) | null, unread: boolean): CPMessageListItemLeadingConfiguration;
+    static init(leadingItem: CPMessageLeadingItem, leadingImage: (_UIKit_UIImage) | null, unread: boolean): CPMessageListItemLeadingConfiguration;
     /**
      * var leadingImage: UIImage? { get }
      * @availability iOS 14.0+
@@ -3111,6 +3314,10 @@ export declare class CPMessageListItemLeadingConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get isUnread(): boolean;
+    readonly $type: {
+        "c:objc(cs)CPMessageListItemLeadingConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "leadingImage": true;
         "leadingItem": true;
@@ -3122,13 +3329,11 @@ export declare class CPMessageListItemLeadingConfiguration extends SDKHandle {
  * @availability iOS 14.0+
  */
 export declare class CPMessageListItemTrailingConfiguration extends SDKHandle {
-    /** init() */
-    static init(): CPMessageListItemTrailingConfiguration;
     /**
      * init(trailingItem: CPMessageTrailingItem, trailingImage: UIImage?)
      * @availability iOS 14.0+
      */
-    static initTrailingItemTrailingImage(trailingItem: CPMessageTrailingItem, trailingImage?: (_UIKit_UIImage) | null): CPMessageListItemTrailingConfiguration;
+    static init(trailingItem: CPMessageTrailingItem, trailingImage?: (_UIKit_UIImage) | null): CPMessageListItemTrailingConfiguration;
     /**
      * var trailingImage: UIImage? { get }
      * @availability iOS 14.0+
@@ -3139,6 +3344,10 @@ export declare class CPMessageListItemTrailingConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get trailingItem(): CPMessageTrailingItem;
+    readonly $type: {
+        "c:objc(cs)CPMessageListItemTrailingConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "trailingImage": true;
         "trailingItem": true;
@@ -3155,8 +3364,6 @@ export declare const CPMessageTrailingItem: {
  * @availability iOS 27.0+
  */
 export declare class CPMultiStopCardConfiguration extends SDKHandle {
-    /** init() */
-    static init(): CPMultiStopCardConfiguration;
     /**
      * init(title: String?, buttons: [CPTextButton])
      * @availability iOS 27.0+
@@ -3182,6 +3389,10 @@ export declare class CPMultiStopCardConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get title(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)CPMultiStopCardConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "buttons": true;
         "image": true;
@@ -3208,8 +3419,6 @@ export declare class CPNavigationAlert extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get maximumAvatarImageSize(): Promise<$SDK15>;
-    /** init() */
-    static init(): Promise<CPNavigationAlert>;
     /**
      * init(titleVariants: [String], subtitleVariants: [String], avatarImage: UIImage?, alert alertImage: UIImage?, actions: [CPAlertAction], duration: TimeInterval)
      * @availability iOS 27.0+
@@ -3292,6 +3501,10 @@ export declare class CPNavigationAlert extends SDKHandle {
      * @availability iOS 12.0+
      */
     get titleVariants(): Promise<Array<string>>;
+    readonly $type: {
+        "c:objc(cs)CPNavigationAlert": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum DismissalContext
@@ -3421,6 +3634,10 @@ export declare class CPNavigationSession extends SDKHandle {
      */
     get upcomingManeuvers(): Promise<Array<CPManeuver>>;
     setUpcomingManeuvers(value: Array<CPManeuver>): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPNavigationSession": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum PauseReason
@@ -3496,6 +3713,10 @@ export declare class CPNavigationWaypoint extends SDKHandle {
      * @availability iOS 26.4+
      */
     static initMapItemLocationThresholdEntryPoints(mapItem: _MapKit_MKMapItem, locationThreshold: $SDK52, entryPoints: $SDK54): CPNavigationWaypoint;
+    readonly $type: {
+        "c:objc(cs)CPNavigationWaypoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "address": true;
         "addressVariants": true;
@@ -3511,13 +3732,11 @@ export declare class CPNavigationWaypoint extends SDKHandle {
  * @availability iOS 14.0+
  */
 export declare class CPNowPlayingButton extends SDKHandle {
-    /** init() */
-    static init(): Promise<CPNowPlayingButton>;
     /**
      * init(handler: ((CPNowPlayingButton) -> Void)? = nil)
      * @availability iOS 14.0+
      */
-    static initHandler(handler?: $SDK55): Promise<CPNowPlayingButton>;
+    static init(handler?: $SDK55): Promise<CPNowPlayingButton>;
     /**
      * var isEnabled: Bool { get set }
      * @availability iOS 14.0+
@@ -3530,15 +3749,21 @@ export declare class CPNowPlayingButton extends SDKHandle {
      */
     get isSelected(): Promise<boolean>;
     setIsSelected(value: boolean): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingButton": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const CPNowPlayingAddToLibraryButton_base: Omit<typeof CPNowPlayingButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPNowPlayingButton);
 /**
  * @MainActor class CPNowPlayingAddToLibraryButton
  * @availability iOS 14.0+
  */
-export declare class CPNowPlayingAddToLibraryButton extends CPNowPlayingAddToLibraryButton_base {
-    /** init() */
-    static init(): Promise<CPNowPlayingAddToLibraryButton>;
+export declare class CPNowPlayingAddToLibraryButton extends CPNowPlayingButton {
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingAddToLibraryButton": true;
+        "c:objc(cs)CPNowPlayingButton": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const CPNowPlayingImageButton_base: Omit<typeof CPNowPlayingButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPNowPlayingButton);
 /**
@@ -3546,18 +3771,21 @@ declare const CPNowPlayingImageButton_base: Omit<typeof CPNowPlayingButton, "ini
  * @availability iOS 14.0+
  */
 export declare class CPNowPlayingImageButton extends CPNowPlayingImageButton_base {
-    /** init() */
-    static init(): Promise<CPNowPlayingImageButton>;
     /**
      * init(image: UIImage, handler: ((CPNowPlayingButton) -> Void)? = nil)
      * @availability iOS 14.0+
      */
-    static initImageHandler(image: _UIKit_UIImage, handler?: $SDK55): Promise<CPNowPlayingImageButton>;
+    static init(image: _UIKit_UIImage, handler?: $SDK55): Promise<CPNowPlayingImageButton>;
     /**
      * var image: UIImage? { get }
      * @availability iOS 14.0+
      */
     get image(): Promise<(_UIKit_UIImage) | null>;
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingImageButton": true;
+        "c:objc(cs)CPNowPlayingButton": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingMode
@@ -3571,6 +3799,10 @@ export declare class CPNowPlayingMode extends SDKHandle {
     static get default(): Promise<CPNowPlayingMode>;
     /** init() */
     static init(): Promise<CPNowPlayingMode>;
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingMode": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const CPNowPlayingModeSports_base: Omit<typeof CPNowPlayingMode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPNowPlayingMode);
 /**
@@ -3578,13 +3810,11 @@ declare const CPNowPlayingModeSports_base: Omit<typeof CPNowPlayingMode, "init" 
  * @availability iOS 18.4+
  */
 export declare class CPNowPlayingModeSports extends CPNowPlayingModeSports_base {
-    /** init() */
-    static init(): Promise<CPNowPlayingModeSports>;
     /**
      * init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus: CPNowPlayingSportsEventStatus?, backgroundArtwork: UIImage?)
      * @availability iOS 18.4+
      */
-    static initLeftTeamRightTeamEventStatusBackgroundArtwork(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK56, backgroundArtwork?: (_UIKit_UIImage) | null): Promise<CPNowPlayingModeSports>;
+    static init(leftTeam: CPNowPlayingSportsTeam, rightTeam: CPNowPlayingSportsTeam, eventStatus?: $SDK56, backgroundArtwork?: (_UIKit_UIImage) | null): Promise<CPNowPlayingModeSports>;
     /**
      * @NSCopying var backgroundArtwork: UIImage? { get }
      * @availability iOS 18.4+
@@ -3605,42 +3835,55 @@ export declare class CPNowPlayingModeSports extends CPNowPlayingModeSports_base 
      * @availability iOS 18.4+
      */
     get rightTeam(): Promise<CPNowPlayingSportsTeam>;
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingModeSports": true;
+        "c:objc(cs)CPNowPlayingMode": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const CPNowPlayingMoreButton_base: Omit<typeof CPNowPlayingButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPNowPlayingButton);
 /**
  * @MainActor class CPNowPlayingMoreButton
  * @availability iOS 14.0+
  */
-export declare class CPNowPlayingMoreButton extends CPNowPlayingMoreButton_base {
-    /** init() */
-    static init(): Promise<CPNowPlayingMoreButton>;
+export declare class CPNowPlayingMoreButton extends CPNowPlayingButton {
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingMoreButton": true;
+        "c:objc(cs)CPNowPlayingButton": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const CPNowPlayingPlaybackRateButton_base: Omit<typeof CPNowPlayingButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPNowPlayingButton);
 /**
  * @MainActor class CPNowPlayingPlaybackRateButton
  * @availability iOS 14.0+
  */
-export declare class CPNowPlayingPlaybackRateButton extends CPNowPlayingPlaybackRateButton_base {
-    /** init() */
-    static init(): Promise<CPNowPlayingPlaybackRateButton>;
+export declare class CPNowPlayingPlaybackRateButton extends CPNowPlayingButton {
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingPlaybackRateButton": true;
+        "c:objc(cs)CPNowPlayingButton": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const CPNowPlayingRepeatButton_base: Omit<typeof CPNowPlayingButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPNowPlayingButton);
 /**
  * @MainActor class CPNowPlayingRepeatButton
  * @availability iOS 14.0+
  */
-export declare class CPNowPlayingRepeatButton extends CPNowPlayingRepeatButton_base {
-    /** init() */
-    static init(): Promise<CPNowPlayingRepeatButton>;
+export declare class CPNowPlayingRepeatButton extends CPNowPlayingButton {
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingRepeatButton": true;
+        "c:objc(cs)CPNowPlayingButton": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const CPNowPlayingShuffleButton_base: Omit<typeof CPNowPlayingButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPNowPlayingButton);
 /**
  * @MainActor class CPNowPlayingShuffleButton
  * @availability iOS 14.0+
  */
-export declare class CPNowPlayingShuffleButton extends CPNowPlayingShuffleButton_base {
-    /** init() */
-    static init(): Promise<CPNowPlayingShuffleButton>;
+export declare class CPNowPlayingShuffleButton extends CPNowPlayingButton {
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingShuffleButton": true;
+        "c:objc(cs)CPNowPlayingButton": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingSportsClock
@@ -3672,6 +3915,10 @@ export declare class CPNowPlayingSportsClock extends SDKHandle {
      * @availability iOS 18.4+
      */
     get timeValue(): Promise<number>;
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingSportsClock": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingSportsEventStatus
@@ -3698,6 +3945,10 @@ export declare class CPNowPlayingSportsEventStatus extends SDKHandle {
      * @availability iOS 18.4+
      */
     get eventStatusText(): Promise<(Array<string>) | null>;
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingSportsEventStatus": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingSportsTeam
@@ -3739,6 +3990,10 @@ export declare class CPNowPlayingSportsTeam extends SDKHandle {
      * @availability iOS 18.4+
      */
     get teamStandings(): Promise<(string) | null>;
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingSportsTeam": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingSportsTeamLogo
@@ -3765,6 +4020,10 @@ export declare class CPNowPlayingSportsTeamLogo extends SDKHandle {
      * @availability iOS 18.4+
      */
     get logo(): Promise<(_UIKit_UIImage) | null>;
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingSportsTeamLogo": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingTemplate
@@ -3826,6 +4085,11 @@ export declare class CPNowPlayingTemplate extends CPTemplate {
      */
     get upNextTitle(): Promise<string>;
     setUpNextTitle(value: string): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPNowPlayingTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol CPNowPlayingTemplateObserver : NSObjectProtocol
@@ -3854,13 +4118,11 @@ export interface CPPlayableItem {
  * @availability iOS 26.4+
  */
 export declare class CPPlaybackConfiguration extends SDKHandle {
-    /** init() */
-    static init(): Promise<CPPlaybackConfiguration>;
     /**
      * init(preferredPresentation: CPPlaybackConfiguration.Presentation, playbackAction: CPPlaybackConfiguration.Action, elapsedTime: CMTime, duration: CMTime)
      * @availability iOS 26.4+
      */
-    static initPreferredPresentationPlaybackActionElapsedTimeDuration(preferredPresentation: CPPlaybackConfiguration_Presentation, playbackAction: CPPlaybackConfiguration_Action, elapsedTime: _CoreMedia_CMTime, duration: _CoreMedia_CMTime): Promise<CPPlaybackConfiguration>;
+    static init(preferredPresentation: CPPlaybackConfiguration_Presentation, playbackAction: CPPlaybackConfiguration_Action, elapsedTime: _CoreMedia_CMTime, duration: _CoreMedia_CMTime): Promise<CPPlaybackConfiguration>;
     /**
      * var duration: CMTime { get }
      * @availability iOS 26.4+
@@ -3881,6 +4143,10 @@ export declare class CPPlaybackConfiguration extends SDKHandle {
      * @availability iOS 26.4+
      */
     get preferredPresentation(): Promise<CPPlaybackConfiguration_Presentation>;
+    readonly $type: {
+        "c:objc(cs)CPPlaybackConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum Action
@@ -4003,6 +4269,10 @@ export declare class CPPointOfInterest extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $type: {
+        "c:objc(cs)CPPointOfInterest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "detailSubtitle": true;
         "detailSummary": true;
@@ -4057,6 +4327,11 @@ export declare class CPPointOfInterestTemplate extends CPPointOfInterestTemplate
      */
     get title(): Promise<string>;
     setTitle(value: string): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPPointOfInterestTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor protocol CPPointOfInterestTemplateDelegate : NSObjectProtocol
@@ -4127,6 +4402,10 @@ export declare class CPRouteChoice extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $type: {
+        "c:objc(cs)CPRouteChoice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "additionalInformationVariants": true;
         "selectionSummaryVariants": true;
@@ -4226,6 +4505,10 @@ export declare class CPRouteDetail extends SDKHandle {
      */
     get symbolTintColor(): Promise<(_UIKit_UIColor) | null>;
     setSymbolTintColor(value?: (_UIKit_UIColor) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPRouteDetail": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CPRouteInformation
@@ -4267,6 +4550,10 @@ export declare class CPRouteInformation extends SDKHandle {
      * @availability iOS 17.4+
      */
     get tripTravelEstimates(): CPTravelEstimates;
+    readonly $type: {
+        "c:objc(cs)CPRouteInformation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentLaneGuidance": true;
         "currentManeuvers": true;
@@ -4336,6 +4623,10 @@ export declare class CPRouteSegment extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, maneuvers: Array<CPManeuver>, laneGuidances: Array<CPLaneGuidance>, currentManeuvers: Array<CPManeuver>, currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates, coordinates: $SDK54): CPRouteSegment;
+    readonly $type: {
+        "c:objc(cs)CPRouteSegment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentLaneGuidance": true;
         "currentManeuvers": true;
@@ -4374,6 +4665,11 @@ export declare class CPSearchTemplate extends CPSearchTemplate_base {
      */
     get delegate(): Promise<(SDKHandle) | null>;
     setDelegate(value?: (SDKHandle) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPSearchTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor protocol CPSearchTemplateDelegate : NSObjectProtocol
@@ -4433,6 +4729,10 @@ export declare class CPSessionConfiguration extends SDKHandle {
      * @availability iOS 26.4+
      */
     get supportsVideoPlayback(): boolean;
+    readonly $type: {
+        "c:objc(cs)CPSessionConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentStyle": true;
         "delegate": true;
@@ -4481,6 +4781,10 @@ export declare class CPSportsOverlay extends SDKHandle {
      * @availability iOS 26.4+
      */
     get rightTeam(): Promise<CPNowPlayingSportsTeam>;
+    readonly $type: {
+        "c:objc(cs)CPSportsOverlay": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const CPTabBarTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -4529,6 +4833,11 @@ export declare class CPTabBarTemplate extends CPTabBarTemplate_base {
      * @availability iOS 14.0+
      */
     get templates(): Promise<Array<CPTemplate>>;
+    readonly $type: {
+        "c:objc(cs)CPTabBarTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor protocol CPTabBarTemplateDelegate : NSObjectProtocol
@@ -4562,6 +4871,12 @@ export declare class CPTemplateApplicationDashboardScene extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<CPTemplateApplicationDashboardSceneDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)CPTemplateApplicationDashboardScene": true;
+        "c:objc(cs)UIScene": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dashboardController": true;
         "dashboardWindow": true;
@@ -4617,6 +4932,12 @@ export declare class CPTemplateApplicationInstrumentClusterScene extends SDKHand
      * @availability iOS 15.4+
      */
     get instrumentClusterController(): CPInstrumentClusterController;
+    readonly $type: {
+        "c:objc(cs)CPTemplateApplicationInstrumentClusterScene": true;
+        "c:objc(cs)UIScene": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentStyle": true;
         "delegate": true;
@@ -4682,6 +5003,12 @@ export declare class CPTemplateApplicationScene extends SDKHandle {
      * @availability iOS 13.0+
      */
     get interfaceController(): CPInterfaceController;
+    readonly $type: {
+        "c:objc(cs)CPTemplateApplicationScene": true;
+        "c:objc(cs)UIScene": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "carWindow": true;
         "contentStyle": true;
@@ -4759,6 +5086,10 @@ export declare class CPTextButton extends SDKHandle {
      */
     get title(): string;
     set title(value: string);
+    readonly $type: {
+        "c:objc(cs)CPTextButton": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "textStyle": true;
         "title": true;
@@ -4814,6 +5145,10 @@ export declare class CPThumbnailImage extends SDKHandle {
      */
     get sportsOverlay(): Promise<$SDK74>;
     setSportsOverlay(value?: $SDK74): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)CPThumbnailImage": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum CPTimeRemainingColor
@@ -4879,6 +5214,10 @@ export declare class CPTravelEstimates extends SDKHandle {
      * @availability iOS 12.0+
      */
     get timeRemaining(): number;
+    readonly $type: {
+        "c:objc(cs)CPTravelEstimates": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "distanceRemaining": true;
         "distanceRemainingToDisplay": true;
@@ -4954,6 +5293,10 @@ export declare class CPTrip extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $type: {
+        "c:objc(cs)CPTrip": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "destination": true;
         "destinationNameVariants": true;
@@ -4983,13 +5326,11 @@ export declare const CPTripEstimateStyle: {
  * @availability iOS 12.0+
  */
 export declare class CPTripPreviewTextConfiguration extends SDKHandle {
-    /** init() */
-    static init(): CPTripPreviewTextConfiguration;
     /**
      * init(startButtonTitle: String?, additionalRoutesButtonTitle: String?, overviewButtonTitle: String?)
      * @availability iOS 12.0+
      */
-    static initStartButtonTitleAdditionalRoutesButtonTitleOverviewButtonTitle(startButtonTitle?: (string) | null, additionalRoutesButtonTitle?: (string) | null, overviewButtonTitle?: (string) | null): CPTripPreviewTextConfiguration;
+    static init(startButtonTitle?: (string) | null, additionalRoutesButtonTitle?: (string) | null, overviewButtonTitle?: (string) | null): CPTripPreviewTextConfiguration;
     /**
      * var additionalRoutesButtonTitle: String? { get }
      * @availability iOS 12.0+
@@ -5005,6 +5346,10 @@ export declare class CPTripPreviewTextConfiguration extends SDKHandle {
      * @availability iOS 12.0+
      */
     get startButtonTitle(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)CPTripPreviewTextConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "additionalRoutesButtonTitle": true;
         "overviewButtonTitle": true;
@@ -5021,8 +5366,6 @@ export declare class CPVoiceControlState extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get maximumActionButtonCount(): number;
-    /** init() */
-    static init(): CPVoiceControlState;
     /**
      * init(identifier: String, titleVariants: [String]?, image: UIImage?, backgroundImage: UIImage?, repeats: Bool)
      * @availability iOS 27.0+
@@ -5064,6 +5407,10 @@ export declare class CPVoiceControlState extends SDKHandle {
      * @availability iOS 12.0+
      */
     get titleVariants(): (Array<string>) | null;
+    readonly $type: {
+        "c:objc(cs)CPVoiceControlState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionButtons": true;
         "backgroundImage": true;
@@ -5084,13 +5431,11 @@ export declare class CPVoiceControlTemplate extends CPVoiceControlTemplate_base 
      * @availability iOS 12.0+
      */
     activateVoiceControlState(identifier: string): Promise<void>;
-    /** init() */
-    static init(): Promise<CPVoiceControlTemplate>;
     /**
      * init(voiceControlStates: [CPVoiceControlState])
      * @availability iOS 12.0+
      */
-    static initVoiceControlStates(voiceControlStates: Array<CPVoiceControlState>): Promise<CPVoiceControlTemplate>;
+    static init(voiceControlStates: Array<CPVoiceControlState>): Promise<CPVoiceControlTemplate>;
     /**
      * var activeStateIdentifier: String? { get }
      * @availability iOS 12.0+
@@ -5119,6 +5464,11 @@ export declare class CPVoiceControlTemplate extends CPVoiceControlTemplate_base 
      * @availability iOS 12.0+
      */
     get voiceControlStates(): Promise<Array<CPVoiceControlState>>;
+    readonly $type: {
+        "c:objc(cs)CPVoiceControlTemplate": true;
+        "c:objc(cs)CPTemplate": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CPWindow
@@ -5138,12 +5488,19 @@ export declare class CPWindow extends SDKHandle {
      */
     get templateApplicationScene(): $SDK77;
     set templateApplicationScene(value: $SDK77);
+    readonly $type: {
+        "c:objc(cs)CPWindow": true;
+        "c:objc(cs)UIWindow": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mapButtonSafeAreaLayoutGuide": true;
         "templateApplicationScene": true;
     };
 }
-export type UISceneSession_Role = "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "carTemplateApplication" | "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});
+export type UISceneSession_Role = "carTemplateApplication" | "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});
 export declare const UISceneSession_Role: {
     /**
      * static let CPTemplateApplicationDashboardSceneSessionRoleApplication: UISceneSession.Role

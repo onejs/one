@@ -26,6 +26,10 @@ export declare class ARQuickLookPreviewItem extends SDKHandle {
      */
     get canonicalWebPageURL(): (string) | null;
     set canonicalWebPageURL(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)ARQuickLookPreviewItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsContentScaling": true;
         "canonicalWebPageURL": true;
@@ -43,6 +47,10 @@ export declare class QLFilePreviewRequest extends SDKHandle {
      * @availability iOS 15.0+
      */
     get fileURL(): string;
+    readonly $type: {
+        "c:objc(cs)QLFilePreviewRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fileURL": true;
     };
@@ -92,6 +100,12 @@ export declare class QLPreviewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<QLPreviewControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)QLPreviewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentPreviewItem": true;
         "currentPreviewItemIndex": true;
@@ -160,14 +174,16 @@ export declare const QLPreviewItemEditingMode: {
 export declare class QLPreviewProvider extends SDKHandle {
     /** init() */
     static init(): QLPreviewProvider;
+    readonly $type: {
+        "c:objc(cs)QLPreviewProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class QLPreviewReply
  * @availability iOS 15.0+
  */
 export declare class QLPreviewReply extends SDKHandle {
-    /** init() */
-    static init(): QLPreviewReply;
     /**
      * init(fileURL: URL)
      * @availability iOS 15.0+
@@ -199,6 +215,10 @@ export declare class QLPreviewReply extends SDKHandle {
      */
     get stringEncoding(): _Foundation_String_Encoding;
     set stringEncoding(value: _Foundation_String_Encoding);
+    readonly $type: {
+        "c:objc(cs)QLPreviewReply": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attachments": true;
         "title": true;
@@ -209,13 +229,11 @@ export declare class QLPreviewReply extends SDKHandle {
  * @availability iOS 15.0+
  */
 export declare class QLPreviewReplyAttachment extends SDKHandle {
-    /** init() */
-    static init(): QLPreviewReplyAttachment;
     /**
      * init(data: Data, contentType: UTType)
      * @availability iOS 15.0+
      */
-    static initDataContentType(data: ArrayBuffer, contentType: _UniformTypeIdentifiers_UTType): QLPreviewReplyAttachment;
+    static init(data: ArrayBuffer, contentType: _UniformTypeIdentifiers_UTType): QLPreviewReplyAttachment;
     /**
      * var contentType: UTType { get }
      * @availability iOS 15.0+
@@ -226,6 +244,10 @@ export declare class QLPreviewReplyAttachment extends SDKHandle {
      * @availability iOS 15.0+
      */
     get data(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)QLPreviewReplyAttachment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentType": true;
         "data": true;
@@ -241,6 +263,11 @@ export declare class QLPreviewSceneActivationConfiguration extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(urls: Array<string>, options?: (QLPreviewSceneActivationConfiguration_Options) | null): QLPreviewSceneActivationConfiguration;
+    readonly $type: {
+        "c:objc(cs)QLPreviewSceneActivationConfiguration": true;
+        "c:objc(cs)UIWindowSceneActivationConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class Options
@@ -255,6 +282,10 @@ export declare class QLPreviewSceneActivationConfiguration_Options extends SDKHa
      */
     get initialPreviewIndex(): number;
     set initialPreviewIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)QLPreviewSceneOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "initialPreviewIndex": true;
     };

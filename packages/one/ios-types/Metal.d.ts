@@ -3,11 +3,12 @@ import { SDKHandle, type Implements, type NativeError } from 'one/ios-runtime';
 import type { DispatchQueue as _Dispatch_DispatchQueue } from "one/ios/Dispatch";
 import type { Bundle as _Foundation_Bundle, NSNotification_Name as _Foundation_NSNotification_Name } from "one/ios/Foundation";
 import type { IOSurfaceRef as _IOSurface_IOSurfaceRef } from "one/ios/IOSurface";
+import type { NSObject as _ObjectiveC_NSObject, NSZone as _ObjectiveC_NSZone } from "one/ios/ObjectiveC";
 type $SDK0 = Array<MTLMotionKeyframeData>;
 type $SDK2 = (MTLTextureReferenceType) | null;
 type $SDK6 = ((arg0: SDKHandle) => Promise<void>);
 type $SDK7 = (Array<SDKHandle>) | null;
-type $SDK8 = (Record<string, SDKHandle>) | null;
+type $SDK8 = (Record<string, _ObjectiveC_NSObject>) | null;
 type $SDK10 = (MTLLinkedFunctions) | null;
 type $SDK11 = (MTLStageInputOutputDescriptor) | null;
 type $SDK12 = (MTLStencilDescriptor) | null;
@@ -18,16 +19,16 @@ type $SDK20 = (MTLFunctionConstantValues) | null;
 type $SDK21 = Array<MTLFunctionStitchingFunctionNode>;
 type $SDK22 = (MTLFunctionStitchingFunctionNode) | null;
 type $SDK23 = Array<Implements<MTLFunctionStitchingAttribute> | SDKHandle>;
-type $SDK26 = (Record<string, Array<SDKHandle>>) | null;
-type $SDK28 = ((arg0: (SDKHandle) | null, arg1: (NativeError) | null) => Promise<void>);
-type $SDK32 = (Array<MTLAccelerationStructureGeometryDescriptor>) | null;
-type $SDK33 = [number, number, number, number];
-type $SDK34 = (MTLRasterizationRateLayerDescriptor) | null;
-type $SDK37 = (MTLRenderPassDepthAttachmentDescriptor) | null;
-type $SDK38 = (MTLRenderPassStencilAttachmentDescriptor) | null;
-type $SDK43 = (Array<MTLArgument>) | null;
-type $SDK45 = ((arg0: SDKHandle, arg1: number) => Promise<void>);
-type $SDK46 = Array<MTLFunctionStitchingGraph>;
+type $SDK27 = (Record<string, Array<SDKHandle>>) | null;
+type $SDK29 = ((arg0: (SDKHandle) | null, arg1: (NativeError) | null) => Promise<void>);
+type $SDK33 = (Array<MTLAccelerationStructureGeometryDescriptor>) | null;
+type $SDK34 = [number, number, number, number];
+type $SDK35 = (MTLRasterizationRateLayerDescriptor) | null;
+type $SDK38 = (MTLRenderPassDepthAttachmentDescriptor) | null;
+type $SDK39 = (MTLRenderPassStencilAttachmentDescriptor) | null;
+type $SDK44 = (Array<MTLArgument>) | null;
+type $SDK46 = ((arg0: SDKHandle, arg1: number) => Promise<void>);
+type $SDK47 = Array<MTLFunctionStitchingGraph>;
 /** struct MTL4BufferRange */
 export declare class MTL4BufferRange extends SDKHandle {
     /** var bufferAddress: MTLGPUAddress */
@@ -38,6 +39,9 @@ export declare class MTL4BufferRange extends SDKHandle {
     set length(value: number);
     /** init() */
     static init(): MTL4BufferRange;
+    readonly $type: {
+        "c:@S@MTL4BufferRange": true;
+    };
 }
 /**
  * protocol MTLAccelerationStructure : MTLResource
@@ -115,6 +119,10 @@ export declare class MTLAccelerationStructureGeometryDescriptor extends SDKHandl
      */
     get primitiveDataStride(): number;
     set primitiveDataStride(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowDuplicateIntersectionFunctionInvocation": true;
         "intersectionFunctionTableOffset": true;
@@ -158,6 +166,11 @@ export declare class MTLAccelerationStructureBoundingBoxGeometryDescriptor exten
      */
     get boundingBoxStride(): number;
     set boundingBoxStride(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructureBoundingBoxGeometryDescriptor": true;
+        "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowDuplicateIntersectionFunctionInvocation": true;
         "intersectionFunctionTableOffset": true;
@@ -374,6 +387,11 @@ export declare class MTLAccelerationStructureCurveGeometryDescriptor extends MTL
      */
     get segmentCount(): number;
     set segmentCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructureCurveGeometryDescriptor": true;
+        "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowDuplicateIntersectionFunctionInvocation": true;
         "intersectionFunctionTableOffset": true;
@@ -415,6 +433,10 @@ export declare class MTLAccelerationStructureDescriptor extends SDKHandle {
      */
     get usage(): MTLAccelerationStructureUsage;
     set usage(value: MTLAccelerationStructureUsage);
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructureDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "usage": true;
     };
@@ -464,6 +486,9 @@ export declare class MTLAccelerationStructureInstanceDescriptor extends SDKHandl
      * @availability iOS 14.0+
      */
     static init(): MTLAccelerationStructureInstanceDescriptor;
+    readonly $type: {
+        "c:@SA@MTLAccelerationStructureInstanceDescriptor": true;
+    };
 }
 /**
  * enum MTLAccelerationStructureInstanceDescriptorType
@@ -535,6 +560,11 @@ export declare class MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor
      */
     get boundingBoxStride(): number;
     set boundingBoxStride(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor": true;
+        "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowDuplicateIntersectionFunctionInvocation": true;
         "intersectionFunctionTableOffset": true;
@@ -647,6 +677,11 @@ export declare class MTLAccelerationStructureMotionCurveGeometryDescriptor exten
      */
     get segmentCount(): number;
     set segmentCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructureMotionCurveGeometryDescriptor": true;
+        "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowDuplicateIntersectionFunctionInvocation": true;
         "intersectionFunctionTableOffset": true;
@@ -754,6 +789,9 @@ export declare class MTLAccelerationStructureMotionInstanceDescriptor extends SD
      * @availability iOS 15.0+
      */
     static init(): MTLAccelerationStructureMotionInstanceDescriptor;
+    readonly $type: {
+        "c:@SA@MTLAccelerationStructureMotionInstanceDescriptor": true;
+    };
 }
 declare const MTLAccelerationStructureMotionTriangleGeometryDescriptor_base: Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor);
 /**
@@ -823,6 +861,11 @@ export declare class MTLAccelerationStructureMotionTriangleGeometryDescriptor ex
      */
     get vertexStride(): number;
     set vertexStride(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructureMotionTriangleGeometryDescriptor": true;
+        "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowDuplicateIntersectionFunctionInvocation": true;
         "intersectionFunctionTableOffset": true;
@@ -856,6 +899,10 @@ export declare class MTLAccelerationStructurePassDescriptor extends SDKHandle {
      * @availability iOS 16.0+
      */
     get sampleBufferAttachments(): MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray;
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructurePassDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sampleBufferAttachments": true;
     };
@@ -885,6 +932,10 @@ export declare class MTLAccelerationStructurePassSampleBufferAttachmentDescripto
      */
     get startOfEncoderSampleIndex(): number;
     set startOfEncoderSampleIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructurePassSampleBufferAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endOfEncoderSampleIndex": true;
         "sampleBuffer": true;
@@ -903,6 +954,10 @@ export declare class MTLAccelerationStructurePassSampleBufferAttachmentDescripto
      * @availability iOS 16.0+
      */
     subscript(attachmentIndex: number): (MTLAccelerationStructurePassSampleBufferAttachmentDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct MTLAccelerationStructureRefitOptions
@@ -941,6 +996,9 @@ export declare class MTLAccelerationStructureSizes extends SDKHandle {
     static initAccelerationStructureSizeBuildScratchBufferSizeRefitScratchBufferSize(accelerationStructureSize: number, buildScratchBufferSize: number, refitScratchBufferSize: number): MTLAccelerationStructureSizes;
     /** init() */
     static init(): MTLAccelerationStructureSizes;
+    readonly $type: {
+        "c:@SA@MTLAccelerationStructureSizes": true;
+    };
 }
 declare const MTLAccelerationStructureTriangleGeometryDescriptor_base: Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor);
 /**
@@ -1016,6 +1074,11 @@ export declare class MTLAccelerationStructureTriangleGeometryDescriptor extends 
      */
     get vertexStride(): number;
     set vertexStride(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLAccelerationStructureTriangleGeometryDescriptor": true;
+        "c:objc(cs)MTLAccelerationStructureGeometryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowDuplicateIntersectionFunctionInvocation": true;
         "intersectionFunctionTableOffset": true;
@@ -1126,6 +1189,9 @@ export declare class MTLAccelerationStructureUserIDInstanceDescriptor extends SD
      * @availability iOS 15.0+
      */
     static init(): MTLAccelerationStructureUserIDInstanceDescriptor;
+    readonly $type: {
+        "c:@SA@MTLAccelerationStructureUserIDInstanceDescriptor": true;
+    };
 }
 /**
  * protocol MTLAllocation : NSObjectProtocol
@@ -1145,6 +1211,10 @@ export declare class MTLArchitecture extends SDKHandle {
      * @availability iOS 17.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MTLArchitecture": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
     };
@@ -1253,6 +1323,10 @@ export declare class MTLArgument extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get type(): MTLArgumentType;
+    readonly $type: {
+        "c:objc(cs)MTLArgument": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "access": true;
         "isActive": true;
@@ -1333,6 +1407,10 @@ export declare class MTLArgumentDescriptor extends SDKHandle {
      */
     get textureType(): MTLTextureType;
     set textureType(value: MTLTextureType);
+    readonly $type: {
+        "c:objc(cs)MTLArgumentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "access": true;
         "arrayLength": true;
@@ -1439,6 +1517,10 @@ export declare class MTLType extends SDKHandle {
      * @availability iOS 11.0+
      */
     get dataType(): MTLDataType;
+    readonly $type: {
+        "c:objc(cs)MTLType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
     };
@@ -1491,6 +1573,11 @@ export declare class MTLArrayType extends MTLArrayType_base {
      * @availability iOS 8.0+
      */
     get stride(): number;
+    readonly $type: {
+        "c:objc(cs)MTLArrayType": true;
+        "c:objc(cs)MTLType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
         "argumentIndexStride": true;
@@ -1536,6 +1623,10 @@ export declare class MTLAttribute extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isPatchData(): boolean;
+    readonly $type: {
+        "c:objc(cs)MTLAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "attributeIndex": true;
@@ -1570,6 +1661,10 @@ export declare class MTLAttributeDescriptor extends SDKHandle {
      */
     get offset(): number;
     set offset(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLAttributeDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bufferIndex": true;
         "format": true;
@@ -1588,6 +1683,10 @@ export declare class MTLAttributeDescriptorArray extends SDKHandle {
      * @availability iOS 10.0+
      */
     subscript(index: number): (MTLAttributeDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLAttributeDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum MTLAttributeFormat
@@ -1689,6 +1788,10 @@ export declare class MTLBinaryArchiveDescriptor extends SDKHandle {
      */
     get url(): (string) | null;
     set url(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTLBinaryArchiveDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
     };
@@ -1728,6 +1831,9 @@ export declare class MTLBinaryArchiveError extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get none(): MTLBinaryArchiveError_Code;
+    readonly $type: {
+        "s:SC21MTLBinaryArchiveErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1951,6 +2057,10 @@ export declare class MTLBlitPassDescriptor extends SDKHandle {
      * @availability iOS 14.0+
      */
     get sampleBufferAttachments(): MTLBlitPassSampleBufferAttachmentDescriptorArray;
+    readonly $type: {
+        "c:objc(cs)MTLBlitPassDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sampleBufferAttachments": true;
     };
@@ -1980,6 +2090,10 @@ export declare class MTLBlitPassSampleBufferAttachmentDescriptor extends SDKHand
      */
     get startOfEncoderSampleIndex(): number;
     set startOfEncoderSampleIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLBlitPassSampleBufferAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endOfEncoderSampleIndex": true;
         "sampleBuffer": true;
@@ -1998,6 +2112,10 @@ export declare class MTLBlitPassSampleBufferAttachmentDescriptorArray extends SD
      * @availability iOS 14.0+
      */
     subscript(attachmentIndex: number): (MTLBlitPassSampleBufferAttachmentDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLBlitPassSampleBufferAttachmentDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol MTLBuffer : MTLResource
@@ -2066,6 +2184,10 @@ export declare class MTLBufferLayoutDescriptor extends SDKHandle {
      */
     get stride(): number;
     set stride(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLBufferLayoutDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "stepFunction": true;
         "stepRate": true;
@@ -2084,6 +2206,10 @@ export declare class MTLBufferLayoutDescriptorArray extends SDKHandle {
      * @availability iOS 10.0+
      */
     subscript(index: number): (MTLBufferLayoutDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLBufferLayoutDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTLCaptureDescriptor
@@ -2110,6 +2236,10 @@ export declare class MTLCaptureDescriptor extends SDKHandle {
      */
     get outputURL(): (string) | null;
     set outputURL(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTLCaptureDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "captureObject": true;
         "destination": true;
@@ -2204,6 +2334,10 @@ export declare class MTLCaptureManager extends SDKHandle {
      * @availability iOS 11.0+
      */
     get isCapturing(): boolean;
+    readonly $type: {
+        "c:objc(cs)MTLCaptureManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultCaptureScope": true;
         "isCapturing": true;
@@ -2243,6 +2377,9 @@ export declare class MTLClearColor extends SDKHandle {
     static initRedGreenBlueAlpha(red: number, green: number, blue: number, alpha: number): MTLClearColor;
     /** init() */
     static init(): MTLClearColor;
+    readonly $type: {
+        "c:@SA@MTLClearColor": true;
+    };
 }
 /**
  * struct MTLColorWriteMask
@@ -2432,6 +2569,10 @@ export declare class MTLCommandBufferDescriptor extends SDKHandle {
      */
     get retainedReferences(): boolean;
     set retainedReferences(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MTLCommandBufferDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "errorOptions": true;
         "logState": true;
@@ -2510,6 +2651,9 @@ export declare class MTLCommandBufferError extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get pageFault(): MTLCommandBufferError_Code;
+    readonly $type: {
+        "s:SC21MTLCommandBufferErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2658,6 +2802,10 @@ export declare class MTLCommandQueueDescriptor extends SDKHandle {
      */
     get maxCommandBufferCount(): number;
     set maxCommandBufferCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLCommandQueueDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "logState": true;
         "maxCommandBufferCount": true;
@@ -2887,6 +3035,10 @@ export declare class MTLCompileOptions extends SDKHandle {
      */
     get preserveInvariance(): boolean;
     set preserveInvariance(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MTLCompileOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowReferencingUndefinedSymbols": true;
         "compileSymbolVisibility": true;
@@ -2938,6 +3090,9 @@ export declare class MTLComponentTransform extends SDKHandle {
     static initScaleShearPivotRotationTranslation(scale: SDKHandle, shear: SDKHandle, pivot: SDKHandle, rotation: MTLPackedFloatQuaternion, translation: SDKHandle): MTLComponentTransform;
     /** init() */
     static init(): MTLComponentTransform;
+    readonly $type: {
+        "c:@SA@MTLComponentTransform": true;
+    };
 }
 /**
  * protocol MTLComputeCommandEncoder : MTLCommandEncoder
@@ -3118,6 +3273,10 @@ export declare class MTLComputePassDescriptor extends SDKHandle {
      * @availability iOS 14.0+
      */
     get sampleBufferAttachments(): MTLComputePassSampleBufferAttachmentDescriptorArray;
+    readonly $type: {
+        "c:objc(cs)MTLComputePassDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dispatchType": true;
         "sampleBufferAttachments": true;
@@ -3148,6 +3307,10 @@ export declare class MTLComputePassSampleBufferAttachmentDescriptor extends SDKH
      */
     get startOfEncoderSampleIndex(): number;
     set startOfEncoderSampleIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLComputePassSampleBufferAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endOfEncoderSampleIndex": true;
         "sampleBuffer": true;
@@ -3166,6 +3329,10 @@ export declare class MTLComputePassSampleBufferAttachmentDescriptorArray extends
      * @availability iOS 14.0+
      */
     subscript(attachmentIndex: number): (MTLComputePassSampleBufferAttachmentDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLComputePassSampleBufferAttachmentDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTLComputePipelineDescriptor
@@ -3281,6 +3448,10 @@ export declare class MTLComputePipelineDescriptor extends SDKHandle {
      */
     get threadGroupSizeIsMultipleOfThreadExecutionWidth(): boolean;
     set threadGroupSizeIsMultipleOfThreadExecutionWidth(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MTLComputePipelineDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "binaryArchives": true;
         "buffers": true;
@@ -3319,6 +3490,10 @@ export declare class MTLComputePipelineReflection extends SDKHandle {
      * @availability iOS 16.0+
      */
     get bindings(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)MTLComputePipelineReflection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arguments": true;
         "bindings": true;
@@ -3436,6 +3611,9 @@ export declare class MTLCounterResultStageUtilization extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): MTLCounterResultStageUtilization;
+    readonly $type: {
+        "c:@SA@MTLCounterResultStageUtilization": true;
+    };
 }
 /**
  * struct MTLCounterResultStatistic
@@ -3500,6 +3678,9 @@ export declare class MTLCounterResultStatistic extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): MTLCounterResultStatistic;
+    readonly $type: {
+        "c:@SA@MTLCounterResultStatistic": true;
+    };
 }
 /**
  * struct MTLCounterResultTimestamp
@@ -3522,6 +3703,9 @@ export declare class MTLCounterResultTimestamp extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): MTLCounterResultTimestamp;
+    readonly $type: {
+        "c:@SA@MTLCounterResultTimestamp": true;
+    };
 }
 /**
  * protocol MTLCounterSampleBuffer : NSObjectProtocol
@@ -3560,6 +3744,10 @@ export declare class MTLCounterSampleBufferDescriptor extends SDKHandle {
      */
     get storageMode(): MTLStorageMode;
     set storageMode(value: MTLStorageMode);
+    readonly $type: {
+        "c:objc(cs)MTLCounterSampleBufferDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "counterSet": true;
         "label": true;
@@ -3592,6 +3780,9 @@ export declare class MTLCounterSampleBufferError extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get internal(): MTLCounterSampleBufferError_Code;
+    readonly $type: {
+        "s:SC27MTLCounterSampleBufferErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -3744,6 +3935,10 @@ export declare class MTLDepthStencilDescriptor extends SDKHandle {
      */
     get label(): (string) | null;
     set label(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTLDepthStencilDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "backFaceStencil": true;
         "depthCompareFunction": true;
@@ -4101,6 +4296,9 @@ export declare class MTLDeviceError extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get none(): MTLDeviceError_Code;
+    readonly $type: {
+        "s:SC14MTLDeviceErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -4123,6 +4321,9 @@ export declare class MTLDispatchThreadgroupsIndirectArguments extends SDKHandle 
     static initThreadgroupsPerGrid(threadgroupsPerGrid: $SDK18): MTLDispatchThreadgroupsIndirectArguments;
     /** init() */
     static init(): MTLDispatchThreadgroupsIndirectArguments;
+    readonly $type: {
+        "c:@SA@MTLDispatchThreadgroupsIndirectArguments": true;
+    };
 }
 /** struct MTLDispatchThreadsIndirectArguments */
 export declare class MTLDispatchThreadsIndirectArguments extends SDKHandle {
@@ -4136,6 +4337,9 @@ export declare class MTLDispatchThreadsIndirectArguments extends SDKHandle {
     static initThreadsPerGridThreadsPerThreadgroup(threadsPerGrid: $SDK18, threadsPerThreadgroup: $SDK18): MTLDispatchThreadsIndirectArguments;
     /** init() */
     static init(): MTLDispatchThreadsIndirectArguments;
+    readonly $type: {
+        "c:@SA@MTLDispatchThreadsIndirectArguments": true;
+    };
 }
 /**
  * enum MTLDispatchType
@@ -4188,6 +4392,9 @@ export declare class MTLDrawIndexedPrimitivesIndirectArguments extends SDKHandle
     static initIndexCountInstanceCountIndexStartBaseVertexBaseInstance(indexCount: number, instanceCount: number, indexStart: number, baseVertex: number, baseInstance: number): MTLDrawIndexedPrimitivesIndirectArguments;
     /** init() */
     static init(): MTLDrawIndexedPrimitivesIndirectArguments;
+    readonly $type: {
+        "c:@SA@MTLDrawIndexedPrimitivesIndirectArguments": true;
+    };
 }
 /** struct MTLDrawPatchIndirectArguments */
 export declare class MTLDrawPatchIndirectArguments extends SDKHandle {
@@ -4207,6 +4414,9 @@ export declare class MTLDrawPatchIndirectArguments extends SDKHandle {
     static initPatchCountInstanceCountPatchStartBaseInstance(patchCount: number, instanceCount: number, patchStart: number, baseInstance: number): MTLDrawPatchIndirectArguments;
     /** init() */
     static init(): MTLDrawPatchIndirectArguments;
+    readonly $type: {
+        "c:@SA@MTLDrawPatchIndirectArguments": true;
+    };
 }
 /** struct MTLDrawPrimitivesIndirectArguments */
 export declare class MTLDrawPrimitivesIndirectArguments extends SDKHandle {
@@ -4226,6 +4436,9 @@ export declare class MTLDrawPrimitivesIndirectArguments extends SDKHandle {
     static initVertexCountInstanceCountVertexStartBaseInstance(vertexCount: number, instanceCount: number, vertexStart: number, baseInstance: number): MTLDrawPrimitivesIndirectArguments;
     /** init() */
     static init(): MTLDrawPrimitivesIndirectArguments;
+    readonly $type: {
+        "c:@SA@MTLDrawPrimitivesIndirectArguments": true;
+    };
 }
 /**
  * protocol MTLDynamicLibrary : NSObjectProtocol, Sendable
@@ -4278,6 +4491,9 @@ export declare class MTLDynamicLibraryError extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get none(): MTLDynamicLibraryError_Code;
+    readonly $type: {
+        "s:SC22MTLDynamicLibraryErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -4379,6 +4595,10 @@ export declare class MTLFunctionConstant extends SDKHandle {
      * @availability iOS 10.0+
      */
     get type(): MTLDataType;
+    readonly $type: {
+        "c:objc(cs)MTLFunctionConstant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "index": true;
         "name": true;
@@ -4413,6 +4633,10 @@ export declare class MTLFunctionConstantValues extends SDKHandle {
      * @availability iOS 10.0+
      */
     setConstantValues(values: SDKHandle, type: MTLDataType, range: SDKHandle): void;
+    readonly $type: {
+        "c:objc(cs)MTLFunctionConstantValues": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTLFunctionDescriptor
@@ -4451,6 +4675,10 @@ export declare class MTLFunctionDescriptor extends SDKHandle {
      */
     get specializedName(): (string) | null;
     set specializedName(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTLFunctionDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "binaryArchives": true;
         "constantValues": true;
@@ -4540,19 +4768,21 @@ export interface MTLFunctionStitchingAttribute {
 export declare class MTLFunctionStitchingAttributeAlwaysInline extends SDKHandle {
     /** init() */
     static init(): MTLFunctionStitchingAttributeAlwaysInline;
+    readonly $type: {
+        "c:objc(cs)MTLFunctionStitchingAttributeAlwaysInline": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTLFunctionStitchingFunctionNode
  * @availability iOS 15.0+
  */
 export declare class MTLFunctionStitchingFunctionNode extends SDKHandle {
-    /** init() */
-    static init(): MTLFunctionStitchingFunctionNode;
     /**
      * init(name: String, arguments: [any MTLFunctionStitchingNode], controlDependencies: [MTLFunctionStitchingFunctionNode])
      * @availability iOS 15.0+
      */
-    static initNameArgumentsControlDependencies(name: string, arguments_: Array<SDKHandle>, controlDependencies: $SDK21): MTLFunctionStitchingFunctionNode;
+    static init(name: string, arguments_: Array<SDKHandle>, controlDependencies: $SDK21): MTLFunctionStitchingFunctionNode;
     /**
      * var arguments: [any MTLFunctionStitchingNode] { get set }
      * @availability iOS 15.0+
@@ -4571,6 +4801,10 @@ export declare class MTLFunctionStitchingFunctionNode extends SDKHandle {
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "c:objc(cs)MTLFunctionStitchingFunctionNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arguments": true;
         "controlDependencies": true;
@@ -4582,13 +4816,11 @@ export declare class MTLFunctionStitchingFunctionNode extends SDKHandle {
  * @availability iOS 15.0+
  */
 export declare class MTLFunctionStitchingGraph extends SDKHandle {
-    /** init() */
-    static init(): MTLFunctionStitchingGraph;
     /**
      * init(functionName: String, nodes: [MTLFunctionStitchingFunctionNode], outputNode: MTLFunctionStitchingFunctionNode?, attributes: [any MTLFunctionStitchingAttribute])
      * @availability iOS 15.0+
      */
-    static initFunctionNameNodesOutputNodeAttributes(functionName: string, nodes: $SDK21, outputNode: $SDK22, attributes: $SDK23): MTLFunctionStitchingGraph;
+    static init(functionName: string, nodes: $SDK21, outputNode: $SDK22, attributes: $SDK23): MTLFunctionStitchingGraph;
     /**
      * var attributes: [any MTLFunctionStitchingAttribute] { get set }
      * @availability iOS 15.0+
@@ -4613,6 +4845,10 @@ export declare class MTLFunctionStitchingGraph extends SDKHandle {
      */
     get outputNode(): $SDK22;
     set outputNode(value: $SDK22);
+    readonly $type: {
+        "c:objc(cs)MTLFunctionStitchingGraph": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributes": true;
         "functionName": true;
@@ -4625,19 +4861,21 @@ export declare class MTLFunctionStitchingGraph extends SDKHandle {
  * @availability iOS 15.0+
  */
 export declare class MTLFunctionStitchingInputNode extends SDKHandle {
-    /** init() */
-    static init(): MTLFunctionStitchingInputNode;
     /**
      * init(argumentIndex argument: Int)
      * @availability iOS 15.0+
      */
-    static initArgumentIndex(argument: number): MTLFunctionStitchingInputNode;
+    static init(argument: number): MTLFunctionStitchingInputNode;
     /**
      * var argumentIndex: Int { get set }
      * @availability iOS 15.0+
      */
     get argumentIndex(): number;
     set argumentIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLFunctionStitchingInputNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "argumentIndex": true;
     };
@@ -4647,7 +4885,7 @@ export declare class MTLFunctionStitchingInputNode extends SDKHandle {
  * @availability iOS 15.0+
  */
 export interface MTLFunctionStitchingNode {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: (_ObjectiveC_NSZone) | null) => unknown;
 }
 /**
  * enum MTLFunctionType
@@ -4792,6 +5030,10 @@ export declare class MTLHeapDescriptor extends SDKHandle {
      */
     get type(): MTLHeapType;
     set type(value: MTLHeapType);
+    readonly $type: {
+        "c:objc(cs)MTLHeapDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cpuCacheMode": true;
         "hazardTrackingMode": true;
@@ -4877,6 +5119,9 @@ export declare class MTLIndirectAccelerationStructureInstanceDescriptor extends 
      * @availability iOS 17.0+
      */
     static init(): MTLIndirectAccelerationStructureInstanceDescriptor;
+    readonly $type: {
+        "c:@SA@MTLIndirectAccelerationStructureInstanceDescriptor": true;
+    };
 }
 /**
  * struct MTLIndirectAccelerationStructureMotionInstanceDescriptor
@@ -4959,6 +5204,9 @@ export declare class MTLIndirectAccelerationStructureMotionInstanceDescriptor ex
      * @availability iOS 17.0+
      */
     static init(): MTLIndirectAccelerationStructureMotionInstanceDescriptor;
+    readonly $type: {
+        "c:@SA@MTLIndirectAccelerationStructureMotionInstanceDescriptor": true;
+    };
 }
 /**
  * protocol MTLIndirectCommandBuffer : MTLResource
@@ -5070,6 +5318,10 @@ export declare class MTLIndirectCommandBufferDescriptor extends SDKHandle {
      */
     get supportRayTracing(): boolean;
     set supportRayTracing(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MTLIndirectCommandBufferDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commandTypes": true;
         "inheritBuffers": true;
@@ -5112,6 +5364,9 @@ export declare class MTLIndirectCommandBufferExecutionRange extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): MTLIndirectCommandBufferExecutionRange;
+    readonly $type: {
+        "c:@SA@MTLIndirectCommandBufferExecutionRange": true;
+    };
 }
 /**
  * struct MTLIndirectCommandType
@@ -5324,6 +5579,11 @@ export declare class MTLIndirectInstanceAccelerationStructureDescriptor extends 
      */
     get motionTransformType(): MTLTransformType;
     set motionTransformType(value: MTLTransformType);
+    readonly $type: {
+        "c:objc(cs)MTLIndirectInstanceAccelerationStructureDescriptor": true;
+        "c:objc(cs)MTLAccelerationStructureDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "usage": true;
         "instanceCountBuffer": true;
@@ -5509,6 +5769,11 @@ export declare class MTLInstanceAccelerationStructureDescriptor extends MTLInsta
      */
     get motionTransformType(): MTLTransformType;
     set motionTransformType(value: MTLTransformType);
+    readonly $type: {
+        "c:objc(cs)MTLInstanceAccelerationStructureDescriptor": true;
+        "c:objc(cs)MTLAccelerationStructureDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "usage": true;
         "instanceCount": true;
@@ -5540,6 +5805,9 @@ export declare class MTLIntersectionFunctionBufferArguments extends SDKHandle {
     static initIntersectionFunctionBufferIntersectionFunctionBufferSizeIntersectionFunctionStride(intersectionFunctionBuffer: number, intersectionFunctionBufferSize: number, intersectionFunctionStride: number): MTLIntersectionFunctionBufferArguments;
     /** init() */
     static init(): MTLIntersectionFunctionBufferArguments;
+    readonly $type: {
+        "c:@SA@MTLIntersectionFunctionBufferArguments": true;
+    };
 }
 declare const MTLIntersectionFunctionDescriptor_base: Omit<typeof MTLFunctionDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLFunctionDescriptor);
 /**
@@ -5549,6 +5817,11 @@ declare const MTLIntersectionFunctionDescriptor_base: Omit<typeof MTLFunctionDes
 export declare class MTLIntersectionFunctionDescriptor extends MTLIntersectionFunctionDescriptor_base {
     /** init() */
     static init(): MTLIntersectionFunctionDescriptor;
+    readonly $type: {
+        "c:objc(cs)MTLIntersectionFunctionDescriptor": true;
+        "c:objc(cs)MTLFunctionDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "binaryArchives": true;
         "constantValues": true;
@@ -5688,6 +5961,10 @@ export declare class MTLIntersectionFunctionTableDescriptor extends SDKHandle {
      */
     get functionCount(): number;
     set functionCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLIntersectionFunctionTableDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "functionCount": true;
     };
@@ -5770,6 +6047,9 @@ export declare class MTLLibraryError extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get internal(): MTLLibraryError_Code;
+    readonly $type: {
+        "s:SC15MTLLibraryErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -5830,14 +6110,18 @@ export declare class MTLLinkedFunctions extends SDKHandle {
      * var groups: [String : [any MTLFunction]]? { get set }
      * @availability iOS 14.0+
      */
-    get groups(): $SDK26;
-    set groups(value: $SDK26);
+    get groups(): $SDK27;
+    set groups(value: $SDK27);
     /**
      * var privateFunctions: [any MTLFunction]? { get set }
      * @availability iOS 15.0+
      */
     get privateFunctions(): $SDK7;
     set privateFunctions(value: $SDK7);
+    readonly $type: {
+        "c:objc(cs)MTLLinkedFunctions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "binaryFunctions": true;
         "functions": true;
@@ -5867,6 +6151,9 @@ export declare class MTLLogContainer extends SDKHandle {
      * @availability iOS 14.0+
      */
     makeIterator(): MTLLogContainer_Iterator;
+    readonly $type: {
+        "s:5Metal15MTLLogContainerV": true;
+    };
 }
 /**
  * typealias Element = MTLFunctionLog
@@ -5883,6 +6170,9 @@ export declare class MTLLogContainer_Iterator extends SDKHandle {
      * @availability iOS 14.0+
      */
     next(): (SDKHandle) | null;
+    readonly $type: {
+        "s:5Metal15MTLLogContainerV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = any MTLFunctionLog
@@ -5931,6 +6221,10 @@ export declare class MTLLogStateDescriptor extends SDKHandle {
      */
     get level(): MTLLogLevel;
     set level(value: MTLLogLevel);
+    readonly $type: {
+        "c:objc(cs)MTLLogStateDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bufferSize": true;
         "level": true;
@@ -5978,6 +6272,9 @@ export declare class MTLMapIndirectArguments extends SDKHandle {
     static initRegionOriginXRegionOriginYRegionOriginZRegionSizeWidthRegionSizeHeightRegionSizeDepthMipMapLevelSliceId(regionOriginX: number, regionOriginY: number, regionOriginZ: number, regionSizeWidth: number, regionSizeHeight: number, regionSizeDepth: number, mipMapLevel: number, sliceId: number): MTLMapIndirectArguments;
     /** init() */
     static init(): MTLMapIndirectArguments;
+    readonly $type: {
+        "c:@SA@MTLMapIndirectArguments": true;
+    };
 }
 /** enum MTLMathFloatingPointFunctions */
 export type MTLMathFloatingPointFunctions = "fast" | "precise";
@@ -6173,6 +6470,10 @@ export declare class MTLMeshRenderPipelineDescriptor extends SDKHandle {
      */
     get supportIndirectCommandBuffers(): boolean;
     set supportIndirectCommandBuffers(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MTLMeshRenderPipelineDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAlphaToCoverageEnabled": true;
         "isAlphaToOneEnabled": true;
@@ -6234,6 +6535,10 @@ export declare class MTLMotionKeyframeData extends SDKHandle {
      */
     get offset(): number;
     set offset(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLMotionKeyframeData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "buffer": true;
         "offset": true;
@@ -6276,15 +6581,15 @@ export declare const MTLMutability: {
     init(rawValue: number): (MTLMutability) | null;
 };
 /** typealias MTLNewComputePipelineStateCompletionHandler = ((any MTLComputePipelineState)?, (any Error)?) -> Void */
-export type MTLNewComputePipelineStateCompletionHandler = $SDK28;
+export type MTLNewComputePipelineStateCompletionHandler = $SDK29;
 /** typealias MTLNewComputePipelineStateWithReflectionCompletionHandler = ((any MTLComputePipelineState)?, MTLComputePipelineReflection?, (any Error)?) -> Void */
 export type MTLNewComputePipelineStateWithReflectionCompletionHandler = ((arg0: (SDKHandle) | null, arg1: (MTLComputePipelineReflection) | null, arg2: (NativeError) | null) => Promise<void>);
 /** typealias MTLNewDynamicLibraryCompletionHandler = ((any MTLDynamicLibrary)?, (any Error)?) -> Void */
-export type MTLNewDynamicLibraryCompletionHandler = $SDK28;
+export type MTLNewDynamicLibraryCompletionHandler = $SDK29;
 /** typealias MTLNewLibraryCompletionHandler = ((any MTLLibrary)?, (any Error)?) -> Void */
-export type MTLNewLibraryCompletionHandler = $SDK28;
+export type MTLNewLibraryCompletionHandler = $SDK29;
 /** typealias MTLNewRenderPipelineStateCompletionHandler = ((any MTLRenderPipelineState)?, (any Error)?) -> Void */
-export type MTLNewRenderPipelineStateCompletionHandler = $SDK28;
+export type MTLNewRenderPipelineStateCompletionHandler = $SDK29;
 /** typealias MTLNewRenderPipelineStateWithReflectionCompletionHandler = ((any MTLRenderPipelineState)?, MTLRenderPipelineReflection?, (any Error)?) -> Void */
 export type MTLNewRenderPipelineStateWithReflectionCompletionHandler = ((arg0: (SDKHandle) | null, arg1: (MTLRenderPipelineReflection) | null, arg2: (NativeError) | null) => Promise<void>);
 /**
@@ -6308,14 +6613,23 @@ export declare class MTLOrigin extends SDKHandle {
     static initXYZ(x: number, y: number, z: number): MTLOrigin;
     /** init() */
     static init(): MTLOrigin;
+    readonly $type: {
+        "c:@SA@MTLOrigin": true;
+    };
 }
 /** typealias MTLPackedFloat3 = _MTLPackedFloat3 */
 export type MTLPackedFloat3 = SDKHandle;
 /** struct __Unnamed_struct___Anonymous_field0 */
 export declare class MTLPackedFloat3___Unnamed_struct___Anonymous_field0 extends SDKHandle {
+    readonly $type: {
+        "c:@S@_MTLPackedFloat3@Ua@Sa::SYNTHESIZED::c:@T@MTLPackedFloat3": true;
+    };
 }
 /** struct __Unnamed_union___Anonymous_field0 */
 export declare class MTLPackedFloat3___Unnamed_union___Anonymous_field0 extends SDKHandle {
+    readonly $type: {
+        "c:@S@_MTLPackedFloat3@Ua::SYNTHESIZED::c:@T@MTLPackedFloat3": true;
+    };
 }
 /** typealias MTLPackedFloat4x3 = _MTLPackedFloat4x3 */
 export type MTLPackedFloat4x3 = SDKHandle;
@@ -6335,6 +6649,9 @@ export declare class MTLPackedFloatQuaternion extends SDKHandle {
     set z(value: number);
     /** init() */
     static init(): MTLPackedFloatQuaternion;
+    readonly $type: {
+        "c:@S@MTLPackedFloatQuaternion": true;
+    };
 }
 /**
  * protocol MTLParallelRenderCommandEncoder : MTLCommandEncoder
@@ -6430,6 +6747,10 @@ export declare class MTLPipelineBufferDescriptor extends SDKHandle {
      */
     get mutability(): MTLMutability;
     set mutability(value: MTLMutability);
+    readonly $type: {
+        "c:objc(cs)MTLPipelineBufferDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mutability": true;
     };
@@ -6446,6 +6767,10 @@ export declare class MTLPipelineBufferDescriptorArray extends SDKHandle {
      * @availability iOS 11.0+
      */
     subscript(bufferIndex: number): (MTLPipelineBufferDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLPipelineBufferDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct MTLPipelineOption
@@ -6535,6 +6860,11 @@ export declare class MTLPointerType extends MTLPointerType_base {
      * @availability iOS 11.0+
      */
     get elementType(): MTLDataType;
+    readonly $type: {
+        "c:objc(cs)MTLPointerType": true;
+        "c:objc(cs)MTLType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
         "access": true;
@@ -6556,8 +6886,8 @@ export declare class MTLPrimitiveAccelerationStructureDescriptor extends MTLPrim
      * var geometryDescriptors: [MTLAccelerationStructureGeometryDescriptor]? { get set }
      * @availability iOS 14.0+
      */
-    get geometryDescriptors(): $SDK32;
-    set geometryDescriptors(value: $SDK32);
+    get geometryDescriptors(): $SDK33;
+    set geometryDescriptors(value: $SDK33);
     /**
      * var motionEndBorderMode: MTLMotionBorderMode { get set }
      * @availability iOS 15.0+
@@ -6588,6 +6918,11 @@ export declare class MTLPrimitiveAccelerationStructureDescriptor extends MTLPrim
      */
     get motionStartTime(): number;
     set motionStartTime(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLPrimitiveAccelerationStructureDescriptor": true;
+        "c:objc(cs)MTLAccelerationStructureDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "usage": true;
         "geometryDescriptors": true;
@@ -6637,15 +6972,18 @@ export declare const MTLPurgeableState: {
 /** struct MTLQuadTessellationFactorsHalf */
 export declare class MTLQuadTessellationFactorsHalf extends SDKHandle {
     /** var edgeTessellationFactor: (UInt16, UInt16, UInt16, UInt16) */
-    get edgeTessellationFactor(): $SDK33;
-    set edgeTessellationFactor(value: $SDK33);
+    get edgeTessellationFactor(): $SDK34;
+    set edgeTessellationFactor(value: $SDK34);
     /** var insideTessellationFactor: (UInt16, UInt16) */
     get insideTessellationFactor(): [number, number];
     set insideTessellationFactor(value: [number, number]);
     /** init(edgeTessellationFactor: (UInt16, UInt16, UInt16, UInt16), insideTessellationFactor: (UInt16, UInt16)) */
-    static initEdgeTessellationFactorInsideTessellationFactor(edgeTessellationFactor: $SDK33, insideTessellationFactor: [number, number]): MTLQuadTessellationFactorsHalf;
+    static initEdgeTessellationFactorInsideTessellationFactor(edgeTessellationFactor: $SDK34, insideTessellationFactor: [number, number]): MTLQuadTessellationFactorsHalf;
     /** init() */
     static init(): MTLQuadTessellationFactorsHalf;
+    readonly $type: {
+        "c:@SA@MTLQuadTessellationFactorsHalf": true;
+    };
 }
 /**
  * class MTLRasterizationRateLayerArray
@@ -6658,7 +6996,11 @@ export declare class MTLRasterizationRateLayerArray extends SDKHandle {
      * subscript(layerIndex: Int) -> MTLRasterizationRateLayerDescriptor? { get set }
      * @availability iOS 13.0+
      */
-    subscript(layerIndex: number): $SDK34;
+    subscript(layerIndex: number): $SDK35;
+    readonly $type: {
+        "c:objc(cs)MTLRasterizationRateLayerArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTLRasterizationRateLayerDescriptor
@@ -6696,6 +7038,10 @@ export declare class MTLRasterizationRateLayerDescriptor extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initHorizontalVertical(horizontal: Array<number>, vertical: Array<number>): MTLRasterizationRateLayerDescriptor;
+    readonly $type: {
+        "c:objc(cs)MTLRasterizationRateLayerDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "horizontal": true;
         "maxSampleCount": true;
@@ -6734,18 +7080,16 @@ export interface MTLRasterizationRateMap {
  * @availability iOS 13.0+
  */
 export declare class MTLRasterizationRateMapDescriptor extends SDKHandle {
-    /** init() */
-    static init(): MTLRasterizationRateMapDescriptor;
     /**
      * func layer(at layerIndex: Int) -> MTLRasterizationRateLayerDescriptor?
      * @availability iOS 13.0+
      */
-    layer(layerIndex: number): $SDK34;
+    layer(layerIndex: number): $SDK35;
     /**
      * func setLayer(_ layer: MTLRasterizationRateLayerDescriptor?, at layerIndex: Int)
      * @availability iOS 13.0+
      */
-    setLayer(layer: $SDK34, layerIndex: number): void;
+    setLayer(layer: $SDK35, layerIndex: number): void;
     /**
      * var label: String? { get set }
      * @availability iOS 13.0+
@@ -6783,6 +7127,10 @@ export declare class MTLRasterizationRateMapDescriptor extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initScreenSizeLayersLabel(screenSize: MTLSize, layers: Array<MTLRasterizationRateLayerDescriptor>, label?: (string) | null): MTLRasterizationRateMapDescriptor;
+    readonly $type: {
+        "c:objc(cs)MTLRasterizationRateMapDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "layerCount": true;
@@ -6802,6 +7150,10 @@ export declare class MTLRasterizationRateSampleArray extends SDKHandle {
      * @availability iOS 13.0+
      */
     subscript(index: number): number;
+    readonly $type: {
+        "c:objc(cs)MTLRasterizationRateSampleArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum MTLReadWriteTextureTier
@@ -6827,6 +7179,9 @@ export declare class MTLRegion extends SDKHandle {
     static initOriginSize(origin: MTLOrigin, size: MTLSize): MTLRegion;
     /** init() */
     static init(): MTLRegion;
+    readonly $type: {
+        "c:@SA@MTLRegion": true;
+    };
 }
 /**
  * protocol MTLRenderCommandEncoder : MTLCommandEncoder
@@ -7388,6 +7743,10 @@ export declare class MTLRenderPassAttachmentDescriptor extends SDKHandle {
      */
     get texture(): (SDKHandle) | null;
     set texture(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)MTLRenderPassAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "depthPlane": true;
         "level": true;
@@ -7416,6 +7775,11 @@ export declare class MTLRenderPassColorAttachmentDescriptor extends MTLRenderPas
      */
     get clearColor(): MTLClearColor;
     set clearColor(value: MTLClearColor);
+    readonly $type: {
+        "c:objc(cs)MTLRenderPassColorAttachmentDescriptor": true;
+        "c:objc(cs)MTLRenderPassAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "depthPlane": true;
         "level": true;
@@ -7443,6 +7807,10 @@ export declare class MTLRenderPassColorAttachmentDescriptorArray extends SDKHand
      * @availability iOS 8.0+
      */
     subscript(attachmentIndex: number): (MTLRenderPassColorAttachmentDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLRenderPassColorAttachmentDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTLRenderPassDepthAttachmentDescriptor_base: Omit<typeof MTLRenderPassAttachmentDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLRenderPassAttachmentDescriptor);
 /**
@@ -7464,6 +7832,11 @@ export declare class MTLRenderPassDepthAttachmentDescriptor extends MTLRenderPas
      */
     get depthResolveFilter(): MTLMultisampleDepthResolveFilter;
     set depthResolveFilter(value: MTLMultisampleDepthResolveFilter);
+    readonly $type: {
+        "c:objc(cs)MTLRenderPassDepthAttachmentDescriptor": true;
+        "c:objc(cs)MTLRenderPassAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "depthPlane": true;
         "level": true;
@@ -7502,8 +7875,8 @@ export declare class MTLRenderPassDescriptor extends SDKHandle {
      * @NSCopying var depthAttachment: MTLRenderPassDepthAttachmentDescriptor! { get set }
      * @availability iOS 8.0+
      */
-    get depthAttachment(): $SDK37;
-    set depthAttachment(value: $SDK37);
+    get depthAttachment(): $SDK38;
+    set depthAttachment(value: $SDK38);
     /**
      * var imageblockSampleLength: Int { get set }
      * @availability iOS 11.0+
@@ -7543,8 +7916,8 @@ export declare class MTLRenderPassDescriptor extends SDKHandle {
      * @NSCopying var stencilAttachment: MTLRenderPassStencilAttachmentDescriptor! { get set }
      * @availability iOS 8.0+
      */
-    get stencilAttachment(): $SDK38;
-    set stencilAttachment(value: $SDK38);
+    get stencilAttachment(): $SDK39;
+    set stencilAttachment(value: $SDK39);
     /**
      * var threadgroupMemoryLength: Int { get set }
      * @availability iOS 11.0+
@@ -7579,6 +7952,10 @@ export declare class MTLRenderPassDescriptor extends SDKHandle {
      * @availability iOS 11.0+
      */
     setSamplePositions(positions: Array<MTLSamplePosition>): void;
+    readonly $type: {
+        "c:objc(cs)MTLRenderPassDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colorAttachments": true;
         "defaultRasterSampleCount": true;
@@ -7633,6 +8010,10 @@ export declare class MTLRenderPassSampleBufferAttachmentDescriptor extends SDKHa
      */
     get startOfVertexSampleIndex(): number;
     set startOfVertexSampleIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLRenderPassSampleBufferAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endOfFragmentSampleIndex": true;
         "endOfVertexSampleIndex": true;
@@ -7653,6 +8034,10 @@ export declare class MTLRenderPassSampleBufferAttachmentDescriptorArray extends 
      * @availability iOS 14.0+
      */
     subscript(attachmentIndex: number): (MTLRenderPassSampleBufferAttachmentDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLRenderPassSampleBufferAttachmentDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTLRenderPassStencilAttachmentDescriptor_base: Omit<typeof MTLRenderPassAttachmentDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLRenderPassAttachmentDescriptor);
 /**
@@ -7674,6 +8059,11 @@ export declare class MTLRenderPassStencilAttachmentDescriptor extends MTLRenderP
      */
     get stencilResolveFilter(): MTLMultisampleStencilResolveFilter;
     set stencilResolveFilter(value: MTLMultisampleStencilResolveFilter);
+    readonly $type: {
+        "c:objc(cs)MTLRenderPassStencilAttachmentDescriptor": true;
+        "c:objc(cs)MTLRenderPassAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "depthPlane": true;
         "level": true;
@@ -7751,6 +8141,10 @@ export declare class MTLRenderPipelineColorAttachmentDescriptor extends SDKHandl
      */
     get writeMask(): MTLColorWriteMask;
     set writeMask(value: MTLColorWriteMask);
+    readonly $type: {
+        "c:objc(cs)MTLRenderPipelineColorAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alphaBlendOperation": true;
         "isBlendingEnabled": true;
@@ -7775,6 +8169,10 @@ export declare class MTLRenderPipelineColorAttachmentDescriptorArray extends SDK
      * @availability iOS 8.0+
      */
     subscript(attachmentIndex: number): (MTLRenderPipelineColorAttachmentDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLRenderPipelineColorAttachmentDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTLRenderPipelineDescriptor
@@ -7990,6 +8388,10 @@ export declare class MTLRenderPipelineDescriptor extends SDKHandle {
      */
     get vertexPreloadedLibraries(): Array<SDKHandle>;
     set vertexPreloadedLibraries(value: Array<SDKHandle>);
+    readonly $type: {
+        "c:objc(cs)MTLRenderPipelineDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAlphaToCoverageEnabled": true;
         "isAlphaToOneEnabled": true;
@@ -8052,6 +8454,10 @@ export declare class MTLRenderPipelineFunctionsDescriptor extends SDKHandle {
      */
     get vertexAdditionalBinaryFunctions(): $SDK7;
     set vertexAdditionalBinaryFunctions(value: $SDK7);
+    readonly $type: {
+        "c:objc(cs)MTLRenderPipelineFunctionsDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fragmentAdditionalBinaryFunctions": true;
         "tileAdditionalBinaryFunctions": true;
@@ -8070,7 +8476,7 @@ export declare class MTLRenderPipelineReflection extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 16.0
      */
-    get fragmentArguments(): $SDK43;
+    get fragmentArguments(): $SDK44;
     /**
      * var fragmentBindings: [any MTLBinding] { get }
      * @availability iOS 16.0+
@@ -8091,7 +8497,7 @@ export declare class MTLRenderPipelineReflection extends SDKHandle {
      * @availability iOS 11.0+
      * @deprecated iOS 16.0
      */
-    get tileArguments(): $SDK43;
+    get tileArguments(): $SDK44;
     /**
      * var tileBindings: [any MTLBinding] { get }
      * @availability iOS 16.0+
@@ -8102,12 +8508,16 @@ export declare class MTLRenderPipelineReflection extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 16.0
      */
-    get vertexArguments(): $SDK43;
+    get vertexArguments(): $SDK44;
     /**
      * var vertexBindings: [any MTLBinding] { get }
      * @availability iOS 16.0+
      */
     get vertexBindings(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)MTLRenderPipelineReflection": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fragmentArguments": true;
         "fragmentBindings": true;
@@ -8252,6 +8662,10 @@ export declare class MTLResidencySetDescriptor extends SDKHandle {
      */
     get label(): (string) | null;
     set label(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTLResidencySetDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "initialCapacity": true;
         "label": true;
@@ -8294,6 +8708,9 @@ export declare class MTLResourceID extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): MTLResourceID;
+    readonly $type: {
+        "c:@S@MTLResourceID": true;
+    };
 }
 /**
  * struct MTLResourceOptions
@@ -8416,6 +8833,10 @@ export declare class MTLResourceStatePassDescriptor extends SDKHandle {
      * @availability iOS 14.0+
      */
     get sampleBufferAttachments(): MTLResourceStatePassSampleBufferAttachmentDescriptorArray;
+    readonly $type: {
+        "c:objc(cs)MTLResourceStatePassDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sampleBufferAttachments": true;
     };
@@ -8445,6 +8866,10 @@ export declare class MTLResourceStatePassSampleBufferAttachmentDescriptor extend
      */
     get startOfEncoderSampleIndex(): number;
     set startOfEncoderSampleIndex(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLResourceStatePassSampleBufferAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endOfEncoderSampleIndex": true;
         "sampleBuffer": true;
@@ -8463,6 +8888,10 @@ export declare class MTLResourceStatePassSampleBufferAttachmentDescriptorArray e
      * @availability iOS 14.0+
      */
     subscript(attachmentIndex: number): (MTLResourceStatePassSampleBufferAttachmentDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLResourceStatePassSampleBufferAttachmentDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct MTLResourceUsage
@@ -8504,6 +8933,9 @@ export declare class MTLSamplePosition extends SDKHandle {
     static initXY(x: number, y: number): MTLSamplePosition;
     /** init() */
     static init(): MTLSamplePosition;
+    readonly $type: {
+        "c:@SA@MTLSamplePosition": true;
+    };
 }
 /**
  * enum MTLSamplerAddressMode
@@ -8638,6 +9070,10 @@ export declare class MTLSamplerDescriptor extends SDKHandle {
      */
     get tAddressMode(): MTLSamplerAddressMode;
     set tAddressMode(value: MTLSamplerAddressMode);
+    readonly $type: {
+        "c:objc(cs)MTLSamplerDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "borderColor": true;
         "compareFunction": true;
@@ -8718,6 +9154,9 @@ export declare class MTLScissorRect extends SDKHandle {
     static initXYWidthHeight(x: number, y: number, width: number, height: number): MTLScissorRect;
     /** init() */
     static init(): MTLScissorRect;
+    readonly $type: {
+        "c:@SA@MTLScissorRect": true;
+    };
 }
 /**
  * enum MTLShaderValidation
@@ -8740,7 +9179,7 @@ export interface MTLSharedEvent {
      * func notify(_ listener: MTLSharedEventListener, atValue value: UInt64, block: @escaping MTLSharedEventNotificationBlock)
      * @availability iOS 12.0+
      */
-    "notifyAtValueBlock"?: (arg0: MTLSharedEventListener, arg1: number, arg2: $SDK45) => void;
+    "notifyAtValueBlock"?: (arg0: MTLSharedEventListener, arg1: number, arg2: $SDK46) => void;
     /**
      * func makeSharedEventHandle() -> MTLSharedEventHandle
      * @availability iOS 12.0+
@@ -8764,6 +9203,10 @@ export declare class MTLSharedEventHandle extends SDKHandle {
      * @availability iOS 12.0+
      */
     get label(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)MTLSharedEventHandle": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
     };
@@ -8793,12 +9236,16 @@ export declare class MTLSharedEventListener extends SDKHandle {
      * @availability iOS 12.0+
      */
     get dispatchQueue(): _Dispatch_DispatchQueue;
+    readonly $type: {
+        "c:objc(cs)MTLSharedEventListener": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dispatchQueue": true;
     };
 }
 /** typealias MTLSharedEventNotificationBlock = @Sendable (any MTLSharedEvent, UInt64) -> Void */
-export type MTLSharedEventNotificationBlock = $SDK45;
+export type MTLSharedEventNotificationBlock = $SDK46;
 /** struct MTLSize */
 export declare class MTLSize extends SDKHandle {
     /** var depth: Int */
@@ -8814,6 +9261,9 @@ export declare class MTLSize extends SDKHandle {
     static initWidthHeightDepth(width: number, height: number, depth: number): MTLSize;
     /** init() */
     static init(): MTLSize;
+    readonly $type: {
+        "c:@SA@MTLSize": true;
+    };
 }
 /** struct MTLSizeAndAlign */
 export declare class MTLSizeAndAlign extends SDKHandle {
@@ -8827,6 +9277,9 @@ export declare class MTLSizeAndAlign extends SDKHandle {
     static initSizeAlign(size: number, align: number): MTLSizeAndAlign;
     /** init() */
     static init(): MTLSizeAndAlign;
+    readonly $type: {
+        "c:@SA@MTLSizeAndAlign": true;
+    };
 }
 /**
  * enum MTLSparsePageSize
@@ -8898,6 +9351,10 @@ export declare class MTLStageInputOutputDescriptor extends SDKHandle {
      * @availability iOS 10.0+
      */
     get layouts(): MTLBufferLayoutDescriptorArray;
+    readonly $type: {
+        "c:objc(cs)MTLStageInputOutputDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributes": true;
         "indexBufferIndex": true;
@@ -8932,6 +9389,9 @@ export declare class MTLStageInRegionIndirectArguments extends SDKHandle {
      * @availability iOS 12.0+
      */
     static init(): MTLStageInRegionIndirectArguments;
+    readonly $type: {
+        "c:@SA@MTLStageInRegionIndirectArguments": true;
+    };
 }
 /**
  * struct MTLStages
@@ -9043,6 +9503,10 @@ export declare class MTLStencilDescriptor extends SDKHandle {
      */
     get writeMask(): number;
     set writeMask(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLStencilDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "depthFailureOperation": true;
         "depthStencilPassOperation": true;
@@ -9093,8 +9557,8 @@ export declare class MTLStitchedLibraryDescriptor extends SDKHandle {
      * var functionGraphs: [MTLFunctionStitchingGraph] { get set }
      * @availability iOS 15.0+
      */
-    get functionGraphs(): $SDK46;
-    set functionGraphs(value: $SDK46);
+    get functionGraphs(): $SDK47;
+    set functionGraphs(value: $SDK47);
     /**
      * var functions: [any MTLFunction] { get set }
      * @availability iOS 15.0+
@@ -9107,6 +9571,10 @@ export declare class MTLStitchedLibraryDescriptor extends SDKHandle {
      */
     get options(): MTLStitchedLibraryOptions;
     set options(value: MTLStitchedLibraryOptions);
+    readonly $type: {
+        "c:objc(cs)MTLStitchedLibraryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "binaryArchives": true;
         "functionGraphs": true;
@@ -9227,6 +9695,10 @@ export declare class MTLStructMember extends SDKHandle {
      * @availability iOS 8.0+
      */
     get offset(): number;
+    readonly $type: {
+        "c:objc(cs)MTLStructMember": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "argumentIndex": true;
         "dataType": true;
@@ -9252,6 +9724,11 @@ export declare class MTLStructType extends MTLStructType_base {
      * @availability iOS 8.0+
      */
     get members(): Array<MTLStructMember>;
+    readonly $type: {
+        "c:objc(cs)MTLStructType": true;
+        "c:objc(cs)MTLType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
         "members": true;
@@ -9487,6 +9964,10 @@ export declare class MTLTextureDescriptor extends SDKHandle {
      */
     get width(): number;
     set width(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLTextureDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowGPUOptimizedContents": true;
         "arrayLength": true;
@@ -9534,6 +10015,11 @@ export declare class MTLTextureReferenceType extends MTLTextureReferenceType_bas
      * @availability iOS 11.0+
      */
     get textureType(): MTLTextureType;
+    readonly $type: {
+        "c:objc(cs)MTLTextureReferenceType": true;
+        "c:objc(cs)MTLType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
         "access": true;
@@ -9593,6 +10079,9 @@ export declare class MTLTextureSwizzleChannels extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): MTLTextureSwizzleChannels;
+    readonly $type: {
+        "c:@SA@MTLTextureSwizzleChannels": true;
+    };
 }
 /**
  * enum MTLTextureType
@@ -9667,6 +10156,10 @@ export declare class MTLTileRenderPipelineColorAttachmentDescriptor extends SDKH
      */
     get pixelFormat(): MTLPixelFormat;
     set pixelFormat(value: MTLPixelFormat);
+    readonly $type: {
+        "c:objc(cs)MTLTileRenderPipelineColorAttachmentDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pixelFormat": true;
     };
@@ -9683,6 +10176,10 @@ export declare class MTLTileRenderPipelineColorAttachmentDescriptorArray extends
      * @availability iOS 11.0+
      */
     subscript(attachmentIndex: number): MTLTileRenderPipelineColorAttachmentDescriptor;
+    readonly $type: {
+        "c:objc(cs)MTLTileRenderPipelineColorAttachmentDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTLTileRenderPipelineDescriptor
@@ -9772,6 +10269,10 @@ export declare class MTLTileRenderPipelineDescriptor extends SDKHandle {
      */
     get tileFunction(): SDKHandle;
     set tileFunction(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)MTLTileRenderPipelineDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "binaryArchives": true;
         "colorAttachments": true;
@@ -9826,6 +10327,9 @@ export declare class MTLTriangleTessellationFactorsHalf extends SDKHandle {
     static initEdgeTessellationFactorInsideTessellationFactor(edgeTessellationFactor: $SDK18, insideTessellationFactor: number): MTLTriangleTessellationFactorsHalf;
     /** init() */
     static init(): MTLTriangleTessellationFactorsHalf;
+    readonly $type: {
+        "c:@SA@MTLTriangleTessellationFactorsHalf": true;
+    };
 }
 /**
  * struct MTLVertexAmplificationViewMapping
@@ -9854,6 +10358,9 @@ export declare class MTLVertexAmplificationViewMapping extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): MTLVertexAmplificationViewMapping;
+    readonly $type: {
+        "c:@SA@MTLVertexAmplificationViewMapping": true;
+    };
 }
 /**
  * class MTLVertexAttribute
@@ -9892,6 +10399,10 @@ export declare class MTLVertexAttribute extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isPatchData(): boolean;
+    readonly $type: {
+        "c:objc(cs)MTLVertexAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "attributeIndex": true;
@@ -9926,6 +10437,10 @@ export declare class MTLVertexAttributeDescriptor extends SDKHandle {
      */
     get offset(): number;
     set offset(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLVertexAttributeDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bufferIndex": true;
         "format": true;
@@ -9944,6 +10459,10 @@ export declare class MTLVertexAttributeDescriptorArray extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript(index: number): (MTLVertexAttributeDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLVertexAttributeDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTLVertexBufferLayoutDescriptor
@@ -9970,6 +10489,10 @@ export declare class MTLVertexBufferLayoutDescriptor extends SDKHandle {
      */
     get stride(): number;
     set stride(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLVertexBufferLayoutDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "stepFunction": true;
         "stepRate": true;
@@ -9988,6 +10511,10 @@ export declare class MTLVertexBufferLayoutDescriptorArray extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript(index: number): (MTLVertexBufferLayoutDescriptor) | null;
+    readonly $type: {
+        "c:objc(cs)MTLVertexBufferLayoutDescriptorArray": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTLVertexDescriptor
@@ -10011,6 +10538,10 @@ export declare class MTLVertexDescriptor extends SDKHandle {
      * @availability iOS 8.0+
      */
     get layouts(): MTLVertexBufferLayoutDescriptorArray;
+    readonly $type: {
+        "c:objc(cs)MTLVertexDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributes": true;
         "layouts": true;
@@ -10064,6 +10595,9 @@ export declare class MTLViewport extends SDKHandle {
     static initOriginXOriginYWidthHeightZnearZfar(originX: number, originY: number, width: number, height: number, znear: number, zfar: number): MTLViewport;
     /** init() */
     static init(): MTLViewport;
+    readonly $type: {
+        "c:@SA@MTLViewport": true;
+    };
 }
 /**
  * enum MTLVisibilityResultMode
@@ -10116,6 +10650,10 @@ export declare class MTLVisibleFunctionTableDescriptor extends SDKHandle {
      */
     get functionCount(): number;
     set functionCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MTLVisibleFunctionTableDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "functionCount": true;
     };
@@ -10149,7 +10687,7 @@ export declare const NSDeviceCertification: {
      */
     init(rawValue: number): NSDeviceCertification;
 };
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let NSProcessInfoPerformanceProfileDidChange: NSNotification.Name
@@ -10190,6 +10728,10 @@ export declare class ProcessInfo extends SDKHandle {
      * @availability iOS 18.0+
      */
     isDeviceCertified(performanceTier: NSDeviceCertification): boolean;
+    readonly $type: {
+        "c:objc(cs)NSProcessInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** func MTL4BufferRangeMake(_ bufferAddress: MTLGPUAddress, _ length: UInt64) -> MTL4BufferRange */
 export declare function MTL4BufferRangeMake(bufferAddress: number, length: number): MTL4BufferRange;

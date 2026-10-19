@@ -61,6 +61,9 @@ export type sec_protocol_verify_t = ((arg0: Implements<OS_sec_protocol_metadata>
 export type sec_trust_t = SDKHandle;
 /** class SecAccessControl */
 export declare class SecAccessControl extends SDKHandle {
+    readonly $type: {
+        "c:@T@SecAccessControlRef": true;
+    };
 }
 /**
  * struct SecAccessControlCreateFlags
@@ -133,12 +136,21 @@ export declare const SecAccessControlCreateFlags: {
 };
 /** class SecCertificate */
 export declare class SecCertificate extends SDKHandle {
+    readonly $type: {
+        "c:@T@SecCertificateRef": true;
+    };
 }
 /** class SecIdentity */
 export declare class SecIdentity extends SDKHandle {
+    readonly $type: {
+        "c:@T@SecIdentityRef": true;
+    };
 }
 /** class SecKey */
 export declare class SecKey extends SDKHandle {
+    readonly $type: {
+        "c:@T@SecKeyRef": true;
+    };
 }
 /**
  * struct SecKeyAlgorithm
@@ -698,11 +710,17 @@ export declare const SecPadding: {
 };
 /** class SecPolicy */
 export declare class SecPolicy extends SDKHandle {
+    readonly $type: {
+        "c:@T@SecPolicyRef": true;
+    };
 }
 /** typealias SecRandomRef = OpaquePointer */
 export type SecRandomRef = SDKHandle;
 /** class SecTrust */
 export declare class SecTrust extends SDKHandle {
+    readonly $type: {
+        "c:@T@SecTrustRef": true;
+    };
 }
 /** typealias SecTrustCallback = (SecTrust, SecTrustResultType) -> Void */
 export type SecTrustCallback = ((arg0: SecTrust, arg1: SecTrustResultType) => Promise<void>);

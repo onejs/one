@@ -29,6 +29,10 @@ export declare class NSExtensionContext extends SDKHandle {
      */
     get notificationActions(): $SDK0;
     set notificationActions(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "notificationActions": true;
     };

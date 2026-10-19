@@ -3,6 +3,7 @@ import { SDKHandle, type NativeError } from 'one/ios-runtime';
 import type { CGColorConversionInfo as _CoreGraphics_CGColorConversionInfo, CGColorSpace as _CoreGraphics_CGColorSpace } from "one/ios/CoreGraphics";
 import type { NSCoder as _Foundation_NSCoder, NSArray as _Foundation_NSArray, NSError as _Foundation_NSError, NSNumber as _Foundation_NSNumber, NSMutableArray as _Foundation_NSMutableArray } from "one/ios/Foundation";
 import type { MTLSize as _Metal_MTLSize, MTLRegion as _Metal_MTLRegion, MTLTextureDescriptor as _Metal_MTLTextureDescriptor, MTLHeapDescriptor as _Metal_MTLHeapDescriptor, MTLPixelFormat as _Metal_MTLPixelFormat, MTLTextureType as _Metal_MTLTextureType, MTLTextureUsage as _Metal_MTLTextureUsage, MTLOrigin as _Metal_MTLOrigin, MTLCPUCacheMode as _Metal_MTLCPUCacheMode, MTLStorageMode as _Metal_MTLStorageMode, MTLCullMode as _Metal_MTLCullMode, MTLWinding as _Metal_MTLWinding } from "one/ios/Metal";
+import type { NSZone as _ObjectiveC_NSZone } from "one/ios/ObjectiveC";
 type $SDK2 = (Array<Array<MPSState>>) | null;
 type $SDK3 = (Array<MPSImage>) | null;
 type $SDK4 = (Array<MPSState>) | null;
@@ -10,29 +11,30 @@ type $SDK5 = (_Foundation_NSArray) | null;
 type $SDK7 = (Array<SDKHandle>) | null;
 type $SDK8 = (MPSNNNeuronDescriptor) | null;
 type $SDK9 = (MPSCNNBatchNormalizationState) | null;
-type $SDK10 = Array<MPSNNGradientFilterNode>;
-type $SDK14 = (MPSCNNConvolutionGradientStateNode) | null;
-type $SDK15 = (Array<MPSCNNConvolutionGradientState>) | null;
-type $SDK16 = (MPSCNNConvolutionGradientState) | null;
-type $SDK17 = (MPSCNNConvolutionTransposeGradientState) | null;
-type $SDK18 = (Array<MPSCNNConvolutionTransposeGradientState>) | null;
-type $SDK19 = (Array<Array<MPSCNNConvolutionGradientState>>) | null;
-type $SDK20 = (MPSCNNDropoutGradientState) | null;
-type $SDK22 = (MPSCNNGroupNormalizationGradientState) | null;
-type $SDK23 = (MPSCNNInstanceNormalizationGradientState) | null;
-type $SDK26 = (_Metal_MTLTextureDescriptor) | null;
-type $SDK27 = (_CoreGraphics_CGColorConversionInfo) | null;
-type $SDK30 = (Array<MPSPolygonAccelerationStructure>) | null;
-type $SDK33 = Array<_Foundation_NSNumber>;
-type $SDK34 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
-type $SDK35 = (MPSNDArrayQuantizationDescriptor) | null;
-type $SDK37 = (_Foundation_NSMutableArray) | null;
-type $SDK40 = (MPSNNGradientStateNode) | null;
-type $SDK41 = (Array<MPSVector>) | null;
-type $SDK42 = (Array<MPSPolygonBuffer>) | null;
-type $SDK44 = (Array<MPSMatrix>) | null;
-type $SDK45 = (MPSRNNRecurrentMatrixState) | null;
-type $SDK46 = Array<MPSRNNMatrixTrainingState>;
+type $SDK10 = (_ObjectiveC_NSZone) | null;
+type $SDK11 = Array<MPSNNGradientFilterNode>;
+type $SDK15 = (MPSCNNConvolutionGradientStateNode) | null;
+type $SDK16 = (Array<MPSCNNConvolutionGradientState>) | null;
+type $SDK17 = (MPSCNNConvolutionGradientState) | null;
+type $SDK18 = (MPSCNNConvolutionTransposeGradientState) | null;
+type $SDK19 = (Array<MPSCNNConvolutionTransposeGradientState>) | null;
+type $SDK20 = (Array<Array<MPSCNNConvolutionGradientState>>) | null;
+type $SDK21 = (MPSCNNDropoutGradientState) | null;
+type $SDK23 = (MPSCNNGroupNormalizationGradientState) | null;
+type $SDK24 = (MPSCNNInstanceNormalizationGradientState) | null;
+type $SDK27 = (_Metal_MTLTextureDescriptor) | null;
+type $SDK28 = (_CoreGraphics_CGColorConversionInfo) | null;
+type $SDK31 = (Array<MPSPolygonAccelerationStructure>) | null;
+type $SDK34 = Array<_Foundation_NSNumber>;
+type $SDK35 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+type $SDK36 = (MPSNDArrayQuantizationDescriptor) | null;
+type $SDK38 = (_Foundation_NSMutableArray) | null;
+type $SDK41 = (MPSNNGradientStateNode) | null;
+type $SDK42 = (Array<MPSVector>) | null;
+type $SDK43 = (Array<MPSPolygonBuffer>) | null;
+type $SDK45 = (Array<MPSMatrix>) | null;
+type $SDK46 = (MPSRNNRecurrentMatrixState) | null;
+type $SDK47 = Array<MPSRNNMatrixTrainingState>;
 /**
  * class MPSKernel
  * @availability iOS 9.0+
@@ -43,8 +45,6 @@ export declare class MPSKernel extends SDKHandle {
      * @availability iOS 9.0+
      */
     copy(device?: (SDKHandle) | null): MPSKernel;
-    /** init() */
-    static init(): MPSKernel;
     /**
      * convenience init?(coder aDecoder: NSCoder)
      * @availability iOS 9.0+
@@ -77,6 +77,10 @@ export declare class MPSKernel extends SDKHandle {
      */
     get options(): MPSKernelOptions;
     set options(value: MPSKernelOptions);
+    readonly $type: {
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -175,6 +179,11 @@ export declare class MPSAccelerationStructure extends MPSAccelerationStructure_b
      */
     get usage(): MPSAccelerationStructureUsage;
     set usage(value: MPSAccelerationStructureUsage);
+    readonly $type: {
+        "c:objc(cs)MPSAccelerationStructure": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -209,6 +218,10 @@ export declare class MPSAccelerationStructureGroup extends SDKHandle {
      * @deprecated iOS 17.0
      */
     get device(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSAccelerationStructureGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -306,7 +319,7 @@ export declare const MPSAlphaType: {
 };
 /** typealias MPSAxisAlignedBoundingBox = _MPSAxisAlignedBoundingBox */
 export type MPSAxisAlignedBoundingBox = SDKHandle;
-declare const MPSBinaryImageKernel_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSBinaryImageKernel_base: Omit<typeof MPSKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSBinaryImageKernel
  * @availability iOS 9.0+
@@ -332,8 +345,6 @@ export declare class MPSBinaryImageKernel extends MPSBinaryImageKernel_base {
      * @availability iOS 9.0+
      */
     encodeCommandBufferPrimaryTextureSecondaryTextureDestinationTexture(commandBuffer: SDKHandle, primaryTexture: SDKHandle, secondaryTexture: SDKHandle, destinationTexture: SDKHandle): void;
-    /** init() */
-    static init(): MPSBinaryImageKernel;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -384,6 +395,11 @@ export declare class MPSBinaryImageKernel extends MPSBinaryImageKernel_base {
      */
     get secondaryOffset(): MPSOffset;
     set secondaryOffset(value: MPSOffset);
+    readonly $type: {
+        "c:objc(cs)MPSBinaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -409,7 +425,7 @@ export declare const MPSBoundingBoxIntersectionTestType: {
      */
     init(rawValue: number): (MPSBoundingBoxIntersectionTestType) | null;
 };
-declare const MPSCNNBinaryKernel_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSCNNBinaryKernel_base: Omit<typeof MPSKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSCNNBinaryKernel
  * @availability iOS 11.0+
@@ -475,8 +491,6 @@ export declare class MPSCNNBinaryKernel extends MPSCNNBinaryKernel_base {
      * @availability iOS 13.0+
      */
     encodingStorageSize(primaryImage: MPSImage, secondaryImage: MPSImage, sourceStates?: $SDK4, destinationImage?: (MPSImage) | null): number;
-    /** init() */
-    static init(): MPSCNNBinaryKernel;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -658,6 +672,11 @@ export declare class MPSCNNBinaryKernel extends MPSCNNBinaryKernel_base {
      */
     get secondaryStrideInPixelsY(): number;
     set secondaryStrideInPixelsY(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -690,12 +709,11 @@ export declare class MPSCNNBinaryKernel extends MPSCNNBinaryKernel_base {
         "secondaryStrideInPixelsY": true;
     };
 }
-declare const MPSCNNArithmetic_base: Omit<typeof MPSCNNBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryKernel);
 /**
  * class MPSCNNArithmetic
  * @availability iOS 11.3+
  */
-export declare class MPSCNNArithmetic extends MPSCNNArithmetic_base {
+export declare class MPSCNNArithmetic extends MPSCNNBinaryKernel {
     /**
      * func encodeBatch(commandBuffer: any MTLCommandBuffer, primaryImages: [MPSImage], secondaryImages: [MPSImage], destinationStates: [MPSCNNArithmeticGradientState], destinationImages: [MPSImage])
      * @availability iOS 11.3+
@@ -750,6 +768,12 @@ export declare class MPSCNNArithmetic extends MPSCNNArithmetic_base {
      */
     get secondaryStrideInFeatureChannels(): number;
     set secondaryStrideInFeatureChannels(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNArithmetic": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -789,19 +813,24 @@ export declare class MPSCNNArithmetic extends MPSCNNArithmetic_base {
         "secondaryStrideInFeatureChannels": true;
     };
 }
-declare const MPSCNNAdd_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
+declare const MPSCNNAdd_base: Omit<typeof MPSCNNArithmetic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
  * class MPSCNNAdd
  * @availability iOS 11.3+
  */
 export declare class MPSCNNAdd extends MPSCNNAdd_base {
-    /** init() */
-    static init(): MPSCNNAdd;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSCNNAdd;
+    static init(device: SDKHandle): MPSCNNAdd;
+    readonly $type: {
+        "c:objc(cs)MPSCNNAdd": true;
+        "c:objc(cs)MPSCNNArithmetic": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -841,7 +870,7 @@ export declare class MPSCNNAdd extends MPSCNNAdd_base {
         "secondaryStrideInFeatureChannels": true;
     };
 }
-declare const MPSCNNGradientKernel_base: Omit<typeof MPSCNNBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryKernel);
+declare const MPSCNNGradientKernel_base: Omit<typeof MPSCNNBinaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryKernel);
 /**
  * class MPSCNNGradientKernel
  * @availability iOS 11.3+
@@ -867,8 +896,6 @@ export declare class MPSCNNGradientKernel extends MPSCNNGradientKernel_base {
      * @availability iOS 11.3+
      */
     encodeCommandBufferSourceGradientSourceImageGradientStateDestinationGradient(commandBuffer: SDKHandle, sourceGradient: MPSImage, sourceImage: MPSImage, gradientState: MPSState, destinationGradient: MPSImage): void;
-    /** init() */
-    static init(): MPSCNNGradientKernel;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -891,6 +918,12 @@ export declare class MPSCNNGradientKernel extends MPSCNNGradientKernel_base {
      */
     get kernelOffsetY(): number;
     set kernelOffsetY(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -925,12 +958,11 @@ export declare class MPSCNNGradientKernel extends MPSCNNGradientKernel_base {
         "kernelOffsetY": true;
     };
 }
-declare const MPSCNNArithmeticGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNArithmeticGradient
  * @availability iOS 11.3+
  */
-export declare class MPSCNNArithmeticGradient extends MPSCNNArithmeticGradient_base {
+export declare class MPSCNNArithmeticGradient extends MPSCNNGradientKernel {
     /** init() */
     static init(): MPSCNNArithmeticGradient;
     /**
@@ -974,6 +1006,13 @@ export declare class MPSCNNArithmeticGradient extends MPSCNNArithmeticGradient_b
      */
     get secondaryStrideInFeatureChannels(): number;
     set secondaryStrideInFeatureChannels(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNArithmeticGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -1021,13 +1060,19 @@ declare const MPSCNNAddGradient_base: Omit<typeof MPSCNNArithmeticGradient, "ini
  * @availability iOS 11.3+
  */
 export declare class MPSCNNAddGradient extends MPSCNNAddGradient_base {
-    /** init() */
-    static init(): MPSCNNAddGradient;
     /**
      * init(device: any MTLDevice, isSecondarySourceFilter: Bool)
      * @availability iOS 11.3+
      */
-    static initDeviceIsSecondarySourceFilter(device: SDKHandle, isSecondarySourceFilter: boolean): MPSCNNAddGradient;
+    static init(device: SDKHandle, isSecondarySourceFilter: boolean): MPSCNNAddGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNAddGradient": true;
+        "c:objc(cs)MPSCNNArithmeticGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -1182,6 +1227,10 @@ export declare class MPSState extends SDKHandle {
      * @availability iOS 11.0+
      */
     get resourceCount(): number;
+    readonly $type: {
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -1195,6 +1244,11 @@ export declare class MPSState extends SDKHandle {
  * @availability iOS 11.3+
  */
 export declare class MPSNNBinaryGradientState extends MPSState {
+    readonly $type: {
+        "c:objc(cs)MPSNNBinaryGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -1208,6 +1262,12 @@ export declare class MPSNNBinaryGradientState extends MPSState {
  * @availability iOS 11.3+
  */
 export declare class MPSCNNArithmeticGradientState extends MPSNNBinaryGradientState {
+    readonly $type: {
+        "c:objc(cs)MPSCNNArithmeticGradientState": true;
+        "c:objc(cs)MPSNNBinaryGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -1216,7 +1276,7 @@ export declare class MPSCNNArithmeticGradientState extends MPSNNBinaryGradientSt
         "resourceCount": true;
     };
 }
-declare const MPSCNNKernel_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSCNNKernel_base: Omit<typeof MPSKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSCNNKernel
  * @availability iOS 10.0+
@@ -1292,8 +1352,6 @@ export declare class MPSCNNKernel extends MPSCNNKernel_base {
      * @availability iOS 13.0+
      */
     encodingStorageSize(sourceImage: MPSImage, sourceStates?: $SDK4, destinationImage?: (MPSImage) | null): number;
-    /** init() */
-    static init(): MPSCNNKernel;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -1417,6 +1475,11 @@ export declare class MPSCNNKernel extends MPSCNNKernel_base {
      * @availability iOS 10.0+
      */
     get strideInPixelsY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -1439,7 +1502,7 @@ export declare class MPSCNNKernel extends MPSCNNKernel_base {
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNBatchNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultState" | "temporaryResultState">);
+declare const MPSCNNBatchNormalization_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultState" | "temporaryResultState">);
 /**
  * class MPSCNNBatchNormalization
  * @availability iOS 11.3+
@@ -1455,8 +1518,6 @@ export declare class MPSCNNBatchNormalization extends MPSCNNBatchNormalization_b
      * @availability iOS 11.3+
      */
     encode(commandBuffer: SDKHandle, sourceImage: MPSImage, batchNormalizationState: MPSCNNBatchNormalizationState, destinationImage: MPSImage): void;
-    /** init() */
-    static init(): MPSCNNBatchNormalization;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -1524,6 +1585,12 @@ export declare class MPSCNNBatchNormalization extends MPSCNNBatchNormalization_b
      * @availability iOS 11.3+
      */
     get numberOfFeatureChannels(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBatchNormalization": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -1554,7 +1621,7 @@ export declare class MPSCNNBatchNormalization extends MPSCNNBatchNormalization_b
  * @availability iOS 11.3+
  */
 export interface MPSCNNBatchNormalizationDataSource {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     /**
      * func numberOfFeatureChannels() -> Int
      * @availability iOS 11.3+
@@ -1637,7 +1704,7 @@ export declare const MPSCNNBatchNormalizationFlags: {
     /** init(rawValue: UInt) */
     init(rawValue: number): MPSCNNBatchNormalizationFlags;
 };
-declare const MPSCNNBatchNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNBatchNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNBatchNormalizationGradient
  * @availability iOS 11.3+
@@ -1663,8 +1730,6 @@ export declare class MPSCNNBatchNormalizationGradient extends MPSCNNBatchNormali
      * @availability iOS 11.3+
      */
     encodeToSourceGradientSourceImageBatchNormalizationStateDestinationGradient(commandBuffer: SDKHandle, sourceGradient: MPSImage, sourceImage: MPSImage, batchNormalizationState: MPSCNNBatchNormalizationState, destinationGradient: MPSImage): void;
-    /** init() */
-    static init(): MPSCNNBatchNormalizationGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -1675,6 +1740,13 @@ export declare class MPSCNNBatchNormalizationGradient extends MPSCNNBatchNormali
      * @availability iOS 12.0+
      */
     static initDeviceFusedNeuronDescriptor(device: SDKHandle, fusedNeuronDescriptor?: $SDK8): MPSCNNBatchNormalizationGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBatchNormalizationGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -1728,12 +1800,12 @@ export declare class MPSNNFilterNode extends SDKHandle {
      * func gradientFilters(withSource gradientImage: MPSNNImageNode) -> [MPSNNGradientFilterNode]
      * @availability iOS 11.0+
      */
-    gradientFiltersWithSource(gradientImage: MPSNNImageNode): $SDK10;
+    gradientFiltersWithSource(gradientImage: MPSNNImageNode): $SDK11;
     /**
      * func gradientFilters(withSources gradientImages: [MPSNNImageNode]) -> [MPSNNGradientFilterNode]
      * @availability iOS 11.0+
      */
-    gradientFiltersWithSources(gradientImages: Array<MPSNNImageNode>): $SDK10;
+    gradientFiltersWithSources(gradientImages: Array<MPSNNImageNode>): $SDK11;
     /**
      * func trainingGraph(withSourceGradient gradientImage: MPSNNImageNode?, nodeHandler: MPSGradientNodeBlock? = nil) -> [MPSNNFilterNode]?
      * @availability iOS 12.0+
@@ -1766,6 +1838,10 @@ export declare class MPSNNFilterNode extends SDKHandle {
      * @availability iOS 11.0+
      */
     get resultStates(): (Array<MPSNNStateNode>) | null;
+    readonly $type: {
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -1779,6 +1855,11 @@ export declare class MPSNNFilterNode extends SDKHandle {
  * @availability iOS 11.3+
  */
 export declare class MPSNNGradientFilterNode extends MPSNNFilterNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -1797,6 +1878,12 @@ export declare class MPSCNNBatchNormalizationGradientNode extends MPSNNGradientF
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNBatchNormalizationGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBatchNormalizationGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -1827,6 +1914,11 @@ export declare class MPSCNNBatchNormalizationNode extends MPSNNFilterNode {
      */
     get trainingStyle(): MPSNNTrainingStyle;
     set trainingStyle(value: MPSNNTrainingStyle);
+    readonly $type: {
+        "c:objc(cs)MPSCNNBatchNormalizationNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -1842,6 +1934,11 @@ export declare class MPSCNNBatchNormalizationNode extends MPSNNFilterNode {
  * @availability iOS 11.3+
  */
 export declare class MPSNNGradientState extends MPSState {
+    readonly $type: {
+        "c:objc(cs)MPSNNGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -1895,6 +1992,12 @@ export declare class MPSCNNBatchNormalizationState extends MPSNNGradientState {
      * @availability iOS 11.3+
      */
     get batchNormalization(): MPSCNNBatchNormalization;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBatchNormalizationState": true;
+        "c:objc(cs)MPSNNGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -1904,7 +2007,7 @@ export declare class MPSCNNBatchNormalizationState extends MPSNNGradientState {
         "batchNormalization": true;
     };
 }
-declare const MPSCNNBatchNormalizationStatistics_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSCNNBatchNormalizationStatistics_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNBatchNormalizationStatistics
  * @availability iOS 11.3+
@@ -1915,8 +2018,6 @@ export declare class MPSCNNBatchNormalizationStatistics extends MPSCNNBatchNorma
      * @availability iOS 11.3+
      */
     encodeBatch(commandBuffer: SDKHandle, sourceImages: Array<MPSImage>, batchNormalizationState: MPSCNNBatchNormalizationState): void;
-    /** init() */
-    static init(): MPSCNNBatchNormalizationStatistics;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -1927,6 +2028,12 @@ export declare class MPSCNNBatchNormalizationStatistics extends MPSCNNBatchNorma
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNBatchNormalizationStatistics;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBatchNormalizationStatistics": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -1949,7 +2056,7 @@ export declare class MPSCNNBatchNormalizationStatistics extends MPSCNNBatchNorma
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNBatchNormalizationStatisticsGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNBatchNormalizationStatisticsGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNBatchNormalizationStatisticsGradient
  * @availability iOS 11.3+
@@ -1960,8 +2067,6 @@ export declare class MPSCNNBatchNormalizationStatisticsGradient extends MPSCNNBa
      * @availability iOS 11.3+
      */
     encodeBatch(commandBuffer: SDKHandle, sourceGradients: Array<MPSImage>, sourceImages: Array<MPSImage>, batchNormalizationState: MPSCNNBatchNormalizationState): void;
-    /** init() */
-    static init(): MPSCNNBatchNormalizationStatisticsGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -1972,6 +2077,13 @@ export declare class MPSCNNBatchNormalizationStatisticsGradient extends MPSCNNBa
      * @availability iOS 12.0+
      */
     static initDeviceFusedNeuronDescriptor(device: SDKHandle, fusedNeuronDescriptor?: $SDK8): MPSCNNBatchNormalizationStatisticsGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBatchNormalizationStatisticsGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -2006,14 +2118,12 @@ export declare class MPSCNNBatchNormalizationStatisticsGradient extends MPSCNNBa
         "kernelOffsetY": true;
     };
 }
-declare const MPSCNNBinaryConvolution_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSCNNBinaryConvolution_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNBinaryConvolution
  * @availability iOS 11.0+
  */
 export declare class MPSCNNBinaryConvolution extends MPSCNNBinaryConvolution_base {
-    /** init() */
-    static init(): MPSCNNBinaryConvolution;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -2039,6 +2149,12 @@ export declare class MPSCNNBinaryConvolution extends MPSCNNBinaryConvolution_bas
      * @availability iOS 11.0+
      */
     get outputFeatureChannels(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBinaryConvolution": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -2089,13 +2205,18 @@ export declare class MPSCNNConvolutionNode extends MPSNNFilterNode {
      * var convolutionGradientState: MPSCNNConvolutionGradientStateNode? { get }
      * @availability iOS 11.3+
      */
-    get convolutionGradientState(): $SDK14;
+    get convolutionGradientState(): $SDK15;
     /**
      * var trainingStyle: MPSNNTrainingStyle { get set }
      * @availability iOS 13.0+
      */
     get trainingStyle(): MPSNNTrainingStyle;
     set trainingStyle(value: MPSNNTrainingStyle);
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -2122,6 +2243,12 @@ export declare class MPSCNNBinaryConvolutionNode extends MPSCNNConvolutionNode {
      * @availability iOS 11.0+
      */
     static initSourceWeightsScaleValueTypeFlags(sourceNode: MPSNNImageNode, weights: SDKHandle, scaleValue: number, type: MPSCNNBinaryConvolutionType, flags: MPSCNNBinaryConvolutionFlags): MPSCNNBinaryConvolutionNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBinaryConvolutionNode": true;
+        "c:objc(cs)MPSCNNConvolutionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -2139,14 +2266,12 @@ export declare const MPSCNNBinaryConvolutionType: {
     /** init?(rawValue: UInt) */
     init(rawValue: number): (MPSCNNBinaryConvolutionType) | null;
 };
-declare const MPSCNNBinaryFullyConnected_base: Omit<typeof MPSCNNBinaryConvolution, "init" | "initCoderDevice" | "initDeviceConvolutionDataOutputBiasTermsOutputScaleTermsInputBiasTermsInputScaleTermsTypeFlags" | "initDeviceConvolutionDataScaleValueTypeFlags" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryConvolution);
+declare const MPSCNNBinaryFullyConnected_base: Omit<typeof MPSCNNBinaryConvolution, "initCoderDevice" | "initDeviceConvolutionDataOutputBiasTermsOutputScaleTermsInputBiasTermsInputScaleTermsTypeFlags" | "initDeviceConvolutionDataScaleValueTypeFlags" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryConvolution);
 /**
  * class MPSCNNBinaryFullyConnected
  * @availability iOS 11.0+
  */
 export declare class MPSCNNBinaryFullyConnected extends MPSCNNBinaryFullyConnected_base {
-    /** init() */
-    static init(): MPSCNNBinaryFullyConnected;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -2162,6 +2287,13 @@ export declare class MPSCNNBinaryFullyConnected extends MPSCNNBinaryFullyConnect
      * @availability iOS 11.0+
      */
     static initDeviceConvolutionDataScaleValueTypeFlags(device: SDKHandle, convolutionData: SDKHandle, scaleValue: number, type: MPSCNNBinaryConvolutionType, flags: MPSCNNBinaryConvolutionFlags): MPSCNNBinaryFullyConnected;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBinaryFullyConnected": true;
+        "c:objc(cs)MPSCNNBinaryConvolution": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -2202,6 +2334,13 @@ export declare class MPSCNNBinaryFullyConnectedNode extends MPSCNNBinaryFullyCon
      * @availability iOS 11.0+
      */
     static initSourceWeightsScaleValueTypeFlags(sourceNode: MPSNNImageNode, weights: SDKHandle, scaleValue: number, type: MPSCNNBinaryConvolutionType, flags: MPSCNNBinaryConvolutionFlags): MPSCNNBinaryFullyConnectedNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNBinaryFullyConnectedNode": true;
+        "c:objc(cs)MPSCNNBinaryConvolutionNode": true;
+        "c:objc(cs)MPSCNNConvolutionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -2213,7 +2352,7 @@ export declare class MPSCNNBinaryFullyConnectedNode extends MPSCNNBinaryFullyCon
         "trainingStyle": true;
     };
 }
-declare const MPSCNNConvolution_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultStateBatch" | "resultState" | "temporaryResultStateBatch" | "temporaryResultState">);
+declare const MPSCNNConvolution_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultStateBatch" | "resultState" | "temporaryResultStateBatch" | "temporaryResultState">);
 /**
  * class MPSCNNConvolution
  * @availability iOS 10.0+
@@ -2224,8 +2363,6 @@ export declare class MPSCNNConvolution extends MPSCNNConvolution_base {
      * @availability iOS 11.3+
      */
     exportWeightsAndBiases(commandBuffer: SDKHandle, resultStateCanBeTemporary: boolean): MPSCNNConvolutionWeightsAndBiasesState;
-    /** init() */
-    static init(): MPSCNNConvolution;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -2262,22 +2399,22 @@ export declare class MPSCNNConvolution extends MPSCNNConvolution_base {
      * func resultStateBatch(sourceImage: [MPSImage], sourceStates: [[MPSState]]?, destinationImage: [MPSImage]) -> [MPSCNNConvolutionGradientState]?
      * @availability iOS 11.3+
      */
-    resultStateBatch(sourceImage: Array<MPSImage>, sourceStates: $SDK2, destinationImage: Array<MPSImage>): $SDK15;
+    resultStateBatch(sourceImage: Array<MPSImage>, sourceStates: $SDK2, destinationImage: Array<MPSImage>): $SDK16;
     /**
      * func resultState(sourceImage: MPSImage, sourceStates: [MPSState]?, destinationImage: MPSImage) -> MPSCNNConvolutionGradientState?
      * @availability iOS 11.3+
      */
-    resultState(sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK16;
+    resultState(sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK17;
     /**
      * func temporaryResultStateBatch(commandBuffer: any MTLCommandBuffer, sourceImage: [MPSImage], sourceStates: [[MPSState]]?, destinationImage: [MPSImage]) -> [MPSCNNConvolutionGradientState]?
      * @availability iOS 11.3+
      */
-    temporaryResultStateBatch(commandBuffer: SDKHandle, sourceImage: Array<MPSImage>, sourceStates: $SDK2, destinationImage: Array<MPSImage>): $SDK15;
+    temporaryResultStateBatch(commandBuffer: SDKHandle, sourceImage: Array<MPSImage>, sourceStates: $SDK2, destinationImage: Array<MPSImage>): $SDK16;
     /**
      * func temporaryResultState(commandBuffer: any MTLCommandBuffer, sourceImage: MPSImage, sourceStates: [MPSState]?, destinationImage: MPSImage) -> MPSCNNConvolutionGradientState?
      * @availability iOS 11.3+
      */
-    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK16;
+    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK17;
     /**
      * var accumulatorPrecisionOption: MPSNNConvolutionAccumulatorPrecisionOption { get set }
      * @availability iOS 11.3+
@@ -2349,6 +2486,12 @@ export declare class MPSCNNConvolution extends MPSCNNConvolution_base {
      * @availability iOS 10.0+
      */
     get subPixelScaleFactor(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolution": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -2386,7 +2529,7 @@ export declare class MPSCNNConvolution extends MPSCNNConvolution_base {
 }
 /** protocol MPSCNNConvolutionDataSource : NSCopying, NSObjectProtocol */
 export interface MPSCNNConvolutionDataSource {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     /** func dataType() -> MPSDataType */
     "dataType"?: () => MPSDataType;
     /**
@@ -2431,8 +2574,6 @@ export declare class MPSCNNConvolutionDescriptor extends SDKHandle {
      * @availability iOS 11.0+
      */
     encode(aCoder: _Foundation_NSCoder): void;
-    /** init() */
-    static init(): MPSCNNConvolutionDescriptor;
     /**
      * init?(coder aDecoder: NSCoder)
      * @availability iOS 11.0+
@@ -2540,6 +2681,10 @@ export declare class MPSCNNConvolutionDescriptor extends SDKHandle {
      */
     get strideInPixelsY(): number;
     set strideInPixelsY(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dilationRateX": true;
         "dilationRateY": true;
@@ -2560,14 +2705,12 @@ export declare const MPSCNNConvolutionFlags: {
     /** init?(rawValue: UInt) */
     init(rawValue: number): (MPSCNNConvolutionFlags) | null;
 };
-declare const MPSCNNConvolutionGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNConvolutionGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNConvolutionGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNConvolutionGradient extends MPSCNNConvolutionGradient_base {
-    /** init() */
-    static init(): MPSCNNConvolutionGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -2626,6 +2769,13 @@ export declare class MPSCNNConvolutionGradient extends MPSCNNConvolutionGradient
      * @availability iOS 11.3+
      */
     get sourceImageFeatureChannels(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -2677,6 +2827,12 @@ export declare class MPSCNNConvolutionGradientNode extends MPSNNGradientFilterNo
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSCNNConvolutionGradientStateNode, weights?: (SDKHandle) | null): MPSCNNConvolutionGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -2731,6 +2887,12 @@ export declare class MPSCNNConvolutionGradientState extends MPSNNGradientState {
      * @availability iOS 13.0+
      */
     get gradientForWeightsLayout(): MPSCNNConvolutionWeightsLayout;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionGradientState": true;
+        "c:objc(cs)MPSNNGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -2766,6 +2928,10 @@ export declare class MPSNNStateNode extends SDKHandle {
      */
     get synchronizeResource(): boolean;
     set synchronizeResource(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSNNStateNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportFromGraph": true;
         "handle": true;
@@ -2777,6 +2943,11 @@ export declare class MPSNNStateNode extends SDKHandle {
  * @availability iOS 11.3+
  */
 export declare class MPSNNGradientStateNode extends MPSNNStateNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNGradientStateNode": true;
+        "c:objc(cs)MPSNNStateNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportFromGraph": true;
         "handle": true;
@@ -2788,13 +2959,19 @@ export declare class MPSNNGradientStateNode extends MPSNNStateNode {
  * @availability iOS 11.3+
  */
 export declare class MPSCNNConvolutionGradientStateNode extends MPSNNGradientStateNode {
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionGradientStateNode": true;
+        "c:objc(cs)MPSNNGradientStateNode": true;
+        "c:objc(cs)MPSNNStateNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportFromGraph": true;
         "handle": true;
         "synchronizeResource": true;
     };
 }
-declare const MPSCNNConvolutionTranspose_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultStateBatch" | "resultState" | "temporaryResultStateBatch" | "temporaryResultState">);
+declare const MPSCNNConvolutionTranspose_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultStateBatch" | "resultState" | "temporaryResultStateBatch" | "temporaryResultState">);
 /**
  * class MPSCNNConvolutionTranspose
  * @availability iOS 11.0+
@@ -2804,17 +2981,17 @@ export declare class MPSCNNConvolutionTranspose extends MPSCNNConvolutionTranspo
      * func encodeBatch(commandBuffer: any MTLCommandBuffer, sourceImages sourceImage: [MPSImage], convolutionGradientStates convolutionGradientState: [MPSCNNConvolutionGradientState]?) -> [MPSImage]
      * @availability iOS 11.3+
      */
-    encodeBatchCommandBufferSourceImagesConvolutionGradientStates(commandBuffer: SDKHandle, sourceImage: Array<MPSImage>, convolutionGradientState?: $SDK15): Array<MPSImage>;
+    encodeBatchCommandBufferSourceImagesConvolutionGradientStates(commandBuffer: SDKHandle, sourceImage: Array<MPSImage>, convolutionGradientState?: $SDK16): Array<MPSImage>;
     /**
      * func encodeBatch(commandBuffer: any MTLCommandBuffer, sourceImages sourceImage: [MPSImage], convolutionGradientStates convolutionGradientState: [MPSCNNConvolutionGradientState]?, destinationImages destinationImage: [MPSImage])
      * @availability iOS 11.3+
      */
-    encodeBatchCommandBufferSourceImagesConvolutionGradientStatesDestinationImages(commandBuffer: SDKHandle, sourceImage: Array<MPSImage>, convolutionGradientState: $SDK15, destinationImage: Array<MPSImage>): void;
+    encodeBatchCommandBufferSourceImagesConvolutionGradientStatesDestinationImages(commandBuffer: SDKHandle, sourceImage: Array<MPSImage>, convolutionGradientState: $SDK16, destinationImage: Array<MPSImage>): void;
     /**
      * func encodeBatch(commandBuffer: any MTLCommandBuffer, sourceImages: [MPSImage], convolutionGradientStates: [MPSCNNConvolutionGradientState]?, destinationStates outStates: AutoreleasingUnsafeMutablePointer<NSArray?>, destinationStateIsTemporary isTemporary: Bool) -> [MPSImage]
      * @availability iOS 13.0+
      */
-    encodeBatchCommandBufferSourceImagesConvolutionGradientStatesDestinationStatesDestinationStateIsTemporary(commandBuffer: SDKHandle, sourceImages: Array<MPSImage>, convolutionGradientStates: $SDK15, isTemporary: boolean): {
+    encodeBatchCommandBufferSourceImagesConvolutionGradientStatesDestinationStatesDestinationStateIsTemporary(commandBuffer: SDKHandle, sourceImages: Array<MPSImage>, convolutionGradientStates: $SDK16, isTemporary: boolean): {
         $ret: Array<MPSImage>;
         $out: {
             "outStates": $SDK5;
@@ -2824,20 +3001,20 @@ export declare class MPSCNNConvolutionTranspose extends MPSCNNConvolutionTranspo
      * func encode(commandBuffer: any MTLCommandBuffer, sourceImage: MPSImage, convolutionGradientState: MPSCNNConvolutionGradientState?) -> MPSImage
      * @availability iOS 11.3+
      */
-    encodeCommandBufferSourceImageConvolutionGradientState(commandBuffer: SDKHandle, sourceImage: MPSImage, convolutionGradientState?: $SDK16): MPSImage;
+    encodeCommandBufferSourceImageConvolutionGradientState(commandBuffer: SDKHandle, sourceImage: MPSImage, convolutionGradientState?: $SDK17): MPSImage;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, sourceImage: MPSImage, convolutionGradientState: MPSCNNConvolutionGradientState?, destinationImage: MPSImage)
      * @availability iOS 11.3+
      */
-    encodeCommandBufferSourceImageConvolutionGradientStateDestinationImage(commandBuffer: SDKHandle, sourceImage: MPSImage, convolutionGradientState: $SDK16, destinationImage: MPSImage): void;
+    encodeCommandBufferSourceImageConvolutionGradientStateDestinationImage(commandBuffer: SDKHandle, sourceImage: MPSImage, convolutionGradientState: $SDK17, destinationImage: MPSImage): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, sourceImage: MPSImage, convolutionGradientState: MPSCNNConvolutionGradientState?, destinationState outState: AutoreleasingUnsafeMutablePointer<MPSCNNConvolutionTransposeGradientState?>, destinationStateIsTemporary isTemporary: Bool) -> MPSImage
      * @availability iOS 13.0+
      */
-    encodeCommandBufferSourceImageConvolutionGradientStateDestinationStateDestinationStateIsTemporary(commandBuffer: SDKHandle, sourceImage: MPSImage, convolutionGradientState: $SDK16, isTemporary: boolean): {
+    encodeCommandBufferSourceImageConvolutionGradientStateDestinationStateDestinationStateIsTemporary(commandBuffer: SDKHandle, sourceImage: MPSImage, convolutionGradientState: $SDK17, isTemporary: boolean): {
         $ret: MPSImage;
         $out: {
-            "outState": $SDK17;
+            "outState": $SDK18;
         };
     };
     /**
@@ -2845,8 +3022,6 @@ export declare class MPSCNNConvolutionTranspose extends MPSCNNConvolutionTranspo
      * @availability iOS 13.0+
      */
     exportWeightsAndBiases(commandBuffer: SDKHandle, resultStateCanBeTemporary: boolean): MPSCNNConvolutionWeightsAndBiasesState;
-    /** init() */
-    static init(): MPSCNNConvolutionTranspose;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -2871,22 +3046,22 @@ export declare class MPSCNNConvolutionTranspose extends MPSCNNConvolutionTranspo
      * func resultStateBatch(sourceImage: [MPSImage], sourceStates: [[MPSCNNConvolutionGradientState]]?, destinationImage: [MPSImage]) -> [MPSCNNConvolutionTransposeGradientState]?
      * @availability iOS 11.3+
      */
-    resultStateBatch(sourceImage: Array<MPSImage>, sourceStates: $SDK19, destinationImage: Array<MPSImage>): $SDK18;
+    resultStateBatch(sourceImage: Array<MPSImage>, sourceStates: $SDK20, destinationImage: Array<MPSImage>): $SDK19;
     /**
      * func resultState(sourceImage: MPSImage, sourceStates: [MPSCNNConvolutionGradientState]?, destinationImage: MPSImage) -> MPSCNNConvolutionTransposeGradientState?
      * @availability iOS 11.3+
      */
-    resultState(sourceImage: MPSImage, sourceStates: $SDK15, destinationImage: MPSImage): $SDK17;
+    resultState(sourceImage: MPSImage, sourceStates: $SDK16, destinationImage: MPSImage): $SDK18;
     /**
      * func temporaryResultStateBatch(commandBuffer: any MTLCommandBuffer, sourceImage: [MPSImage], sourceStates: [[MPSCNNConvolutionGradientState]]?, destinationImage: [MPSImage]) -> [MPSCNNConvolutionTransposeGradientState]?
      * @availability iOS 11.3+
      */
-    temporaryResultStateBatch(commandBuffer: SDKHandle, sourceImage: Array<MPSImage>, sourceStates: $SDK19, destinationImage: Array<MPSImage>): $SDK18;
+    temporaryResultStateBatch(commandBuffer: SDKHandle, sourceImage: Array<MPSImage>, sourceStates: $SDK20, destinationImage: Array<MPSImage>): $SDK19;
     /**
      * func temporaryResultState(commandBuffer: any MTLCommandBuffer, sourceImage: MPSImage, sourceStates: [MPSCNNConvolutionGradientState]?, destinationImage: MPSImage) -> MPSCNNConvolutionTransposeGradientState?
      * @availability iOS 11.3+
      */
-    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK15, destinationImage: MPSImage): $SDK17;
+    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK16, destinationImage: MPSImage): $SDK18;
     /**
      * var accumulatorPrecisionOption: MPSNNConvolutionAccumulatorPrecisionOption { get set }
      * @availability iOS 11.3+
@@ -2925,6 +3100,12 @@ export declare class MPSCNNConvolutionTranspose extends MPSCNNConvolutionTranspo
      * @availability iOS 11.0+
      */
     get outputFeatureChannels(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionTranspose": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -2954,14 +3135,12 @@ export declare class MPSCNNConvolutionTranspose extends MPSCNNConvolutionTranspo
         "outputFeatureChannels": true;
     };
 }
-declare const MPSCNNConvolutionTransposeGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNConvolutionTransposeGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNConvolutionTransposeGradient
  * @availability iOS 13.0+
  */
 export declare class MPSCNNConvolutionTransposeGradient extends MPSCNNConvolutionTransposeGradient_base {
-    /** init() */
-    static init(): MPSCNNConvolutionTransposeGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -3008,6 +3187,13 @@ export declare class MPSCNNConvolutionTransposeGradient extends MPSCNNConvolutio
      * @availability iOS 13.0+
      */
     get sourceImageFeatureChannels(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionTransposeGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -3058,6 +3244,13 @@ export declare class MPSCNNConvolutionTransposeGradientNode extends MPSCNNConvol
      * @availability iOS 13.0+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSCNNConvolutionTransposeGradientStateNode, weights?: (SDKHandle) | null): MPSCNNConvolutionTransposeGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionTransposeGradientNode": true;
+        "c:objc(cs)MPSCNNConvolutionGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -3076,6 +3269,13 @@ export declare class MPSCNNConvolutionTransposeGradientState extends MPSCNNConvo
      * @availability iOS 13.0+
      */
     get convolutionTranspose(): MPSCNNConvolutionTranspose;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionTransposeGradientState": true;
+        "c:objc(cs)MPSCNNConvolutionGradientState": true;
+        "c:objc(cs)MPSNNGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -3094,6 +3294,13 @@ export declare class MPSCNNConvolutionTransposeGradientState extends MPSCNNConvo
  * @availability iOS 13.0+
  */
 export declare class MPSCNNConvolutionTransposeGradientStateNode extends MPSCNNConvolutionGradientStateNode {
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionTransposeGradientStateNode": true;
+        "c:objc(cs)MPSCNNConvolutionGradientStateNode": true;
+        "c:objc(cs)MPSNNGradientStateNode": true;
+        "c:objc(cs)MPSNNStateNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportFromGraph": true;
         "handle": true;
@@ -3110,7 +3317,13 @@ export declare class MPSCNNConvolutionTransposeNode extends MPSCNNConvolutionTra
      * init(source sourceNode: MPSNNImageNode, convolutionGradientState: MPSCNNConvolutionGradientStateNode?, weights: any MPSCNNConvolutionDataSource)
      * @availability iOS 11.3+
      */
-    static init(sourceNode: MPSNNImageNode, convolutionGradientState: $SDK14, weights: SDKHandle): MPSCNNConvolutionTransposeNode;
+    static init(sourceNode: MPSNNImageNode, convolutionGradientState: $SDK15, weights: SDKHandle): MPSCNNConvolutionTransposeNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionTransposeNode": true;
+        "c:objc(cs)MPSCNNConvolutionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -3167,6 +3380,11 @@ export declare class MPSCNNConvolutionWeightsAndBiasesState extends MPSState {
      * @availability iOS 11.3+
      */
     get weightsOffset(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNConvolutionWeightsAndBiasesState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -3185,14 +3403,12 @@ export declare const MPSCNNConvolutionWeightsLayout: {
     /** init?(rawValue: UInt32) */
     init(rawValue: number): (MPSCNNConvolutionWeightsLayout) | null;
 };
-declare const MPSCNNCrossChannelNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSCNNCrossChannelNormalization_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNCrossChannelNormalization
  * @availability iOS 10.0+
  */
 export declare class MPSCNNCrossChannelNormalization extends MPSCNNCrossChannelNormalization_base {
-    /** init() */
-    static init(): MPSCNNCrossChannelNormalization;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -3226,6 +3442,12 @@ export declare class MPSCNNCrossChannelNormalization extends MPSCNNCrossChannelN
      * @availability iOS 10.0+
      */
     get kernelSize(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNCrossChannelNormalization": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -3252,14 +3474,12 @@ export declare class MPSCNNCrossChannelNormalization extends MPSCNNCrossChannelN
         "kernelSize": true;
     };
 }
-declare const MPSCNNCrossChannelNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNCrossChannelNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNCrossChannelNormalizationGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNCrossChannelNormalizationGradient extends MPSCNNCrossChannelNormalizationGradient_base {
-    /** init() */
-    static init(): MPSCNNCrossChannelNormalizationGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -3293,6 +3513,13 @@ export declare class MPSCNNCrossChannelNormalizationGradient extends MPSCNNCross
      * @availability iOS 11.3+
      */
     get kernelSize(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNCrossChannelNormalizationGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -3346,6 +3573,12 @@ export declare class MPSCNNCrossChannelNormalizationGradientNode extends MPSNNGr
      * @availability iOS 11.3+
      */
     get kernelSize(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNCrossChannelNormalizationGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -3383,6 +3616,11 @@ export declare class MPSCNNNormalizationNode extends MPSNNFilterNode {
      */
     get delta(): number;
     set delta(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNNormalizationNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -3415,6 +3653,12 @@ export declare class MPSCNNCrossChannelNormalizationNode extends MPSCNNNormaliza
      */
     get kernelSizeInFeatureChannels(): number;
     set kernelSizeInFeatureChannels(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNCrossChannelNormalizationNode": true;
+        "c:objc(cs)MPSCNNNormalizationNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -3427,12 +3671,11 @@ export declare class MPSCNNCrossChannelNormalizationNode extends MPSCNNNormaliza
         "kernelSizeInFeatureChannels": true;
     };
 }
-declare const MPSCNNDepthWiseConvolutionDescriptor_base: Omit<typeof MPSCNNConvolutionDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionDescriptor);
 /**
  * class MPSCNNDepthWiseConvolutionDescriptor
  * @availability iOS 11.0+
  */
-export declare class MPSCNNDepthWiseConvolutionDescriptor extends MPSCNNDepthWiseConvolutionDescriptor_base {
+export declare class MPSCNNDepthWiseConvolutionDescriptor extends MPSCNNConvolutionDescriptor {
     /** init() */
     static init(): MPSCNNDepthWiseConvolutionDescriptor;
     /**
@@ -3440,6 +3683,11 @@ export declare class MPSCNNDepthWiseConvolutionDescriptor extends MPSCNNDepthWis
      * @availability iOS 11.0+
      */
     get channelMultiplier(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDepthWiseConvolutionDescriptor": true;
+        "c:objc(cs)MPSCNNConvolutionDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dilationRateX": true;
         "dilationRateY": true;
@@ -3455,14 +3703,12 @@ export declare class MPSCNNDepthWiseConvolutionDescriptor extends MPSCNNDepthWis
         "channelMultiplier": true;
     };
 }
-declare const MPSCNNPooling_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSCNNPooling_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNPooling
  * @availability iOS 10.0+
  */
 export declare class MPSCNNPooling extends MPSCNNPooling_base {
-    /** init() */
-    static init(): MPSCNNPooling;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -3478,6 +3724,12 @@ export declare class MPSCNNPooling extends MPSCNNPooling_base {
      * @availability iOS 10.0+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPooling;
+    readonly $type: {
+        "c:objc(cs)MPSCNNPooling": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -3500,14 +3752,12 @@ export declare class MPSCNNPooling extends MPSCNNPooling_base {
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNDilatedPoolingMax_base: Omit<typeof MPSCNNPooling, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNPooling, "dilationRateX" | "dilationRateY">);
+declare const MPSCNNDilatedPoolingMax_base: Omit<typeof MPSCNNPooling, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNPooling, "dilationRateX" | "dilationRateY">);
 /**
  * class MPSCNNDilatedPoolingMax
  * @availability iOS 11.0+
  */
 export declare class MPSCNNDilatedPoolingMax extends MPSCNNDilatedPoolingMax_base {
-    /** init() */
-    static init(): MPSCNNDilatedPoolingMax;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -3528,6 +3778,13 @@ export declare class MPSCNNDilatedPoolingMax extends MPSCNNDilatedPoolingMax_bas
      * @availability iOS 11.0+
      */
     get dilationRateY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDilatedPoolingMax": true;
+        "c:objc(cs)MPSCNNPooling": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -3550,14 +3807,12 @@ export declare class MPSCNNDilatedPoolingMax extends MPSCNNDilatedPoolingMax_bas
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNPoolingGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNPoolingGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNPoolingGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingGradient extends MPSCNNPoolingGradient_base {
-    /** init() */
-    static init(): MPSCNNPoolingGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -3579,6 +3834,13 @@ export declare class MPSCNNPoolingGradient extends MPSCNNPoolingGradient_base {
      */
     get sourceSize(): _Metal_MTLSize;
     set sourceSize(value: _Metal_MTLSize);
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -3614,14 +3876,12 @@ export declare class MPSCNNPoolingGradient extends MPSCNNPoolingGradient_base {
         "sourceSize": true;
     };
 }
-declare const MPSCNNDilatedPoolingMaxGradient_base: Omit<typeof MPSCNNPoolingGradient, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
+declare const MPSCNNDilatedPoolingMaxGradient_base: Omit<typeof MPSCNNPoolingGradient, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
 /**
  * class MPSCNNDilatedPoolingMaxGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNDilatedPoolingMaxGradient extends MPSCNNDilatedPoolingMaxGradient_base {
-    /** init() */
-    static init(): MPSCNNDilatedPoolingMaxGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -3632,6 +3892,14 @@ export declare class MPSCNNDilatedPoolingMaxGradient extends MPSCNNDilatedPoolin
      * @availability iOS 11.3+
      */
     static initDeviceKernelWidthKernelHeightDilationRateXDilationRateYStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, dilationRateX: number, dilationRateY: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNDilatedPoolingMaxGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDilatedPoolingMaxGradient": true;
+        "c:objc(cs)MPSCNNPoolingGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -3697,6 +3965,12 @@ export declare class MPSCNNPoolingGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 11.3+
      */
     get strideInPixelsY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -3730,6 +4004,13 @@ export declare class MPSCNNDilatedPoolingMaxGradientNode extends MPSCNNDilatedPo
      * @availability iOS 11.3+
      */
     get dilationRateY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDilatedPoolingMaxGradientNode": true;
+        "c:objc(cs)MPSCNNPoolingGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -3774,6 +4055,11 @@ export declare class MPSCNNDilatedPoolingMaxNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     get dilationRateY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDilatedPoolingMaxNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -3784,19 +4070,24 @@ export declare class MPSCNNDilatedPoolingMaxNode extends MPSNNFilterNode {
         "dilationRateY": true;
     };
 }
-declare const MPSCNNDivide_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
+declare const MPSCNNDivide_base: Omit<typeof MPSCNNArithmetic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
  * class MPSCNNDivide
  * @availability iOS 11.3+
  */
 export declare class MPSCNNDivide extends MPSCNNDivide_base {
-    /** init() */
-    static init(): MPSCNNDivide;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSCNNDivide;
+    static init(device: SDKHandle): MPSCNNDivide;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDivide": true;
+        "c:objc(cs)MPSCNNArithmetic": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -3836,14 +4127,12 @@ export declare class MPSCNNDivide extends MPSCNNDivide_base {
         "secondaryStrideInFeatureChannels": true;
     };
 }
-declare const MPSCNNDropout_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultStateBatch" | "resultState" | "temporaryResultStateBatch" | "temporaryResultState">);
+declare const MPSCNNDropout_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultStateBatch" | "resultState" | "temporaryResultStateBatch" | "temporaryResultState">);
 /**
  * class MPSCNNDropout
  * @availability iOS 11.3+
  */
 export declare class MPSCNNDropout extends MPSCNNDropout_base {
-    /** init() */
-    static init(): MPSCNNDropout;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -3858,12 +4147,12 @@ export declare class MPSCNNDropout extends MPSCNNDropout_base {
      * func resultStateBatch(sourceImage: [MPSImage], sourceStates: [[MPSState]]?, destinationImage: [MPSImage]) -> MPSCNNDropoutGradientState?
      * @availability iOS 11.3+
      */
-    resultStateBatch(sourceImage: Array<MPSImage>, sourceStates: $SDK2, destinationImage: Array<MPSImage>): $SDK20;
+    resultStateBatch(sourceImage: Array<MPSImage>, sourceStates: $SDK2, destinationImage: Array<MPSImage>): $SDK21;
     /**
      * func resultState(sourceImage: MPSImage, sourceStates: [MPSState]?, destinationImage: MPSImage) -> MPSCNNDropoutGradientState?
      * @availability iOS 11.3+
      */
-    resultState(sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK20;
+    resultState(sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK21;
     /**
      * func temporaryResultStateBatch(commandBuffer: any MTLCommandBuffer, sourceImage: [MPSImage], sourceStates: [[MPSState]]?, destinationImage: [MPSImage]) -> [MPSCNNDropoutGradientState]?
      * @availability iOS 11.3+
@@ -3873,7 +4162,7 @@ export declare class MPSCNNDropout extends MPSCNNDropout_base {
      * func temporaryResultState(commandBuffer: any MTLCommandBuffer, sourceImage: MPSImage, sourceStates: [MPSState]?, destinationImage: MPSImage) -> MPSCNNDropoutGradientState?
      * @availability iOS 11.3+
      */
-    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK20;
+    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK21;
     /**
      * var keepProbability: Float { get }
      * @availability iOS 11.3+
@@ -3889,6 +4178,12 @@ export declare class MPSCNNDropout extends MPSCNNDropout_base {
      * @availability iOS 11.3+
      */
     get seed(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDropout": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -3914,14 +4209,12 @@ export declare class MPSCNNDropout extends MPSCNNDropout_base {
         "seed": true;
     };
 }
-declare const MPSCNNDropoutGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNDropoutGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNDropoutGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNDropoutGradient extends MPSCNNDropoutGradient_base {
-    /** init() */
-    static init(): MPSCNNDropoutGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -3947,6 +4240,13 @@ export declare class MPSCNNDropoutGradient extends MPSCNNDropoutGradient_base {
      * @availability iOS 11.3+
      */
     get seed(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDropoutGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -4009,6 +4309,12 @@ export declare class MPSCNNDropoutGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 11.3+
      */
     get seed(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDropoutGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -4030,6 +4336,12 @@ export declare class MPSCNNDropoutGradientState extends MPSNNGradientState {
      * @availability iOS 11.3+
      */
     maskData(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDropoutGradientState": true;
+        "c:objc(cs)MPSNNGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -4073,6 +4385,11 @@ export declare class MPSCNNDropoutNode extends MPSNNFilterNode {
      * @availability iOS 11.3+
      */
     get seed(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNDropoutNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -4084,14 +4401,12 @@ export declare class MPSCNNDropoutNode extends MPSNNFilterNode {
         "seed": true;
     };
 }
-declare const MPSCNNFullyConnected_base: Omit<typeof MPSCNNConvolution, "init" | "initCoderDevice" | "initDeviceConvolutionDescriptorKernelWeightsBiasTermsFlags" | "initDeviceWeights" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolution);
+declare const MPSCNNFullyConnected_base: Omit<typeof MPSCNNConvolution, "initCoderDevice" | "initDeviceConvolutionDescriptorKernelWeightsBiasTermsFlags" | "initDeviceWeights" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolution);
 /**
  * class MPSCNNFullyConnected
  * @availability iOS 10.0+
  */
 export declare class MPSCNNFullyConnected extends MPSCNNFullyConnected_base {
-    /** init() */
-    static init(): MPSCNNFullyConnected;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -4108,6 +4423,13 @@ export declare class MPSCNNFullyConnected extends MPSCNNFullyConnected_base {
      * @availability iOS 11.0+
      */
     static initDeviceWeights(device: SDKHandle, weights: SDKHandle): MPSCNNFullyConnected;
+    readonly $type: {
+        "c:objc(cs)MPSCNNFullyConnected": true;
+        "c:objc(cs)MPSCNNConvolution": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -4143,14 +4465,12 @@ export declare class MPSCNNFullyConnected extends MPSCNNFullyConnected_base {
         "subPixelScaleFactor": true;
     };
 }
-declare const MPSCNNFullyConnectedGradient_base: Omit<typeof MPSCNNConvolutionGradient, "init" | "initCoderDevice" | "initDeviceWeights" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionGradient);
+declare const MPSCNNFullyConnectedGradient_base: Omit<typeof MPSCNNConvolutionGradient, "initCoderDevice" | "initDeviceWeights" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionGradient);
 /**
  * class MPSCNNFullyConnectedGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNFullyConnectedGradient extends MPSCNNFullyConnectedGradient_base {
-    /** init() */
-    static init(): MPSCNNFullyConnectedGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -4161,6 +4481,14 @@ export declare class MPSCNNFullyConnectedGradient extends MPSCNNFullyConnectedGr
      * @availability iOS 11.3+
      */
     static initDeviceWeights(device: SDKHandle, weights: SDKHandle): MPSCNNFullyConnectedGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNFullyConnectedGradient": true;
+        "c:objc(cs)MPSCNNConvolutionGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -4213,6 +4541,13 @@ export declare class MPSCNNFullyConnectedGradientNode extends MPSCNNFullyConnect
      * @availability iOS 13.0+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSCNNConvolutionGradientStateNode, weights?: (SDKHandle) | null): MPSCNNFullyConnectedGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNFullyConnectedGradientNode": true;
+        "c:objc(cs)MPSCNNConvolutionGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -4232,6 +4567,12 @@ export declare class MPSCNNFullyConnectedNode extends MPSCNNFullyConnectedNode_b
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode, weights: SDKHandle): MPSCNNFullyConnectedNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNFullyConnectedNode": true;
+        "c:objc(cs)MPSCNNConvolutionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -4243,14 +4584,12 @@ export declare class MPSCNNFullyConnectedNode extends MPSCNNFullyConnectedNode_b
         "trainingStyle": true;
     };
 }
-declare const MPSCNNGroupNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultState" | "temporaryResultState">);
+declare const MPSCNNGroupNormalization_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultState" | "temporaryResultState">);
 /**
  * class MPSCNNGroupNormalization
  * @availability iOS 13.0+
  */
 export declare class MPSCNNGroupNormalization extends MPSCNNGroupNormalization_base {
-    /** init() */
-    static init(): MPSCNNGroupNormalization;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -4275,12 +4614,12 @@ export declare class MPSCNNGroupNormalization extends MPSCNNGroupNormalization_b
      * func resultState(sourceImage: MPSImage, sourceStates: [MPSState]?, destinationImage: MPSImage) -> MPSCNNGroupNormalizationGradientState?
      * @availability iOS 13.0+
      */
-    resultState(sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK22;
+    resultState(sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK23;
     /**
      * func temporaryResultState(commandBuffer: any MTLCommandBuffer, sourceImage: MPSImage, sourceStates: [MPSState]?, destinationImage: MPSImage) -> MPSCNNGroupNormalizationGradientState?
      * @availability iOS 13.0+
      */
-    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK22;
+    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK23;
     /**
      * var dataSource: any MPSCNNGroupNormalizationDataSource { get }
      * @availability iOS 13.0+
@@ -4292,6 +4631,12 @@ export declare class MPSCNNGroupNormalization extends MPSCNNGroupNormalization_b
      */
     get epsilon(): number;
     set epsilon(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNGroupNormalization": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -4321,7 +4666,7 @@ export declare class MPSCNNGroupNormalization extends MPSCNNGroupNormalization_b
  * @availability iOS 13.0+
  */
 export interface MPSCNNGroupNormalizationDataSource {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     /**
      * func gamma() -> UnsafeMutablePointer<Float>?
      * @availability iOS 13.0+
@@ -4348,14 +4693,20 @@ export interface MPSCNNGroupNormalizationDataSource {
      */
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
 }
-declare const MPSCNNGroupNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNGroupNormalizationGradient
  * @availability iOS 13.0+
  */
-export declare class MPSCNNGroupNormalizationGradient extends MPSCNNGroupNormalizationGradient_base {
+export declare class MPSCNNGroupNormalizationGradient extends MPSCNNGradientKernel {
     /** init() */
     static init(): MPSCNNGroupNormalizationGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNGroupNormalizationGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -4400,6 +4751,12 @@ export declare class MPSCNNGroupNormalizationGradientNode extends MPSNNGradientF
      * @availability iOS 13.0+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNGroupNormalizationGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNGroupNormalizationGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -4438,6 +4795,12 @@ export declare class MPSCNNGroupNormalizationGradientState extends MPSNNGradient
      * @availability iOS 13.0+
      */
     get groupNormalization(): MPSCNNGroupNormalization;
+    readonly $type: {
+        "c:objc(cs)MPSCNNGroupNormalizationGradientState": true;
+        "c:objc(cs)MPSNNGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -4467,6 +4830,11 @@ export declare class MPSCNNGroupNormalizationNode extends MPSNNFilterNode {
      */
     get trainingStyle(): MPSNNTrainingStyle;
     set trainingStyle(value: MPSNNTrainingStyle);
+    readonly $type: {
+        "c:objc(cs)MPSCNNGroupNormalizationNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -4476,14 +4844,12 @@ export declare class MPSCNNGroupNormalizationNode extends MPSNNFilterNode {
         "trainingStyle": true;
     };
 }
-declare const MPSCNNInstanceNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultState" | "temporaryResultState">);
+declare const MPSCNNInstanceNormalization_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultState" | "temporaryResultState">);
 /**
  * class MPSCNNInstanceNormalization
  * @availability iOS 11.3+
  */
 export declare class MPSCNNInstanceNormalization extends MPSCNNInstanceNormalization_base {
-    /** init() */
-    static init(): MPSCNNInstanceNormalization;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -4514,12 +4880,12 @@ export declare class MPSCNNInstanceNormalization extends MPSCNNInstanceNormaliza
      * func resultState(sourceImage: MPSImage, sourceStates: [MPSState]?, destinationImage: MPSImage) -> MPSCNNInstanceNormalizationGradientState?
      * @availability iOS 11.3+
      */
-    resultState(sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK23;
+    resultState(sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK24;
     /**
      * func temporaryResultState(commandBuffer: any MTLCommandBuffer, sourceImage: MPSImage, sourceStates: [MPSState]?, destinationImage: MPSImage) -> MPSCNNInstanceNormalizationGradientState?
      * @availability iOS 11.3+
      */
-    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK23;
+    temporaryResultState(commandBuffer: SDKHandle, sourceImage: MPSImage, sourceStates: $SDK4, destinationImage: MPSImage): $SDK24;
     /**
      * var dataSource: any MPSCNNInstanceNormalizationDataSource { get }
      * @availability iOS 11.3+
@@ -4531,6 +4897,12 @@ export declare class MPSCNNInstanceNormalization extends MPSCNNInstanceNormaliza
      */
     get epsilon(): number;
     set epsilon(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNInstanceNormalization": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -4560,7 +4932,7 @@ export declare class MPSCNNInstanceNormalization extends MPSCNNInstanceNormaliza
  * @availability iOS 11.3+
  */
 export interface MPSCNNInstanceNormalizationDataSource {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     /**
      * func gamma() -> UnsafeMutablePointer<Float>?
      * @availability iOS 11.3+
@@ -4592,14 +4964,20 @@ export interface MPSCNNInstanceNormalizationDataSource {
      */
     "purge"?: () => void;
 }
-declare const MPSCNNInstanceNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNInstanceNormalizationGradient
  * @availability iOS 11.3+
  */
-export declare class MPSCNNInstanceNormalizationGradient extends MPSCNNInstanceNormalizationGradient_base {
+export declare class MPSCNNInstanceNormalizationGradient extends MPSCNNGradientKernel {
     /** init() */
     static init(): MPSCNNInstanceNormalizationGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNInstanceNormalizationGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -4644,6 +5022,12 @@ export declare class MPSCNNInstanceNormalizationGradientNode extends MPSNNGradie
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNInstanceNormalizationGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNInstanceNormalizationGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -4682,6 +5066,12 @@ export declare class MPSCNNInstanceNormalizationGradientState extends MPSNNGradi
      * @availability iOS 11.3+
      */
     get instanceNormalization(): MPSCNNInstanceNormalization;
+    readonly $type: {
+        "c:objc(cs)MPSCNNInstanceNormalizationGradientState": true;
+        "c:objc(cs)MPSNNGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -4711,6 +5101,11 @@ export declare class MPSCNNInstanceNormalizationNode extends MPSNNFilterNode {
      */
     get trainingStyle(): MPSNNTrainingStyle;
     set trainingStyle(value: MPSNNTrainingStyle);
+    readonly $type: {
+        "c:objc(cs)MPSCNNInstanceNormalizationNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -4720,14 +5115,12 @@ export declare class MPSCNNInstanceNormalizationNode extends MPSNNFilterNode {
         "trainingStyle": true;
     };
 }
-declare const MPSCNNLocalContrastNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSCNNLocalContrastNormalization_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNLocalContrastNormalization
  * @availability iOS 10.0+
  */
 export declare class MPSCNNLocalContrastNormalization extends MPSCNNLocalContrastNormalization_base {
-    /** init() */
-    static init(): MPSCNNLocalContrastNormalization;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -4774,6 +5167,12 @@ export declare class MPSCNNLocalContrastNormalization extends MPSCNNLocalContras
      */
     get ps(): number;
     set ps(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNLocalContrastNormalization": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -4802,14 +5201,12 @@ export declare class MPSCNNLocalContrastNormalization extends MPSCNNLocalContras
         "ps": true;
     };
 }
-declare const MPSCNNLocalContrastNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNLocalContrastNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNLocalContrastNormalizationGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNLocalContrastNormalizationGradient extends MPSCNNLocalContrastNormalizationGradient_base {
-    /** init() */
-    static init(): MPSCNNLocalContrastNormalizationGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -4856,6 +5253,13 @@ export declare class MPSCNNLocalContrastNormalizationGradient extends MPSCNNLoca
      */
     get ps(): number;
     set ps(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNLocalContrastNormalizationGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -4952,6 +5356,12 @@ export declare class MPSCNNLocalContrastNormalizationGradientNode extends MPSNNG
      */
     get ps(): number;
     set ps(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNLocalContrastNormalizationGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -5013,6 +5423,12 @@ export declare class MPSCNNLocalContrastNormalizationNode extends MPSCNNNormaliz
      */
     get ps(): number;
     set ps(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNLocalContrastNormalizationNode": true;
+        "c:objc(cs)MPSCNNNormalizationNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -5029,14 +5445,19 @@ export declare class MPSCNNLocalContrastNormalizationNode extends MPSCNNNormaliz
         "ps": true;
     };
 }
-declare const MPSCNNLogSoftMax_base: Omit<typeof MPSCNNKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNLogSoftMax
  * @availability iOS 10.0+
  */
-export declare class MPSCNNLogSoftMax extends MPSCNNLogSoftMax_base {
+export declare class MPSCNNLogSoftMax extends MPSCNNKernel {
     /** init() */
     static init(): MPSCNNLogSoftMax;
+    readonly $type: {
+        "c:objc(cs)MPSCNNLogSoftMax": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -5059,14 +5480,12 @@ export declare class MPSCNNLogSoftMax extends MPSCNNLogSoftMax_base {
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNLogSoftMaxGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNLogSoftMaxGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNLogSoftMaxGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNLogSoftMaxGradient extends MPSCNNLogSoftMaxGradient_base {
-    /** init() */
-    static init(): MPSCNNLogSoftMaxGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -5077,6 +5496,13 @@ export declare class MPSCNNLogSoftMaxGradient extends MPSCNNLogSoftMaxGradient_b
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNLogSoftMaxGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNLogSoftMaxGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -5121,6 +5547,12 @@ export declare class MPSCNNLogSoftMaxGradientNode extends MPSNNGradientFilterNod
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNLogSoftMaxGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNLogSoftMaxGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -5139,6 +5571,11 @@ export declare class MPSCNNLogSoftMaxNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNLogSoftMaxNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNLogSoftMaxNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -5147,7 +5584,7 @@ export declare class MPSCNNLogSoftMaxNode extends MPSNNFilterNode {
         "resultStates": true;
     };
 }
-declare const MPSCNNLoss_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSCNNLoss_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNLoss
  * @availability iOS 11.3+
@@ -5173,8 +5610,6 @@ export declare class MPSCNNLoss extends MPSCNNLoss_base {
      * @availability iOS 11.3+
      */
     encodeCommandBufferSourceImageLabelsDestinationImage(commandBuffer: SDKHandle, sourceImage: MPSImage, labels: MPSCNNLossLabels, destinationImage: MPSImage): void;
-    /** init() */
-    static init(): MPSCNNLoss;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -5225,6 +5660,12 @@ export declare class MPSCNNLoss extends MPSCNNLoss_base {
      * @availability iOS 11.3+
      */
     get weight(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNLoss": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -5287,6 +5728,10 @@ export declare class MPSCNNLossDataDescriptor extends SDKHandle {
      * @availability iOS 11.3+
      */
     get size(): _Metal_MTLSize;
+    readonly $type: {
+        "c:objc(cs)MPSCNNLossDataDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bytesPerImage": true;
         "bytesPerRow": true;
@@ -5352,6 +5797,10 @@ export declare class MPSCNNLossDescriptor extends SDKHandle {
      */
     get weight(): number;
     set weight(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNLossDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delta": true;
         "epsilon": true;
@@ -5398,6 +5847,11 @@ export declare class MPSCNNLossLabels extends MPSState {
      * @availability iOS 11.3+
      */
     weightsImage(): MPSImage;
+    readonly $type: {
+        "c:objc(cs)MPSCNNLossLabels": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -5421,6 +5875,11 @@ export declare class MPSCNNLossNode extends MPSNNFilterNode {
      * @availability iOS 11.3+
      */
     get inputLabels(): MPSNNLabelsNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNLossNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -5436,7 +5895,7 @@ export declare const MPSCNNLossType: {
     /** init?(rawValue: UInt32) */
     init(rawValue: number): (MPSCNNLossType) | null;
 };
-declare const MPSCNNMultiaryKernel_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSCNNMultiaryKernel_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSCNNMultiaryKernel
  * @availability iOS 13.0+
@@ -5507,8 +5966,6 @@ export declare class MPSCNNMultiaryKernel extends MPSCNNMultiaryKernel_base {
             "outState": (MPSState) | null;
         };
     };
-    /** init() */
-    static init(): MPSCNNMultiaryKernel;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -5668,6 +6125,11 @@ export declare class MPSCNNMultiaryKernel extends MPSCNNMultiaryKernel_base {
      * @availability iOS 13.0+
      */
     get sourceCount(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNMultiaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -5681,19 +6143,24 @@ export declare class MPSCNNMultiaryKernel extends MPSCNNMultiaryKernel_base {
         "sourceCount": true;
     };
 }
-declare const MPSCNNMultiply_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
+declare const MPSCNNMultiply_base: Omit<typeof MPSCNNArithmetic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
  * class MPSCNNMultiply
  * @availability iOS 11.3+
  */
 export declare class MPSCNNMultiply extends MPSCNNMultiply_base {
-    /** init() */
-    static init(): MPSCNNMultiply;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSCNNMultiply;
+    static init(device: SDKHandle): MPSCNNMultiply;
+    readonly $type: {
+        "c:objc(cs)MPSCNNMultiply": true;
+        "c:objc(cs)MPSCNNArithmetic": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -5739,13 +6206,19 @@ declare const MPSCNNMultiplyGradient_base: Omit<typeof MPSCNNArithmeticGradient,
  * @availability iOS 11.3+
  */
 export declare class MPSCNNMultiplyGradient extends MPSCNNMultiplyGradient_base {
-    /** init() */
-    static init(): MPSCNNMultiplyGradient;
     /**
      * init(device: any MTLDevice, isSecondarySourceFilter: Bool)
      * @availability iOS 11.3+
      */
-    static initDeviceIsSecondarySourceFilter(device: SDKHandle, isSecondarySourceFilter: boolean): MPSCNNMultiplyGradient;
+    static init(device: SDKHandle, isSecondarySourceFilter: boolean): MPSCNNMultiplyGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNMultiplyGradient": true;
+        "c:objc(cs)MPSCNNArithmeticGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -5787,14 +6260,12 @@ export declare class MPSCNNMultiplyGradient extends MPSCNNMultiplyGradient_base 
         "secondaryStrideInFeatureChannels": true;
     };
 }
-declare const MPSCNNNeuron_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSCNNNeuron_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNNeuron
  * @availability iOS 10.0+
  */
 export declare class MPSCNNNeuron extends MPSCNNNeuron_base {
-    /** init() */
-    static init(): MPSCNNNeuron;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 10.0+
@@ -5830,6 +6301,12 @@ export declare class MPSCNNNeuron extends MPSCNNNeuron_base {
      * @availability iOS 11.0+
      */
     get neuronType(): MPSCNNNeuronType;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -5857,20 +6334,24 @@ export declare class MPSCNNNeuron extends MPSCNNNeuron_base {
         "neuronType": true;
     };
 }
-declare const MPSCNNNeuronAbsolute_base: Omit<typeof MPSCNNNeuron, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronAbsolute
  * @availability iOS 10.0+
  */
-export declare class MPSCNNNeuronAbsolute extends MPSCNNNeuronAbsolute_base {
-    /** init() */
-    static init(): MPSCNNNeuronAbsolute;
+export declare class MPSCNNNeuronAbsolute extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDevice(device: SDKHandle): MPSCNNNeuronAbsolute;
+    static init(device: SDKHandle): MPSCNNNeuronAbsolute;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronAbsolute": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -5923,6 +6404,11 @@ export declare class MPSCNNNeuronNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     get c(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -5945,6 +6431,12 @@ export declare class MPSCNNNeuronAbsoluteNode extends MPSCNNNeuronAbsoluteNode_b
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNNeuronAbsoluteNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronAbsoluteNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -5956,20 +6448,24 @@ export declare class MPSCNNNeuronAbsoluteNode extends MPSCNNNeuronAbsoluteNode_b
         "c": true;
     };
 }
-declare const MPSCNNNeuronELU_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronELU
  * @availability iOS 11.0+
  */
-export declare class MPSCNNNeuronELU extends MPSCNNNeuronELU_base {
-    /** init() */
-    static init(): MPSCNNNeuronELU;
+export declare class MPSCNNNeuronELU extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceA(device: SDKHandle, a: number): MPSCNNNeuronELU;
+    static init(device: SDKHandle, a: number): MPSCNNNeuronELU;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronELU": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6012,6 +6508,12 @@ export declare class MPSCNNNeuronELUNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceA(sourceNode: MPSNNImageNode, a: number): MPSCNNNeuronELUNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronELUNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6023,20 +6525,24 @@ export declare class MPSCNNNeuronELUNode extends MPSCNNNeuronNode {
         "c": true;
     };
 }
-declare const MPSCNNNeuronExponential_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronExponential
  * @availability iOS 11.3+
  */
-export declare class MPSCNNNeuronExponential extends MPSCNNNeuronExponential_base {
-    /** init() */
-    static init(): MPSCNNNeuronExponential;
+export declare class MPSCNNNeuronExponential extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float, b: Float, c: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceABC(device: SDKHandle, a: number, b: number, c: number): MPSCNNNeuronExponential;
+    static init(device: SDKHandle, a: number, b: number, c: number): MPSCNNNeuronExponential;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronExponential": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6079,6 +6585,12 @@ export declare class MPSCNNNeuronExponentialNode extends MPSCNNNeuronNode {
      * @availability iOS 11.3+
      */
     static initSourceABC(sourceNode: MPSNNImageNode, a: number, b: number, c: number): MPSCNNNeuronExponentialNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronExponentialNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6101,6 +6613,12 @@ export declare class MPSCNNNeuronGeLUNode extends MPSCNNNeuronGeLUNode_base {
      * @availability iOS 13.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNNeuronGeLUNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronGeLUNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6112,14 +6630,12 @@ export declare class MPSCNNNeuronGeLUNode extends MPSCNNNeuronGeLUNode_base {
         "c": true;
     };
 }
-declare const MPSCNNNeuronGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNNeuronGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNNeuronGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNNeuronGradient extends MPSCNNNeuronGradient_base {
-    /** init() */
-    static init(): MPSCNNNeuronGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -6155,6 +6671,13 @@ export declare class MPSCNNNeuronGradient extends MPSCNNNeuronGradient_base {
      * @availability iOS 11.3+
      */
     get neuronType(): MPSCNNNeuronType;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6209,6 +6732,12 @@ export declare class MPSCNNNeuronGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 11.3+
      */
     get descriptor(): MPSNNNeuronDescriptor;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6218,20 +6747,24 @@ export declare class MPSCNNNeuronGradientNode extends MPSNNGradientFilterNode {
         "descriptor": true;
     };
 }
-declare const MPSCNNNeuronHardSigmoid_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronHardSigmoid
  * @availability iOS 11.0+
  */
-export declare class MPSCNNNeuronHardSigmoid extends MPSCNNNeuronHardSigmoid_base {
-    /** init() */
-    static init(): MPSCNNNeuronHardSigmoid;
+export declare class MPSCNNNeuronHardSigmoid extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float, b: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronHardSigmoid;
+    static init(device: SDKHandle, a: number, b: number): MPSCNNNeuronHardSigmoid;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronHardSigmoid": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6274,6 +6807,12 @@ export declare class MPSCNNNeuronHardSigmoidNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronHardSigmoidNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronHardSigmoidNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6285,20 +6824,24 @@ export declare class MPSCNNNeuronHardSigmoidNode extends MPSCNNNeuronNode {
         "c": true;
     };
 }
-declare const MPSCNNNeuronLinear_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronLinear
  * @availability iOS 10.0+
  */
-export declare class MPSCNNNeuronLinear extends MPSCNNNeuronLinear_base {
-    /** init() */
-    static init(): MPSCNNNeuronLinear;
+export declare class MPSCNNNeuronLinear extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float, b: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronLinear;
+    static init(device: SDKHandle, a: number, b: number): MPSCNNNeuronLinear;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronLinear": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6341,6 +6884,12 @@ export declare class MPSCNNNeuronLinearNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronLinearNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronLinearNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6352,20 +6901,24 @@ export declare class MPSCNNNeuronLinearNode extends MPSCNNNeuronNode {
         "c": true;
     };
 }
-declare const MPSCNNNeuronLogarithm_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronLogarithm
  * @availability iOS 11.3+
  */
-export declare class MPSCNNNeuronLogarithm extends MPSCNNNeuronLogarithm_base {
-    /** init() */
-    static init(): MPSCNNNeuronLogarithm;
+export declare class MPSCNNNeuronLogarithm extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float, b: Float, c: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceABC(device: SDKHandle, a: number, b: number, c: number): MPSCNNNeuronLogarithm;
+    static init(device: SDKHandle, a: number, b: number, c: number): MPSCNNNeuronLogarithm;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronLogarithm": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6408,6 +6961,12 @@ export declare class MPSCNNNeuronLogarithmNode extends MPSCNNNeuronNode {
      * @availability iOS 11.3+
      */
     static initSourceABC(sourceNode: MPSNNImageNode, a: number, b: number, c: number): MPSCNNNeuronLogarithmNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronLogarithmNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6419,20 +6978,24 @@ export declare class MPSCNNNeuronLogarithmNode extends MPSCNNNeuronNode {
         "c": true;
     };
 }
-declare const MPSCNNNeuronPower_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronPower
  * @availability iOS 11.3+
  */
-export declare class MPSCNNNeuronPower extends MPSCNNNeuronPower_base {
-    /** init() */
-    static init(): MPSCNNNeuronPower;
+export declare class MPSCNNNeuronPower extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float, b: Float, c: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceABC(device: SDKHandle, a: number, b: number, c: number): MPSCNNNeuronPower;
+    static init(device: SDKHandle, a: number, b: number, c: number): MPSCNNNeuronPower;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronPower": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6475,6 +7038,12 @@ export declare class MPSCNNNeuronPowerNode extends MPSCNNNeuronNode {
      * @availability iOS 11.3+
      */
     static initSourceABC(sourceNode: MPSNNImageNode, a: number, b: number, c: number): MPSCNNNeuronPowerNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronPowerNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6486,20 +7055,24 @@ export declare class MPSCNNNeuronPowerNode extends MPSCNNNeuronNode {
         "c": true;
     };
 }
-declare const MPSCNNNeuronPReLU_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronPReLU
  * @availability iOS 11.0+
  */
-export declare class MPSCNNNeuronPReLU extends MPSCNNNeuronPReLU_base {
-    /** init() */
-    static init(): MPSCNNNeuronPReLU;
+export declare class MPSCNNNeuronPReLU extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: UnsafePointer<Float>, count: Int)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceACount(device: SDKHandle, a: SDKHandle, count: number): MPSCNNNeuronPReLU;
+    static init(device: SDKHandle, a: SDKHandle, count: number): MPSCNNNeuronPReLU;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronPReLU": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6538,6 +7111,12 @@ export declare class MPSCNNNeuronPReLUNode extends MPSCNNNeuronPReLUNode_base {
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode, aData: ArrayBuffer): MPSCNNNeuronPReLUNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronPReLUNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6549,20 +7128,24 @@ export declare class MPSCNNNeuronPReLUNode extends MPSCNNNeuronPReLUNode_base {
         "c": true;
     };
 }
-declare const MPSCNNNeuronReLU_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronReLU
  * @availability iOS 10.0+
  */
-export declare class MPSCNNNeuronReLU extends MPSCNNNeuronReLU_base {
-    /** init() */
-    static init(): MPSCNNNeuronReLU;
+export declare class MPSCNNNeuronReLU extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceA(device: SDKHandle, a: number): MPSCNNNeuronReLU;
+    static init(device: SDKHandle, a: number): MPSCNNNeuronReLU;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronReLU": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6590,20 +7173,24 @@ export declare class MPSCNNNeuronReLU extends MPSCNNNeuronReLU_base {
         "neuronType": true;
     };
 }
-declare const MPSCNNNeuronReLUN_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronReLUN
  * @availability iOS 11.0+
  */
-export declare class MPSCNNNeuronReLUN extends MPSCNNNeuronReLUN_base {
-    /** init() */
-    static init(): MPSCNNNeuronReLUN;
+export declare class MPSCNNNeuronReLUN extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float, b: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronReLUN;
+    static init(device: SDKHandle, a: number, b: number): MPSCNNNeuronReLUN;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronReLUN": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6646,6 +7233,12 @@ export declare class MPSCNNNeuronReLUNNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronReLUNNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronReLUNNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6672,6 +7265,12 @@ export declare class MPSCNNNeuronReLUNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceA(sourceNode: MPSNNImageNode, a: number): MPSCNNNeuronReLUNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronReLUNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6683,20 +7282,24 @@ export declare class MPSCNNNeuronReLUNode extends MPSCNNNeuronNode {
         "c": true;
     };
 }
-declare const MPSCNNNeuronSigmoid_base: Omit<typeof MPSCNNNeuron, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronSigmoid
  * @availability iOS 10.0+
  */
-export declare class MPSCNNNeuronSigmoid extends MPSCNNNeuronSigmoid_base {
-    /** init() */
-    static init(): MPSCNNNeuronSigmoid;
+export declare class MPSCNNNeuronSigmoid extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDevice(device: SDKHandle): MPSCNNNeuronSigmoid;
+    static init(device: SDKHandle): MPSCNNNeuronSigmoid;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronSigmoid": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6735,6 +7338,12 @@ export declare class MPSCNNNeuronSigmoidNode extends MPSCNNNeuronSigmoidNode_bas
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNNeuronSigmoidNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronSigmoidNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6746,20 +7355,24 @@ export declare class MPSCNNNeuronSigmoidNode extends MPSCNNNeuronSigmoidNode_bas
         "c": true;
     };
 }
-declare const MPSCNNNeuronSoftPlus_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronSoftPlus
  * @availability iOS 11.0+
  */
-export declare class MPSCNNNeuronSoftPlus extends MPSCNNNeuronSoftPlus_base {
-    /** init() */
-    static init(): MPSCNNNeuronSoftPlus;
+export declare class MPSCNNNeuronSoftPlus extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float, b: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronSoftPlus;
+    static init(device: SDKHandle, a: number, b: number): MPSCNNNeuronSoftPlus;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronSoftPlus": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6802,6 +7415,12 @@ export declare class MPSCNNNeuronSoftPlusNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronSoftPlusNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronSoftPlusNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6813,20 +7432,24 @@ export declare class MPSCNNNeuronSoftPlusNode extends MPSCNNNeuronNode {
         "c": true;
     };
 }
-declare const MPSCNNNeuronSoftSign_base: Omit<typeof MPSCNNNeuron, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronSoftSign
  * @availability iOS 11.0+
  */
-export declare class MPSCNNNeuronSoftSign extends MPSCNNNeuronSoftSign_base {
-    /** init() */
-    static init(): MPSCNNNeuronSoftSign;
+export declare class MPSCNNNeuronSoftSign extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDevice(device: SDKHandle): MPSCNNNeuronSoftSign;
+    static init(device: SDKHandle): MPSCNNNeuronSoftSign;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronSoftSign": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6865,6 +7488,12 @@ export declare class MPSCNNNeuronSoftSignNode extends MPSCNNNeuronSoftSignNode_b
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNNeuronSoftSignNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronSoftSignNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6876,20 +7505,24 @@ export declare class MPSCNNNeuronSoftSignNode extends MPSCNNNeuronSoftSignNode_b
         "c": true;
     };
 }
-declare const MPSCNNNeuronTanH_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
  * class MPSCNNNeuronTanH
  * @availability iOS 10.0+
  */
-export declare class MPSCNNNeuronTanH extends MPSCNNNeuronTanH_base {
-    /** init() */
-    static init(): MPSCNNNeuronTanH;
+export declare class MPSCNNNeuronTanH extends MPSCNNNeuron {
     /**
      * init(device: any MTLDevice, a: Float, b: Float)
      * @availability iOS 10.0+
      * @deprecated iOS 12.0
      */
-    static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronTanH;
+    static init(device: SDKHandle, a: number, b: number): MPSCNNNeuronTanH;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronTanH": true;
+        "c:objc(cs)MPSCNNNeuron": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -6932,6 +7565,12 @@ export declare class MPSCNNNeuronTanHNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronTanHNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNeuronTanHNode": true;
+        "c:objc(cs)MPSCNNNeuronNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -6974,6 +7613,11 @@ export declare class MPSCNNNormalizationGammaAndBetaState extends MPSState {
      * @availability iOS 11.3+
      */
     get gamma(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNormalizationGammaAndBetaState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -7009,6 +7653,11 @@ export declare class MPSCNNNormalizationMeanAndVarianceState extends MPSState {
      * @availability iOS 12.0+
      */
     get variance(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSCNNNormalizationMeanAndVarianceState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -7019,14 +7668,12 @@ export declare class MPSCNNNormalizationMeanAndVarianceState extends MPSState {
         "variance": true;
     };
 }
-declare const MPSCNNPoolingAverage_base: Omit<typeof MPSCNNPooling, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPooling);
+declare const MPSCNNPoolingAverage_base: Omit<typeof MPSCNNPooling, "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPooling);
 /**
  * class MPSCNNPoolingAverage
  * @availability iOS 10.0+
  */
 export declare class MPSCNNPoolingAverage extends MPSCNNPoolingAverage_base {
-    /** init() */
-    static init(): MPSCNNPoolingAverage;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -7049,6 +7696,13 @@ export declare class MPSCNNPoolingAverage extends MPSCNNPoolingAverage_base {
      */
     get zeroPadSizeY(): number;
     set zeroPadSizeY(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingAverage": true;
+        "c:objc(cs)MPSCNNPooling": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7073,14 +7727,12 @@ export declare class MPSCNNPoolingAverage extends MPSCNNPoolingAverage_base {
         "zeroPadSizeY": true;
     };
 }
-declare const MPSCNNPoolingAverageGradient_base: Omit<typeof MPSCNNPoolingGradient, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
+declare const MPSCNNPoolingAverageGradient_base: Omit<typeof MPSCNNPoolingGradient, "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
 /**
  * class MPSCNNPoolingAverageGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingAverageGradient extends MPSCNNPoolingAverageGradient_base {
-    /** init() */
-    static init(): MPSCNNPoolingAverageGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -7103,6 +7755,14 @@ export declare class MPSCNNPoolingAverageGradient extends MPSCNNPoolingAverageGr
      */
     get zeroPadSizeY(): number;
     set zeroPadSizeY(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingAverageGradient": true;
+        "c:objc(cs)MPSCNNPoolingGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7145,6 +7805,13 @@ export declare class MPSCNNPoolingAverageGradient extends MPSCNNPoolingAverageGr
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingAverageGradientNode extends MPSCNNPoolingGradientNode {
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingAverageGradientNode": true;
+        "c:objc(cs)MPSCNNPoolingGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7197,6 +7864,11 @@ export declare class MPSCNNPoolingNode extends MPSNNFilterNode {
      * @availability iOS 12.0+
      */
     get strideInPixelsY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7214,6 +7886,12 @@ export declare class MPSCNNPoolingNode extends MPSNNFilterNode {
  * @availability iOS 11.0+
  */
 export declare class MPSCNNPoolingAverageNode extends MPSCNNPoolingNode {
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingAverageNode": true;
+        "c:objc(cs)MPSCNNPoolingNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7226,14 +7904,12 @@ export declare class MPSCNNPoolingAverageNode extends MPSCNNPoolingNode {
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNPoolingL2Norm_base: Omit<typeof MPSCNNPooling, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPooling);
+declare const MPSCNNPoolingL2Norm_base: Omit<typeof MPSCNNPooling, "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPooling);
 /**
  * class MPSCNNPoolingL2Norm
  * @availability iOS 11.0+
  */
 export declare class MPSCNNPoolingL2Norm extends MPSCNNPoolingL2Norm_base {
-    /** init() */
-    static init(): MPSCNNPoolingL2Norm;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -7244,6 +7920,13 @@ export declare class MPSCNNPoolingL2Norm extends MPSCNNPoolingL2Norm_base {
      * @availability iOS 11.0+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPoolingL2Norm;
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingL2Norm": true;
+        "c:objc(cs)MPSCNNPooling": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7266,14 +7949,12 @@ export declare class MPSCNNPoolingL2Norm extends MPSCNNPoolingL2Norm_base {
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNPoolingL2NormGradient_base: Omit<typeof MPSCNNPoolingGradient, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
+declare const MPSCNNPoolingL2NormGradient_base: Omit<typeof MPSCNNPoolingGradient, "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
 /**
  * class MPSCNNPoolingL2NormGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingL2NormGradient extends MPSCNNPoolingL2NormGradient_base {
-    /** init() */
-    static init(): MPSCNNPoolingL2NormGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -7284,6 +7965,14 @@ export declare class MPSCNNPoolingL2NormGradient extends MPSCNNPoolingL2NormGrad
      * @availability iOS 11.3+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPoolingL2NormGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingL2NormGradient": true;
+        "c:objc(cs)MPSCNNPoolingGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7324,6 +8013,13 @@ export declare class MPSCNNPoolingL2NormGradient extends MPSCNNPoolingL2NormGrad
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingL2NormGradientNode extends MPSCNNPoolingGradientNode {
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingL2NormGradientNode": true;
+        "c:objc(cs)MPSCNNPoolingGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7341,6 +8037,12 @@ export declare class MPSCNNPoolingL2NormGradientNode extends MPSCNNPoolingGradie
  * @availability iOS 11.0+
  */
 export declare class MPSCNNPoolingL2NormNode extends MPSCNNPoolingNode {
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingL2NormNode": true;
+        "c:objc(cs)MPSCNNPoolingNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7353,14 +8055,12 @@ export declare class MPSCNNPoolingL2NormNode extends MPSCNNPoolingNode {
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNPoolingMax_base: Omit<typeof MPSCNNPooling, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPooling);
+declare const MPSCNNPoolingMax_base: Omit<typeof MPSCNNPooling, "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPooling);
 /**
  * class MPSCNNPoolingMax
  * @availability iOS 10.0+
  */
 export declare class MPSCNNPoolingMax extends MPSCNNPoolingMax_base {
-    /** init() */
-    static init(): MPSCNNPoolingMax;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -7371,6 +8071,13 @@ export declare class MPSCNNPoolingMax extends MPSCNNPoolingMax_base {
      * @availability iOS 10.0+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPoolingMax;
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingMax": true;
+        "c:objc(cs)MPSCNNPooling": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7393,14 +8100,12 @@ export declare class MPSCNNPoolingMax extends MPSCNNPoolingMax_base {
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNPoolingMaxGradient_base: Omit<typeof MPSCNNPoolingGradient, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
+declare const MPSCNNPoolingMaxGradient_base: Omit<typeof MPSCNNPoolingGradient, "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
 /**
  * class MPSCNNPoolingMaxGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingMaxGradient extends MPSCNNPoolingMaxGradient_base {
-    /** init() */
-    static init(): MPSCNNPoolingMaxGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -7411,6 +8116,14 @@ export declare class MPSCNNPoolingMaxGradient extends MPSCNNPoolingMaxGradient_b
      * @availability iOS 11.3+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPoolingMaxGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingMaxGradient": true;
+        "c:objc(cs)MPSCNNPoolingGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7451,6 +8164,13 @@ export declare class MPSCNNPoolingMaxGradient extends MPSCNNPoolingMaxGradient_b
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingMaxGradientNode extends MPSCNNPoolingGradientNode {
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingMaxGradientNode": true;
+        "c:objc(cs)MPSCNNPoolingGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7468,6 +8188,12 @@ export declare class MPSCNNPoolingMaxGradientNode extends MPSCNNPoolingGradientN
  * @availability iOS 11.0+
  */
 export declare class MPSCNNPoolingMaxNode extends MPSCNNPoolingNode {
+    readonly $type: {
+        "c:objc(cs)MPSCNNPoolingMaxNode": true;
+        "c:objc(cs)MPSCNNPoolingNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7486,14 +8212,19 @@ export declare const MPSCNNReductionType: {
     /** init?(rawValue: Int32) */
     init(rawValue: number): (MPSCNNReductionType) | null;
 };
-declare const MPSCNNSoftMax_base: Omit<typeof MPSCNNKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNSoftMax
  * @availability iOS 10.0+
  */
-export declare class MPSCNNSoftMax extends MPSCNNSoftMax_base {
+export declare class MPSCNNSoftMax extends MPSCNNKernel {
     /** init() */
     static init(): MPSCNNSoftMax;
+    readonly $type: {
+        "c:objc(cs)MPSCNNSoftMax": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7516,14 +8247,12 @@ export declare class MPSCNNSoftMax extends MPSCNNSoftMax_base {
         "strideInPixelsY": true;
     };
 }
-declare const MPSCNNSoftMaxGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNSoftMaxGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNSoftMaxGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNSoftMaxGradient extends MPSCNNSoftMaxGradient_base {
-    /** init() */
-    static init(): MPSCNNSoftMaxGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -7534,6 +8263,13 @@ export declare class MPSCNNSoftMaxGradient extends MPSCNNSoftMaxGradient_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNSoftMaxGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNSoftMaxGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7578,6 +8314,12 @@ export declare class MPSCNNSoftMaxGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNSoftMaxGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNSoftMaxGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7596,6 +8338,11 @@ export declare class MPSCNNSoftMaxNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNSoftMaxNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNSoftMaxNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7604,14 +8351,12 @@ export declare class MPSCNNSoftMaxNode extends MPSNNFilterNode {
         "resultStates": true;
     };
 }
-declare const MPSCNNSpatialNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSCNNSpatialNormalization_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNSpatialNormalization
  * @availability iOS 10.0+
  */
 export declare class MPSCNNSpatialNormalization extends MPSCNNSpatialNormalization_base {
-    /** init() */
-    static init(): MPSCNNSpatialNormalization;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -7640,6 +8385,12 @@ export declare class MPSCNNSpatialNormalization extends MPSCNNSpatialNormalizati
      */
     get delta(): number;
     set delta(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNSpatialNormalization": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7665,14 +8416,12 @@ export declare class MPSCNNSpatialNormalization extends MPSCNNSpatialNormalizati
         "delta": true;
     };
 }
-declare const MPSCNNSpatialNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSCNNSpatialNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNSpatialNormalizationGradient
  * @availability iOS 11.3+
  */
 export declare class MPSCNNSpatialNormalizationGradient extends MPSCNNSpatialNormalizationGradient_base {
-    /** init() */
-    static init(): MPSCNNSpatialNormalizationGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -7701,6 +8450,13 @@ export declare class MPSCNNSpatialNormalizationGradient extends MPSCNNSpatialNor
      */
     get delta(): number;
     set delta(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNSpatialNormalizationGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7778,6 +8534,12 @@ export declare class MPSCNNSpatialNormalizationGradientNode extends MPSNNGradien
      */
     get kernelWidth(): number;
     set kernelWidth(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNSpatialNormalizationGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7818,6 +8580,12 @@ export declare class MPSCNNSpatialNormalizationNode extends MPSCNNNormalizationN
      */
     get kernelWidth(): number;
     set kernelWidth(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNSpatialNormalizationNode": true;
+        "c:objc(cs)MPSCNNNormalizationNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -7831,12 +8599,11 @@ export declare class MPSCNNSpatialNormalizationNode extends MPSCNNNormalizationN
         "kernelWidth": true;
     };
 }
-declare const MPSCNNSubPixelConvolutionDescriptor_base: Omit<typeof MPSCNNConvolutionDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionDescriptor);
 /**
  * class MPSCNNSubPixelConvolutionDescriptor
  * @availability iOS 11.0+
  */
-export declare class MPSCNNSubPixelConvolutionDescriptor extends MPSCNNSubPixelConvolutionDescriptor_base {
+export declare class MPSCNNSubPixelConvolutionDescriptor extends MPSCNNConvolutionDescriptor {
     /** init() */
     static init(): MPSCNNSubPixelConvolutionDescriptor;
     /**
@@ -7845,6 +8612,11 @@ export declare class MPSCNNSubPixelConvolutionDescriptor extends MPSCNNSubPixelC
      */
     get subPixelScaleFactor(): number;
     set subPixelScaleFactor(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNSubPixelConvolutionDescriptor": true;
+        "c:objc(cs)MPSCNNConvolutionDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dilationRateX": true;
         "dilationRateY": true;
@@ -7860,19 +8632,24 @@ export declare class MPSCNNSubPixelConvolutionDescriptor extends MPSCNNSubPixelC
         "subPixelScaleFactor": true;
     };
 }
-declare const MPSCNNSubtract_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
+declare const MPSCNNSubtract_base: Omit<typeof MPSCNNArithmetic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
  * class MPSCNNSubtract
  * @availability iOS 11.3+
  */
 export declare class MPSCNNSubtract extends MPSCNNSubtract_base {
-    /** init() */
-    static init(): MPSCNNSubtract;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSCNNSubtract;
+    static init(device: SDKHandle): MPSCNNSubtract;
+    readonly $type: {
+        "c:objc(cs)MPSCNNSubtract": true;
+        "c:objc(cs)MPSCNNArithmetic": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7918,13 +8695,19 @@ declare const MPSCNNSubtractGradient_base: Omit<typeof MPSCNNArithmeticGradient,
  * @availability iOS 11.3+
  */
 export declare class MPSCNNSubtractGradient extends MPSCNNSubtractGradient_base {
-    /** init() */
-    static init(): MPSCNNSubtractGradient;
     /**
      * init(device: any MTLDevice, isSecondarySourceFilter: Bool)
      * @availability iOS 11.3+
      */
-    static initDeviceIsSecondarySourceFilter(device: SDKHandle, isSecondarySourceFilter: boolean): MPSCNNSubtractGradient;
+    static init(device: SDKHandle, isSecondarySourceFilter: boolean): MPSCNNSubtractGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNSubtractGradient": true;
+        "c:objc(cs)MPSCNNArithmeticGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -7966,12 +8749,11 @@ export declare class MPSCNNSubtractGradient extends MPSCNNSubtractGradient_base 
         "secondaryStrideInFeatureChannels": true;
     };
 }
-declare const MPSCNNUpsampling_base: Omit<typeof MPSCNNKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNUpsampling
  * @availability iOS 11.0+
  */
-export declare class MPSCNNUpsampling extends MPSCNNUpsampling_base {
+export declare class MPSCNNUpsampling extends MPSCNNKernel {
     /** init() */
     static init(): MPSCNNUpsampling;
     /**
@@ -7989,6 +8771,12 @@ export declare class MPSCNNUpsampling extends MPSCNNUpsampling_base {
      * @availability iOS 11.0+
      */
     get scaleFactorY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsampling": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -8014,14 +8802,11 @@ export declare class MPSCNNUpsampling extends MPSCNNUpsampling_base {
         "scaleFactorY": true;
     };
 }
-declare const MPSCNNUpsamplingBilinear_base: Omit<typeof MPSCNNUpsampling, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNUpsampling);
 /**
  * class MPSCNNUpsamplingBilinear
  * @availability iOS 11.0+
  */
-export declare class MPSCNNUpsamplingBilinear extends MPSCNNUpsamplingBilinear_base {
-    /** init() */
-    static init(): MPSCNNUpsamplingBilinear;
+export declare class MPSCNNUpsamplingBilinear extends MPSCNNUpsampling {
     /**
      * convenience init(device: any MTLDevice, integerScaleFactorX: Int, integerScaleFactorY: Int)
      * @availability iOS 11.0+
@@ -8032,6 +8817,13 @@ export declare class MPSCNNUpsamplingBilinear extends MPSCNNUpsamplingBilinear_b
      * @availability iOS 11.0+
      */
     static initDeviceIntegerScaleFactorXIntegerScaleFactorYAlignCorners(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number, alignCorners: boolean): MPSCNNUpsamplingBilinear;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsamplingBilinear": true;
+        "c:objc(cs)MPSCNNUpsampling": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -8057,12 +8849,11 @@ export declare class MPSCNNUpsamplingBilinear extends MPSCNNUpsamplingBilinear_b
         "scaleFactorY": true;
     };
 }
-declare const MPSCNNUpsamplingGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSCNNUpsamplingGradient
  * @availability iOS 11.3+
  */
-export declare class MPSCNNUpsamplingGradient extends MPSCNNUpsamplingGradient_base {
+export declare class MPSCNNUpsamplingGradient extends MPSCNNGradientKernel {
     /** init() */
     static init(): MPSCNNUpsamplingGradient;
     /**
@@ -8075,6 +8866,13 @@ export declare class MPSCNNUpsamplingGradient extends MPSCNNUpsamplingGradient_b
      * @availability iOS 11.3+
      */
     get scaleFactorY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsamplingGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -8117,13 +8915,19 @@ declare const MPSCNNUpsamplingBilinearGradient_base: Omit<typeof MPSCNNUpsamplin
  * @availability iOS 11.3+
  */
 export declare class MPSCNNUpsamplingBilinearGradient extends MPSCNNUpsamplingBilinearGradient_base {
-    /** init() */
-    static init(): MPSCNNUpsamplingBilinearGradient;
     /**
      * init(device: any MTLDevice, integerScaleFactorX: Int, integerScaleFactorY: Int)
      * @availability iOS 11.3+
      */
-    static initDeviceIntegerScaleFactorXIntegerScaleFactorY(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number): MPSCNNUpsamplingBilinearGradient;
+    static init(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number): MPSCNNUpsamplingBilinearGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsamplingBilinearGradient": true;
+        "c:objc(cs)MPSCNNUpsamplingGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -8180,6 +8984,12 @@ export declare class MPSCNNUpsamplingBilinearGradientNode extends MPSNNGradientF
      * @availability iOS 11.3+
      */
     get scaleFactorY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsamplingBilinearGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -8220,6 +9030,11 @@ export declare class MPSCNNUpsamplingBilinearNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     get scaleFactorY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsamplingBilinearNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -8237,13 +9052,18 @@ declare const MPSCNNUpsamplingNearest_base: Omit<typeof MPSCNNUpsampling, "init"
  * @availability iOS 11.0+
  */
 export declare class MPSCNNUpsamplingNearest extends MPSCNNUpsamplingNearest_base {
-    /** init() */
-    static init(): MPSCNNUpsamplingNearest;
     /**
      * init(device: any MTLDevice, integerScaleFactorX: Int, integerScaleFactorY: Int)
      * @availability iOS 11.0+
      */
-    static initDeviceIntegerScaleFactorXIntegerScaleFactorY(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number): MPSCNNUpsamplingNearest;
+    static init(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number): MPSCNNUpsamplingNearest;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsamplingNearest": true;
+        "c:objc(cs)MPSCNNUpsampling": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -8275,13 +9095,19 @@ declare const MPSCNNUpsamplingNearestGradient_base: Omit<typeof MPSCNNUpsampling
  * @availability iOS 11.3+
  */
 export declare class MPSCNNUpsamplingNearestGradient extends MPSCNNUpsamplingNearestGradient_base {
-    /** init() */
-    static init(): MPSCNNUpsamplingNearestGradient;
     /**
      * init(device: any MTLDevice, integerScaleFactorX: Int, integerScaleFactorY: Int)
      * @availability iOS 11.3+
      */
-    static initDeviceIntegerScaleFactorXIntegerScaleFactorY(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number): MPSCNNUpsamplingNearestGradient;
+    static init(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number): MPSCNNUpsamplingNearestGradient;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsamplingNearestGradient": true;
+        "c:objc(cs)MPSCNNUpsamplingGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -8338,6 +9164,12 @@ export declare class MPSCNNUpsamplingNearestGradientNode extends MPSNNGradientFi
      * @availability iOS 11.3+
      */
     get scaleFactorY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsamplingNearestGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -8368,6 +9200,11 @@ export declare class MPSCNNUpsamplingNearestNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     get scaleFactorY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNUpsamplingNearestNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -8384,7 +9221,7 @@ export declare const MPSCNNWeightsQuantizationType: {
     /** init?(rawValue: UInt32) */
     init(rawValue: number): (MPSCNNWeightsQuantizationType) | null;
 };
-declare const MPSCNNYOLOLoss_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSCNNYOLOLoss_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSCNNYOLOLoss
  * @availability iOS 12.0+
@@ -8410,8 +9247,6 @@ export declare class MPSCNNYOLOLoss extends MPSCNNYOLOLoss_base {
      * @availability iOS 12.0+
      */
     encodeCommandBufferSourceImageLabelsDestinationImage(commandBuffer: SDKHandle, sourceImage: MPSImage, labels: MPSCNNLossLabels, destinationImage: MPSImage): void;
-    /** init() */
-    static init(): MPSCNNYOLOLoss;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -8497,6 +9332,12 @@ export declare class MPSCNNYOLOLoss extends MPSCNNYOLOLoss_base {
      * @availability iOS 12.0+
      */
     get scaleXY(): number;
+    readonly $type: {
+        "c:objc(cs)MPSCNNYOLOLoss": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -8640,6 +9481,10 @@ export declare class MPSCNNYOLOLossDescriptor extends SDKHandle {
      */
     get scaleXY(): number;
     set scaleXY(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSCNNYOLOLossDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "whLossDescriptor": true;
         "xyLossDescriptor": true;
@@ -8674,6 +9519,11 @@ export declare class MPSCNNYOLOLossNode extends MPSNNFilterNode {
      * @availability iOS 11.3+
      */
     get inputLabels(): MPSNNLabelsNode;
+    readonly $type: {
+        "c:objc(cs)MPSCNNYOLOLossNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -8725,6 +9575,10 @@ export declare class MPSCommandBuffer extends SDKHandle {
      * @availability iOS 13.0+
      */
     get rootCommandBuffer(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSCommandBuffer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commandBuffer": true;
         "heapProvider": true;
@@ -8749,6 +9603,9 @@ export declare class MPSCustomKernelArgumentCount extends SDKHandle {
     static initDestinationTextureCountSourceTextureCountBroadcastTextureCount(destinationTextureCount: number, sourceTextureCount: number, broadcastTextureCount: number): MPSCustomKernelArgumentCount;
     /** init() */
     static init(): MPSCustomKernelArgumentCount;
+    readonly $type: {
+        "c:@S@MPSCustomKernelArgumentCount": true;
+    };
 }
 /** struct MPSCustomKernelIndex */
 export type MPSCustomKernelIndex = (number & {});
@@ -8794,6 +9651,9 @@ export declare class MPSCustomKernelInfo extends SDKHandle {
     static initClipOriginClipSizeDestinationFeatureChannelsDestImageArraySizeSourceImageCountThreadgroupSizeSubbatchIndexSubbatchStrideIdiv(clipOrigin: SDKHandle, clipSize: SDKHandle, destinationFeatureChannels: number, destImageArraySize: number, sourceImageCount: number, threadgroupSize: number, subbatchIndex: number, subbatchStride: number, idiv: MPSIntegerDivisionParams): MPSCustomKernelInfo;
     /** init() */
     static init(): MPSCustomKernelInfo;
+    readonly $type: {
+        "c:@SA@MPSCustomKernelInfo": true;
+    };
 }
 /** struct MPSCustomKernelSourceInfo */
 export declare class MPSCustomKernelSourceInfo extends SDKHandle {
@@ -8831,6 +9691,9 @@ export declare class MPSCustomKernelSourceInfo extends SDKHandle {
     static initKernelOriginKernelPhaseKernelSizeOffsetStrideDilationRateFeatureChannelOffsetFeatureChannelsImageArrayOffsetImageArraySize(kernelOrigin: SDKHandle, kernelPhase: SDKHandle, kernelSize: SDKHandle, offset: SDKHandle, stride: SDKHandle, dilationRate: SDKHandle, featureChannelOffset: number, featureChannels: number, imageArrayOffset: number, imageArraySize: number): MPSCustomKernelSourceInfo;
     /** init() */
     static init(): MPSCustomKernelSourceInfo;
+    readonly $type: {
+        "c:@SA@MPSCustomKernelSourceInfo": true;
+    };
 }
 /**
  * enum MPSDataLayout
@@ -8906,6 +9769,9 @@ export declare class MPSDimensionSlice extends SDKHandle {
     static initStartLength(start: number, length: number): MPSDimensionSlice;
     /** init() */
     static init(): MPSDimensionSlice;
+    readonly $type: {
+        "c:@S@MPSDimensionSlice": true;
+    };
 }
 /**
  * class MPSFunction
@@ -8952,6 +9818,10 @@ export declare class MPSFunction extends SDKHandle {
      * @availability iOS 27.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MPSFunction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "error": true;
@@ -8968,17 +9838,17 @@ export declare class MPSFColorConversion extends MPSFunction {
      * func descriptorFor1DTexture1() -> MTLTextureDescriptor?
      * @availability iOS 27.0+
      */
-    descriptorFor1DTexture1(): $SDK26;
+    descriptorFor1DTexture1(): $SDK27;
     /**
      * func descriptorFor3DTexture1() -> MTLTextureDescriptor?
      * @availability iOS 27.0+
      */
-    descriptorFor3DTexture1(): $SDK26;
+    descriptorFor3DTexture1(): $SDK27;
     /**
      * func descriptorFor3DTexture2() -> MTLTextureDescriptor?
      * @availability iOS 27.0+
      */
-    descriptorFor3DTexture2(): $SDK26;
+    descriptorFor3DTexture2(): $SDK27;
     /**
      * func effectiveRange(_ inputRange: MPSFunctions_AABB) -> MPSFunctions_AABB
      * @availability iOS 27.0+
@@ -8988,7 +9858,7 @@ export declare class MPSFColorConversion extends MPSFunction {
      * init(device: any MTLDevice, conversion: CGColorConversionInfo?, functionName name: String, sourceRange: UnsafePointer<MPSFunctions_AABB>?, options: MPSFColorConversionOptions = []) throws
      * @availability iOS 27.0+
      */
-    static initDeviceConversionFunctionNameSourceRangeOptions(device: SDKHandle, conversion: $SDK27, name: string, sourceRange?: (SDKHandle) | null, options?: MPSFColorConversionOptions): MPSFColorConversion;
+    static initDeviceConversionFunctionNameSourceRangeOptions(device: SDKHandle, conversion: $SDK28, name: string, sourceRange?: (SDKHandle) | null, options?: MPSFColorConversionOptions): MPSFColorConversion;
     /**
      * convenience init(device: any MTLDevice, start: CGColorSpace, end: CGColorSpace, functionName name: String, sourceRange: UnsafePointer<MPSFunctions_AABB>?, options: MPSFColorConversionOptions = []) throws
      * @availability iOS 27.0+
@@ -9024,6 +9894,11 @@ export declare class MPSFColorConversion extends MPSFunction {
      * @availability iOS 27.0+
      */
     get outputColorChannels(): number;
+    readonly $type: {
+        "c:objc(cs)MPSFColorConversion": true;
+        "c:objc(cs)MPSFunction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "error": true;
@@ -9113,6 +9988,9 @@ export declare class MPSFunctions_AABB extends SDKHandle {
     static initMaxMin(max: SDKHandle, min: SDKHandle): MPSFunctions_AABB;
     /** init() */
     static init(): MPSFunctions_AABB;
+    readonly $type: {
+        "c:@SA@MPSFunctions_AABB": true;
+    };
 }
 /** typealias MPSGradientNodeBlock = (MPSNNFilterNode, MPSNNFilterNode, MPSNNImageNode, MPSNNImageNode) -> Void */
 export type MPSGradientNodeBlock = ((arg0: MPSNNFilterNode, arg1: MPSNNFilterNode, arg2: MPSNNImageNode, arg3: MPSNNImageNode) => Promise<void>);
@@ -9153,6 +10031,10 @@ export declare class MPSRNNDescriptor extends SDKHandle {
      */
     get useLayerInputUnitTransformMode(): boolean;
     set useLayerInputUnitTransformMode(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSRNNDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputFeatureChannels": true;
         "layerSequenceDirection": true;
@@ -9228,6 +10110,11 @@ export declare class MPSGRUDescriptor extends MPSGRUDescriptor_base {
      */
     get recurrentGateRecurrentWeights(): (SDKHandle) | null;
     set recurrentGateRecurrentWeights(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)MPSGRUDescriptor": true;
+        "c:objc(cs)MPSRNNDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputFeatureChannels": true;
         "layerSequenceDirection": true;
@@ -9426,6 +10313,10 @@ export declare class MPSImage extends SDKHandle {
      * @availability iOS 10.0+
      */
     get width(): number;
+    readonly $type: {
+        "c:objc(cs)MPSImage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "featureChannelFormat": true;
@@ -9443,12 +10334,11 @@ export declare class MPSImage extends SDKHandle {
         "width": true;
     };
 }
-declare const MPSImageArithmetic_base: Omit<typeof MPSBinaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSBinaryImageKernel);
 /**
  * class MPSImageArithmetic
  * @availability iOS 11.0+
  */
-export declare class MPSImageArithmetic extends MPSImageArithmetic_base {
+export declare class MPSImageArithmetic extends MPSBinaryImageKernel {
     /** init() */
     static init(): MPSImageArithmetic;
     /**
@@ -9493,6 +10383,12 @@ export declare class MPSImageArithmetic extends MPSImageArithmetic_base {
      */
     get secondaryStrideInPixels(): _Metal_MTLSize;
     set secondaryStrideInPixels(value: _Metal_MTLSize);
+    readonly $type: {
+        "c:objc(cs)MPSImageArithmetic": true;
+        "c:objc(cs)MPSBinaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9511,19 +10407,24 @@ export declare class MPSImageArithmetic extends MPSImageArithmetic_base {
         "secondaryStrideInPixels": true;
     };
 }
-declare const MPSImageAdd_base: Omit<typeof MPSImageArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
+declare const MPSImageAdd_base: Omit<typeof MPSImageArithmetic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
 /**
  * class MPSImageAdd
  * @availability iOS 11.0+
  */
 export declare class MPSImageAdd extends MPSImageAdd_base {
-    /** init() */
-    static init(): MPSImageAdd;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.0+
      */
-    static initDevice(device: SDKHandle): MPSImageAdd;
+    static init(device: SDKHandle): MPSImageAdd;
+    readonly $type: {
+        "c:objc(cs)MPSImageAdd": true;
+        "c:objc(cs)MPSImageArithmetic": true;
+        "c:objc(cs)MPSBinaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9552,7 +10453,7 @@ export interface MPSImageAllocator {
      */
     "imageForImageDescriptorKernel"?: (arg0: SDKHandle, arg1: MPSImageDescriptor, arg2: MPSKernel) => MPSImage;
 }
-declare const MPSUnaryImageKernel_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSUnaryImageKernel_base: Omit<typeof MPSKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSUnaryImageKernel
  * @availability iOS 9.0+
@@ -9573,8 +10474,6 @@ export declare class MPSUnaryImageKernel extends MPSUnaryImageKernel_base {
      * @availability iOS 9.0+
      */
     encodeCommandBufferSourceTextureDestinationTexture(commandBuffer: SDKHandle, sourceTexture: SDKHandle, destinationTexture: SDKHandle): void;
-    /** init() */
-    static init(): MPSUnaryImageKernel;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -9608,6 +10507,11 @@ export declare class MPSUnaryImageKernel extends MPSUnaryImageKernel_base {
      */
     get offset(): MPSOffset;
     set offset(value: MPSOffset);
+    readonly $type: {
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9617,14 +10521,12 @@ export declare class MPSUnaryImageKernel extends MPSUnaryImageKernel_base {
         "offset": true;
     };
 }
-declare const MPSImageAreaMax_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageAreaMax_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageAreaMax
  * @availability iOS 9.0+
  */
 export declare class MPSImageAreaMax extends MPSImageAreaMax_base {
-    /** init() */
-    static init(): MPSImageAreaMax;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -9645,6 +10547,12 @@ export declare class MPSImageAreaMax extends MPSImageAreaMax_base {
      * @availability iOS 9.0+
      */
     get kernelWidth(): number;
+    readonly $type: {
+        "c:objc(cs)MPSImageAreaMax": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9656,14 +10564,20 @@ export declare class MPSImageAreaMax extends MPSImageAreaMax_base {
         "kernelWidth": true;
     };
 }
-declare const MPSImageAreaMin_base: Omit<typeof MPSImageAreaMax, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageAreaMax);
 /**
  * class MPSImageAreaMin
  * @availability iOS 9.0+
  */
-export declare class MPSImageAreaMin extends MPSImageAreaMin_base {
+export declare class MPSImageAreaMin extends MPSImageAreaMax {
     /** init() */
     static init(): MPSImageAreaMin;
+    readonly $type: {
+        "c:objc(cs)MPSImageAreaMin": true;
+        "c:objc(cs)MPSImageAreaMax": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9675,14 +10589,12 @@ export declare class MPSImageAreaMin extends MPSImageAreaMin_base {
         "kernelWidth": true;
     };
 }
-declare const MPSImageScale_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageScale_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageScale
  * @availability iOS 11.0+
  */
 export declare class MPSImageScale extends MPSImageScale_base {
-    /** init() */
-    static init(): MPSImageScale;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -9699,6 +10611,12 @@ export declare class MPSImageScale extends MPSImageScale_base {
      */
     get scaleTransform(): (SDKHandle) | null;
     set scaleTransform(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)MPSImageScale": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9709,14 +10627,12 @@ export declare class MPSImageScale extends MPSImageScale_base {
         "scaleTransform": true;
     };
 }
-declare const MPSImageBilinearScale_base: Omit<typeof MPSImageScale, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageScale);
+declare const MPSImageBilinearScale_base: Omit<typeof MPSImageScale, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageScale);
 /**
  * class MPSImageBilinearScale
  * @availability iOS 11.0+
  */
 export declare class MPSImageBilinearScale extends MPSImageBilinearScale_base {
-    /** init() */
-    static init(): MPSImageBilinearScale;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -9727,6 +10643,13 @@ export declare class MPSImageBilinearScale extends MPSImageBilinearScale_base {
      * @availability iOS 11.0+
      */
     static initDevice(device: SDKHandle): MPSImageBilinearScale;
+    readonly $type: {
+        "c:objc(cs)MPSImageBilinearScale": true;
+        "c:objc(cs)MPSImageScale": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9737,14 +10660,12 @@ export declare class MPSImageBilinearScale extends MPSImageBilinearScale_base {
         "scaleTransform": true;
     };
 }
-declare const MPSImageBox_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageBox_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageBox
  * @availability iOS 9.0+
  */
 export declare class MPSImageBox extends MPSImageBox_base {
-    /** init() */
-    static init(): MPSImageBox;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -9765,6 +10686,12 @@ export declare class MPSImageBox extends MPSImageBox_base {
      * @availability iOS 9.0+
      */
     get kernelWidth(): number;
+    readonly $type: {
+        "c:objc(cs)MPSImageBox": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9776,14 +10703,12 @@ export declare class MPSImageBox extends MPSImageBox_base {
         "kernelWidth": true;
     };
 }
-declare const MPSImageCanny_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageCanny_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageCanny
  * @availability iOS 14.0+
  */
 export declare class MPSImageCanny extends MPSImageCanny_base {
-    /** init() */
-    static init(): MPSImageCanny;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 14.0+
@@ -9827,6 +10752,12 @@ export declare class MPSImageCanny extends MPSImageCanny_base {
      */
     get useFastMode(): boolean;
     set useFastMode(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSImageCanny": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9841,19 +10772,16 @@ export declare class MPSImageCanny extends MPSImageCanny_base {
         "useFastMode": true;
     };
 }
-declare const MPSImageConversion_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageConversion
  * @availability iOS 10.0+
  */
-export declare class MPSImageConversion extends MPSImageConversion_base {
-    /** init() */
-    static init(): MPSImageConversion;
+export declare class MPSImageConversion extends MPSUnaryImageKernel {
     /**
      * init(device: any MTLDevice, srcAlpha: MPSAlphaType, destAlpha: MPSAlphaType, backgroundColor: UnsafeMutablePointer<CGFloat>?, conversionInfo: CGColorConversionInfo?)
      * @availability iOS 10.0+
      */
-    static initDeviceSrcAlphaDestAlphaBackgroundColorConversionInfo(device: SDKHandle, srcAlpha: MPSAlphaType, destAlpha: MPSAlphaType, backgroundColor?: ("animatableData" | SDKHandle) | null, conversionInfo?: $SDK27): MPSImageConversion;
+    static init(device: SDKHandle, srcAlpha: MPSAlphaType, destAlpha: MPSAlphaType, backgroundColor?: ("animatableData" | SDKHandle) | null, conversionInfo?: $SDK28): MPSImageConversion;
     /**
      * var destinationAlpha: MPSAlphaType { get }
      * @availability iOS 10.0+
@@ -9864,6 +10792,12 @@ export declare class MPSImageConversion extends MPSImageConversion_base {
      * @availability iOS 10.0+
      */
     get sourceAlpha(): MPSAlphaType;
+    readonly $type: {
+        "c:objc(cs)MPSImageConversion": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9875,14 +10809,12 @@ export declare class MPSImageConversion extends MPSImageConversion_base {
         "sourceAlpha": true;
     };
 }
-declare const MPSImageConvolution_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageConvolution_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageConvolution
  * @availability iOS 9.0+
  */
 export declare class MPSImageConvolution extends MPSImageConvolution_base {
-    /** init() */
-    static init(): MPSImageConvolution;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -9909,6 +10841,12 @@ export declare class MPSImageConvolution extends MPSImageConvolution_base {
      * @availability iOS 9.0+
      */
     get kernelWidth(): number;
+    readonly $type: {
+        "c:objc(cs)MPSImageConvolution": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -9936,8 +10874,11 @@ export declare class MPSImageCoordinate extends SDKHandle {
     static initXYChannel(x: number, y: number, channel: number): MPSImageCoordinate;
     /** init() */
     static init(): MPSImageCoordinate;
+    readonly $type: {
+        "c:@S@MPSImageCoordinate": true;
+    };
 }
-declare const MPSImageCopyToMatrix_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSImageCopyToMatrix_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSImageCopyToMatrix
  * @availability iOS 11.0+
@@ -9953,8 +10894,6 @@ export declare class MPSImageCopyToMatrix extends MPSImageCopyToMatrix_base {
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, sourceImage: MPSImage, destinationMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSImageCopyToMatrix;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -9982,6 +10921,11 @@ export declare class MPSImageCopyToMatrix extends MPSImageCopyToMatrix_base {
      */
     get destinationMatrixOrigin(): _Metal_MTLOrigin;
     set destinationMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $type: {
+        "c:objc(cs)MPSImageCopyToMatrix": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10011,8 +10955,6 @@ export declare class MPSImageDescriptor extends SDKHandle {
      * @availability iOS 12.0+
      */
     copy(): MPSImageDescriptor;
-    /** init() */
-    static init(): MPSImageDescriptor;
     /**
      * var channelFormat: MPSImageFeatureChannelFormat { get set }
      * @availability iOS 10.0+
@@ -10066,6 +11008,10 @@ export declare class MPSImageDescriptor extends SDKHandle {
      */
     get width(): number;
     set width(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSImageDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelFormat": true;
         "cpuCacheMode": true;
@@ -10078,14 +11024,12 @@ export declare class MPSImageDescriptor extends SDKHandle {
         "width": true;
     };
 }
-declare const MPSImageDilate_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageDilate_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageDilate
  * @availability iOS 9.0+
  */
 export declare class MPSImageDilate extends MPSImageDilate_base {
-    /** init() */
-    static init(): MPSImageDilate;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10106,6 +11050,12 @@ export declare class MPSImageDilate extends MPSImageDilate_base {
      * @availability iOS 9.0+
      */
     get kernelWidth(): number;
+    readonly $type: {
+        "c:objc(cs)MPSImageDilate": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10117,19 +11067,24 @@ export declare class MPSImageDilate extends MPSImageDilate_base {
         "kernelWidth": true;
     };
 }
-declare const MPSImageDivide_base: Omit<typeof MPSImageArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
+declare const MPSImageDivide_base: Omit<typeof MPSImageArithmetic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
 /**
  * class MPSImageDivide
  * @availability iOS 11.0+
  */
 export declare class MPSImageDivide extends MPSImageDivide_base {
-    /** init() */
-    static init(): MPSImageDivide;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.0+
      */
-    static initDevice(device: SDKHandle): MPSImageDivide;
+    static init(device: SDKHandle): MPSImageDivide;
+    readonly $type: {
+        "c:objc(cs)MPSImageDivide": true;
+        "c:objc(cs)MPSImageArithmetic": true;
+        "c:objc(cs)MPSBinaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10154,7 +11109,7 @@ export declare const MPSImageEdgeMode: {
     /** init?(rawValue: UInt) */
     init(rawValue: number): (MPSImageEdgeMode) | null;
 };
-declare const MPSImageEDLines_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSImageEDLines_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSImageEDLines
  * @availability iOS 13.4+
@@ -10165,8 +11120,6 @@ export declare class MPSImageEDLines extends MPSImageEDLines_base {
      * @availability iOS 13.4+
      */
     encode(commandBuffer: SDKHandle, source: SDKHandle, dest: (SDKHandle) | null, endpointBuffer: SDKHandle, endpointOffset: number): void;
-    /** init() */
-    static init(): MPSImageEDLines;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.4+
@@ -10224,6 +11177,11 @@ export declare class MPSImageEDLines extends MPSImageEDLines_base {
      */
     get minLineLength(): number;
     set minLineLength(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSImageEDLines": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10238,14 +11196,20 @@ export declare class MPSImageEDLines extends MPSImageEDLines_base {
         "minLineLength": true;
     };
 }
-declare const MPSImageErode_base: Omit<typeof MPSImageDilate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageDilate);
 /**
  * class MPSImageErode
  * @availability iOS 9.0+
  */
-export declare class MPSImageErode extends MPSImageErode_base {
+export declare class MPSImageErode extends MPSImageDilate {
     /** init() */
     static init(): MPSImageErode;
+    readonly $type: {
+        "c:objc(cs)MPSImageErode": true;
+        "c:objc(cs)MPSImageDilate": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10257,14 +11221,12 @@ export declare class MPSImageErode extends MPSImageErode_base {
         "kernelWidth": true;
     };
 }
-declare const MPSImageEuclideanDistanceTransform_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageEuclideanDistanceTransform_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageEuclideanDistanceTransform
  * @availability iOS 11.3+
  */
 export declare class MPSImageEuclideanDistanceTransform extends MPSImageEuclideanDistanceTransform_base {
-    /** init() */
-    static init(): MPSImageEuclideanDistanceTransform;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -10281,6 +11243,12 @@ export declare class MPSImageEuclideanDistanceTransform extends MPSImageEuclidea
      */
     get searchLimitRadius(): number;
     set searchLimitRadius(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSImageEuclideanDistanceTransform": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10297,7 +11265,7 @@ export declare const MPSImageFeatureChannelFormat: {
     /** init?(rawValue: UInt) */
     init(rawValue: number): (MPSImageFeatureChannelFormat) | null;
 };
-declare const MPSImageFindKeypoints_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSImageFindKeypoints_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSImageFindKeypoints
  * @availability iOS 11.0+
@@ -10308,8 +11276,6 @@ export declare class MPSImageFindKeypoints extends MPSImageFindKeypoints_base {
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, source: SDKHandle, regions: SDKHandle, numberOfRegions: number, keypointCountBuffer: SDKHandle, keypointCountBufferOffset: number, keypointDataBuffer: SDKHandle, keypointDataBufferOffset: number): void;
-    /** init() */
-    static init(): MPSImageFindKeypoints;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10325,6 +11291,11 @@ export declare class MPSImageFindKeypoints extends MPSImageFindKeypoints_base {
      * @availability iOS 11.0+
      */
     get keypointRangeInfo(): MPSImageKeypointRangeInfo;
+    readonly $type: {
+        "c:objc(cs)MPSImageFindKeypoints": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10332,14 +11303,12 @@ export declare class MPSImageFindKeypoints extends MPSImageFindKeypoints_base {
         "keypointRangeInfo": true;
     };
 }
-declare const MPSImageGaussianBlur_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageGaussianBlur_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageGaussianBlur
  * @availability iOS 9.0+
  */
 export declare class MPSImageGaussianBlur extends MPSImageGaussianBlur_base {
-    /** init() */
-    static init(): MPSImageGaussianBlur;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10355,6 +11324,12 @@ export declare class MPSImageGaussianBlur extends MPSImageGaussianBlur_base {
      * @availability iOS 9.0+
      */
     get sigma(): number;
+    readonly $type: {
+        "c:objc(cs)MPSImageGaussianBlur": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10365,14 +11340,12 @@ export declare class MPSImageGaussianBlur extends MPSImageGaussianBlur_base {
         "sigma": true;
     };
 }
-declare const MPSImagePyramid_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImagePyramid_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImagePyramid
  * @availability iOS 10.0+
  */
 export declare class MPSImagePyramid extends MPSImagePyramid_base {
-    /** init() */
-    static init(): MPSImagePyramid;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10403,6 +11376,12 @@ export declare class MPSImagePyramid extends MPSImagePyramid_base {
      * @availability iOS 10.0+
      */
     get kernelWidth(): number;
+    readonly $type: {
+        "c:objc(cs)MPSImagePyramid": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10414,14 +11393,20 @@ export declare class MPSImagePyramid extends MPSImagePyramid_base {
         "kernelWidth": true;
     };
 }
-declare const MPSImageGaussianPyramid_base: Omit<typeof MPSImagePyramid, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImagePyramid);
 /**
  * class MPSImageGaussianPyramid
  * @availability iOS 10.0+
  */
-export declare class MPSImageGaussianPyramid extends MPSImageGaussianPyramid_base {
+export declare class MPSImageGaussianPyramid extends MPSImagePyramid {
     /** init() */
     static init(): MPSImageGaussianPyramid;
+    readonly $type: {
+        "c:objc(cs)MPSImageGaussianPyramid": true;
+        "c:objc(cs)MPSImagePyramid": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10433,7 +11418,7 @@ export declare class MPSImageGaussianPyramid extends MPSImageGaussianPyramid_bas
         "kernelWidth": true;
     };
 }
-declare const MPSImageGuidedFilter_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSImageGuidedFilter_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSImageGuidedFilter
  * @availability iOS 11.3+
@@ -10459,8 +11444,6 @@ export declare class MPSImageGuidedFilter extends MPSImageGuidedFilter_base {
      * @availability iOS 13.2+
      */
     encodeRegressionCommandBufferSourceGuidanceWeightsDestinationCoefficientsADestinationCoefficientsB(commandBuffer: SDKHandle, sourceTexture: SDKHandle, guidanceTexture: SDKHandle, weightsTexture: (SDKHandle) | null, destinationCoefficientsTextureA: SDKHandle, destinationCoefficientsTextureB: SDKHandle): void;
-    /** init() */
-    static init(): MPSImageGuidedFilter;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -10494,6 +11477,11 @@ export declare class MPSImageGuidedFilter extends MPSImageGuidedFilter_base {
      */
     get reconstructScale(): number;
     set reconstructScale(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSImageGuidedFilter": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10504,7 +11492,7 @@ export declare class MPSImageGuidedFilter extends MPSImageGuidedFilter_base {
         "reconstructScale": true;
     };
 }
-declare const MPSImageHistogram_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSImageHistogram_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSImageHistogram
  * @availability iOS 9.0+
@@ -10520,8 +11508,6 @@ export declare class MPSImageHistogram extends MPSImageHistogram_base {
      * @availability iOS 9.0+
      */
     histogramSize(sourceFormat: _Metal_MTLPixelFormat): number;
-    /** init() */
-    static init(): MPSImageHistogram;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10555,6 +11541,11 @@ export declare class MPSImageHistogram extends MPSImageHistogram_base {
      */
     get zeroHistogram(): boolean;
     set zeroHistogram(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSImageHistogram": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10565,7 +11556,7 @@ export declare class MPSImageHistogram extends MPSImageHistogram_base {
         "zeroHistogram": true;
     };
 }
-declare const MPSImageHistogramEqualization_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageHistogramEqualization_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageHistogramEqualization
  * @availability iOS 9.0+
@@ -10576,8 +11567,6 @@ export declare class MPSImageHistogramEqualization extends MPSImageHistogramEqua
      * @availability iOS 9.0+
      */
     encodeTransform(commandBuffer: SDKHandle, source: SDKHandle, histogram: SDKHandle, histogramOffset: number): void;
-    /** init() */
-    static init(): MPSImageHistogramEqualization;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10593,6 +11582,12 @@ export declare class MPSImageHistogramEqualization extends MPSImageHistogramEqua
      * @availability iOS 9.0+
      */
     get histogramInfo(): MPSImageHistogramInfo;
+    readonly $type: {
+        "c:objc(cs)MPSImageHistogramEqualization": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10621,8 +11616,11 @@ export declare class MPSImageHistogramInfo extends SDKHandle {
     static initNumberOfHistogramEntriesHistogramForAlphaMinPixelValueMaxPixelValue(numberOfHistogramEntries: number, histogramForAlpha: boolean, minPixelValue: SDKHandle, maxPixelValue: SDKHandle): MPSImageHistogramInfo;
     /** init() */
     static init(): MPSImageHistogramInfo;
+    readonly $type: {
+        "c:@SA@MPSImageHistogramInfo": true;
+    };
 }
-declare const MPSImageHistogramSpecification_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageHistogramSpecification_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageHistogramSpecification
  * @availability iOS 9.0+
@@ -10633,8 +11631,6 @@ export declare class MPSImageHistogramSpecification extends MPSImageHistogramSpe
      * @availability iOS 9.0+
      */
     encodeTransform(commandBuffer: SDKHandle, source: SDKHandle, sourceHistogram: SDKHandle, sourceHistogramOffset: number, desiredHistogram: SDKHandle, desiredHistogramOffset: number): void;
-    /** init() */
-    static init(): MPSImageHistogramSpecification;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10650,6 +11646,12 @@ export declare class MPSImageHistogramSpecification extends MPSImageHistogramSpe
      * @availability iOS 9.0+
      */
     get histogramInfo(): MPSImageHistogramInfo;
+    readonly $type: {
+        "c:objc(cs)MPSImageHistogramSpecification": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10660,14 +11662,19 @@ export declare class MPSImageHistogramSpecification extends MPSImageHistogramSpe
         "histogramInfo": true;
     };
 }
-declare const MPSImageIntegral_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageIntegral
  * @availability iOS 9.0+
  */
-export declare class MPSImageIntegral extends MPSImageIntegral_base {
+export declare class MPSImageIntegral extends MPSUnaryImageKernel {
     /** init() */
     static init(): MPSImageIntegral;
+    readonly $type: {
+        "c:objc(cs)MPSImageIntegral": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10677,14 +11684,19 @@ export declare class MPSImageIntegral extends MPSImageIntegral_base {
         "offset": true;
     };
 }
-declare const MPSImageIntegralOfSquares_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageIntegralOfSquares
  * @availability iOS 9.0+
  */
-export declare class MPSImageIntegralOfSquares extends MPSImageIntegralOfSquares_base {
+export declare class MPSImageIntegralOfSquares extends MPSUnaryImageKernel {
     /** init() */
     static init(): MPSImageIntegralOfSquares;
+    readonly $type: {
+        "c:objc(cs)MPSImageIntegralOfSquares": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10706,6 +11718,9 @@ export declare class MPSImageKeypointData extends SDKHandle {
     static initKeypointCoordinateKeypointColorValue(keypointCoordinate: SDKHandle, keypointColorValue: number): MPSImageKeypointData;
     /** init() */
     static init(): MPSImageKeypointData;
+    readonly $type: {
+        "c:@SA@MPSImageKeypointData": true;
+    };
 }
 /** struct MPSImageKeypointRangeInfo */
 export declare class MPSImageKeypointRangeInfo extends SDKHandle {
@@ -10719,15 +11734,16 @@ export declare class MPSImageKeypointRangeInfo extends SDKHandle {
     static initMaximumKeypointsMinimumThresholdValue(maximumKeypoints: number, minimumThresholdValue: number): MPSImageKeypointRangeInfo;
     /** init() */
     static init(): MPSImageKeypointRangeInfo;
+    readonly $type: {
+        "c:@SA@MPSImageKeypointRangeInfo": true;
+    };
 }
-declare const MPSImageLanczosScale_base: Omit<typeof MPSImageScale, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageScale);
+declare const MPSImageLanczosScale_base: Omit<typeof MPSImageScale, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageScale);
 /**
  * class MPSImageLanczosScale
  * @availability iOS 9.0+
  */
 export declare class MPSImageLanczosScale extends MPSImageLanczosScale_base {
-    /** init() */
-    static init(): MPSImageLanczosScale;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10738,6 +11754,13 @@ export declare class MPSImageLanczosScale extends MPSImageLanczosScale_base {
      * @availability iOS 9.0+
      */
     static initDevice(device: SDKHandle): MPSImageLanczosScale;
+    readonly $type: {
+        "c:objc(cs)MPSImageLanczosScale": true;
+        "c:objc(cs)MPSImageScale": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10748,12 +11771,11 @@ export declare class MPSImageLanczosScale extends MPSImageLanczosScale_base {
         "scaleTransform": true;
     };
 }
-declare const MPSImageLaplacian_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageLaplacian
  * @availability iOS 10.0+
  */
-export declare class MPSImageLaplacian extends MPSImageLaplacian_base {
+export declare class MPSImageLaplacian extends MPSUnaryImageKernel {
     /** init() */
     static init(): MPSImageLaplacian;
     /**
@@ -10762,6 +11784,12 @@ export declare class MPSImageLaplacian extends MPSImageLaplacian_base {
      */
     get bias(): number;
     set bias(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSImageLaplacian": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10772,12 +11800,11 @@ export declare class MPSImageLaplacian extends MPSImageLaplacian_base {
         "bias": true;
     };
 }
-declare const MPSImageLaplacianPyramid_base: Omit<typeof MPSImagePyramid, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImagePyramid);
 /**
  * class MPSImageLaplacianPyramid
  * @availability iOS 10.0+
  */
-export declare class MPSImageLaplacianPyramid extends MPSImageLaplacianPyramid_base {
+export declare class MPSImageLaplacianPyramid extends MPSImagePyramid {
     /** init() */
     static init(): MPSImageLaplacianPyramid;
     /**
@@ -10792,6 +11819,13 @@ export declare class MPSImageLaplacianPyramid extends MPSImageLaplacianPyramid_b
      */
     get laplacianScale(): number;
     set laplacianScale(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSImageLaplacianPyramid": true;
+        "c:objc(cs)MPSImagePyramid": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10813,6 +11847,14 @@ declare const MPSImageLaplacianPyramidAdd_base: Omit<typeof MPSImageLaplacianPyr
 export declare class MPSImageLaplacianPyramidAdd extends MPSImageLaplacianPyramidAdd_base {
     /** init() */
     static init(): MPSImageLaplacianPyramidAdd;
+    readonly $type: {
+        "c:objc(cs)MPSImageLaplacianPyramidAdd": true;
+        "c:objc(cs)MPSImageLaplacianPyramid": true;
+        "c:objc(cs)MPSImagePyramid": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10834,6 +11876,14 @@ declare const MPSImageLaplacianPyramidSubtract_base: Omit<typeof MPSImageLaplaci
 export declare class MPSImageLaplacianPyramidSubtract extends MPSImageLaplacianPyramidSubtract_base {
     /** init() */
     static init(): MPSImageLaplacianPyramidSubtract;
+    readonly $type: {
+        "c:objc(cs)MPSImageLaplacianPyramidSubtract": true;
+        "c:objc(cs)MPSImageLaplacianPyramid": true;
+        "c:objc(cs)MPSImagePyramid": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10847,7 +11897,7 @@ export declare class MPSImageLaplacianPyramidSubtract extends MPSImageLaplacianP
         "laplacianScale": true;
     };
 }
-declare const MPSImageMedian_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageMedian_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageMedian
  * @availability iOS 9.0+
@@ -10863,8 +11913,6 @@ export declare class MPSImageMedian extends MPSImageMedian_base {
      * @availability iOS 9.0+
      */
     static minKernelDiameter(): number;
-    /** init() */
-    static init(): MPSImageMedian;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10880,6 +11928,12 @@ export declare class MPSImageMedian extends MPSImageMedian_base {
      * @availability iOS 9.0+
      */
     get kernelDiameter(): number;
+    readonly $type: {
+        "c:objc(cs)MPSImageMedian": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10890,19 +11944,24 @@ export declare class MPSImageMedian extends MPSImageMedian_base {
         "kernelDiameter": true;
     };
 }
-declare const MPSImageMultiply_base: Omit<typeof MPSImageArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
+declare const MPSImageMultiply_base: Omit<typeof MPSImageArithmetic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
 /**
  * class MPSImageMultiply
  * @availability iOS 11.0+
  */
 export declare class MPSImageMultiply extends MPSImageMultiply_base {
-    /** init() */
-    static init(): MPSImageMultiply;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.0+
      */
-    static initDevice(device: SDKHandle): MPSImageMultiply;
+    static init(device: SDKHandle): MPSImageMultiply;
+    readonly $type: {
+        "c:objc(cs)MPSImageMultiply": true;
+        "c:objc(cs)MPSImageArithmetic": true;
+        "c:objc(cs)MPSBinaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10921,7 +11980,7 @@ export declare class MPSImageMultiply extends MPSImageMultiply_base {
         "secondaryStrideInPixels": true;
     };
 }
-declare const MPSImageNormalizedHistogram_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSImageNormalizedHistogram_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSImageNormalizedHistogram
  * @availability iOS 9.0+
@@ -10937,8 +11996,6 @@ export declare class MPSImageNormalizedHistogram extends MPSImageNormalizedHisto
      * @availability iOS 9.0+
      */
     histogramSize(sourceFormat: _Metal_MTLPixelFormat): number;
-    /** init() */
-    static init(): MPSImageNormalizedHistogram;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -10966,6 +12023,11 @@ export declare class MPSImageNormalizedHistogram extends MPSImageNormalizedHisto
      */
     get zeroHistogram(): boolean;
     set zeroHistogram(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSImageNormalizedHistogram": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -10987,13 +12049,15 @@ export declare class MPSImageReadWriteParams extends SDKHandle {
     static initFeatureChannelOffsetNumberOfFeatureChannelsToReadWrite(featureChannelOffset: number, numberOfFeatureChannelsToReadWrite: number): MPSImageReadWriteParams;
     /** init() */
     static init(): MPSImageReadWriteParams;
+    readonly $type: {
+        "c:@SA@MPSImageReadWriteParams": true;
+    };
 }
-declare const MPSImageReduceUnary_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageReduceUnary
  * @availability iOS 11.3+
  */
-export declare class MPSImageReduceUnary extends MPSImageReduceUnary_base {
+export declare class MPSImageReduceUnary extends MPSUnaryImageKernel {
     /** init() */
     static init(): MPSImageReduceUnary;
     /**
@@ -11002,6 +12066,12 @@ export declare class MPSImageReduceUnary extends MPSImageReduceUnary_base {
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $type: {
+        "c:objc(cs)MPSImageReduceUnary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11012,19 +12082,24 @@ export declare class MPSImageReduceUnary extends MPSImageReduceUnary_base {
         "clipRectSource": true;
     };
 }
-declare const MPSImageReduceColumnMax_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
+declare const MPSImageReduceColumnMax_base: Omit<typeof MPSImageReduceUnary, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
  * class MPSImageReduceColumnMax
  * @availability iOS 11.3+
  */
 export declare class MPSImageReduceColumnMax extends MPSImageReduceColumnMax_base {
-    /** init() */
-    static init(): MPSImageReduceColumnMax;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSImageReduceColumnMax;
+    static init(device: SDKHandle): MPSImageReduceColumnMax;
+    readonly $type: {
+        "c:objc(cs)MPSImageReduceColumnMax": true;
+        "c:objc(cs)MPSImageReduceUnary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11035,19 +12110,24 @@ export declare class MPSImageReduceColumnMax extends MPSImageReduceColumnMax_bas
         "clipRectSource": true;
     };
 }
-declare const MPSImageReduceColumnMean_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
+declare const MPSImageReduceColumnMean_base: Omit<typeof MPSImageReduceUnary, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
  * class MPSImageReduceColumnMean
  * @availability iOS 11.3+
  */
 export declare class MPSImageReduceColumnMean extends MPSImageReduceColumnMean_base {
-    /** init() */
-    static init(): MPSImageReduceColumnMean;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSImageReduceColumnMean;
+    static init(device: SDKHandle): MPSImageReduceColumnMean;
+    readonly $type: {
+        "c:objc(cs)MPSImageReduceColumnMean": true;
+        "c:objc(cs)MPSImageReduceUnary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11058,19 +12138,24 @@ export declare class MPSImageReduceColumnMean extends MPSImageReduceColumnMean_b
         "clipRectSource": true;
     };
 }
-declare const MPSImageReduceColumnMin_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
+declare const MPSImageReduceColumnMin_base: Omit<typeof MPSImageReduceUnary, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
  * class MPSImageReduceColumnMin
  * @availability iOS 11.3+
  */
 export declare class MPSImageReduceColumnMin extends MPSImageReduceColumnMin_base {
-    /** init() */
-    static init(): MPSImageReduceColumnMin;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSImageReduceColumnMin;
+    static init(device: SDKHandle): MPSImageReduceColumnMin;
+    readonly $type: {
+        "c:objc(cs)MPSImageReduceColumnMin": true;
+        "c:objc(cs)MPSImageReduceUnary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11081,19 +12166,24 @@ export declare class MPSImageReduceColumnMin extends MPSImageReduceColumnMin_bas
         "clipRectSource": true;
     };
 }
-declare const MPSImageReduceColumnSum_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
+declare const MPSImageReduceColumnSum_base: Omit<typeof MPSImageReduceUnary, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
  * class MPSImageReduceColumnSum
  * @availability iOS 11.3+
  */
 export declare class MPSImageReduceColumnSum extends MPSImageReduceColumnSum_base {
-    /** init() */
-    static init(): MPSImageReduceColumnSum;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSImageReduceColumnSum;
+    static init(device: SDKHandle): MPSImageReduceColumnSum;
+    readonly $type: {
+        "c:objc(cs)MPSImageReduceColumnSum": true;
+        "c:objc(cs)MPSImageReduceUnary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11104,19 +12194,24 @@ export declare class MPSImageReduceColumnSum extends MPSImageReduceColumnSum_bas
         "clipRectSource": true;
     };
 }
-declare const MPSImageReduceRowMax_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
+declare const MPSImageReduceRowMax_base: Omit<typeof MPSImageReduceUnary, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
  * class MPSImageReduceRowMax
  * @availability iOS 11.3+
  */
 export declare class MPSImageReduceRowMax extends MPSImageReduceRowMax_base {
-    /** init() */
-    static init(): MPSImageReduceRowMax;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSImageReduceRowMax;
+    static init(device: SDKHandle): MPSImageReduceRowMax;
+    readonly $type: {
+        "c:objc(cs)MPSImageReduceRowMax": true;
+        "c:objc(cs)MPSImageReduceUnary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11127,19 +12222,24 @@ export declare class MPSImageReduceRowMax extends MPSImageReduceRowMax_base {
         "clipRectSource": true;
     };
 }
-declare const MPSImageReduceRowMean_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
+declare const MPSImageReduceRowMean_base: Omit<typeof MPSImageReduceUnary, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
  * class MPSImageReduceRowMean
  * @availability iOS 11.3+
  */
 export declare class MPSImageReduceRowMean extends MPSImageReduceRowMean_base {
-    /** init() */
-    static init(): MPSImageReduceRowMean;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSImageReduceRowMean;
+    static init(device: SDKHandle): MPSImageReduceRowMean;
+    readonly $type: {
+        "c:objc(cs)MPSImageReduceRowMean": true;
+        "c:objc(cs)MPSImageReduceUnary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11150,19 +12250,24 @@ export declare class MPSImageReduceRowMean extends MPSImageReduceRowMean_base {
         "clipRectSource": true;
     };
 }
-declare const MPSImageReduceRowMin_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
+declare const MPSImageReduceRowMin_base: Omit<typeof MPSImageReduceUnary, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
  * class MPSImageReduceRowMin
  * @availability iOS 11.3+
  */
 export declare class MPSImageReduceRowMin extends MPSImageReduceRowMin_base {
-    /** init() */
-    static init(): MPSImageReduceRowMin;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSImageReduceRowMin;
+    static init(device: SDKHandle): MPSImageReduceRowMin;
+    readonly $type: {
+        "c:objc(cs)MPSImageReduceRowMin": true;
+        "c:objc(cs)MPSImageReduceUnary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11173,19 +12278,24 @@ export declare class MPSImageReduceRowMin extends MPSImageReduceRowMin_base {
         "clipRectSource": true;
     };
 }
-declare const MPSImageReduceRowSum_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
+declare const MPSImageReduceRowSum_base: Omit<typeof MPSImageReduceUnary, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
  * class MPSImageReduceRowSum
  * @availability iOS 11.3+
  */
 export declare class MPSImageReduceRowSum extends MPSImageReduceRowSum_base {
-    /** init() */
-    static init(): MPSImageReduceRowSum;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.3+
      */
-    static initDevice(device: SDKHandle): MPSImageReduceRowSum;
+    static init(device: SDKHandle): MPSImageReduceRowSum;
+    readonly $type: {
+        "c:objc(cs)MPSImageReduceRowSum": true;
+        "c:objc(cs)MPSImageReduceUnary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11208,18 +12318,19 @@ export declare class MPSImageRegion extends SDKHandle {
     static initOffsetSize(offset: MPSImageCoordinate, size: MPSImageCoordinate): MPSImageRegion;
     /** init() */
     static init(): MPSImageRegion;
+    readonly $type: {
+        "c:@S@MPSImageRegion": true;
+    };
 }
 /** protocol MPSImageSizeEncodingState : NSObjectProtocol */
 export interface MPSImageSizeEncodingState {
 }
-declare const MPSImageSobel_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageSobel_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageSobel
  * @availability iOS 9.0+
  */
 export declare class MPSImageSobel extends MPSImageSobel_base {
-    /** init() */
-    static init(): MPSImageSobel;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -11240,6 +12351,12 @@ export declare class MPSImageSobel extends MPSImageSobel_base {
      * @availability iOS 9.0+
      */
     get colorTransform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSImageSobel": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11250,14 +12367,12 @@ export declare class MPSImageSobel extends MPSImageSobel_base {
         "colorTransform": true;
     };
 }
-declare const MPSImageStatisticsMean_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageStatisticsMean_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageStatisticsMean
  * @availability iOS 11.0+
  */
 export declare class MPSImageStatisticsMean extends MPSImageStatisticsMean_base {
-    /** init() */
-    static init(): MPSImageStatisticsMean;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -11274,6 +12389,12 @@ export declare class MPSImageStatisticsMean extends MPSImageStatisticsMean_base 
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $type: {
+        "c:objc(cs)MPSImageStatisticsMean": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11284,14 +12405,12 @@ export declare class MPSImageStatisticsMean extends MPSImageStatisticsMean_base 
         "clipRectSource": true;
     };
 }
-declare const MPSImageStatisticsMeanAndVariance_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageStatisticsMeanAndVariance_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageStatisticsMeanAndVariance
  * @availability iOS 11.0+
  */
 export declare class MPSImageStatisticsMeanAndVariance extends MPSImageStatisticsMeanAndVariance_base {
-    /** init() */
-    static init(): MPSImageStatisticsMeanAndVariance;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -11308,6 +12427,12 @@ export declare class MPSImageStatisticsMeanAndVariance extends MPSImageStatistic
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $type: {
+        "c:objc(cs)MPSImageStatisticsMeanAndVariance": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11318,14 +12443,12 @@ export declare class MPSImageStatisticsMeanAndVariance extends MPSImageStatistic
         "clipRectSource": true;
     };
 }
-declare const MPSImageStatisticsMinAndMax_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageStatisticsMinAndMax_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageStatisticsMinAndMax
  * @availability iOS 11.0+
  */
 export declare class MPSImageStatisticsMinAndMax extends MPSImageStatisticsMinAndMax_base {
-    /** init() */
-    static init(): MPSImageStatisticsMinAndMax;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -11342,6 +12465,12 @@ export declare class MPSImageStatisticsMinAndMax extends MPSImageStatisticsMinAn
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $type: {
+        "c:objc(cs)MPSImageStatisticsMinAndMax": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11352,19 +12481,24 @@ export declare class MPSImageStatisticsMinAndMax extends MPSImageStatisticsMinAn
         "clipRectSource": true;
     };
 }
-declare const MPSImageSubtract_base: Omit<typeof MPSImageArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
+declare const MPSImageSubtract_base: Omit<typeof MPSImageArithmetic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
 /**
  * class MPSImageSubtract
  * @availability iOS 11.0+
  */
 export declare class MPSImageSubtract extends MPSImageSubtract_base {
-    /** init() */
-    static init(): MPSImageSubtract;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 11.0+
      */
-    static initDevice(device: SDKHandle): MPSImageSubtract;
+    static init(device: SDKHandle): MPSImageSubtract;
+    readonly $type: {
+        "c:objc(cs)MPSImageSubtract": true;
+        "c:objc(cs)MPSImageArithmetic": true;
+        "c:objc(cs)MPSBinaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11383,14 +12517,20 @@ export declare class MPSImageSubtract extends MPSImageSubtract_base {
         "secondaryStrideInPixels": true;
     };
 }
-declare const MPSImageTent_base: Omit<typeof MPSImageBox, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageBox);
 /**
  * class MPSImageTent
  * @availability iOS 9.0+
  */
-export declare class MPSImageTent extends MPSImageTent_base {
+export declare class MPSImageTent extends MPSImageBox {
     /** init() */
     static init(): MPSImageTent;
+    readonly $type: {
+        "c:objc(cs)MPSImageTent": true;
+        "c:objc(cs)MPSImageBox": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11402,14 +12542,12 @@ export declare class MPSImageTent extends MPSImageTent_base {
         "kernelWidth": true;
     };
 }
-declare const MPSImageThresholdBinary_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageThresholdBinary_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageThresholdBinary
  * @availability iOS 9.0+
  */
 export declare class MPSImageThresholdBinary extends MPSImageThresholdBinary_base {
-    /** init() */
-    static init(): MPSImageThresholdBinary;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -11435,6 +12573,12 @@ export declare class MPSImageThresholdBinary extends MPSImageThresholdBinary_bas
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSImageThresholdBinary": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11447,14 +12591,12 @@ export declare class MPSImageThresholdBinary extends MPSImageThresholdBinary_bas
         "transform": true;
     };
 }
-declare const MPSImageThresholdBinaryInverse_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageThresholdBinaryInverse_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageThresholdBinaryInverse
  * @availability iOS 9.0+
  */
 export declare class MPSImageThresholdBinaryInverse extends MPSImageThresholdBinaryInverse_base {
-    /** init() */
-    static init(): MPSImageThresholdBinaryInverse;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -11480,6 +12622,12 @@ export declare class MPSImageThresholdBinaryInverse extends MPSImageThresholdBin
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSImageThresholdBinaryInverse": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11492,14 +12640,12 @@ export declare class MPSImageThresholdBinaryInverse extends MPSImageThresholdBin
         "transform": true;
     };
 }
-declare const MPSImageThresholdToZero_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageThresholdToZero_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageThresholdToZero
  * @availability iOS 9.0+
  */
 export declare class MPSImageThresholdToZero extends MPSImageThresholdToZero_base {
-    /** init() */
-    static init(): MPSImageThresholdToZero;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -11520,6 +12666,12 @@ export declare class MPSImageThresholdToZero extends MPSImageThresholdToZero_bas
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSImageThresholdToZero": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11531,14 +12683,12 @@ export declare class MPSImageThresholdToZero extends MPSImageThresholdToZero_bas
         "transform": true;
     };
 }
-declare const MPSImageThresholdToZeroInverse_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageThresholdToZeroInverse_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageThresholdToZeroInverse
  * @availability iOS 9.0+
  */
 export declare class MPSImageThresholdToZeroInverse extends MPSImageThresholdToZeroInverse_base {
-    /** init() */
-    static init(): MPSImageThresholdToZeroInverse;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -11559,6 +12709,12 @@ export declare class MPSImageThresholdToZeroInverse extends MPSImageThresholdToZ
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSImageThresholdToZeroInverse": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11570,14 +12726,12 @@ export declare class MPSImageThresholdToZeroInverse extends MPSImageThresholdToZ
         "transform": true;
     };
 }
-declare const MPSImageThresholdTruncate_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
+declare const MPSImageThresholdTruncate_base: Omit<typeof MPSUnaryImageKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageThresholdTruncate
  * @availability iOS 9.0+
  */
 export declare class MPSImageThresholdTruncate extends MPSImageThresholdTruncate_base {
-    /** init() */
-    static init(): MPSImageThresholdTruncate;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -11598,6 +12752,12 @@ export declare class MPSImageThresholdTruncate extends MPSImageThresholdTruncate
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSImageThresholdTruncate": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11619,14 +12779,19 @@ export interface MPSImageTransformProvider {
      */
     "transformForSourceImageHandle"?: (arg0: MPSImage, arg1: (SDKHandle) | null) => MPSScaleTransform;
 }
-declare const MPSImageTranspose_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
  * class MPSImageTranspose
  * @availability iOS 9.0+
  */
-export declare class MPSImageTranspose extends MPSImageTranspose_base {
+export declare class MPSImageTranspose extends MPSUnaryImageKernel {
     /** init() */
     static init(): MPSImageTranspose;
+    readonly $type: {
+        "c:objc(cs)MPSImageTranspose": true;
+        "c:objc(cs)MPSUnaryImageKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11658,8 +12823,8 @@ export declare class MPSInstanceAccelerationStructure extends MPSAccelerationStr
      * @availability iOS 12.0+
      * @deprecated iOS 17.0
      */
-    get accelerationStructures(): $SDK30;
-    set accelerationStructures(value: $SDK30);
+    get accelerationStructures(): $SDK31;
+    set accelerationStructures(value: $SDK31);
     /**
      * var instanceBuffer: (any MTLBuffer)? { get set }
      * @availability iOS 12.0+
@@ -11716,6 +12881,12 @@ export declare class MPSInstanceAccelerationStructure extends MPSAccelerationStr
      */
     get transformType(): MPSTransformType;
     set transformType(value: MPSTransformType);
+    readonly $type: {
+        "c:objc(cs)MPSInstanceAccelerationStructure": true;
+        "c:objc(cs)MPSAccelerationStructure": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -11753,6 +12924,9 @@ export declare class MPSIntegerDivisionParams extends SDKHandle {
     static initDivisorRecipAddendShift(divisor: number, recip: number, addend: number, shift: number): MPSIntegerDivisionParams;
     /** init() */
     static init(): MPSIntegerDivisionParams;
+    readonly $type: {
+        "c:@SA@MPSIntegerDivisionParams": true;
+    };
 }
 /**
  * enum MPSIntersectionDataType
@@ -11775,6 +12949,9 @@ export declare class MPSIntersectionDistance extends SDKHandle {
     static initDistance(distance: number): MPSIntersectionDistance;
     /** init() */
     static init(): MPSIntersectionDistance;
+    readonly $type: {
+        "c:@SA@MPSIntersectionDistance": true;
+    };
 }
 /** struct MPSIntersectionDistancePrimitiveIndex */
 export declare class MPSIntersectionDistancePrimitiveIndex extends SDKHandle {
@@ -11788,6 +12965,9 @@ export declare class MPSIntersectionDistancePrimitiveIndex extends SDKHandle {
     static initDistancePrimitiveIndex(distance: number, primitiveIndex: number): MPSIntersectionDistancePrimitiveIndex;
     /** init() */
     static init(): MPSIntersectionDistancePrimitiveIndex;
+    readonly $type: {
+        "c:@SA@MPSIntersectionDistancePrimitiveIndex": true;
+    };
 }
 /** struct MPSIntersectionDistancePrimitiveIndexBufferIndex */
 export declare class MPSIntersectionDistancePrimitiveIndexBufferIndex extends SDKHandle {
@@ -11804,6 +12984,9 @@ export declare class MPSIntersectionDistancePrimitiveIndexBufferIndex extends SD
     static initDistancePrimitiveIndexBufferIndex(distance: number, primitiveIndex: number, bufferIndex: number): MPSIntersectionDistancePrimitiveIndexBufferIndex;
     /** init() */
     static init(): MPSIntersectionDistancePrimitiveIndexBufferIndex;
+    readonly $type: {
+        "c:@SA@MPSIntersectionDistancePrimitiveIndexBufferIndex": true;
+    };
 }
 /** struct MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates */
 export declare class MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates extends SDKHandle {
@@ -11823,6 +13006,9 @@ export declare class MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates
     static initDistancePrimitiveIndexBufferIndexCoordinates(distance: number, primitiveIndex: number, bufferIndex: number, coordinates: SDKHandle): MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates;
     /** init() */
     static init(): MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates;
+    readonly $type: {
+        "c:@SA@MPSIntersectionDistancePrimitiveIndexBufferIndexCoordinates": true;
+    };
 }
 /** struct MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex */
 export declare class MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex extends SDKHandle {
@@ -11842,6 +13028,9 @@ export declare class MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceInd
     static initDistancePrimitiveIndexBufferIndexInstanceIndex(distance: number, primitiveIndex: number, bufferIndex: number, instanceIndex: number): MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex;
     /** init() */
     static init(): MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex;
+    readonly $type: {
+        "c:@SA@MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndex": true;
+    };
 }
 /** struct MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates */
 export declare class MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates extends SDKHandle {
@@ -11864,6 +13053,9 @@ export declare class MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceInd
     static initDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates(distance: number, primitiveIndex: number, bufferIndex: number, instanceIndex: number, coordinates: SDKHandle): MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates;
     /** init() */
     static init(): MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates;
+    readonly $type: {
+        "c:@SA@MPSIntersectionDistancePrimitiveIndexBufferIndexInstanceIndexCoordinates": true;
+    };
 }
 /** struct MPSIntersectionDistancePrimitiveIndexCoordinates */
 export declare class MPSIntersectionDistancePrimitiveIndexCoordinates extends SDKHandle {
@@ -11880,6 +13072,9 @@ export declare class MPSIntersectionDistancePrimitiveIndexCoordinates extends SD
     static initDistancePrimitiveIndexCoordinates(distance: number, primitiveIndex: number, coordinates: SDKHandle): MPSIntersectionDistancePrimitiveIndexCoordinates;
     /** init() */
     static init(): MPSIntersectionDistancePrimitiveIndexCoordinates;
+    readonly $type: {
+        "c:@SA@MPSIntersectionDistancePrimitiveIndexCoordinates": true;
+    };
 }
 /** struct MPSIntersectionDistancePrimitiveIndexInstanceIndex */
 export declare class MPSIntersectionDistancePrimitiveIndexInstanceIndex extends SDKHandle {
@@ -11896,6 +13091,9 @@ export declare class MPSIntersectionDistancePrimitiveIndexInstanceIndex extends 
     static initDistancePrimitiveIndexInstanceIndex(distance: number, primitiveIndex: number, instanceIndex: number): MPSIntersectionDistancePrimitiveIndexInstanceIndex;
     /** init() */
     static init(): MPSIntersectionDistancePrimitiveIndexInstanceIndex;
+    readonly $type: {
+        "c:@SA@MPSIntersectionDistancePrimitiveIndexInstanceIndex": true;
+    };
 }
 /** struct MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates */
 export declare class MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates extends SDKHandle {
@@ -11915,6 +13113,9 @@ export declare class MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinat
     static initDistancePrimitiveIndexInstanceIndexCoordinates(distance: number, primitiveIndex: number, instanceIndex: number, coordinates: SDKHandle): MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates;
     /** init() */
     static init(): MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates;
+    readonly $type: {
+        "c:@SA@MPSIntersectionDistancePrimitiveIndexInstanceIndexCoordinates": true;
+    };
 }
 /**
  * enum MPSIntersectionType
@@ -12024,6 +13225,12 @@ export declare class MPSKeyedUnarchiver extends SDKHandle {
      * @availability iOS 11.3+
      */
     mpsMTLDevice(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSKeyedUnarchiver": true;
+        "c:objc(cs)NSKeyedUnarchiver": true;
+        "c:objc(cs)NSCoder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MPSLSTMDescriptor_base: Omit<typeof MPSRNNDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSRNNDescriptor);
 /**
@@ -12140,6 +13347,11 @@ export declare class MPSLSTMDescriptor extends MPSLSTMDescriptor_base {
      */
     get outputGateRecurrentWeights(): (SDKHandle) | null;
     set outputGateRecurrentWeights(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)MPSLSTMDescriptor": true;
+        "c:objc(cs)MPSRNNDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputFeatureChannels": true;
         "layerSequenceDirection": true;
@@ -12240,6 +13452,10 @@ export declare class MPSMatrix extends SDKHandle {
      * @availability iOS 10.0+
      */
     get rows(): number;
+    readonly $type: {
+        "c:objc(cs)MPSMatrix": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "columns": true;
         "data": true;
@@ -12252,12 +13468,11 @@ export declare class MPSMatrix extends SDKHandle {
         "rows": true;
     };
 }
-declare const MPSMatrixUnaryKernel_base: Omit<typeof MPSKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSMatrixUnaryKernel
  * @availability iOS 11.0+
  */
-export declare class MPSMatrixUnaryKernel extends MPSMatrixUnaryKernel_base {
+export declare class MPSMatrixUnaryKernel extends MPSKernel {
     /** init() */
     static init(): MPSMatrixUnaryKernel;
     /**
@@ -12284,6 +13499,11 @@ export declare class MPSMatrixUnaryKernel extends MPSMatrixUnaryKernel_base {
      */
     get sourceMatrixOrigin(): _Metal_MTLOrigin;
     set sourceMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixUnaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12294,7 +13514,7 @@ export declare class MPSMatrixUnaryKernel extends MPSMatrixUnaryKernel_base {
         "sourceMatrixOrigin": true;
     };
 }
-declare const MPSMatrixBatchNormalization_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
+declare const MPSMatrixBatchNormalization_base: Omit<typeof MPSMatrixUnaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
 /**
  * class MPSMatrixBatchNormalization
  * @availability iOS 12.0+
@@ -12310,8 +13530,6 @@ export declare class MPSMatrixBatchNormalization extends MPSMatrixBatchNormaliza
      * @availability iOS 12.0+
      */
     encode(commandBuffer: SDKHandle, inputMatrix: MPSMatrix, meanVector: MPSVector, varianceVector: MPSVector, gammaVector: (MPSVector) | null, betaVector: (MPSVector) | null, resultMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixBatchNormalization;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -12371,6 +13589,12 @@ export declare class MPSMatrixBatchNormalization extends MPSMatrixBatchNormaliza
      */
     get sourceNumberOfFeatureVectors(): number;
     set sourceNumberOfFeatureVectors(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixBatchNormalization": true;
+        "c:objc(cs)MPSMatrixUnaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12385,12 +13609,11 @@ export declare class MPSMatrixBatchNormalization extends MPSMatrixBatchNormaliza
         "sourceNumberOfFeatureVectors": true;
     };
 }
-declare const MPSMatrixBinaryKernel_base: Omit<typeof MPSKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSMatrixBinaryKernel
  * @availability iOS 11.0+
  */
-export declare class MPSMatrixBinaryKernel extends MPSMatrixBinaryKernel_base {
+export declare class MPSMatrixBinaryKernel extends MPSKernel {
     /** init() */
     static init(): MPSMatrixBinaryKernel;
     /**
@@ -12423,6 +13646,11 @@ export declare class MPSMatrixBinaryKernel extends MPSMatrixBinaryKernel_base {
      */
     get secondarySourceMatrixOrigin(): _Metal_MTLOrigin;
     set secondarySourceMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12434,7 +13662,7 @@ export declare class MPSMatrixBinaryKernel extends MPSMatrixBinaryKernel_base {
         "secondarySourceMatrixOrigin": true;
     };
 }
-declare const MPSMatrixBatchNormalizationGradient_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
+declare const MPSMatrixBatchNormalizationGradient_base: Omit<typeof MPSMatrixBinaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
  * class MPSMatrixBatchNormalizationGradient
  * @availability iOS 12.0+
@@ -12450,8 +13678,6 @@ export declare class MPSMatrixBatchNormalizationGradient extends MPSMatrixBatchN
      * @availability iOS 12.0+
      */
     encode(commandBuffer: SDKHandle, gradientMatrix: MPSMatrix, inputMatrix: MPSMatrix, meanVector: MPSVector, varianceVector: MPSVector, gammaVector: (MPSVector) | null, betaVector: (MPSVector) | null, resultGradientForDataMatrix: MPSMatrix, resultGradientForGammaVector?: (MPSVector) | null, resultGradientForBetaVector?: (MPSVector) | null): void;
-    /** init() */
-    static init(): MPSMatrixBatchNormalizationGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -12505,6 +13731,12 @@ export declare class MPSMatrixBatchNormalizationGradient extends MPSMatrixBatchN
      */
     get sourceNumberOfFeatureVectors(): number;
     set sourceNumberOfFeatureVectors(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixBatchNormalizationGradient": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12519,7 +13751,7 @@ export declare class MPSMatrixBatchNormalizationGradient extends MPSMatrixBatchN
         "sourceNumberOfFeatureVectors": true;
     };
 }
-declare const MPSMatrixCopy_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSMatrixCopy_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSMatrixCopy
  * @availability iOS 11.0+
@@ -12535,8 +13767,6 @@ export declare class MPSMatrixCopy extends MPSMatrixCopy_base {
      * @availability iOS 11.0+
      */
     encodeCommandBufferCopyDescriptorRowPermuteIndicesRowPermuteOffsetColumnPermuteIndicesColumnPermuteOffset(commandBuffer: SDKHandle, copyDescriptor: MPSMatrixCopyDescriptor, rowPermuteIndices: (MPSVector) | null, rowPermuteOffset: number, columnPermuteIndices: (MPSVector) | null, columnPermuteOffset: number): void;
-    /** init() */
-    static init(): MPSMatrixCopy;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -12567,6 +13797,11 @@ export declare class MPSMatrixCopy extends MPSMatrixCopy_base {
      * @availability iOS 11.0+
      */
     get sourcesAreTransposed(): boolean;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixCopy": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12602,6 +13837,10 @@ export declare class MPSMatrixCopyDescriptor extends SDKHandle {
      * @availability iOS 11.0+
      */
     setCopyOperationAt(index: number, sourceMatrix: MPSMatrix, destinationMatrix: MPSMatrix, offsets: MPSMatrixCopyOffsets): void;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixCopyDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** struct MPSMatrixCopyOffsets */
 export declare class MPSMatrixCopyOffsets extends SDKHandle {
@@ -12621,8 +13860,11 @@ export declare class MPSMatrixCopyOffsets extends SDKHandle {
     static initSourceRowOffsetSourceColumnOffsetDestinationRowOffsetDestinationColumnOffset(sourceRowOffset: number, sourceColumnOffset: number, destinationRowOffset: number, destinationColumnOffset: number): MPSMatrixCopyOffsets;
     /** init() */
     static init(): MPSMatrixCopyOffsets;
+    readonly $type: {
+        "c:@SA@MPSMatrixCopyOffsets": true;
+    };
 }
-declare const MPSMatrixCopyToImage_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSMatrixCopyToImage_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSMatrixCopyToImage
  * @availability iOS 12.0+
@@ -12638,8 +13880,6 @@ export declare class MPSMatrixCopyToImage extends MPSMatrixCopyToImage_base {
      * @availability iOS 12.0+
      */
     encode(commandBuffer: SDKHandle, sourceMatrix: MPSMatrix, destinationImage: MPSImage): void;
-    /** init() */
-    static init(): MPSMatrixCopyToImage;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -12667,6 +13907,11 @@ export declare class MPSMatrixCopyToImage extends MPSMatrixCopyToImage_base {
      */
     get sourceMatrixOrigin(): _Metal_MTLOrigin;
     set sourceMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixCopyToImage": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12687,13 +13932,17 @@ export declare class MPSMatrixDecompositionCholesky extends MPSMatrixDecompositi
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, sourceMatrix: MPSMatrix, resultMatrix: MPSMatrix, status?: (SDKHandle) | null): void;
-    /** init() */
-    static init(): MPSMatrixDecompositionCholesky;
     /**
      * init(device: any MTLDevice, lower: Bool, order: Int)
      * @availability iOS 11.0+
      */
-    static initDeviceLowerOrder(device: SDKHandle, lower: boolean, order: number): MPSMatrixDecompositionCholesky;
+    static init(device: SDKHandle, lower: boolean, order: number): MPSMatrixDecompositionCholesky;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixDecompositionCholesky": true;
+        "c:objc(cs)MPSMatrixUnaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12715,13 +13964,17 @@ export declare class MPSMatrixDecompositionLU extends MPSMatrixDecompositionLU_b
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, sourceMatrix: MPSMatrix, resultMatrix: MPSMatrix, pivotIndices: MPSMatrix, status?: (SDKHandle) | null): void;
-    /** init() */
-    static init(): MPSMatrixDecompositionLU;
     /**
      * init(device: any MTLDevice, rows: Int, columns: Int)
      * @availability iOS 11.0+
      */
-    static initDeviceRowsColumns(device: SDKHandle, rows: number, columns: number): MPSMatrixDecompositionLU;
+    static init(device: SDKHandle, rows: number, columns: number): MPSMatrixDecompositionLU;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixDecompositionLU": true;
+        "c:objc(cs)MPSMatrixUnaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12770,8 +14023,6 @@ export declare class MPSMatrixDescriptor extends SDKHandle {
      * @deprecated iOS 11.0
      */
     static rowBytesFromColumnsDataType(columns: number, dataType: MPSDataType): number;
-    /** init() */
-    static init(): MPSMatrixDescriptor;
     /**
      * var columns: Int { get set }
      * @availability iOS 10.0+
@@ -12806,6 +14057,10 @@ export declare class MPSMatrixDescriptor extends SDKHandle {
      */
     get rows(): number;
     set rows(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "columns": true;
         "dataType": true;
@@ -12815,7 +14070,7 @@ export declare class MPSMatrixDescriptor extends SDKHandle {
         "rows": true;
     };
 }
-declare const MPSMatrixFindTopK_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
+declare const MPSMatrixFindTopK_base: Omit<typeof MPSMatrixUnaryKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
 /**
  * class MPSMatrixFindTopK
  * @availability iOS 11.3+
@@ -12831,8 +14086,6 @@ export declare class MPSMatrixFindTopK extends MPSMatrixFindTopK_base {
      * @availability iOS 11.3+
      */
     encode(commandBuffer: SDKHandle, inputMatrix: MPSMatrix, resultIndexMatrix: MPSMatrix, resultValueMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixFindTopK;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -12867,6 +14120,12 @@ export declare class MPSMatrixFindTopK extends MPSMatrixFindTopK_base {
      */
     get sourceRows(): number;
     set sourceRows(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixFindTopK": true;
+        "c:objc(cs)MPSMatrixUnaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12881,7 +14140,7 @@ export declare class MPSMatrixFindTopK extends MPSMatrixFindTopK_base {
         "sourceRows": true;
     };
 }
-declare const MPSMatrixFullyConnected_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
+declare const MPSMatrixFullyConnected_base: Omit<typeof MPSMatrixBinaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
  * class MPSMatrixFullyConnected
  * @availability iOS 11.0+
@@ -12897,8 +14156,6 @@ export declare class MPSMatrixFullyConnected extends MPSMatrixFullyConnected_bas
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, inputMatrix: MPSMatrix, weightMatrix: MPSMatrix, biasVector: (MPSVector) | null, resultMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixFullyConnected;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -12958,6 +14215,12 @@ export declare class MPSMatrixFullyConnected extends MPSMatrixFullyConnected_bas
      */
     get sourceOutputFeatureChannels(): number;
     set sourceOutputFeatureChannels(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixFullyConnected": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -12973,7 +14236,7 @@ export declare class MPSMatrixFullyConnected extends MPSMatrixFullyConnected_bas
         "sourceOutputFeatureChannels": true;
     };
 }
-declare const MPSMatrixFullyConnectedGradient_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
+declare const MPSMatrixFullyConnectedGradient_base: Omit<typeof MPSMatrixBinaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
  * class MPSMatrixFullyConnectedGradient
  * @availability iOS 12.0+
@@ -12994,8 +14257,6 @@ export declare class MPSMatrixFullyConnectedGradient extends MPSMatrixFullyConne
      * @availability iOS 12.0+
      */
     encodeForWeightsAndBias(commandBuffer: SDKHandle, gradientMatrix: MPSMatrix, inputMatrix: MPSMatrix, resultGradientForWeightMatrix: MPSMatrix, resultGradientForBiasVector?: (MPSVector) | null): void;
-    /** init() */
-    static init(): MPSMatrixFullyConnectedGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -13030,6 +14291,12 @@ export declare class MPSMatrixFullyConnectedGradient extends MPSMatrixFullyConne
      */
     get sourceOutputFeatureChannels(): number;
     set sourceOutputFeatureChannels(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixFullyConnectedGradient": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13045,7 +14312,7 @@ export declare class MPSMatrixFullyConnectedGradient extends MPSMatrixFullyConne
         "sourceOutputFeatureChannels": true;
     };
 }
-declare const MPSMatrixSoftMax_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
+declare const MPSMatrixSoftMax_base: Omit<typeof MPSMatrixUnaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
 /**
  * class MPSMatrixSoftMax
  * @availability iOS 11.0+
@@ -13061,8 +14328,6 @@ export declare class MPSMatrixSoftMax extends MPSMatrixSoftMax_base {
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, inputMatrix: MPSMatrix, resultMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixSoftMax;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -13085,6 +14350,12 @@ export declare class MPSMatrixSoftMax extends MPSMatrixSoftMax_base {
      */
     get sourceRows(): number;
     set sourceRows(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixSoftMax": true;
+        "c:objc(cs)MPSMatrixUnaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13105,6 +14376,13 @@ declare const MPSMatrixLogSoftMax_base: Omit<typeof MPSMatrixSoftMax, "init" | "
 export declare class MPSMatrixLogSoftMax extends MPSMatrixLogSoftMax_base {
     /** init() */
     static init(): MPSMatrixLogSoftMax;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixLogSoftMax": true;
+        "c:objc(cs)MPSMatrixSoftMax": true;
+        "c:objc(cs)MPSMatrixUnaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13117,7 +14395,7 @@ export declare class MPSMatrixLogSoftMax extends MPSMatrixLogSoftMax_base {
         "sourceRows": true;
     };
 }
-declare const MPSMatrixSoftMaxGradient_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
+declare const MPSMatrixSoftMaxGradient_base: Omit<typeof MPSMatrixBinaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
  * class MPSMatrixSoftMaxGradient
  * @availability iOS 12.0+
@@ -13133,8 +14411,6 @@ export declare class MPSMatrixSoftMaxGradient extends MPSMatrixSoftMaxGradient_b
      * @availability iOS 12.0+
      */
     encode(commandBuffer: SDKHandle, gradientMatrix: MPSMatrix, forwardOutputMatrix: MPSMatrix, resultMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixSoftMaxGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -13157,6 +14433,12 @@ export declare class MPSMatrixSoftMaxGradient extends MPSMatrixSoftMaxGradient_b
      */
     get sourceRows(): number;
     set sourceRows(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixSoftMaxGradient": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13178,6 +14460,13 @@ declare const MPSMatrixLogSoftMaxGradient_base: Omit<typeof MPSMatrixSoftMaxGrad
 export declare class MPSMatrixLogSoftMaxGradient extends MPSMatrixLogSoftMaxGradient_base {
     /** init() */
     static init(): MPSMatrixLogSoftMaxGradient;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixLogSoftMaxGradient": true;
+        "c:objc(cs)MPSMatrixSoftMaxGradient": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13191,19 +14480,16 @@ export declare class MPSMatrixLogSoftMaxGradient extends MPSMatrixLogSoftMaxGrad
         "sourceRows": true;
     };
 }
-declare const MPSMatrixMultiplication_base: Omit<typeof MPSKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSMatrixMultiplication
  * @availability iOS 10.0+
  */
-export declare class MPSMatrixMultiplication extends MPSMatrixMultiplication_base {
+export declare class MPSMatrixMultiplication extends MPSKernel {
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, leftMatrix: MPSMatrix, rightMatrix: MPSMatrix, resultMatrix: MPSMatrix)
      * @availability iOS 10.0+
      */
     encode(commandBuffer: SDKHandle, leftMatrix: MPSMatrix, rightMatrix: MPSMatrix, resultMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixMultiplication;
     /**
      * init(device: any MTLDevice, resultRows: Int, resultColumns: Int, interiorColumns: Int)
      * @availability iOS 11.0+
@@ -13244,6 +14530,11 @@ export declare class MPSMatrixMultiplication extends MPSMatrixMultiplication_bas
      */
     get rightMatrixOrigin(): _Metal_MTLOrigin;
     set rightMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixMultiplication": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13255,7 +14546,7 @@ export declare class MPSMatrixMultiplication extends MPSMatrixMultiplication_bas
         "rightMatrixOrigin": true;
     };
 }
-declare const MPSMatrixNeuron_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
+declare const MPSMatrixNeuron_base: Omit<typeof MPSMatrixUnaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
 /**
  * class MPSMatrixNeuron
  * @availability iOS 11.0+
@@ -13271,8 +14562,6 @@ export declare class MPSMatrixNeuron extends MPSMatrixNeuron_base {
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, inputMatrix: MPSMatrix, biasVector: (MPSVector) | null, resultMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixNeuron;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -13331,6 +14620,12 @@ export declare class MPSMatrixNeuron extends MPSMatrixNeuron_base {
      */
     get sourceNumberOfFeatureVectors(): number;
     set sourceNumberOfFeatureVectors(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixNeuron": true;
+        "c:objc(cs)MPSMatrixUnaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13344,7 +14639,7 @@ export declare class MPSMatrixNeuron extends MPSMatrixNeuron_base {
         "sourceNumberOfFeatureVectors": true;
     };
 }
-declare const MPSMatrixNeuronGradient_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
+declare const MPSMatrixNeuronGradient_base: Omit<typeof MPSMatrixBinaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
  * class MPSMatrixNeuronGradient
  * @availability iOS 12.0+
@@ -13360,8 +14655,6 @@ export declare class MPSMatrixNeuronGradient extends MPSMatrixNeuronGradient_bas
      * @availability iOS 12.0+
      */
     encode(commandBuffer: SDKHandle, gradientMatrix: MPSMatrix, inputMatrix: MPSMatrix, biasVector: (MPSVector) | null, resultGradientForDataMatrix: MPSMatrix, resultGradientForBiasVector?: (MPSVector) | null): void;
-    /** init() */
-    static init(): MPSMatrixNeuronGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -13420,6 +14713,12 @@ export declare class MPSMatrixNeuronGradient extends MPSMatrixNeuronGradient_bas
      */
     get sourceNumberOfFeatureVectors(): number;
     set sourceNumberOfFeatureVectors(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixNeuronGradient": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13446,13 +14745,15 @@ export declare class MPSMatrixOffset extends SDKHandle {
     static initRowOffsetColumnOffset(rowOffset: number, columnOffset: number): MPSMatrixOffset;
     /** init() */
     static init(): MPSMatrixOffset;
+    readonly $type: {
+        "c:@SA@MPSMatrixOffset": true;
+    };
 }
-declare const MPSMatrixRandom_base: Omit<typeof MPSKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSMatrixRandom
  * @availability iOS 13.0+
  */
-export declare class MPSMatrixRandom extends MPSMatrixRandom_base {
+export declare class MPSMatrixRandom extends MPSKernel {
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, destinationMatrix: MPSMatrix)
      * @availability iOS 13.0+
@@ -13487,6 +14788,11 @@ export declare class MPSMatrixRandom extends MPSMatrixRandom_base {
      * @availability iOS 13.0+
      */
     get distributionType(): MPSMatrixRandomDistribution;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixRandom": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13575,6 +14881,10 @@ export declare class MPSMatrixRandomDistributionDescriptor extends SDKHandle {
      */
     get standardDeviation(): number;
     set standardDeviation(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSMatrixRandomDistributionDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "distributionType": true;
         "maximum": true;
@@ -13583,14 +14893,12 @@ export declare class MPSMatrixRandomDistributionDescriptor extends SDKHandle {
         "standardDeviation": true;
     };
 }
-declare const MPSMatrixRandomMTGP32_base: Omit<typeof MPSMatrixRandom, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixRandom);
+declare const MPSMatrixRandomMTGP32_base: Omit<typeof MPSMatrixRandom, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixRandom);
 /**
  * class MPSMatrixRandomMTGP32
  * @availability iOS 13.0+
  */
 export declare class MPSMatrixRandomMTGP32 extends MPSMatrixRandomMTGP32_base {
-    /** init() */
-    static init(): MPSMatrixRandomMTGP32;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -13616,6 +14924,12 @@ export declare class MPSMatrixRandomMTGP32 extends MPSMatrixRandomMTGP32_base {
      * @availability iOS 13.0+
      */
     synchronizeState(commandBuffer: SDKHandle): void;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixRandomMTGP32": true;
+        "c:objc(cs)MPSMatrixRandom": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13626,14 +14940,12 @@ export declare class MPSMatrixRandomMTGP32 extends MPSMatrixRandomMTGP32_base {
         "distributionType": true;
     };
 }
-declare const MPSMatrixRandomPhilox_base: Omit<typeof MPSMatrixRandom, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixRandom);
+declare const MPSMatrixRandomPhilox_base: Omit<typeof MPSMatrixRandom, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixRandom);
 /**
  * class MPSMatrixRandomPhilox
  * @availability iOS 13.0+
  */
 export declare class MPSMatrixRandomPhilox extends MPSMatrixRandomPhilox_base {
-    /** init() */
-    static init(): MPSMatrixRandomPhilox;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -13654,6 +14966,12 @@ export declare class MPSMatrixRandomPhilox extends MPSMatrixRandomPhilox_base {
      * @availability iOS 13.0+
      */
     static initDeviceDestinationDataTypeSeedDistributionDescriptor(device: SDKHandle, destinationDataType: MPSDataType, seed: number, distributionDescriptor: MPSMatrixRandomDistributionDescriptor): MPSMatrixRandomPhilox;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixRandomPhilox": true;
+        "c:objc(cs)MPSMatrixRandom": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13675,13 +14993,17 @@ export declare class MPSMatrixSolveCholesky extends MPSMatrixSolveCholesky_base 
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, sourceMatrix: MPSMatrix, rightHandSideMatrix: MPSMatrix, solutionMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixSolveCholesky;
     /**
      * init(device: any MTLDevice, upper: Bool, order: Int, numberOfRightHandSides: Int)
      * @availability iOS 11.0+
      */
-    static initDeviceUpperOrderNumberOfRightHandSides(device: SDKHandle, upper: boolean, order: number, numberOfRightHandSides: number): MPSMatrixSolveCholesky;
+    static init(device: SDKHandle, upper: boolean, order: number, numberOfRightHandSides: number): MPSMatrixSolveCholesky;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixSolveCholesky": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13704,13 +15026,17 @@ export declare class MPSMatrixSolveLU extends MPSMatrixSolveLU_base {
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, sourceMatrix: MPSMatrix, rightHandSideMatrix: MPSMatrix, pivotIndices: MPSMatrix, solutionMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixSolveLU;
     /**
      * init(device: any MTLDevice, transpose: Bool, order: Int, numberOfRightHandSides: Int)
      * @availability iOS 11.0+
      */
-    static initDeviceTransposeOrderNumberOfRightHandSides(device: SDKHandle, transpose: boolean, order: number, numberOfRightHandSides: number): MPSMatrixSolveLU;
+    static init(device: SDKHandle, transpose: boolean, order: number, numberOfRightHandSides: number): MPSMatrixSolveLU;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixSolveLU": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13733,13 +15059,17 @@ export declare class MPSMatrixSolveTriangular extends MPSMatrixSolveTriangular_b
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, sourceMatrix: MPSMatrix, rightHandSideMatrix: MPSMatrix, solutionMatrix: MPSMatrix): void;
-    /** init() */
-    static init(): MPSMatrixSolveTriangular;
     /**
      * init(device: any MTLDevice, right: Bool, upper: Bool, transpose: Bool, unit: Bool, order: Int, numberOfRightHandSides: Int, alpha: Double)
      * @availability iOS 11.0+
      */
-    static initDeviceRightUpperTransposeUnitOrderNumberOfRightHandSidesAlpha(device: SDKHandle, right: boolean, upper: boolean, transpose: boolean, unit: boolean, order: number, numberOfRightHandSides: number, alpha: number): MPSMatrixSolveTriangular;
+    static init(device: SDKHandle, right: boolean, upper: boolean, transpose: boolean, unit: boolean, order: number, numberOfRightHandSides: number, alpha: number): MPSMatrixSolveTriangular;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixSolveTriangular": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13751,7 +15081,7 @@ export declare class MPSMatrixSolveTriangular extends MPSMatrixSolveTriangular_b
         "secondarySourceMatrixOrigin": true;
     };
 }
-declare const MPSMatrixSum_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSMatrixSum_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSMatrixSum
  * @availability iOS 11.0+
@@ -13762,8 +15092,6 @@ export declare class MPSMatrixSum extends MPSMatrixSum_base {
      * @availability iOS 11.0+
      */
     encode(buffer: SDKHandle, sourceMatrices: Array<MPSMatrix>, resultMatrix: MPSMatrix, scaleVector: (MPSVector) | null, offsetVector: (MPSVector) | null, biasVector: (MPSVector) | null, startIndex: number): void;
-    /** init() */
-    static init(): MPSMatrixSum;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -13825,6 +15153,11 @@ export declare class MPSMatrixSum extends MPSMatrixSum_base {
      * @availability iOS 11.0+
      */
     get transpose(): boolean;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixSum": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13839,19 +15172,16 @@ export declare class MPSMatrixSum extends MPSMatrixSum_base {
         "transpose": true;
     };
 }
-declare const MPSMatrixVectorMultiplication_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixBinaryKernel);
 /**
  * class MPSMatrixVectorMultiplication
  * @availability iOS 11.0+
  */
-export declare class MPSMatrixVectorMultiplication extends MPSMatrixVectorMultiplication_base {
+export declare class MPSMatrixVectorMultiplication extends MPSMatrixBinaryKernel {
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, inputMatrix: MPSMatrix, inputVector: MPSVector, resultVector: MPSVector)
      * @availability iOS 11.0+
      */
     encode(commandBuffer: SDKHandle, inputMatrix: MPSMatrix, inputVector: MPSVector, resultVector: MPSVector): void;
-    /** init() */
-    static init(): MPSMatrixVectorMultiplication;
     /**
      * init(device: any MTLDevice, rows: Int, columns: Int)
      * @availability iOS 11.0+
@@ -13862,6 +15192,12 @@ export declare class MPSMatrixVectorMultiplication extends MPSMatrixVectorMultip
      * @availability iOS 11.0+
      */
     static initDeviceTransposeRowsColumnsAlphaBeta(device: SDKHandle, transpose: boolean, rows: number, columns: number, alpha: number, beta: number): MPSMatrixVectorMultiplication;
+    readonly $type: {
+        "c:objc(cs)MPSMatrixVectorMultiplication": true;
+        "c:objc(cs)MPSMatrixBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -13902,7 +15238,7 @@ export declare class MPSNDArray extends SDKHandle {
      * func arrayView(withShape shape: [NSNumber]?, strides: [NSNumber]) -> MPSNDArray?
      * @availability iOS 18.0+
      */
-    arrayViewWithShapeStrides(shape: (Array<_Foundation_NSNumber>) | null, strides: $SDK33): (MPSNDArray) | null;
+    arrayViewWithShapeStrides(shape: (Array<_Foundation_NSNumber>) | null, strides: $SDK34): (MPSNDArray) | null;
     /**
      * func descriptor() -> MPSNDArrayDescriptor
      * @availability iOS 13.0+
@@ -14004,6 +15340,10 @@ export declare class MPSNDArray extends SDKHandle {
      * @availability iOS 13.0+
      */
     get parent(): (MPSNDArray) | null;
+    readonly $type: {
+        "c:objc(cs)MPSNDArray": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
         "dataTypeSize": true;
@@ -14013,7 +15353,7 @@ export declare class MPSNDArray extends SDKHandle {
         "parent": true;
     };
 }
-declare const MPSNDArrayMultiaryBase_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
+declare const MPSNDArrayMultiaryBase_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
 /**
  * class MPSNDArrayMultiaryBase
  * @availability iOS 13.0+
@@ -14046,8 +15386,6 @@ export declare class MPSNDArrayMultiaryBase extends MPSNDArrayMultiaryBase_base 
      * @availability iOS 13.0+
      */
     encode(coder: _Foundation_NSCoder): void;
-    /** init() */
-    static init(): MPSNDArrayMultiaryBase;
     /**
      * init(coder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -14087,6 +15425,11 @@ export declare class MPSNDArrayMultiaryBase extends MPSNDArrayMultiaryBase_base 
      */
     get destinationArrayAllocator(): SDKHandle;
     set destinationArrayAllocator(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14094,7 +15437,7 @@ export declare class MPSNDArrayMultiaryBase extends MPSNDArrayMultiaryBase_base 
         "destinationArrayAllocator": true;
     };
 }
-declare const MPSNDArrayMultiaryKernel_base: Omit<typeof MPSNDArrayMultiaryBase, "init" | "initCoderDevice" | "initDeviceSourceCount" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryBase);
+declare const MPSNDArrayMultiaryKernel_base: Omit<typeof MPSNDArrayMultiaryBase, "initCoderDevice" | "initDeviceSourceCount" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryBase);
 /**
  * class MPSNDArrayMultiaryKernel
  * @availability iOS 13.0+
@@ -14130,8 +15473,6 @@ export declare class MPSNDArrayMultiaryKernel extends MPSNDArrayMultiaryKernel_b
      * @availability iOS 18.0+
      */
     encodeToCommandBufferSourceArraysDestinationArray(encoder: (SDKHandle) | null, commandBuffer: SDKHandle, sourceArrays: Array<MPSNDArray>, destination: MPSNDArray): void;
-    /** init() */
-    static init(): MPSNDArrayMultiaryKernel;
     /**
      * init(coder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -14142,6 +15483,12 @@ export declare class MPSNDArrayMultiaryKernel extends MPSNDArrayMultiaryKernel_b
      * @availability iOS 13.0+
      */
     static initDeviceSourceCount(device: SDKHandle, count: number): MPSNDArrayMultiaryKernel;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14149,19 +15496,23 @@ export declare class MPSNDArrayMultiaryKernel extends MPSNDArrayMultiaryKernel_b
         "destinationArrayAllocator": true;
     };
 }
-declare const MPSNDArrayAffineInt4Dequantize_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
 /**
  * class MPSNDArrayAffineInt4Dequantize
  * @availability iOS 18.0+
  */
-export declare class MPSNDArrayAffineInt4Dequantize extends MPSNDArrayAffineInt4Dequantize_base {
-    /** init() */
-    static init(): MPSNDArrayAffineInt4Dequantize;
+export declare class MPSNDArrayAffineInt4Dequantize extends MPSNDArrayMultiaryKernel {
     /**
      * init(device: any MTLDevice, quantizationDescriptor: MPSNDArrayAffineQuantizationDescriptor)
      * @availability iOS 18.0+
      */
-    static initDeviceQuantizationDescriptor(device: SDKHandle, quantizationDescriptor: MPSNDArrayAffineQuantizationDescriptor): MPSNDArrayAffineInt4Dequantize;
+    static init(device: SDKHandle, quantizationDescriptor: MPSNDArrayAffineQuantizationDescriptor): MPSNDArrayAffineInt4Dequantize;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayAffineInt4Dequantize": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14186,6 +15537,10 @@ export declare class MPSNDArrayQuantizationDescriptor extends SDKHandle {
      * @availability iOS 18.0+
      */
     get quantizationScheme(): MPSNDArrayQuantizationScheme;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayQuantizationDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "quantizationDataType": true;
         "quantizationScheme": true;
@@ -14225,6 +15580,11 @@ export declare class MPSNDArrayAffineQuantizationDescriptor extends MPSNDArrayAf
      */
     get implicitZeroPoint(): boolean;
     set implicitZeroPoint(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayAffineQuantizationDescriptor": true;
+        "c:objc(cs)MPSNDArrayQuantizationDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "quantizationDataType": true;
         "quantizationScheme": true;
@@ -14235,7 +15595,7 @@ export declare class MPSNDArrayAffineQuantizationDescriptor extends MPSNDArrayAf
 }
 /** protocol MPSNDArrayAllocator : NSCopying, NSSecureCoding, NSObjectProtocol */
 export interface MPSNDArrayAllocator {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
     /**
@@ -14244,7 +15604,7 @@ export interface MPSNDArrayAllocator {
      */
     "arrayForArrayDescriptorKernel"?: (arg0: SDKHandle, arg1: MPSNDArrayDescriptor, arg2: MPSKernel) => MPSNDArray;
 }
-declare const MPSNDArrayBinaryKernel_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
+declare const MPSNDArrayBinaryKernel_base: Omit<typeof MPSNDArrayMultiaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
 /**
  * class MPSNDArrayBinaryKernel
  * @availability iOS 13.0+
@@ -14275,8 +15635,6 @@ export declare class MPSNDArrayBinaryKernel extends MPSNDArrayBinaryKernel_base 
             "outGradientState": (MPSState) | null;
         };
     };
-    /** init() */
-    static init(): MPSNDArrayBinaryKernel;
     /**
      * init(coder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -14347,6 +15705,13 @@ export declare class MPSNDArrayBinaryKernel extends MPSNDArrayBinaryKernel_base 
      * @deprecated iOS 14.0
      */
     get secondaryStrides(): MPSNDArrayOffsets;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayBinaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14364,7 +15729,7 @@ export declare class MPSNDArrayBinaryKernel extends MPSNDArrayBinaryKernel_base 
         "secondaryStrides": true;
     };
 }
-declare const MPSNDArrayMultiaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryBase, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryBase);
+declare const MPSNDArrayMultiaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryBase, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryBase);
 /**
  * class MPSNDArrayMultiaryGradientKernel
  * @availability iOS 13.0+
@@ -14380,8 +15745,6 @@ export declare class MPSNDArrayMultiaryGradientKernel extends MPSNDArrayMultiary
      * @availability iOS 13.0+
      */
     encodeToSourceArraysSourceGradientGradientStateDestinationArray(cmdBuf: SDKHandle, sources: Array<MPSNDArray>, gradient: MPSNDArray, state: MPSState, destination: MPSNDArray): void;
-    /** init() */
-    static init(): MPSNDArrayMultiaryGradientKernel;
     /**
      * init(coder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -14392,6 +15755,12 @@ export declare class MPSNDArrayMultiaryGradientKernel extends MPSNDArrayMultiary
      * @availability iOS 13.0+
      */
     static initDeviceSourceCountSourceGradientIndex(device: SDKHandle, count: number, sourceGradientIndex: number): MPSNDArrayMultiaryGradientKernel;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayMultiaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14399,7 +15768,7 @@ export declare class MPSNDArrayMultiaryGradientKernel extends MPSNDArrayMultiary
         "destinationArrayAllocator": true;
     };
 }
-declare const MPSNDArrayBinaryPrimaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryGradientKernel);
+declare const MPSNDArrayBinaryPrimaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryGradientKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryGradientKernel);
 /**
  * class MPSNDArrayBinaryPrimaryGradientKernel
  * @availability iOS 13.0+
@@ -14415,8 +15784,6 @@ export declare class MPSNDArrayBinaryPrimaryGradientKernel extends MPSNDArrayBin
      * @availability iOS 13.0+
      */
     encodeToPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray(cmdBuf: SDKHandle, primarySourceArray: MPSNDArray, secondarySourceArray: MPSNDArray, gradient: MPSNDArray, state: MPSState, destination: MPSNDArray): void;
-    /** init() */
-    static init(): MPSNDArrayBinaryPrimaryGradientKernel;
     /**
      * init(coder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -14427,6 +15794,13 @@ export declare class MPSNDArrayBinaryPrimaryGradientKernel extends MPSNDArrayBin
      * @availability iOS 13.0+
      */
     static initDevice(device: SDKHandle): MPSNDArrayBinaryPrimaryGradientKernel;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayBinaryPrimaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14434,7 +15808,7 @@ export declare class MPSNDArrayBinaryPrimaryGradientKernel extends MPSNDArrayBin
         "destinationArrayAllocator": true;
     };
 }
-declare const MPSNDArrayBinarySecondaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryGradientKernel);
+declare const MPSNDArrayBinarySecondaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryGradientKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryGradientKernel);
 /**
  * class MPSNDArrayBinarySecondaryGradientKernel
  * @availability iOS 13.0+
@@ -14450,8 +15824,6 @@ export declare class MPSNDArrayBinarySecondaryGradientKernel extends MPSNDArrayB
      * @availability iOS 13.0+
      */
     encodeToPrimarySourceArraySecondarySourceArraySourceGradientGradientStateDestinationArray(cmdBuf: SDKHandle, primarySourceArray: MPSNDArray, secondarySourceArray: MPSNDArray, gradient: MPSNDArray, state: MPSState, destination: MPSNDArray): void;
-    /** init() */
-    static init(): MPSNDArrayBinarySecondaryGradientKernel;
     /**
      * init(coder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -14462,6 +15834,13 @@ export declare class MPSNDArrayBinarySecondaryGradientKernel extends MPSNDArrayB
      * @availability iOS 13.0+
      */
     static initDevice(device: SDKHandle): MPSNDArrayBinarySecondaryGradientKernel;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayBinarySecondaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14483,7 +15862,7 @@ export declare class MPSNDArrayDescriptor extends SDKHandle {
      * convenience init(dataType: MPSDataType, shape: [NSNumber])
      * @availability iOS 13.0+
      */
-    static initDataTypeShape(dataType: MPSDataType, shape: $SDK33): MPSNDArrayDescriptor;
+    static initDataTypeShape(dataType: MPSDataType, shape: $SDK34): MPSNDArrayDescriptor;
     /**
      * func dimensionOrder() -> vector_uchar16
      * @availability iOS 13.0+
@@ -14493,7 +15872,7 @@ export declare class MPSNDArrayDescriptor extends SDKHandle {
      * func getShape() -> [NSNumber]
      * @availability iOS 18.0+
      */
-    getShape(): $SDK33;
+    getShape(): $SDK34;
     /**
      * func length(ofDimension dimensionIndex: Int) -> Int
      * @availability iOS 13.0+
@@ -14513,7 +15892,7 @@ export declare class MPSNDArrayDescriptor extends SDKHandle {
      * func reshape(withShape shape: [NSNumber])
      * @availability iOS 13.0+
      */
-    reshapeWithShape(shape: $SDK33): void;
+    reshapeWithShape(shape: $SDK34): void;
     /**
      * func sliceDimension(_ dimensionIndex: Int, withSubrange subRange: MPSDimensionSlice)
      * @availability iOS 13.0+
@@ -14547,18 +15926,21 @@ export declare class MPSNDArrayDescriptor extends SDKHandle {
      */
     get preferPackedRows(): boolean;
     set preferPackedRows(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
         "numberOfDimensions": true;
         "preferPackedRows": true;
     };
 }
-declare const MPSNDArrayGather_base: Omit<typeof MPSNDArrayBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayBinaryKernel);
 /**
  * class MPSNDArrayGather
  * @availability iOS 13.0+
  */
-export declare class MPSNDArrayGather extends MPSNDArrayGather_base {
+export declare class MPSNDArrayGather extends MPSNDArrayBinaryKernel {
     /** init() */
     static init(): MPSNDArrayGather;
     /**
@@ -14567,6 +15949,14 @@ export declare class MPSNDArrayGather extends MPSNDArrayGather_base {
      */
     get axis(): number;
     set axis(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayGather": true;
+        "c:objc(cs)MPSNDArrayBinaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14585,14 +15975,21 @@ export declare class MPSNDArrayGather extends MPSNDArrayGather_base {
         "axis": true;
     };
 }
-declare const MPSNDArrayGatherGradient_base: Omit<typeof MPSNDArrayBinaryPrimaryGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayBinaryPrimaryGradientKernel);
 /**
  * class MPSNDArrayGatherGradient
  * @availability iOS 13.0+
  */
-export declare class MPSNDArrayGatherGradient extends MPSNDArrayGatherGradient_base {
+export declare class MPSNDArrayGatherGradient extends MPSNDArrayBinaryPrimaryGradientKernel {
     /** init() */
     static init(): MPSNDArrayGatherGradient;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayGatherGradient": true;
+        "c:objc(cs)MPSNDArrayBinaryPrimaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14605,6 +16002,11 @@ export declare class MPSNDArrayGatherGradient extends MPSNDArrayGatherGradient_b
  * @availability iOS 13.0+
  */
 export declare class MPSNDArrayGradientState extends MPSState {
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -14618,6 +16020,12 @@ export declare class MPSNDArrayGradientState extends MPSState {
  * @availability iOS 13.0+
  */
 export declare class MPSNDArrayGatherGradientState extends MPSNDArrayGradientState {
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayGatherGradientState": true;
+        "c:objc(cs)MPSNDArrayGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -14626,7 +16034,7 @@ export declare class MPSNDArrayGatherGradientState extends MPSNDArrayGradientSta
         "resourceCount": true;
     };
 }
-declare const MPSNDArrayUnaryKernel_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSNDArrayMultiaryKernel, "dilationRates" | "edgeMode" | "kernelSizes" | "offsets" | "strides">);
+declare const MPSNDArrayUnaryKernel_base: Omit<typeof MPSNDArrayMultiaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSNDArrayMultiaryKernel, "dilationRates" | "edgeMode" | "kernelSizes" | "offsets" | "strides">);
 /**
  * class MPSNDArrayUnaryKernel
  * @availability iOS 13.0+
@@ -14657,8 +16065,6 @@ export declare class MPSNDArrayUnaryKernel extends MPSNDArrayUnaryKernel_base {
             "outGradientState": (MPSState) | null;
         };
     };
-    /** init() */
-    static init(): MPSNDArrayUnaryKernel;
     /**
      * init(coder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -14729,6 +16135,13 @@ export declare class MPSNDArrayUnaryKernel extends MPSNDArrayUnaryKernel_base {
      * @deprecated iOS 14.0
      */
     strides11981(sourceIndex: number): MPSNDArrayOffsets;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayUnaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14741,19 +16154,16 @@ export declare class MPSNDArrayUnaryKernel extends MPSNDArrayUnaryKernel_base {
         "strides": true;
     };
 }
-declare const MPSNDArrayIdentity_base: Omit<typeof MPSNDArrayUnaryKernel, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayUnaryKernel);
 /**
  * class MPSNDArrayIdentity
  * @availability iOS 18.0+
  */
-export declare class MPSNDArrayIdentity extends MPSNDArrayIdentity_base {
-    /** init() */
-    static init(): MPSNDArrayIdentity;
+export declare class MPSNDArrayIdentity extends MPSNDArrayUnaryKernel {
     /**
      * init(device: any MTLDevice)
      * @availability iOS 18.0+
      */
-    static initDevice(device: SDKHandle): MPSNDArrayIdentity;
+    static init(device: SDKHandle): MPSNDArrayIdentity;
     /**
      * func reshape(with cmdBuf: (any MTLCommandBuffer)?, sourceArray: MPSNDArray, dimensionCount numberOfDimensions: Int, dimensionSizes: UnsafeMutablePointer<Int>, destinationArray: MPSNDArray?) -> MPSNDArray?
      * @availability iOS 18.0+
@@ -14763,7 +16173,7 @@ export declare class MPSNDArrayIdentity extends MPSNDArrayIdentity_base {
      * func reshape(with cmdBuf: (any MTLCommandBuffer)?, sourceArray: MPSNDArray, shape: [NSNumber], destinationArray: MPSNDArray?) -> MPSNDArray?
      * @availability iOS 18.0+
      */
-    reshapeWithSourceArrayShapeDestinationArray(cmdBuf: (SDKHandle) | null, sourceArray: MPSNDArray, shape: $SDK33, destinationArray?: (MPSNDArray) | null): (MPSNDArray) | null;
+    reshapeWithSourceArrayShapeDestinationArray(cmdBuf: (SDKHandle) | null, sourceArray: MPSNDArray, shape: $SDK34, destinationArray?: (MPSNDArray) | null): (MPSNDArray) | null;
     /**
      * func reshape(with encoder: (any MTLComputeCommandEncoder)?, commandBuffer cmdBuf: (any MTLCommandBuffer)?, sourceArray: MPSNDArray, dimensionCount numberOfDimensions: Int, dimensionSizes: UnsafeMutablePointer<Int>, destinationArray: MPSNDArray?) -> MPSNDArray?
      * @availability iOS 18.0+
@@ -14773,12 +16183,20 @@ export declare class MPSNDArrayIdentity extends MPSNDArrayIdentity_base {
      * func reshape(with encoder: (any MTLComputeCommandEncoder)?, commandBuffer cmdBuf: (any MTLCommandBuffer)?, sourceArray: MPSNDArray, shape: [NSNumber], destinationArray: MPSNDArray?) -> MPSNDArray?
      * @availability iOS 18.0+
      */
-    reshapeWithCommandBufferSourceArrayShapeDestinationArray(encoder: (SDKHandle) | null, cmdBuf: (SDKHandle) | null, sourceArray: MPSNDArray, shape: $SDK33, destinationArray?: (MPSNDArray) | null): (MPSNDArray) | null;
+    reshapeWithCommandBufferSourceArrayShapeDestinationArray(encoder: (SDKHandle) | null, cmdBuf: (SDKHandle) | null, sourceArray: MPSNDArray, shape: $SDK34, destinationArray?: (MPSNDArray) | null): (MPSNDArray) | null;
     /**
      * func reshape(withSourceArray sourceArray: MPSNDArray, shape: [NSNumber]) -> MPSNDArray?
      * @availability iOS 27.0+
      */
-    reshapeWithSourceArrayShape(sourceArray: MPSNDArray, shape: $SDK33): (MPSNDArray) | null;
+    reshapeWithSourceArrayShape(sourceArray: MPSNDArray, shape: $SDK34): (MPSNDArray) | null;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayIdentity": true;
+        "c:objc(cs)MPSNDArrayUnaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14791,19 +16209,23 @@ export declare class MPSNDArrayIdentity extends MPSNDArrayIdentity_base {
         "strides": true;
     };
 }
-declare const MPSNDArrayLUTDequantize_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
 /**
  * class MPSNDArrayLUTDequantize
  * @availability iOS 18.0+
  */
-export declare class MPSNDArrayLUTDequantize extends MPSNDArrayLUTDequantize_base {
-    /** init() */
-    static init(): MPSNDArrayLUTDequantize;
+export declare class MPSNDArrayLUTDequantize extends MPSNDArrayMultiaryKernel {
     /**
      * init(device: any MTLDevice)
      * @availability iOS 18.0+
      */
-    static initDevice(device: SDKHandle): MPSNDArrayLUTDequantize;
+    static init(device: SDKHandle): MPSNDArrayLUTDequantize;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayLUTDequantize": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14811,14 +16233,11 @@ export declare class MPSNDArrayLUTDequantize extends MPSNDArrayLUTDequantize_bas
         "destinationArrayAllocator": true;
     };
 }
-declare const MPSNDArrayLUTQuantizationDescriptor_base: Omit<typeof MPSNDArrayQuantizationDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayQuantizationDescriptor);
 /**
  * class MPSNDArrayLUTQuantizationDescriptor
  * @availability iOS 18.0+
  */
-export declare class MPSNDArrayLUTQuantizationDescriptor extends MPSNDArrayLUTQuantizationDescriptor_base {
-    /** init() */
-    static init(): MPSNDArrayLUTQuantizationDescriptor;
+export declare class MPSNDArrayLUTQuantizationDescriptor extends MPSNDArrayQuantizationDescriptor {
     /**
      * init(dataType quantizationDataType: MPSDataType)
      * @availability iOS 18.0+
@@ -14829,17 +16248,21 @@ export declare class MPSNDArrayLUTQuantizationDescriptor extends MPSNDArrayLUTQu
      * @availability iOS 18.0+
      */
     static initDataTypeVectorAxis(quantizationDataType: MPSDataType, vectorAxis: number): MPSNDArrayLUTQuantizationDescriptor;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayLUTQuantizationDescriptor": true;
+        "c:objc(cs)MPSNDArrayQuantizationDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "quantizationDataType": true;
         "quantizationScheme": true;
     };
 }
-declare const MPSNDArrayMatrixMultiplication_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
 /**
  * class MPSNDArrayMatrixMultiplication
  * @availability iOS 13.0+
  */
-export declare class MPSNDArrayMatrixMultiplication extends MPSNDArrayMatrixMultiplication_base {
+export declare class MPSNDArrayMatrixMultiplication extends MPSNDArrayMultiaryKernel {
     /** init() */
     static init(): MPSNDArrayMatrixMultiplication;
     /**
@@ -14854,6 +16277,13 @@ export declare class MPSNDArrayMatrixMultiplication extends MPSNDArrayMatrixMult
      */
     get beta(): number;
     set beta(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayMatrixMultiplication": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14866,12 +16296,15 @@ export declare class MPSNDArrayMatrixMultiplication extends MPSNDArrayMatrixMult
 /** struct MPSNDArrayOffsets */
 export declare class MPSNDArrayOffsets extends SDKHandle {
     /** var dimensions: (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int) */
-    get dimensions(): $SDK34;
-    set dimensions(value: $SDK34);
+    get dimensions(): $SDK35;
+    set dimensions(value: $SDK35);
     /** init(dimensions: (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int)) */
-    static initDimensions(dimensions: $SDK34): MPSNDArrayOffsets;
+    static initDimensions(dimensions: $SDK35): MPSNDArrayOffsets;
     /** init() */
     static init(): MPSNDArrayOffsets;
+    readonly $type: {
+        "c:@SA@MPSNDArrayOffsets": true;
+    };
 }
 /** struct MPSNDArrayQuantizationScheme */
 export type MPSNDArrayQuantizationScheme = Array<"none" | "typeAffine" | "typeLUT">;
@@ -14900,13 +16333,19 @@ declare const MPSNDArrayQuantizedMatrixMultiplication_base: Omit<typeof MPSNDArr
  * @availability iOS 18.0+
  */
 export declare class MPSNDArrayQuantizedMatrixMultiplication extends MPSNDArrayQuantizedMatrixMultiplication_base {
-    /** init() */
-    static init(): MPSNDArrayQuantizedMatrixMultiplication;
     /**
      * init(device: any MTLDevice, leftQuantizationDescriptor: MPSNDArrayQuantizationDescriptor?, rightQuantizationDescriptor: MPSNDArrayQuantizationDescriptor?)
      * @availability iOS 18.0+
      */
-    static initDeviceLeftQuantizationDescriptorRightQuantizationDescriptor(device: SDKHandle, leftQuantizationDescriptor?: $SDK35, rightQuantizationDescriptor?: $SDK35): MPSNDArrayQuantizedMatrixMultiplication;
+    static init(device: SDKHandle, leftQuantizationDescriptor?: $SDK36, rightQuantizationDescriptor?: $SDK36): MPSNDArrayQuantizedMatrixMultiplication;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayQuantizedMatrixMultiplication": true;
+        "c:objc(cs)MPSNDArrayMatrixMultiplication": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14919,14 +16358,17 @@ export declare class MPSNDArrayQuantizedMatrixMultiplication extends MPSNDArrayQ
 /** struct MPSNDArraySizes */
 export declare class MPSNDArraySizes extends SDKHandle {
     /** var dimensions: (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int) */
-    get dimensions(): $SDK34;
-    set dimensions(value: $SDK34);
+    get dimensions(): $SDK35;
+    set dimensions(value: $SDK35);
     /** init(dimensions: (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int, Int)) */
-    static initDimensions(dimensions: $SDK34): MPSNDArraySizes;
+    static initDimensions(dimensions: $SDK35): MPSNDArraySizes;
     /** init() */
     static init(): MPSNDArraySizes;
+    readonly $type: {
+        "c:@SA@MPSNDArraySizes": true;
+    };
 }
-declare const MPSNDArrayStridedSlice_base: Omit<typeof MPSNDArrayUnaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSNDArrayUnaryKernel, "strides">);
+declare const MPSNDArrayStridedSlice_base: Omit<typeof MPSNDArrayUnaryKernel, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSNDArrayUnaryKernel, "strides">);
 /**
  * class MPSNDArrayStridedSlice
  * @availability iOS 13.0+
@@ -14940,6 +16382,14 @@ export declare class MPSNDArrayStridedSlice extends MPSNDArrayStridedSlice_base 
      */
     get strides(): MPSNDArrayOffsets;
     set strides(value: MPSNDArrayOffsets);
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayStridedSlice": true;
+        "c:objc(cs)MPSNDArrayUnaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14952,7 +16402,7 @@ export declare class MPSNDArrayStridedSlice extends MPSNDArrayStridedSlice_base 
         "strides": true;
     };
 }
-declare const MPSNDArrayUnaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryGradientKernel);
+declare const MPSNDArrayUnaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryGradientKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryGradientKernel);
 /**
  * class MPSNDArrayUnaryGradientKernel
  * @availability iOS 13.0+
@@ -14968,8 +16418,6 @@ export declare class MPSNDArrayUnaryGradientKernel extends MPSNDArrayUnaryGradie
      * @availability iOS 13.0+
      */
     encodeToSourceArraySourceGradientGradientStateDestinationArray(cmdBuf: SDKHandle, sourceArray: MPSNDArray, gradient: MPSNDArray, state: MPSState, destination: MPSNDArray): void;
-    /** init() */
-    static init(): MPSNDArrayUnaryGradientKernel;
     /**
      * init(coder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -14980,6 +16428,13 @@ export declare class MPSNDArrayUnaryGradientKernel extends MPSNDArrayUnaryGradie
      * @availability iOS 13.0+
      */
     static initDevice(device: SDKHandle): MPSNDArrayUnaryGradientKernel;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayUnaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -14987,14 +16442,21 @@ export declare class MPSNDArrayUnaryGradientKernel extends MPSNDArrayUnaryGradie
         "destinationArrayAllocator": true;
     };
 }
-declare const MPSNDArrayStridedSliceGradient_base: Omit<typeof MPSNDArrayUnaryGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayUnaryGradientKernel);
 /**
  * class MPSNDArrayStridedSliceGradient
  * @availability iOS 13.0+
  */
-export declare class MPSNDArrayStridedSliceGradient extends MPSNDArrayStridedSliceGradient_base {
+export declare class MPSNDArrayStridedSliceGradient extends MPSNDArrayUnaryGradientKernel {
     /** init() */
     static init(): MPSNDArrayStridedSliceGradient;
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayStridedSliceGradient": true;
+        "c:objc(cs)MPSNDArrayUnaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryGradientKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -15002,25 +16464,29 @@ export declare class MPSNDArrayStridedSliceGradient extends MPSNDArrayStridedSli
         "destinationArrayAllocator": true;
     };
 }
-declare const MPSNDArrayVectorLUTDequantize_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
 /**
  * class MPSNDArrayVectorLUTDequantize
  * @availability iOS 18.0+
  */
-export declare class MPSNDArrayVectorLUTDequantize extends MPSNDArrayVectorLUTDequantize_base {
-    /** init() */
-    static init(): MPSNDArrayVectorLUTDequantize;
+export declare class MPSNDArrayVectorLUTDequantize extends MPSNDArrayMultiaryKernel {
     /**
      * init(device: any MTLDevice, axis: Int)
      * @availability iOS 18.0+
      */
-    static initDeviceAxis(device: SDKHandle, axis: number): MPSNDArrayVectorLUTDequantize;
+    static init(device: SDKHandle, axis: number): MPSNDArrayVectorLUTDequantize;
     /**
      * var vectorAxis: Int { get set }
      * @availability iOS 18.0+
      */
     get vectorAxis(): number;
     set vectorAxis(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNDArrayVectorLUTDequantize": true;
+        "c:objc(cs)MPSNDArrayMultiaryKernel": true;
+        "c:objc(cs)MPSNDArrayMultiaryBase": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -15097,6 +16563,12 @@ export declare class MPSNNArithmeticGradientNode extends MPSNNGradientFilterNode
      */
     get secondaryStrideInPixelsY(): number;
     set secondaryStrideInPixelsY(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNArithmeticGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15119,6 +16591,13 @@ export declare class MPSNNArithmeticGradientNode extends MPSNNGradientFilterNode
  * @availability iOS 11.3+
  */
 export declare class MPSNNAdditionGradientNode extends MPSNNArithmeticGradientNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNAdditionGradientNode": true;
+        "c:objc(cs)MPSNNArithmeticGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15150,7 +16629,7 @@ export declare class MPSNNBinaryArithmeticNode extends MPSNNFilterNode {
      * func gradientFilters(withSources gradientImages: [MPSNNImageNode]) -> [MPSNNGradientFilterNode]
      * @availability iOS 11.3+
      */
-    gradientFilters(gradientImages: Array<MPSNNImageNode>): $SDK10;
+    gradientFilters(gradientImages: Array<MPSNNImageNode>): $SDK11;
     /**
      * init(leftSource left: MPSNNImageNode, rightSource right: MPSNNImageNode)
      * @availability iOS 11.0+
@@ -15227,6 +16706,11 @@ export declare class MPSNNBinaryArithmeticNode extends MPSNNFilterNode {
      */
     get secondaryStrideInPixelsY(): number;
     set secondaryStrideInPixelsY(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNBinaryArithmeticNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15251,6 +16735,12 @@ export declare class MPSNNBinaryArithmeticNode extends MPSNNFilterNode {
  * @availability iOS 11.0+
  */
 export declare class MPSNNAdditionNode extends MPSNNBinaryArithmeticNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNAdditionNode": true;
+        "c:objc(cs)MPSNNBinaryArithmeticNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15275,6 +16765,11 @@ export declare class MPSNNAdditionNode extends MPSNNBinaryArithmeticNode {
  * @availability iOS 11.3+
  */
 export declare class MPSNNBinaryGradientStateNode extends MPSNNStateNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNBinaryGradientStateNode": true;
+        "c:objc(cs)MPSNNStateNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportFromGraph": true;
         "handle": true;
@@ -15286,6 +16781,12 @@ export declare class MPSNNBinaryGradientStateNode extends MPSNNStateNode {
  * @availability iOS 11.3+
  */
 export declare class MPSNNArithmeticGradientStateNode extends MPSNNBinaryGradientStateNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNArithmeticGradientStateNode": true;
+        "c:objc(cs)MPSNNBinaryGradientStateNode": true;
+        "c:objc(cs)MPSNNStateNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportFromGraph": true;
         "handle": true;
@@ -15307,6 +16808,11 @@ export declare class MPSNNScaleNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     static initSourceTransformProviderOutputSize(sourceNode: MPSNNImageNode, transformProvider: (SDKHandle) | null, size: _Metal_MTLSize): MPSNNScaleNode;
+    readonly $type: {
+        "c:objc(cs)MPSNNScaleNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15320,6 +16826,12 @@ export declare class MPSNNScaleNode extends MPSNNFilterNode {
  * @availability iOS 11.0+
  */
 export declare class MPSNNBilinearScaleNode extends MPSNNScaleNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNBilinearScaleNode": true;
+        "c:objc(cs)MPSNNScaleNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15328,19 +16840,17 @@ export declare class MPSNNBilinearScaleNode extends MPSNNScaleNode {
         "resultStates": true;
     };
 }
-declare const MPSNNCompare_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
+declare const MPSNNCompare_base: Omit<typeof MPSCNNArithmetic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
  * class MPSNNCompare
  * @availability iOS 12.1+
  */
 export declare class MPSNNCompare extends MPSNNCompare_base {
-    /** init() */
-    static init(): MPSNNCompare;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 12.1+
      */
-    static initDevice(device: SDKHandle): MPSNNCompare;
+    static init(device: SDKHandle): MPSNNCompare;
     /**
      * var comparisonType: MPSNNComparisonType { get set }
      * @availability iOS 12.1+
@@ -15353,6 +16863,13 @@ export declare class MPSNNCompare extends MPSNNCompare_base {
      */
     get threshold(): number;
     set threshold(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNCompare": true;
+        "c:objc(cs)MPSCNNArithmetic": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -15405,6 +16922,12 @@ export declare class MPSNNComparisonNode extends MPSNNBinaryArithmeticNode {
      */
     get comparisonType(): MPSNNComparisonType;
     set comparisonType(value: MPSNNComparisonType);
+    readonly $type: {
+        "c:objc(cs)MPSNNComparisonNode": true;
+        "c:objc(cs)MPSNNBinaryArithmeticNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15471,6 +16994,12 @@ export declare class MPSNNConcatenationGradientNode extends MPSNNGradientFilterN
      * @availability iOS 11.3+
      */
     static init(gradientSourceNode: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSNNConcatenationGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSNNConcatenationGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15489,6 +17018,11 @@ export declare class MPSNNConcatenationNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     static init(sourceNodes: Array<MPSNNImageNode>): MPSNNConcatenationNode;
+    readonly $type: {
+        "c:objc(cs)MPSNNConcatenationNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15513,14 +17047,12 @@ export declare const MPSNNConvolutionAccumulatorPrecisionOption: {
     /** init(rawValue: UInt) */
     init(rawValue: number): MPSNNConvolutionAccumulatorPrecisionOption;
 };
-declare const MPSNNCropAndResizeBilinear_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSNNCropAndResizeBilinear_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSNNCropAndResizeBilinear
  * @availability iOS 12.0+
  */
 export declare class MPSNNCropAndResizeBilinear extends MPSNNCropAndResizeBilinear_base {
-    /** init() */
-    static init(): MPSNNCropAndResizeBilinear;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -15551,6 +17083,12 @@ export declare class MPSNNCropAndResizeBilinear extends MPSNNCropAndResizeBiline
      * @availability iOS 12.0+
      */
     get resizeWidth(): number;
+    readonly $type: {
+        "c:objc(cs)MPSNNCropAndResizeBilinear": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -15596,20 +17134,28 @@ export declare class MPSNNDefaultPadding extends SDKHandle {
      * convenience init(method: MPSNNPaddingMethod)
      * @availability iOS 11.0+
      */
-    static initMethod(method: MPSNNPaddingMethod): MPSNNDefaultPadding;
-    /** init() */
-    static init(): MPSNNDefaultPadding;
+    static init(method: MPSNNPaddingMethod): MPSNNDefaultPadding;
     /**
      * func label() -> String
      * @availability iOS 11.0+
      */
     label(): string;
+    readonly $type: {
+        "c:objc(cs)MPSNNDefaultPadding": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MPSNNDivisionNode
  * @availability iOS 11.0+
  */
 export declare class MPSNNDivisionNode extends MPSNNBinaryArithmeticNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNDivisionNode": true;
+        "c:objc(cs)MPSNNBinaryArithmeticNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15629,7 +17175,7 @@ export declare class MPSNNDivisionNode extends MPSNNBinaryArithmeticNode {
         "secondaryStrideInPixelsY": true;
     };
 }
-declare const MPSNNForwardLoss_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSNNForwardLoss_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSNNForwardLoss
  * @availability iOS 13.0+
@@ -15650,8 +17196,6 @@ export declare class MPSNNForwardLoss extends MPSNNForwardLoss_base {
             "outStates": $SDK5;
         };
     };
-    /** init() */
-    static init(): MPSNNForwardLoss;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -15706,6 +17250,12 @@ export declare class MPSNNForwardLoss extends MPSNNForwardLoss_base {
      */
     get weight(): number;
     set weight(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNForwardLoss": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -15828,6 +17378,11 @@ export declare class MPSNNForwardLossNode extends MPSNNForwardLossNode_base {
      * @availability iOS 13.0+
      */
     get weight(): number;
+    readonly $type: {
+        "c:objc(cs)MPSNNForwardLossNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -15845,14 +17400,12 @@ export declare class MPSNNForwardLossNode extends MPSNNForwardLossNode_base {
         "weight": true;
     };
 }
-declare const MPSNNGramMatrixCalculation_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSNNGramMatrixCalculation_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSNNGramMatrixCalculation
  * @availability iOS 13.0+
  */
 export declare class MPSNNGramMatrixCalculation extends MPSNNGramMatrixCalculation_base {
-    /** init() */
-    static init(): MPSNNGramMatrixCalculation;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -15874,6 +17427,12 @@ export declare class MPSNNGramMatrixCalculation extends MPSNNGramMatrixCalculati
      */
     get alpha(): number;
     set alpha(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNGramMatrixCalculation": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -15897,14 +17456,12 @@ export declare class MPSNNGramMatrixCalculation extends MPSNNGramMatrixCalculati
         "alpha": true;
     };
 }
-declare const MPSNNGramMatrixCalculationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSNNGramMatrixCalculationGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSNNGramMatrixCalculationGradient
  * @availability iOS 13.0+
  */
 export declare class MPSNNGramMatrixCalculationGradient extends MPSNNGramMatrixCalculationGradient_base {
-    /** init() */
-    static init(): MPSNNGramMatrixCalculationGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -15926,6 +17483,13 @@ export declare class MPSNNGramMatrixCalculationGradient extends MPSNNGramMatrixC
      */
     get alpha(): number;
     set alpha(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNGramMatrixCalculationGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -15981,6 +17545,12 @@ export declare class MPSNNGramMatrixCalculationGradientNode extends MPSNNGradien
      * @availability iOS 13.0+
      */
     get alpha(): number;
+    readonly $type: {
+        "c:objc(cs)MPSNNGramMatrixCalculationGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -16016,6 +17586,11 @@ export declare class MPSNNGramMatrixCalculationNode extends MPSNNFilterNode {
      */
     get propertyCallBack(): (SDKHandle) | null;
     set propertyCallBack(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)MPSNNGramMatrixCalculationNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -16028,7 +17603,7 @@ export declare class MPSNNGramMatrixCalculationNode extends MPSNNFilterNode {
 }
 /** protocol MPSNNGramMatrixCallback : NSCopying, NSSecureCoding, NSObjectProtocol */
 export interface MPSNNGramMatrixCallback {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
     /**
@@ -16037,7 +17612,7 @@ export interface MPSNNGramMatrixCallback {
      */
     "alphaForSourceImageDestinationImage"?: (arg0: MPSImage, arg1: MPSImage) => number;
 }
-declare const MPSNNGraph_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
+declare const MPSNNGraph_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSNNGraph
  * @availability iOS 11.0+
@@ -16052,7 +17627,7 @@ export declare class MPSNNGraph extends MPSNNGraph_base {
      * func encodeBatch(to commandBuffer: any MTLCommandBuffer, sourceImages: [[MPSImage]], sourceStates: [[MPSState]]?, intermediateImages: NSMutableArray?, destinationStates: NSMutableArray?) -> [MPSImage]?
      * @availability iOS 11.3+
      */
-    encodeBatchToSourceImagesSourceStatesIntermediateImagesDestinationStates(commandBuffer: SDKHandle, sourceImages: Array<Array<MPSImage>>, sourceStates?: $SDK2, intermediateImages?: $SDK37, destinationStates?: $SDK37): $SDK3;
+    encodeBatchToSourceImagesSourceStatesIntermediateImagesDestinationStates(commandBuffer: SDKHandle, sourceImages: Array<Array<MPSImage>>, sourceStates?: $SDK2, intermediateImages?: $SDK38, destinationStates?: $SDK38): $SDK3;
     /**
      * func encode(to commandBuffer: any MTLCommandBuffer, sourceImages: [MPSImage]) -> MPSImage?
      * @availability iOS 11.0+
@@ -16062,14 +17637,12 @@ export declare class MPSNNGraph extends MPSNNGraph_base {
      * func encode(to commandBuffer: any MTLCommandBuffer, sourceImages: [MPSImage], sourceStates: [MPSState]?, intermediateImages: NSMutableArray?, destinationStates: NSMutableArray?) -> MPSImage?
      * @availability iOS 11.0+
      */
-    encodeToSourceImagesSourceStatesIntermediateImagesDestinationStates(commandBuffer: SDKHandle, sourceImages: Array<MPSImage>, sourceStates?: $SDK4, intermediateImages?: $SDK37, destinationStates?: $SDK37): (MPSImage) | null;
+    encodeToSourceImagesSourceStatesIntermediateImagesDestinationStates(commandBuffer: SDKHandle, sourceImages: Array<MPSImage>, sourceStates?: $SDK4, intermediateImages?: $SDK38, destinationStates?: $SDK38): (MPSImage) | null;
     /**
      * func executeAsync(withSourceImages sourceImages: [MPSImage], completionHandler handler: @escaping MPSNNGraphCompletionHandler) -> MPSImage
      * @availability iOS 11.0+
      */
     executeAsync(sourceImages: Array<MPSImage>, handler: ((arg0: (MPSImage) | null, arg1: (NativeError) | null) => void)): MPSImage;
-    /** init() */
-    static init(): MPSNNGraph;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -16159,6 +17732,11 @@ export declare class MPSNNGraph extends MPSNNGraph_base {
      * @availability iOS 11.0+
      */
     get sourceStateHandles(): $SDK7;
+    readonly $type: {
+        "c:objc(cs)MPSNNGraph": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -16176,14 +17754,12 @@ export declare class MPSNNGraph extends MPSNNGraph_base {
 }
 /** typealias MPSNNGraphCompletionHandler = (MPSImage?, (any Error)?) -> Void */
 export type MPSNNGraphCompletionHandler = ((arg0: (MPSImage) | null, arg1: (NativeError) | null) => Promise<void>);
-declare const MPSNNGridSample_base: Omit<typeof MPSCNNBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryKernel);
+declare const MPSNNGridSample_base: Omit<typeof MPSCNNBinaryKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryKernel);
 /**
  * class MPSNNGridSample
  * @availability iOS 13.0+
  */
 export declare class MPSNNGridSample extends MPSNNGridSample_base {
-    /** init() */
-    static init(): MPSNNGridSample;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -16200,6 +17776,12 @@ export declare class MPSNNGridSample extends MPSNNGridSample_base {
      */
     get useGridValueAsInputCoordinate(): boolean;
     set useGridValueAsInputCoordinate(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSNNGridSample": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -16284,6 +17866,10 @@ export declare class MPSNNImageNode extends SDKHandle {
      */
     get synchronizeResource(): boolean;
     set synchronizeResource(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSNNImageNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportFromGraph": true;
         "format": true;
@@ -16293,19 +17879,22 @@ export declare class MPSNNImageNode extends SDKHandle {
         "synchronizeResource": true;
     };
 }
-declare const MPSNNInitialGradient_base: Omit<typeof MPSCNNKernel, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSNNInitialGradient
  * @availability iOS 13.0+
  */
-export declare class MPSNNInitialGradient extends MPSNNInitialGradient_base {
-    /** init() */
-    static init(): MPSNNInitialGradient;
+export declare class MPSNNInitialGradient extends MPSCNNKernel {
     /**
      * init(device: any MTLDevice)
      * @availability iOS 13.0+
      */
-    static initDevice(device: SDKHandle): MPSNNInitialGradient;
+    static init(device: SDKHandle): MPSNNInitialGradient;
+    readonly $type: {
+        "c:objc(cs)MPSNNInitialGradient": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -16338,6 +17927,11 @@ export declare class MPSNNInitialGradientNode extends MPSNNFilterNode {
      * @availability iOS 13.0+
      */
     static init(source: MPSNNImageNode): MPSNNInitialGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSNNInitialGradientNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -16351,6 +17945,11 @@ export declare class MPSNNInitialGradientNode extends MPSNNFilterNode {
  * @availability iOS 11.3+
  */
 export declare class MPSNNLabelsNode extends MPSNNStateNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNLabelsNode": true;
+        "c:objc(cs)MPSNNStateNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportFromGraph": true;
         "handle": true;
@@ -16362,6 +17961,12 @@ export declare class MPSNNLabelsNode extends MPSNNStateNode {
  * @availability iOS 11.0+
  */
 export declare class MPSNNLanczosScaleNode extends MPSNNScaleNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNLanczosScaleNode": true;
+        "c:objc(cs)MPSNNScaleNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -16370,7 +17975,7 @@ export declare class MPSNNLanczosScaleNode extends MPSNNScaleNode {
         "resultStates": true;
     };
 }
-declare const MPSNNReduceBinary_base: Omit<typeof MPSCNNBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNBinaryKernel, "primaryOffset" | "secondaryOffset">);
+declare const MPSNNReduceBinary_base: Omit<typeof MPSCNNBinaryKernel, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNBinaryKernel, "primaryOffset" | "secondaryOffset">);
 /**
  * class MPSNNReduceBinary
  * @availability iOS 11.3+
@@ -16404,6 +18009,12 @@ export declare class MPSNNReduceBinary extends MPSNNReduceBinary_base {
      */
     get secondarySourceClipRect(): _Metal_MTLRegion;
     set secondarySourceClipRect(value: _Metal_MTLRegion);
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceBinary": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -16438,14 +18049,12 @@ export declare class MPSNNReduceBinary extends MPSNNReduceBinary_base {
         "secondarySourceClipRect": true;
     };
 }
-declare const MPSNNLocalCorrelation_base: Omit<typeof MPSNNReduceBinary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceBinary);
+declare const MPSNNLocalCorrelation_base: Omit<typeof MPSNNReduceBinary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceBinary);
 /**
  * class MPSNNLocalCorrelation
  * @availability iOS 13.0+
  */
 export declare class MPSNNLocalCorrelation extends MPSNNLocalCorrelation_base {
-    /** init() */
-    static init(): MPSNNLocalCorrelation;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -16485,6 +18094,13 @@ export declare class MPSNNLocalCorrelation extends MPSNNLocalCorrelation_base {
      */
     get windowInY(): number;
     set windowInY(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNLocalCorrelation": true;
+        "c:objc(cs)MPSNNReduceBinary": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -16525,7 +18141,7 @@ export declare class MPSNNLocalCorrelation extends MPSNNLocalCorrelation_base {
 }
 /** protocol MPSNNLossCallback : NSCopying, NSSecureCoding, NSObjectProtocol */
 export interface MPSNNLossCallback {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
     /**
@@ -16534,7 +18150,7 @@ export interface MPSNNLossCallback {
      */
     "scalarWeightForSourceImageDestinationImage"?: (arg0: MPSImage, arg1: MPSImage) => number;
 }
-declare const MPSNNLossGradient_base: Omit<typeof MPSCNNBinaryKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryKernel);
+declare const MPSNNLossGradient_base: Omit<typeof MPSCNNBinaryKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryKernel);
 /**
  * class MPSNNLossGradient
  * @availability iOS 13.0+
@@ -16550,8 +18166,6 @@ export declare class MPSNNLossGradient extends MPSNNLossGradient_base {
      * @availability iOS 13.0+
      */
     encodeBatchCommandBufferSourceGradientsSourceImagesLabelsWeightsSourceStatesDestinationGradients(commandBuffer: SDKHandle, sourceGradients: Array<MPSImage>, sourceImages: Array<MPSImage>, labels: Array<MPSImage>, weights: $SDK3, sourceStates: $SDK4, destinationGradients: Array<MPSImage>): void;
-    /** init() */
-    static init(): MPSNNLossGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -16612,6 +18226,12 @@ export declare class MPSNNLossGradient extends MPSNNLossGradient_base {
      */
     get weight(): number;
     set weight(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNLossGradient": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -16662,22 +18282,22 @@ export declare class MPSNNLossGradientNode extends MPSNNGradientFilterNode {
      * convenience init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, weights: MPSNNImageNode, gradientState: MPSNNGradientStateNode?, lossDescriptor descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: Bool)
      * @availability iOS 13.0+
      */
-    static initSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, weights: MPSNNImageNode, gradientState: $SDK40, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
+    static initSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, weights: MPSNNImageNode, gradientState: $SDK41, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
     /**
      * init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, gradientState: MPSNNGradientStateNode?, lossDescriptor descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: Bool)
      * @availability iOS 13.0+
      */
-    static initSourceGradientSourceImageLabelsGradientStateLossDescriptorIsLabelsGradientFilter(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, gradientState: $SDK40, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
+    static initSourceGradientSourceImageLabelsGradientStateLossDescriptorIsLabelsGradientFilter(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, gradientState: $SDK41, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
     /**
      * init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, weights: MPSNNImageNode?, gradientState: MPSNNGradientStateNode?, lossDescriptor descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: Bool)
      * @availability iOS 13.0+
      */
-    static initSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter76398(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, weights: (MPSNNImageNode) | null, gradientState: $SDK40, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
+    static initSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter76398(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, labels: MPSNNImageNode, weights: (MPSNNImageNode) | null, gradientState: $SDK41, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
     /**
      * init(sources sourceNodes: [MPSNNImageNode], gradientState: MPSNNGradientStateNode?, lossDescriptor descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: Bool)
      * @availability iOS 13.0+
      */
-    static initSourcesGradientStateLossDescriptorIsLabelsGradientFilter(sourceNodes: Array<MPSNNImageNode>, gradientState: $SDK40, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
+    static initSourcesGradientStateLossDescriptorIsLabelsGradientFilter(sourceNodes: Array<MPSNNImageNode>, gradientState: $SDK41, descriptor: MPSCNNLossDescriptor, isLabelsGradientFilter: boolean): MPSNNLossGradientNode;
     /**
      * var delta: Float { get }
      * @availability iOS 13.0+
@@ -16729,6 +18349,12 @@ export declare class MPSNNLossGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 13.0+
      */
     get weight(): number;
+    readonly $type: {
+        "c:objc(cs)MPSNNLossGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -16752,6 +18378,11 @@ export declare class MPSNNLossGradientNode extends MPSNNGradientFilterNode {
  * @availability iOS 13.0+
  */
 export declare class MPSNNMultiaryGradientState extends MPSState {
+    readonly $type: {
+        "c:objc(cs)MPSNNMultiaryGradientState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -16765,6 +18396,11 @@ export declare class MPSNNMultiaryGradientState extends MPSState {
  * @availability iOS 13.0+
  */
 export declare class MPSNNMultiaryGradientStateNode extends MPSNNStateNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNMultiaryGradientStateNode": true;
+        "c:objc(cs)MPSNNStateNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportFromGraph": true;
         "handle": true;
@@ -16776,6 +18412,13 @@ export declare class MPSNNMultiaryGradientStateNode extends MPSNNStateNode {
  * @availability iOS 11.3+
  */
 export declare class MPSNNMultiplicationGradientNode extends MPSNNArithmeticGradientNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNMultiplicationGradientNode": true;
+        "c:objc(cs)MPSNNArithmeticGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -16798,6 +18441,12 @@ export declare class MPSNNMultiplicationGradientNode extends MPSNNArithmeticGrad
  * @availability iOS 11.0+
  */
 export declare class MPSNNMultiplicationNode extends MPSNNBinaryArithmeticNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNMultiplicationNode": true;
+        "c:objc(cs)MPSNNBinaryArithmeticNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -16877,6 +18526,10 @@ export declare class MPSNNNeuronDescriptor extends SDKHandle {
      */
     get neuronType(): MPSCNNNeuronType;
     set neuronType(value: MPSCNNNeuronType);
+    readonly $type: {
+        "c:objc(cs)MPSNNNeuronDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "a": true;
         "b": true;
@@ -16885,12 +18538,11 @@ export declare class MPSNNNeuronDescriptor extends SDKHandle {
         "neuronType": true;
     };
 }
-declare const MPSNNOptimizer_base: Omit<typeof MPSKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
  * class MPSNNOptimizer
  * @availability iOS 12.0+
  */
-export declare class MPSNNOptimizer extends MPSNNOptimizer_base {
+export declare class MPSNNOptimizer extends MPSKernel {
     /** init() */
     static init(): MPSNNOptimizer;
     /**
@@ -16934,6 +18586,11 @@ export declare class MPSNNOptimizer extends MPSNNOptimizer_base {
      * @availability iOS 12.0+
      */
     get regularizationType(): MPSNNRegularizationType;
+    readonly $type: {
+        "c:objc(cs)MPSNNOptimizer": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -16947,42 +18604,41 @@ export declare class MPSNNOptimizer extends MPSNNOptimizer_base {
         "regularizationType": true;
     };
 }
-declare const MPSNNOptimizerAdam_base: Omit<typeof MPSNNOptimizer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNOptimizer);
 /**
  * class MPSNNOptimizerAdam
  * @availability iOS 12.0+
  */
-export declare class MPSNNOptimizerAdam extends MPSNNOptimizerAdam_base {
+export declare class MPSNNOptimizerAdam extends MPSNNOptimizer {
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputMomentumVectors: [MPSVector], inputVelocityVectors: [MPSVector], maximumVelocityVectors: [MPSVector]?, resultState: MPSCNNNormalizationGammaAndBetaState)
      * @availability iOS 13.0+
      */
-    encodeCommandBufferBatchNormalizationGradientStateBatchNormalizationSourceStateInputMomentumVectorsInputVelocityVectorsMaximumVelocityVectorsResultState(commandBuffer: SDKHandle, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputMomentumVectors: Array<MPSVector>, inputVelocityVectors: Array<MPSVector>, maximumVelocityVectors: $SDK41, resultState: MPSCNNNormalizationGammaAndBetaState): void;
+    encodeCommandBufferBatchNormalizationGradientStateBatchNormalizationSourceStateInputMomentumVectorsInputVelocityVectorsMaximumVelocityVectorsResultState(commandBuffer: SDKHandle, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputMomentumVectors: Array<MPSVector>, inputVelocityVectors: Array<MPSVector>, maximumVelocityVectors: $SDK42, resultState: MPSCNNNormalizationGammaAndBetaState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputMomentumVectors: [MPSVector]?, inputVelocityVectors: [MPSVector]?, resultState: MPSCNNNormalizationGammaAndBetaState)
      * @availability iOS 12.0+
      */
-    encodeCommandBufferBatchNormalizationGradientStateBatchNormalizationSourceStateInputMomentumVectorsInputVelocityVectorsResultState(commandBuffer: SDKHandle, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputMomentumVectors: $SDK41, inputVelocityVectors: $SDK41, resultState: MPSCNNNormalizationGammaAndBetaState): void;
+    encodeCommandBufferBatchNormalizationGradientStateBatchNormalizationSourceStateInputMomentumVectorsInputVelocityVectorsResultState(commandBuffer: SDKHandle, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputMomentumVectors: $SDK42, inputVelocityVectors: $SDK42, resultState: MPSCNNNormalizationGammaAndBetaState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, batchNormalizationState: MPSCNNBatchNormalizationState, inputMomentumVectors: [MPSVector], inputVelocityVectors: [MPSVector], maximumVelocityVectors: [MPSVector]?, resultState: MPSCNNNormalizationGammaAndBetaState)
      * @availability iOS 13.0+
      */
-    encodeCommandBufferBatchNormalizationStateInputMomentumVectorsInputVelocityVectorsMaximumVelocityVectorsResultState(commandBuffer: SDKHandle, batchNormalizationState: MPSCNNBatchNormalizationState, inputMomentumVectors: Array<MPSVector>, inputVelocityVectors: Array<MPSVector>, maximumVelocityVectors: $SDK41, resultState: MPSCNNNormalizationGammaAndBetaState): void;
+    encodeCommandBufferBatchNormalizationStateInputMomentumVectorsInputVelocityVectorsMaximumVelocityVectorsResultState(commandBuffer: SDKHandle, batchNormalizationState: MPSCNNBatchNormalizationState, inputMomentumVectors: Array<MPSVector>, inputVelocityVectors: Array<MPSVector>, maximumVelocityVectors: $SDK42, resultState: MPSCNNNormalizationGammaAndBetaState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, batchNormalizationState: MPSCNNBatchNormalizationState, inputMomentumVectors: [MPSVector]?, inputVelocityVectors: [MPSVector]?, resultState: MPSCNNNormalizationGammaAndBetaState)
      * @availability iOS 12.0+
      */
-    encodeCommandBufferBatchNormalizationStateInputMomentumVectorsInputVelocityVectorsResultState(commandBuffer: SDKHandle, batchNormalizationState: MPSCNNBatchNormalizationState, inputMomentumVectors: $SDK41, inputVelocityVectors: $SDK41, resultState: MPSCNNNormalizationGammaAndBetaState): void;
+    encodeCommandBufferBatchNormalizationStateInputMomentumVectorsInputVelocityVectorsResultState(commandBuffer: SDKHandle, batchNormalizationState: MPSCNNBatchNormalizationState, inputMomentumVectors: $SDK42, inputVelocityVectors: $SDK42, resultState: MPSCNNNormalizationGammaAndBetaState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputMomentumVectors: [MPSVector], inputVelocityVectors: [MPSVector], maximumVelocityVectors: [MPSVector]?, resultState: MPSCNNConvolutionWeightsAndBiasesState)
      * @availability iOS 13.0+
      */
-    encodeCommandBufferConvolutionGradientStateConvolutionSourceStateInputMomentumVectorsInputVelocityVectorsMaximumVelocityVectorsResultState(commandBuffer: SDKHandle, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputMomentumVectors: Array<MPSVector>, inputVelocityVectors: Array<MPSVector>, maximumVelocityVectors: $SDK41, resultState: MPSCNNConvolutionWeightsAndBiasesState): void;
+    encodeCommandBufferConvolutionGradientStateConvolutionSourceStateInputMomentumVectorsInputVelocityVectorsMaximumVelocityVectorsResultState(commandBuffer: SDKHandle, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputMomentumVectors: Array<MPSVector>, inputVelocityVectors: Array<MPSVector>, maximumVelocityVectors: $SDK42, resultState: MPSCNNConvolutionWeightsAndBiasesState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputMomentumVectors: [MPSVector]?, inputVelocityVectors: [MPSVector]?, resultState: MPSCNNConvolutionWeightsAndBiasesState)
      * @availability iOS 12.0+
      */
-    encodeCommandBufferConvolutionGradientStateConvolutionSourceStateInputMomentumVectorsInputVelocityVectorsResultState(commandBuffer: SDKHandle, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputMomentumVectors: $SDK41, inputVelocityVectors: $SDK41, resultState: MPSCNNConvolutionWeightsAndBiasesState): void;
+    encodeCommandBufferConvolutionGradientStateConvolutionSourceStateInputMomentumVectorsInputVelocityVectorsResultState(commandBuffer: SDKHandle, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputMomentumVectors: $SDK42, inputVelocityVectors: $SDK42, resultState: MPSCNNConvolutionWeightsAndBiasesState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, inputGradientMatrix: MPSMatrix, inputValuesMatrix: MPSMatrix, inputMomentumMatrix: MPSMatrix, inputVelocityMatrix: MPSMatrix, maximumVelocityMatrix: MPSMatrix?, resultValuesMatrix: MPSMatrix)
      * @availability iOS 13.0+
@@ -17003,8 +18659,6 @@ export declare class MPSNNOptimizerAdam extends MPSNNOptimizerAdam_base {
      * @availability iOS 12.0+
      */
     encodeCommandBufferInputGradientVectorInputValuesVectorInputMomentumVectorInputVelocityVectorResultValuesVector(commandBuffer: SDKHandle, inputGradientVector: MPSVector, inputValuesVector: MPSVector, inputMomentumVector: MPSVector, inputVelocityVector: MPSVector, resultValuesVector: MPSVector): void;
-    /** init() */
-    static init(): MPSNNOptimizerAdam;
     /**
      * init(device: any MTLDevice, beta1: Double, beta2: Double, epsilon: Float, timeStep: Int, optimizerDescriptor: MPSNNOptimizerDescriptor)
      * @availability iOS 12.0+
@@ -17036,6 +18690,12 @@ export declare class MPSNNOptimizerAdam extends MPSNNOptimizerAdam_base {
      */
     get timeStep(): number;
     set timeStep(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNOptimizerAdam": true;
+        "c:objc(cs)MPSNNOptimizer": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17058,8 +18718,6 @@ export declare class MPSNNOptimizerAdam extends MPSNNOptimizerAdam_base {
  * @availability iOS 12.0+
  */
 export declare class MPSNNOptimizerDescriptor extends SDKHandle {
-    /** init() */
-    static init(): MPSNNOptimizerDescriptor;
     /**
      * init(learningRate: Float, gradientRescale: Float, applyGradientClipping: Bool, gradientClipMax: Float, gradientClipMin: Float, regularizationType: MPSNNRegularizationType, regularizationScale: Float)
      * @availability iOS 12.0+
@@ -17112,6 +18770,10 @@ export declare class MPSNNOptimizerDescriptor extends SDKHandle {
      */
     get regularizationType(): MPSNNRegularizationType;
     set regularizationType(value: MPSNNRegularizationType);
+    readonly $type: {
+        "c:objc(cs)MPSNNOptimizerDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applyGradientClipping": true;
         "gradientClipMax": true;
@@ -17122,27 +18784,26 @@ export declare class MPSNNOptimizerDescriptor extends SDKHandle {
         "regularizationType": true;
     };
 }
-declare const MPSNNOptimizerRMSProp_base: Omit<typeof MPSNNOptimizer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNOptimizer);
 /**
  * class MPSNNOptimizerRMSProp
  * @availability iOS 12.0+
  */
-export declare class MPSNNOptimizerRMSProp extends MPSNNOptimizerRMSProp_base {
+export declare class MPSNNOptimizerRMSProp extends MPSNNOptimizer {
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputSumOfSquaresVectors: [MPSVector]?, resultState: MPSCNNNormalizationGammaAndBetaState)
      * @availability iOS 12.0+
      */
-    encodeCommandBufferBatchNormalizationGradientStateBatchNormalizationSourceStateInputSumOfSquaresVectorsResultState(commandBuffer: SDKHandle, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputSumOfSquaresVectors: $SDK41, resultState: MPSCNNNormalizationGammaAndBetaState): void;
+    encodeCommandBufferBatchNormalizationGradientStateBatchNormalizationSourceStateInputSumOfSquaresVectorsResultState(commandBuffer: SDKHandle, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputSumOfSquaresVectors: $SDK42, resultState: MPSCNNNormalizationGammaAndBetaState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, batchNormalizationState: MPSCNNBatchNormalizationState, inputSumOfSquaresVectors: [MPSVector]?, resultState: MPSCNNNormalizationGammaAndBetaState)
      * @availability iOS 12.0+
      */
-    encodeCommandBufferBatchNormalizationStateInputSumOfSquaresVectorsResultState(commandBuffer: SDKHandle, batchNormalizationState: MPSCNNBatchNormalizationState, inputSumOfSquaresVectors: $SDK41, resultState: MPSCNNNormalizationGammaAndBetaState): void;
+    encodeCommandBufferBatchNormalizationStateInputSumOfSquaresVectorsResultState(commandBuffer: SDKHandle, batchNormalizationState: MPSCNNBatchNormalizationState, inputSumOfSquaresVectors: $SDK42, resultState: MPSCNNNormalizationGammaAndBetaState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputSumOfSquaresVectors: [MPSVector]?, resultState: MPSCNNConvolutionWeightsAndBiasesState)
      * @availability iOS 12.0+
      */
-    encodeCommandBufferConvolutionGradientStateConvolutionSourceStateInputSumOfSquaresVectorsResultState(commandBuffer: SDKHandle, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputSumOfSquaresVectors: $SDK41, resultState: MPSCNNConvolutionWeightsAndBiasesState): void;
+    encodeCommandBufferConvolutionGradientStateConvolutionSourceStateInputSumOfSquaresVectorsResultState(commandBuffer: SDKHandle, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputSumOfSquaresVectors: $SDK42, resultState: MPSCNNConvolutionWeightsAndBiasesState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, inputGradientMatrix: MPSMatrix, inputValuesMatrix: MPSMatrix, inputSumOfSquaresMatrix: MPSMatrix, resultValuesMatrix: MPSMatrix)
      * @availability iOS 13.0+
@@ -17153,8 +18814,6 @@ export declare class MPSNNOptimizerRMSProp extends MPSNNOptimizerRMSProp_base {
      * @availability iOS 12.0+
      */
     encodeCommandBufferInputGradientVectorInputValuesVectorInputSumOfSquaresVectorResultValuesVector(commandBuffer: SDKHandle, inputGradientVector: MPSVector, inputValuesVector: MPSVector, inputSumOfSquaresVector: MPSVector, resultValuesVector: MPSVector): void;
-    /** init() */
-    static init(): MPSNNOptimizerRMSProp;
     /**
      * init(device: any MTLDevice, decay: Double, epsilon: Float, optimizerDescriptor: MPSNNOptimizerDescriptor)
      * @availability iOS 12.0+
@@ -17175,6 +18834,12 @@ export declare class MPSNNOptimizerRMSProp extends MPSNNOptimizerRMSProp_base {
      * @availability iOS 12.0+
      */
     get epsilon(): number;
+    readonly $type: {
+        "c:objc(cs)MPSNNOptimizerRMSProp": true;
+        "c:objc(cs)MPSNNOptimizer": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17190,27 +18855,26 @@ export declare class MPSNNOptimizerRMSProp extends MPSNNOptimizerRMSProp_base {
         "epsilon": true;
     };
 }
-declare const MPSNNOptimizerStochasticGradientDescent_base: Omit<typeof MPSNNOptimizer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNOptimizer);
 /**
  * class MPSNNOptimizerStochasticGradientDescent
  * @availability iOS 12.0+
  */
-export declare class MPSNNOptimizerStochasticGradientDescent extends MPSNNOptimizerStochasticGradientDescent_base {
+export declare class MPSNNOptimizerStochasticGradientDescent extends MPSNNOptimizer {
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputMomentumVectors: [MPSVector]?, resultState: MPSCNNNormalizationGammaAndBetaState)
      * @availability iOS 12.0+
      */
-    encodeCommandBufferBatchNormalizationGradientStateBatchNormalizationSourceStateInputMomentumVectorsResultState(commandBuffer: SDKHandle, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputMomentumVectors: $SDK41, resultState: MPSCNNNormalizationGammaAndBetaState): void;
+    encodeCommandBufferBatchNormalizationGradientStateBatchNormalizationSourceStateInputMomentumVectorsResultState(commandBuffer: SDKHandle, batchNormalizationGradientState: MPSCNNBatchNormalizationState, batchNormalizationSourceState: MPSCNNBatchNormalizationState, inputMomentumVectors: $SDK42, resultState: MPSCNNNormalizationGammaAndBetaState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, batchNormalizationState: MPSCNNBatchNormalizationState, inputMomentumVectors: [MPSVector]?, resultState: MPSCNNNormalizationGammaAndBetaState)
      * @availability iOS 12.0+
      */
-    encodeCommandBufferBatchNormalizationStateInputMomentumVectorsResultState(commandBuffer: SDKHandle, batchNormalizationState: MPSCNNBatchNormalizationState, inputMomentumVectors: $SDK41, resultState: MPSCNNNormalizationGammaAndBetaState): void;
+    encodeCommandBufferBatchNormalizationStateInputMomentumVectorsResultState(commandBuffer: SDKHandle, batchNormalizationState: MPSCNNBatchNormalizationState, inputMomentumVectors: $SDK42, resultState: MPSCNNNormalizationGammaAndBetaState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputMomentumVectors: [MPSVector]?, resultState: MPSCNNConvolutionWeightsAndBiasesState)
      * @availability iOS 12.0+
      */
-    encodeCommandBufferConvolutionGradientStateConvolutionSourceStateInputMomentumVectorsResultState(commandBuffer: SDKHandle, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputMomentumVectors: $SDK41, resultState: MPSCNNConvolutionWeightsAndBiasesState): void;
+    encodeCommandBufferConvolutionGradientStateConvolutionSourceStateInputMomentumVectorsResultState(commandBuffer: SDKHandle, convolutionGradientState: MPSCNNConvolutionGradientState, convolutionSourceState: MPSCNNConvolutionWeightsAndBiasesState, inputMomentumVectors: $SDK42, resultState: MPSCNNConvolutionWeightsAndBiasesState): void;
     /**
      * func encode(commandBuffer: any MTLCommandBuffer, inputGradientMatrix: MPSMatrix, inputValuesMatrix: MPSMatrix, inputMomentumMatrix: MPSMatrix?, resultValuesMatrix: MPSMatrix)
      * @availability iOS 13.0+
@@ -17221,8 +18885,6 @@ export declare class MPSNNOptimizerStochasticGradientDescent extends MPSNNOptimi
      * @availability iOS 12.0+
      */
     encodeCommandBufferInputGradientVectorInputValuesVectorInputMomentumVectorResultValuesVector(commandBuffer: SDKHandle, inputGradientVector: MPSVector, inputValuesVector: MPSVector, inputMomentumVector: (MPSVector) | null, resultValuesVector: MPSVector): void;
-    /** init() */
-    static init(): MPSNNOptimizerStochasticGradientDescent;
     /**
      * init(device: any MTLDevice, learningRate: Float)
      * @availability iOS 12.0+
@@ -17253,6 +18915,12 @@ export declare class MPSNNOptimizerStochasticGradientDescent extends MPSNNOptimi
      * @availability iOS 12.0+
      */
     get useNestrovMomentum(): boolean;
+    readonly $type: {
+        "c:objc(cs)MPSNNOptimizerStochasticGradientDescent": true;
+        "c:objc(cs)MPSNNOptimizer": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17269,14 +18937,12 @@ export declare class MPSNNOptimizerStochasticGradientDescent extends MPSNNOptimi
         "useNestrovMomentum": true;
     };
 }
-declare const MPSNNPad_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSNNPad_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSNNPad
  * @availability iOS 12.1+
  */
 export declare class MPSNNPad extends MPSNNPad_base {
-    /** init() */
-    static init(): MPSNNPad;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.1+
@@ -17315,6 +18981,12 @@ export declare class MPSNNPad extends MPSNNPad_base {
      */
     get paddingSizeBefore(): MPSImageCoordinate;
     set paddingSizeBefore(value: MPSImageCoordinate);
+    readonly $type: {
+        "c:objc(cs)MPSNNPad": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17443,14 +19115,12 @@ export declare const MPSNNPaddingMethod: {
     /** init(rawValue: UInt) */
     init(rawValue: number): MPSNNPaddingMethod;
 };
-declare const MPSNNPadGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSNNPadGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSNNPadGradient
  * @availability iOS 12.1+
  */
 export declare class MPSNNPadGradient extends MPSNNPadGradient_base {
-    /** init() */
-    static init(): MPSNNPadGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.1+
@@ -17461,6 +19131,13 @@ export declare class MPSNNPadGradient extends MPSNNPadGradient_base {
      * @availability iOS 12.1+
      */
     static initDevice(device: SDKHandle): MPSNNPadGradient;
+    readonly $type: {
+        "c:objc(cs)MPSNNPadGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17505,6 +19182,12 @@ export declare class MPSNNPadGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 12.1+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSNNPadGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSNNPadGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -17529,6 +19212,11 @@ export declare class MPSNNPadNode extends MPSNNFilterNode {
      */
     get fillValue(): number;
     set fillValue(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNPadNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -17538,7 +19226,7 @@ export declare class MPSNNPadNode extends MPSNNFilterNode {
         "fillValue": true;
     };
 }
-declare const MPSNNReduceUnary_base: Omit<typeof MPSCNNKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "offset">);
+declare const MPSNNReduceUnary_base: Omit<typeof MPSCNNKernel, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "offset">);
 /**
  * class MPSNNReduceUnary
  * @availability iOS 11.3+
@@ -17559,6 +19247,12 @@ export declare class MPSNNReduceUnary extends MPSNNReduceUnary_base {
      */
     get offset(): MPSOffset;
     set offset(value: MPSOffset);
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17582,14 +19276,12 @@ export declare class MPSNNReduceUnary extends MPSNNReduceUnary_base {
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceColumnMax_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceColumnMax_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceColumnMax
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceColumnMax extends MPSNNReduceColumnMax_base {
-    /** init() */
-    static init(): MPSNNReduceColumnMax;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -17600,6 +19292,13 @@ export declare class MPSNNReduceColumnMax extends MPSNNReduceColumnMax_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceColumnMax;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceColumnMax": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17623,14 +19322,12 @@ export declare class MPSNNReduceColumnMax extends MPSNNReduceColumnMax_base {
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceColumnMean_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceColumnMean_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceColumnMean
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceColumnMean extends MPSNNReduceColumnMean_base {
-    /** init() */
-    static init(): MPSNNReduceColumnMean;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -17641,6 +19338,13 @@ export declare class MPSNNReduceColumnMean extends MPSNNReduceColumnMean_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceColumnMean;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceColumnMean": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17664,14 +19368,12 @@ export declare class MPSNNReduceColumnMean extends MPSNNReduceColumnMean_base {
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceColumnMin_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceColumnMin_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceColumnMin
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceColumnMin extends MPSNNReduceColumnMin_base {
-    /** init() */
-    static init(): MPSNNReduceColumnMin;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -17682,6 +19384,13 @@ export declare class MPSNNReduceColumnMin extends MPSNNReduceColumnMin_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceColumnMin;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceColumnMin": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17705,14 +19414,12 @@ export declare class MPSNNReduceColumnMin extends MPSNNReduceColumnMin_base {
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceColumnSum_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceColumnSum_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceColumnSum
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceColumnSum extends MPSNNReduceColumnSum_base {
-    /** init() */
-    static init(): MPSNNReduceColumnSum;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -17723,6 +19430,13 @@ export declare class MPSNNReduceColumnSum extends MPSNNReduceColumnSum_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceColumnSum;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceColumnSum": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17746,14 +19460,12 @@ export declare class MPSNNReduceColumnSum extends MPSNNReduceColumnSum_base {
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceFeatureChannelsAndWeightsMean_base: Omit<typeof MPSNNReduceBinary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceBinary);
+declare const MPSNNReduceFeatureChannelsAndWeightsMean_base: Omit<typeof MPSNNReduceBinary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceBinary);
 /**
  * class MPSNNReduceFeatureChannelsAndWeightsMean
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceFeatureChannelsAndWeightsMean extends MPSNNReduceFeatureChannelsAndWeightsMean_base {
-    /** init() */
-    static init(): MPSNNReduceFeatureChannelsAndWeightsMean;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -17764,6 +19476,13 @@ export declare class MPSNNReduceFeatureChannelsAndWeightsMean extends MPSNNReduc
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsAndWeightsMean;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceFeatureChannelsAndWeightsMean": true;
+        "c:objc(cs)MPSNNReduceBinary": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17798,14 +19517,12 @@ export declare class MPSNNReduceFeatureChannelsAndWeightsMean extends MPSNNReduc
         "secondarySourceClipRect": true;
     };
 }
-declare const MPSNNReduceFeatureChannelsAndWeightsSum_base: Omit<typeof MPSNNReduceBinary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceBinary);
+declare const MPSNNReduceFeatureChannelsAndWeightsSum_base: Omit<typeof MPSNNReduceBinary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceBinary);
 /**
  * class MPSNNReduceFeatureChannelsAndWeightsSum
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceFeatureChannelsAndWeightsSum extends MPSNNReduceFeatureChannelsAndWeightsSum_base {
-    /** init() */
-    static init(): MPSNNReduceFeatureChannelsAndWeightsSum;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -17826,6 +19543,13 @@ export declare class MPSNNReduceFeatureChannelsAndWeightsSum extends MPSNNReduce
      * @availability iOS 11.3+
      */
     get doWeightedSumByNonZeroWeights(): boolean;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceFeatureChannelsAndWeightsSum": true;
+        "c:objc(cs)MPSNNReduceBinary": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17861,14 +19585,12 @@ export declare class MPSNNReduceFeatureChannelsAndWeightsSum extends MPSNNReduce
         "doWeightedSumByNonZeroWeights": true;
     };
 }
-declare const MPSNNReduceFeatureChannelsArgumentMax_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceFeatureChannelsArgumentMax_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceFeatureChannelsArgumentMax
  * @availability iOS 12.0+
  */
 export declare class MPSNNReduceFeatureChannelsArgumentMax extends MPSNNReduceFeatureChannelsArgumentMax_base {
-    /** init() */
-    static init(): MPSNNReduceFeatureChannelsArgumentMax;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -17879,6 +19601,13 @@ export declare class MPSNNReduceFeatureChannelsArgumentMax extends MPSNNReduceFe
      * @availability iOS 12.0+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsArgumentMax;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceFeatureChannelsArgumentMax": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17902,14 +19631,12 @@ export declare class MPSNNReduceFeatureChannelsArgumentMax extends MPSNNReduceFe
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceFeatureChannelsArgumentMin_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceFeatureChannelsArgumentMin_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceFeatureChannelsArgumentMin
  * @availability iOS 12.0+
  */
 export declare class MPSNNReduceFeatureChannelsArgumentMin extends MPSNNReduceFeatureChannelsArgumentMin_base {
-    /** init() */
-    static init(): MPSNNReduceFeatureChannelsArgumentMin;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -17920,6 +19647,13 @@ export declare class MPSNNReduceFeatureChannelsArgumentMin extends MPSNNReduceFe
      * @availability iOS 12.0+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsArgumentMin;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceFeatureChannelsArgumentMin": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17943,14 +19677,12 @@ export declare class MPSNNReduceFeatureChannelsArgumentMin extends MPSNNReduceFe
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceFeatureChannelsMax_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceFeatureChannelsMax_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceFeatureChannelsMax
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceFeatureChannelsMax extends MPSNNReduceFeatureChannelsMax_base {
-    /** init() */
-    static init(): MPSNNReduceFeatureChannelsMax;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -17961,6 +19693,13 @@ export declare class MPSNNReduceFeatureChannelsMax extends MPSNNReduceFeatureCha
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsMax;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceFeatureChannelsMax": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -17984,14 +19723,12 @@ export declare class MPSNNReduceFeatureChannelsMax extends MPSNNReduceFeatureCha
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceFeatureChannelsMean_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceFeatureChannelsMean_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceFeatureChannelsMean
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceFeatureChannelsMean extends MPSNNReduceFeatureChannelsMean_base {
-    /** init() */
-    static init(): MPSNNReduceFeatureChannelsMean;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -18002,6 +19739,13 @@ export declare class MPSNNReduceFeatureChannelsMean extends MPSNNReduceFeatureCh
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsMean;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceFeatureChannelsMean": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18025,14 +19769,12 @@ export declare class MPSNNReduceFeatureChannelsMean extends MPSNNReduceFeatureCh
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceFeatureChannelsMin_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceFeatureChannelsMin_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceFeatureChannelsMin
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceFeatureChannelsMin extends MPSNNReduceFeatureChannelsMin_base {
-    /** init() */
-    static init(): MPSNNReduceFeatureChannelsMin;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -18043,6 +19785,13 @@ export declare class MPSNNReduceFeatureChannelsMin extends MPSNNReduceFeatureCha
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsMin;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceFeatureChannelsMin": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18066,14 +19815,12 @@ export declare class MPSNNReduceFeatureChannelsMin extends MPSNNReduceFeatureCha
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceFeatureChannelsSum_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceFeatureChannelsSum_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceFeatureChannelsSum
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceFeatureChannelsSum extends MPSNNReduceFeatureChannelsSum_base {
-    /** init() */
-    static init(): MPSNNReduceFeatureChannelsSum;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -18090,6 +19837,13 @@ export declare class MPSNNReduceFeatureChannelsSum extends MPSNNReduceFeatureCha
      */
     get weight(): number;
     set weight(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceFeatureChannelsSum": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18114,14 +19868,12 @@ export declare class MPSNNReduceFeatureChannelsSum extends MPSNNReduceFeatureCha
         "weight": true;
     };
 }
-declare const MPSNNReduceRowMax_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceRowMax_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceRowMax
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceRowMax extends MPSNNReduceRowMax_base {
-    /** init() */
-    static init(): MPSNNReduceRowMax;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -18132,6 +19884,13 @@ export declare class MPSNNReduceRowMax extends MPSNNReduceRowMax_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceRowMax;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceRowMax": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18155,14 +19914,12 @@ export declare class MPSNNReduceRowMax extends MPSNNReduceRowMax_base {
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceRowMean_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceRowMean_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceRowMean
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceRowMean extends MPSNNReduceRowMean_base {
-    /** init() */
-    static init(): MPSNNReduceRowMean;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -18173,6 +19930,13 @@ export declare class MPSNNReduceRowMean extends MPSNNReduceRowMean_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceRowMean;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceRowMean": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18196,14 +19960,12 @@ export declare class MPSNNReduceRowMean extends MPSNNReduceRowMean_base {
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceRowMin_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceRowMin_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceRowMin
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceRowMin extends MPSNNReduceRowMin_base {
-    /** init() */
-    static init(): MPSNNReduceRowMin;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -18214,6 +19976,13 @@ export declare class MPSNNReduceRowMin extends MPSNNReduceRowMin_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceRowMin;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceRowMin": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18237,14 +20006,12 @@ export declare class MPSNNReduceRowMin extends MPSNNReduceRowMin_base {
         "clipRectSource": true;
     };
 }
-declare const MPSNNReduceRowSum_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
+declare const MPSNNReduceRowSum_base: Omit<typeof MPSNNReduceUnary, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
  * class MPSNNReduceRowSum
  * @availability iOS 11.3+
  */
 export declare class MPSNNReduceRowSum extends MPSNNReduceRowSum_base {
-    /** init() */
-    static init(): MPSNNReduceRowSum;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -18255,6 +20022,13 @@ export declare class MPSNNReduceRowSum extends MPSNNReduceRowSum_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceRowSum;
+    readonly $type: {
+        "c:objc(cs)MPSNNReduceRowSum": true;
+        "c:objc(cs)MPSNNReduceUnary": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18294,6 +20068,11 @@ export declare class MPSNNUnaryReductionNode extends MPSNNFilterNode {
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $type: {
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18308,6 +20087,12 @@ export declare class MPSNNUnaryReductionNode extends MPSNNFilterNode {
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionColumnMaxNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionColumnMaxNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18322,6 +20107,12 @@ export declare class MPSNNReductionColumnMaxNode extends MPSNNUnaryReductionNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionColumnMeanNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionColumnMeanNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18336,6 +20127,12 @@ export declare class MPSNNReductionColumnMeanNode extends MPSNNUnaryReductionNod
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionColumnMinNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionColumnMinNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18350,6 +20147,12 @@ export declare class MPSNNReductionColumnMinNode extends MPSNNUnaryReductionNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionColumnSumNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionColumnSumNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18364,6 +20167,12 @@ export declare class MPSNNReductionColumnSumNode extends MPSNNUnaryReductionNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsArgumentMaxNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionFeatureChannelsArgumentMaxNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18378,6 +20187,12 @@ export declare class MPSNNReductionFeatureChannelsArgumentMaxNode extends MPSNNU
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsArgumentMinNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionFeatureChannelsArgumentMinNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18392,6 +20207,12 @@ export declare class MPSNNReductionFeatureChannelsArgumentMinNode extends MPSNNU
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsMaxNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionFeatureChannelsMaxNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18406,6 +20227,12 @@ export declare class MPSNNReductionFeatureChannelsMaxNode extends MPSNNUnaryRedu
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsMeanNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionFeatureChannelsMeanNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18420,6 +20247,12 @@ export declare class MPSNNReductionFeatureChannelsMeanNode extends MPSNNUnaryRed
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsMinNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionFeatureChannelsMinNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18440,6 +20273,12 @@ export declare class MPSNNReductionFeatureChannelsSumNode extends MPSNNUnaryRedu
      */
     get weight(): number;
     set weight(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionFeatureChannelsSumNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18455,6 +20294,12 @@ export declare class MPSNNReductionFeatureChannelsSumNode extends MPSNNUnaryRedu
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionRowMaxNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionRowMaxNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18469,6 +20314,12 @@ export declare class MPSNNReductionRowMaxNode extends MPSNNUnaryReductionNode {
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionRowMeanNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionRowMeanNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18483,6 +20334,12 @@ export declare class MPSNNReductionRowMeanNode extends MPSNNUnaryReductionNode {
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionRowMinNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionRowMinNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18497,6 +20354,12 @@ export declare class MPSNNReductionRowMinNode extends MPSNNUnaryReductionNode {
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionRowSumNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionRowSumNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18516,6 +20379,12 @@ export declare class MPSNNReductionSpatialMeanGradientNode extends MPSNNGradient
      * @availability iOS 12.1+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSNNReductionSpatialMeanGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionSpatialMeanGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18529,6 +20398,12 @@ export declare class MPSNNReductionSpatialMeanGradientNode extends MPSNNGradient
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionSpatialMeanNode extends MPSNNUnaryReductionNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNReductionSpatialMeanNode": true;
+        "c:objc(cs)MPSNNUnaryReductionNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18550,7 +20425,7 @@ export declare const MPSNNRegularizationType: {
      */
     init(rawValue: number): (MPSNNRegularizationType) | null;
 };
-declare const MPSNNReshape_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSNNReshape_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSNNReshape
  * @availability iOS 11.3+
@@ -18586,8 +20461,6 @@ export declare class MPSNNReshape extends MPSNNReshape_base {
      * @availability iOS 14.0+
      */
     encodeCommandBufferSourceImageReshapedWidthReshapedHeightReshapedFeatureChannels(commandBuffer: SDKHandle, sourceImage: MPSImage, reshapedWidth: number, reshapedHeight: number, reshapedFeatureChannels: number): MPSImage;
-    /** init() */
-    static init(): MPSNNReshape;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -18598,6 +20471,12 @@ export declare class MPSNNReshape extends MPSNNReshape_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReshape;
+    readonly $type: {
+        "c:objc(cs)MPSNNReshape": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18620,14 +20499,12 @@ export declare class MPSNNReshape extends MPSNNReshape_base {
         "strideInPixelsY": true;
     };
 }
-declare const MPSNNReshapeGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
+declare const MPSNNReshapeGradient_base: Omit<typeof MPSCNNGradientKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
  * class MPSNNReshapeGradient
  * @availability iOS 12.1+
  */
 export declare class MPSNNReshapeGradient extends MPSNNReshapeGradient_base {
-    /** init() */
-    static init(): MPSNNReshapeGradient;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.1+
@@ -18638,6 +20515,13 @@ export declare class MPSNNReshapeGradient extends MPSNNReshapeGradient_base {
      * @availability iOS 12.1+
      */
     static initDevice(device: SDKHandle): MPSNNReshapeGradient;
+    readonly $type: {
+        "c:objc(cs)MPSNNReshapeGradient": true;
+        "c:objc(cs)MPSCNNGradientKernel": true;
+        "c:objc(cs)MPSCNNBinaryKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18682,6 +20566,12 @@ export declare class MPSNNReshapeGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 12.1+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSNNReshapeGradientNode;
+    readonly $type: {
+        "c:objc(cs)MPSNNReshapeGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18700,6 +20590,11 @@ export declare class MPSNNReshapeNode extends MPSNNFilterNode {
      * @availability iOS 12.1+
      */
     static init(source: MPSNNImageNode, resultWidth: number, resultHeight: number, resultFeatureChannels: number): MPSNNReshapeNode;
+    readonly $type: {
+        "c:objc(cs)MPSNNReshapeNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18708,14 +20603,12 @@ export declare class MPSNNReshapeNode extends MPSNNFilterNode {
         "resultStates": true;
     };
 }
-declare const MPSNNResizeBilinear_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSNNResizeBilinear_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSNNResizeBilinear
  * @availability iOS 12.0+
  */
 export declare class MPSNNResizeBilinear extends MPSNNResizeBilinear_base {
-    /** init() */
-    static init(): MPSNNResizeBilinear;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 12.0+
@@ -18741,6 +20634,12 @@ export declare class MPSNNResizeBilinear extends MPSNNResizeBilinear_base {
      * @availability iOS 12.0+
      */
     get resizeWidth(): number;
+    readonly $type: {
+        "c:objc(cs)MPSNNResizeBilinear": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18766,14 +20665,12 @@ export declare class MPSNNResizeBilinear extends MPSNNResizeBilinear_base {
         "resizeWidth": true;
     };
 }
-declare const MPSNNSlice_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
+declare const MPSNNSlice_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
  * class MPSNNSlice
  * @availability iOS 11.3+
  */
 export declare class MPSNNSlice extends MPSNNSlice_base {
-    /** init() */
-    static init(): MPSNNSlice;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.3+
@@ -18784,6 +20681,12 @@ export declare class MPSNNSlice extends MPSNNSlice_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNSlice;
+    readonly $type: {
+        "c:objc(cs)MPSNNSlice": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -18811,6 +20714,13 @@ export declare class MPSNNSlice extends MPSNNSlice_base {
  * @availability iOS 11.3+
  */
 export declare class MPSNNSubtractionGradientNode extends MPSNNArithmeticGradientNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNSubtractionGradientNode": true;
+        "c:objc(cs)MPSNNArithmeticGradientNode": true;
+        "c:objc(cs)MPSNNGradientFilterNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18833,6 +20743,12 @@ export declare class MPSNNSubtractionGradientNode extends MPSNNArithmeticGradien
  * @availability iOS 11.0+
  */
 export declare class MPSNNSubtractionNode extends MPSNNBinaryArithmeticNode {
+    readonly $type: {
+        "c:objc(cs)MPSNNSubtractionNode": true;
+        "c:objc(cs)MPSNNBinaryArithmeticNode": true;
+        "c:objc(cs)MPSNNFilterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "paddingPolicy": true;
@@ -18891,6 +20807,9 @@ export declare class MPSOffset extends SDKHandle {
     static initXYZ(x: number, y: number, z: number): MPSOffset;
     /** init() */
     static init(): MPSOffset;
+    readonly $type: {
+        "c:@SA@MPSOffset": true;
+    };
 }
 /** struct MPSOrigin */
 export declare class MPSOrigin extends SDKHandle {
@@ -18907,14 +20826,23 @@ export declare class MPSOrigin extends SDKHandle {
     static initXYZ(x: number, y: number, z: number): MPSOrigin;
     /** init() */
     static init(): MPSOrigin;
+    readonly $type: {
+        "c:@S@MPSOrigin": true;
+    };
 }
 /** typealias MPSPackedFloat3 = _MPSPackedFloat3 */
 export type MPSPackedFloat3 = SDKHandle;
 /** struct __Unnamed_struct___Anonymous_field0 */
 export declare class MPSPackedFloat3___Unnamed_struct___Anonymous_field0 extends SDKHandle {
+    readonly $type: {
+        "c:@S@_MPSPackedFloat3@Ua@Sa::SYNTHESIZED::c:@T@MPSPackedFloat3": true;
+    };
 }
 /** struct __Unnamed_union___Anonymous_field0 */
 export declare class MPSPackedFloat3___Unnamed_union___Anonymous_field0 extends SDKHandle {
+    readonly $type: {
+        "c:@S@_MPSPackedFloat3@Ua::SYNTHESIZED::c:@T@MPSPackedFloat3": true;
+    };
 }
 /**
  * class MPSPolygonAccelerationStructure
@@ -18962,8 +20890,8 @@ export declare class MPSPolygonAccelerationStructure extends MPSAccelerationStru
      * @availability iOS 13.0+
      * @deprecated iOS 17.0
      */
-    get polygonBuffers(): $SDK42;
-    set polygonBuffers(value: $SDK42);
+    get polygonBuffers(): $SDK43;
+    set polygonBuffers(value: $SDK43);
     /**
      * var polygonCount: Int { get set }
      * @availability iOS 13.0+
@@ -18999,6 +20927,12 @@ export declare class MPSPolygonAccelerationStructure extends MPSAccelerationStru
      */
     get vertexStride(): number;
     set vertexStride(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSPolygonAccelerationStructure": true;
+        "c:objc(cs)MPSAccelerationStructure": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -19093,6 +21027,10 @@ export declare class MPSPolygonBuffer extends SDKHandle {
      */
     get vertexBufferOffset(): number;
     set vertexBufferOffset(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSPolygonBuffer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "indexBuffer": true;
         "indexBufferOffset": true;
@@ -19122,8 +21060,6 @@ export declare const MPSPolygonType: {
  * @availability iOS 13.0+
  */
 export declare class MPSPredicate extends SDKHandle {
-    /** init() */
-    static init(): MPSPredicate;
     /**
      * init(buffer: any MTLBuffer, offset: Int)
      * @availability iOS 13.0+
@@ -19144,6 +21080,10 @@ export declare class MPSPredicate extends SDKHandle {
      * @availability iOS 13.0+
      */
     get predicateOffset(): number;
+    readonly $type: {
+        "c:objc(cs)MPSPredicate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "predicateBuffer": true;
         "predicateOffset": true;
@@ -19174,6 +21114,13 @@ export declare class MPSQuadrilateralAccelerationStructure extends MPSPolygonAcc
      */
     get quadrilateralCount(): number;
     set quadrilateralCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSQuadrilateralAccelerationStructure": true;
+        "c:objc(cs)MPSPolygonAccelerationStructure": true;
+        "c:objc(cs)MPSAccelerationStructure": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -19359,6 +21306,11 @@ export declare class MPSRayIntersector extends MPSRayIntersector_base {
      */
     get triangleIntersectionTestType(): MPSTriangleIntersectionTestType;
     set triangleIntersectionTestType(value: MPSTriangleIntersectionTestType);
+    readonly $type: {
+        "c:objc(cs)MPSRayIntersector": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -19429,6 +21381,9 @@ export declare class MPSRayOriginDirection extends SDKHandle {
     static initOriginDirection(origin: SDKHandle, direction: SDKHandle): MPSRayOriginDirection;
     /** init() */
     static init(): MPSRayOriginDirection;
+    readonly $type: {
+        "c:@SA@MPSRayOriginDirection": true;
+    };
 }
 /** struct MPSRayOriginMaskDirectionMaxDistance */
 export declare class MPSRayOriginMaskDirectionMaxDistance extends SDKHandle {
@@ -19448,6 +21403,9 @@ export declare class MPSRayOriginMaskDirectionMaxDistance extends SDKHandle {
     static initOriginMaskDirectionMaxDistance(origin: SDKHandle, mask: number, direction: SDKHandle, maxDistance: number): MPSRayOriginMaskDirectionMaxDistance;
     /** init() */
     static init(): MPSRayOriginMaskDirectionMaxDistance;
+    readonly $type: {
+        "c:@SA@MPSRayOriginMaskDirectionMaxDistance": true;
+    };
 }
 /** struct MPSRayOriginMinDistanceDirectionMaxDistance */
 export declare class MPSRayOriginMinDistanceDirectionMaxDistance extends SDKHandle {
@@ -19467,6 +21425,9 @@ export declare class MPSRayOriginMinDistanceDirectionMaxDistance extends SDKHand
     static initOriginMinDistanceDirectionMaxDistance(origin: SDKHandle, minDistance: number, direction: SDKHandle, maxDistance: number): MPSRayOriginMinDistanceDirectionMaxDistance;
     /** init() */
     static init(): MPSRayOriginMinDistanceDirectionMaxDistance;
+    readonly $type: {
+        "c:@SA@MPSRayOriginMinDistanceDirectionMaxDistance": true;
+    };
 }
 /** struct MPSRayPackedOriginDirection */
 export declare class MPSRayPackedOriginDirection extends SDKHandle {
@@ -19480,6 +21441,9 @@ export declare class MPSRayPackedOriginDirection extends SDKHandle {
     static initOriginDirection(origin: SDKHandle, direction: SDKHandle): MPSRayPackedOriginDirection;
     /** init() */
     static init(): MPSRayPackedOriginDirection;
+    readonly $type: {
+        "c:@SA@MPSRayPackedOriginDirection": true;
+    };
 }
 /** struct MPSRegion */
 export declare class MPSRegion extends SDKHandle {
@@ -19493,6 +21457,9 @@ export declare class MPSRegion extends SDKHandle {
     static initOriginSize(origin: MPSOrigin, size: MPSSize): MPSRegion;
     /** init() */
     static init(): MPSRegion;
+    readonly $type: {
+        "c:@S@MPSRegion": true;
+    };
 }
 /** enum MPSRNNBidirectionalCombineMode */
 export type MPSRNNBidirectionalCombineMode = "none" | "add" | "concatenate";
@@ -19500,7 +21467,7 @@ export declare const MPSRNNBidirectionalCombineMode: {
     /** init?(rawValue: UInt) */
     init(rawValue: number): (MPSRNNBidirectionalCombineMode) | null;
 };
-declare const MPSRNNImageInferenceLayer_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "copy">);
+declare const MPSRNNImageInferenceLayer_base: Omit<typeof MPSCNNKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "copy">);
 /**
  * class MPSRNNImageInferenceLayer
  * @availability iOS 11.0+
@@ -19520,9 +21487,7 @@ export declare class MPSRNNImageInferenceLayer extends MPSRNNImageInferenceLayer
      * func encodeSequence(commandBuffer: any MTLCommandBuffer, sourceImages: [MPSImage], destinationImages: [MPSImage], recurrentInputState: MPSRNNRecurrentImageState?, recurrentOutputStates: NSMutableArray?)
      * @availability iOS 11.0+
      */
-    encodeSequence(commandBuffer: SDKHandle, sourceImages: Array<MPSImage>, destinationImages: Array<MPSImage>, recurrentInputState?: (MPSRNNRecurrentImageState) | null, recurrentOutputStates?: $SDK37): void;
-    /** init() */
-    static init(): MPSRNNImageInferenceLayer;
+    encodeSequence(commandBuffer: SDKHandle, sourceImages: Array<MPSImage>, destinationImages: Array<MPSImage>, recurrentInputState?: (MPSRNNRecurrentImageState) | null, recurrentOutputStates?: $SDK38): void;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -19571,6 +21536,12 @@ export declare class MPSRNNImageInferenceLayer extends MPSRNNImageInferenceLayer
      */
     get storeAllIntermediateStates(): boolean;
     set storeAllIntermediateStates(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSRNNImageInferenceLayer": true;
+        "c:objc(cs)MPSCNNKernel": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -19605,7 +21576,7 @@ export declare const MPSRNNMatrixId: {
     /** init?(rawValue: UInt) */
     init(rawValue: number): (MPSRNNMatrixId) | null;
 };
-declare const MPSRNNMatrixInferenceLayer_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
+declare const MPSRNNMatrixInferenceLayer_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
 /**
  * class MPSRNNMatrixInferenceLayer
  * @availability iOS 11.0+
@@ -19620,19 +21591,17 @@ export declare class MPSRNNMatrixInferenceLayer extends MPSRNNMatrixInferenceLay
      * func encodeBidirectionalSequence(commandBuffer: any MTLCommandBuffer, sourceSequence: [MPSMatrix], destinationForwardMatrices: [MPSMatrix], destinationBackwardMatrices: [MPSMatrix]?)
      * @availability iOS 11.0+
      */
-    encodeBidirectionalSequence(commandBuffer: SDKHandle, sourceSequence: Array<MPSMatrix>, destinationForwardMatrices: Array<MPSMatrix>, destinationBackwardMatrices?: $SDK44): void;
+    encodeBidirectionalSequence(commandBuffer: SDKHandle, sourceSequence: Array<MPSMatrix>, destinationForwardMatrices: Array<MPSMatrix>, destinationBackwardMatrices?: $SDK45): void;
     /**
      * func encodeSequence(commandBuffer: any MTLCommandBuffer, sourceMatrices: [MPSMatrix], destinationMatrices: [MPSMatrix], recurrentInputState: MPSRNNRecurrentMatrixState?, recurrentOutputStates: NSMutableArray?)
      * @availability iOS 11.0+
      */
-    encodeSequenceCommandBufferSourceMatricesDestinationMatricesRecurrentInputStateRecurrentOutputStates(commandBuffer: SDKHandle, sourceMatrices: Array<MPSMatrix>, destinationMatrices: Array<MPSMatrix>, recurrentInputState?: $SDK45, recurrentOutputStates?: $SDK37): void;
+    encodeSequenceCommandBufferSourceMatricesDestinationMatricesRecurrentInputStateRecurrentOutputStates(commandBuffer: SDKHandle, sourceMatrices: Array<MPSMatrix>, destinationMatrices: Array<MPSMatrix>, recurrentInputState?: $SDK46, recurrentOutputStates?: $SDK38): void;
     /**
      * func encodeSequence(commandBuffer: any MTLCommandBuffer, sourceMatrices: [MPSMatrix], sourceOffsets: UnsafeMutablePointer<Int>?, destinationMatrices: [MPSMatrix], destinationOffsets: UnsafeMutablePointer<Int>?, recurrentInputState: MPSRNNRecurrentMatrixState?, recurrentOutputStates: NSMutableArray?)
      * @availability iOS 12.0+
      */
-    encodeSequenceCommandBufferSourceMatricesSourceOffsetsDestinationMatricesDestinationOffsetsRecurrentInputStateRecurrentOutputStates(commandBuffer: SDKHandle, sourceMatrices: Array<MPSMatrix>, sourceOffsets: (SDKHandle) | null, destinationMatrices: Array<MPSMatrix>, destinationOffsets?: (SDKHandle) | null, recurrentInputState?: $SDK45, recurrentOutputStates?: $SDK37): void;
-    /** init() */
-    static init(): MPSRNNMatrixInferenceLayer;
+    encodeSequenceCommandBufferSourceMatricesSourceOffsetsDestinationMatricesDestinationOffsetsRecurrentInputStateRecurrentOutputStates(commandBuffer: SDKHandle, sourceMatrices: Array<MPSMatrix>, sourceOffsets: (SDKHandle) | null, destinationMatrices: Array<MPSMatrix>, destinationOffsets?: (SDKHandle) | null, recurrentInputState?: $SDK46, recurrentOutputStates?: $SDK38): void;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -19681,6 +21650,11 @@ export declare class MPSRNNMatrixInferenceLayer extends MPSRNNMatrixInferenceLay
      */
     get storeAllIntermediateStates(): boolean;
     set storeAllIntermediateStates(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSRNNMatrixInferenceLayer": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -19693,7 +21667,7 @@ export declare class MPSRNNMatrixInferenceLayer extends MPSRNNMatrixInferenceLay
         "storeAllIntermediateStates": true;
     };
 }
-declare const MPSRNNMatrixTrainingLayer_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
+declare const MPSRNNMatrixTrainingLayer_base: Omit<typeof MPSKernel, "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
 /**
  * class MPSRNNMatrixTrainingLayer
  * @availability iOS 12.0+
@@ -19733,19 +21707,17 @@ export declare class MPSRNNMatrixTrainingLayer extends MPSRNNMatrixTrainingLayer
      * func encodeForwardSequence(commandBuffer: any MTLCommandBuffer, sourceMatrices: [MPSMatrix], sourceOffsets: UnsafeMutablePointer<Int>?, destinationMatrices: [MPSMatrix], destinationOffsets: UnsafeMutablePointer<Int>?, trainingStates: NSMutableArray, recurrentInputState: MPSRNNRecurrentMatrixState?, recurrentOutputStates: NSMutableArray?, weights: [MPSMatrix])
      * @availability iOS 12.0+
      */
-    encodeForwardSequenceCommandBufferSourceMatricesSourceOffsetsDestinationMatricesDestinationOffsetsTrainingStatesRecurrentInputStateRecurrentOutputStatesWeights(commandBuffer: SDKHandle, sourceMatrices: Array<MPSMatrix>, sourceOffsets: (SDKHandle) | null, destinationMatrices: Array<MPSMatrix>, destinationOffsets: (SDKHandle) | null, trainingStates: _Foundation_NSMutableArray, recurrentInputState: $SDK45, recurrentOutputStates: $SDK37, weights: Array<MPSMatrix>): void;
+    encodeForwardSequenceCommandBufferSourceMatricesSourceOffsetsDestinationMatricesDestinationOffsetsTrainingStatesRecurrentInputStateRecurrentOutputStatesWeights(commandBuffer: SDKHandle, sourceMatrices: Array<MPSMatrix>, sourceOffsets: (SDKHandle) | null, destinationMatrices: Array<MPSMatrix>, destinationOffsets: (SDKHandle) | null, trainingStates: _Foundation_NSMutableArray, recurrentInputState: $SDK46, recurrentOutputStates: $SDK38, weights: Array<MPSMatrix>): void;
     /**
      * func encodeGradientSequence(commandBuffer: any MTLCommandBuffer, forwardSources: [MPSMatrix], forwardSourceOffsets: UnsafeMutablePointer<Int>?, sourceGradients: [MPSMatrix], sourceOffsets sourceGradientOffsets: UnsafeMutablePointer<Int>?, destinationGradients: [MPSMatrix]?, destinationOffsets: UnsafeMutablePointer<Int>?, weightGradients: [MPSMatrix]?, trainingStates: [MPSRNNMatrixTrainingState], recurrentInputState: MPSRNNRecurrentMatrixState?, recurrentOutputStates: NSMutableArray?, weights: [MPSMatrix])
      * @availability iOS 12.0+
      */
-    encodeGradientSequenceCommandBufferForwardSourcesForwardSourceOffsetsSourceGradientsSourceOffsetsDestinationGradientsDestinationOffsetsWeightGradientsTrainingStatesRecurrentInputStateRecurrentOutputStatesWeights(commandBuffer: SDKHandle, forwardSources: Array<MPSMatrix>, forwardSourceOffsets: (SDKHandle) | null, sourceGradients: Array<MPSMatrix>, sourceGradientOffsets: (SDKHandle) | null, destinationGradients: $SDK44, destinationOffsets: (SDKHandle) | null, weightGradients: $SDK44, trainingStates: $SDK46, recurrentInputState: $SDK45, recurrentOutputStates: $SDK37, weights: Array<MPSMatrix>): void;
+    encodeGradientSequenceCommandBufferForwardSourcesForwardSourceOffsetsSourceGradientsSourceOffsetsDestinationGradientsDestinationOffsetsWeightGradientsTrainingStatesRecurrentInputStateRecurrentOutputStatesWeights(commandBuffer: SDKHandle, forwardSources: Array<MPSMatrix>, forwardSourceOffsets: (SDKHandle) | null, sourceGradients: Array<MPSMatrix>, sourceGradientOffsets: (SDKHandle) | null, destinationGradients: $SDK45, destinationOffsets: (SDKHandle) | null, weightGradients: $SDK45, trainingStates: $SDK47, recurrentInputState: $SDK46, recurrentOutputStates: $SDK38, weights: Array<MPSMatrix>): void;
     /**
      * func encodeGradientSequence(commandBuffer: any MTLCommandBuffer, forwardSources: [MPSMatrix], sourceGradients: [MPSMatrix], destinationGradients: [MPSMatrix]?, weightGradients: [MPSMatrix]?, trainingStates: [MPSRNNMatrixTrainingState], weights: [MPSMatrix])
      * @availability iOS 12.0+
      */
-    encodeGradientSequenceCommandBufferForwardSourcesSourceGradientsDestinationGradientsWeightGradientsTrainingStatesWeights(commandBuffer: SDKHandle, forwardSources: Array<MPSMatrix>, sourceGradients: Array<MPSMatrix>, destinationGradients: $SDK44, weightGradients: $SDK44, trainingStates: $SDK46, weights: Array<MPSMatrix>): void;
-    /** init() */
-    static init(): MPSRNNMatrixTrainingLayer;
+    encodeGradientSequenceCommandBufferForwardSourcesSourceGradientsDestinationGradientsWeightGradientsTrainingStatesWeights(commandBuffer: SDKHandle, forwardSources: Array<MPSMatrix>, sourceGradients: Array<MPSMatrix>, destinationGradients: $SDK45, weightGradients: $SDK45, trainingStates: $SDK47, weights: Array<MPSMatrix>): void;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 11.0+
@@ -19790,6 +21762,11 @@ export declare class MPSRNNMatrixTrainingLayer extends MPSRNNMatrixTrainingLayer
      */
     get trainingStateIsTemporary(): boolean;
     set trainingStateIsTemporary(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MPSRNNMatrixTrainingLayer": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -19807,6 +21784,11 @@ export declare class MPSRNNMatrixTrainingLayer extends MPSRNNMatrixTrainingLayer
  * @availability iOS 12.0+
  */
 export declare class MPSRNNMatrixTrainingState extends MPSState {
+    readonly $type: {
+        "c:objc(cs)MPSRNNMatrixTrainingState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -19830,6 +21812,11 @@ export declare class MPSRNNRecurrentImageState extends MPSState {
      * @availability iOS 11.0+
      */
     getRecurrentOutputImage(layerIndex: number): (MPSImage) | null;
+    readonly $type: {
+        "c:objc(cs)MPSRNNRecurrentImageState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -19853,6 +21840,11 @@ export declare class MPSRNNRecurrentMatrixState extends MPSState {
      * @availability iOS 11.0+
      */
     getRecurrentOutputMatrix(layerIndex: number): (MPSMatrix) | null;
+    readonly $type: {
+        "c:objc(cs)MPSRNNRecurrentMatrixState": true;
+        "c:objc(cs)MPSState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isTemporary": true;
         "label": true;
@@ -19892,6 +21884,11 @@ export declare class MPSRNNSingleGateDescriptor extends MPSRNNSingleGateDescript
      */
     get recurrentWeights(): (SDKHandle) | null;
     set recurrentWeights(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)MPSRNNSingleGateDescriptor": true;
+        "c:objc(cs)MPSRNNDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inputFeatureChannels": true;
         "layerSequenceDirection": true;
@@ -19920,6 +21917,9 @@ export declare class MPSScaleTransform extends SDKHandle {
     static initScaleXScaleYTranslateXTranslateY(scaleX: number, scaleY: number, translateX: number, translateY: number): MPSScaleTransform;
     /** init() */
     static init(): MPSScaleTransform;
+    readonly $type: {
+        "c:@S@MPSScaleTransform": true;
+    };
 }
 /** struct MPSSize */
 export declare class MPSSize extends SDKHandle {
@@ -19936,6 +21936,9 @@ export declare class MPSSize extends SDKHandle {
     static initWidthHeightDepth(width: number, height: number, depth: number): MPSSize;
     /** init() */
     static init(): MPSSize;
+    readonly $type: {
+        "c:@S@MPSSize": true;
+    };
 }
 /**
  * class MPSStateResourceList
@@ -19957,6 +21960,10 @@ export declare class MPSStateResourceList extends SDKHandle {
      * @availability iOS 11.3+
      */
     static init(): MPSStateResourceList;
+    readonly $type: {
+        "c:objc(cs)MPSStateResourceList": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** enum MPSStateResourceType */
 export type MPSStateResourceType = "none" | "buffer" | "texture";
@@ -19989,8 +21996,11 @@ export declare class MPSStateTextureInfo extends SDKHandle {
     set width(value: number);
     /** init() */
     static init(): MPSStateTextureInfo;
+    readonly $type: {
+        "c:@S@MPSStateTextureInfo": true;
+    };
 }
-declare const MPSSVGF_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
+declare const MPSSVGF_base: Omit<typeof MPSKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
 /**
  * class MPSSVGF
  * @availability iOS 13.0+
@@ -20036,8 +22046,6 @@ export declare class MPSSVGF extends MPSSVGF_base {
      * @availability iOS 13.0+
      */
     encode(coder: _Foundation_NSCoder): void;
-    /** init() */
-    static init(): MPSSVGF;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -20138,6 +22146,11 @@ export declare class MPSSVGF extends MPSSVGF_base {
      */
     get variancePrefilterSigma(): number;
     set variancePrefilterSigma(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSSVGF": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -20164,13 +22177,11 @@ export declare class MPSSVGF extends MPSSVGF_base {
  * @availability iOS 13.0+
  */
 export declare class MPSSVGFDefaultTextureAllocator extends SDKHandle {
-    /** init() */
-    static init(): MPSSVGFDefaultTextureAllocator;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 13.0+
      */
-    static initDevice(device: SDKHandle): MPSSVGFDefaultTextureAllocator;
+    static init(device: SDKHandle): MPSSVGFDefaultTextureAllocator;
     /**
      * func reset()
      * @availability iOS 13.0+
@@ -20196,6 +22207,10 @@ export declare class MPSSVGFDefaultTextureAllocator extends SDKHandle {
      * @availability iOS 13.0+
      */
     get device(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSSVGFDefaultTextureAllocator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allocatedTextureCount": true;
         "device": true;
@@ -20216,8 +22231,6 @@ export declare class MPSSVGFDenoiser extends SDKHandle {
      * @availability iOS 13.0+
      */
     encode(commandBuffer: SDKHandle, sourceTexture: SDKHandle, motionVectorTexture: (SDKHandle) | null, depthNormalTexture: SDKHandle, previousDepthNormalTexture?: (SDKHandle) | null): SDKHandle;
-    /** init() */
-    static init(): MPSSVGFDenoiser;
     /**
      * init(device: any MTLDevice)
      * @availability iOS 13.0+
@@ -20249,6 +22262,10 @@ export declare class MPSSVGFDenoiser extends SDKHandle {
      * @availability iOS 13.0+
      */
     get textureAllocator(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MPSSVGFDenoiser": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bilateralFilterIterations": true;
         "svgf": true;
@@ -20271,7 +22288,7 @@ export interface MPSSVGFTextureAllocator {
      */
     "return"?: (arg0: SDKHandle) => void;
 }
-declare const MPSTemporalAA_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
+declare const MPSTemporalAA_base: Omit<typeof MPSKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
 /**
  * class MPSTemporalAA
  * @availability iOS 13.0+
@@ -20292,8 +22309,6 @@ export declare class MPSTemporalAA extends MPSTemporalAA_base {
      * @availability iOS 13.0+
      */
     encodeWith(coder: _Foundation_NSCoder): void;
-    /** init() */
-    static init(): MPSTemporalAA;
     /**
      * init?(coder aDecoder: NSCoder, device: any MTLDevice)
      * @availability iOS 13.0+
@@ -20310,6 +22325,11 @@ export declare class MPSTemporalAA extends MPSTemporalAA_base {
      */
     get blendFactor(): number;
     set blendFactor(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSTemporalAA": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -20366,6 +22386,11 @@ export declare class MPSTemporaryImage extends MPSTemporaryImage_base {
      */
     get readCount(): number;
     set readCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSTemporaryImage": true;
+        "c:objc(cs)MPSImage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "featureChannelFormat": true;
@@ -20405,6 +22430,11 @@ export declare class MPSTemporaryMatrix extends MPSMatrix {
      */
     get readCount(): number;
     set readCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSTemporaryMatrix": true;
+        "c:objc(cs)MPSMatrix": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "columns": true;
         "data": true;
@@ -20440,6 +22470,11 @@ export declare class MPSTemporaryNDArray extends MPSTemporaryNDArray_base {
      */
     get readCount(): number;
     set readCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSTemporaryNDArray": true;
+        "c:objc(cs)MPSNDArray": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
         "dataTypeSize": true;
@@ -20515,6 +22550,10 @@ export declare class MPSVector extends SDKHandle {
      * @availability iOS 11.0+
      */
     get vectors(): number;
+    readonly $type: {
+        "c:objc(cs)MPSVector": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "dataType": true;
@@ -20546,6 +22585,11 @@ export declare class MPSTemporaryVector extends MPSVector {
      */
     get readCount(): number;
     set readCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSTemporaryVector": true;
+        "c:objc(cs)MPSVector": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "dataType": true;
@@ -20582,6 +22626,13 @@ export declare class MPSTriangleAccelerationStructure extends MPSPolygonAccelera
      */
     get triangleCount(): number;
     set triangleCount(value: number);
+    readonly $type: {
+        "c:objc(cs)MPSTriangleAccelerationStructure": true;
+        "c:objc(cs)MPSPolygonAccelerationStructure": true;
+        "c:objc(cs)MPSAccelerationStructure": true;
+        "c:objc(cs)MPSKernel": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "label": true;
@@ -20638,8 +22689,6 @@ export declare class MPSVectorDescriptor extends SDKHandle {
      * @availability iOS 11.0+
      */
     static initLengthVectorsVectorBytesDataType(length: number, vectors: number, vectorBytes: number, dataType: MPSDataType): MPSVectorDescriptor;
-    /** init() */
-    static init(): MPSVectorDescriptor;
     /**
      * var dataType: MPSDataType { get set }
      * @availability iOS 11.0+
@@ -20662,6 +22711,10 @@ export declare class MPSVectorDescriptor extends SDKHandle {
      * @availability iOS 11.0+
      */
     get vectors(): number;
+    readonly $type: {
+        "c:objc(cs)MPSVectorDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataType": true;
         "length": true;

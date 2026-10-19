@@ -49,6 +49,9 @@ export declare class AuthorizationCenter extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get shared(): AuthorizationCenter;
+    readonly $type: {
+        "s:14FamilyControls19AuthorizationCenterC": true;
+    };
 }
 /**
  * typealias ObjectWillChangePublisher = ObservableObjectPublisher
@@ -107,12 +110,18 @@ export declare class FamilyActivityData extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get shared(): FamilyActivityData;
+    readonly $type: {
+        "s:14FamilyControls0A12ActivityDataC": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct FamilyActivityIconView
  * @availability iOS 15.0+
  */
 export declare class FamilyActivityIconView extends SDKHandle {
+    readonly $type: {
+        "s:14FamilyControls0A16ActivityIconViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -134,6 +143,9 @@ export declare class FamilyActivityPicker extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initSelection(selection: $SDK5): Promise<FamilyActivityPicker>;
+    readonly $type: {
+        "s:14FamilyControls0A14ActivityPickerV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -193,12 +205,18 @@ export declare class FamilyActivitySelection extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): FamilyActivitySelection;
+    readonly $type: {
+        "s:14FamilyControls0A17ActivitySelectionV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct FamilyActivityTitleView
  * @availability iOS 15.0+
  */
 export declare class FamilyActivityTitleView extends SDKHandle {
+    readonly $type: {
+        "s:14FamilyControls0A17ActivityTitleViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -280,5 +298,8 @@ export declare class Label<Title = unknown, Icon = unknown> extends SDKHandle {
      * @availability iOS 15.2+
      */
     static init33463(webDomainToken: _ManagedSettings_Token<_ManagedSettings_WebDomain>): $SDK9;
+    readonly $type: {
+        "s:7SwiftUI5LabelV": true;
+    };
 }
 export {};

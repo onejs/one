@@ -14,6 +14,9 @@ export declare class AttributeScopes_TranslationAttributes extends SDKHandle {
      * @availability iOS 26.4+
      */
     get skipsTranslation(): AttributeScopes_TranslationAttributes_SkipTranslationAttribute;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO11TranslationE0D10AttributesV": true;
+    };
 }
 /**
  * typealias DecodingConfiguration = AttributeScopeCodableConfiguration
@@ -35,6 +38,9 @@ export declare class AttributeScopes_TranslationAttributes_SkipTranslationAttrib
      * @availability iOS 26.4+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO11TranslationE0D10AttributesV04SkipdB0O": true;
+    };
 }
 /**
  * typealias Value = Bool
@@ -76,6 +82,9 @@ export declare class LanguageAvailability extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): LanguageAvailability;
+    readonly $type: {
+        "s:11Translation20LanguageAvailabilityC": true;
+    };
 }
 /**
  * enum Status
@@ -137,6 +146,9 @@ export declare class TranslationError extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get unsupportedLanguagePairing(): TranslationError;
+    readonly $type: {
+        "s:11Translation0A5ErrorV": true;
+    };
 }
 /**
  * class TranslationSession
@@ -208,6 +220,9 @@ export declare class TranslationSession extends SDKHandle {
      * @availability iOS 18.0+
      */
     translate9306(string: string): Promise<TranslationSession_Response>;
+    readonly $type: {
+        "s:11Translation0A7SessionC": true;
+    };
 }
 /**
  * struct BatchResponse
@@ -219,6 +234,9 @@ export declare class TranslationSession_BatchResponse extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): TranslationSession_BatchResponse_AsyncIterator;
+    readonly $type: {
+        "s:11Translation0A7SessionC13BatchResponseV": true;
+    };
     readonly $element: TranslationSession_Response;
 }
 /**
@@ -231,6 +249,9 @@ export declare class TranslationSession_BatchResponse_AsyncIterator extends SDKH
      * @availability iOS 18.0+
      */
     next(): Promise<(TranslationSession_Response) | null>;
+    readonly $type: {
+        "s:11Translation0A7SessionC13BatchResponseV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = TranslationSession.BatchResponse.Element
@@ -285,6 +306,9 @@ export declare class TranslationSession_Configuration extends SDKHandle {
      * @availability iOS 18.0+
      */
     get version(): number;
+    readonly $type: {
+        "s:11Translation0A7SessionC13ConfigurationV": true;
+    };
 }
 /**
  * struct Request
@@ -319,6 +343,9 @@ export declare class TranslationSession_Request extends SDKHandle {
      */
     get attributedSourceText(): $SDK5;
     set attributedSourceText(value: $SDK5);
+    readonly $type: {
+        "s:11Translation0A7SessionC7RequestV": true;
+    };
 }
 /**
  * struct Response
@@ -370,6 +397,9 @@ export declare class TranslationSession_Response extends SDKHandle {
      * @availability iOS 26.4+
      */
     get attributedTargetText(): $SDK5;
+    readonly $type: {
+        "s:11Translation0A7SessionC8ResponseV": true;
+    };
 }
 /**
  * struct Strategy
@@ -386,5 +416,8 @@ export declare class TranslationSession_Strategy extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get highFidelity(): TranslationSession_Strategy;
+    readonly $type: {
+        "s:11Translation0A7SessionC8StrategyV": true;
+    };
 }
 export {};

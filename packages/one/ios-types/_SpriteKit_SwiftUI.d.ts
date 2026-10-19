@@ -22,6 +22,9 @@ export declare class SpriteView extends SDKHandle {
      * @availability iOS 14.0+
      */
     static initSceneTransitionIsPausedPreferredFramesPerSecond(scene: _SpriteKit_SKScene, transition?: $SDK0, isPaused?: boolean, preferredFramesPerSecond?: number): Promise<SpriteView>;
+    readonly $type: {
+        "s:18_SpriteKit_SwiftUI0A4ViewV": true;
+    };
 }
 /**
  * typealias Body = some View

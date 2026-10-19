@@ -10,6 +10,9 @@ export declare class LocationButton extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(title: (LocationButton_Title) | null, action: (() => void)): Promise<LocationButton>;
+    readonly $type: {
+        "s:021_CoreLocationUI_SwiftC00B6ButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -46,4 +49,7 @@ export declare class LocationButton_Title extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get currentLocation(): Promise<LocationButton_Title>;
+    readonly $type: {
+        "s:021_CoreLocationUI_SwiftC00B6ButtonV5TitleV": true;
+    };
 }

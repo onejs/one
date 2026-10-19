@@ -20,6 +20,9 @@ export declare class AttributedEntityIdentifier extends SDKHandle {
      * @availability iOS 27.0+
      */
     get instanceIdentifier(): string;
+    readonly $type: {
+        "s:21AppIntentsTypeSupport26AttributedEntityIdentifierV": true;
+    };
 }
 export declare class AttributedString extends SDKHandle {
     /**
@@ -27,6 +30,9 @@ export declare class AttributedString extends SDKHandle {
      * @availability iOS 27.0+
      */
     makeContainer(context: IntentValueContainer_ConversionContext): IntentValueContainer;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV": true;
+    };
 }
 /**
  * struct AttributedTypeIdentifier
@@ -48,6 +54,9 @@ export declare class AttributedTypeIdentifier extends SDKHandle {
      * @availability iOS 27.0+
      */
     get bundleIdentifier(): (string) | null;
+    readonly $type: {
+        "s:21AppIntentsTypeSupport010AttributedC10IdentifierV": true;
+    };
 }
 /**
  * struct IntentValueContainer
@@ -59,12 +68,18 @@ export declare class IntentValueContainer extends SDKHandle {
      * @availability iOS 27.0+
      */
     makeExpression(): IntentValueExpression;
+    readonly $type: {
+        "s:21AppIntentsTypeSupport20IntentValueContainerV": true;
+    };
 }
 /**
  * struct ConversionContext
  * @availability iOS 27.0+
  */
 export declare class IntentValueContainer_ConversionContext extends SDKHandle {
+    readonly $type: {
+        "s:21AppIntentsTypeSupport20IntentValueContainerV17ConversionContextV": true;
+    };
 }
 /**
  * protocol IntentValueConvertible : IntentValueExpressing
@@ -119,4 +134,7 @@ export interface IntentValueExpressing {
  * @availability iOS 27.0+
  */
 export declare class IntentValueExpression extends SDKHandle {
+    readonly $type: {
+        "s:21AppIntentsTypeSupport21IntentValueExpressionV": true;
+    };
 }

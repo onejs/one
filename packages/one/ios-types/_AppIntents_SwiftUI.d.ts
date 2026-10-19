@@ -10,6 +10,9 @@ export declare class ShortcutsLink extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(action?: (() => void)): Promise<ShortcutsLink>;
+    readonly $type: {
+        "s:19_AppIntents_SwiftUI13ShortcutsLinkV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -51,12 +54,18 @@ export declare class ShortcutsLinkStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): ShortcutsLinkStyle;
+    readonly $type: {
+        "s:19_AppIntents_SwiftUI18ShortcutsLinkStyleV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct SiriTipView
  * @availability iOS 16.0+
  */
 export declare class SiriTipView extends SDKHandle {
+    readonly $type: {
+        "s:19_AppIntents_SwiftUI11SiriTipViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -83,4 +92,7 @@ export declare class SiriTipViewStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get automatic(): SiriTipViewStyle;
+    readonly $type: {
+        "s:19_AppIntents_SwiftUI16SiriTipViewStyleV": true;
+    };
 }

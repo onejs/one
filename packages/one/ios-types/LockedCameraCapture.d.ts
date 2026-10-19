@@ -49,12 +49,18 @@ export declare class LockedCameraCaptureManager extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get shared(): LockedCameraCaptureManager;
+    readonly $type: {
+        "s:19LockedCameraCapture0abC7ManagerC": true;
+    };
 }
 /**
  * enum SessionContentUpdate
  * @availability iOS 18.0+
  */
 export declare class LockedCameraCaptureManager_SessionContentUpdate extends SDKHandle {
+    readonly $type: {
+        "s:19LockedCameraCapture0abC7ManagerC20SessionContentUpdateO": true;
+    };
 }
 /**
  * final class LockedCameraCaptureSession
@@ -76,6 +82,9 @@ export declare class LockedCameraCaptureSession extends SDKHandle {
      * @availability iOS 18.0+
      */
     get sessionContentURL(): string;
+    readonly $type: {
+        "s:19LockedCameraCapture0abC7SessionC": true;
+    };
 }
 /**
  * enum ApplicationLaunchError
@@ -104,6 +113,9 @@ export declare const LockedCameraCaptureSession_ApplicationLaunchError: {
  * @availability iOS 18.0+
  */
 export declare class LockedCameraCaptureUIScene<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:19LockedCameraCapture0abC7UISceneV": true;
+    };
 }
 /**
  * typealias Body = some AppExtensionScene

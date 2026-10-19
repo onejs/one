@@ -174,6 +174,12 @@ export declare class DataScannerViewController extends SDKHandle {
      */
     get delegate(): Promise<(SDKHandle) | null>;
     setDelegate(value?: (SDKHandle) | null): Promise<void>;
+    readonly $type: {
+        "c:@M@VisionKit@objc(cs)DataScannerViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum QualityLevel
@@ -195,6 +201,9 @@ export declare class DataScannerViewController_RecognizedDataType extends SDKHan
      * @availability iOS 16.0+
      */
     static barcode(symbologies?: Array<_Vision_VNBarcodeSymbology>): Promise<DataScannerViewController_RecognizedDataType>;
+    readonly $type: {
+        "s:9VisionKit25DataScannerViewControllerC010RecognizedC4TypeV": true;
+    };
 }
 /**
  * enum ScanningUnavailable
@@ -257,6 +266,9 @@ export declare class ImageAnalysis extends SDKHandle {
      * @availability iOS 16.0+
      */
     get transcript(): string;
+    readonly $type: {
+        "s:9VisionKit13ImageAnalysisC": true;
+    };
 }
 /**
  * @MainActor @objc final class ImageAnalysisInteraction
@@ -438,6 +450,10 @@ export declare class ImageAnalysisInteraction extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init35637(delegate: SDKHandle): Promise<ImageAnalysisInteraction>;
+    readonly $type: {
+        "c:@M@VisionKit@objc(cs)ImageAnalysisInteraction": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct InteractionTypes
@@ -517,6 +533,9 @@ export declare class ImageAnalysisInteraction_Subject extends SDKHandle {
      * @availability iOS 16.0+
      */
     get bounds(): Promise<$SDK5>;
+    readonly $type: {
+        "s:9VisionKit24ImageAnalysisInteractionC7SubjectV": true;
+    };
 }
 /**
  * enum SubjectUnavailable
@@ -614,6 +633,9 @@ export declare class ImageAnalyzer extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): ImageAnalyzer;
+    readonly $type: {
+        "s:9VisionKit13ImageAnalyzerC": true;
+    };
 }
 /**
  * struct AnalysisTypes
@@ -684,6 +706,9 @@ export declare class ImageAnalyzer_Configuration extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(types: ImageAnalyzer_AnalysisTypes): ImageAnalyzer_Configuration;
+    readonly $type: {
+        "s:9VisionKit13ImageAnalyzerC13ConfigurationV": true;
+    };
 }
 /**
  * enum RecognizedItem
@@ -700,6 +725,9 @@ export declare class RecognizedItem extends SDKHandle {
      * @availability iOS 16.0+
      */
     get bounds(): RecognizedItem_Bounds;
+    readonly $type: {
+        "s:9VisionKit14RecognizedItemO": true;
+    };
 }
 /**
  * struct Barcode
@@ -726,6 +754,9 @@ export declare class RecognizedItem_Barcode extends SDKHandle {
      * @availability iOS 16.0+
      */
     get bounds(): RecognizedItem_Bounds;
+    readonly $type: {
+        "s:9VisionKit14RecognizedItemO7BarcodeV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -761,6 +792,9 @@ export declare class RecognizedItem_Bounds extends SDKHandle {
      */
     get topRight(): $SDK6;
     set topRight(value: $SDK6);
+    readonly $type: {
+        "s:9VisionKit14RecognizedItemO6BoundsV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -792,6 +826,9 @@ export declare class RecognizedItem_Text extends SDKHandle {
      * @availability iOS 16.0+
      */
     get bounds(): RecognizedItem_Bounds;
+    readonly $type: {
+        "s:9VisionKit14RecognizedItemO4TextV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -818,6 +855,10 @@ export declare class VNDocumentCameraScan extends SDKHandle {
      * @availability iOS 13.0+
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)VNDocumentCameraScan": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pageCount": true;
         "title": true;
@@ -841,6 +882,12 @@ export declare class VNDocumentCameraViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<VNDocumentCameraViewControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)VNDocumentCameraViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };

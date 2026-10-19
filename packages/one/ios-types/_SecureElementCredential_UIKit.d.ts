@@ -23,6 +23,9 @@ export declare class CredentialSession extends SDKHandle {
      * @availability iOS 18.1+
      */
     performWiredTransaction(credential: _SecureElementCredential_CredentialSession_Credential, scene: _UIKit_UIScene, instanceAID: ArrayBuffer): Promise<void>;
+    readonly $type: {
+        "s:23SecureElementCredential0C7SessionC": true;
+    };
 }
 /**
  * protocol CredentialSessionWindowSceneDelegate
@@ -53,4 +56,8 @@ export declare class UIScene_ConnectionOptions extends SDKHandle {
      * @availability iOS 17.4+
      */
     get credentialSessionEvent(): Promise<(CredentialSessionWindowSceneEvent) | null>;
+    readonly $type: {
+        "c:objc(cs)UISceneConnectionOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
 }

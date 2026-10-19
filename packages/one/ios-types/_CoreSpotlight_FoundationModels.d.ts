@@ -59,6 +59,9 @@ export declare class CoreSpotlightSource extends SDKHandle {
      */
     get searchableIndexDelegate(): (SDKHandle) | null;
     set searchableIndexDelegate(value: $SDK1);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0aB6SourceV": true;
+    };
 }
 /**
  * protocol CustomStage : Generable, Decodable, Encodable, Sendable
@@ -130,6 +133,9 @@ export declare class FileSource extends SDKHandle {
      */
     get scopes(): Array<string>;
     set scopes(value: Array<string>);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels10FileSourceV": true;
+    };
 }
 /**
  * struct ResolvedContact
@@ -171,6 +177,9 @@ export declare class ResolvedContact extends SDKHandle {
      */
     get names(): Array<string>;
     set names(value: Array<string>);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels15ResolvedContactV": true;
+    };
 }
 /**
  * struct ScoredSearchableItem
@@ -192,6 +201,9 @@ export declare class ScoredSearchableItem extends SDKHandle {
      * @availability iOS 27.0+
      */
     get score(): number;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels20ScoredSearchableItemV": true;
+    };
 }
 /**
  * struct SearchCount
@@ -213,6 +225,9 @@ export declare class SearchCount extends SDKHandle {
      * @availability iOS 27.0+
      */
     get header(): (string) | null;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels11SearchCountV": true;
+    };
 }
 /**
  * struct SearchPipelineData
@@ -264,12 +279,18 @@ export declare class SearchPipelineData extends SDKHandle {
      * @availability iOS 27.0+
      */
     static statistic(name: string, value: number): SearchPipelineData;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels18SearchPipelineDataV": true;
+    };
 }
 /**
  * enum Payload
  * @availability iOS 27.0+
  */
 export declare class SearchPipelineData_Payload extends SDKHandle {
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels18SearchPipelineDataV7PayloadO": true;
+    };
 }
 /**
  * enum SearchPipelineDataType
@@ -328,6 +349,9 @@ export declare class SearchResultsTable extends SDKHandle {
      * @availability iOS 27.0+
      */
     get columns(): $SDK8;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels18SearchResultsTableV": true;
+    };
 }
 /**
  * struct Column
@@ -349,6 +373,9 @@ export declare class SearchResultsTable_Column extends SDKHandle {
      * @availability iOS 27.0+
      */
     get type(): SearchResultsTable_ValueType;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels18SearchResultsTableV6ColumnV": true;
+    };
 }
 /**
  * struct Row
@@ -365,12 +392,18 @@ export declare class SearchResultsTable_Row extends SDKHandle {
      * @availability iOS 27.0+
      */
     get values(): $SDK9;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels18SearchResultsTableV3RowV": true;
+    };
 }
 /**
  * enum Value
  * @availability iOS 27.0+
  */
 export declare class SearchResultsTable_Value extends SDKHandle {
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels18SearchResultsTableV5ValueO": true;
+    };
 }
 /**
  * enum ValueType
@@ -402,6 +435,9 @@ export declare class SearchSource extends SDKHandle {
      * @availability iOS 27.0+
      */
     static files47574(source: FileSource): SearchSource;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels12SearchSourceV": true;
+    };
 }
 /**
  * struct SearchStatistic
@@ -428,6 +464,9 @@ export declare class SearchStatistic extends SDKHandle {
      * @availability iOS 27.0+
      */
     get header(): (string) | null;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels15SearchStatisticV": true;
+    };
 }
 /**
  * struct SearchTextResult
@@ -449,6 +488,9 @@ export declare class SearchTextResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get header(): (string) | null;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels16SearchTextResultV": true;
+    };
 }
 /**
  * struct SpotlightSearchTool
@@ -497,6 +539,9 @@ export declare class SpotlightSearchTool extends SDKHandle {
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV": true;
+    };
 }
 /**
  * typealias Arguments = GeneratedContent
@@ -543,6 +588,9 @@ export declare class SpotlightSearchTool_Configuration extends SDKHandle {
      */
     get sources(): Array<SearchSource>;
     set sources(value: Array<SearchSource>);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV13ConfigurationV": true;
+    };
 }
 /**
  * struct ContentDomain
@@ -609,6 +657,9 @@ export declare class SpotlightSearchTool_ContentDomain extends SDKHandle {
      * @availability iOS 27.0+
      */
     static documents33007(config: SpotlightSearchTool_ContentDomain_Documents): SpotlightSearchTool_ContentDomain;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV13ContentDomainV": true;
+    };
 }
 /**
  * struct Audio
@@ -644,6 +695,9 @@ export declare class SpotlightSearchTool_ContentDomain_Audio extends SDKHandle {
      */
     get artist(): $SDK11;
     set artist(value: $SDK11);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV13ContentDomainV5AudioV": true;
+    };
 }
 /**
  * struct Calendar
@@ -679,6 +733,9 @@ export declare class SpotlightSearchTool_ContentDomain_Calendar extends SDKHandl
      */
     get organizer(): $SDK11;
     set organizer(value: $SDK11);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV13ContentDomainV8CalendarV": true;
+    };
 }
 /**
  * struct Communications
@@ -720,6 +777,9 @@ export declare class SpotlightSearchTool_ContentDomain_Communications extends SD
      */
     get received(): $SDK11;
     set received(value: $SDK11);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV13ContentDomainV14CommunicationsV": true;
+    };
 }
 /**
  * struct Documents
@@ -755,6 +815,9 @@ export declare class SpotlightSearchTool_ContentDomain_Documents extends SDKHand
      */
     get modified(): $SDK11;
     set modified(value: $SDK11);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV13ContentDomainV9DocumentsV": true;
+    };
 }
 /**
  * struct Items
@@ -790,6 +853,9 @@ export declare class SpotlightSearchTool_ContentDomain_Items extends SDKHandle {
      */
     get modified(): $SDK11;
     set modified(value: $SDK11);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV13ContentDomainV5ItemsV": true;
+    };
 }
 /**
  * struct VisualMedia
@@ -825,6 +891,9 @@ export declare class SpotlightSearchTool_ContentDomain_VisualMedia extends SDKHa
      */
     get location(): $SDK11;
     set location(value: $SDK11);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV13ContentDomainV11VisualMediaV": true;
+    };
 }
 /**
  * enum FormatLevel
@@ -836,6 +905,9 @@ export type SpotlightSearchTool_FormatLevel = "structured" | "compact";
  * @availability iOS 27.0+
  */
 export declare class SpotlightSearchTool_GuidanceLevel extends SDKHandle {
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV13GuidanceLevelO": true;
+    };
 }
 /**
  * struct GuidanceProfile
@@ -889,6 +961,9 @@ export declare class SpotlightSearchTool_GuidanceProfile extends SDKHandle {
      */
     get textMatch(): (boolean) | null;
     set textMatch(value: (boolean) | null);
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV15GuidanceProfileV": true;
+    };
 }
 /**
  * struct Guide
@@ -925,6 +1000,9 @@ export declare class SpotlightSearchTool_Guide extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get complete(): SpotlightSearchTool_Guide;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV5GuideV": true;
+    };
 }
 /**
  * typealias Output = some PromptRepresentable
@@ -961,24 +1039,36 @@ export declare class SpotlightSearchTool_SearchReply extends SDKHandle {
      * @availability iOS 27.0+
      */
     get content(): SpotlightSearchTool_SearchReply_Content;
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV0E5ReplyV": true;
+    };
 }
 /**
  * enum Content
  * @availability iOS 27.0+
  */
 export declare class SpotlightSearchTool_SearchReply_Content extends SDKHandle {
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV0E5ReplyV7ContentO": true;
+    };
 }
 /**
  * struct QueryToken
  * @availability iOS 27.0+
  */
 export declare class SpotlightSearchTool_SearchReply_QueryToken extends SDKHandle {
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV0E5ReplyV10QueryTokenV": true;
+    };
 }
 /**
  * struct StageToken
  * @availability iOS 27.0+
  */
 export declare class SpotlightSearchTool_SearchReply_StageToken extends SDKHandle {
+    readonly $type: {
+        "s:31_CoreSpotlight_FoundationModels0B10SearchToolV0E5ReplyV10StageTokenV": true;
+    };
 }
 /**
  * enum Status

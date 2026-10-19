@@ -32,6 +32,10 @@ export declare class SWAction extends SDKHandle {
      * @availability iOS 16.0+
      */
     get uuid(): string;
+    readonly $type: {
+        "c:objc(cs)SWAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isComplete": true;
         "uuid": true;
@@ -66,6 +70,10 @@ export declare class SWCollaborationCoordinator extends SDKHandle {
      */
     get actionHandler(): (SDKHandle) | null;
     set actionHandler(value: (Implements<SWCollaborationActionHandler> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)SWCollaborationCoordinator": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionHandler": true;
     };
@@ -133,6 +141,10 @@ export declare class SWCollaborationMetadata extends SDKHandle {
      */
     get userSelectedShareOptions(): $SDK1;
     set userSelectedShareOptions(value: $SDK1);
+    readonly $type: {
+        "c:objc(cs)SWCollaborationMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "collaborationIdentifier": true;
         "defaultShareOptions": true;
@@ -187,6 +199,10 @@ export declare class SWCollaborationOption extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initTitleIdentifierSubtitleSelectedRequiredOptionsIdentifiers(title: string, identifier: string, subtitle?: string, selected?: boolean, requiredOptionsIdentifiers?: Array<string>): SWCollaborationOption;
+    readonly $type: {
+        "c:objc(cs)SWCollaborationOption": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "requiredOptionsIdentifiers": true;
@@ -228,6 +244,10 @@ export declare class SWCollaborationOptionsGroup extends SDKHandle {
      */
     get title(): string;
     set title(value: string);
+    readonly $type: {
+        "c:objc(cs)SWCollaborationOptionsGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "footer": true;
         "identifier": true;
@@ -246,6 +266,11 @@ export declare class SWCollaborationOptionsPickerGroup extends SWCollaborationOp
      */
     get selectedOptionIdentifier(): string;
     set selectedOptionIdentifier(value: string);
+    readonly $type: {
+        "c:objc(cs)SWCollaborationOptionsPickerGroup": true;
+        "c:objc(cs)SWCollaborationOptionsGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "footer": true;
         "identifier": true;
@@ -286,6 +311,10 @@ export declare class SWCollaborationShareOptions extends SDKHandle {
      */
     get summary(): string;
     set summary(value: string);
+    readonly $type: {
+        "c:objc(cs)SWCollaborationShareOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsGroups": true;
         "summary": true;
@@ -309,6 +338,10 @@ export declare class SWPerson extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(handle: (string) | null, identity: (SWPerson_Identity) | null, displayName: string, thumbnailImageData?: (ArrayBuffer) | null): SWPerson;
+    readonly $type: {
+        "c:objc(cs)SWPerson": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class Identity
@@ -325,6 +358,10 @@ export declare class SWPerson_Identity extends SDKHandle {
      * @availability iOS 16.0+
      */
     get rootHash(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)SWPersonIdentity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "rootHash": true;
     };
@@ -349,6 +386,10 @@ export declare class SWPerson_IdentityProof extends SDKHandle {
      * @availability iOS 16.0+
      */
     get publicKeyIndex(): number;
+    readonly $type: {
+        "c:objc(cs)SWPersonIdentityProof": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inclusionHashes": true;
         "publicKey": true;
@@ -370,6 +411,11 @@ export declare class SWPerson_SignedIdentityProof extends SWPerson_IdentityProof
      * @availability iOS 16.0+
      */
     get signatureData(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)SWSignedPersonIdentityProof": true;
+        "c:objc(cs)SWPersonIdentityProof": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "inclusionHashes": true;
         "publicKey": true;
@@ -393,6 +439,11 @@ export declare class SWStartCollaborationAction extends SWStartCollaborationActi
      * @availability iOS 16.0+
      */
     get collaborationMetadata(): SWCollaborationMetadata;
+    readonly $type: {
+        "c:objc(cs)SWStartCollaborationAction": true;
+        "c:objc(cs)SWAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isComplete": true;
         "uuid": true;
@@ -419,6 +470,11 @@ export declare class SWUpdateCollaborationParticipantsAction extends SWAction {
      * @availability iOS 16.0+
      */
     get removedIdentities(): Array<SWPerson_Identity>;
+    readonly $type: {
+        "c:objc(cs)SWUpdateCollaborationParticipantsAction": true;
+        "c:objc(cs)SWAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isComplete": true;
         "uuid": true;

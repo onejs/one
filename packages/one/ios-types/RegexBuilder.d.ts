@@ -5,6 +5,9 @@ import { SDKHandle } from 'one/ios-runtime';
  * @availability iOS 16.0+
  */
 export declare class AlternationBuilder extends SDKHandle {
+    readonly $type: {
+        "s:12RegexBuilder011AlternationB0V": true;
+    };
 }
 /**
  * struct Anchor
@@ -61,6 +64,9 @@ export declare class Anchor extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get endOfLine(): Anchor;
+    readonly $type: {
+        "s:12RegexBuilder6AnchorV": true;
+    };
 }
 /**
  * typealias RegexOutput = Substring
@@ -78,6 +84,9 @@ export declare class Capture<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder7CaptureV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -134,6 +143,9 @@ export declare class CharacterClass extends SDKHandle {
      * @availability iOS 16.0+
      */
     get inverted(): CharacterClass;
+    readonly $type: {
+        "s:12RegexBuilder14CharacterClassV": true;
+    };
 }
 /**
  * typealias RegexOutput = Substring
@@ -151,6 +163,9 @@ export declare class ChoiceOf<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder8ChoiceOfV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -168,6 +183,9 @@ export declare class Local<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder5LocalV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -185,6 +203,9 @@ export declare class Lookahead<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder9LookaheadV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -202,6 +223,9 @@ export declare class NegativeLookahead<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder17NegativeLookaheadV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -219,6 +243,9 @@ export declare class One<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder3OneV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -236,6 +263,9 @@ export declare class OneOrMore<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder9OneOrMoreV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -253,6 +283,9 @@ export declare class Optionally<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder10OptionallyV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -274,6 +307,9 @@ export declare class Reference<Capture = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): Reference<unknown>;
+    readonly $type: {
+        "s:12RegexBuilder9ReferenceV": true;
+    };
 }
 /**
  * typealias RegexOutput = Capture
@@ -290,6 +326,9 @@ export declare class RegexComponentBuilder extends SDKHandle {
      * @availability iOS 16.0+
      */
     static buildBlock(): SDKHandle;
+    readonly $type: {
+        "s:12RegexBuilder0a9ComponentB0O": true;
+    };
 }
 /**
  * struct Repeat<Output>
@@ -302,6 +341,9 @@ export declare class Repeat<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder6RepeatV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -339,6 +381,9 @@ export declare class TryCapture<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder10TryCaptureV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output
@@ -366,6 +411,9 @@ export declare class ZeroOrMore<Output = unknown> extends SDKHandle {
      */
     get regex(): SDKHandle;
     set regex(value: SDKHandle);
+    readonly $type: {
+        "s:12RegexBuilder10ZeroOrMoreV": true;
+    };
 }
 /**
  * typealias RegexOutput = Output

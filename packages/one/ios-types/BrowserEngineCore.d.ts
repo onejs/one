@@ -47,6 +47,10 @@ export declare class BEAudioSession extends SDKHandle {
      * @availability iOS 26.0+
      */
     get preferredOutput63622(): $SDK0;
+    readonly $type: {
+        "c:@M@BrowserEngineCore@objc(cs)BEAudioSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "availableOutputs52961": true;
         "preferredOutput63622": true;

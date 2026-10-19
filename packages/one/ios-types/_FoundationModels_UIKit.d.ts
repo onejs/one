@@ -8,4 +8,7 @@ export declare class Attachment<Content = unknown> extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(uiImage: _UIKit_UIImage, orientation?: (_UIKit_UIImage_Orientation) | null): _FoundationModels_Attachment<_FoundationModels_ImageAttachmentContent>;
+    readonly $type: {
+        "s:16FoundationModels10AttachmentV": true;
+    };
 }

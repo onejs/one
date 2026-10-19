@@ -8,14 +8,12 @@ type $SDK0 = (Record<string, string>) | null;
  * @deprecated iOS 27.0
  */
 export declare class MCAdvertiserAssistant extends SDKHandle {
-    /** init() */
-    static init(): MCAdvertiserAssistant;
     /**
      * init(serviceType: String, discoveryInfo info: [String : String]?, session: MCSession)
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    static initServiceTypeDiscoveryInfoSession(serviceType: string, info: $SDK0, session: MCSession): MCAdvertiserAssistant;
+    static init(serviceType: string, info: $SDK0, session: MCSession): MCAdvertiserAssistant;
     /**
      * func start()
      * @availability iOS 7.0+
@@ -53,6 +51,10 @@ export declare class MCAdvertiserAssistant extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get session(): MCSession;
+    readonly $type: {
+        "c:objc(cs)MCAdvertiserAssistant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "discoveryInfo": true;
@@ -85,8 +87,6 @@ export interface MCAdvertiserAssistantDelegate {
  * @deprecated iOS 27.0
  */
 export declare class MCBrowserViewController extends SDKHandle {
-    /** init() */
-    static init(): MCBrowserViewController;
     /**
      * init(browser: MCNearbyServiceBrowser, session: MCSession)
      * @availability iOS 7.0+
@@ -132,6 +132,12 @@ export declare class MCBrowserViewController extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get session(): MCSession;
+    readonly $type: {
+        "c:objc(cs)MCBrowserViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "browser": true;
         "delegate": true;
@@ -227,6 +233,9 @@ export declare class MCError extends SDKHandle {
      * @deprecated iOS 27.0
      */
     static get cancelled(): MCError_Code;
+    readonly $type: {
+        "s:SC11MCErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -248,14 +257,12 @@ export declare const MCError_Code: {
  * @deprecated iOS 27.0
  */
 export declare class MCNearbyServiceAdvertiser extends SDKHandle {
-    /** init() */
-    static init(): MCNearbyServiceAdvertiser;
     /**
      * init(peer myPeerID: MCPeerID, discoveryInfo info: [String : String]?, serviceType: String)
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    static initPeerDiscoveryInfoServiceType(myPeerID: MCPeerID, info: $SDK0, serviceType: string): MCNearbyServiceAdvertiser;
+    static init(myPeerID: MCPeerID, info: $SDK0, serviceType: string): MCNearbyServiceAdvertiser;
     /**
      * func startAdvertisingPeer()
      * @availability iOS 7.0+
@@ -293,6 +300,10 @@ export declare class MCNearbyServiceAdvertiser extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get serviceType(): string;
+    readonly $type: {
+        "c:objc(cs)MCNearbyServiceAdvertiser": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "discoveryInfo": true;
@@ -325,14 +336,12 @@ export interface MCNearbyServiceAdvertiserDelegate {
  * @deprecated iOS 27.0
  */
 export declare class MCNearbyServiceBrowser extends SDKHandle {
-    /** init() */
-    static init(): MCNearbyServiceBrowser;
     /**
      * init(peer myPeerID: MCPeerID, serviceType: String)
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    static initPeerServiceType(myPeerID: MCPeerID, serviceType: string): MCNearbyServiceBrowser;
+    static init(myPeerID: MCPeerID, serviceType: string): MCNearbyServiceBrowser;
     /**
      * func invitePeer(_ peerID: MCPeerID, to session: MCSession, withContext context: Data?, timeout: TimeInterval)
      * @availability iOS 7.0+
@@ -370,6 +379,10 @@ export declare class MCNearbyServiceBrowser extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get serviceType(): string;
+    readonly $type: {
+        "c:objc(cs)MCNearbyServiceBrowser": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "myPeerID": true;
@@ -407,20 +420,22 @@ export interface MCNearbyServiceBrowserDelegate {
  * @deprecated iOS 27.0
  */
 export declare class MCPeerID extends SDKHandle {
-    /** init() */
-    static init(): MCPeerID;
     /**
      * init(displayName myDisplayName: String)
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
-    static initDisplayName(myDisplayName: string): MCPeerID;
+    static init(myDisplayName: string): MCPeerID;
     /**
      * var displayName: String { get }
      * @availability iOS 7.0+
      * @deprecated iOS 27.0
      */
     get displayName(): string;
+    readonly $type: {
+        "c:objc(cs)MCPeerID": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
     };
@@ -441,8 +456,6 @@ export declare class MCSession extends SDKHandle {
      * @deprecated iOS 27.0
      */
     disconnect(): void;
-    /** init() */
-    static init(): MCSession;
     /**
      * convenience init(peer myPeerID: MCPeerID)
      * @availability iOS 7.0+
@@ -506,6 +519,10 @@ export declare class MCSession extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get securityIdentity(): (Array<unknown>) | null;
+    readonly $type: {
+        "c:objc(cs)MCSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connectedPeers": true;
         "delegate": true;

@@ -30,6 +30,9 @@ export declare class AppearSymbolEffect extends SDKHandle {
      * @availability iOS 17.0+
      */
     get byLayer(): AppearSymbolEffect;
+    readonly $type: {
+        "s:7Symbols18AppearSymbolEffectV": true;
+    };
 }
 /**
  * struct AutomaticSymbolEffect
@@ -41,6 +44,9 @@ export declare class AutomaticSymbolEffect extends SDKHandle {
      * @availability iOS 17.0+
      */
     get configuration(): SymbolEffectConfiguration;
+    readonly $type: {
+        "s:7Symbols21AutomaticSymbolEffectV": true;
+    };
 }
 /**
  * struct BounceSymbolEffect
@@ -72,6 +78,9 @@ export declare class BounceSymbolEffect extends SDKHandle {
      * @availability iOS 17.0+
      */
     get byLayer(): BounceSymbolEffect;
+    readonly $type: {
+        "s:7Symbols18BounceSymbolEffectV": true;
+    };
 }
 /**
  * struct BreatheSymbolEffect
@@ -103,6 +112,9 @@ export declare class BreatheSymbolEffect extends SDKHandle {
      * @availability iOS 18.0+
      */
     get byLayer(): BreatheSymbolEffect;
+    readonly $type: {
+        "s:7Symbols19BreatheSymbolEffectV": true;
+    };
 }
 /**
  * protocol ContentTransitionSymbolEffect
@@ -140,6 +152,9 @@ export declare class DisappearSymbolEffect extends SDKHandle {
      * @availability iOS 17.0+
      */
     get byLayer(): DisappearSymbolEffect;
+    readonly $type: {
+        "s:7Symbols21DisappearSymbolEffectV": true;
+    };
 }
 /**
  * protocol DiscreteSymbolEffect
@@ -182,6 +197,9 @@ export declare class DrawOffSymbolEffect extends SDKHandle {
      * @availability iOS 26.0+
      */
     get reversed(): DrawOffSymbolEffect;
+    readonly $type: {
+        "s:7Symbols19DrawOffSymbolEffectV": true;
+    };
 }
 /**
  * struct DrawOnSymbolEffect
@@ -208,6 +226,9 @@ export declare class DrawOnSymbolEffect extends SDKHandle {
      * @availability iOS 26.0+
      */
     get byLayer(): DrawOnSymbolEffect;
+    readonly $type: {
+        "s:7Symbols18DrawOnSymbolEffectV": true;
+    };
 }
 /**
  * protocol IndefiniteSymbolEffect
@@ -235,6 +256,9 @@ export declare class PulseSymbolEffect extends SDKHandle {
      * @availability iOS 17.0+
      */
     get byLayer(): PulseSymbolEffect;
+    readonly $type: {
+        "s:7Symbols17PulseSymbolEffectV": true;
+    };
 }
 /**
  * struct ReplaceSymbolEffect
@@ -291,6 +315,9 @@ export declare class ReplaceSymbolEffect extends SDKHandle {
      * @availability iOS 17.0+
      */
     get byLayer(): ReplaceSymbolEffect;
+    readonly $type: {
+        "s:7Symbols19ReplaceSymbolEffectV": true;
+    };
 }
 /**
  * struct MagicReplace
@@ -302,6 +329,9 @@ export declare class ReplaceSymbolEffect_MagicReplace extends SDKHandle {
      * @availability iOS 18.0+
      */
     get configuration(): SymbolEffectConfiguration;
+    readonly $type: {
+        "s:7Symbols19ReplaceSymbolEffectV05MagicB0V": true;
+    };
 }
 /**
  * struct RotateSymbolEffect
@@ -333,6 +363,9 @@ export declare class RotateSymbolEffect extends SDKHandle {
      * @availability iOS 18.0+
      */
     get clockwise(): RotateSymbolEffect;
+    readonly $type: {
+        "s:7Symbols18RotateSymbolEffectV": true;
+    };
 }
 /**
  * struct ScaleSymbolEffect
@@ -364,6 +397,9 @@ export declare class ScaleSymbolEffect extends SDKHandle {
      * @availability iOS 17.0+
      */
     get byLayer(): ScaleSymbolEffect;
+    readonly $type: {
+        "s:7Symbols17ScaleSymbolEffectV": true;
+    };
 }
 /**
  * protocol SymbolEffect : Hashable, Sendable
@@ -376,6 +412,9 @@ export interface SymbolEffect {
  * @availability iOS 17.0+
  */
 export declare class SymbolEffectConfiguration extends SDKHandle {
+    readonly $type: {
+        "s:7Symbols25SymbolEffectConfigurationV": true;
+    };
 }
 /**
  * struct SymbolEffectOptions
@@ -441,6 +480,9 @@ export declare class SymbolEffectOptions extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static get repeating64259(): SymbolEffectOptions;
+    readonly $type: {
+        "s:7Symbols19SymbolEffectOptionsV": true;
+    };
 }
 /**
  * struct RepeatBehavior
@@ -462,6 +504,9 @@ export declare class SymbolEffectOptions_RepeatBehavior extends SDKHandle {
      * @availability iOS 18.0+
      */
     static periodicDelay(count?: (number) | null, delay?: (number) | null): SymbolEffectOptions_RepeatBehavior;
+    readonly $type: {
+        "s:7Symbols19SymbolEffectOptionsV14RepeatBehaviorV": true;
+    };
 }
 /**
  * protocol TransitionSymbolEffect
@@ -509,6 +554,9 @@ export declare class VariableColorSymbolEffect extends SDKHandle {
      * @availability iOS 17.0+
      */
     get reversing(): VariableColorSymbolEffect;
+    readonly $type: {
+        "s:7Symbols25VariableColorSymbolEffectV": true;
+    };
 }
 /**
  * struct WiggleSymbolEffect
@@ -575,4 +623,7 @@ export declare class WiggleSymbolEffect extends SDKHandle {
      * @availability iOS 18.0+
      */
     get clockwise(): WiggleSymbolEffect;
+    readonly $type: {
+        "s:7Symbols18WiggleSymbolEffectV": true;
+    };
 }

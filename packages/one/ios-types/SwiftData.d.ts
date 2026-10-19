@@ -114,6 +114,9 @@ export interface DataStore {
  * @availability iOS 18.0+
  */
 export declare class DataStoreBatchDeleteRequest<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData0B23StoreBatchDeleteRequestV": true;
+    };
 }
 /**
  * protocol DataStoreBatching : DataStore
@@ -192,12 +195,18 @@ export type DataStoreError = "unsupportedFeature" | "preferInMemoryFilter" | "pr
  * @availability iOS 18.0+
  */
 export declare class DataStoreFetchRequest<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData0B17StoreFetchRequestV": true;
+    };
 }
 /**
  * struct DataStoreFetchResult<ModelType, SnapshotType> where ModelType : PersistentModel, SnapshotType : DataStoreSnapshot
  * @availability iOS 18.0+
  */
 export declare class DataStoreFetchResult<ModelType = unknown, SnapshotType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData0B16StoreFetchResultV": true;
+    };
 }
 /**
  * struct DataStoreSaveChangesRequest<SnapshotType> where SnapshotType : DataStoreSnapshot
@@ -224,6 +233,9 @@ export declare class DataStoreSaveChangesRequest<SnapshotType = unknown> extends
      * @availability iOS 18.0+
      */
     get inserted(): Array<DefaultSnapshot>;
+    readonly $type: {
+        "s:9SwiftData0B23StoreSaveChangesRequestV": true;
+    };
 }
 /**
  * final class DataStoreSaveChangesResult<T> where T : DataStoreSnapshot
@@ -250,6 +262,9 @@ export declare class DataStoreSaveChangesResult<T = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(storeIdentifier: string, remappedIdentifiers?: $SDK7, snapshotsToReregister?: $SDK8): $SDK9;
+    readonly $type: {
+        "s:9SwiftData0B22StoreSaveChangesResultC": true;
+    };
 }
 /**
  * protocol DataStoreSnapshot : Decodable, Encodable, Sendable
@@ -292,6 +307,9 @@ export declare class DataStoreSnapshotCodingKey extends SDKHandle {
      * @availability iOS 18.0+
      */
     get intValue(): (number) | null;
+    readonly $type: {
+        "s:9SwiftData0B22StoreSnapshotCodingKeyO": true;
+    };
 }
 /**
  * typealias DataStoreSnapshotValue = Codable & Sendable
@@ -303,6 +321,9 @@ export type DataStoreSnapshotValue = (SDKHandle) & (SDKHandle);
  * @availability iOS 18.0+
  */
 export declare class DefaultHistoryDelete<Model = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData20DefaultHistoryDeleteV": true;
+    };
 }
 /**
  * typealias ChangeIdentifier = Int64
@@ -319,6 +340,9 @@ export type DefaultHistoryDelete_TransactionIdentifier<Model = unknown> = number
  * @availability iOS 18.0+
  */
 export declare class DefaultHistoryInsert<Model = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData20DefaultHistoryInsertV": true;
+    };
 }
 /**
  * typealias ChangeIdentifier = Int64
@@ -350,6 +374,9 @@ export declare class DefaultHistoryToken extends SDKHandle {
      * @availability iOS 18.0+
      */
     get id(): number;
+    readonly $type: {
+        "s:9SwiftData19DefaultHistoryTokenV": true;
+    };
 }
 /**
  * typealias ID = Int
@@ -411,6 +438,9 @@ export declare class DefaultHistoryTransaction extends SDKHandle {
      * @availability iOS 18.0+
      */
     get timestamp(): globalThis.Date;
+    readonly $type: {
+        "s:9SwiftData25DefaultHistoryTransactionV": true;
+    };
 }
 /**
  * typealias ID = Int64
@@ -432,6 +462,9 @@ export type DefaultHistoryTransaction_TransactionIdentifier = number;
  * @availability iOS 18.0+
  */
 export declare class DefaultHistoryUpdate<Model = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData20DefaultHistoryUpdateV": true;
+    };
 }
 /**
  * typealias ChangeIdentifier = Int64
@@ -468,6 +501,9 @@ export declare class DefaultSerialModelExecutor extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(modelContext: ModelContext): DefaultSerialModelExecutor;
+    readonly $type: {
+        "s:9SwiftData26DefaultSerialModelExecutorC": true;
+    };
 }
 /**
  * struct DefaultSnapshot
@@ -484,6 +520,9 @@ export declare class DefaultSnapshot extends SDKHandle {
      * @availability iOS 18.0+
      */
     copy(persistentIdentifier: PersistentIdentifier, remappedIdentifiers?: $SDK11): DefaultSnapshot;
+    readonly $type: {
+        "s:9SwiftData15DefaultSnapshotV": true;
+    };
 }
 /**
  * final class DefaultStore
@@ -550,6 +589,9 @@ export declare class DefaultStore extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(configuration: ModelConfiguration): DefaultStore;
+    readonly $type: {
+        "s:9SwiftData12DefaultStoreC": true;
+    };
 }
 /**
  * typealias Configuration = ModelConfiguration
@@ -587,6 +629,9 @@ export declare class EditingState extends SDKHandle {
      */
     get author(): (string) | null;
     set author(value: (string) | null);
+    readonly $type: {
+        "s:9SwiftData12EditingStateV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -598,6 +643,9 @@ export type EditingState_ID = string;
  * @availability iOS 17.0+
  */
 export declare class FetchDescriptor<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData15FetchDescriptorV": true;
+    };
 }
 /**
  * struct FetchResultsCollection<Element>
@@ -619,6 +667,9 @@ export declare class FetchResultsCollection<Element = unknown> extends SDKHandle
      * @availability iOS 17.0+
      */
     subscript(position: number): unknown;
+    readonly $type: {
+        "s:9SwiftData22FetchResultsCollectionV": true;
+    };
 }
 /**
  * typealias Index = Int
@@ -650,6 +701,9 @@ export declare class HistoryChange extends SDKHandle {
      * @availability iOS 18.0+
      */
     get changedPersistentIdentifier(): PersistentIdentifier;
+    readonly $type: {
+        "s:9SwiftData13HistoryChangeO": true;
+    };
 }
 /**
  * protocol HistoryDelete<Model> : Sendable
@@ -690,6 +744,9 @@ export declare class HistoryDescriptor<TransactionType = unknown> extends SDKHan
      * @availability iOS 18.0+
      */
     static initPredicate(predicate?: $SDK18): $SDK15;
+    readonly $type: {
+        "s:9SwiftData17HistoryDescriptorV": true;
+    };
 }
 /**
  * protocol HistoryInsert<Model> : Sendable
@@ -722,6 +779,9 @@ export declare class HistoryObserver extends SDKHandle {
      * @availability iOS 27.0+
      */
     get authors(): Array<string>;
+    readonly $type: {
+        "s:9SwiftData15HistoryObserverC": true;
+    };
     readonly $observable: {
         "eventCounter": true;
         "modelContainer": true;
@@ -755,6 +815,9 @@ export interface HistoryToken {
  * @availability iOS 18.0+
  */
 export declare class HistoryTombstone<Model = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData16HistoryTombstoneV": true;
+    };
 }
 /**
  * typealias Element = Any
@@ -766,6 +829,9 @@ export type HistoryTombstone_Element<Model = unknown> = unknown;
  * @availability iOS 18.0+
  */
 export declare class HistoryTombstone_Iterator<Model = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData16HistoryTombstoneV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Any
@@ -794,6 +860,9 @@ export type HistoryUpdate_PropertyUpdate = (unknown) & (SDKHandle);
  * @availability iOS 17.0+
  */
 export declare class MigrationStage extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData14MigrationStageO": true;
+    };
 }
 /**
  * protocol ModelActor : Actor
@@ -882,6 +951,9 @@ export declare class ModelConfiguration extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initSchemaUrlAllowsSaveCloudKitDatabase(name: (string) | null, schema: (Schema) | null, url: string, allowsSave?: boolean, cloudKitDatabase?: ModelConfiguration_CloudKitDatabase): ModelConfiguration;
+    readonly $type: {
+        "s:9SwiftData18ModelConfigurationV": true;
+    };
 }
 /**
  * struct CloudKitDatabase
@@ -903,6 +975,9 @@ export declare class ModelConfiguration_CloudKitDatabase extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): ModelConfiguration_CloudKitDatabase;
+    readonly $type: {
+        "s:9SwiftData18ModelConfigurationV16CloudKitDatabaseV": true;
+    };
 }
 /**
  * struct GroupContainer
@@ -924,6 +999,9 @@ export declare class ModelConfiguration_GroupContainer extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): ModelConfiguration_GroupContainer;
+    readonly $type: {
+        "s:9SwiftData18ModelConfigurationV14GroupContainerV": true;
+    };
 }
 /**
  * typealias ID = URL
@@ -982,6 +1060,9 @@ export declare class ModelContainer extends SDKHandle {
      * @availability iOS 17.0+
      */
     get schema(): Schema;
+    readonly $type: {
+        "s:9SwiftData14ModelContainerC": true;
+    };
 }
 /**
  * class ModelContext
@@ -1067,6 +1148,9 @@ export declare class ModelContext extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(container: ModelContainer): ModelContext;
+    readonly $type: {
+        "s:9SwiftData12ModelContextC": true;
+    };
 }
 /**
  * enum NotificationKey
@@ -1126,12 +1210,18 @@ export declare class PersistentIdentifier extends SDKHandle {
      * @availability iOS 16.0+
      */
     get id(): PersistentIdentifier_ID;
+    readonly $type: {
+        "s:9SwiftData20PersistentIdentifierV": true;
+    };
 }
 /**
  * struct ID
  * @availability iOS 16.0+
  */
 export declare class PersistentIdentifier_ID extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData20PersistentIdentifierV2IDV": true;
+    };
 }
 /**
  * protocol PersistentModel : AnyObject, Observable, Hashable, Identifiable, SendableMetatype
@@ -1155,12 +1245,18 @@ export interface RelationshipCollection {
  * @availability iOS 27.0+
  */
 export declare class ResultsObserver<Element = unknown, SectionTitle = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData15ResultsObserverC": true;
+    };
 }
 /**
  * struct ResultsSection<Element, SectionTitle> where Element : PersistentModel, SectionTitle : Hashable
  * @availability iOS 27.0+
  */
 export declare class ResultsSection<Element = unknown, SectionTitle = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData14ResultsSectionV": true;
+    };
 }
 /**
  * typealias ID = SectionTitle
@@ -1237,6 +1333,9 @@ export declare class Schema extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Schema;
+    readonly $type: {
+        "s:9SwiftData6SchemaC": true;
+    };
 }
 /**
  * class Attribute
@@ -1314,6 +1413,9 @@ export declare class Schema_Attribute extends SDKHandle {
      * @availability iOS 27.0+
      */
     get isCodable(): boolean;
+    readonly $type: {
+        "s:9SwiftData6SchemaC9AttributeC": true;
+    };
 }
 /**
  * struct Option
@@ -1370,6 +1472,9 @@ export declare class Schema_Attribute_Option extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get spotlight(): Schema_Attribute_Option;
+    readonly $type: {
+        "s:9SwiftData6SchemaC9AttributeC6OptionV": true;
+    };
 }
 declare const Schema_CompositeAttribute_base: Omit<typeof Schema_Attribute, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<Schema_Attribute, "debugDescription">);
 /**
@@ -1388,6 +1493,10 @@ export declare class Schema_CompositeAttribute extends Schema_CompositeAttribute
      * @availability iOS 17.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:9SwiftData6SchemaC18CompositeAttributeC": true;
+        "s:9SwiftData6SchemaC9AttributeC": true;
+    };
 }
 /**
  * final class Entity
@@ -1493,12 +1602,18 @@ export declare class Schema_Entity extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(name: string): Schema_Entity;
+    readonly $type: {
+        "s:9SwiftData6SchemaC6EntityC": true;
+    };
 }
 /**
  * final class Index<T> where T : PersistentModel
  * @availability iOS 18.0+
  */
 export declare class Schema_Index<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData6SchemaC5IndexC": true;
+    };
 }
 /**
  * enum CodingKeys
@@ -1510,6 +1625,9 @@ export type Schema_Index_CodingKeys<T = unknown> = "indices";
  * @availability iOS 18.0+
  */
 export declare class Schema_Index_Types<T = unknown, P = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData6SchemaC5IndexC5TypesO": true;
+    };
 }
 /**
  * struct PropertyMetadata
@@ -1521,6 +1639,9 @@ export declare class Schema_PropertyMetadata extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(name: string, keypath: SDKHandle, defaultValue?: (unknown) | null, metadata?: (SDKHandle) | null): Schema_PropertyMetadata;
+    readonly $type: {
+        "s:9SwiftData6SchemaC16PropertyMetadataV": true;
+    };
 }
 /**
  * final class Relationship
@@ -1618,6 +1739,9 @@ export declare class Schema_Relationship extends SDKHandle {
      * @availability iOS 17.0+
      */
     get isUnique(): boolean;
+    readonly $type: {
+        "s:9SwiftData6SchemaC12RelationshipC": true;
+    };
 }
 /**
  * enum DeleteRule
@@ -1656,12 +1780,18 @@ export declare class Schema_Relationship_Option extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get unique(): Schema_Relationship_Option;
+    readonly $type: {
+        "s:9SwiftData6SchemaC12RelationshipC6OptionV": true;
+    };
 }
 /**
  * final class Unique<T> where T : PersistentModel
  * @availability iOS 18.0+
  */
 export declare class Schema_Unique<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData6SchemaC6UniqueC": true;
+    };
 }
 /**
  * enum CodingKeys
@@ -1698,6 +1828,9 @@ export declare class Schema_Version extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(major: number, minor: number, patch: number): Schema_Version;
+    readonly $type: {
+        "s:9SwiftData6SchemaC7VersionV": true;
+    };
 }
 /**
  * protocol SchemaMigrationPlan : SendableMetatype
@@ -1716,6 +1849,9 @@ export interface SchemaProperty {
  * @availability iOS 27.0+
  */
 export declare class SectionedResults<Element = unknown, SectionTitle = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9SwiftData16SectionedResultsV": true;
+    };
 }
 /**
  * typealias Index = Int
@@ -1833,6 +1969,9 @@ export declare class SwiftDataError extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get configurationFileNameContainsInvalidCharacters(): SwiftDataError;
+    readonly $type: {
+        "s:9SwiftData0aB5ErrorV": true;
+    };
 }
 /**
  * protocol VersionedSchema : SendableMetatype

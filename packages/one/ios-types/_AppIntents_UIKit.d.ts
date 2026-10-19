@@ -39,6 +39,9 @@ export declare class DisplayRepresentation_Image extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(name: string, tintColor?: (_UIKit_UIColor) | null, symbolConfiguration?: (_UIKit_UIImage_SymbolConfiguration) | null): (_AppIntents_DisplayRepresentation_Image) | null;
+    readonly $type: {
+        "s:10AppIntents21DisplayRepresentationV5ImageV": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency final class ShortcutsUIButton
@@ -61,6 +64,14 @@ export declare class ShortcutsUIButton extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(style?: __AppIntents_SwiftUI_ShortcutsLinkStyle): Promise<ShortcutsUIButton>;
+    readonly $type: {
+        "c:@M@_AppIntents_UIKit@objc(cs)ShortcutsUIButton": true;
+        "c:objc(cs)UIButton": true;
+        "c:objc(cs)UIControl": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency final class SiriTipUIView
@@ -105,6 +116,12 @@ export declare class SiriTipUIView extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(style?: __AppIntents_SwiftUI_SiriTipViewStyle): Promise<SiriTipUIView>;
+    readonly $type: {
+        "c:@M@_AppIntents_UIKit@objc(cs)SiriTipUIView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export declare class UICollectionView extends SDKHandle {
     /**
@@ -113,6 +130,13 @@ export declare class UICollectionView extends SDKHandle {
      */
     get appIntentsDataSource(): Promise<(SDKHandle) | null>;
     setAppIntentsDataSource(value?: (SDKHandle) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)UICollectionView": true;
+        "c:objc(cs)UIScrollView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor protocol UICollectionViewAppIntentsDataSource : AnyObject
@@ -131,6 +155,10 @@ export declare class UIScene_ConnectionOptions extends SDKHandle {
      * @availability iOS 26.0+
      */
     get appIntent(): Promise<(SDKHandle) | null>;
+    readonly $type: {
+        "c:objc(cs)UISceneConnectionOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol UISceneAppIntent : TargetContentProvidingIntent
@@ -152,6 +180,13 @@ export declare class UITableView extends SDKHandle {
      */
     get appIntentsDataSource(): Promise<(SDKHandle) | null>;
     setAppIntentsDataSource(value?: (SDKHandle) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)UITableView": true;
+        "c:objc(cs)UIScrollView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor protocol UITableViewAppIntentsDataSource : AnyObject
@@ -176,5 +211,10 @@ export declare class UIView extends SDKHandle {
      * @availability iOS 18.4+
      */
     get appEntityUIElementProvider(): Promise<(((arg0: _UIKit_UIView, arg1: _AppIntents_AppEntityUIElementsContext) => Promise<Array<_AppIntents_AppEntityUIElement>>)) | null>;
+    readonly $type: {
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

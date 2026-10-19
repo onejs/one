@@ -24,6 +24,11 @@ export declare class PHAsset extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get defaultResolverSpecification(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)PHAsset": true;
+        "c:objc(cs)PHObject": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias Specification = EmptyResolverSpecification<PHAsset>

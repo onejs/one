@@ -27,6 +27,10 @@ export declare class PHASEDefinition extends SDKHandle {
      * @availability iOS 15.0+
      */
     get identifier(): string;
+    readonly $type: {
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -48,6 +52,11 @@ export declare class PHASEMixerDefinition extends PHASEDefinition {
      */
     get gainMetaParameterDefinition(): $SDK0;
     set gainMetaParameterDefinition(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)PHASEMixerDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "gain": true;
@@ -79,6 +88,12 @@ export declare class PHASEAmbientMixerDefinition extends PHASEMixerDefinition {
      * @availability iOS 15.0+
      */
     get orientation(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)PHASEAmbientMixerDefinition": true;
+        "c:objc(cs)PHASEMixerDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "gain": true;
@@ -97,6 +112,10 @@ export declare class PHASEAsset extends SDKHandle {
      * @availability iOS 15.0+
      */
     get identifier(): string;
+    readonly $type: {
+        "c:objc(cs)PHASEAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -123,6 +142,9 @@ export declare class PHASEAssetError extends SDKHandle {
     static get memoryAllocation(): PHASEAssetError_Code;
     /** static var invalidEngineInstance: PHASEAssetError.Code { get } */
     static get invalidEngineInstance(): PHASEAssetError_Code;
+    readonly $type: {
+        "s:SC15PHASEAssetErrorLeV": true;
+    };
 }
 /** enum Code */
 export type PHASEAssetError_Code = "failedToLoad" | "invalidEngineInstance" | "badParameters" | "alreadyExists" | "generalError" | "memoryAllocation";
@@ -170,6 +192,10 @@ export declare class PHASEAssetRegistry extends SDKHandle {
      * @availability iOS 15.0+
      */
     get globalMetaParameters(): $SDK3;
+    readonly $type: {
+        "c:objc(cs)PHASEAssetRegistry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "globalMetaParameters": true;
     };
@@ -206,6 +232,11 @@ export declare class PHASESoundEventNodeDefinition extends PHASEDefinition {
      * @availability iOS 15.0+
      */
     get children(): Array<PHASESoundEventNodeDefinition>;
+    readonly $type: {
+        "c:objc(cs)PHASESoundEventNodeDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "children": true;
@@ -266,6 +297,12 @@ export declare class PHASEBlendNodeDefinition extends PHASESoundEventNodeDefinit
      * @availability iOS 15.0+
      */
     get spatialMixerDefinitionForDistance(): (PHASESpatialMixerDefinition) | null;
+    readonly $type: {
+        "c:objc(cs)PHASEBlendNodeDefinition": true;
+        "c:objc(cs)PHASESoundEventNodeDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "children": true;
@@ -284,6 +321,10 @@ export declare const PHASECalibrationMode: {
  * @availability iOS 15.0+
  */
 export declare class PHASEDirectivityModelParameters extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)PHASEDirectivityModelParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PHASECardioidDirectivityModelParameters
@@ -300,6 +341,11 @@ export declare class PHASECardioidDirectivityModelParameters extends PHASEDirect
      * @availability iOS 15.0+
      */
     get subbandParameters(): $SDK6;
+    readonly $type: {
+        "c:objc(cs)PHASECardioidDirectivityModelParameters": true;
+        "c:objc(cs)PHASEDirectivityModelParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subbandParameters": true;
     };
@@ -332,6 +378,10 @@ export declare class PHASECardioidDirectivityModelSubbandParameters extends SDKH
      */
     get sharpness(): number;
     set sharpness(value: number);
+    readonly $type: {
+        "c:objc(cs)PHASECardioidDirectivityModelSubbandParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frequency": true;
         "pattern": true;
@@ -358,6 +408,12 @@ export declare class PHASEChannelMixerDefinition extends PHASEMixerDefinition {
      * @availability iOS 15.0+
      */
     get inputChannelLayout(): _AVFAudio_AVAudioChannelLayout;
+    readonly $type: {
+        "c:objc(cs)PHASEChannelMixerDefinition": true;
+        "c:objc(cs)PHASEMixerDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "gain": true;
@@ -380,6 +436,11 @@ export declare class PHASEConeDirectivityModelParameters extends PHASEDirectivit
      * @availability iOS 15.0+
      */
     get subbandParameters(): $SDK7;
+    readonly $type: {
+        "c:objc(cs)PHASEConeDirectivityModelParameters": true;
+        "c:objc(cs)PHASEDirectivityModelParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subbandParameters": true;
     };
@@ -421,6 +482,10 @@ export declare class PHASEConeDirectivityModelSubbandParameters extends SDKHandl
      */
     get outerGain(): number;
     set outerGain(value: number);
+    readonly $type: {
+        "c:objc(cs)PHASEConeDirectivityModelSubbandParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frequency": true;
         "innerAngle": true;
@@ -453,6 +518,12 @@ export declare class PHASEContainerNodeDefinition extends PHASESoundEventNodeDef
      * @availability iOS 15.0+
      */
     static initIdentifier(identifier: string): PHASEContainerNodeDefinition;
+    readonly $type: {
+        "c:objc(cs)PHASEContainerNodeDefinition": true;
+        "c:objc(cs)PHASESoundEventNodeDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "children": true;
@@ -485,6 +556,10 @@ export declare class PHASEDistanceModelFadeOutParameters extends SDKHandle {
      * @availability iOS 15.0+
      */
     get cullDistance(): number;
+    readonly $type: {
+        "c:objc(cs)PHASEDistanceModelFadeOutParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cullDistance": true;
     };
@@ -500,6 +575,10 @@ export declare class PHASEDistanceModelParameters extends SDKHandle {
      */
     get fadeOutParameters(): $SDK8;
     set fadeOutParameters(value: $SDK8);
+    readonly $type: {
+        "c:objc(cs)PHASEDistanceModelParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fadeOutParameters": true;
     };
@@ -569,6 +648,10 @@ export declare class PHASEDucker extends SDKHandle {
      * @availability iOS 15.0+
      */
     get targetGroups(): Array<PHASEGroup>;
+    readonly $type: {
+        "c:objc(cs)PHASEDucker": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActive": true;
         "attackCurve": true;
@@ -681,6 +764,10 @@ export declare class PHASEEngine extends SDKHandle {
      */
     get unitsPerSecond(): number;
     set unitsPerSecond(value: number);
+    readonly $type: {
+        "c:objc(cs)PHASEEngine": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeGroupPreset": true;
         "assetRegistry": true;
@@ -738,6 +825,10 @@ export declare class PHASEEnvelope extends SDKHandle {
      * @availability iOS 15.0+
      */
     get startPoint(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)PHASEEnvelope": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "domain": true;
         "range": true;
@@ -760,6 +851,11 @@ export declare class PHASEEnvelopeDistanceModelParameters extends PHASEDistanceM
      * @availability iOS 15.0+
      */
     get envelope(): PHASEEnvelope;
+    readonly $type: {
+        "c:objc(cs)PHASEEnvelopeDistanceModelParameters": true;
+        "c:objc(cs)PHASEDistanceModelParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fadeOutParameters": true;
         "envelope": true;
@@ -770,13 +866,11 @@ export declare class PHASEEnvelopeDistanceModelParameters extends PHASEDistanceM
  * @availability iOS 15.0+
  */
 export declare class PHASEEnvelopeSegment extends SDKHandle {
-    /** init() */
-    static init(): PHASEEnvelopeSegment;
     /**
      * init(endPoint: simd_double2, curveType: PHASECurveType)
      * @availability iOS 15.0+
      */
-    static initEndPointCurveType(endPoint: SDKHandle, curveType: PHASECurveType): PHASEEnvelopeSegment;
+    static init(endPoint: SDKHandle, curveType: PHASECurveType): PHASEEnvelopeSegment;
     /**
      * var curveType: PHASECurveType { get set }
      * @availability iOS 15.0+
@@ -789,6 +883,10 @@ export declare class PHASEEnvelopeSegment extends SDKHandle {
      */
     get endPoint(): SDKHandle;
     set endPoint(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)PHASEEnvelopeSegment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "curveType": true;
         "endPoint": true;
@@ -802,6 +900,9 @@ export declare class PHASEError extends SDKHandle {
     static get invalidObject(): PHASEError_Code;
     /** static var initializeFailed: PHASEError.Code { get } */
     static get initializeFailed(): PHASEError_Code;
+    readonly $type: {
+        "s:SC10PHASEErrorLeV": true;
+    };
 }
 /** enum Code */
 export type PHASEError_Code = "initializeFailed" | "invalidObject";
@@ -858,6 +959,12 @@ export declare class PHASEGeneratorNodeDefinition extends PHASESoundEventNodeDef
      */
     get rateMetaParameterDefinition(): $SDK0;
     set rateMetaParameterDefinition(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)PHASEGeneratorNodeDefinition": true;
+        "c:objc(cs)PHASESoundEventNodeDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "children": true;
@@ -886,6 +993,11 @@ export declare class PHASEGeometricSpreadingDistanceModelParameters extends PHAS
      */
     get rolloffFactor(): number;
     set rolloffFactor(value: number);
+    readonly $type: {
+        "c:objc(cs)PHASEGeometricSpreadingDistanceModelParameters": true;
+        "c:objc(cs)PHASEDistanceModelParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fadeOutParameters": true;
         "rolloffFactor": true;
@@ -896,6 +1008,11 @@ export declare class PHASEGeometricSpreadingDistanceModelParameters extends PHAS
  * @availability iOS 15.0+
  */
 export declare class PHASEGlobalMetaParameterAsset extends PHASEAsset {
+    readonly $type: {
+        "c:objc(cs)PHASEGlobalMetaParameterAsset": true;
+        "c:objc(cs)PHASEAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -977,6 +1094,10 @@ export declare class PHASEGroup extends SDKHandle {
      * @availability iOS 15.0+
      */
     get isSoloed(): boolean;
+    readonly $type: {
+        "c:objc(cs)PHASEGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "gain": true;
         "identifier": true;
@@ -1030,6 +1151,10 @@ export declare class PHASEGroupPreset extends SDKHandle {
      * @availability iOS 15.0+
      */
     get timeToTarget(): number;
+    readonly $type: {
+        "c:objc(cs)PHASEGroupPreset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "settings": true;
         "timeToReset": true;
@@ -1066,6 +1191,10 @@ export declare class PHASEGroupPresetSetting extends SDKHandle {
      * @availability iOS 15.0+
      */
     get rateCurveType(): PHASECurveType;
+    readonly $type: {
+        "c:objc(cs)PHASEGroupPresetSetting": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "gain": true;
         "gainCurveType": true;
@@ -1135,6 +1264,10 @@ export declare class PHASEObject extends SDKHandle {
      */
     get worldTransform(): SDKHandle;
     set worldTransform(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)PHASEObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "parent": true;
@@ -1165,6 +1298,11 @@ export declare class PHASEListener extends PHASEListener_base {
      */
     get gain(): number;
     set gain(value: number);
+    readonly $type: {
+        "c:objc(cs)PHASEListener": true;
+        "c:objc(cs)PHASEObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "parent": true;
@@ -1184,6 +1322,11 @@ export declare class PHASEMetaParameterDefinition extends PHASEDefinition {
      * @availability iOS 15.0+
      */
     get value(): unknown;
+    readonly $type: {
+        "c:objc(cs)PHASEMetaParameterDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "value": true;
@@ -1224,6 +1367,12 @@ export declare class PHASENumberMetaParameterDefinition extends PHASEMetaParamet
      * @availability iOS 15.0+
      */
     get minimum(): number;
+    readonly $type: {
+        "c:objc(cs)PHASENumberMetaParameterDefinition": true;
+        "c:objc(cs)PHASEMetaParameterDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "value": true;
@@ -1256,6 +1405,13 @@ export declare class PHASEMappedMetaParameterDefinition extends PHASENumberMetaP
      * @availability iOS 15.0+
      */
     get inputMetaParameterDefinition(): PHASENumberMetaParameterDefinition;
+    readonly $type: {
+        "c:objc(cs)PHASEMappedMetaParameterDefinition": true;
+        "c:objc(cs)PHASENumberMetaParameterDefinition": true;
+        "c:objc(cs)PHASEMetaParameterDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "value": true;
@@ -1275,6 +1431,10 @@ export declare class PHASEMaterial extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(engine: PHASEEngine, preset: PHASEMaterialPreset): PHASEMaterial;
+    readonly $type: {
+        "c:objc(cs)PHASEMaterial": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** enum PHASEMaterialPreset */
 export type PHASEMaterialPreset = "cardboard" | "glass" | "brick" | "concrete" | "drywall" | "wood";
@@ -1292,6 +1452,10 @@ export declare class PHASEMedium extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(engine: PHASEEngine, preset: PHASEMedium_Preset): PHASEMedium;
+    readonly $type: {
+        "c:objc(cs)PHASEMedium": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** enum Preset */
 export type PHASEMedium_Preset = "air";
@@ -1315,6 +1479,10 @@ export declare class PHASEMetaParameter extends SDKHandle {
      */
     get value(): unknown;
     set value(value: unknown);
+    readonly $type: {
+        "c:objc(cs)PHASEMetaParameter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "value": true;
@@ -1340,6 +1508,10 @@ export declare class PHASEMixer extends SDKHandle {
      * @availability iOS 15.0+
      */
     get identifier(): string;
+    readonly $type: {
+        "c:objc(cs)PHASEMixer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "gain": true;
         "gainMetaParameter": true;
@@ -1363,6 +1535,10 @@ export declare class PHASEMixerParameters extends SDKHandle {
     addSpatialMixerParameters(identifier: string, source: PHASESource, listener: PHASEListener): void;
     /** init() */
     static init(): PHASEMixerParameters;
+    readonly $type: {
+        "c:objc(cs)PHASEMixerParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** enum PHASENormalizationMode */
 export type PHASENormalizationMode = "none" | "dynamic";
@@ -1390,6 +1566,11 @@ export declare class PHASENumberMetaParameter extends PHASEMetaParameter {
      * @availability iOS 15.0+
      */
     get minimum(): number;
+    readonly $type: {
+        "c:objc(cs)PHASENumberMetaParameter": true;
+        "c:objc(cs)PHASEMetaParameter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "value": true;
@@ -1402,13 +1583,11 @@ export declare class PHASENumberMetaParameter extends PHASEMetaParameter {
  * @availability iOS 15.0+
  */
 export declare class PHASENumericPair extends SDKHandle {
-    /** init() */
-    static init(): PHASENumericPair;
     /**
      * init(firstValue first: Double, secondValue second: Double)
      * @availability iOS 15.0+
      */
-    static initFirstValueSecondValue(first: number, second: number): PHASENumericPair;
+    static init(first: number, second: number): PHASENumericPair;
     /**
      * var first: Double { get set }
      * @availability iOS 15.0+
@@ -1421,6 +1600,10 @@ export declare class PHASENumericPair extends SDKHandle {
      */
     get second(): number;
     set second(value: number);
+    readonly $type: {
+        "c:objc(cs)PHASENumericPair": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "first": true;
         "second": true;
@@ -1442,6 +1625,11 @@ export declare class PHASEOccluder extends PHASEOccluder_base {
      * @availability iOS 15.0+
      */
     get shapes(): Array<PHASEShape>;
+    readonly $type: {
+        "c:objc(cs)PHASEOccluder": true;
+        "c:objc(cs)PHASEObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "parent": true;
@@ -1481,6 +1669,10 @@ export declare class PHASEStreamNode extends SDKHandle {
      * @availability iOS 18.0+
      */
     get rateMetaParameter(): $SDK15;
+    readonly $type: {
+        "c:objc(cs)PHASEStreamNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "format": true;
         "gainMetaParameter": true;
@@ -1498,6 +1690,11 @@ export declare class PHASEPullStreamNode extends PHASEStreamNode {
      * @availability iOS 18.0+
      */
     get renderHandler(): $SDK16;
+    readonly $type: {
+        "c:objc(cs)PHASEPullStreamNode": true;
+        "c:objc(cs)PHASEStreamNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "format": true;
         "gainMetaParameter": true;
@@ -1531,6 +1728,13 @@ export declare class PHASEPullStreamNodeDefinition extends PHASEGeneratorNodeDef
      */
     get normalize(): boolean;
     set normalize(value: boolean);
+    readonly $type: {
+        "c:objc(cs)PHASEPullStreamNodeDefinition": true;
+        "c:objc(cs)PHASEGeneratorNodeDefinition": true;
+        "c:objc(cs)PHASESoundEventNodeDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "children": true;
@@ -1613,6 +1817,11 @@ export declare class PHASEPushStreamNode extends PHASEPushStreamNode_base {
      * @availability iOS 15.0+
      */
     get rateMetaParameter(): $SDK15;
+    readonly $type: {
+        "c:objc(cs)PHASEPushStreamNode": true;
+        "c:objc(cs)PHASEStreamNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "format": true;
         "gainMetaParameter": true;
@@ -1646,6 +1855,13 @@ export declare class PHASEPushStreamNodeDefinition extends PHASEGeneratorNodeDef
      */
     get normalize(): boolean;
     set normalize(value: boolean);
+    readonly $type: {
+        "c:objc(cs)PHASEPushStreamNodeDefinition": true;
+        "c:objc(cs)PHASEGeneratorNodeDefinition": true;
+        "c:objc(cs)PHASESoundEventNodeDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "children": true;
@@ -1686,6 +1902,12 @@ export declare class PHASERandomNodeDefinition extends PHASESoundEventNodeDefini
      */
     get uniqueSelectionQueueLength(): number;
     set uniqueSelectionQueueLength(value: number);
+    readonly $type: {
+        "c:objc(cs)PHASERandomNodeDefinition": true;
+        "c:objc(cs)PHASESoundEventNodeDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "children": true;
@@ -1730,6 +1952,13 @@ export declare class PHASESamplerNodeDefinition extends PHASEGeneratorNodeDefini
      */
     get playbackMode(): PHASEPlaybackMode;
     set playbackMode(value: PHASEPlaybackMode);
+    readonly $type: {
+        "c:objc(cs)PHASESamplerNodeDefinition": true;
+        "c:objc(cs)PHASEGeneratorNodeDefinition": true;
+        "c:objc(cs)PHASESoundEventNodeDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "children": true;
@@ -1765,6 +1994,10 @@ export declare class PHASEShape extends SDKHandle {
      * @availability iOS 15.0+
      */
     get elements(): Array<PHASEShape_Element>;
+    readonly $type: {
+        "c:objc(cs)PHASEShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "elements": true;
     };
@@ -1780,6 +2013,10 @@ export declare class PHASEShape_Element extends SDKHandle {
      */
     get material(): (PHASEMaterial) | null;
     set material(value: (PHASEMaterial) | null);
+    readonly $type: {
+        "c:objc(cs)PHASEShapeElement": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "material": true;
     };
@@ -1804,6 +2041,11 @@ export declare class PHASESoundAsset extends PHASEAsset {
      * @availability iOS 15.0+
      */
     get url(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)PHASESoundAsset": true;
+        "c:objc(cs)PHASEAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "data": true;
@@ -1906,6 +2148,10 @@ export declare class PHASESoundEvent extends SDKHandle {
      * @availability iOS 15.0+
      */
     get renderingState(): PHASESoundEvent_RenderingState;
+    readonly $type: {
+        "c:objc(cs)PHASESoundEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isIndefinite": true;
         "metaParameters": true;
@@ -1962,6 +2208,9 @@ export declare class PHASESoundEventError extends SDKHandle {
     static get notFound(): PHASESoundEventError_Code;
     /** static var apiMisuse: PHASESoundEventError.Code { get } */
     static get apiMisuse(): PHASESoundEventError_Code;
+    readonly $type: {
+        "s:SC20PHASESoundEventErrorLeV": true;
+    };
 }
 /** enum Code */
 export type PHASESoundEventError_Code = "notFound" | "badData" | "invalidInstance" | "apiMisuse" | "systemNotInitialized" | "outOfMemory";
@@ -1974,6 +2223,11 @@ export declare const PHASESoundEventError_Code: {
  * @availability iOS 15.0+
  */
 export declare class PHASESoundEventNodeAsset extends PHASEAsset {
+    readonly $type: {
+        "c:objc(cs)PHASESoundEventNodeAsset": true;
+        "c:objc(cs)PHASEAsset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -2004,6 +2258,11 @@ export declare class PHASESource extends PHASEObject {
      * @availability iOS 15.0+
      */
     get shapes(): Array<PHASEShape>;
+    readonly $type: {
+        "c:objc(cs)PHASESource": true;
+        "c:objc(cs)PHASEObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "parent": true;
@@ -2069,6 +2328,12 @@ export declare class PHASESpatialMixerDefinition extends PHASEMixerDefinition {
      * @availability iOS 15.0+
      */
     get spatialPipeline(): PHASESpatialPipeline;
+    readonly $type: {
+        "c:objc(cs)PHASESpatialMixerDefinition": true;
+        "c:objc(cs)PHASEMixerDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "gain": true;
@@ -2099,6 +2364,10 @@ export declare class PHASESpatialPipeline extends SDKHandle {
      * @availability iOS 15.0+
      */
     get flags(): PHASESpatialPipeline_Flags;
+    readonly $type: {
+        "c:objc(cs)PHASESpatialPipeline": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "entries": true;
         "flags": true;
@@ -2135,6 +2404,10 @@ export declare class PHASESpatialPipelineEntry extends SDKHandle {
      */
     get sendLevelMetaParameterDefinition(): $SDK0;
     set sendLevelMetaParameterDefinition(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)PHASESpatialPipelineEntry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sendLevel": true;
         "sendLevelMetaParameterDefinition": true;
@@ -2145,6 +2418,11 @@ export declare class PHASESpatialPipelineEntry extends SDKHandle {
  * @availability iOS 15.0+
  */
 export declare class PHASEStringMetaParameter extends PHASEMetaParameter {
+    readonly $type: {
+        "c:objc(cs)PHASEStringMetaParameter": true;
+        "c:objc(cs)PHASEMetaParameter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "value": true;
@@ -2165,6 +2443,12 @@ export declare class PHASEStringMetaParameterDefinition extends PHASEMetaParamet
      * @availability iOS 15.0+
      */
     static initValueIdentifier(value: string, identifier: string): PHASEStringMetaParameterDefinition;
+    readonly $type: {
+        "c:objc(cs)PHASEStringMetaParameterDefinition": true;
+        "c:objc(cs)PHASEMetaParameterDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "value": true;
@@ -2195,6 +2479,12 @@ export declare class PHASESwitchNodeDefinition extends PHASESoundEventNodeDefini
      * @availability iOS 15.0+
      */
     get switchMetaParameterDefinition(): PHASEStringMetaParameterDefinition;
+    readonly $type: {
+        "c:objc(cs)PHASESwitchNodeDefinition": true;
+        "c:objc(cs)PHASESoundEventNodeDefinition": true;
+        "c:objc(cs)PHASEDefinition": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "children": true;

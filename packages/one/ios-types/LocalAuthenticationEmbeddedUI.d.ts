@@ -9,4 +9,8 @@ export declare class LARight extends SDKHandle {
      * @availability iOS 16.0+
      */
     authorize(localizedReason: string, presentationContext: _UIKit_UIWindow, handler: ((arg0: (NativeError) | null) => void)): void;
+    readonly $type: {
+        "c:objc(cs)LARight": true;
+        "c:objc(cs)NSObject": true;
+    };
 }

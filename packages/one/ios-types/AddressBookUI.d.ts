@@ -39,6 +39,12 @@ export declare class ABNewPersonViewController extends SDKHandle {
      */
     get parentGroup(): (unknown) | null;
     set parentGroup(value: (unknown) | null);
+    readonly $type: {
+        "c:objc(cs)ABNewPersonViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addressBook": true;
         "displayedPerson": true;
@@ -104,6 +110,13 @@ export declare class ABPeoplePickerNavigationController extends SDKHandle {
      */
     get predicateForSelectionOfProperty(): $SDK3;
     set predicateForSelectionOfProperty(value: $SDK3);
+    readonly $type: {
+        "c:objc(cs)ABPeoplePickerNavigationController": true;
+        "c:objc(cs)UINavigationController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addressBook": true;
         "displayedProperties": true;
@@ -194,6 +207,12 @@ export declare class ABPersonViewController extends SDKHandle {
      */
     get shouldShowLinkedPeople(): boolean;
     set shouldShowLinkedPeople(value: boolean);
+    readonly $type: {
+        "c:objc(cs)ABPersonViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addressBook": true;
         "allowsActions": true;
@@ -269,6 +288,12 @@ export declare class ABUnknownPersonViewController extends SDKHandle {
      */
     get unknownPersonViewDelegate(): (SDKHandle) | null;
     set unknownPersonViewDelegate(value: (Implements<ABUnknownPersonViewControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)ABUnknownPersonViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addressBook": true;
         "allowsActions": true;

@@ -33,6 +33,10 @@ export declare class DCAppAttestService extends SDKHandle {
      * @availability iOS 14.0+
      */
     get isSupported(): boolean;
+    readonly $type: {
+        "c:objc(cs)DCAppAttestService": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isSupported": true;
     };
@@ -59,6 +63,10 @@ export declare class DCDevice extends SDKHandle {
      * @availability iOS 11.0+
      */
     get isSupported(): boolean;
+    readonly $type: {
+        "c:objc(cs)DCDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isSupported": true;
     };
@@ -98,6 +106,9 @@ export declare class DCError extends SDKHandle {
      * @availability iOS 11.0+
      */
     static get unknownSystemFailure(): DCError_Code;
+    readonly $type: {
+        "s:SC7DCErrorLeV": true;
+    };
 }
 /**
  * enum Code

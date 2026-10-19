@@ -146,6 +146,9 @@ export declare class ComputeGraphComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ComputeGraphComponent;
+    readonly $type: {
+        "s:24_RealityKit_ComputeGraph0cD9ComponentV": true;
+    };
 }
 /**
  * enum SimulationState
@@ -157,6 +160,9 @@ export type ComputeGraphComponent_SimulationState = "playing" | "paused" | "step
  * @availability iOS 27.0+
  */
 export declare class ComputeGraphComponent_UniformHandle extends SDKHandle {
+    readonly $type: {
+        "s:24_RealityKit_ComputeGraph0cD9ComponentV13UniformHandleV": true;
+    };
 }
 /**
  * struct ComputeGraphOutputComponent
@@ -168,6 +174,9 @@ export declare class ComputeGraphOutputComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     get outputID(): number;
+    readonly $type: {
+        "s:24_RealityKit_ComputeGraph0cD15OutputComponentV": true;
+    };
 }
 /**
  * final class ComputeGraphResource
@@ -189,6 +198,9 @@ export declare class ComputeGraphResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initGraphPipelinesDependencies(graph: _ComputeGraph_ComputeNodeGraph, pipelines: _ComputeGraph_ComputeNodeGraph_Pipelines, dependencies: ComputeGraphResource_Dependencies): Promise<ComputeGraphResource>;
+    readonly $type: {
+        "s:24_RealityKit_ComputeGraph0cD8ResourceC": true;
+    };
 }
 /**
  * struct BufferInfo
@@ -200,6 +212,9 @@ export declare class ComputeGraphResource_BufferInfo extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(buffer: SDKHandle, bufferOffset: number, elementCount: number): ComputeGraphResource_BufferInfo;
+    readonly $type: {
+        "s:24_RealityKit_ComputeGraph0cD8ResourceC10BufferInfoV": true;
+    };
 }
 /**
  * struct Dependencies
@@ -235,6 +250,9 @@ export declare class ComputeGraphResource_Dependencies extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ComputeGraphResource_Dependencies;
+    readonly $type: {
+        "s:24_RealityKit_ComputeGraph0cD8ResourceC12DependenciesV": true;
+    };
 }
 /**
  * struct ComputeGraphRuntimeComponent
@@ -256,6 +274,9 @@ export declare class ComputeGraphRuntimeComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     readOutputs(node: number): (Array<SDKHandle>) | null;
+    readonly $type: {
+        "s:24_RealityKit_ComputeGraph0cD16RuntimeComponentV": true;
+    };
 }
 /**
  * class ComputeGraphSharedUniforms
@@ -267,6 +288,9 @@ export declare class ComputeGraphSharedUniforms extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ComputeGraphSharedUniforms;
+    readonly $type: {
+        "s:24_RealityKit_ComputeGraph0cD14SharedUniformsC": true;
+    };
 }
 /**
  * struct ComputeGraphViewpointComponent
@@ -290,5 +314,8 @@ export declare class ComputeGraphViewpointComponent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ComputeGraphViewpointComponent;
+    readonly $type: {
+        "s:24_RealityKit_ComputeGraph0cD18ViewpointComponentV": true;
+    };
 }
 export {};

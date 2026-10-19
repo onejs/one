@@ -23,6 +23,10 @@ export declare class PTChannelDescriptor extends SDKHandle {
      * @availability iOS 16.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)PTChannelDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "image": true;
         "name": true;
@@ -88,6 +92,9 @@ export declare class PTChannelError extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get unknown(): PTChannelError_Code;
+    readonly $type: {
+        "s:SC14PTChannelErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -185,6 +192,10 @@ export declare class PTChannelManager extends SDKHandle {
      * @availability iOS 16.0+
      */
     get activeChannelUUID(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)PTChannelManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeChannelUUID": true;
     };
@@ -318,6 +329,9 @@ export declare class PTInstantiationError extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get unknown(): PTInstantiationError_Code;
+    readonly $type: {
+        "s:SC20PTInstantiationErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -351,6 +365,10 @@ export declare class PTParticipant extends SDKHandle {
      * @availability iOS 16.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)PTParticipant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "image": true;
         "name": true;
@@ -371,6 +389,10 @@ export declare class PTPushResult extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get leaveChannel(): PTPushResult;
+    readonly $type: {
+        "c:objc(cs)PTPushResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum PTServiceStatus

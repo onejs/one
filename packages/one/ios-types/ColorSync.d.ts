@@ -48,9 +48,16 @@ export declare class ColorSyncMD5 extends SDKHandle {
     static initDigest(digest: $SDK0): ColorSyncMD5;
     /** init() */
     static init(): ColorSyncMD5;
+    readonly $type: {
+        "c:@SA@ColorSyncMD5": true;
+    };
 }
 /** class ColorSyncMutableProfile */
 export declare class ColorSyncMutableProfile extends SDKHandle {
+    readonly $type: {
+        "c:@T@ColorSyncMutableProfileRef": true;
+        "c:@T@ColorSyncProfileRef": true;
+    };
 }
 /** class ColorSyncProfile */
 export declare class ColorSyncProfile extends SDKHandle {
@@ -74,6 +81,9 @@ export declare class ColorSyncProfile extends SDKHandle {
      * @availability iOS 27.0+
      */
     addingHeadroomAdaptiveGainCurveMetadataOptions(headroomAdaptiveGainCurveMetadata: ArrayBuffer, options?: ColorSyncProfile_HeadroomAdaptiveGainCurveOptions): $SDK2;
+    readonly $type: {
+        "c:@T@ColorSyncProfileRef": true;
+    };
 }
 /**
  * struct HeadroomAdaptiveGainCurve
@@ -97,6 +107,9 @@ export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve extends SDKHandl
      */
     get colorVolumeTransform(): $SDK3;
     set colorVolumeTransform(value: $SDK3);
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV": true;
+    };
 }
 /**
  * struct ColorVolumeTransform
@@ -120,6 +133,9 @@ export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTrans
      */
     get customHDRReferenceWhite(): (number) | null;
     set customHDRReferenceWhite(value: (number) | null);
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV": true;
+    };
 }
 /**
  * struct ToneMapping
@@ -143,12 +159,18 @@ export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTrans
      */
     get method(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method;
     set method(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method);
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV": true;
+    };
 }
 /**
  * enum Method
  * @availability iOS 27.0+
  */
 export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method extends SDKHandle {
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO": true;
+    };
 }
 /**
  * struct AdaptiveGainCurve
@@ -172,6 +194,9 @@ export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTrans
      */
     get alternateCurves(): $SDK5;
     set alternateCurves(value: $SDK5);
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO0fgH0V": true;
+    };
 }
 /**
  * struct AlternateCurve
@@ -201,12 +226,18 @@ export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTrans
      */
     get headroomStops(): number;
     set headroomStops(value: number);
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO09AlternateH0V": true;
+    };
 }
 /**
  * enum ComponentMix
  * @availability iOS 27.0+
  */
 export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ComponentMix extends SDKHandle {
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO09AlternateH0V12ComponentMixO": true;
+    };
 }
 /**
  * struct ControlPoints
@@ -236,24 +267,36 @@ export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTrans
      */
     get slopes(): ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes;
     set slopes(value: ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes);
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO09AlternateH0V13ControlPointsV": true;
+    };
 }
 /**
  * enum Slopes
  * @availability iOS 27.0+
  */
 export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_AlternateCurve_ControlPoints_Slopes extends SDKHandle {
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO09AlternateH0V13ControlPointsV6SlopesO": true;
+    };
 }
 /**
  * enum Chromaticities
  * @availability iOS 27.0+
  */
 export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_ColorVolumeTransform_ToneMapping_Method_Chromaticities extends SDKHandle {
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV0A15VolumeTransformV11ToneMappingV6MethodO14ChromaticitiesO": true;
+    };
 }
 /**
  * enum Error
  * @availability iOS 27.0+
  */
 export declare class ColorSyncProfile_HeadroomAdaptiveGainCurve_Error extends SDKHandle {
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E25HeadroomAdaptiveGainCurveV5ErrorO": true;
+    };
 }
 /**
  * struct HeadroomAdaptiveGainCurveOptions
@@ -265,11 +308,17 @@ export declare class ColorSyncProfile_HeadroomAdaptiveGainCurveOptions extends S
      * @availability iOS 27.0+
      */
     static init(): ColorSyncProfile_HeadroomAdaptiveGainCurveOptions;
+    readonly $type: {
+        "s:So19ColorSyncProfileRefa0aB0E32HeadroomAdaptiveGainCurveOptionsV": true;
+    };
 }
 /** typealias ColorSyncProfileIterateCallback = (CFDictionary?, UnsafeMutableRawPointer?) -> Bool */
 export type ColorSyncProfileIterateCallback = ((arg0: (_CoreFoundation_CFDictionary) | null, arg1: (SDKHandle) | null) => Promise<boolean>);
 /** class ColorSyncTransform */
 export declare class ColorSyncTransform extends SDKHandle {
+    readonly $type: {
+        "c:@T@ColorSyncTransformRef": true;
+    };
 }
 /** func ColorSyncAPIVersion() -> UInt32 */
 export declare function ColorSyncAPIVersion(): number;

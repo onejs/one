@@ -7,8 +7,6 @@ type $SDK3 = (_EventKit_EKEvent) | null;
 type $SDK4 = (_EventKit_EKEventStore) | null;
 /** class EKCalendarChooser */
 export declare class EKCalendarChooser extends SDKHandle {
-    /** init() */
-    static init(): EKCalendarChooser;
     /** init(selectionStyle style: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, entityType: EKEntityType, eventStore: EKEventStore) */
     static initSelectionStyleDisplayStyleEntityTypeEventStore(style: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, entityType: _EventKit_EKEntityType, eventStore: _EventKit_EKEventStore): EKCalendarChooser;
     /** init(selectionStyle: EKCalendarChooserSelectionStyle, displayStyle: EKCalendarChooserDisplayStyle, eventStore: EKEventStore) */
@@ -27,6 +25,12 @@ export declare class EKCalendarChooser extends SDKHandle {
     /** var showsDoneButton: Bool { get set } */
     get showsDoneButton(): boolean;
     set showsDoneButton(value: boolean);
+    readonly $type: {
+        "c:objc(cs)EKCalendarChooser": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "selectedCalendars": true;
@@ -94,6 +98,13 @@ export declare class EKEventEditViewController extends SDKHandle {
      */
     get eventStore(): $SDK4;
     set eventStore(value: $SDK4);
+    readonly $type: {
+        "c:objc(cs)EKEventEditViewController": true;
+        "c:objc(cs)UINavigationController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "editViewDelegate": true;
         "event": true;
@@ -145,6 +156,12 @@ export declare class EKEventViewController extends SDKHandle {
      */
     get event(): $SDK3;
     set event(value: $SDK3);
+    readonly $type: {
+        "c:objc(cs)EKEventViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCalendarPreview": true;
         "allowsEditing": true;

@@ -38,6 +38,10 @@ export declare class TKTLVRecord extends SDKHandle {
      * @availability iOS 10.0+
      */
     get value(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)TKTLVRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "tag": true;
@@ -64,6 +68,11 @@ export declare class TKBERTLVRecord extends TKTLVRecord {
      * @availability iOS 10.0+
      */
     static initTagValue(tag: number, value: ArrayBuffer): TKBERTLVRecord;
+    readonly $type: {
+        "c:objc(cs)TKBERTLVRecord": true;
+        "c:objc(cs)TKTLVRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "tag": true;
@@ -80,6 +89,11 @@ export declare class TKCompactTLVRecord extends TKTLVRecord {
      * @availability iOS 10.0+
      */
     static init(tag: number, value: ArrayBuffer): TKCompactTLVRecord;
+    readonly $type: {
+        "c:objc(cs)TKCompactTLVRecord": true;
+        "c:objc(cs)TKTLVRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "tag": true;
@@ -164,6 +178,9 @@ export declare class TKError extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get invalidatedDeviceKey(): TKError_Code;
+    readonly $type: {
+        "s:SC11TKErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -205,6 +222,11 @@ export declare class TKSimpleTLVRecord extends TKTLVRecord {
      * @availability iOS 10.0+
      */
     static init(tag: number, value: ArrayBuffer): TKSimpleTLVRecord;
+    readonly $type: {
+        "c:objc(cs)TKSimpleTLVRecord": true;
+        "c:objc(cs)TKTLVRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "tag": true;
@@ -310,6 +332,10 @@ export declare class TKSmartCard extends SDKHandle {
      * @availability iOS 13.0+
      */
     sendInsP1P2DataLe45476(ins: number, p1: number, p2: number, data?: (ArrayBuffer) | null, le?: (number) | null): Promise<$SDK6>;
+    readonly $type: {
+        "c:objc(cs)TKSmartCard": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedProtocols": true;
         "cla": true;
@@ -327,13 +353,11 @@ export declare class TKSmartCard extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class TKSmartCardATR extends SDKHandle {
-    /** init() */
-    static init(): TKSmartCardATR;
     /**
      * init?(bytes: Data)
      * @availability iOS 9.0+
      */
-    static initBytes(bytes: ArrayBuffer): (TKSmartCardATR) | null;
+    static init(bytes: ArrayBuffer): (TKSmartCardATR) | null;
     /**
      * func interfaceGroup(at index: Int) -> TKSmartCardATR.InterfaceGroup?
      * @availability iOS 9.0+
@@ -364,6 +388,10 @@ export declare class TKSmartCardATR extends SDKHandle {
      * @availability iOS 9.0+
      */
     get protocols(): Array<_Foundation_NSNumber>;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardATR": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bytes": true;
         "historicalBytes": true;
@@ -398,6 +426,10 @@ export declare class TKSmartCardATR_InterfaceGroup extends SDKHandle {
      * @availability iOS 9.0+
      */
     get protocol(): $SDK10;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardATRInterfaceGroup": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ta": true;
         "tb": true;
@@ -466,6 +498,10 @@ export declare class TKSmartCardPINFormat extends SDKHandle {
      */
     get minPINLength(): number;
     set minPINLength(value: number);
+    readonly $type: {
+        "c:objc(cs)TKSmartCardPINFormat": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pinBitOffset": true;
         "pinBlockByteLength": true;
@@ -583,6 +619,10 @@ export declare class TKSmartCardSlot extends SDKHandle {
      * @availability iOS 9.0+
      */
     get state(): TKSmartCardSlot_State;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardSlot": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "atr": true;
         "maxInputLength": true;
@@ -640,6 +680,10 @@ export declare class TKSmartCardSlotManager extends SDKHandle {
      * @availability iOS 9.0+
      */
     get slotNames(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardSlotManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "slotNames": true;
     };
@@ -664,6 +708,10 @@ export declare class TKSmartCardSlotNFCSession extends SDKHandle {
      * @availability iOS 26.0+
      */
     get slotName(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardSlotNFCSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "slotName": true;
     };
@@ -699,6 +747,10 @@ export declare class TKToken extends SDKHandle {
      * @availability iOS 10.0+
      */
     get tokenDriver(): TKTokenDriver;
+    readonly $type: {
+        "c:objc(cs)TKToken": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
         "delegate": true;
@@ -722,6 +774,11 @@ export declare class TKSmartCardToken extends TKSmartCardToken_base {
      * @availability iOS 10.0+
      */
     get aid(): (ArrayBuffer) | null;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardToken": true;
+        "c:objc(cs)TKToken": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
         "delegate": true;
@@ -743,6 +800,10 @@ export declare class TKTokenDriver extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<TKTokenDriverDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)TKTokenDriver": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -755,6 +816,11 @@ declare const TKSmartCardTokenDriver_base: Omit<typeof TKTokenDriver, "init" | "
 export declare class TKSmartCardTokenDriver extends TKSmartCardTokenDriver_base {
     /** init() */
     static init(): TKSmartCardTokenDriver;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardTokenDriver": true;
+        "c:objc(cs)TKTokenDriver": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -797,6 +863,10 @@ export declare class TKSmartCardTokenRegistrationManager extends SDKHandle {
      * @availability iOS 26.0+
      */
     get registeredSmartCardTokens(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardTokenRegistrationManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "registeredSmartCardTokens": true;
     };
@@ -822,6 +892,10 @@ export declare class TKTokenSession extends SDKHandle {
      * @availability iOS 10.0+
      */
     get token(): TKToken;
+    readonly $type: {
+        "c:objc(cs)TKTokenSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "token": true;
@@ -843,6 +917,11 @@ export declare class TKSmartCardTokenSession extends TKTokenSession {
      * @deprecated iOS 26.0
      */
     get smartCard(): TKSmartCard;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardTokenSession": true;
+        "c:objc(cs)TKTokenSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "token": true;
@@ -884,6 +963,10 @@ export declare class TKSmartCardUserInteraction extends SDKHandle {
      */
     get interactionTimeout(): number;
     set interactionTimeout(value: number);
+    readonly $type: {
+        "c:objc(cs)TKSmartCardUserInteraction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "initialTimeout": true;
@@ -969,6 +1052,11 @@ export declare class TKSmartCardUserInteractionForPINOperation extends TKSmartCa
      */
     get resultSW(): number;
     set resultSW(value: number);
+    readonly $type: {
+        "c:objc(cs)TKSmartCardUserInteractionForPINOperation": true;
+        "c:objc(cs)TKSmartCardUserInteraction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "initialTimeout": true;
@@ -1021,6 +1109,12 @@ export declare class TKSmartCardUserInteractionForSecurePINChange extends TKSmar
      */
     get pinConfirmation(): TKSmartCardUserInteractionForSecurePINChange_Confirmation;
     set pinConfirmation(value: TKSmartCardUserInteractionForSecurePINChange_Confirmation);
+    readonly $type: {
+        "c:objc(cs)TKSmartCardUserInteractionForSecurePINChange": true;
+        "c:objc(cs)TKSmartCardUserInteractionForPINOperation": true;
+        "c:objc(cs)TKSmartCardUserInteraction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "initialTimeout": true;
@@ -1063,6 +1157,12 @@ declare const TKSmartCardUserInteractionForSecurePINVerification_base: Omit<type
 export declare class TKSmartCardUserInteractionForSecurePINVerification extends TKSmartCardUserInteractionForSecurePINVerification_base {
     /** init() */
     static init(): TKSmartCardUserInteractionForSecurePINVerification;
+    readonly $type: {
+        "c:objc(cs)TKSmartCardUserInteractionForSecurePINVerification": true;
+        "c:objc(cs)TKSmartCardUserInteractionForPINOperation": true;
+        "c:objc(cs)TKSmartCardUserInteraction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "initialTimeout": true;
@@ -1111,6 +1211,10 @@ export declare class TKToken_Configuration extends SDKHandle {
      */
     get keychainItems(): $SDK21;
     set keychainItems(value: $SDK21);
+    readonly $type: {
+        "c:objc(cs)TKTokenConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configurationData": true;
         "instanceID": true;
@@ -1139,6 +1243,10 @@ export declare class TKTokenAuthOperation extends SDKHandle {
     finish(): void;
     /** init() */
     static init(): TKTokenAuthOperation;
+    readonly $type: {
+        "c:objc(cs)TKTokenAuthOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol TKTokenDelegate : NSObjectProtocol
@@ -1191,6 +1299,10 @@ export declare class TKTokenDriver_Configuration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get tokenConfigurations(): Record<string, TKToken_Configuration>;
+    readonly $type: {
+        "c:objc(cs)TKTokenDriverConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "classID": true;
         "tokenConfigurations": true;
@@ -1222,6 +1334,10 @@ export declare class TKTokenKeyAlgorithm extends SDKHandle {
      * @availability iOS 10.0+
      */
     supportsAlgorithm(algorithm: _Security_SecKeyAlgorithm): boolean;
+    readonly $type: {
+        "c:objc(cs)TKTokenKeyAlgorithm": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class TKTokenKeychainItem
@@ -1250,6 +1366,10 @@ export declare class TKTokenKeychainItem extends SDKHandle {
      * @availability iOS 10.0+
      */
     get objectID(): unknown;
+    readonly $type: {
+        "c:objc(cs)TKTokenKeychainItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "constraints": true;
         "label": true;
@@ -1272,6 +1392,11 @@ export declare class TKTokenKeychainCertificate extends TKTokenKeychainCertifica
      * @availability iOS 10.0+
      */
     get data(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)TKTokenKeychainCertificate": true;
+        "c:objc(cs)TKTokenKeychainItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "constraints": true;
         "label": true;
@@ -1304,6 +1429,10 @@ export declare class TKTokenKeychainContents extends SDKHandle {
      * @availability iOS 10.0+
      */
     get items(): $SDK21;
+    readonly $type: {
+        "c:objc(cs)TKTokenKeychainContents": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "items": true;
     };
@@ -1373,6 +1502,11 @@ export declare class TKTokenKeychainKey extends TKTokenKeychainKey_base {
      */
     get isSuitableForLogin(): boolean;
     set isSuitableForLogin(value: boolean);
+    readonly $type: {
+        "c:objc(cs)TKTokenKeychainKey": true;
+        "c:objc(cs)TKTokenKeychainItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "constraints": true;
         "label": true;
@@ -1405,6 +1539,10 @@ export declare class TKTokenKeyExchangeParameters extends SDKHandle {
      * @availability iOS 10.0+
      */
     get sharedInfo(): (ArrayBuffer) | null;
+    readonly $type: {
+        "c:objc(cs)TKTokenKeyExchangeParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "requestedSize": true;
         "sharedInfo": true;
@@ -1441,6 +1579,11 @@ export declare class TKTokenPasswordAuthOperation extends TKTokenPasswordAuthOpe
      */
     get password(): (string) | null;
     set password(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)TKTokenPasswordAuthOperation": true;
+        "c:objc(cs)TKTokenAuthOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "password": true;
     };
@@ -1489,6 +1632,11 @@ export declare class TKTokenSmartCardPINAuthOperation extends TKTokenSmartCardPI
      */
     get smartCard(): (TKSmartCard) | null;
     set smartCard(value: (TKSmartCard) | null);
+    readonly $type: {
+        "c:objc(cs)TKTokenSmartCardPINAuthOperation": true;
+        "c:objc(cs)TKTokenAuthOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "apduTemplate": true;
         "pin": true;
@@ -1533,6 +1681,10 @@ export declare class TKTokenWatcher extends SDKHandle {
      * @availability iOS 10.0+
      */
     get tokenIDs(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)TKTokenWatcher": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "tokenIDs": true;
     };
@@ -1557,6 +1709,10 @@ export declare class TKTokenWatcher_TokenInfo extends SDKHandle {
      * @availability iOS 15.0+
      */
     get tokenID(): string;
+    readonly $type: {
+        "c:objc(cs)TKTokenWatcherTokenInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "driverName": true;
         "slotName": true;

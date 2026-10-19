@@ -141,8 +141,8 @@ type $SDK115 = ((arg0: boolean, arg1: CBLAS_TRANSPOSE, arg2: DenseVector_Complex
 type $SDK116 = ((arg0: boolean, arg1: CBLAS_TRANSPOSE, arg2: DenseVector_Double, arg3: DenseVector_Double) => void);
 type $SDK117 = ((arg0: boolean, arg1: CBLAS_TRANSPOSE, arg2: DenseVector_Float, arg3: DenseVector_Float) => void);
 type $SDK118 = Implements<OS_la_object> | SDKHandle;
-type $SDK119 = ("alphaIsOpaqueHint" | "chromaSiting" | "colorSpace" | SDKHandle) | null;
-type $SDK120 = (_CoreFoundation_CFString) | null;
+type $SDK119 = (_CoreFoundation_CFString) | null;
+type $SDK121 = (vImageConverter) | null;
 /**
  * protocol AccelerateBuffer<Element>
  * @availability iOS 13.0+
@@ -221,6 +221,9 @@ export interface AccelerateMutableMatrixBuffer {
 }
 /** struct BLAS */
 export declare class BLAS extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate4BLASV": true;
+    };
 }
 /** struct BLAS_THREADING */
 export type BLAS_THREADING = (number & {});
@@ -379,6 +382,9 @@ export declare class BNNS extends SDKHandle {
      * @availability iOS 14.0+
      */
     static transpose(input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, firstTransposeAxis: number, secondTransposeAxis: number, filterParameters?: $SDK3): void;
+    readonly $type: {
+        "s:10Accelerate4BNNSO": true;
+    };
 }
 /** struct bnns_graph_argument_t */
 export declare class bnns_graph_argument_t extends SDKHandle {
@@ -396,6 +402,9 @@ export declare class bnns_graph_argument_t extends SDKHandle {
     set tensor(value: (SDKHandle) | null);
     /** init() */
     static init(): bnns_graph_argument_t;
+    readonly $type: {
+        "c:@SA@bnns_graph_argument_t": true;
+    };
 }
 /**
  * typealias bnns_graph_compile_message_fn_t = (BNNSGraphMessageLevel, UnsafePointer<CChar>, UnsafePointer<CChar>?, UnsafeMutablePointer<bnns_user_message_data_t>?) -> Void
@@ -429,6 +438,9 @@ export declare class bnns_graph_compile_options_t extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): bnns_graph_compile_options_t;
+    readonly $type: {
+        "c:@SA@bnns_graph_compile_options_t": true;
+    };
 }
 /**
  * struct bnns_graph_context_t
@@ -457,6 +469,9 @@ export declare class bnns_graph_context_t extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): bnns_graph_context_t;
+    readonly $type: {
+        "c:@SA@bnns_graph_context_t": true;
+    };
 }
 /**
  * typealias bnns_graph_execute_message_fn_t = (BNNSGraphMessageLevel, UnsafePointer<CChar>, UnsafePointer<CChar>?, UnsafeMutablePointer<bnns_user_message_data_t>?) -> Void
@@ -500,6 +515,9 @@ export declare class bnns_graph_shape_t extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): bnns_graph_shape_t;
+    readonly $type: {
+        "c:@SA@bnns_graph_shape_t": true;
+    };
 }
 /**
  * struct bnns_graph_t
@@ -528,6 +546,9 @@ export declare class bnns_graph_t extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): bnns_graph_t;
+    readonly $type: {
+        "c:@SA@bnns_graph_t": true;
+    };
 }
 /**
  * struct bnns_user_message_data_t
@@ -556,6 +577,9 @@ export declare class bnns_user_message_data_t extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): bnns_user_message_data_t;
+    readonly $type: {
+        "c:@SA@bnns_user_message_data_t": true;
+    };
 }
 /**
  * enum ActivationFunction
@@ -567,6 +591,9 @@ export declare class BNNS_ActivationFunction extends SDKHandle {
      * @availability iOS 14.0+
      */
     get bnnsActivation(): BNNSActivation;
+    readonly $type: {
+        "s:10Accelerate4BNNSO18ActivationFunctionO": true;
+    };
 }
 /**
  * class Layer
@@ -578,6 +605,9 @@ export declare class BNNS_Layer extends SDKHandle {
      * @availability iOS 14.0+
      */
     get bnnsFilter(): SDKHandle;
+    readonly $type: {
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * class UnaryLayer
@@ -594,6 +624,10 @@ export declare class BNNS_UnaryLayer extends BNNS_Layer {
      * @availability iOS 14.0+
      */
     apply(batchSize: number, input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor): void;
+    readonly $type: {
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * class ActivationLayer
@@ -610,6 +644,11 @@ export declare class BNNS_ActivationLayer extends BNNS_UnaryLayer {
      * @availability iOS 14.0+
      */
     static initFunctionInputOutputFilterParameters(activationFunction: BNNS_ActivationFunction, input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, filterParameters?: $SDK3): (BNNS_ActivationLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO15ActivationLayerC": true;
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * struct AdamOptimizer
@@ -702,6 +741,9 @@ export declare class BNNS_AdamOptimizer extends SDKHandle {
      */
     get timeStep(): number;
     set timeStep(value: number);
+    readonly $type: {
+        "s:10Accelerate4BNNSO13AdamOptimizerV": true;
+    };
 }
 /**
  * struct AdamWOptimizer
@@ -771,6 +813,9 @@ export declare class BNNS_AdamWOptimizer extends SDKHandle {
      */
     get timeStep(): number;
     set timeStep(value: number);
+    readonly $type: {
+        "s:10Accelerate4BNNSO14AdamWOptimizerV": true;
+    };
 }
 /**
  * enum ArithmeticBinaryFunction
@@ -843,6 +888,10 @@ export declare class BNNS_BinaryArithmeticLayer extends BNNS_Layer {
      * @availability iOS 14.0+
      */
     static init(inputA: BNNSNDArrayDescriptor, inputADescriptorType: BNNS_DescriptorType, inputB: BNNSNDArrayDescriptor, inputBDescriptorType: BNNS_DescriptorType, output: BNNSNDArrayDescriptor, outputDescriptorType: BNNS_DescriptorType, function_: BNNS_ArithmeticBinaryFunction, activation?: BNNS_ActivationFunction, filterParameters?: $SDK3): (BNNS_BinaryArithmeticLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO21BinaryArithmeticLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * class BinaryLayer
@@ -859,6 +908,10 @@ export declare class BNNS_BinaryLayer extends BNNS_Layer {
      * @availability iOS 14.0+
      */
     apply(batchSize: number, inputA: BNNSNDArrayDescriptor, inputB: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor): void;
+    readonly $type: {
+        "s:10Accelerate4BNNSO11BinaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * class BroadcastMatrixMultiplyLayer
@@ -880,6 +933,10 @@ export declare class BNNS_BroadcastMatrixMultiplyLayer extends BNNS_Layer {
      * @availability iOS 14.0+
      */
     static init(inputA: BNNSNDArrayDescriptor, transposeA: boolean, aIsWeights: boolean, inputB: BNNSNDArrayDescriptor, transposeB: boolean, bIsWeights: boolean, output: BNNSNDArrayDescriptor, alpha: number, accumulatesToOutput: boolean, isQuadratic: boolean, filterParameters?: $SDK3): (BNNS_BroadcastMatrixMultiplyLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO28BroadcastMatrixMultiplyLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 declare const BNNS_ConvolutionLayer_base: Omit<typeof BNNS_UnaryLayer, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<BNNS_UnaryLayer, "applyBackward">);
 /**
@@ -897,6 +954,11 @@ export declare class BNNS_ConvolutionLayer extends BNNS_ConvolutionLayer_base {
      * @availability iOS 14.0+
      */
     static init(convolutionType: BNNS_ConvolutionType, input: BNNSNDArrayDescriptor, weights: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, bias: $SDK2, padding: BNNS_ConvolutionPadding, activation: BNNS_ActivationFunction, groupCount: number, stride: $SDK10, dilationStride: $SDK10, filterParameters?: $SDK3): (BNNS_ConvolutionLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO16ConvolutionLayerC": true;
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * enum ConvolutionPadding
@@ -908,6 +970,9 @@ export declare class BNNS_ConvolutionPadding extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get zero(): BNNS_ConvolutionPadding;
+    readonly $type: {
+        "s:10Accelerate4BNNSO18ConvolutionPaddingO": true;
+    };
 }
 /**
  * enum ConvolutionType
@@ -934,6 +999,9 @@ export declare class BNNS_CropResizeLayer extends SDKHandle {
      * @availability iOS 16.0+
      */
     apply(input: BNNSNDArrayDescriptor, regionOfInterest: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, filterParameters?: $SDK3): void;
+    readonly $type: {
+        "s:10Accelerate4BNNSO15CropResizeLayerC": true;
+    };
 }
 /**
  * enum BoxCoordinateMode
@@ -982,6 +1050,11 @@ export declare class BNNS_DropoutLayer extends BNNS_UnaryLayer {
      * @availability iOS 14.0+
      */
     static init(input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, rate: number, seed: number, control: number, filterParameters?: $SDK3): (BNNS_DropoutLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO12DropoutLayerC": true;
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * class EmbeddingLayer
@@ -1003,6 +1076,10 @@ export declare class BNNS_EmbeddingLayer extends BNNS_Layer {
      * @availability iOS 15.0+
      */
     static init(input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, dictionary: BNNSNDArrayDescriptor, paddingIndex: number, maximumNorm: number, normType: BNNS_Norm, scalesGradientByFrequency: boolean, filterParameters?: $SDK3): (BNNS_EmbeddingLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO14EmbeddingLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * enum Error
@@ -1029,6 +1106,12 @@ export declare class BNNS_FullyConnectedLayer extends BNNS_FullyConnectedLayer_b
         $out: {
             "output": BNNSNDArrayDescriptor;
         };
+    };
+    readonly $type: {
+        "s:10Accelerate4BNNSO19FullyConnectedLayerC": true;
+        "s:10Accelerate4BNNSO16ConvolutionLayerC": true;
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
     };
 }
 /**
@@ -1065,6 +1148,9 @@ export declare class BNNS_FusedBinaryArithmeticParameters extends SDKHandle {
      */
     get function(): BNNS_ArithmeticBinaryFunction;
     set function(value: BNNS_ArithmeticBinaryFunction);
+    readonly $type: {
+        "s:10Accelerate4BNNSO31FusedBinaryArithmeticParametersV": true;
+    };
 }
 /**
  * class FusedLayer
@@ -1081,6 +1167,10 @@ export declare class BNNS_FusedLayer extends BNNS_Layer {
      * @availability iOS 14.0+
      */
     apply(batchSize: number, input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, learningPhase: BNNS_LearningPhase): void;
+    readonly $type: {
+        "s:10Accelerate4BNNSO10FusedLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * class FusedConvolutionNormalizationLayer
@@ -1092,6 +1182,11 @@ export declare class BNNS_FusedConvolutionNormalizationLayer extends BNNS_FusedL
      * @availability iOS 14.0+
      */
     static init(input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, convolutionWeights: BNNSNDArrayDescriptor, convolutionBias: $SDK2, convolutionStride: $SDK10, convolutionDilationStride: $SDK10, convolutionPadding: BNNS_ConvolutionPadding, normalization: BNNS_NormalizationType, normalizationBeta: BNNSNDArrayDescriptor, normalizationGamma: BNNSNDArrayDescriptor, normalizationMomentum: number, normalizationEpsilon: number, normalizationActivation: BNNS_ActivationFunction, filterParameters?: $SDK3): (BNNS_FusedConvolutionNormalizationLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO34FusedConvolutionNormalizationLayerC": true;
+        "s:10Accelerate4BNNSO10FusedLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * struct FusedConvolutionParameters
@@ -1145,6 +1240,9 @@ export declare class BNNS_FusedConvolutionParameters extends SDKHandle {
      */
     get groupSize(): number;
     set groupSize(value: number);
+    readonly $type: {
+        "s:10Accelerate4BNNSO26FusedConvolutionParametersV": true;
+    };
 }
 /**
  * struct FusedDequantizationParameters
@@ -1174,6 +1272,9 @@ export declare class BNNS_FusedDequantizationParameters extends SDKHandle {
      */
     get scale(): $SDK2;
     set scale(value: $SDK2);
+    readonly $type: {
+        "s:10Accelerate4BNNSO29FusedDequantizationParametersV": true;
+    };
 }
 /**
  * class FusedFullyConnectedNormalizationLayer
@@ -1185,6 +1286,11 @@ export declare class BNNS_FusedFullyConnectedNormalizationLayer extends BNNS_Fus
      * @availability iOS 14.0+
      */
     static init(input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, fullyConnectedWeights: BNNSNDArrayDescriptor, fullyConnectedBias: $SDK2, normalization: BNNS_NormalizationType, normalizationBeta: BNNSNDArrayDescriptor, normalizationGamma: BNNSNDArrayDescriptor, normalizationMomentum: number, normalizationEpsilon: number, normalizationActivation: BNNS_ActivationFunction, filterParameters?: $SDK3): (BNNS_FusedFullyConnectedNormalizationLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO37FusedFullyConnectedNormalizationLayerC": true;
+        "s:10Accelerate4BNNSO10FusedLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * struct FusedFullyConnectedParameters
@@ -1208,6 +1314,9 @@ export declare class BNNS_FusedFullyConnectedParameters extends SDKHandle {
      */
     get weights(): BNNSNDArrayDescriptor;
     set weights(value: BNNSNDArrayDescriptor);
+    readonly $type: {
+        "s:10Accelerate4BNNSO29FusedFullyConnectedParametersV": true;
+    };
 }
 /**
  * struct FusedNormalizationParameters
@@ -1255,6 +1364,9 @@ export declare class BNNS_FusedNormalizationParameters extends SDKHandle {
      */
     get momentum(): number;
     set momentum(value: number);
+    readonly $type: {
+        "s:10Accelerate4BNNSO28FusedNormalizationParametersV": true;
+    };
 }
 /**
  * class FusedParametersLayer
@@ -1296,6 +1408,11 @@ export declare class BNNS_FusedParametersLayer extends BNNS_FusedLayer {
      * @availability iOS 15.0+
      */
     static initInputAInputBOutputFusedLayerParametersFilterParameters(inputA: BNNSNDArrayDescriptor, inputB: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, fusedLayerParameters: $SDK12, filterParameters?: $SDK3): (BNNS_FusedParametersLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO20FusedParametersLayerC": true;
+        "s:10Accelerate4BNNSO10FusedLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * struct FusedQuantizationParameters
@@ -1325,6 +1442,9 @@ export declare class BNNS_FusedQuantizationParameters extends SDKHandle {
      */
     get scale(): $SDK2;
     set scale(value: $SDK2);
+    readonly $type: {
+        "s:10Accelerate4BNNSO27FusedQuantizationParametersV": true;
+    };
 }
 /**
  * struct FusedTernaryArithmeticParameters
@@ -1366,6 +1486,9 @@ export declare class BNNS_FusedTernaryArithmeticParameters extends SDKHandle {
      */
     get function(): BNNS_ArithmeticTernaryFunction;
     set function(value: BNNS_ArithmeticTernaryFunction);
+    readonly $type: {
+        "s:10Accelerate4BNNSO32FusedTernaryArithmeticParametersV": true;
+    };
 }
 /**
  * struct FusedUnaryArithmeticParameters
@@ -1395,12 +1518,18 @@ export declare class BNNS_FusedUnaryArithmeticParameters extends SDKHandle {
      */
     get function(): BNNS_ArithmeticUnaryFunction;
     set function(value: BNNS_ArithmeticUnaryFunction);
+    readonly $type: {
+        "s:10Accelerate4BNNSO30FusedUnaryArithmeticParametersV": true;
+    };
 }
 /**
  * enum GradientClipping
  * @availability iOS 15.0+
  */
 export declare class BNNS_GradientClipping extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate4BNNSO16GradientClippingO": true;
+    };
 }
 /**
  * class GramLayer
@@ -1412,6 +1541,11 @@ export declare class BNNS_GramLayer extends BNNS_UnaryLayer {
      * @availability iOS 14.0+
      */
     static init(input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, alpha: number, filterParameters?: $SDK3): (BNNS_GramLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO9GramLayerC": true;
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * enum InterpolationMethod
@@ -1433,6 +1567,9 @@ export declare class BNNS_LossFunction extends SDKHandle {
      * @availability iOS 14.0+
      */
     get bnnsLossFunction(): BNNSLossFunction;
+    readonly $type: {
+        "s:10Accelerate4BNNSO12LossFunctionO": true;
+    };
 }
 /**
  * struct YoloParameters
@@ -1514,6 +1651,9 @@ export declare class BNNS_LossFunction_YoloParameters extends SDKHandle {
      * @availability iOS 14.0+
      */
     get xyScale(): number;
+    readonly $type: {
+        "s:10Accelerate4BNNSO12LossFunctionO14YoloParametersV": true;
+    };
 }
 /**
  * class LossLayer
@@ -1535,6 +1675,10 @@ export declare class BNNS_LossLayer extends BNNS_Layer {
      * @availability iOS 14.0+
      */
     static init(input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, lossFunction: BNNS_LossFunction, lossReduction: BNNS_LossReduction, filterParameters?: $SDK3): (BNNS_LossLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO9LossLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * enum LossReduction
@@ -1568,6 +1712,9 @@ export declare class BNNS_NearestNeighbors extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(capacity: number, dimensionCount: number, neighborCount: number, dataType: BNNSDataType): BNNS_NearestNeighbors;
+    readonly $type: {
+        "s:10Accelerate4BNNSO16NearestNeighborsV": true;
+    };
 }
 /**
  * @frozen struct Norm
@@ -1637,12 +1784,19 @@ export declare class BNNS_NormalizationLayer extends BNNS_Layer {
      * @availability iOS 14.0+
      */
     apply(batchSize: number, input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, learningPhase: BNNS_LearningPhase): void;
+    readonly $type: {
+        "s:10Accelerate4BNNSO18NormalizationLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * enum NormalizationType
  * @availability iOS 14.0+
  */
 export declare class BNNS_NormalizationType extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate4BNNSO17NormalizationTypeO": true;
+    };
 }
 /**
  * class PaddingLayer
@@ -1657,6 +1811,11 @@ export declare class BNNS_PaddingLayer extends BNNS_UnaryLayer {
         "x": number;
         "y": number;
     }>, filterParameters?: $SDK3): (BNNS_PaddingLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO12PaddingLayerC": true;
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * enum PaddingMode
@@ -1673,6 +1832,9 @@ export declare class BNNS_PaddingMode extends SDKHandle {
      * @availability iOS 14.0+
      */
     get paddingBitPattern(): number;
+    readonly $type: {
+        "s:10Accelerate4BNNSO11PaddingModeO": true;
+    };
 }
 /**
  * class PermuteLayer
@@ -1684,6 +1846,11 @@ export declare class BNNS_PermuteLayer extends BNNS_UnaryLayer {
      * @availability iOS 14.0+
      */
     static init(input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, permutation: Array<number>, filterParameters?: $SDK3): (BNNS_PermuteLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO12PermuteLayerC": true;
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * class PoolingLayer
@@ -1708,6 +1875,10 @@ export declare class BNNS_PoolingLayer extends BNNS_Layer {
      * @availability iOS 14.0+
      */
     apply(batchSize: number, input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor): void;
+    readonly $type: {
+        "s:10Accelerate4BNNSO12PoolingLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * enum PoolingType
@@ -1719,6 +1890,9 @@ export declare class BNNS_PoolingType extends SDKHandle {
      * @availability iOS 14.0+
      */
     get bnnsPoolingFunction(): BNNSPoolingFunction;
+    readonly $type: {
+        "s:10Accelerate4BNNSO11PoolingTypeO": true;
+    };
 }
 /**
  * class RandomGenerator
@@ -1736,6 +1910,9 @@ export declare class BNNS_RandomGenerator extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(method: BNNS_RandomGeneratorMethod, seed?: (number) | null, filterParameters?: $SDK3): (BNNS_RandomGenerator) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO15RandomGeneratorC": true;
+    };
 }
 /**
  * enum RandomGeneratorMethod
@@ -1747,6 +1924,9 @@ export type BNNS_RandomGeneratorMethod = "aesCtr";
  * @availability iOS 15.0+
  */
 export declare class BNNS_RandomGeneratorState extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate4BNNSO20RandomGeneratorStateC": true;
+    };
 }
 /**
  * enum ReductionFunction
@@ -1758,6 +1938,9 @@ export declare class BNNS_ReductionFunction extends SDKHandle {
      * @availability iOS 14.0+
      */
     get bnnsReduceFunction(): BNNSReduceFunction;
+    readonly $type: {
+        "s:10Accelerate4BNNSO17ReductionFunctionO": true;
+    };
 }
 declare const BNNS_ReductionLayer_base: Omit<typeof BNNS_UnaryLayer, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<BNNS_UnaryLayer, "applyBackward">);
 /**
@@ -1775,6 +1958,11 @@ export declare class BNNS_ReductionLayer extends BNNS_ReductionLayer_base {
      * @availability iOS 14.0+
      */
     static init(reductionFunction: BNNS_ReductionFunction, input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, weights?: $SDK2, filterParameters?: $SDK3): (BNNS_ReductionLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO14ReductionLayerC": true;
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * @frozen struct RelationalOperator
@@ -1841,6 +2029,9 @@ export declare class BNNS_RelationalOperator extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get lessEqual(): BNNS_RelationalOperator;
+    readonly $type: {
+        "s:10Accelerate4BNNSO18RelationalOperatorV": true;
+    };
 }
 /**
  * class ResizeLayer
@@ -1852,6 +2043,11 @@ export declare class BNNS_ResizeLayer extends BNNS_UnaryLayer {
      * @availability iOS 14.0+
      */
     static init(interpolationMethod: BNNS_InterpolationMethod, input: BNNSNDArrayDescriptor, output: BNNSNDArrayDescriptor, alignsCorners: boolean, filterParameters?: $SDK3): (BNNS_ResizeLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO11ResizeLayerC": true;
+        "s:10Accelerate4BNNSO10UnaryLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * struct RMSPropOptimizer
@@ -1938,6 +2134,9 @@ export declare class BNNS_RMSPropOptimizer extends SDKHandle {
      */
     get momentum(): number;
     set momentum(value: number);
+    readonly $type: {
+        "s:10Accelerate4BNNSO16RMSPropOptimizerV": true;
+    };
 }
 /**
  * struct SGDMomentumOptimizer
@@ -2031,6 +2230,9 @@ export declare class BNNS_SGDMomentumOptimizer extends SDKHandle {
      */
     get momentum(): number;
     set momentum(value: number);
+    readonly $type: {
+        "s:10Accelerate4BNNSO20SGDMomentumOptimizerV": true;
+    };
 }
 /**
  * enum Shape
@@ -2067,6 +2269,9 @@ export declare class BNNS_Shape extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(size: Array<number>, dataLayout?: (BNNS_DataLayout) | null, stride?: (Array<number>) | null): BNNS_Shape;
+    readonly $type: {
+        "s:10Accelerate4BNNSO5ShapeO": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Int
@@ -2083,6 +2288,9 @@ export type BNNS_ShuffleType = "depthToSpaceNCHW" | "spaceToDepthNCHW";
  * @availability iOS 16.0+
  */
 export declare class BNNS_SparseLayout extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate4BNNSO12SparseLayoutO": true;
+    };
 }
 /**
  * struct SparseParameters
@@ -2109,6 +2317,9 @@ export declare class BNNS_SparseParameters extends SDKHandle {
      * @availability iOS 16.0+
      */
     get ratio(): $SDK17;
+    readonly $type: {
+        "s:10Accelerate4BNNSO16SparseParametersV": true;
+    };
 }
 /**
  * enum SparsityType
@@ -2135,6 +2346,10 @@ export declare class BNNS_TernaryArithmeticLayer extends BNNS_Layer {
      * @availability iOS 15.0+
      */
     static init(inputA: BNNSNDArrayDescriptor, inputADescriptorType: BNNS_DescriptorType, inputB: BNNSNDArrayDescriptor, inputBDescriptorType: BNNS_DescriptorType, inputC: BNNSNDArrayDescriptor, inputCDescriptorType: BNNS_DescriptorType, output: BNNSNDArrayDescriptor, outputDescriptorType: BNNS_DescriptorType, function_: BNNS_ArithmeticTernaryFunction, activation?: BNNS_ActivationFunction, filterParameters?: $SDK3): (BNNS_TernaryArithmeticLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO22TernaryArithmeticLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /**
  * class UnaryArithmeticLayer
@@ -2156,6 +2371,10 @@ export declare class BNNS_UnaryArithmeticLayer extends BNNS_Layer {
      * @availability iOS 14.0+
      */
     static init(input: BNNSNDArrayDescriptor, inputDescriptorType: BNNS_DescriptorType, output: BNNSNDArrayDescriptor, outputDescriptorType: BNNS_DescriptorType, function_: BNNS_ArithmeticUnaryFunction, activation?: BNNS_ActivationFunction, filterParameters?: $SDK3): (BNNS_UnaryArithmeticLayer) | null;
+    readonly $type: {
+        "s:10Accelerate4BNNSO20UnaryArithmeticLayerC": true;
+        "s:10Accelerate4BNNSO5LayerC": true;
+    };
 }
 /** struct BNNSActivation */
 export declare class BNNSActivation extends SDKHandle {
@@ -2210,6 +2429,9 @@ export declare class BNNSActivation extends SDKHandle {
     static initFunctionAlphaBetaIscaleIoffsetIshiftIscale_per_channelIoffset_per_channelIshift_per_channel(function_: BNNSActivationFunction, alpha: number, beta: number, iscale: number, ioffset: number, ishift: number, iscale_per_channel?: (SDKHandle) | null, ioffset_per_channel?: (SDKHandle) | null, ishift_per_channel?: (SDKHandle) | null): BNNSActivation;
     /** init() */
     static init(): BNNSActivation;
+    readonly $type: {
+        "c:@SA@BNNSActivation": true;
+    };
 }
 /** struct BNNSActivationFunction */
 export type BNNSActivationFunction = "identity" | "rectifiedLinear" | "leakyRectifiedLinear" | "sigmoid" | "tanh" | "scaledTanh" | "abs" | "linear" | "clamp" | "integerLinearSaturate" | "integerLinearSaturatePerChannel" | "softmax" | (number & {});
@@ -2344,6 +2566,9 @@ export declare class BNNSArithmeticBinary extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSArithmeticBinary;
+    readonly $type: {
+        "c:@SA@BNNSArithmeticBinary": true;
+    };
 }
 /** struct BNNSArithmeticFunction */
 export type BNNSArithmeticFunction = (number & {});
@@ -2430,6 +2655,9 @@ export declare class BNNSArithmeticTernary extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSArithmeticTernary;
+    readonly $type: {
+        "c:@SA@BNNSArithmeticTernary": true;
+    };
 }
 /**
  * struct BNNSArithmeticUnary
@@ -2477,6 +2705,9 @@ export declare class BNNSArithmeticUnary extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSArithmeticUnary;
+    readonly $type: {
+        "c:@SA@BNNSArithmeticUnary": true;
+    };
 }
 /** struct BNNSBoxCoordinateMode */
 export type BNNSBoxCoordinateMode = (number & {});
@@ -2590,6 +2821,9 @@ export declare class BNNSConvolutionLayerParameters extends SDKHandle {
      * @deprecated iOS 14.0
      */
     static init(): BNNSConvolutionLayerParameters;
+    readonly $type: {
+        "c:@SA@BNNSConvolutionLayerParameters": true;
+    };
 }
 /** struct BNNSDataLayout */
 export type BNNSDataLayout = (number & {});
@@ -2722,6 +2956,9 @@ export declare class BNNSFilterParameters extends SDKHandle {
     get allocator(): $SDK19;
     /** init() */
     static init(): BNNSFilterParameters;
+    readonly $type: {
+        "c:@SA@BNNSFilterParameters": true;
+    };
 }
 /** struct BNNSFilterType */
 export type BNNSFilterType = (number & {});
@@ -2815,12 +3052,18 @@ export declare class BNNSFullyConnectedLayerParameters extends SDKHandle {
      * @deprecated iOS 14.0
      */
     static init(): BNNSFullyConnectedLayerParameters;
+    readonly $type: {
+        "c:@SA@BNNSFullyConnectedLayerParameters": true;
+    };
 }
 /**
  * enum BNNSGraph
  * @availability iOS 18.0+
  */
 export declare class BNNSGraph extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO": true;
+    };
 }
 /**
  * struct Builder
@@ -2852,6 +3095,9 @@ export declare class BNNSGraph_Builder extends SDKHandle {
      * @availability iOS 26.0+
      */
     constantValuesRowMajor52001(values: Array<Array<number>>, rowMajor?: boolean): $SDK22;
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO7BuilderV": true;
+    };
 }
 /**
  * enum Activation
@@ -2868,6 +3114,9 @@ export type BNNSGraph_Builder_CeilingMode = "floor" | "ceiling";
  * @availability iOS 26.0+
  */
 export declare class BNNSGraph_Builder_ConvolutionPadding extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO7BuilderV18ConvolutionPaddingO": true;
+    };
 }
 /**
  * enum Direction
@@ -2895,12 +3144,18 @@ export interface BNNSGraph_Builder_OperationParameter {
  * @availability iOS 26.0+
  */
 export declare class BNNSGraph_Builder_Padding extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO7BuilderV7PaddingO": true;
+    };
 }
 /**
  * enum PoolingFunction
  * @availability iOS 26.0+
  */
 export declare class BNNSGraph_Builder_PoolingFunction extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO7BuilderV15PoolingFunctionO": true;
+    };
 }
 /**
  * typealias PoolingPadding = BNNSGraph.Builder.ConvolutionPadding
@@ -2943,6 +3198,9 @@ export declare class BNNSGraph_Builder_SliceRange extends SDKHandle {
      * @availability iOS 26.0+
      */
     get endIndex(): number;
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO7BuilderV10SliceRangeV": true;
+    };
 }
 /**
  * enum SortOrder
@@ -3367,6 +3625,9 @@ export declare class BNNSGraph_Builder_Tensor<T = unknown> extends SDKHandle {
      * @availability iOS 26.0+
      */
     select(valueIfTrue: $SDK22, valueIfFalse: $SDK22): $SDK22;
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO7BuilderV6TensorV": true;
+    };
 }
 /**
  * typealias Element = T
@@ -3406,6 +3667,9 @@ export declare class BNNSGraph_CompileOptions extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): BNNSGraph_CompileOptions;
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO14CompileOptionsV": true;
+    };
 }
 /**
  * struct OptimizationPreference
@@ -3422,6 +3686,9 @@ export declare class BNNSGraph_CompileOptions_OptimizationPreference extends SDK
      * @availability iOS 18.0+
      */
     static get internalRepresentationSize(): BNNSGraph_CompileOptions_OptimizationPreference;
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO14CompileOptionsV22OptimizationPreferenceV": true;
+    };
 }
 /**
  * class Context
@@ -3520,12 +3787,18 @@ export declare class BNNSGraph_Context extends SDKHandle {
      * @availability iOS 18.0+
      */
     tensor(function_: (string) | null, argument: string, fillKnownDynamicShapes: boolean): (BNNSTensor) | null;
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO7ContextC": true;
+    };
 }
 /**
  * enum Error
  * @availability iOS 18.0+
  */
 export declare class BNNSGraph_Error extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO5ErrorO": true;
+    };
 }
 /**
  * protocol PointerArgument
@@ -3548,6 +3821,9 @@ export declare class BNNSGraph_Shape extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(shape: Array<number>): BNNSGraph_Shape;
+    readonly $type: {
+        "s:10Accelerate9BNNSGraphO5ShapeV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Int
@@ -3684,6 +3960,9 @@ export declare class BNNSImageStackDescriptor extends SDKHandle {
      * @deprecated iOS 14.0
      */
     static init(): BNNSImageStackDescriptor;
+    readonly $type: {
+        "c:@SA@BNNSImageStackDescriptor": true;
+    };
 }
 /** struct BNNSInterpolationMethod */
 export type BNNSInterpolationMethod = (number & {});
@@ -3767,6 +4046,9 @@ export declare class BNNSLayerData extends SDKHandle {
      * @deprecated iOS 14.0
      */
     static init(): BNNSLayerData;
+    readonly $type: {
+        "c:@SA@BNNSLayerData": true;
+    };
 }
 /** struct BNNSLayerFlags */
 export type BNNSLayerFlags = (number & {});
@@ -3825,6 +4107,9 @@ export declare class BNNSLayerParametersActivation extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersActivation;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersActivation": true;
+    };
 }
 /**
  * struct BNNSLayerParametersArithmetic
@@ -3859,6 +4144,9 @@ export declare class BNNSLayerParametersArithmetic extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(arithmetic_function: BNNSArithmeticFunction, arithmetic_function_fields: SDKHandle, activation: BNNSActivation): BNNSLayerParametersArithmetic;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersArithmetic": true;
+    };
 }
 /**
  * struct BNNSLayerParametersBroadcastMatMul
@@ -3948,6 +4236,9 @@ export declare class BNNSLayerParametersBroadcastMatMul extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersBroadcastMatMul;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersBroadcastMatMul": true;
+    };
 }
 /**
  * struct BNNSLayerParametersConvolution
@@ -4058,6 +4349,9 @@ export declare class BNNSLayerParametersConvolution extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersConvolution;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersConvolution": true;
+    };
 }
 /**
  * struct BNNSLayerParametersCropResize
@@ -4119,6 +4413,9 @@ export declare class BNNSLayerParametersCropResize extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersCropResize;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersCropResize": true;
+    };
 }
 /**
  * struct BNNSLayerParametersDropout
@@ -4173,6 +4470,9 @@ export declare class BNNSLayerParametersDropout extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersDropout;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersDropout": true;
+    };
 }
 /**
  * struct BNNSLayerParametersEmbedding
@@ -4241,6 +4541,9 @@ export declare class BNNSLayerParametersEmbedding extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersEmbedding;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersEmbedding": true;
+    };
 }
 /**
  * struct BNNSLayerParametersFullyConnected
@@ -4295,6 +4598,9 @@ export declare class BNNSLayerParametersFullyConnected extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersFullyConnected;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersFullyConnected": true;
+    };
 }
 /**
  * struct BNNSLayerParametersGram
@@ -4335,6 +4641,9 @@ export declare class BNNSLayerParametersGram extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersGram;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersGram": true;
+    };
 }
 /**
  * struct BNNSLayerParametersLossBase
@@ -4382,6 +4691,9 @@ export declare class BNNSLayerParametersLossBase extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersLossBase;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersLossBase": true;
+    };
 }
 /**
  * struct BNNSLayerParametersLossHuber
@@ -4436,6 +4748,9 @@ export declare class BNNSLayerParametersLossHuber extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersLossHuber;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersLossHuber": true;
+    };
 }
 /**
  * struct BNNSLayerParametersLossSigmoidCrossEntropy
@@ -4490,6 +4805,9 @@ export declare class BNNSLayerParametersLossSigmoidCrossEntropy extends SDKHandl
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersLossSigmoidCrossEntropy;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersLossSigmoidCrossEntropy": true;
+    };
 }
 /**
  * struct BNNSLayerParametersLossSoftmaxCrossEntropy
@@ -4544,6 +4862,9 @@ export declare class BNNSLayerParametersLossSoftmaxCrossEntropy extends SDKHandl
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersLossSoftmaxCrossEntropy;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersLossSoftmaxCrossEntropy": true;
+    };
 }
 /**
  * struct BNNSLayerParametersLossYolo
@@ -4683,6 +5004,9 @@ export declare class BNNSLayerParametersLossYolo extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(function_: BNNSLossFunction, i_desc: BNNSNDArrayDescriptor, o_desc: BNNSNDArrayDescriptor, reduction: BNNSLossReductionFunction, huber_delta: number, number_of_grid_columns: number, number_of_grid_rows: number, number_of_anchor_boxes: number, anchor_box_size: number, rescore: boolean, scale_xy: number, scale_wh: number, scale_object: number, scale_no_object: number, scale_classification: number, object_minimum_iou: number, no_object_maximum_iou: number, anchors_data: SDKHandle): BNNSLayerParametersLossYolo;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersLossYolo": true;
+    };
 }
 /**
  * struct BNNSLayerParametersLSTM
@@ -4807,6 +5131,9 @@ export declare class BNNSLayerParametersLSTM extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersLSTM;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersLSTM": true;
+    };
 }
 /**
  * struct BNNSLayerParametersMultiheadAttention
@@ -4889,6 +5216,9 @@ export declare class BNNSLayerParametersMultiheadAttention extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersMultiheadAttention;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersMultiheadAttention": true;
+    };
 }
 /**
  * struct BNNSLayerParametersNormalization
@@ -4985,6 +5315,9 @@ export declare class BNNSLayerParametersNormalization extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersNormalization;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersNormalization": true;
+    };
 }
 /**
  * struct BNNSLayerParametersPadding
@@ -5039,6 +5372,9 @@ export declare class BNNSLayerParametersPadding extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersPadding;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersPadding": true;
+    };
 }
 /**
  * struct BNNSLayerParametersPermute
@@ -5079,6 +5415,9 @@ export declare class BNNSLayerParametersPermute extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersPermute;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersPermute": true;
+    };
 }
 /**
  * struct BNNSLayerParametersPooling
@@ -5196,6 +5535,9 @@ export declare class BNNSLayerParametersPooling extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersPooling;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersPooling": true;
+    };
 }
 /**
  * struct BNNSLayerParametersQuantization
@@ -5257,6 +5599,9 @@ export declare class BNNSLayerParametersQuantization extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersQuantization;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersQuantization": true;
+    };
 }
 /** struct BNNSLayerParametersReduction */
 export declare class BNNSLayerParametersReduction extends SDKHandle {
@@ -5279,6 +5624,9 @@ export declare class BNNSLayerParametersReduction extends SDKHandle {
     static initI_descO_descW_descReduce_funcEpsilon(i_desc: BNNSNDArrayDescriptor, o_desc: BNNSNDArrayDescriptor, w_desc: BNNSNDArrayDescriptor, reduce_func: BNNSReduceFunction, epsilon: number): BNNSLayerParametersReduction;
     /** init() */
     static init(): BNNSLayerParametersReduction;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersReduction": true;
+    };
 }
 /**
  * struct BNNSLayerParametersResize
@@ -5326,6 +5674,9 @@ export declare class BNNSLayerParametersResize extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLayerParametersResize;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersResize": true;
+    };
 }
 /**
  * struct BNNSLayerParametersTensorContraction
@@ -5381,6 +5732,9 @@ export declare class BNNSLayerParametersTensorContraction extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(operation: SDKHandle, alpha: number, beta: number, iA_desc: BNNSNDArrayDescriptor, iB_desc: BNNSNDArrayDescriptor, o_desc: BNNSNDArrayDescriptor): BNNSLayerParametersTensorContraction;
+    readonly $type: {
+        "c:@SA@BNNSLayerParametersTensorContraction": true;
+    };
 }
 /** struct BNNSLinearSamplingMode */
 export type BNNSLinearSamplingMode = (number & {});
@@ -5454,6 +5808,9 @@ export declare class BNNSLSTMDataDescriptor extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLSTMDataDescriptor;
+    readonly $type: {
+        "c:@SA@BNNSLSTMDataDescriptor": true;
+    };
 }
 /**
  * struct BNNSLSTMGateDescriptor
@@ -5508,6 +5865,9 @@ export declare class BNNSLSTMGateDescriptor extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSLSTMGateDescriptor;
+    readonly $type: {
+        "c:@SA@BNNSLSTMGateDescriptor": true;
+    };
 }
 /** struct BNNSMHAProjectionParameters */
 export declare class BNNSMHAProjectionParameters extends SDKHandle {
@@ -5524,6 +5884,9 @@ export declare class BNNSMHAProjectionParameters extends SDKHandle {
     static initTarget_descWeightsBias(target_desc: BNNSNDArrayDescriptor, weights: BNNSNDArrayDescriptor, bias: BNNSNDArrayDescriptor): BNNSMHAProjectionParameters;
     /** init() */
     static init(): BNNSMHAProjectionParameters;
+    readonly $type: {
+        "c:@SA@BNNSMHAProjectionParameters": true;
+    };
 }
 /** struct BNNSNDArrayDescriptor */
 export declare class BNNSNDArrayDescriptor extends SDKHandle {
@@ -5601,6 +5964,9 @@ export declare class BNNSNDArrayDescriptor extends SDKHandle {
     static initFlagsLayoutSizeStrideDataData_typeTable_dataTable_data_typeData_scaleData_bias(flags: BNNSNDArrayFlags, layout: BNNSDataLayout, size: $SDK15, stride: $SDK15, data: (SDKHandle) | null, data_type: BNNSDataType, table_data: (SDKHandle) | null, table_data_type: BNNSDataType, data_scale: number, data_bias: number): BNNSNDArrayDescriptor;
     /** init() */
     static init(): BNNSNDArrayDescriptor;
+    readonly $type: {
+        "c:@SA@BNNSNDArrayDescriptor": true;
+    };
 }
 /** struct BNNSNDArrayFlags */
 export type BNNSNDArrayFlags = (number & {});
@@ -5732,6 +6098,9 @@ export declare class BNNSOptimizerAdamFields extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSOptimizerAdamFields;
+    readonly $type: {
+        "c:@SA@BNNSOptimizerAdamFields": true;
+    };
 }
 /**
  * struct BNNSOptimizerAdamWithClippingFields
@@ -5842,6 +6211,9 @@ export declare class BNNSOptimizerAdamWithClippingFields extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSOptimizerAdamWithClippingFields;
+    readonly $type: {
+        "c:@SA@BNNSOptimizerAdamWithClippingFields": true;
+    };
 }
 /** struct BNNSOptimizerClippingFunction */
 export type BNNSOptimizerClippingFunction = (number & {});
@@ -5971,6 +6343,9 @@ export declare class BNNSOptimizerRMSPropFields extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSOptimizerRMSPropFields;
+    readonly $type: {
+        "c:@SA@BNNSOptimizerRMSPropFields": true;
+    };
 }
 /**
  * struct BNNSOptimizerRMSPropWithClippingFields
@@ -6081,6 +6456,9 @@ export declare class BNNSOptimizerRMSPropWithClippingFields extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSOptimizerRMSPropWithClippingFields;
+    readonly $type: {
+        "c:@SA@BNNSOptimizerRMSPropWithClippingFields": true;
+    };
 }
 /**
  * struct BNNSOptimizerSGDMomentumFields
@@ -6170,6 +6548,9 @@ export declare class BNNSOptimizerSGDMomentumFields extends SDKHandle {
      * @deprecated iOS 18.0
      */
     static init(): BNNSOptimizerSGDMomentumFields;
+    readonly $type: {
+        "c:@SA@BNNSOptimizerSGDMomentumFields": true;
+    };
 }
 /** struct BNNSOptimizerSGDMomentumVariant */
 export type BNNSOptimizerSGDMomentumVariant = (number & {});
@@ -6284,6 +6665,9 @@ export declare class BNNSOptimizerSGDMomentumWithClippingFields extends SDKHandl
      * @deprecated iOS 18.0
      */
     static init(): BNNSOptimizerSGDMomentumWithClippingFields;
+    readonly $type: {
+        "c:@SA@BNNSOptimizerSGDMomentumWithClippingFields": true;
+    };
 }
 /** struct BNNSPaddingMode */
 export type BNNSPaddingMode = (number & {});
@@ -6430,6 +6814,9 @@ export declare class BNNSPoolingLayerParameters extends SDKHandle {
      * @deprecated iOS 14.0
      */
     static init(): BNNSPoolingLayerParameters;
+    readonly $type: {
+        "c:@SA@BNNSPoolingLayerParameters": true;
+    };
 }
 /** struct BNNSQuantizerFunction */
 export type BNNSQuantizerFunction = (number & {});
@@ -6533,6 +6920,9 @@ export declare class BNNSSparsityParameters extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): BNNSSparsityParameters;
+    readonly $type: {
+        "c:@SA@BNNSSparsityParameters": true;
+    };
 }
 /** struct BNNSSparsityType */
 export type BNNSSparsityType = (number & {});
@@ -6633,6 +7023,9 @@ export declare class BNNSTensor extends SDKHandle {
     static initData_typeRankShapeStrideDataData_size_in_bytesName(data_type: BNNSDataType, rank: number, shape: $SDK15, stride: $SDK15, data: (SDKHandle) | null, data_size_in_bytes: number, name?: (SDKHandle) | null): BNNSTensor;
     /** init() */
     static init(): BNNSTensor;
+    readonly $type: {
+        "c:@SA@BNNSTensor": true;
+    };
 }
 /**
  * struct BNNSVectorDescriptor
@@ -6686,6 +7079,9 @@ export declare class BNNSVectorDescriptor extends SDKHandle {
      * @deprecated iOS 14.0
      */
     static init(): BNNSVectorDescriptor;
+    readonly $type: {
+        "c:@SA@BNNSVectorDescriptor": true;
+    };
 }
 /** struct CBLAS_DIAG */
 export type CBLAS_DIAG = (number & {});
@@ -6763,6 +7159,9 @@ export declare class DenseMatrix_Complex_Double extends SDKHandle {
     /** var rowCount: Int32 */
     get rowCount(): number;
     set rowCount(value: number);
+    readonly $type: {
+        "c:@SA@DenseMatrix_Complex_Double": true;
+    };
 }
 /** struct DenseMatrix_Complex_Float */
 export declare class DenseMatrix_Complex_Float extends SDKHandle {
@@ -6781,6 +7180,9 @@ export declare class DenseMatrix_Complex_Float extends SDKHandle {
     /** var rowCount: Int32 */
     get rowCount(): number;
     set rowCount(value: number);
+    readonly $type: {
+        "c:@SA@DenseMatrix_Complex_Float": true;
+    };
 }
 /** struct DenseMatrix_Double */
 export declare class DenseMatrix_Double extends SDKHandle {
@@ -6801,6 +7203,9 @@ export declare class DenseMatrix_Double extends SDKHandle {
     set rowCount(value: number);
     /** init(rowCount: Int32, columnCount: Int32, columnStride: Int32, attributes: SparseAttributes_t, data: UnsafeMutablePointer<Double>) */
     static init(rowCount: number, columnCount: number, columnStride: number, attributes: SparseAttributes_t, data: SDKHandle): DenseMatrix_Double;
+    readonly $type: {
+        "c:@SA@DenseMatrix_Double": true;
+    };
 }
 /** struct DenseMatrix_Float */
 export declare class DenseMatrix_Float extends SDKHandle {
@@ -6821,6 +7226,9 @@ export declare class DenseMatrix_Float extends SDKHandle {
     set rowCount(value: number);
     /** init(rowCount: Int32, columnCount: Int32, columnStride: Int32, attributes: SparseAttributes_t, data: UnsafeMutablePointer<Float>) */
     static init(rowCount: number, columnCount: number, columnStride: number, attributes: SparseAttributes_t, data: SDKHandle): DenseMatrix_Float;
+    readonly $type: {
+        "c:@SA@DenseMatrix_Float": true;
+    };
 }
 /** struct DenseVector_Complex_Double */
 export declare class DenseVector_Complex_Double extends SDKHandle {
@@ -6830,6 +7238,9 @@ export declare class DenseVector_Complex_Double extends SDKHandle {
     /** var data: OpaquePointer */
     get data(): SDKHandle;
     set data(value: SDKHandle);
+    readonly $type: {
+        "c:@SA@DenseVector_Complex_Double": true;
+    };
 }
 /** struct DenseVector_Complex_Float */
 export declare class DenseVector_Complex_Float extends SDKHandle {
@@ -6839,6 +7250,9 @@ export declare class DenseVector_Complex_Float extends SDKHandle {
     /** var data: OpaquePointer */
     get data(): SDKHandle;
     set data(value: SDKHandle);
+    readonly $type: {
+        "c:@SA@DenseVector_Complex_Float": true;
+    };
 }
 /** struct DenseVector_Double */
 export declare class DenseVector_Double extends SDKHandle {
@@ -6850,6 +7264,9 @@ export declare class DenseVector_Double extends SDKHandle {
     set data(value: SDKHandle);
     /** init(count: Int32, data: UnsafeMutablePointer<Double>) */
     static init(count: number, data: SDKHandle): DenseVector_Double;
+    readonly $type: {
+        "c:@SA@DenseVector_Double": true;
+    };
 }
 /** struct DenseVector_Float */
 export declare class DenseVector_Float extends SDKHandle {
@@ -6861,6 +7278,9 @@ export declare class DenseVector_Float extends SDKHandle {
     set data(value: SDKHandle);
     /** init(count: Int32, data: UnsafeMutablePointer<Float>) */
     static init(count: number, data: SDKHandle): DenseVector_Float;
+    readonly $type: {
+        "c:@SA@DenseVector_Float": true;
+    };
 }
 /** typealias DOUBLE_COMPLEX = DSPDoubleComplex */
 export type DOUBLE_COMPLEX = DSPDoubleComplex;
@@ -6894,6 +7314,9 @@ export declare class DSPComplex extends SDKHandle {
     static initRealImag(real: number, imag: number): DSPComplex;
     /** init() */
     static init(): DSPComplex;
+    readonly $type: {
+        "c:@S@DSPComplex": true;
+    };
 }
 /**
  * typealias DiscreteFourierTransformFunctions = vDSP.DFTSinglePrecisionInterleavedFunctions
@@ -6912,6 +7335,9 @@ export declare class DSPDoubleComplex extends SDKHandle {
     static initRealImag(real: number, imag: number): DSPDoubleComplex;
     /** init() */
     static init(): DSPDoubleComplex;
+    readonly $type: {
+        "c:@S@DSPDoubleComplex": true;
+    };
 }
 /**
  * typealias DiscreteFourierTransformFunctions = vDSP.DFTDoublePrecisionInterleavedFunctions
@@ -6940,6 +7366,9 @@ export declare class DSPDoubleSplitComplex extends SDKHandle {
     };
     /** init(realp: UnsafeMutablePointer<Double>, imagp: UnsafeMutablePointer<Double>) */
     static initRealpImagp(realp: SDKHandle, imagp: SDKHandle): DSPDoubleSplitComplex;
+    readonly $type: {
+        "c:@S@DSPDoubleSplitComplex": true;
+    };
 }
 /**
  * typealias FFTFunctions = vDSP_SplitComplexDouble
@@ -6968,6 +7397,9 @@ export declare class DSPSplitComplex extends SDKHandle {
     };
     /** init(realp: UnsafeMutablePointer<Float>, imagp: UnsafeMutablePointer<Float>) */
     static initRealpImagp(realp: SDKHandle, imagp: SDKHandle): DSPSplitComplex;
+    readonly $type: {
+        "c:@S@DSPSplitComplex": true;
+    };
 }
 /**
  * typealias FFTFunctions = vDSP_SplitComplexFloat
@@ -7116,6 +7548,9 @@ export declare class Quadrature extends SDKHandle {
      * @availability iOS 13.0+
      */
     integrate(interval: SDKHandle, integrand: ((arg0: Float64Array, arg1: Float64Array) => void)): SDKHandle;
+    readonly $type: {
+        "s:10Accelerate10QuadratureV": true;
+    };
 }
 /** typealias quadrature_function_array = (UnsafeMutableRawPointer?, Int, UnsafePointer<Double>, UnsafeMutablePointer<Double>) -> Void */
 export type quadrature_function_array = $SDK32;
@@ -7126,6 +7561,9 @@ export declare class quadrature_integrate_function extends SDKHandle {
     /** var fun_arg: UnsafeMutableRawPointer! */
     get fun_arg(): (SDKHandle) | null;
     set fun_arg(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:@SA@quadrature_integrate_function": true;
+    };
 }
 /** struct quadrature_integrate_options */
 export declare class quadrature_integrate_options extends SDKHandle {
@@ -7148,6 +7586,9 @@ export declare class quadrature_integrate_options extends SDKHandle {
     static initIntegratorAbs_toleranceRel_toleranceQag_points_per_intervalMax_intervals(integrator: quadrature_integrator, abs_tolerance: number, rel_tolerance: number, qag_points_per_interval: number, max_intervals: number): quadrature_integrate_options;
     /** init() */
     static init(): quadrature_integrate_options;
+    readonly $type: {
+        "c:@SA@quadrature_integrate_options": true;
+    };
 }
 /** struct quadrature_integrator */
 export type quadrature_integrator = (number & {});
@@ -7208,6 +7649,9 @@ export declare class Quadrature_Integrator extends SDKHandle {
      * @availability iOS 13.0+
      */
     static adaptive(pointsPerInterval: Quadrature_QAGPointsPerInterval, maxIntervals: number): Quadrature_Integrator;
+    readonly $type: {
+        "s:10Accelerate10QuadratureV10IntegratorO": true;
+    };
 }
 /**
  * struct QAGPointsPerInterval
@@ -7249,6 +7693,9 @@ export declare class Quadrature_QAGPointsPerInterval extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get twentyOne(): Quadrature_QAGPointsPerInterval;
+    readonly $type: {
+        "s:10Accelerate10QuadratureV20QAGPointsPerIntervalV": true;
+    };
 }
 /** typealias ResamplingFilter = UnsafeMutableRawPointer */
 export type ResamplingFilter = SDKHandle;
@@ -7318,6 +7765,9 @@ export declare class SparseAttributes_t extends SDKHandle {
     set triangle(value: SparseTriangle_t);
     /** init() */
     static init(): SparseAttributes_t;
+    readonly $type: {
+        "c:@SA@SparseAttributes_t": true;
+    };
 }
 /** struct SparseAttributesComplex_t */
 export declare class SparseAttributesComplex_t extends SDKHandle {
@@ -7335,6 +7785,9 @@ export declare class SparseAttributesComplex_t extends SDKHandle {
     set triangle(value: SparseTriangle_t);
     /** init() */
     static init(): SparseAttributesComplex_t;
+    readonly $type: {
+        "c:@SA@SparseAttributesComplex_t": true;
+    };
 }
 /** struct SparseCGOptions */
 export declare class SparseCGOptions extends SDKHandle {
@@ -7353,6 +7806,9 @@ export declare class SparseCGOptions extends SDKHandle {
     set rtol(value: number);
     /** init() */
     static init(): SparseCGOptions;
+    readonly $type: {
+        "c:@SA@SparseCGOptions": true;
+    };
 }
 /** struct SparseControl_t */
 export type SparseControl_t = (number & {});
@@ -7399,6 +7855,9 @@ export declare class SparseGMRESOptions extends SDKHandle {
     set variant(value: SparseGMRESVariant_t);
     /** init() */
     static init(): SparseGMRESOptions;
+    readonly $type: {
+        "c:@SA@SparseGMRESOptions": true;
+    };
 }
 /** struct SparseGMRESVariant_t */
 export type SparseGMRESVariant_t = (number & {});
@@ -7423,6 +7882,9 @@ export declare class SparseIterativeMethod extends SDKHandle {
     static initMethodOptions(method: number, options: SparseIterativeMethod): SparseIterativeMethod;
     /** init() */
     static init(): SparseIterativeMethod;
+    readonly $type: {
+        "c:@SA@SparseIterativeMethod": true;
+    };
 }
 /** struct SparseIterativeStatus_t */
 export type SparseIterativeStatus_t = (number & {});
@@ -7489,6 +7951,9 @@ export declare class SparseLSMROptions extends SDKHandle {
     set rtol(value: number);
     /** init() */
     static init(): SparseLSMROptions;
+    readonly $type: {
+        "c:@SA@SparseLSMROptions": true;
+    };
 }
 /** struct SparseMatrix_Complex_Double */
 export declare class SparseMatrix_Complex_Double extends SDKHandle {
@@ -7498,6 +7963,9 @@ export declare class SparseMatrix_Complex_Double extends SDKHandle {
     /** var structure: SparseMatrixStructureComplex */
     get structure(): SparseMatrixStructureComplex;
     set structure(value: SparseMatrixStructureComplex);
+    readonly $type: {
+        "c:@SA@SparseMatrix_Complex_Double": true;
+    };
 }
 /** struct SparseMatrix_Complex_Float */
 export declare class SparseMatrix_Complex_Float extends SDKHandle {
@@ -7507,6 +7975,9 @@ export declare class SparseMatrix_Complex_Float extends SDKHandle {
     /** var structure: SparseMatrixStructureComplex */
     get structure(): SparseMatrixStructureComplex;
     set structure(value: SparseMatrixStructureComplex);
+    readonly $type: {
+        "c:@SA@SparseMatrix_Complex_Float": true;
+    };
 }
 /** struct SparseMatrix_Double */
 export declare class SparseMatrix_Double extends SDKHandle {
@@ -7518,6 +7989,9 @@ export declare class SparseMatrix_Double extends SDKHandle {
     set structure(value: SparseMatrixStructure);
     /** init(structure: SparseMatrixStructure, data: UnsafeMutablePointer<Double>) */
     static init(structure: SparseMatrixStructure, data: SDKHandle): SparseMatrix_Double;
+    readonly $type: {
+        "c:@SA@SparseMatrix_Double": true;
+    };
 }
 /** struct SparseMatrix_Float */
 export declare class SparseMatrix_Float extends SDKHandle {
@@ -7529,6 +8003,9 @@ export declare class SparseMatrix_Float extends SDKHandle {
     set structure(value: SparseMatrixStructure);
     /** init(structure: SparseMatrixStructure, data: UnsafeMutablePointer<Float>) */
     static init(structure: SparseMatrixStructure, data: SDKHandle): SparseMatrix_Float;
+    readonly $type: {
+        "c:@SA@SparseMatrix_Float": true;
+    };
 }
 /** struct SparseMatrixStructure */
 export declare class SparseMatrixStructure extends SDKHandle {
@@ -7552,6 +8029,9 @@ export declare class SparseMatrixStructure extends SDKHandle {
     set rowIndices(value: SDKHandle);
     /** init(rowCount: Int32, columnCount: Int32, columnStarts: UnsafeMutablePointer<Int>, rowIndices: UnsafeMutablePointer<Int32>, attributes: SparseAttributes_t, blockSize: UInt8) */
     static init(rowCount: number, columnCount: number, columnStarts: SDKHandle, rowIndices: SDKHandle, attributes: SparseAttributes_t, blockSize: number): SparseMatrixStructure;
+    readonly $type: {
+        "c:@SA@SparseMatrixStructure": true;
+    };
 }
 /** struct SparseMatrixStructureComplex */
 export declare class SparseMatrixStructureComplex extends SDKHandle {
@@ -7575,6 +8055,9 @@ export declare class SparseMatrixStructureComplex extends SDKHandle {
     set rowIndices(value: SDKHandle);
     /** init(rowCount: Int32, columnCount: Int32, columnStarts: UnsafeMutablePointer<Int>, rowIndices: UnsafeMutablePointer<Int32>, attributes: SparseAttributesComplex_t, blockSize: UInt8) */
     static init(rowCount: number, columnCount: number, columnStarts: SDKHandle, rowIndices: SDKHandle, attributes: SparseAttributesComplex_t, blockSize: number): SparseMatrixStructureComplex;
+    readonly $type: {
+        "c:@SA@SparseMatrixStructureComplex": true;
+    };
 }
 /** struct SparseNumericFactorOptions */
 export declare class SparseNumericFactorOptions extends SDKHandle {
@@ -7597,6 +8080,9 @@ export declare class SparseNumericFactorOptions extends SDKHandle {
     static initControlScalingMethodScalingPivotToleranceZeroTolerance(control: SparseControl_t, scalingMethod: SparseScaling_t, scaling: (SDKHandle) | null, pivotTolerance: number, zeroTolerance: number): SparseNumericFactorOptions;
     /** init() */
     static init(): SparseNumericFactorOptions;
+    readonly $type: {
+        "c:@SA@SparseNumericFactorOptions": true;
+    };
 }
 /** struct SparseOpaqueFactorization_Complex_Double */
 export declare class SparseOpaqueFactorization_Complex_Double extends SDKHandle {
@@ -7625,6 +8111,9 @@ export declare class SparseOpaqueFactorization_Complex_Double extends SDKHandle 
     static initStatusAttributesSymbolicFactorizationUserFactorStorageNumericFactorizationSolveWorkspaceRequiredStaticSolveWorkspaceRequiredPerRHS(status: SparseStatus_t, attributes: SparseAttributesComplex_t, symbolicFactorization: SparseOpaqueSymbolicFactorization, userFactorStorage: boolean, numericFactorization: (SDKHandle) | null, solveWorkspaceRequiredStatic: number, solveWorkspaceRequiredPerRHS: number): SparseOpaqueFactorization_Complex_Double;
     /** init() */
     static init(): SparseOpaqueFactorization_Complex_Double;
+    readonly $type: {
+        "c:@SA@SparseOpaqueFactorization_Complex_Double": true;
+    };
 }
 /** struct SparseOpaqueFactorization_Complex_Float */
 export declare class SparseOpaqueFactorization_Complex_Float extends SDKHandle {
@@ -7653,6 +8142,9 @@ export declare class SparseOpaqueFactorization_Complex_Float extends SDKHandle {
     static initStatusAttributesSymbolicFactorizationUserFactorStorageNumericFactorizationSolveWorkspaceRequiredStaticSolveWorkspaceRequiredPerRHS(status: SparseStatus_t, attributes: SparseAttributesComplex_t, symbolicFactorization: SparseOpaqueSymbolicFactorization, userFactorStorage: boolean, numericFactorization: (SDKHandle) | null, solveWorkspaceRequiredStatic: number, solveWorkspaceRequiredPerRHS: number): SparseOpaqueFactorization_Complex_Float;
     /** init() */
     static init(): SparseOpaqueFactorization_Complex_Float;
+    readonly $type: {
+        "c:@SA@SparseOpaqueFactorization_Complex_Float": true;
+    };
 }
 /** struct SparseOpaqueFactorization_Double */
 export declare class SparseOpaqueFactorization_Double extends SDKHandle {
@@ -7681,6 +8173,9 @@ export declare class SparseOpaqueFactorization_Double extends SDKHandle {
     static initStatusAttributesSymbolicFactorizationUserFactorStorageNumericFactorizationSolveWorkspaceRequiredStaticSolveWorkspaceRequiredPerRHS(status: SparseStatus_t, attributes: SparseAttributes_t, symbolicFactorization: SparseOpaqueSymbolicFactorization, userFactorStorage: boolean, numericFactorization: (SDKHandle) | null, solveWorkspaceRequiredStatic: number, solveWorkspaceRequiredPerRHS: number): SparseOpaqueFactorization_Double;
     /** init() */
     static init(): SparseOpaqueFactorization_Double;
+    readonly $type: {
+        "c:@SA@SparseOpaqueFactorization_Double": true;
+    };
 }
 /** struct SparseOpaqueFactorization_Float */
 export declare class SparseOpaqueFactorization_Float extends SDKHandle {
@@ -7709,6 +8204,9 @@ export declare class SparseOpaqueFactorization_Float extends SDKHandle {
     static initStatusAttributesSymbolicFactorizationUserFactorStorageNumericFactorizationSolveWorkspaceRequiredStaticSolveWorkspaceRequiredPerRHS(status: SparseStatus_t, attributes: SparseAttributes_t, symbolicFactorization: SparseOpaqueSymbolicFactorization, userFactorStorage: boolean, numericFactorization: (SDKHandle) | null, solveWorkspaceRequiredStatic: number, solveWorkspaceRequiredPerRHS: number): SparseOpaqueFactorization_Float;
     /** init() */
     static init(): SparseOpaqueFactorization_Float;
+    readonly $type: {
+        "c:@SA@SparseOpaqueFactorization_Float": true;
+    };
 }
 /** struct SparseOpaquePreconditioner_Complex_Double */
 export declare class SparseOpaquePreconditioner_Complex_Double extends SDKHandle {
@@ -7720,6 +8218,9 @@ export declare class SparseOpaquePreconditioner_Complex_Double extends SDKHandle
     /** var type: SparsePreconditioner_t */
     get type(): SparsePreconditioner_t;
     set type(value: SparsePreconditioner_t);
+    readonly $type: {
+        "c:@SA@SparseOpaquePreconditioner_Complex_Double": true;
+    };
 }
 /** struct SparseOpaquePreconditioner_Complex_Float */
 export declare class SparseOpaquePreconditioner_Complex_Float extends SDKHandle {
@@ -7731,6 +8232,9 @@ export declare class SparseOpaquePreconditioner_Complex_Float extends SDKHandle 
     /** var type: SparsePreconditioner_t */
     get type(): SparsePreconditioner_t;
     set type(value: SparsePreconditioner_t);
+    readonly $type: {
+        "c:@SA@SparseOpaquePreconditioner_Complex_Float": true;
+    };
 }
 /** struct SparseOpaquePreconditioner_Double */
 export declare class SparseOpaquePreconditioner_Double extends SDKHandle {
@@ -7742,6 +8246,9 @@ export declare class SparseOpaquePreconditioner_Double extends SDKHandle {
     /** var type: SparsePreconditioner_t */
     get type(): SparsePreconditioner_t;
     set type(value: SparsePreconditioner_t);
+    readonly $type: {
+        "c:@SA@SparseOpaquePreconditioner_Double": true;
+    };
 }
 /** struct SparseOpaquePreconditioner_Float */
 export declare class SparseOpaquePreconditioner_Float extends SDKHandle {
@@ -7753,6 +8260,9 @@ export declare class SparseOpaquePreconditioner_Float extends SDKHandle {
     /** var type: SparsePreconditioner_t */
     get type(): SparsePreconditioner_t;
     set type(value: SparsePreconditioner_t);
+    readonly $type: {
+        "c:@SA@SparseOpaquePreconditioner_Float": true;
+    };
 }
 /** struct SparseOpaqueSubfactor_Complex_Double */
 export declare class SparseOpaqueSubfactor_Complex_Double extends SDKHandle {
@@ -7775,6 +8285,9 @@ export declare class SparseOpaqueSubfactor_Complex_Double extends SDKHandle {
     static initAttributesContentsFactorWorkspaceRequiredStaticWorkspaceRequiredPerRHS(attributes: SparseAttributesComplex_t, contents: SparseSubfactor_t, factor: SparseOpaqueFactorization_Complex_Double, workspaceRequiredStatic: number, workspaceRequiredPerRHS: number): SparseOpaqueSubfactor_Complex_Double;
     /** init() */
     static init(): SparseOpaqueSubfactor_Complex_Double;
+    readonly $type: {
+        "c:@SA@SparseOpaqueSubfactor_Complex_Double": true;
+    };
 }
 /** struct SparseOpaqueSubfactor_Complex_Float */
 export declare class SparseOpaqueSubfactor_Complex_Float extends SDKHandle {
@@ -7797,6 +8310,9 @@ export declare class SparseOpaqueSubfactor_Complex_Float extends SDKHandle {
     static initAttributesContentsFactorWorkspaceRequiredStaticWorkspaceRequiredPerRHS(attributes: SparseAttributesComplex_t, contents: SparseSubfactor_t, factor: SparseOpaqueFactorization_Complex_Float, workspaceRequiredStatic: number, workspaceRequiredPerRHS: number): SparseOpaqueSubfactor_Complex_Float;
     /** init() */
     static init(): SparseOpaqueSubfactor_Complex_Float;
+    readonly $type: {
+        "c:@SA@SparseOpaqueSubfactor_Complex_Float": true;
+    };
 }
 /** struct SparseOpaqueSubfactor_Double */
 export declare class SparseOpaqueSubfactor_Double extends SDKHandle {
@@ -7819,6 +8335,9 @@ export declare class SparseOpaqueSubfactor_Double extends SDKHandle {
     static initAttributesContentsFactorWorkspaceRequiredStaticWorkspaceRequiredPerRHS(attributes: SparseAttributes_t, contents: SparseSubfactor_t, factor: SparseOpaqueFactorization_Double, workspaceRequiredStatic: number, workspaceRequiredPerRHS: number): SparseOpaqueSubfactor_Double;
     /** init() */
     static init(): SparseOpaqueSubfactor_Double;
+    readonly $type: {
+        "c:@SA@SparseOpaqueSubfactor_Double": true;
+    };
 }
 /** struct SparseOpaqueSubfactor_Float */
 export declare class SparseOpaqueSubfactor_Float extends SDKHandle {
@@ -7841,6 +8360,9 @@ export declare class SparseOpaqueSubfactor_Float extends SDKHandle {
     static initAttributesContentsFactorWorkspaceRequiredStaticWorkspaceRequiredPerRHS(attributes: SparseAttributes_t, contents: SparseSubfactor_t, factor: SparseOpaqueFactorization_Float, workspaceRequiredStatic: number, workspaceRequiredPerRHS: number): SparseOpaqueSubfactor_Float;
     /** init() */
     static init(): SparseOpaqueSubfactor_Float;
+    readonly $type: {
+        "c:@SA@SparseOpaqueSubfactor_Float": true;
+    };
 }
 /** struct SparseOpaqueSymbolicFactorization */
 export declare class SparseOpaqueSymbolicFactorization extends SDKHandle {
@@ -7881,6 +8403,9 @@ export declare class SparseOpaqueSymbolicFactorization extends SDKHandle {
     static initStatusRowCountColumnCountAttributesBlockSizeTypeFactorizationWorkspaceSize_FloatWorkspaceSize_DoubleFactorSize_FloatFactorSize_Double(status: SparseStatus_t, rowCount: number, columnCount: number, attributes: SparseAttributes_t, blockSize: number, type: SparseFactorization_t, factorization: (SDKHandle) | null, workspaceSize_Float: number, workspaceSize_Double: number, factorSize_Float: number, factorSize_Double: number): SparseOpaqueSymbolicFactorization;
     /** init() */
     static init(): SparseOpaqueSymbolicFactorization;
+    readonly $type: {
+        "c:@SA@SparseOpaqueSymbolicFactorization": true;
+    };
 }
 /** struct SparseOrder_t */
 export type SparseOrder_t = (number & {});
@@ -7957,6 +8482,9 @@ export declare class SparseSymbolicFactorOptions extends SDKHandle {
     set orderMethod(value: SparseOrder_t);
     /** var reportError: ((UnsafePointer<CChar>) -> Void)? */
     get reportError(): $SDK33;
+    readonly $type: {
+        "c:@SA@SparseSymbolicFactorOptions": true;
+    };
 }
 /** struct SparseTriangle_t */
 export type SparseTriangle_t = (number & {});
@@ -10824,6 +11352,9 @@ export declare class vDSP extends SDKHandle {
      * @availability iOS 13.0+
      */
     static thresholdToWith35972(vector: Array<number>, lowerBound: number, rule: $SDK46): Array<number>;
+    readonly $type: {
+        "s:10Accelerate4vDSPO": true;
+    };
 }
 /** typealias vDSP_biquad_Setup = OpaquePointer */
 export type vDSP_biquad_Setup = SDKHandle;
@@ -10998,6 +11529,9 @@ export declare class vDSP_int24 extends SDKHandle {
     static initBytes(bytes: $SDK48): vDSP_int24;
     /** init() */
     static init(): vDSP_int24;
+    readonly $type: {
+        "c:@SA@vDSP_int24": true;
+    };
 }
 /**
  * protocol vDSP_IntegerConvertable
@@ -11032,6 +11566,9 @@ export declare class vDSP_SplitComplexDouble extends SDKHandle {
      * @availability iOS 13.0+
      */
     static transform(fftSetup: SDKHandle, log2n: number, source: SDKHandle, destination: SDKHandle, direction: vDSP_FourierTransformDirection): void;
+    readonly $type: {
+        "s:10Accelerate23vDSP_SplitComplexDoubleV": true;
+    };
 }
 /**
  * typealias SplitComplex = DSPDoubleSplitComplex
@@ -11063,6 +11600,9 @@ export declare class vDSP_SplitComplexFloat extends SDKHandle {
      * @availability iOS 13.0+
      */
     static transform(fftSetup: SDKHandle, log2n: number, source: SDKHandle, destination: SDKHandle, direction: vDSP_FourierTransformDirection): void;
+    readonly $type: {
+        "s:10Accelerate22vDSP_SplitComplexFloatV": true;
+    };
 }
 /**
  * typealias SplitComplex = DSPSplitComplex
@@ -11080,6 +11620,9 @@ export declare class vDSP_uint24 extends SDKHandle {
     static initBytes(bytes: $SDK48): vDSP_uint24;
     /** init() */
     static init(): vDSP_uint24;
+    readonly $type: {
+        "c:@SA@vDSP_uint24": true;
+    };
 }
 /**
  * struct Biquad<T> where T : vDSP_FloatingPointBiquadFilterable
@@ -11101,6 +11644,9 @@ export declare class vDSP_Biquad<T = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     applyInput(input: Array<number>): Array<number>;
+    readonly $type: {
+        "s:10Accelerate4vDSPO6BiquadV": true;
+    };
 }
 /**
  * class DCT
@@ -11127,6 +11673,9 @@ export declare class vDSP_DCT extends SDKHandle {
      * @availability iOS 13.0+
      */
     transform(vector: Array<number>): Array<number>;
+    readonly $type: {
+        "s:10Accelerate4vDSPO3DCTC": true;
+    };
 }
 /**
  * enum DCTTransformType
@@ -11174,6 +11723,9 @@ export declare class vDSP_DFT<T = unknown> extends SDKHandle {
      * @deprecated
      */
     transformInputRealInputImaginary(inputReal: Array<number>, inputImaginary: Array<number>): $SDK50;
+    readonly $type: {
+        "s:10Accelerate4vDSPO3DFTC": true;
+    };
 }
 /**
  * struct DFTDoublePrecisionInterleavedFunctions
@@ -11190,6 +11742,9 @@ export declare class vDSP_DFTDoublePrecisionInterleavedFunctions extends SDKHand
      * @availability iOS 15.0+
      */
     static makeDiscreteFourierTransform(previous: (SDKHandle) | null, count: number, direction: vDSP_FourierTransformDirection, transformType: vDSP_DFTTransformType): SDKHandle;
+    readonly $type: {
+        "s:10Accelerate4vDSPO38DFTDoublePrecisionInterleavedFunctionsV": true;
+    };
 }
 /**
  * struct DFTDoublePrecisionSplitComplexFunctions
@@ -11206,6 +11761,9 @@ export declare class vDSP_DFTDoublePrecisionSplitComplexFunctions extends SDKHan
      * @availability iOS 15.0+
      */
     static makeDiscreteFourierTransform(previous: (SDKHandle) | null, count: number, direction: vDSP_FourierTransformDirection, transformType: vDSP_DFTTransformType): SDKHandle;
+    readonly $type: {
+        "s:10Accelerate4vDSPO39DFTDoublePrecisionSplitComplexFunctionsV": true;
+    };
 }
 /**
  * enum DFTError
@@ -11217,6 +11775,9 @@ export declare class vDSP_DFTError extends SDKHandle {
      * @availability iOS 15.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:10Accelerate4vDSPO8DFTErrorO": true;
+    };
 }
 /**
  * struct DFTSinglePrecisionInterleavedFunctions
@@ -11233,6 +11794,9 @@ export declare class vDSP_DFTSinglePrecisionInterleavedFunctions extends SDKHand
      * @availability iOS 15.0+
      */
     static makeDiscreteFourierTransform(previous: (SDKHandle) | null, count: number, direction: vDSP_FourierTransformDirection, transformType: vDSP_DFTTransformType): SDKHandle;
+    readonly $type: {
+        "s:10Accelerate4vDSPO38DFTSinglePrecisionInterleavedFunctionsV": true;
+    };
 }
 /**
  * struct DFTSinglePrecisionSplitComplexFunctions
@@ -11249,6 +11813,9 @@ export declare class vDSP_DFTSinglePrecisionSplitComplexFunctions extends SDKHan
      * @availability iOS 15.0+
      */
     static makeDiscreteFourierTransform(previous: (SDKHandle) | null, count: number, direction: vDSP_FourierTransformDirection, transformType: vDSP_DFTTransformType): SDKHandle;
+    readonly $type: {
+        "s:10Accelerate4vDSPO39DFTSinglePrecisionSplitComplexFunctionsV": true;
+    };
 }
 /**
  * enum DFTTransformType
@@ -11322,18 +11889,28 @@ export declare class vDSP_DiscreteFourierTransform<T = unknown> extends SDKHandl
      * @availability iOS 15.0+
      */
     transformInput8463(input: Array<DSPDoubleComplex>): Array<DSPDoubleComplex>;
+    readonly $type: {
+        "s:10Accelerate4vDSPO24DiscreteFourierTransformC": true;
+    };
 }
 /**
  * class FFT<T> where T : vDSP_FourierTransformable
  * @availability iOS 13.0+
  */
 export declare class vDSP_FFT<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate4vDSPO3FFTC": true;
+    };
 }
 /**
  * class FFT2D<T> where T : vDSP_FourierTransformable
  * @availability iOS 13.0+
  */
 export declare class vDSP_FFT2D<T = unknown> extends vDSP_FFT {
+    readonly $type: {
+        "s:10Accelerate4vDSPO5FFT2DC": true;
+        "s:10Accelerate4vDSPO3FFTC": true;
+    };
 }
 /**
  * enum FourierTransformDirection
@@ -11401,6 +11978,9 @@ export type vDSP_SortOrder_RawValue = number;
  * @availability iOS 13.0+
  */
 export declare class vDSP_ThresholdRule<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate4vDSPO13ThresholdRuleO": true;
+    };
 }
 /**
  * struct VectorizableDouble
@@ -11450,6 +12030,9 @@ export declare class vDSP_VectorizableDouble extends SDKHandle {
             "outputReal": Array<number>;
             "outputImaginary": Array<number>;
         };
+    };
+    readonly $type: {
+        "s:10Accelerate4vDSPO18VectorizableDoubleV": true;
     };
 }
 /**
@@ -11505,6 +12088,9 @@ export declare class vDSP_VectorizableFloat extends SDKHandle {
             "outputReal": Array<number>;
             "outputImaginary": Array<number>;
         };
+    };
+    readonly $type: {
+        "s:10Accelerate4vDSPO17VectorizableFloatV": true;
     };
 }
 /**
@@ -12598,12 +13184,18 @@ export declare class vForce extends SDKHandle {
      * @availability iOS 13.0+
      */
     static remainderDividendsDivisors12412(dividends: Array<number>, divisors: Array<number>): Array<number>;
+    readonly $type: {
+        "s:10Accelerate6vForceO": true;
+    };
 }
 /**
  * enum vImage
  * @availability iOS 13.0+
  */
 export declare class vImage extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate6vImageO": true;
+    };
 }
 /** struct vImage_AffineTransform */
 export declare class vImage_AffineTransform extends SDKHandle {
@@ -12634,6 +13226,9 @@ export declare class vImage_AffineTransform extends SDKHandle {
     static initABCDTxTy62393(a: number, b: number, c: number, d: number, tx: number, ty: number): vImage_AffineTransform;
     /** init() */
     static init(): vImage_AffineTransform;
+    readonly $type: {
+        "c:@S@vImage_AffineTransform": true;
+    };
 }
 /** struct vImage_AffineTransform_Double */
 export declare class vImage_AffineTransform_Double extends SDKHandle {
@@ -12664,6 +13259,9 @@ export declare class vImage_AffineTransform_Double extends SDKHandle {
     static initABCDTxTy92946(a: number, b: number, c: number, d: number, tx: number, ty: number): vImage_AffineTransform_Double;
     /** init() */
     static init(): vImage_AffineTransform_Double;
+    readonly $type: {
+        "c:@S@vImage_AffineTransform_Double": true;
+    };
 }
 /** struct vImage_ARGBToYpCbCr */
 export declare class vImage_ARGBToYpCbCr extends SDKHandle {
@@ -12674,6 +13272,9 @@ export declare class vImage_ARGBToYpCbCr extends SDKHandle {
     static initOpaque(opaque: $SDK52): vImage_ARGBToYpCbCr;
     /** init() */
     static init(): vImage_ARGBToYpCbCr;
+    readonly $type: {
+        "c:@S@vImage_ARGBToYpCbCr": true;
+    };
 }
 /** struct vImage_ARGBToYpCbCrMatrix */
 export declare class vImage_ARGBToYpCbCrMatrix extends SDKHandle {
@@ -12715,6 +13316,9 @@ export declare class vImage_ARGBToYpCbCrMatrix extends SDKHandle {
     static get itu_R_709_2(): vImage_ARGBToYpCbCrMatrix;
     /** init() */
     static init(): vImage_ARGBToYpCbCrMatrix;
+    readonly $type: {
+        "c:@S@vImage_ARGBToYpCbCrMatrix": true;
+    };
 }
 /** struct vImage_Buffer */
 export declare class vImage_Buffer extends SDKHandle {
@@ -12787,6 +13391,9 @@ export declare class vImage_Buffer extends SDKHandle {
     static initDataHeightWidthRowBytes(data: (SDKHandle) | null, height: number, width: number, rowBytes: number): vImage_Buffer;
     /** init() */
     static init(): vImage_Buffer;
+    readonly $type: {
+        "c:@S@vImage_Buffer": true;
+    };
 }
 /** typealias vImage_CGAffineTransform = vImage_AffineTransform_Double */
 export type vImage_CGAffineTransform = vImage_AffineTransform_Double;
@@ -12832,6 +13439,9 @@ export declare class vImage_CGImageFormat extends SDKHandle {
     static initBitsPerComponentBitsPerPixelColorSpaceBitmapInfoVersionDecodeRenderingIntent(bitsPerComponent: number, bitsPerPixel: number, colorSpace: (SDKHandle) | null, bitmapInfo: _CoreGraphics_CGBitmapInfo, version: number, decode: $SDK55, renderingIntent: _CoreGraphics_CGColorRenderingIntent): vImage_CGImageFormat;
     /** init() */
     static init(): vImage_CGImageFormat;
+    readonly $type: {
+        "c:@S@vImage_CGImageFormat": true;
+    };
 }
 /** typealias vImage_Error = Int */
 export type vImage_Error = number;
@@ -12888,6 +13498,9 @@ export declare class vImage_PerpsectiveTransform extends SDKHandle {
     static initABCDTxTyVxVyV(a: number, b: number, c: number, d: number, tx: number, ty: number, vx: number, vy: number, v: number): vImage_PerpsectiveTransform;
     /** init() */
     static init(): vImage_PerpsectiveTransform;
+    readonly $type: {
+        "c:@S@vImage_PerpsectiveTransform": true;
+    };
 }
 /**
  * enum Interpolation
@@ -12931,6 +13544,9 @@ export declare class vImage_YpCbCrPixelRange extends SDKHandle {
     static initYp_biasCbCr_biasYpRangeMaxCbCrRangeMaxYpMaxYpMinCbCrMaxCbCrMin(Yp_bias: number, CbCr_bias: number, YpRangeMax: number, CbCrRangeMax: number, YpMax: number, YpMin: number, CbCrMax: number, CbCrMin: number): vImage_YpCbCrPixelRange;
     /** init() */
     static init(): vImage_YpCbCrPixelRange;
+    readonly $type: {
+        "c:@S@vImage_YpCbCrPixelRange": true;
+    };
 }
 /** struct vImage_YpCbCrToARGB */
 export declare class vImage_YpCbCrToARGB extends SDKHandle {
@@ -12941,6 +13557,9 @@ export declare class vImage_YpCbCrToARGB extends SDKHandle {
     static initOpaque(opaque: $SDK52): vImage_YpCbCrToARGB;
     /** init() */
     static init(): vImage_YpCbCrToARGB;
+    readonly $type: {
+        "c:@S@vImage_YpCbCrToARGB": true;
+    };
 }
 /** struct vImage_YpCbCrToARGBMatrix */
 export declare class vImage_YpCbCrToARGBMatrix extends SDKHandle {
@@ -12963,6 +13582,9 @@ export declare class vImage_YpCbCrToARGBMatrix extends SDKHandle {
     static initYpCr_RCr_GCb_GCb_B(Yp: number, Cr_R: number, Cr_G: number, Cb_G: number, Cb_B: number): vImage_YpCbCrToARGBMatrix;
     /** init() */
     static init(): vImage_YpCbCrToARGBMatrix;
+    readonly $type: {
+        "c:@S@vImage_YpCbCrToARGBMatrix": true;
+    };
 }
 /**
  * enum BlendMode
@@ -13011,6 +13633,9 @@ export type vImage_ChannelOrdering = "ARGB" | "RGBA";
  * @availability iOS 16.0+
  */
 export declare class vImage_CompositeMode<ComponentType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate6vImageO13CompositeModeO": true;
+    };
 }
 /**
  * struct ConvolutionKernel
@@ -13032,6 +13657,9 @@ export declare class vImage_ConvolutionKernel extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get gaussian1Dx7(): Array<number>;
+    readonly $type: {
+        "s:10Accelerate6vImageO17ConvolutionKernelV": true;
+    };
 }
 /**
  * struct ConvolutionKernel2D<ComponentType>
@@ -13063,12 +13691,18 @@ export declare class vImage_ConvolutionKernel2D<ComponentType = unknown> extends
      * @availability iOS 16.0+
      */
     get values(): Array<unknown>;
+    readonly $type: {
+        "s:10Accelerate6vImageO19ConvolutionKernel2DV": true;
+    };
 }
 /**
  * struct DynamicPixelFormat
  * @availability iOS 16.0+
  */
 export declare class vImage_DynamicPixelFormat extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate6vImageO18DynamicPixelFormatV": true;
+    };
 }
 /**
  * typealias ComponentType = Never
@@ -13080,6 +13714,9 @@ export type vImage_DynamicPixelFormat_ComponentType = never;
  * @availability iOS 16.0+
  */
 export declare class vImage_EdgeMode<PixelType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate6vImageO8EdgeModeO": true;
+    };
 }
 /**
  * typealias RawValue = Int
@@ -13113,6 +13750,9 @@ export type vImage_FloodFillConnectivity_RawValue = number;
  * @availability iOS 16.0+
  */
 export declare class vImage_Gamma extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate6vImageO5GammaO": true;
+    };
 }
 /**
  * struct Interleaved16Fx2
@@ -13134,6 +13774,9 @@ export declare class vImage_Interleaved16Fx2 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static makePixel(source: [number, number]): [number, number];
+    readonly $type: {
+        "s:10Accelerate6vImageO16Interleaved16Fx2V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_16F
@@ -13165,6 +13808,9 @@ export declare class vImage_Interleaved16Fx4 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static makePixel(source: $SDK28): $SDK28;
+    readonly $type: {
+        "s:10Accelerate6vImageO16Interleaved16Fx4V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_16F
@@ -13191,6 +13837,9 @@ export declare class vImage_Interleaved16Ux2 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerComponent(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO16Interleaved16Ux2V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_16U
@@ -13217,6 +13866,9 @@ export declare class vImage_Interleaved16Ux4 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerComponent(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO16Interleaved16Ux4V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_16U
@@ -13238,6 +13890,9 @@ export declare class vImage_Interleaved8x2 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerPixel(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO14Interleaved8x2V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_8
@@ -13264,6 +13919,9 @@ export declare class vImage_Interleaved8x3 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerComponent(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO14Interleaved8x3V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_8
@@ -13290,6 +13948,9 @@ export declare class vImage_Interleaved8x4 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerComponent(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO14Interleaved8x4V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_8
@@ -13316,6 +13977,9 @@ export declare class vImage_InterleavedFx2 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static makePixel(source: [number, number]): [number, number];
+    readonly $type: {
+        "s:10Accelerate6vImageO14InterleavedFx2V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_F
@@ -13342,6 +14006,9 @@ export declare class vImage_InterleavedFx3 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerComponent(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO14InterleavedFx3V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_F
@@ -13373,6 +14040,9 @@ export declare class vImage_InterleavedFx4 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static makePixel(source: $SDK28): $SDK28;
+    readonly $type: {
+        "s:10Accelerate6vImageO14InterleavedFx4V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_F
@@ -13399,6 +14069,9 @@ export declare class vImage_MorphologyOperation<ComponentType = unknown> extends
      * @availability iOS 16.0+
      */
     get height(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO19MorphologyOperationO": true;
+    };
 }
 /**
  * struct MultidimensionalLookupTable
@@ -13430,6 +14103,9 @@ export declare class vImage_MultidimensionalLookupTable extends SDKHandle {
      * @availability iOS 16.0+
      */
     apply(sources: $SDK60, destinations: $SDK60, interpolation: vImage_MultidimensionalLookupTable_InterpolationMethod): void;
+    readonly $type: {
+        "s:10Accelerate6vImageO27MultidimensionalLookupTableV": true;
+    };
 }
 /**
  * enum InterpolationMethod
@@ -14776,6 +15452,9 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     histogramBinCount41807(binCount: number): $SDK91;
+    readonly $type: {
+        "s:10Accelerate6vImageO11PixelBufferV": true;
+    };
 }
 /**
  * typealias Element = Format.ComponentType
@@ -14827,6 +15506,9 @@ export declare class vImage_Planar16F extends SDKHandle {
      * @availability iOS 16.0+
      */
     static makePixel(source: number): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO9Planar16FV": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_16F
@@ -14848,6 +15530,9 @@ export declare class vImage_Planar16U extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerPixel(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO9Planar16UV": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_16U
@@ -14874,6 +15559,9 @@ export declare class vImage_Planar8 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerComponent(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO7Planar8V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_8
@@ -14895,6 +15583,9 @@ export declare class vImage_Planar8x2 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerPlanarPixel(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO9Planar8x2V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_8
@@ -14921,6 +15612,9 @@ export declare class vImage_Planar8x3 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerPlanarPixel(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO9Planar8x3V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_8
@@ -14947,6 +15641,9 @@ export declare class vImage_Planar8x4 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get bitCountPerPlanarPixel(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO9Planar8x4V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_8
@@ -14983,6 +15680,9 @@ export declare class vImage_PlanarF extends SDKHandle {
      * @availability iOS 16.0+
      */
     static makePixel(source: number): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO7PlanarFV": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_F
@@ -15004,6 +15704,9 @@ export declare class vImage_PlanarFx2 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get planeCount(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO9PlanarFx2V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_F
@@ -15030,6 +15733,9 @@ export declare class vImage_PlanarFx3 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get planeCount(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO9PlanarFx3V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_F
@@ -15056,6 +15762,9 @@ export declare class vImage_PlanarFx4 extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get planeCount(): number;
+    readonly $type: {
+        "s:10Accelerate6vImageO9PlanarFx4V": true;
+    };
 }
 /**
  * typealias ComponentType = Pixel_F
@@ -15077,6 +15786,9 @@ export type vImage_ReflectionAxis = "vertical" | "horizontal";
  * @availability iOS 16.0+
  */
 export declare class vImage_Rotation extends SDKHandle {
+    readonly $type: {
+        "s:10Accelerate6vImageO8RotationO": true;
+    };
 }
 /**
  * enum ShearDirection
@@ -15128,6 +15840,9 @@ export declare class vImage_Size extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initExactly(size: $SDK54): (vImage_Size) | null;
+    readonly $type: {
+        "s:10Accelerate6vImageO4SizeV": true;
+    };
 }
 /**
  * typealias StructuringElement = vImage.ConvolutionKernel2D
@@ -15165,9 +15880,15 @@ export declare class vImageChannelDescription extends SDKHandle {
     static initMinZeroFullMax(min: number, zero: number, full: number, max: number): vImageChannelDescription;
     /** init() */
     static init(): vImageChannelDescription;
+    readonly $type: {
+        "c:@S@vImageChannelDescription": true;
+    };
 }
 /** class vImageConstCVImageFormat */
 export declare class vImageConstCVImageFormat extends SDKHandle {
+    readonly $type: {
+        "c:@T@vImageConstCVImageFormatRef": true;
+    };
 }
 /** class vImageConverter */
 export declare class vImageConverter extends SDKHandle {
@@ -15236,6 +15957,9 @@ export declare class vImageConverter extends SDKHandle {
             "destination": vImage_Buffer;
         };
     };
+    readonly $type: {
+        "c:@T@vImageConverterRef": true;
+    };
 }
 /** class vImageCVImageFormat */
 export declare class vImageCVImageFormat extends SDKHandle {
@@ -15292,6 +16016,9 @@ export declare class vImageCVImageFormat extends SDKHandle {
      * @availability iOS 13.0+
      */
     get channels(): Array<vImage_BufferType>;
+    readonly $type: {
+        "c:@T@vImageCVImageFormatRef": true;
+    };
 }
 /**
  * enum ChromaSiting
@@ -15350,6 +16077,9 @@ export declare class vImageRGBPrimaries extends SDKHandle {
     static initRed_xGreen_xBlue_xWhite_xRed_yGreen_yBlue_yWhite_y(red_x: number, green_x: number, blue_x: number, white_x: number, red_y: number, green_y: number, blue_y: number, white_y: number): vImageRGBPrimaries;
     /** init() */
     static init(): vImageRGBPrimaries;
+    readonly $type: {
+        "c:@S@vImageRGBPrimaries": true;
+    };
 }
 /** struct vImageTransferFunction */
 export declare class vImageTransferFunction extends SDKHandle {
@@ -15381,6 +16111,9 @@ export declare class vImageTransferFunction extends SDKHandle {
     static initC0C1C2C3GammaCutoffC4C5(c0: number, c1: number, c2: number, c3: number, gamma: number, cutoff: number, c4: number, c5: number): vImageTransferFunction;
     /** init() */
     static init(): vImageTransferFunction;
+    readonly $type: {
+        "c:@S@vImageTransferFunction": true;
+    };
 }
 /** struct vImageWhitePoint */
 export declare class vImageWhitePoint extends SDKHandle {
@@ -15394,6 +16127,9 @@ export declare class vImageWhitePoint extends SDKHandle {
     static initWhite_xWhite_y(white_x: number, white_y: number): vImageWhitePoint;
     /** init() */
     static init(): vImageWhitePoint;
+    readonly $type: {
+        "c:@S@vImageWhitePoint": true;
+    };
 }
 /** struct vImageYpCbCrType */
 export type vImageYpCbCrType = (number & {});
@@ -19315,7 +20051,7 @@ export declare function vImageCGImageFormat_IsEqual(f1?: (SDKHandle) | null, f2?
  * func vImageCVImageFormat_Copy(_ format: vImageConstCVImageFormat) -> Unmanaged<vImageCVImageFormat>!
  * @availability iOS 8.0+
  */
-export declare function vImageCVImageFormat_Copy(format: vImageConstCVImageFormat): $SDK119;
+export declare function vImageCVImageFormat_Copy(format: vImageConstCVImageFormat): $SDK106;
 /**
  * func vImageCVImageFormat_CopyChannelDescription(_ format: vImageCVImageFormat, _ desc: UnsafePointer<vImageChannelDescription>, _ type: vImageBufferTypeCode) -> vImage_Error
  * @availability iOS 8.0+
@@ -19330,12 +20066,12 @@ export declare function vImageCVImageFormat_CopyConversionMatrix(format: vImageC
  * func vImageCVImageFormat_Create(_ imageFormatType: UInt32, _ matrix: UnsafePointer<vImage_ARGBToYpCbCrMatrix>!, _ cvImageBufferChromaLocation: CFString!, _ baseColorspace: CGColorSpace!, _ alphaIsOneHint: Int32) -> Unmanaged<vImageCVImageFormat>!
  * @availability iOS 8.0+
  */
-export declare function vImageCVImageFormat_Create(imageFormatType: number, matrix: (SDKHandle) | null, cvImageBufferChromaLocation: $SDK120, baseColorspace: $SDK103, alphaIsOneHint: number): $SDK119;
+export declare function vImageCVImageFormat_Create(imageFormatType: number, matrix: (SDKHandle) | null, cvImageBufferChromaLocation: $SDK119, baseColorspace: $SDK103, alphaIsOneHint: number): $SDK106;
 /**
  * func vImageCVImageFormat_CreateWithCVPixelBuffer(_ buffer: CVPixelBuffer!) -> Unmanaged<vImageCVImageFormat>!
  * @availability iOS 8.0+
  */
-export declare function vImageCVImageFormat_CreateWithCVPixelBuffer(buffer?: (_CoreVideo_CVBuffer) | null): $SDK119;
+export declare function vImageCVImageFormat_CreateWithCVPixelBuffer(buffer?: (_CoreVideo_CVBuffer) | null): $SDK106;
 /**
  * func vImageCVImageFormat_GetAlphaHint(_ format: vImageConstCVImageFormat) -> Int32
  * @availability iOS 8.0+
@@ -19360,12 +20096,12 @@ export declare function vImageCVImageFormat_GetChannelNames(format: vImageConstC
  * func vImageCVImageFormat_GetChromaSiting(_ format: vImageConstCVImageFormat) -> Unmanaged<CFString>!
  * @availability iOS 8.0+
  */
-export declare function vImageCVImageFormat_GetChromaSiting(format: vImageConstCVImageFormat): (SDKHandle) | null;
+export declare function vImageCVImageFormat_GetChromaSiting(format: vImageConstCVImageFormat): $SDK119;
 /**
  * func vImageCVImageFormat_GetColorSpace(_ format: vImageConstCVImageFormat) -> Unmanaged<CGColorSpace>!
  * @availability iOS 8.0+
  */
-export declare function vImageCVImageFormat_GetColorSpace(format: vImageConstCVImageFormat): (SDKHandle) | null;
+export declare function vImageCVImageFormat_GetColorSpace(format: vImageConstCVImageFormat): $SDK103;
 /**
  * func vImageCVImageFormat_GetConversionMatrix(_ format: vImageConstCVImageFormat, _ outType: UnsafeMutablePointer<vImageMatrixType>!) -> UnsafeRawPointer!
  * @availability iOS 8.0+
@@ -19390,7 +20126,7 @@ export declare function vImageCVImageFormat_SetAlphaHint(format: vImageCVImageFo
  * func vImageCVImageFormat_SetChromaSiting(_ format: vImageCVImageFormat, _ siting: CFString!) -> vImage_Error
  * @availability iOS 8.0+
  */
-export declare function vImageCVImageFormat_SetChromaSiting(format: vImageCVImageFormat, siting?: $SDK120): number;
+export declare function vImageCVImageFormat_SetChromaSiting(format: vImageCVImageFormat, siting?: $SDK119): number;
 /**
  * func vImageCVImageFormat_SetColorSpace(_ format: vImageCVImageFormat, _ colorspace: CGColorSpace!) -> vImage_Error
  * @availability iOS 8.0+
@@ -20409,27 +21145,27 @@ export declare function vImageConvert_YpCbCrToARGB_GenerateConversion(matrix: SD
  * func vImageConverter_CreateForCGToCVImageFormat(_ srcFormat: UnsafePointer<vImage_CGImageFormat>, _ destFormat: vImageCVImageFormat, _ backgroundColor: UnsafePointer<CGFloat>!, _ flags: vImage_Flags, _ error: UnsafeMutablePointer<vImage_Error>!) -> Unmanaged<vImageConverter>!
  * @availability iOS 8.0+
  */
-export declare function vImageConverter_CreateForCGToCVImageFormat(srcFormat: SDKHandle, destFormat: vImageCVImageFormat, backgroundColor: $SDK55, flags: number, error?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function vImageConverter_CreateForCGToCVImageFormat(srcFormat: SDKHandle, destFormat: vImageCVImageFormat, backgroundColor: $SDK55, flags: number, error?: (SDKHandle) | null): $SDK121;
 /**
  * func vImageConverter_CreateForCVToCGImageFormat(_ srcFormat: vImageCVImageFormat, _ destFormat: UnsafePointer<vImage_CGImageFormat>, _ backgroundColor: UnsafePointer<CGFloat>!, _ flags: vImage_Flags, _ error: UnsafeMutablePointer<vImage_Error>!) -> Unmanaged<vImageConverter>!
  * @availability iOS 8.0+
  */
-export declare function vImageConverter_CreateForCVToCGImageFormat(srcFormat: vImageCVImageFormat, destFormat: SDKHandle, backgroundColor: $SDK55, flags: number, error?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function vImageConverter_CreateForCVToCGImageFormat(srcFormat: vImageCVImageFormat, destFormat: SDKHandle, backgroundColor: $SDK55, flags: number, error?: (SDKHandle) | null): $SDK121;
 /**
  * func vImageConverter_CreateWithCGColorConversionInfo(_ colorConversionInfoRef: CGColorConversionInfo, _ sFormat: UnsafePointer<vImage_CGImageFormat>, _ dFormat: UnsafePointer<vImage_CGImageFormat>, _ bg: UnsafePointer<CGFloat>!, _ flags: vImage_Flags, _ error: UnsafeMutablePointer<vImage_Error>!) -> Unmanaged<vImageConverter>!
  * @availability iOS 14.0+
  */
-export declare function vImageConverter_CreateWithCGColorConversionInfo(colorConversionInfoRef: _CoreGraphics_CGColorConversionInfo, sFormat: SDKHandle, dFormat: SDKHandle, bg: $SDK55, flags: number, error?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function vImageConverter_CreateWithCGColorConversionInfo(colorConversionInfoRef: _CoreGraphics_CGColorConversionInfo, sFormat: SDKHandle, dFormat: SDKHandle, bg: $SDK55, flags: number, error?: (SDKHandle) | null): $SDK121;
 /**
  * func vImageConverter_CreateWithCGImageFormat(_ srcFormat: UnsafePointer<vImage_CGImageFormat>, _ destFormat: UnsafePointer<vImage_CGImageFormat>, _ backgroundColor: UnsafePointer<CGFloat>!, _ flags: vImage_Flags, _ error: UnsafeMutablePointer<vImage_Error>!) -> Unmanaged<vImageConverter>!
  * @availability iOS 7.0+
  */
-export declare function vImageConverter_CreateWithCGImageFormat(srcFormat: SDKHandle, destFormat: SDKHandle, backgroundColor: $SDK55, flags: number, error?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function vImageConverter_CreateWithCGImageFormat(srcFormat: SDKHandle, destFormat: SDKHandle, backgroundColor: $SDK55, flags: number, error?: (SDKHandle) | null): $SDK121;
 /**
  * func vImageConverter_CreateWithColorSyncCodeFragment(_ codeFragment: CFTypeRef, _ srcFormat: UnsafePointer<vImage_CGImageFormat>, _ destFormat: UnsafePointer<vImage_CGImageFormat>!, _ backgroundColor: UnsafePointer<CGFloat>!, _ flags: vImage_Flags, _ error: UnsafeMutablePointer<vImage_Error>!) -> Unmanaged<vImageConverter>!
  * @availability iOS 7.0+
  */
-export declare function vImageConverter_CreateWithColorSyncCodeFragment(codeFragment: unknown, srcFormat: SDKHandle, destFormat: (SDKHandle) | null, backgroundColor: $SDK55, flags: number, error?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function vImageConverter_CreateWithColorSyncCodeFragment(codeFragment: unknown, srcFormat: SDKHandle, destFormat: (SDKHandle) | null, backgroundColor: $SDK55, flags: number, error?: (SDKHandle) | null): $SDK121;
 /**
  * func vImageConverter_GetDestinationBufferOrder(_ converter: vImageConverter) -> UnsafePointer<vImageBufferTypeCode>!
  * @availability iOS 8.0+
@@ -20554,12 +21290,12 @@ export declare function vImageCreateGammaFunction(gamma: number, gamma_type: num
  * func vImageCreateMonochromeColorSpaceWithWhitePointAndTransferFunction(_ whitePoint: UnsafePointer<vImageWhitePoint>, _ tf: UnsafePointer<vImageTransferFunction>, _ intent: CGColorRenderingIntent, _ flags: vImage_Flags, _ error: UnsafeMutablePointer<vImage_Error>!) -> Unmanaged<CGColorSpace>!
  * @availability iOS 8.0+
  */
-export declare function vImageCreateMonochromeColorSpaceWithWhitePointAndTransferFunction(whitePoint: SDKHandle, tf: SDKHandle, intent: _CoreGraphics_CGColorRenderingIntent, flags: number, error?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function vImageCreateMonochromeColorSpaceWithWhitePointAndTransferFunction(whitePoint: SDKHandle, tf: SDKHandle, intent: _CoreGraphics_CGColorRenderingIntent, flags: number, error?: (SDKHandle) | null): $SDK103;
 /**
  * func vImageCreateRGBColorSpaceWithPrimariesAndTransferFunction(_ primaries: UnsafePointer<vImageRGBPrimaries>, _ tf: UnsafePointer<vImageTransferFunction>, _ intent: CGColorRenderingIntent, _ flags: vImage_Flags, _ error: UnsafeMutablePointer<vImage_Error>!) -> Unmanaged<CGColorSpace>!
  * @availability iOS 8.0+
  */
-export declare function vImageCreateRGBColorSpaceWithPrimariesAndTransferFunction(primaries: SDKHandle, tf: SDKHandle, intent: _CoreGraphics_CGColorRenderingIntent, flags: number, error?: (SDKHandle) | null): (SDKHandle) | null;
+export declare function vImageCreateRGBColorSpaceWithPrimariesAndTransferFunction(primaries: SDKHandle, tf: SDKHandle, intent: _CoreGraphics_CGColorRenderingIntent, flags: number, error?: (SDKHandle) | null): $SDK103;
 /**
  * func vImageDestroyGammaFunction(_ f: GammaFunction!)
  * @availability iOS 5.0+

@@ -45,6 +45,10 @@ export declare class SNAudioFileAnalyzer extends SDKHandle {
      * @availability iOS 13.0+
      */
     remove(request: $SDK0): void;
+    readonly $type: {
+        "c:objc(cs)SNAudioFileAnalyzer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class SNAudioStreamAnalyzer
@@ -81,6 +85,10 @@ export declare class SNAudioStreamAnalyzer extends SDKHandle {
      * @availability iOS 13.0+
      */
     remove(request: $SDK0): void;
+    readonly $type: {
+        "c:objc(cs)SNAudioStreamAnalyzer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class SNClassification
@@ -97,6 +105,10 @@ export declare class SNClassification extends SDKHandle {
      * @availability iOS 13.0+
      */
     get identifier(): string;
+    readonly $type: {
+        "c:objc(cs)SNClassification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "confidence": true;
         "identifier": true;
@@ -122,6 +134,10 @@ export declare class SNClassificationResult extends SDKHandle {
      * @availability iOS 13.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "c:objc(cs)SNClassificationResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "classifications": true;
         "timeRange": true;
@@ -181,6 +197,10 @@ export declare class SNClassifySoundRequest extends SDKHandle {
      * @availability iOS 15.0+
      */
     get windowDurationConstraint(): SNTimeDurationConstraint;
+    readonly $type: {
+        "c:objc(cs)SNClassifySoundRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "knownClassifications": true;
         "overlapFactor": true;
@@ -222,6 +242,9 @@ export declare class SNError extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get operationFailed(): SNError_Code;
+    readonly $type: {
+        "s:SC11SNErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -273,6 +296,9 @@ export interface SNResultsObserving {
  * @availability iOS 15.0+
  */
 export declare class SNTimeDurationConstraint extends SDKHandle {
+    readonly $type: {
+        "s:13SoundAnalysis24SNTimeDurationConstraintO": true;
+    };
 }
 /**
  * let SNErrorDomain: String

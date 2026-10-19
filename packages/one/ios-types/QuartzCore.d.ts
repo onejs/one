@@ -80,6 +80,10 @@ export declare class CAAnimation extends SDKHandle {
      */
     get timingFunction(): $SDK2;
     set timingFunction(value: $SDK2);
+    readonly $type: {
+        "c:objc(cs)CAAnimation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "preferredFrameRateRange": true;
@@ -154,6 +158,11 @@ export declare class CAAnimationGroup extends CAAnimationGroup_base {
      */
     get animations(): $SDK3;
     set animations(value: $SDK3);
+    readonly $type: {
+        "c:objc(cs)CAAnimationGroup": true;
+        "c:objc(cs)CAAnimation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "preferredFrameRateRange": true;
@@ -194,9 +203,7 @@ export declare class CAPropertyAnimation extends CAPropertyAnimation_base {
      * convenience init(keyPath path: String?)
      * @availability iOS 2.0+
      */
-    static initKeyPath(path?: (string) | null): CAPropertyAnimation;
-    /** init() */
-    static init(): CAPropertyAnimation;
+    static init(path?: (string) | null): CAPropertyAnimation;
     /**
      * var isAdditive: Bool { get set }
      * @availability iOS 2.0+
@@ -221,6 +228,11 @@ export declare class CAPropertyAnimation extends CAPropertyAnimation_base {
      */
     get valueFunction(): (CAValueFunction) | null;
     set valueFunction(value: (CAValueFunction) | null);
+    readonly $type: {
+        "c:objc(cs)CAPropertyAnimation": true;
+        "c:objc(cs)CAAnimation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "preferredFrameRateRange": true;
@@ -258,6 +270,12 @@ export declare class CABasicAnimation extends CABasicAnimation_base {
      */
     get toValue(): (unknown) | null;
     set toValue(value: (unknown) | null);
+    readonly $type: {
+        "c:objc(cs)CABasicAnimation": true;
+        "c:objc(cs)CAPropertyAnimation": true;
+        "c:objc(cs)CAAnimation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "preferredFrameRateRange": true;
@@ -314,8 +332,6 @@ export declare class CADisplayLink extends SDKHandle {
      * @availability iOS 3.1+
      */
     add(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void;
-    /** init() */
-    static init(): CADisplayLink;
     /**
      * func invalidate()
      * @availability iOS 3.1+
@@ -367,6 +383,10 @@ export declare class CADisplayLink extends SDKHandle {
      * @availability iOS 3.1+
      */
     get timestamp(): number;
+    readonly $type: {
+        "c:objc(cs)CADisplayLink": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "frameInterval": true;
@@ -940,6 +960,10 @@ export declare class CALayer extends SDKHandle {
      */
     get zPosition(): number;
     set zPosition(value: number);
+    readonly $type: {
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -1015,6 +1039,11 @@ export declare class CAEAGLLayer extends CAEAGLLayer_base {
      */
     get presentsWithTransaction(): boolean;
     set presentsWithTransaction(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CAEAGLLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -1137,6 +1166,10 @@ export declare class CAEDRMetadata extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get isAvailable(): boolean;
+    readonly $type: {
+        "c:objc(cs)CAEDRMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CAEmitterCell
@@ -1365,6 +1398,10 @@ export declare class CAEmitterCell extends SDKHandle {
      */
     get zAcceleration(): number;
     set zAcceleration(value: number);
+    readonly $type: {
+        "c:objc(cs)CAEmitterCell": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alphaRange": true;
         "alphaSpeed": true;
@@ -1501,6 +1538,11 @@ export declare class CAEmitterLayer extends CAEmitterLayer_base {
      */
     get velocity(): number;
     set velocity(value: number);
+    readonly $type: {
+        "c:objc(cs)CAEmitterLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -1724,6 +1766,9 @@ export declare class CAFrameRateRange extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(): CAFrameRateRange;
+    readonly $type: {
+        "c:@S@CAFrameRateRange": true;
+    };
 }
 declare const CAGradientLayer_base: Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer);
 /**
@@ -1763,6 +1808,11 @@ export declare class CAGradientLayer extends CAGradientLayer_base {
      */
     get type(): CAGradientLayerType;
     set type(value: CAGradientLayerType);
+    readonly $type: {
+        "c:objc(cs)CAGradientLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -1916,6 +1966,12 @@ export declare class CAKeyframeAnimation extends CAKeyframeAnimation_base {
      */
     get values(): (Array<unknown>) | null;
     set values(value: (Array<unknown>) | null);
+    readonly $type: {
+        "c:objc(cs)CAKeyframeAnimation": true;
+        "c:objc(cs)CAPropertyAnimation": true;
+        "c:objc(cs)CAAnimation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "preferredFrameRateRange": true;
@@ -2227,13 +2283,15 @@ export declare class CAMediaTimingFunction extends SDKHandle {
      * @availability iOS 2.0+
      */
     getControlPoint(idx: number, ptr: SDKHandle): void;
-    /** init() */
-    static init(): CAMediaTimingFunction;
     /**
      * init(controlPoints c1x: Float, _ c1y: Float, _ c2x: Float, _ c2y: Float)
      * @availability iOS 2.0+
      */
     static initControlPoints(c1x: number, c1y: number, c2x: number, c2y: number): CAMediaTimingFunction;
+    readonly $type: {
+        "c:objc(cs)CAMediaTimingFunction": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct CAMediaTimingFunctionName
@@ -2282,13 +2340,11 @@ export declare class CAMetalDisplayLink extends SDKHandle {
      * @availability iOS 17.0+
      */
     add(runloop: _Foundation_RunLoop, mode: _Foundation_RunLoop_Mode): void;
-    /** init() */
-    static init(): CAMetalDisplayLink;
     /**
      * init(metalLayer layer: CAMetalLayer)
      * @availability iOS 17.0+
      */
-    static initMetalLayer(layer: CAMetalLayer): CAMetalDisplayLink;
+    static init(layer: CAMetalLayer): CAMetalDisplayLink;
     /**
      * func invalidate()
      * @availability iOS 17.0+
@@ -2323,6 +2379,10 @@ export declare class CAMetalDisplayLink extends SDKHandle {
      */
     get preferredFrameRateRange(): CAFrameRateRange;
     set preferredFrameRateRange(value: CAFrameRateRange);
+    readonly $type: {
+        "c:objc(cs)CAMetalDisplayLink": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "isPaused": true;
@@ -2352,6 +2412,10 @@ export declare class CAMetalDisplayLink_Update extends SDKHandle {
      * @availability iOS 17.0+
      */
     get targetTimestamp(): number;
+    readonly $type: {
+        "c:objc(cs)CAMetalDisplayLinkUpdate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "drawable": true;
         "targetPresentationTimestamp": true;
@@ -2463,6 +2527,11 @@ export declare class CAMetalLayer extends CAMetalLayer_base {
      */
     get wantsExtendedDynamicRangeContent(): boolean;
     set wantsExtendedDynamicRangeContent(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CAMetalLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -2543,7 +2612,7 @@ export declare class CARenderer extends SDKHandle {
      * init(mtlTexture tex: any MTLTexture, options dict: [AnyHashable : Any]? = nil)
      * @availability iOS 11.0+
      */
-    static initMtlTextureOptions(tex: SDKHandle, dict?: $SDK0): CARenderer;
+    static init(tex: SDKHandle, dict?: $SDK0): CARenderer;
     /**
      * func addUpdate(_ r: CGRect)
      * @availability iOS 2.0+
@@ -2559,8 +2628,6 @@ export declare class CARenderer extends SDKHandle {
      * @availability iOS 2.0+
      */
     endFrame(): void;
-    /** init() */
-    static init(): CARenderer;
     /**
      * func nextFrameTime() -> CFTimeInterval
      * @availability iOS 2.0+
@@ -2593,6 +2660,10 @@ export declare class CARenderer extends SDKHandle {
      */
     get layer(): (CALayer) | null;
     set layer(value: (CALayer) | null);
+    readonly $type: {
+        "c:objc(cs)CARenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bounds": true;
         "layer": true;
@@ -2660,6 +2731,11 @@ export declare class CAReplicatorLayer extends CAReplicatorLayer_base {
      */
     get preservesDepth(): boolean;
     set preservesDepth(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CAReplicatorLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -2752,6 +2828,11 @@ export declare class CAScrollLayer extends CAScrollLayer_base {
      */
     get scrollMode(): CAScrollLayerScrollMode;
     set scrollMode(value: CAScrollLayerScrollMode);
+    readonly $type: {
+        "c:objc(cs)CAScrollLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -2924,6 +3005,11 @@ export declare class CAShapeLayer extends CAShapeLayer_base {
      */
     get strokeStart(): number;
     set strokeStart(value: number);
+    readonly $type: {
+        "c:objc(cs)CAShapeLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -3077,13 +3163,11 @@ declare const CASpringAnimation_base: Omit<typeof CABasicAnimation, "init" | "pr
  * @availability iOS 9.0+
  */
 export declare class CASpringAnimation extends CASpringAnimation_base {
-    /** init() */
-    static init(): CASpringAnimation;
     /**
      * init(perceptualDuration: CFTimeInterval, bounce: CGFloat)
      * @availability iOS 17.0+
      */
-    static initPerceptualDurationBounce(perceptualDuration: number, bounce: number): CASpringAnimation;
+    static init(perceptualDuration: number, bounce: number): CASpringAnimation;
     /**
      * var allowsOverdamping: Bool { get set }
      * @availability iOS 17.0+
@@ -3129,6 +3213,13 @@ export declare class CASpringAnimation extends CASpringAnimation_base {
      */
     get stiffness(): number;
     set stiffness(value: number);
+    readonly $type: {
+        "c:objc(cs)CASpringAnimation": true;
+        "c:objc(cs)CABasicAnimation": true;
+        "c:objc(cs)CAPropertyAnimation": true;
+        "c:objc(cs)CAAnimation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "preferredFrameRateRange": true;
@@ -3207,6 +3298,11 @@ export declare class CATextLayer extends CATextLayer_base {
      */
     get isWrapped(): boolean;
     set isWrapped(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CATextLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -3374,6 +3470,11 @@ export declare class CATiledLayer extends CATiledLayer_base {
      */
     get tileSize(): $SDK7;
     set tileSize(value: $SDK7);
+    readonly $type: {
+        "c:objc(cs)CATiledLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -3518,6 +3619,10 @@ export declare class CATransaction extends SDKHandle {
     static value(key: string): (unknown) | null;
     /** init() */
     static init(): CATransaction;
+    readonly $type: {
+        "c:objc(cs)CATransaction": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct CATransform3D
@@ -3630,6 +3735,9 @@ export declare class CATransform3D extends SDKHandle {
      * @availability iOS 2.0+
      */
     static init(): CATransform3D;
+    readonly $type: {
+        "c:@S@CATransform3D": true;
+    };
 }
 declare const CATransformLayer_base: Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer);
 /**
@@ -3639,6 +3747,11 @@ declare const CATransformLayer_base: Omit<typeof CALayer, "init" | "prototype"> 
 export declare class CATransformLayer extends CATransformLayer_base {
     /** init() */
     static init(): CATransformLayer;
+    readonly $type: {
+        "c:objc(cs)CATransformLayer": true;
+        "c:objc(cs)CALayer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actions": true;
         "allowsEdgeAntialiasing": true;
@@ -3730,6 +3843,11 @@ export declare class CATransition extends CATransition_base {
      */
     get type(): CATransitionType;
     set type(value: CATransitionType);
+    readonly $type: {
+        "c:objc(cs)CATransition": true;
+        "c:objc(cs)CAAnimation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "preferredFrameRateRange": true;
@@ -3814,14 +3932,16 @@ export declare class CAValueFunction extends SDKHandle {
      * convenience init?(name: CAValueFunctionName)
      * @availability iOS 3.0+
      */
-    static initName(name: CAValueFunctionName): (CAValueFunction) | null;
-    /** init() */
-    static init(): CAValueFunction;
+    static init(name: CAValueFunctionName): (CAValueFunction) | null;
     /**
      * var name: CAValueFunctionName { get }
      * @availability iOS 3.0+
      */
     get name(): CAValueFunctionName;
+    readonly $type: {
+        "c:objc(cs)CAValueFunction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
     };
@@ -3904,6 +4024,10 @@ export declare class NSValue extends SDKHandle {
      * @availability iOS 2.0+
      */
     get caTransform3DValue(): CATransform3D;
+    readonly $type: {
+        "c:objc(cs)NSValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "caTransform3DValue": true;
     };

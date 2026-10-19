@@ -70,6 +70,10 @@ export declare class MKAddress extends SDKHandle {
      * @availability iOS 26.0+
      */
     get shortAddress(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)MKAddress": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fullAddress": true;
         "shortAddress": true;
@@ -100,8 +104,6 @@ export declare class MKAddressFilter extends SDKHandle {
      * @availability iOS 18.0+
      */
     includes(options: MKAddressFilter_Options): boolean;
-    /** init() */
-    static init(): MKAddressFilter;
     /**
      * init(excluding options: MKAddressFilter.Options)
      * @availability iOS 18.0+
@@ -112,6 +114,10 @@ export declare class MKAddressFilter extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initIncluding(options: MKAddressFilter_Options): MKAddressFilter;
+    readonly $type: {
+        "c:objc(cs)MKAddressFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct Options
@@ -190,6 +196,10 @@ export declare class MKAddressRepresentations extends SDKHandle {
      * @availability iOS 26.0+
      */
     get region(): (_Foundation_Locale_Region) | null;
+    readonly $type: {
+        "c:objc(cs)MKAddressRepresentations": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cityName": true;
         "cityWithContext19911": true;
@@ -216,8 +226,6 @@ export interface MKAnnotation {
  * @availability iOS 3.0+
  */
 export declare class MKAnnotationView extends SDKHandle {
-    /** init() */
-    static init(): MKAnnotationView;
     /**
      * init(annotation: (any MKAnnotation)?, reuseIdentifier: String?)
      * @availability iOS 3.0+
@@ -372,6 +380,12 @@ export declare class MKAnnotationView extends SDKHandle {
      */
     get zPriority(): MKAnnotationViewZPriority;
     set zPriority(value: MKAnnotationViewZPriority);
+    readonly $type: {
+        "c:objc(cs)MKAnnotationView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessoryOffset": true;
         "annotation": true;
@@ -476,17 +490,20 @@ export declare class MKShape extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MKShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "title": true;
     };
 }
-declare const MKCircle_base: Omit<typeof MKShape, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKShape);
 /**
  * class MKCircle
  * @availability iOS 4.0+
  */
-export declare class MKCircle extends MKCircle_base {
+export declare class MKCircle extends MKShape {
     /**
      * convenience init(center coord: CLLocationCoordinate2D, radius: CLLocationDistance)
      * @availability iOS 4.0+
@@ -497,8 +514,6 @@ export declare class MKCircle extends MKCircle_base {
      * @availability iOS 4.0+
      */
     static initMapRect(mapRect: MKMapRect): MKCircle;
-    /** init() */
-    static init(): MKCircle;
     /**
      * var boundingMapRect: MKMapRect { get }
      * @availability iOS 4.0+
@@ -514,6 +529,11 @@ export declare class MKCircle extends MKCircle_base {
      * @availability iOS 4.0+
      */
     get radius(): number;
+    readonly $type: {
+        "c:objc(cs)MKCircle": true;
+        "c:objc(cs)MKShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "title": true;
@@ -537,13 +557,11 @@ export declare class MKOverlayRenderer extends SDKHandle {
      * @availability iOS 7.0+
      */
     draw(mapRect: MKMapRect, zoomScale: number, context: _CoreGraphics_CGContext): void;
-    /** init() */
-    static init(): MKOverlayRenderer;
     /**
      * init(overlay: any MKOverlay)
      * @availability iOS 7.0+
      */
-    static initOverlay(overlay: SDKHandle): MKOverlayRenderer;
+    static init(overlay: SDKHandle): MKOverlayRenderer;
     /**
      * func mapPoint(for point: CGPoint) -> MKMapPoint
      * @availability iOS 7.0+
@@ -601,6 +619,10 @@ export declare class MKOverlayRenderer extends SDKHandle {
      * @availability iOS 7.0+
      */
     get overlay(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MKOverlayRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blendMode": true;
@@ -706,6 +728,11 @@ export declare class MKOverlayPathRenderer extends MKOverlayPathRenderer_base {
      */
     get strokeColor(): (_UIKit_UIColor) | null;
     set strokeColor(value: (_UIKit_UIColor) | null);
+    readonly $type: {
+        "c:objc(cs)MKOverlayPathRenderer": true;
+        "c:objc(cs)MKOverlayRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blendMode": true;
@@ -729,13 +756,11 @@ declare const MKCircleRenderer_base: Omit<typeof MKOverlayPathRenderer, "init" |
  * @availability iOS 7.0+
  */
 export declare class MKCircleRenderer extends MKCircleRenderer_base {
-    /** init() */
-    static init(): MKCircleRenderer;
     /**
      * init(circle: MKCircle)
      * @availability iOS 7.0+
      */
-    static initCircle(circle: MKCircle): MKCircleRenderer;
+    static init(circle: MKCircle): MKCircleRenderer;
     /**
      * var circle: MKCircle { get }
      * @availability iOS 7.0+
@@ -753,6 +778,12 @@ export declare class MKCircleRenderer extends MKCircleRenderer_base {
      */
     get strokeStart(): number;
     set strokeStart(value: number);
+    readonly $type: {
+        "c:objc(cs)MKCircleRenderer": true;
+        "c:objc(cs)MKOverlayPathRenderer": true;
+        "c:objc(cs)MKOverlayRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blendMode": true;
@@ -781,6 +812,12 @@ export declare class MKCircleRenderer extends MKCircleRenderer_base {
 export declare class MKOverlayView extends SDKHandle {
     /** init() */
     static init(): MKOverlayView;
+    readonly $type: {
+        "c:objc(cs)MKOverlayView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MKOverlayPathView_base: Omit<typeof MKOverlayView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayView);
 /**
@@ -791,6 +828,13 @@ declare const MKOverlayPathView_base: Omit<typeof MKOverlayView, "init" | "proto
 export declare class MKOverlayPathView extends MKOverlayPathView_base {
     /** init() */
     static init(): MKOverlayPathView;
+    readonly $type: {
+        "c:objc(cs)MKOverlayPathView": true;
+        "c:objc(cs)MKOverlayView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MKCircleView_base: Omit<typeof MKOverlayPathView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathView);
 /**
@@ -801,6 +845,14 @@ declare const MKCircleView_base: Omit<typeof MKOverlayPathView, "init" | "protot
 export declare class MKCircleView extends MKCircleView_base {
     /** init() */
     static init(): MKCircleView;
+    readonly $type: {
+        "c:objc(cs)MKCircleView": true;
+        "c:objc(cs)MKOverlayPathView": true;
+        "c:objc(cs)MKOverlayView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MKClusterAnnotation
@@ -829,6 +881,10 @@ export declare class MKClusterAnnotation extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MKClusterAnnotation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "memberAnnotations": true;
         "subtitle": true;
@@ -844,9 +900,7 @@ export declare class MKCompassButton extends SDKHandle {
      * convenience init(mapView: MKMapView?)
      * @availability iOS 11.0+
      */
-    static initMapView(mapView?: (MKMapView) | null): MKCompassButton;
-    /** init() */
-    static init(): MKCompassButton;
+    static init(mapView?: (MKMapView) | null): MKCompassButton;
     /**
      * var compassVisibility: MKFeatureVisibility { get set }
      * @availability iOS 11.0+
@@ -859,6 +913,12 @@ export declare class MKCompassButton extends SDKHandle {
      */
     get mapView(): (MKMapView) | null;
     set mapView(value: (MKMapView) | null);
+    readonly $type: {
+        "c:objc(cs)MKCompassButton": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "compassVisibility": true;
         "mapView": true;
@@ -883,6 +943,9 @@ export declare class MKCoordinateRegion extends SDKHandle {
     static initCenterSpan(center: $SDK3, span: MKCoordinateSpan): MKCoordinateRegion;
     /** init() */
     static init63636(): MKCoordinateRegion;
+    readonly $type: {
+        "c:@SA@MKCoordinateRegion": true;
+    };
 }
 /** struct MKCoordinateSpan */
 export declare class MKCoordinateSpan extends SDKHandle {
@@ -896,6 +959,9 @@ export declare class MKCoordinateSpan extends SDKHandle {
     static initLatitudeDeltaLongitudeDelta(latitudeDelta: number, longitudeDelta: number): MKCoordinateSpan;
     /** init() */
     static init(): MKCoordinateSpan;
+    readonly $type: {
+        "c:@SA@MKCoordinateSpan": true;
+    };
 }
 /**
  * class MKDirections
@@ -917,18 +983,20 @@ export declare class MKDirections extends SDKHandle {
      * @availability iOS 7.0+
      */
     cancel(): void;
-    /** init() */
-    static init(): MKDirections;
     /**
      * init(request: MKDirections.Request)
      * @availability iOS 7.0+
      */
-    static initRequest(request: MKDirections_Request): MKDirections;
+    static init(request: MKDirections_Request): MKDirections;
     /**
      * var isCalculating: Bool { get }
      * @availability iOS 7.0+
      */
     get isCalculating(): boolean;
+    readonly $type: {
+        "c:objc(cs)MKDirections": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCalculating": true;
     };
@@ -979,6 +1047,10 @@ export declare class MKDirections_ETAResponse extends SDKHandle {
      * @availability iOS 9.0+
      */
     get transportType(): MKDirectionsTransportType;
+    readonly $type: {
+        "c:objc(cs)MKETAResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "destination": true;
         "distance": true;
@@ -999,13 +1071,11 @@ export declare class MKDirections_Request extends SDKHandle {
      * @availability iOS 6.0+
      */
     static isDirectionsRequest(url: string): boolean;
-    /** init() */
-    static init(): MKDirections_Request;
     /**
      * init(contentsOf url: URL)
      * @availability iOS 6.0+
      */
-    static initContentsOf(url: string): MKDirections_Request;
+    static init(url: string): MKDirections_Request;
     /**
      * var arrivalDate: Date? { get set }
      * @availability iOS 7.0+
@@ -1054,6 +1124,10 @@ export declare class MKDirections_Request extends SDKHandle {
      */
     get transportType(): MKDirectionsTransportType;
     set transportType(value: MKDirectionsTransportType);
+    readonly $type: {
+        "c:objc(cs)MKDirectionsRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arrivalDate": true;
         "departureDate": true;
@@ -1087,6 +1161,10 @@ export declare class MKDirections_Response extends SDKHandle {
      * @availability iOS 7.0+
      */
     get source(): MKMapItem;
+    readonly $type: {
+        "c:objc(cs)MKDirectionsResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "destination": true;
         "routes": true;
@@ -1177,6 +1255,11 @@ export declare class MKDistanceFormatter extends SDKHandle {
      */
     get units(): MKDistanceFormatter_Units;
     set units(value: MKDistanceFormatter_Units);
+    readonly $type: {
+        "c:objc(cs)MKDistanceFormatter": true;
+        "c:objc(cs)NSFormatter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "locale": true;
         "unitStyle": true;
@@ -1247,6 +1330,9 @@ export declare class MKError extends SDKHandle {
      * @availability iOS 3.0+
      */
     static get unknown(): MKError_Code;
+    readonly $type: {
+        "s:SC11MKErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1351,6 +1437,10 @@ export declare class MKGeocodingRequest extends SDKHandle {
      */
     get region(): MKCoordinateRegion;
     set region(value: MKCoordinateRegion);
+    readonly $type: {
+        "c:objc(cs)MKGeocodingRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addressString": true;
         "isCancelled": true;
@@ -1392,18 +1482,22 @@ export declare class MKMultiPoint extends MKMultiPoint_base {
      * @availability iOS 14.0+
      */
     locations(indexes: _Foundation_IndexSet): Array<number>;
+    readonly $type: {
+        "c:objc(cs)MKMultiPoint": true;
+        "c:objc(cs)MKShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "title": true;
         "pointCount": true;
     };
 }
-declare const MKPolyline_base: Omit<typeof MKMultiPoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKMultiPoint);
 /**
  * class MKPolyline
  * @availability iOS 4.0+
  */
-export declare class MKPolyline extends MKPolyline_base {
+export declare class MKPolyline extends MKMultiPoint {
     /**
      * convenience init(coordinates coords: UnsafePointer<CLLocationCoordinate2D>, count: Int)
      * @availability iOS 4.0+
@@ -1414,15 +1508,19 @@ export declare class MKPolyline extends MKPolyline_base {
      * @availability iOS 4.0+
      */
     static initPointsCount(points: SDKHandle, count: number): MKPolyline;
-    /** init() */
-    static init(): MKPolyline;
+    readonly $type: {
+        "c:objc(cs)MKPolyline": true;
+        "c:objc(cs)MKMultiPoint": true;
+        "c:objc(cs)MKShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "title": true;
         "pointCount": true;
     };
 }
-declare const MKGeodesicPolyline_base: Omit<typeof MKPolyline, "init" | "initCoordinatesCount" | "initPointsCount" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKPolyline);
+declare const MKGeodesicPolyline_base: Omit<typeof MKPolyline, "initCoordinatesCount" | "initPointsCount" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKPolyline);
 /**
  * class MKGeodesicPolyline
  * @availability iOS 7.0+
@@ -1438,8 +1536,13 @@ export declare class MKGeodesicPolyline extends MKGeodesicPolyline_base {
      * @availability iOS 7.0+
      */
     static initPointsCount(points: SDKHandle, count: number): MKGeodesicPolyline;
-    /** init() */
-    static init(): MKGeodesicPolyline;
+    readonly $type: {
+        "c:objc(cs)MKGeodesicPolyline": true;
+        "c:objc(cs)MKPolyline": true;
+        "c:objc(cs)MKMultiPoint": true;
+        "c:objc(cs)MKShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "title": true;
@@ -1458,6 +1561,10 @@ export declare class MKGeoJSONDecoder extends SDKHandle {
     decode(data: ArrayBuffer): Array<SDKHandle>;
     /** init() */
     static init(): MKGeoJSONDecoder;
+    readonly $type: {
+        "c:objc(cs)MKGeoJSONDecoder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MKGeoJSONFeature
@@ -1481,6 +1588,10 @@ export declare class MKGeoJSONFeature extends SDKHandle {
      * @availability iOS 13.0+
      */
     get properties(): (ArrayBuffer) | null;
+    readonly $type: {
+        "c:objc(cs)MKGeoJSONFeature": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "geometry": true;
         "identifier": true;
@@ -1499,13 +1610,11 @@ declare const MKPolylineRenderer_base: Omit<typeof MKOverlayPathRenderer, "init"
  * @availability iOS 7.0+
  */
 export declare class MKPolylineRenderer extends MKPolylineRenderer_base {
-    /** init() */
-    static init(): MKPolylineRenderer;
     /**
      * init(polyline: MKPolyline)
      * @availability iOS 7.0+
      */
-    static initPolyline(polyline: MKPolyline): MKPolylineRenderer;
+    static init(polyline: MKPolyline): MKPolylineRenderer;
     /**
      * var polyline: MKPolyline { get }
      * @availability iOS 7.0+
@@ -1523,6 +1632,12 @@ export declare class MKPolylineRenderer extends MKPolylineRenderer_base {
      */
     get strokeStart(): number;
     set strokeStart(value: number);
+    readonly $type: {
+        "c:objc(cs)MKPolylineRenderer": true;
+        "c:objc(cs)MKOverlayPathRenderer": true;
+        "c:objc(cs)MKOverlayRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blendMode": true;
@@ -1566,6 +1681,13 @@ export declare class MKGradientPolylineRenderer extends MKGradientPolylineRender
      * @availability iOS 14.0+
      */
     setColors(colors: Array<_UIKit_UIColor>, locations: Array<number>): void;
+    readonly $type: {
+        "c:objc(cs)MKGradientPolylineRenderer": true;
+        "c:objc(cs)MKPolylineRenderer": true;
+        "c:objc(cs)MKOverlayPathRenderer": true;
+        "c:objc(cs)MKOverlayRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blendMode": true;
@@ -1598,6 +1720,10 @@ export declare class MKMapConfiguration extends SDKHandle {
      */
     get elevationStyle(): MKMapConfiguration_ElevationStyle;
     set elevationStyle(value: MKMapConfiguration_ElevationStyle);
+    readonly $type: {
+        "c:objc(cs)MKMapConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "elevationStyle": true;
     };
@@ -1629,6 +1755,11 @@ export declare class MKHybridMapConfiguration extends MKMapConfiguration {
      */
     get showsTraffic(): boolean;
     set showsTraffic(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MKHybridMapConfiguration": true;
+        "c:objc(cs)MKMapConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "elevationStyle": true;
         "pointOfInterestFilter": true;
@@ -1650,6 +1781,10 @@ export declare class MKIconStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     get image(): _UIKit_UIImage;
+    readonly $type: {
+        "c:objc(cs)MKIconStyle": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "backgroundColor": true;
         "image": true;
@@ -1670,6 +1805,11 @@ export declare class MKImageryMapConfiguration extends MKMapConfiguration {
      * @availability iOS 16.0+
      */
     static initElevationStyle(elevationStyle: MKMapConfiguration_ElevationStyle): MKImageryMapConfiguration;
+    readonly $type: {
+        "c:objc(cs)MKImageryMapConfiguration": true;
+        "c:objc(cs)MKMapConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "elevationStyle": true;
     };
@@ -1715,6 +1855,10 @@ export declare class MKLocalPointsOfInterestRequest extends SDKHandle {
      * @availability iOS 14.0+
      */
     get region(): MKCoordinateRegion;
+    readonly $type: {
+        "c:objc(cs)MKLocalPointsOfInterestRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "coordinate": true;
         "pointOfInterestFilter": true;
@@ -1732,8 +1876,6 @@ export declare class MKLocalSearch extends SDKHandle {
      * @availability iOS 6.1+
      */
     cancel(): void;
-    /** init() */
-    static init(): MKLocalSearch;
     /**
      * init(request: MKLocalPointsOfInterestRequest)
      * @availability iOS 14.0+
@@ -1754,6 +1896,10 @@ export declare class MKLocalSearch extends SDKHandle {
      * @availability iOS 6.1+
      */
     get isSearching(): boolean;
+    readonly $type: {
+        "c:objc(cs)MKLocalSearch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isSearching": true;
     };
@@ -1821,6 +1967,10 @@ export declare class MKLocalSearch_Request extends SDKHandle {
      */
     get resultTypes(): MKLocalSearch_ResultType;
     set resultTypes(value: MKLocalSearch_ResultType);
+    readonly $type: {
+        "c:objc(cs)MKLocalSearchRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addressFilter": true;
         "naturalLanguageQuery": true;
@@ -1852,6 +2002,10 @@ export declare class MKLocalSearch_Response extends SDKHandle {
      * @availability iOS 6.1+
      */
     get mapItems(): Array<MKMapItem>;
+    readonly $type: {
+        "c:objc(cs)MKLocalSearchResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "boundingRegion": true;
         "mapItems": true;
@@ -1955,6 +2109,10 @@ export declare class MKLocalSearchCompleter extends SDKHandle {
      * @availability iOS 9.3+
      */
     get isSearching(): boolean;
+    readonly $type: {
+        "c:objc(cs)MKLocalSearchCompleter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addressFilter": true;
         "delegate": true;
@@ -2057,6 +2215,10 @@ export declare class MKLocalSearchCompletion extends SDKHandle {
      * @availability iOS 9.3+
      */
     get titleHighlightRanges(): Array<_Foundation_NSValue>;
+    readonly $type: {
+        "c:objc(cs)MKLocalSearchCompletion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "subtitleHighlightRanges": true;
@@ -2093,6 +2255,10 @@ export declare const MKLookAroundBadgePosition: {
  * @availability iOS 16.0+
  */
 export declare class MKLookAroundScene extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)MKLookAroundScene": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MKLookAroundSceneRequest
@@ -2139,6 +2305,10 @@ export declare class MKLookAroundSceneRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     get mapItem(): (MKMapItem) | null;
+    readonly $type: {
+        "c:objc(cs)MKLookAroundSceneRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancelled": true;
         "coordinate": true;
@@ -2171,6 +2341,10 @@ export declare class MKLookAroundSnapshotter extends SDKHandle {
      * @availability iOS 16.0+
      */
     get isLoading(): boolean;
+    readonly $type: {
+        "c:objc(cs)MKLookAroundSnapshotter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isLoading": true;
     };
@@ -2200,6 +2374,10 @@ export declare class MKLookAroundSnapshotter_Options extends SDKHandle {
      */
     get traitCollection(): _UIKit_UITraitCollection;
     set traitCollection(value: _UIKit_UITraitCollection);
+    readonly $type: {
+        "c:objc(cs)MKLookAroundSnapshotOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pointOfInterestFilter": true;
         "size": true;
@@ -2218,6 +2396,10 @@ export declare class MKLookAroundSnapshotter_Snapshot extends SDKHandle {
      * @availability iOS 16.0+
      */
     get image(): _UIKit_UIImage;
+    readonly $type: {
+        "c:objc(cs)MKLookAroundSnapshot": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "image": true;
     };
@@ -2227,8 +2409,6 @@ export declare class MKLookAroundSnapshotter_Snapshot extends SDKHandle {
  * @availability iOS 16.0+
  */
 export declare class MKLookAroundViewController extends SDKHandle {
-    /** init() */
-    static init(): MKLookAroundViewController;
     /**
      * init?(coder: NSCoder)
      * @availability iOS 16.0+
@@ -2280,6 +2460,12 @@ export declare class MKLookAroundViewController extends SDKHandle {
      */
     get showsRoadLabels(): boolean;
     set showsRoadLabels(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MKLookAroundViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "badgePosition": true;
         "delegate": true;
@@ -2345,8 +2531,6 @@ export declare class MKMapCamera extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initLookingAtForViewSizeAllowPitch(mapItem: MKMapItem, viewSize: $SDK25, allowPitch: boolean): MKMapCamera;
-    /** init() */
-    static init(): MKMapCamera;
     /**
      * var altitude: CLLocationDistance { get set }
      * @availability iOS 7.0+
@@ -2378,6 +2562,10 @@ export declare class MKMapCamera extends SDKHandle {
      */
     get pitch(): number;
     set pitch(value: number);
+    readonly $type: {
+        "c:objc(cs)MKMapCamera": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "altitude": true;
         "centerCoordinate": true;
@@ -2418,6 +2606,10 @@ export declare class MKMapFeatureAnnotation extends SDKHandle {
      * @availability iOS 16.0+
      */
     get pointOfInterestCategory(): $SDK29;
+    readonly $type: {
+        "c:objc(cs)MKMapFeatureAnnotation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "featureType": true;
         "iconStyle": true;
@@ -2483,8 +2675,6 @@ export declare class MKMapItem extends SDKHandle {
      * @availability iOS 13.2+
      */
     static openMapsWithLaunchOptionsFromCompletionHandler(mapItems: Array<MKMapItem>, launchOptions?: $SDK30, scene?: (_UIKit_UIScene) | null, completion?: $SDK31): void;
-    /** init() */
-    static init(): MKMapItem;
     /**
      * init(location: CLLocation, address: MKAddress?)
      * @availability iOS 26.0+
@@ -2572,6 +2762,10 @@ export declare class MKMapItem extends SDKHandle {
      */
     get url(): (string) | null;
     set url(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MKMapItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "address": true;
         "addressRepresentations": true;
@@ -2602,6 +2796,10 @@ export declare class MKMapItem_Identifier extends SDKHandle {
      * @availability iOS 18.0+
      */
     get rawValue(): string;
+    readonly $type: {
+        "c:objc(cs)MKMapItemIdentifier": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "rawValue": true;
     };
@@ -2626,6 +2824,10 @@ export declare class MKMapItemAnnotation extends SDKHandle {
      * @availability iOS 18.0+
      */
     get mapItem(): MKMapItem;
+    readonly $type: {
+        "c:objc(cs)MKMapItemAnnotation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mapItem": true;
     };
@@ -2635,8 +2837,6 @@ export declare class MKMapItemAnnotation extends SDKHandle {
  * @availability iOS 18.0+
  */
 export declare class MKMapItemDetailViewController extends SDKHandle {
-    /** init() */
-    static init(): MKMapItemDetailViewController;
     /**
      * init(mapItem: MKMapItem?)
      * @availability iOS 18.0+
@@ -2659,6 +2859,12 @@ export declare class MKMapItemDetailViewController extends SDKHandle {
      */
     get mapItem(): (MKMapItem) | null;
     set mapItem(value: (MKMapItem) | null);
+    readonly $type: {
+        "c:objc(cs)MKMapItemDetailViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "mapItem": true;
@@ -2736,6 +2942,10 @@ export declare class MKMapItemRequest extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initPlaceDescriptor(placeDescriptor: _GeoToolbox_PlaceDescriptor): MKMapItemRequest;
+    readonly $type: {
+        "c:objc(cs)MKMapItemRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancelled": true;
         "featureAnnotation": true;
@@ -2771,6 +2981,9 @@ export declare class MKMapPoint extends SDKHandle {
     static initXY(x: number, y: number): MKMapPoint;
     /** init() */
     static init47782(): MKMapPoint;
+    readonly $type: {
+        "c:@SA@MKMapPoint": true;
+    };
 }
 /** struct MKMapRect */
 export declare class MKMapRect extends SDKHandle {
@@ -2861,6 +3074,9 @@ export declare class MKMapRect extends SDKHandle {
     static initOriginSize(origin: MKMapPoint, size: MKMapSize): MKMapRect;
     /** init() */
     static init(): MKMapRect;
+    readonly $type: {
+        "c:@SA@MKMapRect": true;
+    };
 }
 /** struct MKMapSize */
 export declare class MKMapSize extends SDKHandle {
@@ -2879,6 +3095,9 @@ export declare class MKMapSize extends SDKHandle {
     static initWidthHeight(width: number, height: number): MKMapSize;
     /** init() */
     static init(): MKMapSize;
+    readonly $type: {
+        "c:@SA@MKMapSize": true;
+    };
 }
 /**
  * class MKMapSnapshotter
@@ -2890,13 +3109,11 @@ export declare class MKMapSnapshotter extends SDKHandle {
      * @availability iOS 7.0+
      */
     cancel(): void;
-    /** init() */
-    static init(): MKMapSnapshotter;
     /**
      * init(options: MKMapSnapshotter.Options)
      * @availability iOS 7.0+
      */
-    static initOptions(options: MKMapSnapshotter_Options): MKMapSnapshotter;
+    static init(options: MKMapSnapshotter_Options): MKMapSnapshotter;
     /**
      * func start() async throws -> MKMapSnapshotter.Snapshot
      * @availability iOS 7.0+
@@ -2912,6 +3129,10 @@ export declare class MKMapSnapshotter extends SDKHandle {
      * @availability iOS 7.0+
      */
     get isLoading(): boolean;
+    readonly $type: {
+        "c:objc(cs)MKMapSnapshotter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isLoading": true;
     };
@@ -2996,6 +3217,10 @@ export declare class MKMapSnapshotter_Options extends SDKHandle {
      */
     get traitCollection(): _UIKit_UITraitCollection;
     set traitCollection(value: _UIKit_UITraitCollection);
+    readonly $type: {
+        "c:objc(cs)MKMapSnapshotOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "camera": true;
         "mapRect": true;
@@ -3032,6 +3257,10 @@ export declare class MKMapSnapshotter_Snapshot extends SDKHandle {
      * @availability iOS 13.0+
      */
     get traitCollection(): _UIKit_UITraitCollection;
+    readonly $type: {
+        "c:objc(cs)MKMapSnapshot": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "image": true;
         "traitCollection": true;
@@ -3447,6 +3676,12 @@ export declare class MKMapView extends SDKHandle {
      */
     get isZoomEnabled(): boolean;
     set isZoomEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MKMapView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "annotationVisibleRect": true;
         "annotations": true;
@@ -3485,8 +3720,6 @@ export declare class MKMapView extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class MKMapView_CameraBoundary extends SDKHandle {
-    /** init() */
-    static init(): MKMapView_CameraBoundary;
     /**
      * init?(coder: NSCoder)
      * @availability iOS 13.0+
@@ -3512,6 +3745,10 @@ export declare class MKMapView_CameraBoundary extends SDKHandle {
      * @availability iOS 13.0+
      */
     get region(): MKCoordinateRegion;
+    readonly $type: {
+        "c:objc(cs)MKMapCameraBoundary": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mapRect": true;
         "region": true;
@@ -3522,8 +3759,6 @@ export declare class MKMapView_CameraBoundary extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class MKMapView_CameraZoomRange extends SDKHandle {
-    /** init() */
-    static init(): MKMapView_CameraZoomRange;
     /**
      * convenience init?(maxCenterCoordinateDistance maxDistance: CLLocationDistance)
      * @availability iOS 13.0+
@@ -3549,6 +3784,10 @@ export declare class MKMapView_CameraZoomRange extends SDKHandle {
      * @availability iOS 13.0+
      */
     get minCenterCoordinateDistance(): number;
+    readonly $type: {
+        "c:objc(cs)MKMapCameraZoomRange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "maxCenterCoordinateDistance": true;
         "minCenterCoordinateDistance": true;
@@ -3653,12 +3892,11 @@ export interface MKMapViewDelegate {
      */
     "mapViewDidAddOverlayViews"?: (arg0: MKMapView, arg1: Array<unknown>) => void;
 }
-declare const MKMarkerAnnotationView_base: Omit<typeof MKAnnotationView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKAnnotationView);
 /**
  * class MKMarkerAnnotationView
  * @availability iOS 11.0+
  */
-export declare class MKMarkerAnnotationView extends MKMarkerAnnotationView_base {
+export declare class MKMarkerAnnotationView extends MKAnnotationView {
     /** init() */
     static init(): MKMarkerAnnotationView;
     /**
@@ -3709,6 +3947,13 @@ export declare class MKMarkerAnnotationView extends MKMarkerAnnotationView_base 
      */
     get titleVisibility(): MKFeatureVisibility;
     set titleVisibility(value: MKFeatureVisibility);
+    readonly $type: {
+        "c:objc(cs)MKMarkerAnnotationView": true;
+        "c:objc(cs)MKAnnotationView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessoryOffset": true;
         "annotation": true;
@@ -3747,18 +3992,21 @@ declare const MKMultiPolygon_base: Omit<typeof MKShape, "init" | "prototype"> & 
  * @availability iOS 13.0+
  */
 export declare class MKMultiPolygon extends MKMultiPolygon_base {
-    /** init() */
-    static init(): MKMultiPolygon;
     /**
      * init(_ polygons: [MKPolygon])
      * @availability iOS 13.0+
      */
-    static init91596(polygons: Array<MKPolygon>): MKMultiPolygon;
+    static init(polygons: Array<MKPolygon>): MKMultiPolygon;
     /**
      * var polygons: [MKPolygon] { get }
      * @availability iOS 13.0+
      */
     get polygons(): Array<MKPolygon>;
+    readonly $type: {
+        "c:objc(cs)MKMultiPolygon": true;
+        "c:objc(cs)MKShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "title": true;
@@ -3771,18 +4019,22 @@ declare const MKMultiPolygonRenderer_base: Omit<typeof MKOverlayPathRenderer, "i
  * @availability iOS 13.0+
  */
 export declare class MKMultiPolygonRenderer extends MKMultiPolygonRenderer_base {
-    /** init() */
-    static init(): MKMultiPolygonRenderer;
     /**
      * init(multiPolygon: MKMultiPolygon)
      * @availability iOS 13.0+
      */
-    static initMultiPolygon(multiPolygon: MKMultiPolygon): MKMultiPolygonRenderer;
+    static init(multiPolygon: MKMultiPolygon): MKMultiPolygonRenderer;
     /**
      * var multiPolygon: MKMultiPolygon { get }
      * @availability iOS 13.0+
      */
     get multiPolygon(): MKMultiPolygon;
+    readonly $type: {
+        "c:objc(cs)MKMultiPolygonRenderer": true;
+        "c:objc(cs)MKOverlayPathRenderer": true;
+        "c:objc(cs)MKOverlayRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blendMode": true;
@@ -3807,18 +4059,21 @@ declare const MKMultiPolyline_base: Omit<typeof MKShape, "init" | "prototype"> &
  * @availability iOS 13.0+
  */
 export declare class MKMultiPolyline extends MKMultiPolyline_base {
-    /** init() */
-    static init(): MKMultiPolyline;
     /**
      * init(_ polylines: [MKPolyline])
      * @availability iOS 13.0+
      */
-    static init79182(polylines: Array<MKPolyline>): MKMultiPolyline;
+    static init(polylines: Array<MKPolyline>): MKMultiPolyline;
     /**
      * var polylines: [MKPolyline] { get }
      * @availability iOS 13.0+
      */
     get polylines(): Array<MKPolyline>;
+    readonly $type: {
+        "c:objc(cs)MKMultiPolyline": true;
+        "c:objc(cs)MKShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "title": true;
@@ -3831,18 +4086,22 @@ declare const MKMultiPolylineRenderer_base: Omit<typeof MKOverlayPathRenderer, "
  * @availability iOS 13.0+
  */
 export declare class MKMultiPolylineRenderer extends MKMultiPolylineRenderer_base {
-    /** init() */
-    static init(): MKMultiPolylineRenderer;
     /**
      * init(multiPolyline: MKMultiPolyline)
      * @availability iOS 13.0+
      */
-    static initMultiPolyline(multiPolyline: MKMultiPolyline): MKMultiPolylineRenderer;
+    static init(multiPolyline: MKMultiPolyline): MKMultiPolylineRenderer;
     /**
      * var multiPolyline: MKMultiPolyline { get }
      * @availability iOS 13.0+
      */
     get multiPolyline(): MKMultiPolyline;
+    readonly $type: {
+        "c:objc(cs)MKMultiPolylineRenderer": true;
+        "c:objc(cs)MKOverlayPathRenderer": true;
+        "c:objc(cs)MKOverlayRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blendMode": true;
@@ -3893,13 +4152,12 @@ export declare const MKPinAnnotationColor: {
      */
     init(rawValue: number): (MKPinAnnotationColor) | null;
 };
-declare const MKPinAnnotationView_base: Omit<typeof MKAnnotationView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKAnnotationView);
 /**
  * class MKPinAnnotationView
  * @availability iOS 3.0+
  * @deprecated iOS 16.0
  */
-export declare class MKPinAnnotationView extends MKPinAnnotationView_base {
+export declare class MKPinAnnotationView extends MKAnnotationView {
     /**
      * class func greenPinColor() -> UIColor
      * @availability iOS 9.0+
@@ -3941,6 +4199,13 @@ export declare class MKPinAnnotationView extends MKPinAnnotationView_base {
      */
     get pinTintColor(): (_UIKit_UIColor) | null;
     set pinTintColor(value: (_UIKit_UIColor) | null);
+    readonly $type: {
+        "c:objc(cs)MKPinAnnotationView": true;
+        "c:objc(cs)MKAnnotationView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessoryOffset": true;
         "annotation": true;
@@ -3998,6 +4263,11 @@ export declare class MKPlacemark extends SDKHandle {
      * @deprecated iOS 26.0
      */
     get countryCode(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)MKPlacemark": true;
+        "c:objc(cs)CLPlacemark": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "countryCode": true;
     };
@@ -4029,6 +4299,11 @@ export declare class MKPointAnnotation extends MKPointAnnotation_base {
      */
     get coordinate(): $SDK3;
     set coordinate(value: $SDK3);
+    readonly $type: {
+        "c:objc(cs)MKPointAnnotation": true;
+        "c:objc(cs)MKShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "title": true;
@@ -4486,8 +4761,6 @@ export declare class MKPointOfInterestFilter extends SDKHandle {
      * @availability iOS 13.0+
      */
     includes(category: MKPointOfInterestCategory): boolean;
-    /** init() */
-    static init(): MKPointOfInterestFilter;
     /**
      * init(excluding categories: [MKPointOfInterestCategory])
      * @availability iOS 13.0+
@@ -4498,13 +4771,16 @@ export declare class MKPointOfInterestFilter extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initIncluding(categories: $SDK48): MKPointOfInterestFilter;
+    readonly $type: {
+        "c:objc(cs)MKPointOfInterestFilter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
-declare const MKPolygon_base: Omit<typeof MKMultiPoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKMultiPoint);
 /**
  * class MKPolygon
  * @availability iOS 4.0+
  */
-export declare class MKPolygon extends MKPolygon_base {
+export declare class MKPolygon extends MKMultiPoint {
     /**
      * convenience init(coordinates coords: UnsafePointer<CLLocationCoordinate2D>, count: Int)
      * @availability iOS 4.0+
@@ -4525,13 +4801,17 @@ export declare class MKPolygon extends MKPolygon_base {
      * @availability iOS 4.0+
      */
     static initPointsCountInteriorPolygons(points: SDKHandle, count: number, interiorPolygons?: $SDK49): MKPolygon;
-    /** init() */
-    static init(): MKPolygon;
     /**
      * var interiorPolygons: [MKPolygon]? { get }
      * @availability iOS 4.0+
      */
     get interiorPolygons(): $SDK49;
+    readonly $type: {
+        "c:objc(cs)MKPolygon": true;
+        "c:objc(cs)MKMultiPoint": true;
+        "c:objc(cs)MKShape": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "subtitle": true;
         "title": true;
@@ -4545,13 +4825,11 @@ declare const MKPolygonRenderer_base: Omit<typeof MKOverlayPathRenderer, "init" 
  * @availability iOS 7.0+
  */
 export declare class MKPolygonRenderer extends MKPolygonRenderer_base {
-    /** init() */
-    static init(): MKPolygonRenderer;
     /**
      * init(polygon: MKPolygon)
      * @availability iOS 7.0+
      */
-    static initPolygon(polygon: MKPolygon): MKPolygonRenderer;
+    static init(polygon: MKPolygon): MKPolygonRenderer;
     /**
      * var polygon: MKPolygon { get }
      * @availability iOS 7.0+
@@ -4569,6 +4847,12 @@ export declare class MKPolygonRenderer extends MKPolygonRenderer_base {
      */
     get strokeStart(): number;
     set strokeStart(value: number);
+    readonly $type: {
+        "c:objc(cs)MKPolygonRenderer": true;
+        "c:objc(cs)MKOverlayPathRenderer": true;
+        "c:objc(cs)MKOverlayRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blendMode": true;
@@ -4598,6 +4882,14 @@ declare const MKPolygonView_base: Omit<typeof MKOverlayPathView, "init" | "proto
 export declare class MKPolygonView extends MKPolygonView_base {
     /** init() */
     static init(): MKPolygonView;
+    readonly $type: {
+        "c:objc(cs)MKPolygonView": true;
+        "c:objc(cs)MKOverlayPathView": true;
+        "c:objc(cs)MKOverlayView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MKPolylineView_base: Omit<typeof MKOverlayPathView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathView);
 /**
@@ -4608,6 +4900,14 @@ declare const MKPolylineView_base: Omit<typeof MKOverlayPathView, "init" | "prot
 export declare class MKPolylineView extends MKPolylineView_base {
     /** init() */
     static init(): MKPolylineView;
+    readonly $type: {
+        "c:objc(cs)MKPolylineView": true;
+        "c:objc(cs)MKOverlayPathView": true;
+        "c:objc(cs)MKOverlayView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MKReverseGeocodingRequest
@@ -4650,6 +4950,10 @@ export declare class MKReverseGeocodingRequest extends SDKHandle {
      */
     get preferredLocale(): $SDK12;
     set preferredLocale(value: $SDK12);
+    readonly $type: {
+        "c:objc(cs)MKReverseGeocodingRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancelled": true;
         "isLoading": true;
@@ -4709,6 +5013,10 @@ export declare class MKRoute extends SDKHandle {
      * @availability iOS 7.0+
      */
     get transportType(): MKDirectionsTransportType;
+    readonly $type: {
+        "c:objc(cs)MKRoute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "advisoryNotices": true;
         "distance": true;
@@ -4753,6 +5061,10 @@ export declare class MKRoute_Step extends SDKHandle {
      * @availability iOS 7.0+
      */
     get transportType(): MKDirectionsTransportType;
+    readonly $type: {
+        "c:objc(cs)MKRouteStep": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "distance": true;
         "instructions": true;
@@ -4770,9 +5082,7 @@ export declare class MKScaleView extends SDKHandle {
      * convenience init(mapView: MKMapView?)
      * @availability iOS 11.0+
      */
-    static initMapView(mapView?: (MKMapView) | null): MKScaleView;
-    /** init() */
-    static init(): MKScaleView;
+    static init(mapView?: (MKMapView) | null): MKScaleView;
     /**
      * var legendAlignment: MKScaleView.Alignment { get set }
      * @availability iOS 11.0+
@@ -4791,6 +5101,12 @@ export declare class MKScaleView extends SDKHandle {
      */
     get scaleVisibility(): MKFeatureVisibility;
     set scaleVisibility(value: MKFeatureVisibility);
+    readonly $type: {
+        "c:objc(cs)MKScaleView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "legendAlignment": true;
         "mapView": true;
@@ -4819,6 +5135,10 @@ export declare class MKSelectionAccessory extends SDKHandle {
      * @availability iOS 18.0+
      */
     static mapItemDetail(presentationStyle: MKSelectionAccessory_MapItemDetailPresentationStyle): MKSelectionAccessory;
+    readonly $type: {
+        "c:objc(cs)MKSelectionAccessory": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MapItemDetailPresentationStyle
@@ -4850,6 +5170,10 @@ export declare class MKSelectionAccessory_MapItemDetailPresentationStyle extends
      * @availability iOS 18.0+
      */
     static automatic(presentationViewController?: (_UIKit_UIViewController) | null): MKSelectionAccessory_MapItemDetailPresentationStyle;
+    readonly $type: {
+        "c:objc(cs)MKMapItemDetailSelectionAccessoryPresentationStyle": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum CalloutStyle
@@ -4906,6 +5230,11 @@ export declare class MKStandardMapConfiguration extends MKMapConfiguration {
      */
     get showsTraffic(): boolean;
     set showsTraffic(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MKStandardMapConfiguration": true;
+        "c:objc(cs)MKMapConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "elevationStyle": true;
         "emphasisStyle": true;
@@ -4932,13 +5261,11 @@ export declare const MKStandardMapConfiguration_EmphasisStyle: {
 export declare class MKTileOverlay extends SDKHandle {
     /** func url(forTilePath path: MKTileOverlayPath) -> URL */
     url(path: MKTileOverlayPath): string;
-    /** init() */
-    static init(): MKTileOverlay;
     /**
      * init(urlTemplate URLTemplate: String?)
      * @availability iOS 7.0+
      */
-    static initUrlTemplate(URLTemplate?: (string) | null): MKTileOverlay;
+    static init(URLTemplate?: (string) | null): MKTileOverlay;
     /** func loadTile(at path: MKTileOverlayPath) async throws -> Data */
     loadTile(path: MKTileOverlayPath, result: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): void;
     /**
@@ -4976,6 +5303,10 @@ export declare class MKTileOverlay extends SDKHandle {
      */
     get tileSize(): $SDK25;
     set tileSize(value: $SDK25);
+    readonly $type: {
+        "c:objc(cs)MKTileOverlay": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "urlTemplate": true;
         "canReplaceMapContent": true;
@@ -5003,6 +5334,9 @@ export declare class MKTileOverlayPath extends SDKHandle {
     static initXYZContentScaleFactor(x: number, y: number, z: number, contentScaleFactor: number): MKTileOverlayPath;
     /** init() */
     static init(): MKTileOverlayPath;
+    readonly $type: {
+        "c:@SA@MKTileOverlayPath": true;
+    };
 }
 declare const MKTileOverlayRenderer_base: Omit<typeof MKOverlayRenderer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayRenderer);
 /**
@@ -5010,18 +5344,21 @@ declare const MKTileOverlayRenderer_base: Omit<typeof MKOverlayRenderer, "init" 
  * @availability iOS 7.0+
  */
 export declare class MKTileOverlayRenderer extends MKTileOverlayRenderer_base {
-    /** init() */
-    static init(): MKTileOverlayRenderer;
     /**
      * init(tileOverlay overlay: MKTileOverlay)
      * @availability iOS 7.0+
      */
-    static initTileOverlay(overlay: MKTileOverlay): MKTileOverlayRenderer;
+    static init(overlay: MKTileOverlay): MKTileOverlayRenderer;
     /**
      * func reloadData()
      * @availability iOS 7.0+
      */
     reloadData(): void;
+    readonly $type: {
+        "c:objc(cs)MKTileOverlayRenderer": true;
+        "c:objc(cs)MKOverlayRenderer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alpha": true;
         "blendMode": true;
@@ -5063,6 +5400,10 @@ export declare class MKUserLocation extends SDKHandle {
      * @availability iOS 3.0+
      */
     get isUpdating(): boolean;
+    readonly $type: {
+        "c:objc(cs)MKUserLocation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "heading": true;
         "location": true;
@@ -5071,14 +5412,20 @@ export declare class MKUserLocation extends SDKHandle {
         "isUpdating": true;
     };
 }
-declare const MKUserLocationView_base: Omit<typeof MKAnnotationView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKAnnotationView);
 /**
  * class MKUserLocationView
  * @availability iOS 14.0+
  */
-export declare class MKUserLocationView extends MKUserLocationView_base {
+export declare class MKUserLocationView extends MKAnnotationView {
     /** init() */
     static init(): MKUserLocationView;
+    readonly $type: {
+        "c:objc(cs)MKUserLocationView": true;
+        "c:objc(cs)MKAnnotationView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessoryOffset": true;
         "annotation": true;
@@ -5108,19 +5455,23 @@ export declare class MKUserLocationView extends MKUserLocationView_base {
  * @availability iOS 5.0+
  */
 export declare class MKUserTrackingBarButtonItem extends SDKHandle {
-    /** init() */
-    static init(): MKUserTrackingBarButtonItem;
     /**
      * init(mapView: MKMapView?)
      * @availability iOS 5.0+
      */
-    static initMapView(mapView?: (MKMapView) | null): MKUserTrackingBarButtonItem;
+    static init(mapView?: (MKMapView) | null): MKUserTrackingBarButtonItem;
     /**
      * var mapView: MKMapView? { get set }
      * @availability iOS 5.0+
      */
     get mapView(): (MKMapView) | null;
     set mapView(value: (MKMapView) | null);
+    readonly $type: {
+        "c:objc(cs)MKUserTrackingBarButtonItem": true;
+        "c:objc(cs)UIBarButtonItem": true;
+        "c:objc(cs)UIBarItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mapView": true;
     };
@@ -5134,15 +5485,19 @@ export declare class MKUserTrackingButton extends SDKHandle {
      * convenience init(mapView: MKMapView?)
      * @availability iOS 11.0+
      */
-    static initMapView(mapView?: (MKMapView) | null): MKUserTrackingButton;
-    /** init() */
-    static init(): MKUserTrackingButton;
+    static init(mapView?: (MKMapView) | null): MKUserTrackingButton;
     /**
      * weak var mapView: MKMapView? { get set }
      * @availability iOS 11.0+
      */
     get mapView(): (MKMapView) | null;
     set mapView(value: (MKMapView) | null);
+    readonly $type: {
+        "c:objc(cs)MKUserTrackingButton": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mapView": true;
     };
@@ -5161,7 +5516,7 @@ export declare const MKUserTrackingMode: {
 };
 /** typealias MKZoomScale = CGFloat */
 export type MKZoomScale = number;
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /** static let MKAnnotationCalloutInfoDidChange: NSNotification.Name */
     readonly MKAnnotationCalloutInfoDidChange: _Foundation_NSNotification_Name;
@@ -5173,6 +5528,10 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get mapItem(): (MKMapItem) | null;
     set mapItem(value: (MKMapItem) | null);
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mapItem": true;
     };
@@ -5186,6 +5545,10 @@ export declare class NSValue extends SDKHandle {
     get mkCoordinateSpanValue(): MKCoordinateSpan;
     /** var mkCoordinateValue: CLLocationCoordinate2D { get } */
     get mkCoordinateValue(): $SDK3;
+    readonly $type: {
+        "c:objc(cs)NSValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mkCoordinateSpanValue": true;
         "mkCoordinateValue": true;
@@ -5197,6 +5560,9 @@ export declare class PlaceDescriptor extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(item: MKMapItem): (_GeoToolbox_PlaceDescriptor) | null;
+    readonly $type: {
+        "s:10GeoToolbox15PlaceDescriptorV": true;
+    };
 }
 /** func MKMapPointEqualToPoint(_ point1: MKMapPoint, _ point2: MKMapPoint) -> Bool */
 export declare function MKMapPointEqualToPoint(point1: MKMapPoint, point2: MKMapPoint): boolean;

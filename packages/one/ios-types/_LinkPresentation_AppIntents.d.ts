@@ -13,6 +13,9 @@ export declare class LinkMetadata extends SDKHandle {
      * @availability iOS 26.4+
      */
     static get typeDisplayRepresentation(): _AppIntents_TypeDisplayRepresentation;
+    readonly $type: {
+        "s:16LinkPresentation0A8MetadataV": true;
+    };
 }
 /**
  * typealias Specification = some ResolverSpecification

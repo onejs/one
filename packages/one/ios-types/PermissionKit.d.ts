@@ -18,6 +18,9 @@ export declare class AskCenter extends SDKHandle {
      * @availability iOS 26.2+
      */
     static get shared(): AskCenter;
+    readonly $type: {
+        "s:13PermissionKit9AskCenterC": true;
+    };
 }
 /**
  * enum AskError
@@ -29,6 +32,9 @@ export declare class AskError extends SDKHandle {
      * @availability iOS 26.1+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:13PermissionKit8AskErrorO": true;
+    };
 }
 /**
  * struct CommunicationHandle
@@ -52,6 +58,9 @@ export declare class CommunicationHandle extends SDKHandle {
      */
     get value(): string;
     set value(value: string);
+    readonly $type: {
+        "s:13PermissionKit19CommunicationHandleV": true;
+    };
 }
 /**
  * enum Kind
@@ -83,6 +92,9 @@ export declare class CommunicationLimits extends SDKHandle {
      * @availability iOS 26.0+
      */
     get updates(): SDKHandle;
+    readonly $type: {
+        "s:13PermissionKit19CommunicationLimitsC": true;
+    };
 }
 /**
  * struct CommunicationTopic
@@ -116,6 +128,9 @@ export declare class CommunicationTopic extends SDKHandle {
      */
     get actions(): $SDK2;
     set actions(value: $SDK2);
+    readonly $type: {
+        "s:13PermissionKit18CommunicationTopicV": true;
+    };
 }
 /**
  * enum Action
@@ -150,6 +165,9 @@ export declare class CommunicationTopic_PersonInformation extends SDKHandle {
      */
     get handle(): CommunicationHandle;
     set handle(value: CommunicationHandle);
+    readonly $type: {
+        "s:13PermissionKit18CommunicationTopicV17PersonInformationV": true;
+    };
 }
 /**
  * struct PermissionChoice
@@ -183,6 +201,9 @@ export declare class PermissionChoice extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get decline(): PermissionChoice;
+    readonly $type: {
+        "s:13PermissionKit0A6ChoiceV": true;
+    };
 }
 /**
  * enum Answer
@@ -224,6 +245,9 @@ export declare class PermissionQuestion<Topic = unknown> extends SDKHandle {
      * @availability iOS 26.2+
      */
     static initSignificantAppUpdateTopic(significantAppUpdateTopic: SignificantAppUpdateTopic): PermissionQuestion<SignificantAppUpdateTopic>;
+    readonly $type: {
+        "s:13PermissionKit0A8QuestionC": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -235,12 +259,18 @@ export type PermissionQuestion_ID<Topic = unknown> = string;
  * @availability iOS 26.0+
  */
 export declare class PermissionResponse<Topic = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:13PermissionKit0A8ResponseV": true;
+    };
 }
 /**
  * enum PermissionResult
  * @availability iOS 27.0+
  */
 export declare class PermissionResult extends SDKHandle {
+    readonly $type: {
+        "s:13PermissionKit0A6ResultO": true;
+    };
 }
 /**
  * protocol QuestionTopic : Decodable, Encodable
@@ -268,5 +298,8 @@ export declare class SignificantAppUpdateTopic extends SDKHandle {
      * @availability iOS 26.2+
      */
     static get id(): string;
+    readonly $type: {
+        "s:13PermissionKit25SignificantAppUpdateTopicV": true;
+    };
 }
 export {};

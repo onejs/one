@@ -47,6 +47,10 @@ export declare class CXAction extends SDKHandle {
      * @availability iOS 10.0+
      */
     get timeoutDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -74,6 +78,11 @@ export declare class CXCallAction extends CXCallAction_base {
      * @availability iOS 10.0+
      */
     get callUUID(): string;
+    readonly $type: {
+        "c:objc(cs)CXCallAction": true;
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -92,6 +101,12 @@ export declare class CXAnswerCallAction extends CXAnswerCallAction_base {
      * @availability iOS 10.0+
      */
     fulfill(dateConnected: globalThis.Date): void;
+    readonly $type: {
+        "c:objc(cs)CXAnswerCallAction": true;
+        "c:objc(cs)CXCallAction": true;
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -129,6 +144,10 @@ export declare class CXCall extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isOutgoing(): boolean;
+    readonly $type: {
+        "c:objc(cs)CXCall": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "hasConnected": true;
@@ -172,6 +191,10 @@ export declare class CXCallController extends SDKHandle {
      * @availability iOS 10.0+
      */
     get callObserver(): CXCallObserver;
+    readonly $type: {
+        "c:objc(cs)CXCallController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "callObserver": true;
     };
@@ -229,6 +252,11 @@ export declare class CXCallDirectoryExtensionContext extends SDKHandle {
      * @availability iOS 11.0+
      */
     get isIncremental(): boolean;
+    readonly $type: {
+        "c:objc(cs)CXCallDirectoryExtensionContext": true;
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "isIncremental": true;
@@ -272,6 +300,10 @@ export declare class CXCallDirectoryManager extends SDKHandle {
      * @availability iOS 10.0+
      */
     reloadExtension(identifier: string, completion?: $SDK4): void;
+    readonly $type: {
+        "c:objc(cs)CXCallDirectoryManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum EnabledStatus
@@ -299,6 +331,10 @@ export declare class CXCallDirectoryProvider extends SDKHandle {
     beginRequest(context: CXCallDirectoryExtensionContext): void;
     /** init() */
     static init(): CXCallDirectoryProvider;
+    readonly $type: {
+        "c:objc(cs)CXCallDirectoryProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum CXCallEndedReason
@@ -329,6 +365,10 @@ export declare class CXCallObserver extends SDKHandle {
      * @availability iOS 10.0+
      */
     get calls(): Array<CXCall>;
+    readonly $type: {
+        "c:objc(cs)CXCallObserver": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "calls": true;
     };
@@ -393,6 +433,10 @@ export declare class CXCallUpdate extends SDKHandle {
      */
     get supportsUngrouping(): boolean;
     set supportsUngrouping(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CXCallUpdate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hasVideo": true;
         "localizedCallerName": true;
@@ -414,6 +458,12 @@ export declare class CXEndCallAction extends CXEndCallAction_base {
      * @availability iOS 10.0+
      */
     fulfill(dateEnded: globalThis.Date): void;
+    readonly $type: {
+        "c:objc(cs)CXEndCallAction": true;
+        "c:objc(cs)CXCallAction": true;
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -451,6 +501,9 @@ export declare class CXError extends SDKHandle {
      * @availability iOS 14.5+
      */
     static get missingVoIPBackgroundMode(): CXError_Code;
+    readonly $type: {
+        "s:SC11CXErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -519,6 +572,9 @@ export declare class CXErrorCodeCallDirectoryManagerError extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get unknown(): CXErrorCodeCallDirectoryManagerError_Code;
+    readonly $type: {
+        "s:SC36CXErrorCodeCallDirectoryManagerErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -582,6 +638,9 @@ export declare class CXErrorCodeIncomingCallError extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get unknown(): CXErrorCodeIncomingCallError_Code;
+    readonly $type: {
+        "s:SC28CXErrorCodeIncomingCallErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -620,6 +679,9 @@ export declare class CXErrorCodeNotificationServiceExtensionError extends SDKHan
      * @availability iOS 14.5+
      */
     static get unknown(): CXErrorCodeNotificationServiceExtensionError_Code;
+    readonly $type: {
+        "s:SC44CXErrorCodeNotificationServiceExtensionErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -688,6 +750,9 @@ export declare class CXErrorCodeRequestTransactionError extends SDKHandle {
      * @availability iOS 10.0+
      */
     static get unknown(): CXErrorCodeRequestTransactionError_Code;
+    readonly $type: {
+        "s:SC34CXErrorCodeRequestTransactionErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -721,6 +786,10 @@ export declare class CXHandle extends SDKHandle {
      * @availability iOS 10.0+
      */
     get value(): string;
+    readonly $type: {
+        "c:objc(cs)CXHandle": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "type": true;
         "value": true;
@@ -766,6 +835,12 @@ export declare class CXPlayDTMFCallAction extends CXPlayDTMFCallAction_base {
      */
     get type(): CXPlayDTMFCallAction_ActionType;
     set type(value: CXPlayDTMFCallAction_ActionType);
+    readonly $type: {
+        "c:objc(cs)CXPlayDTMFCallAction": true;
+        "c:objc(cs)CXCallAction": true;
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -853,6 +928,10 @@ export declare class CXProvider extends SDKHandle {
      * @availability iOS 10.0+
      */
     get pendingTransactions(): Array<CXTransaction>;
+    readonly $type: {
+        "c:objc(cs)CXProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
         "pendingTransactions": true;
@@ -928,6 +1007,10 @@ export declare class CXProviderConfiguration extends SDKHandle {
      */
     get supportedHandleTypes(): Array<CXHandle_HandleType>;
     set supportedHandleTypes(value: Array<CXHandle_HandleType>);
+    readonly $type: {
+        "c:objc(cs)CXProviderConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "iconTemplateImageData": true;
         "includesCallsInRecents": true;
@@ -1002,6 +1085,12 @@ export declare class CXSetGroupCallAction extends CXSetGroupCallAction_base {
      */
     get callUUIDToGroupWith(): (string) | null;
     set callUUIDToGroupWith(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)CXSetGroupCallAction": true;
+        "c:objc(cs)CXCallAction": true;
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -1032,6 +1121,12 @@ export declare class CXSetHeldCallAction extends CXSetHeldCallAction_base {
      */
     get isOnHold(): boolean;
     set isOnHold(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CXSetHeldCallAction": true;
+        "c:objc(cs)CXCallAction": true;
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -1062,6 +1157,12 @@ export declare class CXSetMutedCallAction extends CXSetMutedCallAction_base {
      */
     get isMuted(): boolean;
     set isMuted(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CXSetMutedCallAction": true;
+        "c:objc(cs)CXCallAction": true;
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -1106,6 +1207,12 @@ export declare class CXSetTranslatingCallAction extends CXSetTranslatingCallActi
      * @availability iOS 26.0+
      */
     get remoteLanguage(): string;
+    readonly $type: {
+        "c:objc(cs)CXSetTranslatingCallAction": true;
+        "c:objc(cs)CXCallAction": true;
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -1155,6 +1262,12 @@ export declare class CXStartCallAction extends CXStartCallAction_base {
      */
     get isVideo(): boolean;
     set isVideo(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CXStartCallAction": true;
+        "c:objc(cs)CXCallAction": true;
+        "c:objc(cs)CXAction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "isComplete": true;
@@ -1175,8 +1288,6 @@ export declare class CXTransaction extends SDKHandle {
      * @availability iOS 10.0+
      */
     addAction(action: CXAction): void;
-    /** init() */
-    static init(): CXTransaction;
     /**
      * convenience init(action: CXAction)
      * @availability iOS 10.0+
@@ -1202,6 +1313,10 @@ export declare class CXTransaction extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isComplete(): boolean;
+    readonly $type: {
+        "c:objc(cs)CXTransaction": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "actions": true;

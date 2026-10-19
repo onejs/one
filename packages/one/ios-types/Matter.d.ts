@@ -262,14 +262,12 @@ type $SDK281 = (() => Promise<_Foundation_NSXPCConnection>);
  * @deprecated iOS 16.4
  */
 export declare class AttestationInfo extends SDKHandle {
-    /** init() */
-    static init(): AttestationInfo;
     /**
      * init(challenge: Data, nonce: Data, elements: Data, elementsSignature: Data, dac: Data, pai: Data, certificationDeclaration: Data, firmwareInfo: Data)
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    static initChallengeNonceElementsElementsSignatureDacPaiCertificationDeclarationFirmwareInfo(challenge: ArrayBuffer, nonce: ArrayBuffer, elements: ArrayBuffer, elementsSignature: ArrayBuffer, dac: ArrayBuffer, pai: ArrayBuffer, certificationDeclaration: ArrayBuffer, firmwareInfo: ArrayBuffer): AttestationInfo;
+    static init(challenge: ArrayBuffer, nonce: ArrayBuffer, elements: ArrayBuffer, elementsSignature: ArrayBuffer, dac: ArrayBuffer, pai: ArrayBuffer, certificationDeclaration: ArrayBuffer, firmwareInfo: ArrayBuffer): AttestationInfo;
     /**
      * var certificationDeclaration: Data { get set }
      * @availability iOS 16.1+
@@ -326,6 +324,10 @@ export declare class AttestationInfo extends SDKHandle {
      */
     get pai(): ArrayBuffer;
     set pai(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)AttestationInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "certificationDeclaration": true;
         "challenge": true;
@@ -343,14 +345,12 @@ export declare class AttestationInfo extends SDKHandle {
  * @deprecated iOS 16.4
  */
 export declare class CSRInfo extends SDKHandle {
-    /** init() */
-    static init(): CSRInfo;
     /**
      * init(nonce: Data, elements: Data, elementsSignature: Data, csr: Data)
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    static initNonceElementsElementsSignatureCsr(nonce: ArrayBuffer, elements: ArrayBuffer, elementsSignature: ArrayBuffer, csr: ArrayBuffer): CSRInfo;
+    static init(nonce: ArrayBuffer, elements: ArrayBuffer, elementsSignature: ArrayBuffer, csr: ArrayBuffer): CSRInfo;
     /**
      * var csr: Data { get set }
      * @availability iOS 16.1+
@@ -379,6 +379,10 @@ export declare class CSRInfo extends SDKHandle {
      */
     get nonce(): ArrayBuffer;
     set nonce(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)CSRInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "csr": true;
         "elements": true;
@@ -461,6 +465,10 @@ export declare class MTRAccessControlClusterAccessControlEntryStruct extends SDK
      */
     get targets(): (Array<unknown>) | null;
     set targets(value: (Array<unknown>) | null);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterAccessControlEntryStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authMode": true;
         "fabricIndex": true;
@@ -513,6 +521,11 @@ export declare class MTRAccessControlClusterAccessControlEntry extends MTRAccess
      */
     get targets(): (Array<unknown>) | null;
     set targets(value: (Array<unknown>) | null);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterAccessControlEntry": true;
+        "c:objc(cs)MTRAccessControlClusterAccessControlEntryStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authMode": true;
         "fabricIndex": true;
@@ -558,6 +571,10 @@ export declare class MTRAccessControlClusterAccessControlEntryChangedEvent exten
      */
     get latestValue(): $SDK1;
     set latestValue(value: $SDK1);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterAccessControlEntryChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adminNodeID": true;
         "adminPasscodeID": true;
@@ -603,6 +620,10 @@ export declare class MTRAccessControlClusterAccessControlExtensionChangedEvent e
      */
     get latestValue(): $SDK2;
     set latestValue(value: $SDK2);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterAccessControlExtensionChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adminNodeID": true;
         "adminPasscodeID": true;
@@ -630,6 +651,10 @@ export declare class MTRAccessControlClusterAccessControlExtensionStruct extends
      */
     get fabricIndex(): _Foundation_NSNumber;
     set fabricIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterAccessControlExtensionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "fabricIndex": true;
@@ -660,6 +685,10 @@ export declare class MTRAccessControlClusterAccessControlTargetStruct extends SD
      */
     get endpoint(): $SDK0;
     set endpoint(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterAccessControlTargetStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "deviceType": true;
@@ -697,6 +726,10 @@ export declare class MTRAccessControlClusterAccessRestrictionEntryStruct extends
      */
     get restrictions(): Array<unknown>;
     set restrictions(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterAccessRestrictionEntryStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "endpoint": true;
@@ -723,6 +756,10 @@ export declare class MTRAccessControlClusterAccessRestrictionStruct extends SDKH
      */
     get type(): _Foundation_NSNumber;
     set type(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterAccessRestrictionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "id": true;
         "type": true;
@@ -753,6 +790,10 @@ export declare class MTRAccessControlClusterCommissioningAccessRestrictionEntryS
      */
     get restrictions(): Array<unknown>;
     set restrictions(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterCommissioningAccessRestrictionEntryStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "endpoint": true;
@@ -782,6 +823,11 @@ export declare class MTRAccessControlClusterExtensionEntry extends MTRAccessCont
      */
     get fabricIndex(): _Foundation_NSNumber;
     set fabricIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterExtensionEntry": true;
+        "c:objc(cs)MTRAccessControlClusterAccessControlExtensionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "fabricIndex": true;
@@ -812,6 +858,10 @@ export declare class MTRAccessControlClusterFabricRestrictionReviewUpdateEvent e
      */
     get token(): _Foundation_NSNumber;
     set token(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterFabricRestrictionReviewUpdateEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
         "instruction": true;
@@ -843,6 +893,10 @@ export declare class MTRAccessControlClusterReviewFabricRestrictionsParams exten
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterReviewFabricRestrictionsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arl": true;
         "serverSideProcessingTimeout": true;
@@ -854,19 +908,21 @@ export declare class MTRAccessControlClusterReviewFabricRestrictionsParams exten
  * @availability iOS 18.4+
  */
 export declare class MTRAccessControlClusterReviewFabricRestrictionsResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRAccessControlClusterReviewFabricRestrictionsResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRAccessControlClusterReviewFabricRestrictionsResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRAccessControlClusterReviewFabricRestrictionsResponseParams;
     /**
      * @NSCopying var token: NSNumber { get set }
      * @availability iOS 18.4+
      */
     get token(): _Foundation_NSNumber;
     set token(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterReviewFabricRestrictionsResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "token": true;
     };
@@ -901,6 +957,11 @@ export declare class MTRAccessControlClusterTarget extends MTRAccessControlClust
      */
     get endpoint(): $SDK0;
     set endpoint(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAccessControlClusterTarget": true;
+        "c:objc(cs)MTRAccessControlClusterAccessControlTargetStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "deviceType": true;
@@ -1007,6 +1068,10 @@ export declare class MTRAccessGrant extends SDKHandle {
      * @availability iOS 17.6+
      */
     get subjectID(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MTRAccessGrant": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authenticationMode": true;
         "grantedPrivilege": true;
@@ -1038,6 +1103,10 @@ export declare class MTRAccountLoginClusterGetSetupPINParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAccountLoginClusterGetSetupPINParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "tempAccountIdentifier": true;
@@ -1049,13 +1118,11 @@ export declare class MTRAccountLoginClusterGetSetupPINParams extends SDKHandle {
  * @availability iOS 16.1+
  */
 export declare class MTRAccountLoginClusterGetSetupPINResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRAccountLoginClusterGetSetupPINResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRAccountLoginClusterGetSetupPINResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRAccountLoginClusterGetSetupPINResponseParams;
     /**
      * var setupPIN: String { get set }
      * @availability iOS 16.1+
@@ -1069,6 +1136,10 @@ export declare class MTRAccountLoginClusterGetSetupPINResponseParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAccountLoginClusterGetSetupPINResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "setupPIN": true;
         "timedInvokeTimeoutMs": true;
@@ -1087,6 +1158,10 @@ export declare class MTRAccountLoginClusterLoggedOutEvent extends SDKHandle {
      */
     get node(): $SDK0;
     set node(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAccountLoginClusterLoggedOutEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "node": true;
     };
@@ -1128,6 +1203,10 @@ export declare class MTRAccountLoginClusterLoginParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAccountLoginClusterLoginParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "node": true;
         "serverSideProcessingTimeout": true;
@@ -1161,6 +1240,10 @@ export declare class MTRAccountLoginClusterLogoutParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAccountLoginClusterLogoutParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "node": true;
         "serverSideProcessingTimeout": true;
@@ -1234,6 +1317,10 @@ export declare class MTRActionsClusterActionFailedEvent extends SDKHandle {
      */
     get newState(): _Foundation_NSNumber;
     set newState(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterActionFailedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "error": true;
@@ -1284,6 +1371,10 @@ export declare class MTRActionsClusterActionStruct extends SDKHandle {
      */
     get type(): _Foundation_NSNumber;
     set type(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterActionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "endpointListID": true;
@@ -1324,6 +1415,10 @@ export declare class MTRActionsClusterDisableActionParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterDisableActionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "invokeID": true;
@@ -1368,6 +1463,10 @@ export declare class MTRActionsClusterDisableActionWithDurationParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterDisableActionWithDurationParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "duration": true;
@@ -1407,6 +1506,10 @@ export declare class MTRActionsClusterEnableActionParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterEnableActionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "invokeID": true;
@@ -1451,6 +1554,10 @@ export declare class MTRActionsClusterEnableActionWithDurationParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterEnableActionWithDurationParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "duration": true;
@@ -1490,6 +1597,10 @@ export declare class MTRActionsClusterEndpointListStruct extends SDKHandle {
      */
     get type(): _Foundation_NSNumber;
     set type(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterEndpointListStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endpointListID": true;
         "endpoints": true;
@@ -1528,6 +1639,10 @@ export declare class MTRActionsClusterInstantActionParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterInstantActionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "invokeID": true;
@@ -1572,6 +1687,10 @@ export declare class MTRActionsClusterInstantActionWithTransitionParams extends 
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterInstantActionWithTransitionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "invokeID": true;
@@ -1611,6 +1730,10 @@ export declare class MTRActionsClusterPauseActionParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterPauseActionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "invokeID": true;
@@ -1655,6 +1778,10 @@ export declare class MTRActionsClusterPauseActionWithDurationParams extends SDKH
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterPauseActionWithDurationParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "duration": true;
@@ -1694,6 +1821,10 @@ export declare class MTRActionsClusterResumeActionParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterResumeActionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "invokeID": true;
@@ -1732,6 +1863,10 @@ export declare class MTRActionsClusterStartActionParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterStartActionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "invokeID": true;
@@ -1776,6 +1911,10 @@ export declare class MTRActionsClusterStartActionWithDurationParams extends SDKH
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterStartActionWithDurationParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "duration": true;
@@ -1809,6 +1948,10 @@ export declare class MTRActionsClusterStateChangedEvent extends SDKHandle {
      */
     get newState(): _Foundation_NSNumber;
     set newState(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterStateChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "invokeID": true;
@@ -1846,6 +1989,10 @@ export declare class MTRActionsClusterStopActionParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActionsClusterStopActionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "actionID": true;
         "invokeID": true;
@@ -1968,6 +2115,10 @@ export declare class MTRActivatedCarbonFilterMonitoringClusterReplacementProduct
      */
     get productIdentifierValue(): string;
     set productIdentifierValue(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "productIdentifierType": true;
         "productIdentifierValue": true;
@@ -1992,6 +2143,10 @@ export declare class MTRActivatedCarbonFilterMonitoringClusterResetConditionPara
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRActivatedCarbonFilterMonitoringClusterResetConditionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -2073,6 +2228,10 @@ export declare class MTRAdministratorCommissioningClusterOpenBasicCommissioningW
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commissioningTimeout": true;
         "serverSideProcessingTimeout": true;
@@ -2135,6 +2294,10 @@ export declare class MTRAdministratorCommissioningClusterOpenCommissioningWindow
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAdministratorCommissioningClusterOpenCommissioningWindowParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commissioningTimeout": true;
         "discriminator": true;
@@ -2165,6 +2328,10 @@ export declare class MTRAdministratorCommissioningClusterRevokeCommissioningPara
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAdministratorCommissioningClusterRevokeCommissioningParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -2300,6 +2467,10 @@ export declare class MTRApplicationBasicClusterApplicationStruct extends SDKHand
      */
     get catalogVendorId(): _Foundation_NSNumber;
     set catalogVendorId(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRApplicationBasicClusterApplicationStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationID": true;
         "applicationId": true;
@@ -2316,6 +2487,11 @@ declare const MTRApplicationBasicClusterApplicationBasicApplication_base: Omit<t
 export declare class MTRApplicationBasicClusterApplicationBasicApplication extends MTRApplicationBasicClusterApplicationBasicApplication_base {
     /** init() */
     static init(): MTRApplicationBasicClusterApplicationBasicApplication;
+    readonly $type: {
+        "c:objc(cs)MTRApplicationBasicClusterApplicationBasicApplication": true;
+        "c:objc(cs)MTRApplicationBasicClusterApplicationStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationID": true;
         "applicationId": true;
@@ -2356,6 +2532,10 @@ export declare class MTRApplicationLauncherClusterApplicationStruct extends SDKH
      */
     get catalogVendorId(): _Foundation_NSNumber;
     set catalogVendorId(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRApplicationLauncherClusterApplicationStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationID": true;
         "applicationId": true;
@@ -2372,6 +2552,11 @@ declare const MTRApplicationLauncherClusterApplication_base: Omit<typeof MTRAppl
 export declare class MTRApplicationLauncherClusterApplication extends MTRApplicationLauncherClusterApplication_base {
     /** init() */
     static init(): MTRApplicationLauncherClusterApplication;
+    readonly $type: {
+        "c:objc(cs)MTRApplicationLauncherClusterApplication": true;
+        "c:objc(cs)MTRApplicationLauncherClusterApplicationStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationID": true;
         "applicationId": true;
@@ -2398,6 +2583,10 @@ export declare class MTRApplicationLauncherClusterApplicationEPStruct extends SD
      */
     get endpoint(): $SDK0;
     set endpoint(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRApplicationLauncherClusterApplicationEPStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "application": true;
         "endpoint": true;
@@ -2426,6 +2615,11 @@ export declare class MTRApplicationLauncherClusterApplicationEP extends MTRAppli
      */
     get endpoint(): $SDK0;
     set endpoint(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRApplicationLauncherClusterApplicationEP": true;
+        "c:objc(cs)MTRApplicationLauncherClusterApplicationEPStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "application": true;
         "endpoint": true;
@@ -2456,6 +2650,10 @@ export declare class MTRApplicationLauncherClusterHideAppParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRApplicationLauncherClusterHideAppParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "application": true;
         "serverSideProcessingTimeout": true;
@@ -2493,6 +2691,10 @@ export declare class MTRApplicationLauncherClusterLaunchAppParams extends SDKHan
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRApplicationLauncherClusterLaunchAppParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "application": true;
         "data": true;
@@ -2505,13 +2707,11 @@ export declare class MTRApplicationLauncherClusterLaunchAppParams extends SDKHan
  * @availability iOS 16.1+
  */
 export declare class MTRApplicationLauncherClusterLauncherResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRApplicationLauncherClusterLauncherResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRApplicationLauncherClusterLauncherResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRApplicationLauncherClusterLauncherResponseParams;
     /**
      * var data: Data? { get set }
      * @availability iOS 16.1+
@@ -2531,6 +2731,10 @@ export declare class MTRApplicationLauncherClusterLauncherResponseParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRApplicationLauncherClusterLauncherResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "status": true;
@@ -2562,6 +2766,10 @@ export declare class MTRApplicationLauncherClusterStopAppParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRApplicationLauncherClusterStopAppParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "application": true;
         "serverSideProcessingTimeout": true;
@@ -2635,6 +2843,10 @@ export declare class MTRAsyncCallbackQueueWorkItem extends SDKHandle {
      */
     get readyHandler(): $SDK4;
     set readyHandler(value: ((arg0: unknown, arg1: number) => void));
+    readonly $type: {
+        "c:objc(cs)MTRAsyncCallbackQueueWorkItem": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** typealias MTRAsyncCallbackReadyHandler = (Any, Int) -> Void */
 export type MTRAsyncCallbackReadyHandler = $SDK4;
@@ -2662,6 +2874,10 @@ export declare class MTRAsyncCallbackWorkQueue extends SDKHandle {
      * @deprecated iOS 17.2
      */
     invalidate(): void;
+    readonly $type: {
+        "c:objc(cs)MTRAsyncCallbackWorkQueue": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRAttributeCacheContainer
@@ -2677,6 +2893,10 @@ export declare class MTRAttributeCacheContainer extends SDKHandle {
      * @deprecated iOS 16.4
      */
     readAttribute(endpointId: $SDK0, clusterId: $SDK0, attributeId: $SDK0, clientQueue: _Dispatch_DispatchQueue, completion: $SDK6): void;
+    readonly $type: {
+        "c:objc(cs)MTRAttributeCacheContainer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** enum MTRAttributeIDType */
 export type MTRAttributeIDType = "MTRClusterGlobalAttributeGeneratedCommandListID" | "MTRClusterGlobalAttributeAcceptedCommandListID" | "MTRClusterGlobalAttributeAttributeListID" | "MTRClusterGlobalAttributeFeatureMapID" | "MTRClusterGlobalAttributeClusterRevisionID" | "MTRClusterIdentifyAttributeIdentifyTimeID" | "MTRClusterIdentifyAttributeIdentifyTypeID" | "MTRClusterOnOffAttributeGlobalSceneControlID" | "MTRClusterOnOffAttributeOnTimeID" | "MTRClusterOnOffAttributeOffWaitTimeID" | "MTRClusterOnOffAttributeStartUpOnOffID" | "MTRClusterLevelControlAttributeMinLevelID" | "MTRClusterLevelControlAttributeMaxLevelID" | "MTRClusterLevelControlAttributeCurrentFrequencyID" | "MTRClusterLevelControlAttributeMinFrequencyID" | "MTRClusterLevelControlAttributeMaxFrequencyID" | "MTRClusterLevelControlAttributeOptionsID" | "MTRClusterLevelControlAttributeOnOffTransitionTimeID" | "MTRClusterLevelControlAttributeOnLevelID" | "MTRClusterLevelControlAttributeOnTransitionTimeID" | "MTRClusterLevelControlAttributeOffTransitionTimeID" | "MTRClusterLevelControlAttributeDefaultMoveRateID" | "MTRClusterBasicAttributeHardwareVersionID" | "MTRClusterBasicAttributeHardwareVersionStringID" | "MTRClusterBasicAttributeSoftwareVersionID" | "MTRClusterBasicAttributeSoftwareVersionStringID" | "MTRClusterBasicAttributeManufacturingDateID" | "MTRClusterBasicAttributePartNumberID" | "MTRClusterBasicAttributeProductURLID" | "MTRClusterBasicAttributeProductLabelID" | "clusterBasicInformationAttributeSpecificationVersionID" | "clusterBasicInformationAttributeMaxPathsPerInvokeID" | "MTRClusterPowerSourceAttributeBatApprovedChemistryID" | "MTRClusterPowerSourceAttributeBatCapacityID" | "MTRClusterPowerSourceAttributeBatQuantityID" | "MTRClusterPowerSourceAttributeBatChargeStateID" | "MTRClusterPowerSourceAttributeBatTimeToFullChargeID" | "MTRClusterPowerSourceAttributeBatFunctionalWhileChargingID" | "MTRClusterPowerSourceAttributeBatChargingCurrentID" | "MTRClusterPowerSourceAttributeActiveBatChargeFaultsID" | "clusterPowerSourceAttributeEndpointListID" | "MTRClusterThreadNetworkDiagnosticsAttributeTxOtherCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeTxRetryCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeTxDirectMaxRetryExpiryCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeTxIndirectMaxRetryExpiryCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeTxErrCcaCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeTxErrAbortCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeTxErrBusyChannelCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxTotalCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxUnicastCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxBroadcastCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxDataCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxDataPollCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxBeaconCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxBeaconRequestCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxOtherCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxAddressFilteredCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxDestAddrFilteredCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxDuplicatedCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxErrNoFrameCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxErrUnknownNeighborCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxErrInvalidSrcAddrCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxErrSecCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxErrFcsCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeRxErrOtherCountID" | "MTRClusterThreadNetworkDiagnosticsAttributeActiveTimestampID" | "MTRClusterThreadNetworkDiagnosticsAttributePendingTimestampID" | "MTRClusterThreadNetworkDiagnosticsAttributeDelayID" | "MTRClusterThreadNetworkDiagnosticsAttributeSecurityPolicyID" | "MTRClusterThreadNetworkDiagnosticsAttributeChannelPage0MaskID" | "MTRClusterThreadNetworkDiagnosticsAttributeOperationalDatasetComponentsID" | "MTRClusterThreadNetworkDiagnosticsAttributeActiveNetworkFaultsListID" | "clusterEnergyEVSEAttributeSessionIDID" | "clusterEnergyEVSEAttributeSessionDurationID" | "clusterEnergyEVSEAttributeSessionEnergyChargedID" | "clusterDoorLockAttributeAliroReaderVerificationKeyID" | "clusterDoorLockAttributeAliroReaderGroupIdentifierID" | "clusterDoorLockAttributeAliroReaderGroupSubIdentifierID" | "clusterDoorLockAttributeAliroExpeditedTransactionSupportedProtocolVersionsID" | "clusterDoorLockAttributeAliroGroupResolvingKeyID" | "clusterDoorLockAttributeAliroSupportedBLEUWBProtocolVersionsID" | "clusterDoorLockAttributeAliroBLEAdvertisingVersionID" | "clusterDoorLockAttributeNumberOfAliroCredentialIssuerKeysSupportedID" | "clusterDoorLockAttributeNumberOfAliroEndpointKeysSupportedID" | "MTRClusterThermostatAttributeACCompressorTypeID" | "MTRClusterThermostatAttributeACErrorCodeID" | "MTRClusterThermostatAttributeACLouverPositionID" | "MTRClusterThermostatAttributeACCoilTemperatureID" | "MTRClusterThermostatAttributeACCapacityformatID" | "clusterThermostatAttributePresetTypesID" | "clusterThermostatAttributeScheduleTypesID" | "clusterThermostatAttributeNumberOfPresetsID" | "clusterThermostatAttributeNumberOfSchedulesID" | "clusterThermostatAttributeNumberOfScheduleTransitionsID" | "clusterThermostatAttributeNumberOfScheduleTransitionPerDayID" | "clusterThermostatAttributeActivePresetHandleID" | "clusterThermostatAttributeActiveScheduleHandleID" | "clusterThermostatAttributePresetsID" | "clusterThermostatAttributeSchedulesID" | "clusterThermostatAttributeSetpointHoldExpiryTimestampID" | "MTRClusterColorControlAttributeColorLoopTimeID" | "MTRClusterColorControlAttributeColorLoopStartEnhancedHueID" | "MTRClusterColorControlAttributeColorLoopStoredEnhancedHueID" | "MTRClusterColorControlAttributeColorCapabilitiesID" | "MTRClusterColorControlAttributeColorTempPhysicalMinMiredsID" | "MTRClusterColorControlAttributeColorTempPhysicalMaxMiredsID" | "MTRClusterColorControlAttributeCoupleColorTempToLevelMinMiredsID" | "MTRClusterColorControlAttributeStartUpColorTemperatureMiredsID" | "MTRClusterTestClusterAttributeUnsupportedID" | "MTRClusterTestClusterAttributeNullableInt24uID" | "MTRClusterTestClusterAttributeNullableInt32uID" | "MTRClusterTestClusterAttributeNullableInt40uID" | "MTRClusterTestClusterAttributeNullableInt16sID" | "MTRClusterTestClusterAttributeNullableInt24sID" | "MTRClusterTestClusterAttributeNullableInt40sID" | "MTRClusterTestClusterAttributeNullableInt48sID" | "MTRClusterTestClusterAttributeNullableInt56sID" | "MTRClusterTestClusterAttributeNullableInt64sID" | "MTRClusterTestClusterAttributeNullableEnum8ID" | "MTRClusterTestClusterAttributeNullableEnum16ID" | "MTRClusterTestClusterAttributeNullableFloatSingleID" | "MTRClusterTestClusterAttributeNullableFloatDoubleID" | "MTRClusterTestClusterAttributeNullableOctetStringID" | "MTRClusterTestClusterAttributeNullableCharStringID" | "MTRClusterTestClusterAttributeNullableEnumAttrID" | "MTRClusterTestClusterAttributeNullableStructID" | "MTRClusterTestClusterAttributeNullableRangeRestrictedInt8uID" | "MTRClusterTestClusterAttributeNullableRangeRestrictedInt8sID" | "MTRClusterTestClusterAttributeNullableRangeRestrictedInt16uID" | "MTRClusterTestClusterAttributeNullableRangeRestrictedInt16sID" | "MTRClusterTestClusterAttributeWriteOnlyInt8uID" | "MTRClusterBinaryInputBasicAttributePolarityID" | "MTRClusterBinaryInputBasicAttributePresentValueID" | "MTRClusterBinaryInputBasicAttributeReliabilityID" | "MTRClusterBinaryInputBasicAttributeStatusFlagsID" | "MTRClusterBinaryInputBasicAttributeApplicationTypeID" | "MTRClusterElectricalMeasurementAttributeDcVoltageMinID" | "MTRClusterElectricalMeasurementAttributeDcVoltageMaxID" | "MTRClusterElectricalMeasurementAttributeDcCurrentID" | "MTRClusterElectricalMeasurementAttributeDcCurrentMinID" | "MTRClusterElectricalMeasurementAttributeDcCurrentMaxID" | "MTRClusterElectricalMeasurementAttributeDcPowerID" | "MTRClusterElectricalMeasurementAttributeDcPowerMinID" | "MTRClusterElectricalMeasurementAttributeDcPowerMaxID" | "MTRClusterElectricalMeasurementAttributeDcVoltageMultiplierID" | "MTRClusterElectricalMeasurementAttributeDcVoltageDivisorID" | "MTRClusterElectricalMeasurementAttributeDcCurrentMultiplierID" | "MTRClusterElectricalMeasurementAttributeDcCurrentDivisorID" | "MTRClusterElectricalMeasurementAttributeDcPowerMultiplierID" | "MTRClusterElectricalMeasurementAttributeDcPowerDivisorID" | "MTRClusterElectricalMeasurementAttributeAcFrequencyID" | "MTRClusterElectricalMeasurementAttributeAcFrequencyMinID" | "MTRClusterElectricalMeasurementAttributeAcFrequencyMaxID" | "MTRClusterElectricalMeasurementAttributeNeutralCurrentID" | "MTRClusterElectricalMeasurementAttributeTotalActivePowerID" | "MTRClusterElectricalMeasurementAttributeTotalReactivePowerID" | "MTRClusterElectricalMeasurementAttributeTotalApparentPowerID" | "MTRClusterElectricalMeasurementAttributeMeasured1stHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasured3rdHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasured5thHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasured7thHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasured9thHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasured11thHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasuredPhase1stHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasuredPhase3rdHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasuredPhase5thHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasuredPhase7thHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasuredPhase9thHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeMeasuredPhase11thHarmonicCurrentID" | "MTRClusterElectricalMeasurementAttributeAcFrequencyMultiplierID" | "MTRClusterElectricalMeasurementAttributeAcFrequencyDivisorID" | "MTRClusterElectricalMeasurementAttributePowerMultiplierID" | "MTRClusterElectricalMeasurementAttributePowerDivisorID" | "MTRClusterElectricalMeasurementAttributeHarmonicCurrentMultiplierID" | "MTRClusterElectricalMeasurementAttributePhaseHarmonicCurrentMultiplierID" | "MTRClusterElectricalMeasurementAttributeInstantaneousVoltageID" | "MTRClusterElectricalMeasurementAttributeInstantaneousLineCurrentID" | "MTRClusterElectricalMeasurementAttributeInstantaneousActiveCurrentID" | "MTRClusterElectricalMeasurementAttributeInstantaneousReactiveCurrentID" | "MTRClusterElectricalMeasurementAttributeInstantaneousPowerID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageMinID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageMaxID" | "MTRClusterElectricalMeasurementAttributeRmsCurrentID" | "MTRClusterElectricalMeasurementAttributeRmsCurrentMinID" | "MTRClusterElectricalMeasurementAttributeRmsCurrentMaxID" | "MTRClusterElectricalMeasurementAttributeActivePowerID" | "MTRClusterElectricalMeasurementAttributeActivePowerMinID" | "MTRClusterElectricalMeasurementAttributeActivePowerMaxID" | "MTRClusterElectricalMeasurementAttributeReactivePowerID" | "MTRClusterElectricalMeasurementAttributeApparentPowerID" | "MTRClusterElectricalMeasurementAttributePowerFactorID" | "MTRClusterElectricalMeasurementAttributeAverageRmsVoltageMeasurementPeriodID" | "MTRClusterElectricalMeasurementAttributeAverageRmsUnderVoltageCounterID" | "MTRClusterElectricalMeasurementAttributeRmsExtremeOverVoltagePeriodID" | "MTRClusterElectricalMeasurementAttributeRmsExtremeUnderVoltagePeriodID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageSagPeriodID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageSwellPeriodID" | "MTRClusterElectricalMeasurementAttributeAcVoltageMultiplierID" | "MTRClusterElectricalMeasurementAttributeAcVoltageDivisorID" | "MTRClusterElectricalMeasurementAttributeAcCurrentMultiplierID" | "MTRClusterElectricalMeasurementAttributeAcCurrentDivisorID" | "MTRClusterElectricalMeasurementAttributeAcPowerMultiplierID" | "MTRClusterElectricalMeasurementAttributeAcPowerDivisorID" | "MTRClusterElectricalMeasurementAttributeOverloadAlarmsMaskID" | "MTRClusterElectricalMeasurementAttributeVoltageOverloadID" | "MTRClusterElectricalMeasurementAttributeCurrentOverloadID" | "MTRClusterElectricalMeasurementAttributeAcOverloadAlarmsMaskID" | "MTRClusterElectricalMeasurementAttributeAcVoltageOverloadID" | "MTRClusterElectricalMeasurementAttributeAcCurrentOverloadID" | "MTRClusterElectricalMeasurementAttributeAcActivePowerOverloadID" | "MTRClusterElectricalMeasurementAttributeAcReactivePowerOverloadID" | "MTRClusterElectricalMeasurementAttributeAverageRmsOverVoltageID" | "MTRClusterElectricalMeasurementAttributeAverageRmsUnderVoltageID" | "MTRClusterElectricalMeasurementAttributeRmsExtremeOverVoltageID" | "MTRClusterElectricalMeasurementAttributeRmsExtremeUnderVoltageID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageSagID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageSwellID" | "MTRClusterElectricalMeasurementAttributeLineCurrentPhaseBID" | "MTRClusterElectricalMeasurementAttributeActiveCurrentPhaseBID" | "MTRClusterElectricalMeasurementAttributeReactiveCurrentPhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsVoltagePhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageMinPhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageMaxPhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsCurrentPhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsCurrentMinPhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsCurrentMaxPhaseBID" | "MTRClusterElectricalMeasurementAttributeActivePowerPhaseBID" | "MTRClusterElectricalMeasurementAttributeActivePowerMinPhaseBID" | "MTRClusterElectricalMeasurementAttributeActivePowerMaxPhaseBID" | "MTRClusterElectricalMeasurementAttributeReactivePowerPhaseBID" | "MTRClusterElectricalMeasurementAttributeApparentPowerPhaseBID" | "MTRClusterElectricalMeasurementAttributePowerFactorPhaseBID" | "MTRClusterElectricalMeasurementAttributeAverageRmsVoltageMeasurementPeriodPhaseBID" | "MTRClusterElectricalMeasurementAttributeAverageRmsOverVoltageCounterPhaseBID" | "MTRClusterElectricalMeasurementAttributeAverageRmsUnderVoltageCounterPhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsExtremeOverVoltagePeriodPhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsExtremeUnderVoltagePeriodPhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageSagPeriodPhaseBID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageSwellPeriodPhaseBID" | "MTRClusterElectricalMeasurementAttributeLineCurrentPhaseCID" | "MTRClusterElectricalMeasurementAttributeActiveCurrentPhaseCID" | "MTRClusterElectricalMeasurementAttributeReactiveCurrentPhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsVoltagePhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageMinPhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageMaxPhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsCurrentPhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsCurrentMinPhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsCurrentMaxPhaseCID" | "MTRClusterElectricalMeasurementAttributeActivePowerPhaseCID" | "MTRClusterElectricalMeasurementAttributeActivePowerMinPhaseCID" | "MTRClusterElectricalMeasurementAttributeActivePowerMaxPhaseCID" | "MTRClusterElectricalMeasurementAttributeReactivePowerPhaseCID" | "MTRClusterElectricalMeasurementAttributeApparentPowerPhaseCID" | "MTRClusterElectricalMeasurementAttributePowerFactorPhaseCID" | "MTRClusterElectricalMeasurementAttributeAverageRmsVoltageMeasurementPeriodPhaseCID" | "MTRClusterElectricalMeasurementAttributeAverageRmsOverVoltageCounterPhaseCID" | "MTRClusterElectricalMeasurementAttributeAverageRmsUnderVoltageCounterPhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsExtremeOverVoltagePeriodPhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsExtremeUnderVoltagePeriodPhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageSagPeriodPhaseCID" | "MTRClusterElectricalMeasurementAttributeRmsVoltageSwellPeriodPhaseCID";
@@ -16415,6 +16635,10 @@ export declare class MTRClusterPath extends SDKHandle {
      * @availability iOS 16.4+
      */
     get endpoint(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)MTRClusterPath": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "endpoint": true;
@@ -16441,6 +16665,11 @@ export declare class MTRAttributePath extends MTRClusterPath {
      * @availability iOS 16.1+
      */
     get attribute(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)MTRAttributePath": true;
+        "c:objc(cs)MTRClusterPath": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "endpoint": true;
@@ -16452,13 +16681,11 @@ export declare class MTRAttributePath extends MTRClusterPath {
  * @availability iOS 16.1+
  */
 export declare class MTRAttributeReport extends SDKHandle {
-    /** init() */
-    static init(): MTRAttributeReport;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRAttributeReport;
+    static init(responseValue: Record<string, unknown>): MTRAttributeReport;
     /**
      * var error: (any Error)? { get }
      * @availability iOS 16.1+
@@ -16474,6 +16701,10 @@ export declare class MTRAttributeReport extends SDKHandle {
      * @availability iOS 16.1+
      */
     get value(): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)MTRAttributeReport": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "error": true;
         "path": true;
@@ -16489,9 +16720,7 @@ export declare class MTRAttributeRequestPath extends SDKHandle {
      * init(endpointID: NSNumber?, clusterID: NSNumber?, attributeID: NSNumber?)
      * @availability iOS 17.0+
      */
-    static initEndpointIDClusterIDAttributeID(endpointID?: $SDK0, clusterID?: $SDK0, attributeID?: $SDK0): MTRAttributeRequestPath;
-    /** init() */
-    static init(): MTRAttributeRequestPath;
+    static init(endpointID?: $SDK0, clusterID?: $SDK0, attributeID?: $SDK0): MTRAttributeRequestPath;
     /**
      * @NSCopying var attribute: NSNumber? { get }
      * @availability iOS 17.0+
@@ -16507,6 +16736,10 @@ export declare class MTRAttributeRequestPath extends SDKHandle {
      * @availability iOS 17.0+
      */
     get endpoint(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MTRAttributeRequestPath": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attribute": true;
         "cluster": true;
@@ -16528,6 +16761,10 @@ export declare class MTRAttributeValueWaiter extends SDKHandle {
      * @availability iOS 18.4+
      */
     get uuid(): string;
+    readonly $type: {
+        "c:objc(cs)MTRAttributeValueWaiter": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
     };
@@ -16557,6 +16794,10 @@ export declare class MTRAudioOutputClusterOutputInfoStruct extends SDKHandle {
      */
     get outputType(): _Foundation_NSNumber;
     set outputType(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRAudioOutputClusterOutputInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "index": true;
         "name": true;
@@ -16593,6 +16834,11 @@ export declare class MTRAudioOutputClusterOutputInfo extends MTRAudioOutputClust
      */
     get outputType(): _Foundation_NSNumber;
     set outputType(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRAudioOutputClusterOutputInfo": true;
+        "c:objc(cs)MTRAudioOutputClusterOutputInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "index": true;
         "name": true;
@@ -16630,6 +16876,10 @@ export declare class MTRAudioOutputClusterRenameOutputParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAudioOutputClusterRenameOutputParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "index": true;
         "name": true;
@@ -16662,6 +16912,10 @@ export declare class MTRAudioOutputClusterSelectOutputParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRAudioOutputClusterSelectOutputParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "index": true;
         "serverSideProcessingTimeout": true;
@@ -16738,6 +16992,10 @@ export declare class MTRBarrierControlClusterBarrierControlGoToPercentParams ext
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRBarrierControlClusterBarrierControlGoToPercentParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "percentOpen": true;
         "serverSideProcessingTimeout": true;
@@ -16766,6 +17024,10 @@ export declare class MTRBarrierControlClusterBarrierControlStopParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRBarrierControlClusterBarrierControlStopParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -16776,12 +17038,21 @@ export declare class MTRBarrierControlClusterBarrierControlStopParams extends SD
  * @availability iOS 16.1+
  */
 export declare class MTRCluster extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRGenericBaseCluster
  * @availability iOS 17.4+
  */
 export declare class MTRGenericBaseCluster extends MTRCluster {
+    readonly $type: {
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterAccessControl
@@ -17208,6 +17479,12 @@ export declare class MTRBaseClusterAccessControl extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeExtensionWithValueParamsCompletionHandler(value: Array<unknown>, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterAccessControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterAccountLogin
@@ -17434,6 +17711,12 @@ export declare class MTRBaseClusterAccountLogin extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeGeneratedCommandListWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterAccountLogin": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterActions
@@ -17847,6 +18130,12 @@ export declare class MTRBaseClusterActions extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeSetupURLWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK14): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterActions": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterActivatedCarbonFilterMonitoring
@@ -18043,6 +18332,12 @@ export declare class MTRBaseClusterActivatedCarbonFilterMonitoring extends MTRGe
      * @availability iOS 17.6+
      */
     writeAttributeLastChangedTimeWithValueParamsCompletion(value: $SDK0, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterActivatedCarbonFilterMonitoring": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterAdministratorCommissioning
@@ -18368,6 +18663,12 @@ export declare class MTRBaseClusterAdministratorCommissioning extends MTRGeneric
      * @availability iOS 16.4+
      */
     subscribeAttributeWindowStatusWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterAdministratorCommissioning": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterAirQuality
@@ -18469,6 +18770,12 @@ export declare class MTRBaseClusterAirQuality extends MTRGenericBaseCluster {
      * @availability iOS 17.6+
      */
     subscribeAttributeGeneratedCommandList(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterAirQuality": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterApplicationBasic
@@ -18915,6 +19222,12 @@ export declare class MTRBaseClusterApplicationBasic extends MTRGenericBaseCluste
      * @availability iOS 16.4+
      */
     subscribeAttributeVendorNameWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK14): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterApplicationBasic": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterApplicationLauncher
@@ -19233,6 +19546,12 @@ export declare class MTRBaseClusterApplicationLauncher extends MTRGenericBaseClu
      * @deprecated iOS 16.4
      */
     writeAttributeCurrentAppWithValueParamsCompletionHandler(value: $SDK26, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterApplicationLauncher": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterAudioOutput
@@ -19503,6 +19822,12 @@ export declare class MTRBaseClusterAudioOutput extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeOutputListWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterAudioOutput": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterBallastConfiguration
@@ -20367,6 +20692,12 @@ export declare class MTRBaseClusterBallastConfiguration extends MTRGenericBaseCl
      * @deprecated iOS 16.4
      */
     writeAttributeMinLevelWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBallastConfiguration": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterBarrierControl
@@ -21106,6 +21437,12 @@ export declare class MTRBaseClusterBarrierControl extends MTRGenericBaseCluster 
      * @deprecated iOS 16.4
      */
     writeAttributeBarrierOpenPeriodWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBarrierControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterBasicInformation
@@ -21567,6 +21904,12 @@ export declare class MTRBaseClusterBasicInformation extends MTRGenericBaseCluste
      * @availability iOS 16.4+
      */
     writeAttributeNodeLabelWithValueParamsCompletion(value: string, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBasicInformation": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTRBaseClusterBasic_base: Omit<typeof MTRBaseClusterBasicInformation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MTRBaseClusterBasicInformation, "subscribeAttributeAcceptedCommandList" | "subscribeAttributeAttributeList" | "subscribeAttributeCapabilityMinima" | "subscribeAttributeClusterRevision" | "subscribeAttributeDataModelRevision" | "subscribeAttributeFeatureMap" | "subscribeAttributeGeneratedCommandList" | "subscribeAttributeHardwareVersionString" | "subscribeAttributeHardwareVersion" | "subscribeAttributeLocalConfigDisabled" | "subscribeAttributeLocation" | "subscribeAttributeManufacturingDate" | "subscribeAttributeNodeLabel" | "subscribeAttributePartNumber" | "subscribeAttributeProductID" | "subscribeAttributeProductLabel" | "subscribeAttributeProductName" | "subscribeAttributeProductURL" | "subscribeAttributeReachable" | "subscribeAttributeSerialNumber" | "subscribeAttributeSoftwareVersionString" | "subscribeAttributeSoftwareVersion" | "subscribeAttributeUniqueID" | "subscribeAttributeVendorID" | "subscribeAttributeVendorName">);
 /**
@@ -22079,6 +22422,13 @@ export declare class MTRBaseClusterBasic extends MTRBaseClusterBasic_base {
      * @deprecated iOS 16.4
      */
     writeAttributeNodeLabelWithValueParamsCompletionHandler(value: string, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBasic": true;
+        "c:objc(cs)MTRBaseClusterBasicInformation": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterBinaryInputBasic
@@ -22746,6 +23096,12 @@ export declare class MTRBaseClusterBinaryInputBasic extends MTRGenericBaseCluste
      * @deprecated iOS 16.4
      */
     writeAttributeReliabilityWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBinaryInputBasic": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterBinding
@@ -22983,6 +23339,12 @@ export declare class MTRBaseClusterBinding extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeBindingWithValueParamsCompletionHandler(value: Array<unknown>, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBinding": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterBooleanState
@@ -23198,6 +23560,12 @@ export declare class MTRBaseClusterBooleanState extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeStateValueWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBooleanState": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterBooleanStateConfiguration
@@ -23424,6 +23792,12 @@ export declare class MTRBaseClusterBooleanStateConfiguration extends MTRGenericB
      * @availability iOS 17.6+
      */
     writeAttributeCurrentSensitivityLevelWithValueParamsCompletion(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBooleanStateConfiguration": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterBridgedDeviceBasicInformation
@@ -23780,6 +24154,12 @@ export declare class MTRBaseClusterBridgedDeviceBasicInformation extends MTRGene
      * @availability iOS 16.4+
      */
     writeAttributeNodeLabelWithValueParamsCompletion(value: string, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBridgedDeviceBasicInformation": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTRBaseClusterBridgedDeviceBasic_base: Omit<typeof MTRBaseClusterBridgedDeviceBasicInformation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MTRBaseClusterBridgedDeviceBasicInformation, "subscribeAttributeAcceptedCommandList" | "subscribeAttributeAttributeList" | "subscribeAttributeClusterRevision" | "subscribeAttributeFeatureMap" | "subscribeAttributeGeneratedCommandList" | "subscribeAttributeHardwareVersionString" | "subscribeAttributeHardwareVersion" | "subscribeAttributeManufacturingDate" | "subscribeAttributeNodeLabel" | "subscribeAttributePartNumber" | "subscribeAttributeProductLabel" | "subscribeAttributeProductName" | "subscribeAttributeProductURL" | "subscribeAttributeReachable" | "subscribeAttributeSerialNumber" | "subscribeAttributeSoftwareVersionString" | "subscribeAttributeSoftwareVersion" | "subscribeAttributeUniqueID" | "subscribeAttributeVendorID" | "subscribeAttributeVendorName">);
 /**
@@ -24166,6 +24546,13 @@ export declare class MTRBaseClusterBridgedDeviceBasic extends MTRBaseClusterBrid
      * @deprecated iOS 16.4
      */
     writeAttributeNodeLabelWithValueParamsCompletionHandler(value: string, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterBridgedDeviceBasic": true;
+        "c:objc(cs)MTRBaseClusterBridgedDeviceBasicInformation": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterCarbonDioxideConcentrationMeasurement
@@ -24417,6 +24804,12 @@ export declare class MTRBaseClusterCarbonDioxideConcentrationMeasurement extends
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterCarbonDioxideConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterCarbonMonoxideConcentrationMeasurement
@@ -24668,6 +25061,12 @@ export declare class MTRBaseClusterCarbonMonoxideConcentrationMeasurement extend
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterCarbonMonoxideConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterChannel
@@ -25002,6 +25401,12 @@ export declare class MTRBaseClusterChannel extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeLineupWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK36): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterChannel": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterColorControl
@@ -27417,6 +27822,12 @@ export declare class MTRBaseClusterColorControl extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeWhitePointYWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterColorControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterCommissionerControl
@@ -27528,6 +27939,12 @@ export declare class MTRBaseClusterCommissionerControl extends MTRGenericBaseClu
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedDeviceCategories(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterCommissionerControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterContentAppObserver
@@ -27619,6 +28036,12 @@ export declare class MTRBaseClusterContentAppObserver extends MTRGenericBaseClus
      * @availability iOS 18.4+
      */
     subscribeAttributeGeneratedCommandList(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterContentAppObserver": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterContentLauncher
@@ -27911,6 +28334,12 @@ export declare class MTRBaseClusterContentLauncher extends MTRGenericBaseCluster
      * @deprecated iOS 16.4
      */
     writeAttributeSupportedStreamingProtocolsWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterContentLauncher": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterDescriptor
@@ -28225,6 +28654,12 @@ export declare class MTRBaseClusterDescriptor extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeServerListWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterDescriptor": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterDeviceEnergyManagement
@@ -28486,6 +28921,12 @@ export declare class MTRBaseClusterDeviceEnergyManagement extends MTRGenericBase
      * @availability iOS 18.4+
      */
     subscribeAttributePowerAdjustmentCapability(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK45): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterDeviceEnergyManagement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterDeviceEnergyManagementMode
@@ -28607,6 +29048,12 @@ export declare class MTRBaseClusterDeviceEnergyManagementMode extends MTRGeneric
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterDeviceEnergyManagementMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterDiagnosticLogs
@@ -28800,6 +29247,12 @@ export declare class MTRBaseClusterDiagnosticLogs extends MTRGenericBaseCluster 
      * @availability iOS 16.4+
      */
     subscribeAttributeGeneratedCommandListWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterDiagnosticLogs": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterDishwasherAlarm
@@ -28956,6 +29409,12 @@ export declare class MTRBaseClusterDishwasherAlarm extends MTRGenericBaseCluster
      * @availability iOS 18.4+
      */
     subscribeAttributeSupported(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterDishwasherAlarm": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterDishwasherMode
@@ -29077,6 +29536,12 @@ export declare class MTRBaseClusterDishwasherMode extends MTRGenericBaseCluster 
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterDishwasherMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterDoorLock
@@ -31211,6 +31676,12 @@ export declare class MTRBaseClusterDoorLock extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeWrongCodeEntryLimitWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterDoorLock": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterElectricalEnergyMeasurement
@@ -31387,6 +31858,12 @@ export declare class MTRBaseClusterElectricalEnergyMeasurement extends MTRGeneri
      * @availability iOS 17.6+
      */
     subscribeAttributePeriodicEnergyImported(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK64): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterElectricalEnergyMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterElectricalMeasurement
@@ -36422,6 +36899,12 @@ export declare class MTRBaseClusterElectricalMeasurement extends MTRGenericBaseC
      * @deprecated iOS 16.4
      */
     writeAttributeRmsVoltageSwellPeriodWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterElectricalMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterElectricalPowerMeasurement
@@ -36793,6 +37276,12 @@ export declare class MTRBaseClusterElectricalPowerMeasurement extends MTRGeneric
      * @availability iOS 17.6+
      */
     subscribeAttributeVoltage(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterElectricalPowerMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterEnergyEVSE
@@ -37214,6 +37703,12 @@ export declare class MTRBaseClusterEnergyEVSE extends MTRGenericBaseCluster {
      * @availability iOS 18.4+
      */
     writeAttributeUserMaximumChargeCurrentWithValueParamsCompletion(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterEnergyEVSE": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterEnergyEVSEMode
@@ -37335,6 +37830,12 @@ export declare class MTRBaseClusterEnergyEVSEMode extends MTRGenericBaseCluster 
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterEnergyEVSEMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterEthernetNetworkDiagnostics
@@ -37836,6 +38337,12 @@ export declare class MTRBaseClusterEthernetNetworkDiagnostics extends MTRGeneric
      * @availability iOS 16.4+
      */
     subscribeAttributeTxErrCountWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterEthernetNetworkDiagnostics": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterFanControl
@@ -38543,6 +39050,12 @@ export declare class MTRBaseClusterFanControl extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeWindSettingWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterFanControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterFixedLabel
@@ -38758,6 +39271,12 @@ export declare class MTRBaseClusterFixedLabel extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeLabelListWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterFixedLabel": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterFlowMeasurement
@@ -39072,6 +39591,12 @@ export declare class MTRBaseClusterFlowMeasurement extends MTRGenericBaseCluster
      * @availability iOS 16.4+
      */
     subscribeAttributeToleranceWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterFlowMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterFormaldehydeConcentrationMeasurement
@@ -39323,6 +39848,12 @@ export declare class MTRBaseClusterFormaldehydeConcentrationMeasurement extends 
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterFormaldehydeConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterGeneralCommissioning
@@ -39736,6 +40267,12 @@ export declare class MTRBaseClusterGeneralCommissioning extends MTRGenericBaseCl
      * @deprecated iOS 16.4
      */
     writeAttributeBreadcrumbWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterGeneralCommissioning": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterGeneralDiagnostics
@@ -40241,6 +40778,12 @@ export declare class MTRBaseClusterGeneralDiagnostics extends MTRGenericBaseClus
      * @availability iOS 18.4+
      */
     timeSnapshotWithCompletion(params: $SDK81, completion: $SDK80): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterGeneralDiagnostics": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterGroupKeyManagement
@@ -40626,6 +41169,12 @@ export declare class MTRBaseClusterGroupKeyManagement extends MTRGenericBaseClus
      * @deprecated iOS 16.4
      */
     writeAttributeGroupKeyMapWithValueParamsCompletionHandler(value: Array<unknown>, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterGroupKeyManagement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterGroups
@@ -40918,6 +41467,12 @@ export declare class MTRBaseClusterGroups extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     viewGroupWithCompletionHandler(params: MTRGroupsClusterViewGroupParams, completionHandler: $SDK89): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterGroups": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterHEPAFilterMonitoring
@@ -41114,6 +41669,12 @@ export declare class MTRBaseClusterHEPAFilterMonitoring extends MTRGenericBaseCl
      * @availability iOS 17.6+
      */
     writeAttributeLastChangedTimeWithValueParamsCompletion(value: $SDK0, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterHEPAFilterMonitoring": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterICDManagement
@@ -41365,6 +41926,12 @@ export declare class MTRBaseClusterICDManagement extends MTRGenericBaseCluster {
      * @availability iOS 18.4+
      */
     unregisterClient(params: MTRICDManagementClusterUnregisterClientParams, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterICDManagement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterIdentify
@@ -41657,6 +42224,12 @@ export declare class MTRBaseClusterIdentify extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeIdentifyTimeWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterIdentify": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterIlluminanceMeasurement
@@ -42004,6 +42577,12 @@ export declare class MTRBaseClusterIlluminanceMeasurement extends MTRGenericBase
      * @availability iOS 16.4+
      */
     subscribeAttributeToleranceWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterIlluminanceMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterKeypadInput
@@ -42197,6 +42776,12 @@ export declare class MTRBaseClusterKeypadInput extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeGeneratedCommandListWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterKeypadInput": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterLaundryDryerControls
@@ -42323,6 +42908,12 @@ export declare class MTRBaseClusterLaundryDryerControls extends MTRGenericBaseCl
      * @availability iOS 18.4+
      */
     writeAttributeSelectedDrynessLevelWithValueParamsCompletion(value: $SDK0, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterLaundryDryerControls": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterLaundryWasherControls
@@ -42489,6 +43080,12 @@ export declare class MTRBaseClusterLaundryWasherControls extends MTRGenericBaseC
      * @availability iOS 18.4+
      */
     writeAttributeSpinSpeedCurrentWithValueParamsCompletion(value: $SDK0, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterLaundryWasherControls": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterLaundryWasherMode
@@ -42610,6 +43207,12 @@ export declare class MTRBaseClusterLaundryWasherMode extends MTRGenericBaseClust
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterLaundryWasherMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterLevelControl
@@ -43507,6 +44110,12 @@ export declare class MTRBaseClusterLevelControl extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeStartUpCurrentLevelWithValueParamsCompletionHandler(value: $SDK0, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterLevelControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterLocalizationConfiguration
@@ -43777,6 +44386,12 @@ export declare class MTRBaseClusterLocalizationConfiguration extends MTRGenericB
      * @deprecated iOS 16.4
      */
     writeAttributeActiveLocaleWithValueParamsCompletionHandler(value: string, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterLocalizationConfiguration": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterLowPower
@@ -43981,6 +44596,12 @@ export declare class MTRBaseClusterLowPower extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeGeneratedCommandListWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterLowPower": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterMediaInput
@@ -44295,6 +44916,12 @@ export declare class MTRBaseClusterMediaInput extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeInputListWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterMediaInput": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterMediaPlayback
@@ -44937,6 +45564,12 @@ export declare class MTRBaseClusterMediaPlayback extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeStartTimeWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterMediaPlayback": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterMessages
@@ -45063,6 +45696,12 @@ export declare class MTRBaseClusterMessages extends MTRGenericBaseCluster {
      * @availability iOS 18.4+
      */
     subscribeAttributeMessages(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterMessages": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterMicrowaveOvenControl
@@ -45269,6 +45908,12 @@ export declare class MTRBaseClusterMicrowaveOvenControl extends MTRGenericBaseCl
      * @availability iOS 18.4+
      */
     subscribeAttributeWattRating(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterMicrowaveOvenControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterMicrowaveOvenMode
@@ -45385,6 +46030,12 @@ export declare class MTRBaseClusterMicrowaveOvenMode extends MTRGenericBaseClust
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterMicrowaveOvenMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterModeSelect
@@ -45820,6 +46471,12 @@ export declare class MTRBaseClusterModeSelect extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeStartUpModeWithValueParamsCompletionHandler(value: $SDK0, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterModeSelect": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterNetworkCommissioning
@@ -46404,6 +47061,12 @@ export declare class MTRBaseClusterNetworkCommissioning extends MTRGenericBaseCl
      * @deprecated iOS 16.4
      */
     writeAttributeInterfaceEnabledWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterNetworkCommissioning": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterNitrogenDioxideConcentrationMeasurement
@@ -46655,6 +47318,12 @@ export declare class MTRBaseClusterNitrogenDioxideConcentrationMeasurement exten
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterNitrogenDioxideConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOccupancySensing
@@ -47471,6 +48140,12 @@ export declare class MTRBaseClusterOccupancySensing extends MTRGenericBaseCluste
      * @deprecated iOS 16.4
      */
     writeAttributeUltrasonicUnoccupiedToOccupiedThresholdWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOccupancySensing": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOnOff
@@ -47994,6 +48669,12 @@ export declare class MTRBaseClusterOnOff extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeStartUpWithValueParamsCompletionHandler(value: $SDK0, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOnOff": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOnOffSwitchConfiguration
@@ -48289,6 +48970,12 @@ export declare class MTRBaseClusterOnOffSwitchConfiguration extends MTRGenericBa
      * @deprecated iOS 16.4
      */
     writeAttributeSwitchActionsWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOnOffSwitchConfiguration": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOperationalCredentials
@@ -48757,6 +49444,12 @@ export declare class MTRBaseClusterOperationalCredentials extends MTRGenericBase
      * @deprecated iOS 16.4
      */
     updateNOCWithCompletionHandler(params: MTROperationalCredentialsClusterUpdateNOCParams, completionHandler: $SDK122): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOperationalCredentials": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOperationalState
@@ -48973,6 +49666,12 @@ export declare class MTRBaseClusterOperationalState extends MTRGenericBaseCluste
      * @availability iOS 17.4+
      */
     subscribeAttributePhaseList(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOperationalState": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOTASoftwareUpdateProvider
@@ -49074,6 +49773,12 @@ export declare class MTRBaseClusterOTASoftwareUpdateProvider extends MTRGenericB
      * @availability iOS 16.4+
      */
     subscribeAttributeGeneratedCommandList(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOTASoftwareUpdateProvider": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTRBaseClusterOtaSoftwareUpdateProvider_base: Omit<typeof MTRBaseClusterOTASoftwareUpdateProvider, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MTRBaseClusterOTASoftwareUpdateProvider, "applyUpdateRequest" | "notifyUpdateApplied" | "queryImage" | "subscribeAttributeAcceptedCommandList" | "subscribeAttributeAttributeList" | "subscribeAttributeClusterRevision" | "subscribeAttributeFeatureMap" | "subscribeAttributeGeneratedCommandList">);
 /**
@@ -49196,6 +49901,13 @@ export declare class MTRBaseClusterOtaSoftwareUpdateProvider extends MTRBaseClus
      * @deprecated iOS 16.4
      */
     subscribeAttributeGeneratedCommandList(minInterval: _Foundation_NSNumber, maxInterval: _Foundation_NSNumber, params: $SDK10, subscriptionEstablishedHandler: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOtaSoftwareUpdateProvider": true;
+        "c:objc(cs)MTRBaseClusterOTASoftwareUpdateProvider": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOTASoftwareUpdateRequestor
@@ -49357,6 +50069,12 @@ export declare class MTRBaseClusterOTASoftwareUpdateRequestor extends MTRGeneric
      * @availability iOS 16.4+
      */
     writeAttributeDefaultOTAProvidersWithValueParamsCompletion(value: Array<unknown>, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOTASoftwareUpdateRequestor": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTRBaseClusterOtaSoftwareUpdateRequestor_base: Omit<typeof MTRBaseClusterOTASoftwareUpdateRequestor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MTRBaseClusterOTASoftwareUpdateRequestor, "subscribeAttributeAcceptedCommandList" | "subscribeAttributeAttributeList" | "subscribeAttributeClusterRevision" | "subscribeAttributeFeatureMap" | "subscribeAttributeGeneratedCommandList" | "subscribeAttributeUpdatePossible" | "subscribeAttributeUpdateStateProgress" | "subscribeAttributeUpdateState">);
 /**
@@ -49551,6 +50269,13 @@ export declare class MTRBaseClusterOtaSoftwareUpdateRequestor extends MTRBaseClu
      * @deprecated iOS 16.4
      */
     writeAttributeDefaultOtaProvidersWithValueParamsCompletionHandler(value: Array<unknown>, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOtaSoftwareUpdateRequestor": true;
+        "c:objc(cs)MTRBaseClusterOTASoftwareUpdateRequestor": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOvenCavityOperationalState
@@ -49747,6 +50472,12 @@ export declare class MTRBaseClusterOvenCavityOperationalState extends MTRGeneric
      * @availability iOS 18.4+
      */
     subscribeAttributePhaseList(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOvenCavityOperationalState": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOvenMode
@@ -49868,6 +50599,12 @@ export declare class MTRBaseClusterOvenMode extends MTRGenericBaseCluster {
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOvenMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterOzoneConcentrationMeasurement
@@ -50119,6 +50856,12 @@ export declare class MTRBaseClusterOzoneConcentrationMeasurement extends MTRGene
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterOzoneConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterPM10ConcentrationMeasurement
@@ -50370,6 +51113,12 @@ export declare class MTRBaseClusterPM10ConcentrationMeasurement extends MTRGener
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterPM10ConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterPM1ConcentrationMeasurement
@@ -50621,6 +51370,12 @@ export declare class MTRBaseClusterPM1ConcentrationMeasurement extends MTRGeneri
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterPM1ConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterPM25ConcentrationMeasurement
@@ -50872,6 +51627,12 @@ export declare class MTRBaseClusterPM25ConcentrationMeasurement extends MTRGener
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterPM25ConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterPowerSource
@@ -52092,6 +52853,12 @@ export declare class MTRBaseClusterPowerSource extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeWiredPresentWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterPowerSource": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterPowerSourceConfiguration
@@ -52307,6 +53074,12 @@ export declare class MTRBaseClusterPowerSourceConfiguration extends MTRGenericBa
      * @availability iOS 16.4+
      */
     subscribeAttributeSourcesWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterPowerSourceConfiguration": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterPowerTopology
@@ -52423,6 +53196,12 @@ export declare class MTRBaseClusterPowerTopology extends MTRGenericBaseCluster {
      * @availability iOS 18.4+
      */
     subscribeAttributeGeneratedCommandList(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterPowerTopology": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterPressureMeasurement
@@ -52902,6 +53681,12 @@ export declare class MTRBaseClusterPressureMeasurement extends MTRGenericBaseClu
      * @availability iOS 16.4+
      */
     subscribeAttributeToleranceWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterPressureMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterPumpConfigurationAndControl
@@ -53931,6 +54716,12 @@ export declare class MTRBaseClusterPumpConfigurationAndControl extends MTRGeneri
      * @deprecated iOS 16.4
      */
     writeAttributeOperationModeWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterPumpConfigurationAndControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterRadonConcentrationMeasurement
@@ -54182,6 +54973,12 @@ export declare class MTRBaseClusterRadonConcentrationMeasurement extends MTRGene
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterRadonConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterRefrigeratorAlarm
@@ -54313,6 +55110,12 @@ export declare class MTRBaseClusterRefrigeratorAlarm extends MTRGenericBaseClust
      * @availability iOS 18.4+
      */
     subscribeAttributeSupported(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterRefrigeratorAlarm": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode
@@ -54434,6 +55237,12 @@ export declare class MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMo
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterRelativeHumidityMeasurement
@@ -54748,6 +55557,12 @@ export declare class MTRBaseClusterRelativeHumidityMeasurement extends MTRGeneri
      * @availability iOS 16.4+
      */
     subscribeAttributeToleranceWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterRelativeHumidityMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterRVCCleanMode
@@ -54869,6 +55684,12 @@ export declare class MTRBaseClusterRVCCleanMode extends MTRGenericBaseCluster {
      * @availability iOS 17.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterRVCCleanMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterRVCOperationalState
@@ -55075,6 +55896,12 @@ export declare class MTRBaseClusterRVCOperationalState extends MTRGenericBaseClu
      * @availability iOS 17.4+
      */
     subscribeAttributePhaseList(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterRVCOperationalState": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterRVCRunMode
@@ -55196,6 +56023,12 @@ export declare class MTRBaseClusterRVCRunMode extends MTRGenericBaseCluster {
      * @availability iOS 17.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterRVCRunMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterServiceArea
@@ -55382,6 +56215,12 @@ export declare class MTRBaseClusterServiceArea extends MTRGenericBaseCluster {
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedMaps(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterServiceArea": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterSmokeCOAlarm
@@ -55683,6 +56522,12 @@ export declare class MTRBaseClusterSmokeCOAlarm extends MTRGenericBaseCluster {
      * @availability iOS 17.6+
      */
     writeAttributeSmokeSensitivityLevelWithValueParamsCompletion(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterSmokeCOAlarm": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterSoftwareDiagnostics
@@ -56019,6 +56864,12 @@ export declare class MTRBaseClusterSoftwareDiagnostics extends MTRGenericBaseClu
      * @availability iOS 16.4+
      */
     subscribeAttributeThreadMetricsWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterSoftwareDiagnostics": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterSwitch
@@ -56300,6 +57151,12 @@ export declare class MTRBaseClusterSwitch extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeNumberOfPositionsWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterSwitch": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterTargetNavigator
@@ -56559,6 +57416,12 @@ export declare class MTRBaseClusterTargetNavigator extends MTRGenericBaseCluster
      * @availability iOS 16.4+
      */
     subscribeAttributeTargetListWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterTargetNavigator": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterTemperatureControl
@@ -56745,6 +57608,12 @@ export declare class MTRBaseClusterTemperatureControl extends MTRGenericBaseClus
      * @availability iOS 18.4+
      */
     subscribeAttributeTemperatureSetpoint(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterTemperatureControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterTemperatureMeasurement
@@ -57059,6 +57928,12 @@ export declare class MTRBaseClusterTemperatureMeasurement extends MTRGenericBase
      * @availability iOS 16.4+
      */
     subscribeAttributeToleranceWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterTemperatureMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterUnitTesting
@@ -59340,6 +60215,12 @@ export declare class MTRBaseClusterUnitTesting extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     writeAttributeWriteOnlyInt8uWithValueParamsCompletion(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterUnitTesting": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTRBaseClusterTestCluster_base: Omit<typeof MTRBaseClusterUnitTesting, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MTRBaseClusterUnitTesting, "simpleStructEchoRequest" | "subscribeAttributeAcceptedCommandList" | "subscribeAttributeAttributeList" | "subscribeAttributeBitmap16" | "subscribeAttributeBitmap32" | "subscribeAttributeBitmap64" | "subscribeAttributeBitmap8" | "subscribeAttributeBoolean" | "subscribeAttributeCharString" | "subscribeAttributeClusterErrorBoolean" | "subscribeAttributeClusterRevision" | "subscribeAttributeEnum16" | "subscribeAttributeEnum8" | "subscribeAttributeEnumAttr" | "subscribeAttributeEpochS" | "subscribeAttributeEpochUs" | "subscribeAttributeFeatureMap" | "subscribeAttributeFloatDouble" | "subscribeAttributeFloatSingle" | "subscribeAttributeGeneralErrorBoolean" | "subscribeAttributeGeneratedCommandList" | "subscribeAttributeInt16s" | "subscribeAttributeInt16u" | "subscribeAttributeInt24s" | "subscribeAttributeInt24u" | "subscribeAttributeInt32s" | "subscribeAttributeInt32u" | "subscribeAttributeInt40s" | "subscribeAttributeInt40u" | "subscribeAttributeInt48s" | "subscribeAttributeInt48u" | "subscribeAttributeInt56s" | "subscribeAttributeInt56u" | "subscribeAttributeInt64s" | "subscribeAttributeInt64u" | "subscribeAttributeInt8s" | "subscribeAttributeInt8u" | "subscribeAttributeListFabricScoped" | "subscribeAttributeListInt8u" | "subscribeAttributeListLongOctetString" | "subscribeAttributeListNullablesAndOptionalsStruct" | "subscribeAttributeListOctetString" | "subscribeAttributeListStructOctetString" | "subscribeAttributeLongCharString" | "subscribeAttributeLongOctetString" | "subscribeAttributeNullableBitmap16" | "subscribeAttributeNullableBitmap32" | "subscribeAttributeNullableBitmap64" | "subscribeAttributeNullableBitmap8" | "subscribeAttributeNullableBoolean" | "subscribeAttributeNullableCharString" | "subscribeAttributeNullableEnum16" | "subscribeAttributeNullableEnum8" | "subscribeAttributeNullableEnumAttr" | "subscribeAttributeNullableFloatDouble" | "subscribeAttributeNullableFloatSingle" | "subscribeAttributeNullableInt16s" | "subscribeAttributeNullableInt16u" | "subscribeAttributeNullableInt24s" | "subscribeAttributeNullableInt24u" | "subscribeAttributeNullableInt32s" | "subscribeAttributeNullableInt32u" | "subscribeAttributeNullableInt40s" | "subscribeAttributeNullableInt40u" | "subscribeAttributeNullableInt48s" | "subscribeAttributeNullableInt48u" | "subscribeAttributeNullableInt56s" | "subscribeAttributeNullableInt56u" | "subscribeAttributeNullableInt64s" | "subscribeAttributeNullableInt64u" | "subscribeAttributeNullableInt8s" | "subscribeAttributeNullableInt8u" | "subscribeAttributeNullableOctetString" | "subscribeAttributeNullableRangeRestrictedInt16s" | "subscribeAttributeNullableRangeRestrictedInt16u" | "subscribeAttributeNullableRangeRestrictedInt8s" | "subscribeAttributeNullableRangeRestrictedInt8u" | "subscribeAttributeNullableStruct" | "subscribeAttributeOctetString" | "subscribeAttributeRangeRestrictedInt16s" | "subscribeAttributeRangeRestrictedInt16u" | "subscribeAttributeRangeRestrictedInt8s" | "subscribeAttributeRangeRestrictedInt8u" | "subscribeAttributeStructAttr" | "subscribeAttributeTimedWriteBoolean" | "subscribeAttributeUnsupported" | "subscribeAttributeVendorId" | "subscribeAttributeWriteOnlyInt8u" | "testAddArguments" | "testComplexNullableOptionalRequest" | "testEmitTestEventRequest" | "testEmitTestFabricScopedEventRequest" | "testEnumsRequest" | "testListInt8UArgumentRequest" | "testListInt8UReverseRequest" | "testListNestedStructListArgumentRequest" | "testListStructArgumentRequest" | "testNestedStructArgumentRequest" | "testNestedStructListArgumentRequest" | "testSimpleArgumentRequest" | "testStructArgumentRequest" | "testStructArrayArgumentRequest">);
 /**
@@ -62078,6 +62959,13 @@ export declare class MTRBaseClusterTestCluster extends MTRBaseClusterTestCluster
      * @deprecated iOS 16.4
      */
     writeAttributeWriteOnlyInt8uWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterTestCluster": true;
+        "c:objc(cs)MTRBaseClusterUnitTesting": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterThermostat
@@ -64726,6 +65614,12 @@ export declare class MTRBaseClusterThermostat extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeUnoccupiedSetbackWithValueParamsCompletionHandler(value: $SDK0, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterThermostat": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterThermostatUserInterfaceConfiguration
@@ -65073,6 +65967,12 @@ export declare class MTRBaseClusterThermostatUserInterfaceConfiguration extends 
      * @deprecated iOS 16.4
      */
     writeAttributeTemperatureDisplayModeWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterThermostatUserInterfaceConfiguration": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterThreadBorderRouterManagement
@@ -65279,6 +66179,12 @@ export declare class MTRBaseClusterThreadBorderRouterManagement extends MTRGener
      * @availability iOS 18.4+
      */
     subscribeAttributeThreadVersion(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterThreadBorderRouterManagement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterThreadNetworkDiagnostics
@@ -67562,6 +68468,12 @@ export declare class MTRBaseClusterThreadNetworkDiagnostics extends MTRGenericBa
      * @availability iOS 16.4+
      */
     subscribeAttributeWeightingWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterThreadNetworkDiagnostics": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterThreadNetworkDirectory
@@ -67718,6 +68630,12 @@ export declare class MTRBaseClusterThreadNetworkDirectory extends MTRGenericBase
      * @availability iOS 18.4+
      */
     writeAttributePreferredExtendedPanIDWithValueParamsCompletion(value: (ArrayBuffer) | null, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterThreadNetworkDirectory": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterTimeFormatLocalization
@@ -68043,6 +68961,12 @@ export declare class MTRBaseClusterTimeFormatLocalization extends MTRGenericBase
      * @deprecated iOS 16.4
      */
     writeAttributeHourFormatWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterTimeFormatLocalization": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterTimeSynchronization
@@ -68349,6 +69273,12 @@ export declare class MTRBaseClusterTimeSynchronization extends MTRGenericBaseClu
      * @availability iOS 18.4+
      */
     subscribeAttributeUTCTime(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterTimeSynchronization": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterTotalVolatileOrganicCompoundsConcentrationMeasurement
@@ -68600,6 +69530,12 @@ export declare class MTRBaseClusterTotalVolatileOrganicCompoundsConcentrationMea
      * @availability iOS 17.6+
      */
     subscribeAttributeUncertainty(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterTotalVolatileOrganicCompoundsConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterUnitLocalization
@@ -68837,6 +69773,12 @@ export declare class MTRBaseClusterUnitLocalization extends MTRGenericBaseCluste
      * @deprecated iOS 16.4
      */
     writeAttributeTemperatureUnitWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterUnitLocalization": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterUserLabel
@@ -69074,6 +70016,12 @@ export declare class MTRBaseClusterUserLabel extends MTRGenericBaseCluster {
      * @deprecated iOS 16.4
      */
     writeAttributeLabelListWithValueParamsCompletionHandler(value: Array<unknown>, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterUserLabel": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterValveConfigurationAndControl
@@ -69365,6 +70313,12 @@ export declare class MTRBaseClusterValveConfigurationAndControl extends MTRGener
      * @availability iOS 17.6+
      */
     writeAttributeDefaultOpenLevelWithValueParamsCompletion(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterValveConfigurationAndControl": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterWakeOnLAN
@@ -69481,6 +70435,12 @@ export declare class MTRBaseClusterWakeOnLAN extends MTRGenericBaseCluster {
      * @availability iOS 16.4+
      */
     subscribeAttributeMACAddress(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK14): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterWakeOnLAN": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTRBaseClusterWakeOnLan_base: Omit<typeof MTRBaseClusterWakeOnLAN, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MTRBaseClusterWakeOnLAN, "subscribeAttributeAcceptedCommandList" | "subscribeAttributeAttributeList" | "subscribeAttributeClusterRevision" | "subscribeAttributeFeatureMap" | "subscribeAttributeGeneratedCommandList" | "subscribeAttributeMACAddress">);
 /**
@@ -69603,6 +70563,13 @@ export declare class MTRBaseClusterWakeOnLan extends MTRBaseClusterWakeOnLan_bas
      * @deprecated iOS 16.4
      */
     subscribeAttributeMACAddress(minInterval: _Foundation_NSNumber, maxInterval: _Foundation_NSNumber, params: $SDK10, subscriptionEstablishedHandler: ((() => void)) | null, reportHandler: $SDK14): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterWakeOnLan": true;
+        "c:objc(cs)MTRBaseClusterWakeOnLAN": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterWaterHeaterManagement
@@ -69794,6 +70761,12 @@ export declare class MTRBaseClusterWaterHeaterManagement extends MTRGenericBaseC
      * @availability iOS 18.4+
      */
     subscribeAttributeTankVolume(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterWaterHeaterManagement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterWaterHeaterMode
@@ -69915,6 +70888,12 @@ export declare class MTRBaseClusterWaterHeaterMode extends MTRGenericBaseCluster
      * @availability iOS 18.4+
      */
     subscribeAttributeSupportedModes(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK7): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterWaterHeaterMode": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterWiFiNetworkDiagnostics
@@ -70548,6 +71527,12 @@ export declare class MTRBaseClusterWiFiNetworkDiagnostics extends MTRGenericBase
      * @availability iOS 16.4+
      */
     subscribeAttributeWiFiVersionWithSubscriptionEstablishedReportHandler(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterWiFiNetworkDiagnostics": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterWiFiNetworkManagement
@@ -70674,6 +71659,12 @@ export declare class MTRBaseClusterWiFiNetworkManagement extends MTRGenericBaseC
      * @availability iOS 18.4+
      */
     subscribeAttributeSSID(params: MTRSubscribeParams, subscriptionEstablished: ((() => void)) | null, reportHandler: $SDK52): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterWiFiNetworkManagement": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseClusterWindowCovering
@@ -71714,6 +72705,12 @@ export declare class MTRBaseClusterWindowCovering extends MTRGenericBaseCluster 
      * @deprecated iOS 16.4
      */
     writeAttributeModeWithValueParamsCompletionHandler(value: _Foundation_NSNumber, params: (MTRWriteParams) | null, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRBaseClusterWindowCovering": true;
+        "c:objc(cs)MTRGenericBaseCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBaseDevice
@@ -71831,6 +72828,10 @@ export declare class MTRBaseDevice extends SDKHandle {
      * @availability iOS 16.4+
      */
     get sessionTransportType(): MTRTransportType;
+    readonly $type: {
+        "c:objc(cs)MTRBaseDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sessionTransportType": true;
     };
@@ -71854,6 +72855,10 @@ export declare class MTRBasicInformationClusterCapabilityMinimaStruct extends SD
      */
     get subscriptionsPerFabric(): _Foundation_NSNumber;
     set subscriptionsPerFabric(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBasicInformationClusterCapabilityMinimaStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "caseSessionsPerFabric": true;
         "subscriptionsPerFabric": true;
@@ -71882,6 +72887,11 @@ export declare class MTRBasicClusterCapabilityMinimaStruct extends MTRBasicClust
      */
     get subscriptionsPerFabric(): _Foundation_NSNumber;
     set subscriptionsPerFabric(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBasicClusterCapabilityMinimaStruct": true;
+        "c:objc(cs)MTRBasicInformationClusterCapabilityMinimaStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "caseSessionsPerFabric": true;
         "subscriptionsPerFabric": true;
@@ -71900,6 +72910,10 @@ export declare class MTRBasicInformationClusterLeaveEvent extends SDKHandle {
      */
     get fabricIndex(): _Foundation_NSNumber;
     set fabricIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBasicInformationClusterLeaveEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
     };
@@ -71920,6 +72934,11 @@ export declare class MTRBasicClusterLeaveEvent extends MTRBasicClusterLeaveEvent
      */
     get fabricIndex(): _Foundation_NSNumber;
     set fabricIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBasicClusterLeaveEvent": true;
+        "c:objc(cs)MTRBasicInformationClusterLeaveEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
     };
@@ -71946,6 +72965,10 @@ export declare class MTRBasicClusterMfgSpecificPingParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRBasicClusterMfgSpecificPingParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -71964,6 +72987,10 @@ export declare class MTRBasicInformationClusterReachableChangedEvent extends SDK
      */
     get reachableNewValue(): _Foundation_NSNumber;
     set reachableNewValue(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBasicInformationClusterReachableChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reachableNewValue": true;
     };
@@ -71984,6 +73011,11 @@ export declare class MTRBasicClusterReachableChangedEvent extends MTRBasicCluste
      */
     get reachableNewValue(): _Foundation_NSNumber;
     set reachableNewValue(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBasicClusterReachableChangedEvent": true;
+        "c:objc(cs)MTRBasicInformationClusterReachableChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reachableNewValue": true;
     };
@@ -71995,6 +73027,10 @@ export declare class MTRBasicClusterReachableChangedEvent extends MTRBasicCluste
 export declare class MTRBasicInformationClusterShutDownEvent extends SDKHandle {
     /** init() */
     static init(): MTRBasicInformationClusterShutDownEvent;
+    readonly $type: {
+        "c:objc(cs)MTRBasicInformationClusterShutDownEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTRBasicClusterShutDownEvent_base: Omit<typeof MTRBasicInformationClusterShutDownEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTRBasicInformationClusterShutDownEvent);
 /**
@@ -72005,6 +73041,11 @@ declare const MTRBasicClusterShutDownEvent_base: Omit<typeof MTRBasicInformation
 export declare class MTRBasicClusterShutDownEvent extends MTRBasicClusterShutDownEvent_base {
     /** init() */
     static init(): MTRBasicClusterShutDownEvent;
+    readonly $type: {
+        "c:objc(cs)MTRBasicClusterShutDownEvent": true;
+        "c:objc(cs)MTRBasicInformationClusterShutDownEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBasicInformationClusterStartUpEvent
@@ -72019,6 +73060,10 @@ export declare class MTRBasicInformationClusterStartUpEvent extends SDKHandle {
      */
     get softwareVersion(): _Foundation_NSNumber;
     set softwareVersion(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBasicInformationClusterStartUpEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "softwareVersion": true;
     };
@@ -72039,6 +73084,11 @@ export declare class MTRBasicClusterStartUpEvent extends MTRBasicClusterStartUpE
      */
     get softwareVersion(): _Foundation_NSNumber;
     set softwareVersion(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBasicClusterStartUpEvent": true;
+        "c:objc(cs)MTRBasicInformationClusterStartUpEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "softwareVersion": true;
     };
@@ -72062,6 +73112,10 @@ export declare class MTRBasicInformationClusterProductAppearanceStruct extends S
      */
     get primaryColor(): $SDK0;
     set primaryColor(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRBasicInformationClusterProductAppearanceStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "finish": true;
         "primaryColor": true;
@@ -72128,6 +73182,10 @@ export declare class MTRBindingClusterTargetStruct extends SDKHandle {
      */
     get node(): $SDK0;
     set node(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRBindingClusterTargetStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "endpoint": true;
@@ -72149,6 +73207,10 @@ export declare class MTRBooleanStateClusterStateChangeEvent extends SDKHandle {
      */
     get stateValue(): _Foundation_NSNumber;
     set stateValue(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBooleanStateClusterStateChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "stateValue": true;
     };
@@ -72194,6 +73256,10 @@ export declare class MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent 
      */
     get alarmsSuppressed(): $SDK0;
     set alarmsSuppressed(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRBooleanStateConfigurationClusterAlarmsStateChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarmsActive": true;
         "alarmsSuppressed": true;
@@ -72224,6 +73290,10 @@ export declare class MTRBooleanStateConfigurationClusterEnableDisableAlarmParams
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRBooleanStateConfigurationClusterEnableDisableAlarmParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarmsToEnableDisable": true;
         "serverSideProcessingTimeout": true;
@@ -72243,6 +73313,10 @@ export declare class MTRBooleanStateConfigurationClusterSensorFaultEvent extends
      */
     get sensorFault(): _Foundation_NSNumber;
     set sensorFault(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBooleanStateConfigurationClusterSensorFaultEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sensorFault": true;
     };
@@ -72272,6 +73346,10 @@ export declare class MTRBooleanStateConfigurationClusterSuppressAlarmParams exte
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRBooleanStateConfigurationClusterSuppressAlarmParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarmsToSuppress": true;
         "serverSideProcessingTimeout": true;
@@ -72334,6 +73412,10 @@ export declare const MTRBooleanStateConfigurationSensorFaultBitmap: {
 export declare class MTRBridgedDeviceBasicInformationClusterLeaveEvent extends SDKHandle {
     /** init() */
     static init(): MTRBridgedDeviceBasicInformationClusterLeaveEvent;
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterLeaveEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTRBridgedDeviceBasicClusterLeaveEvent_base: Omit<typeof MTRBridgedDeviceBasicInformationClusterLeaveEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTRBridgedDeviceBasicInformationClusterLeaveEvent);
 /**
@@ -72344,6 +73426,11 @@ declare const MTRBridgedDeviceBasicClusterLeaveEvent_base: Omit<typeof MTRBridge
 export declare class MTRBridgedDeviceBasicClusterLeaveEvent extends MTRBridgedDeviceBasicClusterLeaveEvent_base {
     /** init() */
     static init(): MTRBridgedDeviceBasicClusterLeaveEvent;
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicClusterLeaveEvent": true;
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterLeaveEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBridgedDeviceBasicInformationClusterReachableChangedEvent
@@ -72358,6 +73445,10 @@ export declare class MTRBridgedDeviceBasicInformationClusterReachableChangedEven
      */
     get reachableNewValue(): _Foundation_NSNumber;
     set reachableNewValue(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterReachableChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reachableNewValue": true;
     };
@@ -72378,6 +73469,11 @@ export declare class MTRBridgedDeviceBasicClusterReachableChangedEvent extends M
      */
     get reachableNewValue(): _Foundation_NSNumber;
     set reachableNewValue(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicClusterReachableChangedEvent": true;
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterReachableChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reachableNewValue": true;
     };
@@ -72389,6 +73485,10 @@ export declare class MTRBridgedDeviceBasicClusterReachableChangedEvent extends M
 export declare class MTRBridgedDeviceBasicInformationClusterShutDownEvent extends SDKHandle {
     /** init() */
     static init(): MTRBridgedDeviceBasicInformationClusterShutDownEvent;
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterShutDownEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MTRBridgedDeviceBasicClusterShutDownEvent_base: Omit<typeof MTRBridgedDeviceBasicInformationClusterShutDownEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTRBridgedDeviceBasicInformationClusterShutDownEvent);
 /**
@@ -72399,6 +73499,11 @@ declare const MTRBridgedDeviceBasicClusterShutDownEvent_base: Omit<typeof MTRBri
 export declare class MTRBridgedDeviceBasicClusterShutDownEvent extends MTRBridgedDeviceBasicClusterShutDownEvent_base {
     /** init() */
     static init(): MTRBridgedDeviceBasicClusterShutDownEvent;
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicClusterShutDownEvent": true;
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterShutDownEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRBridgedDeviceBasicInformationClusterStartUpEvent
@@ -72413,6 +73518,10 @@ export declare class MTRBridgedDeviceBasicInformationClusterStartUpEvent extends
      */
     get softwareVersion(): _Foundation_NSNumber;
     set softwareVersion(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterStartUpEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "softwareVersion": true;
     };
@@ -72433,6 +73542,11 @@ export declare class MTRBridgedDeviceBasicClusterStartUpEvent extends MTRBridged
      */
     get softwareVersion(): _Foundation_NSNumber;
     set softwareVersion(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicClusterStartUpEvent": true;
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterStartUpEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "softwareVersion": true;
     };
@@ -72450,6 +73564,10 @@ export declare class MTRBridgedDeviceBasicInformationClusterActiveChangedEvent e
      */
     get promisedActiveDuration(): _Foundation_NSNumber;
     set promisedActiveDuration(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterActiveChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "promisedActiveDuration": true;
     };
@@ -72485,6 +73603,10 @@ export declare class MTRBridgedDeviceBasicInformationClusterKeepActiveParams ext
      */
     get timeoutMs(): _Foundation_NSNumber;
     set timeoutMs(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterKeepActiveParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "stayActiveDuration": true;
@@ -72511,6 +73633,10 @@ export declare class MTRBridgedDeviceBasicInformationClusterProductAppearanceStr
      */
     get primaryColor(): $SDK0;
     set primaryColor(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "finish": true;
         "primaryColor": true;
@@ -72750,6 +73876,10 @@ export declare class MTRCertificateInfo extends SDKHandle {
      * @availability iOS 16.4+
      */
     get subject(): MTRDistinguishedNameInfo;
+    readonly $type: {
+        "c:objc(cs)MTRCertificateInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "issuer": true;
         "notAfter": true;
@@ -72847,6 +73977,10 @@ export declare class MTRCertificates extends SDKHandle {
      * @availability iOS 16.4+
      */
     static publicKey(csr: ArrayBuffer): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)MTRCertificates": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** typealias MTRCertificateTLVBytes = NSData */
 export type MTRCertificateTLVBytes = _Foundation_NSData;
@@ -72887,6 +74021,10 @@ export declare class MTRChannelClusterCancelRecordProgramParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterCancelRecordProgramParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "programIdentifier": true;
@@ -72926,6 +74064,10 @@ export declare class MTRChannelClusterChangeChannelByNumberParams extends SDKHan
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterChangeChannelByNumberParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "majorNumber": true;
         "minorNumber": true;
@@ -72958,6 +74100,10 @@ export declare class MTRChannelClusterChangeChannelParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterChangeChannelParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "match": true;
         "serverSideProcessingTimeout": true;
@@ -72969,13 +74115,11 @@ export declare class MTRChannelClusterChangeChannelParams extends SDKHandle {
  * @availability iOS 16.1+
  */
 export declare class MTRChannelClusterChangeChannelResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRChannelClusterChangeChannelResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRChannelClusterChangeChannelResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRChannelClusterChangeChannelResponseParams;
     /**
      * var data: String? { get set }
      * @availability iOS 16.1+
@@ -72995,6 +74139,10 @@ export declare class MTRChannelClusterChangeChannelResponseParams extends SDKHan
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterChangeChannelResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "status": true;
@@ -73050,6 +74198,10 @@ export declare class MTRChannelClusterChannelInfoStruct extends SDKHandle {
      */
     get type(): $SDK0;
     set type(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterChannelInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "affiliateCallSign": true;
         "callSign": true;
@@ -73104,6 +74256,11 @@ export declare class MTRChannelClusterChannelInfo extends MTRChannelClusterChann
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterChannelInfo": true;
+        "c:objc(cs)MTRChannelClusterChannelInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "affiliateCallSign": true;
         "callSign": true;
@@ -73133,6 +74290,10 @@ export declare class MTRChannelClusterChannelPagingStruct extends SDKHandle {
      */
     get previousToken(): $SDK228;
     set previousToken(value: $SDK228);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterChannelPagingStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nextToken": true;
         "previousToken": true;
@@ -73193,6 +74354,10 @@ export declare class MTRChannelClusterGetProgramGuideParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterGetProgramGuideParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channelList": true;
         "data": true;
@@ -73235,6 +74400,10 @@ export declare class MTRChannelClusterLineupInfoStruct extends SDKHandle {
      */
     get postalCode(): (string) | null;
     set postalCode(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterLineupInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "lineupInfoType": true;
         "lineupName": true;
@@ -73279,6 +74448,11 @@ export declare class MTRChannelClusterLineupInfo extends MTRChannelClusterLineup
      */
     get postalCode(): (string) | null;
     set postalCode(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterLineupInfo": true;
+        "c:objc(cs)MTRChannelClusterLineupInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "lineupInfoType": true;
         "lineupName": true;
@@ -73311,6 +74485,10 @@ export declare class MTRChannelClusterPageTokenStruct extends SDKHandle {
      */
     get limit(): $SDK0;
     set limit(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterPageTokenStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "after": true;
         "before": true;
@@ -73336,6 +74514,10 @@ export declare class MTRChannelClusterProgramCastStruct extends SDKHandle {
      */
     get role(): string;
     set role(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterProgramCastStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "role": true;
@@ -73360,6 +74542,10 @@ export declare class MTRChannelClusterProgramCategoryStruct extends SDKHandle {
      */
     get subCategory(): (string) | null;
     set subCategory(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterProgramCategoryStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "category": true;
         "subCategory": true;
@@ -73370,13 +74556,11 @@ export declare class MTRChannelClusterProgramCategoryStruct extends SDKHandle {
  * @availability iOS 18.4+
  */
 export declare class MTRChannelClusterProgramGuideResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRChannelClusterProgramGuideResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRChannelClusterProgramGuideResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRChannelClusterProgramGuideResponseParams;
     /**
      * @NSCopying var paging: MTRChannelClusterChannelPagingStruct { get set }
      * @availability iOS 18.4+
@@ -73389,6 +74573,10 @@ export declare class MTRChannelClusterProgramGuideResponseParams extends SDKHand
      */
     get programList(): Array<unknown>;
     set programList(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterProgramGuideResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "paging": true;
         "programList": true;
@@ -73491,6 +74679,10 @@ export declare class MTRChannelClusterProgramStruct extends SDKHandle {
      */
     get title(): string;
     set title(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterProgramStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioLanguages": true;
         "castList": true;
@@ -73546,6 +74738,10 @@ export declare class MTRChannelClusterRecordProgramParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterRecordProgramParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "programIdentifier": true;
@@ -73573,6 +74769,10 @@ export declare class MTRChannelClusterSeriesInfoStruct extends SDKHandle {
      */
     get season(): string;
     set season(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterSeriesInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "episode": true;
         "season": true;
@@ -73603,6 +74803,10 @@ export declare class MTRChannelClusterSkipChannelParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRChannelClusterSkipChannelParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "count": true;
         "serverSideProcessingTimeout": true;
@@ -73720,6 +74924,11 @@ export declare class MTRGenericCluster extends MTRCluster {
      * @availability iOS 17.4+
      */
     get device(): MTRDevice;
+    readonly $type: {
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -73843,6 +75052,12 @@ export declare class MTRClusterAccessControl extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeExtensionWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterAccessControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -73932,6 +75147,12 @@ export declare class MTRClusterAccountLogin extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeGeneratedCommandList(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterAccountLogin": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -74124,6 +75345,12 @@ export declare class MTRClusterActions extends MTRGenericCluster {
      * @deprecated iOS 16.4
      */
     stopActionWithExpectedValuesExpectedValueIntervalCompletionHandler(params: MTRActionsClusterStopActionParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterActions": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -74213,6 +75440,12 @@ export declare class MTRClusterActivatedCarbonFilterMonitoring extends MTRGeneri
      * @availability iOS 17.6+
      */
     writeAttributeLastChangedTimeWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterActivatedCarbonFilterMonitoring": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -74317,6 +75550,12 @@ export declare class MTRClusterAdministratorCommissioning extends MTRGenericClus
      * @deprecated iOS 16.4
      */
     revokeCommissioningWithExpectedValuesExpectedValueIntervalCompletionHandler87022(params: $SDK16, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterAdministratorCommissioning": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -74361,6 +75600,12 @@ export declare class MTRClusterAirQuality extends MTRGenericCluster {
      * @availability iOS 17.6+
      */
     readAttributeGeneratedCommandList(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterAirQuality": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -74446,6 +75691,12 @@ export declare class MTRClusterApplicationBasic extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeVendorName(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterApplicationBasic": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -74559,6 +75810,12 @@ export declare class MTRClusterApplicationLauncher extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeCurrentAppWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterApplicationLauncher": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -74636,6 +75893,12 @@ export declare class MTRClusterAudioOutput extends MTRGenericCluster {
      * @deprecated iOS 16.4
      */
     selectWithExpectedValuesExpectedValueIntervalCompletionHandler(params: MTRAudioOutputClusterSelectOutputParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterAudioOutput": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -74869,6 +76132,12 @@ export declare class MTRClusterBallastConfiguration extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeMinLevelWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBallastConfiguration": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75089,6 +76358,12 @@ export declare class MTRClusterBarrierControl extends MTRGenericCluster {
      * @deprecated iOS 18.2
      */
     writeAttributeBarrierOpenPeriodWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBarrierControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75273,6 +76548,12 @@ export declare class MTRClusterBasicInformation extends MTRGenericCluster {
      * @availability iOS 16.4+
      */
     writeAttributeNodeLabelWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBasicInformation": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75302,6 +76583,13 @@ export declare class MTRClusterBasic extends MTRClusterBasic_base {
      * @deprecated iOS 16.4
      */
     mfgSpecificPingWithExpectedValuesExpectedValueIntervalCompletionHandler25625(params: $SDK31, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBasic": true;
+        "c:objc(cs)MTRClusterBasicInformation": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75480,6 +76768,12 @@ export declare class MTRClusterBinaryInputBasic extends MTRGenericCluster {
      * @deprecated iOS 18.2
      */
     writeAttributeReliabilityWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBinaryInputBasic": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75540,6 +76834,12 @@ export declare class MTRClusterBinding extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeBindingWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBinding": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75590,6 +76890,12 @@ export declare class MTRClusterBooleanState extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeStateValue(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBooleanState": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75689,6 +76995,12 @@ export declare class MTRClusterBooleanStateConfiguration extends MTRGenericClust
      * @availability iOS 17.6+
      */
     writeAttributeCurrentSensitivityLevelWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBooleanStateConfiguration": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75828,6 +77140,12 @@ export declare class MTRClusterBridgedDeviceBasicInformation extends MTRGenericC
      * @availability iOS 16.4+
      */
     writeAttributeNodeLabelWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBridgedDeviceBasicInformation": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75845,6 +77163,13 @@ export declare class MTRClusterBridgedDeviceBasic extends MTRClusterBridgedDevic
      * @deprecated iOS 16.4
      */
     static init(device: MTRDevice, endpoint: number, queue: _Dispatch_DispatchQueue): (MTRClusterBridgedDeviceBasic) | null;
+    readonly $type: {
+        "c:objc(cs)MTRClusterBridgedDeviceBasic": true;
+        "c:objc(cs)MTRClusterBridgedDeviceBasicInformation": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -75939,6 +77264,12 @@ export declare class MTRClusterCarbonDioxideConcentrationMeasurement extends MTR
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterCarbonDioxideConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -76033,6 +77364,12 @@ export declare class MTRClusterCarbonMonoxideConcentrationMeasurement extends MT
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterCarbonMonoxideConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -76146,6 +77483,12 @@ export declare class MTRClusterChannel extends MTRGenericCluster {
      * @deprecated iOS 16.4
      */
     skipWithExpectedValuesExpectedValueIntervalCompletionHandler(params: MTRChannelClusterSkipChannelParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterChannel": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -76812,6 +78155,12 @@ export declare class MTRClusterColorControl extends MTRGenericCluster {
      * @deprecated iOS 26.1
      */
     writeAttributeWhitePointYWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterColorControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -76866,6 +78215,12 @@ export declare class MTRClusterCommissionerControl extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     requestCommissioningApproval(params: MTRCommissionerControlClusterRequestCommissioningApprovalParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterCommissionerControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -76910,6 +78265,12 @@ export declare class MTRClusterContentAppObserver extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeGeneratedCommandList(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterContentAppObserver": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -76997,6 +78358,12 @@ export declare class MTRClusterContentLauncher extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeSupportedStreamingProtocolsWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterContentLauncher": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -77068,6 +78435,12 @@ export declare class MTRClusterDescriptor extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeServerList(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterDescriptor": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -77202,6 +78575,12 @@ export declare class MTRClusterDeviceEnergyManagement extends MTRGenericCluster 
      * @availability iOS 18.4+
      */
     startTimeAdjustRequest(params: MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterDeviceEnergyManagement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -77256,6 +78635,12 @@ export declare class MTRClusterDeviceEnergyManagementMode extends MTRGenericClus
      * @availability iOS 18.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterDeviceEnergyManagementMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -77312,6 +78697,12 @@ export declare class MTRClusterDiagnosticLogs extends MTRGenericCluster {
      * @deprecated iOS 16.4
      */
     retrieveLogsRequestWithExpectedValuesExpectedValueIntervalCompletionHandler(params: MTRDiagnosticLogsClusterRetrieveLogsRequestParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK50): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterDiagnosticLogs": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -77381,6 +78772,12 @@ export declare class MTRClusterDishwasherAlarm extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     reset(params: MTRDishwasherAlarmClusterResetParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterDishwasherAlarm": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -77435,6 +78832,12 @@ export declare class MTRClusterDishwasherMode extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterDishwasherMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -78118,6 +79521,12 @@ export declare class MTRClusterDoorLock extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeWrongCodeEntryLimitWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterDoorLock": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -78187,6 +79596,12 @@ export declare class MTRClusterElectricalEnergyMeasurement extends MTRGenericClu
      * @availability iOS 17.6+
      */
     readAttributePeriodicEnergyImported(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterElectricalEnergyMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -79139,6 +80554,12 @@ export declare class MTRClusterElectricalMeasurement extends MTRGenericCluster {
      * @deprecated iOS 18.2
      */
     writeAttributeRmsVoltageSwellPeriodWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterElectricalMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -79273,6 +80694,12 @@ export declare class MTRClusterElectricalPowerMeasurement extends MTRGenericClus
      * @availability iOS 17.6+
      */
     readAttributeVoltage(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterElectricalPowerMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -79477,6 +80904,12 @@ export declare class MTRClusterEnergyEVSE extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     writeAttributeUserMaximumChargeCurrentWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterEnergyEVSE": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -79531,6 +80964,12 @@ export declare class MTRClusterEnergyEVSEMode extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterEnergyEVSEMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -79643,6 +81082,12 @@ export declare class MTRClusterEthernetNetworkDiagnostics extends MTRGenericClus
      * @deprecated iOS 16.4
      */
     resetCountsWithExpectedValuesExpectedValueIntervalCompletionHandler11851(params: $SDK73, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterEthernetNetworkDiagnostics": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -79823,6 +81268,12 @@ export declare class MTRClusterFanControl extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeWindSettingWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterFanControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -79873,6 +81324,12 @@ export declare class MTRClusterFixedLabel extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeLabelList(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterFixedLabel": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -79938,6 +81395,12 @@ export declare class MTRClusterFlowMeasurement extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeTolerance(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterFlowMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -80032,6 +81495,12 @@ export declare class MTRClusterFormaldehydeConcentrationMeasurement extends MTRG
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterFormaldehydeConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -80156,6 +81625,12 @@ export declare class MTRClusterGeneralCommissioning extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeBreadcrumbWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterGeneralCommissioning": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -80278,6 +81753,12 @@ export declare class MTRClusterGeneralDiagnostics extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     timeSnapshotWithExpectedValuesExpectedValueIntervalCompletion68224(params: $SDK81, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK80): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterGeneralDiagnostics": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -80402,6 +81883,12 @@ export declare class MTRClusterGroupKeyManagement extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeGroupKeyMapWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterGroupKeyManagement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -80529,6 +82016,12 @@ export declare class MTRClusterGroups extends MTRGenericCluster {
      * @deprecated iOS 16.4
      */
     viewGroupWithExpectedValuesExpectedValueIntervalCompletionHandler(params: MTRGroupsClusterViewGroupParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK89): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterGroups": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -80618,6 +82111,12 @@ export declare class MTRClusterHEPAFilterMonitoring extends MTRGenericCluster {
      * @availability iOS 17.6+
      */
     writeAttributeLastChangedTimeWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterHEPAFilterMonitoring": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -80722,6 +82221,12 @@ export declare class MTRClusterICDManagement extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     unregisterClient(params: MTRICDManagementClusterUnregisterClientParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterICDManagement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -80809,6 +82314,12 @@ export declare class MTRClusterIdentify extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeIdentifyTimeWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterIdentify": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -81219,6 +82730,12 @@ export declare class MTRClusterIlluminanceMeasurement extends MTRGenericCluster 
      * @availability iOS 16.1+
      */
     readAttributeTolerance(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterIlluminanceMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -81275,6 +82792,12 @@ export declare class MTRClusterKeypadInput extends MTRGenericCluster {
      * @deprecated iOS 16.4
      */
     sendKeyWithExpectedValuesExpectedValueIntervalCompletionHandler(params: MTRKeypadInputClusterSendKeyParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK93): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterKeypadInput": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -81334,6 +82857,12 @@ export declare class MTRClusterLaundryDryerControls extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     writeAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterLaundryDryerControls": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -81413,6 +82942,12 @@ export declare class MTRClusterLaundryWasherControls extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     writeAttributeSpinSpeedCurrentWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterLaundryWasherControls": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -81467,6 +83002,12 @@ export declare class MTRClusterLaundryWasherMode extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterLaundryWasherMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -81751,6 +83292,12 @@ export declare class MTRClusterLevelControl extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeStartUpCurrentLevelWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterLevelControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -81816,6 +83363,12 @@ export declare class MTRClusterLocalizationConfiguration extends MTRGenericClust
      * @availability iOS 16.1+
      */
     writeAttributeActiveLocaleWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterLocalizationConfiguration": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -81883,6 +83436,12 @@ export declare class MTRClusterLowPower extends MTRGenericCluster {
      * @deprecated iOS 16.4
      */
     sleepWithExpectedValuesExpectedValueIntervalCompletionHandler81153(params: $SDK95, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterLowPower": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -82004,6 +83563,12 @@ export declare class MTRClusterMediaInput extends MTRGenericCluster {
      * @deprecated iOS 16.4
      */
     showStatusWithExpectedValuesExpectedValueIntervalCompletionHandler65382(params: $SDK97, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterMediaInput": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -82313,6 +83878,12 @@ export declare class MTRClusterMediaPlayback extends MTRGenericCluster {
      * @availability iOS 16.4+
      */
     stopWithExpectedValuesExpectedValueIntervalCompletion14808(params: $SDK110, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK101): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterMediaPlayback": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -82372,6 +83943,12 @@ export declare class MTRClusterMessages extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeMessages(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterMessages": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -82461,6 +84038,12 @@ export declare class MTRClusterMicrowaveOvenControl extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     setCookingParametersWith(params: $SDK111, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterMicrowaveOvenControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -82510,6 +84093,12 @@ export declare class MTRClusterMicrowaveOvenMode extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterMicrowaveOvenMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -82616,6 +84205,12 @@ export declare class MTRClusterModeSelect extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeStartUpModeWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterModeSelect": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -82797,6 +84392,12 @@ export declare class MTRClusterNetworkCommissioning extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeInterfaceEnabledWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterNetworkCommissioning": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -82891,6 +84492,12 @@ export declare class MTRClusterNitrogenDioxideConcentrationMeasurement extends M
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterNitrogenDioxideConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -83160,6 +84767,12 @@ export declare class MTRClusterOccupancySensing extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeUltrasonicUnoccupiedToOccupiedThresholdWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOccupancySensing": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -83370,6 +84983,12 @@ export declare class MTRClusterOnOff extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeStartUpWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOnOff": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -83446,6 +85065,12 @@ export declare class MTRClusterOnOffSwitchConfiguration extends MTRGenericCluste
      * @deprecated iOS 18.2
      */
     writeAttributeSwitchActionsWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOnOffSwitchConfiguration": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -83609,6 +85234,12 @@ export declare class MTRClusterOperationalCredentials extends MTRGenericCluster 
      * @deprecated iOS 16.4
      */
     updateNOCWithExpectedValuesExpectedValueIntervalCompletionHandler(params: MTROperationalCredentialsClusterUpdateNOCParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK122): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOperationalCredentials": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -83718,6 +85349,12 @@ export declare class MTRClusterOperationalState extends MTRGenericCluster {
      * @availability iOS 17.4+
      */
     stopWithExpectedValuesExpectedValueIntervalCompletion33760(params: $SDK130, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK126): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOperationalState": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -83772,6 +85409,12 @@ export declare class MTRClusterOTASoftwareUpdateProvider extends MTRGenericClust
      * @availability iOS 16.4+
      */
     readAttributeGeneratedCommandList(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOTASoftwareUpdateProvider": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -83807,6 +85450,13 @@ export declare class MTRClusterOtaSoftwareUpdateProvider extends MTRClusterOtaSo
      * @deprecated iOS 16.4
      */
     queryImage(params: MTROtaSoftwareUpdateProviderClusterQueryImageParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK134): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOtaSoftwareUpdateProvider": true;
+        "c:objc(cs)MTRClusterOTASoftwareUpdateProvider": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -83881,6 +85531,12 @@ export declare class MTRClusterOTASoftwareUpdateRequestor extends MTRGenericClus
      * @availability iOS 16.4+
      */
     writeAttributeDefaultOTAProvidersWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOTASoftwareUpdateRequestor": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -83922,6 +85578,13 @@ export declare class MTRClusterOtaSoftwareUpdateRequestor extends MTRClusterOtaS
      * @deprecated iOS 16.4
      */
     writeAttributeDefaultOtaProvidersWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOtaSoftwareUpdateRequestor": true;
+        "c:objc(cs)MTRClusterOTASoftwareUpdateRequestor": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84011,6 +85674,12 @@ export declare class MTRClusterOvenCavityOperationalState extends MTRGenericClus
      * @availability iOS 18.4+
      */
     stopWithExpectedValuesExpectedValueIntervalCompletion97212(params: $SDK138, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK136): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOvenCavityOperationalState": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84065,6 +85734,12 @@ export declare class MTRClusterOvenMode extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOvenMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84159,6 +85834,12 @@ export declare class MTRClusterOzoneConcentrationMeasurement extends MTRGenericC
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterOzoneConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84253,6 +85934,12 @@ export declare class MTRClusterPM10ConcentrationMeasurement extends MTRGenericCl
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterPM10ConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84347,6 +86034,12 @@ export declare class MTRClusterPM1ConcentrationMeasurement extends MTRGenericClu
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterPM1ConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84441,6 +86134,12 @@ export declare class MTRClusterPM25ConcentrationMeasurement extends MTRGenericCl
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterPM25ConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84646,6 +86345,12 @@ export declare class MTRClusterPowerSource extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeWiredPresent(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterPowerSource": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84696,6 +86401,12 @@ export declare class MTRClusterPowerSourceConfiguration extends MTRGenericCluste
      * @availability iOS 16.1+
      */
     readAttributeSources(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterPowerSourceConfiguration": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84745,6 +86456,12 @@ export declare class MTRClusterPowerTopology extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeGeneratedCommandList(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterPowerTopology": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -84835,6 +86552,12 @@ export declare class MTRClusterPressureMeasurement extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeTolerance(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterPressureMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85035,6 +86758,12 @@ export declare class MTRClusterPumpConfigurationAndControl extends MTRGenericClu
      * @availability iOS 16.1+
      */
     writeAttributeOperationModeWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterPumpConfigurationAndControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85129,6 +86858,12 @@ export declare class MTRClusterRadonConcentrationMeasurement extends MTRGenericC
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterRadonConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85183,6 +86918,12 @@ export declare class MTRClusterRefrigeratorAlarm extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeSupported(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterRefrigeratorAlarm": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85237,6 +86978,12 @@ export declare class MTRClusterRefrigeratorAndTemperatureControlledCabinetMode e
      * @availability iOS 18.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterRefrigeratorAndTemperatureControlledCabinetMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85302,6 +87049,12 @@ export declare class MTRClusterRelativeHumidityMeasurement extends MTRGenericClu
      * @availability iOS 16.1+
      */
     readAttributeTolerance(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterRelativeHumidityMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85356,6 +87109,12 @@ export declare class MTRClusterRVCCleanMode extends MTRGenericCluster {
      * @availability iOS 17.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterRVCCleanMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85455,6 +87214,12 @@ export declare class MTRClusterRVCOperationalState extends MTRGenericCluster {
      * @availability iOS 17.4+
      */
     resumeWithExpectedValuesExpectedValueIntervalCompletion56078(params: $SDK146, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK143): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterRVCOperationalState": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85509,6 +87274,12 @@ export declare class MTRClusterRVCRunMode extends MTRGenericCluster {
      * @availability iOS 17.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterRVCRunMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85588,6 +87359,12 @@ export declare class MTRClusterServiceArea extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     skip(params: MTRServiceAreaClusterSkipAreaParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK149): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterServiceArea": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85712,6 +87489,12 @@ export declare class MTRClusterSmokeCOAlarm extends MTRGenericCluster {
      * @availability iOS 17.6+
      */
     writeAttributeSmokeSensitivityLevelWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterSmokeCOAlarm": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85799,6 +87582,12 @@ export declare class MTRClusterSoftwareDiagnostics extends MTRGenericCluster {
      * @deprecated iOS 16.4
      */
     resetWatermarksWithExpectedValuesExpectedValueIntervalCompletionHandler92994(params: $SDK151, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterSoftwareDiagnostics": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85815,6 +87604,10 @@ export declare class MTRClusterStateCacheContainer extends SDKHandle {
      * @availability iOS 16.4+
      */
     readAttributes(endpointID: $SDK0, clusterID: $SDK0, attributeID: $SDK0, queue: _Dispatch_DispatchQueue, completion: $SDK6): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterStateCacheContainer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRClusterSwitch
@@ -85872,6 +87665,12 @@ export declare class MTRClusterSwitch extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeNumberOfPositions(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterSwitch": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -85938,6 +87737,12 @@ export declare class MTRClusterTargetNavigator extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     readAttributeTargetList(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterTargetNavigator": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -86017,6 +87822,12 @@ export declare class MTRClusterTemperatureControl extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     setTemperatureWith(params: $SDK153, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterTemperatureControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -86082,6 +87893,12 @@ export declare class MTRClusterTemperatureMeasurement extends MTRGenericCluster 
      * @availability iOS 16.1+
      */
     readAttributeTolerance(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterTemperatureMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -87496,6 +89313,12 @@ export declare class MTRClusterUnitTesting extends MTRGenericCluster {
      * @availability iOS 16.4+
      */
     writeAttributeWriteOnlyInt8uWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterUnitTesting": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -87687,6 +89510,13 @@ export declare class MTRClusterTestCluster extends MTRClusterTestCluster_base {
      * @deprecated iOS 16.4
      */
     timedInvokeRequestWithExpectedValuesExpectedValueIntervalCompletionHandler39603(params: $SDK194, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterTestCluster": true;
+        "c:objc(cs)MTRClusterUnitTesting": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -88392,6 +90222,12 @@ export declare class MTRClusterThermostat extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeUnoccupiedSetbackWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterThermostat": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -88482,6 +90318,12 @@ export declare class MTRClusterThermostatUserInterfaceConfiguration extends MTRG
      * @availability iOS 16.1+
      */
     writeAttributeTemperatureDisplayModeWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterThermostatUserInterfaceConfiguration": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -88581,6 +90423,12 @@ export declare class MTRClusterThreadBorderRouterManagement extends MTRGenericCl
      * @availability iOS 18.4+
      */
     setPendingDatasetRequestWith(params: MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterThreadBorderRouterManagement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -88975,6 +90823,12 @@ export declare class MTRClusterThreadNetworkDiagnostics extends MTRGenericCluste
      * @deprecated iOS 16.4
      */
     resetCountsWithExpectedValuesExpectedValueIntervalCompletionHandler80478(params: $SDK204, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterThreadNetworkDiagnostics": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89054,6 +90908,12 @@ export declare class MTRClusterThreadNetworkDirectory extends MTRGenericCluster 
      * @availability iOS 18.4+
      */
     writeAttributePreferredExtendedPanIDWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterThreadNetworkDirectory": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89134,6 +90994,12 @@ export declare class MTRClusterTimeFormatLocalization extends MTRGenericCluster 
      * @availability iOS 16.1+
      */
     writeAttributeHourFormatWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterTimeFormatLocalization": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89263,6 +91129,12 @@ export declare class MTRClusterTimeSynchronization extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     setUTCTimeWith(params: MTRTimeSynchronizationClusterSetUTCTimeParams, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completion: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterTimeSynchronization": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89357,6 +91229,12 @@ export declare class MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasure
      * @availability iOS 17.6+
      */
     readAttributeUncertainty(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89417,6 +91295,12 @@ export declare class MTRClusterUnitLocalization extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeTemperatureUnitWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterUnitLocalization": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89477,6 +91361,12 @@ export declare class MTRClusterUserLabel extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeLabelListWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterUserLabel": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89611,6 +91501,12 @@ export declare class MTRClusterValveConfigurationAndControl extends MTRGenericCl
      * @availability iOS 17.6+
      */
     writeAttributeDefaultOpenLevelWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterValveConfigurationAndControl": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89660,6 +91556,12 @@ export declare class MTRClusterWakeOnLAN extends MTRGenericCluster {
      * @availability iOS 16.4+
      */
     readAttributeMACAddress(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterWakeOnLAN": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89677,6 +91579,13 @@ export declare class MTRClusterWakeOnLan extends MTRClusterWakeOnLan_base {
      * @deprecated iOS 16.4
      */
     static init(device: MTRDevice, endpoint: number, queue: _Dispatch_DispatchQueue): (MTRClusterWakeOnLan) | null;
+    readonly $type: {
+        "c:objc(cs)MTRClusterWakeOnLan": true;
+        "c:objc(cs)MTRClusterWakeOnLAN": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89761,6 +91670,12 @@ export declare class MTRClusterWaterHeaterManagement extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeTankVolume(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterWaterHeaterManagement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89815,6 +91730,12 @@ export declare class MTRClusterWaterHeaterMode extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeSupportedModes(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterWaterHeaterMode": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -89959,6 +91880,12 @@ export declare class MTRClusterWiFiNetworkDiagnostics extends MTRGenericCluster 
      * @deprecated iOS 16.4
      */
     resetCountsWithExpectedValuesExpectedValueIntervalCompletionHandler2993(params: $SDK212, expectedDataValueDictionaries: $SDK231, expectedValueIntervalMs: $SDK0, completionHandler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterWiFiNetworkDiagnostics": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -90018,6 +91945,12 @@ export declare class MTRClusterWiFiNetworkManagement extends MTRGenericCluster {
      * @availability iOS 18.4+
      */
     readAttributeSSID(params?: (MTRReadParams) | null): $SDK230;
+    readonly $type: {
+        "c:objc(cs)MTRClusterWiFiNetworkManagement": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -90293,6 +92226,12 @@ export declare class MTRClusterWindowCovering extends MTRGenericCluster {
      * @availability iOS 16.1+
      */
     writeAttributeModeWithValueExpectedValueIntervalParams(dataValueDictionary: Record<string, unknown>, expectedValueIntervalMs: _Foundation_NSNumber, params?: (MTRWriteParams) | null): void;
+    readonly $type: {
+        "c:objc(cs)MTRClusterWindowCovering": true;
+        "c:objc(cs)MTRGenericCluster": true;
+        "c:objc(cs)MTRCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
     };
@@ -90358,6 +92297,10 @@ export declare class MTRColorControlClusterColorLoopSetParams extends SDKHandle 
      */
     get updateFlags(): _Foundation_NSNumber;
     set updateFlags(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterColorLoopSetParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "action": true;
         "direction": true;
@@ -90413,6 +92356,10 @@ export declare class MTRColorControlClusterEnhancedMoveHueParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterEnhancedMoveHueParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "moveMode": true;
         "optionsMask": true;
@@ -90471,6 +92418,10 @@ export declare class MTRColorControlClusterEnhancedMoveToHueAndSaturationParams 
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterEnhancedMoveToHueAndSaturationParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enhancedHue": true;
         "optionsMask": true;
@@ -90530,6 +92481,10 @@ export declare class MTRColorControlClusterEnhancedMoveToHueParams extends SDKHa
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterEnhancedMoveToHueParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "direction": true;
         "enhancedHue": true;
@@ -90589,6 +92544,10 @@ export declare class MTRColorControlClusterEnhancedStepHueParams extends SDKHand
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterEnhancedStepHueParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -90642,6 +92601,10 @@ export declare class MTRColorControlClusterMoveColorParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterMoveColorParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -90706,6 +92669,10 @@ export declare class MTRColorControlClusterMoveColorTemperatureParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterMoveColorTemperatureParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colorTemperatureMaximumMireds": true;
         "colorTemperatureMinimumMireds": true;
@@ -90760,6 +92727,10 @@ export declare class MTRColorControlClusterMoveHueParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterMoveHueParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "moveMode": true;
         "optionsMask": true;
@@ -90812,6 +92783,10 @@ export declare class MTRColorControlClusterMoveSaturationParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterMoveSaturationParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "moveMode": true;
         "optionsMask": true;
@@ -90870,6 +92845,10 @@ export declare class MTRColorControlClusterMoveToColorParams extends SDKHandle {
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterMoveToColorParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colorX": true;
         "colorY": true;
@@ -90930,6 +92909,10 @@ export declare class MTRColorControlClusterMoveToColorTemperatureParams extends 
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterMoveToColorTemperatureParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colorTemperature": true;
         "colorTemperatureMireds": true;
@@ -90989,6 +92972,10 @@ export declare class MTRColorControlClusterMoveToHueAndSaturationParams extends 
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterMoveToHueAndSaturationParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hue": true;
         "optionsMask": true;
@@ -91048,6 +93035,10 @@ export declare class MTRColorControlClusterMoveToHueParams extends SDKHandle {
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterMoveToHueParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "direction": true;
         "hue": true;
@@ -91101,6 +93092,10 @@ export declare class MTRColorControlClusterMoveToSaturationParams extends SDKHan
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterMoveToSaturationParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -91159,6 +93154,10 @@ export declare class MTRColorControlClusterStepColorParams extends SDKHandle {
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterStepColorParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -91230,6 +93229,10 @@ export declare class MTRColorControlClusterStepColorTemperatureParams extends SD
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterStepColorTemperatureParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colorTemperatureMaximumMireds": true;
         "colorTemperatureMinimumMireds": true;
@@ -91291,6 +93294,10 @@ export declare class MTRColorControlClusterStepHueParams extends SDKHandle {
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterStepHueParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -91350,6 +93357,10 @@ export declare class MTRColorControlClusterStepSaturationParams extends SDKHandl
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterStepSaturationParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -91391,6 +93402,10 @@ export declare class MTRColorControlClusterStopMoveStepParams extends SDKHandle 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRColorControlClusterStopMoveStepParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -94579,6 +96594,11 @@ export declare class MTRCommandPath extends MTRClusterPath {
      * @availability iOS 16.1+
      */
     get command(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)MTRCommandPath": true;
+        "c:objc(cs)MTRClusterPath": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "endpoint": true;
@@ -94590,13 +96610,11 @@ export declare class MTRCommandPath extends MTRClusterPath {
  * @availability iOS 18.4+
  */
 export declare class MTRCommandWithRequiredResponse extends SDKHandle {
-    /** init() */
-    static init(): MTRCommandWithRequiredResponse;
     /**
      * init(path: MTRCommandPath, commandFields: [String : Any]?, requiredResponse: [NSNumber : [String : Any]]?)
      * @availability iOS 18.4+
      */
-    static initPathCommandFieldsRequiredResponse(path: MTRCommandPath, commandFields?: $SDK230, requiredResponse?: $SDK232): MTRCommandWithRequiredResponse;
+    static init(path: MTRCommandPath, commandFields?: $SDK230, requiredResponse?: $SDK232): MTRCommandWithRequiredResponse;
     /**
      * var commandFields: [String : Any]? { get set }
      * @availability iOS 18.4+
@@ -94615,6 +96633,10 @@ export declare class MTRCommandWithRequiredResponse extends SDKHandle {
      */
     get requiredResponse(): $SDK232;
     set requiredResponse(value: $SDK232);
+    readonly $type: {
+        "c:objc(cs)MTRCommandWithRequiredResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commandFields": true;
         "path": true;
@@ -94669,6 +96691,10 @@ export declare class MTRCommissionableBrowserResult extends SDKHandle {
      * @availability iOS 17.0+
      */
     get vendorID(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)MTRCommissionableBrowserResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commissioningMode": true;
         "discriminator": true;
@@ -94704,6 +96730,10 @@ export declare class MTRCommissioneeInfo extends SDKHandle {
      * @availability iOS 18.4+
      */
     get rootEndpoint(): (MTREndpointInfo) | null;
+    readonly $type: {
+        "c:objc(cs)MTRCommissioneeInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributes": true;
         "endpointsById": true;
@@ -94742,6 +96772,10 @@ export declare class MTRCommissionerControlClusterCommissioningRequestResultEven
      */
     get statusCode(): _Foundation_NSNumber;
     set statusCode(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRCommissionerControlClusterCommissioningRequestResultEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "clientNodeID": true;
         "fabricIndex": true;
@@ -94780,6 +96814,10 @@ export declare class MTRCommissionerControlClusterCommissionNodeParams extends S
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRCommissionerControlClusterCommissionNodeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "requestID": true;
         "responseTimeoutSeconds": true;
@@ -94830,6 +96868,10 @@ export declare class MTRCommissionerControlClusterRequestCommissioningApprovalPa
      */
     get vendorID(): _Foundation_NSNumber;
     set vendorID(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRCommissionerControlClusterRequestCommissioningApprovalParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "productID": true;
@@ -94844,13 +96886,11 @@ export declare class MTRCommissionerControlClusterRequestCommissioningApprovalPa
  * @availability iOS 18.4+
  */
 export declare class MTRCommissionerControlClusterReverseOpenCommissioningWindowParams extends SDKHandle {
-    /** init() */
-    static init(): MTRCommissionerControlClusterReverseOpenCommissioningWindowParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRCommissionerControlClusterReverseOpenCommissioningWindowParams;
+    static init(responseValue: Record<string, unknown>): MTRCommissionerControlClusterReverseOpenCommissioningWindowParams;
     /**
      * @NSCopying var commissioningTimeout: NSNumber { get set }
      * @availability iOS 18.4+
@@ -94881,6 +96921,10 @@ export declare class MTRCommissionerControlClusterReverseOpenCommissioningWindow
      */
     get salt(): ArrayBuffer;
     set salt(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRCommissionerControlClusterReverseOpenCommissioningWindowParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commissioningTimeout": true;
         "discriminator": true;
@@ -94984,6 +97028,10 @@ export declare class MTRCommissioningOperation extends SDKHandle {
      * @availability iOS 26.2+
      */
     get matchedPayload(): (MTRSetupPayload) | null;
+    readonly $type: {
+        "c:objc(cs)MTRCommissioningOperation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedPayload": true;
     };
@@ -95087,6 +97135,10 @@ export declare class MTRCommissioningParameters extends SDKHandle {
      */
     get wifiSSID(): (ArrayBuffer) | null;
     set wifiSSID(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "c:objc(cs)MTRCommissioningParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "csrNonce": true;
         "attestationNonce": true;
@@ -95148,6 +97200,10 @@ export declare class MTRContentAppObserverClusterContentAppMessageParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRContentAppObserverClusterContentAppMessageParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "encodingHint": true;
@@ -95160,13 +97216,11 @@ export declare class MTRContentAppObserverClusterContentAppMessageParams extends
  * @availability iOS 18.4+
  */
 export declare class MTRContentAppObserverClusterContentAppMessageResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRContentAppObserverClusterContentAppMessageResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRContentAppObserverClusterContentAppMessageResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRContentAppObserverClusterContentAppMessageResponseParams;
     /**
      * var data: String? { get set }
      * @availability iOS 18.4+
@@ -95185,6 +97239,10 @@ export declare class MTRContentAppObserverClusterContentAppMessageResponseParams
      */
     get status(): _Foundation_NSNumber;
     set status(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRContentAppObserverClusterContentAppMessageResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "encodingHint": true;
@@ -95222,6 +97280,10 @@ export declare class MTRContentLauncherClusterAdditionalInfoStruct extends SDKHa
      */
     get value(): string;
     set value(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterAdditionalInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "value": true;
@@ -95249,6 +97311,11 @@ export declare class MTRContentLauncherClusterAdditionalInfo extends MTRContentL
      * @deprecated iOS 16.4
      */
     set value(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterAdditionalInfo": true;
+        "c:objc(cs)MTRContentLauncherClusterAdditionalInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "value": true;
@@ -95297,6 +97364,10 @@ export declare class MTRContentLauncherClusterBrandingInformationStruct extends 
      */
     get waterMark(): $SDK238;
     set waterMark(value: $SDK238);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterBrandingInformationStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "background": true;
         "logo": true;
@@ -95357,6 +97428,11 @@ export declare class MTRContentLauncherClusterBrandingInformation extends MTRCon
      */
     get waterMark(): $SDK238;
     set waterMark(value: $SDK238);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterBrandingInformation": true;
+        "c:objc(cs)MTRContentLauncherClusterBrandingInformationStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "background": true;
         "logo": true;
@@ -95379,6 +97455,10 @@ export declare class MTRContentLauncherClusterContentSearchStruct extends SDKHan
      */
     get parameterList(): Array<unknown>;
     set parameterList(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterContentSearchStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "parameterList": true;
     };
@@ -95399,6 +97479,11 @@ export declare class MTRContentLauncherClusterContentSearch extends MTRContentLa
      */
     get parameterList(): Array<unknown>;
     set parameterList(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterContentSearch": true;
+        "c:objc(cs)MTRContentLauncherClusterContentSearchStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "parameterList": true;
     };
@@ -95428,6 +97513,10 @@ export declare class MTRContentLauncherClusterDimensionStruct extends SDKHandle 
      */
     get width(): _Foundation_NSNumber;
     set width(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterDimensionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "height": true;
         "metric": true;
@@ -95464,6 +97553,11 @@ export declare class MTRContentLauncherClusterDimension extends MTRContentLaunch
      */
     get width(): _Foundation_NSNumber;
     set width(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterDimension": true;
+        "c:objc(cs)MTRContentLauncherClusterDimensionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "height": true;
         "metric": true;
@@ -95513,6 +97607,10 @@ export declare class MTRContentLauncherClusterLaunchContentParams extends SDKHan
      */
     get useCurrentContext(): $SDK0;
     set useCurrentContext(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterLaunchContentParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "autoPlay": true;
         "data": true;
@@ -95527,13 +97625,11 @@ export declare class MTRContentLauncherClusterLaunchContentParams extends SDKHan
  * @availability iOS 16.4+
  */
 export declare class MTRContentLauncherClusterLauncherResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRContentLauncherClusterLauncherResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRContentLauncherClusterLauncherResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRContentLauncherClusterLauncherResponseParams;
     /**
      * var data: String? { get set }
      * @availability iOS 16.4+
@@ -95553,6 +97649,10 @@ export declare class MTRContentLauncherClusterLauncherResponseParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterLauncherResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "status": true;
@@ -95589,6 +97689,11 @@ export declare class MTRContentLauncherClusterLaunchResponseParams extends MTRCo
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterLaunchResponseParams": true;
+        "c:objc(cs)MTRContentLauncherClusterLauncherResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "status": true;
@@ -95632,6 +97737,10 @@ export declare class MTRContentLauncherClusterLaunchURLParams extends SDKHandle 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterLaunchURLParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "brandingInformation": true;
         "contentURL": true;
@@ -95665,6 +97774,10 @@ export declare class MTRContentLauncherClusterParameterStruct extends SDKHandle 
      */
     get value(): string;
     set value(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterParameterStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "externalIDList": true;
         "type": true;
@@ -95700,6 +97813,11 @@ export declare class MTRContentLauncherClusterParameter extends MTRContentLaunch
      * @deprecated iOS 16.4
      */
     set value(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterParameter": true;
+        "c:objc(cs)MTRContentLauncherClusterParameterStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "externalIDList": true;
         "type": true;
@@ -95738,6 +97856,10 @@ export declare class MTRContentLauncherClusterStyleInformationStruct extends SDK
      */
     get size(): $SDK240;
     set size(value: $SDK240);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterStyleInformationStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "color": true;
         "imageURL": true;
@@ -95768,6 +97890,11 @@ export declare class MTRContentLauncherClusterStyleInformation extends MTRConten
      */
     get size(): $SDK240;
     set size(value: $SDK240);
+    readonly $type: {
+        "c:objc(cs)MTRContentLauncherClusterStyleInformation": true;
+        "c:objc(cs)MTRContentLauncherClusterStyleInformationStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "color": true;
         "imageURL": true;
@@ -95964,6 +98091,10 @@ export declare class MTRControllerFactory extends SDKHandle {
      * @deprecated iOS 16.4
      */
     get isRunning(): boolean;
+    readonly $type: {
+        "c:objc(cs)MTRControllerFactory": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isRunning": true;
     };
@@ -96013,6 +98144,10 @@ export declare class MTRDeviceControllerFactoryParams extends SDKHandle {
      * @availability iOS 16.4+
      */
     get storage(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceControllerFactoryParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "certificationDeclarationCertificates": true;
         "otaProviderDelegate": true;
@@ -96055,6 +98190,11 @@ export declare class MTRControllerFactoryParams extends MTRDeviceControllerFacto
      * @deprecated iOS 16.4
      */
     get storageDelegate(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)MTRControllerFactoryParams": true;
+        "c:objc(cs)MTRDeviceControllerFactoryParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "certificationDeclarationCertificates": true;
         "otaProviderDelegate": true;
@@ -96089,6 +98229,10 @@ export declare class MTRDataTypeAtomicAttributeStatusStruct extends SDKHandle {
      */
     get statusCode(): _Foundation_NSNumber;
     set statusCode(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDataTypeAtomicAttributeStatusStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeID": true;
         "statusCode": true;
@@ -96143,6 +98287,10 @@ export declare class MTRDataTypeLocationDescriptorStruct extends SDKHandle {
      */
     get locationName(): string;
     set locationName(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRDataTypeLocationDescriptorStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "areaType": true;
         "floorNumber": true;
@@ -96199,6 +98347,10 @@ export declare class MTRDescriptorClusterDeviceTypeStruct extends SDKHandle {
      */
     get type(): _Foundation_NSNumber;
     set type(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDescriptorClusterDeviceTypeStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceType": true;
         "revision": true;
@@ -96221,6 +98373,11 @@ export declare class MTRDescriptorClusterDeviceType extends MTRDescriptorCluster
      */
     get revision(): _Foundation_NSNumber;
     set revision(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDescriptorClusterDeviceType": true;
+        "c:objc(cs)MTRDescriptorClusterDeviceTypeStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceType": true;
         "revision": true;
@@ -96365,6 +98522,10 @@ export declare class MTRDevice extends SDKHandle {
      * @availability iOS 18.3+
      */
     get vendorID(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MTRDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceCachePrimed": true;
         "deviceController": true;
@@ -96467,6 +98628,10 @@ export declare class MTRDeviceAttestationDeviceInfo extends SDKHandle {
      * @availability iOS 16.4+
      */
     get vendorID(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceAttestationDeviceInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attestationChallenge": true;
         "attestationNonce": true;
@@ -96487,13 +98652,11 @@ export declare class MTRDeviceAttestationDeviceInfo extends SDKHandle {
  * @availability iOS 16.4+
  */
 export declare class MTRDeviceAttestationInfo extends SDKHandle {
-    /** init() */
-    static init(): MTRDeviceAttestationInfo;
     /**
      * init(deviceAttestationChallenge challenge: Data, nonce: Data, elementsTLV: Data, elementsSignature: Data, deviceAttestationCertificate: Data, productAttestationIntermediateCertificate processAttestationIntermediateCertificate: Data, certificationDeclaration: Data, firmwareInfo: Data)
      * @availability iOS 16.4+
      */
-    static initDeviceAttestationChallengeNonceElementsTLVElementsSignatureDeviceAttestationCertificateProductAttestationIntermediateCertificateCertificationDeclarationFirmwareInfo(challenge: ArrayBuffer, nonce: ArrayBuffer, elementsTLV: ArrayBuffer, elementsSignature: ArrayBuffer, deviceAttestationCertificate: ArrayBuffer, processAttestationIntermediateCertificate: ArrayBuffer, certificationDeclaration: ArrayBuffer, firmwareInfo: ArrayBuffer): MTRDeviceAttestationInfo;
+    static init(challenge: ArrayBuffer, nonce: ArrayBuffer, elementsTLV: ArrayBuffer, elementsSignature: ArrayBuffer, deviceAttestationCertificate: ArrayBuffer, processAttestationIntermediateCertificate: ArrayBuffer, certificationDeclaration: ArrayBuffer, firmwareInfo: ArrayBuffer): MTRDeviceAttestationInfo;
     /**
      * var certificationDeclaration: Data { get }
      * @availability iOS 16.4+
@@ -96534,6 +98697,10 @@ export declare class MTRDeviceAttestationInfo extends SDKHandle {
      * @availability iOS 16.4+
      */
     get productAttestationIntermediateCertificate(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceAttestationInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "certificationDeclaration": true;
         "challenge": true;
@@ -96803,6 +98970,10 @@ export declare class MTRDeviceController extends SDKHandle {
      * @availability iOS 17.6+
      */
     get uniqueIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "controllerNodeID": true;
         "controllerNodeId": true;
@@ -96824,6 +98995,10 @@ export declare class MTRDeviceControllerAbstractParameters extends SDKHandle {
      */
     get startSuspended(): boolean;
     set startSuspended(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceControllerAbstractParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "startSuspended": true;
     };
@@ -96942,6 +99117,11 @@ export declare class MTRDeviceControllerParameters extends MTRDeviceControllerAb
      */
     get storageBehaviorConfiguration(): $SDK257;
     set storageBehaviorConfiguration(value: $SDK257);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceControllerParameters": true;
+        "c:objc(cs)MTRDeviceControllerAbstractParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "startSuspended": true;
         "certificationDeclarationCertificates": true;
@@ -96966,6 +99146,12 @@ export declare class MTRDeviceControllerExternalCertificateParameters extends MT
      * @availability iOS 18.2+
      */
     get rootCertificate(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceControllerExternalCertificateParameters": true;
+        "c:objc(cs)MTRDeviceControllerParameters": true;
+        "c:objc(cs)MTRDeviceControllerAbstractParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "startSuspended": true;
         "certificationDeclarationCertificates": true;
@@ -97021,6 +99207,10 @@ export declare class MTRDeviceControllerFactory extends SDKHandle {
      * @availability iOS 16.4+
      */
     get isRunning(): boolean;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceControllerFactory": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "knownFabrics": true;
         "isRunning": true;
@@ -97162,6 +99352,10 @@ export declare class MTRDeviceControllerStartupParams extends SDKHandle {
      */
     get vendorId(): $SDK0;
     set vendorId(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceControllerStartupParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "caseAuthenticatedTags": true;
         "fabricID": true;
@@ -97277,6 +99471,10 @@ export declare class MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestPar
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -97301,6 +99499,10 @@ export declare class MTRDeviceEnergyManagementClusterCancelRequestParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterCancelRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -97343,6 +99545,10 @@ export declare class MTRDeviceEnergyManagementClusterConstraintsStruct extends S
      */
     get startTime(): _Foundation_NSNumber;
     set startTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterConstraintsStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "loadControl": true;
@@ -97382,6 +99588,10 @@ export declare class MTRDeviceEnergyManagementClusterCostStruct extends SDKHandl
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterCostStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "costType": true;
         "currency": true;
@@ -97450,6 +99660,10 @@ export declare class MTRDeviceEnergyManagementClusterForecastStruct extends SDKH
      */
     get startTime(): _Foundation_NSNumber;
     set startTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterForecastStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeSlotNumber": true;
         "earliestStartTime": true;
@@ -97499,6 +99713,10 @@ export declare class MTRDeviceEnergyManagementClusterModifyForecastRequestParams
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterModifyForecastRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cause": true;
         "forecastID": true;
@@ -97514,6 +99732,10 @@ export declare class MTRDeviceEnergyManagementClusterModifyForecastRequestParams
 export declare class MTRDeviceEnergyManagementClusterPausedEvent extends SDKHandle {
     /** init() */
     static init(): MTRDeviceEnergyManagementClusterPausedEvent;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterPausedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRDeviceEnergyManagementClusterPauseRequestParams
@@ -97546,6 +99768,10 @@ export declare class MTRDeviceEnergyManagementClusterPauseRequestParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterPauseRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cause": true;
         "duration": true;
@@ -97572,6 +99798,10 @@ export declare class MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct
      */
     get powerAdjustCapability(): (Array<unknown>) | null;
     set powerAdjustCapability(value: (Array<unknown>) | null);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterPowerAdjustCapabilityStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cause": true;
         "powerAdjustCapability": true;
@@ -97602,6 +99832,10 @@ export declare class MTRDeviceEnergyManagementClusterPowerAdjustEndEvent extends
      */
     get energyUse(): _Foundation_NSNumber;
     set energyUse(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterPowerAdjustEndEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cause": true;
         "duration": true;
@@ -97645,6 +99879,10 @@ export declare class MTRDeviceEnergyManagementClusterPowerAdjustRequestParams ex
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterPowerAdjustRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cause": true;
         "duration": true;
@@ -97660,6 +99898,10 @@ export declare class MTRDeviceEnergyManagementClusterPowerAdjustRequestParams ex
 export declare class MTRDeviceEnergyManagementClusterPowerAdjustStartEvent extends SDKHandle {
     /** init() */
     static init(): MTRDeviceEnergyManagementClusterPowerAdjustStartEvent;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterPowerAdjustStartEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRDeviceEnergyManagementClusterPowerAdjustStruct
@@ -97692,6 +99934,10 @@ export declare class MTRDeviceEnergyManagementClusterPowerAdjustStruct extends S
      */
     get minPower(): _Foundation_NSNumber;
     set minPower(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterPowerAdjustStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "maxDuration": true;
         "maxPower": true;
@@ -97730,6 +99976,10 @@ export declare class MTRDeviceEnergyManagementClusterRequestConstraintBasedForec
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cause": true;
         "constraints": true;
@@ -97750,6 +100000,10 @@ export declare class MTRDeviceEnergyManagementClusterResumedEvent extends SDKHan
      */
     get cause(): _Foundation_NSNumber;
     set cause(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterResumedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cause": true;
     };
@@ -97773,6 +100027,10 @@ export declare class MTRDeviceEnergyManagementClusterResumeRequestParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterResumeRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -97803,6 +100061,10 @@ export declare class MTRDeviceEnergyManagementClusterSlotAdjustmentStruct extend
      */
     get slotIndex(): _Foundation_NSNumber;
     set slotIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterSlotAdjustmentStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "nominalPower": true;
@@ -97924,6 +100186,10 @@ export declare class MTRDeviceEnergyManagementClusterSlotStruct extends SDKHandl
      */
     get slotIsPausable(): $SDK0;
     set slotIsPausable(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterSlotStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "costs": true;
         "defaultDuration": true;
@@ -97976,6 +100242,10 @@ export declare class MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParam
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cause": true;
         "requestedStartTime": true;
@@ -98103,6 +100373,10 @@ export declare class MTRDeviceEnergyManagementModeClusterChangeToModeParams exte
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementModeClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -98114,13 +100388,11 @@ export declare class MTRDeviceEnergyManagementModeClusterChangeToModeParams exte
  * @availability iOS 18.4+
  */
 export declare class MTRDeviceEnergyManagementModeClusterChangeToModeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRDeviceEnergyManagementModeClusterChangeToModeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRDeviceEnergyManagementModeClusterChangeToModeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRDeviceEnergyManagementModeClusterChangeToModeResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 18.4+
@@ -98133,6 +100405,10 @@ export declare class MTRDeviceEnergyManagementModeClusterChangeToModeResponsePar
      */
     get statusText(): (string) | null;
     set statusText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementModeClusterChangeToModeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -98163,6 +100439,10 @@ export declare class MTRDeviceEnergyManagementModeClusterModeOptionStruct extend
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -98188,6 +100468,10 @@ export declare class MTRDeviceEnergyManagementModeClusterModeTagStruct extends S
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceEnergyManagementModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -98293,14 +100577,12 @@ export declare class MTRDeviceStorageBehaviorConfiguration extends SDKHandle {
      * convenience init(reportToPersistenceDelayTime: TimeInterval, reportToPersistenceDelayTimeMax: TimeInterval, recentReportTimesMaxCount: Int, timeBetweenReportsTooShortThreshold: TimeInterval, timeBetweenReportsTooShortMinThreshold: TimeInterval, reportToPersistenceDelayMaxMultiplier: Double, deviceReportingExcessivelyIntervalThreshold: TimeInterval)
      * @availability iOS 17.6+
      */
-    static initReportToPersistenceDelayTimeReportToPersistenceDelayTimeMaxRecentReportTimesMaxCountTimeBetweenReportsTooShortThresholdTimeBetweenReportsTooShortMinThresholdReportToPersistenceDelayMaxMultiplierDeviceReportingExcessivelyIntervalThreshold(reportToPersistenceDelayTime: number, reportToPersistenceDelayTimeMax: number, recentReportTimesMaxCount: number, timeBetweenReportsTooShortThreshold: number, timeBetweenReportsTooShortMinThreshold: number, reportToPersistenceDelayMaxMultiplier: number, deviceReportingExcessivelyIntervalThreshold: number): MTRDeviceStorageBehaviorConfiguration;
+    static init(reportToPersistenceDelayTime: number, reportToPersistenceDelayTimeMax: number, recentReportTimesMaxCount: number, timeBetweenReportsTooShortThreshold: number, timeBetweenReportsTooShortMinThreshold: number, reportToPersistenceDelayMaxMultiplier: number, deviceReportingExcessivelyIntervalThreshold: number): MTRDeviceStorageBehaviorConfiguration;
     /**
      * class func withStorageBehaviorOptimizationDisabled() -> Self
      * @availability iOS 17.6+
      */
     static withStorageBehaviorOptimizationDisabled(): MTRDeviceStorageBehaviorConfiguration;
-    /** init() */
-    static init(): MTRDeviceStorageBehaviorConfiguration;
     /**
      * var deviceReportingExcessivelyIntervalThreshold: TimeInterval { get set }
      * @availability iOS 17.6+
@@ -98349,6 +100631,10 @@ export declare class MTRDeviceStorageBehaviorConfiguration extends SDKHandle {
      */
     get timeBetweenReportsTooShortThreshold(): number;
     set timeBetweenReportsTooShortThreshold(value: number);
+    readonly $type: {
+        "c:objc(cs)MTRDeviceStorageBehaviorConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceReportingExcessivelyIntervalThreshold": true;
         "disableStorageBehaviorOptimization": true;
@@ -98385,6 +100671,10 @@ export declare class MTRDeviceType extends SDKHandle {
      * @availability iOS 18.2+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "id": true;
         "isUtility": true;
@@ -98433,6 +100723,10 @@ export declare class MTRDeviceTypeRevision extends SDKHandle {
      * @availability iOS 18.4+
      */
     get typeInformation(): (MTRDeviceType) | null;
+    readonly $type: {
+        "c:objc(cs)MTRDeviceTypeRevision": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceTypeID": true;
         "deviceTypeRevision": true;
@@ -98476,6 +100770,10 @@ export declare class MTRDiagnosticLogsClusterRetrieveLogsRequestParams extends S
      */
     get transferFileDesignator(): (string) | null;
     set transferFileDesignator(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRDiagnosticLogsClusterRetrieveLogsRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "intent": true;
         "requestedProtocol": true;
@@ -98489,13 +100787,11 @@ export declare class MTRDiagnosticLogsClusterRetrieveLogsRequestParams extends S
  * @availability iOS 16.1+
  */
 export declare class MTRDiagnosticLogsClusterRetrieveLogsResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRDiagnosticLogsClusterRetrieveLogsResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRDiagnosticLogsClusterRetrieveLogsResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRDiagnosticLogsClusterRetrieveLogsResponseParams;
     /**
      * var content: Data { get set }
      * @availability iOS 16.1+
@@ -98541,6 +100837,10 @@ export declare class MTRDiagnosticLogsClusterRetrieveLogsResponseParams extends 
      */
     get utcTimeStamp(): $SDK0;
     set utcTimeStamp(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDiagnosticLogsClusterRetrieveLogsResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "content": true;
         "logContent": true;
@@ -98697,6 +100997,10 @@ export declare class MTRDishwasherAlarmClusterModifyEnabledAlarmsParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDishwasherAlarmClusterModifyEnabledAlarmsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mask": true;
         "serverSideProcessingTimeout": true;
@@ -98734,6 +101038,10 @@ export declare class MTRDishwasherAlarmClusterNotifyEvent extends SDKHandle {
      */
     get state(): _Foundation_NSNumber;
     set state(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDishwasherAlarmClusterNotifyEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "active": true;
         "inactive": true;
@@ -98766,6 +101074,10 @@ export declare class MTRDishwasherAlarmClusterResetParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDishwasherAlarmClusterResetParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarms": true;
         "serverSideProcessingTimeout": true;
@@ -98814,6 +101126,10 @@ export declare class MTRDishwasherModeClusterChangeToModeParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDishwasherModeClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -98825,13 +101141,11 @@ export declare class MTRDishwasherModeClusterChangeToModeParams extends SDKHandl
  * @availability iOS 18.4+
  */
 export declare class MTRDishwasherModeClusterChangeToModeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRDishwasherModeClusterChangeToModeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRDishwasherModeClusterChangeToModeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRDishwasherModeClusterChangeToModeResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 18.4+
@@ -98844,6 +101158,10 @@ export declare class MTRDishwasherModeClusterChangeToModeResponseParams extends 
      */
     get statusText(): (string) | null;
     set statusText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRDishwasherModeClusterChangeToModeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -98874,6 +101192,10 @@ export declare class MTRDishwasherModeClusterModeOptionStruct extends SDKHandle 
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRDishwasherModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -98899,6 +101221,10 @@ export declare class MTRDishwasherModeClusterModeTagStruct extends SDKHandle {
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDishwasherModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -98946,6 +101272,10 @@ export declare class MTRDistinguishedNameInfo extends SDKHandle {
      * @availability iOS 16.4+
      */
     get rootCACertificateID(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MTRDistinguishedNameInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "caseAuthenticatedTags": true;
         "fabricID": true;
@@ -98985,6 +101315,10 @@ export declare class MTRDoorLockClusterClearAliroReaderConfigParams extends SDKH
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterClearAliroReaderConfigParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -99015,6 +101349,10 @@ export declare class MTRDoorLockClusterClearCredentialParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterClearCredentialParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credential": true;
         "serverSideProcessingTimeout": true;
@@ -99046,6 +101384,10 @@ export declare class MTRDoorLockClusterClearHolidayScheduleParams extends SDKHan
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterClearHolidayScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "holidayIndex": true;
         "serverSideProcessingTimeout": true;
@@ -99077,6 +101419,10 @@ export declare class MTRDoorLockClusterClearUserParams extends SDKHandle {
      */
     get userIndex(): _Foundation_NSNumber;
     set userIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterClearUserParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -99114,6 +101460,10 @@ export declare class MTRDoorLockClusterClearWeekDayScheduleParams extends SDKHan
      */
     get weekDayIndex(): _Foundation_NSNumber;
     set weekDayIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterClearWeekDayScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -99152,6 +101502,10 @@ export declare class MTRDoorLockClusterClearYearDayScheduleParams extends SDKHan
      */
     get yearDayIndex(): _Foundation_NSNumber;
     set yearDayIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterClearYearDayScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -99178,6 +101532,10 @@ export declare class MTRDoorLockClusterCredentialStruct extends SDKHandle {
      */
     get credentialType(): _Foundation_NSNumber;
     set credentialType(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterCredentialStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credentialIndex": true;
         "credentialType": true;
@@ -99206,6 +101564,11 @@ export declare class MTRDoorLockClusterDlCredential extends MTRDoorLockClusterDl
      */
     get credentialType(): _Foundation_NSNumber;
     set credentialType(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterDlCredential": true;
+        "c:objc(cs)MTRDoorLockClusterCredentialStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credentialIndex": true;
         "credentialType": true;
@@ -99224,6 +101587,10 @@ export declare class MTRDoorLockClusterDoorLockAlarmEvent extends SDKHandle {
      */
     get alarmCode(): _Foundation_NSNumber;
     set alarmCode(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterDoorLockAlarmEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarmCode": true;
     };
@@ -99241,6 +101608,10 @@ export declare class MTRDoorLockClusterDoorStateChangeEvent extends SDKHandle {
      */
     get doorState(): _Foundation_NSNumber;
     set doorState(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterDoorStateChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "doorState": true;
     };
@@ -99270,6 +101641,10 @@ export declare class MTRDoorLockClusterGetCredentialStatusParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetCredentialStatusParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credential": true;
         "serverSideProcessingTimeout": true;
@@ -99281,13 +101656,11 @@ export declare class MTRDoorLockClusterGetCredentialStatusParams extends SDKHand
  * @availability iOS 16.1+
  */
 export declare class MTRDoorLockClusterGetCredentialStatusResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRDoorLockClusterGetCredentialStatusResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRDoorLockClusterGetCredentialStatusResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRDoorLockClusterGetCredentialStatusResponseParams;
     /**
      * @NSCopying var creatorFabricIndex: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -99331,6 +101704,10 @@ export declare class MTRDoorLockClusterGetCredentialStatusResponseParams extends
      */
     get userIndex(): $SDK0;
     set userIndex(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetCredentialStatusResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "creatorFabricIndex": true;
         "credentialData": true;
@@ -99366,6 +101743,10 @@ export declare class MTRDoorLockClusterGetHolidayScheduleParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetHolidayScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "holidayIndex": true;
         "serverSideProcessingTimeout": true;
@@ -99377,13 +101758,11 @@ export declare class MTRDoorLockClusterGetHolidayScheduleParams extends SDKHandl
  * @availability iOS 16.1+
  */
 export declare class MTRDoorLockClusterGetHolidayScheduleResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRDoorLockClusterGetHolidayScheduleResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRDoorLockClusterGetHolidayScheduleResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRDoorLockClusterGetHolidayScheduleResponseParams;
     /**
      * @NSCopying var holidayIndex: NSNumber { get set }
      * @availability iOS 16.1+
@@ -99421,6 +101800,10 @@ export declare class MTRDoorLockClusterGetHolidayScheduleResponseParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetHolidayScheduleResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "holidayIndex": true;
         "localEndTime": true;
@@ -99455,6 +101838,10 @@ export declare class MTRDoorLockClusterGetUserParams extends SDKHandle {
      */
     get userIndex(): _Foundation_NSNumber;
     set userIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetUserParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -99466,13 +101853,11 @@ export declare class MTRDoorLockClusterGetUserParams extends SDKHandle {
  * @availability iOS 16.1+
  */
 export declare class MTRDoorLockClusterGetUserResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRDoorLockClusterGetUserResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRDoorLockClusterGetUserResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRDoorLockClusterGetUserResponseParams;
     /**
      * @NSCopying var creatorFabricIndex: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -99547,6 +101932,10 @@ export declare class MTRDoorLockClusterGetUserResponseParams extends SDKHandle {
      */
     get userUniqueId(): $SDK0;
     set userUniqueId(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetUserResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "creatorFabricIndex": true;
         "credentialRule": true;
@@ -99593,6 +101982,10 @@ export declare class MTRDoorLockClusterGetWeekDayScheduleParams extends SDKHandl
      */
     get weekDayIndex(): _Foundation_NSNumber;
     set weekDayIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetWeekDayScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -99605,13 +101998,11 @@ export declare class MTRDoorLockClusterGetWeekDayScheduleParams extends SDKHandl
  * @availability iOS 16.1+
  */
 export declare class MTRDoorLockClusterGetWeekDayScheduleResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRDoorLockClusterGetWeekDayScheduleResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRDoorLockClusterGetWeekDayScheduleResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRDoorLockClusterGetWeekDayScheduleResponseParams;
     /**
      * @NSCopying var daysMask: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -99667,6 +102058,10 @@ export declare class MTRDoorLockClusterGetWeekDayScheduleResponseParams extends 
      */
     get weekDayIndex(): _Foundation_NSNumber;
     set weekDayIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetWeekDayScheduleResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "daysMask": true;
         "endHour": true;
@@ -99710,6 +102105,10 @@ export declare class MTRDoorLockClusterGetYearDayScheduleParams extends SDKHandl
      */
     get yearDayIndex(): _Foundation_NSNumber;
     set yearDayIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetYearDayScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -99722,13 +102121,11 @@ export declare class MTRDoorLockClusterGetYearDayScheduleParams extends SDKHandl
  * @availability iOS 16.1+
  */
 export declare class MTRDoorLockClusterGetYearDayScheduleResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRDoorLockClusterGetYearDayScheduleResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRDoorLockClusterGetYearDayScheduleResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRDoorLockClusterGetYearDayScheduleResponseParams;
     /**
      * @NSCopying var localEndTime: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -99766,6 +102163,10 @@ export declare class MTRDoorLockClusterGetYearDayScheduleResponseParams extends 
      */
     get yearDayIndex(): _Foundation_NSNumber;
     set yearDayIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterGetYearDayScheduleResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localEndTime": true;
         "localStartTime": true;
@@ -99800,6 +102201,10 @@ export declare class MTRDoorLockClusterLockDoorParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterLockDoorParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pinCode": true;
         "serverSideProcessingTimeout": true;
@@ -99855,6 +102260,10 @@ export declare class MTRDoorLockClusterLockOperationErrorEvent extends SDKHandle
      */
     get userIndex(): $SDK0;
     set userIndex(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterLockOperationErrorEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credentials": true;
         "fabricIndex": true;
@@ -99908,6 +102317,10 @@ export declare class MTRDoorLockClusterLockOperationEvent extends SDKHandle {
      */
     get userIndex(): $SDK0;
     set userIndex(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterLockOperationEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credentials": true;
         "fabricIndex": true;
@@ -99966,6 +102379,10 @@ export declare class MTRDoorLockClusterLockUserChangeEvent extends SDKHandle {
      */
     get userIndex(): $SDK0;
     set userIndex(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterLockUserChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataIndex": true;
         "dataOperationType": true;
@@ -100019,6 +102436,10 @@ export declare class MTRDoorLockClusterSetAliroReaderConfigParams extends SDKHan
      */
     get verificationKey(): ArrayBuffer;
     set verificationKey(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterSetAliroReaderConfigParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupIdentifier": true;
         "groupResolvingKey": true;
@@ -100083,6 +102504,10 @@ export declare class MTRDoorLockClusterSetCredentialParams extends SDKHandle {
      */
     get userType(): $SDK0;
     set userType(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterSetCredentialParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credential": true;
         "credentialData": true;
@@ -100099,13 +102524,11 @@ export declare class MTRDoorLockClusterSetCredentialParams extends SDKHandle {
  * @availability iOS 16.1+
  */
 export declare class MTRDoorLockClusterSetCredentialResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRDoorLockClusterSetCredentialResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRDoorLockClusterSetCredentialResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRDoorLockClusterSetCredentialResponseParams;
     /**
      * @NSCopying var nextCredentialIndex: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -100131,6 +102554,10 @@ export declare class MTRDoorLockClusterSetCredentialResponseParams extends SDKHa
      */
     get userIndex(): $SDK0;
     set userIndex(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterSetCredentialResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nextCredentialIndex": true;
         "status": true;
@@ -100181,6 +102608,10 @@ export declare class MTRDoorLockClusterSetHolidayScheduleParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterSetHolidayScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "holidayIndex": true;
         "localEndTime": true;
@@ -100258,6 +102689,10 @@ export declare class MTRDoorLockClusterSetUserParams extends SDKHandle {
      */
     get userUniqueId(): $SDK0;
     set userUniqueId(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterSetUserParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credentialRule": true;
         "operationType": true;
@@ -100332,6 +102767,10 @@ export declare class MTRDoorLockClusterSetWeekDayScheduleParams extends SDKHandl
      */
     get weekDayIndex(): _Foundation_NSNumber;
     set weekDayIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterSetWeekDayScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "daysMask": true;
         "endHour": true;
@@ -100387,6 +102826,10 @@ export declare class MTRDoorLockClusterSetYearDayScheduleParams extends SDKHandl
      */
     get yearDayIndex(): _Foundation_NSNumber;
     set yearDayIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterSetYearDayScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localEndTime": true;
         "localStartTime": true;
@@ -100421,6 +102864,10 @@ export declare class MTRDoorLockClusterUnboltDoorParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterUnboltDoorParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pinCode": true;
         "serverSideProcessingTimeout": true;
@@ -100452,6 +102899,10 @@ export declare class MTRDoorLockClusterUnlockDoorParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterUnlockDoorParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pinCode": true;
         "serverSideProcessingTimeout": true;
@@ -100489,6 +102940,10 @@ export declare class MTRDoorLockClusterUnlockWithTimeoutParams extends SDKHandle
      */
     get timeout(): _Foundation_NSNumber;
     set timeout(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRDoorLockClusterUnlockWithTimeoutParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pinCode": true;
         "serverSideProcessingTimeout": true;
@@ -101673,6 +104128,10 @@ export declare class MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasur
      */
     get energyImported(): $SDK268;
     set energyImported(value: $SDK268);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "energyExported": true;
         "energyImported": true;
@@ -101709,6 +104168,10 @@ export declare class MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetS
      */
     get importedResetTimestamp(): $SDK0;
     set importedResetTimestamp(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalEnergyMeasurementClusterCumulativeEnergyResetStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "exportedResetSystime": true;
         "exportedResetTimestamp": true;
@@ -101753,6 +104216,10 @@ export declare class MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruc
      */
     get startTimestamp(): $SDK0;
     set startTimestamp(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endSystime": true;
         "endTimestamp": true;
@@ -101816,6 +104283,10 @@ export declare class MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRan
      */
     get rangeMin(): _Foundation_NSNumber;
     set rangeMin(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalEnergyMeasurementClusterMeasurementAccuracyRangeStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fixedMax": true;
         "fixedMin": true;
@@ -101864,6 +104335,10 @@ export declare class MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStr
      */
     get minMeasuredValue(): _Foundation_NSNumber;
     set minMeasuredValue(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalEnergyMeasurementClusterMeasurementAccuracyStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accuracyRanges": true;
         "maxMeasuredValue": true;
@@ -101891,6 +104366,10 @@ export declare class MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasured
      */
     get energyImported(): $SDK268;
     set energyImported(value: $SDK268);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "energyExported": true;
         "energyImported": true;
@@ -101983,6 +104462,10 @@ export declare class MTRElectricalMeasurementClusterGetMeasurementProfileCommand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalMeasurementClusterGetMeasurementProfileCommandParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeId": true;
         "numberOfIntervals": true;
@@ -101997,14 +104480,12 @@ export declare class MTRElectricalMeasurementClusterGetMeasurementProfileCommand
  * @deprecated iOS 18.2
  */
 export declare class MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams extends SDKHandle {
-    /** init() */
-    static init(): MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      * @deprecated iOS 18.2
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams;
+    static init(responseValue: Record<string, unknown>): MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams;
     /**
      * @NSCopying var attributeId: NSNumber { get set }
      * @availability iOS 16.1+
@@ -102054,6 +104535,10 @@ export declare class MTRElectricalMeasurementClusterGetMeasurementProfileRespons
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeId": true;
         "intervals": true;
@@ -102086,6 +104571,10 @@ export declare class MTRElectricalMeasurementClusterGetProfileInfoCommandParams 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalMeasurementClusterGetProfileInfoCommandParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -102097,14 +104586,12 @@ export declare class MTRElectricalMeasurementClusterGetProfileInfoCommandParams 
  * @deprecated iOS 18.2
  */
 export declare class MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams extends SDKHandle {
-    /** init() */
-    static init(): MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      * @deprecated iOS 18.2
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams;
+    static init(responseValue: Record<string, unknown>): MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams;
     /**
      * var listOfAttributes: [Any] { get set }
      * @availability iOS 16.1+
@@ -102140,6 +104627,10 @@ export declare class MTRElectricalMeasurementClusterGetProfileInfoResponseComman
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalMeasurementClusterGetProfileInfoResponseCommandParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "listOfAttributes": true;
         "maxNumberOfIntervals": true;
@@ -102167,6 +104658,10 @@ export declare class MTRElectricalPowerMeasurementClusterHarmonicMeasurementStru
      */
     get order(): _Foundation_NSNumber;
     set order(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "measurement": true;
         "order": true;
@@ -102227,6 +104722,10 @@ export declare class MTRElectricalPowerMeasurementClusterMeasurementAccuracyRang
      */
     get rangeMin(): _Foundation_NSNumber;
     set rangeMin(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fixedMax": true;
         "fixedMin": true;
@@ -102275,6 +104774,10 @@ export declare class MTRElectricalPowerMeasurementClusterMeasurementAccuracyStru
      */
     get minMeasuredValue(): _Foundation_NSNumber;
     set minMeasuredValue(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalPowerMeasurementClusterMeasurementAccuracyStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accuracyRanges": true;
         "maxMeasuredValue": true;
@@ -102296,6 +104799,10 @@ export declare class MTRElectricalPowerMeasurementClusterMeasurementPeriodRanges
      */
     get ranges(): Array<unknown>;
     set ranges(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ranges": true;
     };
@@ -102373,6 +104880,10 @@ export declare class MTRElectricalPowerMeasurementClusterMeasurementRangeStruct 
      */
     get startTimestamp(): $SDK0;
     set startTimestamp(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRElectricalPowerMeasurementClusterMeasurementRangeStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endSystime": true;
         "endTimestamp": true;
@@ -102473,6 +104984,10 @@ export declare class MTREndpointInfo extends SDKHandle {
      * @availability iOS 18.4+
      */
     get partsList(): $SDK255;
+    readonly $type: {
+        "c:objc(cs)MTREndpointInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "children": true;
         "deviceTypes": true;
@@ -102499,6 +105014,10 @@ export declare class MTREnergyEVSEClusterChargingTargetScheduleStruct extends SD
      */
     get dayOfWeekForSequence(): _Foundation_NSNumber;
     set dayOfWeekForSequence(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterChargingTargetScheduleStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "chargingTargets": true;
         "dayOfWeekForSequence": true;
@@ -102529,6 +105048,10 @@ export declare class MTREnergyEVSEClusterChargingTargetStruct extends SDKHandle 
      */
     get targetTimeMinutesPastMidnight(): _Foundation_NSNumber;
     set targetTimeMinutesPastMidnight(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterChargingTargetStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addedEnergy": true;
         "targetSoC": true;
@@ -102554,6 +105077,10 @@ export declare class MTREnergyEVSEClusterClearTargetsParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterClearTargetsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -102578,6 +105105,10 @@ export declare class MTREnergyEVSEClusterDisableParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterDisableParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -102620,6 +105151,10 @@ export declare class MTREnergyEVSEClusterEnableChargingParams extends SDKHandle 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterEnableChargingParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "chargingEnabledUntil": true;
         "maximumChargeCurrent": true;
@@ -102653,6 +105188,10 @@ export declare class MTREnergyEVSEClusterEnergyTransferStartedEvent extends SDKH
      */
     get state(): _Foundation_NSNumber;
     set state(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterEnergyTransferStartedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "maximumCurrent": true;
         "sessionID": true;
@@ -102690,6 +105229,10 @@ export declare class MTREnergyEVSEClusterEnergyTransferStoppedEvent extends SDKH
      */
     get state(): _Foundation_NSNumber;
     set state(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterEnergyTransferStoppedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "energyTransferred": true;
         "reason": true;
@@ -102710,6 +105253,10 @@ export declare class MTREnergyEVSEClusterEVConnectedEvent extends SDKHandle {
      */
     get sessionID(): _Foundation_NSNumber;
     set sessionID(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterEVConnectedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sessionID": true;
     };
@@ -102745,6 +105292,10 @@ export declare class MTREnergyEVSEClusterEVNotDetectedEvent extends SDKHandle {
      */
     get state(): _Foundation_NSNumber;
     set state(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterEVNotDetectedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "sessionDuration": true;
         "sessionEnergyCharged": true;
@@ -102783,6 +105334,10 @@ export declare class MTREnergyEVSEClusterFaultEvent extends SDKHandle {
      */
     get state(): _Foundation_NSNumber;
     set state(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterFaultEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "faultStateCurrentState": true;
         "faultStatePreviousState": true;
@@ -102809,6 +105364,10 @@ export declare class MTREnergyEVSEClusterGetTargetsParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterGetTargetsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -102819,19 +105378,21 @@ export declare class MTREnergyEVSEClusterGetTargetsParams extends SDKHandle {
  * @availability iOS 18.4+
  */
 export declare class MTREnergyEVSEClusterGetTargetsResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTREnergyEVSEClusterGetTargetsResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTREnergyEVSEClusterGetTargetsResponseParams;
+    static init(responseValue: Record<string, unknown>): MTREnergyEVSEClusterGetTargetsResponseParams;
     /**
      * var chargingTargetSchedules: [Any] { get set }
      * @availability iOS 18.4+
      */
     get chargingTargetSchedules(): Array<unknown>;
     set chargingTargetSchedules(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterGetTargetsResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "chargingTargetSchedules": true;
     };
@@ -102849,6 +105410,10 @@ export declare class MTREnergyEVSEClusterRFIDEvent extends SDKHandle {
      */
     get uid(): ArrayBuffer;
     set uid(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterRFIDEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uid": true;
     };
@@ -102878,6 +105443,10 @@ export declare class MTREnergyEVSEClusterSetTargetsParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterSetTargetsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "chargingTargetSchedules": true;
         "serverSideProcessingTimeout": true;
@@ -102903,6 +105472,10 @@ export declare class MTREnergyEVSEClusterStartDiagnosticsParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEClusterStartDiagnosticsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -102979,6 +105552,10 @@ export declare class MTREnergyEVSEModeClusterChangeToModeParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEModeClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -102990,13 +105567,11 @@ export declare class MTREnergyEVSEModeClusterChangeToModeParams extends SDKHandl
  * @availability iOS 18.4+
  */
 export declare class MTREnergyEVSEModeClusterChangeToModeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTREnergyEVSEModeClusterChangeToModeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTREnergyEVSEModeClusterChangeToModeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTREnergyEVSEModeClusterChangeToModeResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 18.4+
@@ -103009,6 +105584,10 @@ export declare class MTREnergyEVSEModeClusterChangeToModeResponseParams extends 
      */
     get statusText(): (string) | null;
     set statusText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEModeClusterChangeToModeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -103039,6 +105618,10 @@ export declare class MTREnergyEVSEModeClusterModeOptionStruct extends SDKHandle 
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -103064,6 +105647,10 @@ export declare class MTREnergyEVSEModeClusterModeTagStruct extends SDKHandle {
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTREnergyEVSEModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -103257,6 +105844,9 @@ export declare class MTRError extends SDKHandle {
      * @availability iOS 17.6+
      */
     static get cancelled(): MTRError_Code;
+    readonly $type: {
+        "s:SC12MTRErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -103289,6 +105879,10 @@ export declare class MTREthernetNetworkDiagnosticsClusterResetCountsParams exten
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTREthernetNetworkDiagnosticsClusterResetCountsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -104175,6 +106769,11 @@ export declare class MTREventPath extends MTRClusterPath {
      * @availability iOS 16.1+
      */
     get event(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)MTREventPath": true;
+        "c:objc(cs)MTRClusterPath": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "endpoint": true;
@@ -104198,13 +106797,11 @@ export declare const MTREventPriority: {
  * @availability iOS 16.1+
  */
 export declare class MTREventReport extends SDKHandle {
-    /** init() */
-    static init(): MTREventReport;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTREventReport;
+    static init(responseValue: Record<string, unknown>): MTREventReport;
     /**
      * var error: (any Error)? { get }
      * @availability iOS 16.1+
@@ -104251,6 +106848,10 @@ export declare class MTREventReport extends SDKHandle {
      * @availability iOS 16.1+
      */
     get value(): (unknown) | null;
+    readonly $type: {
+        "c:objc(cs)MTREventReport": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "error": true;
         "eventNumber": true;
@@ -104272,9 +106873,7 @@ export declare class MTREventRequestPath extends SDKHandle {
      * init(endpointID: NSNumber?, clusterID: NSNumber?, eventID: NSNumber?)
      * @availability iOS 17.0+
      */
-    static initEndpointIDClusterIDEventID(endpointID?: $SDK0, clusterID?: $SDK0, eventID?: $SDK0): MTREventRequestPath;
-    /** init() */
-    static init(): MTREventRequestPath;
+    static init(endpointID?: $SDK0, clusterID?: $SDK0, eventID?: $SDK0): MTREventRequestPath;
     /**
      * @NSCopying var cluster: NSNumber? { get }
      * @availability iOS 17.0+
@@ -104290,6 +106889,10 @@ export declare class MTREventRequestPath extends SDKHandle {
      * @availability iOS 17.0+
      */
     get event(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MTREventRequestPath": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cluster": true;
         "endpoint": true;
@@ -104373,6 +106976,10 @@ export declare class MTRFabricInfo extends SDKHandle {
      * @availability iOS 16.5+
      */
     get vendorID(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)MTRFabricInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricID": true;
         "fabricIndex": true;
@@ -104437,6 +107044,10 @@ export declare class MTRFanControlClusterStepParams extends SDKHandle {
      */
     get wrap(): $SDK0;
     set wrap(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRFanControlClusterStepParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "direction": true;
         "lowestOff": true;
@@ -104715,6 +107326,10 @@ export declare class MTRFixedLabelClusterLabelStruct extends SDKHandle {
      */
     get value(): string;
     set value(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRFixedLabelClusterLabelStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "value": true;
@@ -104829,6 +107444,10 @@ export declare class MTRGeneralCommissioningClusterArmFailSafeParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralCommissioningClusterArmFailSafeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "breadcrumb": true;
         "expiryLengthSeconds": true;
@@ -104841,13 +107460,11 @@ export declare class MTRGeneralCommissioningClusterArmFailSafeParams extends SDK
  * @availability iOS 16.1+
  */
 export declare class MTRGeneralCommissioningClusterArmFailSafeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGeneralCommissioningClusterArmFailSafeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGeneralCommissioningClusterArmFailSafeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGeneralCommissioningClusterArmFailSafeResponseParams;
     /**
      * var debugText: String { get set }
      * @availability iOS 16.1+
@@ -104867,6 +107484,10 @@ export declare class MTRGeneralCommissioningClusterArmFailSafeResponseParams ext
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralCommissioningClusterArmFailSafeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "debugText": true;
         "errorCode": true;
@@ -104892,6 +107513,10 @@ export declare class MTRGeneralCommissioningClusterBasicCommissioningInfo extend
      */
     get maxCumulativeFailsafeSeconds(): _Foundation_NSNumber;
     set maxCumulativeFailsafeSeconds(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralCommissioningClusterBasicCommissioningInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "failSafeExpiryLengthSeconds": true;
         "maxCumulativeFailsafeSeconds": true;
@@ -104916,6 +107541,10 @@ export declare class MTRGeneralCommissioningClusterCommissioningCompleteParams e
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralCommissioningClusterCommissioningCompleteParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -104926,13 +107555,11 @@ export declare class MTRGeneralCommissioningClusterCommissioningCompleteParams e
  * @availability iOS 16.1+
  */
 export declare class MTRGeneralCommissioningClusterCommissioningCompleteResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGeneralCommissioningClusterCommissioningCompleteResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGeneralCommissioningClusterCommissioningCompleteResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGeneralCommissioningClusterCommissioningCompleteResponseParams;
     /**
      * var debugText: String { get set }
      * @availability iOS 16.1+
@@ -104952,6 +107579,10 @@ export declare class MTRGeneralCommissioningClusterCommissioningCompleteResponse
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralCommissioningClusterCommissioningCompleteResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "debugText": true;
         "errorCode": true;
@@ -104995,6 +107626,10 @@ export declare class MTRGeneralCommissioningClusterSetRegulatoryConfigParams ext
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralCommissioningClusterSetRegulatoryConfigParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "breadcrumb": true;
         "countryCode": true;
@@ -105008,13 +107643,11 @@ export declare class MTRGeneralCommissioningClusterSetRegulatoryConfigParams ext
  * @availability iOS 16.1+
  */
 export declare class MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams;
     /**
      * var debugText: String { get set }
      * @availability iOS 16.1+
@@ -105034,6 +107667,10 @@ export declare class MTRGeneralCommissioningClusterSetRegulatoryConfigResponsePa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralCommissioningClusterSetRegulatoryConfigResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "debugText": true;
         "errorCode": true;
@@ -105109,6 +107746,10 @@ export declare class MTRGeneralDiagnosticsClusterBootReasonEvent extends SDKHand
      */
     get bootReason(): _Foundation_NSNumber;
     set bootReason(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterBootReasonEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bootReason": true;
     };
@@ -105132,6 +107773,10 @@ export declare class MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent extend
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterHardwareFaultChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -105156,6 +107801,10 @@ export declare class MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent extends
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -105216,6 +107865,10 @@ export declare class MTRGeneralDiagnosticsClusterNetworkInterface extends SDKHan
      */
     get type(): _Foundation_NSNumber;
     set type(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterNetworkInterface": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hardwareAddress": true;
         "iPv4Addresses": true;
@@ -105292,6 +107945,11 @@ export declare class MTRGeneralDiagnosticsClusterNetworkInterfaceType extends MT
      */
     get type(): _Foundation_NSNumber;
     set type(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterNetworkInterfaceType": true;
+        "c:objc(cs)MTRGeneralDiagnosticsClusterNetworkInterface": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hardwareAddress": true;
         "iPv4Addresses": true;
@@ -105340,6 +107998,10 @@ export declare class MTRGeneralDiagnosticsClusterPayloadTestRequestParams extend
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterPayloadTestRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "count": true;
         "enableKey": true;
@@ -105353,19 +108015,21 @@ export declare class MTRGeneralDiagnosticsClusterPayloadTestRequestParams extend
  * @availability iOS 18.4+
  */
 export declare class MTRGeneralDiagnosticsClusterPayloadTestResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGeneralDiagnosticsClusterPayloadTestResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGeneralDiagnosticsClusterPayloadTestResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGeneralDiagnosticsClusterPayloadTestResponseParams;
     /**
      * var payload: Data { get set }
      * @availability iOS 18.4+
      */
     get payload(): ArrayBuffer;
     set payload(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterPayloadTestResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "payload": true;
     };
@@ -105389,6 +108053,10 @@ export declare class MTRGeneralDiagnosticsClusterRadioFaultChangeEvent extends S
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterRadioFaultChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -105425,6 +108093,10 @@ export declare class MTRGeneralDiagnosticsClusterTestEventTriggerParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterTestEventTriggerParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enableKey": true;
         "eventTrigger": true;
@@ -105451,6 +108123,10 @@ export declare class MTRGeneralDiagnosticsClusterTimeSnapshotParams extends SDKH
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterTimeSnapshotParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -105461,13 +108137,11 @@ export declare class MTRGeneralDiagnosticsClusterTimeSnapshotParams extends SDKH
  * @availability iOS 18.4+
  */
 export declare class MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams;
     /**
      * @NSCopying var posixTimeMs: NSNumber? { get set }
      * @availability iOS 18.4+
@@ -105480,6 +108154,10 @@ export declare class MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams exte
      */
     get systemTimeMs(): _Foundation_NSNumber;
     set systemTimeMs(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRGeneralDiagnosticsClusterTimeSnapshotResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "posixTimeMs": true;
         "systemTimeMs": true;
@@ -105623,6 +108301,10 @@ export declare class MTRGroupKeyManagementClusterGroupInfoMapStruct extends SDKH
      */
     get groupName(): (string) | null;
     set groupName(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRGroupKeyManagementClusterGroupInfoMapStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endpoints": true;
         "fabricIndex": true;
@@ -105655,6 +108337,10 @@ export declare class MTRGroupKeyManagementClusterGroupKeyMapStruct extends SDKHa
      */
     get groupKeySetID(): _Foundation_NSNumber;
     set groupKeySetID(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRGroupKeyManagementClusterGroupKeyMapStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
         "groupId": true;
@@ -105716,6 +108402,10 @@ export declare class MTRGroupKeyManagementClusterGroupKeySetStruct extends SDKHa
      */
     get groupKeySetID(): _Foundation_NSNumber;
     set groupKeySetID(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRGroupKeyManagementClusterGroupKeySetStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "epochKey0": true;
         "epochKey1": true;
@@ -105753,6 +108443,10 @@ export declare class MTRGroupKeyManagementClusterKeySetReadAllIndicesParams exte
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupKeyManagementClusterKeySetReadAllIndicesParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupKeySetIDs": true;
         "serverSideProcessingTimeout": true;
@@ -105764,13 +108458,11 @@ export declare class MTRGroupKeyManagementClusterKeySetReadAllIndicesParams exte
  * @availability iOS 16.1+
  */
 export declare class MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams;
     /**
      * var groupKeySetIDs: [Any] { get set }
      * @availability iOS 16.1+
@@ -105784,6 +108476,10 @@ export declare class MTRGroupKeyManagementClusterKeySetReadAllIndicesResponsePar
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupKeySetIDs": true;
         "timedInvokeTimeoutMs": true;
@@ -105814,6 +108510,10 @@ export declare class MTRGroupKeyManagementClusterKeySetReadParams extends SDKHan
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupKeyManagementClusterKeySetReadParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupKeySetID": true;
         "serverSideProcessingTimeout": true;
@@ -105825,13 +108525,11 @@ export declare class MTRGroupKeyManagementClusterKeySetReadParams extends SDKHan
  * @availability iOS 16.1+
  */
 export declare class MTRGroupKeyManagementClusterKeySetReadResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGroupKeyManagementClusterKeySetReadResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGroupKeyManagementClusterKeySetReadResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGroupKeyManagementClusterKeySetReadResponseParams;
     /**
      * @NSCopying var groupKeySet: MTRGroupKeyManagementClusterGroupKeySetStruct { get set }
      * @availability iOS 16.1+
@@ -105845,6 +108543,10 @@ export declare class MTRGroupKeyManagementClusterKeySetReadResponseParams extend
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupKeyManagementClusterKeySetReadResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupKeySet": true;
         "timedInvokeTimeoutMs": true;
@@ -105875,6 +108577,10 @@ export declare class MTRGroupKeyManagementClusterKeySetRemoveParams extends SDKH
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupKeyManagementClusterKeySetRemoveParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupKeySetID": true;
         "serverSideProcessingTimeout": true;
@@ -105906,6 +108612,10 @@ export declare class MTRGroupKeyManagementClusterKeySetWriteParams extends SDKHa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupKeyManagementClusterKeySetWriteParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupKeySet": true;
         "serverSideProcessingTimeout": true;
@@ -105962,6 +108672,10 @@ export declare class MTRGroupsClusterAddGroupIfIdentifyingParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterAddGroupIfIdentifyingParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupID": true;
         "groupId": true;
@@ -106008,6 +108722,10 @@ export declare class MTRGroupsClusterAddGroupParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterAddGroupParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupID": true;
         "groupId": true;
@@ -106021,13 +108739,11 @@ export declare class MTRGroupsClusterAddGroupParams extends SDKHandle {
  * @availability iOS 16.1+
  */
 export declare class MTRGroupsClusterAddGroupResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGroupsClusterAddGroupResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGroupsClusterAddGroupResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGroupsClusterAddGroupResponseParams;
     /**
      * @NSCopying var groupID: NSNumber { get set }
      * @availability iOS 16.4+
@@ -106054,6 +108770,10 @@ export declare class MTRGroupsClusterAddGroupResponseParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterAddGroupResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupID": true;
         "groupId": true;
@@ -106086,6 +108806,10 @@ export declare class MTRGroupsClusterGetGroupMembershipParams extends SDKHandle 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterGetGroupMembershipParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupList": true;
         "serverSideProcessingTimeout": true;
@@ -106097,13 +108821,11 @@ export declare class MTRGroupsClusterGetGroupMembershipParams extends SDKHandle 
  * @availability iOS 16.1+
  */
 export declare class MTRGroupsClusterGetGroupMembershipResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGroupsClusterGetGroupMembershipResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGroupsClusterGetGroupMembershipResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGroupsClusterGetGroupMembershipResponseParams;
     /**
      * @NSCopying var capacity: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -106123,6 +108845,10 @@ export declare class MTRGroupsClusterGetGroupMembershipResponseParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterGetGroupMembershipResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "capacity": true;
         "groupList": true;
@@ -106148,6 +108874,10 @@ export declare class MTRGroupsClusterRemoveAllGroupsParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterRemoveAllGroupsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -106185,6 +108915,10 @@ export declare class MTRGroupsClusterRemoveGroupParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterRemoveGroupParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupID": true;
         "groupId": true;
@@ -106197,13 +108931,11 @@ export declare class MTRGroupsClusterRemoveGroupParams extends SDKHandle {
  * @availability iOS 16.1+
  */
 export declare class MTRGroupsClusterRemoveGroupResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGroupsClusterRemoveGroupResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGroupsClusterRemoveGroupResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGroupsClusterRemoveGroupResponseParams;
     /**
      * @NSCopying var groupID: NSNumber { get set }
      * @availability iOS 16.4+
@@ -106230,6 +108962,10 @@ export declare class MTRGroupsClusterRemoveGroupResponseParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterRemoveGroupResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupID": true;
         "groupId": true;
@@ -106269,6 +109005,10 @@ export declare class MTRGroupsClusterViewGroupParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterViewGroupParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupID": true;
         "groupId": true;
@@ -106281,13 +109021,11 @@ export declare class MTRGroupsClusterViewGroupParams extends SDKHandle {
  * @availability iOS 16.1+
  */
 export declare class MTRGroupsClusterViewGroupResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRGroupsClusterViewGroupResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRGroupsClusterViewGroupResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRGroupsClusterViewGroupResponseParams;
     /**
      * @NSCopying var groupID: NSNumber { get set }
      * @availability iOS 16.4+
@@ -106320,6 +109058,10 @@ export declare class MTRGroupsClusterViewGroupResponseParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRGroupsClusterViewGroupResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "groupID": true;
         "groupId": true;
@@ -106413,6 +109155,10 @@ export declare class MTRHEPAFilterMonitoringClusterReplacementProductStruct exte
      */
     get productIdentifierValue(): string;
     set productIdentifierValue(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRHEPAFilterMonitoringClusterReplacementProductStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "productIdentifierType": true;
         "productIdentifierValue": true;
@@ -106437,6 +109183,10 @@ export declare class MTRHEPAFilterMonitoringClusterResetConditionParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRHEPAFilterMonitoringClusterResetConditionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -106536,6 +109286,10 @@ export declare class MTRICDManagementClusterMonitoringRegistrationStruct extends
      */
     get monitoredSubject(): _Foundation_NSNumber;
     set monitoredSubject(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRICDManagementClusterMonitoringRegistrationStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "checkInNodeID": true;
         "clientType": true;
@@ -106592,6 +109346,10 @@ export declare class MTRICDManagementClusterRegisterClientParams extends SDKHand
      */
     get verificationKey(): (ArrayBuffer) | null;
     set verificationKey(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "c:objc(cs)MTRICDManagementClusterRegisterClientParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "checkInNodeID": true;
         "clientType": true;
@@ -106607,19 +109365,21 @@ export declare class MTRICDManagementClusterRegisterClientParams extends SDKHand
  * @availability iOS 18.4+
  */
 export declare class MTRICDManagementClusterRegisterClientResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRICDManagementClusterRegisterClientResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRICDManagementClusterRegisterClientResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRICDManagementClusterRegisterClientResponseParams;
     /**
      * @NSCopying var icdCounter: NSNumber { get set }
      * @availability iOS 18.4+
      */
     get icdCounter(): _Foundation_NSNumber;
     set icdCounter(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRICDManagementClusterRegisterClientResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "icdCounter": true;
     };
@@ -106649,6 +109409,10 @@ export declare class MTRICDManagementClusterStayActiveRequestParams extends SDKH
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRICDManagementClusterStayActiveRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "stayActiveDuration": true;
@@ -106660,19 +109424,21 @@ export declare class MTRICDManagementClusterStayActiveRequestParams extends SDKH
  * @availability iOS 18.4+
  */
 export declare class MTRICDManagementClusterStayActiveResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRICDManagementClusterStayActiveResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRICDManagementClusterStayActiveResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRICDManagementClusterStayActiveResponseParams;
     /**
      * @NSCopying var promisedActiveDuration: NSNumber { get set }
      * @availability iOS 18.4+
      */
     get promisedActiveDuration(): _Foundation_NSNumber;
     set promisedActiveDuration(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRICDManagementClusterStayActiveResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "promisedActiveDuration": true;
     };
@@ -106708,6 +109474,10 @@ export declare class MTRICDManagementClusterUnregisterClientParams extends SDKHa
      */
     get verificationKey(): (ArrayBuffer) | null;
     set verificationKey(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "c:objc(cs)MTRICDManagementClusterUnregisterClientParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "checkInNodeID": true;
         "serverSideProcessingTimeout": true;
@@ -106881,6 +109651,10 @@ export declare class MTRIdentifyClusterIdentifyParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRIdentifyClusterIdentifyParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifyTime": true;
         "serverSideProcessingTimeout": true;
@@ -106918,6 +109692,10 @@ export declare class MTRIdentifyClusterTriggerEffectParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRIdentifyClusterTriggerEffectParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "effectIdentifier": true;
         "effectVariant": true;
@@ -107135,6 +109913,9 @@ export declare class MTRInteractionError extends SDKHandle {
      * @availability iOS 16.1+
      */
     static get notFound(): MTRInteractionError_Code;
+    readonly $type: {
+        "s:SC23MTRInteractionErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -107199,6 +109980,10 @@ export declare class MTRKeypadInputClusterSendKeyParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRKeypadInputClusterSendKeyParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "keyCode": true;
         "serverSideProcessingTimeout": true;
@@ -107210,13 +109995,11 @@ export declare class MTRKeypadInputClusterSendKeyParams extends SDKHandle {
  * @availability iOS 16.1+
  */
 export declare class MTRKeypadInputClusterSendKeyResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRKeypadInputClusterSendKeyResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRKeypadInputClusterSendKeyResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRKeypadInputClusterSendKeyResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 16.1+
@@ -107230,6 +110013,10 @@ export declare class MTRKeypadInputClusterSendKeyResponseParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRKeypadInputClusterSendKeyResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "timedInvokeTimeoutMs": true;
@@ -107351,6 +110138,10 @@ export declare class MTRLaundryWasherModeClusterChangeToModeParams extends SDKHa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLaundryWasherModeClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -107362,13 +110153,11 @@ export declare class MTRLaundryWasherModeClusterChangeToModeParams extends SDKHa
  * @availability iOS 18.4+
  */
 export declare class MTRLaundryWasherModeClusterChangeToModeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRLaundryWasherModeClusterChangeToModeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRLaundryWasherModeClusterChangeToModeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRLaundryWasherModeClusterChangeToModeResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 18.4+
@@ -107381,6 +110170,10 @@ export declare class MTRLaundryWasherModeClusterChangeToModeResponseParams exten
      */
     get statusText(): (string) | null;
     set statusText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRLaundryWasherModeClusterChangeToModeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -107411,6 +110204,10 @@ export declare class MTRLaundryWasherModeClusterModeOptionStruct extends SDKHand
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRLaundryWasherModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -107436,6 +110233,10 @@ export declare class MTRLaundryWasherModeClusterModeTagStruct extends SDKHandle 
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRLaundryWasherModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -107496,6 +110297,10 @@ export declare class MTRLevelControlClusterMoveParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLevelControlClusterMoveParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "moveMode": true;
         "optionsMask": true;
@@ -107530,6 +110335,10 @@ export declare class MTRLevelControlClusterMoveToClosestFrequencyParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLevelControlClusterMoveToClosestFrequencyParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frequency": true;
         "serverSideProcessingTimeout": true;
@@ -107579,6 +110388,10 @@ export declare class MTRLevelControlClusterMoveToLevelParams extends SDKHandle {
      */
     get transitionTime(): $SDK0;
     set transitionTime(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLevelControlClusterMoveToLevelParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "level": true;
         "optionsMask": true;
@@ -107631,6 +110444,10 @@ export declare class MTRLevelControlClusterMoveToLevelWithOnOffParams extends SD
      */
     get transitionTime(): $SDK0;
     set transitionTime(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLevelControlClusterMoveToLevelWithOnOffParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "level": true;
         "optionsMask": true;
@@ -107683,6 +110500,10 @@ export declare class MTRLevelControlClusterMoveWithOnOffParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLevelControlClusterMoveWithOnOffParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "moveMode": true;
         "optionsMask": true;
@@ -107741,6 +110562,10 @@ export declare class MTRLevelControlClusterStepParams extends SDKHandle {
      */
     get transitionTime(): $SDK0;
     set transitionTime(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLevelControlClusterStepParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -107800,6 +110625,10 @@ export declare class MTRLevelControlClusterStepWithOnOffParams extends SDKHandle
      */
     get transitionTime(): $SDK0;
     set transitionTime(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLevelControlClusterStepWithOnOffParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -107841,6 +110670,10 @@ export declare class MTRLevelControlClusterStopParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLevelControlClusterStopParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -107879,6 +110712,10 @@ export declare class MTRLevelControlClusterStopWithOnOffParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLevelControlClusterStopWithOnOffParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "optionsMask": true;
         "optionsOverride": true;
@@ -108012,6 +110849,10 @@ export declare class MTRLowPowerClusterSleepParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRLowPowerClusterSleepParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108023,20 +110864,22 @@ export declare class MTRLowPowerClusterSleepParams extends SDKHandle {
  * @deprecated iOS 16.4
  */
 export declare class MTRManualSetupPayloadParser extends SDKHandle {
-    /** init() */
-    static init(): MTRManualSetupPayloadParser;
     /**
      * init(decimalStringRepresentation: String)
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    static initDecimalStringRepresentation(decimalStringRepresentation: string): MTRManualSetupPayloadParser;
+    static init(decimalStringRepresentation: string): MTRManualSetupPayloadParser;
     /**
      * func populatePayload() throws -> MTRSetupPayload
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
     populatePayload(): MTRSetupPayload;
+    readonly $type: {
+        "c:objc(cs)MTRManualSetupPayloadParser": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRMediaInputClusterHideInputStatusParams
@@ -108057,6 +110900,10 @@ export declare class MTRMediaInputClusterHideInputStatusParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaInputClusterHideInputStatusParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108093,6 +110940,10 @@ export declare class MTRMediaInputClusterInputInfoStruct extends SDKHandle {
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRMediaInputClusterInputInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "descriptionString": true;
         "index": true;
@@ -108137,6 +110988,11 @@ export declare class MTRMediaInputClusterInputInfo extends MTRMediaInputClusterI
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRMediaInputClusterInputInfo": true;
+        "c:objc(cs)MTRMediaInputClusterInputInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "descriptionString": true;
         "index": true;
@@ -108175,6 +111031,10 @@ export declare class MTRMediaInputClusterRenameInputParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaInputClusterRenameInputParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "index": true;
         "name": true;
@@ -108207,6 +111067,10 @@ export declare class MTRMediaInputClusterSelectInputParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaInputClusterSelectInputParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "index": true;
         "serverSideProcessingTimeout": true;
@@ -108232,6 +111096,10 @@ export declare class MTRMediaInputClusterShowInputStatusParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaInputClusterShowInputStatusParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108327,6 +111195,10 @@ export declare class MTRMediaPlaybackClusterActivateAudioTrackParams extends SDK
      */
     get trackID(): string;
     set trackID(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterActivateAudioTrackParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioOutputIndex": true;
         "serverSideProcessingTimeout": true;
@@ -108359,6 +111231,10 @@ export declare class MTRMediaPlaybackClusterActivateTextTrackParams extends SDKH
      */
     get trackID(): string;
     set trackID(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterActivateTextTrackParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108384,6 +111260,10 @@ export declare class MTRMediaPlaybackClusterDeactivateTextTrackParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterDeactivateTextTrackParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108414,6 +111294,10 @@ export declare class MTRMediaPlaybackClusterFastForwardParams extends SDKHandle 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterFastForwardParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioAdvanceUnmuted": true;
         "serverSideProcessingTimeout": true;
@@ -108439,6 +111323,10 @@ export declare class MTRMediaPlaybackClusterNextParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterNextParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108463,6 +111351,10 @@ export declare class MTRMediaPlaybackClusterPauseParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterPauseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108487,6 +111379,10 @@ export declare class MTRMediaPlaybackClusterPlaybackPositionStruct extends SDKHa
      */
     get updatedAt(): _Foundation_NSNumber;
     set updatedAt(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterPlaybackPositionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "position": true;
         "updatedAt": true;
@@ -108515,6 +111411,11 @@ export declare class MTRMediaPlaybackClusterPlaybackPosition extends MTRMediaPla
      */
     get updatedAt(): _Foundation_NSNumber;
     set updatedAt(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterPlaybackPosition": true;
+        "c:objc(cs)MTRMediaPlaybackClusterPlaybackPositionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "position": true;
         "updatedAt": true;
@@ -108525,13 +111426,11 @@ export declare class MTRMediaPlaybackClusterPlaybackPosition extends MTRMediaPla
  * @availability iOS 16.1+
  */
 export declare class MTRMediaPlaybackClusterPlaybackResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRMediaPlaybackClusterPlaybackResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRMediaPlaybackClusterPlaybackResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRMediaPlaybackClusterPlaybackResponseParams;
     /**
      * var data: String? { get set }
      * @availability iOS 16.1+
@@ -108551,6 +111450,10 @@ export declare class MTRMediaPlaybackClusterPlaybackResponseParams extends SDKHa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterPlaybackResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "status": true;
@@ -108576,6 +111479,10 @@ export declare class MTRMediaPlaybackClusterPlayParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterPlayParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108600,6 +111507,10 @@ export declare class MTRMediaPlaybackClusterPreviousParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterPreviousParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108630,6 +111541,10 @@ export declare class MTRMediaPlaybackClusterRewindParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterRewindParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioAdvanceUnmuted": true;
         "serverSideProcessingTimeout": true;
@@ -108661,6 +111576,10 @@ export declare class MTRMediaPlaybackClusterSeekParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterSeekParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "position": true;
         "serverSideProcessingTimeout": true;
@@ -108692,6 +111611,10 @@ export declare class MTRMediaPlaybackClusterSkipBackwardParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterSkipBackwardParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deltaPositionMilliseconds": true;
         "serverSideProcessingTimeout": true;
@@ -108723,6 +111646,10 @@ export declare class MTRMediaPlaybackClusterSkipForwardParams extends SDKHandle 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterSkipForwardParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deltaPositionMilliseconds": true;
         "serverSideProcessingTimeout": true;
@@ -108748,6 +111675,10 @@ export declare class MTRMediaPlaybackClusterStartOverParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterStartOverParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108814,6 +111745,10 @@ export declare class MTRMediaPlaybackClusterStateChangedEvent extends SDKHandle 
      */
     get startTime(): _Foundation_NSNumber;
     set startTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterStateChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioAdvanceUnmuted": true;
         "currentState": true;
@@ -108845,6 +111780,10 @@ export declare class MTRMediaPlaybackClusterStopParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterStopParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108873,6 +111812,11 @@ export declare class MTRMediaPlaybackClusterStopPlaybackParams extends MTRMediaP
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMediaPlaybackClusterStopPlaybackParams": true;
+        "c:objc(cs)MTRMediaPlaybackClusterStopParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -108964,6 +111908,10 @@ export declare class MTRMessagesClusterCancelMessagesRequestParams extends SDKHa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMessagesClusterCancelMessagesRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "messageIDs": true;
         "serverSideProcessingTimeout": true;
@@ -109001,6 +111949,10 @@ export declare class MTRMessagesClusterMessageCompleteEvent extends SDKHandle {
      */
     get responseID(): $SDK0;
     set responseID(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMessagesClusterMessageCompleteEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "futureMessagesPreference": true;
         "messageID": true;
@@ -109021,6 +111973,10 @@ export declare class MTRMessagesClusterMessagePresentedEvent extends SDKHandle {
      */
     get messageID(): ArrayBuffer;
     set messageID(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRMessagesClusterMessagePresentedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "messageID": true;
     };
@@ -109038,6 +111994,10 @@ export declare class MTRMessagesClusterMessageQueuedEvent extends SDKHandle {
      */
     get messageID(): ArrayBuffer;
     set messageID(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRMessagesClusterMessageQueuedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "messageID": true;
     };
@@ -109061,6 +112021,10 @@ export declare class MTRMessagesClusterMessageResponseOptionStruct extends SDKHa
      */
     get messageResponseID(): $SDK0;
     set messageResponseID(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMessagesClusterMessageResponseOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "messageResponseID": true;
@@ -109115,6 +112079,10 @@ export declare class MTRMessagesClusterMessageStruct extends SDKHandle {
      */
     get startTime(): $SDK0;
     set startTime(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMessagesClusterMessageStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "messageControl": true;
@@ -109186,6 +112154,10 @@ export declare class MTRMessagesClusterPresentMessagesRequestParams extends SDKH
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMessagesClusterPresentMessagesRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "messageControl": true;
@@ -109313,6 +112285,10 @@ export declare class MTRMetricData extends SDKHandle {
      * @availability iOS 17.6+
      */
     get value(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MTRMetricData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "errorCode": true;
@@ -109339,6 +112315,10 @@ export declare class MTRMetrics extends SDKHandle {
      * @availability iOS 17.6+
      */
     get uniqueIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)MTRMetrics": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allKeys": true;
         "uniqueIdentifier": true;
@@ -109369,6 +112349,10 @@ export declare class MTRMicrowaveOvenControlClusterAddMoreTimeParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMicrowaveOvenControlClusterAddMoreTimeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timeToAdd": true;
@@ -109418,6 +112402,10 @@ export declare class MTRMicrowaveOvenControlClusterSetCookingParametersParams ex
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRMicrowaveOvenControlClusterSetCookingParametersParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cookMode": true;
         "cookTime": true;
@@ -109474,6 +112462,10 @@ export declare class MTRMicrowaveOvenModeClusterModeOptionStruct extends SDKHand
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRMicrowaveOvenModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -109499,6 +112491,10 @@ export declare class MTRMicrowaveOvenModeClusterModeTagStruct extends SDKHandle 
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRMicrowaveOvenModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -109541,6 +112537,10 @@ export declare class MTRModeSelectClusterChangeToModeParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRModeSelectClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -109572,6 +112572,10 @@ export declare class MTRModeSelectClusterModeOptionStruct extends SDKHandle {
      */
     get semanticTags(): Array<unknown>;
     set semanticTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRModeSelectClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -109597,6 +112601,10 @@ export declare class MTRModeSelectClusterSemanticTagStruct extends SDKHandle {
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRModeSelectClusterSemanticTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -109624,6 +112632,11 @@ export declare class MTRModeSelectClusterSemanticTag extends MTRModeSelectCluste
      * @deprecated iOS 16.4
      */
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRModeSelectClusterSemanticTag": true;
+        "c:objc(cs)MTRModeSelectClusterSemanticTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -109683,6 +112696,10 @@ export declare class MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParam
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterAddOrUpdateThreadNetworkParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "breadcrumb": true;
         "operationalDataset": true;
@@ -109727,6 +112744,10 @@ export declare class MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "breadcrumb": true;
         "credentials": true;
@@ -109766,6 +112787,10 @@ export declare class MTRNetworkCommissioningClusterConnectNetworkParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterConnectNetworkParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "breadcrumb": true;
         "networkID": true;
@@ -109778,13 +112803,11 @@ export declare class MTRNetworkCommissioningClusterConnectNetworkParams extends 
  * @availability iOS 16.1+
  */
 export declare class MTRNetworkCommissioningClusterConnectNetworkResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRNetworkCommissioningClusterConnectNetworkResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRNetworkCommissioningClusterConnectNetworkResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRNetworkCommissioningClusterConnectNetworkResponseParams;
     /**
      * var debugText: String? { get set }
      * @availability iOS 16.1+
@@ -109810,6 +112833,10 @@ export declare class MTRNetworkCommissioningClusterConnectNetworkResponseParams 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterConnectNetworkResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "debugText": true;
         "errorValue": true;
@@ -109822,13 +112849,11 @@ export declare class MTRNetworkCommissioningClusterConnectNetworkResponseParams 
  * @availability iOS 16.1+
  */
 export declare class MTRNetworkCommissioningClusterNetworkConfigResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRNetworkCommissioningClusterNetworkConfigResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRNetworkCommissioningClusterNetworkConfigResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRNetworkCommissioningClusterNetworkConfigResponseParams;
     /**
      * var debugText: String? { get set }
      * @availability iOS 16.1+
@@ -109854,6 +112879,10 @@ export declare class MTRNetworkCommissioningClusterNetworkConfigResponseParams e
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterNetworkConfigResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "debugText": true;
         "networkIndex": true;
@@ -109880,6 +112909,10 @@ export declare class MTRNetworkCommissioningClusterNetworkInfoStruct extends SDK
      */
     get networkID(): ArrayBuffer;
     set networkID(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterNetworkInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connected": true;
         "networkID": true;
@@ -109908,6 +112941,11 @@ export declare class MTRNetworkCommissioningClusterNetworkInfo extends MTRNetwor
      */
     get networkID(): ArrayBuffer;
     set networkID(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterNetworkInfo": true;
+        "c:objc(cs)MTRNetworkCommissioningClusterNetworkInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connected": true;
         "networkID": true;
@@ -109944,6 +112982,10 @@ export declare class MTRNetworkCommissioningClusterRemoveNetworkParams extends S
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterRemoveNetworkParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "breadcrumb": true;
         "networkID": true;
@@ -109988,6 +113030,10 @@ export declare class MTRNetworkCommissioningClusterReorderNetworkParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterReorderNetworkParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "breadcrumb": true;
         "networkID": true;
@@ -110027,6 +113073,10 @@ export declare class MTRNetworkCommissioningClusterScanNetworksParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterScanNetworksParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "breadcrumb": true;
         "serverSideProcessingTimeout": true;
@@ -110039,13 +113089,11 @@ export declare class MTRNetworkCommissioningClusterScanNetworksParams extends SD
  * @availability iOS 16.1+
  */
 export declare class MTRNetworkCommissioningClusterScanNetworksResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRNetworkCommissioningClusterScanNetworksResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRNetworkCommissioningClusterScanNetworksResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRNetworkCommissioningClusterScanNetworksResponseParams;
     /**
      * var debugText: String? { get set }
      * @availability iOS 16.1+
@@ -110077,6 +113125,10 @@ export declare class MTRNetworkCommissioningClusterScanNetworksResponseParams ex
      */
     get wiFiScanResults(): (Array<unknown>) | null;
     set wiFiScanResults(value: (Array<unknown>) | null);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterScanNetworksResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "debugText": true;
         "networkingStatus": true;
@@ -110140,6 +113192,10 @@ export declare class MTRNetworkCommissioningClusterThreadInterfaceScanResultStru
      */
     get version(): _Foundation_NSNumber;
     set version(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channel": true;
         "extendedAddress": true;
@@ -110216,6 +113272,11 @@ export declare class MTRNetworkCommissioningClusterThreadInterfaceScanResult ext
      */
     get version(): _Foundation_NSNumber;
     set version(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterThreadInterfaceScanResult": true;
+        "c:objc(cs)MTRNetworkCommissioningClusterThreadInterfaceScanResultStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "channel": true;
         "extendedAddress": true;
@@ -110270,6 +113331,10 @@ export declare class MTRNetworkCommissioningClusterWiFiInterfaceScanResultStruct
      */
     get wiFiBand(): _Foundation_NSNumber;
     set wiFiBand(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterWiFiInterfaceScanResultStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bssid": true;
         "channel": true;
@@ -110330,6 +113395,11 @@ export declare class MTRNetworkCommissioningClusterWiFiInterfaceScanResult exten
      */
     get wiFiBand(): _Foundation_NSNumber;
     set wiFiBand(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRNetworkCommissioningClusterWiFiInterfaceScanResult": true;
+        "c:objc(cs)MTRNetworkCommissioningClusterWiFiInterfaceScanResultStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bssid": true;
         "channel": true;
@@ -110636,6 +113706,10 @@ export declare class MTROccupancySensingClusterHoldTimeLimitsStruct extends SDKH
      */
     get holdTimeMin(): _Foundation_NSNumber;
     set holdTimeMin(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROccupancySensingClusterHoldTimeLimitsStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "holdTimeDefault": true;
         "holdTimeMax": true;
@@ -110655,6 +113729,10 @@ export declare class MTROccupancySensingClusterOccupancyChangedEvent extends SDK
      */
     get occupancy(): _Foundation_NSNumber;
     set occupancy(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROccupancySensingClusterOccupancyChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "occupancy": true;
     };
@@ -110781,6 +113859,10 @@ export declare class MTROnboardingPayloadParser extends SDKHandle {
     static setupPayload(onboardingPayload: string): MTRSetupPayload;
     /** init() */
     static init(): MTROnboardingPayloadParser;
+    readonly $type: {
+        "c:objc(cs)MTROnboardingPayloadParser": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum MTROnboardingPayloadType
@@ -110815,6 +113897,10 @@ export declare class MTROnOffClusterOffParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROnOffClusterOffParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -110858,6 +113944,10 @@ export declare class MTROnOffClusterOffWithEffectParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROnOffClusterOffWithEffectParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "effectId": true;
         "effectIdentifier": true;
@@ -110885,6 +113975,10 @@ export declare class MTROnOffClusterOnParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROnOffClusterOnParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -110909,6 +114003,10 @@ export declare class MTROnOffClusterOnWithRecallGlobalSceneParams extends SDKHan
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROnOffClusterOnWithRecallGlobalSceneParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -110951,6 +114049,10 @@ export declare class MTROnOffClusterOnWithTimedOffParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROnOffClusterOnWithTimedOffParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "offWaitTime": true;
         "onOffControl": true;
@@ -110978,6 +114080,10 @@ export declare class MTROnOffClusterToggleParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROnOffClusterToggleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -111147,6 +114253,10 @@ export declare class MTROperationalCertificateChain extends SDKHandle {
      */
     get rootCertificate(): ArrayBuffer;
     set rootCertificate(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCertificateChain": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adminSubject": true;
         "intermediateCertificate": true;
@@ -111226,6 +114336,10 @@ export declare class MTROperationalCredentialsClusterAddNOCParams extends SDKHan
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterAddNOCParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adminVendorId": true;
         "caseAdminSubject": true;
@@ -111268,6 +114382,10 @@ export declare class MTROperationalCredentialsClusterAddTrustedRootCertificatePa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterAddTrustedRootCertificateParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "rootCACertificate": true;
         "rootCertificate": true;
@@ -111300,6 +114418,10 @@ export declare class MTROperationalCredentialsClusterAttestationRequestParams ex
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterAttestationRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attestationNonce": true;
         "serverSideProcessingTimeout": true;
@@ -111311,13 +114433,11 @@ export declare class MTROperationalCredentialsClusterAttestationRequestParams ex
  * @availability iOS 16.1+
  */
 export declare class MTROperationalCredentialsClusterAttestationResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTROperationalCredentialsClusterAttestationResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTROperationalCredentialsClusterAttestationResponseParams;
+    static init(responseValue: Record<string, unknown>): MTROperationalCredentialsClusterAttestationResponseParams;
     /**
      * var attestationElements: Data { get set }
      * @availability iOS 16.1+
@@ -111344,6 +114464,10 @@ export declare class MTROperationalCredentialsClusterAttestationResponseParams e
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterAttestationResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attestationElements": true;
         "attestationSignature": true;
@@ -111376,6 +114500,10 @@ export declare class MTROperationalCredentialsClusterCertificateChainRequestPara
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterCertificateChainRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "certificateType": true;
         "serverSideProcessingTimeout": true;
@@ -111387,13 +114515,11 @@ export declare class MTROperationalCredentialsClusterCertificateChainRequestPara
  * @availability iOS 16.1+
  */
 export declare class MTROperationalCredentialsClusterCertificateChainResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTROperationalCredentialsClusterCertificateChainResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTROperationalCredentialsClusterCertificateChainResponseParams;
+    static init(responseValue: Record<string, unknown>): MTROperationalCredentialsClusterCertificateChainResponseParams;
     /**
      * var certificate: Data { get set }
      * @availability iOS 16.1+
@@ -111407,6 +114533,10 @@ export declare class MTROperationalCredentialsClusterCertificateChainResponsePar
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterCertificateChainResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "certificate": true;
         "timedInvokeTimeoutMs": true;
@@ -111443,6 +114573,10 @@ export declare class MTROperationalCredentialsClusterCSRRequestParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterCSRRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "csrNonce": true;
         "isForUpdateNOC": true;
@@ -111455,13 +114589,11 @@ export declare class MTROperationalCredentialsClusterCSRRequestParams extends SD
  * @availability iOS 16.1+
  */
 export declare class MTROperationalCredentialsClusterCSRResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTROperationalCredentialsClusterCSRResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTROperationalCredentialsClusterCSRResponseParams;
+    static init(responseValue: Record<string, unknown>): MTROperationalCredentialsClusterCSRResponseParams;
     /**
      * var attestationSignature: Data { get set }
      * @availability iOS 16.1+
@@ -111481,6 +114613,10 @@ export declare class MTROperationalCredentialsClusterCSRResponseParams extends S
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterCSRResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attestationSignature": true;
         "nocsrElements": true;
@@ -111551,6 +114687,10 @@ export declare class MTROperationalCredentialsClusterFabricDescriptorStruct exte
      */
     get vendorId(): _Foundation_NSNumber;
     set vendorId(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterFabricDescriptorStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricID": true;
         "fabricId": true;
@@ -111593,6 +114733,11 @@ export declare class MTROperationalCredentialsClusterFabricDescriptor extends MT
      */
     get rootPublicKey(): ArrayBuffer;
     set rootPublicKey(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterFabricDescriptor": true;
+        "c:objc(cs)MTROperationalCredentialsClusterFabricDescriptorStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricID": true;
         "fabricId": true;
@@ -111610,13 +114755,11 @@ export declare class MTROperationalCredentialsClusterFabricDescriptor extends MT
  * @availability iOS 16.1+
  */
 export declare class MTROperationalCredentialsClusterNOCResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTROperationalCredentialsClusterNOCResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTROperationalCredentialsClusterNOCResponseParams;
+    static init(responseValue: Record<string, unknown>): MTROperationalCredentialsClusterNOCResponseParams;
     /**
      * var debugText: String? { get set }
      * @availability iOS 16.1+
@@ -111642,6 +114785,10 @@ export declare class MTROperationalCredentialsClusterNOCResponseParams extends S
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterNOCResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "debugText": true;
         "fabricIndex": true;
@@ -111674,6 +114821,10 @@ export declare class MTROperationalCredentialsClusterNOCStruct extends SDKHandle
      */
     get noc(): ArrayBuffer;
     set noc(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterNOCStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
         "icac": true;
@@ -111705,6 +114856,10 @@ export declare class MTROperationalCredentialsClusterRemoveFabricParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterRemoveFabricParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
         "serverSideProcessingTimeout": true;
@@ -111736,6 +114891,10 @@ export declare class MTROperationalCredentialsClusterUpdateFabricLabelParams ext
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterUpdateFabricLabelParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "serverSideProcessingTimeout": true;
@@ -111773,6 +114932,10 @@ export declare class MTROperationalCredentialsClusterUpdateNOCParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalCredentialsClusterUpdateNOCParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "icacValue": true;
         "nocValue": true;
@@ -111811,8 +114974,6 @@ export declare const MTROperationalCredentialsOperationalCertStatus: {
  * @availability iOS 16.4+
  */
 export declare class MTROperationalCSRInfo extends SDKHandle {
-    /** init() */
-    static init(): MTROperationalCSRInfo;
     /**
      * init(csr: Data, csrNonce: Data, csrElementsTLV: Data, attestationSignature: Data)
      * @availability iOS 16.4+
@@ -111854,6 +115015,10 @@ export declare class MTROperationalCSRInfo extends SDKHandle {
      * @availability iOS 16.4+
      */
     get csrNonce(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)MTROperationalCSRInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attestationSignature": true;
         "csr": true;
@@ -111898,6 +115063,10 @@ export declare class MTROperationalStateClusterErrorStateStruct extends SDKHandl
      */
     get errorStateLabel(): (string) | null;
     set errorStateLabel(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTROperationalStateClusterErrorStateStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "errorStateDetails": true;
         "errorStateID": true;
@@ -111909,19 +115078,21 @@ export declare class MTROperationalStateClusterErrorStateStruct extends SDKHandl
  * @availability iOS 17.4+
  */
 export declare class MTROperationalStateClusterOperationalCommandResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTROperationalStateClusterOperationalCommandResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTROperationalStateClusterOperationalCommandResponseParams;
+    static init(responseValue: Record<string, unknown>): MTROperationalStateClusterOperationalCommandResponseParams;
     /**
      * @NSCopying var commandResponseState: MTROperationalStateClusterErrorStateStruct { get set }
      * @availability iOS 17.4+
      */
     get commandResponseState(): MTROperationalStateClusterErrorStateStruct;
     set commandResponseState(value: MTROperationalStateClusterErrorStateStruct);
+    readonly $type: {
+        "c:objc(cs)MTROperationalStateClusterOperationalCommandResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commandResponseState": true;
     };
@@ -111939,6 +115110,10 @@ export declare class MTROperationalStateClusterOperationalErrorEvent extends SDK
      */
     get errorState(): MTROperationalStateClusterErrorStateStruct;
     set errorState(value: MTROperationalStateClusterErrorStateStruct);
+    readonly $type: {
+        "c:objc(cs)MTROperationalStateClusterOperationalErrorEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "errorState": true;
     };
@@ -111962,6 +115137,10 @@ export declare class MTROperationalStateClusterOperationalStateStruct extends SD
      */
     get operationalStateLabel(): (string) | null;
     set operationalStateLabel(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTROperationalStateClusterOperationalStateStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "operationalStateID": true;
         "operationalStateLabel": true;
@@ -111992,6 +115171,10 @@ export declare class MTROperationalStateClusterOperationCompletionEvent extends 
      */
     get totalOperationalTime(): $SDK0;
     set totalOperationalTime(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalStateClusterOperationCompletionEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "completionErrorCode": true;
         "pausedTime": true;
@@ -112017,6 +115200,10 @@ export declare class MTROperationalStateClusterPauseParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalStateClusterPauseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -112041,6 +115228,10 @@ export declare class MTROperationalStateClusterResumeParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalStateClusterResumeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -112065,6 +115256,10 @@ export declare class MTROperationalStateClusterStartParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalStateClusterStartParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -112089,6 +115284,10 @@ export declare class MTROperationalStateClusterStopParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROperationalStateClusterStopParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -112111,8 +115310,6 @@ export declare const MTROperationalStateErrorState: {
  * @availability iOS 16.1+
  */
 export declare class MTROptionalQRCodeInfo extends SDKHandle {
-    /** init() */
-    static init(): MTROptionalQRCodeInfo;
     /**
      * init(tag: NSNumber, int32Value value: Int32)
      * @availability iOS 17.6+
@@ -112174,6 +115371,10 @@ export declare class MTROptionalQRCodeInfo extends SDKHandle {
      * @availability iOS 16.4+
      */
     get type(): MTROptionalQRCodeInfoType;
+    readonly $type: {
+        "c:objc(cs)MTROptionalQRCodeInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "infoType": true;
         "integerValue": true;
@@ -112193,13 +115394,11 @@ export declare const MTROptionalQRCodeInfoType: {
  * @availability iOS 16.1+
  */
 export declare class MTROTAHeader extends SDKHandle {
-    /** init() */
-    static init(): MTROTAHeader;
     /**
      * init(data: Data)
      * @availability iOS 16.4+
      */
-    static initData(data: ArrayBuffer): MTROTAHeader;
+    static init(data: ArrayBuffer): MTROTAHeader;
     /**
      * var imageDigest: Data { get set }
      * @availability iOS 16.1+
@@ -112260,6 +115459,10 @@ export declare class MTROTAHeader extends SDKHandle {
      */
     get vendorID(): _Foundation_NSNumber;
     set vendorID(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROTAHeader": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "imageDigest": true;
         "imageDigestType": true;
@@ -112287,6 +115490,10 @@ export declare class MTROTAHeaderParser extends SDKHandle {
     static header(data: ArrayBuffer): MTROTAHeader;
     /** init() */
     static init(): MTROTAHeaderParser;
+    readonly $type: {
+        "c:objc(cs)MTROTAHeaderParser": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum MTROTAImageDigestType
@@ -112357,6 +115564,10 @@ export declare class MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams
      */
     get updateToken(): ArrayBuffer;
     set updateToken(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newVersion": true;
         "serverSideProcessingTimeout": true;
@@ -112401,6 +115612,11 @@ export declare class MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams
      */
     get updateToken(): ArrayBuffer;
     set updateToken(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams": true;
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterApplyUpdateRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newVersion": true;
         "serverSideProcessingTimeout": true;
@@ -112413,13 +115629,11 @@ export declare class MTROtaSoftwareUpdateProviderClusterApplyUpdateRequestParams
  * @availability iOS 16.4+
  */
 export declare class MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams;
+    static init(responseValue: Record<string, unknown>): MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams;
     /**
      * @NSCopying var action: NSNumber { get set }
      * @availability iOS 16.4+
@@ -112439,6 +115653,10 @@ export declare class MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParam
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "action": true;
         "delayedActionTime": true;
@@ -112475,6 +115693,11 @@ export declare class MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParam
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateProviderClusterApplyUpdateResponseParams": true;
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterApplyUpdateResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "action": true;
         "delayedActionTime": true;
@@ -112512,6 +115735,10 @@ export declare class MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParam
      */
     get updateToken(): ArrayBuffer;
     set updateToken(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "softwareVersion": true;
@@ -112556,6 +115783,11 @@ export declare class MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParam
      */
     get updateToken(): ArrayBuffer;
     set updateToken(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateProviderClusterNotifyUpdateAppliedParams": true;
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterNotifyUpdateAppliedParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "softwareVersion": true;
@@ -112644,6 +115876,10 @@ export declare class MTROTASoftwareUpdateProviderClusterQueryImageParams extends
      */
     get vendorId(): _Foundation_NSNumber;
     set vendorId(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterQueryImageParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hardwareVersion": true;
         "location": true;
@@ -112724,6 +115960,11 @@ export declare class MTROtaSoftwareUpdateProviderClusterQueryImageParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateProviderClusterQueryImageParams": true;
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterQueryImageParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hardwareVersion": true;
         "location": true;
@@ -112744,13 +115985,11 @@ export declare class MTROtaSoftwareUpdateProviderClusterQueryImageParams extends
  * @availability iOS 16.4+
  */
 export declare class MTROTASoftwareUpdateProviderClusterQueryImageResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTROTASoftwareUpdateProviderClusterQueryImageResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTROTASoftwareUpdateProviderClusterQueryImageResponseParams;
+    static init(responseValue: Record<string, unknown>): MTROTASoftwareUpdateProviderClusterQueryImageResponseParams;
     /**
      * @NSCopying var delayedActionTime: NSNumber? { get set }
      * @availability iOS 16.4+
@@ -112806,6 +116045,10 @@ export declare class MTROTASoftwareUpdateProviderClusterQueryImageResponseParams
      */
     get userConsentNeeded(): $SDK0;
     set userConsentNeeded(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterQueryImageResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delayedActionTime": true;
         "imageURI": true;
@@ -112890,6 +116133,11 @@ export declare class MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams
      */
     get userConsentNeeded(): $SDK0;
     set userConsentNeeded(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateProviderClusterQueryImageResponseParams": true;
+        "c:objc(cs)MTROTASoftwareUpdateProviderClusterQueryImageResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delayedActionTime": true;
         "imageURI": true;
@@ -113097,6 +116345,10 @@ export declare class MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderPara
      */
     get vendorId(): _Foundation_NSNumber;
     set vendorId(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "announcementReason": true;
         "endpoint": true;
@@ -113153,6 +116405,11 @@ export declare class MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderPara
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateRequestorClusterAnnounceOtaProviderParams": true;
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterAnnounceOTAProviderParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "announcementReason": true;
         "endpoint": true;
@@ -113196,6 +116453,10 @@ export declare class MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent exte
      */
     get softwareVersion(): _Foundation_NSNumber;
     set softwareVersion(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bytesDownloaded": true;
         "platformCode": true;
@@ -113240,6 +116501,11 @@ export declare class MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent exte
      */
     get softwareVersion(): _Foundation_NSNumber;
     set softwareVersion(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateRequestorClusterDownloadErrorEvent": true;
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterDownloadErrorEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bytesDownloaded": true;
         "platformCode": true;
@@ -113272,6 +116538,10 @@ export declare class MTROTASoftwareUpdateRequestorClusterProviderLocation extend
      */
     get providerNodeID(): _Foundation_NSNumber;
     set providerNodeID(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterProviderLocation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endpoint": true;
         "fabricIndex": true;
@@ -113308,6 +116578,11 @@ export declare class MTROtaSoftwareUpdateRequestorClusterProviderLocation extend
      */
     get providerNodeID(): _Foundation_NSNumber;
     set providerNodeID(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateRequestorClusterProviderLocation": true;
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterProviderLocation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endpoint": true;
         "fabricIndex": true;
@@ -113345,6 +116620,10 @@ export declare class MTROTASoftwareUpdateRequestorClusterStateTransitionEvent ex
      */
     get targetSoftwareVersion(): $SDK0;
     set targetSoftwareVersion(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterStateTransitionEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newState": true;
         "previousState": true;
@@ -113389,6 +116668,11 @@ export declare class MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent ex
      */
     get targetSoftwareVersion(): $SDK0;
     set targetSoftwareVersion(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateRequestorClusterStateTransitionEvent": true;
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterStateTransitionEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newState": true;
         "previousState": true;
@@ -113415,6 +116699,10 @@ export declare class MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent ext
      */
     get softwareVersion(): _Foundation_NSNumber;
     set softwareVersion(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "productID": true;
         "softwareVersion": true;
@@ -113443,6 +116731,11 @@ export declare class MTROtaSoftwareUpdateRequestorClusterVersionAppliedEvent ext
      */
     get softwareVersion(): _Foundation_NSNumber;
     set softwareVersion(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROtaSoftwareUpdateRequestorClusterVersionAppliedEvent": true;
+        "c:objc(cs)MTROTASoftwareUpdateRequestorClusterVersionAppliedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "productID": true;
         "softwareVersion": true;
@@ -113569,6 +116862,10 @@ export declare class MTROvenCavityOperationalStateClusterErrorStateStruct extend
      */
     get errorStateLabel(): (string) | null;
     set errorStateLabel(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTROvenCavityOperationalStateClusterErrorStateStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "errorStateDetails": true;
         "errorStateID": true;
@@ -113580,19 +116877,21 @@ export declare class MTROvenCavityOperationalStateClusterErrorStateStruct extend
  * @availability iOS 18.4+
  */
 export declare class MTROvenCavityOperationalStateClusterOperationalCommandResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTROvenCavityOperationalStateClusterOperationalCommandResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTROvenCavityOperationalStateClusterOperationalCommandResponseParams;
+    static init(responseValue: Record<string, unknown>): MTROvenCavityOperationalStateClusterOperationalCommandResponseParams;
     /**
      * @NSCopying var commandResponseState: MTROvenCavityOperationalStateClusterErrorStateStruct { get set }
      * @availability iOS 18.4+
      */
     get commandResponseState(): MTROvenCavityOperationalStateClusterErrorStateStruct;
     set commandResponseState(value: MTROvenCavityOperationalStateClusterErrorStateStruct);
+    readonly $type: {
+        "c:objc(cs)MTROvenCavityOperationalStateClusterOperationalCommandResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commandResponseState": true;
     };
@@ -113610,6 +116909,10 @@ export declare class MTROvenCavityOperationalStateClusterOperationalErrorEvent e
      */
     get errorState(): MTROvenCavityOperationalStateClusterErrorStateStruct;
     set errorState(value: MTROvenCavityOperationalStateClusterErrorStateStruct);
+    readonly $type: {
+        "c:objc(cs)MTROvenCavityOperationalStateClusterOperationalErrorEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "errorState": true;
     };
@@ -113633,6 +116936,10 @@ export declare class MTROvenCavityOperationalStateClusterOperationalStateStruct 
      */
     get operationalStateLabel(): (string) | null;
     set operationalStateLabel(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTROvenCavityOperationalStateClusterOperationalStateStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "operationalStateID": true;
         "operationalStateLabel": true;
@@ -113663,6 +116970,10 @@ export declare class MTROvenCavityOperationalStateClusterOperationCompletionEven
      */
     get totalOperationalTime(): $SDK0;
     set totalOperationalTime(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROvenCavityOperationalStateClusterOperationCompletionEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "completionErrorCode": true;
         "pausedTime": true;
@@ -113688,6 +116999,10 @@ export declare class MTROvenCavityOperationalStateClusterStartParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROvenCavityOperationalStateClusterStartParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -113712,6 +117027,10 @@ export declare class MTROvenCavityOperationalStateClusterStopParams extends SDKH
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROvenCavityOperationalStateClusterStopParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -113766,6 +117085,10 @@ export declare class MTROvenModeClusterChangeToModeParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTROvenModeClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -113777,13 +117100,11 @@ export declare class MTROvenModeClusterChangeToModeParams extends SDKHandle {
  * @availability iOS 18.4+
  */
 export declare class MTROvenModeClusterChangeToModeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTROvenModeClusterChangeToModeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTROvenModeClusterChangeToModeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTROvenModeClusterChangeToModeResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 18.4+
@@ -113796,6 +117117,10 @@ export declare class MTROvenModeClusterChangeToModeResponseParams extends SDKHan
      */
     get statusText(): (string) | null;
     set statusText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTROvenModeClusterChangeToModeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -113826,6 +117151,10 @@ export declare class MTROvenModeClusterModeOptionStruct extends SDKHandle {
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTROvenModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -113851,6 +117180,10 @@ export declare class MTROvenModeClusterModeTagStruct extends SDKHandle {
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTROvenModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -114337,6 +117670,10 @@ export declare class MTRPowerSourceClusterBatChargeFaultChangeEvent extends SDKH
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRPowerSourceClusterBatChargeFaultChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -114364,6 +117701,10 @@ export declare class MTRPowerSourceClusterBatChargeFaultChangeType extends SDKHa
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRPowerSourceClusterBatChargeFaultChangeType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -114388,6 +117729,10 @@ export declare class MTRPowerSourceClusterBatFaultChangeEvent extends SDKHandle 
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRPowerSourceClusterBatFaultChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -114415,6 +117760,10 @@ export declare class MTRPowerSourceClusterBatFaultChangeType extends SDKHandle {
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRPowerSourceClusterBatFaultChangeType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -114439,6 +117788,10 @@ export declare class MTRPowerSourceClusterWiredFaultChangeEvent extends SDKHandl
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRPowerSourceClusterWiredFaultChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -114466,6 +117819,10 @@ export declare class MTRPowerSourceClusterWiredFaultChangeType extends SDKHandle
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRPowerSourceClusterWiredFaultChangeType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -114646,6 +118003,10 @@ export declare class MTRProductIdentity extends SDKHandle {
      * @availability iOS 17.0+
      */
     get vendorID(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)MTRProductIdentity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "productID": true;
         "vendorID": true;
@@ -114658,6 +118019,10 @@ export declare class MTRProductIdentity extends SDKHandle {
 export declare class MTRPumpConfigurationAndControlClusterAirDetectionEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterAirDetectionEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterAirDetectionEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterDryRunningEvent
@@ -114666,6 +118031,10 @@ export declare class MTRPumpConfigurationAndControlClusterAirDetectionEvent exte
 export declare class MTRPumpConfigurationAndControlClusterDryRunningEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterDryRunningEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterDryRunningEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterElectronicFatalFailureEvent
@@ -114674,6 +118043,10 @@ export declare class MTRPumpConfigurationAndControlClusterDryRunningEvent extend
 export declare class MTRPumpConfigurationAndControlClusterElectronicFatalFailureEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterElectronicFatalFailureEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterElectronicFatalFailureEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEvent
@@ -114682,6 +118055,10 @@ export declare class MTRPumpConfigurationAndControlClusterElectronicFatalFailure
 export declare class MTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterElectronicNonFatalFailureEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterElectronicTemperatureHighEvent
@@ -114690,6 +118067,10 @@ export declare class MTRPumpConfigurationAndControlClusterElectronicNonFatalFail
 export declare class MTRPumpConfigurationAndControlClusterElectronicTemperatureHighEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterElectronicTemperatureHighEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterElectronicTemperatureHighEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterGeneralFaultEvent
@@ -114698,6 +118079,10 @@ export declare class MTRPumpConfigurationAndControlClusterElectronicTemperatureH
 export declare class MTRPumpConfigurationAndControlClusterGeneralFaultEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterGeneralFaultEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterGeneralFaultEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterLeakageEvent
@@ -114706,6 +118091,10 @@ export declare class MTRPumpConfigurationAndControlClusterGeneralFaultEvent exte
 export declare class MTRPumpConfigurationAndControlClusterLeakageEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterLeakageEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterLeakageEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterMotorTemperatureHighEvent
@@ -114714,6 +118103,10 @@ export declare class MTRPumpConfigurationAndControlClusterLeakageEvent extends S
 export declare class MTRPumpConfigurationAndControlClusterMotorTemperatureHighEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterMotorTemperatureHighEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterMotorTemperatureHighEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent
@@ -114722,6 +118115,10 @@ export declare class MTRPumpConfigurationAndControlClusterMotorTemperatureHighEv
 export declare class MTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterPumpBlockedEvent
@@ -114730,6 +118127,10 @@ export declare class MTRPumpConfigurationAndControlClusterPowerMissingPhaseEvent
 export declare class MTRPumpConfigurationAndControlClusterPumpBlockedEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterPumpBlockedEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterPumpBlockedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEvent
@@ -114738,6 +118139,10 @@ export declare class MTRPumpConfigurationAndControlClusterPumpBlockedEvent exten
 export declare class MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterSensorFailureEvent
@@ -114746,6 +118151,10 @@ export declare class MTRPumpConfigurationAndControlClusterPumpMotorFatalFailureE
 export declare class MTRPumpConfigurationAndControlClusterSensorFailureEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterSensorFailureEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterSensorFailureEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent
@@ -114754,6 +118163,10 @@ export declare class MTRPumpConfigurationAndControlClusterSensorFailureEvent ext
 export declare class MTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent
@@ -114762,6 +118175,10 @@ export declare class MTRPumpConfigurationAndControlClusterSupplyVoltageHighEvent
 export declare class MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterSystemPressureHighEvent
@@ -114770,6 +118187,10 @@ export declare class MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent 
 export declare class MTRPumpConfigurationAndControlClusterSystemPressureHighEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterSystemPressureHighEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterSystemPressureHighEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterSystemPressureLowEvent
@@ -114778,6 +118199,10 @@ export declare class MTRPumpConfigurationAndControlClusterSystemPressureHighEven
 export declare class MTRPumpConfigurationAndControlClusterSystemPressureLowEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterSystemPressureLowEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterSystemPressureLowEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRPumpConfigurationAndControlClusterTurbineOperationEvent
@@ -114786,6 +118211,10 @@ export declare class MTRPumpConfigurationAndControlClusterSystemPressureLowEvent
 export declare class MTRPumpConfigurationAndControlClusterTurbineOperationEvent extends SDKHandle {
     /** init() */
     static init(): MTRPumpConfigurationAndControlClusterTurbineOperationEvent;
+    readonly $type: {
+        "c:objc(cs)MTRPumpConfigurationAndControlClusterTurbineOperationEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum MTRPumpConfigurationAndControlControlMode
@@ -115085,20 +118514,22 @@ export declare const MTRPumpConfigurationAndControlPumpStatusBitmap: {
  * @deprecated iOS 16.4
  */
 export declare class MTRQRCodeSetupPayloadParser extends SDKHandle {
-    /** init() */
-    static init(): MTRQRCodeSetupPayloadParser;
     /**
      * init(base38Representation: String)
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
-    static initBase38Representation(base38Representation: string): MTRQRCodeSetupPayloadParser;
+    static init(base38Representation: string): MTRQRCodeSetupPayloadParser;
     /**
      * func populatePayload() throws -> MTRSetupPayload
      * @availability iOS 16.1+
      * @deprecated iOS 16.4
      */
     populatePayload(): MTRSetupPayload;
+    readonly $type: {
+        "c:objc(cs)MTRQRCodeSetupPayloadParser": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct MTRRadonConcentrationMeasurementFeature
@@ -115210,6 +118641,10 @@ export declare class MTRReadParams extends SDKHandle {
      */
     get minEventNumber(): $SDK0;
     set minEventNumber(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRReadParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "shouldAssumeUnknownAttributesReportable": true;
         "fabricFiltered": true;
@@ -115265,6 +118700,10 @@ export declare class MTRRefrigeratorAlarmClusterNotifyEvent extends SDKHandle {
      */
     get state(): _Foundation_NSNumber;
     set state(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRRefrigeratorAlarmClusterNotifyEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "active": true;
         "inactive": true;
@@ -115297,6 +118736,10 @@ export declare class MTRRefrigeratorAndTemperatureControlledCabinetModeClusterCh
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -115308,13 +118751,11 @@ export declare class MTRRefrigeratorAndTemperatureControlledCabinetModeClusterCh
  * @availability iOS 18.4+
  */
 export declare class MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 18.4+
@@ -115327,6 +118768,10 @@ export declare class MTRRefrigeratorAndTemperatureControlledCabinetModeClusterCh
      */
     get statusText(): (string) | null;
     set statusText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -115357,6 +118802,10 @@ export declare class MTRRefrigeratorAndTemperatureControlledCabinetModeClusterMo
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -115382,6 +118831,10 @@ export declare class MTRRefrigeratorAndTemperatureControlledCabinetModeClusterMo
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRRefrigeratorAndTemperatureControlledCabinetModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -115424,6 +118877,10 @@ export declare class MTRRVCCleanModeClusterChangeToModeParams extends SDKHandle 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRRVCCleanModeClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -115435,13 +118892,11 @@ export declare class MTRRVCCleanModeClusterChangeToModeParams extends SDKHandle 
  * @availability iOS 17.4+
  */
 export declare class MTRRVCCleanModeClusterChangeToModeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRRVCCleanModeClusterChangeToModeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRRVCCleanModeClusterChangeToModeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRRVCCleanModeClusterChangeToModeResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 17.4+
@@ -115454,6 +118909,10 @@ export declare class MTRRVCCleanModeClusterChangeToModeResponseParams extends SD
      */
     get statusText(): (string) | null;
     set statusText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRRVCCleanModeClusterChangeToModeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -115484,6 +118943,10 @@ export declare class MTRRVCCleanModeClusterModeOptionStruct extends SDKHandle {
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRRVCCleanModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -115509,6 +118972,10 @@ export declare class MTRRVCCleanModeClusterModeTagStruct extends SDKHandle {
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRRVCCleanModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -115575,6 +119042,10 @@ export declare class MTRRVCOperationalStateClusterErrorStateStruct extends SDKHa
      */
     get errorStateLabel(): (string) | null;
     set errorStateLabel(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRRVCOperationalStateClusterErrorStateStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "errorStateDetails": true;
         "errorStateID": true;
@@ -115600,6 +119071,10 @@ export declare class MTRRVCOperationalStateClusterGoHomeParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRRVCOperationalStateClusterGoHomeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -115610,19 +119085,21 @@ export declare class MTRRVCOperationalStateClusterGoHomeParams extends SDKHandle
  * @availability iOS 17.4+
  */
 export declare class MTRRVCOperationalStateClusterOperationalCommandResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRRVCOperationalStateClusterOperationalCommandResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRRVCOperationalStateClusterOperationalCommandResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRRVCOperationalStateClusterOperationalCommandResponseParams;
     /**
      * @NSCopying var commandResponseState: MTRRVCOperationalStateClusterErrorStateStruct { get set }
      * @availability iOS 17.4+
      */
     get commandResponseState(): MTRRVCOperationalStateClusterErrorStateStruct;
     set commandResponseState(value: MTRRVCOperationalStateClusterErrorStateStruct);
+    readonly $type: {
+        "c:objc(cs)MTRRVCOperationalStateClusterOperationalCommandResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commandResponseState": true;
     };
@@ -115640,6 +119117,10 @@ export declare class MTRRVCOperationalStateClusterOperationalErrorEvent extends 
      */
     get errorState(): MTRRVCOperationalStateClusterErrorStateStruct;
     set errorState(value: MTRRVCOperationalStateClusterErrorStateStruct);
+    readonly $type: {
+        "c:objc(cs)MTRRVCOperationalStateClusterOperationalErrorEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "errorState": true;
     };
@@ -115663,6 +119144,10 @@ export declare class MTRRVCOperationalStateClusterOperationalStateStruct extends
      */
     get operationalStateLabel(): (string) | null;
     set operationalStateLabel(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRRVCOperationalStateClusterOperationalStateStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "operationalStateID": true;
         "operationalStateLabel": true;
@@ -115693,6 +119178,10 @@ export declare class MTRRVCOperationalStateClusterOperationCompletionEvent exten
      */
     get totalOperationalTime(): $SDK0;
     set totalOperationalTime(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRRVCOperationalStateClusterOperationCompletionEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "completionErrorCode": true;
         "pausedTime": true;
@@ -115718,6 +119207,10 @@ export declare class MTRRVCOperationalStateClusterPauseParams extends SDKHandle 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRRVCOperationalStateClusterPauseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -115742,6 +119235,10 @@ export declare class MTRRVCOperationalStateClusterResumeParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRRVCOperationalStateClusterResumeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -115796,6 +119293,10 @@ export declare class MTRRVCRunModeClusterChangeToModeParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRRVCRunModeClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -115807,13 +119308,11 @@ export declare class MTRRVCRunModeClusterChangeToModeParams extends SDKHandle {
  * @availability iOS 17.4+
  */
 export declare class MTRRVCRunModeClusterChangeToModeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRRVCRunModeClusterChangeToModeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRRVCRunModeClusterChangeToModeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRRVCRunModeClusterChangeToModeResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 17.4+
@@ -115826,6 +119325,10 @@ export declare class MTRRVCRunModeClusterChangeToModeResponseParams extends SDKH
      */
     get statusText(): (string) | null;
     set statusText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRRVCRunModeClusterChangeToModeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -115856,6 +119359,10 @@ export declare class MTRRVCRunModeClusterModeOptionStruct extends SDKHandle {
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRRVCRunModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -115881,6 +119388,10 @@ export declare class MTRRVCRunModeClusterModeTagStruct extends SDKHandle {
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRRVCRunModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -115962,6 +119473,10 @@ export declare class MTRServerAttribute extends SDKHandle {
      * @availability iOS 17.6+
      */
     get isWritable(): boolean;
+    readonly $type: {
+        "c:objc(cs)MTRServerAttribute": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeID": true;
         "requiredReadPrivilege": true;
@@ -116019,6 +119534,10 @@ export declare class MTRServerCluster extends SDKHandle {
      * @availability iOS 17.6+
      */
     get clusterRevision(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)MTRServerCluster": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessGrants": true;
         "attributes": true;
@@ -116071,6 +119590,10 @@ export declare class MTRServerEndpoint extends SDKHandle {
      * @availability iOS 17.6+
      */
     get serverClusters(): Array<MTRServerCluster>;
+    readonly $type: {
+        "c:objc(cs)MTRServerEndpoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessGrants": true;
         "deviceTypes": true;
@@ -116097,6 +119620,10 @@ export declare class MTRServiceAreaClusterAreaInfoStruct extends SDKHandle {
      */
     get locationInfo(): $SDK274;
     set locationInfo(value: $SDK274);
+    readonly $type: {
+        "c:objc(cs)MTRServiceAreaClusterAreaInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "landmarkInfo": true;
         "locationInfo": true;
@@ -116127,6 +119654,10 @@ export declare class MTRServiceAreaClusterAreaStruct extends SDKHandle {
      */
     get mapID(): $SDK0;
     set mapID(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRServiceAreaClusterAreaStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "areaID": true;
         "areaInfo": true;
@@ -116152,6 +119683,10 @@ export declare class MTRServiceAreaClusterLandmarkInfoStruct extends SDKHandle {
      */
     get relativePositionTag(): $SDK0;
     set relativePositionTag(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRServiceAreaClusterLandmarkInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "landmarkTag": true;
         "relativePositionTag": true;
@@ -116176,6 +119711,10 @@ export declare class MTRServiceAreaClusterMapStruct extends SDKHandle {
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRServiceAreaClusterMapStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mapID": true;
         "name": true;
@@ -116206,6 +119745,10 @@ export declare class MTRServiceAreaClusterProgressStruct extends SDKHandle {
      */
     get totalOperationalTime(): $SDK0;
     set totalOperationalTime(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRServiceAreaClusterProgressStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "areaID": true;
         "status": true;
@@ -116237,6 +119780,10 @@ export declare class MTRServiceAreaClusterSelectAreasParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRServiceAreaClusterSelectAreasParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newAreas": true;
         "serverSideProcessingTimeout": true;
@@ -116248,13 +119795,11 @@ export declare class MTRServiceAreaClusterSelectAreasParams extends SDKHandle {
  * @availability iOS 18.4+
  */
 export declare class MTRServiceAreaClusterSelectAreasResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRServiceAreaClusterSelectAreasResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRServiceAreaClusterSelectAreasResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRServiceAreaClusterSelectAreasResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 18.4+
@@ -116267,6 +119812,10 @@ export declare class MTRServiceAreaClusterSelectAreasResponseParams extends SDKH
      */
     get statusText(): string;
     set statusText(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRServiceAreaClusterSelectAreasResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -116297,6 +119846,10 @@ export declare class MTRServiceAreaClusterSkipAreaParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRServiceAreaClusterSkipAreaParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "skippedArea": true;
@@ -116308,13 +119861,11 @@ export declare class MTRServiceAreaClusterSkipAreaParams extends SDKHandle {
  * @availability iOS 18.4+
  */
 export declare class MTRServiceAreaClusterSkipAreaResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRServiceAreaClusterSkipAreaResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRServiceAreaClusterSkipAreaResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRServiceAreaClusterSkipAreaResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 18.4+
@@ -116327,6 +119878,10 @@ export declare class MTRServiceAreaClusterSkipAreaResponseParams extends SDKHand
      */
     get statusText(): string;
     set statusText(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRServiceAreaClusterSkipAreaResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -116439,8 +119994,6 @@ export declare class MTRSetupPayload extends SDKHandle {
      * @deprecated iOS 17.6
      */
     getAllOptionalVendorData(): Array<MTROptionalQRCodeInfo>;
-    /** init() */
-    static init(): MTRSetupPayload;
     /**
      * init?(payload: String)
      * @availability iOS 17.6+
@@ -116566,6 +120119,10 @@ export declare class MTRSetupPayload extends SDKHandle {
      */
     get version(): _Foundation_NSNumber;
     set version(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSetupPayload": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "commissioningFlow": true;
         "isConcatenated": true;
@@ -116602,6 +120159,10 @@ export declare const MTRSmokeCOAlarmAlarmState: {
 export declare class MTRSmokeCOAlarmClusterAlarmMutedEvent extends SDKHandle {
     /** init() */
     static init(): MTRSmokeCOAlarmClusterAlarmMutedEvent;
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterAlarmMutedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRSmokeCOAlarmClusterAllClearEvent
@@ -116610,6 +120171,10 @@ export declare class MTRSmokeCOAlarmClusterAlarmMutedEvent extends SDKHandle {
 export declare class MTRSmokeCOAlarmClusterAllClearEvent extends SDKHandle {
     /** init() */
     static init(): MTRSmokeCOAlarmClusterAllClearEvent;
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterAllClearEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRSmokeCOAlarmClusterCOAlarmEvent
@@ -116624,6 +120189,10 @@ export declare class MTRSmokeCOAlarmClusterCOAlarmEvent extends SDKHandle {
      */
     get alarmSeverityLevel(): _Foundation_NSNumber;
     set alarmSeverityLevel(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterCOAlarmEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarmSeverityLevel": true;
     };
@@ -116635,6 +120204,10 @@ export declare class MTRSmokeCOAlarmClusterCOAlarmEvent extends SDKHandle {
 export declare class MTRSmokeCOAlarmClusterEndOfServiceEvent extends SDKHandle {
     /** init() */
     static init(): MTRSmokeCOAlarmClusterEndOfServiceEvent;
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterEndOfServiceEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRSmokeCOAlarmClusterHardwareFaultEvent
@@ -116643,6 +120216,10 @@ export declare class MTRSmokeCOAlarmClusterEndOfServiceEvent extends SDKHandle {
 export declare class MTRSmokeCOAlarmClusterHardwareFaultEvent extends SDKHandle {
     /** init() */
     static init(): MTRSmokeCOAlarmClusterHardwareFaultEvent;
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterHardwareFaultEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRSmokeCOAlarmClusterInterconnectCOAlarmEvent
@@ -116657,6 +120234,10 @@ export declare class MTRSmokeCOAlarmClusterInterconnectCOAlarmEvent extends SDKH
      */
     get alarmSeverityLevel(): _Foundation_NSNumber;
     set alarmSeverityLevel(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterInterconnectCOAlarmEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarmSeverityLevel": true;
     };
@@ -116674,6 +120255,10 @@ export declare class MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent extends S
      */
     get alarmSeverityLevel(): _Foundation_NSNumber;
     set alarmSeverityLevel(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterInterconnectSmokeAlarmEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarmSeverityLevel": true;
     };
@@ -116691,6 +120276,10 @@ export declare class MTRSmokeCOAlarmClusterLowBatteryEvent extends SDKHandle {
      */
     get alarmSeverityLevel(): _Foundation_NSNumber;
     set alarmSeverityLevel(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterLowBatteryEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarmSeverityLevel": true;
     };
@@ -116702,6 +120291,10 @@ export declare class MTRSmokeCOAlarmClusterLowBatteryEvent extends SDKHandle {
 export declare class MTRSmokeCOAlarmClusterMuteEndedEvent extends SDKHandle {
     /** init() */
     static init(): MTRSmokeCOAlarmClusterMuteEndedEvent;
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterMuteEndedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRSmokeCOAlarmClusterSelfTestCompleteEvent
@@ -116710,6 +120303,10 @@ export declare class MTRSmokeCOAlarmClusterMuteEndedEvent extends SDKHandle {
 export declare class MTRSmokeCOAlarmClusterSelfTestCompleteEvent extends SDKHandle {
     /** init() */
     static init(): MTRSmokeCOAlarmClusterSelfTestCompleteEvent;
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterSelfTestCompleteEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRSmokeCOAlarmClusterSelfTestRequestParams
@@ -116730,6 +120327,10 @@ export declare class MTRSmokeCOAlarmClusterSelfTestRequestParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterSelfTestRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -116748,6 +120349,10 @@ export declare class MTRSmokeCOAlarmClusterSmokeAlarmEvent extends SDKHandle {
      */
     get alarmSeverityLevel(): _Foundation_NSNumber;
     set alarmSeverityLevel(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSmokeCOAlarmClusterSmokeAlarmEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alarmSeverityLevel": true;
     };
@@ -116853,6 +120458,10 @@ export declare class MTRSoftwareDiagnosticsClusterResetWatermarksParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRSoftwareDiagnosticsClusterResetWatermarksParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -116883,6 +120492,10 @@ export declare class MTRSoftwareDiagnosticsClusterSoftwareFaultEvent extends SDK
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRSoftwareDiagnosticsClusterSoftwareFaultEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "faultRecording": true;
         "id": true;
@@ -116926,6 +120539,10 @@ export declare class MTRSoftwareDiagnosticsClusterThreadMetricsStruct extends SD
      */
     get stackSize(): $SDK0;
     set stackSize(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRSoftwareDiagnosticsClusterThreadMetricsStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "id": true;
         "name": true;
@@ -116978,6 +120595,11 @@ export declare class MTRSoftwareDiagnosticsClusterThreadMetrics extends MTRSoftw
      */
     get stackSize(): $SDK0;
     set stackSize(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRSoftwareDiagnosticsClusterThreadMetrics": true;
+        "c:objc(cs)MTRSoftwareDiagnosticsClusterThreadMetricsStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "id": true;
         "name": true;
@@ -117068,13 +120690,11 @@ export declare class MTRSubscribeParams extends MTRSubscribeParams_base {
      * @deprecated iOS 16.4
      */
     static new(): MTRSubscribeParams;
-    /** init() */
-    static init(): MTRSubscribeParams;
     /**
      * init(minInterval: NSNumber, maxInterval: NSNumber)
      * @availability iOS 16.1+
      */
-    static initMinIntervalMaxInterval(minInterval: _Foundation_NSNumber, maxInterval: _Foundation_NSNumber): MTRSubscribeParams;
+    static init(minInterval: _Foundation_NSNumber, maxInterval: _Foundation_NSNumber): MTRSubscribeParams;
     /**
      * @NSCopying var autoResubscribe: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -117119,6 +120739,11 @@ export declare class MTRSubscribeParams extends MTRSubscribeParams_base {
      */
     get shouldResubscribeAutomatically(): boolean;
     set shouldResubscribeAutomatically(value: boolean);
+    readonly $type: {
+        "c:objc(cs)MTRSubscribeParams": true;
+        "c:objc(cs)MTRReadParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "shouldAssumeUnknownAttributesReportable": true;
         "fabricFiltered": true;
@@ -117148,6 +120773,10 @@ export declare class MTRSwitchClusterInitialPressEvent extends SDKHandle {
      */
     get newPosition(): _Foundation_NSNumber;
     set newPosition(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSwitchClusterInitialPressEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newPosition": true;
     };
@@ -117165,6 +120794,10 @@ export declare class MTRSwitchClusterLongPressEvent extends SDKHandle {
      */
     get newPosition(): _Foundation_NSNumber;
     set newPosition(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSwitchClusterLongPressEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newPosition": true;
     };
@@ -117182,6 +120815,10 @@ export declare class MTRSwitchClusterLongReleaseEvent extends SDKHandle {
      */
     get previousPosition(): _Foundation_NSNumber;
     set previousPosition(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSwitchClusterLongReleaseEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "previousPosition": true;
     };
@@ -117212,6 +120849,10 @@ export declare class MTRSwitchClusterMultiPressCompleteEvent extends SDKHandle {
      */
     get totalNumberOfPressesCounted(): _Foundation_NSNumber;
     set totalNumberOfPressesCounted(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSwitchClusterMultiPressCompleteEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newPosition": true;
         "previousPosition": true;
@@ -117237,6 +120878,10 @@ export declare class MTRSwitchClusterMultiPressOngoingEvent extends SDKHandle {
      */
     get newPosition(): _Foundation_NSNumber;
     set newPosition(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSwitchClusterMultiPressOngoingEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentNumberOfPressesCounted": true;
         "newPosition": true;
@@ -117255,6 +120900,10 @@ export declare class MTRSwitchClusterShortReleaseEvent extends SDKHandle {
      */
     get previousPosition(): _Foundation_NSNumber;
     set previousPosition(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSwitchClusterShortReleaseEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "previousPosition": true;
     };
@@ -117272,6 +120921,10 @@ export declare class MTRSwitchClusterSwitchLatchedEvent extends SDKHandle {
      */
     get newPosition(): _Foundation_NSNumber;
     set newPosition(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRSwitchClusterSwitchLatchedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newPosition": true;
     };
@@ -117349,6 +121002,10 @@ export declare class MTRTargetNavigatorClusterNavigateTargetParams extends SDKHa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTargetNavigatorClusterNavigateTargetParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "serverSideProcessingTimeout": true;
@@ -117361,13 +121018,11 @@ export declare class MTRTargetNavigatorClusterNavigateTargetParams extends SDKHa
  * @availability iOS 16.1+
  */
 export declare class MTRTargetNavigatorClusterNavigateTargetResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRTargetNavigatorClusterNavigateTargetResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRTargetNavigatorClusterNavigateTargetResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRTargetNavigatorClusterNavigateTargetResponseParams;
     /**
      * var data: String? { get set }
      * @availability iOS 16.1+
@@ -117387,6 +121042,10 @@ export declare class MTRTargetNavigatorClusterNavigateTargetResponseParams exten
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTargetNavigatorClusterNavigateTargetResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "status": true;
@@ -117412,6 +121071,10 @@ export declare class MTRTargetNavigatorClusterTargetInfoStruct extends SDKHandle
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRTargetNavigatorClusterTargetInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -117440,6 +121103,11 @@ export declare class MTRTargetNavigatorClusterTargetInfo extends MTRTargetNaviga
      */
     get name(): string;
     set name(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRTargetNavigatorClusterTargetInfo": true;
+        "c:objc(cs)MTRTargetNavigatorClusterTargetInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "name": true;
@@ -117470,6 +121138,10 @@ export declare class MTRTargetNavigatorClusterTargetUpdatedEvent extends SDKHand
      */
     get targetList(): Array<unknown>;
     set targetList(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRTargetNavigatorClusterTargetUpdatedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentTarget": true;
         "data": true;
@@ -117519,6 +121191,10 @@ export declare class MTRTemperatureControlClusterSetTemperatureParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTemperatureControlClusterSetTemperatureParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "targetTemperature": true;
@@ -117710,13 +121386,11 @@ export declare const MTRTestClusterBitmap8MaskMap: {
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterBooleanResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterBooleanResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterBooleanResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterBooleanResponseParams;
     /**
      * @NSCopying var timedInvokeTimeoutMs: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -117730,6 +121404,10 @@ export declare class MTRUnitTestingClusterBooleanResponseParams extends SDKHandl
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterBooleanResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timedInvokeTimeoutMs": true;
         "value": true;
@@ -117757,6 +121435,11 @@ export declare class MTRTestClusterClusterBooleanResponseParams extends MTRTestC
      * @deprecated iOS 16.4
      */
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterBooleanResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterBooleanResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timedInvokeTimeoutMs": true;
         "value": true;
@@ -117775,6 +121458,10 @@ export declare class MTRUnitTestingClusterDoubleNestedStructList extends SDKHand
      */
     get a(): Array<unknown>;
     set a(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterDoubleNestedStructList": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "a": true;
     };
@@ -117795,6 +121482,11 @@ export declare class MTRTestClusterClusterDoubleNestedStructList extends MTRTest
      */
     get a(): Array<unknown>;
     set a(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterDoubleNestedStructList": true;
+        "c:objc(cs)MTRUnitTestingClusterDoubleNestedStructList": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "a": true;
     };
@@ -117824,6 +121516,10 @@ export declare class MTRUnitTestingClusterNestedStruct extends SDKHandle {
      */
     get c(): MTRUnitTestingClusterSimpleStruct;
     set c(value: MTRUnitTestingClusterSimpleStruct);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterNestedStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "a": true;
         "b": true;
@@ -117860,6 +121556,11 @@ export declare class MTRTestClusterClusterNestedStruct extends MTRTestClusterClu
      */
     get c(): MTRTestClusterClusterSimpleStruct;
     set c(value: MTRTestClusterClusterSimpleStruct);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterNestedStruct": true;
+        "c:objc(cs)MTRUnitTestingClusterNestedStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "a": true;
         "b": true;
@@ -117915,6 +121616,10 @@ export declare class MTRUnitTestingClusterNestedStructList extends SDKHandle {
      */
     get g(): Array<unknown>;
     set g(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterNestedStructList": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "a": true;
         "b": true;
@@ -117983,6 +121688,11 @@ export declare class MTRTestClusterClusterNestedStructList extends MTRTestCluste
      */
     get g(): Array<unknown>;
     set g(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterNestedStructList": true;
+        "c:objc(cs)MTRUnitTestingClusterNestedStructList": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "a": true;
         "b": true;
@@ -118072,6 +121782,10 @@ export declare class MTRUnitTestingClusterNullablesAndOptionalsStruct extends SD
      */
     get optionalStruct(): $SDK174;
     set optionalStruct(value: $SDK174);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterNullablesAndOptionalsStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nullableInt": true;
         "nullableList": true;
@@ -118180,6 +121894,11 @@ export declare class MTRTestClusterClusterNullablesAndOptionalsStruct extends MT
      */
     get optionalStruct(): $SDK195;
     set optionalStruct(value: $SDK195);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterNullablesAndOptionalsStruct": true;
+        "c:objc(cs)MTRUnitTestingClusterNullablesAndOptionalsStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nullableInt": true;
         "nullableList": true;
@@ -118250,6 +121969,10 @@ export declare class MTRUnitTestingClusterSimpleStruct extends SDKHandle {
      */
     get h(): _Foundation_NSNumber;
     set h(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterSimpleStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "a": true;
         "b": true;
@@ -118326,6 +122049,11 @@ export declare class MTRTestClusterClusterSimpleStruct extends MTRTestClusterClu
      */
     get h(): _Foundation_NSNumber;
     set h(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterSimpleStruct": true;
+        "c:objc(cs)MTRUnitTestingClusterSimpleStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "a": true;
         "b": true;
@@ -118362,6 +122090,10 @@ export declare class MTRUnitTestingClusterSimpleStructEchoRequestParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterSimpleStructEchoRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -118398,6 +122130,11 @@ export declare class MTRTestClusterClusterSimpleStructEchoRequestParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterSimpleStructEchoRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterSimpleStructEchoRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -118409,13 +122146,11 @@ export declare class MTRTestClusterClusterSimpleStructEchoRequestParams extends 
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterSimpleStructResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterSimpleStructResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterSimpleStructResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterSimpleStructResponseParams;
     /**
      * @NSCopying var arg1: MTRUnitTestingClusterSimpleStruct { get set }
      * @availability iOS 16.4+
@@ -118429,6 +122164,10 @@ export declare class MTRUnitTestingClusterSimpleStructResponseParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterSimpleStructResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "timedInvokeTimeoutMs": true;
@@ -118457,6 +122196,11 @@ export declare class MTRTestClusterClusterSimpleStructResponseParams extends MTR
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterSimpleStructResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterSimpleStructResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "timedInvokeTimeoutMs": true;
@@ -118493,6 +122237,10 @@ export declare class MTRUnitTestingClusterTestAddArgumentsParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestAddArgumentsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -118537,6 +122285,11 @@ export declare class MTRTestClusterClusterTestAddArgumentsParams extends MTRTest
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestAddArgumentsParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestAddArgumentsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -118549,13 +122302,11 @@ export declare class MTRTestClusterClusterTestAddArgumentsParams extends MTRTest
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestAddArgumentsResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestAddArgumentsResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestAddArgumentsResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestAddArgumentsResponseParams;
     /**
      * @NSCopying var returnValue: NSNumber { get set }
      * @availability iOS 16.4+
@@ -118569,6 +122320,10 @@ export declare class MTRUnitTestingClusterTestAddArgumentsResponseParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestAddArgumentsResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "returnValue": true;
         "timedInvokeTimeoutMs": true;
@@ -118597,6 +122352,11 @@ export declare class MTRTestClusterClusterTestAddArgumentsResponseParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestAddArgumentsResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestAddArgumentsResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "returnValue": true;
         "timedInvokeTimeoutMs": true;
@@ -118693,6 +122453,10 @@ export declare class MTRUnitTestingClusterTestComplexNullableOptionalRequestPara
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestComplexNullableOptionalRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nullableInt": true;
         "nullableList": true;
@@ -118817,6 +122581,11 @@ export declare class MTRTestClusterClusterTestComplexNullableOptionalRequestPara
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestComplexNullableOptionalRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestComplexNullableOptionalRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nullableInt": true;
         "nullableList": true;
@@ -118839,13 +122608,11 @@ export declare class MTRTestClusterClusterTestComplexNullableOptionalRequestPara
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestComplexNullableOptionalResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestComplexNullableOptionalResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestComplexNullableOptionalResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestComplexNullableOptionalResponseParams;
     /**
      * @NSCopying var nullableIntValue: NSNumber? { get set }
      * @availability iOS 16.4+
@@ -119021,6 +122788,10 @@ export declare class MTRUnitTestingClusterTestComplexNullableOptionalResponsePar
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestComplexNullableOptionalResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nullableIntValue": true;
         "nullableIntWasNull": true;
@@ -119265,6 +123036,11 @@ export declare class MTRTestClusterClusterTestComplexNullableOptionalResponsePar
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestComplexNullableOptionalResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestComplexNullableOptionalResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "nullableIntValue": true;
         "nullableIntWasNull": true;
@@ -119334,6 +123110,10 @@ export declare class MTRUnitTestingClusterTestEmitTestEventRequestParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestEmitTestEventRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -119386,6 +123166,11 @@ export declare class MTRTestClusterClusterTestEmitTestEventRequestParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestEmitTestEventRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestEmitTestEventRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -119399,13 +123184,11 @@ export declare class MTRTestClusterClusterTestEmitTestEventRequestParams extends
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestEmitTestEventResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestEmitTestEventResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestEmitTestEventResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestEmitTestEventResponseParams;
     /**
      * @NSCopying var timedInvokeTimeoutMs: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -119419,6 +123202,10 @@ export declare class MTRUnitTestingClusterTestEmitTestEventResponseParams extend
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestEmitTestEventResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timedInvokeTimeoutMs": true;
         "value": true;
@@ -119446,6 +123233,11 @@ export declare class MTRTestClusterClusterTestEmitTestEventResponseParams extend
      * @deprecated iOS 16.4
      */
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestEmitTestEventResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestEmitTestEventResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timedInvokeTimeoutMs": true;
         "value": true;
@@ -119476,6 +123268,10 @@ export declare class MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestPa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -119512,6 +123308,11 @@ export declare class MTRTestClusterClusterTestEmitTestFabricScopedEventRequestPa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestEmitTestFabricScopedEventRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -119523,13 +123324,11 @@ export declare class MTRTestClusterClusterTestEmitTestFabricScopedEventRequestPa
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams;
     /**
      * @NSCopying var timedInvokeTimeoutMs: NSNumber? { get set }
      * @availability iOS 16.1+
@@ -119543,6 +123342,10 @@ export declare class MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseP
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timedInvokeTimeoutMs": true;
         "value": true;
@@ -119570,6 +123373,11 @@ export declare class MTRTestClusterClusterTestEmitTestFabricScopedEventResponseP
      * @deprecated iOS 16.4
      */
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestEmitTestFabricScopedEventResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timedInvokeTimeoutMs": true;
         "value": true;
@@ -119606,6 +123414,10 @@ export declare class MTRUnitTestingClusterTestEnumsRequestParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestEnumsRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -119650,6 +123462,11 @@ export declare class MTRTestClusterClusterTestEnumsRequestParams extends MTRTest
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestEnumsRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestEnumsRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -119662,13 +123479,11 @@ export declare class MTRTestClusterClusterTestEnumsRequestParams extends MTRTest
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestEnumsResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestEnumsResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestEnumsResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestEnumsResponseParams;
     /**
      * @NSCopying var arg1: NSNumber { get set }
      * @availability iOS 16.4+
@@ -119688,6 +123503,10 @@ export declare class MTRUnitTestingClusterTestEnumsResponseParams extends SDKHan
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestEnumsResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -119724,6 +123543,11 @@ export declare class MTRTestClusterClusterTestEnumsResponseParams extends MTRTes
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestEnumsResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestEnumsResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -119773,6 +123597,10 @@ export declare class MTRUnitTestingClusterTestEventEvent extends SDKHandle {
      */
     get arg6(): Array<unknown>;
     set arg6(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestEventEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -119833,6 +123661,11 @@ export declare class MTRTestClusterClusterTestEventEvent extends MTRTestClusterC
      */
     get arg6(): Array<unknown>;
     set arg6(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestEventEvent": true;
+        "c:objc(cs)MTRUnitTestingClusterTestEventEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -119897,6 +123730,10 @@ export declare class MTRUnitTestingClusterTestFabricScoped extends SDKHandle {
      */
     get optionalFabricSensitiveInt8u(): $SDK0;
     set optionalFabricSensitiveInt8u(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestFabricScoped": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
         "fabricSensitiveCharString": true;
@@ -119973,6 +123810,11 @@ export declare class MTRTestClusterClusterTestFabricScoped extends MTRTestCluste
      */
     get optionalFabricSensitiveInt8u(): $SDK0;
     set optionalFabricSensitiveInt8u(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestFabricScoped": true;
+        "c:objc(cs)MTRUnitTestingClusterTestFabricScoped": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
         "fabricSensitiveCharString": true;
@@ -119997,6 +123839,10 @@ export declare class MTRUnitTestingClusterTestFabricScopedEventEvent extends SDK
      */
     get fabricIndex(): _Foundation_NSNumber;
     set fabricIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestFabricScopedEventEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
     };
@@ -120017,6 +123863,11 @@ export declare class MTRTestClusterClusterTestFabricScopedEventEvent extends MTR
      */
     get fabricIndex(): _Foundation_NSNumber;
     set fabricIndex(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestFabricScopedEventEvent": true;
+        "c:objc(cs)MTRUnitTestingClusterTestFabricScopedEventEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fabricIndex": true;
     };
@@ -120046,6 +123897,10 @@ export declare class MTRUnitTestingClusterTestListInt8UArgumentRequestParams ext
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestListInt8UArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120082,6 +123937,11 @@ export declare class MTRTestClusterClusterTestListInt8UArgumentRequestParams ext
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestListInt8UArgumentRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestListInt8UArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120113,6 +123973,10 @@ export declare class MTRUnitTestingClusterTestListInt8UReverseRequestParams exte
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestListInt8UReverseRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120149,6 +124013,11 @@ export declare class MTRTestClusterClusterTestListInt8UReverseRequestParams exte
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestListInt8UReverseRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestListInt8UReverseRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120160,13 +124029,11 @@ export declare class MTRTestClusterClusterTestListInt8UReverseRequestParams exte
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestListInt8UReverseResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestListInt8UReverseResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestListInt8UReverseResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestListInt8UReverseResponseParams;
     /**
      * var arg1: [Any] { get set }
      * @availability iOS 16.4+
@@ -120180,6 +124047,10 @@ export declare class MTRUnitTestingClusterTestListInt8UReverseResponseParams ext
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestListInt8UReverseResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "timedInvokeTimeoutMs": true;
@@ -120208,6 +124079,11 @@ export declare class MTRTestClusterClusterTestListInt8UReverseResponseParams ext
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestListInt8UReverseResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestListInt8UReverseResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "timedInvokeTimeoutMs": true;
@@ -120238,6 +124114,10 @@ export declare class MTRUnitTestingClusterTestListNestedStructListArgumentReques
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestListNestedStructListArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120274,6 +124154,11 @@ export declare class MTRTestClusterClusterTestListNestedStructListArgumentReques
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestListNestedStructListArgumentRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestListNestedStructListArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120305,6 +124190,10 @@ export declare class MTRUnitTestingClusterTestListStructArgumentRequestParams ex
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestListStructArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120341,6 +124230,11 @@ export declare class MTRTestClusterClusterTestListStructArgumentRequestParams ex
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestListStructArgumentRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestListStructArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120366,6 +124260,10 @@ export declare class MTRUnitTestingClusterTestListStructOctet extends SDKHandle 
      */
     get member2(): ArrayBuffer;
     set member2(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestListStructOctet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "member1": true;
         "member2": true;
@@ -120394,6 +124292,11 @@ export declare class MTRTestClusterClusterTestListStructOctet extends MTRTestClu
      */
     get member2(): ArrayBuffer;
     set member2(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestListStructOctet": true;
+        "c:objc(cs)MTRUnitTestingClusterTestListStructOctet": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "member1": true;
         "member2": true;
@@ -120424,6 +124327,10 @@ export declare class MTRUnitTestingClusterTestNestedStructArgumentRequestParams 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestNestedStructArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120460,6 +124367,11 @@ export declare class MTRTestClusterClusterTestNestedStructArgumentRequestParams 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestNestedStructArgumentRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestNestedStructArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120491,6 +124403,10 @@ export declare class MTRUnitTestingClusterTestNestedStructListArgumentRequestPar
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestNestedStructListArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120527,6 +124443,11 @@ export declare class MTRTestClusterClusterTestNestedStructListArgumentRequestPar
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestNestedStructListArgumentRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestNestedStructListArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120552,6 +124473,10 @@ export declare class MTRUnitTestingClusterTestNotHandledParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestNotHandledParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -120580,6 +124505,11 @@ export declare class MTRTestClusterClusterTestNotHandledParams extends MTRTestCl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestNotHandledParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestNotHandledParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -120610,6 +124540,10 @@ export declare class MTRUnitTestingClusterTestNullableOptionalRequestParams exte
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestNullableOptionalRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120646,6 +124580,11 @@ export declare class MTRTestClusterClusterTestNullableOptionalRequestParams exte
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestNullableOptionalRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestNullableOptionalRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120657,13 +124596,11 @@ export declare class MTRTestClusterClusterTestNullableOptionalRequestParams exte
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestNullableOptionalResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestNullableOptionalResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestNullableOptionalResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestNullableOptionalResponseParams;
     /**
      * @NSCopying var originalValue: NSNumber? { get set }
      * @availability iOS 16.4+
@@ -120695,6 +124632,10 @@ export declare class MTRUnitTestingClusterTestNullableOptionalResponseParams ext
      */
     get wasPresent(): _Foundation_NSNumber;
     set wasPresent(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestNullableOptionalResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "originalValue": true;
         "timedInvokeTimeoutMs": true;
@@ -120746,6 +124687,11 @@ export declare class MTRTestClusterClusterTestNullableOptionalResponseParams ext
      */
     get wasPresent(): _Foundation_NSNumber;
     set wasPresent(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestNullableOptionalResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestNullableOptionalResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "originalValue": true;
         "timedInvokeTimeoutMs": true;
@@ -120773,6 +124719,10 @@ export declare class MTRUnitTestingClusterTestParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -120801,6 +124751,11 @@ export declare class MTRTestClusterClusterTestParams extends MTRTestClusterClust
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -120831,6 +124786,10 @@ export declare class MTRUnitTestingClusterTestSimpleArgumentRequestParams extend
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestSimpleArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120867,6 +124826,11 @@ export declare class MTRTestClusterClusterTestSimpleArgumentRequestParams extend
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestSimpleArgumentRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestSimpleArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120878,13 +124842,11 @@ export declare class MTRTestClusterClusterTestSimpleArgumentRequestParams extend
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestSimpleArgumentResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestSimpleArgumentResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestSimpleArgumentResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestSimpleArgumentResponseParams;
     /**
      * @NSCopying var returnValue: NSNumber { get set }
      * @availability iOS 16.4+
@@ -120898,6 +124860,10 @@ export declare class MTRUnitTestingClusterTestSimpleArgumentResponseParams exten
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestSimpleArgumentResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "returnValue": true;
         "timedInvokeTimeoutMs": true;
@@ -120926,6 +124892,11 @@ export declare class MTRTestClusterClusterTestSimpleArgumentResponseParams exten
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestSimpleArgumentResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestSimpleArgumentResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "returnValue": true;
         "timedInvokeTimeoutMs": true;
@@ -120956,6 +124927,10 @@ export declare class MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParam
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -120992,6 +124967,11 @@ export declare class MTRTestClusterClusterTestSimpleOptionalArgumentRequestParam
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestSimpleOptionalArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -121017,6 +124997,10 @@ export declare class MTRUnitTestingClusterTestSpecificParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestSpecificParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -121045,6 +125029,11 @@ export declare class MTRTestClusterClusterTestSpecificParams extends MTRTestClus
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestSpecificParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestSpecificParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -121055,13 +125044,11 @@ export declare class MTRTestClusterClusterTestSpecificParams extends MTRTestClus
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestSpecificResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestSpecificResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestSpecificResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestSpecificResponseParams;
     /**
      * @NSCopying var returnValue: NSNumber { get set }
      * @availability iOS 16.4+
@@ -121075,6 +125062,10 @@ export declare class MTRUnitTestingClusterTestSpecificResponseParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestSpecificResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "returnValue": true;
         "timedInvokeTimeoutMs": true;
@@ -121103,6 +125094,11 @@ export declare class MTRTestClusterClusterTestSpecificResponseParams extends MTR
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestSpecificResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestSpecificResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "returnValue": true;
         "timedInvokeTimeoutMs": true;
@@ -121133,6 +125129,10 @@ export declare class MTRUnitTestingClusterTestStructArgumentRequestParams extend
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestStructArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -121169,6 +125169,11 @@ export declare class MTRTestClusterClusterTestStructArgumentRequestParams extend
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestStructArgumentRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestStructArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "serverSideProcessingTimeout": true;
@@ -121230,6 +125235,10 @@ export declare class MTRUnitTestingClusterTestStructArrayArgumentRequestParams e
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestStructArrayArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -121306,6 +125315,11 @@ export declare class MTRTestClusterClusterTestStructArrayArgumentRequestParams e
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestStructArrayArgumentRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestStructArrayArgumentRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -121322,13 +125336,11 @@ export declare class MTRTestClusterClusterTestStructArrayArgumentRequestParams e
  * @availability iOS 16.4+
  */
 export declare class MTRUnitTestingClusterTestStructArrayArgumentResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRUnitTestingClusterTestStructArrayArgumentResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestStructArrayArgumentResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRUnitTestingClusterTestStructArrayArgumentResponseParams;
     /**
      * var arg1: [Any] { get set }
      * @availability iOS 16.4+
@@ -121372,6 +125384,10 @@ export declare class MTRUnitTestingClusterTestStructArrayArgumentResponseParams 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestStructArrayArgumentResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -121440,6 +125456,11 @@ export declare class MTRTestClusterClusterTestStructArrayArgumentResponseParams 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestStructArrayArgumentResponseParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestStructArrayArgumentResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arg1": true;
         "arg2": true;
@@ -121469,6 +125490,10 @@ export declare class MTRUnitTestingClusterTestUnknownCommandParams extends SDKHa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTestUnknownCommandParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -121497,6 +125522,11 @@ export declare class MTRTestClusterClusterTestUnknownCommandParams extends MTRTe
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTestUnknownCommandParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTestUnknownCommandParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -121521,6 +125551,10 @@ export declare class MTRUnitTestingClusterTimedInvokeRequestParams extends SDKHa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRUnitTestingClusterTimedInvokeRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -121549,6 +125583,11 @@ export declare class MTRTestClusterClusterTimedInvokeRequestParams extends MTRTe
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTestClusterClusterTimedInvokeRequestParams": true;
+        "c:objc(cs)MTRUnitTestingClusterTimedInvokeRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -121734,6 +125773,10 @@ export declare class MTRThermostatClusterAtomicRequestParams extends SDKHandle {
      */
     get timeout(): $SDK0;
     set timeout(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterAtomicRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeRequests": true;
         "requestType": true;
@@ -121747,13 +125790,11 @@ export declare class MTRThermostatClusterAtomicRequestParams extends SDKHandle {
  * @availability iOS 18.4+
  */
 export declare class MTRThermostatClusterAtomicResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRThermostatClusterAtomicResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRThermostatClusterAtomicResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRThermostatClusterAtomicResponseParams;
     /**
      * var attributeStatus: [Any] { get set }
      * @availability iOS 18.4+
@@ -121772,6 +125813,10 @@ export declare class MTRThermostatClusterAtomicResponseParams extends SDKHandle 
      */
     get timeout(): $SDK0;
     set timeout(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterAtomicResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attributeStatus": true;
         "statusCode": true;
@@ -121797,6 +125842,10 @@ export declare class MTRThermostatClusterClearWeeklyScheduleParams extends SDKHa
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterClearWeeklyScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -121833,6 +125882,10 @@ export declare class MTRThermostatClusterGetWeeklyScheduleParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterGetWeeklyScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "daysToReturn": true;
         "modeToReturn": true;
@@ -121845,13 +125898,11 @@ export declare class MTRThermostatClusterGetWeeklyScheduleParams extends SDKHand
  * @availability iOS 16.1+
  */
 export declare class MTRThermostatClusterGetWeeklyScheduleResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRThermostatClusterGetWeeklyScheduleResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 17.0+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRThermostatClusterGetWeeklyScheduleResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRThermostatClusterGetWeeklyScheduleResponseParams;
     /**
      * @NSCopying var dayOfWeekForSequence: NSNumber { get set }
      * @availability iOS 16.1+
@@ -121883,6 +125934,10 @@ export declare class MTRThermostatClusterGetWeeklyScheduleResponseParams extends
      */
     get transitions(): Array<unknown>;
     set transitions(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterGetWeeklyScheduleResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dayOfWeekForSequence": true;
         "modeForSequence": true;
@@ -121934,6 +125989,10 @@ export declare class MTRThermostatClusterPresetStruct extends SDKHandle {
      */
     get presetScenario(): _Foundation_NSNumber;
     set presetScenario(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterPresetStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "builtIn": true;
         "coolingSetpoint": true;
@@ -121968,6 +126027,10 @@ export declare class MTRThermostatClusterPresetTypeStruct extends SDKHandle {
      */
     get presetTypeFeatures(): _Foundation_NSNumber;
     set presetTypeFeatures(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterPresetTypeStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "numberOfPresets": true;
         "presetScenario": true;
@@ -122017,6 +126080,10 @@ export declare class MTRThermostatClusterScheduleStruct extends SDKHandle {
      */
     get transitions(): Array<unknown>;
     set transitions(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterScheduleStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "builtIn": true;
         "name": true;
@@ -122069,6 +126136,10 @@ export declare class MTRThermostatClusterScheduleTransitionStruct extends SDKHan
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterScheduleTransitionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "coolingSetpoint": true;
         "dayOfWeek": true;
@@ -122103,6 +126174,10 @@ export declare class MTRThermostatClusterScheduleTypeStruct extends SDKHandle {
      */
     get systemMode(): _Foundation_NSNumber;
     set systemMode(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterScheduleTypeStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "numberOfSchedules": true;
         "scheduleTypeFeatures": true;
@@ -122134,6 +126209,10 @@ export declare class MTRThermostatClusterSetActivePresetRequestParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterSetActivePresetRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "presetHandle": true;
         "serverSideProcessingTimeout": true;
@@ -122165,6 +126244,10 @@ export declare class MTRThermostatClusterSetActiveScheduleRequestParams extends 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterSetActiveScheduleRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "scheduleHandle": true;
         "serverSideProcessingTimeout": true;
@@ -122202,6 +126285,10 @@ export declare class MTRThermostatClusterSetpointRaiseLowerParams extends SDKHan
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterSetpointRaiseLowerParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "mode": true;
@@ -122252,6 +126339,10 @@ export declare class MTRThermostatClusterSetWeeklyScheduleParams extends SDKHand
      */
     get transitions(): Array<unknown>;
     set transitions(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterSetWeeklyScheduleParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dayOfWeekForSequence": true;
         "modeForSequence": true;
@@ -122286,6 +126377,10 @@ export declare class MTRThermostatClusterWeeklyScheduleTransitionStruct extends 
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterWeeklyScheduleTransitionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "coolSetpoint": true;
         "heatSetpoint": true;
@@ -122322,6 +126417,11 @@ export declare class MTRThermostatClusterThermostatScheduleTransition extends MT
      */
     get transitionTime(): _Foundation_NSNumber;
     set transitionTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThermostatClusterThermostatScheduleTransition": true;
+        "c:objc(cs)MTRThermostatClusterWeeklyScheduleTransitionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "coolSetpoint": true;
         "heatSetpoint": true;
@@ -122970,19 +127070,21 @@ export declare const MTRThermostatUserInterfaceConfigurationTemperatureDisplayMo
  * @availability iOS 18.4+
  */
 export declare class MTRThreadBorderRouterManagementClusterDatasetResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRThreadBorderRouterManagementClusterDatasetResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRThreadBorderRouterManagementClusterDatasetResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRThreadBorderRouterManagementClusterDatasetResponseParams;
     /**
      * var dataset: Data { get set }
      * @availability iOS 18.4+
      */
     get dataset(): ArrayBuffer;
     set dataset(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRThreadBorderRouterManagementClusterDatasetResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataset": true;
     };
@@ -123006,6 +127108,10 @@ export declare class MTRThreadBorderRouterManagementClusterGetActiveDatasetReque
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -123030,6 +127136,10 @@ export declare class MTRThreadBorderRouterManagementClusterGetPendingDatasetRequ
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -123066,6 +127176,10 @@ export declare class MTRThreadBorderRouterManagementClusterSetActiveDatasetReque
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeDataset": true;
         "breadcrumb": true;
@@ -123098,6 +127212,10 @@ export declare class MTRThreadBorderRouterManagementClusterSetPendingDatasetRequ
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pendingDataset": true;
         "serverSideProcessingTimeout": true;
@@ -123134,6 +127252,10 @@ export declare class MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent ext
      */
     get connectionStatus(): _Foundation_NSNumber;
     set connectionStatus(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connectionStatus": true;
     };
@@ -123229,6 +127351,10 @@ export declare class MTRThreadNetworkDiagnosticsClusterNeighborTableStruct exten
      */
     get rxOnWhenIdle(): _Foundation_NSNumber;
     set rxOnWhenIdle(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterNeighborTableStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "age": true;
         "averageRssi": true;
@@ -123353,6 +127479,11 @@ export declare class MTRThreadNetworkDiagnosticsClusterNeighborTable extends MTR
      */
     get rxOnWhenIdle(): _Foundation_NSNumber;
     set rxOnWhenIdle(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterNeighborTable": true;
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterNeighborTableStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "age": true;
         "averageRssi": true;
@@ -123389,6 +127520,10 @@ export declare class MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent e
      */
     get previous(): Array<unknown>;
     set previous(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterNetworkFaultChangeEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "current": true;
         "previous": true;
@@ -123473,6 +127608,10 @@ export declare class MTRThreadNetworkDiagnosticsClusterOperationalDatasetCompone
      */
     get securityPolicyPresent(): _Foundation_NSNumber;
     set securityPolicyPresent(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterOperationalDatasetComponents": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeTimestampPresent": true;
         "channelMaskPresent": true;
@@ -123507,6 +127646,10 @@ export declare class MTRThreadNetworkDiagnosticsClusterResetCountsParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterResetCountsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -123579,6 +127722,10 @@ export declare class MTRThreadNetworkDiagnosticsClusterRouteTableStruct extends 
      */
     get routerId(): _Foundation_NSNumber;
     set routerId(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterRouteTableStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "age": true;
         "allocated": true;
@@ -123671,6 +127818,11 @@ export declare class MTRThreadNetworkDiagnosticsClusterRouteTable extends MTRThr
      */
     get routerId(): _Foundation_NSNumber;
     set routerId(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterRouteTable": true;
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterRouteTableStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "age": true;
         "allocated": true;
@@ -123703,6 +127855,10 @@ export declare class MTRThreadNetworkDiagnosticsClusterSecurityPolicy extends SD
      */
     get rotationTime(): _Foundation_NSNumber;
     set rotationTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDiagnosticsClusterSecurityPolicy": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "flags": true;
         "rotationTime": true;
@@ -123815,6 +127971,10 @@ export declare class MTRThreadNetworkDirectoryClusterAddNetworkParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDirectoryClusterAddNetworkParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "operationalDataset": true;
         "serverSideProcessingTimeout": true;
@@ -123846,6 +128006,10 @@ export declare class MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extendedPanID": true;
         "serverSideProcessingTimeout": true;
@@ -123857,19 +128021,21 @@ export declare class MTRThreadNetworkDirectoryClusterGetOperationalDatasetParams
  * @availability iOS 18.4+
  */
 export declare class MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams;
     /**
      * var operationalDataset: Data { get set }
      * @availability iOS 18.4+
      */
     get operationalDataset(): ArrayBuffer;
     set operationalDataset(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDirectoryClusterOperationalDatasetResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "operationalDataset": true;
     };
@@ -123899,6 +128065,10 @@ export declare class MTRThreadNetworkDirectoryClusterRemoveNetworkParams extends
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDirectoryClusterRemoveNetworkParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extendedPanID": true;
         "serverSideProcessingTimeout": true;
@@ -123936,6 +128106,10 @@ export declare class MTRThreadNetworkDirectoryClusterThreadNetworkStruct extends
      */
     get networkName(): string;
     set networkName(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRThreadNetworkDirectoryClusterThreadNetworkStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeTimestamp": true;
         "channel": true;
@@ -124006,6 +128180,10 @@ export declare class MTRThreadOperationalDataset extends SDKHandle {
      * @availability iOS 16.1+
      */
     get panID(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)MTRThreadOperationalDataset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "psKc": true;
         "channel": true;
@@ -124082,6 +128260,10 @@ export declare class MTRTimeSynchronizationClusterDSTOffsetStruct extends SDKHan
      */
     get validUntil(): $SDK0;
     set validUntil(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterDSTOffsetStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "offset": true;
         "validStarting": true;
@@ -124118,6 +128300,11 @@ export declare class MTRTimeSynchronizationClusterDstOffsetType extends MTRTimeS
      */
     get validUntil(): $SDK0;
     set validUntil(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterDstOffsetType": true;
+        "c:objc(cs)MTRTimeSynchronizationClusterDSTOffsetStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "offset": true;
         "validStarting": true;
@@ -124137,6 +128324,10 @@ export declare class MTRTimeSynchronizationClusterDSTStatusEvent extends SDKHand
      */
     get dstOffsetActive(): _Foundation_NSNumber;
     set dstOffsetActive(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterDSTStatusEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dstOffsetActive": true;
     };
@@ -124148,6 +128339,10 @@ export declare class MTRTimeSynchronizationClusterDSTStatusEvent extends SDKHand
 export declare class MTRTimeSynchronizationClusterDSTTableEmptyEvent extends SDKHandle {
     /** init() */
     static init(): MTRTimeSynchronizationClusterDSTTableEmptyEvent;
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterDSTTableEmptyEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct
@@ -124168,6 +128363,10 @@ export declare class MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceS
      */
     get nodeID(): _Foundation_NSNumber;
     set nodeID(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endpoint": true;
         "nodeID": true;
@@ -124180,6 +128379,10 @@ export declare class MTRTimeSynchronizationClusterFabricScopedTrustedTimeSourceS
 export declare class MTRTimeSynchronizationClusterMissingTrustedTimeSourceEvent extends SDKHandle {
     /** init() */
     static init(): MTRTimeSynchronizationClusterMissingTrustedTimeSourceEvent;
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterMissingTrustedTimeSourceEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRTimeSynchronizationClusterSetDefaultNTPParams
@@ -124206,6 +128409,10 @@ export declare class MTRTimeSynchronizationClusterSetDefaultNTPParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterSetDefaultNTPParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "defaultNTP": true;
         "serverSideProcessingTimeout": true;
@@ -124237,6 +128444,10 @@ export declare class MTRTimeSynchronizationClusterSetDSTOffsetParams extends SDK
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterSetDSTOffsetParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dstOffset": true;
         "serverSideProcessingTimeout": true;
@@ -124268,6 +128479,10 @@ export declare class MTRTimeSynchronizationClusterSetTimeZoneParams extends SDKH
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterSetTimeZoneParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timeZone": true;
@@ -124279,19 +128494,21 @@ export declare class MTRTimeSynchronizationClusterSetTimeZoneParams extends SDKH
  * @availability iOS 18.4+
  */
 export declare class MTRTimeSynchronizationClusterSetTimeZoneResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRTimeSynchronizationClusterSetTimeZoneResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRTimeSynchronizationClusterSetTimeZoneResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRTimeSynchronizationClusterSetTimeZoneResponseParams;
     /**
      * @NSCopying var dstOffsetRequired: NSNumber { get set }
      * @availability iOS 18.4+
      */
     get dstOffsetRequired(): _Foundation_NSNumber;
     set dstOffsetRequired(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterSetTimeZoneResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dstOffsetRequired": true;
     };
@@ -124321,6 +128538,10 @@ export declare class MTRTimeSynchronizationClusterSetTrustedTimeSourceParams ext
      */
     get trustedTimeSource(): $SDK279;
     set trustedTimeSource(value: $SDK279);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterSetTrustedTimeSourceParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -124364,6 +128585,10 @@ export declare class MTRTimeSynchronizationClusterSetUTCTimeParams extends SDKHa
      */
     get utcTime(): _Foundation_NSNumber;
     set utcTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterSetUTCTimeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "granularity": true;
         "serverSideProcessingTimeout": true;
@@ -124410,6 +128635,11 @@ export declare class MTRTimeSynchronizationClusterSetUtcTimeParams extends MTRTi
      */
     get utcTime(): _Foundation_NSNumber;
     set utcTime(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterSetUtcTimeParams": true;
+        "c:objc(cs)MTRTimeSynchronizationClusterSetUTCTimeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "granularity": true;
         "serverSideProcessingTimeout": true;
@@ -124425,6 +128655,10 @@ export declare class MTRTimeSynchronizationClusterSetUtcTimeParams extends MTRTi
 export declare class MTRTimeSynchronizationClusterTimeFailureEvent extends SDKHandle {
     /** init() */
     static init(): MTRTimeSynchronizationClusterTimeFailureEvent;
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterTimeFailureEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRTimeSynchronizationClusterTimeZoneStatusEvent
@@ -124445,6 +128679,10 @@ export declare class MTRTimeSynchronizationClusterTimeZoneStatusEvent extends SD
      */
     get offset(): _Foundation_NSNumber;
     set offset(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterTimeZoneStatusEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "offset": true;
@@ -124475,6 +128713,10 @@ export declare class MTRTimeSynchronizationClusterTimeZoneStruct extends SDKHand
      */
     get validAt(): _Foundation_NSNumber;
     set validAt(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterTimeZoneStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "offset": true;
@@ -124511,6 +128753,11 @@ export declare class MTRTimeSynchronizationClusterTimeZoneType extends MTRTimeSy
      */
     get validAt(): _Foundation_NSNumber;
     set validAt(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterTimeZoneType": true;
+        "c:objc(cs)MTRTimeSynchronizationClusterTimeZoneStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "offset": true;
@@ -124542,6 +128789,10 @@ export declare class MTRTimeSynchronizationClusterTrustedTimeSourceStruct extend
      */
     get nodeID(): _Foundation_NSNumber;
     set nodeID(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRTimeSynchronizationClusterTrustedTimeSourceStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endpoint": true;
         "fabricIndex": true;
@@ -124995,6 +129246,10 @@ export declare class MTRUserLabelClusterLabelStruct extends SDKHandle {
      */
     get value(): string;
     set value(value: string);
+    readonly $type: {
+        "c:objc(cs)MTRUserLabelClusterLabelStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "value": true;
@@ -125021,6 +129276,10 @@ export declare class MTRValveConfigurationAndControlClusterCloseParams extends S
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRValveConfigurationAndControlClusterCloseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -125057,6 +129316,10 @@ export declare class MTRValveConfigurationAndControlClusterOpenParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRValveConfigurationAndControlClusterOpenParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "openDuration": true;
         "serverSideProcessingTimeout": true;
@@ -125077,6 +129340,10 @@ export declare class MTRValveConfigurationAndControlClusterValveFaultEvent exten
      */
     get valveFault(): _Foundation_NSNumber;
     set valveFault(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRValveConfigurationAndControlClusterValveFaultEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "valveFault": true;
     };
@@ -125100,6 +129367,10 @@ export declare class MTRValveConfigurationAndControlClusterValveStateChangedEven
      */
     get valveState(): _Foundation_NSNumber;
     set valveState(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRValveConfigurationAndControlClusterValveStateChangedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "valveLevel": true;
         "valveState": true;
@@ -125212,6 +129483,10 @@ export declare const MTRWaterHeaterManagementBoostState: {
 export declare class MTRWaterHeaterManagementClusterBoostEndedEvent extends SDKHandle {
     /** init() */
     static init(): MTRWaterHeaterManagementClusterBoostEndedEvent;
+    readonly $type: {
+        "c:objc(cs)MTRWaterHeaterManagementClusterBoostEndedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MTRWaterHeaterManagementClusterBoostParams
@@ -125238,6 +129513,10 @@ export declare class MTRWaterHeaterManagementClusterBoostParams extends SDKHandl
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWaterHeaterManagementClusterBoostParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "boostInfo": true;
         "serverSideProcessingTimeout": true;
@@ -125257,6 +129536,10 @@ export declare class MTRWaterHeaterManagementClusterBoostStartedEvent extends SD
      */
     get boostInfo(): MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct;
     set boostInfo(value: MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct);
+    readonly $type: {
+        "c:objc(cs)MTRWaterHeaterManagementClusterBoostStartedEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "boostInfo": true;
     };
@@ -125280,6 +129563,10 @@ export declare class MTRWaterHeaterManagementClusterCancelBoostParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWaterHeaterManagementClusterCancelBoostParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -125328,6 +129615,10 @@ export declare class MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct e
      */
     get temporarySetpoint(): $SDK0;
     set temporarySetpoint(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWaterHeaterManagementClusterWaterHeaterBoostInfoStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "duration": true;
         "emergencyBoost": true;
@@ -125421,6 +129712,10 @@ export declare class MTRWaterHeaterModeClusterChangeToModeParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWaterHeaterModeClusterChangeToModeParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "newMode": true;
         "serverSideProcessingTimeout": true;
@@ -125432,13 +129727,11 @@ export declare class MTRWaterHeaterModeClusterChangeToModeParams extends SDKHand
  * @availability iOS 18.4+
  */
 export declare class MTRWaterHeaterModeClusterChangeToModeResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRWaterHeaterModeClusterChangeToModeResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRWaterHeaterModeClusterChangeToModeResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRWaterHeaterModeClusterChangeToModeResponseParams;
     /**
      * @NSCopying var status: NSNumber { get set }
      * @availability iOS 18.4+
@@ -125451,6 +129744,10 @@ export declare class MTRWaterHeaterModeClusterChangeToModeResponseParams extends
      */
     get statusText(): (string) | null;
     set statusText(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)MTRWaterHeaterModeClusterChangeToModeResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "status": true;
         "statusText": true;
@@ -125481,6 +129778,10 @@ export declare class MTRWaterHeaterModeClusterModeOptionStruct extends SDKHandle
      */
     get modeTags(): Array<unknown>;
     set modeTags(value: Array<unknown>);
+    readonly $type: {
+        "c:objc(cs)MTRWaterHeaterModeClusterModeOptionStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "mode": true;
@@ -125506,6 +129807,10 @@ export declare class MTRWaterHeaterModeClusterModeTagStruct extends SDKHandle {
      */
     get value(): _Foundation_NSNumber;
     set value(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRWaterHeaterModeClusterModeTagStruct": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "mfgCode": true;
         "value": true;
@@ -125561,6 +129866,10 @@ export declare class MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent ext
      */
     get status(): _Foundation_NSNumber;
     set status(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRWiFiNetworkDiagnosticsClusterAssociationFailureEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "associationFailure": true;
         "associationFailureCause": true;
@@ -125580,6 +129889,10 @@ export declare class MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent exten
      */
     get connectionStatus(): _Foundation_NSNumber;
     set connectionStatus(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRWiFiNetworkDiagnosticsClusterConnectionStatusEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connectionStatus": true;
     };
@@ -125597,6 +129910,10 @@ export declare class MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent extends 
      */
     get reasonCode(): _Foundation_NSNumber;
     set reasonCode(value: _Foundation_NSNumber);
+    readonly $type: {
+        "c:objc(cs)MTRWiFiNetworkDiagnosticsClusterDisconnectionEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "reasonCode": true;
     };
@@ -125620,6 +129937,10 @@ export declare class MTRWiFiNetworkDiagnosticsClusterResetCountsParams extends S
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWiFiNetworkDiagnosticsClusterResetCountsParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -125766,6 +130087,10 @@ export declare class MTRWiFiNetworkManagementClusterNetworkPassphraseRequestPara
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -125776,19 +130101,21 @@ export declare class MTRWiFiNetworkManagementClusterNetworkPassphraseRequestPara
  * @availability iOS 18.4+
  */
 export declare class MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams extends SDKHandle {
-    /** init() */
-    static init(): MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams;
     /**
      * init(responseValue: [String : Any]) throws
      * @availability iOS 18.4+
      */
-    static initResponseValue(responseValue: Record<string, unknown>): MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams;
+    static init(responseValue: Record<string, unknown>): MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams;
     /**
      * var passphrase: Data { get set }
      * @availability iOS 18.4+
      */
     get passphrase(): ArrayBuffer;
     set passphrase(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)MTRWiFiNetworkManagementClusterNetworkPassphraseResponseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "passphrase": true;
     };
@@ -125812,6 +130139,10 @@ export declare class MTRWindowCoveringClusterDownOrCloseParams extends SDKHandle
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWindowCoveringClusterDownOrCloseParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -125842,6 +130173,10 @@ export declare class MTRWindowCoveringClusterGoToLiftPercentageParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWindowCoveringClusterGoToLiftPercentageParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "liftPercent100thsValue": true;
         "serverSideProcessingTimeout": true;
@@ -125873,6 +130208,10 @@ export declare class MTRWindowCoveringClusterGoToLiftValueParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWindowCoveringClusterGoToLiftValueParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "liftValue": true;
         "serverSideProcessingTimeout": true;
@@ -125904,6 +130243,10 @@ export declare class MTRWindowCoveringClusterGoToTiltPercentageParams extends SD
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWindowCoveringClusterGoToTiltPercentageParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "tiltPercent100thsValue": true;
@@ -125935,6 +130278,10 @@ export declare class MTRWindowCoveringClusterGoToTiltValueParams extends SDKHand
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWindowCoveringClusterGoToTiltValueParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "tiltValue": true;
@@ -125960,6 +130307,10 @@ export declare class MTRWindowCoveringClusterStopMotionParams extends SDKHandle 
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWindowCoveringClusterStopMotionParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -125984,6 +130335,10 @@ export declare class MTRWindowCoveringClusterUpOrOpenParams extends SDKHandle {
      */
     get timedInvokeTimeoutMs(): $SDK0;
     set timedInvokeTimeoutMs(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWindowCoveringClusterUpOrOpenParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serverSideProcessingTimeout": true;
         "timedInvokeTimeoutMs": true;
@@ -126247,6 +130602,10 @@ export declare class MTRWriteParams extends SDKHandle {
      */
     get timedWriteTimeout(): $SDK0;
     set timedWriteTimeout(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)MTRWriteParams": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dataVersion": true;
         "timedWriteTimeout": true;
@@ -126367,6 +130726,11 @@ export declare class MTRXPCDeviceControllerParameters extends MTRDeviceControlle
      * @availability iOS 18.2+
      */
     get xpcConnectionBlock(): $SDK281;
+    readonly $type: {
+        "c:objc(cs)MTRXPCDeviceControllerParameters": true;
+        "c:objc(cs)MTRDeviceControllerAbstractParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "startSuspended": true;
         "uniqueIdentifier": true;

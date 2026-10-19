@@ -15,4 +15,7 @@ export declare class GameControllerEventHandlingOptions extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): GameControllerEventHandlingOptions;
+    readonly $type: {
+        "s:23_GameController_SwiftUI0aB20EventHandlingOptionsV": true;
+    };
 }

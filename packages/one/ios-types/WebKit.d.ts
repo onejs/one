@@ -83,6 +83,10 @@ export declare class NSAttributedString extends SDKHandle {
      * @availability iOS 13.0+
      */
     static loadFromHTMLStringOptionsCompletionHandler(string: string, options: $SDK0, completionHandler: $SDK1): void;
+    readonly $type: {
+        "c:objc(cs)NSAttributedString": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias CompletionHandler = (NSAttributedString?, [NSAttributedString.DocumentAttributeKey : Any]?, (any Error)?) -> Void
@@ -130,6 +134,9 @@ export interface URLSchemeHandler {
  * @availability iOS 26.0+
  */
 export declare class URLSchemeTaskResult extends SDKHandle {
+    readonly $type: {
+        "s:6WebKit19URLSchemeTaskResultO": true;
+    };
 }
 /**
  * @MainActor final class WebPage
@@ -317,6 +324,9 @@ export declare class WebPage extends SDKHandle {
      */
     get mediaType(): Promise<$SDK5>;
     setMediaType(value?: $SDK5): Promise<void>;
+    readonly $type: {
+        "s:6WebKit0A4PageC": true;
+    };
 }
 /**
  * @MainActor struct BackForwardList
@@ -343,6 +353,9 @@ export declare class WebPage_BackForwardList extends SDKHandle {
      * @availability iOS 26.0+
      */
     subscript(index: number): Promise<$SDK7>;
+    readonly $type: {
+        "s:6WebKit0A4PageC15BackForwardListV": true;
+    };
 }
 /**
  * struct Item
@@ -369,12 +382,18 @@ export declare class WebPage_BackForwardList_Item extends SDKHandle {
      * @availability iOS 26.0+
      */
     get title(): Promise<(string) | null>;
+    readonly $type: {
+        "s:6WebKit0A4PageC15BackForwardListV4ItemV": true;
+    };
 }
 /**
  * struct ID
  * @availability iOS 26.0+
  */
 export declare class WebPage_BackForwardList_Item_ID extends SDKHandle {
+    readonly $type: {
+        "s:6WebKit0A4PageC15BackForwardListV4ItemV2IDV": true;
+    };
 }
 /**
  * @MainActor struct Configuration
@@ -494,6 +513,9 @@ export declare class WebPage_Configuration extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Promise<WebPage_Configuration>;
+    readonly $type: {
+        "s:6WebKit0A4PageC13ConfigurationV": true;
+    };
 }
 /**
  * enum MediaPlaybackBehavior
@@ -547,12 +569,18 @@ export declare class WebPage_DeviceSensorAuthorization extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(decision: WKPermissionDecision): Promise<WebPage_DeviceSensorAuthorization>;
+    readonly $type: {
+        "s:6WebKit0A4PageC25DeviceSensorAuthorizationV": true;
+    };
 }
 /**
  * enum Permission
  * @availability iOS 26.0+
  */
 export declare class WebPage_DeviceSensorAuthorization_Permission extends SDKHandle {
+    readonly $type: {
+        "s:6WebKit0A4PageC25DeviceSensorAuthorizationV10PermissionO": true;
+    };
 }
 /**
  * protocol DialogPresenting
@@ -595,6 +623,9 @@ export declare class WebPage_ExportedContentConfiguration extends SDKHandle {
      * @availability iOS 26.0+
      */
     static image(region?: WebPage_ExportedContentConfiguration_Region, allowTransparentBackground?: boolean, snapshotWidth?: (number) | null, afterScreenUpdates?: boolean): Promise<WebPage_ExportedContentConfiguration>;
+    readonly $type: {
+        "s:6WebKit0A4PageC28ExportedContentConfigurationV": true;
+    };
 }
 /**
  * struct Region
@@ -611,12 +642,18 @@ export declare class WebPage_ExportedContentConfiguration_Region extends SDKHand
      * @availability iOS 26.0+
      */
     static get contents(): Promise<WebPage_ExportedContentConfiguration_Region>;
+    readonly $type: {
+        "s:6WebKit0A4PageC28ExportedContentConfigurationV6RegionV": true;
+    };
 }
 /**
  * enum FileInputPromptResult
  * @availability iOS 26.0+
  */
 export declare class WebPage_FileInputPromptResult extends SDKHandle {
+    readonly $type: {
+        "s:6WebKit0A4PageC21FileInputPromptResultO": true;
+    };
 }
 /**
  * @MainActor struct FormInfo
@@ -648,6 +685,9 @@ export declare class WebPage_FormInfo extends SDKHandle {
      * @availability iOS 27.0+
      */
     get submissionURL(): Promise<string>;
+    readonly $type: {
+        "s:6WebKit0A4PageC8FormInfoV": true;
+    };
 }
 /**
  * @MainActor struct FrameInfo
@@ -669,6 +709,9 @@ export declare class WebPage_FrameInfo extends SDKHandle {
      * @availability iOS 26.0+
      */
     get request(): Promise<_Foundation_URLRequest>;
+    readonly $type: {
+        "s:6WebKit0A4PageC9FrameInfoV": true;
+    };
 }
 /**
  * enum FullscreenState
@@ -685,6 +728,9 @@ export type WebPage_JavaScriptConfirmResult = "ok" | "cancel";
  * @availability iOS 26.0+
  */
 export declare class WebPage_JavaScriptPromptResult extends SDKHandle {
+    readonly $type: {
+        "s:6WebKit0A4PageC22JavaScriptPromptResultO": true;
+    };
 }
 /**
  * @MainActor struct NavigationAction
@@ -726,6 +772,9 @@ export declare class WebPage_NavigationAction extends SDKHandle {
      * @availability iOS 26.0+
      */
     get request(): Promise<_Foundation_URLRequest>;
+    readonly $type: {
+        "s:6WebKit0A4PageC16NavigationActionV": true;
+    };
 }
 /**
  * protocol NavigationDeciding
@@ -758,6 +807,9 @@ export interface WebPage_NavigationDeciding {
  * @availability iOS 26.0+
  */
 export declare class WebPage_NavigationError extends SDKHandle {
+    readonly $type: {
+        "s:6WebKit0A4PageC15NavigationErrorO": true;
+    };
 }
 /**
  * enum NavigationEvent
@@ -828,6 +880,9 @@ export declare class WebPage_NavigationPreferences extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): Promise<WebPage_NavigationPreferences>;
+    readonly $type: {
+        "s:6WebKit0A4PageC21NavigationPreferencesV": true;
+    };
 }
 /**
  * enum ContentMode
@@ -859,6 +914,9 @@ export declare class WebPage_NavigationResponse extends SDKHandle {
      * @availability iOS 26.0+
      */
     get response(): Promise<_Foundation_URLResponse>;
+    readonly $type: {
+        "s:6WebKit0A4PageC18NavigationResponseV": true;
+    };
 }
 /**
  * typealias Representation = some TransferRepresentation
@@ -929,6 +987,10 @@ export declare class WKBackForwardList extends SDKHandle {
      * @availability iOS 8.0+
      */
     get forwardList(): Promise<Array<WKBackForwardListItem>>;
+    readonly $type: {
+        "c:objc(cs)WKBackForwardList": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKBackForwardListItem
@@ -950,6 +1012,10 @@ export declare class WKBackForwardListItem extends SDKHandle {
      * @availability iOS 8.0+
      */
     get title(): Promise<(string) | null>;
+    readonly $type: {
+        "c:objc(cs)WKBackForwardListItem": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKContentRuleList
@@ -963,6 +1029,10 @@ export declare class WKContentRuleList extends SDKHandle {
      * @availability iOS 11.0+
      */
     get identifier(): Promise<(string) | null>;
+    readonly $type: {
+        "c:objc(cs)WKContentRuleList": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKContentRuleListStore
@@ -978,7 +1048,7 @@ export declare class WKContentRuleListStore extends SDKHandle {
      * convenience init!(url: URL!)
      * @availability iOS 11.0+
      */
-    static initUrl(url?: (string) | null): Promise<WKContentRuleListStore>;
+    static init(url?: (string) | null): Promise<WKContentRuleListStore>;
     /**
      * func compileContentRuleList(forIdentifier identifier: String!, encodedContentRuleList: String!) async throws -> WKContentRuleList?
      * @availability iOS 11.0+
@@ -989,8 +1059,6 @@ export declare class WKContentRuleListStore extends SDKHandle {
      * @availability iOS 11.0+
      */
     getAvailableContentRuleListIdentifiers(completionHandler?: (((arg0: (Array<string>) | null) => void)) | null): Promise<void>;
-    /** init() */
-    static init(): Promise<WKContentRuleListStore>;
     /**
      * func contentRuleList(forIdentifier identifier: String!) async throws -> WKContentRuleList?
      * @availability iOS 11.0+
@@ -1001,6 +1069,10 @@ export declare class WKContentRuleListStore extends SDKHandle {
      * @availability iOS 11.0+
      */
     removeContentRuleList(identifier?: (string) | null, completionHandler?: $SDK18): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKContentRuleListStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKContentWorld
@@ -1032,6 +1104,10 @@ export declare class WKContentWorld extends SDKHandle {
      * @availability iOS 14.0+
      */
     get name(): Promise<(string) | null>;
+    readonly $type: {
+        "c:objc(cs)WKContentWorld": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class Configuration
@@ -1082,6 +1158,10 @@ export declare class WKContentWorld_Configuration extends SDKHandle {
      */
     get nodeSnapshotCreationEnabled(): Promise<boolean>;
     setNodeSnapshotCreationEnabled(value: boolean): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKContentWorldConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKContextMenuElementInfo
@@ -1093,6 +1173,10 @@ export declare class WKContextMenuElementInfo extends SDKHandle {
      * @availability iOS 13.0+
      */
     get linkURL(): Promise<(string) | null>;
+    readonly $type: {
+        "c:objc(cs)WKContextMenuElementInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct WKDataDetectorTypes
@@ -1169,6 +1253,10 @@ export declare const WKDialogResult: {
  * @availability iOS 27.0+
  */
 export declare class WKDOMNodeSnapshot extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)WKDOMNodeSnapshot": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKDownload
@@ -1208,6 +1296,10 @@ export declare class WKDownload extends SDKHandle {
      * @availability iOS 14.5+
      */
     get webView(): Promise<(WKWebView) | null>;
+    readonly $type: {
+        "c:objc(cs)WKDownload": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum PlaceholderPolicy
@@ -1351,6 +1443,9 @@ export declare class WKError extends SDKHandle {
      * @availability iOS 8.0+
      */
     static get unknown(): WKError_Code;
+    readonly $type: {
+        "s:SC11WKErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1389,6 +1484,10 @@ export declare class WKFindConfiguration extends SDKHandle {
      */
     get wraps(): Promise<boolean>;
     setWraps(value: boolean): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKFindConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKFindResult
@@ -1400,6 +1499,10 @@ export declare class WKFindResult extends SDKHandle {
      * @availability iOS 13.4+
      */
     get matchFound(): Promise<boolean>;
+    readonly $type: {
+        "c:objc(cs)WKFindResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKFormInfo
@@ -1433,6 +1536,10 @@ export declare class WKFormInfo extends SDKHandle {
      * @availability iOS 27.0+
      */
     get targetFrame(): Promise<WKFrameInfo>;
+    readonly $type: {
+        "c:objc(cs)WKFormInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKFrameInfo
@@ -1461,6 +1568,10 @@ export declare class WKFrameInfo extends SDKHandle {
      * @availability iOS 11.0+
      */
     get webView(): Promise<(WKWebView) | null>;
+    readonly $type: {
+        "c:objc(cs)WKFrameInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKHTTPCookieStore
@@ -1512,6 +1623,10 @@ export declare class WKHTTPCookieStore extends SDKHandle {
      * @availability iOS 26.0+
      */
     setCookies(cookies: Array<_Foundation_HTTPCookie>, completionHandler?: ((() => void)) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKHTTPCookieStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum CookiePolicy
@@ -1556,6 +1671,10 @@ export declare class WKJSHandle extends SDKHandle {
      * @availability iOS 27.0+
      */
     get sourceFrame(): Promise<WKFrameInfo>;
+    readonly $type: {
+        "c:objc(cs)WKJSHandle": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum WKMediaCaptureState
@@ -1605,6 +1724,10 @@ export declare class WKNavigation extends SDKHandle {
      * @availability iOS 13.0+
      */
     get effectiveContentMode(): Promise<WKWebpagePreferences_ContentMode>;
+    readonly $type: {
+        "c:objc(cs)WKNavigation": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKNavigationAction
@@ -1658,6 +1781,10 @@ export declare class WKNavigationAction extends SDKHandle {
      * @availability iOS 8.0+
      */
     get targetFrame(): Promise<(WKFrameInfo) | null>;
+    readonly $type: {
+        "c:objc(cs)WKNavigationAction": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum WKNavigationActionPolicy
@@ -1776,6 +1903,10 @@ export declare class WKNavigationResponse extends SDKHandle {
      * @availability iOS 8.0+
      */
     get response(): Promise<_Foundation_URLResponse>;
+    readonly $type: {
+        "c:objc(cs)WKNavigationResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum WKNavigationResponsePolicy
@@ -1818,6 +1949,10 @@ export declare class WKOpenPanelParameters extends SDKHandle {
      * @availability iOS 18.4+
      */
     get allowsMultipleSelection(): Promise<boolean>;
+    readonly $type: {
+        "c:objc(cs)WKOpenPanelParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKPDFConfiguration
@@ -1838,6 +1973,10 @@ export declare class WKPDFConfiguration extends SDKHandle {
      */
     get rect(): Promise<$SDK26>;
     setRect(value?: $SDK26): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKPDFConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum WKPermissionDecision
@@ -1913,6 +2052,10 @@ export declare class WKPreferences extends SDKHandle {
      */
     get isTextInteractionEnabled(): Promise<boolean>;
     setIsTextInteractionEnabled(value: boolean): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKPreferences": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum InactiveSchedulingPolicy
@@ -1947,6 +2090,10 @@ export declare class WKPreviewElementInfo extends SDKHandle {
      * @deprecated iOS 13.0
      */
     get linkURL(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)WKPreviewElementInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "linkURL": true;
     };
@@ -1959,6 +2106,10 @@ export declare class WKPreviewElementInfo extends SDKHandle {
 export declare class WKProcessPool extends SDKHandle {
     /** init() */
     static init(): Promise<WKProcessPool>;
+    readonly $type: {
+        "c:objc(cs)WKProcessPool": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKScriptMessage
@@ -1992,6 +2143,10 @@ export declare class WKScriptMessage extends SDKHandle {
      * @availability iOS 14.0+
      */
     get world(): Promise<WKContentWorld>;
+    readonly $type: {
+        "c:objc(cs)WKScriptMessage": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** @MainActor protocol WKScriptMessageHandler : NSObjectProtocol */
 export interface WKScriptMessageHandler {
@@ -2029,6 +2184,10 @@ export declare class WKSecurityOrigin extends SDKHandle {
      * @availability iOS 9.0+
      */
     get protocol(): Promise<string>;
+    readonly $type: {
+        "c:objc(cs)WKSecurityOrigin": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum WKSecurityRestrictionMode
@@ -2081,6 +2240,10 @@ export declare class WKSnapshotConfiguration extends SDKHandle {
      */
     get snapshotWidth(): Promise<$SDK28>;
     setSnapshotWidth(value?: $SDK28): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKSnapshotConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** @MainActor protocol WKUIDelegate : NSObjectProtocol */
 export interface WKUIDelegate {
@@ -2235,14 +2398,16 @@ export declare class WKUserContentController extends SDKHandle {
      * @availability iOS 27.0+
      */
     removeBuffer(name: string, contentWorld: WKContentWorld): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKUserContentController": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKUserScript
  * @availability iOS 8.0+
  */
 export declare class WKUserScript extends SDKHandle {
-    /** init() */
-    static init(): Promise<WKUserScript>;
     /**
      * init(source: String, injectionTime: WKUserScriptInjectionTime, forMainFrameOnly: Bool)
      * @availability iOS 8.0+
@@ -2268,6 +2433,10 @@ export declare class WKUserScript extends SDKHandle {
      * @availability iOS 8.0+
      */
     get source(): Promise<string>;
+    readonly $type: {
+        "c:objc(cs)WKUserScript": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum WKUserScriptInjectionTime
@@ -2426,6 +2595,10 @@ export declare class WKWebExtension extends SDKHandle {
      * @availability iOS 18.4+
      */
     static initResourceBaseURL(resourceBaseURL: string): Promise<WKWebExtension>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtension": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class Action
@@ -2499,6 +2672,10 @@ export declare class WKWebExtension_Action extends SDKHandle {
      * @availability iOS 18.4+
      */
     get webExtensionContext(): Promise<$SDK36>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionAction": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class Command
@@ -2542,6 +2719,10 @@ export declare class WKWebExtension_Command extends SDKHandle {
      * @availability iOS 18.4+
      */
     get webExtensionContext(): Promise<$SDK36>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionCommand": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class DataRecord
@@ -2583,6 +2764,10 @@ export declare class WKWebExtension_DataRecord extends SDKHandle {
      * @availability iOS 18.4+
      */
     get uniqueIdentifier(): Promise<string>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionDataRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct Error
@@ -2614,6 +2799,9 @@ export declare class WKWebExtension_DataRecord_Error extends SDKHandle {
      * @availability iOS 18.4+
      */
     static get unknown(): Promise<WKWebExtension_DataRecord_Error_Code>;
+    readonly $type: {
+        "s:SC29WKWebExtensionDataRecordErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2709,6 +2897,9 @@ export declare class WKWebExtension_Error extends SDKHandle {
      * @availability iOS 18.4+
      */
     static get unknown(): Promise<WKWebExtension_Error_Code>;
+    readonly $type: {
+        "s:SC19WKWebExtensionErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2807,6 +2998,10 @@ export declare class WKWebExtension_MatchPattern extends SDKHandle {
      * @availability iOS 18.4+
      */
     get string(): Promise<string>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionMatchPattern": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct Error
@@ -2838,6 +3033,9 @@ export declare class WKWebExtension_MatchPattern_Error extends SDKHandle {
      * @availability iOS 18.4+
      */
     static get unknown(): Promise<WKWebExtension_MatchPattern_Error_Code>;
+    readonly $type: {
+        "s:SC31WKWebExtensionMatchPatternErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2925,6 +3123,10 @@ export declare class WKWebExtension_MessagePort extends SDKHandle {
      */
     get messageHandler(): Promise<(((arg0: (unknown) | null, arg1: (NativeError) | null) => Promise<void>)) | null>;
     setMessageHandler(value?: $SDK42): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionMessagePort": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct Error
@@ -2951,6 +3153,9 @@ export declare class WKWebExtension_MessagePort_Error extends SDKHandle {
      * @availability iOS 18.4+
      */
     static get unknown(): Promise<WKWebExtension_MessagePort_Error_Code>;
+    readonly $type: {
+        "s:SC30WKWebExtensionMessagePortErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -3168,6 +3373,10 @@ export declare class WKWebExtension_TabConfiguration extends SDKHandle {
      * @availability iOS 18.4+
      */
     get window(): Promise<(SDKHandle) | null>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionTabConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WindowConfiguration
@@ -3209,6 +3418,10 @@ export declare class WKWebExtension_WindowConfiguration extends SDKHandle {
      * @availability iOS 18.4+
      */
     get windowType(): Promise<WKWebExtension_WindowType>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionWindowConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum WindowState
@@ -3630,6 +3843,10 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * @availability iOS 18.4+
      */
     didActivateTab(activatedTab: $SDK45, previousTab?: $SDK44): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct Error
@@ -3671,6 +3888,9 @@ export declare class WKWebExtensionContext_Error extends SDKHandle {
      * @availability iOS 18.4+
      */
     static get notLoaded(): Promise<WKWebExtensionContext_Error_Code>;
+    readonly $type: {
+        "s:SC26WKWebExtensionContextErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -3854,6 +4074,10 @@ export declare class WKWebExtensionController extends SDKHandle {
      * @availability iOS 18.4+
      */
     didActivateTab(activatedTab: $SDK45, previousTab?: $SDK44): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionController": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class Configuration
@@ -3897,6 +4121,10 @@ export declare class WKWebExtensionController_Configuration extends SDKHandle {
      */
     get webViewConfiguration(): Promise<$SDK54>;
     setWebViewConfiguration(value?: $SDK54): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKWebExtensionControllerConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor protocol WKWebExtensionControllerDelegate : NSObjectProtocol
@@ -3982,6 +4210,10 @@ export declare class WKWebpagePreferences extends SDKHandle {
      */
     get securityRestrictionMode(): Promise<WKSecurityRestrictionMode>;
     setSecurityRestrictionMode(value: WKSecurityRestrictionMode): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKWebpagePreferences": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum ContentMode
@@ -4024,6 +4256,10 @@ export declare class WKWebsiteDataRecord extends SDKHandle {
      * @availability iOS 9.0+
      */
     get displayName(): Promise<string>;
+    readonly $type: {
+        "c:objc(cs)WKWebsiteDataRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKWebsiteDataStore
@@ -4106,6 +4342,10 @@ export declare class WKWebsiteDataStore extends SDKHandle {
      */
     get proxyConfigurations(): Promise<$SDK65>;
     setProxyConfigurations(value: $SDK65): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKWebsiteDataStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor class WKWebView
@@ -4153,8 +4393,6 @@ export declare class WKWebView extends SDKHandle {
      * @availability iOS 8.0+
      */
     go(item: WKBackForwardListItem): Promise<(WKNavigation) | null>;
-    /** init() */
-    static init(): Promise<WKWebView>;
     /**
      * init?(coder: NSCoder)
      * @availability iOS 8.0+
@@ -4505,6 +4743,12 @@ export declare class WKWebView extends SDKHandle {
      * @availability iOS 14.0+
      */
     createPDF(configuration: WKPDFConfiguration, completionHandler: ((arg0: SDKHandle) => void)): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKWebView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum FullscreenState
@@ -4684,6 +4928,10 @@ export declare class WKWebViewConfiguration extends SDKHandle {
      */
     get writingToolsBehavior(): Promise<_UIKit_UIWritingToolsBehavior>;
     setWritingToolsBehavior(value: _UIKit_UIWritingToolsBehavior): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)WKWebViewConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct WKWebViewDataType
@@ -4749,6 +4997,10 @@ export declare class WKWindowFeatures extends SDKHandle {
      * @availability iOS 8.0+
      */
     get y(): Promise<$SDK28>;
+    readonly $type: {
+        "c:objc(cs)WKWindowFeatures": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * let WKErrorDomain: String

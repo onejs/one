@@ -6,6 +6,7 @@ import type { CFDictionary as _CoreFoundation_CFDictionary, CFURL as _CoreFounda
 import type { MIDICIProfile as _CoreMIDI_MIDICIProfile, MIDICIProfileState as _CoreMIDI_MIDICIProfileState, MIDIProtocolID as _CoreMIDI_MIDIProtocolID, MIDIEventList as _CoreMIDI_MIDIEventList } from "one/ios/CoreMIDI";
 import type { DispatchQueue as _Dispatch_DispatchQueue } from "one/ios/Dispatch";
 import type { NSNumber as _Foundation_NSNumber, NSKeyValueObservingOptions as _Foundation_NSKeyValueObservingOptions, NSExtensionContext as _Foundation_NSExtensionContext } from "one/ios/Foundation";
+import type { NSObject as _ObjectiveC_NSObject } from "one/ios/ObjectiveC";
 type $SDK4 = (((arg0: number, arg1: number, arg2: SDKHandle) => Promise<number>)) | null;
 type $SDK5 = (Array<_Foundation_NSNumber>) | null;
 type $SDK8 = (Record<string, unknown>) | null;
@@ -414,6 +415,10 @@ export declare class AUAudioUnit extends SDKHandle {
      * @availability iOS 9.0+
      */
     get virtualMIDICableCount(): number;
+    readonly $type: {
+        "c:objc(cs)AUAudioUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioUnitMIDIProtocol": true;
         "midiOutputBufferSizeHint": true;
@@ -464,10 +469,8 @@ export declare class AUAudioUnit extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class AUAudioUnitBus extends SDKHandle {
-    /** init() */
-    static init(): AUAudioUnitBus;
     /** init(format: AVAudioFormat) throws */
-    static initFormat(format: _AVFAudio_AVAudioFormat): AUAudioUnitBus;
+    static init(format: _AVFAudio_AVAudioFormat): AUAudioUnitBus;
     /**
      * func setFormat(_ format: AVAudioFormat) throws
      * @availability iOS 9.0+
@@ -528,6 +531,10 @@ export declare class AUAudioUnitBus extends SDKHandle {
      * @availability iOS 9.0+
      */
     get supportedChannelLayoutTags(): $SDK5;
+    readonly $type: {
+        "c:objc(cs)AUAudioUnitBus": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "busType": true;
         "contextPresentationLatency": true;
@@ -551,7 +558,7 @@ export declare class AUAudioUnitBusArray extends SDKHandle {
      * func addObserver(toAllBusses observer: NSObject, forKeyPath keyPath: String, options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
      * @availability iOS 9.0+
      */
-    addObserver(observer: SDKHandle, keyPath: string, options?: _Foundation_NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
+    addObserver(observer: _ObjectiveC_NSObject, keyPath: string, options?: _Foundation_NSKeyValueObservingOptions, context?: (SDKHandle) | null): void;
     /**
      * convenience init(audioUnit owner: AUAudioUnit, busType: AUAudioUnitBusType)
      * @availability iOS 9.0+
@@ -571,7 +578,7 @@ export declare class AUAudioUnitBusArray extends SDKHandle {
      * func removeObserver(fromAllBusses observer: NSObject, forKeyPath keyPath: String, context: UnsafeMutableRawPointer?)
      * @availability iOS 9.0+
      */
-    removeObserver(observer: SDKHandle, keyPath: string, context?: (SDKHandle) | null): void;
+    removeObserver(observer: _ObjectiveC_NSObject, keyPath: string, context?: (SDKHandle) | null): void;
     /** func replaceBusses(_ busArray: [AUAudioUnitBus]) */
     replaceBusses(busArray: Array<AUAudioUnitBus>): void;
     /**
@@ -599,6 +606,10 @@ export declare class AUAudioUnitBusArray extends SDKHandle {
      * @availability iOS 9.0+
      */
     get ownerAudioUnit(): AUAudioUnit;
+    readonly $type: {
+        "c:objc(cs)AUAudioUnitBusArray": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "busType": true;
         "count": true;
@@ -640,6 +651,10 @@ export declare class AUAudioUnitPreset extends SDKHandle {
      */
     get number(): number;
     set number(value: number);
+    readonly $type: {
+        "c:objc(cs)AUAudioUnitPreset": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "number": true;
@@ -657,6 +672,11 @@ export declare class AUAudioUnitV2Bridge extends AUAudioUnit {
      * @availability iOS 14.0+
      */
     get audioUnit(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)AUAudioUnitV2Bridge": true;
+        "c:objc(cs)AUAudioUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioUnitMIDIProtocol": true;
         "midiOutputBufferSizeHint": true;
@@ -715,6 +735,9 @@ export declare class AUChannelInfo extends SDKHandle {
     static initInChannelsOutChannels(inChannels: number, outChannels: number): AUChannelInfo;
     /** init() */
     static init(): AUChannelInfo;
+    readonly $type: {
+        "c:@S@AUChannelInfo": true;
+    };
 }
 /** struct AUDependentParameter */
 export declare class AUDependentParameter extends SDKHandle {
@@ -728,6 +751,9 @@ export declare class AUDependentParameter extends SDKHandle {
     static initMScopeMParameterID(mScope: number, mParameterID: number): AUDependentParameter;
     /** init() */
     static init(): AUDependentParameter;
+    readonly $type: {
+        "c:@S@AUDependentParameter": true;
+    };
 }
 /** struct AudioBalanceFade */
 export declare class AudioBalanceFade extends SDKHandle {
@@ -745,6 +771,9 @@ export declare class AudioBalanceFade extends SDKHandle {
     set mType(value: AudioBalanceFadeType);
     /** init(mLeftRightBalance: Float32, mBackFrontFade: Float32, mType: AudioBalanceFadeType, mChannelLayout: UnsafePointer<AudioChannelLayout>) */
     static init(mLeftRightBalance: SDKHandle, mBackFrontFade: SDKHandle, mType: AudioBalanceFadeType, mChannelLayout: SDKHandle): AudioBalanceFade;
+    readonly $type: {
+        "c:@S@AudioBalanceFade": true;
+    };
 }
 /** enum AudioBalanceFadeType */
 export type AudioBalanceFadeType = "maxUnityGain" | "equalPower";
@@ -770,6 +799,9 @@ export declare class AudioBytePacketTranslation extends SDKHandle {
     static initMByteMPacketMByteOffsetInPacketMFlags(mByte: number, mPacket: number, mByteOffsetInPacket: number, mFlags: AudioBytePacketTranslationFlags): AudioBytePacketTranslation;
     /** init() */
     static init(): AudioBytePacketTranslation;
+    readonly $type: {
+        "c:@S@AudioBytePacketTranslation": true;
+    };
 }
 /** struct AudioBytePacketTranslationFlags */
 export type AudioBytePacketTranslationFlags = Array<"bytePacketTranslationFlag_IsEstimate">;
@@ -803,6 +835,9 @@ export declare class AudioCodecMagicCookieInfo extends SDKHandle {
     static initMMagicCookieSizeMMagicCookie(mMagicCookieSize: number, mMagicCookie?: (SDKHandle) | null): AudioCodecMagicCookieInfo;
     /** init() */
     static init(): AudioCodecMagicCookieInfo;
+    readonly $type: {
+        "c:@S@AudioCodecMagicCookieInfo": true;
+    };
 }
 /** struct AudioCodecPrimeInfo */
 export declare class AudioCodecPrimeInfo extends SDKHandle {
@@ -816,6 +851,9 @@ export declare class AudioCodecPrimeInfo extends SDKHandle {
     static initLeadingFramesTrailingFrames(leadingFrames: number, trailingFrames: number): AudioCodecPrimeInfo;
     /** init() */
     static init(): AudioCodecPrimeInfo;
+    readonly $type: {
+        "c:@S@AudioCodecPrimeInfo": true;
+    };
 }
 /** typealias AudioCodecProduceOutputBufferListProc = (UnsafeMutableRawPointer, UnsafeMutablePointer<AudioBufferList>, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<AudioStreamPacketDescription>?, UnsafeMutablePointer<UInt32>) -> OSStatus */
 export type AudioCodecProduceOutputBufferListProc = $SDK16;
@@ -852,6 +890,9 @@ export declare class AudioComponentDescription extends SDKHandle {
     static initComponentTypeComponentSubTypeComponentManufacturerComponentFlagsComponentFlagsMask(componentType: SDKHandle, componentSubType: SDKHandle, componentManufacturer: SDKHandle, componentFlags: number, componentFlagsMask: number): AudioComponentDescription;
     /** init() */
     static init(): AudioComponentDescription;
+    readonly $type: {
+        "c:@S@AudioComponentDescription": true;
+    };
 }
 /** typealias AudioComponentFactoryFunction = (UnsafePointer<AudioComponentDescription>) -> UnsafeMutablePointer<AudioComponentPlugInInterface>? */
 export type AudioComponentFactoryFunction = ((arg0: SDKHandle) => Promise<(SDKHandle) | null>);
@@ -914,6 +955,9 @@ export declare class AudioComponentPlugInInterface extends SDKHandle {
     /** var reserved: UnsafeMutableRawPointer? */
     get reserved(): (SDKHandle) | null;
     set reserved(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:@S@AudioComponentPlugInInterface": true;
+    };
 }
 /** enum AudioComponentValidationResult */
 export type AudioComponentValidationResult = "unknown" | "passed" | "failed" | "timedOut" | "unauthorizedError_Open" | "unauthorizedError_Init";
@@ -947,6 +991,9 @@ export declare class AudioConverterPrimeInfo extends SDKHandle {
     static initLeadingFramesTrailingFrames(leadingFrames: number, trailingFrames: number): AudioConverterPrimeInfo;
     /** init() */
     static init(): AudioConverterPrimeInfo;
+    readonly $type: {
+        "c:@S@AudioConverterPrimeInfo": true;
+    };
 }
 /** typealias AudioConverterPropertyID = UInt32 */
 export type AudioConverterPropertyID = number;
@@ -979,6 +1026,9 @@ export declare class AudioFile_SMPTE_Time extends SDKHandle {
     static initMHoursMMinutesMSecondsMFramesMSubFrameSampleOffset(mHours: number, mMinutes: number, mSeconds: number, mFrames: number, mSubFrameSampleOffset: number): AudioFile_SMPTE_Time;
     /** init() */
     static init(): AudioFile_SMPTE_Time;
+    readonly $type: {
+        "c:@S@AudioFile_SMPTE_Time": true;
+    };
 }
 /** typealias AudioFile_WriteProc = (UnsafeMutableRawPointer, Int64, UInt32, UnsafeRawPointer, UnsafeMutablePointer<UInt32>) -> OSStatus */
 export type AudioFile_WriteProc = $SDK29;
@@ -1021,6 +1071,9 @@ export declare class AudioFileMarker extends SDKHandle {
     static initMFramePositionMNameMMarkerIDMSMPTETimeMTypeMReservedMChannel(mFramePosition: SDKHandle, mName: (SDKHandle) | null, mMarkerID: number, mSMPTETime: AudioFile_SMPTE_Time, mType: number, mReserved: number, mChannel: number): AudioFileMarker;
     /** init() */
     static init(): AudioFileMarker;
+    readonly $type: {
+        "c:@S@AudioFileMarker": true;
+    };
 }
 /** struct AudioFileMarkerList */
 export declare class AudioFileMarkerList extends SDKHandle {
@@ -1037,6 +1090,9 @@ export declare class AudioFileMarkerList extends SDKHandle {
     static initMSMPTE_TimeTypeMNumberMarkersMMarkers(mSMPTE_TimeType: number, mNumberMarkers: number, mMarkers: AudioFileMarker): AudioFileMarkerList;
     /** init() */
     static init(): AudioFileMarkerList;
+    readonly $type: {
+        "c:@S@AudioFileMarkerList": true;
+    };
 }
 /** struct AudioFilePacketTableInfo */
 export declare class AudioFilePacketTableInfo extends SDKHandle {
@@ -1053,6 +1109,9 @@ export declare class AudioFilePacketTableInfo extends SDKHandle {
     static initMNumberValidFramesMPrimingFramesMRemainderFrames(mNumberValidFrames: number, mPrimingFrames: number, mRemainderFrames: number): AudioFilePacketTableInfo;
     /** init() */
     static init(): AudioFilePacketTableInfo;
+    readonly $type: {
+        "c:@S@AudioFilePacketTableInfo": true;
+    };
 }
 /** enum AudioFilePermissions */
 export type AudioFilePermissions = "readPermission" | "writePermission" | "readWritePermission";
@@ -1081,6 +1140,9 @@ export declare class AudioFileRegion extends SDKHandle {
     set mRegionID(value: number);
     /** init(mRegionID: UInt32, mName: Unmanaged<CFString>, mFlags: AudioFileRegionFlags, mNumberMarkers: UInt32, mMarkers: AudioFileMarker) */
     static init(mRegionID: number, mName: SDKHandle, mFlags: AudioFileRegionFlags, mNumberMarkers: number, mMarkers: AudioFileMarker): AudioFileRegion;
+    readonly $type: {
+        "c:@S@AudioFileRegion": true;
+    };
 }
 /** struct AudioFileRegionFlags */
 export type AudioFileRegionFlags = Array<"loopEnable" | "playForward" | "playBackward">;
@@ -1109,6 +1171,9 @@ export declare class AudioFileRegionList extends SDKHandle {
     static initMSMPTE_TimeTypeMNumberRegionsMRegions(mSMPTE_TimeType: number, mNumberRegions: number, mRegions: AudioFileRegion): AudioFileRegionList;
     /** init() */
     static init(): AudioFileRegionList;
+    readonly $type: {
+        "c:@S@AudioFileRegionList": true;
+    };
 }
 /** typealias AudioFileStream_PacketsProc = (UnsafeMutableRawPointer, UInt32, UInt32, UnsafeRawPointer, UnsafeMutablePointer<AudioStreamPacketDescription>?) -> Void */
 export type AudioFileStream_PacketsProc = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: SDKHandle, arg4: (SDKHandle) | null) => Promise<void>);
@@ -1156,6 +1221,9 @@ export declare class AudioFileTypeAndFormatID extends SDKHandle {
     static initMFileTypeMFormatID(mFileType: number, mFormatID: number): AudioFileTypeAndFormatID;
     /** init() */
     static init(): AudioFileTypeAndFormatID;
+    readonly $type: {
+        "c:@S@AudioFileTypeAndFormatID": true;
+    };
 }
 /** typealias AudioFileTypeID = UInt32 */
 export type AudioFileTypeID = number;
@@ -1172,6 +1240,9 @@ export declare class AudioFormatInfo extends SDKHandle {
     set mMagicCookieSize(value: number);
     /** init(mASBD: AudioStreamBasicDescription, mMagicCookie: UnsafeRawPointer, mMagicCookieSize: UInt32) */
     static init(mASBD: _CoreAudioTypes_AudioStreamBasicDescription, mMagicCookie: SDKHandle, mMagicCookieSize: number): AudioFormatInfo;
+    readonly $type: {
+        "c:@S@AudioFormatInfo": true;
+    };
 }
 /** typealias AudioFormatPropertyID = UInt32 */
 export type AudioFormatPropertyID = number;
@@ -1190,6 +1261,9 @@ export declare class AudioFramePacketTranslation extends SDKHandle {
     static initMFrameMPacketMFrameOffsetInPacket(mFrame: number, mPacket: number, mFrameOffsetInPacket: number): AudioFramePacketTranslation;
     /** init() */
     static init(): AudioFramePacketTranslation;
+    readonly $type: {
+        "c:@S@AudioFramePacketTranslation": true;
+    };
 }
 /** struct AudioIndependentPacketTranslation */
 export declare class AudioIndependentPacketTranslation extends SDKHandle {
@@ -1203,6 +1277,9 @@ export declare class AudioIndependentPacketTranslation extends SDKHandle {
     static initMPacketMIndependentlyDecodablePacket(mPacket: number, mIndependentlyDecodablePacket: number): AudioIndependentPacketTranslation;
     /** init() */
     static init(): AudioIndependentPacketTranslation;
+    readonly $type: {
+        "c:@S@AudioIndependentPacketTranslation": true;
+    };
 }
 /** struct AudioOutputUnitMIDICallbacks */
 export declare class AudioOutputUnitMIDICallbacks extends SDKHandle {
@@ -1213,6 +1290,9 @@ export declare class AudioOutputUnitMIDICallbacks extends SDKHandle {
     /** var userData: UnsafeMutableRawPointer? */
     get userData(): (SDKHandle) | null;
     set userData(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:@S@AudioOutputUnitMIDICallbacks": true;
+    };
 }
 /** struct AudioOutputUnitStartAtTimeParams */
 export declare class AudioOutputUnitStartAtTimeParams extends SDKHandle {
@@ -1226,6 +1306,9 @@ export declare class AudioOutputUnitStartAtTimeParams extends SDKHandle {
     static initMTimestampMFlags(mTimestamp: _CoreAudioTypes_AudioTimeStamp, mFlags: number): AudioOutputUnitStartAtTimeParams;
     /** init() */
     static init(): AudioOutputUnitStartAtTimeParams;
+    readonly $type: {
+        "c:@S@AudioOutputUnitStartAtTimeParams": true;
+    };
 }
 /** typealias AudioOutputUnitStartProc = (UnsafeMutableRawPointer) -> OSStatus */
 export type AudioOutputUnitStartProc = $SDK22;
@@ -1246,6 +1329,9 @@ export declare class AudioPacketDependencyInfoTranslation extends SDKHandle {
     static initMPacketMIsIndependentlyDecodableMNumberPrerollPackets(mPacket: number, mIsIndependentlyDecodable: number, mNumberPrerollPackets: number): AudioPacketDependencyInfoTranslation;
     /** init() */
     static init(): AudioPacketDependencyInfoTranslation;
+    readonly $type: {
+        "c:@S@AudioPacketDependencyInfoTranslation": true;
+    };
 }
 /** struct AudioPacketRangeByteCountTranslation */
 export declare class AudioPacketRangeByteCountTranslation extends SDKHandle {
@@ -1262,6 +1348,9 @@ export declare class AudioPacketRangeByteCountTranslation extends SDKHandle {
     static initMPacketMPacketCountMByteCountUpperBound(mPacket: number, mPacketCount: number, mByteCountUpperBound: number): AudioPacketRangeByteCountTranslation;
     /** init() */
     static init(): AudioPacketRangeByteCountTranslation;
+    readonly $type: {
+        "c:@S@AudioPacketRangeByteCountTranslation": true;
+    };
 }
 /** struct AudioPacketRollDistanceTranslation */
 export declare class AudioPacketRollDistanceTranslation extends SDKHandle {
@@ -1275,6 +1364,9 @@ export declare class AudioPacketRollDistanceTranslation extends SDKHandle {
     static initMPacketMRollDistance(mPacket: number, mRollDistance: number): AudioPacketRollDistanceTranslation;
     /** init() */
     static init(): AudioPacketRollDistanceTranslation;
+    readonly $type: {
+        "c:@S@AudioPacketRollDistanceTranslation": true;
+    };
 }
 /** struct AudioPanningInfo */
 export declare class AudioPanningInfo extends SDKHandle {
@@ -1295,6 +1387,9 @@ export declare class AudioPanningInfo extends SDKHandle {
     set mPanningMode(value: AudioPanningMode);
     /** init(mPanningMode: AudioPanningMode, mCoordinateFlags: UInt32, mCoordinates: (Float32, Float32, Float32), mGainScale: Float32, mOutputChannelMap: UnsafePointer<AudioChannelLayout>) */
     static init(mPanningMode: AudioPanningMode, mCoordinateFlags: number, mCoordinates: $SDK35, mGainScale: SDKHandle, mOutputChannelMap: SDKHandle): AudioPanningInfo;
+    readonly $type: {
+        "c:@S@AudioPanningInfo": true;
+    };
 }
 /** enum AudioPanningMode */
 export type AudioPanningMode = "panningMode_SoundField" | "panningMode_VectorBasedPanning";
@@ -1321,6 +1416,9 @@ export declare class AudioQueueBuffer extends SDKHandle {
     /** var mUserData: UnsafeMutableRawPointer? */
     get mUserData(): (SDKHandle) | null;
     set mUserData(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:@S@AudioQueueBuffer": true;
+    };
 }
 /** typealias AudioQueueBufferRef = UnsafeMutablePointer<AudioQueueBuffer> */
 export type AudioQueueBufferRef = SDKHandle;
@@ -1334,6 +1432,9 @@ export declare class AudioQueueChannelAssignment extends SDKHandle {
     set mDeviceUID(value: SDKHandle);
     /** init(mDeviceUID: Unmanaged<CFString>, mChannelNumber: UInt32) */
     static init(mDeviceUID: SDKHandle, mChannelNumber: number): AudioQueueChannelAssignment;
+    readonly $type: {
+        "c:@S@AudioQueueChannelAssignment": true;
+    };
 }
 /** typealias AudioQueueInputCallback = (UnsafeMutableRawPointer?, AudioQueueRef, AudioQueueBufferRef, UnsafePointer<AudioTimeStamp>, UInt32, UnsafePointer<AudioStreamPacketDescription>?) -> Void */
 export type AudioQueueInputCallback = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: SDKHandle, arg4: number, arg5: (SDKHandle) | null) => Promise<void>);
@@ -1351,6 +1452,9 @@ export declare class AudioQueueLevelMeterState extends SDKHandle {
     static initMAveragePowerMPeakPower(mAveragePower: SDKHandle, mPeakPower: SDKHandle): AudioQueueLevelMeterState;
     /** init() */
     static init(): AudioQueueLevelMeterState;
+    readonly $type: {
+        "c:@S@AudioQueueLevelMeterState": true;
+    };
 }
 /** typealias AudioQueueOutputCallback = (UnsafeMutableRawPointer?, AudioQueueRef, AudioQueueBufferRef) -> Void */
 export type AudioQueueOutputCallback = $SDK38;
@@ -1368,6 +1472,9 @@ export declare class AudioQueueParameterEvent extends SDKHandle {
     static initMIDMValue(mID: number, mValue: SDKHandle): AudioQueueParameterEvent;
     /** init() */
     static init(): AudioQueueParameterEvent;
+    readonly $type: {
+        "c:@S@AudioQueueParameterEvent": true;
+    };
 }
 /** typealias AudioQueueParameterID = UInt32 */
 export type AudioQueueParameterID = number;
@@ -1450,6 +1557,9 @@ export declare class AudioUnitConnection extends SDKHandle {
     static initSourceAudioUnitSourceOutputNumberDestInputNumber(sourceAudioUnit: (SDKHandle) | null, sourceOutputNumber: number, destInputNumber: number): AudioUnitConnection;
     /** init() */
     static init(): AudioUnitConnection;
+    readonly $type: {
+        "c:@S@AudioUnitConnection": true;
+    };
 }
 /** typealias AudioUnitElement = UInt32 */
 export type AudioUnitElement = number;
@@ -1465,6 +1575,9 @@ export declare class AudioUnitEvent extends SDKHandle {
     static initMEventTypeMArgument(mEventType: AudioUnitEventType, mArgument: AudioUnitEvent): AudioUnitEvent;
     /** init() */
     static init(): AudioUnitEvent;
+    readonly $type: {
+        "c:@S@AudioUnitEvent": true;
+    };
 }
 /** enum AudioUnitEventType */
 export type AudioUnitEventType = "parameterValueChange" | "beginParameterChangeGesture" | "endParameterChangeGesture" | "propertyChange";
@@ -1482,6 +1595,9 @@ export declare class AudioUnitExternalBuffer extends SDKHandle {
     set size(value: number);
     /** init(buffer: UnsafeMutablePointer<UInt8>, size: UInt32) */
     static init(buffer: SDKHandle, size: number): AudioUnitExternalBuffer;
+    readonly $type: {
+        "c:@S@AudioUnitExternalBuffer": true;
+    };
 }
 /** struct AudioUnitFrequencyResponseBin */
 export declare class AudioUnitFrequencyResponseBin extends SDKHandle {
@@ -1495,6 +1611,9 @@ export declare class AudioUnitFrequencyResponseBin extends SDKHandle {
     static initMFrequencyMMagnitude(mFrequency: SDKHandle, mMagnitude: SDKHandle): AudioUnitFrequencyResponseBin;
     /** init() */
     static init(): AudioUnitFrequencyResponseBin;
+    readonly $type: {
+        "c:@S@AudioUnitFrequencyResponseBin": true;
+    };
 }
 /** typealias AudioUnitGetParameterProc = (UnsafeMutableRawPointer, AudioUnitParameterID, AudioUnitScope, AudioUnitElement, UnsafeMutablePointer<AudioUnitParameterValue>) -> OSStatus */
 export type AudioUnitGetParameterProc = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: number, arg4: SDKHandle) => Promise<number>);
@@ -1519,6 +1638,9 @@ export declare class AudioUnitMeterClipping extends SDKHandle {
     static initPeakValueSinceLastCallSawInfinitySawNotANumber(peakValueSinceLastCall: SDKHandle, sawInfinity: boolean, sawNotANumber: boolean): AudioUnitMeterClipping;
     /** init() */
     static init(): AudioUnitMeterClipping;
+    readonly $type: {
+        "c:@S@AudioUnitMeterClipping": true;
+    };
 }
 /** struct AudioUnitNodeConnection */
 export declare class AudioUnitNodeConnection extends SDKHandle {
@@ -1538,6 +1660,9 @@ export declare class AudioUnitNodeConnection extends SDKHandle {
     static initSourceNodeSourceOutputNumberDestNodeDestInputNumber(sourceNode: number, sourceOutputNumber: number, destNode: number, destInputNumber: number): AudioUnitNodeConnection;
     /** init() */
     static init(): AudioUnitNodeConnection;
+    readonly $type: {
+        "c:@S@AudioUnitNodeConnection": true;
+    };
 }
 /** struct AudioUnitParameter */
 export declare class AudioUnitParameter extends SDKHandle {
@@ -1555,6 +1680,9 @@ export declare class AudioUnitParameter extends SDKHandle {
     set mScope(value: number);
     /** init(mAudioUnit: AudioUnit, mParameterID: AudioUnitParameterID, mScope: AudioUnitScope, mElement: AudioUnitElement) */
     static init(mAudioUnit: SDKHandle, mParameterID: number, mScope: number, mElement: number): AudioUnitParameter;
+    readonly $type: {
+        "c:@S@AudioUnitParameter": true;
+    };
 }
 /** struct AudioUnitParameterEvent */
 export declare class AudioUnitParameterEvent extends SDKHandle {
@@ -1577,6 +1705,9 @@ export declare class AudioUnitParameterEvent extends SDKHandle {
     static initScopeElementParameterEventTypeEventValues(scope: number, element: number, parameter: number, eventType: AUParameterEventType, eventValues: AudioUnitParameterEvent): AudioUnitParameterEvent;
     /** init() */
     static init(): AudioUnitParameterEvent;
+    readonly $type: {
+        "c:@S@AudioUnitParameterEvent": true;
+    };
 }
 /** struct AudioUnitParameterHistoryInfo */
 export declare class AudioUnitParameterHistoryInfo extends SDKHandle {
@@ -1590,6 +1721,9 @@ export declare class AudioUnitParameterHistoryInfo extends SDKHandle {
     static initUpdatesPerSecondHistoryDurationInSeconds(updatesPerSecond: SDKHandle, historyDurationInSeconds: SDKHandle): AudioUnitParameterHistoryInfo;
     /** init() */
     static init(): AudioUnitParameterHistoryInfo;
+    readonly $type: {
+        "c:@S@AudioUnitParameterHistoryInfo": true;
+    };
 }
 /** typealias AudioUnitParameterID = UInt32 */
 export type AudioUnitParameterID = number;
@@ -1628,6 +1762,9 @@ export declare class AudioUnitParameterInfo extends SDKHandle {
     static initNameUnitNameClumpIDCfNameStringUnitMinValueMaxValueDefaultValueFlags(name: $SDK50, unitName: (SDKHandle) | null, clumpID: number, cfNameString: (SDKHandle) | null, unit: AudioUnitParameterUnit, minValue: SDKHandle, maxValue: SDKHandle, defaultValue: SDKHandle, flags: AudioUnitParameterOptions): AudioUnitParameterInfo;
     /** init() */
     static init(): AudioUnitParameterInfo;
+    readonly $type: {
+        "c:@S@AudioUnitParameterInfo": true;
+    };
 }
 /** struct AudioUnitParameterNameInfo */
 export declare class AudioUnitParameterNameInfo extends SDKHandle {
@@ -1644,6 +1781,9 @@ export declare class AudioUnitParameterNameInfo extends SDKHandle {
     static initInIDInDesiredLengthOutName(inID: number, inDesiredLength: number, outName?: (SDKHandle) | null): AudioUnitParameterNameInfo;
     /** init() */
     static init(): AudioUnitParameterNameInfo;
+    readonly $type: {
+        "c:@S@AudioUnitParameterNameInfo": true;
+    };
 }
 /** struct AudioUnitParameterOptions */
 export type AudioUnitParameterOptions = Array<"flag_CFNameRelease" | "flag_OmitFromPresets" | "flag_PlotHistory" | "flag_MeterReadOnly" | "flag_DisplayMask" | "flag_DisplaySquareRoot" | "flag_DisplaySquared" | "flag_DisplayCubed" | "flag_DisplayCubeRoot" | "flag_DisplayExponential" | "flag_HasClump" | "flag_ValuesHaveStrings" | "flag_DisplayLogarithmic" | "flag_IsHighResolution" | "flag_NonRealTime" | "flag_CanRamp" | "flag_ExpertMode" | "flag_HasCFNameString" | "flag_IsGlobalMeta" | "flag_IsElementMeta" | "flag_IsReadable" | "flag_IsWritable">;
@@ -1708,6 +1848,9 @@ export declare class AudioUnitParameterStringFromValue extends SDKHandle {
     set outString(value: (SDKHandle) | null);
     /** init(inParamID: AudioUnitParameterID, inValue: UnsafePointer<AudioUnitParameterValue>, outString: Unmanaged<CFString>?) */
     static init(inParamID: number, inValue: SDKHandle, outString?: (SDKHandle) | null): AudioUnitParameterStringFromValue;
+    readonly $type: {
+        "c:@S@AudioUnitParameterStringFromValue": true;
+    };
 }
 /** enum AudioUnitParameterUnit */
 export type AudioUnitParameterUnit = "generic" | "indexed" | "boolean" | "percent" | "seconds" | "sampleFrames" | "phase" | "rate" | "hertz" | "cents" | "relativeSemiTones" | "midiNoteNumber" | "midiController" | "decibels" | "linearGain" | "degrees" | "equalPowerCrossfade" | "mixerFaderCurve1" | "pan" | "meters" | "absoluteCents" | "octaves" | "BPM" | "beats" | "milliseconds" | "ratio" | "customUnit" | "midi2Controller";
@@ -1730,6 +1873,9 @@ export declare class AudioUnitParameterValueFromString extends SDKHandle {
     set outValue(value: SDKHandle);
     /** init(inParamID: AudioUnitParameterID, inString: Unmanaged<CFString>, outValue: AudioUnitParameterValue) */
     static init(inParamID: number, inString: SDKHandle, outValue: SDKHandle): AudioUnitParameterValueFromString;
+    readonly $type: {
+        "c:@S@AudioUnitParameterValueFromString": true;
+    };
 }
 /** typealias AudioUnitProcessMultipleProc = (UnsafeMutableRawPointer, UnsafeMutablePointer<AudioUnitRenderActionFlags>?, UnsafePointer<AudioTimeStamp>, UInt32, UInt32, UnsafeMutablePointer<UnsafePointer<AudioBufferList>>, UInt32, UnsafeMutablePointer<UnsafeMutablePointer<AudioBufferList>>) -> OSStatus */
 export type AudioUnitProcessMultipleProc = ((arg0: SDKHandle, arg1: (SDKHandle) | null, arg2: SDKHandle, arg3: number, arg4: number, arg5: unknown, arg6: number, arg7: unknown) => Promise<number>);
@@ -1751,6 +1897,9 @@ export declare class AudioUnitProperty extends SDKHandle {
     set mScope(value: number);
     /** init(mAudioUnit: AudioUnit, mPropertyID: AudioUnitPropertyID, mScope: AudioUnitScope, mElement: AudioUnitElement) */
     static init(mAudioUnit: SDKHandle, mPropertyID: number, mScope: number, mElement: number): AudioUnitProperty;
+    readonly $type: {
+        "c:@S@AudioUnitProperty": true;
+    };
 }
 /** typealias AudioUnitPropertyID = UInt32 */
 export type AudioUnitPropertyID = number;
@@ -1836,6 +1985,11 @@ export declare class AUHeadTrackingBinauralRenderer extends AUAudioUnit {
      * @availability iOS 27.0+
      */
     get isHeadTracking(): boolean;
+    readonly $type: {
+        "c:objc(cs)AUHeadTrackingBinauralRenderer": true;
+        "c:objc(cs)AUAudioUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioUnitMIDIProtocol": true;
         "midiOutputBufferSizeHint": true;
@@ -1923,6 +2077,9 @@ export declare class AUInputSamplesInOutputCallbackStruct extends SDKHandle {
     /** var userData: UnsafeMutableRawPointer? */
     get userData(): (SDKHandle) | null;
     set userData(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:@S@AUInputSamplesInOutputCallbackStruct": true;
+    };
 }
 /** typealias AUInternalRenderBlock = (UnsafeMutablePointer<AudioUnitRenderActionFlags>, UnsafePointer<AudioTimeStamp>, AUAudioFrameCount, Int, UnsafeMutablePointer<AudioBufferList>, UnsafePointer<AURenderEvent>?, AURenderPullInputBlock?) -> AUAudioUnitStatus */
 export type AUInternalRenderBlock = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: SDKHandle, arg5: ("head" | "parameter" | "MIDI" | "MIDIEventsList" | SDKHandle) | null, arg6: (((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: SDKHandle) => number)) | null) => Promise<number>);
@@ -1964,6 +2121,9 @@ export declare class AUMIDIEvent extends SDKHandle {
     static initNextEventSampleTimeEventTypeReservedLengthCableData(next: $SDK75, eventSampleTime: number, eventType: AURenderEventType, reserved: number, length: number, cable: number, data: $SDK74): AUMIDIEvent;
     /** init() */
     static init(): AUMIDIEvent;
+    readonly $type: {
+        "c:@S@AUMIDIEvent": true;
+    };
 }
 /** struct AUMIDIEventList */
 export declare class AUMIDIEventList extends SDKHandle {
@@ -1989,6 +2149,9 @@ export declare class AUMIDIEventList extends SDKHandle {
     static initNextEventSampleTimeEventTypeReservedCableEventList(next: $SDK75, eventSampleTime: number, eventType: AURenderEventType, reserved: number, cable: number, eventList: _CoreMIDI_MIDIEventList): AUMIDIEventList;
     /** init() */
     static init(): AUMIDIEventList;
+    readonly $type: {
+        "c:@S@AUMIDIEventList": true;
+    };
 }
 /** typealias AUMIDIEventListBlock = (AUEventSampleTime, UInt8, UnsafePointer<MIDIEventList>) -> OSStatus */
 export type AUMIDIEventListBlock = ((arg0: number, arg1: number, arg2: SDKHandle) => Promise<number>);
@@ -2001,6 +2164,9 @@ export declare class AUMIDIOutputCallbackStruct extends SDKHandle {
     /** var userData: UnsafeMutableRawPointer? */
     get userData(): (SDKHandle) | null;
     set userData(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:@S@AUMIDIOutputCallbackStruct": true;
+    };
 }
 /** typealias AUMIDIOutputEventBlock = (AUEventSampleTime, UInt8, Int, UnsafePointer<UInt8>) -> OSStatus */
 export type AUMIDIOutputEventBlock = ((arg0: number, arg1: number, arg2: number, arg3: SDKHandle) => Promise<number>);
@@ -2020,6 +2186,9 @@ export declare class AUNodeInteraction extends SDKHandle {
     static initNodeInteractionTypeNodeInteraction(nodeInteractionType: number, nodeInteraction: AUNodeInteraction): AUNodeInteraction;
     /** init() */
     static init(): AUNodeInteraction;
+    readonly $type: {
+        "c:@S@AUNodeInteraction": true;
+    };
 }
 /** struct AUNodeRenderCallback */
 export declare class AUNodeRenderCallback extends SDKHandle {
@@ -2036,6 +2205,9 @@ export declare class AUNodeRenderCallback extends SDKHandle {
     static initDestNodeDestInputNumberCback(destNode: number, destInputNumber: number, cback: AURenderCallbackStruct): AUNodeRenderCallback;
     /** init() */
     static init(): AUNodeRenderCallback;
+    readonly $type: {
+        "c:@S@AUNodeRenderCallback": true;
+    };
 }
 /**
  * class AUParameterNode
@@ -2095,6 +2267,10 @@ export declare class AUParameterNode extends SDKHandle {
      * @availability iOS 9.0+
      */
     get keyPath(): string;
+    readonly $type: {
+        "c:objc(cs)AUParameterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "identifier": true;
@@ -2180,6 +2356,11 @@ export declare class AUParameter extends AUParameter_base {
      * @availability iOS 9.0+
      */
     get valueStrings(): (Array<string>) | null;
+    readonly $type: {
+        "c:objc(cs)AUParameter": true;
+        "c:objc(cs)AUParameterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "identifier": true;
@@ -2218,6 +2399,9 @@ export declare class AUParameterAutomationEvent extends SDKHandle {
     static initHostTimeAddressValueEventTypeReserved(hostTime: number, address: number, value: number, eventType: AUParameterAutomationEventType, reserved: number): AUParameterAutomationEvent;
     /** init() */
     static init(): AUParameterAutomationEvent;
+    readonly $type: {
+        "c:@S@AUParameterAutomationEvent": true;
+    };
 }
 /** enum AUParameterAutomationEventType */
 export type AUParameterAutomationEventType = "value" | "touch" | "release";
@@ -2254,6 +2438,9 @@ export declare class AUParameterEvent extends SDKHandle {
     static initNextEventSampleTimeEventTypeReservedRampDurationSampleFramesParameterAddressValue(next: $SDK75, eventSampleTime: number, eventType: AURenderEventType, reserved: $SDK74, rampDurationSampleFrames: number, parameterAddress: number, value: number): AUParameterEvent;
     /** init() */
     static init(): AUParameterEvent;
+    readonly $type: {
+        "c:@S@AUParameterEvent": true;
+    };
 }
 /** enum AUParameterEventType */
 export type AUParameterEventType = "parameterEvent_Immediate" | "parameterEvent_Ramped";
@@ -2279,6 +2466,11 @@ export declare class AUParameterGroup extends AUParameterGroup_base {
      * @availability iOS 9.0+
      */
     get children(): Array<AUParameterNode>;
+    readonly $type: {
+        "c:objc(cs)AUParameterGroup": true;
+        "c:objc(cs)AUParameterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "identifier": true;
@@ -2327,6 +2519,12 @@ export declare class AUParameterTree extends AUParameterTree_base {
      * @availability iOS 9.0+
      */
     parameterWithIDScopeElement(paramID: number, scope: number, element: number): (AUParameter) | null;
+    readonly $type: {
+        "c:objc(cs)AUParameterTree": true;
+        "c:objc(cs)AUParameterGroup": true;
+        "c:objc(cs)AUParameterNode": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "identifier": true;
@@ -2347,6 +2545,9 @@ export declare class AUPreset extends SDKHandle {
     static initPresetNumberPresetName(presetNumber: number, presetName?: (SDKHandle) | null): AUPreset;
     /** init() */
     static init(): AUPreset;
+    readonly $type: {
+        "c:@S@AUPreset": true;
+    };
 }
 /** struct AUPresetEvent */
 export declare class AUPresetEvent extends SDKHandle {
@@ -2361,6 +2562,9 @@ export declare class AUPresetEvent extends SDKHandle {
     set scope(value: number);
     /** init(scope: AudioUnitScope, element: AudioUnitElement, preset: Unmanaged<CFPropertyList>) */
     static init(scope: number, element: number, preset: SDKHandle): AUPresetEvent;
+    readonly $type: {
+        "c:@S@AUPresetEvent": true;
+    };
 }
 /** struct AURecordedParameterEvent */
 export declare class AURecordedParameterEvent extends SDKHandle {
@@ -2377,6 +2581,9 @@ export declare class AURecordedParameterEvent extends SDKHandle {
     static initHostTimeAddressValue(hostTime: number, address: number, value: number): AURecordedParameterEvent;
     /** init() */
     static init(): AURecordedParameterEvent;
+    readonly $type: {
+        "c:@S@AURecordedParameterEvent": true;
+    };
 }
 /** typealias AURenderBlock = (UnsafeMutablePointer<AudioUnitRenderActionFlags>, UnsafePointer<AudioTimeStamp>, AUAudioFrameCount, Int, UnsafeMutablePointer<AudioBufferList>, AURenderPullInputBlock?) -> AUAudioUnitStatus */
 export type AURenderBlock = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: SDKHandle, arg5: (((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: SDKHandle) => number)) | null) => Promise<number>);
@@ -2389,6 +2596,9 @@ export declare class AURenderCallbackStruct extends SDKHandle {
     set inputProcRefCon(value: (SDKHandle) | null);
     /** init() */
     static init(): AURenderCallbackStruct;
+    readonly $type: {
+        "c:@S@AURenderCallbackStruct": true;
+    };
 }
 /** struct AURenderEvent */
 export declare class AURenderEvent extends SDKHandle {
@@ -2414,6 +2624,9 @@ export declare class AURenderEvent extends SDKHandle {
     static initParameter(parameter: AUParameterEvent): AURenderEvent;
     /** init() */
     static init(): AURenderEvent;
+    readonly $type: {
+        "c:@U@AURenderEvent": true;
+    };
 }
 /** struct AURenderEventHeader */
 export declare class AURenderEventHeader extends SDKHandle {
@@ -2433,6 +2646,9 @@ export declare class AURenderEventHeader extends SDKHandle {
     static initNextEventSampleTimeEventTypeReserved(next: $SDK75, eventSampleTime: number, eventType: AURenderEventType, reserved: number): AURenderEventHeader;
     /** init() */
     static init(): AURenderEventHeader;
+    readonly $type: {
+        "c:@S@AURenderEventHeader": true;
+    };
 }
 /** enum AURenderEventType */
 export type AURenderEventType = "parameter" | "parameterRamp" | "MIDI" | "midiSysEx" | "midiEventList";
@@ -2469,6 +2685,9 @@ export declare class AUSamplerBankPresetData extends SDKHandle {
     set reserved(value: number);
     /** init(bankURL: Unmanaged<CFURL>, bankMSB: UInt8, bankLSB: UInt8, presetID: UInt8, reserved: UInt8) */
     static init(bankURL: SDKHandle, bankMSB: number, bankLSB: number, presetID: number, reserved: number): AUSamplerBankPresetData;
+    readonly $type: {
+        "c:@S@AUSamplerBankPresetData": true;
+    };
 }
 /** struct AUSamplerInstrumentData */
 export declare class AUSamplerInstrumentData extends SDKHandle {
@@ -2489,6 +2708,9 @@ export declare class AUSamplerInstrumentData extends SDKHandle {
     set presetID(value: number);
     /** init(fileURL: Unmanaged<CFURL>, instrumentType: UInt8, bankMSB: UInt8, bankLSB: UInt8, presetID: UInt8) */
     static init(fileURL: SDKHandle, instrumentType: number, bankMSB: number, bankLSB: number, presetID: number): AUSamplerInstrumentData;
+    readonly $type: {
+        "c:@S@AUSamplerInstrumentData": true;
+    };
 }
 /** struct AUScheduledAudioSliceFlags */
 export type AUScheduledAudioSliceFlags = Array<"scheduledAudioSliceFlag_Complete" | "scheduledAudioSliceFlag_BeganToRender" | "scheduledAudioSliceFlag_BeganToRenderLate" | "scheduledAudioSliceFlag_Loop" | "scheduledAudioSliceFlag_Interrupt" | "scheduledAudioSliceFlag_InterruptAtLoop">;
@@ -2574,6 +2796,9 @@ export declare class AUVoiceIOOtherAudioDuckingConfiguration extends SDKHandle {
     static initMEnableAdvancedDuckingMDuckingLevel(mEnableAdvancedDucking: boolean, mDuckingLevel: AUVoiceIOOtherAudioDuckingLevel): AUVoiceIOOtherAudioDuckingConfiguration;
     /** init() */
     static init(): AUVoiceIOOtherAudioDuckingConfiguration;
+    readonly $type: {
+        "c:@S@AUVoiceIOOtherAudioDuckingConfiguration": true;
+    };
 }
 /** enum AUVoiceIOOtherAudioDuckingLevel */
 export type AUVoiceIOOtherAudioDuckingLevel = "default" | "min" | "mid" | "max";
@@ -2608,6 +2833,9 @@ export declare class CABarBeatTime extends SDKHandle {
     static initBarBeatSubbeatSubbeatDivisorReserved(bar: number, beat: number, subbeat: number, subbeatDivisor: number, reserved: number): CABarBeatTime;
     /** init() */
     static init(): CABarBeatTime;
+    readonly $type: {
+        "c:@S@CABarBeatTime": true;
+    };
 }
 /** struct CAF_SMPTE_Time */
 export declare class CAF_SMPTE_Time extends SDKHandle {
@@ -2630,6 +2858,9 @@ export declare class CAF_SMPTE_Time extends SDKHandle {
     static initMHoursMMinutesMSecondsMFramesMSubFrameSampleOffset(mHours: number, mMinutes: number, mSeconds: number, mFrames: number, mSubFrameSampleOffset: number): CAF_SMPTE_Time;
     /** init() */
     static init(): CAF_SMPTE_Time;
+    readonly $type: {
+        "c:@S@CAF_SMPTE_Time": true;
+    };
 }
 /** struct CAF_UUID_ChunkHeader */
 export declare class CAF_UUID_ChunkHeader extends SDKHandle {
@@ -2643,6 +2874,9 @@ export declare class CAF_UUID_ChunkHeader extends SDKHandle {
     static initMHeaderMUUID(mHeader: CAFChunkHeader, mUUID: $SDK91): CAF_UUID_ChunkHeader;
     /** init() */
     static init(): CAF_UUID_ChunkHeader;
+    readonly $type: {
+        "c:@S@CAF_UUID_ChunkHeader": true;
+    };
 }
 /** struct CAFAudioDescription */
 export declare class CAFAudioDescription extends SDKHandle {
@@ -2671,6 +2905,9 @@ export declare class CAFAudioDescription extends SDKHandle {
     static initMSampleRateMFormatIDMFormatFlagsMBytesPerPacketMFramesPerPacketMChannelsPerFrameMBitsPerChannel(mSampleRate: SDKHandle, mFormatID: number, mFormatFlags: CAFFormatFlags, mBytesPerPacket: number, mFramesPerPacket: number, mChannelsPerFrame: number, mBitsPerChannel: number): CAFAudioDescription;
     /** init() */
     static init(): CAFAudioDescription;
+    readonly $type: {
+        "c:@S@CAFAudioDescription": true;
+    };
 }
 /** struct CAFAudioFormatListItem */
 export declare class CAFAudioFormatListItem extends SDKHandle {
@@ -2684,6 +2921,9 @@ export declare class CAFAudioFormatListItem extends SDKHandle {
     static initMFormatMChannelLayoutTag(mFormat: CAFAudioDescription, mChannelLayoutTag: number): CAFAudioFormatListItem;
     /** init() */
     static init(): CAFAudioFormatListItem;
+    readonly $type: {
+        "c:@S@CAFAudioFormatListItem": true;
+    };
 }
 /** struct CAFChunkHeader */
 export declare class CAFChunkHeader extends SDKHandle {
@@ -2697,6 +2937,9 @@ export declare class CAFChunkHeader extends SDKHandle {
     static initMChunkTypeMChunkSize(mChunkType: number, mChunkSize: number): CAFChunkHeader;
     /** init() */
     static init(): CAFChunkHeader;
+    readonly $type: {
+        "c:@S@CAFChunkHeader": true;
+    };
 }
 /** struct CAFDataChunk */
 export declare class CAFDataChunk extends SDKHandle {
@@ -2710,6 +2953,9 @@ export declare class CAFDataChunk extends SDKHandle {
     static initMEditCountMData(mEditCount: number, mData: number): CAFDataChunk;
     /** init() */
     static init(): CAFDataChunk;
+    readonly $type: {
+        "c:@S@CAFDataChunk": true;
+    };
 }
 /** struct CAFFileHeader */
 export declare class CAFFileHeader extends SDKHandle {
@@ -2726,6 +2972,9 @@ export declare class CAFFileHeader extends SDKHandle {
     static initMFileTypeMFileVersionMFileFlags(mFileType: number, mFileVersion: number, mFileFlags: number): CAFFileHeader;
     /** init() */
     static init(): CAFFileHeader;
+    readonly $type: {
+        "c:@S@CAFFileHeader": true;
+    };
 }
 /** struct CAFFormatFlags */
 export type CAFFormatFlags = Array<"linearPCMFormatFlagIsFloat" | "linearPCMFormatFlagIsLittleEndian">;
@@ -2746,6 +2995,9 @@ export declare class CAFInfoStrings extends SDKHandle {
     static initMNumEntries(mNumEntries: number): CAFInfoStrings;
     /** init() */
     static init(): CAFInfoStrings;
+    readonly $type: {
+        "c:@S@CAFInfoStrings": true;
+    };
 }
 /** struct CAFInstrumentChunk */
 export declare class CAFInstrumentChunk extends SDKHandle {
@@ -2783,6 +3035,9 @@ export declare class CAFInstrumentChunk extends SDKHandle {
     static initMBaseNoteMMIDILowNoteMMIDIHighNoteMMIDILowVelocityMMIDIHighVelocityMdBGainMStartRegionIDMSustainRegionIDMReleaseRegionIDMInstrumentID(mBaseNote: SDKHandle, mMIDILowNote: number, mMIDIHighNote: number, mMIDILowVelocity: number, mMIDIHighVelocity: number, mdBGain: SDKHandle, mStartRegionID: number, mSustainRegionID: number, mReleaseRegionID: number, mInstrumentID: number): CAFInstrumentChunk;
     /** init() */
     static init(): CAFInstrumentChunk;
+    readonly $type: {
+        "c:@S@CAFInstrumentChunk": true;
+    };
 }
 /** struct CAFMarker */
 export declare class CAFMarker extends SDKHandle {
@@ -2805,6 +3060,9 @@ export declare class CAFMarker extends SDKHandle {
     static initMTypeMFramePositionMMarkerIDMSMPTETimeMChannel(mType: number, mFramePosition: SDKHandle, mMarkerID: number, mSMPTETime: CAF_SMPTE_Time, mChannel: number): CAFMarker;
     /** init() */
     static init(): CAFMarker;
+    readonly $type: {
+        "c:@S@CAFMarker": true;
+    };
 }
 /** struct CAFMarkerChunk */
 export declare class CAFMarkerChunk extends SDKHandle {
@@ -2821,6 +3079,9 @@ export declare class CAFMarkerChunk extends SDKHandle {
     static initMSMPTE_TimeTypeMNumberMarkersMMarkers(mSMPTE_TimeType: number, mNumberMarkers: number, mMarkers: CAFMarker): CAFMarkerChunk;
     /** init() */
     static init(): CAFMarkerChunk;
+    readonly $type: {
+        "c:@S@CAFMarkerChunk": true;
+    };
 }
 /** struct CAFOverviewChunk */
 export declare class CAFOverviewChunk extends SDKHandle {
@@ -2837,6 +3098,9 @@ export declare class CAFOverviewChunk extends SDKHandle {
     static initMEditCountMNumFramesPerOVWSampleMData(mEditCount: number, mNumFramesPerOVWSample: number, mData: CAFOverviewSample): CAFOverviewChunk;
     /** init() */
     static init(): CAFOverviewChunk;
+    readonly $type: {
+        "c:@S@CAFOverviewChunk": true;
+    };
 }
 /** struct CAFOverviewSample */
 export declare class CAFOverviewSample extends SDKHandle {
@@ -2850,6 +3114,9 @@ export declare class CAFOverviewSample extends SDKHandle {
     static initMMinValueMMaxValue(mMinValue: number, mMaxValue: number): CAFOverviewSample;
     /** init() */
     static init(): CAFOverviewSample;
+    readonly $type: {
+        "c:@S@CAFOverviewSample": true;
+    };
 }
 /** struct CAFPacketTableHeader */
 export declare class CAFPacketTableHeader extends SDKHandle {
@@ -2872,6 +3139,9 @@ export declare class CAFPacketTableHeader extends SDKHandle {
     static initMNumberPacketsMNumberValidFramesMPrimingFramesMRemainderFramesMPacketDescriptions(mNumberPackets: number, mNumberValidFrames: number, mPrimingFrames: number, mRemainderFrames: number, mPacketDescriptions: number): CAFPacketTableHeader;
     /** init() */
     static init(): CAFPacketTableHeader;
+    readonly $type: {
+        "c:@S@CAFPacketTableHeader": true;
+    };
 }
 /** struct CAFPeakChunk */
 export declare class CAFPeakChunk extends SDKHandle {
@@ -2885,6 +3155,9 @@ export declare class CAFPeakChunk extends SDKHandle {
     static initMEditCountMPeaks(mEditCount: number, mPeaks: CAFPositionPeak): CAFPeakChunk;
     /** init() */
     static init(): CAFPeakChunk;
+    readonly $type: {
+        "c:@S@CAFPeakChunk": true;
+    };
 }
 /** struct CAFPositionPeak */
 export declare class CAFPositionPeak extends SDKHandle {
@@ -2898,6 +3171,9 @@ export declare class CAFPositionPeak extends SDKHandle {
     static initMValueMFrameNumber(mValue: SDKHandle, mFrameNumber: number): CAFPositionPeak;
     /** init() */
     static init(): CAFPositionPeak;
+    readonly $type: {
+        "c:@S@CAFPositionPeak": true;
+    };
 }
 /** struct CAFRegion */
 export declare class CAFRegion extends SDKHandle {
@@ -2917,6 +3193,9 @@ export declare class CAFRegion extends SDKHandle {
     static initMRegionIDMFlagsMNumberMarkersMMarkers(mRegionID: number, mFlags: CAFRegionFlags, mNumberMarkers: number, mMarkers: CAFMarker): CAFRegion;
     /** init() */
     static init(): CAFRegion;
+    readonly $type: {
+        "c:@S@CAFRegion": true;
+    };
 }
 /** struct CAFRegionChunk */
 export declare class CAFRegionChunk extends SDKHandle {
@@ -2933,6 +3212,9 @@ export declare class CAFRegionChunk extends SDKHandle {
     static initMSMPTE_TimeTypeMNumberRegionsMRegions(mSMPTE_TimeType: number, mNumberRegions: number, mRegions: CAFRegion): CAFRegionChunk;
     /** init() */
     static init(): CAFRegionChunk;
+    readonly $type: {
+        "c:@S@CAFRegionChunk": true;
+    };
 }
 /** struct CAFRegionFlags */
 export type CAFRegionFlags = Array<"loopEnable" | "playForward" | "playBackward">;
@@ -2958,6 +3240,9 @@ export declare class CAFStringID extends SDKHandle {
     static initMStringIDMStringStartByteOffset(mStringID: number, mStringStartByteOffset: number): CAFStringID;
     /** init() */
     static init(): CAFStringID;
+    readonly $type: {
+        "c:@S@CAFStringID": true;
+    };
 }
 /** struct CAFStrings */
 export declare class CAFStrings extends SDKHandle {
@@ -2971,6 +3256,9 @@ export declare class CAFStrings extends SDKHandle {
     static initMNumEntriesMStringsIDs(mNumEntries: number, mStringsIDs: CAFStringID): CAFStrings;
     /** init() */
     static init(): CAFStrings;
+    readonly $type: {
+        "c:@S@CAFStrings": true;
+    };
 }
 /** struct CAFUMIDChunk */
 export declare class CAFUMIDChunk extends SDKHandle {
@@ -2981,6 +3269,9 @@ export declare class CAFUMIDChunk extends SDKHandle {
     static initMBytes(mBytes: $SDK92): CAFUMIDChunk;
     /** init() */
     static init(): CAFUMIDChunk;
+    readonly $type: {
+        "c:@S@CAFUMIDChunk": true;
+    };
 }
 /** typealias CallHostBlock = ([AnyHashable : Any]) -> [AnyHashable : Any] */
 export type CallHostBlock = ((arg0: NativeMap<unknown, unknown>) => Promise<NativeMap<unknown, unknown>>);
@@ -3008,6 +3299,9 @@ export declare class ExtendedAudioFormatInfo extends SDKHandle {
     static initMASBDMMagicCookieMMagicCookieSizeMClassDescription(mASBD: _CoreAudioTypes_AudioStreamBasicDescription, mMagicCookie: (SDKHandle) | null, mMagicCookieSize: number, mClassDescription: _CoreAudioTypes_AudioClassDescription): ExtendedAudioFormatInfo;
     /** init() */
     static init(): ExtendedAudioFormatInfo;
+    readonly $type: {
+        "c:@S@ExtendedAudioFormatInfo": true;
+    };
 }
 /** struct ExtendedNoteOnEvent */
 export declare class ExtendedNoteOnEvent extends SDKHandle {
@@ -3027,6 +3321,9 @@ export declare class ExtendedNoteOnEvent extends SDKHandle {
     static initInstrumentIDGroupIDDurationExtendedParams(instrumentID: number, groupID: number, duration: SDKHandle, extendedParams: MusicDeviceNoteParams): ExtendedNoteOnEvent;
     /** init() */
     static init(): ExtendedNoteOnEvent;
+    readonly $type: {
+        "c:@S@ExtendedNoteOnEvent": true;
+    };
 }
 /** struct ExtendedTempoEvent */
 export declare class ExtendedTempoEvent extends SDKHandle {
@@ -3037,6 +3334,9 @@ export declare class ExtendedTempoEvent extends SDKHandle {
     static initBpm(bpm: SDKHandle): ExtendedTempoEvent;
     /** init() */
     static init(): ExtendedTempoEvent;
+    readonly $type: {
+        "c:@S@ExtendedTempoEvent": true;
+    };
 }
 /** typealias HostCallback_GetBeatAndTempo = (UnsafeMutableRawPointer?, UnsafeMutablePointer<Float64>?, UnsafeMutablePointer<Float64>?) -> OSStatus */
 export type HostCallback_GetBeatAndTempo = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null) => Promise<number>);
@@ -3061,6 +3361,9 @@ export declare class HostCallbackInfo extends SDKHandle {
     get transportStateProc(): (((arg0: (SDKHandle) | null, arg1: (NativeOut<boolean>) | null, arg2: (NativeOut<boolean>) | null, arg3: (SDKHandle) | null, arg4: (NativeOut<boolean>) | null, arg5: (SDKHandle) | null, arg6: (SDKHandle) | null) => Promise<number>)) | null;
     /** init() */
     static init(): HostCallbackInfo;
+    readonly $type: {
+        "c:@S@HostCallbackInfo": true;
+    };
 }
 /** typealias MagicCookieInfo = AudioCodecMagicCookieInfo */
 export type MagicCookieInfo = AudioCodecMagicCookieInfo;
@@ -3082,6 +3385,9 @@ export declare class MIDIChannelMessage extends SDKHandle {
     static initStatusData1Data2Reserved(status: number, data1: number, data2: number, reserved: number): MIDIChannelMessage;
     /** init() */
     static init(): MIDIChannelMessage;
+    readonly $type: {
+        "c:@S@MIDIChannelMessage": true;
+    };
 }
 /** struct MIDIMetaEvent */
 export declare class MIDIMetaEvent extends SDKHandle {
@@ -3107,6 +3413,9 @@ export declare class MIDIMetaEvent extends SDKHandle {
     static initMetaEventTypeUnused1Unused2Unused3DataLengthData(metaEventType: number, unused1: number, unused2: number, unused3: number, dataLength: number, data: number): MIDIMetaEvent;
     /** init() */
     static init(): MIDIMetaEvent;
+    readonly $type: {
+        "c:@S@MIDIMetaEvent": true;
+    };
 }
 /** struct MIDINoteMessage */
 export declare class MIDINoteMessage extends SDKHandle {
@@ -3129,6 +3438,9 @@ export declare class MIDINoteMessage extends SDKHandle {
     static initChannelNoteVelocityReleaseVelocityDuration(channel: number, note: number, velocity: number, releaseVelocity: number, duration: SDKHandle): MIDINoteMessage;
     /** init() */
     static init(): MIDINoteMessage;
+    readonly $type: {
+        "c:@S@MIDINoteMessage": true;
+    };
 }
 /** struct MIDIRawData */
 export declare class MIDIRawData extends SDKHandle {
@@ -3142,6 +3454,9 @@ export declare class MIDIRawData extends SDKHandle {
     static initLengthData(length: number, data: number): MIDIRawData;
     /** init() */
     static init(): MIDIRawData;
+    readonly $type: {
+        "c:@S@MIDIRawData": true;
+    };
 }
 /** struct MixerDistanceParams */
 export declare class MixerDistanceParams extends SDKHandle {
@@ -3158,6 +3473,9 @@ export declare class MixerDistanceParams extends SDKHandle {
     static initMReferenceDistanceMMaxDistanceMMaxAttenuation(mReferenceDistance: SDKHandle, mMaxDistance: SDKHandle, mMaxAttenuation: SDKHandle): MixerDistanceParams;
     /** init() */
     static init(): MixerDistanceParams;
+    readonly $type: {
+        "c:@S@MixerDistanceParams": true;
+    };
 }
 /** typealias MusicDeviceComponent = AudioComponentInstance */
 export type MusicDeviceComponent = SDKHandle;
@@ -3185,6 +3503,9 @@ export declare class MusicDeviceNoteParams extends SDKHandle {
     static initArgCountMPitchMVelocityMControls(argCount: number, mPitch: SDKHandle, mVelocity: SDKHandle, mControls: NoteParamsControlValue): MusicDeviceNoteParams;
     /** init() */
     static init(): MusicDeviceNoteParams;
+    readonly $type: {
+        "c:@S@MusicDeviceNoteParams": true;
+    };
 }
 /** typealias MusicDeviceStartNoteProc = (UnsafeMutableRawPointer, MusicDeviceInstrumentID, MusicDeviceGroupID, UnsafeMutablePointer<NoteInstanceID>, UInt32, UnsafePointer<MusicDeviceNoteParams>) -> OSStatus */
 export type MusicDeviceStartNoteProc = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: SDKHandle, arg4: number, arg5: SDKHandle) => Promise<number>);
@@ -3203,6 +3524,9 @@ export declare class MusicDeviceStdNoteParams extends SDKHandle {
     static initArgCountMPitchMVelocity(argCount: number, mPitch: SDKHandle, mVelocity: SDKHandle): MusicDeviceStdNoteParams;
     /** init() */
     static init(): MusicDeviceStdNoteParams;
+    readonly $type: {
+        "c:@S@MusicDeviceStdNoteParams": true;
+    };
 }
 /** typealias MusicDeviceStopNoteProc = (UnsafeMutableRawPointer, MusicDeviceGroupID, NoteInstanceID, UInt32) -> OSStatus */
 export type MusicDeviceStopNoteProc = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: number) => Promise<number>);
@@ -3224,6 +3548,9 @@ export declare class MusicEventUserData extends SDKHandle {
     static initLengthData(length: number, data: number): MusicEventUserData;
     /** init() */
     static init(): MusicEventUserData;
+    readonly $type: {
+        "c:@S@MusicEventUserData": true;
+    };
 }
 /** typealias MusicPlayer = OpaquePointer */
 export type MusicPlayer = SDKHandle;
@@ -3277,6 +3604,9 @@ export declare class MusicTrackLoopInfo extends SDKHandle {
     static initLoopDurationNumberOfLoops(loopDuration: SDKHandle, numberOfLoops: number): MusicTrackLoopInfo;
     /** init() */
     static init(): MusicTrackLoopInfo;
+    readonly $type: {
+        "c:@S@MusicTrackLoopInfo": true;
+    };
 }
 /** typealias NoteInstanceID = UInt32 */
 export type NoteInstanceID = number;
@@ -3292,6 +3622,9 @@ export declare class NoteParamsControlValue extends SDKHandle {
     static initMIDMValue(mID: number, mValue: SDKHandle): NoteParamsControlValue;
     /** init() */
     static init(): NoteParamsControlValue;
+    readonly $type: {
+        "c:@S@NoteParamsControlValue": true;
+    };
 }
 /** struct ParameterEvent */
 export declare class ParameterEvent extends SDKHandle {
@@ -3311,6 +3644,9 @@ export declare class ParameterEvent extends SDKHandle {
     static initParameterIDScopeElementValue(parameterID: number, scope: number, element: number, value: SDKHandle): ParameterEvent;
     /** init() */
     static init(): ParameterEvent;
+    readonly $type: {
+        "c:@S@ParameterEvent": true;
+    };
 }
 /** struct ScheduledAudioFileRegion */
 export declare class ScheduledAudioFileRegion extends SDKHandle {
@@ -3334,6 +3670,9 @@ export declare class ScheduledAudioFileRegion extends SDKHandle {
     /** var mTimeStamp: AudioTimeStamp */
     get mTimeStamp(): _CoreAudioTypes_AudioTimeStamp;
     set mTimeStamp(value: _CoreAudioTypes_AudioTimeStamp);
+    readonly $type: {
+        "c:@S@ScheduledAudioFileRegion": true;
+    };
 }
 /** typealias ScheduledAudioFileRegionCompletionProc = (UnsafeMutableRawPointer?, UnsafeMutablePointer<ScheduledAudioFileRegion>, OSStatus) -> Void */
 export type ScheduledAudioFileRegionCompletionProc = $SDK34;
@@ -3362,6 +3701,9 @@ export declare class ScheduledAudioSlice extends SDKHandle {
     /** var mTimeStamp: AudioTimeStamp */
     get mTimeStamp(): _CoreAudioTypes_AudioTimeStamp;
     set mTimeStamp(value: _CoreAudioTypes_AudioTimeStamp);
+    readonly $type: {
+        "c:@S@ScheduledAudioSlice": true;
+    };
 }
 /** typealias ScheduledAudioSliceCompletionProc = (UnsafeMutableRawPointer?, UnsafeMutablePointer<ScheduledAudioSlice>) -> Void */
 export type ScheduledAudioSliceCompletionProc = ((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>);
@@ -4224,7 +4566,7 @@ export declare function AudioServicesSetProperty(inPropertyID: number, inSpecifi
  * func AudioUnitExtensionCopyComponentList(_ extensionIdentifier: CFString) -> Unmanaged<CFArray>?
  * @availability iOS 11.0+
  */
-export declare function AudioUnitExtensionCopyComponentList(extensionIdentifier: _CoreFoundation_CFString): (SDKHandle) | null;
+export declare function AudioUnitExtensionCopyComponentList(extensionIdentifier: _CoreFoundation_CFString): (_CoreFoundation_CFArray) | null;
 /**
  * func AudioUnitExtensionSetComponentList(_ extensionIdentifier: CFString, _ audioComponentInfo: CFArray?) -> OSStatus
  * @availability iOS 11.0+

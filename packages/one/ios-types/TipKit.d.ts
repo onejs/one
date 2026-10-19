@@ -23,6 +23,9 @@ type $SDK14 = (_SwiftUICore_Binding<boolean>) | null;
  * @availability iOS 17.0+
  */
 export declare class AnyTip extends SDKHandle {
+    readonly $type: {
+        "s:6TipKit03AnyA0V": true;
+    };
 }
 /**
  * typealias Action = Tips.Action
@@ -79,6 +82,9 @@ export type AnyTip_Status = Tips_Status;
  * @availability iOS 17.0+
  */
 export declare class MiniTipViewStyle extends SDKHandle {
+    readonly $type: {
+        "s:6TipKit04MiniA9ViewStyleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -151,6 +157,9 @@ export declare class TipGroup extends SDKHandle {
      * @availability iOS 18.0+
      */
     get currentTipUpdates(): SDKHandle;
+    readonly $type: {
+        "s:6TipKit0A5GroupC": true;
+    };
     readonly $observable: {
         "currentTipUpdates": true;
     };
@@ -190,6 +199,9 @@ export declare class TipKitError extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get missingGroupContainerEntitlements(): TipKitError;
+    readonly $type: {
+        "s:6TipKit0aB5ErrorV": true;
+    };
 }
 /**
  * protocol TipOption : Sendable
@@ -222,6 +234,9 @@ export declare class Tips extends SDKHandle {
      * @availability iOS 17.0+
      */
     static configure(configuration?: Array<Tips_ConfigurationOption>): void;
+    readonly $type: {
+        "s:6TipKit4TipsO": true;
+    };
 }
 /**
  * struct Action
@@ -253,6 +268,9 @@ export declare class Tips_Action extends SDKHandle {
      * @availability iOS 17.0+
      */
     get handler(): Promise<(() => Promise<void>)>;
+    readonly $type: {
+        "s:6TipKit4TipsO6ActionV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -279,6 +297,9 @@ export declare class Tips_ConfigurationOption extends SDKHandle {
      * @availability iOS 17.0+
      */
     static datastoreLocation(storeLocation: Tips_ConfigurationOption_DatastoreLocation): Tips_ConfigurationOption;
+    readonly $type: {
+        "s:6TipKit4TipsO19ConfigurationOptionV": true;
+    };
 }
 /**
  * struct CloudKitContainer
@@ -295,6 +316,9 @@ export declare class Tips_ConfigurationOption_CloudKitContainer extends SDKHandl
      * @availability iOS 18.0+
      */
     static get automatic(): Tips_ConfigurationOption_CloudKitContainer;
+    readonly $type: {
+        "s:6TipKit4TipsO19ConfigurationOptionV05CloudB9ContainerV": true;
+    };
 }
 /**
  * struct DatastoreLocation
@@ -316,6 +340,9 @@ export declare class Tips_ConfigurationOption_DatastoreLocation extends SDKHandl
      * @availability iOS 17.0+
      */
     static url(url: string): Tips_ConfigurationOption_DatastoreLocation;
+    readonly $type: {
+        "s:6TipKit4TipsO19ConfigurationOptionV17DatastoreLocationV": true;
+    };
 }
 /**
  * struct DisplayFrequency
@@ -347,6 +374,9 @@ export declare class Tips_ConfigurationOption_DisplayFrequency extends SDKHandle
      * @availability iOS 17.0+
      */
     static get immediate(): Tips_ConfigurationOption_DisplayFrequency;
+    readonly $type: {
+        "s:6TipKit4TipsO19ConfigurationOptionV16DisplayFrequencyV": true;
+    };
 }
 /**
  * struct DonationLimit
@@ -368,6 +398,9 @@ export declare class Tips_DonationLimit extends SDKHandle {
      * @availability iOS 26.0+
      */
     get maximumCount(): number;
+    readonly $type: {
+        "s:6TipKit4TipsO13DonationLimitV": true;
+    };
 }
 /**
  * struct DonationTimeRange
@@ -414,12 +447,18 @@ export declare class Tips_DonationTimeRange extends SDKHandle {
      * @availability iOS 17.0+
      */
     static minutes(value: number): Tips_DonationTimeRange;
+    readonly $type: {
+        "s:6TipKit4TipsO17DonationTimeRangeV": true;
+    };
 }
 /**
  * struct EmptyDonation
  * @availability iOS 17.0+
  */
 export declare class Tips_EmptyDonation extends SDKHandle {
+    readonly $type: {
+        "s:6TipKit4TipsO13EmptyDonationV": true;
+    };
 }
 /**
  * struct Event<DonationInfo> where DonationInfo : Decodable, DonationInfo : Encodable, DonationInfo : Sendable
@@ -476,6 +515,9 @@ export declare class Tips_Event<DonationInfo = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     get donations(): Array<Tips_Event_Donation<number>>;
+    readonly $type: {
+        "s:6TipKit4TipsO5EventV": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct Donation
@@ -492,6 +534,9 @@ export declare class Tips_Event_Donation<DonationInfo = unknown> extends SDKHand
      * @availability iOS 17.0+
      */
     get date(): globalThis.Date;
+    readonly $type: {
+        "s:6TipKit4TipsO5EventV8DonationV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -513,6 +558,9 @@ export declare class Tips_IgnoresDisplayFrequency extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(ignoresDisplayFrequency: boolean): Tips_IgnoresDisplayFrequency;
+    readonly $type: {
+        "s:6TipKit4TipsO23IgnoresDisplayFrequencyV": true;
+    };
 }
 /**
  * enum InvalidationReason
@@ -529,6 +577,9 @@ export declare class Tips_MaxDisplayCount extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(maxDisplayCount: number): Tips_MaxDisplayCount;
+    readonly $type: {
+        "s:6TipKit4TipsO15MaxDisplayCountV": true;
+    };
 }
 /**
  * struct MaxDisplayDuration
@@ -540,12 +591,18 @@ export declare class Tips_MaxDisplayDuration extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(maxDisplayDuration: number): Tips_MaxDisplayDuration;
+    readonly $type: {
+        "s:6TipKit4TipsO18MaxDisplayDurationV": true;
+    };
 }
 /**
  * struct Parameter<Value> where Value : Decodable, Value : Encodable, Value : Sendable
  * @availability iOS 17.0+
  */
 export declare class Tips_Parameter<Value = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6TipKit4TipsO9ParameterV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -567,12 +624,18 @@ export declare class Tips_ParameterOption extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get transient(): Tips_ParameterOption;
+    readonly $type: {
+        "s:6TipKit4TipsO15ParameterOptionV": true;
+    };
 }
 /**
  * struct Rule
  * @availability iOS 17.0+
  */
 export declare class Tips_Rule extends SDKHandle {
+    readonly $type: {
+        "s:6TipKit4TipsO4RuleV": true;
+    };
 }
 /**
  * enum CompoundOperation
@@ -584,6 +647,9 @@ export type Tips_Rule_CompoundOperation = "disjunction" | "conjunction";
  * @availability iOS 17.0+
  */
 export declare class Tips_Status extends SDKHandle {
+    readonly $type: {
+        "s:6TipKit4TipsO6StatusO": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency final class TipUICollectionReusableView
@@ -617,6 +683,13 @@ export declare class TipUICollectionReusableView extends SDKHandle {
      */
     get imageSize(): Promise<$SDK9>;
     setImageSize(value: $SDK9): Promise<void>;
+    readonly $type: {
+        "c:@M@TipKit@objc(cs)TipUICollectionReusableView": true;
+        "c:objc(cs)UICollectionReusableView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency final class TipUICollectionViewCell
@@ -656,6 +729,14 @@ export declare class TipUICollectionViewCell extends SDKHandle {
      */
     get imageSize(): Promise<$SDK9>;
     setImageSize(value: $SDK9): Promise<void>;
+    readonly $type: {
+        "c:@M@TipKit@objc(cs)TipUICollectionViewCell": true;
+        "c:objc(cs)UICollectionViewCell": true;
+        "c:objc(cs)UICollectionReusableView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency final class TipUIPopoverViewController
@@ -701,6 +782,12 @@ export declare class TipUIPopoverViewController extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initSourceItemActionHandler(tip: SDKHandle, sourceItem: Implements<_UIKit_UIPopoverPresentationControllerSourceItem> | SDKHandle, actionHandler?: $SDK8): Promise<TipUIPopoverViewController>;
+    readonly $type: {
+        "c:@M@TipKit@objc(cs)TipUIPopoverViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency final class TipUIView
@@ -730,6 +817,12 @@ export declare class TipUIView extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(tip: SDKHandle, arrowEdge?: $SDK7, actionHandler?: $SDK8): Promise<TipUIView>;
+    readonly $type: {
+        "c:@M@TipKit@objc(cs)TipUIView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct TipView<Content> where Content : Tip
@@ -751,6 +844,9 @@ export declare class TipView<Content = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initArrowEdgeAction(tip?: (SDKHandle) | null, arrowEdge?: $SDK7, action?: $SDK8): Promise<TipView<AnyTip>>;
+    readonly $type: {
+        "s:6TipKit0A4ViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -803,5 +899,8 @@ export declare class TipViewStyleConfiguration extends SDKHandle {
      * @availability iOS 17.0+
      */
     get message(): Promise<(_SwiftUICore_Text) | null>;
+    readonly $type: {
+        "s:6TipKit0A22ViewStyleConfigurationV": true;
+    };
 }
 export {};

@@ -52,6 +52,9 @@ export declare class BufferedAsyncByteIterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(number) | null>;
+    readonly $type: {
+        "s:9HealthKit25BufferedAsyncByteIteratorV": true;
+    };
 }
 /**
  * typealias Element = UInt8
@@ -82,6 +85,10 @@ export declare class HKActivityMoveModeObject extends SDKHandle {
      * @availability iOS 14.0+
      */
     get activityMoveMode(): HKActivityMoveMode;
+    readonly $type: {
+        "c:objc(cs)HKActivityMoveModeObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activityMoveMode": true;
     };
@@ -172,6 +179,10 @@ export declare class HKActivitySummary extends SDKHandle {
      */
     get standHoursGoal(): (HKQuantity) | null;
     set standHoursGoal(value: (HKQuantity) | null);
+    readonly $type: {
+        "c:objc(cs)HKActivitySummary": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activeEnergyBurned": true;
         "activeEnergyBurnedGoal": true;
@@ -437,6 +448,10 @@ export declare class HKQuery extends SDKHandle {
      * @deprecated iOS 9.3
      */
     get sampleType(): (HKSampleType) | null;
+    readonly $type: {
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -450,6 +465,11 @@ export declare class HKActivitySummaryQuery extends HKQuery {
     /** var updateHandler: (@Sendable (HKActivitySummaryQuery, [HKActivitySummary]?, (any Error)?) -> Void)? { get set } */
     get updateHandler(): (((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => Promise<void>)) | null;
     set updateHandler(value: (((arg0: HKActivitySummaryQuery, arg1: (Array<HKActivitySummary>) | null, arg2: (NativeError) | null) => void)) | null);
+    readonly $type: {
+        "c:objc(cs)HKActivitySummaryQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -482,6 +502,9 @@ export declare class HKActivitySummaryQueryDescriptor extends SDKHandle {
      */
     get predicate(): $SDK4;
     set predicate(value: $SDK4);
+    readonly $type: {
+        "s:9HealthKit32HKActivitySummaryQueryDescriptorV": true;
+    };
 }
 /**
  * typealias Output = [HKActivitySummary]
@@ -498,6 +521,9 @@ export declare class HKActivitySummaryQueryDescriptor_Results extends SDKHandle 
      * @availability iOS 15.4+
      */
     makeAsyncIterator(): HKActivitySummaryQueryDescriptor_Results_Iterator;
+    readonly $type: {
+        "s:9HealthKit32HKActivitySummaryQueryDescriptorV7ResultsV": true;
+    };
     readonly $element: $SDK8;
 }
 /**
@@ -520,6 +546,9 @@ export declare class HKActivitySummaryQueryDescriptor_Results_Iterator extends S
      * @availability iOS 15.4+
      */
     next(): Promise<(Array<HKActivitySummary>) | null>;
+    readonly $type: {
+        "s:9HealthKit32HKActivitySummaryQueryDescriptorV7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = HKActivitySummaryQueryDescriptor.Results.Element
@@ -627,6 +656,10 @@ export declare class HKObjectType extends SDKHandle {
      * @availability iOS 8.0+
      */
     get identifier(): string;
+    readonly $type: {
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -636,6 +669,11 @@ export declare class HKObjectType extends SDKHandle {
  * @availability iOS 9.3+
  */
 export declare class HKActivitySummaryType extends HKObjectType {
+    readonly $type: {
+        "c:objc(cs)HKActivitySummaryType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -664,6 +702,11 @@ export declare class HKAnchoredObjectQuery extends HKQuery {
      */
     get updateHandler(): (((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: (Array<HKDeletedObject>) | null, arg3: (HKQueryAnchor) | null, arg4: (NativeError) | null) => Promise<void>)) | null;
     set updateHandler(value: (((arg0: HKAnchoredObjectQuery, arg1: (Array<HKSample>) | null, arg2: (Array<HKDeletedObject>) | null, arg3: (HKQueryAnchor) | null, arg4: (NativeError) | null) => void)) | null);
+    readonly $type: {
+        "c:objc(cs)HKAnchoredObjectQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -708,6 +751,9 @@ export declare class HKAnchoredObjectQueryDescriptor<Sample = unknown> extends S
      * @availability iOS 15.4+
      */
     results(healthStore: HKHealthStore): HKAnchoredObjectQueryDescriptor_Results<HKSample>;
+    readonly $type: {
+        "s:9HealthKit31HKAnchoredObjectQueryDescriptorV": true;
+    };
 }
 /**
  * typealias Output = HKAnchoredObjectQueryDescriptor<Sample>.Result
@@ -734,6 +780,9 @@ export declare class HKAnchoredObjectQueryDescriptor_Result<Sample = unknown> ex
      * @availability iOS 15.4+
      */
     get newAnchor(): HKQueryAnchor;
+    readonly $type: {
+        "s:9HealthKit31HKAnchoredObjectQueryDescriptorV6ResultV": true;
+    };
 }
 /**
  * struct Results
@@ -745,6 +794,9 @@ export declare class HKAnchoredObjectQueryDescriptor_Results<Sample = unknown> e
      * @availability iOS 15.4+
      */
     makeAsyncIterator(): HKAnchoredObjectQueryDescriptor_Results_Iterator<HKSample>;
+    readonly $type: {
+        "s:9HealthKit31HKAnchoredObjectQueryDescriptorV7ResultsV": true;
+    };
     readonly $element: $SDK21;
 }
 /**
@@ -767,6 +819,9 @@ export declare class HKAnchoredObjectQueryDescriptor_Results_Iterator<Sample = u
      * @availability iOS 15.4+
      */
     next(): Promise<(HKAnchoredObjectQueryDescriptor_Result<HKSample>) | null>;
+    readonly $type: {
+        "s:9HealthKit31HKAnchoredObjectQueryDescriptorV7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = HKAnchoredObjectQueryDescriptor<Sample>.Results.Element
@@ -916,6 +971,10 @@ export declare class HKAttachment extends SDKHandle {
      * @availability iOS 16.0+
      */
     get size(): number;
+    readonly $type: {
+        "c:objc(cs)HKAttachment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentType": true;
         "creationDate": true;
@@ -935,6 +994,9 @@ export declare class HKAttachment_AsyncBytes extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): BufferedAsyncByteIterator;
+    readonly $type: {
+        "s:So12HKAttachmentC9HealthKitE10AsyncBytesV": true;
+    };
     readonly $element: number;
 }
 /**
@@ -972,6 +1034,9 @@ export declare class HKAttachmentDataReader extends SDKHandle {
      * @availability iOS 16.0+
      */
     get progress(): _Foundation_Progress;
+    readonly $type: {
+        "s:9HealthKit22HKAttachmentDataReaderC": true;
+    };
 }
 /**
  * class HKAttachmentStore
@@ -988,13 +1053,11 @@ export declare class HKAttachmentStore extends SDKHandle {
      * @availability iOS 16.0+
      */
     getData(attachment: HKAttachment, completion: ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void)): _Foundation_Progress;
-    /** init() */
-    static init(): HKAttachmentStore;
     /**
      * init(healthStore: HKHealthStore)
      * @availability iOS 16.0+
      */
-    static initHealthStore(healthStore: HKHealthStore): HKAttachmentStore;
+    static init(healthStore: HKHealthStore): HKAttachmentStore;
     /**
      * func removeAttachment(_ attachment: HKAttachment, from object: HKObject) async throws
      * @availability iOS 16.0+
@@ -1020,6 +1083,10 @@ export declare class HKAttachmentStore extends SDKHandle {
      * @availability iOS 16.0+
      */
     addAttachmentToNameContentTypeUrlMetadata(object: HKObject, name: string, contentType: _UniformTypeIdentifiers_UTType, url: string, metadata?: Record<string, unknown>): Promise<HKAttachment>;
+    readonly $type: {
+        "c:objc(cs)HKAttachmentStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum HKAudiogramConductionType
@@ -1064,6 +1131,10 @@ export declare class HKObject extends SDKHandle {
      * @availability iOS 9.0+
      */
     get sourceRevision(): HKSourceRevision;
+    readonly $type: {
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -1097,6 +1168,11 @@ export declare class HKSample extends HKObject {
      * @availability iOS 8.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -1130,6 +1206,12 @@ export declare class HKAudiogramSample extends HKSample {
      * @availability iOS 13.0+
      */
     get sensitivityPoints(): $SDK34;
+    readonly $type: {
+        "c:objc(cs)HKAudiogramSample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -1173,6 +1255,11 @@ export declare class HKSampleType extends HKObjectType {
      * @availability iOS 13.0+
      */
     get minimumAllowedDuration(): number;
+    readonly $type: {
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -1187,6 +1274,12 @@ export declare class HKSampleType extends HKObjectType {
  * @availability iOS 13.0+
  */
 export declare class HKAudiogramSampleType extends HKSampleType {
+    readonly $type: {
+        "c:objc(cs)HKAudiogramSampleType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -1234,6 +1327,10 @@ export declare class HKAudiogramSensitivityPoint extends SDKHandle {
      * @availability iOS 18.1+
      */
     get tests(): $SDK35;
+    readonly $type: {
+        "c:objc(cs)HKAudiogramSensitivityPoint": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frequency": true;
         "leftEarSensitivity": true;
@@ -1261,6 +1358,10 @@ export declare class HKAudiogramSensitivityPointClampingRange extends SDKHandle 
      * @availability iOS 18.1+
      */
     get upperBound(): (HKQuantity) | null;
+    readonly $type: {
+        "c:objc(cs)HKAudiogramSensitivityPointClampingRange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "lowerBound": true;
         "upperBound": true;
@@ -1301,6 +1402,10 @@ export declare class HKAudiogramSensitivityTest extends SDKHandle {
      * @availability iOS 18.1+
      */
     get type(): HKAudiogramConductionType;
+    readonly $type: {
+        "c:objc(cs)HKAudiogramSensitivityTest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "clampingRange": true;
         "masked": true;
@@ -1369,6 +1474,10 @@ export declare class HKBiologicalSexObject extends SDKHandle {
      * @availability iOS 8.0+
      */
     get biologicalSex(): HKBiologicalSex;
+    readonly $type: {
+        "c:objc(cs)HKBiologicalSexObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "biologicalSex": true;
     };
@@ -1409,6 +1518,10 @@ export declare class HKBloodTypeObject extends SDKHandle {
      * @availability iOS 8.0+
      */
     get bloodType(): HKBloodType;
+    readonly $type: {
+        "c:objc(cs)HKBloodTypeObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bloodType": true;
     };
@@ -1455,6 +1568,12 @@ export declare class HKCategorySample extends HKSample {
      * @availability iOS 8.0+
      */
     get value(): number;
+    readonly $type: {
+        "c:objc(cs)HKCategorySample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -1479,6 +1598,12 @@ export declare class HKCategoryType extends HKSampleType {
      * @availability iOS 15.0+
      */
     static init(identifier: HKCategoryTypeIdentifier): HKCategoryType;
+    readonly $type: {
+        "c:objc(cs)HKCategoryType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -2142,6 +2267,10 @@ export declare class HKCDADocument extends SDKHandle {
      * @availability iOS 10.0+
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)HKCDADocument": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorName": true;
         "custodianName": true;
@@ -2160,6 +2289,12 @@ export declare class HKDocumentSample extends HKSample {
      * @availability iOS 10.0+
      */
     get documentType(): HKDocumentType;
+    readonly $type: {
+        "c:objc(cs)HKDocumentSample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2188,6 +2323,13 @@ export declare class HKCDADocumentSample extends HKDocumentSample {
      * @availability iOS 10.0+
      */
     get document(): (HKCDADocument) | null;
+    readonly $type: {
+        "c:objc(cs)HKCDADocumentSample": true;
+        "c:objc(cs)HKDocumentSample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2212,6 +2354,11 @@ export declare class HKCharacteristicType extends HKObjectType {
      * @availability iOS 15.0+
      */
     static init(identifier: HKCharacteristicTypeIdentifier): HKCharacteristicType;
+    readonly $type: {
+        "c:objc(cs)HKCharacteristicType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -2277,6 +2424,10 @@ export declare class HKClinicalCoding extends SDKHandle {
      * @availability iOS 26.0+
      */
     get version(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)HKClinicalCoding": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "code": true;
         "system": true;
@@ -2303,6 +2454,12 @@ export declare class HKClinicalRecord extends HKSample {
      * @availability iOS 12.0+
      */
     get displayName(): string;
+    readonly $type: {
+        "c:objc(cs)HKClinicalRecord": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2328,6 +2485,12 @@ export declare class HKClinicalType extends HKSampleType {
      * @availability iOS 15.0+
      */
     static init(identifier: HKClinicalTypeIdentifier): HKClinicalType;
+    readonly $type: {
+        "c:objc(cs)HKClinicalType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -2419,6 +2582,10 @@ export declare class HKLensSpecification extends SDKHandle {
      * @availability iOS 16.0+
      */
     get sphere(): HKQuantity;
+    readonly $type: {
+        "c:objc(cs)HKLensSpecification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addPower": true;
         "axis": true;
@@ -2446,6 +2613,11 @@ export declare class HKContactsLensSpecification extends HKLensSpecification {
      * @availability iOS 16.0+
      */
     get diameter(): (HKQuantity) | null;
+    readonly $type: {
+        "c:objc(cs)HKContactsLensSpecification": true;
+        "c:objc(cs)HKLensSpecification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addPower": true;
         "axis": true;
@@ -2480,6 +2652,12 @@ export declare class HKVisionPrescription extends HKSample {
      * @availability iOS 16.0+
      */
     get prescriptionType(): HKVisionPrescriptionType;
+    readonly $type: {
+        "c:objc(cs)HKVisionPrescription": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2521,6 +2699,13 @@ export declare class HKContactsPrescription extends HKContactsPrescription_base 
      * @availability iOS 16.0+
      */
     get rightEye(): $SDK39;
+    readonly $type: {
+        "c:objc(cs)HKContactsPrescription": true;
+        "c:objc(cs)HKVisionPrescription": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2574,6 +2759,12 @@ export declare class HKCorrelation extends HKSample {
      * @availability iOS 8.0+
      */
     get objects(): Array<HKSample>;
+    readonly $type: {
+        "c:objc(cs)HKCorrelation": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2608,6 +2799,11 @@ export declare class HKCorrelationQuery extends HKQuery {
      * @availability iOS 8.0+
      */
     get samplePredicates(): $SDK40;
+    readonly $type: {
+        "c:objc(cs)HKCorrelationQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -2626,6 +2822,12 @@ export declare class HKCorrelationType extends HKSampleType {
      * @availability iOS 15.0+
      */
     static init(identifier: HKCorrelationTypeIdentifier): HKCorrelationType;
+    readonly $type: {
+        "c:objc(cs)HKCorrelationType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -2686,6 +2888,12 @@ export declare class HKQuantitySample extends HKSample {
      * @availability iOS 8.0+
      */
     get quantityType(): HKQuantityType;
+    readonly $type: {
+        "c:objc(cs)HKQuantitySample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2711,6 +2919,13 @@ export declare class HKCumulativeQuantitySample extends HKQuantitySample {
      * @availability iOS 13.0+
      */
     get sumQuantity(): HKQuantity;
+    readonly $type: {
+        "c:objc(cs)HKCumulativeQuantitySample": true;
+        "c:objc(cs)HKQuantitySample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2739,6 +2954,14 @@ export declare class HKCumulativeQuantitySeriesSample extends HKCumulativeQuanti
      * @deprecated iOS 13.0
      */
     get sum(): HKQuantity;
+    readonly $type: {
+        "c:objc(cs)HKCumulativeQuantitySeriesSample": true;
+        "c:objc(cs)HKCumulativeQuantitySample": true;
+        "c:objc(cs)HKQuantitySample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2783,6 +3006,10 @@ export declare class HKDeletedObject extends SDKHandle {
      * @availability iOS 11.0+
      */
     get metadata(): $SDK28;
+    readonly $type: {
+        "c:objc(cs)HKDeletedObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "metadata": true;
@@ -2843,6 +3070,10 @@ export declare class HKDevice extends SDKHandle {
      * @availability iOS 9.0+
      */
     get softwareVersion(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)HKDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "udiDeviceIdentifier": true;
         "firmwareVersion": true;
@@ -2896,6 +3127,13 @@ export declare class HKDiscreteQuantitySample extends HKQuantitySample {
      * @availability iOS 13.0+
      */
     get mostRecentQuantityDateInterval(): _Foundation_DateInterval;
+    readonly $type: {
+        "c:objc(cs)HKDiscreteQuantitySample": true;
+        "c:objc(cs)HKQuantitySample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -2941,6 +3179,11 @@ export declare class HKDocumentQuery extends HKQuery {
      * @availability iOS 10.0+
      */
     get sortDescriptors(): $SDK42;
+    readonly $type: {
+        "c:objc(cs)HKDocumentQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -2960,6 +3203,12 @@ export declare class HKDocumentType extends HKSampleType {
      * @availability iOS 15.0+
      */
     static init(identifier: HKDocumentTypeIdentifier): HKDocumentType;
+    readonly $type: {
+        "c:objc(cs)HKDocumentType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -3010,6 +3259,12 @@ export declare class HKElectrocardiogram extends HKSample {
      * @availability iOS 14.0+
      */
     get symptomsStatus(): HKElectrocardiogram_SymptomsStatus;
+    readonly $type: {
+        "c:objc(cs)HKElectrocardiogram": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -3080,6 +3335,10 @@ export declare class HKElectrocardiogram_VoltageMeasurement extends SDKHandle {
      * @availability iOS 14.0+
      */
     get timeSinceSampleStart(): number;
+    readonly $type: {
+        "c:objc(cs)HKElectrocardiogramVoltageMeasurement": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timeSinceSampleStart": true;
     };
@@ -3093,6 +3352,11 @@ export declare class HKElectrocardiogramQuery extends HKQuery {
      * @availability iOS 14.0+
      */
     static initDataHandler(ecg: HKElectrocardiogram, dataHandler: ((arg0: HKElectrocardiogramQuery, arg1: HKElectrocardiogramQuery_Result) => void)): HKElectrocardiogramQuery;
+    readonly $type: {
+        "c:objc(cs)HKElectrocardiogramQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -3104,6 +3368,9 @@ export declare class HKElectrocardiogramQuery extends HKQuery {
  * @availability iOS 14.0+
  */
 export declare class HKElectrocardiogramQuery_Result extends SDKHandle {
+    readonly $type: {
+        "s:So24HKElectrocardiogramQueryC9HealthKitE6ResultO": true;
+    };
 }
 /**
  * struct HKElectrocardiogramQueryDescriptor
@@ -3126,6 +3393,9 @@ export declare class HKElectrocardiogramQueryDescriptor extends SDKHandle {
      * @availability iOS 15.4+
      */
     static init(electrocardiogram: HKElectrocardiogram): HKElectrocardiogramQueryDescriptor;
+    readonly $type: {
+        "s:9HealthKit34HKElectrocardiogramQueryDescriptorV": true;
+    };
 }
 /**
  * struct Results
@@ -3137,6 +3407,9 @@ export declare class HKElectrocardiogramQueryDescriptor_Results extends SDKHandl
      * @availability iOS 15.4+
      */
     makeAsyncIterator(): HKElectrocardiogramQueryDescriptor_Results_Iterator;
+    readonly $type: {
+        "s:9HealthKit34HKElectrocardiogramQueryDescriptorV7ResultsV": true;
+    };
     readonly $element: HKElectrocardiogram_VoltageMeasurement;
 }
 /**
@@ -3159,6 +3432,9 @@ export declare class HKElectrocardiogramQueryDescriptor_Results_Iterator extends
      * @availability iOS 15.4+
      */
     next(): Promise<(HKElectrocardiogram_VoltageMeasurement) | null>;
+    readonly $type: {
+        "s:9HealthKit34HKElectrocardiogramQueryDescriptorV7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = HKElectrocardiogramQueryDescriptor.Results.Element
@@ -3175,6 +3451,12 @@ export type HKElectrocardiogramQueryDescriptor_Sequence = HKElectrocardiogramQue
  * @availability iOS 14.0+
  */
 export declare class HKElectrocardiogramType extends HKSampleType {
+    readonly $type: {
+        "c:objc(cs)HKElectrocardiogramType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -3280,6 +3562,9 @@ export declare class HKError extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static get noError(): HKError_Code;
+    readonly $type: {
+        "s:SC11HKErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -3350,6 +3635,10 @@ export declare class HKFHIRResource extends SDKHandle {
      * @availability iOS 12.0+
      */
     get sourceURL(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)HKFHIRResource": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fhirVersion": true;
         "data": true;
@@ -3475,6 +3764,10 @@ export declare class HKFHIRVersion extends SDKHandle {
      * @availability iOS 14.0+
      */
     get stringRepresentation(): string;
+    readonly $type: {
+        "c:objc(cs)HKFHIRVersion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fhirRelease": true;
         "majorVersion": true;
@@ -3507,6 +3800,10 @@ export declare class HKFitzpatrickSkinTypeObject extends SDKHandle {
      * @availability iOS 9.0+
      */
     get skinType(): HKFitzpatrickSkinType;
+    readonly $type: {
+        "c:objc(cs)HKFitzpatrickSkinTypeObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "skinType": true;
     };
@@ -3521,6 +3818,12 @@ export declare class HKScoredAssessment extends HKSample {
      * @availability iOS 18.0+
      */
     get score(): number;
+    readonly $type: {
+        "c:objc(cs)HKScoredAssessment": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -3554,6 +3857,13 @@ export declare class HKGAD7Assessment extends HKScoredAssessment {
      * @availability iOS 18.0+
      */
     get answers(): $SDK47;
+    readonly $type: {
+        "c:objc(cs)HKGAD7Assessment": true;
+        "c:objc(cs)HKScoredAssessment": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -3622,6 +3932,11 @@ export declare class HKGlassesLensSpecification extends HKLensSpecification {
      * @availability iOS 16.0+
      */
     get vertexDistance(): (HKQuantity) | null;
+    readonly $type: {
+        "c:objc(cs)HKGlassesLensSpecification": true;
+        "c:objc(cs)HKLensSpecification": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addPower": true;
         "axis": true;
@@ -3654,6 +3969,13 @@ export declare class HKGlassesPrescription extends HKGlassesPrescription_base {
      * @availability iOS 16.0+
      */
     get rightEye(): $SDK48;
+    readonly $type: {
+        "c:objc(cs)HKGlassesPrescription": true;
+        "c:objc(cs)HKVisionPrescription": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -3698,6 +4020,10 @@ export declare class HKHealthConceptIdentifier extends SDKHandle {
      * @availability iOS 26.0+
      */
     get domain(): HKHealthConceptDomain;
+    readonly $type: {
+        "c:objc(cs)HKHealthConceptIdentifier": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "domain": true;
     };
@@ -3894,6 +4220,10 @@ export declare class HKHealthStore extends SDKHandle {
      * @availability iOS 27.0+
      */
     preferredWorkoutZoneConfiguration(quantityType: HKQuantityType): Promise<$SDK60>;
+    readonly $type: {
+        "c:objc(cs)HKHealthStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct HKUserPreferencesDidChangeMessage
@@ -3910,6 +4240,9 @@ export declare class HKHealthStore_HKUserPreferencesDidChangeMessage extends SDK
      * @availability iOS 26.4+
      */
     static get nameValue(): _Foundation_NSNotification_Name;
+    readonly $type: {
+        "s:So13HKHealthStoreC9HealthKitE33HKUserPreferencesDidChangeMessageV": true;
+    };
 }
 /**
  * typealias Subject = HKHealthStore
@@ -3920,6 +4253,10 @@ export type HKHealthStore_HKUserPreferencesDidChangeMessage_Subject = HKHealthSt
 export declare class HKSeriesBuilder extends SDKHandle {
     /** func discard() */
     discard(): void;
+    readonly $type: {
+        "c:objc(cs)HKSeriesBuilder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class HKHeartbeatSeriesBuilder
@@ -3951,11 +4288,21 @@ export declare class HKHeartbeatSeriesBuilder extends HKSeriesBuilder {
      * @availability iOS 13.0+
      */
     static init(healthStore: HKHealthStore, device: (HKDevice) | null, startDate: globalThis.Date): HKHeartbeatSeriesBuilder;
+    readonly $type: {
+        "c:objc(cs)HKHeartbeatSeriesBuilder": true;
+        "c:objc(cs)HKSeriesBuilder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** class HKHeartbeatSeriesQuery */
 export declare class HKHeartbeatSeriesQuery extends HKQuery {
     /** init(heartbeatSeries: HKHeartbeatSeriesSample, dataHandler: @escaping @Sendable (HKHeartbeatSeriesQuery, TimeInterval, Bool, Bool, (any Error)?) -> Void) */
     static init(heartbeatSeries: HKHeartbeatSeriesSample, dataHandler: ((arg0: HKHeartbeatSeriesQuery, arg1: number, arg2: boolean, arg3: boolean, arg4: (NativeError) | null) => void)): HKHeartbeatSeriesQuery;
+    readonly $type: {
+        "c:objc(cs)HKHeartbeatSeriesQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -3983,6 +4330,9 @@ export declare class HKHeartbeatSeriesQueryDescriptor extends SDKHandle {
      * @availability iOS 15.4+
      */
     static init(sample: HKHeartbeatSeriesSample): HKHeartbeatSeriesQueryDescriptor;
+    readonly $type: {
+        "s:9HealthKit32HKHeartbeatSeriesQueryDescriptorV": true;
+    };
 }
 /**
  * struct Heartbeat
@@ -3999,6 +4349,9 @@ export declare class HKHeartbeatSeriesQueryDescriptor_Heartbeat extends SDKHandl
      * @availability iOS 15.4+
      */
     get timeIntervalSinceStart(): number;
+    readonly $type: {
+        "s:9HealthKit32HKHeartbeatSeriesQueryDescriptorV9HeartbeatV": true;
+    };
 }
 /**
  * struct Results
@@ -4010,6 +4363,9 @@ export declare class HKHeartbeatSeriesQueryDescriptor_Results extends SDKHandle 
      * @availability iOS 15.4+
      */
     makeAsyncIterator(): HKHeartbeatSeriesQueryDescriptor_Results_Iterator;
+    readonly $type: {
+        "s:9HealthKit32HKHeartbeatSeriesQueryDescriptorV7ResultsV": true;
+    };
     readonly $element: HKHeartbeatSeriesQueryDescriptor_Heartbeat;
 }
 /**
@@ -4032,6 +4388,9 @@ export declare class HKHeartbeatSeriesQueryDescriptor_Results_Iterator extends S
      * @availability iOS 15.4+
      */
     next(): Promise<(HKHeartbeatSeriesQueryDescriptor_Heartbeat) | null>;
+    readonly $type: {
+        "s:9HealthKit32HKHeartbeatSeriesQueryDescriptorV7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = HKHeartbeatSeriesQueryDescriptor.Results.Element
@@ -4047,6 +4406,12 @@ export type HKHeartbeatSeriesQueryDescriptor_Sequence = HKHeartbeatSeriesQueryDe
 export declare class HKSeriesSample extends HKSample {
     /** var count: Int { get } */
     get count(): number;
+    readonly $type: {
+        "c:objc(cs)HKSeriesSample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -4065,6 +4430,13 @@ export declare class HKSeriesSample extends HKSample {
  * @availability iOS 13.0+
  */
 export declare class HKHeartbeatSeriesSample extends HKSeriesSample {
+    readonly $type: {
+        "c:objc(cs)HKHeartbeatSeriesSample": true;
+        "c:objc(cs)HKSeriesSample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -4256,6 +4628,10 @@ export declare class HKWorkoutBuilder extends SDKHandle {
      * @availability iOS 27.0+
      */
     zoneGroup(quantityType: HKQuantityType): $SDK69;
+    readonly $type: {
+        "c:objc(cs)HKWorkoutBuilder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allStatistics": true;
         "device": true;
@@ -4311,6 +4687,11 @@ export declare class HKLiveWorkoutBuilder extends HKLiveWorkoutBuilder_base {
      * @availability iOS 12.0+
      */
     elapsedTime76675(date: globalThis.Date): number;
+    readonly $type: {
+        "c:objc(cs)HKLiveWorkoutBuilder": true;
+        "c:objc(cs)HKWorkoutBuilder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allStatistics": true;
         "device": true;
@@ -4384,6 +4765,10 @@ export declare class HKLiveWorkoutDataSource extends SDKHandle {
      * @availability iOS 26.0+
      */
     get typesToCollect(): Array<HKQuantityType>;
+    readonly $type: {
+        "c:objc(cs)HKLiveWorkoutDataSource": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "typesToCollect": true;
     };
@@ -4413,6 +4798,10 @@ export declare class HKLiveWorkoutZoneUpdate extends SDKHandle {
      * @availability iOS 27.0+
      */
     get zoneGroup(): $SDK69;
+    readonly $type: {
+        "c:objc(cs)HKLiveWorkoutZoneUpdate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "lastSampleProcessedDate": true;
     };
@@ -4442,6 +4831,10 @@ export declare class HKMedicationConcept extends SDKHandle {
      * @availability iOS 26.0+
      */
     get relatedCodings(): Array<HKClinicalCoding>;
+    readonly $type: {
+        "c:objc(cs)HKMedicationConcept": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayText": true;
         "generalForm": true;
@@ -4494,6 +4887,12 @@ export declare class HKMedicationDoseEvent extends HKSample {
      * @availability iOS 26.0+
      */
     get doseQuantity(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)HKMedicationDoseEvent": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -4541,6 +4940,12 @@ export declare const HKMedicationDoseEvent_ScheduleType: {
  * @availability iOS 26.0+
  */
 export declare class HKMedicationDoseEventType extends HKSampleType {
+    readonly $type: {
+        "c:objc(cs)HKMedicationDoseEventType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -4619,6 +5024,11 @@ export declare class HKObserverQuery extends HKQuery {
      * @availability iOS 8.0+
      */
     static initSampleTypePredicateUpdateHandler(sampleType: HKSampleType, predicate: $SDK4, updateHandler: ((arg0: HKObserverQuery, arg1: (() => Promise<void>), arg2: (NativeError) | null) => void)): HKObserverQuery;
+    readonly $type: {
+        "c:objc(cs)HKObserverQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -4647,6 +5057,13 @@ export declare class HKPHQ9Assessment extends HKScoredAssessment {
      * @availability iOS 18.0+
      */
     get answers(): $SDK77;
+    readonly $type: {
+        "c:objc(cs)HKPHQ9Assessment": true;
+        "c:objc(cs)HKScoredAssessment": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -4702,6 +5119,12 @@ export declare const HKPhysicalEffortEstimationType: {
  * @availability iOS 16.0+
  */
 export declare class HKPrescriptionType extends HKSampleType {
+    readonly $type: {
+        "c:objc(cs)HKPrescriptionType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -4748,6 +5171,10 @@ export declare class HKQuantity extends SDKHandle {
      * @availability iOS 8.0+
      */
     is(unit: HKUnit): boolean;
+    readonly $type: {
+        "c:objc(cs)HKQuantity": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum HKQuantityAggregationStyle
@@ -4817,6 +5244,10 @@ export declare class HKQuantitySeriesSampleBuilder extends SDKHandle {
      * @availability iOS 12.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)HKQuantitySeriesSampleBuilder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "quantityType": true;
@@ -4848,6 +5279,11 @@ export declare class HKQuantitySeriesSampleQuery extends HKQuery {
      */
     get orderByQuantitySampleStartDate(): boolean;
     set orderByQuantitySampleStartDate(value: boolean);
+    readonly $type: {
+        "c:objc(cs)HKQuantitySeriesSampleQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -4883,6 +5319,9 @@ export declare class HKQuantitySeriesSampleQueryDescriptor extends SDKHandle {
      */
     get predicate(): $SDK81;
     set predicate(value: $SDK81);
+    readonly $type: {
+        "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV": true;
+    };
 }
 /**
  * struct Options
@@ -4946,6 +5385,9 @@ export declare class HKQuantitySeriesSampleQueryDescriptor_Result extends SDKHan
      * @availability iOS 15.4+
      */
     get quantity(): HKQuantity;
+    readonly $type: {
+        "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV6ResultV": true;
+    };
 }
 /**
  * struct Results
@@ -4957,6 +5399,9 @@ export declare class HKQuantitySeriesSampleQueryDescriptor_Results extends SDKHa
      * @availability iOS 15.4+
      */
     makeAsyncIterator(): HKQuantitySeriesSampleQueryDescriptor_Results_Iterator;
+    readonly $type: {
+        "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV7ResultsV": true;
+    };
     readonly $element: HKQuantitySeriesSampleQueryDescriptor_Result;
 }
 /**
@@ -4979,6 +5424,9 @@ export declare class HKQuantitySeriesSampleQueryDescriptor_Results_Iterator exte
      * @availability iOS 15.4+
      */
     next(): Promise<(HKQuantitySeriesSampleQueryDescriptor_Result) | null>;
+    readonly $type: {
+        "s:9HealthKit37HKQuantitySeriesSampleQueryDescriptorV7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = HKQuantitySeriesSampleQueryDescriptor.Results.Element
@@ -5010,6 +5458,12 @@ export declare class HKQuantityType extends HKSampleType {
      * @availability iOS 15.0+
      */
     static init(identifier: HKQuantityTypeIdentifier): HKQuantityType;
+    readonly $type: {
+        "c:objc(cs)HKQuantityType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -5641,6 +6095,10 @@ export declare class HKQueryAnchor extends SDKHandle {
      * @availability iOS 9.0+
      */
     static init(value: number): HKQueryAnchor;
+    readonly $type: {
+        "c:objc(cs)HKQueryAnchor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class HKQueryDescriptor
@@ -5662,6 +6120,10 @@ export declare class HKQueryDescriptor extends SDKHandle {
      * @availability iOS 15.0+
      */
     get sampleType(): HKSampleType;
+    readonly $type: {
+        "c:objc(cs)HKQueryDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "predicate": true;
         "sampleType": true;
@@ -5774,6 +6236,9 @@ export declare class HKSamplePredicate<Sample = unknown> extends SDKHandle {
      * @availability iOS 15.4+
      */
     static audiogram(predicate?: $SDK4): HKSamplePredicate<HKAudiogramSample>;
+    readonly $type: {
+        "s:9HealthKit17HKSamplePredicateV": true;
+    };
 }
 /** class HKSampleQuery */
 export declare class HKSampleQuery extends HKQuery {
@@ -5793,6 +6258,11 @@ export declare class HKSampleQuery extends HKQuery {
     get limit(): number;
     /** var sortDescriptors: [NSSortDescriptor]? { get } */
     get sortDescriptors(): $SDK42;
+    readonly $type: {
+        "c:objc(cs)HKSampleQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -5834,6 +6304,9 @@ export declare class HKSampleQueryDescriptor<Sample = unknown> extends SDKHandle
      * @availability iOS 15.4+
      */
     result(healthStore: HKHealthStore): Promise<Array<HKSample>>;
+    readonly $type: {
+        "s:9HealthKit23HKSampleQueryDescriptorV": true;
+    };
 }
 /**
  * typealias Output = [Sample]
@@ -5850,6 +6323,12 @@ export declare class HKScoredAssessmentType extends HKSampleType {
      * @availability iOS 18.0+
      */
     static init(identifier: HKScoredAssessmentTypeIdentifier): HKScoredAssessmentType;
+    readonly $type: {
+        "c:objc(cs)HKScoredAssessmentType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -5890,6 +6369,12 @@ export declare class HKSeriesType extends HKSampleType {
      * @availability iOS 11.0+
      */
     static workoutRoute(): HKSeriesType;
+    readonly $type: {
+        "c:objc(cs)HKSeriesType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -5919,6 +6404,10 @@ export declare class HKSource extends SDKHandle {
      * @availability iOS 8.0+
      */
     get name(): string;
+    readonly $type: {
+        "c:objc(cs)HKSource": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bundleIdentifier": true;
         "name": true;
@@ -5928,6 +6417,11 @@ export declare class HKSource extends SDKHandle {
 export declare class HKSourceQuery extends HKQuery {
     /** init(sampleType: HKSampleType, samplePredicate objectPredicate: NSPredicate?, completionHandler: @escaping @Sendable (HKSourceQuery, Set<HKSource>?, (any Error)?) -> Void) */
     static init(sampleType: HKSampleType, objectPredicate: $SDK4, completionHandler: ((arg0: HKSourceQuery, arg1: (Array<HKSource>) | null, arg2: (NativeError) | null) => void)): HKSourceQuery;
+    readonly $type: {
+        "c:objc(cs)HKSourceQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -5955,6 +6449,9 @@ export declare class HKSourceQueryDescriptor<Sample = unknown> extends SDKHandle
      * @availability iOS 15.4+
      */
     static init(predicate: $SDK94): HKSourceQueryDescriptor<HKSample>;
+    readonly $type: {
+        "s:9HealthKit23HKSourceQueryDescriptorV": true;
+    };
 }
 /**
  * typealias Output = [HKSource]
@@ -5996,6 +6493,10 @@ export declare class HKSourceRevision extends SDKHandle {
      * @availability iOS 9.0+
      */
     get version(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)HKSourceRevision": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "operatingSystemVersion": true;
         "productType": true;
@@ -6038,6 +6539,12 @@ export declare class HKStateOfMind extends HKSample {
      * @availability iOS 18.0+
      */
     get labels(): Array<HKStateOfMind_Label>;
+    readonly $type: {
+        "c:objc(cs)HKStateOfMind": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -6111,6 +6618,12 @@ export declare const HKStateOfMind_ValenceClassification: {
  * @availability iOS 18.0+
  */
 export declare class HKStateOfMindType extends HKSampleType {
+    readonly $type: {
+        "c:objc(cs)HKStateOfMindType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -6215,6 +6728,10 @@ export declare class HKStatistics extends SDKHandle {
      * @availability iOS 8.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)HKStatistics": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endDate": true;
         "quantityType": true;
@@ -6242,6 +6759,10 @@ export declare class HKStatisticsCollection extends SDKHandle {
      * @availability iOS 8.0+
      */
     statisticsFor(date: globalThis.Date): (HKStatistics) | null;
+    readonly $type: {
+        "c:objc(cs)HKStatisticsCollection": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** class HKStatisticsCollectionQuery */
 export declare class HKStatisticsCollectionQuery extends HKQuery {
@@ -6259,6 +6780,11 @@ export declare class HKStatisticsCollectionQuery extends HKQuery {
     /** var statisticsUpdateHandler: (@Sendable (HKStatisticsCollectionQuery, HKStatistics?, HKStatisticsCollection?, (any Error)?) -> Void)? { get set } */
     get statisticsUpdateHandler(): (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatistics) | null, arg2: (HKStatisticsCollection) | null, arg3: (NativeError) | null) => Promise<void>)) | null;
     set statisticsUpdateHandler(value: (((arg0: HKStatisticsCollectionQuery, arg1: (HKStatistics) | null, arg2: (HKStatisticsCollection) | null, arg3: (NativeError) | null) => void)) | null);
+    readonly $type: {
+        "c:objc(cs)HKStatisticsCollectionQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -6312,6 +6838,9 @@ export declare class HKStatisticsCollectionQueryDescriptor extends SDKHandle {
      */
     get predicate(): $SDK81;
     set predicate(value: $SDK81);
+    readonly $type: {
+        "s:9HealthKit37HKStatisticsCollectionQueryDescriptorV": true;
+    };
 }
 /**
  * typealias Output = HKStatisticsCollection
@@ -6333,6 +6862,9 @@ export declare class HKStatisticsCollectionQueryDescriptor_Result extends SDKHan
      * @availability iOS 15.4+
      */
     get updatedStatistics(): (Array<HKStatistics>) | null;
+    readonly $type: {
+        "s:9HealthKit37HKStatisticsCollectionQueryDescriptorV6ResultV": true;
+    };
 }
 /**
  * struct Results
@@ -6344,6 +6876,9 @@ export declare class HKStatisticsCollectionQueryDescriptor_Results extends SDKHa
      * @availability iOS 15.4+
      */
     makeAsyncIterator(): HKStatisticsCollectionQueryDescriptor_Results_Iterator;
+    readonly $type: {
+        "s:9HealthKit37HKStatisticsCollectionQueryDescriptorV7ResultsV": true;
+    };
     readonly $element: HKStatisticsCollectionQueryDescriptor_Result;
 }
 /**
@@ -6366,6 +6901,9 @@ export declare class HKStatisticsCollectionQueryDescriptor_Results_Iterator exte
      * @availability iOS 15.4+
      */
     next(): Promise<(HKStatisticsCollectionQueryDescriptor_Result) | null>;
+    readonly $type: {
+        "s:9HealthKit37HKStatisticsCollectionQueryDescriptorV7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = HKStatisticsCollectionQueryDescriptor.Results.Element
@@ -6434,6 +6972,11 @@ export declare const HKStatisticsOptions: {
 export declare class HKStatisticsQuery extends HKQuery {
     /** init(quantityType: HKQuantityType, quantitySamplePredicate: NSPredicate?, options: HKStatisticsOptions = [], completionHandler handler: @escaping @Sendable (HKStatisticsQuery, HKStatistics?, (any Error)?) -> Void) */
     static init(quantityType: HKQuantityType, quantitySamplePredicate: $SDK4, options: HKStatisticsOptions, handler: ((arg0: HKStatisticsQuery, arg1: (HKStatistics) | null, arg2: (NativeError) | null) => void)): HKStatisticsQuery;
+    readonly $type: {
+        "c:objc(cs)HKStatisticsQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -6467,6 +7010,9 @@ export declare class HKStatisticsQueryDescriptor extends SDKHandle {
      */
     get predicate(): $SDK81;
     set predicate(value: $SDK81);
+    readonly $type: {
+        "s:9HealthKit27HKStatisticsQueryDescriptorV": true;
+    };
 }
 /**
  * typealias Output = HKStatistics?
@@ -6720,6 +7266,10 @@ export declare class HKUnit extends SDKHandle {
      * @availability iOS 8.0+
      */
     get unitString(): string;
+    readonly $type: {
+        "c:objc(cs)HKUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "unitString": true;
     };
@@ -6761,6 +7311,10 @@ export declare class HKUserAnnotatedMedication extends SDKHandle {
      * @availability iOS 26.0+
      */
     get nickname(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)HKUserAnnotatedMedication": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hasSchedule": true;
         "isArchived": true;
@@ -6778,6 +7332,11 @@ export declare class HKUserAnnotatedMedicationQuery extends HKQuery {
      * @availability iOS 26.0+
      */
     static init(predicate: $SDK4, limit: number, resultsHandler: ((arg0: HKUserAnnotatedMedicationQuery, arg1: (HKUserAnnotatedMedication) | null, arg2: boolean, arg3: (NativeError) | null) => void)): HKUserAnnotatedMedicationQuery;
+    readonly $type: {
+        "c:objc(cs)HKUserAnnotatedMedicationQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -6811,6 +7370,9 @@ export declare class HKUserAnnotatedMedicationQueryDescriptor extends SDKHandle 
      */
     get predicate(): $SDK4;
     set predicate(value: $SDK4);
+    readonly $type: {
+        "s:9HealthKit40HKUserAnnotatedMedicationQueryDescriptorV": true;
+    };
 }
 /**
  * typealias Output = [HKUserAnnotatedMedication]
@@ -6822,6 +7384,11 @@ export type HKUserAnnotatedMedicationQueryDescriptor_Output = Array<HKUserAnnota
  * @availability iOS 26.0+
  */
 export declare class HKUserAnnotatedMedicationType extends HKObjectType {
+    readonly $type: {
+        "c:objc(cs)HKUserAnnotatedMedicationType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
     };
@@ -6894,6 +7461,12 @@ export declare class HKVerifiableClinicalRecord extends HKSample {
      * @availability iOS 15.0+
      */
     get subject(): HKVerifiableClinicalRecordSubject;
+    readonly $type: {
+        "c:objc(cs)HKVerifiableClinicalRecord": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -6964,6 +7537,11 @@ export declare class HKVerifiableClinicalRecordQuery extends HKQuery {
      * @availability iOS 15.4+
      */
     get sourceTypes(): $SDK118;
+    readonly $type: {
+        "c:objc(cs)HKVerifiableClinicalRecordQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -7005,6 +7583,9 @@ export declare class HKVerifiableClinicalRecordQueryDescriptor extends SDKHandle
      */
     get predicate(): $SDK4;
     set predicate(value: $SDK4);
+    readonly $type: {
+        "s:9HealthKit41HKVerifiableClinicalRecordQueryDescriptorV": true;
+    };
 }
 /**
  * typealias Output = [HKVerifiableClinicalRecord]
@@ -7048,6 +7629,10 @@ export declare class HKVerifiableClinicalRecordSubject extends SDKHandle {
      * @availability iOS 15.0+
      */
     get fullName(): string;
+    readonly $type: {
+        "c:objc(cs)HKVerifiableClinicalRecordSubject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateOfBirthComponents": true;
         "fullName": true;
@@ -7127,6 +7712,10 @@ export declare class HKVisionPrism extends SDKHandle {
      * @availability iOS 16.0+
      */
     get verticalBase(): HKPrismBase;
+    readonly $type: {
+        "c:objc(cs)HKVisionPrism": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "angle": true;
@@ -7197,6 +7786,10 @@ export declare class HKWheelchairUseObject extends SDKHandle {
      * @availability iOS 10.0+
      */
     get wheelchairUse(): HKWheelchairUse;
+    readonly $type: {
+        "c:objc(cs)HKWheelchairUseObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "wheelchairUse": true;
     };
@@ -7312,6 +7905,12 @@ export declare class HKWorkout extends HKSample {
      * @availability iOS 27.0+
      */
     zoneGroup(quantityType: HKQuantityType): $SDK69;
+    readonly $type: {
+        "c:objc(cs)HKWorkout": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -7398,6 +7997,10 @@ export declare class HKWorkoutActivity extends SDKHandle {
      * @availability iOS 27.0+
      */
     zoneGroup(quantityType: HKQuantityType): $SDK69;
+    readonly $type: {
+        "c:objc(cs)HKWorkoutActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "allStatistics": true;
@@ -7452,6 +8055,10 @@ export declare class HKWorkoutConfiguration extends SDKHandle {
      */
     get swimmingLocationType(): HKWorkoutSwimmingLocationType;
     set swimmingLocationType(value: HKWorkoutSwimmingLocationType);
+    readonly $type: {
+        "c:objc(cs)HKWorkoutConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activityType": true;
         "lapLength": true;
@@ -7481,6 +8088,10 @@ export declare class HKWorkoutEffortRelationship extends SDKHandle {
      * @availability iOS 18.0+
      */
     get workout(): HKWorkout;
+    readonly $type: {
+        "c:objc(cs)HKWorkoutEffortRelationship": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activity": true;
         "samples": true;
@@ -7497,6 +8108,11 @@ export declare class HKWorkoutEffortRelationshipQuery extends HKQuery {
      * @availability iOS 18.0+
      */
     static init(predicate: $SDK4, anchor: (HKQueryAnchor) | null, options: HKWorkoutEffortRelationshipQueryOptions, resultsHandler: ((arg0: HKWorkoutEffortRelationshipQuery, arg1: (Array<HKWorkoutEffortRelationship>) | null, arg2: (HKQueryAnchor) | null, arg3: (NativeError) | null) => void)): HKWorkoutEffortRelationshipQuery;
+    readonly $type: {
+        "c:objc(cs)HKWorkoutEffortRelationshipQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -7541,6 +8157,9 @@ export declare class HKWorkoutEffortRelationshipQueryDescriptor extends SDKHandl
      */
     get predicate(): $SDK4;
     set predicate(value: $SDK4);
+    readonly $type: {
+        "s:9HealthKit42HKWorkoutEffortRelationshipQueryDescriptorV": true;
+    };
 }
 /**
  * typealias Output = HKWorkoutEffortRelationshipQueryDescriptor.Result
@@ -7562,6 +8181,9 @@ export declare class HKWorkoutEffortRelationshipQueryDescriptor_Result extends S
      * @availability iOS 18.0+
      */
     get newAnchor(): HKQueryAnchor;
+    readonly $type: {
+        "s:9HealthKit42HKWorkoutEffortRelationshipQueryDescriptorV6ResultV": true;
+    };
 }
 /**
  * struct Results
@@ -7573,6 +8195,9 @@ export declare class HKWorkoutEffortRelationshipQueryDescriptor_Results extends 
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): HKWorkoutEffortRelationshipQueryDescriptor_Results_Iterator;
+    readonly $type: {
+        "s:9HealthKit42HKWorkoutEffortRelationshipQueryDescriptorV7ResultsV": true;
+    };
     readonly $element: HKWorkoutEffortRelationshipQueryDescriptor_Result;
 }
 /**
@@ -7595,6 +8220,9 @@ export declare class HKWorkoutEffortRelationshipQueryDescriptor_Results_Iterator
      * @availability iOS 18.0+
      */
     next(): Promise<(HKWorkoutEffortRelationshipQueryDescriptor_Result) | null>;
+    readonly $type: {
+        "s:9HealthKit42HKWorkoutEffortRelationshipQueryDescriptorV7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = HKWorkoutEffortRelationshipQueryDescriptor.Results.Element
@@ -7661,6 +8289,10 @@ export declare class HKWorkoutEvent extends SDKHandle {
      * @availability iOS 8.0+
      */
     get type(): HKWorkoutEventType;
+    readonly $type: {
+        "c:objc(cs)HKWorkoutEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "dateInterval": true;
@@ -7685,6 +8317,13 @@ export declare const HKWorkoutEventType: {
  * @availability iOS 11.0+
  */
 export declare class HKWorkoutRoute extends HKSeriesSample {
+    readonly $type: {
+        "c:objc(cs)HKWorkoutRoute": true;
+        "c:objc(cs)HKSeriesSample": true;
+        "c:objc(cs)HKSample": true;
+        "c:objc(cs)HKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "uuid": true;
         "device": true;
@@ -7723,6 +8362,11 @@ export declare class HKWorkoutRouteBuilder extends HKSeriesBuilder {
      * @availability iOS 11.0+
      */
     insertRouteData(routeData: Array<__LocationEssentials_CLLocation>, completion: $SDK31): void;
+    readonly $type: {
+        "c:objc(cs)HKWorkoutRouteBuilder": true;
+        "c:objc(cs)HKSeriesBuilder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** class HKWorkoutRouteQuery */
 export declare class HKWorkoutRouteQuery extends HKQuery {
@@ -7733,6 +8377,11 @@ export declare class HKWorkoutRouteQuery extends HKQuery {
      * @availability iOS 16.0+
      */
     static initRouteDateIntervalDataHandler(workoutRoute: HKWorkoutRoute, dateInterval: _Foundation_DateInterval, dataHandler: $SDK130): HKWorkoutRouteQuery;
+    readonly $type: {
+        "c:objc(cs)HKWorkoutRouteQuery": true;
+        "c:objc(cs)HKQuery": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "objectType": true;
         "predicate": true;
@@ -7760,6 +8409,9 @@ export declare class HKWorkoutRouteQueryDescriptor extends SDKHandle {
      * @availability iOS 15.4+
      */
     static init(workoutRoute: HKWorkoutRoute): HKWorkoutRouteQueryDescriptor;
+    readonly $type: {
+        "s:9HealthKit29HKWorkoutRouteQueryDescriptorV": true;
+    };
 }
 /**
  * struct Results
@@ -7771,6 +8423,9 @@ export declare class HKWorkoutRouteQueryDescriptor_Results extends SDKHandle {
      * @availability iOS 15.4+
      */
     makeAsyncIterator(): HKWorkoutRouteQueryDescriptor_Results_Iterator;
+    readonly $type: {
+        "s:9HealthKit29HKWorkoutRouteQueryDescriptorV7ResultsV": true;
+    };
     readonly $element: __LocationEssentials_CLLocation;
 }
 /**
@@ -7793,6 +8448,9 @@ export declare class HKWorkoutRouteQueryDescriptor_Results_Iterator extends SDKH
      * @availability iOS 15.4+
      */
     next(): Promise<(__LocationEssentials_CLLocation) | null>;
+    readonly $type: {
+        "s:9HealthKit29HKWorkoutRouteQueryDescriptorV7ResultsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = HKWorkoutRouteQueryDescriptor.Results.Element
@@ -7910,6 +8568,10 @@ export declare class HKWorkoutSession extends SDKHandle {
      * @availability iOS 17.0+
      */
     get workoutConfiguration(): HKWorkoutConfiguration;
+    readonly $type: {
+        "c:objc(cs)HKWorkoutSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activityType": true;
         "currentActivity": true;
@@ -8016,6 +8678,12 @@ export declare const HKWorkoutSwimmingLocationType: {
  * @availability iOS 8.0+
  */
 export declare class HKWorkoutType extends HKSampleType {
+    readonly $type: {
+        "c:objc(cs)HKWorkoutType": true;
+        "c:objc(cs)HKSampleType": true;
+        "c:objc(cs)HKObjectType": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "allowsRecalibrationForEstimates": true;
@@ -8045,6 +8713,9 @@ export declare class HKWorkoutZone extends SDKHandle {
      * @availability iOS 27.0+
      */
     get minimum(): (HKQuantity) | null;
+    readonly $type: {
+        "s:9HealthKit13HKWorkoutZoneV": true;
+    };
 }
 /**
  * struct HKWorkoutZoneConfiguration
@@ -8071,6 +8742,9 @@ export declare class HKWorkoutZoneConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get source(): HKWorkoutZoneConfiguration_Source;
+    readonly $type: {
+        "s:9HealthKit26HKWorkoutZoneConfigurationV": true;
+    };
 }
 /**
  * enum Source
@@ -8092,6 +8766,9 @@ export declare class HKWorkoutZoneDuration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): number;
+    readonly $type: {
+        "s:9HealthKit21HKWorkoutZoneDurationV": true;
+    };
 }
 /**
  * struct HKWorkoutZoneGroup
@@ -8108,8 +8785,11 @@ export declare class HKWorkoutZoneGroup extends SDKHandle {
      * @availability iOS 27.0+
      */
     get zoneDurations(): Array<HKWorkoutZoneDuration>;
+    readonly $type: {
+        "s:9HealthKit18HKWorkoutZoneGroupV": true;
+    };
 }
-export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPMediaLibraryDidChange" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFThumbnailViewDocumentEdited" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
     /**
      * static let HKUserPreferencesDidChange: NSNotification.Name

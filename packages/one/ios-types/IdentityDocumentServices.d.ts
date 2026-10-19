@@ -48,6 +48,9 @@ export declare class IdentityDocumentPresentmentError extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get cancelled(): IdentityDocumentPresentmentError_Code;
+    readonly $type: {
+        "s:24IdentityDocumentServices0aB16PresentmentErrorV": true;
+    };
 }
 /**
  * enum Code
@@ -106,6 +109,9 @@ export declare class IdentityDocumentProviderRegistrationStore extends SDKHandle
      * @availability iOS 26.0+
      */
     static init(): IdentityDocumentProviderRegistrationStore;
+    readonly $type: {
+        "s:24IdentityDocumentServices0aB25ProviderRegistrationStoreC": true;
+    };
 }
 /**
  * enum RegistrationError
@@ -145,6 +151,9 @@ export declare class IdentityDocumentWebPresentmentRawRequest extends SDKHandle 
      */
     get requestType(): IdentityDocumentWebPresentmentRawRequest_RequestType;
     set requestType(value: IdentityDocumentWebPresentmentRawRequest_RequestType);
+    readonly $type: {
+        "s:24IdentityDocumentServices0aB24WebPresentmentRawRequestV": true;
+    };
 }
 /**
  * enum RequestType
@@ -166,6 +175,9 @@ export declare class IdentityDocumentWebPresentmentRawRequestValidator extends S
      * @availability iOS 26.0+
      */
     static init(): IdentityDocumentWebPresentmentRawRequestValidator;
+    readonly $type: {
+        "s:24IdentityDocumentServices0aB33WebPresentmentRawRequestValidatorV": true;
+    };
 }
 /**
  * protocol IdentityDocumentWebPresentmentRequest : Sendable
@@ -201,6 +213,9 @@ export declare class ISO18013MobileDocumentRequest extends SDKHandle {
      */
     get requestAuthentications(): $SDK1;
     set requestAuthentications(value: $SDK1);
+    readonly $type: {
+        "s:24IdentityDocumentServices014ISO18013MobileB7RequestV": true;
+    };
 }
 /**
  * struct DocumentRequest
@@ -235,6 +250,9 @@ export declare class ISO18013MobileDocumentRequest_DocumentRequest extends SDKHa
      */
     get issuerKeyIdentifiers(): Array<ArrayBuffer>;
     set issuerKeyIdentifiers(value: Array<ArrayBuffer>);
+    readonly $type: {
+        "s:24IdentityDocumentServices014ISO18013MobileB7RequestV0bF0V": true;
+    };
 }
 /**
  * struct DocumentRequestSet
@@ -252,6 +270,9 @@ export declare class ISO18013MobileDocumentRequest_DocumentRequestSet extends SD
      */
     get requests(): $SDK3;
     set requests(value: $SDK3);
+    readonly $type: {
+        "s:24IdentityDocumentServices014ISO18013MobileB7RequestV0bF3SetV": true;
+    };
 }
 /**
  * struct ElementInfo
@@ -269,6 +290,9 @@ export declare class ISO18013MobileDocumentRequest_ElementInfo extends SDKHandle
      */
     get isRetaining(): boolean;
     set isRetaining(value: boolean);
+    readonly $type: {
+        "s:24IdentityDocumentServices014ISO18013MobileB7RequestV11ElementInfoV": true;
+    };
 }
 /**
  * struct PresentmentRequest
@@ -292,6 +316,9 @@ export declare class ISO18013MobileDocumentRequest_PresentmentRequest extends SD
      */
     get isMandatory(): boolean;
     set isMandatory(value: boolean);
+    readonly $type: {
+        "s:24IdentityDocumentServices014ISO18013MobileB7RequestV011PresentmentF0V": true;
+    };
 }
 /**
  * struct RequestAuthentication
@@ -309,6 +336,9 @@ export declare class ISO18013MobileDocumentRequest_RequestAuthentication extends
      */
     get authenticationCertificateChain(): $SDK5;
     set authenticationCertificateChain(value: $SDK5);
+    readonly $type: {
+        "s:24IdentityDocumentServices014ISO18013MobileB7RequestV0F14AuthenticationV": true;
+    };
 }
 /**
  * struct ISO18013MobileDocumentResponse
@@ -325,6 +355,9 @@ export declare class ISO18013MobileDocumentResponse extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(responseData: ArrayBuffer): ISO18013MobileDocumentResponse;
+    readonly $type: {
+        "s:24IdentityDocumentServices014ISO18013MobileB8ResponseV": true;
+    };
 }
 /**
  * struct MobileDocumentRegistration
@@ -371,5 +404,8 @@ export declare class MobileDocumentRegistration extends SDKHandle {
      */
     get supportedAuthorityKeyIdentifiers(): Array<ArrayBuffer>;
     set supportedAuthorityKeyIdentifiers(value: Array<ArrayBuffer>);
+    readonly $type: {
+        "s:24IdentityDocumentServices06MobileB12RegistrationV": true;
+    };
 }
 export {};

@@ -111,6 +111,12 @@ export declare class PHLivePhotoView extends SDKHandle {
      * @availability iOS 9.1+
      */
     get playbackGestureRecognizer(): _UIKit_UIGestureRecognizer;
+    readonly $type: {
+        "c:objc(cs)PHLivePhotoView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentsRect": true;
         "delegate": true;
@@ -158,6 +164,10 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * @availability iOS 15.0+
      */
     presentLimitedLibraryPickerFromCompletionHandler(controller: _UIKit_UIViewController, completionHandler: ((arg0: Array<string>) => void)): void;
+    readonly $type: {
+        "c:objc(cs)PHPhotoLibrary": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct PHPickerCapabilities
@@ -271,6 +281,9 @@ export declare class PHPickerConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(): PHPickerConfiguration;
+    readonly $type: {
+        "s:8PhotosUI21PHPickerConfigurationV": true;
+    };
 }
 /**
  * enum AssetRepresentationMode
@@ -310,6 +323,9 @@ export declare class PHPickerConfiguration_Update extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): PHPickerConfiguration_Update;
+    readonly $type: {
+        "s:8PhotosUI21PHPickerConfigurationV6UpdateV": true;
+    };
 }
 /**
  * enum PHPickerConfigurationAssetRepresentationMode
@@ -420,6 +436,9 @@ export declare class PHPickerFilter extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get panoramas(): PHPickerFilter;
+    readonly $type: {
+        "s:8PhotosUI14PHPickerFilterV": true;
+    };
 }
 /**
  * struct PHPickerMetadataOptions
@@ -459,6 +478,9 @@ export declare class PHPickerMode extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get default(): PHPickerMode;
+    readonly $type: {
+        "s:8PhotosUI12PHPickerModeV": true;
+    };
 }
 /**
  * struct PHPickerResult
@@ -475,6 +497,9 @@ export declare class PHPickerResult extends SDKHandle {
      * @availability iOS 14.0+
      */
     get assetIdentifier(): (string) | null;
+    readonly $type: {
+        "s:8PhotosUI14PHPickerResultV": true;
+    };
 }
 /**
  * struct PHPickerSearchText
@@ -491,6 +516,9 @@ export declare class PHPickerSearchText extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(string: string): PHPickerSearchText;
+    readonly $type: {
+        "s:8PhotosUI18PHPickerSearchTextV": true;
+    };
 }
 /**
  * class PHPickerViewController
@@ -543,6 +571,12 @@ export declare class PHPickerViewController extends SDKHandle {
      */
     get delegate(): Promise<(SDKHandle) | null>;
     setDelegate(value?: (Implements<PHPickerViewControllerDelegate> | SDKHandle) | null): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)PHPickerViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * @MainActor @preconcurrency protocol PHPickerViewControllerDelegate : AnyObject
@@ -582,6 +616,9 @@ export declare class PHSharedAlbumCreationConfiguration extends SDKHandle {
      */
     get defaultPolicy(): PHSharedAlbumCreationSharingPolicy;
     set defaultPolicy(value: PHSharedAlbumCreationSharingPolicy);
+    readonly $type: {
+        "s:8PhotosUI34PHSharedAlbumCreationConfigurationV": true;
+    };
 }
 /**
  * struct PHSharedAlbumCreationResult
@@ -603,6 +640,9 @@ export declare class PHSharedAlbumCreationResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get albumURL(): (string) | null;
+    readonly $type: {
+        "s:8PhotosUI27PHSharedAlbumCreationResultV": true;
+    };
 }
 /**
  * enum PHSharedAlbumCreationSharingPolicy
@@ -637,6 +677,12 @@ export declare class PHSharedAlbumCreationViewController extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(configuration: PHSharedAlbumCreationConfiguration): Promise<PHSharedAlbumCreationViewController>;
+    readonly $type: {
+        "c:objc(cs)PHSharedAlbumCreationViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "creationResult": true;
         "delegate": true;
@@ -674,6 +720,12 @@ export declare class PHSharedAlbumCustomizationViewController extends SDKHandle 
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<PHSharedAlbumCustomizationViewController_Delegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)PHSharedAlbumCustomizationViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "albumIdentifier": true;
         "delegate": true;
@@ -711,6 +763,12 @@ export declare class PHSharedAlbumPostingViewController extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(items: Array<PHPickerResult>, defaultAlbumIdentifier: (string) | null, photoLibrary: _Photos_PHPhotoLibrary): Promise<PHSharedAlbumPostingViewController>;
+    readonly $type: {
+        "c:objc(cs)PHSharedAlbumPostingViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "albumIdentifier": true;
         "delegate": true;

@@ -11,6 +11,9 @@ export declare class SceneView extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init(scene?: (_SceneKit_SCNScene) | null, pointOfView?: (_SceneKit_SCNNode) | null, options?: SceneView_Options, preferredFramesPerSecond?: number, antialiasingMode?: _SceneKit_SCNAntialiasingMode, delegate?: (Implements<_SceneKit_SCNSceneRendererDelegate> | SDKHandle) | null, technique?: (_SceneKit_SCNTechnique) | null): Promise<SceneView>;
+    readonly $type: {
+        "s:17_SceneKit_SwiftUI0A4ViewV": true;
+    };
 }
 /**
  * typealias Body = some View

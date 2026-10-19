@@ -5,6 +5,10 @@ import { SDKHandle } from 'one/ios-runtime';
  * @availability iOS 11.0+
  */
 export declare class IOSurface extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)IOSurface": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** enum IOSurfaceComponentName */
 export type IOSurfaceComponentName = "unknown" | "alpha" | "red" | "green" | "blue" | "luma" | "chromaRed" | "chromaBlue";
@@ -26,6 +30,9 @@ export type IOSurfacePropertyKey = "allocSize" | "width" | "height" | "bytesPerR
 export type IOSurfacePurgeabilityState = Array<"purgeableVolatile" | "purgeableEmpty" | "purgeableKeepCurrent">;
 /** class IOSurfaceRef */
 export declare class IOSurfaceRef extends SDKHandle {
+    readonly $type: {
+        "c:@T@IOSurfaceRef": true;
+    };
 }
 /** enum IOSurfaceSubsampling */
 export type IOSurfaceSubsampling = "subsamplingUnknown" | "subsamplingNone" | "subsampling422" | "subsampling420" | "subsampling411";

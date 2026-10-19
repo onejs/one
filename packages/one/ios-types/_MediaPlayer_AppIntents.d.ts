@@ -47,4 +47,8 @@ export declare class MPAppEntityIdentifier extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initEntityIdentifier(entityIdentifier: _AppIntents_EntityIdentifier): (MPAppEntityIdentifier) | null;
+    readonly $type: {
+        "c:@M@_MediaPlayer_AppIntents@objc(cs)MPAppEntityIdentifier": true;
+        "c:objc(cs)NSObject": true;
+    };
 }

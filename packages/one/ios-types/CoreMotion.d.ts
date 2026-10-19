@@ -20,6 +20,10 @@ export declare class CMLogItem extends SDKHandle {
      * @availability iOS 4.0+
      */
     get timestamp(): number;
+    readonly $type: {
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
     };
@@ -47,6 +51,11 @@ export declare class CMAbsoluteAltitudeData extends CMAbsoluteAltitudeData_base 
      * @availability iOS 15.0+
      */
     get precision(): number;
+    readonly $type: {
+        "c:objc(cs)CMAbsoluteAltitudeData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "accuracy": true;
@@ -74,6 +83,9 @@ export declare class CMAcceleration extends SDKHandle {
     static initXYZ(x: number, y: number, z: number): CMAcceleration;
     /** init() */
     static init(): CMAcceleration;
+    readonly $type: {
+        "c:@SA@CMAcceleration": true;
+    };
 }
 declare const CMAccelerometerData_base: Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem);
 /**
@@ -88,6 +100,11 @@ export declare class CMAccelerometerData extends CMAccelerometerData_base {
      * @availability iOS 4.0+
      */
     get acceleration(): CMAcceleration;
+    readonly $type: {
+        "c:objc(cs)CMAccelerometerData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "acceleration": true;
@@ -137,6 +154,10 @@ export declare class CMAltimeter extends SDKHandle {
      * @availability iOS 8.0+
      */
     stopRelativeAltitudeUpdates(): void;
+    readonly $type: {
+        "c:objc(cs)CMAltimeter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const CMAltitudeData_base: Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem);
 /**
@@ -156,6 +177,11 @@ export declare class CMAltitudeData extends CMAltitudeData_base {
      * @availability iOS 8.0+
      */
     get relativeAltitude(): _Foundation_NSNumber;
+    readonly $type: {
+        "c:objc(cs)CMAltitudeData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "pressure": true;
@@ -185,6 +211,11 @@ export declare class CMAmbientPressureData extends CMAmbientPressureData_base {
      * @availability iOS 10.0+
      */
     get temperature(): $SDK6;
+    readonly $type: {
+        "c:objc(cs)CMAmbientPressureData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "pressure": true;
@@ -228,6 +259,10 @@ export declare class CMAttitude extends SDKHandle {
      * @availability iOS 4.0+
      */
     get yaw(): number;
+    readonly $type: {
+        "c:objc(cs)CMAttitude": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pitch": true;
         "quaternion": true;
@@ -296,6 +331,10 @@ export declare class CMBatchedSensorManager extends SDKHandle {
     get deviceMotionBatch(): (Array<CMDeviceMotion>) | null;
     /** var deviceMotionDataFrequency: Int { get } */
     get deviceMotionDataFrequency(): number;
+    readonly $type: {
+        "c:objc(cs)CMBatchedSensorManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAccelerometerActive": true;
         "accelerometerBatch": true;
@@ -323,6 +362,9 @@ export declare class CMCalibratedMagneticField extends SDKHandle {
     static initFieldAccuracy(field: CMMagneticField, accuracy: CMMagneticFieldCalibrationAccuracy): CMCalibratedMagneticField;
     /** init() */
     static init(): CMCalibratedMagneticField;
+    readonly $type: {
+        "c:@SA@CMCalibratedMagneticField": true;
+    };
 }
 declare const CMDeviceMotion_base: Omit<typeof CMLogItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMLogItem);
 /**
@@ -372,6 +414,11 @@ export declare class CMDeviceMotion extends CMDeviceMotion_base {
      * @availability iOS 4.0+
      */
     get userAcceleration(): CMAcceleration;
+    readonly $type: {
+        "c:objc(cs)CMDeviceMotion": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "attitude": true;
@@ -419,6 +466,10 @@ export declare class CMDyskineticSymptomResult extends SDKHandle {
      * @availability iOS 12.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CMDyskineticSymptomResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endDate": true;
         "percentLikely": true;
@@ -450,6 +501,11 @@ export declare class CMGyroData extends CMGyroData_base {
      * @availability iOS 4.0+
      */
     get rotationRate(): CMRotationRate;
+    readonly $type: {
+        "c:objc(cs)CMGyroData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "rotationRate": true;
@@ -509,6 +565,10 @@ export declare class CMHeadphoneActivityManager extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isStatusAvailable(): boolean;
+    readonly $type: {
+        "c:objc(cs)CMHeadphoneActivityManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isActivityActive": true;
         "isActivityAvailable": true;
@@ -589,6 +649,10 @@ export declare class CMHeadphoneMotionManager extends SDKHandle {
      * @availability iOS 14.0+
      */
     get isDeviceMotionAvailable(): boolean;
+    readonly $type: {
+        "c:objc(cs)CMHeadphoneMotionManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isConnectionStatusActive": true;
         "delegate": true;
@@ -638,6 +702,11 @@ export declare class CMHighFrequencyHeartRateData extends CMHighFrequencyHeartRa
      * @availability iOS 17.0+
      */
     get heartRate(): number;
+    readonly $type: {
+        "c:objc(cs)CMHighFrequencyHeartRateData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "confidence": true;
@@ -672,6 +741,9 @@ export declare class CMMagneticField extends SDKHandle {
     static initXYZ(x: number, y: number, z: number): CMMagneticField;
     /** init() */
     static init(): CMMagneticField;
+    readonly $type: {
+        "c:@SA@CMMagneticField": true;
+    };
 }
 /** enum CMMagneticFieldCalibrationAccuracy */
 export type CMMagneticFieldCalibrationAccuracy = "uncalibrated" | "low" | "medium" | "high";
@@ -692,6 +764,11 @@ export declare class CMMagnetometerData extends CMMagnetometerData_base {
      * @availability iOS 5.0+
      */
     get magneticField(): CMMagneticField;
+    readonly $type: {
+        "c:objc(cs)CMMagnetometerData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "magneticField": true;
@@ -750,6 +827,11 @@ export declare class CMMotionActivity extends CMMotionActivity_base {
      * @availability iOS 7.0+
      */
     get walking(): boolean;
+    readonly $type: {
+        "c:objc(cs)CMMotionActivity": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "automotive": true;
@@ -805,6 +887,10 @@ export declare class CMMotionActivityManager extends SDKHandle {
      * @availability iOS 7.0+
      */
     stopActivityUpdates(): void;
+    readonly $type: {
+        "c:objc(cs)CMMotionActivityManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias CMMotionActivityQueryHandler = ([CMMotionActivity]?, (any Error)?) -> Void
@@ -994,6 +1080,10 @@ export declare class CMMotionManager extends SDKHandle {
      */
     get showsDeviceMovementDisplay(): boolean;
     set showsDeviceMovementDisplay(value: boolean);
+    readonly $type: {
+        "c:objc(cs)CMMotionManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAccelerometerActive": true;
         "isAccelerometerAvailable": true;
@@ -1083,6 +1173,10 @@ export declare class CMOdometerData extends SDKHandle {
      * @availability iOS 17.0+
      */
     get slope(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)CMOdometerData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deltaAltitude": true;
         "deltaDistance": true;
@@ -1175,6 +1269,10 @@ export declare class CMPedometer extends SDKHandle {
      * @availability iOS 8.0+
      */
     stopUpdates(): void;
+    readonly $type: {
+        "c:objc(cs)CMPedometer": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CMPedometerData
@@ -1228,6 +1326,10 @@ export declare class CMPedometerData extends SDKHandle {
      * @availability iOS 8.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CMPedometerData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "averageActivePace": true;
         "currentCadence": true;
@@ -1257,6 +1359,10 @@ export declare class CMPedometerEvent extends SDKHandle {
      * @availability iOS 10.0+
      */
     get type(): CMPedometerEventType;
+    readonly $type: {
+        "c:objc(cs)CMPedometerEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "type": true;
@@ -1299,6 +1405,9 @@ export declare class CMQuaternion extends SDKHandle {
     static initXYZW(x: number, y: number, z: number, w: number): CMQuaternion;
     /** init() */
     static init(): CMQuaternion;
+    readonly $type: {
+        "c:@SA@CMQuaternion": true;
+    };
 }
 declare const CMRecordedAccelerometerData_base: Omit<typeof CMAccelerometerData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CMAccelerometerData);
 /**
@@ -1318,6 +1427,12 @@ export declare class CMRecordedAccelerometerData extends CMRecordedAccelerometer
      * @availability iOS 9.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CMRecordedAccelerometerData": true;
+        "c:objc(cs)CMAccelerometerData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "acceleration": true;
@@ -1343,6 +1458,12 @@ export declare class CMRecordedDeviceMotion extends CMRecordedDeviceMotion_base 
      * @availability iOS 27.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CMRecordedDeviceMotion": true;
+        "c:objc(cs)CMDeviceMotion": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "attitude": true;
@@ -1375,6 +1496,12 @@ export declare class CMRecordedPressureData extends CMRecordedPressureData_base 
      * @availability iOS 12.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CMRecordedPressureData": true;
+        "c:objc(cs)CMAmbientPressureData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "pressure": true;
@@ -1396,6 +1523,11 @@ export declare class CMRotationRateData extends CMRotationRateData_base {
      * @availability iOS 14.0+
      */
     get rotationRate(): CMRotationRate;
+    readonly $type: {
+        "c:objc(cs)CMRotationRateData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "rotationRate": true;
@@ -1414,6 +1546,12 @@ export declare class CMRecordedRotationRateData extends CMRecordedRotationRateDa
      * @availability iOS 14.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CMRecordedRotationRateData": true;
+        "c:objc(cs)CMRotationRateData": true;
+        "c:objc(cs)CMLogItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "timestamp": true;
         "rotationRate": true;
@@ -1453,6 +1591,9 @@ export declare class CMRotationMatrix extends SDKHandle {
     static initM11M12M13M21M22M23M31M32M33(m11: number, m12: number, m13: number, m21: number, m22: number, m23: number, m31: number, m32: number, m33: number): CMRotationMatrix;
     /** init() */
     static init(): CMRotationMatrix;
+    readonly $type: {
+        "c:@SA@CMRotationMatrix": true;
+    };
 }
 /** struct CMRotationRate */
 export declare class CMRotationRate extends SDKHandle {
@@ -1469,6 +1610,9 @@ export declare class CMRotationRate extends SDKHandle {
     static initXYZ(x: number, y: number, z: number): CMRotationRate;
     /** init() */
     static init(): CMRotationRate;
+    readonly $type: {
+        "c:@SA@CMRotationRate": true;
+    };
 }
 /**
  * class CMSensorDataList
@@ -1477,6 +1621,10 @@ export declare class CMRotationRate extends SDKHandle {
 export declare class CMSensorDataList extends SDKHandle {
     /** init() */
     static init(): CMSensorDataList;
+    readonly $type: {
+        "c:objc(cs)CMSensorDataList": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CMSensorRecorder
@@ -1511,6 +1659,10 @@ export declare class CMSensorRecorder extends SDKHandle {
      * @availability iOS 9.0+
      */
     recordAccelerometer(duration: number): void;
+    readonly $type: {
+        "c:objc(cs)CMSensorRecorder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class CMStepCounter
@@ -1544,6 +1696,10 @@ export declare class CMStepCounter extends SDKHandle {
      * @deprecated iOS 8.0
      */
     stopStepCountingUpdates(): void;
+    readonly $type: {
+        "c:objc(cs)CMStepCounter": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** typealias CMStepQueryHandler = (Int, (any Error)?) -> Void */
 export type CMStepQueryHandler = ((arg0: number, arg1: (NativeError) | null) => Promise<void>);
@@ -1596,6 +1752,10 @@ export declare class CMTremorResult extends SDKHandle {
      * @availability iOS 12.0+
      */
     get startDate(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)CMTremorResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endDate": true;
         "percentMild": true;
@@ -1624,6 +1784,10 @@ export declare class CMWaterSubmersionEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get state(): CMWaterSubmersionEvent_State;
+    readonly $type: {
+        "c:objc(cs)CMWaterSubmersionEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "state": true;
@@ -1663,6 +1827,10 @@ export declare class CMWaterSubmersionManager extends SDKHandle {
      * @availability iOS 16.0+
      */
     get maximumDepth(): $SDK42;
+    readonly $type: {
+        "c:objc(cs)CMWaterSubmersionManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "maximumDepth": true;
@@ -1716,6 +1884,10 @@ export declare class CMWaterSubmersionMeasurement extends SDKHandle {
      * @availability iOS 16.0+
      */
     get surfacePressure(): $SDK5;
+    readonly $type: {
+        "c:objc(cs)CMWaterSubmersionMeasurement": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "depth": true;
@@ -1752,6 +1924,10 @@ export declare class CMWaterTemperature extends SDKHandle {
      * @availability iOS 16.0+
      */
     get temperatureUncertainty(): $SDK6;
+    readonly $type: {
+        "c:objc(cs)CMWaterTemperature": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "temperature": true;

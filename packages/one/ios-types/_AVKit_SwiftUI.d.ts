@@ -5,6 +5,9 @@ import { SDKHandle } from 'one/ios-runtime';
  * @availability iOS 14.0+
  */
 export declare class VideoPlayer<VideoOverlay = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:14_AVKit_SwiftUI11VideoPlayerV": true;
+    };
 }
 /**
  * typealias Body = some View

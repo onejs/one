@@ -29,6 +29,9 @@ type $SDK25 = Array<_MapKit_MKPointOfInterestCategory>;
  * @availability iOS 17.0+
  */
 export declare class Annotation<Label = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15_MapKit_SwiftUI10AnnotationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -40,6 +43,9 @@ export type Annotation_Body<Label = unknown, Content = unknown> = never;
  * @availability iOS 17.5+
  */
 export declare class AnyMapContent extends SDKHandle {
+    readonly $type: {
+        "s:15_MapKit_SwiftUI03AnyA7ContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -53,6 +59,9 @@ export declare class CLLocationCoordinate2D extends SDKHandle {
      */
     get animatableData(): $SDK0;
     set animatableData(value: $SDK0);
+    readonly $type: {
+        "c:@S@CLLocationCoordinate2D": true;
+    };
 }
 /**
  * typealias AnimatableData = AnimatablePair<CLLocationDegrees, CLLocationDegrees>
@@ -64,6 +73,9 @@ export type CLLocationCoordinate2D_AnimatableData = $SDK0;
  * @availability iOS 17.0+
  */
 export declare class DefaultUserAnnotationContent extends SDKHandle {
+    readonly $type: {
+        "s:15_MapKit_SwiftUI28DefaultUserAnnotationContentV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -86,6 +98,9 @@ export declare class EmptyMapContent extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<EmptyMapContent>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI05EmptyA7ContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -112,6 +127,9 @@ export declare class LookAroundPreview extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initSceneAllowsNavigationShowsRoadLabelsPointsOfInterestBadgePosition(scene: _SwiftUICore_Binding<(_MapKit_MKLookAroundScene) | null>, allowsNavigation?: boolean, showsRoadLabels?: boolean, pointsOfInterest?: PointOfInterestCategories, badgePosition?: _MapKit_MKLookAroundBadgePosition): Promise<LookAroundPreview>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI17LookAroundPreviewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -170,6 +188,9 @@ export declare class Map<Content = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initPositionBoundsInteractionModesSelectionScope(position: $SDK13, bounds: $SDK4, interactionModes: MapInteractionModes, selection: $SDK7, scope?: $SDK5): Promise<$SDK6>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A0V": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -182,6 +203,9 @@ export type Map_Body<Content = unknown> = SDKHandle;
  * @deprecated iOS 17.0
  */
 export declare class MapAnnotation<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A10AnnotationV": true;
+    };
 }
 /**
  * protocol MapAnnotationProtocol
@@ -228,6 +252,9 @@ export declare class MapCamera extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(camera: _MapKit_MKMapCamera): MapCamera;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A6CameraV": true;
+    };
 }
 /**
  * struct MapCameraBounds
@@ -249,6 +276,9 @@ export declare class MapCameraBounds extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initMinimumDistanceMaximumDistance(minimumDistance?: (number) | null, maximumDistance?: (number) | null): MapCameraBounds;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A12CameraBoundsV": true;
+    };
 }
 /**
  * struct MapCameraPosition
@@ -330,6 +360,9 @@ export declare class MapCameraPosition extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): MapCameraPosition;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A14CameraPositionV": true;
+    };
 }
 /**
  * struct MapCameraUpdateContext
@@ -351,6 +384,9 @@ export declare class MapCameraUpdateContext extends SDKHandle {
      * @availability iOS 17.0+
      */
     get region(): _MapKit_MKCoordinateRegion;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A19CameraUpdateContextV": true;
+    };
 }
 /**
  * struct MapCameraUpdateFrequency
@@ -367,6 +403,9 @@ export declare class MapCameraUpdateFrequency extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get onEnd(): MapCameraUpdateFrequency;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A21CameraUpdateFrequencyV": true;
+    };
 }
 /**
  * struct MapCircle
@@ -388,6 +427,9 @@ export declare class MapCircle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(circle: _MapKit_MKCircle): MapCircle;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A6CircleV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -404,6 +446,9 @@ export declare class MapCompass extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(scope?: $SDK5): Promise<MapCompass>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A7CompassV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -426,12 +471,18 @@ export declare class MapContentBuilder extends SDKHandle {
      * @availability iOS 17.0+
      */
     static buildBlock(): EmptyMapContent;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A14ContentBuilderV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct MapContentView<SelectionValue, Content> where SelectionValue : Hashable, Content : MapContent
  * @availability iOS 17.0+
  */
 export declare class MapContentView<SelectionValue = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A11ContentViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -473,6 +524,9 @@ export declare class MapFeature extends SDKHandle {
      * @availability iOS 17.0+
      */
     get title(): (string) | null;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A7FeatureV": true;
+    };
 }
 /**
  * struct FeatureKind
@@ -494,6 +548,9 @@ export declare class MapFeature_FeatureKind extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get territory(): MapFeature_FeatureKind;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A7FeatureV0E4KindV": true;
+    };
 }
 /**
  * struct MapInteractionModes
@@ -582,6 +639,9 @@ export declare class MapItemDetailSelectionAccessoryStyle extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get automatic(): MapItemDetailSelectionAccessoryStyle;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A33ItemDetailSelectionAccessoryStyleV": true;
+    };
 }
 /**
  * struct CalloutStyle
@@ -603,6 +663,9 @@ export declare class MapItemDetailSelectionAccessoryStyle_CalloutStyle extends S
      * @availability iOS 18.0+
      */
     static get automatic(): MapItemDetailSelectionAccessoryStyle_CalloutStyle;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A33ItemDetailSelectionAccessoryStyleV07CalloutI0V": true;
+    };
 }
 /**
  * struct MapMarker
@@ -616,6 +679,9 @@ export declare class MapMarker extends SDKHandle {
      * @deprecated iOS 17.0
      */
     static init(coordinate: $SDK14, tint?: $SDK19): MapMarker;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A6MarkerV": true;
+    };
 }
 /**
  * struct MapPin
@@ -629,6 +695,9 @@ export declare class MapPin extends SDKHandle {
      * @deprecated iOS 16.0
      */
     static init(coordinate: $SDK14, tint?: $SDK19): MapPin;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A3PinV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct MapPitchToggle
@@ -640,6 +709,9 @@ export declare class MapPitchToggle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(scope?: $SDK5): Promise<MapPitchToggle>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A11PitchToggleV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -666,6 +738,9 @@ export declare class MapPolygon extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(polygon: _MapKit_MKPolygon): MapPolygon;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A7PolygonV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -697,6 +772,9 @@ export declare class MapPolyline extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init74616(route: _MapKit_MKRoute): MapPolyline;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A8PolylineV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -718,6 +796,9 @@ export declare class MapPolyline_ContourStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get straight(): MapPolyline_ContourStyle;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A8PolylineV12ContourStyleV": true;
+    };
 }
 /**
  * struct MapProxy
@@ -739,12 +820,18 @@ export declare class MapProxy extends SDKHandle {
      * @availability iOS 17.0+
      */
     cameraFraming43310(rect: _MapKit_MKMapRect): MapCamera;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A5ProxyV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct MapReader<Content> where Content : View
  * @availability iOS 17.0+
  */
 export declare class MapReader<Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A6ReaderV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -766,6 +853,9 @@ export declare class MapScaleView extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initAlignmentScope(alignment?: _SwiftUICore_HorizontalAlignment, scope?: $SDK5): Promise<MapScaleView>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A9ScaleViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -788,6 +878,9 @@ export interface MapSelectable {
  * @availability iOS 17.0+
  */
 export declare class MapSelectableContentView<SelectionValue = unknown, Content = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A21SelectableContentViewV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -819,6 +912,9 @@ export declare class MapSelection<SelectionValue = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init72414(value: number): MapSelection<number>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A9SelectionV": true;
+    };
 }
 /**
  * struct MapStyle
@@ -855,6 +951,9 @@ export declare class MapStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get standard(): MapStyle;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A5StyleV": true;
+    };
 }
 /**
  * struct Elevation
@@ -876,6 +975,9 @@ export declare class MapStyle_Elevation extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get realistic(): MapStyle_Elevation;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A5StyleV9ElevationV": true;
+    };
 }
 /**
  * struct StandardEmphasis
@@ -892,6 +994,9 @@ export declare class MapStyle_StandardEmphasis extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get automatic(): MapStyle_StandardEmphasis;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A5StyleV16StandardEmphasisV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct MapUserLocationButton
@@ -903,6 +1008,9 @@ export declare class MapUserLocationButton extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(scope?: $SDK5): Promise<MapUserLocationButton>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI0A18UserLocationButtonV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -940,6 +1048,9 @@ export declare class Marker<Label = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initCoordinate34649(title: string, coordinate: $SDK14): Promise<$SDK24>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI6MarkerV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -963,6 +1074,10 @@ export declare class MKMapItemRequest extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(feature: MapFeature): _MapKit_MKMapItemRequest;
+    readonly $type: {
+        "c:objc(cs)MKMapItemRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias Data = Content.Data
@@ -1004,6 +1119,9 @@ export declare class PointOfInterestCategories extends SDKHandle {
      * @availability iOS 17.0+
      */
     static including(categories: $SDK25): PointOfInterestCategories;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI25PointOfInterestCategoriesV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = MKPointOfInterestCategory
@@ -1021,6 +1139,9 @@ export declare class TupleMapContent<T = unknown> extends SDKHandle {
      */
     get value(): Promise<unknown>;
     setValue(value: unknown): Promise<void>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI05TupleA7ContentV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1042,6 +1163,9 @@ export declare class UserAnnotation<Content = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): Promise<UserAnnotation<DefaultUserAnnotationContent>>;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI14UserAnnotationV": true;
+    };
 }
 /**
  * typealias Body = Never
@@ -1063,5 +1187,8 @@ export declare class UserLocation extends SDKHandle {
      * @availability iOS 17.0+
      */
     get location(): (__LocationEssentials_CLLocation) | null;
+    readonly $type: {
+        "s:15_MapKit_SwiftUI12UserLocationV": true;
+    };
 }
 export {};

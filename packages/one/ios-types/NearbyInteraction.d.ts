@@ -13,12 +13,19 @@ export declare class NIAlgorithmConvergence extends SDKHandle {
      * @availability iOS 16.0+
      */
     get status(): NIAlgorithmConvergenceStatus;
+    readonly $type: {
+        "c:objc(cs)NIAlgorithmConvergence": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum NIAlgorithmConvergenceStatus
  * @availability iOS 16.0+
  */
 export declare class NIAlgorithmConvergenceStatus extends SDKHandle {
+    readonly $type: {
+        "s:17NearbyInteraction28NIAlgorithmConvergenceStatusO": true;
+    };
 }
 /**
  * struct Reason
@@ -78,6 +85,10 @@ export type NIAlgorithmConvergenceStatus_Reason_RawValue = string;
  * @availability iOS 14.0+
  */
 export declare class NIConfiguration extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)NIConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol NIDeviceCapability
@@ -95,6 +106,10 @@ export declare class NIDiscoveryToken extends SDKHandle {
      * @availability iOS 17.0+
      */
     get deviceCapabilities(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)NIDiscoveryToken": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceCapabilities": true;
     };
@@ -126,6 +141,11 @@ export declare class NIDLTDOAConfiguration extends NIConfiguration {
      */
     get networkIdentifier(): number;
     set networkIdentifier(value: number);
+    readonly $type: {
+        "c:objc(cs)NIDLTDOAConfiguration": true;
+        "c:objc(cs)NIConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "discoveryMethod": true;
         "networkIdentifier": true;
@@ -225,6 +245,10 @@ export declare class NIDLTDOAMeasurement extends SDKHandle {
      * @availability iOS 27.0+
      */
     get responderClockFrequencyOffset(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)NIDLTDOAMeasurement": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "address": true;
         "carrierFrequencyOffset": true;
@@ -255,6 +279,10 @@ export declare class NIDLTDOAMeasurement_FloorElevation extends SDKHandle {
      * @availability iOS 27.0+
      */
     get height(): number;
+    readonly $type: {
+        "c:objc(cs)NIDLTDOAMeasurementFloorElevation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "floorNumber": true;
         "height": true;
@@ -332,6 +360,9 @@ export declare class NIError extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get activeExtendedDistanceSessionsLimitExceeded(): NIError_Code;
+    readonly $type: {
+        "s:SC11NIErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -388,6 +419,11 @@ export declare class NINearbyAccessoryConfiguration extends NIConfiguration {
      */
     get isCameraAssistanceEnabled(): boolean;
     set isCameraAssistanceEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)NINearbyAccessoryConfiguration": true;
+        "c:objc(cs)NIConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessoryDiscoveryToken": true;
         "isCameraAssistanceEnabled": true;
@@ -423,6 +459,10 @@ export declare class NINearbyObject extends SDKHandle {
      * @availability iOS 14.0+
      */
     get direction(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)NINearbyObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "discoveryToken": true;
         "verticalDirectionEstimate": true;
@@ -479,6 +519,11 @@ export declare class NINearbyPeerConfiguration extends NIConfiguration {
      * @availability iOS 14.0+
      */
     get peerDiscoveryToken(): NIDiscoveryToken;
+    readonly $type: {
+        "c:objc(cs)NINearbyPeerConfiguration": true;
+        "c:objc(cs)NIConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCameraAssistanceEnabled": true;
         "isExtendedDistanceMeasurementEnabled": true;
@@ -555,6 +600,10 @@ export declare class NISession extends SDKHandle {
      * @availability iOS 16.0+
      */
     worldTransform(object: NINearbyObject): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)NISession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configuration": true;
         "delegate": true;

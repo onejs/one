@@ -136,6 +136,10 @@ export declare class GLKBaseEffect extends SDKHandle {
      */
     get useConstantColor(): number;
     set useConstantColor(value: number);
+    readonly $type: {
+        "c:objc(cs)GLKBaseEffect": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colorMaterialEnabled": true;
         "constantColor": true;
@@ -163,6 +167,10 @@ export declare class GLKBaseEffect extends SDKHandle {
 export declare class GLKEffectProperty extends SDKHandle {
     /** init() */
     static init(): GLKEffectProperty;
+    readonly $type: {
+        "c:objc(cs)GLKEffectProperty": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const GLKEffectPropertyFog_base: Omit<typeof GLKEffectProperty, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GLKEffectProperty);
 /**
@@ -215,6 +223,11 @@ export declare class GLKEffectPropertyFog extends GLKEffectPropertyFog_base {
      */
     get start(): number;
     set start(value: number);
+    readonly $type: {
+        "c:objc(cs)GLKEffectPropertyFog": true;
+        "c:objc(cs)GLKEffectProperty": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "color": true;
         "density": true;
@@ -317,6 +330,11 @@ export declare class GLKEffectPropertyLight extends GLKEffectPropertyLight_base 
      */
     get transform(): GLKEffectPropertyTransform;
     set transform(value: GLKEffectPropertyTransform);
+    readonly $type: {
+        "c:objc(cs)GLKEffectPropertyLight": true;
+        "c:objc(cs)GLKEffectProperty": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ambientColor": true;
         "constantAttenuation": true;
@@ -376,6 +394,11 @@ export declare class GLKEffectPropertyMaterial extends GLKEffectPropertyMaterial
      */
     get specularColor(): SDKHandle;
     set specularColor(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)GLKEffectPropertyMaterial": true;
+        "c:objc(cs)GLKEffectProperty": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ambientColor": true;
         "diffuseColor": true;
@@ -423,6 +446,11 @@ export declare class GLKEffectPropertyTexture extends GLKEffectPropertyTexture_b
      */
     get target(): GLKTextureTarget;
     set target(value: GLKTextureTarget);
+    readonly $type: {
+        "c:objc(cs)GLKEffectPropertyTexture": true;
+        "c:objc(cs)GLKEffectProperty": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "enabled": true;
         "envMode": true;
@@ -459,6 +487,11 @@ export declare class GLKEffectPropertyTransform extends GLKEffectPropertyTransfo
      */
     get projectionMatrix(): SDKHandle;
     set projectionMatrix(value: SDKHandle);
+    readonly $type: {
+        "c:objc(cs)GLKEffectPropertyTransform": true;
+        "c:objc(cs)GLKEffectProperty": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "modelviewMatrix": true;
         "normalMatrix": true;
@@ -497,6 +530,9 @@ export type GLKMatrix3 = SDKHandle;
 export type GLKMatrix4 = SDKHandle;
 /** class GLKMatrixStack */
 export declare class GLKMatrixStack extends SDKHandle {
+    readonly $type: {
+        "c:@T@GLKMatrixStackRef": true;
+    };
 }
 /**
  * class GLKMesh
@@ -551,6 +587,10 @@ export declare class GLKMesh extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get vertexDescriptor(): _ModelIO_MDLVertexDescriptor;
+    readonly $type: {
+        "c:objc(cs)GLKMesh": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "name": true;
         "submeshes": true;
@@ -603,6 +643,10 @@ export declare class GLKMeshBuffer extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get type(): _ModelIO_MDLMeshBufferType;
+    readonly $type: {
+        "c:objc(cs)GLKMeshBuffer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allocator": true;
         "glBufferName": true;
@@ -619,6 +663,10 @@ export declare class GLKMeshBuffer extends SDKHandle {
 export declare class GLKMeshBufferAllocator extends SDKHandle {
     /** init() */
     static init(): GLKMeshBufferAllocator;
+    readonly $type: {
+        "c:objc(cs)GLKMeshBufferAllocator": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** protocol GLKNamedEffect */
 export interface GLKNamedEffect {
@@ -655,6 +703,11 @@ export declare class GLKReflectionMapEffect extends GLKReflectionMapEffect_base 
      * @deprecated iOS 12.0
      */
     get textureCubeMap(): GLKEffectPropertyTexture;
+    readonly $type: {
+        "c:objc(cs)GLKReflectionMapEffect": true;
+        "c:objc(cs)GLKBaseEffect": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "colorMaterialEnabled": true;
         "constantColor": true;
@@ -743,6 +796,10 @@ export declare class GLKSkyboxEffect extends SDKHandle {
      */
     get zSize(): number;
     set zSize(value: number);
+    readonly $type: {
+        "c:objc(cs)GLKSkyboxEffect": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "center": true;
         "label": true;
@@ -795,6 +852,10 @@ export declare class GLKSubmesh extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get type(): number;
+    readonly $type: {
+        "c:objc(cs)GLKSubmesh": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "elementBuffer": true;
         "elementCount": true;
@@ -884,6 +945,10 @@ export declare class GLKTextureInfo extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get width(): number;
+    readonly $type: {
+        "c:objc(cs)GLKTextureInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alphaState": true;
         "arrayLength": true;
@@ -993,14 +1058,12 @@ export declare class GLKTextureLoader extends SDKHandle {
      * @deprecated iOS 12.0
      */
     cubeMapWithContentsOfOptionsQueueCompletionHandler(url: string, options: $SDK2, queue: $SDK4, block: $SDK5): void;
-    /** init() */
-    static init(): GLKTextureLoader;
     /**
      * init(sharegroup: EAGLSharegroup)
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    static initSharegroup(sharegroup: _OpenGLES_EAGLSharegroup): GLKTextureLoader;
+    static init(sharegroup: _OpenGLES_EAGLSharegroup): GLKTextureLoader;
     /**
      * func texture(with cgImage: CGImage, options: [String : NSNumber]? = nil, queue: dispatch_queue_t?) async throws -> GLKTextureInfo
      * @availability iOS 5.0+
@@ -1031,6 +1094,10 @@ export declare class GLKTextureLoader extends SDKHandle {
      * @deprecated iOS 12.0
      */
     textureWithNameScaleFactorBundleOptionsQueueCompletionHandler(name: string, scaleFactor: number, bundle: $SDK3, options: $SDK2, queue: $SDK4, block: $SDK5): void;
+    readonly $type: {
+        "c:objc(cs)GLKTextureLoader": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** typealias GLKTextureLoaderCallback = (GLKTextureInfo?, (any Error)?) -> Void */
 export type GLKTextureLoaderCallback = ((arg0: (GLKTextureInfo) | null, arg1: (NativeError) | null) => Promise<void>);
@@ -1144,6 +1211,9 @@ export declare class GLKTextureLoaderError extends SDKHandle {
      * @availability iOS 5.0+
      */
     static get alphaPremultiplicationFailure(): GLKTextureLoaderError_Code;
+    readonly $type: {
+        "s:SC21GLKTextureLoaderErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1213,14 +1283,12 @@ export declare class GLKView extends SDKHandle {
      * @deprecated iOS 12.0
      */
     display(): void;
-    /** init() */
-    static init(): GLKView;
     /**
      * init(frame: CGRect, context: EAGLContext)
      * @availability iOS 5.0+
      * @deprecated iOS 12.0
      */
-    static initFrameContext(frame: $SDK7, context: _OpenGLES_EAGLContext): GLKView;
+    static init(frame: $SDK7, context: _OpenGLES_EAGLContext): GLKView;
     /**
      * var context: EAGLContext { get set }
      * @availability iOS 5.0+
@@ -1288,6 +1356,12 @@ export declare class GLKView extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get snapshot(): _UIKit_UIImage;
+    readonly $type: {
+        "c:objc(cs)GLKView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "context": true;
         "delegate": true;
@@ -1380,6 +1454,12 @@ export declare class GLKViewController extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get timeSinceLastUpdate(): number;
+    readonly $type: {
+        "c:objc(cs)GLKViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "framesDisplayed": true;
@@ -1638,7 +1718,7 @@ export declare function GLKMatrix4TranslateWithVector4(matrix: SDKHandle, transl
 /** func GLKMatrix4Transpose(_ matrix: GLKMatrix4) -> GLKMatrix4 */
 export declare function GLKMatrix4Transpose(matrix: SDKHandle): SDKHandle;
 /** func GLKMatrixStackCreate(_ alloc: CFAllocator?) -> Unmanaged<GLKMatrixStack>? */
-export declare function GLKMatrixStackCreate(alloc?: (_CoreFoundation_CFAllocator) | null): (SDKHandle) | null;
+export declare function GLKMatrixStackCreate(alloc?: (_CoreFoundation_CFAllocator) | null): (GLKMatrixStack) | null;
 /** func GLKMatrixStackGetMatrix2(_ stack: GLKMatrixStack) -> GLKMatrix2 */
 export declare function GLKMatrixStackGetMatrix2(stack: GLKMatrixStack): SDKHandle;
 /** func GLKMatrixStackGetMatrix3(_ stack: GLKMatrixStack) -> GLKMatrix3 */

@@ -21,10 +21,16 @@ export declare class AudioSearch extends SDKHandle {
      */
     get criteria(): AudioSearch_Criteria;
     set criteria(value: AudioSearch_Criteria);
+    readonly $type: {
+        "s:12MediaIntents11AudioSearchV": true;
+    };
 }
 /**
  * enum Criteria
  * @availability iOS 27.0+
  */
 export declare class AudioSearch_Criteria extends SDKHandle {
+    readonly $type: {
+        "s:12MediaIntents11AudioSearchV8CriteriaO": true;
+    };
 }

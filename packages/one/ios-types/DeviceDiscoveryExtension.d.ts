@@ -144,6 +144,10 @@ export declare class DDDevice extends SDKHandle {
      */
     get txtRecord(): $SDK1;
     set txtRecord(value: $SDK1);
+    readonly $type: {
+        "c:objc(cs)DDDevice": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "ssid": true;
         "bluetoothIdentifier": true;
@@ -191,13 +195,11 @@ export declare const DDDevice_WiFiAwareServiceRole: {
  * @availability iOS 16.0+
  */
 export declare class DDDeviceEvent extends SDKHandle {
-    /** init() */
-    static init(): DDDeviceEvent;
     /**
      * init(eventType type: DDDeviceEvent.EventType, device: DDDevice)
      * @availability iOS 16.0+
      */
-    static initEventTypeDevice(type: DDDeviceEvent_EventType, device: DDDevice): DDDeviceEvent;
+    static init(type: DDDeviceEvent_EventType, device: DDDevice): DDDeviceEvent;
     /**
      * var device: DDDevice { get }
      * @availability iOS 16.0+
@@ -208,6 +210,10 @@ export declare class DDDeviceEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get eventType(): DDDeviceEvent_EventType;
+    readonly $type: {
+        "c:objc(cs)DDDeviceEvent": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "device": true;
         "eventType": true;
@@ -291,6 +297,10 @@ export declare class DDDiscoverySession extends SDKHandle {
     static init(): DDDiscoverySession;
     /** func report(_ inEvent: DDDeviceEvent) */
     report(inEvent: DDDeviceEvent): void;
+    readonly $type: {
+        "c:objc(cs)DDDiscoverySession": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct DDError
@@ -347,6 +357,9 @@ export declare class DDError extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get internal(): DDError_Code;
+    readonly $type: {
+        "s:SC11DDErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code

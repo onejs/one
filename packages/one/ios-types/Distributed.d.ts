@@ -26,6 +26,9 @@ export declare class DistributedActorCodingError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get message(): string;
+    readonly $type: {
+        "s:11Distributed0A16ActorCodingErrorV": true;
+    };
 }
 /**
  * protocol DistributedActorSystem<SerializationRequirement> : Sendable
@@ -182,6 +185,9 @@ export declare class ExecuteDistributedTargetError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorCode(): ExecuteDistributedTargetError_ErrorCode;
+    readonly $type: {
+        "s:11Distributed07ExecuteA11TargetErrorV": true;
+    };
 }
 /**
  * enum ErrorCode
@@ -218,6 +224,9 @@ export declare class LocalTestingActorID extends SDKHandle {
      * @availability iOS 16.0+
      */
     get address(): string;
+    readonly $type: {
+        "s:11Distributed19LocalTestingActorIDV": true;
+    };
 }
 /**
  * final class LocalTestingDistributedActorSystem
@@ -239,6 +248,9 @@ export declare class LocalTestingDistributedActorSystem extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): LocalTestingDistributedActorSystem;
+    readonly $type: {
+        "s:11Distributed012LocalTestingA11ActorSystemC": true;
+    };
 }
 /**
  * typealias ActorID = LocalTestingActorID
@@ -280,6 +292,9 @@ export declare class LocalTestingDistributedActorSystemError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get message(): string;
+    readonly $type: {
+        "s:11Distributed012LocalTestingA16ActorSystemErrorV": true;
+    };
 }
 /**
  * final class LocalTestingInvocationDecoder
@@ -291,6 +306,9 @@ export declare class LocalTestingInvocationDecoder extends SDKHandle {
      * @availability iOS 16.0+
      */
     decodeNextArgument(): number;
+    readonly $type: {
+        "s:11Distributed29LocalTestingInvocationDecoderC": true;
+    };
 }
 /**
  * typealias SerializationRequirement = Codable
@@ -317,6 +335,9 @@ export declare class LocalTestingInvocationEncoder extends SDKHandle {
      * @availability iOS 16.0+
      */
     recordReturnType(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): void;
+    readonly $type: {
+        "s:11Distributed29LocalTestingInvocationEncoderV": true;
+    };
 }
 /**
  * typealias SerializationRequirement = Codable
@@ -343,6 +364,9 @@ export declare class LocalTestingInvocationResultHandler extends SDKHandle {
      * @availability iOS 16.0+
      */
     onReturn(value: number): Promise<void>;
+    readonly $type: {
+        "s:11Distributed35LocalTestingInvocationResultHandlerV": true;
+    };
 }
 /**
  * typealias SerializationRequirement = Codable
@@ -379,6 +403,9 @@ export declare class RemoteCallArgument<Value = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     get value(): unknown;
+    readonly $type: {
+        "s:11Distributed18RemoteCallArgumentV": true;
+    };
 }
 /**
  * struct RemoteCallTarget
@@ -400,4 +427,7 @@ export declare class RemoteCallTarget extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(identifier: string): RemoteCallTarget;
+    readonly $type: {
+        "s:11Distributed16RemoteCallTargetV": true;
+    };
 }

@@ -21,6 +21,9 @@ export declare class CInterop extends SDKHandle {
             "s": SDKHandle;
         };
     };
+    readonly $type: {
+        "s:6System8CInteropO": true;
+    };
 }
 /**
  * typealias Char = CChar
@@ -1523,6 +1526,9 @@ export declare class FilePath extends SDKHandle {
      * @availability iOS 14.0+
      */
     static init73031(string: string): FilePath;
+    readonly $type: {
+        "s:6System8FilePathV": true;
+    };
 }
 /**
  * struct Component
@@ -1599,6 +1605,9 @@ export declare class FilePath_Component extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(string: string): (FilePath_Component) | null;
+    readonly $type: {
+        "s:6System8FilePathV9ComponentV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -1660,6 +1669,9 @@ export declare class FilePath_ComponentView extends SDKHandle {
      * @availability iOS 15.0+
      */
     subscript(position: FilePath_ComponentView_Index): FilePath_Component;
+    readonly $type: {
+        "s:6System8FilePathV13ComponentViewV": true;
+    };
 }
 /**
  * typealias Element = FilePath.Component
@@ -1671,6 +1683,9 @@ export type FilePath_ComponentView_Element = FilePath_Component;
  * @availability iOS 15.0+
  */
 export declare class FilePath_ComponentView_Index extends SDKHandle {
+    readonly $type: {
+        "s:6System8FilePathV13ComponentViewV5IndexV": true;
+    };
 }
 /**
  * typealias Indices = DefaultIndices<FilePath.ComponentView>
@@ -1752,6 +1767,9 @@ export declare class FilePath_Root extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init(string: string): (FilePath_Root) | null;
+    readonly $type: {
+        "s:6System8FilePathV4RootV": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -2064,12 +2082,18 @@ export type Inode_RawValue = SDKHandle;
  * @availability iOS 17.4+
  */
 export declare class Mach extends SDKHandle {
+    readonly $type: {
+        "s:6System4MachO": true;
+    };
 }
 /**
  * struct Port<RightType> where RightType : MachPortRight
  * @availability iOS 17.4+
  */
 export declare class Mach_Port<RightType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:6System4MachO4PortV": true;
+    };
 }
 /**
  * enum PortRightError
@@ -2081,18 +2105,27 @@ export type Mach_PortRightError = "deadName";
  * @availability iOS 17.4+
  */
 export declare class Mach_ReceiveRight extends SDKHandle {
+    readonly $type: {
+        "s:6System4MachO12ReceiveRightV": true;
+    };
 }
 /**
  * @frozen struct SendOnceRight
  * @availability iOS 17.4+
  */
 export declare class Mach_SendOnceRight extends SDKHandle {
+    readonly $type: {
+        "s:6System4MachO13SendOnceRightV": true;
+    };
 }
 /**
  * @frozen struct SendRight
  * @availability iOS 17.4+
  */
 export declare class Mach_SendRight extends SDKHandle {
+    readonly $type: {
+        "s:6System4MachO9SendRightV": true;
+    };
 }
 /**
  * protocol MachPortRight

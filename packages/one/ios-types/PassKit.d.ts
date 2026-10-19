@@ -54,6 +54,9 @@ export declare class JPKIPassContents extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(pass: PKPass): Promise<JPKIPassContents>;
+    readonly $type: {
+        "s:7PassKit16JPKIPassContentsV": true;
+    };
 }
 /**
  * struct AuthenticationRequest<IdentityType> where IdentityType : JPKIPassContents.Identity
@@ -70,18 +73,27 @@ export declare class JPKIPassContents_AuthenticationRequest<IdentityType = unkno
      * @availability iOS 18.0+
      */
     static initType21560(type: JPKIPassContents_SigningIdentity_AuthenticationType): $SDK3;
+    readonly $type: {
+        "s:7PassKit16JPKIPassContentsV21AuthenticationRequestV": true;
+    };
 }
 /**
  * struct Certificate<IdentityType> where IdentityType : JPKIPassContents.Identity
  * @availability iOS 18.0+
  */
 export declare class JPKIPassContents_Certificate<IdentityType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7PassKit16JPKIPassContentsV11CertificateV": true;
+    };
 }
 /**
  * enum Error
  * @availability iOS 18.0+
  */
 export declare class JPKIPassContents_Error extends SDKHandle {
+    readonly $type: {
+        "s:7PassKit16JPKIPassContentsV5ErrorO": true;
+    };
 }
 /**
  * protocol Identity
@@ -104,6 +116,9 @@ export interface JPKIPassContents_Identity {
  * @availability iOS 18.0+
  */
 export declare class JPKIPassContents_Signature<IdentityType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7PassKit16JPKIPassContentsV9SignatureV": true;
+    };
 }
 /**
  * struct SigningIdentity
@@ -135,12 +150,18 @@ export declare class JPKIPassContents_SigningIdentity extends SDKHandle {
      * @availability iOS 18.0+
      */
     signatureForUsing82568(data: Array<ArrayBuffer>, request: $SDK3): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_SigningIdentity>>>;
+    readonly $type: {
+        "s:7PassKit16JPKIPassContentsV15SigningIdentityV": true;
+    };
 }
 /**
  * enum AuthenticationType
  * @availability iOS 18.0+
  */
 export declare class JPKIPassContents_SigningIdentity_AuthenticationType extends SDKHandle {
+    readonly $type: {
+        "s:7PassKit16JPKIPassContentsV15SigningIdentityV18AuthenticationTypeO": true;
+    };
 }
 /**
  * typealias IdentityType = JPKIPassContents.SigningIdentity
@@ -177,12 +198,18 @@ export declare class JPKIPassContents_UserIdentity extends SDKHandle {
      * @availability iOS 18.0+
      */
     signatureForUsing98569(data: Array<ArrayBuffer>, request: $SDK2): Promise<Array<JPKIPassContents_Signature<JPKIPassContents_UserIdentity>>>;
+    readonly $type: {
+        "s:7PassKit16JPKIPassContentsV12UserIdentityV": true;
+    };
 }
 /**
  * enum AuthenticationType
  * @availability iOS 18.0+
  */
 export declare class JPKIPassContents_UserIdentity_AuthenticationType extends SDKHandle {
+    readonly $type: {
+        "s:7PassKit16JPKIPassContentsV12UserIdentityV18AuthenticationTypeO": true;
+    };
 }
 /**
  * typealias IdentityType = JPKIPassContents.UserIdentity
@@ -206,6 +233,10 @@ export declare class PKAddSecureElementPassConfiguration extends SDKHandle {
      */
     get localizedDescription(): (string) | null;
     set localizedDescription(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PKAddSecureElementPassConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "issuerIdentifier": true;
         "localizedDescription": true;
@@ -251,6 +282,11 @@ export declare class PKAddCarKeyPassConfiguration extends PKAddSecureElementPass
      */
     get supportedRadioTechnologies(): PKRadioTechnology;
     set supportedRadioTechnologies(value: PKRadioTechnology);
+    readonly $type: {
+        "c:objc(cs)PKAddCarKeyPassConfiguration": true;
+        "c:objc(cs)PKAddSecureElementPassConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "issuerIdentifier": true;
         "localizedDescription": true;
@@ -276,6 +312,11 @@ export declare class PKAddIdentityDocumentConfiguration extends PKAddSecureEleme
      * @availability iOS 18.0+
      */
     get metadata(): PKIdentityDocumentMetadata;
+    readonly $type: {
+        "c:objc(cs)PKAddIdentityDocumentConfiguration": true;
+        "c:objc(cs)PKAddSecureElementPassConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "issuerIdentifier": true;
         "localizedDescription": true;
@@ -323,6 +364,10 @@ export declare class PKIdentityDocumentMetadata extends SDKHandle {
      * @availability iOS 18.0+
      */
     get sharingInstanceIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)PKIdentityDocumentMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cardConfigurationIdentifier": true;
         "cardTemplateIdentifier": true;
@@ -348,6 +393,11 @@ export declare class PKAddIdentityDocumentMetadata extends PKIdentityDocumentMet
      * @availability iOS 26.0+
      */
     get preview(): PKAddPassMetadataPreview;
+    readonly $type: {
+        "c:objc(cs)PKAddIdentityDocumentMetadata": true;
+        "c:objc(cs)PKIdentityDocumentMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cardConfigurationIdentifier": true;
         "cardTemplateIdentifier": true;
@@ -370,19 +420,25 @@ export declare const PKAddIdentityDocumentType: {
  * @availability iOS 9.0+
  */
 export declare class PKAddPassButton extends SDKHandle {
-    /** init() */
-    static init(): PKAddPassButton;
     /**
      * init(addPassButtonStyle style: PKAddPassButtonStyle)
      * @availability iOS 9.0+
      */
-    static initAddPassButtonStyle(style: PKAddPassButtonStyle): PKAddPassButton;
+    static init(style: PKAddPassButtonStyle): PKAddPassButton;
     /**
      * var addPassButtonStyle: PKAddPassButtonStyle { get set }
      * @availability iOS 9.0+
      */
     get addPassButtonStyle(): PKAddPassButtonStyle;
     set addPassButtonStyle(value: PKAddPassButtonStyle);
+    readonly $type: {
+        "c:objc(cs)PKAddPassButton": true;
+        "c:objc(cs)UIButton": true;
+        "c:objc(cs)UIControl": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addPassButtonStyle": true;
     };
@@ -409,8 +465,6 @@ export declare class PKAddPassesViewController extends SDKHandle {
      * @availability iOS 8.0+
      */
     static canAddPasses(): boolean;
-    /** init() */
-    static init(): PKAddPassesViewController;
     /**
      * init(issuerData: Data, signature: Data) throws
      * @availability iOS 16.4+
@@ -447,6 +501,12 @@ export declare class PKAddPassesViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<PKAddPassesViewControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)PKAddPassesViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -479,6 +539,10 @@ export declare class PKAddPassMetadataPreview extends SDKHandle {
      * @availability iOS 18.0+
      */
     get passThumbnailImage(): (_CoreGraphics_CGImage) | null;
+    readonly $type: {
+        "c:objc(cs)PKAddPassMetadataPreview": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localizedDescription": true;
         "passThumbnailImage": true;
@@ -530,6 +594,10 @@ export declare class PKAddPaymentPassRequest extends SDKHandle {
      */
     get wrappedKey(): (ArrayBuffer) | null;
     set wrappedKey(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "c:objc(cs)PKAddPaymentPassRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "activationData": true;
         "encryptedPassData": true;
@@ -542,13 +610,11 @@ export declare class PKAddPaymentPassRequest extends SDKHandle {
  * @availability iOS 9.0+
  */
 export declare class PKAddPaymentPassRequestConfiguration extends SDKHandle {
-    /** init() */
-    static init(): PKAddPaymentPassRequestConfiguration;
     /**
      * init?(encryptionScheme: PKEncryptionScheme)
      * @availability iOS 9.0+
      */
-    static initEncryptionScheme(encryptionScheme: PKEncryptionScheme): (PKAddPaymentPassRequestConfiguration) | null;
+    static init(encryptionScheme: PKEncryptionScheme): (PKAddPaymentPassRequestConfiguration) | null;
     /**
      * var cardDetails: [PKLabeledValue] { get set }
      * @availability iOS 10.1+
@@ -608,6 +674,10 @@ export declare class PKAddPaymentPassRequestConfiguration extends SDKHandle {
      */
     get style(): PKAddPaymentPassStyle;
     set style(value: PKAddPaymentPassStyle);
+    readonly $type: {
+        "c:objc(cs)PKAddPaymentPassRequestConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cardDetails": true;
         "cardholderName": true;
@@ -643,19 +713,23 @@ export declare class PKAddPaymentPassViewController extends SDKHandle {
      * @availability iOS 9.0+
      */
     static canAddPaymentPass(): boolean;
-    /** init() */
-    static init(): PKAddPaymentPassViewController;
     /**
      * init?(requestConfiguration configuration: PKAddPaymentPassRequestConfiguration, delegate: (any PKAddPaymentPassViewControllerDelegate)?)
      * @availability iOS 9.0+
      */
-    static initRequestConfigurationDelegate(configuration: PKAddPaymentPassRequestConfiguration, delegate?: (SDKHandle) | null): (PKAddPaymentPassViewController) | null;
+    static init(configuration: PKAddPaymentPassRequestConfiguration, delegate?: (SDKHandle) | null): (PKAddPaymentPassViewController) | null;
     /**
      * weak var delegate: (any PKAddPaymentPassViewControllerDelegate)? { get set }
      * @availability iOS 9.0+
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)PKAddPaymentPassViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -771,6 +845,9 @@ export declare class PKAddSecureElementPassError extends SDKHandle {
      * @availability iOS 13.4+
      */
     static get errorDomain(): string;
+    readonly $type: {
+        "s:SC31PKAddSecureElementPassErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -800,19 +877,23 @@ export declare class PKAddSecureElementPassViewController extends SDKHandle {
      * @availability iOS 13.4+
      */
     static canAddSecureElementPass(configuration: PKAddSecureElementPassConfiguration): boolean;
-    /** init() */
-    static init(): PKAddSecureElementPassViewController;
     /**
      * init?(configuration: PKAddSecureElementPassConfiguration, delegate: (any PKAddSecureElementPassViewControllerDelegate)?)
      * @availability iOS 13.4+
      */
-    static initConfigurationDelegate(configuration: PKAddSecureElementPassConfiguration, delegate?: $SDK18): (PKAddSecureElementPassViewController) | null;
+    static init(configuration: PKAddSecureElementPassConfiguration, delegate?: $SDK18): (PKAddSecureElementPassViewController) | null;
     /**
      * weak var delegate: (any PKAddSecureElementPassViewControllerDelegate)? { get set }
      * @availability iOS 13.4+
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: $SDK18);
+    readonly $type: {
+        "c:objc(cs)PKAddSecureElementPassViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -866,6 +947,11 @@ export declare class PKAddShareablePassConfiguration extends PKAddSecureElementP
      * @deprecated iOS 16.0
      */
     get provisioningPolicyIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)PKAddShareablePassConfiguration": true;
+        "c:objc(cs)PKAddSecureElementPassConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "issuerIdentifier": true;
         "localizedDescription": true;
@@ -950,6 +1036,10 @@ export declare class PKAutomaticReloadPaymentRequest extends SDKHandle {
      */
     get tokenNotificationURL(): (string) | null;
     set tokenNotificationURL(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PKAutomaticReloadPaymentRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "automaticReloadBilling": true;
         "billingAgreement": true;
@@ -973,8 +1063,6 @@ export declare class PKPaymentSummaryItem extends SDKHandle {
      * @availability iOS 9.0+
      */
     static initLabelAmountType(label: string, amount: _Foundation_NSDecimalNumber, type: PKPaymentSummaryItemType): PKPaymentSummaryItem;
-    /** init() */
-    static init(): PKPaymentSummaryItem;
     /**
      * @NSCopying var amount: NSDecimalNumber { get set }
      * @availability iOS 8.0+
@@ -993,18 +1081,21 @@ export declare class PKPaymentSummaryItem extends SDKHandle {
      */
     get type(): PKPaymentSummaryItemType;
     set type(value: PKPaymentSummaryItemType);
+    readonly $type: {
+        "c:objc(cs)PKPaymentSummaryItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "label": true;
         "type": true;
     };
 }
-declare const PKAutomaticReloadPaymentSummaryItem_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
  * class PKAutomaticReloadPaymentSummaryItem
  * @availability iOS 16.0+
  */
-export declare class PKAutomaticReloadPaymentSummaryItem extends PKAutomaticReloadPaymentSummaryItem_base {
+export declare class PKAutomaticReloadPaymentSummaryItem extends PKPaymentSummaryItem {
     /** init() */
     static init(): PKAutomaticReloadPaymentSummaryItem;
     /**
@@ -1013,6 +1104,11 @@ export declare class PKAutomaticReloadPaymentSummaryItem extends PKAutomaticRelo
      */
     get thresholdAmount(): _Foundation_NSDecimalNumber;
     set thresholdAmount(value: _Foundation_NSDecimalNumber);
+    readonly $type: {
+        "c:objc(cs)PKAutomaticReloadPaymentSummaryItem": true;
+        "c:objc(cs)PKPaymentSummaryItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "label": true;
@@ -1054,6 +1150,10 @@ export declare class PKBarcodeEventConfigurationRequest extends SDKHandle {
      * @availability iOS 14.0+
      */
     get deviceAccountIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)PKBarcodeEventConfigurationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "configurationData": true;
         "configurationDataType": true;
@@ -1077,6 +1177,10 @@ export declare class PKBarcodeEventMetadataRequest extends SDKHandle {
      * @availability iOS 14.0+
      */
     get lastUsedBarcodeIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)PKBarcodeEventMetadataRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deviceAccountIdentifier": true;
         "lastUsedBarcodeIdentifier": true;
@@ -1087,19 +1191,21 @@ export declare class PKBarcodeEventMetadataRequest extends SDKHandle {
  * @availability iOS 14.0+
  */
 export declare class PKBarcodeEventMetadataResponse extends SDKHandle {
-    /** init() */
-    static init(): PKBarcodeEventMetadataResponse;
     /**
      * init(paymentInformation: Data)
      * @availability iOS 14.0+
      */
-    static initPaymentInformation(paymentInformation: ArrayBuffer): PKBarcodeEventMetadataResponse;
+    static init(paymentInformation: ArrayBuffer): PKBarcodeEventMetadataResponse;
     /**
      * var paymentInformation: Data { get set }
      * @availability iOS 14.0+
      */
     get paymentInformation(): ArrayBuffer;
     set paymentInformation(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)PKBarcodeEventMetadataResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "paymentInformation": true;
     };
@@ -1161,6 +1267,10 @@ export declare class PKBarcodeEventSignatureRequest extends SDKHandle {
      * @availability iOS 14.0+
      */
     get transactionStatus(): string;
+    readonly $type: {
+        "c:objc(cs)PKBarcodeEventSignatureRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "barcodeIdentifier": true;
@@ -1179,19 +1289,21 @@ export declare class PKBarcodeEventSignatureRequest extends SDKHandle {
  * @availability iOS 14.0+
  */
 export declare class PKBarcodeEventSignatureResponse extends SDKHandle {
-    /** init() */
-    static init(): PKBarcodeEventSignatureResponse;
     /**
      * init(signedData: Data)
      * @availability iOS 14.0+
      */
-    static initSignedData(signedData: ArrayBuffer): PKBarcodeEventSignatureResponse;
+    static init(signedData: ArrayBuffer): PKBarcodeEventSignatureResponse;
     /**
      * var signedData: Data { get set }
      * @availability iOS 14.0+
      */
     get signedData(): ArrayBuffer;
     set signedData(value: ArrayBuffer);
+    readonly $type: {
+        "c:objc(cs)PKBarcodeEventSignatureResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "signedData": true;
     };
@@ -1234,6 +1346,10 @@ export declare class PKContact extends SDKHandle {
      */
     get supplementarySubLocality(): (string) | null;
     set supplementarySubLocality(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PKContact": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "emailAddress": true;
         "name": true;
@@ -1293,6 +1409,10 @@ export declare class PKDateComponentsRange extends SDKHandle {
      * @availability iOS 15.0+
      */
     get startDateComponents(): _Foundation_DateComponents;
+    readonly $type: {
+        "c:objc(cs)PKDateComponentsRange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "endDateComponents": true;
         "startDateComponents": true;
@@ -1350,6 +1470,10 @@ export declare class PKDeferredPaymentRequest extends SDKHandle {
      */
     get tokenNotificationURL(): (string) | null;
     set tokenNotificationURL(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PKDeferredPaymentRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "billingAgreement": true;
         "deferredBilling": true;
@@ -1360,12 +1484,11 @@ export declare class PKDeferredPaymentRequest extends SDKHandle {
         "tokenNotificationURL": true;
     };
 }
-declare const PKDeferredPaymentSummaryItem_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
  * class PKDeferredPaymentSummaryItem
  * @availability iOS 15.0+
  */
-export declare class PKDeferredPaymentSummaryItem extends PKDeferredPaymentSummaryItem_base {
+export declare class PKDeferredPaymentSummaryItem extends PKPaymentSummaryItem {
     /** init() */
     static init(): PKDeferredPaymentSummaryItem;
     /**
@@ -1374,6 +1497,11 @@ export declare class PKDeferredPaymentSummaryItem extends PKDeferredPaymentSumma
      */
     get deferredDate(): globalThis.Date;
     set deferredDate(value: globalThis.Date);
+    readonly $type: {
+        "c:objc(cs)PKDeferredPaymentSummaryItem": true;
+        "c:objc(cs)PKPaymentSummaryItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "label": true;
@@ -1406,6 +1534,9 @@ export declare class PKDisbursementError extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get errorDomain(): string;
+    readonly $type: {
+        "s:SC23PKDisbursementErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1445,8 +1576,6 @@ export declare class PKDisbursementRequest extends SDKHandle {
      * @availability iOS 17.0+
      */
     static disbursementContactInvalidError(field: PKContactField, localizedDescription?: (string) | null): NativeError;
-    /** init() */
-    static init(): PKDisbursementRequest;
     /**
      * var applicationData: Data? { get set }
      * @availability iOS 17.0+
@@ -1511,7 +1640,7 @@ export declare class PKDisbursementRequest extends SDKHandle {
      * convenience init(merchantIdentifier: String, currency: Locale.Currency, region: Locale.Region, supportedNetworks: [PKPaymentNetwork], merchantCapabilities: PKMerchantCapability, summaryItems: [PKPaymentSummaryItem])
      * @availability iOS 17.0+
      */
-    static initMerchantIdentifierCurrencyRegionSupportedNetworksMerchantCapabilitiesSummaryItems(merchantIdentifier: string, currency: _Foundation_Locale_Currency, region: _Foundation_Locale_Region, supportedNetworks: Array<PKPaymentNetwork>, merchantCapabilities: PKMerchantCapability, summaryItems: $SDK28): PKDisbursementRequest;
+    static init(merchantIdentifier: string, currency: _Foundation_Locale_Currency, region: _Foundation_Locale_Region, supportedNetworks: Array<PKPaymentNetwork>, merchantCapabilities: PKMerchantCapability, summaryItems: $SDK28): PKDisbursementRequest;
     /**
      * var region: Locale.Region { get set }
      * @availability iOS 17.0+
@@ -1524,6 +1653,10 @@ export declare class PKDisbursementRequest extends SDKHandle {
      */
     get currency(): _Foundation_Locale_Currency;
     set currency(value: _Foundation_Locale_Currency);
+    readonly $type: {
+        "c:objc(cs)PKDisbursementRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationData": true;
         "isDelegatedRequest": true;
@@ -1536,14 +1669,18 @@ export declare class PKDisbursementRequest extends SDKHandle {
         "unsupportedPrimaryAccountIdentifiers": true;
     };
 }
-declare const PKDisbursementSummaryItem_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
  * class PKDisbursementSummaryItem
  * @availability iOS 17.0+
  */
-export declare class PKDisbursementSummaryItem extends PKDisbursementSummaryItem_base {
+export declare class PKDisbursementSummaryItem extends PKPaymentSummaryItem {
     /** init() */
     static init(): PKDisbursementSummaryItem;
+    readonly $type: {
+        "c:objc(cs)PKDisbursementSummaryItem": true;
+        "c:objc(cs)PKPaymentSummaryItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "label": true;
@@ -1581,6 +1718,10 @@ export declare class PKIdentityAnyOfDescriptor extends SDKHandle {
      * @availability iOS 26.0+
      */
     get descriptors(): Array<SDKHandle>;
+    readonly $type: {
+        "c:objc(cs)PKIdentityAnyOfDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "descriptors": true;
     };
@@ -1607,25 +1748,34 @@ export declare class PKIdentityAuthorizationController extends SDKHandle {
      * @availability iOS 16.0+
      */
     requestDocument(request: PKIdentityRequest, completion: ((arg0: (PKIdentityDocument) | null, arg1: (NativeError) | null) => void)): void;
+    readonly $type: {
+        "c:objc(cs)PKIdentityAuthorizationController": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PKIdentityButton
  * @availability iOS 16.0+
  */
 export declare class PKIdentityButton extends SDKHandle {
-    /** init() */
-    static init(): PKIdentityButton;
     /**
      * init(label: PKIdentityButton.Label, style: PKIdentityButton.Style)
      * @availability iOS 16.0+
      */
-    static initLabelStyle(label: PKIdentityButton_Label, style: PKIdentityButton_Style): PKIdentityButton;
+    static init(label: PKIdentityButton_Label, style: PKIdentityButton_Style): PKIdentityButton;
     /**
      * var cornerRadius: CGFloat { get set }
      * @availability iOS 16.0+
      */
     get cornerRadius(): number;
     set cornerRadius(value: number);
+    readonly $type: {
+        "c:objc(cs)PKIdentityButton": true;
+        "c:objc(cs)UIControl": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cornerRadius": true;
     };
@@ -1664,6 +1814,10 @@ export declare class PKIdentityDocument extends SDKHandle {
      * @availability iOS 16.0+
      */
     get encryptedData(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)PKIdentityDocument": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "encryptedData": true;
     };
@@ -1691,6 +1845,10 @@ export interface PKIdentityDocumentDescriptor {
 export declare class PKIdentityDriversLicenseDescriptor extends SDKHandle {
     /** init() */
     static init(): PKIdentityDriversLicenseDescriptor;
+    readonly $type: {
+        "c:objc(cs)PKIdentityDriversLicenseDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PKIdentityElement
@@ -1822,6 +1980,10 @@ export declare class PKIdentityElement extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get weight(): PKIdentityElement;
+    readonly $type: {
+        "c:objc(cs)PKIdentityElement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct PKIdentityError
@@ -1878,6 +2040,9 @@ export declare class PKIdentityError extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get cancelled(): PKIdentityError_Code;
+    readonly $type: {
+        "s:SC15PKIdentityErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1911,6 +2076,10 @@ export declare class PKIdentityIntentToStore extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get willNotStore(): PKIdentityIntentToStore;
+    readonly $type: {
+        "c:objc(cs)PKIdentityIntentToStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PKIdentityNationalIDCardDescriptor
@@ -1925,6 +2094,10 @@ export declare class PKIdentityNationalIDCardDescriptor extends SDKHandle {
      */
     get region(): $SDK34;
     set region(value: $SDK34);
+    readonly $type: {
+        "c:objc(cs)PKIdentityNationalIDCardDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PKIdentityPhotoIDDescriptor
@@ -1933,6 +2106,10 @@ export declare class PKIdentityNationalIDCardDescriptor extends SDKHandle {
 export declare class PKIdentityPhotoIDDescriptor extends SDKHandle {
     /** init() */
     static init(): PKIdentityPhotoIDDescriptor;
+    readonly $type: {
+        "c:objc(cs)PKIdentityPhotoIDDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PKIdentityRequest
@@ -1965,6 +2142,10 @@ export declare class PKIdentityRequest extends SDKHandle {
      */
     get usageDescriptionKey(): (string) | null;
     set usageDescriptionKey(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PKIdentityRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "descriptor": true;
         "merchantIdentifier": true;
@@ -1974,14 +2155,18 @@ export declare class PKIdentityRequest extends SDKHandle {
 }
 /** typealias PKInformationRequestCompletionBlock = (PKBarcodeEventMetadataResponse) -> Void */
 export type PKInformationRequestCompletionBlock = ((arg0: PKBarcodeEventMetadataResponse) => Promise<void>);
-declare const PKInstantFundsOutFeeSummaryItem_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
  * class PKInstantFundsOutFeeSummaryItem
  * @availability iOS 17.0+
  */
-export declare class PKInstantFundsOutFeeSummaryItem extends PKInstantFundsOutFeeSummaryItem_base {
+export declare class PKInstantFundsOutFeeSummaryItem extends PKPaymentSummaryItem {
     /** init() */
     static init(): PKInstantFundsOutFeeSummaryItem;
+    readonly $type: {
+        "c:objc(cs)PKInstantFundsOutFeeSummaryItem": true;
+        "c:objc(cs)PKPaymentSummaryItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "label": true;
@@ -2033,6 +2218,10 @@ export declare class PKIssuerProvisioningExtensionHandler extends SDKHandle {
      * @availability iOS 14.0+
      */
     status(completion: ((arg0: PKIssuerProvisioningExtensionStatus) => void)): void;
+    readonly $type: {
+        "c:objc(cs)PKIssuerProvisioningExtensionHandler": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PKIssuerProvisioningExtensionPassEntry
@@ -2054,6 +2243,10 @@ export declare class PKIssuerProvisioningExtensionPassEntry extends SDKHandle {
      * @availability iOS 14.0+
      */
     get title(): string;
+    readonly $type: {
+        "c:objc(cs)PKIssuerProvisioningExtensionPassEntry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "art": true;
         "identifier": true;
@@ -2075,6 +2268,11 @@ export declare class PKIssuerProvisioningExtensionPaymentPassEntry extends PKIss
      * @availability iOS 14.0+
      */
     get addRequestConfiguration(): PKAddPaymentPassRequestConfiguration;
+    readonly $type: {
+        "c:objc(cs)PKIssuerProvisioningExtensionPaymentPassEntry": true;
+        "c:objc(cs)PKIssuerProvisioningExtensionPassEntry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "art": true;
         "identifier": true;
@@ -2110,6 +2308,10 @@ export declare class PKIssuerProvisioningExtensionStatus extends SDKHandle {
      */
     get requiresAuthentication(): boolean;
     set requiresAuthentication(value: boolean);
+    readonly $type: {
+        "c:objc(cs)PKIssuerProvisioningExtensionStatus": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "passEntriesAvailable": true;
         "remotePassEntriesAvailable": true;
@@ -2149,6 +2351,11 @@ export declare class PKJapanIndividualNumberCardMetadata extends PKIdentityDocum
      */
     get signingPassword(): (string) | null;
     set signingPassword(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PKJapanIndividualNumberCardMetadata": true;
+        "c:objc(cs)PKIdentityDocumentMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cardConfigurationIdentifier": true;
         "cardTemplateIdentifier": true;
@@ -2167,13 +2374,11 @@ export declare class PKJapanIndividualNumberCardMetadata extends PKIdentityDocum
  * @availability iOS 10.1+
  */
 export declare class PKLabeledValue extends SDKHandle {
-    /** init() */
-    static init(): PKLabeledValue;
     /**
      * init(label: String, value: String)
      * @availability iOS 10.1+
      */
-    static initLabelValue(label: string, value: string): PKLabeledValue;
+    static init(label: string, value: string): PKLabeledValue;
     /**
      * var label: String { get }
      * @availability iOS 10.1+
@@ -2184,6 +2389,10 @@ export declare class PKLabeledValue extends SDKHandle {
      * @availability iOS 10.1+
      */
     get value(): string;
+    readonly $type: {
+        "c:objc(cs)PKLabeledValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
         "value": true;
@@ -2258,14 +2467,16 @@ export declare const PKMerchantCapability: {
 export declare class PKObject extends SDKHandle {
     /** init() */
     static init(): PKObject;
+    readonly $type: {
+        "c:objc(cs)PKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const PKPass_base: Omit<typeof PKObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKObject);
 /** class PKPass */
 export declare class PKPass extends PKPass_base {
-    /** init() */
-    static init(): PKPass;
     /** init(data: Data) throws */
-    static initData(data: ArrayBuffer): PKPass;
+    static init(data: ArrayBuffer): PKPass;
     /** func localizedValue(forFieldKey key: String) -> Any? */
     localizedValue(key: string): (unknown) | null;
     /** var authenticationToken: String? { get } */
@@ -2328,6 +2539,11 @@ export declare class PKPass extends PKPass_base {
     get userInfo(): (NativeMap<unknown, unknown>) | null;
     /** var webServiceURL: URL? { get } */
     get webServiceURL(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)PKPass": true;
+        "c:objc(cs)PKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authenticationToken": true;
         "deviceName": true;
@@ -2383,6 +2599,9 @@ export declare class PKPassKitError extends SDKHandle {
      * @availability iOS 6.0+
      */
     static get invalidSignature(): PKPassKitError_Code;
+    readonly $type: {
+        "s:SC18PKPassKitErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2586,6 +2805,10 @@ export declare class PKPassLibrary extends SDKHandle {
      * @availability iOS 13.4+
      */
     get isSecureElementPassActivationAvailable(): boolean;
+    readonly $type: {
+        "c:objc(cs)PKPassLibrary": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "remoteSecureElementPasses": true;
         "isSecureElementPassActivationAvailable": true;
@@ -2683,12 +2906,14 @@ export declare const PKPassLibraryNotificationName: {
 };
 /** class PKPassRelevantDate */
 export declare class PKPassRelevantDate extends SDKHandle {
-    /** init() */
-    static init(): PKPassRelevantDate;
     /** var date: Date? { get } */
     get date(): $SDK26;
     /** var interval: DateInterval? { get } */
     get interval(): (_Foundation_DateInterval) | null;
+    readonly $type: {
+        "c:objc(cs)PKPassRelevantDate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "date": true;
         "interval": true;
@@ -2722,6 +2947,9 @@ export declare class PKPayLater extends SDKHandle {
      * @availability iOS 17.0+
      */
     static validate(amount: _Foundation_Decimal, currency: _Foundation_Locale_Currency): Promise<boolean>;
+    readonly $type: {
+        "s:7PassKit10PKPayLaterO": true;
+    };
 }
 /**
  * enum PKPayLaterAction
@@ -2787,6 +3015,12 @@ export declare class PKPayLaterView extends SDKHandle {
      */
     get currency(): Promise<_Foundation_Locale_Currency>;
     setCurrency(value: _Foundation_Locale_Currency): Promise<void>;
+    readonly $type: {
+        "c:objc(cs)PKPayLaterView": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "action": true;
         "delegate": true;
@@ -2843,6 +3077,10 @@ export declare class PKPayment extends SDKHandle {
      * @availability iOS 8.0+
      */
     get token(): PKPaymentToken;
+    readonly $type: {
+        "c:objc(cs)PKPayment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "billingAddress": true;
         "billingContact": true;
@@ -2892,8 +3130,6 @@ export declare class PKPaymentAuthorizationController extends SDKHandle {
      * @availability iOS 10.0+
      */
     dismiss(completion?: ((() => void)) | null): void;
-    /** init() */
-    static init(): PKPaymentAuthorizationController;
     /**
      * convenience init(disbursementRequest request: PKDisbursementRequest)
      * @availability iOS 17.0+
@@ -2915,6 +3151,10 @@ export declare class PKPaymentAuthorizationController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<PKPaymentAuthorizationControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)PKPaymentAuthorizationController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -2937,13 +3177,11 @@ export interface PKPaymentAuthorizationControllerDelegate {
  * @availability iOS 11.0+
  */
 export declare class PKPaymentAuthorizationResult extends SDKHandle {
-    /** init() */
-    static init(): PKPaymentAuthorizationResult;
     /**
      * init(status: PKPaymentAuthorizationStatus, errors: [any Error]?)
      * @availability iOS 11.0+
      */
-    static initStatusErrors(status: PKPaymentAuthorizationStatus, errors?: $SDK56): PKPaymentAuthorizationResult;
+    static init(status: PKPaymentAuthorizationStatus, errors?: $SDK56): PKPaymentAuthorizationResult;
     /**
      * var errors: [any Error]! { get set }
      * @availability iOS 11.0+
@@ -2962,6 +3200,10 @@ export declare class PKPaymentAuthorizationResult extends SDKHandle {
      */
     get status(): PKPaymentAuthorizationStatus;
     set status(value: PKPaymentAuthorizationStatus);
+    readonly $type: {
+        "c:objc(cs)PKPaymentAuthorizationResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "errors": true;
         "orderDetails": true;
@@ -3015,8 +3257,6 @@ export declare class PKPaymentAuthorizationViewController extends SDKHandle {
      * @availability iOS 17.0+
      */
     static supportsDisbursementsUsingCapabilities(supportedNetworks: Array<PKPaymentNetwork>, capabilities: PKMerchantCapability): boolean;
-    /** init() */
-    static init(): PKPaymentAuthorizationViewController;
     /**
      * convenience init(disbursementRequest request: PKDisbursementRequest)
      * @availability iOS 17.0+
@@ -3033,6 +3273,12 @@ export declare class PKPaymentAuthorizationViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<PKPaymentAuthorizationViewControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)PKPaymentAuthorizationViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -3055,8 +3301,6 @@ export interface PKPaymentAuthorizationViewControllerDelegate {
  * @availability iOS 8.3+
  */
 export declare class PKPaymentButton extends SDKHandle {
-    /** init() */
-    static init(): PKPaymentButton;
     /**
      * init(paymentButtonType type: PKPaymentButtonType, paymentButtonStyle style: PKPaymentButtonStyle)
      * @availability iOS 9.0+
@@ -3073,6 +3317,14 @@ export declare class PKPaymentButton extends SDKHandle {
      */
     get cornerRadius(): number;
     set cornerRadius(value: number);
+    readonly $type: {
+        "c:objc(cs)PKPaymentButton": true;
+        "c:objc(cs)UIButton": true;
+        "c:objc(cs)UIControl": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cornerRadius": true;
     };
@@ -3141,6 +3393,9 @@ export declare class PKPaymentError extends SDKHandle {
      * @availability iOS 11.0+
      */
     static get errorDomain(): string;
+    readonly $type: {
+        "s:SC18PKPaymentErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -3177,6 +3432,10 @@ export declare const PKPaymentErrorKey: {
 export declare class PKPaymentInformationEventExtension extends SDKHandle {
     /** init() */
     static init(): PKPaymentInformationEventExtension;
+    readonly $type: {
+        "c:objc(cs)PKPaymentInformationEventExtension": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** protocol PKPaymentInformationRequestHandling */
 export interface PKPaymentInformationRequestHandling {
@@ -3196,13 +3455,15 @@ export interface PKPaymentInformationRequestHandling {
  * @availability iOS 14.0+
  */
 export declare class PKPaymentMerchantSession extends SDKHandle {
-    /** init() */
-    static init(): PKPaymentMerchantSession;
     /**
      * init(dictionary: [AnyHashable : Any])
      * @availability iOS 14.0+
      */
-    static initDictionary(dictionary: NativeMap<unknown, unknown>): PKPaymentMerchantSession;
+    static init(dictionary: NativeMap<unknown, unknown>): PKPaymentMerchantSession;
+    readonly $type: {
+        "c:objc(cs)PKPaymentMerchantSession": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PKPaymentMethod
@@ -3242,6 +3503,10 @@ export declare class PKPaymentMethod extends SDKHandle {
      * @availability iOS 9.0+
      */
     get type(): PKPaymentMethodType;
+    readonly $type: {
+        "c:objc(cs)PKPaymentMethod": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "billingAddress": true;
         "displayName": true;
@@ -3538,6 +3803,10 @@ export declare class PKPaymentOrderDetails extends SDKHandle {
      */
     get webServiceURL(): string;
     set webServiceURL(value: string);
+    readonly $type: {
+        "c:objc(cs)PKPaymentOrderDetails": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authenticationToken": true;
         "orderIdentifier": true;
@@ -3593,6 +3862,12 @@ export declare class PKSecureElementPass extends PKSecureElementPass_base {
      * @availability iOS 27.0+
      */
     get isProvisioningAvailable(): boolean;
+    readonly $type: {
+        "c:objc(cs)PKSecureElementPass": true;
+        "c:objc(cs)PKPass": true;
+        "c:objc(cs)PKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authenticationToken": true;
         "deviceName": true;
@@ -3635,6 +3910,13 @@ export declare class PKPaymentPass extends PKPaymentPass_base {
      * @deprecated iOS 100000.0
      */
     get activationState(): PKPaymentPassActivationState;
+    readonly $type: {
+        "c:objc(cs)PKPaymentPass": true;
+        "c:objc(cs)PKSecureElementPass": true;
+        "c:objc(cs)PKPass": true;
+        "c:objc(cs)PKObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authenticationToken": true;
         "deviceName": true;
@@ -3904,6 +4186,10 @@ export declare class PKPaymentRequest extends SDKHandle {
      * @availability iOS 15.0+
      */
     static paymentCouponCodeInvalidError(localizedDescription?: (string) | null): NativeError;
+    readonly $type: {
+        "c:objc(cs)PKPaymentRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationData": true;
         "attributionIdentifier": true;
@@ -3940,6 +4226,9 @@ export declare class PKPaymentRequest extends SDKHandle {
  * @availability iOS 17.0+
  */
 export declare class PKPaymentRequest_ApplePayLaterAvailability extends SDKHandle {
+    readonly $type: {
+        "s:So16PKPaymentRequestC7PassKitE25ApplePayLaterAvailabilityO": true;
+    };
 }
 /**
  * enum Reason
@@ -3983,13 +4272,11 @@ export type PKPaymentRequest_MerchantCategoryCode_RawValue = number;
  * @availability iOS 11.0+
  */
 export declare class PKPaymentRequestUpdate extends SDKHandle {
-    /** init() */
-    static init(): PKPaymentRequestUpdate;
     /**
      * init(paymentSummaryItems: [PKPaymentSummaryItem])
      * @availability iOS 11.0+
      */
-    static initPaymentSummaryItems(paymentSummaryItems: $SDK28): PKPaymentRequestUpdate;
+    static init(paymentSummaryItems: $SDK28): PKPaymentRequestUpdate;
     /**
      * var automaticReloadPaymentRequest: PKAutomaticReloadPaymentRequest? { get set }
      * @availability iOS 16.0+
@@ -4032,6 +4319,10 @@ export declare class PKPaymentRequestUpdate extends SDKHandle {
      */
     get status(): PKPaymentAuthorizationStatus;
     set status(value: PKPaymentAuthorizationStatus);
+    readonly $type: {
+        "c:objc(cs)PKPaymentRequestUpdate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "automaticReloadPaymentRequest": true;
         "deferredPaymentRequest": true;
@@ -4048,19 +4339,22 @@ declare const PKPaymentRequestCouponCodeUpdate_base: Omit<typeof PKPaymentReques
  * @availability iOS 15.0+
  */
 export declare class PKPaymentRequestCouponCodeUpdate extends PKPaymentRequestCouponCodeUpdate_base {
-    /** init() */
-    static init(): PKPaymentRequestCouponCodeUpdate;
     /**
      * init(errors: [any Error]?, paymentSummaryItems: [PKPaymentSummaryItem], shippingMethods: [PKShippingMethod])
      * @availability iOS 15.0+
      */
-    static initErrorsPaymentSummaryItemsShippingMethods(errors: $SDK56, paymentSummaryItems: $SDK28, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestCouponCodeUpdate;
+    static init(errors: $SDK56, paymentSummaryItems: $SDK28, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestCouponCodeUpdate;
     /**
      * var errors: [any Error]! { get set }
      * @availability iOS 15.0+
      */
     get errors(): $SDK56;
     set errors(value: $SDK56);
+    readonly $type: {
+        "c:objc(cs)PKPaymentRequestCouponCodeUpdate": true;
+        "c:objc(cs)PKPaymentRequestUpdate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "automaticReloadPaymentRequest": true;
         "deferredPaymentRequest": true;
@@ -4077,13 +4371,11 @@ export declare class PKPaymentRequestCouponCodeUpdate extends PKPaymentRequestCo
  * @availability iOS 14.0+
  */
 export declare class PKPaymentRequestMerchantSessionUpdate extends SDKHandle {
-    /** init() */
-    static init(): PKPaymentRequestMerchantSessionUpdate;
     /**
      * init(status: PKPaymentAuthorizationStatus, merchantSession session: PKPaymentMerchantSession?)
      * @availability iOS 14.0+
      */
-    static initStatusMerchantSession(status: PKPaymentAuthorizationStatus, session?: $SDK68): PKPaymentRequestMerchantSessionUpdate;
+    static init(status: PKPaymentAuthorizationStatus, session?: $SDK68): PKPaymentRequestMerchantSessionUpdate;
     /**
      * var session: PKPaymentMerchantSession? { get set }
      * @availability iOS 14.0+
@@ -4096,6 +4388,10 @@ export declare class PKPaymentRequestMerchantSessionUpdate extends SDKHandle {
      */
     get status(): PKPaymentAuthorizationStatus;
     set status(value: PKPaymentAuthorizationStatus);
+    readonly $type: {
+        "c:objc(cs)PKPaymentRequestMerchantSessionUpdate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "session": true;
         "status": true;
@@ -4107,19 +4403,22 @@ declare const PKPaymentRequestPaymentMethodUpdate_base: Omit<typeof PKPaymentReq
  * @availability iOS 11.0+
  */
 export declare class PKPaymentRequestPaymentMethodUpdate extends PKPaymentRequestPaymentMethodUpdate_base {
-    /** init() */
-    static init(): PKPaymentRequestPaymentMethodUpdate;
     /**
      * init(errors: [any Error]?, paymentSummaryItems: [PKPaymentSummaryItem])
      * @availability iOS 11.0+
      */
-    static initErrorsPaymentSummaryItems(errors: $SDK56, paymentSummaryItems: $SDK28): PKPaymentRequestPaymentMethodUpdate;
+    static init(errors: $SDK56, paymentSummaryItems: $SDK28): PKPaymentRequestPaymentMethodUpdate;
     /**
      * var errors: [any Error]! { get set }
      * @availability iOS 11.0+
      */
     get errors(): $SDK56;
     set errors(value: $SDK56);
+    readonly $type: {
+        "c:objc(cs)PKPaymentRequestPaymentMethodUpdate": true;
+        "c:objc(cs)PKPaymentRequestUpdate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "automaticReloadPaymentRequest": true;
         "deferredPaymentRequest": true;
@@ -4137,13 +4436,11 @@ declare const PKPaymentRequestShippingContactUpdate_base: Omit<typeof PKPaymentR
  * @availability iOS 11.0+
  */
 export declare class PKPaymentRequestShippingContactUpdate extends PKPaymentRequestShippingContactUpdate_base {
-    /** init() */
-    static init(): PKPaymentRequestShippingContactUpdate;
     /**
      * init(errors: [any Error]?, paymentSummaryItems: [PKPaymentSummaryItem], shippingMethods: [PKShippingMethod])
      * @availability iOS 11.0+
      */
-    static initErrorsPaymentSummaryItemsShippingMethods(errors: $SDK56, paymentSummaryItems: $SDK28, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestShippingContactUpdate;
+    static init(errors: $SDK56, paymentSummaryItems: $SDK28, shippingMethods: Array<PKShippingMethod>): PKPaymentRequestShippingContactUpdate;
     /**
      * var errors: [any Error]! { get set }
      * @availability iOS 11.0+
@@ -4156,6 +4453,11 @@ export declare class PKPaymentRequestShippingContactUpdate extends PKPaymentRequ
      */
     get shippingMethods(): Array<PKShippingMethod>;
     set shippingMethods(value: Array<PKShippingMethod>);
+    readonly $type: {
+        "c:objc(cs)PKPaymentRequestShippingContactUpdate": true;
+        "c:objc(cs)PKPaymentRequestUpdate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "automaticReloadPaymentRequest": true;
         "deferredPaymentRequest": true;
@@ -4175,6 +4477,11 @@ declare const PKPaymentRequestShippingMethodUpdate_base: Omit<typeof PKPaymentRe
 export declare class PKPaymentRequestShippingMethodUpdate extends PKPaymentRequestShippingMethodUpdate_base {
     /** init() */
     static init(): PKPaymentRequestShippingMethodUpdate;
+    readonly $type: {
+        "c:objc(cs)PKPaymentRequestShippingMethodUpdate": true;
+        "c:objc(cs)PKPaymentRequestUpdate": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "automaticReloadPaymentRequest": true;
         "deferredPaymentRequest": true;
@@ -4231,6 +4538,10 @@ export declare class PKPaymentToken extends SDKHandle {
      * @availability iOS 8.0+
      */
     get transactionIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)PKPaymentToken": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "paymentData": true;
         "paymentInstrumentName": true;
@@ -4279,6 +4590,10 @@ export declare class PKPaymentTokenContext extends SDKHandle {
      */
     get merchantName(): string;
     set merchantName(value: string);
+    readonly $type: {
+        "c:objc(cs)PKPaymentTokenContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "externalIdentifier": true;
@@ -4355,6 +4670,10 @@ export declare class PKRecurringPaymentRequest extends SDKHandle {
      */
     get trialBilling(): $SDK69;
     set trialBilling(value: $SDK69);
+    readonly $type: {
+        "c:objc(cs)PKRecurringPaymentRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "billingAgreement": true;
         "managementURL": true;
@@ -4364,12 +4683,11 @@ export declare class PKRecurringPaymentRequest extends SDKHandle {
         "trialBilling": true;
     };
 }
-declare const PKRecurringPaymentSummaryItem_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
  * class PKRecurringPaymentSummaryItem
  * @availability iOS 15.0+
  */
-export declare class PKRecurringPaymentSummaryItem extends PKRecurringPaymentSummaryItem_base {
+export declare class PKRecurringPaymentSummaryItem extends PKPaymentSummaryItem {
     /** init() */
     static init(): PKRecurringPaymentSummaryItem;
     /**
@@ -4396,6 +4714,11 @@ export declare class PKRecurringPaymentSummaryItem extends PKRecurringPaymentSum
      */
     get startDate(): $SDK26;
     set startDate(value: $SDK26);
+    readonly $type: {
+        "c:objc(cs)PKRecurringPaymentSummaryItem": true;
+        "c:objc(cs)PKPaymentSummaryItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "label": true;
@@ -4423,8 +4746,6 @@ export declare const PKSecureElementPass_PassActivationState: {
  * @availability iOS 14.0+
  */
 export declare class PKShareablePassMetadata extends SDKHandle {
-    /** init() */
-    static init(): PKShareablePassMetadata;
     /**
      * init?(provisioningCredentialIdentifier credentialIdentifier: String, cardConfigurationIdentifier: String, sharingInstanceIdentifier: String, passThumbnailImage: CGImage, ownerDisplayName: String, localizedDescription: String)
      * @availability iOS 14.0+
@@ -4520,6 +4841,10 @@ export declare class PKShareablePassMetadata extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get templateIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)PKShareablePassMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accountHash": true;
         "cardConfigurationIdentifier": true;
@@ -4558,6 +4883,11 @@ export declare class PKShareablePassMetadata_Preview extends PKShareablePassMeta
      * @availability iOS 16.0+
      */
     get provisioningTemplateIdentifier(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)PKShareablePassMetadataPreview": true;
+        "c:objc(cs)PKAddPassMetadataPreview": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localizedDescription": true;
         "passThumbnailImage": true;
@@ -4585,6 +4915,9 @@ export declare class PKShareSecureElementPassError extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get errorDomain(): string;
+    readonly $type: {
+        "s:SC33PKShareSecureElementPassErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -4632,6 +4965,12 @@ export declare class PKShareSecureElementPassViewController extends SDKHandle {
      */
     get promptToShareURL(): boolean;
     set promptToShareURL(value: boolean);
+    readonly $type: {
+        "c:objc(cs)PKShareSecureElementPassViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "promptToShareURL": true;
@@ -4670,12 +5009,11 @@ export declare const PKShippingContactEditingMode: {
      */
     init(rawValue: number): (PKShippingContactEditingMode) | null;
 };
-declare const PKShippingMethod_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
  * class PKShippingMethod
  * @availability iOS 8.0+
  */
-export declare class PKShippingMethod extends PKShippingMethod_base {
+export declare class PKShippingMethod extends PKPaymentSummaryItem {
     /** init() */
     static init(): PKShippingMethod;
     /**
@@ -4696,6 +5034,11 @@ export declare class PKShippingMethod extends PKShippingMethod_base {
      */
     get identifier(): (string) | null;
     set identifier(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PKShippingMethod": true;
+        "c:objc(cs)PKPaymentSummaryItem": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "amount": true;
         "label": true;
@@ -4744,6 +5087,10 @@ export declare class PKStoredValuePassBalance extends SDKHandle {
      * @availability iOS 15.0+
      */
     get amount(): _Foundation_Decimal;
+    readonly $type: {
+        "c:objc(cs)PKStoredValuePassBalance": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "balanceType": true;
         "currencyCode": true;
@@ -4780,9 +5127,7 @@ export declare class PKStoredValuePassProperties extends SDKHandle {
      * convenience init?(for pass: PKPass)
      * @availability iOS 15.0+
      */
-    static initFor(pass: PKPass): (PKStoredValuePassProperties) | null;
-    /** init() */
-    static init(): PKStoredValuePassProperties;
+    static init(pass: PKPass): (PKStoredValuePassProperties) | null;
     /**
      * var balances: [PKStoredValuePassBalance] { get }
      * @availability iOS 15.0+
@@ -4799,6 +5144,10 @@ export declare class PKStoredValuePassProperties extends SDKHandle {
      * @availability iOS 15.0+
      */
     get expirationDate(): $SDK26;
+    readonly $type: {
+        "c:objc(cs)PKStoredValuePassProperties": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "balances": true;
         "isBlacklisted": true;
@@ -4846,6 +5195,11 @@ export declare class PKTransitPassProperties extends PKTransitPassProperties_bas
      * @deprecated iOS 15.0
      */
     get transitBalanceCurrencyCode(): string;
+    readonly $type: {
+        "c:objc(cs)PKTransitPassProperties": true;
+        "c:objc(cs)PKStoredValuePassProperties": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "balances": true;
         "isBlacklisted": true;
@@ -4855,7 +5209,7 @@ export declare class PKTransitPassProperties extends PKTransitPassProperties_bas
         "transitBalanceCurrencyCode": true;
     };
 }
-declare const PKSuicaPassProperties_base: Omit<typeof PKTransitPassProperties, "init" | "initFor" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<PKTransitPassProperties, "isBlocked" | "isBlacklisted" | "isInStation" | "transitBalance" | "transitBalanceCurrencyCode">);
+declare const PKSuicaPassProperties_base: Omit<typeof PKTransitPassProperties, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<PKTransitPassProperties, "isBlocked" | "isBlacklisted" | "isInStation" | "transitBalance" | "transitBalanceCurrencyCode">);
 /**
  * class PKSuicaPassProperties
  * @availability iOS 10.1+
@@ -4870,9 +5224,7 @@ export declare class PKSuicaPassProperties extends PKSuicaPassProperties_base {
      * convenience init?(for pass: PKPass)
      * @availability iOS 10.1+
      */
-    static initFor(pass: PKPass): (PKSuicaPassProperties) | null;
-    /** init() */
-    static init(): PKSuicaPassProperties;
+    static init(pass: PKPass): (PKSuicaPassProperties) | null;
     /**
      * var isBalanceAllowedForCommute: Bool { get }
      * @availability iOS 11.3+
@@ -4914,6 +5266,12 @@ export declare class PKSuicaPassProperties extends PKSuicaPassProperties_base {
      * @availability iOS 10.1+
      */
     get transitBalanceCurrencyCode(): string;
+    readonly $type: {
+        "c:objc(cs)PKSuicaPassProperties": true;
+        "c:objc(cs)PKTransitPassProperties": true;
+        "c:objc(cs)PKStoredValuePassProperties": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "balances": true;
         "isBlacklisted": true;
@@ -4987,6 +5345,10 @@ export declare class PKVehicleConnectionSession extends SDKHandle {
      * @availability iOS 15.4+
      */
     get delegate(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)PKVehicleConnectionSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "connectionStatus": true;
         "delegate": true;

@@ -58,6 +58,9 @@ export declare class PhotosPicker<Label = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initSelectionMatchingPreferredItemEncoding50544(title: string, selection: $SDK3, filter?: $SDK2, preferredItemEncoding?: PhotosPickerItem_EncodingDisambiguationPolicy): Promise<$SDK0>;
+    readonly $type: {
+        "s:015_PhotosUI_SwiftB00A6PickerV": true;
+    };
 }
 /**
  * typealias Body = some View
@@ -84,6 +87,9 @@ export declare class PhotosPickerItem extends SDKHandle {
      * @availability iOS 16.0+
      */
     get supportedContentTypes(): Array<_UniformTypeIdentifiers_UTType>;
+    readonly $type: {
+        "s:015_PhotosUI_SwiftB00A10PickerItemV": true;
+    };
 }
 /**
  * struct EncodingDisambiguationPolicy
@@ -105,6 +111,9 @@ export declare class PhotosPickerItem_EncodingDisambiguationPolicy extends SDKHa
      * @availability iOS 16.0+
      */
     static get automatic(): PhotosPickerItem_EncodingDisambiguationPolicy;
+    readonly $type: {
+        "s:015_PhotosUI_SwiftB00A10PickerItemV28EncodingDisambiguationPolicyV": true;
+    };
 }
 /**
  * struct PhotosPickerSelectionBehavior
@@ -131,6 +140,9 @@ export declare class PhotosPickerSelectionBehavior extends SDKHandle {
      * @availability iOS 16.0+
      */
     static get ordered(): PhotosPickerSelectionBehavior;
+    readonly $type: {
+        "s:015_PhotosUI_SwiftB00A23PickerSelectionBehaviorV": true;
+    };
 }
 /**
  * struct PhotosPickerStyle
@@ -152,5 +164,8 @@ export declare class PhotosPickerStyle extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get compact(): PhotosPickerStyle;
+    readonly $type: {
+        "s:015_PhotosUI_SwiftB00A11PickerStyleV": true;
+    };
 }
 export {};

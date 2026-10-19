@@ -10,6 +10,9 @@ type $SDK5 = (_Foundation_Locale_LanguageCode) | null;
  * @availability iOS 26.0+
  */
 export declare class DataDetector extends SDKHandle {
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO": true;
+    };
 }
 /**
  * struct Match
@@ -31,6 +34,9 @@ export declare class DataDetector_Match extends SDKHandle {
      * @availability iOS 26.0+
      */
     get details(): DataDetector_Match_SemanticDetails;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV": true;
+    };
 }
 /**
  * enum HighlightStyle
@@ -42,6 +48,9 @@ export type DataDetector_Match_HighlightStyle = "hidden" | "url" | "regular";
  * @availability iOS 26.0+
  */
 export declare class DataDetector_Match_SemanticDetails extends SDKHandle {
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO": true;
+    };
 }
 /**
  * struct CalendarEvent
@@ -73,6 +82,9 @@ export declare class DataDetector_Match_SemanticDetails_CalendarEvent extends SD
      * @availability iOS 26.0+
      */
     get startDate(): $SDK1;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO13CalendarEventV": true;
+    };
 }
 /**
  * struct EmailAddress
@@ -89,6 +101,9 @@ export declare class DataDetector_Match_SemanticDetails_EmailAddress extends SDK
      * @availability iOS 26.0+
      */
     get label(): (string) | null;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO12EmailAddressV": true;
+    };
 }
 /**
  * struct FlightNumber
@@ -105,6 +120,9 @@ export declare class DataDetector_Match_SemanticDetails_FlightNumber extends SDK
      * @availability iOS 26.0+
      */
     get airlineCode(): string;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO12FlightNumberV": true;
+    };
 }
 /**
  * struct Link
@@ -116,6 +134,9 @@ export declare class DataDetector_Match_SemanticDetails_Link extends SDKHandle {
      * @availability iOS 26.0+
      */
     get url(): string;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO4LinkV": true;
+    };
 }
 /**
  * struct Measurement
@@ -137,6 +158,9 @@ export declare class DataDetector_Match_SemanticDetails_Measurement extends SDKH
      * @availability iOS 26.0+
      */
     get value(): number;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO11MeasurementV": true;
+    };
 }
 /**
  * struct MoneyAmount
@@ -153,6 +177,9 @@ export declare class DataDetector_Match_SemanticDetails_MoneyAmount extends SDKH
      * @availability iOS 26.0+
      */
     get currency(): _Foundation_Locale_Currency;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO11MoneyAmountV": true;
+    };
 }
 /**
  * struct PaymentIdentifier
@@ -169,6 +196,9 @@ export declare class DataDetector_Match_SemanticDetails_PaymentIdentifier extend
      * @availability iOS 26.0+
      */
     get type(): DataDetector_Match_SemanticDetails_PaymentIdentifier_PaymentSystem;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO17PaymentIdentifierV": true;
+    };
 }
 /**
  * enum PaymentSystem
@@ -190,6 +220,9 @@ export declare class DataDetector_Match_SemanticDetails_PhoneNumber extends SDKH
      * @availability iOS 26.0+
      */
     get label(): (string) | null;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO11PhoneNumberV": true;
+    };
 }
 /**
  * struct PostalAddress
@@ -236,6 +269,9 @@ export declare class DataDetector_Match_SemanticDetails_PostalAddress extends SD
      * @availability iOS 26.0+
      */
     get street(): (string) | null;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO13PostalAddressV": true;
+    };
 }
 /**
  * struct ShipmentTrackingNumber
@@ -257,6 +293,9 @@ export declare class DataDetector_Match_SemanticDetails_ShipmentTrackingNumber e
      * @availability iOS 26.0+
      */
     get carrier(): string;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO5MatchV15SemanticDetailsO22ShipmentTrackingNumberV": true;
+    };
 }
 /**
  * struct MatchType
@@ -379,6 +418,9 @@ export declare class DataDetector_Options extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): DataDetector_Options;
+    readonly $type: {
+        "s:13DataDetection0A8DetectorO7OptionsV": true;
+    };
 }
 /**
  * class DDMatch
@@ -390,6 +432,10 @@ export declare class DDMatch extends SDKHandle {
      * @availability iOS 15.0+
      */
     get matchedString(): string;
+    readonly $type: {
+        "c:objc(cs)DDMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedString": true;
     };
@@ -424,6 +470,11 @@ export declare class DDMatchCalendarEvent extends DDMatch {
      * @availability iOS 15.0+
      */
     get startTimeZone(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)DDMatchCalendarEvent": true;
+        "c:objc(cs)DDMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedString": true;
         "isAllDay": true;
@@ -448,6 +499,11 @@ export declare class DDMatchEmailAddress extends DDMatch {
      * @availability iOS 15.0+
      */
     get label(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)DDMatchEmailAddress": true;
+        "c:objc(cs)DDMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedString": true;
         "emailAddress": true;
@@ -469,6 +525,11 @@ export declare class DDMatchFlightNumber extends DDMatch {
      * @availability iOS 15.0+
      */
     get flightNumber(): string;
+    readonly $type: {
+        "c:objc(cs)DDMatchFlightNumber": true;
+        "c:objc(cs)DDMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedString": true;
         "airline": true;
@@ -485,6 +546,11 @@ export declare class DDMatchLink extends DDMatch {
      * @availability iOS 15.0+
      */
     get url(): string;
+    readonly $type: {
+        "c:objc(cs)DDMatchLink": true;
+        "c:objc(cs)DDMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedString": true;
         "url": true;
@@ -505,6 +571,11 @@ export declare class DDMatchMoneyAmount extends DDMatch {
      * @availability iOS 15.0+
      */
     get currency(): string;
+    readonly $type: {
+        "c:objc(cs)DDMatchMoneyAmount": true;
+        "c:objc(cs)DDMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedString": true;
         "amount": true;
@@ -526,6 +597,11 @@ export declare class DDMatchPhoneNumber extends DDMatch {
      * @availability iOS 15.0+
      */
     get phoneNumber(): string;
+    readonly $type: {
+        "c:objc(cs)DDMatchPhoneNumber": true;
+        "c:objc(cs)DDMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedString": true;
         "label": true;
@@ -562,6 +638,11 @@ export declare class DDMatchPostalAddress extends DDMatch {
      * @availability iOS 15.0+
      */
     get street(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)DDMatchPostalAddress": true;
+        "c:objc(cs)DDMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedString": true;
         "city": true;
@@ -586,6 +667,11 @@ export declare class DDMatchShipmentTrackingNumber extends DDMatch {
      * @availability iOS 15.0+
      */
     get trackingNumber(): string;
+    readonly $type: {
+        "c:objc(cs)DDMatchShipmentTrackingNumber": true;
+        "c:objc(cs)DDMatch": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "matchedString": true;
         "carrier": true;

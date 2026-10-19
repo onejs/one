@@ -12,9 +12,15 @@ export type AuthorizationRef = SDKHandle;
 export type SCBondInterface = SCNetworkInterface;
 /** class SCBondStatus */
 export declare class SCBondStatus extends SDKHandle {
+    readonly $type: {
+        "c:@T@SCBondStatusRef": true;
+    };
 }
 /** class SCDynamicStore */
 export declare class SCDynamicStore extends SDKHandle {
+    readonly $type: {
+        "c:@T@SCDynamicStoreRef": true;
+    };
 }
 /** typealias SCDynamicStoreCallBack = (SCDynamicStore, CFArray, UnsafeMutableRawPointer?) -> Void */
 export type SCDynamicStoreCallBack = ((arg0: SCDynamicStore, arg1: _CoreFoundation_CFArray, arg2: (SDKHandle) | null) => Promise<void>);
@@ -34,9 +40,15 @@ export declare class SCDynamicStoreContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): SCDynamicStoreContext;
+    readonly $type: {
+        "c:@SA@SCDynamicStoreContext": true;
+    };
 }
 /** class SCNetworkConnection */
 export declare class SCNetworkConnection extends SDKHandle {
+    readonly $type: {
+        "c:@T@SCNetworkConnectionRef": true;
+    };
 }
 /** typealias SCNetworkConnectionCallBack = (SCNetworkConnection, SCNetworkConnectionStatus, UnsafeMutableRawPointer?) -> Void */
 export type SCNetworkConnectionCallBack = ((arg0: SCNetworkConnection, arg1: SCNetworkConnectionStatus, arg2: (SDKHandle) | null) => Promise<void>);
@@ -56,6 +68,9 @@ export declare class SCNetworkConnectionContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): SCNetworkConnectionContext;
+    readonly $type: {
+        "c:@SA@SCNetworkConnectionContext": true;
+    };
 }
 /** typealias SCNetworkConnectionFlags = UInt32 */
 export type SCNetworkConnectionFlags = number;
@@ -73,12 +88,21 @@ export declare const SCNetworkConnectionStatus: {
 };
 /** class SCNetworkInterface */
 export declare class SCNetworkInterface extends SDKHandle {
+    readonly $type: {
+        "c:@T@SCNetworkInterfaceRef": true;
+    };
 }
 /** class SCNetworkProtocol */
 export declare class SCNetworkProtocol extends SDKHandle {
+    readonly $type: {
+        "c:@T@SCNetworkProtocolRef": true;
+    };
 }
 /** class SCNetworkReachability */
 export declare class SCNetworkReachability extends SDKHandle {
+    readonly $type: {
+        "c:@T@SCNetworkReachabilityRef": true;
+    };
 }
 /** typealias SCNetworkReachabilityCallBack = (SCNetworkReachability, SCNetworkReachabilityFlags, UnsafeMutableRawPointer?) -> Void */
 export type SCNetworkReachabilityCallBack = ((arg0: SCNetworkReachability, arg1: SCNetworkReachabilityFlags, arg2: (SDKHandle) | null) => Promise<void>);
@@ -98,6 +122,9 @@ export declare class SCNetworkReachabilityContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): SCNetworkReachabilityContext;
+    readonly $type: {
+        "c:@SA@SCNetworkReachabilityContext": true;
+    };
 }
 /** struct SCNetworkReachabilityFlags */
 export type SCNetworkReachabilityFlags = Array<"transientConnection" | "reachable" | "connectionRequired" | "connectionOnTraffic" | "interventionRequired" | "connectionOnDemand" | "isLocalAddress" | "isDirect" | "isWWAN" | "connectionAutomatic">;
@@ -133,12 +160,21 @@ export declare const SCNetworkReachabilityFlags: {
 };
 /** class SCNetworkService */
 export declare class SCNetworkService extends SDKHandle {
+    readonly $type: {
+        "c:@T@SCNetworkServiceRef": true;
+    };
 }
 /** class SCNetworkSet */
 export declare class SCNetworkSet extends SDKHandle {
+    readonly $type: {
+        "c:@T@SCNetworkSetRef": true;
+    };
 }
 /** class SCPreferences */
 export declare class SCPreferences extends SDKHandle {
+    readonly $type: {
+        "c:@T@SCPreferencesRef": true;
+    };
 }
 /** typealias SCPreferencesCallBack = (SCPreferences, SCPreferencesNotification, UnsafeMutableRawPointer?) -> Void */
 export type SCPreferencesCallBack = ((arg0: SCPreferences, arg1: SCPreferencesNotification, arg2: (SDKHandle) | null) => Promise<void>);
@@ -158,6 +194,9 @@ export declare class SCPreferencesContext extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): SCPreferencesContext;
+    readonly $type: {
+        "c:@SA@SCPreferencesContext": true;
+    };
 }
 /** struct SCPreferencesNotification */
 export type SCPreferencesNotification = Array<number>;

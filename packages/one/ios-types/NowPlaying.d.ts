@@ -32,6 +32,9 @@ export declare class AnimatedArtwork extends SDKHandle {
      * @availability iOS 27.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:10NowPlaying15AnimatedArtworkV": true;
+    };
 }
 /**
  * enum AspectRatio
@@ -53,6 +56,9 @@ export declare class Artwork extends SDKHandle {
      * @availability iOS 27.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:10NowPlaying7ArtworkV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -74,6 +80,9 @@ export declare class ArtworkRepresentation extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initCgImage(cgImage: _CoreGraphics_CGImage): ArtworkRepresentation;
+    readonly $type: {
+        "s:10NowPlaying21ArtworkRepresentationV": true;
+    };
 }
 /**
  * enum ArtworkRepresentationError
@@ -159,6 +168,9 @@ export declare class BookContent extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): (MediaDuration) | null;
+    readonly $type: {
+        "s:10NowPlaying11BookContentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -233,6 +245,9 @@ export declare class GenericContent extends SDKHandle {
      * @availability iOS 27.0+
      */
     get subtitle(): (string) | null;
+    readonly $type: {
+        "s:10NowPlaying14GenericContentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -307,6 +322,9 @@ export declare class HomeMediaContent extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): (MediaDuration) | null;
+    readonly $type: {
+        "s:10NowPlaying16HomeMediaContentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -323,6 +341,9 @@ export declare class MediaCommand extends SDKHandle {
      * @availability iOS 27.0+
      */
     enabled(isEnabled: boolean): MediaCommand;
+    readonly $type: {
+        "s:10NowPlaying12MediaCommandV": true;
+    };
 }
 /**
  * enum FeedbackStatus
@@ -411,12 +432,18 @@ export declare class MediaDevice extends SDKHandle {
      * @availability iOS 27.0+
      */
     get type(): MediaDevice_DeviceType;
+    readonly $type: {
+        "s:10NowPlaying11MediaDeviceV": true;
+    };
 }
 /**
  * struct Capability
  * @availability iOS 27.0+
  */
 export declare class MediaDevice_Capability extends SDKHandle {
+    readonly $type: {
+        "s:10NowPlaying11MediaDeviceV10CapabilityV": true;
+    };
 }
 /**
  * enum DeviceType
@@ -433,6 +460,9 @@ export type MediaDevice_ID = string;
  * @availability iOS 27.0+
  */
 export declare class MediaDuration extends SDKHandle {
+    readonly $type: {
+        "s:10NowPlaying13MediaDurationO": true;
+    };
 }
 /**
  * struct MediaPlaybackSnapshot
@@ -444,18 +474,27 @@ export declare class MediaPlaybackSnapshot extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(state: MediaPlaybackSnapshot_PlaybackState, defaultPlaybackRate?: number, elapsedTime?: (number) | null, timestamp?: $SDK7): MediaPlaybackSnapshot;
+    readonly $type: {
+        "s:10NowPlaying21MediaPlaybackSnapshotV": true;
+    };
 }
 /**
  * enum PlaybackState
  * @availability iOS 27.0+
  */
 export declare class MediaPlaybackSnapshot_PlaybackState extends SDKHandle {
+    readonly $type: {
+        "s:10NowPlaying21MediaPlaybackSnapshotV0D5StateO": true;
+    };
 }
 /**
  * @MainActor class MediaSession<Representable> where Representable : MediaSessionRepresentable
  * @availability iOS 27.0+
  */
 export declare class MediaSession<Representable = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10NowPlaying12MediaSessionC": true;
+    };
 }
 /**
  * typealias ID = String
@@ -541,6 +580,9 @@ export declare class MovieContent extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): (MediaDuration) | null;
+    readonly $type: {
+        "s:10NowPlaying12MovieContentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -632,6 +674,9 @@ export declare class MusicContent extends SDKHandle {
      * @availability iOS 27.0+
      */
     get songTitle(): string;
+    readonly $type: {
+        "s:10NowPlaying12MusicContentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -711,6 +756,9 @@ export declare class PodcastContent extends SDKHandle {
      * @availability iOS 27.0+
      */
     get showName(): string;
+    readonly $type: {
+        "s:10NowPlaying14PodcastContentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -785,6 +833,9 @@ export declare class RadioContent extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): (MediaDuration) | null;
+    readonly $type: {
+        "s:10NowPlaying12RadioContentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -796,6 +847,9 @@ export type RadioContent_ID = string;
  * @availability iOS 27.0+
  */
 export declare class RemoteMediaSession<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10NowPlaying18RemoteMediaSessionC": true;
+    };
 }
 /**
  * typealias ID = String
@@ -830,6 +884,9 @@ export interface RemoteMediaSessionExtension {
  * @availability iOS 27.0+
  */
 export declare class RemoteMediaSessionExtensionConfiguration<Extension = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10NowPlaying40RemoteMediaSessionExtensionConfigurationC": true;
+    };
 }
 /**
  * @MainActor protocol RemoteMediaSessionRepresentable : Identifiable
@@ -910,6 +967,9 @@ export declare class TVShowContent extends SDKHandle {
      * @availability iOS 27.0+
      */
     get showName(): string;
+    readonly $type: {
+        "s:10NowPlaying13TVShowContentV": true;
+    };
 }
 /**
  * typealias ID = String

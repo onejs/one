@@ -16,6 +16,10 @@ export declare class APActivationPayload extends SDKHandle {
      * @availability iOS 14.0+
      */
     get url(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)APActivationPayload": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "url": true;
     };
@@ -40,6 +44,9 @@ export declare class APActivationPayloadError extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get doesNotMatch(): APActivationPayloadError_Code;
+    readonly $type: {
+        "s:SC28APActivationPayloadErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -59,6 +66,10 @@ export declare class NSUserActivity extends SDKHandle {
      * @availability iOS 14.0+
      */
     get appClipActivationPayload(): (APActivationPayload) | null;
+    readonly $type: {
+        "c:objc(cs)NSUserActivity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "appClipActivationPayload": true;
     };

@@ -27,6 +27,12 @@ export declare class GroupActivitySharingController extends SDKHandle {
      * @availability iOS 15.4+
      */
     get result(): Promise<GroupActivitySharingResult>;
+    readonly $type: {
+        "c:@M@_GroupActivities_UIKit@objc(cs)GroupActivitySharingController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum GroupActivitySharingResult

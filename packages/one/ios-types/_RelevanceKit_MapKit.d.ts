@@ -8,4 +8,7 @@ export declare class RelevantContext extends SDKHandle {
      * @availability iOS 26.0+
      */
     static location(category: _MapKit_MKPointOfInterestCategory): (_RelevanceKit_RelevantContext) | null;
+    readonly $type: {
+        "s:12RelevanceKit15RelevantContextV": true;
+    };
 }

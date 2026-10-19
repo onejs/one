@@ -9,5 +9,10 @@ export declare class UNMutableNotificationContent extends SDKHandle {
      */
     get appEntityIdentifiers(): $SDK0;
     set appEntityIdentifiers(value: $SDK0);
+    readonly $type: {
+        "c:objc(cs)UNMutableNotificationContent": true;
+        "c:objc(cs)UNNotificationContent": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

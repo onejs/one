@@ -33,22 +33,21 @@ type $SDK37 = (PHAdjustmentData) | null;
 type $SDK38 = (_AVFoundation_AVAsset) | null;
 type $SDK42 = (_Foundation_NSPredicate) | null;
 type $SDK43 = (Array<_Foundation_NSSortDescriptor>) | null;
-type $SDK44 = PHFetchResultChangeDetails<PHObject>;
-type $SDK46 = (_Foundation_IndexSet) | null;
-type $SDK47 = {
+type $SDK47 = (_Foundation_IndexSet) | null;
+type $SDK48 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-type $SDK48 = (((arg0: number, arg1: (NativeError) | null, arg2: NativeOut<boolean>, arg3: (NativeMap<unknown, unknown>) | null) => Promise<void>)) | null;
-type $SDK50 = (Record<string, unknown>) | null;
-type $SDK57 = ((arg0: PHAuthorizationStatus) => void);
-type $SDK58 = (PHAssetResourceUploadJobOptions) | null;
-type $SDK60 = Implements<PHPhotoLibraryAvailabilityObserver> | SDKHandle;
-type $SDK61 = Implements<PHPhotoLibraryChangeObserver> | SDKHandle;
-type $SDK62 = Implements<PHPhotoLibraryPersistentChangesObserver> | SDKHandle;
-type $SDK64 = NativeMap<PHCloudIdentifier, SDKHandle>;
+type $SDK49 = (((arg0: number, arg1: (NativeError) | null, arg2: NativeOut<boolean>, arg3: (NativeMap<unknown, unknown>) | null) => Promise<void>)) | null;
+type $SDK51 = (Record<string, unknown>) | null;
+type $SDK58 = ((arg0: PHAuthorizationStatus) => void);
+type $SDK59 = (PHAssetResourceUploadJobOptions) | null;
+type $SDK61 = Implements<PHPhotoLibraryAvailabilityObserver> | SDKHandle;
+type $SDK62 = Implements<PHPhotoLibraryChangeObserver> | SDKHandle;
+type $SDK63 = Implements<PHPhotoLibraryPersistentChangesObserver> | SDKHandle;
+type $SDK65 = NativeMap<PHCloudIdentifier, SDKHandle>;
 /**
  * enum PHAccessLevel
  * @availability iOS 14.0+
@@ -66,13 +65,11 @@ export declare const PHAccessLevel: {
  * @availability iOS 8.0+
  */
 export declare class PHAdjustmentData extends SDKHandle {
-    /** init() */
-    static init(): PHAdjustmentData;
     /**
      * init(formatIdentifier: String, formatVersion: String, data: Data)
      * @availability iOS 8.0+
      */
-    static initFormatIdentifierFormatVersionData(formatIdentifier: string, formatVersion: string, data: ArrayBuffer): PHAdjustmentData;
+    static init(formatIdentifier: string, formatVersion: string, data: ArrayBuffer): PHAdjustmentData;
     /**
      * var data: Data { get }
      * @availability iOS 8.0+
@@ -88,6 +85,10 @@ export declare class PHAdjustmentData extends SDKHandle {
      * @availability iOS 8.0+
      */
     get formatVersion(): string;
+    readonly $type: {
+        "c:objc(cs)PHAdjustmentData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "formatIdentifier": true;
@@ -106,6 +107,10 @@ export declare class PHObject extends SDKHandle {
      * @availability iOS 8.0+
      */
     get localIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)PHObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localIdentifier": true;
     };
@@ -294,6 +299,11 @@ export declare class PHAsset extends PHAsset_base {
      * @availability iOS 9.0+
      */
     get sourceType(): PHAssetSourceType;
+    readonly $type: {
+        "c:objc(cs)PHAsset": true;
+        "c:objc(cs)PHObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localIdentifier": true;
         "addedDate": true;
@@ -412,6 +422,10 @@ export declare const PHAssetBurstSelectionType: {
 export declare class PHChangeRequest extends SDKHandle {
     /** init() */
     static init(): PHChangeRequest;
+    readonly $type: {
+        "c:objc(cs)PHChangeRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const PHAssetChangeRequest_base: Omit<typeof PHChangeRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHChangeRequest);
 /**
@@ -423,7 +437,7 @@ export declare class PHAssetChangeRequest extends PHAssetChangeRequest_base {
      * convenience init(for asset: PHAsset)
      * @availability iOS 8.0+
      */
-    static initFor(asset: PHAsset): PHAssetChangeRequest;
+    static init(asset: PHAsset): PHAssetChangeRequest;
     /**
      * class func creationRequestForAsset(from image: UIImage) -> Self
      * @availability iOS 8.0+
@@ -449,8 +463,6 @@ export declare class PHAssetChangeRequest extends PHAssetChangeRequest_base {
      * @availability iOS 27.0+
      */
     addKeyword(keyword: string): void;
-    /** init() */
-    static init(): PHAssetChangeRequest;
     /**
      * func removeKeyword(_ keyword: String)
      * @availability iOS 27.0+
@@ -518,6 +530,11 @@ export declare class PHAssetChangeRequest extends PHAssetChangeRequest_base {
      */
     get rating(): PHAsset_Rating;
     set rating(value: PHAsset_Rating);
+    readonly $type: {
+        "c:objc(cs)PHAssetChangeRequest": true;
+        "c:objc(cs)PHChangeRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "caption": true;
         "contentEditingOutput": true;
@@ -572,6 +589,11 @@ export declare class PHCollection extends PHCollection_base {
      * @availability iOS 26.0+
      */
     get modificationDate(): $SDK3;
+    readonly $type: {
+        "c:objc(cs)PHCollection": true;
+        "c:objc(cs)PHObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localIdentifier": true;
         "canContainAssets": true;
@@ -666,6 +688,12 @@ export declare class PHAssetCollection extends PHAssetCollection_base {
      * @availability iOS 8.0+
      */
     get startDate(): $SDK3;
+    readonly $type: {
+        "c:objc(cs)PHAssetCollection": true;
+        "c:objc(cs)PHCollection": true;
+        "c:objc(cs)PHObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localIdentifier": true;
         "canContainAssets": true;
@@ -681,12 +709,11 @@ export declare class PHAssetCollection extends PHAssetCollection_base {
         "startDate": true;
     };
 }
-declare const PHAssetCollectionChangeRequest_base: Omit<typeof PHChangeRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHChangeRequest);
 /**
  * class PHAssetCollectionChangeRequest
  * @availability iOS 8.0+
  */
-export declare class PHAssetCollectionChangeRequest extends PHAssetCollectionChangeRequest_base {
+export declare class PHAssetCollectionChangeRequest extends PHChangeRequest {
     /**
      * convenience init?(for assetCollection: PHAssetCollection)
      * @availability iOS 8.0+
@@ -712,8 +739,6 @@ export declare class PHAssetCollectionChangeRequest extends PHAssetCollectionCha
      * @availability iOS 8.0+
      */
     addAssets(assets: SDKHandle): void;
-    /** init() */
-    static init(): PHAssetCollectionChangeRequest;
     /**
      * func insertAssets(_ assets: any NSFastEnumeration, at indexes: IndexSet)
      * @availability iOS 8.0+
@@ -750,6 +775,11 @@ export declare class PHAssetCollectionChangeRequest extends PHAssetCollectionCha
      */
     get title(): string;
     set title(value: string);
+    readonly $type: {
+        "c:objc(cs)PHAssetCollectionChangeRequest": true;
+        "c:objc(cs)PHChangeRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "placeholderForCreatedAssetCollection": true;
         "title": true;
@@ -813,6 +843,12 @@ export declare class PHAssetCreationRequest extends PHAssetCreationRequest_base 
      */
     get originalResourceChoice(): PHAsset_OriginalResourceChoice;
     set originalResourceChoice(value: PHAsset_OriginalResourceChoice);
+    readonly $type: {
+        "c:objc(cs)PHAssetCreationRequest": true;
+        "c:objc(cs)PHAssetChangeRequest": true;
+        "c:objc(cs)PHChangeRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "caption": true;
         "contentEditingOutput": true;
@@ -859,6 +895,10 @@ export declare class PHAssetExtendedMetadata extends SDKHandle {
      * @availability iOS 27.0+
      */
     get originalFilename(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)PHAssetExtendedMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "caption": true;
         "keywords": true;
@@ -1023,6 +1063,10 @@ export declare class PHAssetResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     get dataSize(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)PHAssetResource": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assetLocalIdentifier": true;
         "contentType": true;
@@ -1066,6 +1110,10 @@ export declare class PHAssetResourceCreationOptions extends SDKHandle {
      */
     get uniformTypeIdentifier(): (string) | null;
     set uniformTypeIdentifier(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)PHAssetResourceCreationOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "contentType": true;
         "originalFilename": true;
@@ -1110,6 +1158,10 @@ export declare class PHAssetResourceManager extends SDKHandle {
      * @availability iOS 27.0+
      */
     exportedAssetID(resource: PHAssetResource): Promise<_CloudKit_CKAsset_ExportedAssetID>;
+    readonly $type: {
+        "c:objc(cs)PHAssetResourceManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias PHAssetResourceProgressHandler = (Double) -> Void
@@ -1135,6 +1187,10 @@ export declare class PHAssetResourceRequestOptions extends SDKHandle {
      */
     get progressHandler(): (((arg0: number) => Promise<void>)) | null;
     set progressHandler(value: (((arg0: number) => void)) | null);
+    readonly $type: {
+        "c:objc(cs)PHAssetResourceRequestOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isNetworkAccessAllowed": true;
     };
@@ -1200,6 +1256,11 @@ export declare class PHAssetResourceUploadJob extends PHAssetResourceUploadJob_b
      * @availability iOS 26.1+
      */
     get type(): PHAssetResourceUploadJob_Type;
+    readonly $type: {
+        "c:objc(cs)PHAssetResourceUploadJob": true;
+        "c:objc(cs)PHObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localIdentifier": true;
         "destination": true;
@@ -1249,7 +1310,7 @@ export declare class PHAssetResourceUploadJobChangeRequest extends PHAssetResour
      * convenience init?(for job: PHAssetResourceUploadJob)
      * @availability iOS 26.1+
      */
-    static initFor(job: PHAssetResourceUploadJob): (PHAssetResourceUploadJobChangeRequest) | null;
+    static init(job: PHAssetResourceUploadJob): (PHAssetResourceUploadJobChangeRequest) | null;
     /**
      * class func createJob(destination: URLRequest, resource: PHAssetResource)
      * @availability iOS 26.1+
@@ -1276,8 +1337,6 @@ export declare class PHAssetResourceUploadJobChangeRequest extends PHAssetResour
      * @availability iOS 26.4+
      */
     cancel(): void;
-    /** init() */
-    static init(): PHAssetResourceUploadJobChangeRequest;
     /**
      * func retry(destination: URLRequest?)
      * @availability iOS 26.1+
@@ -1288,6 +1347,11 @@ export declare class PHAssetResourceUploadJobChangeRequest extends PHAssetResour
      * @availability iOS 26.1+
      */
     get placeholderForCreatedAssetResourceUploadJob(): $SDK7;
+    readonly $type: {
+        "c:objc(cs)PHAssetResourceUploadJobChangeRequest": true;
+        "c:objc(cs)PHChangeRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "placeholderForCreatedAssetResourceUploadJob": true;
     };
@@ -1305,6 +1369,10 @@ export declare class PHAssetResourceUploadJobOptions extends SDKHandle {
      */
     get preventsExpensiveNetworkAccess(): boolean;
     set preventsExpensiveNetworkAccess(value: boolean);
+    readonly $type: {
+        "c:objc(cs)PHAssetResourceUploadJobOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "preventsExpensiveNetworkAccess": true;
     };
@@ -1459,6 +1527,10 @@ export declare class PHImageManager extends SDKHandle {
      * @availability iOS 8.0+
      */
     requestPlayerItem(asset: PHAsset, options: $SDK24, resultHandler: ((arg0: (_AVFoundation_AVPlayerItem) | null, arg1: (NativeMap<unknown, unknown>) | null) => void)): number;
+    readonly $type: {
+        "c:objc(cs)PHImageManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const PHCachingImageManager_base: Omit<typeof PHImageManager, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHImageManager);
 /**
@@ -1490,6 +1562,11 @@ export declare class PHCachingImageManager extends PHCachingImageManager_base {
      */
     get allowsCachingHighQualityImages(): boolean;
     set allowsCachingHighQualityImages(value: boolean);
+    readonly $type: {
+        "c:objc(cs)PHCachingImageManager": true;
+        "c:objc(cs)PHImageManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowsCachingHighQualityImages": true;
     };
@@ -1511,14 +1588,16 @@ export declare class PHChange extends SDKHandle {
      * @availability iOS 8.0+
      */
     changeDetailsFor25684(fetchResult: PHFetchResult<PHObject>): (PHFetchResultChangeDetails<PHObject>) | null;
+    readonly $type: {
+        "c:objc(cs)PHChange": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PHCloudIdentifier
  * @availability iOS 15.0+
  */
 export declare class PHCloudIdentifier extends SDKHandle {
-    /** init() */
-    static init(): PHCloudIdentifier;
     /**
      * init?(archivalStringValue archivalString: String)
      * @availability iOS 18.2+
@@ -1541,6 +1620,10 @@ export declare class PHCloudIdentifier extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get stringValue(): string;
+    readonly $type: {
+        "c:objc(cs)PHCloudIdentifier": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "archivalStringValue": true;
         "stringValue": true;
@@ -1628,6 +1711,12 @@ export declare class PHCollectionList extends PHCollectionList_base {
      * @availability iOS 8.0+
      */
     get startDate(): $SDK3;
+    readonly $type: {
+        "c:objc(cs)PHCollectionList": true;
+        "c:objc(cs)PHCollection": true;
+        "c:objc(cs)PHObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localIdentifier": true;
         "canContainAssets": true;
@@ -1641,12 +1730,11 @@ export declare class PHCollectionList extends PHCollectionList_base {
         "startDate": true;
     };
 }
-declare const PHCollectionListChangeRequest_base: Omit<typeof PHChangeRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHChangeRequest);
 /**
  * class PHCollectionListChangeRequest
  * @availability iOS 8.0+
  */
-export declare class PHCollectionListChangeRequest extends PHCollectionListChangeRequest_base {
+export declare class PHCollectionListChangeRequest extends PHChangeRequest {
     /**
      * convenience init?(for collectionList: PHCollectionList)
      * @availability iOS 8.0+
@@ -1677,8 +1765,6 @@ export declare class PHCollectionListChangeRequest extends PHCollectionListChang
      * @availability iOS 8.0+
      */
     addChildCollections(collections: SDKHandle): void;
-    /** init() */
-    static init(): PHCollectionListChangeRequest;
     /**
      * func insertChildCollections(_ collections: any NSFastEnumeration, at indexes: IndexSet)
      * @availability iOS 8.0+
@@ -1715,6 +1801,11 @@ export declare class PHCollectionListChangeRequest extends PHCollectionListChang
      */
     get title(): string;
     set title(value: string);
+    readonly $type: {
+        "c:objc(cs)PHCollectionListChangeRequest": true;
+        "c:objc(cs)PHChangeRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "placeholderForCreatedCollectionList": true;
         "title": true;
@@ -1823,6 +1914,10 @@ export declare class PHContentEditingInput extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get uniformTypeIdentifier(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)PHContentEditingInput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adjustmentData": true;
         "audiovisualAsset": true;
@@ -1880,6 +1975,10 @@ export declare class PHContentEditingInputRequestOptions extends SDKHandle {
      */
     get skipsDisplaySizeImage(): boolean;
     set skipsDisplaySizeImage(value: boolean);
+    readonly $type: {
+        "c:objc(cs)PHContentEditingInputRequestOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isNetworkAccessAllowed": true;
         "originalResourceChoice": true;
@@ -1891,8 +1990,6 @@ export declare class PHContentEditingInputRequestOptions extends SDKHandle {
  * @availability iOS 8.0+
  */
 export declare class PHContentEditingOutput extends SDKHandle {
-    /** init() */
-    static init(): PHContentEditingOutput;
     /**
      * init(contentEditingInput: PHContentEditingInput)
      * @availability iOS 8.0+
@@ -1929,6 +2026,10 @@ export declare class PHContentEditingOutput extends SDKHandle {
      * @availability iOS 17.0+
      */
     get supportedRenderedContentTypes(): Array<_UniformTypeIdentifiers_UTType>;
+    readonly $type: {
+        "c:objc(cs)PHContentEditingOutput": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "adjustmentData": true;
         "defaultRenderedContentType": true;
@@ -1991,6 +2092,10 @@ export declare class PHFetchOptions extends SDKHandle {
      */
     get wantsIncrementalChangeDetails(): boolean;
     set wantsIncrementalChangeDetails(value: boolean);
+    readonly $type: {
+        "c:objc(cs)PHFetchOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "fetchLimit": true;
         "includeAllBurstAssets": true;
@@ -2007,6 +2112,67 @@ export declare class PHFetchOptions extends SDKHandle {
  * @availability iOS 8.0+
  */
 export declare class PHFetchResult<ObjectType = unknown> extends SDKHandle {
+    /**
+     * func contains(_ anObject: ObjectType) -> Bool
+     * @availability iOS 8.0+
+     */
+    contains(anObject: SDKHandle): boolean;
+    /**
+     * func countOfAssets(with mediaType: PHAssetMediaType) -> Int
+     * @availability iOS 8.0+
+     */
+    countOfAssets(mediaType: PHAssetMediaType): number;
+    /**
+     * func index(of anObject: ObjectType) -> Int
+     * @availability iOS 8.0+
+     */
+    indexOf(anObject: SDKHandle): number;
+    /**
+     * func index(of anObject: ObjectType, in range: NSRange) -> Int
+     * @availability iOS 8.0+
+     */
+    indexOfIn(anObject: SDKHandle, range: SDKHandle): number;
+    /** init() */
+    static init(): PHFetchResult<SDKHandle>;
+    /**
+     * func object(at index: Int) -> ObjectType
+     * @availability iOS 8.0+
+     */
+    object(index: number): SDKHandle;
+    /**
+     * subscript(idx: Int) -> ObjectType { get }
+     * @availability iOS 8.0+
+     */
+    subscript(idx: number): SDKHandle;
+    /**
+     * func objects(at indexes: IndexSet) -> [ObjectType]
+     * @availability iOS 8.0+
+     */
+    objects(indexes: _Foundation_IndexSet): Array<SDKHandle>;
+    /**
+     * var count: Int { get }
+     * @availability iOS 8.0+
+     */
+    get count(): number;
+    /**
+     * var firstObject: ObjectType? { get }
+     * @availability iOS 8.0+
+     */
+    get firstObject(): (SDKHandle) | null;
+    /**
+     * var lastObject: ObjectType? { get }
+     * @availability iOS 8.0+
+     */
+    get lastObject(): (SDKHandle) | null;
+    readonly $type: {
+        "c:objc(cs)PHFetchResult": true;
+        "c:objc(cs)NSObject": true;
+    };
+    readonly $observable: {
+        "count": true;
+        "firstObject": true;
+        "lastObject": true;
+    };
 }
 /**
  * class PHFetchResultChangeDetails<ObjectType> where ObjectType : PHObject
@@ -2017,19 +2183,17 @@ export declare class PHFetchResultChangeDetails<ObjectType = unknown> extends SD
      * convenience init(from fromResult: PHFetchResult<ObjectType>, to toResult: PHFetchResult<ObjectType>, changedObjects: [ObjectType])
      * @availability iOS 8.0+
      */
-    static initFromToChangedObjects(fromResult: PHFetchResult<PHObject>, toResult: PHFetchResult<PHObject>, changedObjects: Array<PHObject>): $SDK44;
+    static init(fromResult: PHFetchResult<PHObject>, toResult: PHFetchResult<PHObject>, changedObjects: Array<PHObject>): PHFetchResultChangeDetails<PHObject>;
     /**
      * func enumerateMoves(_ handler: @escaping (Int, Int) -> Void)
      * @availability iOS 8.0+
      */
     enumerateMoves(handler: ((arg0: number, arg1: number) => void)): void;
-    /** init() */
-    static init(): $SDK44;
     /**
      * var changedIndexes: IndexSet? { get }
      * @availability iOS 8.0+
      */
-    get changedIndexes(): $SDK46;
+    get changedIndexes(): $SDK47;
     /**
      * var changedObjects: [ObjectType] { get }
      * @availability iOS 8.0+
@@ -2059,7 +2223,7 @@ export declare class PHFetchResultChangeDetails<ObjectType = unknown> extends SD
      * var insertedIndexes: IndexSet? { get }
      * @availability iOS 8.0+
      */
-    get insertedIndexes(): $SDK46;
+    get insertedIndexes(): $SDK47;
     /**
      * var insertedObjects: [ObjectType] { get }
      * @availability iOS 8.0+
@@ -2069,12 +2233,16 @@ export declare class PHFetchResultChangeDetails<ObjectType = unknown> extends SD
      * var removedIndexes: IndexSet? { get }
      * @availability iOS 8.0+
      */
-    get removedIndexes(): $SDK46;
+    get removedIndexes(): $SDK47;
     /**
      * var removedObjects: [ObjectType] { get }
      * @availability iOS 8.0+
      */
     get removedObjects(): Array<PHObject>;
+    readonly $type: {
+        "c:objc(cs)PHFetchResultChangeDetails": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "changedIndexes": true;
         "changedObjects": true;
@@ -2139,8 +2307,8 @@ export declare class PHImageRequestOptions extends SDKHandle {
      * var normalizedCropRect: CGRect { get set }
      * @availability iOS 8.0+
      */
-    get normalizedCropRect(): $SDK47;
-    set normalizedCropRect(value: $SDK47);
+    get normalizedCropRect(): $SDK48;
+    set normalizedCropRect(value: $SDK48);
     /**
      * var preferHDR: Bool { get set }
      * @availability iOS 17.0+
@@ -2151,7 +2319,7 @@ export declare class PHImageRequestOptions extends SDKHandle {
      * var progressHandler: PHAssetImageProgressHandler? { get set }
      * @availability iOS 8.0+
      */
-    get progressHandler(): $SDK48;
+    get progressHandler(): $SDK49;
     /**
      * var resizeMode: PHImageRequestOptionsResizeMode { get set }
      * @availability iOS 8.0+
@@ -2176,6 +2344,10 @@ export declare class PHImageRequestOptions extends SDKHandle {
      */
     get version(): PHImageRequestOptionsVersion;
     set version(value: PHImageRequestOptionsVersion);
+    readonly $type: {
+        "c:objc(cs)PHImageRequestOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowSecondaryDegradedImage": true;
         "deliveryMode": true;
@@ -2244,6 +2416,10 @@ export declare class PHLivePhoto extends SDKHandle {
      * @availability iOS 9.1+
      */
     get size(): $SDK29;
+    readonly $type: {
+        "c:objc(cs)PHLivePhoto": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "size": true;
     };
@@ -2267,12 +2443,12 @@ export declare class PHLivePhotoEditingContext extends SDKHandle {
      * func livePhotoForPlayback(targetSize: CGSize, options: [String : Any]? = nil) async throws -> PHLivePhoto
      * @availability iOS 10.0+
      */
-    prepareLivePhotoForPlayback(targetSize: $SDK29, options: $SDK50, handler: ((arg0: (PHLivePhoto) | null, arg1: (NativeError) | null) => void)): void;
+    prepareLivePhotoForPlayback(targetSize: $SDK29, options: $SDK51, handler: ((arg0: (PHLivePhoto) | null, arg1: (NativeError) | null) => void)): void;
     /**
      * func saveLivePhoto(to output: PHContentEditingOutput, options: [String : Any]? = nil) async throws
      * @availability iOS 10.0+
      */
-    saveLivePhoto(output: PHContentEditingOutput, options: $SDK50, handler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void;
+    saveLivePhoto(output: PHContentEditingOutput, options: $SDK51, handler: ((arg0: boolean, arg1: (NativeError) | null) => void)): void;
     /**
      * var audioVolume: Float { get set }
      * @availability iOS 10.0+
@@ -2304,6 +2480,10 @@ export declare class PHLivePhotoEditingContext extends SDKHandle {
      * @availability iOS 10.0+
      */
     get photoTime(): _CoreMedia_CMTime;
+    readonly $type: {
+        "c:objc(cs)PHLivePhotoEditingContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "audioVolume": true;
         "duration": true;
@@ -2386,13 +2566,17 @@ export declare class PHLivePhotoRequestOptions extends SDKHandle {
      * var progressHandler: PHAssetImageProgressHandler? { get set }
      * @availability iOS 9.1+
      */
-    get progressHandler(): $SDK48;
+    get progressHandler(): $SDK49;
     /**
      * var version: PHImageRequestOptionsVersion { get set }
      * @availability iOS 9.1+
      */
     get version(): PHImageRequestOptionsVersion;
     set version(value: PHImageRequestOptionsVersion);
+    readonly $type: {
+        "c:objc(cs)PHLivePhotoRequestOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deliveryMode": true;
         "isNetworkAccessAllowed": true;
@@ -2427,6 +2611,10 @@ export declare class PHObjectChangeDetails<ObjectType = unknown> extends SDKHand
      * @availability iOS 8.0+
      */
     get objectWasDeleted(): boolean;
+    readonly $type: {
+        "c:objc(cs)PHObjectChangeDetails": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "assetContentChanged": true;
         "objectAfterChanges": true;
@@ -2442,6 +2630,11 @@ declare const PHObjectPlaceholder_base: Omit<typeof PHObject, "init" | "prototyp
 export declare class PHObjectPlaceholder extends PHObjectPlaceholder_base {
     /** init() */
     static init(): PHObjectPlaceholder;
+    readonly $type: {
+        "c:objc(cs)PHObjectPlaceholder": true;
+        "c:objc(cs)PHObject": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "localIdentifier": true;
     };
@@ -2473,6 +2666,10 @@ export declare class PHPersistentChange extends SDKHandle {
      * @availability iOS 16.0+
      */
     get changeToken(): PHPersistentChangeToken;
+    readonly $type: {
+        "c:objc(cs)PHPersistentChange": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "changeToken": true;
     };
@@ -2487,6 +2684,10 @@ export declare class PHPersistentChangeFetchResult extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeIterator(): PHPersistentChangeFetchResult_Iterator;
+    readonly $type: {
+        "c:objc(cs)PHPersistentChangeFetchResult": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * typealias Element = PHPersistentChangeFetchResult.Iterator.Element
@@ -2508,6 +2709,9 @@ export declare class PHPersistentChangeFetchResult_Iterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): (PHPersistentChange) | null;
+    readonly $type: {
+        "s:So29PHPersistentChangeFetchResultC6PhotosE8IteratorC": true;
+    };
 }
 /**
  * typealias Element = PHPersistentChange
@@ -2519,6 +2723,10 @@ export type PHPersistentChangeFetchResult_Iterator_Element = PHPersistentChange;
  * @availability iOS 16.0+
  */
 export declare class PHPersistentChangeToken extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)PHPersistentChangeToken": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class PHPersistentObjectChangeDetails
@@ -2545,6 +2753,10 @@ export declare class PHPersistentObjectChangeDetails extends SDKHandle {
      * @availability iOS 16.0+
      */
     get updatedLocalIdentifiers(): Array<string>;
+    readonly $type: {
+        "c:objc(cs)PHPersistentObjectChangeDetails": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deletedLocalIdentifiers": true;
         "insertedLocalIdentifiers": true;
@@ -2573,12 +2785,12 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * @availability iOS 8.0+
      * @deprecated iOS 100000.0
      */
-    static requestAuthorization(handler: $SDK57): void;
+    static requestAuthorization(handler: $SDK58): void;
     /**
      * class func requestAuthorization(for accessLevel: PHAccessLevel) async -> PHAuthorizationStatus
      * @availability iOS 14.0+
      */
-    static requestAuthorizationForHandler(accessLevel: PHAccessLevel, handler: $SDK57): void;
+    static requestAuthorizationForHandler(accessLevel: PHAccessLevel, handler: $SDK58): void;
     /**
      * class func shared() -> PHPhotoLibrary
      * @availability iOS 8.0+
@@ -2593,7 +2805,7 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * func enableUploadJobExtension(with options: PHAssetResourceUploadJobOptions?) throws
      * @availability iOS 27.0+
      */
-    enableUploadJobExtension(options?: $SDK58): void;
+    enableUploadJobExtension(options?: $SDK59): void;
     /**
      * func fetchPersistentChanges(since token: PHPersistentChangeToken) throws -> PHPersistentChangeFetchResult
      * @availability iOS 16.0+
@@ -2615,17 +2827,17 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * func register(_ observer: any PHPhotoLibraryAvailabilityObserver)
      * @availability iOS 13.0+
      */
-    register(observer: $SDK60): void;
+    register(observer: $SDK61): void;
     /**
      * func register(_ observer: any PHPhotoLibraryChangeObserver)
      * @availability iOS 8.0+
      */
-    register69872(observer: $SDK61): void;
+    register69872(observer: $SDK62): void;
     /**
      * func register(_ observer: any PHPhotoLibraryPersistentChangesObserver)
      * @availability iOS 27.0+
      */
-    register41946(observer: $SDK62): void;
+    register41946(observer: $SDK63): void;
     /**
      * func setUploadJobExtensionEnabled(_ enable: Bool) throws
      * @availability iOS 26.1+
@@ -2641,17 +2853,17 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * func unregisterAvailabilityObserver(_ observer: any PHPhotoLibraryAvailabilityObserver)
      * @availability iOS 13.0+
      */
-    unregisterAvailabilityObserver(observer: $SDK60): void;
+    unregisterAvailabilityObserver(observer: $SDK61): void;
     /**
      * func unregisterChangeObserver(_ observer: any PHPhotoLibraryChangeObserver)
      * @availability iOS 8.0+
      */
-    unregisterChangeObserver(observer: $SDK61): void;
+    unregisterChangeObserver(observer: $SDK62): void;
     /**
      * func unregisterPersistentChangesObserver(_ observer: any PHPhotoLibraryPersistentChangesObserver)
      * @availability iOS 27.0+
      */
-    unregisterPersistentChangesObserver(observer: $SDK62): void;
+    unregisterPersistentChangesObserver(observer: $SDK63): void;
     /**
      * var currentChangeToken: PHPersistentChangeToken { get }
      * @availability iOS 16.0+
@@ -2671,7 +2883,7 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * var uploadJobExtensionOptions: PHAssetResourceUploadJobOptions? { get }
      * @availability iOS 27.0+
      */
-    get uploadJobExtensionOptions(): $SDK58;
+    get uploadJobExtensionOptions(): $SDK59;
     /**
      * func cloudIdentifierMappings(forLocalIdentifiers localIdentifiers: [String]) -> [String : Result<PHCloudIdentifier, any Error>]
      * @availability iOS 15.0+
@@ -2681,12 +2893,16 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * func localIdentifierMappings(for cloudIdentifiers: [PHCloudIdentifier]) -> [PHCloudIdentifier : Result<String, any Error>]
      * @availability iOS 15.0+
      */
-    localIdentifierMappingsFor(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK64;
+    localIdentifierMappingsFor(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK65;
     /**
      * func localIdentifierMappings(forSynced cloudIdentifiers: [PHCloudIdentifier]) -> [PHCloudIdentifier : Result<String, any Error>]
      * @availability iOS 27.0+
      */
-    localIdentifierMappingsForSynced(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK64;
+    localIdentifierMappingsForSynced(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK65;
+    readonly $type: {
+        "c:objc(cs)PHPhotoLibrary": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "currentChangeToken": true;
         "unavailabilityReason": true;
@@ -2848,6 +3064,9 @@ export declare class PHPhotosError extends SDKHandle {
      * @deprecated iOS 15.0
      */
     static get invalid(): PHPhotosError_Code;
+    readonly $type: {
+        "s:SC13PHPhotosErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2887,6 +3106,9 @@ export declare class PHReferenceImageInfo extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initFileURL(fileURL: string): PHReferenceImageInfo;
+    readonly $type: {
+        "s:6Photos20PHReferenceImageInfoC": true;
+    };
 }
 /**
  * class PHVideoRequestOptions
@@ -2911,13 +3133,17 @@ export declare class PHVideoRequestOptions extends SDKHandle {
      * var progressHandler: PHAssetVideoProgressHandler? { get set }
      * @availability iOS 8.0+
      */
-    get progressHandler(): $SDK48;
+    get progressHandler(): $SDK49;
     /**
      * var version: PHVideoRequestOptionsVersion { get set }
      * @availability iOS 8.0+
      */
     get version(): PHVideoRequestOptionsVersion;
     set version(value: PHVideoRequestOptionsVersion);
+    readonly $type: {
+        "c:objc(cs)PHVideoRequestOptions": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "deliveryMode": true;
         "isNetworkAccessAllowed": true;

@@ -93,6 +93,9 @@ type $SDK160 = Implements<OS_nw_ws_response> | SDKHandle;
  * @availability iOS 26.0+
  */
 export declare class Bonjour extends SDKHandle {
+    readonly $type: {
+        "s:7Network7BonjourV": true;
+    };
 }
 /**
  * struct Endpoint
@@ -139,6 +142,9 @@ export declare class Bonjour_Endpoint extends SDKHandle {
      * @availability iOS 26.0+
      */
     get txtRecord(): NWTXTRecord;
+    readonly $type: {
+        "s:7Network7BonjourV8EndpointV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -160,6 +166,9 @@ export declare class BonjourListenerProvider extends SDKHandle {
      * @availability iOS 26.0+
      */
     get service(): NWListener_Service;
+    readonly $type: {
+        "s:7Network23BonjourListenerProviderV": true;
+    };
 }
 /**
  * protocol BrowserProvider : Sendable
@@ -172,6 +181,9 @@ export interface BrowserProvider {
  * @availability iOS 26.0+
  */
 export declare class Coder<Sending = unknown, Receiving = unknown, CoderType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network5CoderV": true;
+    };
 }
 /**
  * typealias BelowProtocol = any NetworkProtocolOptions
@@ -197,6 +209,9 @@ export type Coder_LegacyMessage<Sending = unknown, Receiving = unknown, CoderTyp
  * @availability iOS 26.0+
  */
 export declare class Coder_Metadata<Sending = unknown, Receiving = unknown, CoderType = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network5CoderV8MetadataV": true;
+    };
 }
 /**
  * typealias ProtocolStorage = DefaultProtocolStorage
@@ -231,6 +246,9 @@ export interface DatagramProtocol {
  * @availability iOS 26.0+
  */
 export declare class DefaultProtocolStorage extends SDKHandle {
+    readonly $type: {
+        "s:7Network22DefaultProtocolStorageV": true;
+    };
 }
 /**
  * struct DTLS
@@ -282,6 +300,9 @@ export declare class DTLS extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): DTLS;
+    readonly $type: {
+        "s:7Network4DTLSV": true;
+    };
 }
 /**
  * typealias BelowProtocol = UDP
@@ -308,6 +329,9 @@ export declare class DTLS_Metadata extends SDKHandle {
      * @availability iOS 27.0+
      */
     get other(): $SDK6;
+    readonly $type: {
+        "s:7Network4DTLSV8MetadataV": true;
+    };
 }
 /**
  * enum PeerAuthentication
@@ -324,6 +348,9 @@ export type DTLS_ProtocolStorage = DefaultProtocolStorage;
  * @availability iOS 26.0+
  */
 export declare class Framer<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network6FramerV": true;
+    };
 }
 /**
  * typealias BelowProtocol = any NetworkProtocolOptions
@@ -345,6 +372,9 @@ export type Framer_LegacyMessage<T = unknown> = [ArrayBuffer, Framer_Metadata<un
  * @availability iOS 26.0+
  */
 export declare class Framer_Metadata<T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network6FramerV8MetadataV": true;
+    };
 }
 /**
  * typealias ProtocolStorage = DefaultProtocolStorage
@@ -402,6 +432,9 @@ export declare class IP extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): IP;
+    readonly $type: {
+        "s:7Network2IPV": true;
+    };
 }
 /**
  * typealias BelowProtocol = Void
@@ -418,6 +451,9 @@ export declare class IP_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get other(): $SDK6;
+    readonly $type: {
+        "s:7Network2IPV8MetadataV": true;
+    };
 }
 /**
  * typealias ProtocolStorage = DefaultProtocolStorage
@@ -680,18 +716,27 @@ export interface MultiplexProtocol {
  * @availability iOS 26.0+
  */
 export declare class NetworkBrowser<Provider = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network0A7BrowserC": true;
+    };
 }
 /**
  * enum RunResult<T>
  * @availability iOS 26.0+
  */
 export declare class NetworkBrowser_RunResult<Provider = unknown, T = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network0A7BrowserC9RunResultO": true;
+    };
 }
 /**
  * enum State
  * @availability iOS 26.0+
  */
 export declare class NetworkBrowser_State<Provider = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network0A7BrowserC5StateO": true;
+    };
 }
 /**
  * typealias StateUpdateHandler = @isolated(any) @Sendable (NetworkBrowser<Provider>, NetworkBrowser<Provider>.State) -> Void
@@ -773,6 +818,9 @@ export declare class NetworkChannel<ApplicationProtocol = unknown> extends SDKHa
      * @availability iOS 26.0+
      */
     receive32396(): Promise<"count" | SDKHandle>;
+    readonly $type: {
+        "s:7Network0A7ChannelC": true;
+    };
 }
 /**
  * typealias ID = String
@@ -784,6 +832,9 @@ export type NetworkChannel_ID<ApplicationProtocol = unknown> = string;
  * @availability iOS 26.0+
  */
 export declare class NetworkChannel_State<ApplicationProtocol = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network0A7ChannelC5StateO": true;
+    };
 }
 /**
  * protocol NetworkCoder : Sendable
@@ -894,6 +945,10 @@ export declare class NetworkConnection<ApplicationProtocol = unknown> extends Ne
      */
     get keepalive(): NWProtocolQUIC_Metadata_KeepAliveBehavior;
     set keepalive(value: NWProtocolQUIC_Metadata_KeepAliveBehavior);
+    readonly $type: {
+        "s:7Network0A10ConnectionC": true;
+        "s:7Network0A7ChannelC": true;
+    };
 }
 /**
  * protocol NetworkDecoder
@@ -948,6 +1003,9 @@ export declare class NetworkJSONCoder extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): NetworkJSONCoder;
+    readonly $type: {
+        "s:7Network0A9JSONCoderV": true;
+    };
 }
 /**
  * typealias Decoder = JSONDecoder
@@ -964,12 +1022,18 @@ export type NetworkJSONCoder_Encoder = _Foundation_JSONEncoder;
  * @availability iOS 26.0+
  */
 export declare class NetworkListener<ApplicationProtocol = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network0A8ListenerC": true;
+    };
 }
 /**
  * enum ServiceRegistrationChange
  * @availability iOS 26.0+
  */
 export declare class NetworkListener_ServiceRegistrationChange<ApplicationProtocol = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network0A8ListenerC25ServiceRegistrationChangeO": true;
+    };
 }
 /**
  * typealias ServiceRegistrationUpdateHandler = @isolated(any) @Sendable (NetworkListener<ApplicationProtocol>, NetworkListener<ApplicationProtocol>.ServiceRegistrationChange) -> Void
@@ -981,6 +1045,9 @@ export type NetworkListener_ServiceRegistrationUpdateHandler<ApplicationProtocol
  * @availability iOS 26.0+
  */
 export declare class NetworkListener_State<ApplicationProtocol = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network0A8ListenerC5StateO": true;
+    };
 }
 /**
  * typealias StateUpdateHandler = @isolated(any) @Sendable (NetworkListener<ApplicationProtocol>, NetworkListener<ApplicationProtocol>.State) -> Void
@@ -1013,6 +1080,9 @@ export declare class NetworkPropertyListCoder extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): NetworkPropertyListCoder;
+    readonly $type: {
+        "s:7Network0A17PropertyListCoderV": true;
+    };
 }
 /**
  * typealias Decoder = PropertyListDecoder
@@ -1576,12 +1646,18 @@ export declare class NWBrowser extends SDKHandle {
      * @availability iOS 13.0+
      */
     cancel(): void;
+    readonly $type: {
+        "s:7Network9NWBrowserC": true;
+    };
 }
 /**
  * enum Descriptor
  * @availability iOS 13.0+
  */
 export declare class NWBrowser_Descriptor extends SDKHandle {
+    readonly $type: {
+        "s:7Network9NWBrowserC10DescriptorO": true;
+    };
 }
 /**
  * struct Result
@@ -1603,6 +1679,9 @@ export declare class NWBrowser_Result extends SDKHandle {
      * @availability iOS 13.0+
      */
     get metadata(): NWBrowser_Result_Metadata;
+    readonly $type: {
+        "s:7Network9NWBrowserC6ResultV": true;
+    };
 }
 /**
  * enum Change
@@ -1614,6 +1693,9 @@ export declare class NWBrowser_Result_Change extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(old?: (NWBrowser_Result) | null, new_?: (NWBrowser_Result) | null): NWBrowser_Result_Change;
+    readonly $type: {
+        "s:7Network9NWBrowserC6ResultV6ChangeO": true;
+    };
 }
 /**
  * struct Flags
@@ -1677,12 +1759,18 @@ export declare class NWBrowser_Result_Metadata extends SDKHandle {
      * @availability iOS 13.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:7Network9NWBrowserC6ResultV8MetadataO": true;
+    };
 }
 /**
  * enum State
  * @availability iOS 13.0+
  */
 export declare class NWBrowser_State extends SDKHandle {
+    readonly $type: {
+        "s:7Network9NWBrowserC5StateO": true;
+    };
 }
 /**
  * final class NWConnection
@@ -1843,6 +1931,9 @@ export declare class NWConnection extends SDKHandle {
      * @availability iOS 12.0+
      */
     metadata(definition: NWProtocolDefinition): $SDK71;
+    readonly $type: {
+        "s:7Network12NWConnectionC": true;
+    };
 }
 /**
  * class ContentContext
@@ -1904,6 +1995,9 @@ export declare class NWConnection_ContentContext extends SDKHandle {
      * @availability iOS 12.0+
      */
     get isFinal(): boolean;
+    readonly $type: {
+        "s:7Network12NWConnectionC14ContentContextC": true;
+    };
 }
 /**
  * struct DataTransferReport
@@ -1930,6 +2024,9 @@ export declare class NWConnection_DataTransferReport extends SDKHandle {
      * @availability iOS 13.0+
      */
     get duration(): number;
+    readonly $type: {
+        "s:7Network12NWConnectionC18DataTransferReportV": true;
+    };
 }
 /**
  * struct PathReport
@@ -2006,6 +2103,9 @@ export declare class NWConnection_DataTransferReport_PathReport extends SDKHandl
      * @availability iOS 15.0+
      */
     get radioType(): (NWInterface_RadioType) | null;
+    readonly $type: {
+        "s:7Network12NWConnectionC18DataTransferReportV04PathE0V": true;
+    };
 }
 /**
  * struct EstablishmentReport
@@ -2057,6 +2157,9 @@ export declare class NWConnection_EstablishmentReport extends SDKHandle {
      * @availability iOS 13.0+
      */
     get usedProxy(): boolean;
+    readonly $type: {
+        "s:7Network12NWConnectionC19EstablishmentReportV": true;
+    };
 }
 /**
  * struct Handshake
@@ -2078,6 +2181,9 @@ export declare class NWConnection_EstablishmentReport_Handshake extends SDKHandl
      * @availability iOS 13.0+
      */
     get handshakeDuration(): number;
+    readonly $type: {
+        "s:7Network12NWConnectionC19EstablishmentReportV9HandshakeV": true;
+    };
 }
 /**
  * struct Resolution
@@ -2114,6 +2220,9 @@ export declare class NWConnection_EstablishmentReport_Resolution extends SDKHand
      * @availability iOS 13.0+
      */
     get duration(): number;
+    readonly $type: {
+        "s:7Network12NWConnectionC19EstablishmentReportV10ResolutionV": true;
+    };
 }
 /**
  * enum DNSProtocol
@@ -2135,18 +2244,27 @@ export declare class NWConnection_PendingDataTransferReport extends SDKHandle {
      * @availability iOS 13.0+
      */
     collect(queue: _Dispatch_DispatchQueue, completion: ((arg0: NWConnection_DataTransferReport) => void)): void;
+    readonly $type: {
+        "s:7Network12NWConnectionC25PendingDataTransferReportC": true;
+    };
 }
 /**
  * enum SendCompletion
  * @availability iOS 12.0+
  */
 export declare class NWConnection_SendCompletion extends SDKHandle {
+    readonly $type: {
+        "s:7Network12NWConnectionC14SendCompletionO": true;
+    };
 }
 /**
  * enum State
  * @availability iOS 12.0+
  */
 export declare class NWConnection_State extends SDKHandle {
+    readonly $type: {
+        "s:7Network12NWConnectionC5StateO": true;
+    };
 }
 /**
  * final class NWConnectionGroup
@@ -2230,6 +2348,9 @@ export declare class NWConnectionGroup extends SDKHandle {
      * @availability iOS 15.0+
      */
     reinsert(connection: NWConnection): boolean;
+    readonly $type: {
+        "s:7Network17NWConnectionGroupC": true;
+    };
 }
 declare const NWConnectionGroup_Message_base: Omit<typeof NWConnection_ContentContext, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NWConnection_ContentContext);
 /**
@@ -2277,12 +2398,19 @@ export declare class NWConnectionGroup_Message extends NWConnectionGroup_Message
      * @availability iOS 15.0+
      */
     metadata(definition: NWProtocolDefinition): $SDK71;
+    readonly $type: {
+        "s:7Network17NWConnectionGroupC7MessageC": true;
+        "s:7Network12NWConnectionC14ContentContextC": true;
+    };
 }
 /**
  * enum State
  * @availability iOS 14.0+
  */
 export declare class NWConnectionGroup_State extends SDKHandle {
+    readonly $type: {
+        "s:7Network17NWConnectionGroupC5StateO": true;
+    };
 }
 /**
  * enum NWEndpoint
@@ -2309,6 +2437,9 @@ export declare class NWEndpoint extends SDKHandle {
      * @availability iOS 16.0+
      */
     get txtRecord(): (NWTXTRecord) | null;
+    readonly $type: {
+        "s:7Network10NWEndpointO": true;
+    };
 }
 /**
  * enum Host
@@ -2335,6 +2466,9 @@ export declare class NWEndpoint_Host extends SDKHandle {
      * @availability iOS 12.0+
      */
     static init(string: string): NWEndpoint_Host;
+    readonly $type: {
+        "s:7Network10NWEndpointO4HostO": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = NWEndpoint.Host.StringLiteralType
@@ -2458,6 +2592,9 @@ export declare class NWError extends SDKHandle {
      * @availability iOS 16.4+
      */
     get errorCode(): number;
+    readonly $type: {
+        "s:7Network7NWErrorO": true;
+    };
 }
 /**
  * protocol NWGroupDescriptor : AnyObject, Sendable
@@ -2490,6 +2627,9 @@ export declare class NWInterface extends SDKHandle {
      * @availability iOS 12.0+
      */
     get index(): number;
+    readonly $type: {
+        "s:7Network11NWInterfaceV": true;
+    };
 }
 /**
  * enum InterfaceType
@@ -2501,12 +2641,18 @@ export type NWInterface_InterfaceType = "other" | "wifi" | "cellular" | "wiredEt
  * @availability iOS 15.0+
  */
 export declare class NWInterface_RadioType extends SDKHandle {
+    readonly $type: {
+        "s:7Network11NWInterfaceV9RadioTypeO": true;
+    };
 }
 /**
  * enum Cellular
  * @availability iOS 15.0+
  */
 export declare class NWInterface_RadioType_Cellular extends SDKHandle {
+    readonly $type: {
+        "s:7Network11NWInterfaceV9RadioTypeO8CellularO": true;
+    };
 }
 /**
  * enum NewRadio5GVariant
@@ -2614,6 +2760,9 @@ export declare class NWListener extends SDKHandle {
      */
     get service(): (NWListener_Service) | null;
     set service(value: (NWListener_Service) | null);
+    readonly $type: {
+        "s:7Network10NWListenerC": true;
+    };
 }
 /**
  * struct Service
@@ -2672,18 +2821,27 @@ export declare class NWListener_Service extends SDKHandle {
      * @availability iOS 12.0+
      */
     get txtRecord(): (ArrayBuffer) | null;
+    readonly $type: {
+        "s:7Network10NWListenerC7ServiceV": true;
+    };
 }
 /**
  * enum ServiceRegistrationChange
  * @availability iOS 12.0+
  */
 export declare class NWListener_ServiceRegistrationChange extends SDKHandle {
+    readonly $type: {
+        "s:7Network10NWListenerC25ServiceRegistrationChangeO": true;
+    };
 }
 /**
  * enum State
  * @availability iOS 12.0+
  */
 export declare class NWListener_State extends SDKHandle {
+    readonly $type: {
+        "s:7Network10NWListenerC5StateO": true;
+    };
 }
 /**
  * class NWMulticastGroup
@@ -2710,6 +2868,9 @@ export declare class NWMulticastGroup extends SDKHandle {
      * @availability iOS 14.0+
      */
     get members(): Array<NWEndpoint>;
+    readonly $type: {
+        "s:7Network16NWMulticastGroupC": true;
+    };
 }
 /**
  * class NWMultiplexGroup
@@ -2726,6 +2887,9 @@ export declare class NWMultiplexGroup extends SDKHandle {
      * @availability iOS 15.0+
      */
     get members(): Array<NWEndpoint>;
+    readonly $type: {
+        "s:7Network16NWMultiplexGroupC": true;
+    };
 }
 /**
  * final class NWParameters
@@ -2920,6 +3084,9 @@ export declare class NWParameters extends SDKHandle {
      * @availability iOS 12.0+
      */
     static init(): NWParameters;
+    readonly $type: {
+        "s:7Network12NWParametersC": true;
+    };
 }
 /**
  * enum Attribution
@@ -2977,6 +3144,9 @@ export declare class NWParameters_PrivacyContext extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get default(): NWParameters_PrivacyContext;
+    readonly $type: {
+        "s:7Network12NWParametersC14PrivacyContextC": true;
+    };
 }
 /**
  * enum ResolverConfiguration
@@ -2988,6 +3158,9 @@ export declare class NWParameters_PrivacyContext_ResolverConfiguration extends S
      * @availability iOS 14.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:7Network12NWParametersC14PrivacyContextC21ResolverConfigurationO": true;
+    };
 }
 /**
  * class ProtocolStack
@@ -3012,6 +3185,9 @@ export declare class NWParameters_ProtocolStack extends SDKHandle {
      */
     get applicationProtocols(): Array<NWProtocolOptions>;
     set applicationProtocols(value: Array<NWProtocolOptions>);
+    readonly $type: {
+        "s:7Network12NWParametersC13ProtocolStackC": true;
+    };
 }
 /**
  * enum ServiceClass
@@ -3023,6 +3199,9 @@ export type NWParameters_ServiceClass = "bestEffort" | "background" | "interacti
  * @availability iOS 26.0+
  */
 export declare class NWParametersBuilder<Top = unknown, P = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network19NWParametersBuilderV": true;
+    };
 }
 /**
  * protocol NWParametersProvider
@@ -3200,6 +3379,9 @@ export declare class NWPath extends SDKHandle {
      * @availability iOS 13.0+
      */
     get gateways(): Array<NWEndpoint>;
+    readonly $type: {
+        "s:7Network6NWPathV": true;
+    };
 }
 /**
  * enum LinkQuality
@@ -3273,6 +3455,9 @@ export declare class NWPathMonitor extends SDKHandle {
      * @availability iOS 12.0+
      */
     static init(): NWPathMonitor;
+    readonly $type: {
+        "s:7Network13NWPathMonitorC": true;
+    };
     readonly $element: NWPath;
 }
 /**
@@ -3295,6 +3480,9 @@ export declare class NWPathMonitor_Iterator extends SDKHandle {
      * @availability iOS 17.0+
      */
     next(): Promise<(NWPath) | null>;
+    readonly $type: {
+        "s:7Network13NWPathMonitorC8IteratorV": true;
+    };
 }
 /**
  * typealias Element = NWPathMonitor.Element
@@ -3306,6 +3494,9 @@ export type NWPathMonitor_Iterator_Element = NWPath;
  * @availability iOS 12.0+
  */
 export declare class NWProtocol extends SDKHandle {
+    readonly $type: {
+        "s:7Network10NWProtocolC": true;
+    };
 }
 /**
  * class NWProtocolDefinition
@@ -3322,18 +3513,29 @@ export declare class NWProtocolDefinition extends SDKHandle {
      * @availability iOS 12.0+
      */
     get name(): string;
+    readonly $type: {
+        "s:7Network20NWProtocolDefinitionC": true;
+    };
 }
 /**
  * class NWProtocolFramer
  * @availability iOS 13.0+
  */
 export declare class NWProtocolFramer extends NWProtocol {
+    readonly $type: {
+        "s:7Network16NWProtocolFramerC": true;
+        "s:7Network10NWProtocolC": true;
+    };
 }
 /**
  * class Definition
  * @availability iOS 13.0+
  */
 export declare class NWProtocolFramer_Definition extends NWProtocolDefinition {
+    readonly $type: {
+        "s:7Network16NWProtocolFramerC10DefinitionC": true;
+        "s:7Network20NWProtocolDefinitionC": true;
+    };
 }
 /**
  * final class Instance
@@ -3430,18 +3632,27 @@ export declare class NWProtocolFramer_Instance extends SDKHandle {
      * @availability iOS 13.0+
      */
     markReady(): void;
+    readonly $type: {
+        "s:7Network16NWProtocolFramerC8InstanceC": true;
+    };
 }
 /**
  * enum WakeupTime
  * @availability iOS 13.0+
  */
 export declare class NWProtocolFramer_Instance_WakeupTime extends SDKHandle {
+    readonly $type: {
+        "s:7Network16NWProtocolFramerC8InstanceC10WakeupTimeO": true;
+    };
 }
 /**
  * class NWProtocolMetadata
  * @availability iOS 12.0+
  */
 export declare class NWProtocolMetadata extends SDKHandle {
+    readonly $type: {
+        "s:7Network18NWProtocolMetadataC": true;
+    };
 }
 /**
  * class Message
@@ -3463,12 +3674,19 @@ export declare class NWProtocolFramer_Message extends NWProtocolMetadata {
      * @availability iOS 13.0+
      */
     subscript(key: string): (unknown) | null;
+    readonly $type: {
+        "s:7Network16NWProtocolFramerC7MessageC": true;
+        "s:7Network18NWProtocolMetadataC": true;
+    };
 }
 /**
  * class NWProtocolOptions
  * @availability iOS 12.0+
  */
 export declare class NWProtocolOptions extends SDKHandle {
+    readonly $type: {
+        "s:7Network17NWProtocolOptionsC": true;
+    };
 }
 /**
  * class Options
@@ -3485,6 +3703,10 @@ export declare class NWProtocolFramer_Options extends NWProtocolOptions {
      * @availability iOS 15.4+
      */
     subscript(key: string): (unknown) | null;
+    readonly $type: {
+        "s:7Network16NWProtocolFramerC7OptionsC": true;
+        "s:7Network17NWProtocolOptionsC": true;
+    };
 }
 /**
  * enum StartResult
@@ -3542,6 +3764,10 @@ export declare class NWProtocolIP extends NWProtocol {
      * @availability iOS 12.0+
      */
     static get definition(): NWProtocolDefinition;
+    readonly $type: {
+        "s:7Network12NWProtocolIPC": true;
+        "s:7Network10NWProtocolC": true;
+    };
 }
 /**
  * enum ECN
@@ -3585,6 +3811,10 @@ export declare class NWProtocolIP_Metadata extends NWProtocolMetadata {
      * @availability iOS 12.0+
      */
     static init(): NWProtocolIP_Metadata;
+    readonly $type: {
+        "s:7Network12NWProtocolIPC8MetadataC": true;
+        "s:7Network18NWProtocolMetadataC": true;
+    };
 }
 /**
  * class Options
@@ -3633,6 +3863,10 @@ export declare class NWProtocolIP_Options extends NWProtocolOptions {
      */
     get hopLimit(): number;
     set hopLimit(value: number);
+    readonly $type: {
+        "s:7Network12NWProtocolIPC7OptionsC": true;
+        "s:7Network17NWProtocolOptionsC": true;
+    };
 }
 /**
  * enum AddressPreference
@@ -3654,6 +3888,10 @@ export declare class NWProtocolQUIC extends NWProtocol {
      * @availability iOS 15.0+
      */
     static get definition(): NWProtocolDefinition;
+    readonly $type: {
+        "s:7Network14NWProtocolQUICC": true;
+        "s:7Network10NWProtocolC": true;
+    };
 }
 /**
  * struct ApplicationError
@@ -3680,6 +3918,9 @@ export declare class NWProtocolQUIC_ApplicationError extends SDKHandle {
      * @availability iOS 15.0+
      */
     get reason(): (string) | null;
+    readonly $type: {
+        "s:7Network14NWProtocolQUICC16ApplicationErrorV": true;
+    };
 }
 /**
  * typealias IntegerLiteralType = UInt64
@@ -3756,12 +3997,19 @@ export declare class NWProtocolQUIC_Metadata extends NWProtocolMetadata {
      */
     get keepAlive(): NWProtocolQUIC_Metadata_KeepAliveBehavior;
     set keepAlive(value: NWProtocolQUIC_Metadata_KeepAliveBehavior);
+    readonly $type: {
+        "s:7Network14NWProtocolQUICC8MetadataC": true;
+        "s:7Network18NWProtocolMetadataC": true;
+    };
 }
 /**
  * enum KeepAliveBehavior
  * @availability iOS 15.0+
  */
 export declare class NWProtocolQUIC_Metadata_KeepAliveBehavior extends SDKHandle {
+    readonly $type: {
+        "s:7Network14NWProtocolQUICC8MetadataC17KeepAliveBehaviorO": true;
+    };
 }
 /**
  * class Options
@@ -3855,6 +4103,10 @@ export declare class NWProtocolQUIC_Options extends NWProtocolOptions {
      * @availability iOS 15.0+
      */
     static init(): NWProtocolQUIC_Options;
+    readonly $type: {
+        "s:7Network14NWProtocolQUICC7OptionsC": true;
+        "s:7Network17NWProtocolOptionsC": true;
+    };
 }
 /**
  * enum Direction
@@ -3871,6 +4123,10 @@ export declare class NWProtocolTCP extends NWProtocol {
      * @availability iOS 12.0+
      */
     static get definition(): NWProtocolDefinition;
+    readonly $type: {
+        "s:7Network13NWProtocolTCPC": true;
+        "s:7Network10NWProtocolC": true;
+    };
 }
 /**
  * class Metadata
@@ -3892,6 +4148,10 @@ export declare class NWProtocolTCP_Metadata extends NWProtocolMetadata {
      * @availability iOS 27.0+
      */
     setMaximumPacingRateBytesPerSecond(maximumPacingRateBytesPerSecond?: (number) | null): void;
+    readonly $type: {
+        "s:7Network13NWProtocolTCPC8MetadataC": true;
+        "s:7Network18NWProtocolMetadataC": true;
+    };
 }
 /**
  * class Options
@@ -3993,6 +4253,10 @@ export declare class NWProtocolTCP_Options extends NWProtocolOptions {
      * @availability iOS 12.0+
      */
     static init(): NWProtocolTCP_Options;
+    readonly $type: {
+        "s:7Network13NWProtocolTCPC7OptionsC": true;
+        "s:7Network17NWProtocolOptionsC": true;
+    };
 }
 /**
  * class NWProtocolTLS
@@ -4004,6 +4268,10 @@ export declare class NWProtocolTLS extends NWProtocol {
      * @availability iOS 12.0+
      */
     static get definition(): NWProtocolDefinition;
+    readonly $type: {
+        "s:7Network13NWProtocolTLSC": true;
+        "s:7Network10NWProtocolC": true;
+    };
 }
 /**
  * class Metadata
@@ -4015,6 +4283,10 @@ export declare class NWProtocolTLS_Metadata extends NWProtocolMetadata {
      * @availability iOS 12.0+
      */
     get securityProtocolMetadata(): SDKHandle;
+    readonly $type: {
+        "s:7Network13NWProtocolTLSC8MetadataC": true;
+        "s:7Network18NWProtocolMetadataC": true;
+    };
 }
 /**
  * class Options
@@ -4031,6 +4303,10 @@ export declare class NWProtocolTLS_Options extends NWProtocolOptions {
      * @availability iOS 12.0+
      */
     static init(): NWProtocolTLS_Options;
+    readonly $type: {
+        "s:7Network13NWProtocolTLSC7OptionsC": true;
+        "s:7Network17NWProtocolOptionsC": true;
+    };
 }
 /**
  * class NWProtocolUDP
@@ -4042,6 +4318,10 @@ export declare class NWProtocolUDP extends NWProtocol {
      * @availability iOS 12.0+
      */
     static get definition(): NWProtocolDefinition;
+    readonly $type: {
+        "s:7Network13NWProtocolUDPC": true;
+        "s:7Network10NWProtocolC": true;
+    };
 }
 /**
  * class Metadata
@@ -4053,6 +4333,10 @@ export declare class NWProtocolUDP_Metadata extends NWProtocolMetadata {
      * @availability iOS 12.0+
      */
     static init(): NWProtocolUDP_Metadata;
+    readonly $type: {
+        "s:7Network13NWProtocolUDPC8MetadataC": true;
+        "s:7Network18NWProtocolMetadataC": true;
+    };
 }
 /**
  * class Options
@@ -4070,6 +4354,10 @@ export declare class NWProtocolUDP_Options extends NWProtocolOptions {
      * @availability iOS 12.0+
      */
     static init(): NWProtocolUDP_Options;
+    readonly $type: {
+        "s:7Network13NWProtocolUDPC7OptionsC": true;
+        "s:7Network17NWProtocolOptionsC": true;
+    };
 }
 /**
  * class NWProtocolWebSocket
@@ -4081,6 +4369,10 @@ export declare class NWProtocolWebSocket extends NWProtocol {
      * @availability iOS 13.0+
      */
     static get definition(): NWProtocolDefinition;
+    readonly $type: {
+        "s:7Network19NWProtocolWebSocketC": true;
+        "s:7Network10NWProtocolC": true;
+    };
 }
 /**
  * enum CloseCode
@@ -4092,6 +4384,9 @@ export declare class NWProtocolWebSocket_CloseCode extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(rawValue: number): NWProtocolWebSocket_CloseCode;
+    readonly $type: {
+        "s:7Network19NWProtocolWebSocketC9CloseCodeO": true;
+    };
 }
 /**
  * enum Defined
@@ -4151,6 +4446,10 @@ export declare class NWProtocolWebSocket_Metadata extends NWProtocolMetadata {
      */
     get closeCode(): NWProtocolWebSocket_CloseCode;
     set closeCode(value: NWProtocolWebSocket_CloseCode);
+    readonly $type: {
+        "s:7Network19NWProtocolWebSocketC8MetadataC": true;
+        "s:7Network18NWProtocolMetadataC": true;
+    };
 }
 /**
  * enum Opcode
@@ -4212,6 +4511,10 @@ export declare class NWProtocolWebSocket_Options extends NWProtocolOptions {
      * @availability iOS 13.0+
      */
     static init(version?: NWProtocolWebSocket_Version): NWProtocolWebSocket_Options;
+    readonly $type: {
+        "s:7Network19NWProtocolWebSocketC7OptionsC": true;
+        "s:7Network17NWProtocolOptionsC": true;
+    };
 }
 /**
  * struct Response
@@ -4238,6 +4541,9 @@ export declare class NWProtocolWebSocket_Response extends SDKHandle {
      * @availability iOS 13.0+
      */
     get status(): NWProtocolWebSocket_Response_Status;
+    readonly $type: {
+        "s:7Network19NWProtocolWebSocketC8ResponseV": true;
+    };
 }
 /**
  * enum Status
@@ -4339,6 +4645,9 @@ export declare class NWTXTRecord extends SDKHandle {
      * @availability iOS 13.0+
      */
     subscript75626(key: string): (string) | null;
+    readonly $type: {
+        "s:7Network11NWTXTRecordV": true;
+    };
 }
 /**
  * typealias Element = (key: String, value: NWTXTRecord.Entry)
@@ -4365,12 +4674,18 @@ export declare class NWTXTRecord_Entry extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(data?: (ArrayBuffer) | null): NWTXTRecord_Entry;
+    readonly $type: {
+        "s:7Network11NWTXTRecordV5EntryO": true;
+    };
 }
 /**
  * struct Index
  * @availability iOS 13.0+
  */
 export declare class NWTXTRecord_Index extends SDKHandle {
+    readonly $type: {
+        "s:7Network11NWTXTRecordV5IndexV": true;
+    };
 }
 /**
  * typealias Indices = DefaultIndices<NWTXTRecord>
@@ -4494,12 +4809,18 @@ export interface OS_nw_ws_response {
  * @availability iOS 26.0+
  */
 export declare class ProtocolMetadataBuilder extends SDKHandle {
+    readonly $type: {
+        "s:7Network23ProtocolMetadataBuilderV": true;
+    };
 }
 /**
  * @resultBuilder struct ProtocolStackBuilder<ApplicationProtocol, each P> where ApplicationProtocol : NetworkProtocolOptions, repeat each P : NetworkProtocolOptions
  * @availability iOS 26.0+
  */
 export declare class ProtocolStackBuilder<ApplicationProtocol = unknown, P = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:7Network20ProtocolStackBuilderV": true;
+    };
 }
 /**
  * struct ProxyConfiguration
@@ -4554,6 +4875,9 @@ export declare class ProxyConfiguration extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initRelayHops(relayHops: Array<ProxyConfiguration_RelayHop>): ProxyConfiguration;
+    readonly $type: {
+        "s:7Network18ProxyConfigurationV": true;
+    };
 }
 /**
  * struct RelayHop
@@ -4575,6 +4899,9 @@ export declare class ProxyConfiguration_RelayHop extends SDKHandle {
      * @availability iOS 17.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:7Network18ProxyConfigurationV8RelayHopV": true;
+    };
 }
 /**
  * struct QUIC
@@ -4636,6 +4963,9 @@ export declare class QUIC extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(alpn: Array<string>): QUIC;
+    readonly $type: {
+        "s:7Network4QUICV": true;
+    };
 }
 /**
  * typealias BelowProtocol = UDP
@@ -4647,12 +4977,19 @@ export type QUIC_BelowProtocol = UDP;
  * @availability iOS 26.0+
  */
 export declare class QUIC_Datagrams<ApplicationProtocol = unknown> extends NetworkChannel {
+    readonly $type: {
+        "s:7Network4QUICV9DatagramsC": true;
+        "s:7Network0A7ChannelC": true;
+    };
 }
 /**
  * struct Metadata
  * @availability iOS 26.0+
  */
 export declare class QUIC_Metadata extends SDKHandle {
+    readonly $type: {
+        "s:7Network4QUICV8MetadataV": true;
+    };
 }
 /**
  * struct ProtocolStorage
@@ -4664,12 +5001,19 @@ export declare class QUIC_ProtocolStorage extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): QUIC_ProtocolStorage;
+    readonly $type: {
+        "s:7Network4QUICV15ProtocolStorageV": true;
+    };
 }
 /**
  * final class Stream<ApplicationProtocol> where ApplicationProtocol : NetworkProtocolOptions
  * @availability iOS 26.0+
  */
 export declare class QUIC_Stream<ApplicationProtocol = unknown> extends NetworkChannel {
+    readonly $type: {
+        "s:7Network4QUICV6StreamC": true;
+        "s:7Network0A7ChannelC": true;
+    };
 }
 /**
  * struct TLS
@@ -4696,12 +5040,18 @@ export declare class QUIC_TLS extends SDKHandle {
      * @availability iOS 26.0+
      */
     peerAuthentication(preference: TLS_PeerAuthentication): QUIC;
+    readonly $type: {
+        "s:7Network4QUICV3TLSV": true;
+    };
 }
 /**
  * struct QUICDatagram
  * @availability iOS 26.0+
  */
 export declare class QUICDatagram extends SDKHandle {
+    readonly $type: {
+        "s:7Network12QUICDatagramV": true;
+    };
 }
 /**
  * typealias BelowProtocol = Void
@@ -4728,6 +5078,9 @@ export declare class QUICDatagram_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get other(): $SDK6;
+    readonly $type: {
+        "s:7Network12QUICDatagramV8MetadataV": true;
+    };
 }
 /**
  * typealias ProtocolStorage = DefaultProtocolStorage
@@ -4739,6 +5092,9 @@ export type QUICDatagram_ProtocolStorage = DefaultProtocolStorage;
  * @availability iOS 26.0+
  */
 export declare class QUICStream extends SDKHandle {
+    readonly $type: {
+        "s:7Network10QUICStreamV": true;
+    };
 }
 /**
  * typealias BelowProtocol = Void
@@ -4770,6 +5126,9 @@ export declare class QUICStream_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get other(): $SDK6;
+    readonly $type: {
+        "s:7Network10QUICStreamV8MetadataV": true;
+    };
 }
 /**
  * typealias ProtocolStorage = DefaultProtocolStorage
@@ -4852,6 +5211,9 @@ export declare class TCP extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): TCP;
+    readonly $type: {
+        "s:7Network3TCPV": true;
+    };
 }
 /**
  * typealias BelowProtocol = IP
@@ -4873,6 +5235,9 @@ export declare class TCP_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get other(): $SDK6;
+    readonly $type: {
+        "s:7Network3TCPV8MetadataV": true;
+    };
 }
 /**
  * typealias ProtocolStorage = DefaultProtocolStorage
@@ -4929,6 +5294,9 @@ export declare class TLS extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): TLS;
+    readonly $type: {
+        "s:7Network3TLSV": true;
+    };
 }
 /**
  * typealias BelowProtocol = TCP
@@ -4950,6 +5318,9 @@ export declare class TLS_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get other(): $SDK6;
+    readonly $type: {
+        "s:7Network3TLSV8MetadataV": true;
+    };
 }
 /**
  * enum PeerAuthentication
@@ -4966,6 +5337,9 @@ export type TLS_ProtocolStorage = DefaultProtocolStorage;
  * @availability iOS 26.0+
  */
 export declare class TLV extends SDKHandle {
+    readonly $type: {
+        "s:7Network3TLVV": true;
+    };
 }
 /**
  * typealias BelowProtocol = any NetworkProtocolOptions
@@ -5017,6 +5391,9 @@ export declare class TLV_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get length(): number;
+    readonly $type: {
+        "s:7Network3TLVV8MetadataV": true;
+    };
 }
 /**
  * typealias ProtocolStorage = DefaultProtocolStorage
@@ -5038,6 +5415,9 @@ export declare class TXTRecordDecoder extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): TXTRecordDecoder;
+    readonly $type: {
+        "s:7Network16TXTRecordDecoderV": true;
+    };
 }
 /**
  * struct UDP
@@ -5054,6 +5434,9 @@ export declare class UDP extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): UDP;
+    readonly $type: {
+        "s:7Network3UDPV": true;
+    };
 }
 /**
  * typealias BelowProtocol = IP
@@ -5080,6 +5463,9 @@ export declare class UDP_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get other(): $SDK6;
+    readonly $type: {
+        "s:7Network3UDPV8MetadataV": true;
+    };
 }
 /**
  * typealias ProtocolStorage = DefaultProtocolStorage
@@ -5101,6 +5487,9 @@ export declare class UnexpectedEndpointType extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(endpoint: NWEndpoint): UnexpectedEndpointType;
+    readonly $type: {
+        "s:7Network22UnexpectedEndpointTypeV": true;
+    };
 }
 export declare class URLSessionConfiguration extends SDKHandle {
     /**
@@ -5109,6 +5498,10 @@ export declare class URLSessionConfiguration extends SDKHandle {
      */
     get proxyConfigurations(): $SDK97;
     set proxyConfigurations(value: $SDK97);
+    readonly $type: {
+        "c:objc(cs)NSURLSessionConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct WebSocket
@@ -5140,6 +5533,9 @@ export declare class WebSocket extends SDKHandle {
      * @availability iOS 26.0+
      */
     maximumMessageSize(size: number): WebSocket;
+    readonly $type: {
+        "s:7Network9WebSocketV": true;
+    };
 }
 /**
  * typealias BelowProtocol = any NetworkProtocolOptions
@@ -5191,6 +5587,9 @@ export declare class WebSocket_Metadata extends SDKHandle {
      * @availability iOS 26.0+
      */
     get closeCode(): (NWProtocolWebSocket_CloseCode) | null;
+    readonly $type: {
+        "s:7Network9WebSocketV8MetadataV": true;
+    };
 }
 /**
  * typealias ProtocolStorage = DefaultProtocolStorage

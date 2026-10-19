@@ -56,6 +56,9 @@ export declare class Account extends SDKHandle {
      * @availability iOS 17.4+
      */
     get id(): string;
+    readonly $type: {
+        "s:10FinanceKit7AccountO": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -97,6 +100,9 @@ export declare class AccountBalance extends SDKHandle {
      * @availability iOS 17.4+
      */
     get available(): (Balance) | null;
+    readonly $type: {
+        "s:10FinanceKit14AccountBalanceV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -123,6 +129,9 @@ export declare class AccountBalanceQuery extends SDKHandle {
      * @availability iOS 17.4+
      */
     static predicateAvailableSinceUntil(startDate: globalThis.Date, endDate?: $SDK1): $SDK4;
+    readonly $type: {
+        "s:10FinanceKit19AccountBalanceQueryV": true;
+    };
 }
 /**
  * struct AccountCreditInformation
@@ -149,6 +158,9 @@ export declare class AccountCreditInformation extends SDKHandle {
      * @availability iOS 17.4+
      */
     get minimumNextPaymentAmount(): (CurrencyAmount) | null;
+    readonly $type: {
+        "s:10FinanceKit24AccountCreditInformationV": true;
+    };
 }
 /**
  * struct AccountQuery
@@ -160,6 +172,9 @@ export declare class AccountQuery extends SDKHandle {
      * @availability iOS 17.4+
      */
     static init(sortDescriptors?: Array<_Foundation_SortDescriptor<Account>>, predicate?: (_Foundation_Predicate<Account>) | null, limit?: (number) | null, offset?: (number) | null): AccountQuery;
+    readonly $type: {
+        "s:10FinanceKit12AccountQueryV": true;
+    };
 }
 /**
  * struct AssetAccount
@@ -196,6 +211,9 @@ export declare class AssetAccount extends SDKHandle {
      * @availability iOS 17.4+
      */
     get id(): string;
+    readonly $type: {
+        "s:10FinanceKit12AssetAccountV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -260,6 +278,9 @@ export declare class Balance extends SDKHandle {
      * @availability iOS 17.4+
      */
     get asOfDate(): globalThis.Date;
+    readonly $type: {
+        "s:10FinanceKit7BalanceV": true;
+    };
 }
 /**
  * enum CreditDebitIndicator
@@ -308,12 +329,18 @@ export declare class CurrencyAmount extends SDKHandle {
      * @availability iOS 17.4+
      */
     get amount(): _Foundation_Decimal;
+    readonly $type: {
+        "s:10FinanceKit14CurrencyAmountV": true;
+    };
 }
 /**
  * enum CurrentBalance
  * @availability iOS 17.4+
  */
 export declare class CurrentBalance extends SDKHandle {
+    readonly $type: {
+        "s:10FinanceKit14CurrentBalanceO": true;
+    };
 }
 /**
  * enum FinanceError
@@ -345,6 +372,9 @@ export declare class FinanceError extends SDKHandle {
      * @availability iOS 17.0+
      */
     get errorCode(): number;
+    readonly $type: {
+        "s:10FinanceKit0A5ErrorO": true;
+    };
 }
 /**
  * class FinanceStore
@@ -426,6 +456,9 @@ export declare class FinanceStore extends SDKHandle {
      * @availability iOS 17.0+
      */
     saveOrder(signedArchive: ArrayBuffer): Promise<FinanceStore_SaveOrderResult>;
+    readonly $type: {
+        "s:10FinanceKit0A5StoreC": true;
+    };
 }
 /**
  * enum BackgroundDataType
@@ -437,6 +470,9 @@ export type FinanceStore_BackgroundDataType = "accounts" | "accountBalances" | "
  * @availability iOS 17.4+
  */
 export declare class FinanceStore_Changes<Model = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10FinanceKit0A5StoreC7ChangesV": true;
+    };
 }
 /**
  * enum ContainsOrderResult
@@ -465,6 +501,9 @@ export type FinanceStore_DataType = "orders" | "financialData";
  * @availability iOS 17.4+
  */
 export declare class FinanceStore_History<Model = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10FinanceKit0A5StoreC7HistoryV": true;
+    };
     readonly $element: $SDK14;
 }
 /**
@@ -482,6 +521,9 @@ export type FinanceStore_History_Element<Model = unknown> = $SDK14;
  * @availability iOS 17.4+
  */
 export declare class FinanceStore_History_Iterator<Model = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:10FinanceKit0A5StoreC7HistoryV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = FinanceStore.Changes<Model>
@@ -493,6 +535,9 @@ export type FinanceStore_History_Iterator_Element<Model = unknown> = $SDK14;
  * @availability iOS 17.4+
  */
 export declare class FinanceStore_HistoryToken extends SDKHandle {
+    readonly $type: {
+        "s:10FinanceKit0A5StoreC12HistoryTokenV": true;
+    };
 }
 /**
  * enum SaveOrderResult
@@ -543,6 +588,9 @@ export declare class FullyQualifiedOrderIdentifier extends SDKHandle {
      * @availability iOS 17.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:10FinanceKit29FullyQualifiedOrderIdentifierV": true;
+    };
 }
 /**
  * struct LiabilityAccount
@@ -584,6 +632,9 @@ export declare class LiabilityAccount extends SDKHandle {
      * @availability iOS 17.4+
      */
     get id(): string;
+    readonly $type: {
+        "s:10FinanceKit16LiabilityAccountV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -697,6 +748,9 @@ export declare class Transaction extends SDKHandle {
      * @availability iOS 17.4+
      */
     get accountID(): string;
+    readonly $type: {
+        "s:10FinanceKit11TransactionV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -728,6 +782,9 @@ export declare class TransactionQuery extends SDKHandle {
      * @availability iOS 17.4+
      */
     static predicateForMerchantCategoryCodes(merchantCategoryCodes: Array<MerchantCategoryCode>): $SDK21;
+    readonly $type: {
+        "s:10FinanceKit16TransactionQueryV": true;
+    };
 }
 /**
  * enum TransactionStatus

@@ -48,6 +48,10 @@ export declare class LAAuthenticationRequirement extends SDKHandle {
     static get default(): LAAuthenticationRequirement;
     /** init() */
     static init(): LAAuthenticationRequirement;
+    readonly $type: {
+        "c:objc(cs)LAAuthenticationRequirement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class LABiometryFallbackRequirement
@@ -66,6 +70,10 @@ export declare class LABiometryFallbackRequirement extends SDKHandle {
     static get devicePasscode(): LABiometryFallbackRequirement;
     /** init() */
     static init(): LABiometryFallbackRequirement;
+    readonly $type: {
+        "c:objc(cs)LABiometryFallbackRequirement": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum LABiometryType
@@ -192,6 +200,10 @@ export declare class LAContext extends SDKHandle {
      */
     get touchIDAuthenticationAllowableReuseDuration(): number;
     set touchIDAuthenticationAllowableReuseDuration(value: number);
+    readonly $type: {
+        "c:objc(cs)LAContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "biometryType": true;
         "domainState": true;
@@ -241,6 +253,10 @@ export declare class LADomainState extends SDKHandle {
      * @availability iOS 18.0+
      */
     get stateHash(): (ArrayBuffer) | null;
+    readonly $type: {
+        "c:objc(cs)LADomainState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "biometry": true;
         "companion": true;
@@ -262,6 +278,10 @@ export declare class LADomainStateBiometry extends SDKHandle {
      * @availability iOS 18.0+
      */
     get stateHash(): (ArrayBuffer) | null;
+    readonly $type: {
+        "c:objc(cs)LADomainStateBiometry": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "biometryType": true;
         "stateHash": true;
@@ -287,6 +307,10 @@ export declare class LADomainStateCompanion extends SDKHandle {
      * @availability iOS 18.0+
      */
     get availableCompanionTypes(): Array<LACompanionType>;
+    readonly $type: {
+        "c:objc(cs)LADomainStateCompanion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "stateHash": true;
     };
@@ -316,6 +340,10 @@ export declare class LAEnvironment extends SDKHandle {
      * @availability iOS 18.0+
      */
     get state(): LAEnvironment_State;
+    readonly $type: {
+        "c:objc(cs)LAEnvironment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "state": true;
     };
@@ -340,6 +368,10 @@ export declare class LAEnvironment_Mechanism extends SDKHandle {
      * @availability iOS 18.0+
      */
     get localizedName(): string;
+    readonly $type: {
+        "c:objc(cs)LAEnvironmentMechanism": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "iconSystemName": true;
         "isUsable": true;
@@ -376,6 +408,11 @@ export declare class LAEnvironment_MechanismBiometry extends LAEnvironment_Mecha
      * @availability iOS 18.0+
      */
     get stateHash(): ArrayBuffer;
+    readonly $type: {
+        "c:objc(cs)LAEnvironmentMechanismBiometry": true;
+        "c:objc(cs)LAEnvironmentMechanism": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "iconSystemName": true;
         "isUsable": true;
@@ -402,6 +439,11 @@ export declare class LAEnvironment_MechanismCompanion extends LAEnvironment_Mech
      * @availability iOS 18.0+
      */
     get type(): LACompanionType;
+    readonly $type: {
+        "c:objc(cs)LAEnvironmentMechanismCompanion": true;
+        "c:objc(cs)LAEnvironmentMechanism": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "iconSystemName": true;
         "isUsable": true;
@@ -420,6 +462,11 @@ export declare class LAEnvironment_MechanismUserPassword extends LAEnvironment_M
      * @availability iOS 18.0+
      */
     get isSet(): boolean;
+    readonly $type: {
+        "c:objc(cs)LAEnvironmentMechanismUserPassword": true;
+        "c:objc(cs)LAEnvironmentMechanism": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "iconSystemName": true;
         "isUsable": true;
@@ -463,6 +510,10 @@ export declare class LAEnvironment_State extends SDKHandle {
      * @availability iOS 18.0+
      */
     get userPassword(): (LAEnvironment_MechanismUserPassword) | null;
+    readonly $type: {
+        "c:objc(cs)LAEnvironmentState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allMechanisms": true;
         "biometry": true;
@@ -558,6 +609,9 @@ export declare class LAError extends SDKHandle {
      * @availability iOS 9.0+
      */
     static get appCancel(): LAError_Code;
+    readonly $type: {
+        "s:SC7LAErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -627,6 +681,10 @@ export declare class LARight extends SDKHandle {
      */
     get tag(): number;
     set tag(value: number);
+    readonly $type: {
+        "c:objc(cs)LARight": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "state": true;
         "tag": true;
@@ -647,6 +705,11 @@ export declare class LAPersistedRight extends LARight {
      * @availability iOS 16.0+
      */
     get secret(): LASecret;
+    readonly $type: {
+        "c:objc(cs)LAPersistedRight": true;
+        "c:objc(cs)LARight": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "state": true;
         "tag": true;
@@ -706,6 +769,10 @@ export declare class LAPrivateKey extends SDKHandle {
      * @availability iOS 16.0+
      */
     get publicKey(): LAPublicKey;
+    readonly $type: {
+        "c:objc(cs)LAPrivateKey": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "publicKey": true;
     };
@@ -740,6 +807,10 @@ export declare class LAPublicKey extends SDKHandle {
      * @availability iOS 16.0+
      */
     verify(signedData: ArrayBuffer, signature: ArrayBuffer, algorithm: _Security_SecKeyAlgorithm, handler: $SDK8): void;
+    readonly $type: {
+        "c:objc(cs)LAPublicKey": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum State
@@ -793,6 +864,10 @@ export declare class LARightStore extends SDKHandle {
      * @availability iOS 16.0+
      */
     saveRightIdentifierSecretCompletion(right: LARight, identifier: string, secret: ArrayBuffer, handler: $SDK11): void;
+    readonly $type: {
+        "c:objc(cs)LARightStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class LASecret
@@ -804,6 +879,10 @@ export declare class LASecret extends SDKHandle {
      * @availability iOS 16.0+
      */
     loadData(handler: $SDK9): void;
+    readonly $type: {
+        "c:objc(cs)LASecret": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * let LAErrorDomain: String

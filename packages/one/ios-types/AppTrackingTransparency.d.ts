@@ -15,6 +15,10 @@ export declare class ATTrackingManager extends SDKHandle {
      * @availability iOS 14.0+
      */
     static get trackingAuthorizationStatus(): ATTrackingManager_AuthorizationStatus;
+    readonly $type: {
+        "c:objc(cs)ATTrackingManager": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum AuthorizationStatus

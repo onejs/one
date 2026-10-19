@@ -53,6 +53,9 @@ export declare class CarKeyRemoteControl extends SDKHandle {
      * @availability iOS 16.0+
      */
     static start(delegate: Implements<CarKeyRemoteControlSessionDelegate> | SDKHandle, subscriptionFunctionIDRange?: (SDKHandle) | null, delegateCallbackQueue?: (_Dispatch_DispatchQueue) | null): Promise<CarKeyRemoteControlSession>;
+    readonly $type: {
+        "s:6CarKey0aB13RemoteControlC": true;
+    };
 }
 /**
  * class CarKeyRemoteControlSession
@@ -100,6 +103,9 @@ export declare class CarKeyRemoteControlSession extends SDKHandle {
      * @deprecated iOS 18.0
      */
     perform98822(enduringAction: RemoteKeylessEntryEnduringAction): RemoteKeylessEntryEnduringAction_EnduringExecutionRequest;
+    readonly $type: {
+        "s:6CarKey0aB20RemoteControlSessionC": true;
+    };
 }
 /**
  * struct Attestation
@@ -126,6 +132,9 @@ export declare class CarKeyRemoteControlSession_Attestation extends SDKHandle {
      * @availability iOS 18.0+
      */
     get signature(): ArrayBuffer;
+    readonly $type: {
+        "s:6CarKey0aB20RemoteControlSessionC11AttestationV": true;
+    };
 }
 /**
  * enum ContinuationStrategy
@@ -264,6 +273,9 @@ export declare class RemoteKeylessEntryAction extends SDKHandle {
      * @availability iOS 16.0+
      */
     get actionID(): ActionIdentifier;
+    readonly $type: {
+        "s:6CarKey24RemoteKeylessEntryActionV": true;
+    };
 }
 /**
  * final class ExecutionRequest
@@ -275,6 +287,9 @@ export declare class RemoteKeylessEntryAction_ExecutionRequest extends SDKHandle
      * @availability iOS 16.0+
      */
     results(): Promise<ExecutionStatus>;
+    readonly $type: {
+        "s:6CarKey24RemoteKeylessEntryActionV16ExecutionRequestC": true;
+    };
 }
 /**
  * struct RemoteKeylessEntryConfigurableEnduringAction
@@ -301,6 +316,9 @@ export declare class RemoteKeylessEntryConfigurableEnduringAction extends SDKHan
      * @availability iOS 18.0+
      */
     get actionID(): ActionIdentifier;
+    readonly $type: {
+        "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV": true;
+    };
 }
 /**
  * @objc final class EnduringExecutionRequest
@@ -322,6 +340,10 @@ export declare class RemoteKeylessEntryConfigurableEnduringAction_EnduringExecut
      * @availability iOS 18.0+
      */
     results(): Promise<ExecutionStatus>;
+    readonly $type: {
+        "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV0G16ExecutionRequestC": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct ContinuationRequest
@@ -338,12 +360,18 @@ export declare class RemoteKeylessEntryConfigurableEnduringAction_EnduringExecut
      * @availability iOS 18.0+
      */
     confirm(data?: (ArrayBuffer) | null): void;
+    readonly $type: {
+        "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV0G16ExecutionRequestC012ContinuationJ0V": true;
+    };
 }
 /**
  * enum Event
  * @availability iOS 18.0+
  */
 export declare class RemoteKeylessEntryConfigurableEnduringAction_EnduringExecutionRequest_Event extends SDKHandle {
+    readonly $type: {
+        "s:6CarKey44RemoteKeylessEntryConfigurableEnduringActionV0G16ExecutionRequestC5EventO": true;
+    };
 }
 /**
  * struct RemoteKeylessEntryEnduringAction
@@ -375,6 +403,9 @@ export declare class RemoteKeylessEntryEnduringAction extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get actionID(): ActionIdentifier;
+    readonly $type: {
+        "s:6CarKey32RemoteKeylessEntryEnduringActionV": true;
+    };
 }
 /**
  * final class EnduringExecutionRequest
@@ -394,6 +425,9 @@ export declare class RemoteKeylessEntryEnduringAction_EnduringExecutionRequest e
      * @deprecated iOS 18.0
      */
     results(): Promise<ExecutionStatus>;
+    readonly $type: {
+        "s:6CarKey32RemoteKeylessEntryEnduringActionV0F16ExecutionRequestC": true;
+    };
 }
 /**
  * struct VehicleReport
@@ -425,4 +459,7 @@ export declare class VehicleReport extends SDKHandle {
      * @availability iOS 16.0+
      */
     status(function_: FunctionIdentifier): (FunctionStatus) | null;
+    readonly $type: {
+        "s:6CarKey13VehicleReportV": true;
+    };
 }

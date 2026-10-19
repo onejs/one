@@ -187,6 +187,9 @@ export declare class ComputeGraphSimulation extends SDKHandle {
      * @availability iOS 27.0+
      */
     setBufferBufferOffsetAt35335(buffer: (SDKHandle) | null, bufferOffset: number, location: ComputeNodeGraph_Assembly_Location): void;
+    readonly $type: {
+        "s:12ComputeGraph0aB10SimulationC": true;
+    };
 }
 /**
  * struct AdvanceParams
@@ -251,6 +254,9 @@ export declare class ComputeGraphSimulation_AdvanceParams extends SDKHandle {
      */
     get deltaTime(): number;
     set deltaTime(value: number);
+    readonly $type: {
+        "s:12ComputeGraph0aB10SimulationC13AdvanceParamsV": true;
+    };
 }
 /**
  * struct SimulationRate
@@ -285,6 +291,9 @@ export declare class ComputeGraphSimulation_SimulationRate extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ComputeGraphSimulation_SimulationRate;
+    readonly $type: {
+        "s:12ComputeGraph0aB10SimulationC0C4RateV": true;
+    };
 }
 /**
  * enum Mode
@@ -404,6 +413,9 @@ export declare class ComputeNodeGraph extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(node: number): (ComputeNodeGraph_Node) | null;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V": true;
+    };
 }
 /**
  * struct ArrayDefinition
@@ -422,6 +434,9 @@ export declare class ComputeNodeGraph_ArrayDefinition extends SDKHandle {
      */
     get element(): ComputeNodeGraph_StateType;
     set element(value: ComputeNodeGraph_StateType);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V15ArrayDefinitionV": true;
+    };
 }
 /**
  * struct Assembly
@@ -465,12 +480,18 @@ export declare class ComputeNodeGraph_Assembly extends SDKHandle {
     get uniforms(): NativeMap<ComputeNodeGraph_Port_Address, ComputeNodeGraph_Assembly_Location>;
     /** init(_ graph: ComputeNodeGraph) throws */
     static init(graph: ComputeNodeGraph): ComputeNodeGraph_Assembly;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V8AssemblyV": true;
+    };
 }
 /**
  * enum Attachment
  * @availability iOS 27.0+
  */
 export declare class ComputeNodeGraph_Assembly_Attachment extends SDKHandle {
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V8AssemblyV10AttachmentO": true;
+    };
 }
 /**
  * struct BufferBinding
@@ -494,12 +515,18 @@ export declare class ComputeNodeGraph_Assembly_BufferBinding extends SDKHandle {
      */
     get type(): $SDK13;
     set type(value: $SDK13);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V8AssemblyV13BufferBindingV": true;
+    };
 }
 /**
  * enum Location
  * @availability iOS 27.0+
  */
 export declare class ComputeNodeGraph_Assembly_Location extends SDKHandle {
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V8AssemblyV8LocationO": true;
+    };
 }
 /**
  * struct TextureBinding
@@ -523,6 +550,9 @@ export declare class ComputeNodeGraph_Assembly_TextureBinding extends SDKHandle 
      */
     get type(): $SDK14;
     set type(value: $SDK14);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V8AssemblyV14TextureBindingV": true;
+    };
 }
 /**
  * struct UniformBinding
@@ -546,6 +576,9 @@ export declare class ComputeNodeGraph_Assembly_UniformBinding extends SDKHandle 
      */
     get location(): ComputeNodeGraph_Assembly_Location;
     set location(value: ComputeNodeGraph_Assembly_Location);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V8AssemblyV14UniformBindingV": true;
+    };
 }
 /**
  * struct DataType
@@ -564,6 +597,9 @@ export declare class ComputeNodeGraph_DataType extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(dataType: _Metal_MTLDataType): ComputeNodeGraph_DataType;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V8DataTypeV": true;
+    };
 }
 /**
  * struct Edge
@@ -587,6 +623,9 @@ export declare class ComputeNodeGraph_Edge extends SDKHandle {
      */
     get target(): ComputeNodeGraph_Port_Address;
     set target(value: ComputeNodeGraph_Port_Address);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V4EdgeV": true;
+    };
 }
 /**
  * enum Format
@@ -665,6 +704,9 @@ export declare class ComputeNodeGraph_Library extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ComputeNodeGraph_Library;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V7LibraryC": true;
+    };
 }
 /**
  * struct LibraryReference
@@ -688,6 +730,9 @@ export declare class ComputeNodeGraph_LibraryReference extends SDKHandle {
      */
     get library(): SDKHandle;
     set library(value: SDKHandle);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V16LibraryReferenceV": true;
+    };
 }
 /**
  * struct Metadata
@@ -705,6 +750,9 @@ export declare class ComputeNodeGraph_Metadata extends SDKHandle {
      */
     get values(): Record<string, string>;
     set values(value: Record<string, string>);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V8MetadataV": true;
+    };
 }
 /**
  * typealias Key = String
@@ -766,12 +814,18 @@ export declare class ComputeNodeGraph_Node extends SDKHandle {
     set uniforms(value: Array<(ArrayBuffer) | null>);
     /** func inputData(named name: String) -> Data? */
     inputData(name: string): (ArrayBuffer) | null;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V0C0V": true;
+    };
 }
 /**
  * enum Kind
  * @availability iOS 27.0+
  */
 export declare class ComputeNodeGraph_Node_Kind extends SDKHandle {
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V0C0V4KindO": true;
+    };
 }
 /**
  * struct NodeDefinition
@@ -819,12 +873,18 @@ export declare class ComputeNodeGraph_NodeDefinition extends SDKHandle {
      */
     get outputs(): $SDK21;
     set outputs(value: $SDK21);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V0C10DefinitionV": true;
+    };
 }
 /**
  * enum Kind
  * @availability iOS 27.0+
  */
 export declare class ComputeNodeGraph_NodeDefinition_Kind extends SDKHandle {
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V0C10DefinitionV4KindO": true;
+    };
 }
 /**
  * typealias NodeID = Int
@@ -866,6 +926,9 @@ export declare class ComputeNodeGraph_Pipelines extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init48792(graph: ComputeNodeGraph): Promise<ComputeNodeGraph_Pipelines>;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V9PipelinesV": true;
+    };
 }
 /**
  * struct Options
@@ -888,6 +951,9 @@ export declare class ComputeNodeGraph_Pipelines_Options extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ComputeNodeGraph_Pipelines_Options;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V9PipelinesV7OptionsV": true;
+    };
 }
 /**
  * struct PipelinesDescriptor
@@ -927,18 +993,27 @@ export declare class ComputeNodeGraph_PipelinesDescriptor extends SDKHandle {
      */
     get libraries(): $SDK22;
     set libraries(value: $SDK22);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V19PipelinesDescriptorV": true;
+    };
 }
 /**
  * struct PointerDefinition
  * @availability iOS 27.0+
  */
 export declare class ComputeNodeGraph_PointerDefinition extends SDKHandle {
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V17PointerDefinitionV": true;
+    };
 }
 /**
  * enum Port
  * @availability iOS 27.0+
  */
 export declare class ComputeNodeGraph_Port extends SDKHandle {
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V4PortO": true;
+    };
 }
 /**
  * struct Address
@@ -962,6 +1037,9 @@ export declare class ComputeNodeGraph_Port_Address extends SDKHandle {
      */
     get index(): number;
     set index(value: number);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V4PortO7AddressV": true;
+    };
 }
 /**
  * enum Kind
@@ -1080,6 +1158,9 @@ export declare class ComputeNodeGraph_PortDefinition extends SDKHandle {
      */
     get options(): ComputeNodeGraph_Port_Options;
     set options(value: ComputeNodeGraph_Port_Options);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V14PortDefinitionV": true;
+    };
 }
 /**
  * struct SamplerSettings
@@ -1109,6 +1190,9 @@ export declare class ComputeNodeGraph_SamplerSettings extends SDKHandle {
      */
     get texture(): _Metal_MTLTextureType;
     set texture(value: _Metal_MTLTextureType);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V15SamplerSettingsV": true;
+    };
 }
 /**
  * struct Scope
@@ -1125,6 +1209,9 @@ export declare class ComputeNodeGraph_Scope extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(name: string): ComputeNodeGraph_Scope;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V5ScopeV": true;
+    };
 }
 /**
  * struct Stage
@@ -1181,6 +1268,9 @@ export declare class ComputeNodeGraph_Stage extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(name: string): ComputeNodeGraph_Stage;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V5StageV": true;
+    };
 }
 /**
  * struct StateDefinition
@@ -1210,6 +1300,9 @@ export declare class ComputeNodeGraph_StateDefinition extends SDKHandle {
      */
     get options(): ComputeNodeGraph_StateDefinition_Options;
     set options(value: ComputeNodeGraph_StateDefinition_Options);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V15StateDefinitionV": true;
+    };
 }
 /**
  * struct Options
@@ -1266,6 +1359,9 @@ export declare class ComputeNodeGraph_StateType extends SDKHandle {
         "data": ArrayBuffer;
         "elementCount": number;
     };
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V9StateTypeO": true;
+    };
 }
 /**
  * struct StructureDefinition
@@ -1289,6 +1385,9 @@ export declare class ComputeNodeGraph_StructureDefinition extends SDKHandle {
      */
     get typeName(): string;
     set typeName(value: string);
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V19StructureDefinitionV": true;
+    };
 }
 /**
  * struct StructureLayout
@@ -1318,6 +1417,9 @@ export declare class ComputeNodeGraph_StructureLayout extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ComputeNodeGraph_StructureLayout;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V15StructureLayoutV": true;
+    };
 }
 /**
  * struct Member
@@ -1367,6 +1469,9 @@ export declare class ComputeNodeGraph_StructureLayout_Member extends SDKHandle {
      * @availability iOS 27.0+
      */
     get typeName(): (string) | null;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V15StructureLayoutV6MemberV": true;
+    };
 }
 /**
  * struct SwizzleChannels
@@ -1407,6 +1512,9 @@ export declare class ComputeNodeGraph_SwizzleChannels extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ComputeNodeGraph_SwizzleChannels;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V15SwizzleChannelsV": true;
+    };
 }
 /**
  * enum Swizzle
@@ -1477,6 +1585,9 @@ export declare class ComputeNodeGraph_ValueType extends SDKHandle {
      * @availability iOS 27.0+
      */
     static structure(typeName: string, layout: ComputeNodeGraph_StructureLayout): ComputeNodeGraph_ValueType;
+    readonly $type: {
+        "s:12ComputeGraph0a4NodeB0V9ValueTypeO": true;
+    };
 }
 /**
  * enum CoordinateSpace
@@ -1582,6 +1693,9 @@ export declare class ElementSpawnParameters extends SDKHandle {
      */
     get velocity(): SDKHandle;
     set velocity(value: SDKHandle);
+    readonly $type: {
+        "s:12ComputeGraph22ElementSpawnParametersV": true;
+    };
 }
 /** struct MouseParams */
 export declare class MouseParams extends SDKHandle {
@@ -1598,6 +1712,9 @@ export declare class MouseParams extends SDKHandle {
     static initPositionDirectionHas_value(position: SDKHandle, direction: SDKHandle, has_value: boolean): MouseParams;
     /** init() */
     static init(): MouseParams;
+    readonly $type: {
+        "c:@S@MouseParams": true;
+    };
 }
 /**
  * struct PortReference
@@ -1621,6 +1738,9 @@ export declare class PortReference extends SDKHandle {
      */
     get group(): number;
     set group(value: number);
+    readonly $type: {
+        "s:12ComputeGraph13PortReferenceV": true;
+    };
 }
 /**
  * enum Sorting
@@ -1768,5 +1888,8 @@ export declare class Viewpoint extends SDKHandle {
     static initPositionDirectionHas_positionHas_direction(position: SDKHandle, direction: SDKHandle, has_position: boolean, has_direction: boolean): Viewpoint;
     /** init() */
     static init(): Viewpoint;
+    readonly $type: {
+        "c:@S@Viewpoint": true;
+    };
 }
 export {};

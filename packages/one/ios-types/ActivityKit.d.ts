@@ -7,12 +7,18 @@ type $SDK4 = ActivityContent<Activity<unknown>>;
  * @availability iOS 16.1+
  */
 export declare class Activity<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C": true;
+    };
 }
 /**
  * struct ActivityStateUpdates
  * @availability iOS 16.1+
  */
 export declare class Activity_ActivityStateUpdates<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C0A12StateUpdatesV": true;
+    };
     readonly $element: ActivityState;
 }
 /**
@@ -30,6 +36,9 @@ export type Activity_ActivityStateUpdates_Element<Attributes = unknown> = Activi
  * @availability iOS 16.1+
  */
 export declare class Activity_ActivityStateUpdates_Iterator<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C0A12StateUpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Activity<Attributes>.ActivityStateUpdates.Element
@@ -41,6 +50,9 @@ export type Activity_ActivityStateUpdates_Iterator_Element<Attributes = unknown>
  * @availability iOS 16.1+
  */
 export declare class Activity_ActivityUpdates<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C0A7UpdatesV": true;
+    };
     readonly $element: Activity<unknown>;
 }
 /**
@@ -58,6 +70,9 @@ export type Activity_ActivityUpdates_Element<Attributes = unknown> = Activity<un
  * @availability iOS 16.1+
  */
 export declare class Activity_ActivityUpdates_Iterator<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C0A7UpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Activity<Attributes>.ActivityUpdates.Element
@@ -75,6 +90,9 @@ export type Activity_ContentState<Attributes = unknown> = SDKHandle;
  * @deprecated iOS 16.2
  */
 export declare class Activity_ContentStateUpdates<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C19ContentStateUpdatesV": true;
+    };
     readonly $element: Activity<unknown>;
 }
 /**
@@ -95,6 +113,9 @@ export type Activity_ContentStateUpdates_Element<Attributes = unknown> = Activit
  * @deprecated iOS 16.2
  */
 export declare class Activity_ContentStateUpdates_Iterator<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C19ContentStateUpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Activity<Attributes>.ContentStateUpdates.Element
@@ -107,6 +128,9 @@ export type Activity_ContentStateUpdates_Iterator_Element<Attributes = unknown> 
  * @availability iOS 16.2+
  */
 export declare class Activity_ContentUpdates<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C14ContentUpdatesV": true;
+    };
     readonly $element: $SDK4;
 }
 /**
@@ -124,6 +148,9 @@ export type Activity_ContentUpdates_Element<Attributes = unknown> = $SDK4;
  * @availability iOS 16.2+
  */
 export declare class Activity_ContentUpdates_Iterator<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C14ContentUpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Activity<Attributes>.ContentUpdates.Element
@@ -140,6 +167,9 @@ export type Activity_ID<Attributes = unknown> = string;
  * @availability iOS 16.1+
  */
 export declare class Activity_PushTokenUpdates<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C16PushTokenUpdatesV": true;
+    };
     readonly $element: ArrayBuffer;
 }
 /**
@@ -157,6 +187,9 @@ export type Activity_PushTokenUpdates_Element<Attributes = unknown> = ArrayBuffe
  * @availability iOS 16.1+
  */
 export declare class Activity_PushTokenUpdates_Iterator<Attributes = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11ActivityKit0A0C16PushTokenUpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Activity<Attributes>.PushTokenUpdates.Element
@@ -226,6 +259,9 @@ export declare class ActivityAuthorizationInfo extends SDKHandle {
      * @availability iOS 16.1+
      */
     static init(): ActivityAuthorizationInfo;
+    readonly $type: {
+        "s:11ActivityKit0A17AuthorizationInfoC": true;
+    };
 }
 /**
  * struct ActivityEnablementUpdates
@@ -237,6 +273,9 @@ export declare class ActivityAuthorizationInfo_ActivityEnablementUpdates extends
      * @availability iOS 16.1+
      */
     makeAsyncIterator(): ActivityAuthorizationInfo_ActivityEnablementUpdates_Iterator;
+    readonly $type: {
+        "s:11ActivityKit0A17AuthorizationInfoC0A17EnablementUpdatesV": true;
+    };
     readonly $element: boolean;
 }
 /**
@@ -259,6 +298,9 @@ export declare class ActivityAuthorizationInfo_ActivityEnablementUpdates_Iterato
      * @availability iOS 16.1+
      */
     next(): Promise<(boolean) | null>;
+    readonly $type: {
+        "s:11ActivityKit0A17AuthorizationInfoC0A17EnablementUpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Bool
@@ -275,6 +317,9 @@ export declare class ActivityAuthorizationInfo_FrequentPushEnablementUpdates ext
      * @availability iOS 16.2+
      */
     makeAsyncIterator(): ActivityAuthorizationInfo_FrequentPushEnablementUpdates_Iterator;
+    readonly $type: {
+        "s:11ActivityKit0A17AuthorizationInfoC29FrequentPushEnablementUpdatesV": true;
+    };
     readonly $element: boolean;
 }
 /**
@@ -297,6 +342,9 @@ export declare class ActivityAuthorizationInfo_FrequentPushEnablementUpdates_Ite
      * @availability iOS 16.2+
      */
     next(): Promise<(boolean) | null>;
+    readonly $type: {
+        "s:11ActivityKit0A17AuthorizationInfoC29FrequentPushEnablementUpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = Bool
@@ -333,6 +381,9 @@ export declare class ActivityContent<State = unknown> extends SDKHandle {
      * @availability iOS 16.2+
      */
     get staleDate(): (globalThis.Date) | null;
+    readonly $type: {
+        "s:11ActivityKit0A7ContentV": true;
+    };
 }
 /**
  * enum ActivityState
@@ -364,6 +415,9 @@ export declare class ActivityUIDismissalPolicy extends SDKHandle {
      * @availability iOS 16.1+
      */
     static get immediate(): ActivityUIDismissalPolicy;
+    readonly $type: {
+        "s:11ActivityKit0A17UIDismissalPolicyV": true;
+    };
 }
 /**
  * struct AlertConfiguration
@@ -393,6 +447,9 @@ export declare class AlertConfiguration extends SDKHandle {
      * @availability iOS 16.1+
      */
     static init(title: _Foundation_LocalizedStringResource, body: _Foundation_LocalizedStringResource, sound: AlertConfiguration_AlertSound): AlertConfiguration;
+    readonly $type: {
+        "s:11ActivityKit18AlertConfigurationV": true;
+    };
 }
 /**
  * struct AlertSound
@@ -409,6 +466,9 @@ export declare class AlertConfiguration_AlertSound extends SDKHandle {
      * @availability iOS 16.1+
      */
     static get default(): AlertConfiguration_AlertSound;
+    readonly $type: {
+        "s:11ActivityKit18AlertConfigurationV0C5SoundV": true;
+    };
 }
 /**
  * struct PushType
@@ -425,5 +485,8 @@ export declare class PushType extends SDKHandle {
      * @availability iOS 18.0+
      */
     static channel(name: string): PushType;
+    readonly $type: {
+        "s:11ActivityKit8PushTypeV": true;
+    };
 }
 export {};

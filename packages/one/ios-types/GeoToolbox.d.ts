@@ -50,17 +50,26 @@ export declare class PlaceDescriptor extends SDKHandle {
      * @availability iOS 26.0+
      */
     get address(): (string) | null;
+    readonly $type: {
+        "s:10GeoToolbox15PlaceDescriptorV": true;
+    };
 }
 /**
  * enum PlaceRepresentation
  * @availability iOS 26.0+
  */
 export declare class PlaceDescriptor_PlaceRepresentation extends SDKHandle {
+    readonly $type: {
+        "s:10GeoToolbox15PlaceDescriptorV0C14RepresentationO": true;
+    };
 }
 /**
  * enum SupportingPlaceRepresentation
  * @availability iOS 26.0+
  */
 export declare class PlaceDescriptor_SupportingPlaceRepresentation extends SDKHandle {
+    readonly $type: {
+        "s:10GeoToolbox15PlaceDescriptorV010SupportingC14RepresentationO": true;
+    };
 }
 export {};

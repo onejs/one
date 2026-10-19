@@ -16,6 +16,10 @@ export declare class CLFloor extends SDKHandle {
      * @availability iOS 8.0+
      */
     get level(): number;
+    readonly $type: {
+        "c:objc(cs)CLFloor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "level": true;
     };
@@ -30,8 +34,6 @@ export declare class CLLocation extends SDKHandle {
      * @availability iOS 3.2+
      */
     distance(location: CLLocation): number;
-    /** init() */
-    static init(): CLLocation;
     /**
      * init(coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance, horizontalAccuracy hAccuracy: CLLocationAccuracy, verticalAccuracy vAccuracy: CLLocationAccuracy, course: CLLocationDirection, courseAccuracy: CLLocationDirectionAccuracy, speed: CLLocationSpeed, speedAccuracy: CLLocationSpeedAccuracy, timestamp: Date)
      * @availability iOS 13.4+
@@ -117,6 +119,10 @@ export declare class CLLocation extends SDKHandle {
      * @availability iOS 2.0+
      */
     get verticalAccuracy(): number;
+    readonly $type: {
+        "c:objc(cs)CLLocation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "altitude": true;
         "coordinate": true;
@@ -146,6 +152,9 @@ export declare class CLLocationCoordinate2D extends SDKHandle {
     static initLatitudeLongitude(latitude: number, longitude: number): $SDK0;
     /** init() */
     static init(): $SDK0;
+    readonly $type: {
+        "c:@S@CLLocationCoordinate2D": true;
+    };
 }
 /** typealias CLLocationDegrees = Double */
 export type CLLocationDegrees = number;
@@ -160,13 +169,11 @@ export type CLLocationDistance = number;
  * @availability iOS 15.0+
  */
 export declare class CLLocationSourceInformation extends SDKHandle {
-    /** init() */
-    static init(): CLLocationSourceInformation;
     /**
      * init(softwareSimulationState isSoftware: Bool, andExternalAccessoryState isAccessory: Bool)
      * @availability iOS 15.0+
      */
-    static initSoftwareSimulationStateAndExternalAccessoryState(isSoftware: boolean, isAccessory: boolean): CLLocationSourceInformation;
+    static init(isSoftware: boolean, isAccessory: boolean): CLLocationSourceInformation;
     /**
      * var isProducedByAccessory: Bool { get }
      * @availability iOS 15.0+
@@ -177,6 +184,10 @@ export declare class CLLocationSourceInformation extends SDKHandle {
      * @availability iOS 15.0+
      */
     get isSimulatedBySoftware(): boolean;
+    readonly $type: {
+        "c:objc(cs)CLLocationSourceInformation": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isProducedByAccessory": true;
         "isSimulatedBySoftware": true;

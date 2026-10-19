@@ -111,6 +111,9 @@ export declare class FeatureSet extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get version1(): FeatureSet;
+    readonly $type: {
+        "s:8PaperKit10FeatureSetV": true;
+    };
 }
 /**
  * enum ContentVersion
@@ -306,6 +309,9 @@ export declare class ImageMarkup extends SDKHandle {
      */
     get rotation(): number;
     set rotation(value: number);
+    readonly $type: {
+        "s:8PaperKit11ImageMarkupV": true;
+    };
 }
 /**
  * typealias ID = MarkupID<ImageMarkup>
@@ -372,6 +378,9 @@ export declare class LinkMarkup extends SDKHandle {
      * @availability iOS 27.0+
      */
     get elementID(): MarkupOrderedSet_ElementID;
+    readonly $type: {
+        "s:8PaperKit10LinkMarkupV": true;
+    };
 }
 /**
  * typealias ID = MarkupID<LinkMarkup>
@@ -450,6 +459,9 @@ export declare class LoupeMarkup extends SDKHandle {
      */
     get lineWidth(): number;
     set lineWidth(value: number);
+    readonly $type: {
+        "s:8PaperKit11LoupeMarkupV": true;
+    };
 }
 /**
  * typealias ID = MarkupID<LoupeMarkup>
@@ -512,6 +524,9 @@ export declare class MarkupAdornment extends SDKHandle {
      */
     get anchor(): MarkupAdornment_Anchor;
     set anchor(value: MarkupAdornment_Anchor);
+    readonly $type: {
+        "s:8PaperKit15MarkupAdornmentV": true;
+    };
 }
 /** struct Anchor */
 export declare class MarkupAdornment_Anchor extends SDKHandle {
@@ -521,6 +536,9 @@ export declare class MarkupAdornment_Anchor extends SDKHandle {
     static canvas(location: $SDK6): MarkupAdornment_Anchor;
     /** func location(in markup: PaperMarkup) -> CGPoint? */
     location(markup: PaperMarkup): $SDK7;
+    readonly $type: {
+        "s:8PaperKit15MarkupAdornmentV6AnchorV": true;
+    };
 }
 /** struct DragRegion */
 export declare class MarkupAdornment_DragRegion extends SDKHandle {
@@ -528,6 +546,9 @@ export declare class MarkupAdornment_DragRegion extends SDKHandle {
     static get fixed(): MarkupAdornment_DragRegion;
     /** static let canvas: MarkupAdornment.DragRegion */
     static get canvas(): MarkupAdornment_DragRegion;
+    readonly $type: {
+        "s:8PaperKit15MarkupAdornmentV10DragRegionV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -545,6 +566,9 @@ export declare class MarkupAdornment_ImageConfiguration extends SDKHandle {
     static image(image: _UIKit_UIImage, alignmentAnchor?: $SDK6): MarkupAdornment_ImageConfiguration;
     /** static let `default`: MarkupAdornment.ImageConfiguration */
     static get default(): MarkupAdornment_ImageConfiguration;
+    readonly $type: {
+        "s:8PaperKit15MarkupAdornmentV18ImageConfigurationV": true;
+    };
 }
 /**
  * struct MarkupAutoresizing
@@ -614,6 +638,12 @@ export declare class MarkupEditViewController extends SDKHandle {
      */
     get delegate(): Promise<(SDKHandle) | null>;
     setDelegate(value?: (Implements<MarkupEditViewController_Delegate> | SDKHandle) | null): Promise<void>;
+    readonly $type: {
+        "c:@M@PaperKit@objc(cs)MarkupEditViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol Delegate : AnyObject
@@ -850,6 +880,9 @@ export declare class MarkupOrderedSet extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript64709(index: number): SDKHandle;
+    readonly $type: {
+        "s:8PaperKit16MarkupOrderedSetV": true;
+    };
 }
 /**
  * typealias Element = any Markup
@@ -876,6 +909,9 @@ export declare class MarkupOrderedSet_ElementID extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(id: string): MarkupOrderedSet_ElementID;
+    readonly $type: {
+        "s:8PaperKit16MarkupOrderedSetV9ElementIDO": true;
+    };
 }
 /**
  * typealias RawValue = Data
@@ -907,6 +943,9 @@ export declare class MarkupOrderedSet_ElementIDs extends SDKHandle {
      * @availability iOS 27.0+
      */
     subscript(position: number): MarkupOrderedSet_ElementID;
+    readonly $type: {
+        "s:8PaperKit16MarkupOrderedSetV10ElementIDsV": true;
+    };
 }
 /**
  * typealias Element = MarkupOrderedSet.ElementID
@@ -953,6 +992,9 @@ export declare class MarkupOrderedSet_Iterator extends SDKHandle {
      * @availability iOS 27.0+
      */
     next(): (SDKHandle) | null;
+    readonly $type: {
+        "s:8PaperKit16MarkupOrderedSetV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = any Markup
@@ -1073,6 +1115,9 @@ export declare class PaperMarkup extends SDKHandle {
      */
     get bounds(): $SDK3;
     set bounds(value: $SDK3);
+    readonly $type: {
+        "s:8PaperKit0A6MarkupV": true;
+    };
 }
 /**
  * typealias ID = MarkupID<PaperMarkup>
@@ -1262,6 +1307,12 @@ export declare class PaperMarkupViewController extends SDKHandle {
      */
     get zoomRange(): Promise<"animatableData" | SDKHandle>;
     setZoomRange(value: "animatableData" | SDKHandle): Promise<void>;
+    readonly $type: {
+        "c:@M@PaperKit@objc(cs)PaperMarkupViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol Delegate : AnyObject
@@ -1386,6 +1437,9 @@ export declare class PaperMarkupViewController_ScrollConfiguration extends SDKHa
      */
     get zoomScale(): Promise<number>;
     setZoomScale(value: number): Promise<void>;
+    readonly $type: {
+        "s:8PaperKit0A20MarkupViewControllerC19ScrollConfigurationC": true;
+    };
 }
 /**
  * struct Axis
@@ -1483,6 +1537,9 @@ export declare class PKStroke extends SDKHandle {
      * @availability iOS 27.0+
      */
     get elementID(): MarkupOrderedSet_ElementID;
+    readonly $type: {
+        "s:9PencilKit8PKStrokeV": true;
+    };
 }
 /**
  * struct RenderingOptions
@@ -1511,6 +1568,9 @@ export declare class RenderingOptions extends SDKHandle {
      */
     get rightToLeftLayoutDirection(): boolean;
     set rightToLeftLayoutDirection(value: boolean);
+    readonly $type: {
+        "s:8PaperKit16RenderingOptionsV": true;
+    };
 }
 /**
  * struct ShapeConfiguration
@@ -1546,6 +1606,9 @@ export declare class ShapeConfiguration extends SDKHandle {
      */
     get lineWidth(): number;
     set lineWidth(value: number);
+    readonly $type: {
+        "s:8PaperKit18ShapeConfigurationV": true;
+    };
 }
 /**
  * enum Shape
@@ -1678,6 +1741,9 @@ export declare class ShapeMarkup extends SDKHandle {
      */
     get lineWidth(): number;
     set lineWidth(value: number);
+    readonly $type: {
+        "s:8PaperKit11ShapeMarkupV": true;
+    };
 }
 /**
  * typealias ID = MarkupID<ShapeMarkup>
@@ -1744,6 +1810,9 @@ export declare class ShapeMarkup_Shape extends SDKHandle {
      * @availability iOS 27.0+
      */
     static star(points: number, innerRadius: number): ShapeMarkup_Shape;
+    readonly $type: {
+        "s:8PaperKit11ShapeMarkupV0C0O": true;
+    };
 }
 /**
  * struct ArrowShape
@@ -1766,6 +1835,9 @@ export declare class ShapeMarkup_Shape_ArrowShape extends SDKHandle {
      * @availability iOS 27.0+
      */
     get path(): _CoreGraphics_CGPath;
+    readonly $type: {
+        "s:8PaperKit11ShapeMarkupV0C0O05ArrowC0V": true;
+    };
 }
 /**
  * struct ChatBubble
@@ -1794,6 +1866,9 @@ export declare class ShapeMarkup_Shape_ChatBubble extends SDKHandle {
      */
     get tailAngle(): number;
     set tailAngle(value: number);
+    readonly $type: {
+        "s:8PaperKit11ShapeMarkupV0C0O10ChatBubbleV": true;
+    };
 }
 /**
  * struct Ellipse
@@ -1810,6 +1885,9 @@ export declare class ShapeMarkup_Shape_Ellipse extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ShapeMarkup_Shape_Ellipse;
+    readonly $type: {
+        "s:8PaperKit11ShapeMarkupV0C0O7EllipseV": true;
+    };
 }
 /**
  * struct Line
@@ -1844,6 +1922,9 @@ export declare class ShapeMarkup_Shape_Line extends SDKHandle {
      */
     get control(): $SDK7;
     set control(value: $SDK7);
+    readonly $type: {
+        "s:8PaperKit11ShapeMarkupV0C0O4LineV": true;
+    };
 }
 /**
  * struct Rectangle
@@ -1866,6 +1947,9 @@ export declare class ShapeMarkup_Shape_Rectangle extends SDKHandle {
      * @availability iOS 27.0+
      */
     get path(): _CoreGraphics_CGPath;
+    readonly $type: {
+        "s:8PaperKit11ShapeMarkupV0C0O9RectangleV": true;
+    };
 }
 /**
  * struct RegularPolygon
@@ -1888,6 +1972,9 @@ export declare class ShapeMarkup_Shape_RegularPolygon extends SDKHandle {
      */
     get sides(): number;
     set sides(value: number);
+    readonly $type: {
+        "s:8PaperKit11ShapeMarkupV0C0O14RegularPolygonV": true;
+    };
 }
 /**
  * struct Star
@@ -1916,5 +2003,8 @@ export declare class ShapeMarkup_Shape_Star extends SDKHandle {
      */
     get points(): number;
     set points(value: number);
+    readonly $type: {
+        "s:8PaperKit11ShapeMarkupV0C0O4StarV": true;
+    };
 }
 export {};

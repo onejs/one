@@ -51,6 +51,9 @@ export declare class AssetPack extends SDKHandle {
      * @availability iOS 26.0+
      */
     get userInfo(): (ArrayBuffer) | null;
+    readonly $type: {
+        "s:16BackgroundAssets9AssetPackV": true;
+    };
 }
 /**
  * typealias DecodingConfiguration = AssetPackManifest.DecodingConfiguration
@@ -263,6 +266,9 @@ export declare class AssetPackManager extends SDKHandle {
      * @availability iOS 27.0+
      */
     get manifest(): Promise<AssetPackManifest>;
+    readonly $type: {
+        "s:16BackgroundAssets16AssetPackManagerC": true;
+    };
 }
 /**
  * enum DownloadStatusUpdate
@@ -274,6 +280,9 @@ export declare class AssetPackManager_DownloadStatusUpdate extends SDKHandle {
      * @availability iOS 26.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:16BackgroundAssets16AssetPackManagerC20DownloadStatusUpdateO": true;
+    };
 }
 /**
  * struct LocalAvailabilityError
@@ -300,6 +309,9 @@ export declare class AssetPackManager_LocalAvailabilityError extends SDKHandle {
      * @availability iOS 27.0+
      */
     get successes(): Array<AssetPack>;
+    readonly $type: {
+        "s:16BackgroundAssets16AssetPackManagerC22LocalAvailabilityErrorV": true;
+    };
 }
 /**
  * struct AssetPackManifest
@@ -366,6 +378,9 @@ export declare class AssetPackManifest extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initFromConfiguration(decoder: SDKHandle, configuration: AssetPackManifest_DecodingConfiguration): AssetPackManifest;
+    readonly $type: {
+        "s:16BackgroundAssets17AssetPackManifestV": true;
+    };
 }
 /**
  * struct DecodingConfiguration
@@ -377,6 +392,9 @@ export declare class AssetPackManifest_DecodingConfiguration extends SDKHandle {
      * @availability iOS 26.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:16BackgroundAssets17AssetPackManifestV21DecodingConfigurationV": true;
+    };
 }
 /**
  * class BAAppExtensionInfo
@@ -393,6 +411,10 @@ export declare class BAAppExtensionInfo extends SDKHandle {
      * @availability iOS 16.4+
      */
     get restrictedEssentialDownloadSizeRemaining(): (number) | null;
+    readonly $type: {
+        "c:objc(cs)BAAppExtensionInfo": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum BAContentRequest
@@ -441,6 +463,10 @@ export declare class BADownload extends SDKHandle {
      * @availability iOS 16.1+
      */
     get uniqueIdentifier(): string;
+    readonly $type: {
+        "c:objc(cs)BADownload": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "isEssential": true;
@@ -571,6 +597,10 @@ export declare class BADownloadManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<BADownloadManagerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)BADownloadManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -645,6 +675,11 @@ export declare class BAURLDownload extends BADownload {
      * @availability iOS 16.4+
      */
     static initIdentifierRequestFileSizeApplicationGroupIdentifier(identifier: string, request: _Foundation_URLRequest, fileSize: number, applicationGroupIdentifier: string): BAURLDownload;
+    readonly $type: {
+        "c:objc(cs)BAURLDownload": true;
+        "c:objc(cs)BADownload": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "identifier": true;
         "isEssential": true;
@@ -668,6 +703,9 @@ export declare class ManagedBackgroundAssetsError extends SDKHandle {
      * @availability iOS 26.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:16BackgroundAssets07ManagedaB5ErrorO": true;
+    };
 }
 /**
  * protocol ManagedDownloaderExtension : BADownloaderExtension where Self.Configuration : ManagedDownloaderExtensionConfiguration

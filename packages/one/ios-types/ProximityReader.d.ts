@@ -35,6 +35,9 @@ type $SDK53 = Array<VASReadResult_ReadEntry>;
  * @availability iOS 27.0+
  */
 export declare class CustomerEngagement extends SDKHandle {
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO": true;
+    };
 }
 /**
  * struct Address
@@ -61,6 +64,9 @@ export declare class CustomerEngagement_Address extends SDKHandle {
      * @availability iOS 27.0+
      */
     get name(): _Foundation_PersonNameComponents;
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO7AddressV": true;
+    };
 }
 /**
  * struct CustomerInfo
@@ -87,6 +93,9 @@ export declare class CustomerEngagement_CustomerInfo extends SDKHandle {
      * @availability iOS 27.0+
      */
     get customerVASData(): (ArrayBuffer) | null;
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO0C4InfoV": true;
+    };
 }
 /**
  * struct ShoppingCart
@@ -108,6 +117,9 @@ export declare class CustomerEngagement_ShoppingCart extends SDKHandle {
      * @availability iOS 27.0+
      */
     get summary(): CustomerEngagement_ShoppingCart_Summary;
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO12ShoppingCartV": true;
+    };
 }
 /**
  * struct Item
@@ -160,6 +172,9 @@ export declare class CustomerEngagement_ShoppingCart_Item extends SDKHandle {
      */
     get quantity(): number;
     set quantity(value: number);
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO12ShoppingCartV4ItemV": true;
+    };
 }
 /**
  * struct Summary
@@ -186,6 +201,9 @@ export declare class CustomerEngagement_ShoppingCart_Summary extends SDKHandle {
      * @availability iOS 27.0+
      */
     get footer(): (string) | null;
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO12ShoppingCartV7SummaryV": true;
+    };
 }
 /**
  * struct LineItem
@@ -212,18 +230,27 @@ export declare class CustomerEngagement_ShoppingCart_Summary_LineItem extends SD
      * @availability iOS 27.0+
      */
     get value(): CustomerEngagement_ShoppingCart_Summary_LineItem_Value;
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO12ShoppingCartV7SummaryV8LineItemV": true;
+    };
 }
 /**
  * enum Value
  * @availability iOS 27.0+
  */
 export declare class CustomerEngagement_ShoppingCart_Summary_LineItem_Value extends SDKHandle {
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO12ShoppingCartV7SummaryV8LineItemV5ValueO": true;
+    };
 }
 /**
  * struct ShoppingCartToken
  * @availability iOS 27.0+
  */
 export declare class CustomerEngagement_ShoppingCartToken extends SDKHandle {
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO17ShoppingCartTokenV": true;
+    };
 }
 /**
  * struct SignUp
@@ -255,6 +282,9 @@ export declare class CustomerEngagement_SignUp extends SDKHandle {
      * @availability iOS 27.0+
      */
     get name(): $SDK4;
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO6SignUpV": true;
+    };
 }
 /**
  * enum Status
@@ -271,6 +301,9 @@ export declare class CustomerEngagement_Token extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(token: PaymentCardReader_Token): CustomerEngagement_Token;
+    readonly $type: {
+        "s:15ProximityReader18CustomerEngagementO5TokenV": true;
+    };
 }
 /**
  * final class CustomerEngagementSession
@@ -347,6 +380,9 @@ export declare class CustomerEngagementSession extends SDKHandle {
      * @availability iOS 27.0+
      */
     addPass(pass: ArrayBuffer): Promise<boolean>;
+    readonly $type: {
+        "s:15ProximityReader25CustomerEngagementSessionC": true;
+    };
 }
 /**
  * struct Configuration
@@ -400,6 +436,9 @@ export declare class CustomerEngagementSession_Configuration extends SDKHandle {
      */
     get storeName(): (string) | null;
     set storeName(value: (string) | null);
+    readonly $type: {
+        "s:15ProximityReader25CustomerEngagementSessionC13ConfigurationV": true;
+    };
 }
 /**
  * enum ConsentOption
@@ -431,6 +470,9 @@ export declare class CustomerEngagementSession_CustomerConfiguration extends SDK
      * @availability iOS 27.0+
      */
     get version(): string;
+    readonly $type: {
+        "s:15ProximityReader25CustomerEngagementSessionC0C13ConfigurationV": true;
+    };
 }
 /**
  * enum Error
@@ -462,6 +504,9 @@ export type CustomerEngagementSession_Purpose = "checkIn" | "receipt" | "members
  * @availability iOS 27.0+
  */
 export declare class CustomerEngagementSession_Token extends SDKHandle {
+    readonly $type: {
+        "s:15ProximityReader25CustomerEngagementSessionC5TokenV": true;
+    };
 }
 /**
  * struct MobileDocumentAnyOfDataRequest
@@ -478,6 +523,9 @@ export declare class MobileDocumentAnyOfDataRequest extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): MobileDocumentAnyOfDataRequest;
+    readonly $type: {
+        "s:15ProximityReader30MobileDocumentAnyOfDataRequestV": true;
+    };
 }
 /**
  * struct Response
@@ -489,6 +537,9 @@ export declare class MobileDocumentAnyOfDataRequest_Response extends SDKHandle {
      * @availability iOS 26.0+
      */
     get documentResponse(): SDKHandle;
+    readonly $type: {
+        "s:15ProximityReader30MobileDocumentAnyOfDataRequestV8ResponseV": true;
+    };
 }
 /**
  * struct MobileDocumentAnyOfRawDataRequest
@@ -505,6 +556,9 @@ export declare class MobileDocumentAnyOfRawDataRequest extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): MobileDocumentAnyOfRawDataRequest;
+    readonly $type: {
+        "s:15ProximityReader33MobileDocumentAnyOfRawDataRequestV": true;
+    };
 }
 /**
  * struct Response
@@ -526,6 +580,9 @@ export declare class MobileDocumentAnyOfRawDataRequest_Response extends SDKHandl
      * @availability iOS 26.0+
      */
     get sessionTranscript(): ArrayBuffer;
+    readonly $type: {
+        "s:15ProximityReader33MobileDocumentAnyOfRawDataRequestV8ResponseV": true;
+    };
 }
 /**
  * protocol MobileDocumentDataRequest : MobileDocumentRequest
@@ -561,6 +618,9 @@ export declare class MobileDocumentDisplayRequest extends SDKHandle {
      */
     get elements(): $SDK11;
     set elements(value: $SDK11);
+    readonly $type: {
+        "s:15ProximityReader28MobileDocumentDisplayRequestV": true;
+    };
 }
 /**
  * struct Element
@@ -592,6 +652,9 @@ export declare class MobileDocumentDisplayRequest_Element extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get givenName(): MobileDocumentDisplayRequest_Element;
+    readonly $type: {
+        "s:15ProximityReader28MobileDocumentDisplayRequestV7ElementV": true;
+    };
 }
 /**
  * struct Options
@@ -615,6 +678,9 @@ export declare class MobileDocumentDisplayRequest_Options extends SDKHandle {
      */
     get validationMode(): MobileDocumentDisplayRequest_Options_ValidationMode;
     set validationMode(value: MobileDocumentDisplayRequest_Options_ValidationMode);
+    readonly $type: {
+        "s:15ProximityReader28MobileDocumentDisplayRequestV7OptionsV": true;
+    };
 }
 /**
  * struct DocumentType
@@ -636,6 +702,9 @@ export declare class MobileDocumentDisplayRequest_Options_DocumentType extends S
      * @availability iOS 26.0+
      */
     static get photoID(): MobileDocumentDisplayRequest_Options_DocumentType;
+    readonly $type: {
+        "s:15ProximityReader28MobileDocumentDisplayRequestV7OptionsV0D4TypeV": true;
+    };
 }
 /**
  * struct ValidationMode
@@ -657,6 +726,9 @@ export declare class MobileDocumentDisplayRequest_Options_ValidationMode extends
      * @availability iOS 26.0+
      */
     static get confirm(): MobileDocumentDisplayRequest_Options_ValidationMode;
+    readonly $type: {
+        "s:15ProximityReader28MobileDocumentDisplayRequestV7OptionsV14ValidationModeV": true;
+    };
 }
 /**
  * struct Response
@@ -668,6 +740,9 @@ export declare class MobileDocumentDisplayRequest_Response extends SDKHandle {
      * @availability iOS 26.0+
      */
     get validationOutcome(): MobileDocumentDisplayRequest_Response_ValidationOutcome;
+    readonly $type: {
+        "s:15ProximityReader28MobileDocumentDisplayRequestV8ResponseV": true;
+    };
 }
 /**
  * enum ValidationOutcome
@@ -689,6 +764,9 @@ export declare class MobileDocumentHolderName extends SDKHandle {
      * @availability iOS 27.0+
      */
     get name(): string;
+    readonly $type: {
+        "s:15ProximityReader24MobileDocumentHolderNameV": true;
+    };
 }
 /**
  * protocol MobileDocumentRawDataRequest : MobileDocumentRequest
@@ -721,6 +799,9 @@ export declare class MobileDocumentReader extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): MobileDocumentReader;
+    readonly $type: {
+        "s:15ProximityReader014MobileDocumentB0C": true;
+    };
 }
 /**
  * struct Configuration
@@ -732,6 +813,9 @@ export declare class MobileDocumentReader_Configuration extends SDKHandle {
      * @availability iOS 17.0+
      */
     get readerInstanceIdentifier(): string;
+    readonly $type: {
+        "s:15ProximityReader014MobileDocumentB0C13ConfigurationV": true;
+    };
 }
 /**
  * struct Token
@@ -748,6 +832,9 @@ export declare class MobileDocumentReader_Token extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(tokenString: string): MobileDocumentReader_Token;
+    readonly $type: {
+        "s:15ProximityReader014MobileDocumentB0C5TokenV": true;
+    };
 }
 /**
  * enum MobileDocumentReaderError
@@ -766,6 +853,9 @@ export declare const MobileDocumentReaderError: {
  * @availability iOS 17.0+
  */
 export declare class MobileDocumentReaderSession extends SDKHandle {
+    readonly $type: {
+        "s:15ProximityReader014MobileDocumentB7SessionC": true;
+    };
 }
 /**
  * protocol MobileDocumentRequest : Hashable, Sendable
@@ -795,6 +885,9 @@ export declare class MobileDriversLicenseDataRequest extends SDKHandle {
      */
     get nonRetainedElements(): $SDK14;
     set nonRetainedElements(value: $SDK14);
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV": true;
+    };
 }
 /**
  * struct Element
@@ -921,6 +1014,9 @@ export declare class MobileDriversLicenseDataRequest_Element extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get hairColor(): MobileDriversLicenseDataRequest_Element;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV7ElementV": true;
+    };
 }
 /**
  * struct Response
@@ -932,6 +1028,9 @@ export declare class MobileDriversLicenseDataRequest_Response extends SDKHandle 
      * @availability iOS 17.0+
      */
     get documentElements(): MobileDriversLicenseDataRequest_Response_DocumentElements;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV": true;
+    };
 }
 /**
  * struct DocumentElements
@@ -1058,6 +1157,9 @@ export declare class MobileDriversLicenseDataRequest_Response_DocumentElements e
      * @availability iOS 26.0+
      */
     get isVeteran(): (boolean) | null;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV": true;
+    };
 }
 /**
  * struct AAMVADrivingPrivilege
@@ -1079,6 +1181,9 @@ export declare class MobileDriversLicenseDataRequest_Response_DocumentElements_A
      * @availability iOS 17.0+
      */
     get vehicleRestrictions(): Array<MobileDriversLicenseDataRequest_Response_DocumentElements_AAMVADrivingPrivilege_VehicleRestriction>;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV21AAMVADrivingPrivilegeV": true;
+    };
 }
 /**
  * struct VehicleClass
@@ -1105,6 +1210,9 @@ export declare class MobileDriversLicenseDataRequest_Response_DocumentElements_A
      * @availability iOS 17.0+
      */
     get issueDate(): $SDK15;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV21AAMVADrivingPrivilegeV12VehicleClassV": true;
+    };
 }
 /**
  * struct VehicleEndorsement
@@ -1121,6 +1229,9 @@ export declare class MobileDriversLicenseDataRequest_Response_DocumentElements_A
      * @availability iOS 17.0+
      */
     get code(): (string) | null;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV21AAMVADrivingPrivilegeV18VehicleEndorsementV": true;
+    };
 }
 /**
  * struct VehicleRestriction
@@ -1137,6 +1248,9 @@ export declare class MobileDriversLicenseDataRequest_Response_DocumentElements_A
      * @availability iOS 17.0+
      */
     get code(): (string) | null;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV21AAMVADrivingPrivilegeV18VehicleRestrictionV": true;
+    };
 }
 /**
  * enum DHSComplianceStatus
@@ -1168,6 +1282,9 @@ export declare class MobileDriversLicenseDataRequest_Response_DocumentElements_D
      * @availability iOS 17.0+
      */
     get issueDate(): $SDK15;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV16DrivingPrivilegeV": true;
+    };
 }
 /**
  * struct Code
@@ -1189,6 +1306,9 @@ export declare class MobileDriversLicenseDataRequest_Response_DocumentElements_D
      * @availability iOS 17.0+
      */
     get value(): (string) | null;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV16DrivingPrivilegeV4CodeV": true;
+    };
 }
 /**
  * enum EyeColor
@@ -1220,6 +1340,9 @@ export declare class MobileDriversLicenseDataRequest_Response_DocumentElements_I
      * @availability iOS 17.0+
      */
     get name(): (string) | null;
+    readonly $type: {
+        "s:15ProximityReader31MobileDriversLicenseDataRequestV8ResponseV16DocumentElementsV16IssuingAuthorityV": true;
+    };
 }
 /**
  * enum Sex
@@ -1255,6 +1378,9 @@ export declare class MobileDriversLicenseDisplayRequest extends SDKHandle {
      */
     get elements(): $SDK31;
     set elements(value: $SDK31);
+    readonly $type: {
+        "s:15ProximityReader34MobileDriversLicenseDisplayRequestV": true;
+    };
 }
 /**
  * struct Element
@@ -1286,6 +1412,9 @@ export declare class MobileDriversLicenseDisplayRequest_Element extends SDKHandl
      * @availability iOS 17.0+
      */
     static get givenName(): MobileDriversLicenseDisplayRequest_Element;
+    readonly $type: {
+        "s:15ProximityReader34MobileDriversLicenseDisplayRequestV7ElementV": true;
+    };
 }
 /**
  * struct Options
@@ -1303,6 +1432,9 @@ export declare class MobileDriversLicenseDisplayRequest_Options extends SDKHandl
      */
     get validationMode(): MobileDriversLicenseDisplayRequest_Options_ValidationMode;
     set validationMode(value: MobileDriversLicenseDisplayRequest_Options_ValidationMode);
+    readonly $type: {
+        "s:15ProximityReader34MobileDriversLicenseDisplayRequestV7OptionsV": true;
+    };
 }
 /**
  * struct ValidationMode
@@ -1324,6 +1456,9 @@ export declare class MobileDriversLicenseDisplayRequest_Options_ValidationMode e
      * @availability iOS 17.0+
      */
     static get confirm(): MobileDriversLicenseDisplayRequest_Options_ValidationMode;
+    readonly $type: {
+        "s:15ProximityReader34MobileDriversLicenseDisplayRequestV7OptionsV14ValidationModeV": true;
+    };
 }
 /**
  * struct Response
@@ -1335,6 +1470,9 @@ export declare class MobileDriversLicenseDisplayRequest_Response extends SDKHand
      * @availability iOS 17.0+
      */
     get validationOutcome(): MobileDriversLicenseDisplayRequest_Response_ValidationOutcome;
+    readonly $type: {
+        "s:15ProximityReader34MobileDriversLicenseDisplayRequestV8ResponseV": true;
+    };
 }
 /**
  * enum ValidationOutcome
@@ -1374,6 +1512,9 @@ export declare class MobileDriversLicenseRawDataRequest extends SDKHandle {
      */
     get nonRetainedElements(): $SDK32;
     set nonRetainedElements(value: $SDK32);
+    readonly $type: {
+        "s:15ProximityReader34MobileDriversLicenseRawDataRequestV": true;
+    };
 }
 /**
  * struct Element
@@ -1505,6 +1646,9 @@ export declare class MobileDriversLicenseRawDataRequest_Element extends SDKHandl
      * @availability iOS 26.0+
      */
     static get hairColor(): MobileDriversLicenseRawDataRequest_Element;
+    readonly $type: {
+        "s:15ProximityReader34MobileDriversLicenseRawDataRequestV7ElementV": true;
+    };
 }
 /**
  * struct Response
@@ -1526,6 +1670,9 @@ export declare class MobileDriversLicenseRawDataRequest_Response extends SDKHand
      * @availability iOS 17.0+
      */
     get sessionTranscript(): ArrayBuffer;
+    readonly $type: {
+        "s:15ProximityReader34MobileDriversLicenseRawDataRequestV8ResponseV": true;
+    };
 }
 /**
  * struct MobileNationalIDCardDataRequest
@@ -1560,6 +1707,9 @@ export declare class MobileNationalIDCardDataRequest extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(region: _Foundation_Locale_Region, retainedElements?: $SDK33, nonRetainedElements?: $SDK33): MobileNationalIDCardDataRequest;
+    readonly $type: {
+        "s:15ProximityReader31MobileNationalIDCardDataRequestV": true;
+    };
 }
 /**
  * struct Element
@@ -1611,6 +1761,9 @@ export declare class MobileNationalIDCardDataRequest_Element extends SDKHandle {
      * @availability iOS 18.0+
      */
     static get givenName(): MobileNationalIDCardDataRequest_Element;
+    readonly $type: {
+        "s:15ProximityReader31MobileNationalIDCardDataRequestV7ElementV": true;
+    };
 }
 /**
  * struct Response
@@ -1627,6 +1780,9 @@ export declare class MobileNationalIDCardDataRequest_Response extends SDKHandle 
      * @availability iOS 26.0+
      */
     get region(): _Foundation_Locale_Region;
+    readonly $type: {
+        "s:15ProximityReader31MobileNationalIDCardDataRequestV8ResponseV": true;
+    };
 }
 /**
  * struct DocumentElements
@@ -1673,6 +1829,9 @@ export declare class MobileNationalIDCardDataRequest_Response_DocumentElements e
      * @availability iOS 27.0+
      */
     get name(): $SDK21;
+    readonly $type: {
+        "s:15ProximityReader31MobileNationalIDCardDataRequestV8ResponseV16DocumentElementsV": true;
+    };
 }
 /**
  * enum Sex
@@ -1719,6 +1878,9 @@ export declare class MobileNationalIDCardDisplayRequest extends SDKHandle {
      */
     get elements(): $SDK35;
     set elements(value: $SDK35);
+    readonly $type: {
+        "s:15ProximityReader34MobileNationalIDCardDisplayRequestV": true;
+    };
 }
 /**
  * struct Element
@@ -1750,6 +1912,9 @@ export declare class MobileNationalIDCardDisplayRequest_Element extends SDKHandl
      * @availability iOS 18.0+
      */
     static get givenName(): MobileNationalIDCardDisplayRequest_Element;
+    readonly $type: {
+        "s:15ProximityReader34MobileNationalIDCardDisplayRequestV7ElementV": true;
+    };
 }
 /**
  * struct Options
@@ -1767,6 +1932,9 @@ export declare class MobileNationalIDCardDisplayRequest_Options extends SDKHandl
      */
     get validationMode(): MobileNationalIDCardDisplayRequest_Options_ValidationMode;
     set validationMode(value: MobileNationalIDCardDisplayRequest_Options_ValidationMode);
+    readonly $type: {
+        "s:15ProximityReader34MobileNationalIDCardDisplayRequestV7OptionsV": true;
+    };
 }
 /**
  * struct ValidationMode
@@ -1788,6 +1956,9 @@ export declare class MobileNationalIDCardDisplayRequest_Options_ValidationMode e
      * @availability iOS 18.0+
      */
     static get confirm(): MobileNationalIDCardDisplayRequest_Options_ValidationMode;
+    readonly $type: {
+        "s:15ProximityReader34MobileNationalIDCardDisplayRequestV7OptionsV14ValidationModeV": true;
+    };
 }
 /**
  * struct Response
@@ -1799,6 +1970,9 @@ export declare class MobileNationalIDCardDisplayRequest_Response extends SDKHand
      * @availability iOS 18.0+
      */
     get validationOutcome(): MobileNationalIDCardDisplayRequest_Response_ValidationOutcome;
+    readonly $type: {
+        "s:15ProximityReader34MobileNationalIDCardDisplayRequestV8ResponseV": true;
+    };
 }
 /**
  * enum ValidationOutcome
@@ -1849,6 +2023,9 @@ export declare class MobileNationalIDCardRawDataRequest extends SDKHandle {
      * @availability iOS 18.0+
      */
     static initRegionRetainedElementsNonRetainedElements(region: _Foundation_Locale_Region, retainedElements?: $SDK36, nonRetainedElements?: $SDK36): MobileNationalIDCardRawDataRequest;
+    readonly $type: {
+        "s:15ProximityReader34MobileNationalIDCardRawDataRequestV": true;
+    };
 }
 /**
  * struct Element
@@ -1905,6 +2082,9 @@ export declare class MobileNationalIDCardRawDataRequest_Element extends SDKHandl
      * @availability iOS 18.0+
      */
     static get givenName(): MobileNationalIDCardRawDataRequest_Element;
+    readonly $type: {
+        "s:15ProximityReader34MobileNationalIDCardRawDataRequestV7ElementV": true;
+    };
 }
 /**
  * struct Response
@@ -1926,6 +2106,9 @@ export declare class MobileNationalIDCardRawDataRequest_Response extends SDKHand
      * @availability iOS 18.0+
      */
     get sessionTranscript(): ArrayBuffer;
+    readonly $type: {
+        "s:15ProximityReader34MobileNationalIDCardRawDataRequestV8ResponseV": true;
+    };
 }
 /**
  * struct MobilePhotoIDDataRequest
@@ -1949,6 +2132,9 @@ export declare class MobilePhotoIDDataRequest extends SDKHandle {
      */
     get nonRetainedElements(): $SDK37;
     set nonRetainedElements(value: $SDK37);
+    readonly $type: {
+        "s:15ProximityReader24MobilePhotoIDDataRequestV": true;
+    };
 }
 /**
  * struct Element
@@ -2020,6 +2206,9 @@ export declare class MobilePhotoIDDataRequest_Element extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get givenName(): MobilePhotoIDDataRequest_Element;
+    readonly $type: {
+        "s:15ProximityReader24MobilePhotoIDDataRequestV7ElementV": true;
+    };
 }
 /**
  * struct Response
@@ -2031,6 +2220,9 @@ export declare class MobilePhotoIDDataRequest_Response extends SDKHandle {
      * @availability iOS 26.0+
      */
     get documentElements(): MobilePhotoIDDataRequest_Response_DocumentElements;
+    readonly $type: {
+        "s:15ProximityReader24MobilePhotoIDDataRequestV8ResponseV": true;
+    };
 }
 /**
  * struct DocumentElements
@@ -2097,6 +2289,9 @@ export declare class MobilePhotoIDDataRequest_Response_DocumentElements extends 
      * @availability iOS 26.0+
      */
     get address(): $SDK24;
+    readonly $type: {
+        "s:15ProximityReader24MobilePhotoIDDataRequestV8ResponseV16DocumentElementsV": true;
+    };
 }
 /**
  * struct IssuingAuthority
@@ -2118,6 +2313,9 @@ export declare class MobilePhotoIDDataRequest_Response_DocumentElements_IssuingA
      * @availability iOS 26.0+
      */
     get name(): (string) | null;
+    readonly $type: {
+        "s:15ProximityReader24MobilePhotoIDDataRequestV8ResponseV16DocumentElementsV16IssuingAuthorityV": true;
+    };
 }
 /**
  * enum Sex
@@ -2164,6 +2362,9 @@ export declare class MobilePhotoIDRawDataRequest extends SDKHandle {
      */
     get nonRetainedElements(): $SDK40;
     set nonRetainedElements(value: $SDK40);
+    readonly $type: {
+        "s:15ProximityReader27MobilePhotoIDRawDataRequestV": true;
+    };
 }
 /**
  * struct Element
@@ -2235,6 +2436,9 @@ export declare class MobilePhotoIDRawDataRequest_Element extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get givenName(): MobilePhotoIDRawDataRequest_Element;
+    readonly $type: {
+        "s:15ProximityReader27MobilePhotoIDRawDataRequestV7ElementV": true;
+    };
 }
 /**
  * struct Response
@@ -2256,6 +2460,9 @@ export declare class MobilePhotoIDRawDataRequest_Response extends SDKHandle {
      * @availability iOS 26.0+
      */
     get sessionTranscript(): ArrayBuffer;
+    readonly $type: {
+        "s:15ProximityReader27MobilePhotoIDRawDataRequestV8ResponseV": true;
+    };
 }
 /**
  * class PaymentCardReader
@@ -2329,6 +2536,9 @@ export declare class PaymentCardReader extends SDKHandle {
      * @availability iOS 16.0+
      */
     prepareUsing(token: PaymentCardReader_Token): Promise<PaymentCardReaderSession>;
+    readonly $type: {
+        "s:15ProximityReader011PaymentCardB0C": true;
+    };
 }
 /**
  * enum Event
@@ -2340,6 +2550,9 @@ export declare class PaymentCardReader_Event extends SDKHandle {
      * @availability iOS 16.0+
      */
     get name(): string;
+    readonly $type: {
+        "s:15ProximityReader011PaymentCardB0C5EventO": true;
+    };
 }
 /**
  * struct Options
@@ -2376,6 +2589,9 @@ export declare class PaymentCardReader_Options extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): PaymentCardReader_Options;
+    readonly $type: {
+        "s:15ProximityReader011PaymentCardB0C7OptionsV": true;
+    };
 }
 /**
  * struct Token
@@ -2411,6 +2627,9 @@ export declare class PaymentCardReader_UpdateEvent extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get name(): string;
+    readonly $type: {
+        "s:15ProximityReader011PaymentCardB0C11UpdateEventO": true;
+    };
 }
 /**
  * enum PaymentCardReaderError
@@ -2427,6 +2646,9 @@ export declare class PaymentCardReaderError extends SDKHandle {
      * @availability iOS 15.4+
      */
     get errorName(): string;
+    readonly $type: {
+        "s:15ProximityReader011PaymentCardB5ErrorO": true;
+    };
 }
 /**
  * class PaymentCardReaderSession
@@ -2498,6 +2720,9 @@ export declare class PaymentCardReaderSession extends SDKHandle {
      * @availability iOS 16.0+
      */
     readVAS(request: VASRequest): Promise<VASReadResult>;
+    readonly $type: {
+        "s:15ProximityReader011PaymentCardB7SessionC": true;
+    };
 }
 /**
  * enum Event
@@ -2550,6 +2775,9 @@ export declare class PaymentCardReaderSession_ReadError extends SDKHandle {
      * @availability iOS 15.4+
      */
     get errorName(): string;
+    readonly $type: {
+        "s:15ProximityReader011PaymentCardB7SessionC9ReadErrorO": true;
+    };
 }
 /**
  * struct PaymentCardReaderStore
@@ -2576,12 +2804,18 @@ export declare class PaymentCardReaderStore extends SDKHandle {
      * @availability iOS 18.4+
      */
     resetBatchState(): Promise<void>;
+    readonly $type: {
+        "s:15ProximityReader011PaymentCardB5StoreV": true;
+    };
 }
 /**
  * enum StoreError
  * @availability iOS 18.4+
  */
 export declare class PaymentCardReaderStore_StoreError extends SDKHandle {
+    readonly $type: {
+        "s:15ProximityReader011PaymentCardB5StoreV0E5ErrorO": true;
+    };
 }
 /**
  * struct PaymentCardReadResult
@@ -2633,6 +2867,9 @@ export declare class PaymentCardReadResult extends SDKHandle {
      * @availability iOS 16.4+
      */
     get outcome(): PaymentCardReadResult_ReadOutcome;
+    readonly $type: {
+        "s:15ProximityReader21PaymentCardReadResultV": true;
+    };
 }
 /**
  * enum CardEffectiveState
@@ -2703,6 +2940,9 @@ export declare class PaymentCardTransactionRequest extends SDKHandle {
      * @availability iOS 15.4+
      */
     get amount(): _Foundation_Decimal;
+    readonly $type: {
+        "s:15ProximityReader29PaymentCardTransactionRequestV": true;
+    };
 }
 /**
  * enum PaymentCycle
@@ -2714,6 +2954,9 @@ export type PaymentCardTransactionRequest_PaymentCycle = "weekly" | "monthly" | 
  * @availability iOS 18.0+
  */
 export declare class PaymentCardTransactionRequest_TransactionAmountDescription extends SDKHandle {
+    readonly $type: {
+        "s:15ProximityReader29PaymentCardTransactionRequestV0E17AmountDescriptionO": true;
+    };
 }
 /**
  * enum TransactionType
@@ -2746,6 +2989,9 @@ export declare class PaymentCardVerificationRequest extends SDKHandle {
      */
     get userInterfaceLanguage(): $SDK49;
     set userInterfaceLanguage(value: $SDK49);
+    readonly $type: {
+        "s:15ProximityReader30PaymentCardVerificationRequestV": true;
+    };
 }
 /**
  * enum Reason
@@ -2777,6 +3023,9 @@ export declare class ProximityReaderDiscovery extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): ProximityReaderDiscovery;
+    readonly $type: {
+        "s:15ProximityReader0aB9DiscoveryC": true;
+    };
 }
 /**
  * struct Content
@@ -2793,6 +3042,9 @@ export declare class ProximityReaderDiscovery_Content extends SDKHandle {
      * @availability iOS 18.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:15ProximityReader0aB9DiscoveryC7ContentV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -2809,6 +3061,9 @@ export type ProximityReaderDiscovery_ContentError = "contentNotFound" | "content
  * @availability iOS 18.0+
  */
 export declare class ProximityReaderDiscovery_Topic extends SDKHandle {
+    readonly $type: {
+        "s:15ProximityReader0aB9DiscoveryC5TopicO": true;
+    };
 }
 /**
  * enum Payment
@@ -2850,6 +3105,9 @@ export declare class StoreAndForwardBatch extends SDKHandle {
      * @availability iOS 18.4+
      */
     get signature(): string;
+    readonly $type: {
+        "s:15ProximityReader20StoreAndForwardBatchV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -2881,6 +3139,9 @@ export declare class StoreAndForwardBatch_StoredPaymentCardReadResult extends SD
      * @availability iOS 18.4+
      */
     get signature(): string;
+    readonly $type: {
+        "s:15ProximityReader20StoreAndForwardBatchV27StoredPaymentCardReadResultV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -2924,6 +3185,10 @@ export declare class StoreAndForwardPaymentCardReaderSession extends PaymentCard
      * @availability iOS 18.4+
      */
     decline(): Promise<void>;
+    readonly $type: {
+        "s:15ProximityReader026StoreAndForwardPaymentCardB7SessionC": true;
+        "s:15ProximityReader011PaymentCardB7SessionC": true;
+    };
 }
 /**
  * struct StoreAndForwardStatus
@@ -2940,6 +3205,9 @@ export declare class StoreAndForwardStatus extends SDKHandle {
      * @availability iOS 18.4+
      */
     get readCount(): number;
+    readonly $type: {
+        "s:15ProximityReader21StoreAndForwardStatusV": true;
+    };
 }
 /**
  * struct VASReadResult
@@ -2962,6 +3230,9 @@ export declare class VASReadResult extends SDKHandle {
      * @availability iOS 15.4+
      */
     get entries(): $SDK53;
+    readonly $type: {
+        "s:15ProximityReader13VASReadResultV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -2988,6 +3259,9 @@ export declare class VASReadResult_ReadEntry extends SDKHandle {
      * @availability iOS 15.4+
      */
     get status(): VASReadResult_ReadEntry_Status;
+    readonly $type: {
+        "s:15ProximityReader13VASReadResultV9ReadEntryV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3042,6 +3316,9 @@ export declare class VASRequest extends SDKHandle {
      */
     get userInterfaceLanguage(): $SDK49;
     set userInterfaceLanguage(value: $SDK49);
+    readonly $type: {
+        "s:15ProximityReader10VASRequestC": true;
+    };
 }
 /**
  * struct Merchant
@@ -3081,6 +3358,9 @@ export declare class VASRequest_Merchant extends SDKHandle {
      * @availability iOS 15.4+
      */
     get url(): (string) | null;
+    readonly $type: {
+        "s:15ProximityReader10VASRequestC8MerchantV": true;
+    };
 }
 /**
  * typealias ID = String

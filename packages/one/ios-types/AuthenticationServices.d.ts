@@ -2,6 +2,7 @@
 import { SDKHandle, type Implements, type NativeMap, type NativeError } from 'one/ios-runtime';
 import type { SymmetricKey as _CryptoKit_SymmetricKey } from "one/ios/CryptoKit";
 import type { NSCoder as _Foundation_NSCoder, PersonNameComponents as _Foundation_PersonNameComponents, NSNotification_Name as _Foundation_NSNotification_Name, HTTPURLResponse as _Foundation_HTTPURLResponse, URLQueryItem as _Foundation_URLQueryItem, NSNumber as _Foundation_NSNumber } from "one/ios/Foundation";
+import type { NSZone as _ObjectiveC_NSZone } from "one/ios/ObjectiveC";
 import type { UIWindow as _UIKit_UIWindow } from "one/ios/UIKit";
 type $SDK1 = (NativeMap<unknown, unknown>) | null;
 type $SDK3 = (_Foundation_PersonNameComponents) | null;
@@ -9,53 +10,54 @@ type $SDK4 = Array<ASContactIdentifierRequest>;
 type $SDK5 = Array<ASAuthorization_Scope>;
 type $SDK7 = (Array<ASAuthorization_Scope>) | null;
 type $SDK8 = Array<ASAuthorizationRequest>;
-type $SDK10 = (ASAuthorizationPublicKeyCredentialPRFAssertionOutput) | null;
-type $SDK11 = (ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput) | null;
-type $SDK12 = Array<ASAuthorizationPlatformPublicKeyCredentialDescriptor>;
-type $SDK13 = (ASAuthorizationPublicKeyCredentialPRFAssertionInput) | null;
-type $SDK14 = (ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput) | null;
-type $SDK15 = (ASAuthorizationPublicKeyCredentialPRFRegistrationOutput) | null;
-type $SDK16 = (ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput) | null;
-type $SDK17 = (ASAuthorizationPublicKeyCredentialPRFRegistrationInput) | null;
-type $SDK18 = (ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput) | null;
-type $SDK21 = (Record<string, string>) | null;
-type $SDK22 = (_Foundation_HTTPURLResponse) | null;
-type $SDK23 = (NativeMap<ArrayBuffer, ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>) | null;
-type $SDK25 = (ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues) | null;
-type $SDK26 = (_CryptoKit_SymmetricKey) | null;
-type $SDK27 = Array<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>;
-type $SDK28 = Array<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>;
-type $SDK29 = Array<ASAuthorizationPublicKeyCredentialParameters>;
-type $SDK30 = Array<_Foundation_URLQueryItem>;
-type $SDK34 = (((arg0: boolean, arg1: (NativeError) | null) => void)) | null;
-type $SDK35 = Array<ASPasswordCredentialIdentity>;
-type $SDK37 = (((arg0: boolean) => void)) | null;
-type $SDK39 = Array<ASCredentialServiceIdentifier>;
-type $SDK40 = Array<ASImportableAccount>;
-type $SDK41 = Array<ASExportedCredentialData_FormatVersion>;
-type $SDK42 = Array<ASImportableCollection>;
-type $SDK43 = (globalThis.Date) | null;
-type $SDK44 = Array<ASImportableLinkedItem>;
-type $SDK45 = (ASImportableEditableField) | null;
-type $SDK46 = Array<ASImportableEditableField>;
-type $SDK47 = (ASImportableFIDO2Extensions) | null;
-type $SDK48 = Array<ASImportableCredentialScope_AndroidAppID>;
-type $SDK49 = (ASImportableCredentialScope_AndroidAppCertificationFingerprint) | null;
-type $SDK50 = Array<ASImportableExtension_Shared_SharingAccessor>;
-type $SDK51 = Array<ASImportableExtension_Shared_SharingAccessor_Permission>;
-type $SDK52 = (ASImportableFIDO2HMACCredential) | null;
-type $SDK53 = (ASImportableFIDO2LargeBlob) | null;
-type $SDK54 = Array<ASImportableExtension>;
-type $SDK55 = Array<ASImportableCredential>;
-type $SDK56 = (ASImportableCredentialScope) | null;
-type $SDK57 = (ASPasskeyAssertionCredentialExtensionOutput) | null;
-type $SDK60 = Array<ASCOSEAlgorithmIdentifier>;
-type $SDK62 = (ASPasskeyAssertionCredentialExtensionInput) | null;
-type $SDK63 = (ASPasskeyRegistrationCredentialExtensionOutput) | null;
-type $SDK64 = (ASPublicKeyCredentialClientData_CrossOriginValue) | null;
-type $SDK65 = (ASGeneratedPassword_Kind) | null;
-type $SDK66 = (((arg0: (NativeError) | null) => void)) | null;
-type $SDK68 = ((arg0: (string) | null, arg1: (NativeError) | null) => void);
+type $SDK10 = (_ObjectiveC_NSZone) | null;
+type $SDK11 = (ASAuthorizationPublicKeyCredentialPRFAssertionOutput) | null;
+type $SDK12 = (ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput) | null;
+type $SDK13 = Array<ASAuthorizationPlatformPublicKeyCredentialDescriptor>;
+type $SDK14 = (ASAuthorizationPublicKeyCredentialPRFAssertionInput) | null;
+type $SDK15 = (ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput) | null;
+type $SDK16 = (ASAuthorizationPublicKeyCredentialPRFRegistrationOutput) | null;
+type $SDK17 = (ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput) | null;
+type $SDK18 = (ASAuthorizationPublicKeyCredentialPRFRegistrationInput) | null;
+type $SDK19 = (ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput) | null;
+type $SDK22 = (Record<string, string>) | null;
+type $SDK23 = (_Foundation_HTTPURLResponse) | null;
+type $SDK24 = (NativeMap<ArrayBuffer, ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues>) | null;
+type $SDK26 = (ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues) | null;
+type $SDK27 = (_CryptoKit_SymmetricKey) | null;
+type $SDK28 = Array<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor>;
+type $SDK29 = Array<ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport>;
+type $SDK30 = Array<ASAuthorizationPublicKeyCredentialParameters>;
+type $SDK31 = Array<_Foundation_URLQueryItem>;
+type $SDK35 = (((arg0: boolean, arg1: (NativeError) | null) => void)) | null;
+type $SDK36 = Array<ASPasswordCredentialIdentity>;
+type $SDK38 = (((arg0: boolean) => void)) | null;
+type $SDK40 = Array<ASCredentialServiceIdentifier>;
+type $SDK41 = Array<ASImportableAccount>;
+type $SDK42 = Array<ASExportedCredentialData_FormatVersion>;
+type $SDK43 = Array<ASImportableCollection>;
+type $SDK44 = (globalThis.Date) | null;
+type $SDK45 = Array<ASImportableLinkedItem>;
+type $SDK46 = (ASImportableEditableField) | null;
+type $SDK47 = Array<ASImportableEditableField>;
+type $SDK48 = (ASImportableFIDO2Extensions) | null;
+type $SDK49 = Array<ASImportableCredentialScope_AndroidAppID>;
+type $SDK50 = (ASImportableCredentialScope_AndroidAppCertificationFingerprint) | null;
+type $SDK51 = Array<ASImportableExtension_Shared_SharingAccessor>;
+type $SDK52 = Array<ASImportableExtension_Shared_SharingAccessor_Permission>;
+type $SDK53 = (ASImportableFIDO2HMACCredential) | null;
+type $SDK54 = (ASImportableFIDO2LargeBlob) | null;
+type $SDK55 = Array<ASImportableExtension>;
+type $SDK56 = Array<ASImportableCredential>;
+type $SDK57 = (ASImportableCredentialScope) | null;
+type $SDK58 = (ASPasskeyAssertionCredentialExtensionOutput) | null;
+type $SDK61 = Array<ASCOSEAlgorithmIdentifier>;
+type $SDK63 = (ASPasskeyAssertionCredentialExtensionInput) | null;
+type $SDK64 = (ASPasskeyRegistrationCredentialExtensionOutput) | null;
+type $SDK65 = (ASPublicKeyCredentialClientData_CrossOriginValue) | null;
+type $SDK66 = (ASGeneratedPassword_Kind) | null;
+type $SDK67 = (((arg0: (NativeError) | null) => void)) | null;
+type $SDK69 = ((arg0: (string) | null, arg1: (NativeError) | null) => void);
 /**
  * class ASAccountAuthenticationModificationController
  * @availability iOS 14.0+
@@ -80,6 +82,10 @@ export declare class ASAccountAuthenticationModificationController extends SDKHa
      */
     get presentationContextProvider(): (SDKHandle) | null;
     set presentationContextProvider(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)ASAccountAuthenticationModificationController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
         "presentationContextProvider": true;
@@ -139,6 +145,11 @@ export declare class ASAccountAuthenticationModificationExtensionContext extends
     getSignInWithAppleUpgradeAuthorization(state: (string) | null, nonce: (string) | null, completionHandler: ((arg0: (ASAuthorizationAppleIDCredential) | null, arg1: (NativeError) | null) => void)): void;
     /** init() */
     static init(): ASAccountAuthenticationModificationExtensionContext;
+    readonly $type: {
+        "c:objc(cs)ASAccountAuthenticationModificationExtensionContext": true;
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ASAccountAuthenticationModificationRequest
@@ -147,6 +158,10 @@ export declare class ASAccountAuthenticationModificationExtensionContext extends
 export declare class ASAccountAuthenticationModificationRequest extends SDKHandle {
     /** init() */
     static init(): ASAccountAuthenticationModificationRequest;
+    readonly $type: {
+        "c:objc(cs)ASAccountAuthenticationModificationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest_base: Omit<typeof ASAccountAuthenticationModificationRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ASAccountAuthenticationModificationRequest);
 /**
@@ -154,13 +169,11 @@ declare const ASAccountAuthenticationModificationReplacePasswordWithSignInWithAp
  * @availability iOS 14.0+
  */
 export declare class ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest extends ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest_base {
-    /** init() */
-    static init(): ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest;
     /**
      * init(user: String, serviceIdentifier: ASCredentialServiceIdentifier, userInfo: [AnyHashable : Any]? = nil)
      * @availability iOS 14.0+
      */
-    static initUserServiceIdentifierUserInfo(user: string, serviceIdentifier: ASCredentialServiceIdentifier, userInfo?: $SDK1): ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest;
+    static init(user: string, serviceIdentifier: ASCredentialServiceIdentifier, userInfo?: $SDK1): ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest;
     /**
      * var serviceIdentifier: ASCredentialServiceIdentifier { get }
      * @availability iOS 14.0+
@@ -176,6 +189,11 @@ export declare class ASAccountAuthenticationModificationReplacePasswordWithSignI
      * @availability iOS 14.0+
      */
     get userInfo(): $SDK1;
+    readonly $type: {
+        "c:objc(cs)ASAccountAuthenticationModificationReplacePasswordWithSignInWithAppleRequest": true;
+        "c:objc(cs)ASAccountAuthenticationModificationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serviceIdentifier": true;
         "user": true;
@@ -188,13 +206,11 @@ declare const ASAccountAuthenticationModificationUpgradePasswordToStrongPassword
  * @availability iOS 14.0+
  */
 export declare class ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest extends ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest_base {
-    /** init() */
-    static init(): ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest;
     /**
      * init(user: String, serviceIdentifier: ASCredentialServiceIdentifier, userInfo: [AnyHashable : Any]? = nil)
      * @availability iOS 14.0+
      */
-    static initUserServiceIdentifierUserInfo(user: string, serviceIdentifier: ASCredentialServiceIdentifier, userInfo?: $SDK1): ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest;
+    static init(user: string, serviceIdentifier: ASCredentialServiceIdentifier, userInfo?: $SDK1): ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest;
     /**
      * var serviceIdentifier: ASCredentialServiceIdentifier { get }
      * @availability iOS 14.0+
@@ -210,6 +226,11 @@ export declare class ASAccountAuthenticationModificationUpgradePasswordToStrongP
      * @availability iOS 14.0+
      */
     get userInfo(): $SDK1;
+    readonly $type: {
+        "c:objc(cs)ASAccountAuthenticationModificationUpgradePasswordToStrongPasswordRequest": true;
+        "c:objc(cs)ASAccountAuthenticationModificationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "serviceIdentifier": true;
         "user": true;
@@ -253,6 +274,12 @@ export declare class ASAccountAuthenticationModificationViewController extends S
      * @availability iOS 14.0+
      */
     get extensionContext(): ASAccountAuthenticationModificationExtensionContext;
+    readonly $type: {
+        "c:objc(cs)ASAccountAuthenticationModificationViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extensionContext": true;
     };
@@ -272,6 +299,10 @@ export declare class ASAuthorization extends SDKHandle {
      * @availability iOS 13.0+
      */
     get provider(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)ASAuthorization": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credential": true;
         "provider": true;
@@ -383,6 +414,10 @@ export declare class ASAuthorizationAccountCreationPlatformPublicKeyCredential e
      */
     get name(): $SDK3;
     set name(value: $SDK3);
+    readonly $type: {
+        "c:@M@AuthenticationServices@objc(cs)ASAuthorizationAccountCreationPlatformPublicKeyCredential": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ASAuthorizationRequest
@@ -394,6 +429,10 @@ export declare class ASAuthorizationRequest extends SDKHandle {
      * @availability iOS 13.0+
      */
     get provider(): SDKHandle;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
     };
@@ -433,6 +472,11 @@ export declare class ASAuthorizationAccountCreationPlatformPublicKeyCredentialRe
      * @availability iOS 26.0+
      */
     get challenge(): ArrayBuffer;
+    readonly $type: {
+        "c:@M@AuthenticationServices@objc(cs)ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest": true;
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
     };
@@ -452,6 +496,10 @@ export declare class ASAuthorizationAccountCreationProvider extends SDKHandle {
      * @availability iOS 26.0+
      */
     createPlatformPublicKeyCredentialRegistrationRequest(acceptedContactIdentifiers: $SDK4, shouldRequestName: boolean, relyingPartyIdentifier: string, challenge: ArrayBuffer, userID: ArrayBuffer): ASAuthorizationAccountCreationPlatformPublicKeyCredentialRequest;
+    readonly $type: {
+        "c:@M@AuthenticationServices@objc(cs)ASAuthorizationAccountCreationProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ASAuthorizationAppleIDButton
@@ -463,8 +511,6 @@ export declare class ASAuthorizationAppleIDButton extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initTypeStyle(type: ASAuthorizationAppleIDButton_ButtonType, style: ASAuthorizationAppleIDButton_Style): ASAuthorizationAppleIDButton;
-    /** init() */
-    static init(): ASAuthorizationAppleIDButton;
     /**
      * init(authorizationButtonType type: ASAuthorizationAppleIDButton.ButtonType, authorizationButtonStyle style: ASAuthorizationAppleIDButton.Style)
      * @availability iOS 13.0+
@@ -476,6 +522,13 @@ export declare class ASAuthorizationAppleIDButton extends SDKHandle {
      */
     get cornerRadius(): number;
     set cornerRadius(value: number);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationAppleIDButton": true;
+        "c:objc(cs)UIControl": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cornerRadius": true;
     };
@@ -559,6 +612,10 @@ export declare class ASAuthorizationAppleIDCredential extends SDKHandle {
      * @availability iOS 17.0+
      */
     get userAgeRange(): ASUserAgeRange;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationAppleIDCredential": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorizationCode": true;
         "authorizedScopes": true;
@@ -593,6 +650,10 @@ export declare class ASAuthorizationAppleIDProvider extends SDKHandle {
     getCredentialState(userID: string, completion: ((arg0: ASAuthorizationAppleIDProvider_CredentialState, arg1: (NativeError) | null) => void)): void;
     /** init() */
     static init(): ASAuthorizationAppleIDProvider;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationAppleIDProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum CredentialState
@@ -635,6 +696,11 @@ export declare class ASAuthorizationOpenIDRequest extends ASAuthorizationRequest
      */
     get state(): (string) | null;
     set state(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationOpenIDRequest": true;
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
         "nonce": true;
@@ -654,6 +720,12 @@ export declare class ASAuthorizationAppleIDRequest extends ASAuthorizationOpenID
      */
     get user(): (string) | null;
     set user(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationAppleIDRequest": true;
+        "c:objc(cs)ASAuthorizationOpenIDRequest": true;
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
         "nonce": true;
@@ -710,6 +782,10 @@ export declare class ASAuthorizationController extends SDKHandle {
      */
     get presentationContextProvider(): (SDKHandle) | null;
     set presentationContextProvider(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationController": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorizationRequests": true;
         "delegate": true;
@@ -767,7 +843,7 @@ export interface ASAuthorizationControllerPresentationContextProviding {
 export interface ASAuthorizationCredential {
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
 }
 /**
  * struct ASAuthorizationError
@@ -834,6 +910,9 @@ export declare class ASAuthorizationError extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get canceled(): ASAuthorizationError_Code;
+    readonly $type: {
+        "s:SC20ASAuthorizationErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -859,12 +938,21 @@ export declare class ASAuthorizationPasswordProvider extends SDKHandle {
     createRequest(): ASAuthorizationPasswordRequest;
     /** init() */
     static init(): ASAuthorizationPasswordProvider;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationPasswordProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ASAuthorizationPasswordRequest
  * @availability iOS 13.0+
  */
 export declare class ASAuthorizationPasswordRequest extends ASAuthorizationRequest {
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationPasswordRequest": true;
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
     };
@@ -883,12 +971,16 @@ export declare class ASAuthorizationPlatformPublicKeyCredentialAssertion extends
      * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionOutput? { get }
      * @availability iOS 18.0+
      */
-    get prf(): $SDK10;
+    get prf(): $SDK11;
     /**
      * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput? { get }
      * @availability iOS 17.0+
      */
-    get largeBlob(): $SDK11;
+    get largeBlob(): $SDK12;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialAssertion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attachment": true;
     };
@@ -902,20 +994,25 @@ export declare class ASAuthorizationPlatformPublicKeyCredentialAssertionRequest 
      * var allowedCredentials: [ASAuthorizationPlatformPublicKeyCredentialDescriptor] { get set }
      * @availability iOS 15.0+
      */
-    get allowedCredentials(): $SDK12;
-    set allowedCredentials(value: $SDK12);
+    get allowedCredentials(): $SDK13;
+    set allowedCredentials(value: $SDK13);
     /**
      * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionInput? { get set }
      * @availability iOS 18.0+
      */
-    get prf(): $SDK13;
-    set prf(value: $SDK13);
+    get prf(): $SDK14;
+    set prf(value: $SDK14);
     /**
      * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput? { get set }
      * @availability iOS 17.0+
      */
-    get largeBlob(): $SDK14;
-    set largeBlob(value: $SDK14);
+    get largeBlob(): $SDK15;
+    set largeBlob(value: $SDK15);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialAssertionRequest": true;
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
         "allowedCredentials": true;
@@ -931,6 +1028,10 @@ export declare class ASAuthorizationPlatformPublicKeyCredentialDescriptor extend
      * @availability iOS 15.0+
      */
     static init(credentialID: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialDescriptor;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ASAuthorizationPlatformPublicKeyCredentialProvider
@@ -977,6 +1078,10 @@ export declare class ASAuthorizationPlatformPublicKeyCredentialProvider extends 
      * @availability iOS 17.4+
      */
     createCredentialRegistrationRequestClientDataNameUserID(clientData: ASPublicKeyCredentialClientData, name: string, userID: ArrayBuffer): ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "relyingPartyIdentifier": true;
     };
@@ -995,12 +1100,16 @@ export declare class ASAuthorizationPlatformPublicKeyCredentialRegistration exte
      * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput? { get }
      * @availability iOS 18.0+
      */
-    get prf(): $SDK15;
+    get prf(): $SDK16;
     /**
      * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput? { get }
      * @availability iOS 17.0+
      */
-    get largeBlob(): $SDK16;
+    get largeBlob(): $SDK17;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialRegistration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attachment": true;
     };
@@ -1020,14 +1129,19 @@ export declare class ASAuthorizationPlatformPublicKeyCredentialRegistrationReque
      * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationInput? { get set }
      * @availability iOS 18.0+
      */
-    get prf(): $SDK17;
-    set prf(value: $SDK17);
+    get prf(): $SDK18;
+    set prf(value: $SDK18);
     /**
      * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput? { get set }
      * @availability iOS 17.0+
      */
-    get largeBlob(): $SDK18;
-    set largeBlob(value: $SDK18);
+    get largeBlob(): $SDK19;
+    set largeBlob(value: $SDK19);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationPlatformPublicKeyCredentialRegistrationRequest": true;
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
         "requestStyle": true;
@@ -1185,6 +1299,10 @@ export declare class ASAuthorizationProviderExtensionAuthorizationRequest extend
      * @availability iOS 15.4+
      */
     get isUserInterfaceEnabled(): boolean;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationProviderExtensionAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorizationOptions": true;
         "callerBundleIdentifier": true;
@@ -1221,8 +1339,6 @@ export interface ASAuthorizationProviderExtensionAuthorizationRequestHandler {
  * @availability iOS 15.0+
  */
 export declare class ASAuthorizationProviderExtensionAuthorizationResult extends SDKHandle {
-    /** init() */
-    static init(): ASAuthorizationProviderExtensionAuthorizationResult;
     /**
      * init(httpAuthorizationHeaders: [String : String])
      * @availability iOS 15.0+
@@ -1237,8 +1353,8 @@ export declare class ASAuthorizationProviderExtensionAuthorizationResult extends
      * var httpAuthorizationHeaders: [String : String]? { get set }
      * @availability iOS 15.0+
      */
-    get httpAuthorizationHeaders(): $SDK21;
-    set httpAuthorizationHeaders(value: $SDK21);
+    get httpAuthorizationHeaders(): $SDK22;
+    set httpAuthorizationHeaders(value: $SDK22);
     /**
      * var httpBody: Data? { get set }
      * @availability iOS 15.0+
@@ -1249,8 +1365,12 @@ export declare class ASAuthorizationProviderExtensionAuthorizationResult extends
      * @NSCopying var httpResponse: HTTPURLResponse? { get set }
      * @availability iOS 15.0+
      */
-    get httpResponse(): $SDK22;
-    set httpResponse(value: $SDK22);
+    get httpResponse(): $SDK23;
+    set httpResponse(value: $SDK23);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationProviderExtensionAuthorizationResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "httpAuthorizationHeaders": true;
         "httpBody": true;
@@ -1264,14 +1384,14 @@ export declare class ASAuthorizationProviderExtensionAuthorizationResult extends
 export interface ASAuthorizationPublicKeyCredentialAssertion {
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
 }
 /**
  * protocol ASAuthorizationPublicKeyCredentialAssertionRequest : NSCopying, NSSecureCoding, NSObjectProtocol
  * @availability iOS 15.0+
  */
 export interface ASAuthorizationPublicKeyCredentialAssertionRequest {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
 }
@@ -1329,7 +1449,7 @@ export declare const ASAuthorizationPublicKeyCredentialAttestationKind: {
  * @availability iOS 15.0+
  */
 export interface ASAuthorizationPublicKeyCredentialDescriptor {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
 }
@@ -1354,12 +1474,18 @@ export declare class ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput e
      */
     get operation(): ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation;
     set operation(value: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation);
+    readonly $type: {
+        "s:22AuthenticationServices57ASAuthorizationPublicKeyCredentialLargeBlobAssertionInputV": true;
+    };
 }
 /**
  * enum Operation
  * @availability iOS 17.0+
  */
 export declare class ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput_Operation extends SDKHandle {
+    readonly $type: {
+        "s:22AuthenticationServices57ASAuthorizationPublicKeyCredentialLargeBlobAssertionInputV9OperationO": true;
+    };
 }
 /**
  * struct ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput
@@ -1382,12 +1508,18 @@ export declare class ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput 
      */
     get result(): ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult;
     set result(value: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult);
+    readonly $type: {
+        "s:22AuthenticationServices58ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutputV": true;
+    };
 }
 /**
  * enum OperationResult
  * @availability iOS 17.0+
  */
 export declare class ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput_OperationResult extends SDKHandle {
+    readonly $type: {
+        "s:22AuthenticationServices58ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutputV15OperationResultO": true;
+    };
 }
 /**
  * struct ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput
@@ -1410,6 +1542,9 @@ export declare class ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInpu
      */
     get supportRequirement(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput_SupportRequirement;
     set supportRequirement(value: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput_SupportRequirement);
+    readonly $type: {
+        "s:22AuthenticationServices60ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInputV": true;
+    };
 }
 /**
  * enum SupportRequirement
@@ -1437,6 +1572,9 @@ export declare class ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutp
      * @availability iOS 18.0+
      */
     static get supported(): ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput;
+    readonly $type: {
+        "s:22AuthenticationServices61ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutputV": true;
+    };
 }
 /**
  * class ASAuthorizationPublicKeyCredentialParameters
@@ -1453,6 +1591,10 @@ export declare class ASAuthorizationPublicKeyCredentialParameters extends SDKHan
      * @availability iOS 15.0+
      */
     get algorithm(): ASCOSEAlgorithmIdentifier;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationPublicKeyCredentialParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "algorithm": true;
     };
@@ -1466,7 +1608,7 @@ export declare class ASAuthorizationPublicKeyCredentialPRFAssertionInput extends
      * let perCredentialInputValues: [Data : ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues]?
      * @availability iOS 18.0+
      */
-    get perCredentialInputValues(): $SDK23;
+    get perCredentialInputValues(): $SDK24;
     /**
      * static func perCredentialInputValues(_ perCredentialInputValues: [Data : ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues]) -> ASAuthorizationPublicKeyCredentialPRFAssertionInput
      * @availability iOS 18.0+
@@ -1476,12 +1618,15 @@ export declare class ASAuthorizationPublicKeyCredentialPRFAssertionInput extends
      * let inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues?
      * @availability iOS 18.0+
      */
-    get inputValues(): $SDK25;
+    get inputValues(): $SDK26;
     /**
      * static func inputValues(_ inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues, perCredentialInputValues: [Data : ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues]? = nil) -> ASAuthorizationPublicKeyCredentialPRFAssertionInput
      * @availability iOS 18.0+
      */
-    static inputValuesPerCredentialInputValues(inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues, perCredentialInputValues?: $SDK23): ASAuthorizationPublicKeyCredentialPRFAssertionInput;
+    static inputValuesPerCredentialInputValues(inputValues: ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputValues, perCredentialInputValues?: $SDK24): ASAuthorizationPublicKeyCredentialPRFAssertionInput;
+    readonly $type: {
+        "s:22AuthenticationServices51ASAuthorizationPublicKeyCredentialPRFAssertionInputV": true;
+    };
 }
 /**
  * struct InputValues
@@ -1510,6 +1655,9 @@ export declare class ASAuthorizationPublicKeyCredentialPRFAssertionInput_InputVa
      */
     get saltInput2(): (ArrayBuffer) | null;
     set saltInput2(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "s:22AuthenticationServices51ASAuthorizationPublicKeyCredentialPRFAssertionInputV0H6ValuesV": true;
+    };
 }
 /**
  * struct ASAuthorizationPublicKeyCredentialPRFAssertionOutput
@@ -1520,7 +1668,7 @@ export declare class ASAuthorizationPublicKeyCredentialPRFAssertionOutput extend
      * init(first: SymmetricKey, second: SymmetricKey?)
      * @availability iOS 18.0+
      */
-    static init(first: _CryptoKit_SymmetricKey, second?: $SDK26): ASAuthorizationPublicKeyCredentialPRFAssertionOutput;
+    static init(first: _CryptoKit_SymmetricKey, second?: $SDK27): ASAuthorizationPublicKeyCredentialPRFAssertionOutput;
     /**
      * let first: SymmetricKey
      * @availability iOS 18.0+
@@ -1530,7 +1678,10 @@ export declare class ASAuthorizationPublicKeyCredentialPRFAssertionOutput extend
      * let second: SymmetricKey?
      * @availability iOS 18.0+
      */
-    get second(): $SDK26;
+    get second(): $SDK27;
+    readonly $type: {
+        "s:22AuthenticationServices52ASAuthorizationPublicKeyCredentialPRFAssertionOutputV": true;
+    };
 }
 /**
  * struct ASAuthorizationPublicKeyCredentialPRFRegistrationInput
@@ -1541,7 +1692,7 @@ export declare class ASAuthorizationPublicKeyCredentialPRFRegistrationInput exte
      * let inputValues: ASAuthorizationPublicKeyCredentialPRFRegistrationInput.InputValues?
      * @availability iOS 18.0+
      */
-    get inputValues(): $SDK25;
+    get inputValues(): $SDK26;
     /**
      * static func inputValues(_ inputValues: ASAuthorizationPublicKeyCredentialPRFRegistrationInput.InputValues) -> ASAuthorizationPublicKeyCredentialPRFRegistrationInput
      * @availability iOS 18.0+
@@ -1557,6 +1708,9 @@ export declare class ASAuthorizationPublicKeyCredentialPRFRegistrationInput exte
      * @availability iOS 18.0+
      */
     get shouldCheckForSupport(): boolean;
+    readonly $type: {
+        "s:22AuthenticationServices54ASAuthorizationPublicKeyCredentialPRFRegistrationInputV": true;
+    };
 }
 /**
  * typealias InputValues = ASAuthorizationPublicKeyCredentialPRFAssertionInput.InputValues
@@ -1582,22 +1736,25 @@ export declare class ASAuthorizationPublicKeyCredentialPRFRegistrationOutput ext
      * init(first: SymmetricKey, second: SymmetricKey?)
      * @availability iOS 18.0+
      */
-    static init(first: _CryptoKit_SymmetricKey, second?: $SDK26): ASAuthorizationPublicKeyCredentialPRFRegistrationOutput;
+    static init(first: _CryptoKit_SymmetricKey, second?: $SDK27): ASAuthorizationPublicKeyCredentialPRFRegistrationOutput;
     /**
      * let first: SymmetricKey?
      * @availability iOS 18.0+
      */
-    get first(): $SDK26;
+    get first(): $SDK27;
     /**
      * let second: SymmetricKey?
      * @availability iOS 18.0+
      */
-    get second(): $SDK26;
+    get second(): $SDK27;
     /**
      * static var supported: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput { get }
      * @availability iOS 18.0+
      */
     static get supported(): ASAuthorizationPublicKeyCredentialPRFRegistrationOutput;
+    readonly $type: {
+        "s:22AuthenticationServices55ASAuthorizationPublicKeyCredentialPRFRegistrationOutputV": true;
+    };
 }
 /**
  * protocol ASAuthorizationPublicKeyCredentialRegistration : ASPublicKeyCredential
@@ -1606,14 +1763,14 @@ export declare class ASAuthorizationPublicKeyCredentialPRFRegistrationOutput ext
 export interface ASAuthorizationPublicKeyCredentialRegistration {
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
 }
 /**
  * protocol ASAuthorizationPublicKeyCredentialRegistrationRequest : NSCopying, NSSecureCoding, NSObjectProtocol
  * @availability iOS 15.0+
  */
 export interface ASAuthorizationPublicKeyCredentialRegistrationRequest {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
 }
@@ -1695,7 +1852,11 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialAssertion exte
      * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionOutput? { get }
      * @availability iOS 26.4+
      */
-    get prf(): $SDK10;
+    get prf(): $SDK11;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialAssertion": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "appID": true;
     };
@@ -1709,8 +1870,8 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialAssertionReque
      * var allowedCredentials: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor] { get set }
      * @availability iOS 15.0+
      */
-    get allowedCredentials(): $SDK27;
-    set allowedCredentials(value: $SDK27);
+    get allowedCredentials(): $SDK28;
+    set allowedCredentials(value: $SDK28);
     /**
      * var appID: String? { get set }
      * @availability iOS 17.5+
@@ -1727,8 +1888,13 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialAssertionReque
      * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionInput? { get set }
      * @availability iOS 26.4+
      */
-    get prf20777(): $SDK13;
-    set prf20777(value: $SDK13);
+    get prf20777(): $SDK14;
+    set prf20777(value: $SDK14);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest": true;
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
         "allowedCredentials": true;
@@ -1745,13 +1911,17 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor ext
      * init(credentialID: Data, transports allowedTransports: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport])
      * @availability iOS 15.0+
      */
-    static init(credentialID: ArrayBuffer, allowedTransports: $SDK28): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
+    static init(credentialID: ArrayBuffer, allowedTransports: $SDK29): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor;
     /**
      * var transports: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport] { get set }
      * @availability iOS 15.0+
      */
-    get transports(): $SDK28;
-    set transports(value: $SDK28);
+    get transports(): $SDK29;
+    set transports(value: $SDK29);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "transports": true;
     };
@@ -1781,7 +1951,7 @@ export declare const ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Tra
      * static var allSupported: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport] { get }
      * @availability iOS 15.0+
      */
-    readonly allSupported: $SDK28;
+    readonly allSupported: $SDK29;
     /**
      * init(rawValue: String)
      * @availability iOS 15.0+
@@ -1828,6 +1998,10 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialProvider exten
      * @availability iOS 17.4+
      */
     createCredentialRegistrationRequestClientDataDisplayNameNameUserID(clientData: ASPublicKeyCredentialClientData, displayName: string, name: string, userID: ArrayBuffer): ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "relyingPartyIdentifier": true;
     };
@@ -1843,12 +2017,16 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialRegistration e
      * var transports: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport] { get }
      * @availability iOS 17.5+
      */
-    get transports(): $SDK28;
+    get transports(): $SDK29;
     /**
      * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput? { get }
      * @availability iOS 26.4+
      */
-    get prf(): $SDK15;
+    get prf(): $SDK16;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialRegistration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "transports": true;
     };
@@ -1862,14 +2040,14 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRe
      * var credentialParameters: [ASAuthorizationPublicKeyCredentialParameters] { get set }
      * @availability iOS 15.0+
      */
-    get credentialParameters(): $SDK29;
-    set credentialParameters(value: $SDK29);
+    get credentialParameters(): $SDK30;
+    set credentialParameters(value: $SDK30);
     /**
      * var excludedCredentials: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor] { get set }
      * @availability iOS 15.0+
      */
-    get excludedCredentials(): $SDK27;
-    set excludedCredentials(value: $SDK27);
+    get excludedCredentials(): $SDK28;
+    set excludedCredentials(value: $SDK28);
     /**
      * var residentKeyPreference: ASAuthorizationPublicKeyCredentialResidentKeyPreference { get set }
      * @availability iOS 15.0+
@@ -1880,8 +2058,13 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRe
      * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationInput? { get set }
      * @availability iOS 26.4+
      */
-    get prf(): $SDK17;
-    set prf(value: $SDK17);
+    get prf(): $SDK18;
+    set prf(value: $SDK18);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationSecurityKeyPublicKeyCredentialRegistrationRequest": true;
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
         "credentialParameters": true;
@@ -1903,7 +2086,7 @@ export declare class ASAuthorizationSingleSignOnCredential extends SDKHandle {
      * @NSCopying var authenticatedResponse: HTTPURLResponse? { get }
      * @availability iOS 13.0+
      */
-    get authenticatedResponse(): $SDK22;
+    get authenticatedResponse(): $SDK23;
     /**
      * var authorizedScopes: [ASAuthorization.Scope] { get }
      * @availability iOS 13.0+
@@ -1919,6 +2102,10 @@ export declare class ASAuthorizationSingleSignOnCredential extends SDKHandle {
      * @availability iOS 13.0+
      */
     get state(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationSingleSignOnCredential": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "accessToken": true;
         "authenticatedResponse": true;
@@ -1952,6 +2139,10 @@ export declare class ASAuthorizationSingleSignOnProvider extends SDKHandle {
      * @availability iOS 13.0+
      */
     get url(): string;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationSingleSignOnProvider": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "canPerformAuthorization": true;
         "url": true;
@@ -1966,14 +2157,20 @@ export declare class ASAuthorizationSingleSignOnRequest extends ASAuthorizationO
      * var authorizationOptions: [URLQueryItem] { get set }
      * @availability iOS 13.0+
      */
-    get authorizationOptions(): $SDK30;
-    set authorizationOptions(value: $SDK30);
+    get authorizationOptions(): $SDK31;
+    set authorizationOptions(value: $SDK31);
     /**
      * var isUserInterfaceEnabled: Bool { get set }
      * @availability iOS 15.0+
      */
     get isUserInterfaceEnabled(): boolean;
     set isUserInterfaceEnabled(value: boolean);
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationSingleSignOnRequest": true;
+        "c:objc(cs)ASAuthorizationOpenIDRequest": true;
+        "c:objc(cs)ASAuthorizationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "provider": true;
         "nonce": true;
@@ -2019,6 +2216,9 @@ export declare class ASAuthorizationWebBrowserPlatformPublicKeyCredential extend
      * @availability iOS 17.4+
      */
     get name(): string;
+    readonly $type: {
+        "s:22AuthenticationServices52ASAuthorizationWebBrowserPlatformPublicKeyCredentialV": true;
+    };
 }
 /**
  * protocol ASAuthorizationWebBrowserPlatformPublicKeyCredentialAssertionRequest
@@ -2083,6 +2283,10 @@ export declare class ASAuthorizationWebBrowserPublicKeyCredentialManager extends
      * @availability iOS 17.4+
      */
     platformCredentials(relyingParty: string): Promise<Array<ASAuthorizationWebBrowserPlatformPublicKeyCredential>>;
+    readonly $type: {
+        "c:objc(cs)ASAuthorizationWebBrowserPublicKeyCredentialManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authorizationStateForPlatformCredentials": true;
     };
@@ -2171,6 +2375,9 @@ export declare class ASAutoFillURLScope extends SDKHandle {
      */
     get scheme(): ASAutoFillURLScope_Scheme;
     set scheme(value: ASAutoFillURLScope_Scheme);
+    readonly $type: {
+        "s:22AuthenticationServices18ASAutoFillURLScopeV": true;
+    };
 }
 /**
  * enum Scheme
@@ -2199,6 +2406,9 @@ export type ASAutoFillURLScope_Scheme_RawValue = string;
  * @availability iOS 26.0+
  */
 export declare class ASContactIdentifier extends SDKHandle {
+    readonly $type: {
+        "s:22AuthenticationServices19ASContactIdentifierO": true;
+    };
 }
 /**
  * enum ASContactIdentifierRequest
@@ -2284,6 +2494,9 @@ export declare class ASCredentialDataManager extends SDKHandle {
      * @availability iOS 26.2+
      */
     static init(): ASCredentialDataManager;
+    readonly $type: {
+        "s:22AuthenticationServices23ASCredentialDataManagerC": true;
+    };
 }
 /**
  * class ASCredentialExportManager
@@ -2305,6 +2518,9 @@ export declare class ASCredentialExportManager extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(presentationAnchor: _UIKit_UIWindow): ASCredentialExportManager;
+    readonly $type: {
+        "s:22AuthenticationServices25ASCredentialExportManagerC": true;
+    };
 }
 /**
  * struct ExportOptions
@@ -2316,6 +2532,9 @@ export declare class ASCredentialExportManager_ExportOptions extends SDKHandle {
      * @availability iOS 26.0+
      */
     get formatVersion(): ASExportedCredentialData_FormatVersion;
+    readonly $type: {
+        "s:22AuthenticationServices25ASCredentialExportManagerC0D7OptionsV": true;
+    };
 }
 /**
  * protocol ASCredentialIdentity : NSObjectProtocol
@@ -2342,45 +2561,49 @@ export declare class ASCredentialIdentityStore extends SDKHandle {
      * func removeAllCredentialIdentities() async throws
      * @availability iOS 12.0+
      */
-    removeAllCredentialIdentities(completion?: $SDK34): void;
+    removeAllCredentialIdentities(completion?: $SDK35): void;
     /**
      * func removeCredentialIdentities(_ credentialIdentities: [ASPasswordCredentialIdentity]) async throws
      * @availability iOS 12.0+
      * @deprecated iOS 17.0
      */
-    removeCredentialIdentitiesCompletion(credentialIdentities: $SDK35, completion?: $SDK34): void;
+    removeCredentialIdentitiesCompletion(credentialIdentities: $SDK36, completion?: $SDK35): void;
     /**
      * func removeCredentialIdentities(_ credentialIdentities: [any ASCredentialIdentity]) async throws
      * @availability iOS 17.0+
      */
-    removeCredentialIdentitiesCompletion70031(credentialIdentities: Array<SDKHandle>, completion?: $SDK34): void;
+    removeCredentialIdentitiesCompletion70031(credentialIdentities: Array<SDKHandle>, completion?: $SDK35): void;
     /**
      * func replaceCredentialIdentities(with newCredentialIdentities: [ASPasswordCredentialIdentity]) async throws
      * @availability iOS 12.0+
      * @deprecated iOS 17.0
      */
-    replaceCredentialIdentitiesWithCompletion(newCredentialIdentities: $SDK35, completion?: $SDK34): void;
+    replaceCredentialIdentitiesWithCompletion(newCredentialIdentities: $SDK36, completion?: $SDK35): void;
     /**
      * func replaceCredentialIdentities(_ newCredentialIdentities: [any ASCredentialIdentity]) async throws
      * @availability iOS 17.0+
      */
-    replaceCredentialIdentitiesCompletion(newCredentialIdentities: Array<SDKHandle>, completion?: $SDK34): void;
+    replaceCredentialIdentitiesCompletion(newCredentialIdentities: Array<SDKHandle>, completion?: $SDK35): void;
     /**
      * func saveCredentialIdentities(_ credentialIdentities: [ASPasswordCredentialIdentity]) async throws
      * @availability iOS 12.0+
      * @deprecated iOS 17.0
      */
-    saveCredentialIdentitiesCompletion(credentialIdentities: $SDK35, completion?: $SDK34): void;
+    saveCredentialIdentitiesCompletion(credentialIdentities: $SDK36, completion?: $SDK35): void;
     /**
      * func saveCredentialIdentities(_ credentialIdentities: [any ASCredentialIdentity]) async throws
      * @availability iOS 17.0+
      */
-    saveCredentialIdentitiesCompletion16884(credentialIdentities: Array<SDKHandle>, completion?: $SDK34): void;
+    saveCredentialIdentitiesCompletion16884(credentialIdentities: Array<SDKHandle>, completion?: $SDK35): void;
     /**
      * func credentialIdentities(forService serviceIdentifier: ASCredentialServiceIdentifier? = nil, credentialIdentityTypes: ASCredentialIdentityStore.IdentityTypes = []) async -> [any ASCredentialIdentity]
      * @availability iOS 17.4+
      */
     credentialIdentities(serviceIdentifier?: (ASCredentialServiceIdentifier) | null, credentialIdentityTypes?: ASCredentialIdentityStore_IdentityTypes): Promise<Array<SDKHandle>>;
+    readonly $type: {
+        "c:objc(cs)ASCredentialIdentityStore": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct IdentityTypes
@@ -2434,6 +2657,9 @@ export declare class ASCredentialIdentityStoreError extends SDKHandle {
      * @availability iOS 12.0+
      */
     static get storeBusy(): ASCredentialIdentityStoreError_Code;
+    readonly $type: {
+        "s:SC34ASCredentialIdentityStoreErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2464,6 +2690,10 @@ export declare class ASCredentialIdentityStoreState extends SDKHandle {
      * @availability iOS 12.0+
      */
     get supportsIncrementalUpdates(): boolean;
+    readonly $type: {
+        "c:objc(cs)ASCredentialIdentityStoreState": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isEnabled": true;
         "supportsIncrementalUpdates": true;
@@ -2484,6 +2714,9 @@ export declare class ASCredentialImportManager extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): ASCredentialImportManager;
+    readonly $type: {
+        "s:22AuthenticationServices25ASCredentialImportManagerC": true;
+    };
 }
 /**
  * class ASCredentialProviderExtensionContext
@@ -2499,7 +2732,7 @@ export declare class ASCredentialProviderExtensionContext extends SDKHandle {
      * func completeAssertionRequest(using credential: ASPasskeyAssertionCredential) async -> Bool
      * @availability iOS 17.0+
      */
-    completeAssertionRequest(credential: ASPasskeyAssertionCredential, completionHandler?: $SDK37): void;
+    completeAssertionRequest(credential: ASPasskeyAssertionCredential, completionHandler?: $SDK38): void;
     /**
      * func completeExtensionConfigurationRequest()
      * @availability iOS 12.0+
@@ -2509,34 +2742,39 @@ export declare class ASCredentialProviderExtensionContext extends SDKHandle {
      * func completeGeneratePasswordRequest(results: [ASGeneratedPassword]) async -> Bool
      * @availability iOS 26.2+
      */
-    completeGeneratePasswordRequest(results: Array<ASGeneratedPassword>, completionHandler?: $SDK37): void;
+    completeGeneratePasswordRequest(results: Array<ASGeneratedPassword>, completionHandler?: $SDK38): void;
     /**
      * func completeOneTimeCodeRequest(using credential: ASOneTimeCodeCredential) async -> Bool
      * @availability iOS 18.0+
      */
-    completeOneTimeCodeRequest(credential: ASOneTimeCodeCredential, completionHandler?: $SDK37): void;
+    completeOneTimeCodeRequest(credential: ASOneTimeCodeCredential, completionHandler?: $SDK38): void;
     /**
      * func completeRegistrationRequest(using credential: ASPasskeyRegistrationCredential) async -> Bool
      * @availability iOS 17.0+
      */
-    completeRegistrationRequest(credential: ASPasskeyRegistrationCredential, completionHandler?: $SDK37): void;
+    completeRegistrationRequest(credential: ASPasskeyRegistrationCredential, completionHandler?: $SDK38): void;
     /**
      * func completeRequest(withSelectedCredential credential: ASPasswordCredential, completionHandler: ((Bool) -> Void)? = nil)
      * @availability iOS 12.0+
      */
-    completeRequestWithSelectedCredentialCompletionHandler(credential: ASPasswordCredential, completionHandler?: $SDK37): void;
+    completeRequestWithSelectedCredentialCompletionHandler(credential: ASPasswordCredential, completionHandler?: $SDK38): void;
     /**
      * func completeRequest(withTextToInsert text: String) async -> Bool
      * @availability iOS 18.0+
      */
-    completeRequestWithTextToInsertCompletionHandler(text: string, completionHandler?: $SDK37): void;
+    completeRequestWithTextToInsertCompletionHandler(text: string, completionHandler?: $SDK38): void;
     /**
      * func completeSavePasswordRequest() async -> Bool
      * @availability iOS 26.2+
      */
-    completeSavePasswordRequest(completionHandler?: $SDK37): void;
+    completeSavePasswordRequest(completionHandler?: $SDK38): void;
     /** init() */
     static init(): ASCredentialProviderExtensionContext;
+    readonly $type: {
+        "c:objc(cs)ASCredentialProviderExtensionContext": true;
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ASCredentialProviderViewController
@@ -2564,12 +2802,12 @@ export declare class ASCredentialProviderViewController extends SDKHandle {
      * func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier])
      * @availability iOS 12.0+
      */
-    prepareCredentialListFor(serviceIdentifiers: $SDK39): void;
+    prepareCredentialListFor(serviceIdentifiers: $SDK40): void;
     /**
      * func prepareCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier], requestParameters: ASPasskeyCredentialRequestParameters)
      * @availability iOS 17.0+
      */
-    prepareCredentialListForRequestParameters(serviceIdentifiers: $SDK39, requestParameters: ASPasskeyCredentialRequestParameters): void;
+    prepareCredentialListForRequestParameters(serviceIdentifiers: $SDK40, requestParameters: ASPasskeyCredentialRequestParameters): void;
     /**
      * func prepareInterfaceForExtensionConfiguration()
      * @availability iOS 12.0+
@@ -2610,7 +2848,7 @@ export declare class ASCredentialProviderViewController extends SDKHandle {
      * func prepareOneTimeCodeCredentialList(for serviceIdentifiers: [ASCredentialServiceIdentifier])
      * @availability iOS 18.0+
      */
-    prepareOneTimeCodeCredentialList(serviceIdentifiers: $SDK39): void;
+    prepareOneTimeCodeCredentialList(serviceIdentifiers: $SDK40): void;
     /**
      * func provideCredentialWithoutUserInteraction(for credentialIdentity: ASPasswordCredentialIdentity)
      * @availability iOS 12.0+
@@ -2647,6 +2885,12 @@ export declare class ASCredentialProviderViewController extends SDKHandle {
      * @availability iOS 12.0+
      */
     get extensionContext(): ASCredentialProviderExtensionContext;
+    readonly $type: {
+        "c:objc(cs)ASCredentialProviderViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "extensionContext": true;
     };
@@ -2656,7 +2900,7 @@ export declare class ASCredentialProviderViewController extends SDKHandle {
  * @availability iOS 17.0+
  */
 export interface ASCredentialRequest {
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
 }
@@ -2677,8 +2921,6 @@ export declare const ASCredentialRequestType: {
  * @availability iOS 12.0+
  */
 export declare class ASCredentialServiceIdentifier extends SDKHandle {
-    /** init() */
-    static init(): ASCredentialServiceIdentifier;
     /**
      * init(identifier: String, type: ASCredentialServiceIdentifier.IdentifierType)
      * @availability iOS 12.0+
@@ -2704,6 +2946,10 @@ export declare class ASCredentialServiceIdentifier extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): ASCredentialServiceIdentifier_IdentifierType;
+    readonly $type: {
+        "c:objc(cs)ASCredentialServiceIdentifier": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "displayName": true;
         "identifier": true;
@@ -2758,6 +3004,9 @@ export declare class ASCredentialUpdater extends SDKHandle {
      * @deprecated iOS 26.2
      */
     static init(): ASCredentialUpdater;
+    readonly $type: {
+        "s:22AuthenticationServices19ASCredentialUpdaterC": true;
+    };
 }
 /**
  * class ASDeliveredVerificationCodesManager
@@ -2780,6 +3029,9 @@ export declare class ASDeliveredVerificationCodesManager extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ASDeliveredVerificationCodesManager;
+    readonly $type: {
+        "s:22AuthenticationServices35ASDeliveredVerificationCodesManagerC": true;
+    };
 }
 /**
  * struct VerificationError
@@ -2826,6 +3078,9 @@ export declare class ASDeliveredVerificationCodesManager_VerificationError exten
      * @availability iOS 27.0+
      */
     static init(code: ASDeliveredVerificationCodesManager_VerificationError_Code, userInfo?: Record<string, unknown>): ASDeliveredVerificationCodesManager_VerificationError;
+    readonly $type: {
+        "s:22AuthenticationServices35ASDeliveredVerificationCodesManagerC0D5ErrorV": true;
+    };
 }
 /**
  * enum Code
@@ -2860,6 +3115,9 @@ export declare class ASEmailIdentifier extends SDKHandle {
      */
     get value(): string;
     set value(value: string);
+    readonly $type: {
+        "s:22AuthenticationServices17ASEmailIdentifierV": true;
+    };
 }
 /**
  * struct ASExportedCredentialData
@@ -2885,18 +3143,21 @@ export declare class ASExportedCredentialData extends SDKHandle {
      * init(accounts: [ASImportableAccount], formatVersion: ASExportedCredentialData.FormatVersion, exporterRelyingPartyIdentifier: String, exporterDisplayName: String, timestamp: Date)
      * @availability iOS 26.0+
      */
-    static init(accounts: $SDK40, formatVersion: ASExportedCredentialData_FormatVersion, exporterRelyingPartyIdentifier: string, exporterDisplayName: string, timestamp: globalThis.Date): ASExportedCredentialData;
+    static init(accounts: $SDK41, formatVersion: ASExportedCredentialData_FormatVersion, exporterRelyingPartyIdentifier: string, exporterDisplayName: string, timestamp: globalThis.Date): ASExportedCredentialData;
     /**
      * var accounts: [ASImportableAccount]
      * @availability iOS 26.0+
      */
-    get accounts(): $SDK40;
-    set accounts(value: $SDK40);
+    get accounts(): $SDK41;
+    set accounts(value: $SDK41);
     /**
      * let timestamp: Date
      * @availability iOS 26.0+
      */
     get timestamp(): globalThis.Date;
+    readonly $type: {
+        "s:22AuthenticationServices24ASExportedCredentialDataV": true;
+    };
 }
 /**
  * enum FormatVersion
@@ -2908,7 +3169,7 @@ export declare const ASExportedCredentialData_FormatVersion: {
      * nonisolated static var allCases: [ASExportedCredentialData.FormatVersion] { get }
      * @availability iOS 26.0+
      */
-    readonly allCases: $SDK41;
+    readonly allCases: $SDK42;
     /**
      * init?(rawValue: String)
      * @availability iOS 26.0+
@@ -2924,7 +3185,7 @@ export declare const ASExportedCredentialData_FormatVersion: {
  * typealias AllCases = [ASExportedCredentialData.FormatVersion]
  * @availability iOS 26.0+
  */
-export type ASExportedCredentialData_FormatVersion_AllCases = $SDK41;
+export type ASExportedCredentialData_FormatVersion_AllCases = $SDK42;
 /**
  * typealias RawValue = String
  * @availability iOS 26.0+
@@ -2965,6 +3226,9 @@ export declare class ASExtensionError extends SDKHandle {
      * @availability iOS 12.0+
      */
     static get failed(): ASExtensionError_Code;
+    readonly $type: {
+        "s:SC20ASExtensionErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -3003,6 +3267,10 @@ export declare class ASGeneratedPassword extends SDKHandle {
      * @availability iOS 26.2+
      */
     get value(): string;
+    readonly $type: {
+        "c:objc(cs)ASGeneratedPassword": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "kind": true;
         "localizedName": true;
@@ -3071,6 +3339,10 @@ export declare class ASGeneratePasswordsRequest extends SDKHandle {
      * @availability iOS 26.2+
      */
     get serviceIdentifier(): ASCredentialServiceIdentifier;
+    readonly $type: {
+        "c:objc(cs)ASGeneratePasswordsRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "confirmPasswordFieldPasswordRules": true;
         "passwordFieldPasswordRules": true;
@@ -3087,8 +3359,8 @@ export declare class ASImportableAccount extends SDKHandle {
      * var collections: [ASImportableCollection]
      * @availability iOS 26.0+
      */
-    get collections(): $SDK42;
-    set collections(value: $SDK42);
+    get collections(): $SDK43;
+    set collections(value: $SDK43);
     /**
      * var id: Data
      * @availability iOS 26.0+
@@ -3099,7 +3371,7 @@ export declare class ASImportableAccount extends SDKHandle {
      * init(id: Data, userName: String, email: String, fullName: String? = nil, collections: [ASImportableCollection], items: [ASImportableItem])
      * @availability iOS 26.0+
      */
-    static init(id: ArrayBuffer, userName: string, email: string, fullName: (string) | null, collections: $SDK42, items: Array<ASImportableItem>): ASImportableAccount;
+    static init(id: ArrayBuffer, userName: string, email: string, fullName: (string) | null, collections: $SDK43, items: Array<ASImportableItem>): ASImportableAccount;
     /**
      * var email: String
      * @availability iOS 26.0+
@@ -3124,6 +3396,9 @@ export declare class ASImportableAccount extends SDKHandle {
      */
     get userName(): string;
     set userName(value: string);
+    readonly $type: {
+        "s:22AuthenticationServices19ASImportableAccountV": true;
+    };
 }
 /**
  * struct ASImportableCollection
@@ -3134,14 +3409,14 @@ export declare class ASImportableCollection extends SDKHandle {
      * var lastModified: Date?
      * @availability iOS 26.0+
      */
-    get lastModified(): $SDK43;
-    set lastModified(value: $SDK43);
+    get lastModified(): $SDK44;
+    set lastModified(value: $SDK44);
     /**
      * var subcollections: [ASImportableCollection]
      * @availability iOS 26.0+
      */
-    get subcollections(): $SDK42;
-    set subcollections(value: $SDK42);
+    get subcollections(): $SDK43;
+    set subcollections(value: $SDK43);
     /**
      * var id: Data
      * @availability iOS 26.0+
@@ -3152,13 +3427,13 @@ export declare class ASImportableCollection extends SDKHandle {
      * init(id: Data, created: Date?, lastModified: Date?, title: String, subtitle: String? = nil, items: [ASImportableLinkedItem], subcollections: [ASImportableCollection] = [])
      * @availability iOS 26.0+
      */
-    static init(id: ArrayBuffer, created: $SDK43, lastModified: $SDK43, title: string, subtitle: (string) | null, items: $SDK44, subcollections?: $SDK42): ASImportableCollection;
+    static init(id: ArrayBuffer, created: $SDK44, lastModified: $SDK44, title: string, subtitle: (string) | null, items: $SDK45, subcollections?: $SDK43): ASImportableCollection;
     /**
      * var items: [ASImportableLinkedItem]
      * @availability iOS 26.0+
      */
-    get items(): $SDK44;
-    set items(value: $SDK44);
+    get items(): $SDK45;
+    set items(value: $SDK45);
     /**
      * var title: String
      * @availability iOS 26.0+
@@ -3169,20 +3444,26 @@ export declare class ASImportableCollection extends SDKHandle {
      * var created: Date?
      * @availability iOS 26.0+
      */
-    get created(): $SDK43;
-    set created(value: $SDK43);
+    get created(): $SDK44;
+    set created(value: $SDK44);
     /**
      * var subtitle: String?
      * @availability iOS 26.0+
      */
     get subtitle(): (string) | null;
     set subtitle(value: (string) | null);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCollectionV": true;
+    };
 }
 /**
  * enum ASImportableCredential
  * @availability iOS 26.0+
  */
 export declare class ASImportableCredential extends SDKHandle {
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO": true;
+    };
 }
 /**
  * struct Address
@@ -3193,43 +3474,46 @@ export declare class ASImportableCredential_Address extends SDKHandle {
      * init(streetAddress: ASImportableEditableField?, postalCode: ASImportableEditableField?, city: ASImportableEditableField?, territory: ASImportableEditableField?, country: ASImportableEditableField?, telephone: ASImportableEditableField?)
      * @availability iOS 26.0+
      */
-    static init(streetAddress?: $SDK45, postalCode?: $SDK45, city?: $SDK45, territory?: $SDK45, country?: $SDK45, telephone?: $SDK45): ASImportableCredential_Address;
+    static init(streetAddress?: $SDK46, postalCode?: $SDK46, city?: $SDK46, territory?: $SDK46, country?: $SDK46, telephone?: $SDK46): ASImportableCredential_Address;
     /**
      * var streetAddress: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get streetAddress(): $SDK45;
-    set streetAddress(value: $SDK45);
+    get streetAddress(): $SDK46;
+    set streetAddress(value: $SDK46);
     /**
      * var postalCode: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get postalCode(): $SDK45;
-    set postalCode(value: $SDK45);
+    get postalCode(): $SDK46;
+    set postalCode(value: $SDK46);
     /**
      * var city: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get city(): $SDK45;
-    set city(value: $SDK45);
+    get city(): $SDK46;
+    set city(value: $SDK46);
     /**
      * var country: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get country(): $SDK45;
-    set country(value: $SDK45);
+    get country(): $SDK46;
+    set country(value: $SDK46);
     /**
      * var telephone: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get telephone(): $SDK45;
-    set telephone(value: $SDK45);
+    get telephone(): $SDK46;
+    set telephone(value: $SDK46);
     /**
      * var territory: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get territory(): $SDK45;
-    set territory(value: $SDK45);
+    get territory(): $SDK46;
+    set territory(value: $SDK46);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO7AddressV": true;
+    };
 }
 /**
  * struct APIKey
@@ -3240,43 +3524,46 @@ export declare class ASImportableCredential_APIKey extends SDKHandle {
      * var expiryDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get expiryDate(): $SDK45;
-    set expiryDate(value: $SDK45);
+    get expiryDate(): $SDK46;
+    set expiryDate(value: $SDK46);
     /**
      * init(key: ASImportableEditableField?, userName: ASImportableEditableField?, keyType: ASImportableEditableField?, url: ASImportableEditableField?, validFrom: ASImportableEditableField?, expiryDate: ASImportableEditableField?)
      * @availability iOS 26.0+
      */
-    static init(key?: $SDK45, userName?: $SDK45, keyType?: $SDK45, url?: $SDK45, validFrom?: $SDK45, expiryDate?: $SDK45): ASImportableCredential_APIKey;
+    static init(key?: $SDK46, userName?: $SDK46, keyType?: $SDK46, url?: $SDK46, validFrom?: $SDK46, expiryDate?: $SDK46): ASImportableCredential_APIKey;
     /**
      * var key: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get key(): $SDK45;
-    set key(value: $SDK45);
+    get key(): $SDK46;
+    set key(value: $SDK46);
     /**
      * var url: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get url(): $SDK45;
-    set url(value: $SDK45);
+    get url(): $SDK46;
+    set url(value: $SDK46);
     /**
      * var keyType: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get keyType(): $SDK45;
-    set keyType(value: $SDK45);
+    get keyType(): $SDK46;
+    set keyType(value: $SDK46);
     /**
      * var userName: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get userName(): $SDK45;
-    set userName(value: $SDK45);
+    get userName(): $SDK46;
+    set userName(value: $SDK46);
     /**
      * var validFrom: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get validFrom(): $SDK45;
-    set validFrom(value: $SDK45);
+    get validFrom(): $SDK46;
+    set validFrom(value: $SDK46);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO6APIKeyV": true;
+    };
 }
 /**
  * struct BasicAuthentication
@@ -3287,19 +3574,22 @@ export declare class ASImportableCredential_BasicAuthentication extends SDKHandl
      * var password: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get password(): $SDK45;
-    set password(value: $SDK45);
+    get password(): $SDK46;
+    set password(value: $SDK46);
     /**
      * init(userName: ASImportableEditableField? = nil, password: ASImportableEditableField? = nil)
      * @availability iOS 26.0+
      */
-    static init(userName?: $SDK45, password?: $SDK45): ASImportableCredential_BasicAuthentication;
+    static init(userName?: $SDK46, password?: $SDK46): ASImportableCredential_BasicAuthentication;
     /**
      * var userName: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get userName(): $SDK45;
-    set userName(value: $SDK45);
+    get userName(): $SDK46;
+    set userName(value: $SDK46);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO05BasicA0V": true;
+    };
 }
 /**
  * struct CreditCard
@@ -3310,49 +3600,52 @@ export declare class ASImportableCredential_CreditCard extends SDKHandle {
      * var expiryDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get expiryDate(): $SDK45;
-    set expiryDate(value: $SDK45);
+    get expiryDate(): $SDK46;
+    set expiryDate(value: $SDK46);
     /**
      * var verificationNumber: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get verificationNumber(): $SDK45;
-    set verificationNumber(value: $SDK45);
+    get verificationNumber(): $SDK46;
+    set verificationNumber(value: $SDK46);
     /**
      * var pin: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get pin(): $SDK45;
-    set pin(value: $SDK45);
+    get pin(): $SDK46;
+    set pin(value: $SDK46);
     /**
      * init(number: ASImportableEditableField?, fullName: ASImportableEditableField?, cardType: ASImportableEditableField?, verificationNumber: ASImportableEditableField?, pin: ASImportableEditableField?, expiryDate: ASImportableEditableField?, validFrom: ASImportableEditableField?)
      * @availability iOS 26.0+
      */
-    static init(number?: $SDK45, fullName?: $SDK45, cardType?: $SDK45, verificationNumber?: $SDK45, pin?: $SDK45, expiryDate?: $SDK45, validFrom?: $SDK45): ASImportableCredential_CreditCard;
+    static init(number?: $SDK46, fullName?: $SDK46, cardType?: $SDK46, verificationNumber?: $SDK46, pin?: $SDK46, expiryDate?: $SDK46, validFrom?: $SDK46): ASImportableCredential_CreditCard;
     /**
      * var number: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get number(): $SDK45;
-    set number(value: $SDK45);
+    get number(): $SDK46;
+    set number(value: $SDK46);
     /**
      * var cardType: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get cardType(): $SDK45;
-    set cardType(value: $SDK45);
+    get cardType(): $SDK46;
+    set cardType(value: $SDK46);
     /**
      * var fullName: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get fullName(): $SDK45;
-    set fullName(value: $SDK45);
+    get fullName(): $SDK46;
+    set fullName(value: $SDK46);
     /**
      * var validFrom: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get validFrom(): $SDK45;
-    set validFrom(value: $SDK45);
+    get validFrom(): $SDK46;
+    set validFrom(value: $SDK46);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO10CreditCardV": true;
+    };
 }
 /**
  * struct CustomFields
@@ -3369,7 +3662,7 @@ export declare class ASImportableCredential_CustomFields extends SDKHandle {
      * init(id: Data? = nil, label: String? = nil, fields: [ASImportableEditableField])
      * @availability iOS 26.0+
      */
-    static init(id: (ArrayBuffer) | null, label: (string) | null, fields: $SDK46): ASImportableCredential_CustomFields;
+    static init(id: (ArrayBuffer) | null, label: (string) | null, fields: $SDK47): ASImportableCredential_CustomFields;
     /**
      * var label: String?
      * @availability iOS 26.0+
@@ -3380,8 +3673,11 @@ export declare class ASImportableCredential_CustomFields extends SDKHandle {
      * var fields: [ASImportableEditableField]
      * @availability iOS 26.0+
      */
-    get fields(): $SDK46;
-    set fields(value: $SDK46);
+    get fields(): $SDK47;
+    set fields(value: $SDK47);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO12CustomFieldsV": true;
+    };
 }
 /**
  * struct DriversLicense
@@ -3392,61 +3688,64 @@ export declare class ASImportableCredential_DriversLicense extends SDKHandle {
      * var expiryDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get expiryDate(): $SDK45;
-    set expiryDate(value: $SDK45);
+    get expiryDate(): $SDK46;
+    set expiryDate(value: $SDK46);
     /**
      * var licenseClass: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get licenseClass(): $SDK45;
-    set licenseClass(value: $SDK45);
+    get licenseClass(): $SDK46;
+    set licenseClass(value: $SDK46);
     /**
      * var licenseNumber: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get licenseNumber(): $SDK45;
-    set licenseNumber(value: $SDK45);
+    get licenseNumber(): $SDK46;
+    set licenseNumber(value: $SDK46);
     /**
      * var issuingAuthority: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get issuingAuthority(): $SDK45;
-    set issuingAuthority(value: $SDK45);
+    get issuingAuthority(): $SDK46;
+    set issuingAuthority(value: $SDK46);
     /**
      * var country: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get country(): $SDK45;
-    set country(value: $SDK45);
+    get country(): $SDK46;
+    set country(value: $SDK46);
     /**
      * init(fullName: ASImportableEditableField?, birthDate: ASImportableEditableField?, issueDate: ASImportableEditableField?, expiryDate: ASImportableEditableField?, issuingAuthority: ASImportableEditableField?, territory: ASImportableEditableField?, country: ASImportableEditableField?, licenseNumber: ASImportableEditableField?, licenseClass: ASImportableEditableField?)
      * @availability iOS 26.0+
      */
-    static init(fullName?: $SDK45, birthDate?: $SDK45, issueDate?: $SDK45, expiryDate?: $SDK45, issuingAuthority?: $SDK45, territory?: $SDK45, country?: $SDK45, licenseNumber?: $SDK45, licenseClass?: $SDK45): ASImportableCredential_DriversLicense;
+    static init(fullName?: $SDK46, birthDate?: $SDK46, issueDate?: $SDK46, expiryDate?: $SDK46, issuingAuthority?: $SDK46, territory?: $SDK46, country?: $SDK46, licenseNumber?: $SDK46, licenseClass?: $SDK46): ASImportableCredential_DriversLicense;
     /**
      * var fullName: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get fullName(): $SDK45;
-    set fullName(value: $SDK45);
+    get fullName(): $SDK46;
+    set fullName(value: $SDK46);
     /**
      * var birthDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get birthDate(): $SDK45;
-    set birthDate(value: $SDK45);
+    get birthDate(): $SDK46;
+    set birthDate(value: $SDK46);
     /**
      * var issueDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get issueDate(): $SDK45;
-    set issueDate(value: $SDK45);
+    get issueDate(): $SDK46;
+    set issueDate(value: $SDK46);
     /**
      * var territory: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get territory(): $SDK45;
-    set territory(value: $SDK45);
+    get territory(): $SDK46;
+    set territory(value: $SDK46);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO14DriversLicenseV": true;
+    };
 }
 /**
  * struct GeneratedPassword
@@ -3464,6 +3763,9 @@ export declare class ASImportableCredential_GeneratedPassword extends SDKHandle 
      */
     get password(): string;
     set password(value: string);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO17GeneratedPasswordV": true;
+    };
 }
 /**
  * struct IdentityDocument
@@ -3474,73 +3776,76 @@ export declare class ASImportableCredential_IdentityDocument extends SDKHandle {
      * var birthPlace: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get birthPlace(): $SDK45;
-    set birthPlace(value: $SDK45);
+    get birthPlace(): $SDK46;
+    set birthPlace(value: $SDK46);
     /**
      * var expiryDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get expiryDate(): $SDK45;
-    set expiryDate(value: $SDK45);
+    get expiryDate(): $SDK46;
+    set expiryDate(value: $SDK46);
     /**
      * var nationality: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get nationality(): $SDK45;
-    set nationality(value: $SDK45);
+    get nationality(): $SDK46;
+    set nationality(value: $SDK46);
     /**
      * var documentNumber: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get documentNumber(): $SDK45;
-    set documentNumber(value: $SDK45);
+    get documentNumber(): $SDK46;
+    set documentNumber(value: $SDK46);
     /**
      * init(issuingCountry: ASImportableEditableField?, documentNumber: ASImportableEditableField?, identificationNumber: ASImportableEditableField?, nationality: ASImportableEditableField?, fullName: ASImportableEditableField?, birthDate: ASImportableEditableField?, birthPlace: ASImportableEditableField?, sex: ASImportableEditableField?, issueDate: ASImportableEditableField?, expiryDate: ASImportableEditableField?, issuingAuthority: ASImportableEditableField?)
      * @availability iOS 26.0+
      */
-    static init(issuingCountry?: $SDK45, documentNumber?: $SDK45, identificationNumber?: $SDK45, nationality?: $SDK45, fullName?: $SDK45, birthDate?: $SDK45, birthPlace?: $SDK45, sex?: $SDK45, issueDate?: $SDK45, expiryDate?: $SDK45, issuingAuthority?: $SDK45): ASImportableCredential_IdentityDocument;
+    static init(issuingCountry?: $SDK46, documentNumber?: $SDK46, identificationNumber?: $SDK46, nationality?: $SDK46, fullName?: $SDK46, birthDate?: $SDK46, birthPlace?: $SDK46, sex?: $SDK46, issueDate?: $SDK46, expiryDate?: $SDK46, issuingAuthority?: $SDK46): ASImportableCredential_IdentityDocument;
     /**
      * var issuingCountry: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get issuingCountry(): $SDK45;
-    set issuingCountry(value: $SDK45);
+    get issuingCountry(): $SDK46;
+    set issuingCountry(value: $SDK46);
     /**
      * var issuingAuthority: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get issuingAuthority(): $SDK45;
-    set issuingAuthority(value: $SDK45);
+    get issuingAuthority(): $SDK46;
+    set issuingAuthority(value: $SDK46);
     /**
      * var identificationNumber: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get identificationNumber(): $SDK45;
-    set identificationNumber(value: $SDK45);
+    get identificationNumber(): $SDK46;
+    set identificationNumber(value: $SDK46);
     /**
      * var sex: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get sex(): $SDK45;
-    set sex(value: $SDK45);
+    get sex(): $SDK46;
+    set sex(value: $SDK46);
     /**
      * var fullName: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get fullName(): $SDK45;
-    set fullName(value: $SDK45);
+    get fullName(): $SDK46;
+    set fullName(value: $SDK46);
     /**
      * var birthDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get birthDate(): $SDK45;
-    set birthDate(value: $SDK45);
+    get birthDate(): $SDK46;
+    set birthDate(value: $SDK46);
     /**
      * var issueDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get issueDate(): $SDK45;
-    set issueDate(value: $SDK45);
+    get issueDate(): $SDK46;
+    set issueDate(value: $SDK46);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO16IdentityDocumentV": true;
+    };
 }
 /**
  * struct ItemReference
@@ -3558,6 +3863,9 @@ export declare class ASImportableCredential_ItemReference extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(reference: ASImportableLinkedItem): ASImportableCredential_ItemReference;
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO13ItemReferenceV": true;
+    };
 }
 /**
  * struct Note
@@ -3575,6 +3883,9 @@ export declare class ASImportableCredential_Note extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(content: ASImportableEditableField): ASImportableCredential_Note;
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO4NoteV": true;
+    };
 }
 /**
  * struct Passkey
@@ -3597,7 +3908,7 @@ export declare class ASImportableCredential_Passkey extends SDKHandle {
      * init(credentialID: Data, relyingPartyIdentifier: String, userName: String, userDisplayName: String, userHandle: Data, key: Data, fido2Extensions: ASImportableFIDO2Extensions?)
      * @availability iOS 26.4+
      */
-    static initCredentialIDRelyingPartyIdentifierUserNameUserDisplayNameUserHandleKeyFido2Extensions(credentialID: ArrayBuffer, relyingPartyIdentifier: string, userName: string, userDisplayName: string, userHandle: ArrayBuffer, key: ArrayBuffer, fido2Extensions?: $SDK47): ASImportableCredential_Passkey;
+    static initCredentialIDRelyingPartyIdentifierUserNameUserDisplayNameUserHandleKeyFido2Extensions(credentialID: ArrayBuffer, relyingPartyIdentifier: string, userName: string, userDisplayName: string, userHandle: ArrayBuffer, key: ArrayBuffer, fido2Extensions?: $SDK48): ASImportableCredential_Passkey;
     /**
      * init(credentialID: Data, relyingPartyIdentifier: String, userName: String, userDisplayName: String, userHandle: Data, key: Data)
      * @availability iOS 26.0+
@@ -3607,8 +3918,8 @@ export declare class ASImportableCredential_Passkey extends SDKHandle {
      * var fido2Extensions: ASImportableFIDO2Extensions?
      * @availability iOS 26.4+
      */
-    get fido2Extensions(): $SDK47;
-    set fido2Extensions(value: $SDK47);
+    get fido2Extensions(): $SDK48;
+    set fido2Extensions(value: $SDK48);
     /**
      * var userDisplayName: String
      * @availability iOS 26.0+
@@ -3633,6 +3944,9 @@ export declare class ASImportableCredential_Passkey extends SDKHandle {
      */
     get userName(): string;
     set userName(value: string);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO7PasskeyV": true;
+    };
 }
 /**
  * struct Passport
@@ -3643,79 +3957,82 @@ export declare class ASImportableCredential_Passport extends SDKHandle {
      * var birthPlace: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get birthPlace(): $SDK45;
-    set birthPlace(value: $SDK45);
+    get birthPlace(): $SDK46;
+    set birthPlace(value: $SDK46);
     /**
      * var expiryDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get expiryDate(): $SDK45;
-    set expiryDate(value: $SDK45);
+    get expiryDate(): $SDK46;
+    set expiryDate(value: $SDK46);
     /**
      * var nationality: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get nationality(): $SDK45;
-    set nationality(value: $SDK45);
+    get nationality(): $SDK46;
+    set nationality(value: $SDK46);
     /**
      * var passportType: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get passportType(): $SDK45;
-    set passportType(value: $SDK45);
+    get passportType(): $SDK46;
+    set passportType(value: $SDK46);
     /**
      * init(issuingCountry: ASImportableEditableField?, passportType: ASImportableEditableField?, passportNumber: ASImportableEditableField?, nationalIdentificationNumber: ASImportableEditableField?, nationality: ASImportableEditableField?, fullName: ASImportableEditableField?, birthDate: ASImportableEditableField?, birthPlace: ASImportableEditableField?, sex: ASImportableEditableField?, issueDate: ASImportableEditableField?, expiryDate: ASImportableEditableField?, issuingAuthority: ASImportableEditableField?)
      * @availability iOS 26.0+
      */
-    static init(issuingCountry?: $SDK45, passportType?: $SDK45, passportNumber?: $SDK45, nationalIdentificationNumber?: $SDK45, nationality?: $SDK45, fullName?: $SDK45, birthDate?: $SDK45, birthPlace?: $SDK45, sex?: $SDK45, issueDate?: $SDK45, expiryDate?: $SDK45, issuingAuthority?: $SDK45): ASImportableCredential_Passport;
+    static init(issuingCountry?: $SDK46, passportType?: $SDK46, passportNumber?: $SDK46, nationalIdentificationNumber?: $SDK46, nationality?: $SDK46, fullName?: $SDK46, birthDate?: $SDK46, birthPlace?: $SDK46, sex?: $SDK46, issueDate?: $SDK46, expiryDate?: $SDK46, issuingAuthority?: $SDK46): ASImportableCredential_Passport;
     /**
      * var issuingCountry: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get issuingCountry(): $SDK45;
-    set issuingCountry(value: $SDK45);
+    get issuingCountry(): $SDK46;
+    set issuingCountry(value: $SDK46);
     /**
      * var passportNumber: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get passportNumber(): $SDK45;
-    set passportNumber(value: $SDK45);
+    get passportNumber(): $SDK46;
+    set passportNumber(value: $SDK46);
     /**
      * var issuingAuthority: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get issuingAuthority(): $SDK45;
-    set issuingAuthority(value: $SDK45);
+    get issuingAuthority(): $SDK46;
+    set issuingAuthority(value: $SDK46);
     /**
      * var nationalIdentificationNumber: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get nationalIdentificationNumber(): $SDK45;
-    set nationalIdentificationNumber(value: $SDK45);
+    get nationalIdentificationNumber(): $SDK46;
+    set nationalIdentificationNumber(value: $SDK46);
     /**
      * var sex: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get sex(): $SDK45;
-    set sex(value: $SDK45);
+    get sex(): $SDK46;
+    set sex(value: $SDK46);
     /**
      * var fullName: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get fullName(): $SDK45;
-    set fullName(value: $SDK45);
+    get fullName(): $SDK46;
+    set fullName(value: $SDK46);
     /**
      * var birthDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get birthDate(): $SDK45;
-    set birthDate(value: $SDK45);
+    get birthDate(): $SDK46;
+    set birthDate(value: $SDK46);
     /**
      * var issueDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get issueDate(): $SDK45;
-    set issueDate(value: $SDK45);
+    get issueDate(): $SDK46;
+    set issueDate(value: $SDK46);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO8PassportV": true;
+    };
 }
 /**
  * struct PersonName
@@ -3726,61 +4043,64 @@ export declare class ASImportableCredential_PersonName extends SDKHandle {
      * var generation: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get generation(): $SDK45;
-    set generation(value: $SDK45);
+    get generation(): $SDK46;
+    set generation(value: $SDK46);
     /**
      * var credentials: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get credentials(): $SDK45;
-    set credentials(value: $SDK45);
+    get credentials(): $SDK46;
+    set credentials(value: $SDK46);
     /**
      * var givenInformal: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get givenInformal(): $SDK45;
-    set givenInformal(value: $SDK45);
+    get givenInformal(): $SDK46;
+    set givenInformal(value: $SDK46);
     /**
      * var surnamePrefix: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get surnamePrefix(): $SDK45;
-    set surnamePrefix(value: $SDK45);
+    get surnamePrefix(): $SDK46;
+    set surnamePrefix(value: $SDK46);
     /**
      * var given: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get given(): $SDK45;
-    set given(value: $SDK45);
+    get given(): $SDK46;
+    set given(value: $SDK46);
     /**
      * init(title: ASImportableEditableField?, given: ASImportableEditableField?, givenInformal: ASImportableEditableField?, given2: ASImportableEditableField?, surnamePrefix: ASImportableEditableField?, surname: ASImportableEditableField?, surname2: ASImportableEditableField?, credentials: ASImportableEditableField?, generation: ASImportableEditableField?)
      * @availability iOS 26.0+
      */
-    static init(title?: $SDK45, given?: $SDK45, givenInformal?: $SDK45, given2?: $SDK45, surnamePrefix?: $SDK45, surname?: $SDK45, surname2?: $SDK45, credentials?: $SDK45, generation?: $SDK45): ASImportableCredential_PersonName;
+    static init(title?: $SDK46, given?: $SDK46, givenInformal?: $SDK46, given2?: $SDK46, surnamePrefix?: $SDK46, surname?: $SDK46, surname2?: $SDK46, credentials?: $SDK46, generation?: $SDK46): ASImportableCredential_PersonName;
     /**
      * var title: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get title(): $SDK45;
-    set title(value: $SDK45);
+    get title(): $SDK46;
+    set title(value: $SDK46);
     /**
      * var given2: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get given2(): $SDK45;
-    set given2(value: $SDK45);
+    get given2(): $SDK46;
+    set given2(value: $SDK46);
     /**
      * var surname: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get surname(): $SDK45;
-    set surname(value: $SDK45);
+    get surname(): $SDK46;
+    set surname(value: $SDK46);
     /**
      * var surname2: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get surname2(): $SDK45;
-    set surname2(value: $SDK45);
+    get surname2(): $SDK46;
+    set surname2(value: $SDK46);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO10PersonNameV": true;
+    };
 }
 /**
  * struct SSHKey
@@ -3791,8 +4111,8 @@ export declare class ASImportableCredential_SSHKey extends SDKHandle {
      * var expiryDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get expiryDate(): $SDK45;
-    set expiryDate(value: $SDK45);
+    get expiryDate(): $SDK46;
+    set expiryDate(value: $SDK46);
     /**
      * var keyComment: String?
      * @availability iOS 26.0+
@@ -3809,25 +4129,28 @@ export declare class ASImportableCredential_SSHKey extends SDKHandle {
      * var creationDate: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get creationDate(): $SDK45;
-    set creationDate(value: $SDK45);
+    get creationDate(): $SDK46;
+    set creationDate(value: $SDK46);
     /**
      * var keyGenerationSource: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get keyGenerationSource(): $SDK45;
-    set keyGenerationSource(value: $SDK45);
+    get keyGenerationSource(): $SDK46;
+    set keyGenerationSource(value: $SDK46);
     /**
      * init(keyType: String, privateKey: Data, keyComment: String?, creationDate: ASImportableEditableField?, expiryDate: ASImportableEditableField?, keyGenerationSource: ASImportableEditableField?)
      * @availability iOS 26.0+
      */
-    static init(keyType: string, privateKey: ArrayBuffer, keyComment?: (string) | null, creationDate?: $SDK45, expiryDate?: $SDK45, keyGenerationSource?: $SDK45): ASImportableCredential_SSHKey;
+    static init(keyType: string, privateKey: ArrayBuffer, keyComment?: (string) | null, creationDate?: $SDK46, expiryDate?: $SDK46, keyGenerationSource?: $SDK46): ASImportableCredential_SSHKey;
     /**
      * var keyType: String
      * @availability iOS 26.0+
      */
     get keyType(): string;
     set keyType(value: string);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO6SSHKeyV": true;
+    };
 }
 /**
  * struct TOTP
@@ -3875,6 +4198,9 @@ export declare class ASImportableCredential_TOTP extends SDKHandle {
      */
     get algorithm(): ASImportableCredential_TOTP_Algorithm;
     set algorithm(value: ASImportableCredential_TOTP_Algorithm);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO4TOTPV": true;
+    };
 }
 /**
  * enum Algorithm
@@ -3907,31 +4233,34 @@ export declare class ASImportableCredential_WiFi extends SDKHandle {
      * var passphrase: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get passphrase(): $SDK45;
-    set passphrase(value: $SDK45);
+    get passphrase(): $SDK46;
+    set passphrase(value: $SDK46);
     /**
      * var networkSecurityType: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get networkSecurityType(): $SDK45;
-    set networkSecurityType(value: $SDK45);
+    get networkSecurityType(): $SDK46;
+    set networkSecurityType(value: $SDK46);
     /**
      * init(ssid: ASImportableEditableField?, networkSecurityType: ASImportableEditableField?, passphrase: ASImportableEditableField?, hidden: ASImportableEditableField? = nil)
      * @availability iOS 26.0+
      */
-    static init(ssid?: $SDK45, networkSecurityType?: $SDK45, passphrase?: $SDK45, hidden?: $SDK45): ASImportableCredential_WiFi;
+    static init(ssid?: $SDK46, networkSecurityType?: $SDK46, passphrase?: $SDK46, hidden?: $SDK46): ASImportableCredential_WiFi;
     /**
      * var ssid: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get ssid(): $SDK45;
-    set ssid(value: $SDK45);
+    get ssid(): $SDK46;
+    set ssid(value: $SDK46);
     /**
      * var hidden: ASImportableEditableField?
      * @availability iOS 26.0+
      */
-    get hidden(): $SDK45;
-    set hidden(value: $SDK45);
+    get hidden(): $SDK46;
+    set hidden(value: $SDK46);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableCredentialO4WiFiV": true;
+    };
 }
 /**
  * struct ASImportableCredentialScope
@@ -3942,19 +4271,22 @@ export declare class ASImportableCredentialScope extends SDKHandle {
      * var androidApps: [ASImportableCredentialScope.AndroidAppID]
      * @availability iOS 26.0+
      */
-    get androidApps(): $SDK48;
-    set androidApps(value: $SDK48);
+    get androidApps(): $SDK49;
+    set androidApps(value: $SDK49);
     /**
      * init(urls: [URL], androidApps: [ASImportableCredentialScope.AndroidAppID] = [])
      * @availability iOS 26.0+
      */
-    static init(urls: Array<string>, androidApps?: $SDK48): ASImportableCredentialScope;
+    static init(urls: Array<string>, androidApps?: $SDK49): ASImportableCredentialScope;
     /**
      * var urls: [URL]
      * @availability iOS 26.0+
      */
     get urls(): Array<string>;
     set urls(value: Array<string>);
+    readonly $type: {
+        "s:22AuthenticationServices27ASImportableCredentialScopeV": true;
+    };
 }
 /**
  * struct AndroidAppCertificationFingerprint
@@ -3978,6 +4310,9 @@ export declare class ASImportableCredentialScope_AndroidAppCertificationFingerpr
      */
     get hashAlgorithm(): string;
     set hashAlgorithm(value: string);
+    readonly $type: {
+        "s:22AuthenticationServices27ASImportableCredentialScopeV34AndroidAppCertificationFingerprintV": true;
+    };
 }
 /**
  * struct AndroidAppID
@@ -3988,7 +4323,7 @@ export declare class ASImportableCredentialScope_AndroidAppID extends SDKHandle 
      * init(bundleID: String, certificate: ASImportableCredentialScope.AndroidAppCertificationFingerprint?, name: String?)
      * @availability iOS 26.0+
      */
-    static init(bundleID: string, certificate?: $SDK49, name?: (string) | null): ASImportableCredentialScope_AndroidAppID;
+    static init(bundleID: string, certificate?: $SDK50, name?: (string) | null): ASImportableCredentialScope_AndroidAppID;
     /**
      * var bundleID: String
      * @availability iOS 26.0+
@@ -3999,14 +4334,17 @@ export declare class ASImportableCredentialScope_AndroidAppID extends SDKHandle 
      * var certificate: ASImportableCredentialScope.AndroidAppCertificationFingerprint?
      * @availability iOS 26.0+
      */
-    get certificate(): $SDK49;
-    set certificate(value: $SDK49);
+    get certificate(): $SDK50;
+    set certificate(value: $SDK50);
     /**
      * var name: String?
      * @availability iOS 26.0+
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $type: {
+        "s:22AuthenticationServices27ASImportableCredentialScopeV12AndroidAppIDV": true;
+    };
 }
 /**
  * struct ASImportableEditableField
@@ -4042,6 +4380,9 @@ export declare class ASImportableEditableField extends SDKHandle {
      */
     get fieldType(): ASImportableEditableField_FieldType;
     set fieldType(value: ASImportableEditableField_FieldType);
+    readonly $type: {
+        "s:22AuthenticationServices25ASImportableEditableFieldV": true;
+    };
 }
 /**
  * enum FieldType
@@ -4070,6 +4411,9 @@ export type ASImportableEditableField_FieldType_RawValue = string;
  * @availability iOS 26.4+
  */
 export declare class ASImportableExtension extends SDKHandle {
+    readonly $type: {
+        "s:22AuthenticationServices21ASImportableExtensionO": true;
+    };
 }
 /**
  * struct Shared
@@ -4080,13 +4424,16 @@ export declare class ASImportableExtension_Shared extends SDKHandle {
      * init(accessors: [ASImportableExtension.Shared.SharingAccessor])
      * @availability iOS 26.4+
      */
-    static init(accessors: $SDK50): ASImportableExtension_Shared;
+    static init(accessors: $SDK51): ASImportableExtension_Shared;
     /**
      * var accessors: [ASImportableExtension.Shared.SharingAccessor]
      * @availability iOS 26.4+
      */
-    get accessors(): $SDK50;
-    set accessors(value: $SDK50);
+    get accessors(): $SDK51;
+    set accessors(value: $SDK51);
+    readonly $type: {
+        "s:22AuthenticationServices21ASImportableExtensionO6SharedV": true;
+    };
 }
 /**
  * struct SharingAccessor
@@ -4097,8 +4444,8 @@ export declare class ASImportableExtension_Shared_SharingAccessor extends SDKHan
      * var permissions: [ASImportableExtension.Shared.SharingAccessor.Permission]
      * @availability iOS 26.4+
      */
-    get permissions(): $SDK51;
-    set permissions(value: $SDK51);
+    get permissions(): $SDK52;
+    set permissions(value: $SDK52);
     /**
      * var name: String
      * @availability iOS 26.4+
@@ -4109,7 +4456,7 @@ export declare class ASImportableExtension_Shared_SharingAccessor extends SDKHan
      * init(type: ASImportableExtension.Shared.SharingAccessor.AccessorType, accountID: Data, name: String, permissions: [ASImportableExtension.Shared.SharingAccessor.Permission])
      * @availability iOS 26.4+
      */
-    static init(type: ASImportableExtension_Shared_SharingAccessor_AccessorType, accountID: ArrayBuffer, name: string, permissions: $SDK51): ASImportableExtension_Shared_SharingAccessor;
+    static init(type: ASImportableExtension_Shared_SharingAccessor_AccessorType, accountID: ArrayBuffer, name: string, permissions: $SDK52): ASImportableExtension_Shared_SharingAccessor;
     /**
      * var type: ASImportableExtension.Shared.SharingAccessor.AccessorType
      * @availability iOS 26.4+
@@ -4122,6 +4469,9 @@ export declare class ASImportableExtension_Shared_SharingAccessor extends SDKHan
      */
     get accountID(): ArrayBuffer;
     set accountID(value: ArrayBuffer);
+    readonly $type: {
+        "s:22AuthenticationServices21ASImportableExtensionO6SharedV15SharingAccessorV": true;
+    };
 }
 /**
  * enum AccessorType
@@ -4176,19 +4526,22 @@ export declare class ASImportableFIDO2Extensions extends SDKHandle {
      * init(hmacCredentials: ASImportableFIDO2HMACCredential? = nil, largeBlob: ASImportableFIDO2LargeBlob? = nil)
      * @availability iOS 26.4+
      */
-    static init(hmacCredentials?: $SDK52, largeBlob?: $SDK53): ASImportableFIDO2Extensions;
+    static init(hmacCredentials?: $SDK53, largeBlob?: $SDK54): ASImportableFIDO2Extensions;
     /**
      * var hmacCredentials: ASImportableFIDO2HMACCredential?
      * @availability iOS 26.4+
      */
-    get hmacCredentials(): $SDK52;
-    set hmacCredentials(value: $SDK52);
+    get hmacCredentials(): $SDK53;
+    set hmacCredentials(value: $SDK53);
     /**
      * var largeBlob: ASImportableFIDO2LargeBlob?
      * @availability iOS 26.4+
      */
-    get largeBlob(): $SDK53;
-    set largeBlob(value: $SDK53);
+    get largeBlob(): $SDK54;
+    set largeBlob(value: $SDK54);
+    readonly $type: {
+        "s:22AuthenticationServices27ASImportableFIDO2ExtensionsV": true;
+    };
 }
 /**
  * struct ASImportableFIDO2HMACCredential
@@ -4218,6 +4571,9 @@ export declare class ASImportableFIDO2HMACCredential extends SDKHandle {
      */
     get algorithm(): ASImportableFIDO2HMACCredential_Algorithm;
     set algorithm(value: ASImportableFIDO2HMACCredential_Algorithm);
+    readonly $type: {
+        "s:22AuthenticationServices31ASImportableFIDO2HMACCredentialV": true;
+    };
 }
 /**
  * enum Algorithm
@@ -4263,6 +4619,9 @@ export declare class ASImportableFIDO2LargeBlob extends SDKHandle {
      */
     get data(): ArrayBuffer;
     set data(value: ArrayBuffer);
+    readonly $type: {
+        "s:22AuthenticationServices26ASImportableFIDO2LargeBlobV": true;
+    };
 }
 /**
  * struct ASImportableItem
@@ -4273,20 +4632,20 @@ export declare class ASImportableItem extends SDKHandle {
      * var extensions: [ASImportableExtension]
      * @availability iOS 26.4+
      */
-    get extensions(): $SDK54;
-    set extensions(value: $SDK54);
+    get extensions(): $SDK55;
+    set extensions(value: $SDK55);
     /**
      * var credentials: [ASImportableCredential]
      * @availability iOS 26.0+
      */
-    get credentials(): $SDK55;
-    set credentials(value: $SDK55);
+    get credentials(): $SDK56;
+    set credentials(value: $SDK56);
     /**
      * var lastModified: Date?
      * @availability iOS 26.0+
      */
-    get lastModified(): $SDK43;
-    set lastModified(value: $SDK43);
+    get lastModified(): $SDK44;
+    set lastModified(value: $SDK44);
     /**
      * var id: Data
      * @availability iOS 26.0+
@@ -4297,17 +4656,17 @@ export declare class ASImportableItem extends SDKHandle {
      * init(id: Data, title: String, subtitle: String? = nil, favorite: Bool = false, scope: ASImportableCredentialScope? = nil, credentials: [ASImportableCredential], tags: [String] = [])
      * @availability iOS 26.1+
      */
-    static initIdTitleSubtitleFavoriteScopeCredentialsTags(id: ArrayBuffer, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK56, credentials: $SDK55, tags?: Array<string>): ASImportableItem;
+    static initIdTitleSubtitleFavoriteScopeCredentialsTags(id: ArrayBuffer, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK57, credentials: $SDK56, tags?: Array<string>): ASImportableItem;
     /**
      * init(id: Data, created: Date? = nil, lastModified: Date? = nil, title: String, subtitle: String? = nil, favorite: Bool = false, scope: ASImportableCredentialScope? = nil, credentials: [ASImportableCredential], tags: [String] = [], extensions: [ASImportableExtension] = [])
      * @availability iOS 26.4+
      */
-    static initIdCreatedLastModifiedTitleSubtitleFavoriteScopeCredentialsTagsExtensions(id: ArrayBuffer, created: $SDK43, lastModified: $SDK43, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK56, credentials: $SDK55, tags?: Array<string>, extensions?: $SDK54): ASImportableItem;
+    static initIdCreatedLastModifiedTitleSubtitleFavoriteScopeCredentialsTagsExtensions(id: ArrayBuffer, created: $SDK44, lastModified: $SDK44, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK57, credentials: $SDK56, tags?: Array<string>, extensions?: $SDK55): ASImportableItem;
     /**
      * init(id: Data, created: Date, lastModified: Date, title: String, subtitle: String? = nil, favorite: Bool = false, scope: ASImportableCredentialScope? = nil, credentials: [ASImportableCredential], tags: [String] = [])
      * @availability iOS 26.0+
      */
-    static initIdCreatedLastModifiedTitleSubtitleFavoriteScopeCredentialsTags(id: ArrayBuffer, created: globalThis.Date, lastModified: globalThis.Date, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK56, credentials: $SDK55, tags?: Array<string>): ASImportableItem;
+    static initIdCreatedLastModifiedTitleSubtitleFavoriteScopeCredentialsTags(id: ArrayBuffer, created: globalThis.Date, lastModified: globalThis.Date, title: string, subtitle: (string) | null, favorite: boolean, scope: $SDK57, credentials: $SDK56, tags?: Array<string>): ASImportableItem;
     /**
      * var tags: [String]
      * @availability iOS 26.0+
@@ -4318,8 +4677,8 @@ export declare class ASImportableItem extends SDKHandle {
      * var scope: ASImportableCredentialScope?
      * @availability iOS 26.0+
      */
-    get scope(): $SDK56;
-    set scope(value: $SDK56);
+    get scope(): $SDK57;
+    set scope(value: $SDK57);
     /**
      * var title: String
      * @availability iOS 26.0+
@@ -4330,8 +4689,8 @@ export declare class ASImportableItem extends SDKHandle {
      * var created: Date?
      * @availability iOS 26.0+
      */
-    get created(): $SDK43;
-    set created(value: $SDK43);
+    get created(): $SDK44;
+    set created(value: $SDK44);
     /**
      * var favorite: Bool
      * @availability iOS 26.0+
@@ -4344,6 +4703,9 @@ export declare class ASImportableItem extends SDKHandle {
      */
     get subtitle(): (string) | null;
     set subtitle(value: (string) | null);
+    readonly $type: {
+        "s:22AuthenticationServices16ASImportableItemV": true;
+    };
 }
 /**
  * struct ASImportableLinkedItem
@@ -4367,6 +4729,9 @@ export declare class ASImportableLinkedItem extends SDKHandle {
      */
     get account(): (ArrayBuffer) | null;
     set account(value: (ArrayBuffer) | null);
+    readonly $type: {
+        "s:22AuthenticationServices22ASImportableLinkedItemV": true;
+    };
 }
 /**
  * class ASOneTimeCodeCredential
@@ -4383,6 +4748,10 @@ export declare class ASOneTimeCodeCredential extends SDKHandle {
      * @availability iOS 18.0+
      */
     get code(): string;
+    readonly $type: {
+        "c:objc(cs)ASOneTimeCodeCredential": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "code": true;
     };
@@ -4402,6 +4771,10 @@ export declare class ASOneTimeCodeCredentialIdentity extends SDKHandle {
      * @availability iOS 18.0+
      */
     get label(): string;
+    readonly $type: {
+        "c:objc(cs)ASOneTimeCodeCredentialIdentity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "label": true;
     };
@@ -4416,14 +4789,16 @@ export declare class ASOneTimeCodeCredentialRequest extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(credentialIdentity: ASOneTimeCodeCredentialIdentity): ASOneTimeCodeCredentialRequest;
+    readonly $type: {
+        "c:objc(cs)ASOneTimeCodeCredentialRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ASPasskeyAssertionCredential
  * @availability iOS 17.0+
  */
 export declare class ASPasskeyAssertionCredential extends SDKHandle {
-    /** init() */
-    static init(): ASPasskeyAssertionCredential;
     /**
      * init(userHandle: Data, relyingParty: String, signature: Data, clientDataHash: Data, authenticatorData: Data, credentialID: Data)
      * @availability iOS 17.0+
@@ -4463,13 +4838,17 @@ export declare class ASPasskeyAssertionCredential extends SDKHandle {
      * convenience init(userHandle: Data, relyingParty: String, signature: Data, clientDataHash: Data, authenticatorData: Data, credentialID: Data, extensionOutput: ASPasskeyAssertionCredentialExtensionOutput?)
      * @availability iOS 18.0+
      */
-    static initUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialIDExtensionOutput(userHandle: ArrayBuffer, relyingParty: string, signature: ArrayBuffer, clientDataHash: ArrayBuffer, authenticatorData: ArrayBuffer, credentialID: ArrayBuffer, extensionOutput?: $SDK57): ASPasskeyAssertionCredential;
+    static initUserHandleRelyingPartySignatureClientDataHashAuthenticatorDataCredentialIDExtensionOutput(userHandle: ArrayBuffer, relyingParty: string, signature: ArrayBuffer, clientDataHash: ArrayBuffer, authenticatorData: ArrayBuffer, credentialID: ArrayBuffer, extensionOutput?: $SDK58): ASPasskeyAssertionCredential;
     /**
      * var extensionOutput: ASPasskeyAssertionCredentialExtensionOutput? { get set }
      * @availability iOS 18.0+
      */
-    get extensionOutput(): $SDK57;
-    set extensionOutput(value: $SDK57);
+    get extensionOutput(): $SDK58;
+    set extensionOutput(value: $SDK58);
+    readonly $type: {
+        "c:objc(cs)ASPasskeyAssertionCredential": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "authenticatorData": true;
         "clientDataHash": true;
@@ -4488,17 +4867,20 @@ export declare class ASPasskeyAssertionCredentialExtensionInput extends SDKHandl
      * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionInput? { get }
      * @availability iOS 18.0+
      */
-    get prf(): $SDK13;
+    get prf(): $SDK14;
     /**
      * init(largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput? = nil, prf: ASAuthorizationPublicKeyCredentialPRFAssertionInput? = nil)
      * @availability iOS 18.0+
      */
-    static init(largeBlob?: $SDK14, prf?: $SDK13): ASPasskeyAssertionCredentialExtensionInput;
+    static init(largeBlob?: $SDK15, prf?: $SDK14): ASPasskeyAssertionCredentialExtensionInput;
     /**
      * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput? { get }
      * @availability iOS 18.0+
      */
-    get largeBlob(): $SDK14;
+    get largeBlob(): $SDK15;
+    readonly $type: {
+        "s:22AuthenticationServices42ASPasskeyAssertionCredentialExtensionInputV": true;
+    };
 }
 /**
  * struct ASPasskeyAssertionCredentialExtensionOutput
@@ -4509,23 +4891,29 @@ export declare class ASPasskeyAssertionCredentialExtensionOutput extends SDKHand
      * var prf: ASAuthorizationPublicKeyCredentialPRFAssertionOutput? { get }
      * @availability iOS 18.0+
      */
-    get prf(): $SDK10;
+    get prf(): $SDK11;
     /**
      * init(largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput? = nil, prf: ASAuthorizationPublicKeyCredentialPRFAssertionOutput? = nil)
      * @availability iOS 18.0+
      */
-    static init(largeBlob?: $SDK11, prf?: $SDK10): ASPasskeyAssertionCredentialExtensionOutput;
+    static init(largeBlob?: $SDK12, prf?: $SDK11): ASPasskeyAssertionCredentialExtensionOutput;
     /**
      * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobAssertionOutput? { get }
      * @availability iOS 18.0+
      */
-    get largeBlob(): $SDK11;
+    get largeBlob(): $SDK12;
+    readonly $type: {
+        "s:22AuthenticationServices43ASPasskeyAssertionCredentialExtensionOutputV": true;
+    };
 }
 /**
  * enum ASPasskeyCredentialExtensionInput
  * @availability iOS 18.0+
  */
 export declare class ASPasskeyCredentialExtensionInput extends SDKHandle {
+    readonly $type: {
+        "s:22AuthenticationServices33ASPasskeyCredentialExtensionInputO": true;
+    };
 }
 /**
  * class ASPasskeyCredentialIdentity
@@ -4573,6 +4961,10 @@ export declare class ASPasskeyCredentialIdentity extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initRelyingPartyIdentifierUserNameCredentialIDUserHandleRecordIdentifier15118(relyingPartyIdentifier: string, userName: string, credentialID: ArrayBuffer, userHandle: ArrayBuffer, recordIdentifier?: (string) | null): ASPasskeyCredentialIdentity;
+    readonly $type: {
+        "c:objc(cs)ASPasskeyCredentialIdentity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credentialID": true;
         "rank": true;
@@ -4617,22 +5009,26 @@ export declare class ASPasskeyCredentialRequest extends SDKHandle {
      * convenience init(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: Data, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: [ASCOSEAlgorithmIdentifier], extensionInput: ASPasskeyRegistrationCredentialExtensionInput?)
      * @availability iOS 18.0+
      */
-    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK60, extensionInput?: (ASPasskeyRegistrationCredentialExtensionInput) | null): ASPasskeyCredentialRequest;
+    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK61, extensionInput?: (ASPasskeyRegistrationCredentialExtensionInput) | null): ASPasskeyCredentialRequest;
     /**
      * convenience init(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: Data, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: [ASCOSEAlgorithmIdentifier], extensionInput: ASPasskeyAssertionCredentialExtensionInput?)
      * @availability iOS 18.0+
      */
-    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput55448(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK60, extensionInput?: $SDK62): ASPasskeyCredentialRequest;
+    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithmsExtensionInput55448(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK61, extensionInput?: $SDK63): ASPasskeyCredentialRequest;
     /**
      * convenience init(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: Data, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: [ASCOSEAlgorithmIdentifier])
      * @availability iOS 17.0+
      */
-    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithms89961(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK60): ASPasskeyCredentialRequest;
+    static initCredentialIdentityClientDataHashUserVerificationPreferenceSupportedAlgorithms89961(credentialIdentity: ASPasskeyCredentialIdentity, clientDataHash: ArrayBuffer, userVerificationPreference: ASAuthorizationPublicKeyCredentialUserVerificationPreference, supportedAlgorithms: $SDK61): ASPasskeyCredentialRequest;
     /**
      * var supportedAlgorithms: [ASCOSEAlgorithmIdentifier] { get }
      * @availability iOS 17.0+
      */
-    get supportedAlgorithms(): $SDK60;
+    get supportedAlgorithms(): $SDK61;
+    readonly $type: {
+        "c:objc(cs)ASPasskeyCredentialRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "clientDataHash": true;
         "excludedCredentials": true;
@@ -4668,7 +5064,11 @@ export declare class ASPasskeyCredentialRequestParameters extends SDKHandle {
      * var extensionInput: ASPasskeyAssertionCredentialExtensionInput? { get }
      * @availability iOS 18.0+
      */
-    get extensionInput(): $SDK62;
+    get extensionInput(): $SDK63;
+    readonly $type: {
+        "c:objc(cs)ASPasskeyCredentialRequestParameters": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "allowedCredentials": true;
         "clientDataHash": true;
@@ -4681,8 +5081,6 @@ export declare class ASPasskeyCredentialRequestParameters extends SDKHandle {
  * @availability iOS 17.0+
  */
 export declare class ASPasskeyRegistrationCredential extends SDKHandle {
-    /** init() */
-    static init(): ASPasskeyRegistrationCredential;
     /**
      * init(relyingParty: String, clientDataHash: Data, credentialID: Data, attestationObject: Data)
      * @availability iOS 17.0+
@@ -4712,13 +5110,17 @@ export declare class ASPasskeyRegistrationCredential extends SDKHandle {
      * convenience init(relyingParty: String, clientDataHash: Data, credentialID: Data, attestationObject: Data, extensionOutput: ASPasskeyRegistrationCredentialExtensionOutput?)
      * @availability iOS 18.0+
      */
-    static initRelyingPartyClientDataHashCredentialIDAttestationObjectExtensionOutput(relyingParty: string, clientDataHash: ArrayBuffer, credentialID: ArrayBuffer, attestationObject: ArrayBuffer, extensionOutput?: $SDK63): ASPasskeyRegistrationCredential;
+    static initRelyingPartyClientDataHashCredentialIDAttestationObjectExtensionOutput(relyingParty: string, clientDataHash: ArrayBuffer, credentialID: ArrayBuffer, attestationObject: ArrayBuffer, extensionOutput?: $SDK64): ASPasskeyRegistrationCredential;
     /**
      * var extensionOutput: ASPasskeyRegistrationCredentialExtensionOutput? { get set }
      * @availability iOS 18.0+
      */
-    get extensionOutput(): $SDK63;
-    set extensionOutput(value: $SDK63);
+    get extensionOutput(): $SDK64;
+    set extensionOutput(value: $SDK64);
+    readonly $type: {
+        "c:objc(cs)ASPasskeyRegistrationCredential": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "attestationObject": true;
         "clientDataHash": true;
@@ -4735,12 +5137,15 @@ export declare class ASPasskeyRegistrationCredentialExtensionInput extends SDKHa
      * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationInput? { get }
      * @availability iOS 18.0+
      */
-    get prf(): $SDK17;
+    get prf(): $SDK18;
     /**
      * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationInput? { get }
      * @availability iOS 18.0+
      */
-    get largeBlob(): $SDK18;
+    get largeBlob(): $SDK19;
+    readonly $type: {
+        "s:22AuthenticationServices45ASPasskeyRegistrationCredentialExtensionInputV": true;
+    };
 }
 /**
  * struct ASPasskeyRegistrationCredentialExtensionOutput
@@ -4751,30 +5156,31 @@ export declare class ASPasskeyRegistrationCredentialExtensionOutput extends SDKH
      * var prf: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput? { get }
      * @availability iOS 18.0+
      */
-    get prf(): $SDK15;
+    get prf(): $SDK16;
     /**
      * init(largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput? = nil, prf: ASAuthorizationPublicKeyCredentialPRFRegistrationOutput? = nil)
      * @availability iOS 18.0+
      */
-    static init(largeBlob?: $SDK16, prf?: $SDK15): ASPasskeyRegistrationCredentialExtensionOutput;
+    static init(largeBlob?: $SDK17, prf?: $SDK16): ASPasskeyRegistrationCredentialExtensionOutput;
     /**
      * var largeBlob: ASAuthorizationPublicKeyCredentialLargeBlobRegistrationOutput? { get }
      * @availability iOS 18.0+
      */
-    get largeBlob(): $SDK16;
+    get largeBlob(): $SDK17;
+    readonly $type: {
+        "s:22AuthenticationServices46ASPasskeyRegistrationCredentialExtensionOutputV": true;
+    };
 }
 /**
  * class ASPasswordCredential
  * @availability iOS 12.0+
  */
 export declare class ASPasswordCredential extends SDKHandle {
-    /** init() */
-    static init(): ASPasswordCredential;
     /**
      * init(user: String, password: String)
      * @availability iOS 12.0+
      */
-    static initUserPassword(user: string, password: string): ASPasswordCredential;
+    static init(user: string, password: string): ASPasswordCredential;
     /**
      * var password: String { get }
      * @availability iOS 12.0+
@@ -4785,6 +5191,10 @@ export declare class ASPasswordCredential extends SDKHandle {
      * @availability iOS 12.0+
      */
     get user(): string;
+    readonly $type: {
+        "c:objc(cs)ASPasswordCredential": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "password": true;
         "user": true;
@@ -4821,6 +5231,10 @@ export declare class ASPasswordCredentialIdentity extends SDKHandle {
      * @availability iOS 12.0+
      */
     get user(): string;
+    readonly $type: {
+        "c:objc(cs)ASPasswordCredentialIdentity": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "rank": true;
         "recordIdentifier": true;
@@ -4838,6 +5252,10 @@ export declare class ASPasswordCredentialRequest extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(credentialIdentity: ASPasswordCredentialIdentity): ASPasswordCredentialRequest;
+    readonly $type: {
+        "c:objc(cs)ASPasswordCredentialRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct ASPhoneNumberIdentifier
@@ -4850,6 +5268,9 @@ export declare class ASPhoneNumberIdentifier extends SDKHandle {
      */
     get value(): string;
     set value(value: string);
+    readonly $type: {
+        "s:22AuthenticationServices23ASPhoneNumberIdentifierV": true;
+    };
 }
 /** typealias ASPresentationAnchor = UIWindow */
 export type ASPresentationAnchor = _UIKit_UIWindow;
@@ -4860,7 +5281,7 @@ export type ASPresentationAnchor = _UIKit_UIWindow;
 export interface ASPublicKeyCredential {
     "encodeWith"?: (arg0: _Foundation_NSCoder) => void;
     "initCoder"?: (arg0: _Foundation_NSCoder) => void;
-    "copyWith"?: (arg0: (unknown) | null) => unknown;
+    "copyWith"?: (arg0: $SDK10) => unknown;
 }
 /**
  * struct ASPublicKeyCredentialClientData
@@ -4871,8 +5292,8 @@ export declare class ASPublicKeyCredentialClientData extends SDKHandle {
      * var crossOrigin: ASPublicKeyCredentialClientData.CrossOriginValue?
      * @availability iOS 17.4+
      */
-    get crossOrigin(): $SDK64;
-    set crossOrigin(value: $SDK64);
+    get crossOrigin(): $SDK65;
+    set crossOrigin(value: $SDK65);
     /**
      * var origin: String
      * @availability iOS 17.4+
@@ -4889,13 +5310,16 @@ export declare class ASPublicKeyCredentialClientData extends SDKHandle {
      * init(challenge: Data, origin: String, topOrigin: String? = nil, crossOrigin: ASPublicKeyCredentialClientData.CrossOriginValue? = nil)
      * @availability iOS 17.4+
      */
-    static init(challenge: ArrayBuffer, origin: string, topOrigin?: (string) | null, crossOrigin?: $SDK64): ASPublicKeyCredentialClientData;
+    static init(challenge: ArrayBuffer, origin: string, topOrigin?: (string) | null, crossOrigin?: $SDK65): ASPublicKeyCredentialClientData;
     /**
      * var topOrigin: String?
      * @availability iOS 17.4+
      */
     get topOrigin(): (string) | null;
     set topOrigin(value: (string) | null);
+    readonly $type: {
+        "s:22AuthenticationServices31ASPublicKeyCredentialClientDataV": true;
+    };
 }
 /**
  * enum CrossOriginValue
@@ -4928,7 +5352,7 @@ export declare class ASSavePasswordRequest extends SDKHandle {
      * init(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, sessionID: String, event: ASSavePasswordRequest.Event, passwordKind: ASGeneratedPassword.Kind?)
      * @availability iOS 26.2+
      */
-    static initServiceIdentifierCredentialSessionIDEventPasswordKind(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, sessionID: string, event: ASSavePasswordRequest_Event, passwordKind?: $SDK65): ASSavePasswordRequest;
+    static initServiceIdentifierCredentialSessionIDEventPasswordKind(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, sessionID: string, event: ASSavePasswordRequest_Event, passwordKind?: $SDK66): ASSavePasswordRequest;
     /**
      * init(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: String?, sessionID: String, event: ASSavePasswordRequest.Event)
      * @availability iOS 26.2+
@@ -4938,7 +5362,7 @@ export declare class ASSavePasswordRequest extends SDKHandle {
      * init(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: String?, sessionID: String, event: ASSavePasswordRequest.Event, passwordKind: ASGeneratedPassword.Kind?)
      * @availability iOS 26.2+
      */
-    static initServiceIdentifierCredentialTitleSessionIDEventPasswordKind(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: (string) | null, sessionID: string, event: ASSavePasswordRequest_Event, passwordKind?: $SDK65): ASSavePasswordRequest;
+    static initServiceIdentifierCredentialTitleSessionIDEventPasswordKind(serviceIdentifier: ASCredentialServiceIdentifier, credential: ASPasswordCredential, title: (string) | null, sessionID: string, event: ASSavePasswordRequest_Event, passwordKind?: $SDK66): ASSavePasswordRequest;
     /**
      * var credential: ASPasswordCredential { get }
      * @availability iOS 26.2+
@@ -4953,7 +5377,7 @@ export declare class ASSavePasswordRequest extends SDKHandle {
      * var passwordKind: ASGeneratedPassword.Kind? { get }
      * @availability iOS 26.2+
      */
-    get passwordKind(): $SDK65;
+    get passwordKind(): $SDK66;
     /**
      * var serviceIdentifier: ASCredentialServiceIdentifier { get }
      * @availability iOS 26.2+
@@ -4969,6 +5393,10 @@ export declare class ASSavePasswordRequest extends SDKHandle {
      * @availability iOS 26.2+
      */
     get title(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)ASSavePasswordRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "credential": true;
         "event": true;
@@ -4999,17 +5427,21 @@ export declare class ASSettingsHelper extends SDKHandle {
      * class func openCredentialProviderAppSettings() async throws
      * @availability iOS 17.0+
      */
-    static openCredentialProviderAppSettings(completionHandler?: $SDK66): void;
+    static openCredentialProviderAppSettings(completionHandler?: $SDK67): void;
     /**
      * class func openVerificationCodeAppSettings() async throws
      * @availability iOS 17.0+
      */
-    static openVerificationCodeAppSettings(completionHandler?: $SDK66): void;
+    static openVerificationCodeAppSettings(completionHandler?: $SDK67): void;
     /**
      * class func requestToTurnOnCredentialProviderExtension() async -> Bool
      * @availability iOS 18.0+
      */
     static requestToTurnOnCredentialProviderExtension(completionHandler: ((arg0: boolean) => void)): void;
+    readonly $type: {
+        "c:objc(cs)ASSettingsHelper": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * enum ASUserAgeRange
@@ -5069,6 +5501,9 @@ export declare class ASVerificationCode extends SDKHandle {
      */
     get timestamp(): globalThis.Date;
     set timestamp(value: globalThis.Date);
+    readonly $type: {
+        "s:22AuthenticationServices18ASVerificationCodeV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -5100,13 +5535,13 @@ export declare class ASWebAuthenticationSession extends SDKHandle {
      * init(url URL: URL, callback: ASWebAuthenticationSession.Callback, completionHandler: @escaping ASWebAuthenticationSession.CompletionHandler)
      * @availability iOS 17.4+
      */
-    static initUrlCallbackCompletionHandler(URL: string, callback: ASWebAuthenticationSession_Callback, completionHandler: $SDK68): ASWebAuthenticationSession;
+    static initUrlCallbackCompletionHandler(URL: string, callback: ASWebAuthenticationSession_Callback, completionHandler: $SDK69): ASWebAuthenticationSession;
     /**
      * init(url URL: URL, callbackURLScheme: String?, completionHandler: @escaping ASWebAuthenticationSession.CompletionHandler)
      * @availability iOS 12.0+
      * @deprecated iOS 100000.0
      */
-    static initUrlCallbackURLSchemeCompletionHandler(URL: string, callbackURLScheme: (string) | null, completionHandler: $SDK68): ASWebAuthenticationSession;
+    static initUrlCallbackURLSchemeCompletionHandler(URL: string, callbackURLScheme: (string) | null, completionHandler: $SDK69): ASWebAuthenticationSession;
     /**
      * func start() -> Bool
      * @availability iOS 12.0+
@@ -5116,8 +5551,8 @@ export declare class ASWebAuthenticationSession extends SDKHandle {
      * var additionalHeaderFields: [String : String]? { get set }
      * @availability iOS 17.4+
      */
-    get additionalHeaderFields(): $SDK21;
-    set additionalHeaderFields(value: $SDK21);
+    get additionalHeaderFields(): $SDK22;
+    set additionalHeaderFields(value: $SDK22);
     /**
      * var canStart: Bool { get }
      * @availability iOS 13.4+
@@ -5135,6 +5570,10 @@ export declare class ASWebAuthenticationSession extends SDKHandle {
      */
     get presentationContextProvider(): (SDKHandle) | null;
     set presentationContextProvider(value: (SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)ASWebAuthenticationSession": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "additionalHeaderFields": true;
         "canStart": true;
@@ -5162,6 +5601,10 @@ export declare class ASWebAuthenticationSession_Callback extends SDKHandle {
      * @availability iOS 17.4+
      */
     matchesURL(url: string): boolean;
+    readonly $type: {
+        "c:objc(cs)ASWebAuthenticationSessionCallback": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /** typealias CompletionHandler = (URL?, (any Error)?) -> Void */
 export type ASWebAuthenticationSession_CompletionHandler = ((arg0: (string) | null, arg1: (NativeError) | null) => Promise<void>);
@@ -5190,6 +5633,9 @@ export declare class ASWebAuthenticationSessionError extends SDKHandle {
      * @availability iOS 13.0+
      */
     static get presentationContextNotProvided(): ASWebAuthenticationSessionError_Code;
+    readonly $type: {
+        "s:SC35ASWebAuthenticationSessionErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code

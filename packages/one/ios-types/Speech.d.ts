@@ -50,6 +50,9 @@ export declare class AnalysisContext extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): AnalysisContext;
+    readonly $type: {
+        "s:6Speech15AnalysisContextC": true;
+    };
 }
 /**
  * struct ContextualStringsTag
@@ -151,6 +154,9 @@ export declare class AnalyzerInput extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get buffer(): _AVFAudio_AVAudioPCMBuffer;
+    readonly $type: {
+        "s:6Speech13AnalyzerInputV": true;
+    };
 }
 /**
  * final class AnalyzerInputConverter
@@ -172,6 +178,9 @@ export declare class AnalyzerInputConverter extends SDKHandle {
      * @availability iOS 27.0+
      */
     convert(buffer: _AVFAudio_AVAudioBuffer, audioTime?: (_AVFAudio_AVAudioTime) | null): Array<AnalyzerInput>;
+    readonly $type: {
+        "s:6Speech22AnalyzerInputConverterC": true;
+    };
 }
 /**
  * final class AssetInputSequenceProvider
@@ -188,6 +197,9 @@ export declare class AssetInputSequenceProvider extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(asset: _AVFoundation_AVAsset, track: _AVFoundation_AVAssetTrack, analyzerFormat: _AVFAudio_AVAudioFormat, priority?: (SDKHandle) | null): AssetInputSequenceProvider;
+    readonly $type: {
+        "s:6Speech26AssetInputSequenceProviderC": true;
+    };
 }
 /**
  * @objc final class AssetInstallationRequest
@@ -204,6 +216,10 @@ export declare class AssetInstallationRequest extends SDKHandle {
      * @availability iOS 26.0+
      */
     downloadAndInstall(): Promise<void>;
+    readonly $type: {
+        "c:@M@Speech@objc(cs)AssetInstallationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * final class AssetInventory
@@ -230,6 +246,9 @@ export declare class AssetInventory extends SDKHandle {
      * @availability iOS 26.0+
      */
     static reserve(locale: _Foundation_Locale): Promise<boolean>;
+    readonly $type: {
+        "s:6Speech14AssetInventoryC": true;
+    };
 }
 /**
  * enum Status
@@ -242,6 +261,9 @@ export declare class AttributedString extends SDKHandle {
      * @availability iOS 26.0+
      */
     rangeOfAudioTimeRangeAttributes(timeRange: _CoreMedia_CMTimeRange): (SDKHandle) | null;
+    readonly $type: {
+        "s:10Foundation16AttributedStringV": true;
+    };
 }
 /**
  * struct SpeechAttributes
@@ -258,6 +280,9 @@ export declare class AttributeScopes_SpeechAttributes extends SDKHandle {
      * @availability iOS 26.0+
      */
     get transcriptionConfidence(): AttributeScopes_SpeechAttributes_ConfidenceAttribute;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO6SpeechE0D10AttributesV": true;
+    };
 }
 /**
  * struct ConfidenceAttribute
@@ -269,6 +294,9 @@ export declare class AttributeScopes_SpeechAttributes_ConfidenceAttribute extend
      * @availability iOS 26.0+
      */
     static get nameValue(): string;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO6SpeechE0D10AttributesV010ConfidenceB0V": true;
+    };
 }
 /**
  * typealias Value = Double
@@ -305,6 +333,9 @@ export declare class AttributeScopes_SpeechAttributes_TimeRangeAttribute extends
      * @availability iOS 26.0+
      */
     static encode(value: _CoreMedia_CMTimeRange, encoder: SDKHandle): void;
+    readonly $type: {
+        "s:10Foundation15AttributeScopesO6SpeechE0D10AttributesV09TimeRangeB0V": true;
+    };
 }
 /**
  * typealias Value = CMTimeRange
@@ -336,6 +367,9 @@ export declare class CaptureInputSequenceProvider extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(session: _AVFoundation_AVCaptureSession, analyzerFormat: _AVFAudio_AVAudioFormat, priority?: (SDKHandle) | null): CaptureInputSequenceProvider;
+    readonly $type: {
+        "s:6Speech28CaptureInputSequenceProviderC": true;
+    };
 }
 /**
  * protocol DataInsertable
@@ -393,6 +427,9 @@ export declare class DictationTranscriber extends SDKHandle {
      * @availability iOS 26.0+
      */
     get results(): $SDK6;
+    readonly $type: {
+        "s:6Speech20DictationTranscriberC": true;
+    };
 }
 /**
  * struct ContentHint
@@ -419,6 +456,9 @@ export declare class DictationTranscriber_ContentHint extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get shortForm(): DictationTranscriber_ContentHint;
+    readonly $type: {
+        "s:6Speech20DictationTranscriberC11ContentHintV": true;
+    };
 }
 /**
  * struct Preset
@@ -484,6 +524,9 @@ export declare class DictationTranscriber_Preset extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get phrase(): DictationTranscriber_Preset;
+    readonly $type: {
+        "s:6Speech20DictationTranscriberC6PresetV": true;
+    };
 }
 /**
  * enum ReportingOption
@@ -532,6 +575,9 @@ export declare class DictationTranscriber_Result extends SDKHandle {
      * @availability iOS 26.0+
      */
     get range(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "s:6Speech20DictationTranscriberC6ResultV": true;
+    };
 }
 /**
  * enum ResultAttributeOption
@@ -600,6 +646,10 @@ export declare class SFAcousticFeature extends SDKHandle {
      * @availability iOS 17.0+
      */
     get acousticFeatureValuePerFrame(): Array<number>;
+    readonly $type: {
+        "c:objc(cs)SFAcousticFeature": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "frameDuration": true;
     };
@@ -654,6 +704,9 @@ export declare class SFCustomLanguageModelData extends SDKHandle {
      * @availability iOS 17.0+
      */
     get version(): string;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC": true;
+    };
 }
 /**
  * struct CompoundTemplate
@@ -670,6 +723,9 @@ export declare class SFCustomLanguageModelData_CompoundTemplate extends SDKHandl
      * @availability iOS 17.0+
      */
     static init(components: $SDK15): SFCustomLanguageModelData_CompoundTemplate;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC16CompoundTemplateV": true;
+    };
 }
 /**
  * struct CustomPronunciation
@@ -701,6 +757,9 @@ export declare class SFCustomLanguageModelData_CustomPronunciation extends SDKHa
      * @availability iOS 17.0+
      */
     get phonemes(): Array<string>;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC19CustomPronunciationV": true;
+    };
 }
 /**
  * @resultBuilder struct DataInsertableBuilder
@@ -727,6 +786,9 @@ export declare class SFCustomLanguageModelData_DataInsertableBuilder extends SDK
      * @availability iOS 17.0+
      */
     static buildOptional(component?: (Implements<DataInsertable> | SDKHandle) | null): SDKHandle;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC0E17InsertableBuilderV": true;
+    };
 }
 /**
  * struct PhraseCount
@@ -758,6 +820,9 @@ export declare class SFCustomLanguageModelData_PhraseCount extends SDKHandle {
      * @availability iOS 17.0+
      */
     get phrase(): string;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC11PhraseCountV": true;
+    };
 }
 /**
  * class PhraseCountGenerator
@@ -779,6 +844,9 @@ export declare class SFCustomLanguageModelData_PhraseCountGenerator extends SDKH
      * @availability iOS 17.0+
      */
     static init(): SFCustomLanguageModelData_PhraseCountGenerator;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC20PhraseCountGeneratorC": true;
+    };
     readonly $element: SFCustomLanguageModelData_PhraseCount;
 }
 /**
@@ -801,6 +869,9 @@ export declare class SFCustomLanguageModelData_PhraseCountGenerator_Iterator ext
      * @availability iOS 17.0+
      */
     next(): Promise<$SDK19>;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC20PhraseCountGeneratorC8IteratorC": true;
+    };
 }
 /**
  * typealias Element = SFCustomLanguageModelData.PhraseCount
@@ -817,6 +888,9 @@ export declare class SFCustomLanguageModelData_PhraseCountsFromTemplates extends
      * @availability iOS 17.0+
      */
     insert(data: SFCustomLanguageModelData): void;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC25PhraseCountsFromTemplatesV": true;
+    };
 }
 /**
  * @resultBuilder struct TemplateInsertableBuilder
@@ -843,6 +917,9 @@ export declare class SFCustomLanguageModelData_TemplateInsertableBuilder extends
      * @availability iOS 17.0+
      */
     static buildOptional(component?: (Implements<TemplateInsertable> | SDKHandle) | null): SDKHandle;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC25TemplateInsertableBuilderV": true;
+    };
 }
 declare const SFCustomLanguageModelData_TemplatePhraseCountGenerator_base: Omit<typeof SFCustomLanguageModelData_PhraseCountGenerator, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SFCustomLanguageModelData_PhraseCountGenerator, "makeAsyncIterator" | "insert">);
 /**
@@ -870,6 +947,10 @@ export declare class SFCustomLanguageModelData_TemplatePhraseCountGenerator exte
      * @availability iOS 17.0+
      */
     static init(): SFCustomLanguageModelData_TemplatePhraseCountGenerator;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC28TemplatePhraseCountGeneratorC": true;
+        "s:6Speech25SFCustomLanguageModelDataC20PhraseCountGeneratorC": true;
+    };
 }
 declare const SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iterator_base: Omit<typeof SFCustomLanguageModelData_PhraseCountGenerator_Iterator, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SFCustomLanguageModelData_PhraseCountGenerator_Iterator, "next">);
 /**
@@ -887,6 +968,10 @@ export declare class SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iter
      * @availability iOS 17.0+
      */
     static init(templates: Array<SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template>, templateClasses: Record<string, Array<string>>): SFCustomLanguageModelData_TemplatePhraseCountGenerator_Iterator;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC28TemplatePhraseCountGeneratorC8IteratorC": true;
+        "s:6Speech25SFCustomLanguageModelDataC20PhraseCountGeneratorC8IteratorC": true;
+    };
 }
 /**
  * typealias Element = SFCustomLanguageModelData.PhraseCount
@@ -918,6 +1003,9 @@ export declare class SFCustomLanguageModelData_TemplatePhraseCountGenerator_Temp
      * @availability iOS 17.0+
      */
     static init(body: string, count: number): SFCustomLanguageModelData_TemplatePhraseCountGenerator_Template;
+    readonly $type: {
+        "s:6Speech25SFCustomLanguageModelDataC28TemplatePhraseCountGeneratorC0F0V": true;
+    };
 }
 /**
  * class SFSpeechRecognitionRequest
@@ -969,6 +1057,10 @@ export declare class SFSpeechRecognitionRequest extends SDKHandle {
      */
     get taskHint(): SFSpeechRecognitionTaskHint;
     set taskHint(value: SFSpeechRecognitionTaskHint);
+    readonly $type: {
+        "c:objc(cs)SFSpeechRecognitionRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addsPunctuation": true;
         "contextualStrings": true;
@@ -1007,6 +1099,11 @@ export declare class SFSpeechAudioBufferRecognitionRequest extends SFSpeechAudio
      * @availability iOS 10.0+
      */
     get nativeAudioFormat(): _AVFAudio_AVAudioFormat;
+    readonly $type: {
+        "c:objc(cs)SFSpeechAudioBufferRecognitionRequest": true;
+        "c:objc(cs)SFSpeechRecognitionRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addsPunctuation": true;
         "contextualStrings": true;
@@ -1058,6 +1155,9 @@ export declare class SFSpeechError extends SDKHandle {
      * @availability iOS 17.0+
      */
     static get timeout(): SFSpeechError_Code;
+    readonly $type: {
+        "s:SC17SFSpeechErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -1150,14 +1250,16 @@ export declare class SFSpeechLanguageModel extends SDKHandle {
     static prepareCustomLanguageModelForConfigurationIgnoresCacheCompletion(asset: string, configuration: SFSpeechLanguageModel_Configuration, ignoresCache: boolean, completion: $SDK25): void;
     /** init() */
     static init(): SFSpeechLanguageModel;
+    readonly $type: {
+        "c:objc(cs)SFSpeechLanguageModel": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class Configuration
  * @availability iOS 17.0+
  */
 export declare class SFSpeechLanguageModel_Configuration extends SDKHandle {
-    /** init() */
-    static init(): SFSpeechLanguageModel_Configuration;
     /**
      * init(languageModel: URL)
      * @availability iOS 17.0+
@@ -1188,6 +1290,10 @@ export declare class SFSpeechLanguageModel_Configuration extends SDKHandle {
      * @availability iOS 26.0+
      */
     get weight(): (_Foundation_NSNumber) | null;
+    readonly $type: {
+        "c:objc(cs)SFSpeechLanguageModelConfiguration": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "languageModel": true;
         "vocabulary": true;
@@ -1226,6 +1332,10 @@ export declare class SFSpeechRecognitionMetadata extends SDKHandle {
      * @availability iOS 14.5+
      */
     get voiceAnalytics(): (SFVoiceAnalytics) | null;
+    readonly $type: {
+        "c:objc(cs)SFSpeechRecognitionMetadata": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "averagePauseDuration": true;
         "speakingRate": true;
@@ -1261,6 +1371,10 @@ export declare class SFSpeechRecognitionResult extends SDKHandle {
      * @availability iOS 10.0+
      */
     get transcriptions(): Array<SFTranscription>;
+    readonly $type: {
+        "c:objc(cs)SFSpeechRecognitionResult": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bestTranscription": true;
         "isFinal": true;
@@ -1305,6 +1419,10 @@ export declare class SFSpeechRecognitionTask extends SDKHandle {
      * @availability iOS 10.0+
      */
     get state(): SFSpeechRecognitionTaskState;
+    readonly $type: {
+        "c:objc(cs)SFSpeechRecognitionTask": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isCancelled": true;
         "error": true;
@@ -1451,6 +1569,10 @@ export declare class SFSpeechRecognizer extends SDKHandle {
      */
     get supportsOnDeviceRecognition(): boolean;
     set supportsOnDeviceRecognition(value: boolean);
+    readonly $type: {
+        "c:objc(cs)SFSpeechRecognizer": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "isAvailable": true;
         "defaultTaskHint": true;
@@ -1499,6 +1621,11 @@ export declare class SFSpeechURLRecognitionRequest extends SFSpeechURLRecognitio
      * @availability iOS 10.0+
      */
     get url(): string;
+    readonly $type: {
+        "c:objc(cs)SFSpeechURLRecognitionRequest": true;
+        "c:objc(cs)SFSpeechRecognitionRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "addsPunctuation": true;
         "contextualStrings": true;
@@ -1539,6 +1666,10 @@ export declare class SFTranscription extends SDKHandle {
      * @deprecated iOS 14.5
      */
     get speakingRate(): number;
+    readonly $type: {
+        "c:objc(cs)SFTranscription": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "averagePauseDuration": true;
         "formattedString": true;
@@ -1589,6 +1720,10 @@ export declare class SFTranscriptionSegment extends SDKHandle {
      * @deprecated iOS 14.5
      */
     get voiceAnalytics(): (SFVoiceAnalytics) | null;
+    readonly $type: {
+        "c:objc(cs)SFTranscriptionSegment": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "alternativeSubstrings": true;
         "confidence": true;
@@ -1626,6 +1761,10 @@ export declare class SFVoiceAnalytics extends SDKHandle {
      * @availability iOS 13.0+
      */
     get voicing(): SFAcousticFeature;
+    readonly $type: {
+        "c:objc(cs)SFVoiceAnalytics": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "jitter": true;
         "pitch": true;
@@ -1698,6 +1837,9 @@ export declare class SpeechAnalyzer extends SDKHandle {
      * @availability iOS 26.0+
      */
     finalize(through?: $SDK2): Promise<void>;
+    readonly $type: {
+        "s:6Speech0A8AnalyzerC": true;
+    };
 }
 /**
  * struct Options
@@ -1729,6 +1871,9 @@ export declare class SpeechAnalyzer_Options extends SDKHandle {
      * @availability iOS 26.0+
      */
     get priority(): SDKHandle;
+    readonly $type: {
+        "s:6Speech0A8AnalyzerC7OptionsV": true;
+    };
 }
 /**
  * enum ModelRetention
@@ -1772,6 +1917,9 @@ export declare class SpeechDetector extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): SpeechDetector;
+    readonly $type: {
+        "s:6Speech0A8DetectorC": true;
+    };
 }
 /**
  * struct DetectionOptions
@@ -1788,6 +1936,9 @@ export declare class SpeechDetector_DetectionOptions extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(sensitivityLevel: SpeechDetector_SensitivityLevel): SpeechDetector_DetectionOptions;
+    readonly $type: {
+        "s:6Speech0A8DetectorC16DetectionOptionsV": true;
+    };
 }
 /**
  * struct Result
@@ -1814,6 +1965,9 @@ export declare class SpeechDetector_Result extends SDKHandle {
      * @availability iOS 26.0+
      */
     get range(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "s:6Speech0A8DetectorC6ResultV": true;
+    };
 }
 /**
  * typealias Results = some Sendable & AsyncSequence<SpeechDetector.Result, any Error>
@@ -1862,6 +2016,9 @@ export declare class SpeechModels extends SDKHandle {
      * @availability iOS 26.0+
      */
     static endRetention(): Promise<void>;
+    readonly $type: {
+        "s:6Speech0A6ModelsO": true;
+    };
 }
 /**
  * protocol SpeechModule : AnyObject, Sendable
@@ -1925,6 +2082,9 @@ export declare class SpeechTranscriber extends SDKHandle {
      * @availability iOS 26.0+
      */
     get results(): $SDK6;
+    readonly $type: {
+        "s:6Speech0A11TranscriberC": true;
+    };
 }
 /**
  * struct Preset
@@ -1979,6 +2139,9 @@ export declare class SpeechTranscriber_Preset extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get timeIndexedTranscriptionWithAlternatives(): SpeechTranscriber_Preset;
+    readonly $type: {
+        "s:6Speech0A11TranscriberC6PresetV": true;
+    };
 }
 /**
  * enum ReportingOption
@@ -2027,6 +2190,9 @@ export declare class SpeechTranscriber_Result extends SDKHandle {
      * @availability iOS 26.0+
      */
     get range(): _CoreMedia_CMTimeRange;
+    readonly $type: {
+        "s:6Speech0A11TranscriberC6ResultV": true;
+    };
 }
 /**
  * enum ResultAttributeOption

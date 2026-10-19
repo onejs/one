@@ -64,6 +64,9 @@ export declare class AppExtensionIdentity extends SDKHandle {
      * @availability iOS 26.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA8IdentityV": true;
+    };
 }
 /**
  * typealias ID = String
@@ -85,6 +88,9 @@ export declare class AppExtensionPoint extends SDKHandle {
      * @availability iOS 26.0+
      */
     get id(): string;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV": true;
+    };
 }
 /**
  * protocol Attribute
@@ -107,18 +113,27 @@ export declare class AppExtensionPoint_Bind extends SDKHandle {
      * @availability iOS 26.2+
      */
     static buildBlock30908(identifier: AppExtensionPoint_Identifier, capabilities: AppExtensionPoint_Capabilities): AppExtensionPoint;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV4BindV": true;
+    };
 }
 /**
  * struct Capabilities
  * @availability iOS 26.2+
  */
 export declare class AppExtensionPoint_Capabilities extends SDKHandle {
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV12CapabilitiesV": true;
+    };
 }
 /**
  * @resultBuilder struct Builder
  * @availability iOS 26.2+
  */
 export declare class AppExtensionPoint_Capabilities_Builder extends SDKHandle {
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV12CapabilitiesV7BuilderV": true;
+    };
 }
 /**
  * protocol Capability : Identifiable where Self.ID == String
@@ -131,6 +146,9 @@ export interface AppExtensionPoint_Capability {
  * @availability iOS 26.0+
  */
 export declare class AppExtensionPoint_Definition extends SDKHandle {
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV10DefinitionV": true;
+    };
 }
 /**
  * struct EnhancedSecurity
@@ -142,12 +160,18 @@ export declare class AppExtensionPoint_EnhancedSecurity extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(value?: boolean): AppExtensionPoint_EnhancedSecurity;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV16EnhancedSecurityV": true;
+    };
 }
 /**
  * enum Error
  * @availability iOS 26.0+
  */
 export declare class AppExtensionPoint_Error extends SDKHandle {
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV5ErrorO": true;
+    };
 }
 /**
  * typealias ID = String
@@ -169,6 +193,9 @@ export declare class AppExtensionPoint_Identifier extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(value: SDKHandle): AppExtensionPoint_Identifier;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV10IdentifierV": true;
+    };
 }
 /**
  * final class Monitor
@@ -205,6 +232,9 @@ export declare class AppExtensionPoint_Monitor extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): AppExtensionPoint_Monitor;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV7MonitorC": true;
+    };
     readonly $observable: {
         "identities": true;
         "state": true;
@@ -230,6 +260,9 @@ export declare class AppExtensionPoint_Monitor_State extends SDKHandle {
      * @availability iOS 26.0+
      */
     get unapprovedCount(): number;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV7MonitorC5StateV": true;
+    };
 }
 /**
  * struct Name
@@ -241,6 +274,9 @@ export declare class AppExtensionPoint_Name extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(value: SDKHandle): AppExtensionPoint_Name;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV4NameV": true;
+    };
 }
 /**
  * struct Scope
@@ -252,6 +288,9 @@ export declare class AppExtensionPoint_Scope extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(restriction?: AppExtensionPoint_Scope_Restriction): AppExtensionPoint_Scope;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV5ScopeV": true;
+    };
 }
 /**
  * enum Restriction
@@ -273,6 +312,9 @@ export declare class AppExtensionPoint_UserInterface extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(value?: boolean): AppExtensionPoint_UserInterface;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA5PointV13UserInterfaceV": true;
+    };
 }
 /**
  * struct AppExtensionProcess
@@ -304,6 +346,9 @@ export declare class AppExtensionProcess extends SDKHandle {
      * @availability iOS 26.0+
      */
     makeXPCConnection(): _Foundation_NSXPCConnection;
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA7ProcessV": true;
+    };
 }
 /**
  * struct Configuration
@@ -327,6 +372,9 @@ export declare class AppExtensionProcess_Configuration extends SDKHandle {
      */
     get onInterruption(): (() => Promise<void>);
     set onInterruption(value: (() => void));
+    readonly $type: {
+        "s:19ExtensionFoundation03AppA7ProcessV13ConfigurationV": true;
+    };
 }
 /**
  * @MainActor @preconcurrency struct ConnectionHandler
@@ -338,6 +386,9 @@ export declare class ConnectionHandler extends SDKHandle {
      * @availability iOS 26.0+
      */
     accept(connection: _Foundation_NSXPCConnection): Promise<boolean>;
+    readonly $type: {
+        "s:19ExtensionFoundation17ConnectionHandlerV": true;
+    };
 }
 /**
  * protocol ExtensionPointDefining

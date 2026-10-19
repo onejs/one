@@ -121,6 +121,9 @@ export declare class ManagedApp extends SDKHandle {
      * @availability iOS 17.2+
      */
     get languages(): Array<_Foundation_Locale_Language>;
+    readonly $type: {
+        "s:22ManagedAppDistribution0aB0V": true;
+    };
 }
 /**
  * typealias ID = String
@@ -152,6 +155,9 @@ export declare class ManagedApp_Platform extends SDKHandle {
      * @availability iOS 17.2+
      */
     static get visionOS(): ManagedApp_Platform;
+    readonly $type: {
+        "s:22ManagedAppDistribution0aB0V8PlatformV": true;
+    };
 }
 /**
  * enum ManagedAppDistributionError
@@ -220,6 +226,9 @@ export declare class ManagedAppLibrary extends SDKHandle {
      * @availability iOS 17.2+
      */
     static get currentDistributor(): ManagedAppLibrary;
+    readonly $type: {
+        "s:22ManagedAppDistribution0aB7LibraryC": true;
+    };
 }
 /**
  * struct ManagedApps
@@ -231,6 +240,9 @@ export declare class ManagedAppLibrary_ManagedApps extends SDKHandle {
      * @availability iOS 17.2+
      */
     makeAsyncIterator(): ManagedAppLibrary_ManagedApps_AsyncIterator;
+    readonly $type: {
+        "s:22ManagedAppDistribution0aB7LibraryC0A4AppsV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -248,6 +260,9 @@ export declare class ManagedAppLibrary_ManagedApps_AsyncIterator extends SDKHand
      * @availability iOS 17.2+
      */
     next(): Promise<(SDKHandle) | null>;
+    readonly $type: {
+        "s:22ManagedAppDistribution0aB7LibraryC0A4AppsV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = Result<[ManagedApp], ManagedAppDistributionError>
@@ -289,5 +304,8 @@ export declare class Platform extends SDKHandle {
      * @availability iOS 17.2+
      */
     static get visionOS(): Platform;
+    readonly $type: {
+        "s:22ManagedAppDistribution8PlatformV": true;
+    };
 }
 export {};

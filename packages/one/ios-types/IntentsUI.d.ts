@@ -30,6 +30,10 @@ export declare class INImage extends SDKHandle {
      * @availability iOS 11.0+
      */
     fetchUIImage(completion: ((arg0: (_UIKit_UIImage) | null) => void)): void;
+    readonly $type: {
+        "c:objc(cs)INImage": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class INUIAddVoiceShortcutButton
@@ -69,6 +73,14 @@ export declare class INUIAddVoiceShortcutButton extends SDKHandle {
      * @availability iOS 12.0+
      */
     get style(): INUIAddVoiceShortcutButtonStyle;
+    readonly $type: {
+        "c:objc(cs)INUIAddVoiceShortcutButton": true;
+        "c:objc(cs)UIButton": true;
+        "c:objc(cs)UIControl": true;
+        "c:objc(cs)UIView": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cornerRadius": true;
         "delegate": true;
@@ -115,6 +127,12 @@ export declare class INUIAddVoiceShortcutViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<INUIAddVoiceShortcutViewControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)INUIAddVoiceShortcutViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -151,6 +169,12 @@ export declare class INUIEditVoiceShortcutViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<INUIEditVoiceShortcutViewControllerDelegate> | SDKHandle) | null);
+    readonly $type: {
+        "c:objc(cs)INUIEditVoiceShortcutViewController": true;
+        "c:objc(cs)UIViewController": true;
+        "c:objc(cs)UIResponder": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "delegate": true;
     };
@@ -228,6 +252,10 @@ export declare class NSExtensionContext extends SDKHandle {
      * @availability iOS 10.0+
      */
     get hostedViewMinimumAllowedSize(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hostedViewMaximumAllowedSize": true;
         "hostedViewMinimumAllowedSize": true;

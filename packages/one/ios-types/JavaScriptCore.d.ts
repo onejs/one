@@ -62,6 +62,9 @@ export declare class JSClassDefinition extends SDKHandle {
     set version(value: number);
     /** init() */
     static init(): JSClassDefinition;
+    readonly $type: {
+        "c:@SA@JSClassDefinition": true;
+    };
 }
 /** typealias JSClassRef = OpaquePointer */
 export type JSClassRef = SDKHandle;
@@ -152,6 +155,10 @@ export declare class JSContext extends SDKHandle {
      * @availability iOS 7.0+
      */
     get virtualMachine(): (JSVirtualMachine) | null;
+    readonly $type: {
+        "c:objc(cs)JSContext": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "jsGlobalContextRef": true;
         "exception": true;
@@ -180,8 +187,6 @@ export declare class JSManagedValue extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initValueAndOwner(value?: (JSValue) | null, owner?: (unknown) | null): JSManagedValue;
-    /** init() */
-    static init(): JSManagedValue;
     /**
      * init!(value: JSValue!)
      * @availability iOS 7.0+
@@ -192,6 +197,10 @@ export declare class JSManagedValue extends SDKHandle {
      * @availability iOS 7.0+
      */
     get value(): (JSValue) | null;
+    readonly $type: {
+        "c:objc(cs)JSManagedValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "value": true;
     };
@@ -248,6 +257,9 @@ export declare class JSStaticFunction extends SDKHandle {
     set name(value: (SDKHandle) | null);
     /** init() */
     static init(): JSStaticFunction;
+    readonly $type: {
+        "c:@SA@JSStaticFunction": true;
+    };
 }
 /** struct JSStaticValue */
 export declare class JSStaticValue extends SDKHandle {
@@ -263,6 +275,9 @@ export declare class JSStaticValue extends SDKHandle {
     get setProperty(): $SDK7;
     /** init() */
     static init(): JSStaticValue;
+    readonly $type: {
+        "c:@SA@JSStaticValue": true;
+    };
 }
 /** typealias JSStringRef = OpaquePointer */
 export type JSStringRef = SDKHandle;
@@ -451,8 +466,6 @@ export declare class JSValue extends SDKHandle {
     deleteProperty(property?: (unknown) | null): boolean;
     /** func hasProperty(_ property: Any!) -> Bool */
     hasProperty(property?: (unknown) | null): boolean;
-    /** init() */
-    static init(): JSValue;
     /**
      * func invokeMethod(_ method: String!, withArguments arguments: [Any]!) -> JSValue!
      * @availability iOS 7.0+
@@ -622,6 +635,10 @@ export declare class JSValue extends SDKHandle {
      * @availability iOS 7.0+
      */
     get isUndefined(): boolean;
+    readonly $type: {
+        "c:objc(cs)JSValue": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "jsValueRef": true;
         "context": true;
@@ -661,6 +678,10 @@ export declare class JSVirtualMachine extends SDKHandle {
      * @availability iOS 7.0+
      */
     removeManagedReference(object?: (unknown) | null, owner?: (unknown) | null): void;
+    readonly $type: {
+        "c:objc(cs)JSVirtualMachine": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * func JSBigIntCreateWithDouble(_ ctx: JSContextRef, _ value: Double, _ exception: UnsafeMutablePointer<JSValueRef?>?) -> JSValueRef

@@ -35,6 +35,9 @@ export declare class ElectricalLoadDevice extends SDKHandle {
      * @availability iOS 27.0+
      */
     get type(): ElectricalLoadDevice_DeviceType;
+    readonly $type: {
+        "s:9EnergyKit20ElectricalLoadDeviceV": true;
+    };
 }
 /**
  * enum DeviceType
@@ -110,6 +113,9 @@ export declare class ElectricHVACLoadEvent extends SDKHandle {
      * @deprecated iOS 27.0
      */
     static initTimestampMeasurementSessionDeviceID(timestamp: globalThis.Date, measurement: ElectricHVACLoadEvent_ElectricalMeasurement, session: ElectricHVACLoadEvent_Session, deviceID: string): ElectricHVACLoadEvent;
+    readonly $type: {
+        "s:9EnergyKit21ElectricHVACLoadEventV": true;
+    };
 }
 /**
  * struct ElectricalMeasurement
@@ -126,6 +132,9 @@ export declare class ElectricHVACLoadEvent_ElectricalMeasurement extends SDKHand
      * @availability iOS 26.0+
      */
     get stage(): number;
+    readonly $type: {
+        "s:9EnergyKit21ElectricHVACLoadEventV21ElectricalMeasurementV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -157,6 +166,9 @@ export declare class ElectricHVACLoadEvent_Session extends SDKHandle {
      * @availability iOS 26.0+
      */
     get state(): ElectricHVACLoadEvent_Session_State;
+    readonly $type: {
+        "s:9EnergyKit21ElectricHVACLoadEventV7SessionV": true;
+    };
 }
 /**
  * struct GuidanceState
@@ -179,6 +191,9 @@ export declare class ElectricHVACLoadEvent_Session_GuidanceState extends SDKHand
      */
     get guidanceToken(): string;
     set guidanceToken(value: string);
+    readonly $type: {
+        "s:9EnergyKit21ElectricHVACLoadEventV7SessionV13GuidanceStateV": true;
+    };
 }
 /**
  * enum State
@@ -230,6 +245,9 @@ export declare class ElectricityGuidance extends SDKHandle {
      * @availability iOS 26.0+
      */
     get interval(): _Foundation_DateInterval;
+    readonly $type: {
+        "s:9EnergyKit19ElectricityGuidanceV": true;
+    };
 }
 /**
  * enum Options
@@ -258,6 +276,9 @@ export declare class ElectricityGuidance_Query extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(suggestedAction: ElectricityGuidance_SuggestedAction): ElectricityGuidance_Query;
+    readonly $type: {
+        "s:9EnergyKit19ElectricityGuidanceV5QueryV": true;
+    };
 }
 /**
  * final class Service
@@ -270,6 +291,9 @@ export declare class ElectricityGuidance_Service extends SDKHandle {
      * @availability iOS 26.0+
      */
     guidance(query: ElectricityGuidance_Query, energyVenueID: string): SDKHandle;
+    readonly $type: {
+        "s:9EnergyKit19ElectricityGuidanceV7ServiceC": true;
+    };
 }
 /**
  * enum SuggestedAction
@@ -296,6 +320,9 @@ export declare class ElectricityGuidance_Value extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(interval: _Foundation_DateInterval, rating: number): ElectricityGuidance_Value;
+    readonly $type: {
+        "s:9EnergyKit19ElectricityGuidanceV5ValueV": true;
+    };
 }
 /**
  * protocol ElectricityInsightMeasure
@@ -333,6 +360,9 @@ export declare class ElectricityInsightQuery extends SDKHandle {
      * @availability iOS 26.0+
      */
     get options(): ElectricityInsightQuery_Options;
+    readonly $type: {
+        "s:9EnergyKit23ElectricityInsightQueryV": true;
+    };
 }
 /**
  * enum Granularity
@@ -386,18 +416,27 @@ export type ElectricityInsightQuery_Options_RawValue = number;
  * @availability iOS 26.0+
  */
 export declare class ElectricityInsightRecord<Measure = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9EnergyKit24ElectricityInsightRecordV": true;
+    };
 }
 /**
  * struct GridCleanliness
  * @availability iOS 26.1+
  */
 export declare class ElectricityInsightRecord_GridCleanliness<Measure = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9EnergyKit24ElectricityInsightRecordV15GridCleanlinessV": true;
+    };
 }
 /**
  * struct TariffPeak
  * @availability iOS 26.0+
  */
 export declare class ElectricityInsightRecord_TariffPeak<Measure = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:9EnergyKit24ElectricityInsightRecordV10TariffPeakV": true;
+    };
 }
 /**
  * final actor ElectricityInsightService
@@ -424,12 +463,18 @@ export declare class ElectricityInsightService extends SDKHandle {
      * @availability iOS 26.0+
      */
     static get shared(): ElectricityInsightService;
+    readonly $type: {
+        "s:9EnergyKit25ElectricityInsightServiceC": true;
+    };
 }
 /**
  * enum ElectricVehicleChargingReason
  * @availability iOS 27.0+
  */
 export declare class ElectricVehicleChargingReason extends SDKHandle {
+    readonly $type: {
+        "s:9EnergyKit29ElectricVehicleChargingReasonO": true;
+    };
 }
 /**
  * enum ActiveReason
@@ -511,6 +556,9 @@ export declare class ElectricVehicleLoadEvent extends SDKHandle {
      * @deprecated iOS 27.0
      */
     static initTimestampMeasurementSessionDeviceID(timestamp: globalThis.Date, measurement: ElectricVehicleLoadEvent_ElectricalMeasurement, session: ElectricVehicleLoadEvent_Session, deviceID: string): ElectricVehicleLoadEvent;
+    readonly $type: {
+        "s:9EnergyKit24ElectricVehicleLoadEventV": true;
+    };
 }
 /**
  * struct ElectricalMeasurement
@@ -553,6 +601,9 @@ export declare class ElectricVehicleLoadEvent_ElectricalMeasurement extends SDKH
      * @availability iOS 26.0+
      */
     get direction(): ElectricityFlowDirection;
+    readonly $type: {
+        "s:9EnergyKit24ElectricVehicleLoadEventV21ElectricalMeasurementV": true;
+    };
 }
 /**
  * struct PerformanceMetrics
@@ -574,6 +625,9 @@ export declare class ElectricVehicleLoadEvent_ElectricalMeasurement_PerformanceM
      * @availability iOS 27.0+
      */
     get batteryTemperature(): $SDK10;
+    readonly $type: {
+        "s:9EnergyKit24ElectricVehicleLoadEventV21ElectricalMeasurementV18PerformanceMetricsV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -605,6 +659,9 @@ export declare class ElectricVehicleLoadEvent_Session extends SDKHandle {
      * @availability iOS 26.0+
      */
     get state(): ElectricVehicleLoadEvent_Session_State;
+    readonly $type: {
+        "s:9EnergyKit24ElectricVehicleLoadEventV7SessionV": true;
+    };
 }
 /**
  * struct GuidanceState
@@ -627,6 +684,9 @@ export declare class ElectricVehicleLoadEvent_Session_GuidanceState extends SDKH
      */
     get guidanceToken(): string;
     set guidanceToken(value: string);
+    readonly $type: {
+        "s:9EnergyKit24ElectricVehicleLoadEventV7SessionV13GuidanceStateV": true;
+    };
 }
 /**
  * enum State
@@ -698,6 +758,9 @@ export declare class ElectricVehicleStatusEvent extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(timestamp: globalThis.Date, device: ElectricalLoadDevice, venueID: string, status: ElectricVehicleStatusEvent_Status, stateOfCharge: number, energy: $SDK7, estimatedRange?: $SDK9, chargingTarget?: $SDK11, sessionIdentifier?: (string) | null): ElectricVehicleStatusEvent;
+    readonly $type: {
+        "s:9EnergyKit26ElectricVehicleStatusEventV": true;
+    };
 }
 /**
  * struct ChargingTarget
@@ -729,6 +792,9 @@ export declare class ElectricVehicleStatusEvent_ChargingTarget extends SDKHandle
      * @availability iOS 27.0+
      */
     get estimatedCompletionTime(): globalThis.Date;
+    readonly $type: {
+        "s:9EnergyKit26ElectricVehicleStatusEventV14ChargingTargetV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -740,6 +806,9 @@ export type ElectricVehicleStatusEvent_ID = string;
  * @availability iOS 27.0+
  */
 export declare class ElectricVehicleStatusEvent_Status extends SDKHandle {
+    readonly $type: {
+        "s:9EnergyKit26ElectricVehicleStatusEventV0E0O": true;
+    };
 }
 /**
  * enum EnergyKitError
@@ -798,6 +867,9 @@ export declare class EnergyVenue extends SDKHandle {
      * @availability iOS 26.1+
      */
     static venues(): Promise<Array<EnergyVenue>>;
+    readonly $type: {
+        "s:9EnergyKit0A5VenueV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -809,5 +881,10 @@ export type EnergyVenue_ID = string;
  * @availability iOS 26.0+
  */
 export declare class UnitEnergy_EnergyKit extends SDKHandle {
+    readonly $type: {
+        "s:So12NSUnitEnergyC0B3KitEACC": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 export {};

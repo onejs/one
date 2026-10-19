@@ -20,6 +20,10 @@ export type IdentityInfoCoreDataPropertiesSet = _Foundation_NSSet;
 export declare class ILClassificationRequest extends SDKHandle {
     /** init() */
     static init(): ILClassificationRequest;
+    readonly $type: {
+        "c:objc(cs)ILClassificationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ILCallClassificationRequest
@@ -31,6 +35,11 @@ export declare class ILCallClassificationRequest extends ILClassificationRequest
      * @availability iOS 12.0+
      */
     get callCommunications(): Array<ILCallCommunication>;
+    readonly $type: {
+        "c:objc(cs)ILCallClassificationRequest": true;
+        "c:objc(cs)ILClassificationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "callCommunications": true;
     };
@@ -50,6 +59,10 @@ export declare class ILCommunication extends SDKHandle {
      * @availability iOS 12.0+
      */
     get sender(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)ILCommunication": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateReceived": true;
         "sender": true;
@@ -60,6 +73,11 @@ export declare class ILCommunication extends SDKHandle {
  * @availability iOS 12.0+
  */
 export declare class ILCallCommunication extends ILCommunication {
+    readonly $type: {
+        "c:objc(cs)ILCallCommunication": true;
+        "c:objc(cs)ILCommunication": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateReceived": true;
         "sender": true;
@@ -104,6 +122,10 @@ export declare class ILClassificationResponse extends SDKHandle {
      */
     get userString(): (string) | null;
     set userString(value: (string) | null);
+    readonly $type: {
+        "c:objc(cs)ILClassificationResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "action": true;
         "userInfo": true;
@@ -120,6 +142,11 @@ export declare class ILMessageClassificationRequest extends ILClassificationRequ
      * @availability iOS 12.0+
      */
     get messageCommunications(): Array<ILMessageCommunication>;
+    readonly $type: {
+        "c:objc(cs)ILMessageClassificationRequest": true;
+        "c:objc(cs)ILClassificationRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "messageCommunications": true;
     };
@@ -134,6 +161,11 @@ export declare class ILMessageCommunication extends ILCommunication {
      * @availability iOS 12.0+
      */
     get messageBody(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)ILMessageCommunication": true;
+        "c:objc(cs)ILCommunication": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "dateReceived": true;
         "sender": true;
@@ -174,6 +206,10 @@ export interface ILMessageFilterCapabilitiesQueryHandling {
  * @availability iOS 16.0+
  */
 export declare class ILMessageFilterCapabilitiesQueryRequest extends SDKHandle {
+    readonly $type: {
+        "c:objc(cs)ILMessageFilterCapabilitiesQueryRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ILMessageFilterCapabilitiesQueryResponse
@@ -194,6 +230,10 @@ export declare class ILMessageFilterCapabilitiesQueryResponse extends SDKHandle 
      */
     get transactionalSubActions(): $SDK3;
     set transactionalSubActions(value: $SDK3);
+    readonly $type: {
+        "c:objc(cs)ILMessageFilterCapabilitiesQueryResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct ILMessageFilterError
@@ -230,6 +270,9 @@ export declare class ILMessageFilterError extends SDKHandle {
      * @availability iOS 11.0+
      */
     static get system(): ILMessageFilterError_Code;
+    readonly $type: {
+        "s:SC20ILMessageFilterErrorLeV": true;
+    };
 }
 /**
  * enum Code
@@ -250,6 +293,10 @@ export declare const ILMessageFilterError_Code: {
 export declare class ILMessageFilterExtension extends SDKHandle {
     /** init() */
     static init(): ILMessageFilterExtension;
+    readonly $type: {
+        "c:objc(cs)ILMessageFilterExtension": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class ILMessageFilterExtensionContext
@@ -263,6 +310,11 @@ export declare class ILMessageFilterExtensionContext extends SDKHandle {
     deferQueryRequestToNetwork(completion: ((arg0: (ILNetworkResponse) | null, arg1: (NativeError) | null) => void)): void;
     /** init() */
     static init(): ILMessageFilterExtensionContext;
+    readonly $type: {
+        "c:objc(cs)ILMessageFilterExtensionContext": true;
+        "c:objc(cs)NSExtensionContext": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * protocol ILMessageFilterQueryHandling : NSObjectProtocol
@@ -295,6 +347,10 @@ export declare class ILMessageFilterQueryRequest extends SDKHandle {
      * @availability iOS 11.0+
      */
     get sender(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)ILMessageFilterQueryRequest": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "messageBody": true;
         "receiverISOCountryCode": true;
@@ -320,6 +376,10 @@ export declare class ILMessageFilterQueryResponse extends SDKHandle {
      */
     get subAction(): ILMessageFilterSubAction;
     set subAction(value: ILMessageFilterSubAction);
+    readonly $type: {
+        "c:objc(cs)ILMessageFilterQueryResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "action": true;
         "subAction": true;
@@ -352,6 +412,10 @@ export declare class ILNetworkResponse extends SDKHandle {
      * @availability iOS 11.0+
      */
     get urlResponse(): _Foundation_HTTPURLResponse;
+    readonly $type: {
+        "c:objc(cs)ILNetworkResponse": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "data": true;
         "urlResponse": true;
@@ -389,6 +453,9 @@ export declare class LiveCallerIDLookupExtensionContext extends SDKHandle {
      * @availability iOS 18.0+
      */
     get tokenIssuerURL(): string;
+    readonly $type: {
+        "s:14IdentityLookup34LiveCallerIDLookupExtensionContextV": true;
+    };
 }
 /**
  * class LiveCallerIDLookupManager
@@ -425,6 +492,9 @@ export declare class LiveCallerIDLookupManager extends SDKHandle {
      * @availability iOS 18.0+
      */
     status(identifier: string): CallLookupExtensionStatus;
+    readonly $type: {
+        "s:14IdentityLookup25LiveCallerIDLookupManagerC": true;
+    };
 }
 /**
  * protocol LiveCallerIDLookupProtocol : AppExtension

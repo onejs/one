@@ -17,6 +17,9 @@ export declare class ObservationRegistrar extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): ObservationRegistrar;
+    readonly $type: {
+        "s:11Observation0A9RegistrarV": true;
+    };
 }
 /**
  * struct Observations<Element, Failure> where Element : Sendable, Failure : Error
@@ -28,6 +31,9 @@ export declare class Observations<Element = unknown, Failure = unknown> extends 
      * @availability iOS 26.0+
      */
     makeAsyncIterator(): Observations_Iterator<number, NativeError>;
+    readonly $type: {
+        "s:11Observation12ObservationsV": true;
+    };
     readonly $element: Element;
 }
 /**
@@ -40,6 +46,9 @@ export type Observations_AsyncIterator<Element = unknown, Failure = unknown> = O
  * @availability iOS 26.0+
  */
 export declare class Observations_Iteration<Element = unknown, Failure = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:11Observation12ObservationsV9IterationO": true;
+    };
 }
 /**
  * struct Iterator
@@ -51,18 +60,27 @@ export declare class Observations_Iterator<Element = unknown, Failure = unknown>
      * @availability iOS 26.0+
      */
     next(): Promise<(number) | null>;
+    readonly $type: {
+        "s:11Observation12ObservationsV8IteratorV": true;
+    };
 }
 /**
  * struct ObservationTracking
  * @availability iOS 17.0+
  */
 export declare class ObservationTracking extends SDKHandle {
+    readonly $type: {
+        "s:11Observation0A8TrackingV": true;
+    };
 }
 /**
  * struct Event
  * @availability iOS 27.0+
  */
 export declare class ObservationTracking_Event extends SDKHandle {
+    readonly $type: {
+        "s:11Observation0A8TrackingV5EventV": true;
+    };
 }
 /**
  * struct Kind
@@ -89,6 +107,9 @@ export declare class ObservationTracking_Event_Kind extends SDKHandle {
      * @availability iOS 27.0+
      */
     static get willSet(): ObservationTracking_Event_Kind;
+    readonly $type: {
+        "s:11Observation0A8TrackingV5EventV4KindV": true;
+    };
 }
 /**
  * struct Options
@@ -168,6 +189,9 @@ export declare class ObservationTracking_Options extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): ObservationTracking_Options;
+    readonly $type: {
+        "s:11Observation0A8TrackingV7OptionsV": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = ObservationTracking.Options
@@ -184,5 +208,8 @@ export type ObservationTracking_Options_Element = ObservationTracking_Options;
  * @availability iOS 27.0+
  */
 export declare class ObservationTracking_Token extends SDKHandle {
+    readonly $type: {
+        "s:11Observation0A8TrackingV5TokenV": true;
+    };
 }
 export {};

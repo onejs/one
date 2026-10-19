@@ -35,6 +35,9 @@ export declare class Alarm extends SDKHandle {
      */
     get schedule(): (Alarm_Schedule) | null;
     set schedule(value: (Alarm_Schedule) | null);
+    readonly $type: {
+        "s:8AlarmKit0A0V": true;
+    };
 }
 /**
  * struct CountdownDuration
@@ -58,6 +61,9 @@ export declare class Alarm_CountdownDuration extends SDKHandle {
      */
     get postAlert(): (number) | null;
     set postAlert(value: (number) | null);
+    readonly $type: {
+        "s:8AlarmKit0A0V17CountdownDurationV": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -69,6 +75,9 @@ export type Alarm_ID = string;
  * @availability iOS 26.0+
  */
 export declare class Alarm_Schedule extends SDKHandle {
+    readonly $type: {
+        "s:8AlarmKit0A0V8ScheduleO": true;
+    };
 }
 /**
  * struct Relative
@@ -92,12 +101,18 @@ export declare class Alarm_Schedule_Relative extends SDKHandle {
      */
     get repeats(): Alarm_Schedule_Relative_Recurrence;
     set repeats(value: Alarm_Schedule_Relative_Recurrence);
+    readonly $type: {
+        "s:8AlarmKit0A0V8ScheduleO8RelativeV": true;
+    };
 }
 /**
  * enum Recurrence
  * @availability iOS 26.0+
  */
 export declare class Alarm_Schedule_Relative_Recurrence extends SDKHandle {
+    readonly $type: {
+        "s:8AlarmKit0A0V8ScheduleO8RelativeV10RecurrenceO": true;
+    };
 }
 /**
  * struct Time
@@ -121,6 +136,9 @@ export declare class Alarm_Schedule_Relative_Time extends SDKHandle {
      */
     get minute(): number;
     set minute(value: number);
+    readonly $type: {
+        "s:8AlarmKit0A0V8ScheduleO8RelativeV4TimeV": true;
+    };
 }
 /**
  * enum State
@@ -132,6 +150,9 @@ export type Alarm_State = "scheduled" | "countdown" | "paused" | "alerting";
  * @availability iOS 26.0+
  */
 export declare class AlarmAttributes<Metadata = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8AlarmKit0A10AttributesV": true;
+    };
 }
 /**
  * typealias ContentState = AlarmPresentationState
@@ -166,6 +187,9 @@ export declare class AlarmButton extends SDKHandle {
      */
     get textColor(): _SwiftUICore_Color;
     set textColor(value: _SwiftUICore_Color);
+    readonly $type: {
+        "s:8AlarmKit0A6ButtonV": true;
+    };
 }
 /**
  * class AlarmManager
@@ -227,6 +251,9 @@ export declare class AlarmManager extends SDKHandle {
      * @availability iOS 26.0+
      */
     countdown(id: string): void;
+    readonly $type: {
+        "s:8AlarmKit0A7ManagerC": true;
+    };
 }
 /**
  * struct AlarmAuthorizationStateUpdates
@@ -238,6 +265,9 @@ export declare class AlarmManager_AlarmAuthorizationStateUpdates extends SDKHand
      * @availability iOS 26.0+
      */
     makeAsyncIterator(): AlarmManager_AlarmAuthorizationStateUpdates_Iterator;
+    readonly $type: {
+        "s:8AlarmKit0A7ManagerC0A25AuthorizationStateUpdatesV": true;
+    };
     readonly $element: AlarmManager_AuthorizationState;
 }
 /**
@@ -260,6 +290,9 @@ export declare class AlarmManager_AlarmAuthorizationStateUpdates_Iterator extend
      * @availability iOS 26.0+
      */
     next(): Promise<(AlarmManager_AuthorizationState) | null>;
+    readonly $type: {
+        "s:8AlarmKit0A7ManagerC0A25AuthorizationStateUpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AlarmManager.AuthorizationState
@@ -271,6 +304,9 @@ export type AlarmManager_AlarmAuthorizationStateUpdates_Iterator_Element = Alarm
  * @availability iOS 26.0+
  */
 export declare class AlarmManager_AlarmConfiguration<Metadata = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:8AlarmKit0A7ManagerC0A13ConfigurationV": true;
+    };
 }
 /**
  * enum AlarmError
@@ -287,6 +323,9 @@ export declare class AlarmManager_AlarmUpdates extends SDKHandle {
      * @availability iOS 26.0+
      */
     makeAsyncIterator(): AlarmManager_AlarmUpdates_Iterator;
+    readonly $type: {
+        "s:8AlarmKit0A7ManagerC0A7UpdatesV": true;
+    };
     readonly $element: Array<Alarm>;
 }
 /**
@@ -309,6 +348,9 @@ export declare class AlarmManager_AlarmUpdates_Iterator extends SDKHandle {
      * @availability iOS 26.0+
      */
     next(): Promise<(Array<Alarm>) | null>;
+    readonly $type: {
+        "s:8AlarmKit0A7ManagerC0A7UpdatesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AlarmManager.AlarmUpdates.Element
@@ -354,6 +396,9 @@ export declare class AlarmPresentation extends SDKHandle {
      */
     get countdown(): $SDK2;
     set countdown(value: $SDK2);
+    readonly $type: {
+        "s:8AlarmKit0A12PresentationV": true;
+    };
 }
 /**
  * struct Alert
@@ -395,6 +440,9 @@ export declare class AlarmPresentation_Alert extends SDKHandle {
      * @availability iOS 26.1+
      */
     static initTitleSecondaryButtonSecondaryButtonBehavior(title: _Foundation_LocalizedStringResource, secondaryButton?: (AlarmButton) | null, secondaryButtonBehavior?: $SDK4): AlarmPresentation_Alert;
+    readonly $type: {
+        "s:8AlarmKit0A12PresentationV5AlertV": true;
+    };
 }
 /**
  * enum SecondaryButtonBehavior
@@ -423,6 +471,9 @@ export declare class AlarmPresentation_Countdown extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(title: _Foundation_LocalizedStringResource, pauseButton?: (AlarmButton) | null): AlarmPresentation_Countdown;
+    readonly $type: {
+        "s:8AlarmKit0A12PresentationV9CountdownV": true;
+    };
 }
 /**
  * struct Paused
@@ -446,6 +497,9 @@ export declare class AlarmPresentation_Paused extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(title: _Foundation_LocalizedStringResource, resumeButton: AlarmButton): AlarmPresentation_Paused;
+    readonly $type: {
+        "s:8AlarmKit0A12PresentationV6PausedV": true;
+    };
 }
 /**
  * struct AlarmPresentationState
@@ -469,12 +523,18 @@ export declare class AlarmPresentationState extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(alarmID: string, mode: AlarmPresentationState_Mode): AlarmPresentationState;
+    readonly $type: {
+        "s:8AlarmKit0A17PresentationStateV": true;
+    };
 }
 /**
  * enum Mode
  * @availability iOS 26.0+
  */
 export declare class AlarmPresentationState_Mode extends SDKHandle {
+    readonly $type: {
+        "s:8AlarmKit0A17PresentationStateV4ModeO": true;
+    };
 }
 /**
  * struct Alert
@@ -492,6 +552,9 @@ export declare class AlarmPresentationState_Mode_Alert extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(time: Alarm_Schedule_Relative_Time): AlarmPresentationState_Mode_Alert;
+    readonly $type: {
+        "s:8AlarmKit0A17PresentationStateV4ModeO5AlertV": true;
+    };
 }
 /**
  * struct Countdown
@@ -527,6 +590,9 @@ export declare class AlarmPresentationState_Mode_Countdown extends SDKHandle {
      */
     get startDate(): globalThis.Date;
     set startDate(value: globalThis.Date);
+    readonly $type: {
+        "s:8AlarmKit0A17PresentationStateV4ModeO9CountdownV": true;
+    };
 }
 /**
  * struct Paused
@@ -550,5 +616,8 @@ export declare class AlarmPresentationState_Mode_Paused extends SDKHandle {
      */
     get previouslyElapsedDuration(): number;
     set previouslyElapsedDuration(value: number);
+    readonly $type: {
+        "s:8AlarmKit0A17PresentationStateV4ModeO6PausedV": true;
+    };
 }
 export {};

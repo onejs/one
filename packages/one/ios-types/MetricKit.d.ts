@@ -29,6 +29,9 @@ export declare class AppLaunchDiagnostic extends SDKHandle {
      * @availability iOS 27.0+
      */
     get launchDuration(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit19AppLaunchDiagnosticV": true;
+    };
 }
 /**
  * struct ApplicationResumeTimeMetric
@@ -40,6 +43,9 @@ export declare class ApplicationResumeTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get histogram(): $SDK1;
+    readonly $type: {
+        "s:9MetricKit021ApplicationResumeTimeA0V": true;
+    };
 }
 /**
  * @objc final class AveragePixelLuminance
@@ -51,6 +57,12 @@ export declare class AveragePixelLuminance extends SDKHandle {
      * @availability iOS 27.0+
      */
     static baseUnit(): AveragePixelLuminance;
+    readonly $type: {
+        "c:@M@MetricKit@objc(cs)AveragePixelLuminance": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct AverageStatistics<DimensionType> where DimensionType : Dimension
@@ -72,6 +84,9 @@ export declare class AverageStatistics<DimensionType = unknown> extends SDKHandl
      * @availability iOS 27.0+
      */
     get average(): $SDK2;
+    readonly $type: {
+        "s:9MetricKit17AverageStatisticsV": true;
+    };
 }
 /**
  * struct BackgroundTerminationMetric
@@ -128,6 +143,9 @@ export declare class BackgroundTerminationMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get highCPUTerminationCount(): number;
+    readonly $type: {
+        "s:9MetricKit021BackgroundTerminationA0V": true;
+    };
 }
 /**
  * struct CallStackFrame
@@ -164,6 +182,9 @@ export declare class CallStackFrame extends SDKHandle {
      * @availability iOS 27.0+
      */
     get subFrames(): Array<CallStackFrame>;
+    readonly $type: {
+        "s:9MetricKit14CallStackFrameV": true;
+    };
 }
 /**
  * struct CallStackThread
@@ -180,6 +201,9 @@ export declare class CallStackThread extends SDKHandle {
      * @availability iOS 27.0+
      */
     get threadAttributed(): (boolean) | null;
+    readonly $type: {
+        "s:9MetricKit15CallStackThreadV": true;
+    };
 }
 /**
  * struct CallStackTree
@@ -206,6 +230,9 @@ export declare class CallStackTree extends SDKHandle {
      * @availability iOS 27.0+
      */
     forEachFrame(body: ((arg0: CallStackFrame) => void)): void;
+    readonly $type: {
+        "s:9MetricKit13CallStackTreeV": true;
+    };
 }
 /**
  * struct BinaryInfo
@@ -222,6 +249,9 @@ export declare class CallStackTree_BinaryInfo extends SDKHandle {
      * @availability iOS 27.0+
      */
     get uuid(): string;
+    readonly $type: {
+        "s:9MetricKit13CallStackTreeV10BinaryInfoV": true;
+    };
 }
 /**
  * struct CellularConditionTimeMetric
@@ -233,6 +263,9 @@ export declare class CellularConditionTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get histogram(): Histogram<SignalBars>;
+    readonly $type: {
+        "s:9MetricKit021CellularConditionTimeA0V": true;
+    };
 }
 /**
  * struct CPUExceptionDiagnostic
@@ -254,6 +287,9 @@ export declare class CPUExceptionDiagnostic extends SDKHandle {
      * @availability iOS 27.0+
      */
     get totalSampledTime(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit22CPUExceptionDiagnosticV": true;
+    };
 }
 /**
  * struct CPUInstructionsCountMetric
@@ -265,6 +301,9 @@ export declare class CPUInstructionsCountMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): number;
+    readonly $type: {
+        "s:9MetricKit020CPUInstructionsCountA0V": true;
+    };
 }
 /**
  * struct CPUTimeMetric
@@ -276,6 +315,9 @@ export declare class CPUTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit07CPUTimeA0V": true;
+    };
 }
 /**
  * struct CrashDiagnostic
@@ -322,6 +364,9 @@ export declare class CrashDiagnostic extends SDKHandle {
      * @availability iOS 27.0+
      */
     get signal(): (number) | null;
+    readonly $type: {
+        "s:9MetricKit15CrashDiagnosticV": true;
+    };
 }
 /**
  * struct ObjectiveCExceptionReason
@@ -358,6 +403,9 @@ export declare class CrashDiagnostic_ObjectiveCExceptionReason extends SDKHandle
      * @availability iOS 27.0+
      */
     get className(): string;
+    readonly $type: {
+        "s:9MetricKit15CrashDiagnosticV25ObjectiveCExceptionReasonV": true;
+    };
 }
 /**
  * struct TerminationCategory
@@ -463,6 +511,9 @@ export declare class DiagnosticReport extends SDKHandle {
      * @availability iOS 27.0+
      */
     get timeRange(): _Foundation_DateInterval;
+    readonly $type: {
+        "s:9MetricKit16DiagnosticReportV": true;
+    };
 }
 /**
  * struct Environment
@@ -529,12 +580,18 @@ export declare class DiagnosticReport_Environment extends SDKHandle {
      * @availability iOS 27.0+
      */
     get osVersion(): OSVersion;
+    readonly $type: {
+        "s:9MetricKit16DiagnosticReportV11EnvironmentV": true;
+    };
 }
 /**
  * enum DiagnosticResult
  * @availability iOS 27.0+
  */
 export declare class DiagnosticResult extends SDKHandle {
+    readonly $type: {
+        "s:9MetricKit16DiagnosticResultO": true;
+    };
 }
 /**
  * struct DiskWriteExceptionDiagnostic
@@ -551,6 +608,9 @@ export declare class DiskWriteExceptionDiagnostic extends SDKHandle {
      * @availability iOS 27.0+
      */
     get totalBytesWritten(): $SDK9;
+    readonly $type: {
+        "s:9MetricKit28DiskWriteExceptionDiagnosticV": true;
+    };
 }
 /**
  * struct ExtendedLaunchMetric
@@ -562,6 +622,9 @@ export declare class ExtendedLaunchMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get histogram(): $SDK1;
+    readonly $type: {
+        "s:9MetricKit014ExtendedLaunchA0V": true;
+    };
 }
 /**
  * struct ForegroundTerminationMetric
@@ -598,6 +661,9 @@ export declare class ForegroundTerminationMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get badAccessTerminationCount(): number;
+    readonly $type: {
+        "s:9MetricKit021ForegroundTerminationA0V": true;
+    };
 }
 /**
  * struct GPUTimeMetric
@@ -609,6 +675,9 @@ export declare class GPUTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit07GPUTimeA0V": true;
+    };
 }
 /**
  * struct HangDiagnostic
@@ -625,6 +694,9 @@ export declare class HangDiagnostic extends SDKHandle {
      * @availability iOS 27.0+
      */
     get callStackTree(): CallStackTree;
+    readonly $type: {
+        "s:9MetricKit14HangDiagnosticV": true;
+    };
 }
 /**
  * struct HangTimeMetric
@@ -636,6 +708,9 @@ export declare class HangTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get histogram(): $SDK1;
+    readonly $type: {
+        "s:9MetricKit08HangTimeA0V": true;
+    };
 }
 /**
  * struct Histogram<DimensionType> where DimensionType : Dimension
@@ -647,6 +722,9 @@ export declare class Histogram<DimensionType = unknown> extends SDKHandle {
      * @availability iOS 27.0+
      */
     get buckets(): Array<Histogram_Bucket<_Foundation_Dimension>>;
+    readonly $type: {
+        "s:9MetricKit9HistogramV": true;
+    };
 }
 /**
  * struct Bucket
@@ -668,6 +746,9 @@ export declare class Histogram_Bucket<DimensionType = unknown> extends SDKHandle
      * @availability iOS 27.0+
      */
     get count(): number;
+    readonly $type: {
+        "s:9MetricKit9HistogramV6BucketV": true;
+    };
 }
 /**
  * struct HitchTimeMetric
@@ -689,6 +770,9 @@ export declare class HitchTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get ratio(): _Foundation_Measurement<HitchTimeRatio>;
+    readonly $type: {
+        "s:9MetricKit09HitchTimeA0V": true;
+    };
 }
 /**
  * @objc final class HitchTimeRatio
@@ -700,6 +784,12 @@ export declare class HitchTimeRatio extends SDKHandle {
      * @availability iOS 27.0+
      */
     static baseUnit(): HitchTimeRatio;
+    readonly $type: {
+        "c:@M@MetricKit@objc(cs)HitchTimeRatio": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct LaunchTaskID
@@ -788,6 +878,9 @@ export declare class LocationActivityTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get tenMeters(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit020LocationActivityTimeA0V": true;
+    };
 }
 /**
  * struct LogicalDiskWritesMetric
@@ -799,6 +892,9 @@ export declare class LogicalDiskWritesMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK9;
+    readonly $type: {
+        "s:9MetricKit017LogicalDiskWritesA0V": true;
+    };
 }
 /**
  * struct MemoryExceptionDiagnostic
@@ -810,6 +906,9 @@ export declare class MemoryExceptionDiagnostic extends SDKHandle {
      * @availability iOS 27.0+
      */
     get callStackTree(): CallStackTree;
+    readonly $type: {
+        "s:9MetricKit25MemoryExceptionDiagnosticV": true;
+    };
 }
 /**
  * struct MetalFrameRateMetric
@@ -836,6 +935,9 @@ export declare class MetalFrameRateMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get layerName(): string;
+    readonly $type: {
+        "s:9MetricKit014MetalFrameRateA0V": true;
+    };
 }
 /**
  * struct MetricGroup
@@ -969,6 +1071,9 @@ export declare class MetricManager extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): MetricManager;
+    readonly $type: {
+        "s:9MetricKit0A7ManagerC": true;
+    };
 }
 /**
  * struct LaunchTaskError
@@ -985,6 +1090,9 @@ export declare class MetricManager_LaunchTaskError extends SDKHandle {
      * @availability iOS 27.0+
      */
     get taskID(): LaunchTaskID;
+    readonly $type: {
+        "s:9MetricKit0A7ManagerC15LaunchTaskErrorV": true;
+    };
 }
 /**
  * enum Reason
@@ -1033,6 +1141,9 @@ export declare class MetricManager_ReportedState extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit0A7ManagerC13ReportedStateV": true;
+    };
 }
 /**
  * struct MetricReport
@@ -1064,6 +1175,9 @@ export declare class MetricReport extends SDKHandle {
      * @availability iOS 27.0+
      */
     get timeRange(): _Foundation_DateInterval;
+    readonly $type: {
+        "s:9MetricKit0A6ReportV": true;
+    };
 }
 /**
  * enum EncodingFormat
@@ -1130,6 +1244,9 @@ export declare class MetricReport_Environment extends SDKHandle {
      * @availability iOS 27.0+
      */
     get osVersion(): OSVersion;
+    readonly $type: {
+        "s:9MetricKit0A6ReportV11EnvironmentV": true;
+    };
 }
 /**
  * struct IntervalEntry
@@ -1151,6 +1268,9 @@ export declare class MetricReport_IntervalEntry extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit0A6ReportV13IntervalEntryV": true;
+    };
 }
 /**
  * struct StateEntry
@@ -1167,6 +1287,9 @@ export declare class MetricReport_StateEntry extends SDKHandle {
      * @availability iOS 27.0+
      */
     get values(): Array<MetricResult>;
+    readonly $type: {
+        "s:9MetricKit0A6ReportV10StateEntryV": true;
+    };
 }
 /**
  * enum MetricResult
@@ -1178,6 +1301,9 @@ export declare class MetricResult extends SDKHandle {
      * @availability iOS 27.0+
      */
     get metricGroup(): MetricGroup;
+    readonly $type: {
+        "s:9MetricKit0A6ResultO": true;
+    };
 }
 /**
  * class MXMetric
@@ -1199,6 +1325,10 @@ export declare class MXMetric extends SDKHandle {
     dictionaryRepresentation(): $SDK18;
     /** init() */
     static init(): MXMetric;
+    readonly $type: {
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MXAnimationMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1221,6 +1351,11 @@ export declare class MXAnimationMetric extends MXAnimationMetric_base {
      * @deprecated iOS 100000.0
      */
     get scrollHitchTimeRatio(): $SDK19;
+    readonly $type: {
+        "c:objc(cs)MXAnimationMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "hitchTimeRatio": true;
         "scrollHitchTimeRatio": true;
@@ -1247,6 +1382,11 @@ export declare class MXAppExitMetric extends MXAppExitMetric_base {
      * @deprecated iOS 100000.0
      */
     get foregroundExitData(): MXForegroundExitData;
+    readonly $type: {
+        "c:objc(cs)MXAppExitMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "backgroundExitData": true;
         "foregroundExitData": true;
@@ -1290,6 +1430,10 @@ export declare class MXDiagnostic extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get signpostData(): (Array<MXSignpostRecord>) | null;
+    readonly $type: {
+        "c:objc(cs)MXDiagnostic": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationVersion": true;
         "metaData": true;
@@ -1317,6 +1461,11 @@ export declare class MXAppLaunchDiagnostic extends MXAppLaunchDiagnostic_base {
      * @deprecated iOS 100000.0
      */
     get launchDuration(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MXAppLaunchDiagnostic": true;
+        "c:objc(cs)MXDiagnostic": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationVersion": true;
         "metaData": true;
@@ -1358,6 +1507,11 @@ export declare class MXAppLaunchMetric extends MXAppLaunchMetric_base {
      * @deprecated iOS 100000.0
      */
     get histogrammedTimeToFirstDraw(): $SDK21;
+    readonly $type: {
+        "c:objc(cs)MXAppLaunchMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "histogrammedApplicationResumeTime": true;
         "histogrammedExtendedLaunch": true;
@@ -1380,6 +1534,11 @@ export declare class MXAppResponsivenessMetric extends MXAppResponsivenessMetric
      * @deprecated iOS 100000.0
      */
     get histogrammedApplicationHangTime(): $SDK21;
+    readonly $type: {
+        "c:objc(cs)MXAppResponsivenessMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "histogrammedApplicationHangTime": true;
     };
@@ -1417,6 +1576,11 @@ export declare class MXAppRunTimeMetric extends MXAppRunTimeMetric_base {
      * @deprecated iOS 100000.0
      */
     get cumulativeForegroundTime(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MXAppRunTimeMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cumulativeBackgroundAudioTime": true;
         "cumulativeBackgroundLocationTime": true;
@@ -1450,6 +1614,10 @@ export declare class MXAverage<UnitType = unknown> extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get standardDeviation(): number;
+    readonly $type: {
+        "c:objc(cs)MXAverage": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "averageMeasurement": true;
         "sampleCount": true;
@@ -1524,6 +1692,10 @@ export declare class MXBackgroundExitData extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get cumulativeSuspendedWithLockedFileExitCount(): number;
+    readonly $type: {
+        "c:objc(cs)MXBackgroundExitData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cumulativeAbnormalExitCount": true;
         "cumulativeAppWatchdogExitCount": true;
@@ -1551,6 +1723,10 @@ export declare class MXCallStackTree extends SDKHandle {
     jsonRepresentation(): ArrayBuffer;
     /** init() */
     static init(): MXCallStackTree;
+    readonly $type: {
+        "c:objc(cs)MXCallStackTree": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 declare const MXCellularConditionMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1567,6 +1743,11 @@ export declare class MXCellularConditionMetric extends MXCellularConditionMetric
      * @deprecated iOS 100000.0
      */
     get histogrammedCellularConditionTime(): MXHistogram<MXUnitSignalBars>;
+    readonly $type: {
+        "c:objc(cs)MXCellularConditionMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "histogrammedCellularConditionTime": true;
     };
@@ -1598,6 +1779,11 @@ export declare class MXCPUExceptionDiagnostic extends MXCPUExceptionDiagnostic_b
      * @deprecated iOS 100000.0
      */
     get totalSampledTime(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MXCPUExceptionDiagnostic": true;
+        "c:objc(cs)MXDiagnostic": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationVersion": true;
         "metaData": true;
@@ -1628,6 +1814,11 @@ export declare class MXCPUMetric extends MXCPUMetric_base {
      * @deprecated iOS 100000.0
      */
     get cumulativeCPUTime(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MXCPUMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cumulativeCPUInstructions": true;
         "cumulativeCPUTime": true;
@@ -1684,6 +1875,11 @@ export declare class MXCrashDiagnostic extends MXCrashDiagnostic_base {
      * @deprecated iOS 100000.0
      */
     get virtualMemoryRegionInfo(): (string) | null;
+    readonly $type: {
+        "c:objc(cs)MXCrashDiagnostic": true;
+        "c:objc(cs)MXDiagnostic": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationVersion": true;
         "metaData": true;
@@ -1753,6 +1949,10 @@ export declare class MXCrashDiagnosticObjectiveCExceptionReason extends SDKHandl
      * @deprecated iOS 100000.0
      */
     get formatString(): string;
+    readonly $type: {
+        "c:objc(cs)MXCrashDiagnosticObjectiveCExceptionReason": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "arguments": true;
         "className": true;
@@ -1824,6 +2024,10 @@ export declare class MXDiagnosticPayload extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get timeStampEnd(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)MXDiagnosticPayload": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "appLaunchDiagnostics": true;
         "cpuExceptionDiagnostics": true;
@@ -1849,6 +2053,11 @@ export declare class MXDiskIOMetric extends MXDiskIOMetric_base {
      * @deprecated iOS 100000.0
      */
     get cumulativeLogicalWrites(): $SDK9;
+    readonly $type: {
+        "c:objc(cs)MXDiskIOMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cumulativeLogicalWrites": true;
     };
@@ -1910,6 +2119,11 @@ export declare class MXDiskSpaceUsageMetric extends MXDiskSpaceUsageMetric_base 
      * @deprecated iOS 100000.0
      */
     get totalDiskSpaceUsedSize(): $SDK9;
+    readonly $type: {
+        "c:objc(cs)MXDiskSpaceUsageMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "totalBinaryFileCount": true;
         "totalBinaryFileSize": true;
@@ -1942,6 +2156,11 @@ export declare class MXDiskWriteExceptionDiagnostic extends MXDiskWriteException
      * @deprecated iOS 100000.0
      */
     get totalWritesCaused(): $SDK9;
+    readonly $type: {
+        "c:objc(cs)MXDiskWriteExceptionDiagnostic": true;
+        "c:objc(cs)MXDiagnostic": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationVersion": true;
         "metaData": true;
@@ -1965,6 +2184,11 @@ export declare class MXDisplayMetric extends MXDisplayMetric_base {
      * @deprecated iOS 100000.0
      */
     get averagePixelLuminance(): (MXAverage<MXUnitAveragePixelLuminance>) | null;
+    readonly $type: {
+        "c:objc(cs)MXDisplayMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "averagePixelLuminance": true;
     };
@@ -2017,6 +2241,9 @@ export declare class MXError extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static get launchTaskInternalFailure(): MXError_Code;
+    readonly $type: {
+        "s:SC11MXErrorCodeLeV": true;
+    };
 }
 /**
  * enum Code
@@ -2076,6 +2303,10 @@ export declare class MXForegroundExitData extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get cumulativeNormalAppExitCount(): number;
+    readonly $type: {
+        "c:objc(cs)MXForegroundExitData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cumulativeAbnormalExitCount": true;
         "cumulativeAppWatchdogExitCount": true;
@@ -2100,6 +2331,11 @@ export declare class MXGPUMetric extends MXGPUMetric_base {
      * @deprecated iOS 100000.0
      */
     get cumulativeGPUTime(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MXGPUMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cumulativeGPUTime": true;
     };
@@ -2125,6 +2361,11 @@ export declare class MXHangDiagnostic extends MXHangDiagnostic_base {
      * @deprecated iOS 100000.0
      */
     get hangDuration(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MXHangDiagnostic": true;
+        "c:objc(cs)MXDiagnostic": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationVersion": true;
         "metaData": true;
@@ -2153,6 +2394,10 @@ export declare class MXHistogram<UnitType = unknown> extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get totalBucketCount(): number;
+    readonly $type: {
+        "c:objc(cs)MXHistogram": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bucketEnumerator": true;
         "totalBucketCount": true;
@@ -2184,6 +2429,10 @@ export declare class MXHistogramBucket<UnitType = unknown> extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get bucketStart(): $SDK19;
+    readonly $type: {
+        "c:objc(cs)MXHistogramBucket": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "bucketCount": true;
         "bucketEnd": true;
@@ -2255,6 +2504,11 @@ export declare class MXLocationActivityMetric extends MXLocationActivityMetric_b
      * @deprecated iOS 100000.0
      */
     get cumulativeThreeKilometersAccuracyTime(): $SDK0;
+    readonly $type: {
+        "c:objc(cs)MXLocationActivityMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cumulativeBestAccuracyForNavigationTime": true;
         "cumulativeBestAccuracyTime": true;
@@ -2285,6 +2539,11 @@ export declare class MXMemoryMetric extends MXMemoryMetric_base {
      * @deprecated iOS 100000.0
      */
     get peakMemoryUsage(): $SDK9;
+    readonly $type: {
+        "c:objc(cs)MXMemoryMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "averageSuspendedMemory": true;
         "peakMemoryUsage": true;
@@ -2364,6 +2623,10 @@ export declare class MXMetaData extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get regionFormat(): string;
+    readonly $type: {
+        "c:objc(cs)MXMetaData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "applicationBuildVersion": true;
         "bundleIdentifier": true;
@@ -2432,6 +2695,10 @@ export declare class MXMetricManager extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get pastPayloads(): Array<MXMetricPayload>;
+    readonly $type: {
+        "c:objc(cs)MXMetricManager": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "pastDiagnosticPayloads": true;
         "pastPayloads": true;
@@ -2590,6 +2857,10 @@ export declare class MXMetricPayload extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get timeStampEnd(): globalThis.Date;
+    readonly $type: {
+        "c:objc(cs)MXMetricPayload": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "animationMetrics": true;
         "applicationExitMetrics": true;
@@ -2646,6 +2917,11 @@ export declare class MXNetworkTransferMetric extends MXNetworkTransferMetric_bas
      * @deprecated iOS 100000.0
      */
     get cumulativeWifiUpload(): $SDK9;
+    readonly $type: {
+        "c:objc(cs)MXNetworkTransferMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "cumulativeCellularDownload": true;
         "cumulativeCellularUpload": true;
@@ -2691,6 +2967,10 @@ export declare class MXSignpostIntervalData extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get histogrammedSignpostDuration(): $SDK21;
+    readonly $type: {
+        "c:objc(cs)MXSignpostIntervalData": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "averageMemory": true;
         "cumulativeCPUTime": true;
@@ -2732,6 +3012,11 @@ export declare class MXSignpostMetric extends MXSignpostMetric_base {
      * @deprecated iOS 100000.0
      */
     get totalCount(): number;
+    readonly $type: {
+        "c:objc(cs)MXSignpostMetric": true;
+        "c:objc(cs)MXMetric": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "signpostCategory": true;
         "signpostIntervalData": true;
@@ -2801,6 +3086,10 @@ export declare class MXSignpostRecord extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get subsystem(): string;
+    readonly $type: {
+        "c:objc(cs)MXSignpostRecord": true;
+        "c:objc(cs)NSObject": true;
+    };
     readonly $observable: {
         "beginTimeStamp": true;
         "category": true;
@@ -2823,6 +3112,12 @@ export declare class MXUnitAveragePixelLuminance extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static get apl(): MXUnitAveragePixelLuminance;
+    readonly $type: {
+        "c:objc(cs)MXUnitAveragePixelLuminance": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * class MXUnitSignalBars
@@ -2836,6 +3131,12 @@ export declare class MXUnitSignalBars extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     static get bars(): MXUnitSignalBars;
+    readonly $type: {
+        "c:objc(cs)MXUnitSignalBars": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct OptimizedTimeToFirstDrawMetric
@@ -2847,6 +3148,9 @@ export declare class OptimizedTimeToFirstDrawMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get histogram(): $SDK1;
+    readonly $type: {
+        "s:9MetricKit024OptimizedTimeToFirstDrawA0V": true;
+    };
 }
 /**
  * struct OSVersion
@@ -2868,6 +3172,9 @@ export declare class OSVersion extends SDKHandle {
      * @availability iOS 27.0+
      */
     get platform(): string;
+    readonly $type: {
+        "s:9MetricKit9OSVersionV": true;
+    };
 }
 /**
  * struct PeakMemoryMetric
@@ -2879,6 +3186,9 @@ export declare class PeakMemoryMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK9;
+    readonly $type: {
+        "s:9MetricKit010PeakMemoryA0V": true;
+    };
 }
 /**
  * struct PixelLuminanceMetric
@@ -2890,6 +3200,9 @@ export declare class PixelLuminanceMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): AverageStatistics<AveragePixelLuminance>;
+    readonly $type: {
+        "s:9MetricKit014PixelLuminanceA0V": true;
+    };
 }
 /**
  * @objc final class SignalBars
@@ -2901,6 +3214,12 @@ export declare class SignalBars extends SDKHandle {
      * @availability iOS 27.0+
      */
     static baseUnit(): SignalBars;
+    readonly $type: {
+        "c:@M@MetricKit@objc(cs)SignalBars": true;
+        "c:objc(cs)NSDimension": true;
+        "c:objc(cs)NSUnit": true;
+        "c:objc(cs)NSObject": true;
+    };
 }
 /**
  * struct SignpostIntervalMetric
@@ -2957,6 +3276,9 @@ export declare class SignpostIntervalMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get cpuTime(): $SDK49;
+    readonly $type: {
+        "s:9MetricKit016SignpostIntervalA0V": true;
+    };
 }
 /**
  * struct SignpostRecord
@@ -2983,6 +3305,9 @@ export declare class SignpostRecord extends SDKHandle {
      * @availability iOS 27.0+
      */
     get subsystem(): string;
+    readonly $type: {
+        "s:9MetricKit14SignpostRecordV": true;
+    };
 }
 /**
  * struct StateReportingDomain
@@ -3046,6 +3371,9 @@ export declare class SuspendedMemoryMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): AverageStatistics<_Foundation_UnitInformationStorage>;
+    readonly $type: {
+        "s:9MetricKit015SuspendedMemoryA0V": true;
+    };
 }
 /**
  * struct TimeToFirstDrawMetric
@@ -3057,6 +3385,9 @@ export declare class TimeToFirstDrawMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get histogram(): $SDK1;
+    readonly $type: {
+        "s:9MetricKit015TimeToFirstDrawA0V": true;
+    };
 }
 /**
  * struct TotalBackgroundAudioTimeMetric
@@ -3068,6 +3399,9 @@ export declare class TotalBackgroundAudioTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit024TotalBackgroundAudioTimeA0V": true;
+    };
 }
 /**
  * struct TotalBackgroundLocationTimeMetric
@@ -3079,6 +3413,9 @@ export declare class TotalBackgroundLocationTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit027TotalBackgroundLocationTimeA0V": true;
+    };
 }
 /**
  * struct TotalBackgroundTimeMetric
@@ -3090,6 +3427,9 @@ export declare class TotalBackgroundTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit019TotalBackgroundTimeA0V": true;
+    };
 }
 /**
  * struct TotalCellularDownloadMetric
@@ -3101,6 +3441,9 @@ export declare class TotalCellularDownloadMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK9;
+    readonly $type: {
+        "s:9MetricKit021TotalCellularDownloadA0V": true;
+    };
 }
 /**
  * struct TotalCellularUploadMetric
@@ -3112,6 +3455,9 @@ export declare class TotalCellularUploadMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK9;
+    readonly $type: {
+        "s:9MetricKit019TotalCellularUploadA0V": true;
+    };
 }
 /**
  * struct TotalDiskSpaceCapacityMetric
@@ -3128,6 +3474,9 @@ export declare class TotalDiskSpaceCapacityMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get spaceUsed(): $SDK9;
+    readonly $type: {
+        "s:9MetricKit022TotalDiskSpaceCapacityA0V": true;
+    };
 }
 /**
  * struct TotalFileCountMetric
@@ -3144,6 +3493,9 @@ export declare class TotalFileCountMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get binaryFileCount(): number;
+    readonly $type: {
+        "s:9MetricKit014TotalFileCountA0V": true;
+    };
 }
 /**
  * struct TotalFileSizeMetric
@@ -3170,6 +3522,9 @@ export declare class TotalFileSizeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get binaryFileSize(): $SDK9;
+    readonly $type: {
+        "s:9MetricKit013TotalFileSizeA0V": true;
+    };
 }
 /**
  * struct TotalForegroundTimeMetric
@@ -3181,6 +3536,9 @@ export declare class TotalForegroundTimeMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK0;
+    readonly $type: {
+        "s:9MetricKit019TotalForegroundTimeA0V": true;
+    };
 }
 /**
  * struct TotalWiFiDownloadMetric
@@ -3192,6 +3550,9 @@ export declare class TotalWiFiDownloadMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK9;
+    readonly $type: {
+        "s:9MetricKit017TotalWiFiDownloadA0V": true;
+    };
 }
 /**
  * struct TotalWiFiUploadMetric
@@ -3203,6 +3564,9 @@ export declare class TotalWiFiUploadMetric extends SDKHandle {
      * @availability iOS 27.0+
      */
     get value(): $SDK9;
+    readonly $type: {
+        "s:9MetricKit015TotalWiFiUploadA0V": true;
+    };
 }
 /**
  * func mxSignpost(_ type: OSSignpostType, dso: UnsafeRawPointer = #dsohandle, log: OSLog, name: StaticString, signpostID: OSSignpostID = .exclusive, _ format: StaticString = "%{public}s", _ arguments: [any CVarArg] = ["NO_METRICS"])

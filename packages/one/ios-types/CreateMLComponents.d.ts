@@ -106,6 +106,9 @@ export declare class AnnotatedBatch<Scalar = unknown> extends SDKHandle {
      */
     get features(): $SDK0;
     set features(value: $SDK0);
+    readonly $type: {
+        "s:18CreateMLComponents14AnnotatedBatchV": true;
+    };
 }
 /**
  * struct AnnotatedFeature<Feature, Annotation>
@@ -129,12 +132,18 @@ export declare class AnnotatedFeature<Feature = unknown, Annotation = unknown> e
      */
     get feature(): unknown;
     set feature(value: unknown);
+    readonly $type: {
+        "s:18CreateMLComponents16AnnotatedFeatureV": true;
+    };
 }
 /**
  * struct AnnotatedFeatureProvider<Base, UnwrappedInput> where Base : SupervisedEstimator, Base.Transformer.Input == UnwrappedInput?
  * @availability iOS 16.0+
  */
 export declare class AnnotatedFeatureProvider<Base = unknown, UnwrappedInput = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents24AnnotatedFeatureProviderV": true;
+    };
 }
 /**
  * typealias Annotation = Base.Annotation
@@ -181,6 +190,9 @@ export declare class AnnotatedFiles extends SDKHandle {
      * @availability iOS 16.0+
      */
     subscript(index: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:18CreateMLComponents14AnnotatedFilesV": true;
+    };
 }
 /**
  * typealias Element = AnnotatedFeature<URL, String>
@@ -229,6 +241,9 @@ export declare class AnnotatedPrediction<Prediction = unknown, Annotation = unkn
      */
     get prediction(): unknown;
     set prediction(value: unknown);
+    readonly $type: {
+        "s:18CreateMLComponents19AnnotatedPredictionV": true;
+    };
 }
 /**
  * struct AnyTemporalIterator<Element>
@@ -240,6 +255,9 @@ export declare class AnyTemporalIterator<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(unknown) | null>;
+    readonly $type: {
+        "s:18CreateMLComponents19AnyTemporalIteratorV": true;
+    };
 }
 /**
  * struct AnyTemporalSequence<Feature>
@@ -256,6 +274,9 @@ export declare class AnyTemporalSequence<Feature = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $type: {
+        "s:18CreateMLComponents19AnyTemporalSequenceV": true;
+    };
     readonly $element: $SDK6;
 }
 /**
@@ -278,6 +299,9 @@ export declare class ApplyEachRandomly<Element = unknown> extends SDKHandle {
      * @availability iOS 17.0+
      */
     get probability(): number;
+    readonly $type: {
+        "s:18CreateMLComponents17ApplyEachRandomlyV": true;
+    };
 }
 /**
  * typealias Input = Element
@@ -299,6 +323,9 @@ export declare class ApplyRandomly<RandomTransformer = unknown> extends SDKHandl
      * @availability iOS 17.0+
      */
     get probability(): number;
+    readonly $type: {
+        "s:18CreateMLComponents13ApplyRandomlyV": true;
+    };
 }
 /**
  * typealias Input = RandomTransformer.Input
@@ -335,6 +362,9 @@ export declare class AudioConvertingTransformer extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(input: _AVFAudio_AVAudioPCMBuffer, eventHandler?: $SDK7): _AVFAudio_AVAudioPCMBuffer;
+    readonly $type: {
+        "s:18CreateMLComponents26AudioConvertingTransformerV": true;
+    };
 }
 /**
  * typealias Input = AVAudioPCMBuffer
@@ -371,6 +401,9 @@ export declare class AudioFeaturePrint extends SDKHandle {
      * @availability iOS 16.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:18CreateMLComponents17AudioFeaturePrintV": true;
+    };
 }
 /**
  * struct FeatureSequence
@@ -387,6 +420,9 @@ export declare class AudioFeaturePrint_FeatureSequence extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $type: {
+        "s:18CreateMLComponents17AudioFeaturePrintV0D8SequenceV": true;
+    };
     readonly $element: $SDK8;
 }
 /**
@@ -414,6 +450,9 @@ export declare class AudioFeaturePrint_FeatureSequence_Iterator extends SDKHandl
      * @availability iOS 16.0+
      */
     next(): Promise<(TemporalFeature<_CoreML_MLShapedArray<number>>) | null>;
+    readonly $type: {
+        "s:18CreateMLComponents17AudioFeaturePrintV0D8SequenceV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = TemporalFeature<MLShapedArray<Float>>
@@ -450,6 +489,9 @@ export declare class AudioPreprocessingError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents23AudioPreprocessingErrorO": true;
+    };
 }
 /**
  * struct AudioReader
@@ -487,6 +529,9 @@ export declare class AudioReader extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(url: string, eventHandler?: $SDK7): AudioReader_AsyncBuffers;
+    readonly $type: {
+        "s:18CreateMLComponents11AudioReaderV": true;
+    };
 }
 /**
  * struct AsyncBuffers
@@ -508,6 +553,9 @@ export declare class AudioReader_AsyncBuffers extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $type: {
+        "s:18CreateMLComponents11AudioReaderV12AsyncBuffersV": true;
+    };
     readonly $element: $SDK11;
 }
 /**
@@ -535,6 +583,9 @@ export declare class AudioReader_AsyncBuffers_Iterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<$SDK12>;
+    readonly $type: {
+        "s:18CreateMLComponents11AudioReaderV12AsyncBuffersV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = TemporalFeature<AVAudioPCMBuffer>
@@ -562,6 +613,9 @@ export declare class AudioReader_Configuration extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): AudioReader_Configuration;
+    readonly $type: {
+        "s:18CreateMLComponents11AudioReaderV13ConfigurationV": true;
+    };
 }
 /**
  * typealias Input = URL
@@ -583,6 +637,9 @@ export declare class AudioReader_MicrophoneAsyncBuffers extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $type: {
+        "s:18CreateMLComponents11AudioReaderV22MicrophoneAsyncBuffersV": true;
+    };
     readonly $element: $SDK11;
 }
 /**
@@ -610,6 +667,9 @@ export declare class AudioReader_MicrophoneAsyncBuffers_Iterator extends SDKHand
      * @availability iOS 16.0+
      */
     next(): Promise<$SDK12>;
+    readonly $type: {
+        "s:18CreateMLComponents11AudioReaderV22MicrophoneAsyncBuffersV8IteratorC": true;
+    };
 }
 /**
  * typealias Element = TemporalFeature<AudioReader.MicrophoneAsyncBuffers.Feature>
@@ -643,12 +703,18 @@ export declare const AudioReaderError: {
  * @availability iOS 17.0+
  */
 export declare class AugmentationBuilder<Element = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents19AugmentationBuilderV": true;
+    };
 }
 /**
  * struct AugmentationSequence<Base, RandomTransformer, RandomNumberGenerator, Annotation> where Base : Sequence, RandomTransformer : RandomTransformer, RandomNumberGenerator : RandomNumberGenerator, Base.Element == AnnotatedFeature<RandomTransformer.Input, Annotation>, RandomTransformer.Input == RandomTransformer.Output
  * @availability iOS 17.0+
  */
 export declare class AugmentationSequence<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents20AugmentationSequenceV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -656,6 +722,9 @@ export declare class AugmentationSequence<Base = unknown, RandomTransformer = un
  * @availability iOS 17.0+
  */
 export declare class AugmentationSequence_AsyncIterator<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents20AugmentationSequenceV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = AnnotatedFeature<RandomTransformer.Input, Annotation>
@@ -667,6 +736,9 @@ export type AugmentationSequence_AsyncIterator_Element<Base = unknown, RandomTra
  * @availability iOS 17.0+
  */
 export declare class AugmentationSequence_BatchedSequence<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents20AugmentationSequenceV07BatchedD0V": true;
+    };
     readonly $element: $SDK14;
 }
 /**
@@ -674,6 +746,9 @@ export declare class AugmentationSequence_BatchedSequence<Base = unknown, Random
  * @availability iOS 17.0+
  */
 export declare class AugmentationSequence_BatchedSequence_AsyncIterator<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents20AugmentationSequenceV07BatchedD0V13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = [AugmentationSequence<Base, RandomTransformer, RandomNumberGenerator, Annotation>.Element]
@@ -695,12 +770,18 @@ export type AugmentationSequence_Element<Base = unknown, RandomTransformer = unk
  * @availability iOS 17.0+
  */
 export declare class Augmenter<RandomTransformer = unknown, RandomNumberGenerator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents9AugmenterV": true;
+    };
 }
 /**
  * struct BoostedTreeClassifier<Label> where Label : Comparable, Label : Decodable, Label : Encodable, Label : Hashable
  * @availability iOS 16.0+
  */
 export declare class BoostedTreeClassifier<Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents21BoostedTreeClassifierV": true;
+    };
 }
 /**
  * typealias Annotation = Label
@@ -789,6 +870,9 @@ export declare class BoostedTreeConfiguration extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): BoostedTreeConfiguration;
+    readonly $type: {
+        "s:18CreateMLComponents24BoostedTreeConfigurationV": true;
+    };
 }
 /**
  * struct BoostedTreeRegressor<Annotation>
@@ -878,6 +962,9 @@ export declare class BoostedTreeRegressor<Annotation = unknown> extends SDKHandl
             "transformer": TreeRegressorModel;
         };
     }>;
+    readonly $type: {
+        "s:18CreateMLComponents20BoostedTreeRegressorV": true;
+    };
 }
 /**
  * typealias Transformer = TreeRegressorModel
@@ -910,12 +997,18 @@ export declare class CategoricalImputer<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(strategy: $SDK20): CategoricalImputer<number>;
+    readonly $type: {
+        "s:18CreateMLComponents18CategoricalImputerV": true;
+    };
 }
 /**
  * enum Strategy
  * @availability iOS 16.0+
  */
 export declare class CategoricalImputer_Strategy<Element = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents18CategoricalImputerV8StrategyO": true;
+    };
 }
 /**
  * typealias Transformer = ImputeTransformer<Element>
@@ -927,6 +1020,9 @@ export type CategoricalImputer_Transformer<Element = unknown> = ImputeTransforme
  * @availability iOS 17.0+
  */
 export declare class ChooseRandomly<Element = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents14ChooseRandomlyV": true;
+    };
 }
 /**
  * typealias Input = Element
@@ -960,6 +1056,9 @@ export declare class Classification<Label = unknown> extends SDKHandle {
      */
     get label(): number;
     set label(value: number);
+    readonly $type: {
+        "s:18CreateMLComponents14ClassificationV": true;
+    };
 }
 /**
  * struct ClassificationDistribution<Label> where Label : Hashable
@@ -1026,6 +1125,9 @@ export declare class ClassificationDistribution<Label = unknown> extends SDKHand
      * @availability iOS 16.0+
      */
     subscript19732(bounds: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:18CreateMLComponents26ClassificationDistributionV": true;
+    };
 }
 /**
  * typealias Element = Classification<Label>
@@ -1150,6 +1252,9 @@ export declare class ClassificationMetrics<Label = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init94512(predicted: Array<number>, groundTruth: Array<number>): $SDK25;
+    readonly $type: {
+        "s:18CreateMLComponents21ClassificationMetricsV": true;
+    };
 }
 /**
  * protocol Classifier : Transformer
@@ -1194,6 +1299,9 @@ export declare class ColumnConcatenator<Scalar = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(input: _TabularData_DataFrame, eventHandler?: $SDK7): _TabularData_DataFrame;
+    readonly $type: {
+        "s:18CreateMLComponents18ColumnConcatenatorV": true;
+    };
 }
 /**
  * typealias Input = DataFrame
@@ -1210,12 +1318,18 @@ export type ColumnConcatenator_Output<Scalar = unknown> = _TabularData_DataFrame
  * @availability iOS 16.0+
  */
 export declare class ColumnSelection extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents15ColumnSelectionO": true;
+    };
 }
 /**
  * struct ColumnSelector<Estimator, UnwrappedInput> where Estimator : Estimator, Estimator.Transformer.Input == UnwrappedInput?
  * @availability iOS 16.0+
  */
 export declare class ColumnSelector<Estimator = unknown, UnwrappedInput = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents14ColumnSelectorV": true;
+    };
 }
 /**
  * typealias Input = Estimator.Transformer.Input
@@ -1237,6 +1351,9 @@ export type ColumnSelector_Transformer<Estimator = unknown, UnwrappedInput = unk
  * @availability iOS 16.0+
  */
 export declare class ColumnSelectorTransformer<Base = unknown, UnwrappedInput = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents25ColumnSelectorTransformerV": true;
+    };
 }
 /**
  * typealias Input = DataFrame
@@ -1263,6 +1380,9 @@ export declare class CompatibilityError extends SDKHandle {
      * @availability iOS 17.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents18CompatibilityErrorO": true;
+    };
 }
 /**
  * struct ComposedTabularTransformer<Inner, Outer> where Inner : TabularTransformer, Outer : TabularTransformer
@@ -1296,6 +1416,9 @@ export declare class ComposedTabularTransformer<Inner = unknown, Outer = unknown
      * @availability iOS 16.0+
      */
     static init(inner: TreeRegressorModel, outer: TreeRegressorModel): ComposedTabularTransformer<TreeRegressorModel, TreeRegressorModel>;
+    readonly $type: {
+        "s:18CreateMLComponents26ComposedTabularTransformerV": true;
+    };
 }
 /**
  * typealias Input = DataFrame
@@ -1312,6 +1435,9 @@ export type ComposedTabularTransformer_Output<Inner = unknown, Outer = unknown> 
  * @availability iOS 16.0+
  */
 export declare class ComposedTemporalTransformer<Inner = unknown, Outer = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents27ComposedTemporalTransformerV": true;
+    };
 }
 /**
  * typealias Input = Inner.Input
@@ -1338,6 +1464,9 @@ export type ComposedTemporalTransformer_OutputSequence<Inner = unknown, Outer = 
  * @availability iOS 16.0+
  */
 export declare class ComposedTransformer<Inner = unknown, Outer = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents19ComposedTransformerV": true;
+    };
 }
 /**
  * typealias Input = Inner.Input
@@ -1369,6 +1498,9 @@ export declare class ConcatenationError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents18ConcatenationErrorO": true;
+    };
 }
 export declare class DataFrame extends SDKHandle {
     /**
@@ -1381,6 +1513,9 @@ export declare class DataFrame extends SDKHandle {
      * @availability iOS 16.0+
      */
     selecting(selection: ColumnSelection): _TabularData_DataFrame;
+    readonly $type: {
+        "s:11TabularData0B5FrameV": true;
+    };
 }
 /**
  * struct DataFrameTemporalAnnotationParameters<Annotation> where Annotation : Equatable, Annotation : Sendable
@@ -1422,6 +1557,9 @@ export declare class DataFrameTemporalAnnotationParameters<Annotation = unknown>
      * @availability iOS 16.0+
      */
     static init(): $SDK31;
+    readonly $type: {
+        "s:18CreateMLComponents37DataFrameTemporalAnnotationParametersV": true;
+    };
 }
 /**
  * enum FilePathType
@@ -1433,6 +1571,9 @@ export declare class DataFrameTemporalAnnotationParameters_FilePathType<Annotati
      * @availability iOS 16.0+
      */
     get description(): string;
+    readonly $type: {
+        "s:18CreateMLComponents37DataFrameTemporalAnnotationParametersV12FilePathTypeO": true;
+    };
 }
 /**
  * enum DatasetError
@@ -1449,6 +1590,9 @@ export declare class DatasetError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents12DatasetErrorO": true;
+    };
 }
 /**
  * struct DateFeatureExtractor<Scalar> where Scalar : BinaryFloatingPoint
@@ -1475,6 +1619,9 @@ export declare class DateFeatureExtractor<Scalar = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     get features(): DateFeatures;
+    readonly $type: {
+        "s:18CreateMLComponents20DateFeatureExtractorV": true;
+    };
 }
 /**
  * typealias Input = Date
@@ -1569,6 +1716,9 @@ export type DateFeatures_RawValue = number;
  * @availability iOS 17.0+
  */
 export declare class DetectedObject<Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents14DetectedObjectV": true;
+    };
 }
 /**
  * struct Downsampler<Input> where Input : Sendable
@@ -1585,6 +1735,9 @@ export declare class Downsampler<Input = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     get factor(): number;
+    readonly $type: {
+        "s:18CreateMLComponents11DownsamplerV": true;
+    };
 }
 /**
  * struct DownStreamSequence
@@ -1601,6 +1754,9 @@ export declare class Downsampler_DownStreamSequence<Input = unknown> extends SDK
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $type: {
+        "s:18CreateMLComponents11DownsamplerV18DownStreamSequenceV": true;
+    };
     readonly $element: $SDK38;
 }
 /**
@@ -1628,6 +1784,9 @@ export declare class Downsampler_DownStreamSequence_Iterator<Input = unknown> ex
      * @availability iOS 16.0+
      */
     next(): Promise<(TemporalFeature<Downsampler<number>>) | null>;
+    readonly $type: {
+        "s:18CreateMLComponents11DownsamplerV18DownStreamSequenceV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = TemporalFeature<Downsampler<Input>.Output>
@@ -1717,12 +1876,18 @@ export declare class EstimatorEncodingError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents22EstimatorEncodingErrorO": true;
+    };
 }
 /**
  * struct EstimatorToSupervisedAdaptor<Estimator, Annotation> where Estimator : Estimator, Annotation : Equatable
  * @availability iOS 16.0+
  */
 export declare class EstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents28EstimatorToSupervisedAdaptorV": true;
+    };
 }
 /**
  * typealias Transformer = Estimator.Transformer
@@ -1735,6 +1900,9 @@ export type EstimatorToSupervisedAdaptor_Transformer<Estimator = unknown, Annota
  * @deprecated iOS 18.0
  */
 export declare class EstimatorToTemporalAdaptor<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents26EstimatorToTemporalAdaptorV": true;
+    };
 }
 /**
  * typealias Input = Base.Transformer.Input
@@ -1793,6 +1961,9 @@ export declare class Event extends SDKHandle {
      */
     get itemCount(): number;
     set itemCount(value: number);
+    readonly $type: {
+        "s:18CreateMLComponents5EventV": true;
+    };
 }
 /**
  * typealias EventHandler = @Sendable (Event) -> Void
@@ -1804,6 +1975,9 @@ export type EventHandler = ((arg0: Event) => Promise<void>);
  * @availability iOS 16.0+
  */
 export declare class FullyConnectedNetworkClassifier<Scalar = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents31FullyConnectedNetworkClassifierV": true;
+    };
 }
 /**
  * typealias Annotation = Label
@@ -1820,6 +1994,9 @@ export type FullyConnectedNetworkClassifier_Transformer<Scalar = unknown, Label 
  * @availability iOS 16.0+
  */
 export declare class FullyConnectedNetworkClassifierModel<Scalar = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents36FullyConnectedNetworkClassifierModelV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -1889,12 +2066,18 @@ export declare class FullyConnectedNetworkConfiguration extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): FullyConnectedNetworkConfiguration;
+    readonly $type: {
+        "s:18CreateMLComponents34FullyConnectedNetworkConfigurationV": true;
+    };
 }
 /**
  * struct FullyConnectedNetworkMultiLabelClassifier<Scalar, Label> where Scalar : MLShapedArrayScalar, Scalar : BinaryFloatingPoint, Scalar : Decodable, Scalar : Encodable, Label : Comparable, Label : Decodable, Label : Encodable, Label : Hashable
  * @availability iOS 17.0+
  */
 export declare class FullyConnectedNetworkMultiLabelClassifier<Scalar = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents41FullyConnectedNetworkMultiLabelClassifierV": true;
+    };
 }
 /**
  * typealias Annotation = Set<Label>
@@ -1911,6 +2094,9 @@ export type FullyConnectedNetworkMultiLabelClassifier_Transformer<Scalar = unkno
  * @availability iOS 17.0+
  */
 export declare class FullyConnectedNetworkMultiLabelClassifierModel<Scalar = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents46FullyConnectedNetworkMultiLabelClassifierModelV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -1993,6 +2179,9 @@ export declare class FullyConnectedNetworkRegressor<Scalar = unknown> extends SD
             "transformer": $SDK51;
         };
     }>;
+    readonly $type: {
+        "s:18CreateMLComponents30FullyConnectedNetworkRegressorV": true;
+    };
 }
 /**
  * typealias Annotation = Float
@@ -2019,6 +2208,9 @@ export declare class FullyConnectedNetworkRegressorModel<Scalar = unknown> exten
      * @availability iOS 16.0+
      */
     applied(input: $SDK0, eventHandler?: $SDK7): Promise<number>;
+    readonly $type: {
+        "s:18CreateMLComponents35FullyConnectedNetworkRegressorModelV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -2045,6 +2237,9 @@ export declare class HumanBodyActionCounter extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): HumanBodyActionCounter;
+    readonly $type: {
+        "s:18CreateMLComponents22HumanBodyActionCounterV": true;
+    };
 }
 /**
  * struct CumulativeSumSequence
@@ -2061,6 +2256,9 @@ export declare class HumanBodyActionCounter_CumulativeSumSequence extends SDKHan
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $type: {
+        "s:18CreateMLComponents22HumanBodyActionCounterV21CumulativeSumSequenceV": true;
+    };
     readonly $element: TemporalFeature<number>;
 }
 /**
@@ -2088,6 +2286,9 @@ export declare class HumanBodyActionCounter_CumulativeSumSequence_Iterator exten
      * @availability iOS 16.0+
      */
     next(): Promise<(TemporalFeature<number>) | null>;
+    readonly $type: {
+        "s:18CreateMLComponents22HumanBodyActionCounterV21CumulativeSumSequenceV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = TemporalFeature<Float>
@@ -2124,6 +2325,9 @@ export declare class HumanBodyActionPeriodPredictor extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): HumanBodyActionPeriodPredictor;
+    readonly $type: {
+        "s:18CreateMLComponents30HumanBodyActionPeriodPredictorV": true;
+    };
 }
 /**
  * typealias Input = [Pose]
@@ -2157,6 +2361,9 @@ export declare class HumanBodyActionPeriodPredictor_Prediction extends SDKHandle
      */
     get period(): number;
     set period(value: number);
+    readonly $type: {
+        "s:18CreateMLComponents30HumanBodyActionPeriodPredictorV10PredictionV": true;
+    };
 }
 /**
  * struct HumanBodyPoseExtractor
@@ -2178,6 +2385,9 @@ export declare class HumanBodyPoseExtractor extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): HumanBodyPoseExtractor;
+    readonly $type: {
+        "s:18CreateMLComponents22HumanBodyPoseExtractorV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2209,6 +2419,9 @@ export declare class HumanHandPoseExtractor extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): HumanHandPoseExtractor;
+    readonly $type: {
+        "s:18CreateMLComponents22HumanHandPoseExtractorV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2241,6 +2454,9 @@ export declare class ImageBlur extends SDKHandle {
      * @availability iOS 17.0+
      */
     applied(image: _CoreImage_CIImage, eventHandler?: $SDK7): _CoreImage_CIImage;
+    readonly $type: {
+        "s:18CreateMLComponents9ImageBlurV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2291,6 +2507,9 @@ export declare class ImageColorTransformer extends SDKHandle {
      */
     get contrast(): (number) | null;
     set contrast(value: (number) | null);
+    readonly $type: {
+        "s:18CreateMLComponents21ImageColorTransformerV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2328,6 +2547,9 @@ export declare class ImageCropper extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(image: _CoreImage_CIImage, eventHandler?: $SDK7): _CoreImage_CIImage;
+    readonly $type: {
+        "s:18CreateMLComponents12ImageCropperV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2360,6 +2582,9 @@ export declare class ImageExposureAdjuster extends SDKHandle {
      * @availability iOS 17.0+
      */
     applied(image: _CoreImage_CIImage, eventHandler?: $SDK7): _CoreImage_CIImage;
+    readonly $type: {
+        "s:18CreateMLComponents21ImageExposureAdjusterV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2423,6 +2648,9 @@ export declare class ImageFeaturePrint extends SDKHandle {
      */
     get revision(): number;
     set revision(value: number);
+    readonly $type: {
+        "s:18CreateMLComponents17ImageFeaturePrintV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2455,6 +2683,9 @@ export declare class ImageFlipper extends SDKHandle {
      * @availability iOS 17.0+
      */
     applied(image: _CoreImage_CIImage, eventHandler?: $SDK7): _CoreImage_CIImage;
+    readonly $type: {
+        "s:18CreateMLComponents12ImageFlipperV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2496,6 +2727,9 @@ export declare class ImageReader extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): ImageReader;
+    readonly $type: {
+        "s:18CreateMLComponents11ImageReaderV": true;
+    };
 }
 /**
  * typealias Input = URL
@@ -2528,6 +2762,9 @@ export declare class ImageRotator extends SDKHandle {
      * @availability iOS 17.0+
      */
     applied(image: _CoreImage_CIImage, eventHandler?: $SDK7): _CoreImage_CIImage;
+    readonly $type: {
+        "s:18CreateMLComponents12ImageRotatorV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2575,6 +2812,9 @@ export declare class ImageScaler extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(image: _CoreImage_CIImage, eventHandler?: $SDK7): _CoreImage_CIImage;
+    readonly $type: {
+        "s:18CreateMLComponents11ImageScalerV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -2612,6 +2852,9 @@ export declare class ImputeTransformer<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(input?: (number) | null, eventHandler?: $SDK7): number;
+    readonly $type: {
+        "s:18CreateMLComponents17ImputeTransformerV": true;
+    };
 }
 /**
  * typealias Input = Element?
@@ -2878,6 +3121,9 @@ export declare class JointPoint extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(key: JointKey, location: $SDK59, confidence: number): JointPoint;
+    readonly $type: {
+        "s:18CreateMLComponents10JointPointV": true;
+    };
 }
 /**
  * struct JointsSelector
@@ -2916,6 +3162,9 @@ export declare class JointsSelector extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(input: Pose, eventHandler?: $SDK7): Pose;
+    readonly $type: {
+        "s:18CreateMLComponents14JointsSelectorV": true;
+    };
 }
 /**
  * typealias Input = Pose
@@ -3008,6 +3257,9 @@ export declare class LinearRegressor<Scalar = unknown> extends SDKHandle {
             "transformer": $SDK62;
         };
     }>;
+    readonly $type: {
+        "s:18CreateMLComponents15LinearRegressorV": true;
+    };
 }
 /**
  * typealias Annotation = Scalar
@@ -3072,6 +3324,9 @@ export declare class LinearRegressor_Configuration<Scalar = unknown> extends SDK
      * @availability iOS 16.0+
      */
     static init(): $SDK61;
+    readonly $type: {
+        "s:18CreateMLComponents15LinearRegressorV13ConfigurationV": true;
+    };
 }
 /**
  * typealias Transformer = LinearRegressorModel<Scalar>
@@ -3098,6 +3353,9 @@ export declare class LinearRegressorModel<Scalar = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(input: $SDK0, eventHandler?: $SDK7): Promise<number>;
+    readonly $type: {
+        "s:18CreateMLComponents20LinearRegressorModelV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -3189,6 +3447,9 @@ export declare class LinearTimeSeriesForecaster<Scalar = unknown> extends SDKHan
             "model": $SDK65;
         };
     }>;
+    readonly $type: {
+        "s:18CreateMLComponents26LinearTimeSeriesForecasterV": true;
+    };
 }
 /**
  * typealias Annotation = MLShapedArray<Scalar>
@@ -3261,6 +3522,9 @@ export declare class LinearTimeSeriesForecaster_Model<Scalar = unknown> extends 
      * @availability iOS 18.0+
      */
     appliedToWindowEventHandler(input: $SDK0, eventHandler?: $SDK7): Promise<$SDK0>;
+    readonly $type: {
+        "s:18CreateMLComponents26LinearTimeSeriesForecasterV5ModelV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -3340,6 +3604,9 @@ export declare class LinearTimeSeriesForecasterConfiguration extends SDKHandle {
      */
     get batchSize(): number;
     set batchSize(value: number);
+    readonly $type: {
+        "s:18CreateMLComponents39LinearTimeSeriesForecasterConfigurationV": true;
+    };
 }
 /**
  * struct LinearTransformer<Element> where Element : BinaryFloatingPoint, Element : Decodable, Element : Encodable
@@ -3378,6 +3645,9 @@ export declare class LinearTransformer<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     appliedToEventHandler7721(input: number, eventHandler?: $SDK7): number;
+    readonly $type: {
+        "s:18CreateMLComponents17LinearTransformerV": true;
+    };
 }
 /**
  * typealias Input = Element
@@ -3394,6 +3664,9 @@ export type LinearTransformer_Output<Element = unknown> = unknown;
  * @availability iOS 16.0+
  */
 export declare class LogisticRegressionClassifier<Scalar = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents28LogisticRegressionClassifierV": true;
+    };
 }
 /**
  * typealias Annotation = Label
@@ -3405,6 +3678,9 @@ export type LogisticRegressionClassifier_Annotation<Scalar = unknown, Label = un
  * @availability iOS 16.0+
  */
 export declare class LogisticRegressionClassifier_Configuration<Scalar = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents28LogisticRegressionClassifierV13ConfigurationV": true;
+    };
 }
 /**
  * typealias Transformer = LogisticRegressionClassifierModel<Scalar, Label>
@@ -3416,6 +3692,9 @@ export type LogisticRegressionClassifier_Transformer<Scalar = unknown, Label = u
  * @availability iOS 16.0+
  */
 export declare class LogisticRegressionClassifierModel<Scalar = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents33LogisticRegressionClassifierModelV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -3442,6 +3721,9 @@ export declare class MaxAbsScaler<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): MaxAbsScaler<number>;
+    readonly $type: {
+        "s:18CreateMLComponents12MaxAbsScalerV": true;
+    };
 }
 /**
  * struct Transformer
@@ -3469,6 +3751,9 @@ export declare class MaxAbsScaler_Transformer<Element = unknown> extends SDKHand
      * @availability iOS 16.0+
      */
     applied(input: number, eventHandler?: $SDK7): number;
+    readonly $type: {
+        "s:18CreateMLComponents12MaxAbsScalerV11TransformerV": true;
+    };
 }
 /**
  * typealias Input = Element
@@ -3584,6 +3869,9 @@ export declare class MinMaxScaler<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     fitted(input: Array<number>, eventHandler?: $SDK7): $SDK72;
+    readonly $type: {
+        "s:18CreateMLComponents12MinMaxScalerV": true;
+    };
 }
 /**
  * struct Transformer
@@ -3617,6 +3905,9 @@ export declare class MinMaxScaler_Transformer<Element = unknown> extends SDKHand
      * @availability iOS 16.0+
      */
     applied(input: number, eventHandler?: $SDK7): number;
+    readonly $type: {
+        "s:18CreateMLComponents12MinMaxScalerV11TransformerV": true;
+    };
 }
 /**
  * typealias Input = Element
@@ -3653,6 +3944,9 @@ export declare class MLModelClassifierAdaptor<Scalar = unknown> extends SDKHandl
      * @availability iOS 16.0+
      */
     applied(input: $SDK0, eventHandler?: $SDK7): Promise<ClassificationDistribution<MLModelClassifierAdaptor_Label<number>>>;
+    readonly $type: {
+        "s:18CreateMLComponents24MLModelClassifierAdaptorV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -3679,6 +3973,9 @@ export declare class MLModelClassifierAdaptor_Label<Scalar = unknown> extends SD
      * @availability iOS 16.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:18CreateMLComponents24MLModelClassifierAdaptorV5LabelO": true;
+    };
 }
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
@@ -3740,6 +4037,9 @@ export declare class MLModelImageFeatureExtractor extends SDKHandle {
      * @availability iOS 16.0+
      */
     get inputName(): string;
+    readonly $type: {
+        "s:18CreateMLComponents28MLModelImageFeatureExtractorV": true;
+    };
 }
 /**
  * enum Error
@@ -3751,6 +4051,9 @@ export declare class MLModelImageFeatureExtractor_Error extends SDKHandle {
      * @availability iOS 16.0+
      */
     get debugDescription(): string;
+    readonly $type: {
+        "s:18CreateMLComponents28MLModelImageFeatureExtractorV5ErrorO": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -3787,6 +4090,9 @@ export declare class MLModelRegressorAdaptor<Scalar = unknown> extends SDKHandle
      * @availability iOS 16.0+
      */
     applied(input: $SDK0, eventHandler?: $SDK7): Promise<number>;
+    readonly $type: {
+        "s:18CreateMLComponents23MLModelRegressorAdaptorV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -3823,6 +4129,9 @@ export declare class MLModelTransformerAdaptor<Scalar = unknown> extends SDKHand
      * @availability iOS 16.0+
      */
     applied(input: $SDK0, eventHandler?: $SDK7): Promise<$SDK0>;
+    readonly $type: {
+        "s:18CreateMLComponents25MLModelTransformerAdaptorV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -3849,6 +4158,9 @@ export declare class ModelCompatibilityError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents23ModelCompatibilityErrorO": true;
+    };
 }
 /**
  * struct ModelMetadata
@@ -3890,6 +4202,9 @@ export declare class ModelMetadata extends SDKHandle {
      */
     get version(): string;
     set version(value: string);
+    readonly $type: {
+        "s:18CreateMLComponents13ModelMetadataV": true;
+    };
 }
 /**
  * enum ModelUpdateError
@@ -3906,6 +4221,9 @@ export declare class ModelUpdateError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents16ModelUpdateErrorO": true;
+    };
 }
 /**
  * struct MultiLabelClassificationMetrics<Label> where Label : Hashable
@@ -3977,12 +4295,18 @@ export declare class MultiLabelClassificationMetrics<Label = unknown> extends SD
      * @availability iOS 17.0+
      */
     f1Score(label: number): number;
+    readonly $type: {
+        "s:18CreateMLComponents31MultiLabelClassificationMetricsV": true;
+    };
 }
 /**
  * enum ThresholdSelectionStrategy
  * @availability iOS 17.0+
  */
 export declare class MultiLabelClassificationMetrics_ThresholdSelectionStrategy<Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents31MultiLabelClassificationMetricsV26ThresholdSelectionStrategyO": true;
+    };
 }
 /**
  * struct MultivariateLinearRegressor<Scalar> where Scalar : MLShapedArrayScalar, Scalar : BinaryFloatingPoint
@@ -4055,6 +4379,9 @@ export declare class MultivariateLinearRegressor<Scalar = unknown> extends SDKHa
             "model": $SDK80;
         };
     }>;
+    readonly $type: {
+        "s:18CreateMLComponents27MultivariateLinearRegressorV": true;
+    };
 }
 /**
  * typealias Annotation = MLShapedArray<Scalar>
@@ -4106,6 +4433,9 @@ export declare class MultivariateLinearRegressor_Model<Scalar = unknown> extends
      * @availability iOS 18.0+
      */
     get inputSize(): number;
+    readonly $type: {
+        "s:18CreateMLComponents27MultivariateLinearRegressorV5ModelV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -4168,6 +4498,9 @@ export declare class MultivariateLinearRegressorConfiguration extends SDKHandle 
      * @availability iOS 18.0+
      */
     static init(): MultivariateLinearRegressorConfiguration;
+    readonly $type: {
+        "s:18CreateMLComponents40MultivariateLinearRegressorConfigurationV": true;
+    };
 }
 /**
  * struct NormalizationScaler<Element> where Element : BinaryFloatingPoint, Element : Decodable, Element : Encodable
@@ -4190,6 +4523,9 @@ export declare class NormalizationScaler<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     fitted(input: Array<number>, eventHandler?: $SDK7): $SDK85;
+    readonly $type: {
+        "s:18CreateMLComponents19NormalizationScalerV": true;
+    };
 }
 /**
  * enum NormalizationStrategy
@@ -4222,6 +4558,9 @@ export declare class NormalizationScaler_Transformer<Element = unknown> extends 
      * @availability iOS 16.0+
      */
     applied(input: number, eventHandler?: $SDK7): number;
+    readonly $type: {
+        "s:18CreateMLComponents19NormalizationScalerV11TransformerV": true;
+    };
 }
 /**
  * typealias Input = Element
@@ -4279,12 +4618,18 @@ export declare class NumericImputer<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(strategy: $SDK86): NumericImputer<number>;
+    readonly $type: {
+        "s:18CreateMLComponents14NumericImputerV": true;
+    };
 }
 /**
  * enum Strategy
  * @availability iOS 16.0+
  */
 export declare class NumericImputer_Strategy<Element = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents14NumericImputerV8StrategyO": true;
+    };
 }
 /**
  * typealias Transformer = ImputeTransformer<Element>
@@ -4296,12 +4641,18 @@ export type NumericImputer_Transformer<Element = unknown> = ImputeTransformer<un
  * @availability iOS 17.0+
  */
 export declare class ObjectDetectionAnnotation<Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents25ObjectDetectionAnnotationV": true;
+    };
 }
 /**
  * struct Annotation
  * @availability iOS 17.0+
  */
 export declare class ObjectDetectionAnnotation_Annotation<Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents25ObjectDetectionAnnotationV0E0V": true;
+    };
 }
 /**
  * enum CodingKeys
@@ -4333,18 +4684,27 @@ export type ObjectDetectionAnnotation_ID<Label = unknown> = string;
  * @availability iOS 17.0+
  */
 export declare class ObjectDetectionMetrics<Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents22ObjectDetectionMetricsV": true;
+    };
 }
 /**
  * struct OneHotEncoder<Category> where Category : Comparable, Category : Decodable, Category : Encodable, Category : Hashable
  * @availability iOS 16.0+
  */
 export declare class OneHotEncoder<Category = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents13OneHotEncoderV": true;
+    };
 }
 /**
  * struct Transformer
  * @availability iOS 16.0+
  */
 export declare class OneHotEncoder_Transformer<Category = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents13OneHotEncoderV11TransformerV": true;
+    };
 }
 /**
  * typealias Input = Category?
@@ -4393,6 +4753,9 @@ export declare class OptionalUnwrapper<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): OptionalUnwrapper<unknown>;
+    readonly $type: {
+        "s:18CreateMLComponents17OptionalUnwrapperV": true;
+    };
 }
 /**
  * typealias Input = Element?
@@ -4409,12 +4772,18 @@ export type OptionalUnwrapper_Output<Element = unknown> = unknown;
  * @availability iOS 16.0+
  */
 export declare class OrdinalEncoder<Category = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents14OrdinalEncoderV": true;
+    };
 }
 /**
  * struct Transformer
  * @availability iOS 16.0+
  */
 export declare class OrdinalEncoder_Transformer<Category = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents14OrdinalEncoderV11TransformerV": true;
+    };
 }
 /**
  * typealias Input = Category?
@@ -4441,6 +4810,9 @@ export declare class PipelineDataError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents17PipelineDataErrorO": true;
+    };
 }
 /**
  * struct Pose
@@ -4463,6 +4835,9 @@ export declare class Pose extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(observation: _Vision_VNRecognizedPointsObservation): Pose;
+    readonly $type: {
+        "s:18CreateMLComponents4PoseV": true;
+    };
 }
 /**
  * enum PoseSelectionStrategy
@@ -4511,6 +4886,9 @@ export declare class PoseSelector extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): PoseSelector;
+    readonly $type: {
+        "s:18CreateMLComponents12PoseSelectorV": true;
+    };
 }
 /**
  * typealias Input = [Pose]
@@ -4543,6 +4921,9 @@ export declare class PreprocessedFeatureSequence<Feature = unknown> extends SDKH
      */
     get features(): $SDK90;
     set features(value: $SDK90);
+    readonly $type: {
+        "s:18CreateMLComponents27PreprocessedFeatureSequenceV": true;
+    };
     readonly $element: $SDK6;
 }
 /**
@@ -4555,6 +4936,9 @@ export declare class PreprocessedFeatureSequence_AsyncIterator<Feature = unknown
      * @availability iOS 16.0+
      */
     next(): (TemporalFeature<unknown>) | null;
+    readonly $type: {
+        "s:18CreateMLComponents27PreprocessedFeatureSequenceV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = TemporalFeature<Feature>
@@ -4571,6 +4955,9 @@ export type PreprocessedFeatureSequence_Element<Feature = unknown> = $SDK6;
  * @availability iOS 16.0+
  */
 export declare class PreprocessingEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents22PreprocessingEstimatorV": true;
+    };
 }
 /**
  * typealias Input = Preprocessor.Input
@@ -4597,6 +4984,9 @@ export type PreprocessingEstimator_Transformer<Preprocessor = unknown, Estimator
  * @availability iOS 16.0+
  */
 export declare class PreprocessingSupervisedEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents32PreprocessingSupervisedEstimatorV": true;
+    };
 }
 /**
  * typealias Annotation = Estimator.Annotation
@@ -4628,6 +5018,9 @@ export type PreprocessingSupervisedEstimator_Transformer<Preprocessor = unknown,
  * @availability iOS 17.0+
  */
 export declare class PreprocessingSupervisedTabularEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents39PreprocessingSupervisedTabularEstimatorV": true;
+    };
 }
 /**
  * typealias Annotation = Estimator.Annotation
@@ -4660,6 +5053,9 @@ export type PreprocessingSupervisedTabularEstimator_Transformer<Preprocessor = u
  * @deprecated iOS 18.0
  */
 export declare class PreprocessingSupervisedTemporalEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents40PreprocessingSupervisedTemporalEstimatorV": true;
+    };
 }
 /**
  * typealias Annotation = Estimator.Annotation
@@ -4696,6 +5092,9 @@ export type PreprocessingSupervisedTemporalEstimator_Transformer<Preprocessor = 
  * @availability iOS 17.0+
  */
 export declare class PreprocessingTabularEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents29PreprocessingTabularEstimatorV": true;
+    };
 }
 /**
  * typealias Input = Preprocessor.Input
@@ -4723,6 +5122,9 @@ export type PreprocessingTabularEstimator_Transformer<Preprocessor = unknown, Es
  * @deprecated iOS 18.0
  */
 export declare class PreprocessingTemporalEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents30PreprocessingTemporalEstimatorV": true;
+    };
 }
 /**
  * typealias Input = Preprocessor.Input
@@ -4753,6 +5155,9 @@ export type PreprocessingTemporalEstimator_Transformer<Preprocessor = unknown, E
  * @availability iOS 16.0+
  */
 export declare class PreprocessingUpdatableEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents31PreprocessingUpdatableEstimatorV": true;
+    };
 }
 /**
  * typealias Input = Preprocessor.Input
@@ -4779,6 +5184,9 @@ export type PreprocessingUpdatableEstimator_Transformer<Preprocessor = unknown, 
  * @availability iOS 16.0+
  */
 export declare class PreprocessingUpdatableSupervisedEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents41PreprocessingUpdatableSupervisedEstimatorV": true;
+    };
 }
 /**
  * typealias Annotation = Estimator.Annotation
@@ -4810,6 +5218,9 @@ export type PreprocessingUpdatableSupervisedEstimator_Transformer<Preprocessor =
  * @availability iOS 17.0+
  */
 export declare class PreprocessingUpdatableSupervisedTabularEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents48PreprocessingUpdatableSupervisedTabularEstimatorV": true;
+    };
 }
 /**
  * typealias Annotation = Estimator.Annotation
@@ -4842,6 +5253,9 @@ export type PreprocessingUpdatableSupervisedTabularEstimator_Transformer<Preproc
  * @deprecated iOS 18.0
  */
 export declare class PreprocessingUpdatableSupervisedTemporalEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents49PreprocessingUpdatableSupervisedTemporalEstimatorV": true;
+    };
 }
 /**
  * typealias Annotation = Estimator.Annotation
@@ -4878,6 +5292,9 @@ export type PreprocessingUpdatableSupervisedTemporalEstimator_Transformer<Prepro
  * @availability iOS 17.0+
  */
 export declare class PreprocessingUpdatableTabularEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents38PreprocessingUpdatableTabularEstimatorV": true;
+    };
 }
 /**
  * typealias Input = Preprocessor.Input
@@ -4905,6 +5322,9 @@ export type PreprocessingUpdatableTabularEstimator_Transformer<Preprocessor = un
  * @deprecated iOS 18.0
  */
 export declare class PreprocessingUpdatableTemporalEstimator<Preprocessor = unknown, Estimator = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents39PreprocessingUpdatableTemporalEstimatorV": true;
+    };
 }
 /**
  * typealias Input = Preprocessor.Input
@@ -4950,6 +5370,9 @@ export declare class RandomImageCropper extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initScaleAspectRatio(scale: SDKHandle, aspectRatio?: (number) | null): RandomImageCropper;
+    readonly $type: {
+        "s:18CreateMLComponents18RandomImageCropperV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -4982,6 +5405,9 @@ export declare class RandomImageNoiseGenerator extends SDKHandle {
      */
     get intensity(): number;
     set intensity(value: number);
+    readonly $type: {
+        "s:18CreateMLComponents25RandomImageNoiseGeneratorV": true;
+    };
 }
 /**
  * typealias Input = CIImage
@@ -5020,6 +5446,9 @@ export interface Regressor {
  * @availability iOS 16.0+
  */
 export declare class Reshaper<Scalar = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents8ReshaperV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -5052,6 +5481,9 @@ export declare class RobustScaler<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     fitted(input: Array<number>, eventHandler?: $SDK7): $SDK95;
+    readonly $type: {
+        "s:18CreateMLComponents12RobustScalerV": true;
+    };
 }
 /**
  * struct Transformer
@@ -5085,6 +5517,9 @@ export declare class RobustScaler_Transformer<Element = unknown> extends SDKHand
      * @availability iOS 16.0+
      */
     applied(input: number, eventHandler?: $SDK7): number;
+    readonly $type: {
+        "s:18CreateMLComponents12RobustScalerV11TransformerV": true;
+    };
 }
 /**
  * typealias Input = Element
@@ -5111,12 +5546,18 @@ export declare class SerializationError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents18SerializationErrorO": true;
+    };
 }
 /**
  * struct ShuffleRandomly<Element>
  * @availability iOS 17.0+
  */
 export declare class ShuffleRandomly<Element = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents15ShuffleRandomlyV": true;
+    };
 }
 /**
  * typealias Input = Element
@@ -5188,6 +5629,9 @@ export declare class SlidingWindows<Scalar = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript48200(bounds: SDKHandle): SDKHandle;
+    readonly $type: {
+        "s:18CreateMLComponents14SlidingWindowsV": true;
+    };
 }
 /**
  * typealias Element = MLShapedArray<Scalar>
@@ -5234,6 +5678,9 @@ export declare class SlidingWindowTransformer<Input = unknown> extends SDKHandle
      * @availability iOS 16.0+
      */
     get stride(): number;
+    readonly $type: {
+        "s:18CreateMLComponents24SlidingWindowTransformerV": true;
+    };
 }
 /**
  * typealias Input = Input
@@ -5265,6 +5712,9 @@ export declare class SlidingWindowTransformer_WindowSequence<Input = unknown> ex
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $type: {
+        "s:18CreateMLComponents24SlidingWindowTransformerV0D8SequenceV": true;
+    };
     readonly $element: $SDK99;
 }
 /**
@@ -5292,6 +5742,9 @@ export declare class SlidingWindowTransformer_WindowSequence_Iterator<Input = un
      * @availability iOS 16.0+
      */
     next(): Promise<(TemporalFeature<Array<number>>) | null>;
+    readonly $type: {
+        "s:18CreateMLComponents24SlidingWindowTransformerV0D8SequenceV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = TemporalFeature<SlidingWindowTransformer<Input>.Output>
@@ -5338,6 +5791,9 @@ export declare class StandardScaler<Element = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): StandardScaler<number>;
+    readonly $type: {
+        "s:18CreateMLComponents14StandardScalerV": true;
+    };
 }
 /**
  * struct Transformer
@@ -5371,6 +5827,9 @@ export declare class StandardScaler_Transformer<Element = unknown> extends SDKHa
      * @availability iOS 16.0+
      */
     applied(input: number, eventHandler?: $SDK7): number;
+    readonly $type: {
+        "s:18CreateMLComponents14StandardScalerV11TransformerV": true;
+    };
 }
 /**
  * typealias Input = Element
@@ -5414,6 +5873,9 @@ export interface SupervisedEstimator {
  * @deprecated iOS 18.0
  */
 export declare class SupervisedEstimatorToTemporalAdaptor<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents36SupervisedEstimatorToTemporalAdaptorV": true;
+    };
 }
 /**
  * typealias Annotation = Base.Annotation
@@ -5517,6 +5979,9 @@ export interface TabularEstimator {
  * @availability iOS 16.0+
  */
 export declare class TabularEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents35TabularEstimatorToSupervisedAdaptorV": true;
+    };
 }
 /**
  * typealias Transformer = Estimator.Transformer
@@ -5538,6 +6003,9 @@ export declare class TabularPipelineDataError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents24TabularPipelineDataErrorO": true;
+    };
 }
 /**
  * protocol TabularTransformer : Transformer where Self.Input == DataFrame, Self.Output == DataFrame
@@ -5590,6 +6058,9 @@ export declare class TabularTransformerToEstimatorAdaptor<Transformer = unknown>
      * @availability iOS 16.0+
      */
     static init(transformer: TreeRegressorModel): TabularTransformerToEstimatorAdaptor<TreeRegressorModel>;
+    readonly $type: {
+        "s:18CreateMLComponents36TabularTransformerToEstimatorAdaptorV": true;
+    };
 }
 /**
  * struct TabularTransformerToUpdatableEstimatorAdaptor<Transformer> where Transformer : TabularTransformer
@@ -5666,12 +6137,18 @@ export declare class TabularTransformerToUpdatableEstimatorAdaptor<Transformer =
      * @availability iOS 16.0+
      */
     static init(transformer: TreeRegressorModel): TabularTransformerToUpdatableEstimatorAdaptor<TreeRegressorModel>;
+    readonly $type: {
+        "s:18CreateMLComponents45TabularTransformerToUpdatableEstimatorAdaptorV": true;
+    };
 }
 /**
  * struct TemporalAdaptor<Base> where Base : Transformer, Base : Sendable
  * @availability iOS 18.0+
  */
 export declare class TemporalAdaptor<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents15TemporalAdaptorV": true;
+    };
 }
 /**
  * typealias Input = Base.Input
@@ -5719,6 +6196,9 @@ export interface TemporalEstimator {
  * @deprecated iOS 18.0
  */
 export declare class TemporalEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents36TemporalEstimatorToSupervisedAdaptorV": true;
+    };
 }
 /**
  * typealias Transformer = Estimator.Transformer
@@ -5748,6 +6228,9 @@ export declare class TemporalFeature<Feature = unknown> extends SDKHandle {
      */
     get feature(): unknown;
     set feature(value: unknown);
+    readonly $type: {
+        "s:18CreateMLComponents15TemporalFeatureV": true;
+    };
 }
 /**
  * typealias ID = TemporalSegmentIdentifier
@@ -5776,6 +6259,9 @@ export declare class TemporalFileSegment extends SDKHandle {
      */
     get range(): SDKHandle;
     set range(value: SDKHandle);
+    readonly $type: {
+        "s:18CreateMLComponents19TemporalFileSegmentV": true;
+    };
 }
 /**
  * struct TemporalSegmentIdentifier
@@ -5815,6 +6301,9 @@ export declare class TemporalSegmentIdentifier extends SDKHandle {
      */
     get timescale(): number;
     set timescale(value: number);
+    readonly $type: {
+        "s:18CreateMLComponents25TemporalSegmentIdentifierV": true;
+    };
 }
 /**
  * protocol TemporalSequence<Feature> : AsyncSequence
@@ -5839,6 +6328,9 @@ export interface TemporalTransformer {
  * @deprecated iOS 18.0
  */
 export declare class TemporalTransformerToEstimatorAdaptor<Transformer = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents37TemporalTransformerToEstimatorAdaptorV": true;
+    };
 }
 /**
  * struct TemporalTransformerToUpdatableEstimatorAdaptor<Transformer> where Transformer : TemporalTransformer
@@ -5846,12 +6338,18 @@ export declare class TemporalTransformerToEstimatorAdaptor<Transformer = unknown
  * @deprecated iOS 18.0
  */
 export declare class TemporalTransformerToUpdatableEstimatorAdaptor<Transformer = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents46TemporalTransformerToUpdatableEstimatorAdaptorV": true;
+    };
 }
 /**
  * struct TimeSeriesClassifier<Scalar, Label> where Scalar : MLShapedArrayScalar, Scalar : BinaryFloatingPoint, Label : Comparable, Label : Decodable, Label : Encodable, Label : Hashable
  * @availability iOS 18.0+
  */
 export declare class TimeSeriesClassifier<Scalar = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents20TimeSeriesClassifierV": true;
+    };
 }
 /**
  * typealias Annotation = Label
@@ -5868,6 +6366,9 @@ export type TimeSeriesClassifier_Configuration<Scalar = unknown, Label = unknown
  * @availability iOS 18.0+
  */
 export declare class TimeSeriesClassifier_Model<Scalar = unknown, Label = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents20TimeSeriesClassifierV5ModelV": true;
+    };
 }
 /**
  * typealias Input = MLShapedArray<Scalar>
@@ -5947,6 +6448,9 @@ export declare class TimeSeriesClassifierConfiguration extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(): TimeSeriesClassifierConfiguration;
+    readonly $type: {
+        "s:18CreateMLComponents33TimeSeriesClassifierConfigurationV": true;
+    };
 }
 /**
  * struct TimeSeriesForecasterAnnotatedWindows<Scalar> where Scalar : MLShapedArrayScalar
@@ -6000,6 +6504,9 @@ export declare class TimeSeriesForecasterAnnotatedWindows<Scalar = unknown> exte
      * @availability iOS 18.0+
      */
     get features(): $SDK0;
+    readonly $type: {
+        "s:18CreateMLComponents36TimeSeriesForecasterAnnotatedWindowsV": true;
+    };
 }
 /**
  * typealias Element = AnnotatedFeature<MLShapedArray<Scalar>, MLShapedArray<Scalar>>
@@ -6016,6 +6523,9 @@ export declare class TimeSeriesForecasterAnnotatedWindows_Iterator<Scalar = unkn
      * @availability iOS 18.0+
      */
     next(): (AnnotatedFeature<_CoreML_MLShapedArray<number>, _CoreML_MLShapedArray<number>>) | null;
+    readonly $type: {
+        "s:18CreateMLComponents36TimeSeriesForecasterAnnotatedWindowsV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AnnotatedFeature<MLShapedArray<Scalar>, MLShapedArray<Scalar>>
@@ -6073,6 +6583,9 @@ export declare class TimeSeriesForecasterBatches<Scalar = unknown> extends SDKHa
      * @availability iOS 18.0+
      */
     get batchSize(): number;
+    readonly $type: {
+        "s:18CreateMLComponents27TimeSeriesForecasterBatchesV": true;
+    };
 }
 /**
  * typealias Element = AnnotatedBatch<Scalar>
@@ -6089,6 +6602,9 @@ export declare class TimeSeriesForecasterBatches_Iterator<Scalar = unknown> exte
      * @availability iOS 18.0+
      */
     next(): $SDK81;
+    readonly $type: {
+        "s:18CreateMLComponents27TimeSeriesForecasterBatchesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = AnnotatedBatch<Scalar>
@@ -6111,6 +6627,9 @@ export interface Transformer {
  * @availability iOS 16.0+
  */
 export declare class TransformerToEstimatorAdaptor<Transformer = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents29TransformerToEstimatorAdaptorV": true;
+    };
 }
 /**
  * struct TransformerToTemporalAdaptor<Base> where Base : Transformer
@@ -6118,6 +6637,9 @@ export declare class TransformerToEstimatorAdaptor<Transformer = unknown> extend
  * @deprecated iOS 18.0
  */
 export declare class TransformerToTemporalAdaptor<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents28TransformerToTemporalAdaptorV": true;
+    };
 }
 /**
  * typealias Input = Base.Input
@@ -6142,6 +6664,9 @@ export type TransformerToTemporalAdaptor_OutputSequence<Base = unknown> = AnyTem
  * @availability iOS 16.0+
  */
 export declare class TransformerToUpdatableEstimatorAdaptor<Transformer = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents38TransformerToUpdatableEstimatorAdaptorV": true;
+    };
 }
 /**
  * struct TreeClassifierModel<Label> where Label : Hashable
@@ -6179,6 +6704,9 @@ export declare class TreeClassifierModel<Label = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(input: _TabularData_DataFrame, eventHandler?: $SDK7): Promise<_TabularData_DataFrame>;
+    readonly $type: {
+        "s:18CreateMLComponents19TreeClassifierModelV": true;
+    };
 }
 /**
  * typealias Input = DataFrame
@@ -6216,6 +6744,9 @@ export declare class TreeRegressorModel extends SDKHandle {
      * @availability iOS 16.0+
      */
     applied(input: _TabularData_DataFrame, eventHandler?: $SDK7): Promise<_TabularData_DataFrame>;
+    readonly $type: {
+        "s:18CreateMLComponents18TreeRegressorModelV": true;
+    };
 }
 /**
  * typealias Input = DataFrame
@@ -6238,6 +6769,9 @@ export declare class UniformRandomFloatingPointParameter<RandomTransformer = unk
      */
     get range(): SDKHandle;
     set range(value: SDKHandle);
+    readonly $type: {
+        "s:18CreateMLComponents35UniformRandomFloatingPointParameterV": true;
+    };
 }
 /**
  * typealias Input = RandomTransformer.Input
@@ -6260,6 +6794,9 @@ export declare class UniformRandomIntegerParameter<RandomTransformer = unknown, 
      */
     get range(): SDKHandle;
     set range(value: SDKHandle);
+    readonly $type: {
+        "s:18CreateMLComponents29UniformRandomIntegerParameterC": true;
+    };
 }
 /**
  * typealias Input = RandomTransformer.Input
@@ -6317,6 +6854,9 @@ export interface UpdatableEstimator {
  * @availability iOS 16.0+
  */
 export declare class UpdatableEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents37UpdatableEstimatorToSupervisedAdaptorV": true;
+    };
 }
 /**
  * typealias Transformer = Estimator.Transformer
@@ -6329,6 +6869,9 @@ export type UpdatableEstimatorToSupervisedAdaptor_Transformer<Estimator = unknow
  * @deprecated iOS 18.0
  */
 export declare class UpdatableEstimatorToTemporalAdaptor<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents35UpdatableEstimatorToTemporalAdaptorV": true;
+    };
 }
 /**
  * typealias Input = Base.Transformer.Input
@@ -6400,6 +6943,9 @@ export interface UpdatableSupervisedEstimator {
  * @deprecated iOS 18.0
  */
 export declare class UpdatableSupervisedEstimatorToTemporalAdaptor<Base = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents45UpdatableSupervisedEstimatorToTemporalAdaptorV": true;
+    };
 }
 /**
  * typealias Annotation = Base.Annotation
@@ -6567,6 +7113,9 @@ export interface UpdatableTabularEstimator {
  * @availability iOS 16.0+
  */
 export declare class UpdatableTabularEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents44UpdatableTabularEstimatorToSupervisedAdaptorV": true;
+    };
 }
 /**
  * typealias Transformer = Estimator.Transformer
@@ -6628,6 +7177,9 @@ export interface UpdatableTemporalEstimator {
  * @deprecated iOS 18.0
  */
 export declare class UpdatableTemporalEstimatorToSupervisedAdaptor<Estimator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents45UpdatableTemporalEstimatorToSupervisedAdaptorV": true;
+    };
 }
 /**
  * typealias Transformer = Estimator.Transformer
@@ -6640,6 +7192,9 @@ export type UpdatableTemporalEstimatorToSupervisedAdaptor_Transformer<Estimator 
  * @availability iOS 17.0+
  */
 export declare class UpsampledAugmentationSequence<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents29UpsampledAugmentationSequenceV": true;
+    };
     readonly $element: SDKHandle;
 }
 /**
@@ -6647,6 +7202,9 @@ export declare class UpsampledAugmentationSequence<Base = unknown, RandomTransfo
  * @availability iOS 17.0+
  */
 export declare class UpsampledAugmentationSequence_AsyncIterator<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $type: {
+        "s:18CreateMLComponents29UpsampledAugmentationSequenceV13AsyncIteratorV": true;
+    };
 }
 /**
  * typealias Element = AnnotatedFeature<RandomTransformer.Input, Annotation>
@@ -6688,6 +7246,9 @@ export declare class VideoReader extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): VideoReader;
+    readonly $type: {
+        "s:18CreateMLComponents11VideoReaderV": true;
+    };
 }
 /**
  * struct AsyncFrames
@@ -6729,6 +7290,9 @@ export declare class VideoReader_AsyncFrames extends SDKHandle {
      * @availability iOS 16.0+
      */
     get timescale(): number;
+    readonly $type: {
+        "s:18CreateMLComponents11VideoReaderV11AsyncFramesV": true;
+    };
     readonly $element: $SDK117;
 }
 /**
@@ -6756,6 +7320,9 @@ export declare class VideoReader_AsyncFrames_Iterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<$SDK118>;
+    readonly $type: {
+        "s:18CreateMLComponents11VideoReaderV11AsyncFramesV8IteratorV": true;
+    };
 }
 /**
  * typealias Element = TemporalFeature<CIImage>
@@ -6782,6 +7349,9 @@ export declare class VideoReader_CameraAsyncBuffers extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $type: {
+        "s:18CreateMLComponents11VideoReaderV18CameraAsyncBuffersV": true;
+    };
     readonly $element: $SDK117;
 }
 /**
@@ -6809,6 +7379,9 @@ export declare class VideoReader_CameraAsyncBuffers_Iterator extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<$SDK118>;
+    readonly $type: {
+        "s:18CreateMLComponents11VideoReaderV18CameraAsyncBuffersV8IteratorC": true;
+    };
 }
 /**
  * typealias Element = TemporalFeature<CIImage>
@@ -6860,6 +7433,9 @@ export declare class VideoReader_CameraConfiguration extends SDKHandle {
      * @availability iOS 16.0+
      */
     static init(): VideoReader_CameraConfiguration;
+    readonly $type: {
+        "s:18CreateMLComponents11VideoReaderV19CameraConfigurationV": true;
+    };
 }
 /**
  * enum PixelFormat
@@ -6901,6 +7477,9 @@ export declare class VideoReaderError extends SDKHandle {
      * @availability iOS 16.0+
      */
     get errorDescription(): (string) | null;
+    readonly $type: {
+        "s:18CreateMLComponents16VideoReaderErrorO": true;
+    };
 }
 /**
  * @backDeployed(before: macOS 15.0, iOS 18.0, tvOS 18.0, visionOS 2.0)
