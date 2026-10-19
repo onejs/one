@@ -151,13 +151,13 @@ export function Tabs({
     let toolbar: ReactNode
     const actions = new Map<string, () => void>()
     const claim = (owner: string, id: string) => {
-      if (!id || ids.has(id)) throw new Error(`${owner} requires unique, nonempty ids: "${id}"`)
+      if (!id || ids.has(id)) throw new Error(`${owner} requires unique, nonempty identifiers: "${id}"`)
       ids.add(id)
     }
     const tab = (props: TabProps, section: string | undefined) => {
       const {
-        id,
-        title,
+        value,
+        titleKey,
         systemImage,
         image,
         badge,
@@ -167,29 +167,29 @@ export function Tabs({
         swiftStyle,
         children: page,
       } = props
-      claim('Swift.Tab', id)
+      claim('Swift.Tab', value)
       if (Boolean(onPress) === (page !== undefined)) {
         throw new Error(
-          `Swift.Tab "${id}" needs exactly one of onPress and children: a tab either runs an action or shows a page`
+          `Swift.Tab "${value}" needs exactly one of onPress and children: a tab either runs an action or shows a page`
         )
       }
-      if (systemImage && image) throw new Error(`Swift.Tab "${id}" takes systemImage or image, not both`)
+      if (systemImage && image) throw new Error(`Swift.Tab "${value}" takes systemImage or image, not both`)
       if (role) assertSwiftUIValue('TabRole', role, iosVersion)
       entries.push({
-        id,
+        id: value,
         kind: onPress ? 'action' : 'page',
-        title,
+        title: titleKey,
         systemImage: systemImage ?? '',
         badge: badge === undefined ? '' : String(badge),
         role: role ?? '',
         slotHeight: 0,
-        tabModifiers: tabContentModifiers(`Swift.Tab "${id}"`, { ...props, section }, iosVersion),
+        tabModifiers: tabContentModifiers(`Swift.Tab "${value}"`, { ...props, section }, iosVersion),
         swiftStyle,
         testID,
         onPress,
         children: page,
       })
-      if (onPress) actions.set(id, onPress)
+      if (onPress) actions.set(value, onPress)
     }
     for (const child of Children.toArray(children)) {
       if (!isValidElement(child)) throw new Error('Swift.Tabs children must be elements')

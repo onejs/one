@@ -90,10 +90,10 @@ export default function OneNativeTabView() {
       }}
       swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown', searchable: { value: query, onChange: setQuery } }}
     >
-      <One.iOS.Tab id="build" title="Build" systemImage="hammer" badge={3} customizationID="build">
+      <One.iOS.Tab value="build" titleKey="Build" systemImage="hammer" badge={3} customizationID="build">
         <Page id="build" title="Build" controls={controls} />
       </One.iOS.Tab>
-      <One.iOS.Tab id="design" title="Design" systemImage="paintbrush" customizationID="design">
+      <One.iOS.Tab value="design" titleKey="Design" systemImage="paintbrush" customizationID="design">
         <Page id="design" title="Design" />
       </One.iOS.Tab>
       <One.iOS.Tab
@@ -113,14 +113,14 @@ export default function OneNativeTabView() {
         defaultVisibility={{ visibility: 'hidden', for: ['tabBar'] }}
         sectionActions={[{ id: 'library-add', title: 'Add', systemImage: 'plus', onPress: () => log('section add') }]}
       >
-        <One.iOS.Tab id="recent" title="Recent" systemImage="clock" customizationID="recent">
+        <One.iOS.Tab value="recent" titleKey="Recent" systemImage="clock" customizationID="recent">
           <Page id="recent" title="Recent" />
         </One.iOS.Tab>
-        <One.iOS.Tab id="starred" title="Starred" systemImage="star" customizationID="starred" disabled>
+        <One.iOS.Tab value="starred" titleKey="Starred" systemImage="star" customizationID="starred" disabled>
           <Page id="starred" title="Starred" />
         </One.iOS.Tab>
       </One.iOS.TabSection>
-      <One.iOS.Tab id="search" title="Search" systemImage="magnifyingglass" role="search">
+      <One.iOS.Tab value="search" titleKey="Search" systemImage="magnifyingglass" role="search">
         <Page id="search" title={`Search ${query}`} />
       </One.iOS.Tab>
       <One.iOS.TabViewBottomAccessory isEnabled={accessoryEnabled}>

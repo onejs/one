@@ -22,7 +22,7 @@ export default function OneNativeTabLifecycle() {
         {`selection:${selection} presses:${presses} joined:${joined} joinedPresses:${joinedPresses} disabled:${disabled} gateOpen:${gateOpen} gatePresses:${gatePresses} mount:${mount}`}
       </Text>
       <One.iOS.Tabs key={mount} selection={selection} onSelectionChange={setSelection} style={{ flex: 1 }}>
-        <One.iOS.Tab id="home" title="Home" systemImage="house">
+        <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
           <View style={styles.page}>
             <Pressable testID="tab-lifecycle-join" style={styles.button} onPress={() => setJoined((value) => !value)}>
               <Text style={styles.buttonText}>{joined ? 'Remove tab' : 'Join tab'}</Text>
@@ -54,12 +54,12 @@ export default function OneNativeTabLifecycle() {
             </One.iOS.Pager>
           </View>
         </One.iOS.Tab>
-        <One.iOS.Tab id="other" title="Other" systemImage="star" disabled={disabled}>
+        <One.iOS.Tab value="other" titleKey="Other" systemImage="star" disabled={disabled}>
           <View style={styles.page}>
             <Text testID="tab-lifecycle-other">Other page</Text>
           </View>
         </One.iOS.Tab>
-        <One.iOS.Tab id="act" title="Act" systemImage="bolt" onPress={() => setPresses((value) => value + 1)} />
+        <One.iOS.Tab value="act" titleKey="Act" systemImage="bolt" onPress={() => setPresses((value) => value + 1)} />
         <One.iOS.Tab
           id="gate"
           title="Gate"

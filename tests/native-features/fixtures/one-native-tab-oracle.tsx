@@ -81,8 +81,8 @@ function Cell({
         tab.action ? (
           <One.iOS.Tab
             key={tab.id}
-            id={tab.id}
-            title={tab.title}
+            value={tab.id}
+            titleKey={tab.title}
             systemImage={tab.systemImage}
             badge={tab.badge}
             role={tab.role}
@@ -92,8 +92,8 @@ function Cell({
         ) : (
           <One.iOS.Tab
             key={tab.id}
-            id={tab.id}
-            title={tab.title}
+            value={tab.id}
+            titleKey={tab.title}
             systemImage={tab.systemImage}
             badge={tab.badge}
             role={tab.role}

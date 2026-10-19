@@ -16,7 +16,7 @@ export default function OneNativeTabSlot() {
         style={{ flex: 1 }}
         testID="one-native-tab-slot-tabs"
       >
-        <One.iOS.Tab id="home" title="Home" systemImage="house">
+        <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
           <View style={styles.page} testID="one-native-tab-slot-home">
             <Text>Home page</Text>
             <Text>Before empty</Text>
@@ -33,7 +33,7 @@ export default function OneNativeTabSlot() {
             </One.iOS.HStack>
           </View>
         </One.iOS.Tab>
-        <One.iOS.Tab id="other" title="Other" systemImage="star">
+        <One.iOS.Tab value="other" titleKey="Other" systemImage="star">
           <View style={styles.page} testID="one-native-tab-slot-other">
             <Text>Other page</Text>
           </View>

@@ -34,10 +34,10 @@ function Library({ openComposer }: { openComposer: () => void }) {
 
   return (
     <One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
-      <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+      <One.iOS.Tab value="feed" titleKey="Feed" systemImage="house">
         <FeedScreen />
       </One.iOS.Tab>
-      <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
+      <One.iOS.Tab value="new" titleKey="New" systemImage="plus" onPress={openComposer} />
     </One.iOS.Tabs>
   )
 }
@@ -49,7 +49,7 @@ tab.
 
 ## How it works
 
-Selection is a controlled string id with an event count and a revision. A
+Selection is a controlled tab value with an event count and a revision. A
 native tab change bumps the count and reports the new id; JavaScript calls the
 change handler and acknowledges the event. Raising `revision` with a new
 selection moves the tab view from the outside. Action tabs and section header
@@ -79,12 +79,12 @@ function Home({ openComposer }: { openComposer: () => void }) {
     <One.iOS.Tabs
       selection={tab}
       onSelectionChange={setTab}
-      onReselect={(id) => console.log('reselected', id)}
+      onReselect={(value) => console.log('reselected', value)}
     >
-      <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+      <One.iOS.Tab value="feed" titleKey="Feed" systemImage="house">
         <Text>Your feed.</Text>
       </One.iOS.Tab>
-      <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
+      <One.iOS.Tab value="new" titleKey="New" systemImage="plus" onPress={openComposer} />
     </One.iOS.Tabs>
   )
 }
@@ -94,9 +94,9 @@ function Home({ openComposer }: { openComposer: () => void }) {
   title="Props"
   source="types.ts#TabsProps"
   data={[
-    { name: 'selection', required: true, type: 'string', description: 'The id of the selected page tab.' },
-    { name: 'onSelectionChange', required: true, type: '(id: string) => void', description: 'A native tab change, with the new id.' },
-    { name: 'onReselect', type: '(id: string) => void', description: 'A tap on the selected tab outside a TabSection, with its id.' },
+    { name: 'selection', required: true, type: 'string', description: 'The value of the selected page tab.' },
+    { name: 'onSelectionChange', required: true, type: '(value: string) => void', description: 'A native tab change, with the new value.' },
+    { name: 'onReselect', type: '(value: string) => void', description: 'A tap on the selected tab outside a TabSection, with its value.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'tabViewStyle', type: 'TabViewStyle', default: '"automatic"', description: 'automatic, sidebarAdaptable, tabBarOnly, or page.' },
     { name: 'tabBarVisibility', type: 'Visibility', default: '"automatic"', description: 'The tab bar on every page: automatic, visible, or hidden.' },
@@ -110,7 +110,7 @@ function Home({ openComposer }: { openComposer: () => void }) {
 ## Tab
 
 `Tab` is one tab. It takes either children, as a page, or `onPress`, as an
-action tab, never both. Ids must be unique and nonempty, and `systemImage`
+action tab, never both. Values must be unique and nonempty, and `systemImage`
 and `image` are mutually exclusive.
 
 ```tsx
@@ -119,7 +119,7 @@ import { One } from 'one'
 
 function SearchTab() {
   return (
-    <One.iOS.Tab id="search" title="Search" systemImage="star" role="search" badge={3}>
+    <One.iOS.Tab value="search" titleKey="Search" systemImage="star" role="search" badge={3}>
       <Text>Search results.</Text>
     </One.iOS.Tab>
   )
@@ -130,8 +130,8 @@ function SearchTab() {
   title="Props"
   source="types.ts#TabProps"
   data={[
-    { name: 'id', required: true, type: 'string', description: 'Identifies the tab in selection.' },
-    { name: 'title', required: true, type: 'string', description: 'The tab label.' },
+    { name: 'value', required: true, type: 'string', description: 'Identifies the tab in selection.' },
+    { name: 'titleKey', required: true, type: 'string', description: 'The tab label.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol. Not with image.' },
     { name: 'image', type: 'string', description: 'An asset catalog image. Not with systemImage.' },
     { name: 'labelStyle', type: 'SDKLabelStyle', description: 'iconOnly keeps the title for VoiceOver only.' },
@@ -181,7 +181,7 @@ function LibraryTabs() {
   return (
     <One.iOS.Tabs tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
       <One.iOS.TabSection id="music" title="Music">
-        <One.iOS.Tab id="songs" title="Songs" systemImage="star">
+        <One.iOS.Tab value="songs" titleKey="Songs" systemImage="star">
           <Text>Your songs.</Text>
         </One.iOS.Tab>
       </One.iOS.TabSection>
@@ -219,10 +219,10 @@ function PlayerTabs({ openPlayer }: { openPlayer: () => void }) {
 
   return (
     <One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
-      <One.iOS.Tab id="home" title="Home" systemImage="house">
+      <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
         <Text>Home.</Text>
       </One.iOS.Tab>
-      <One.iOS.Tab id="other" title="Other" systemImage="star">
+      <One.iOS.Tab value="other" titleKey="Other" systemImage="star">
         <Text>Other.</Text>
       </One.iOS.Tab>
       <One.iOS.TabViewSlot name="tabViewBottomAccessory" height={50}>
@@ -253,10 +253,10 @@ function SidebarTabs({ openSearch, openSettings, openProfile }: { openSearch: ()
 
   return (
     <One.iOS.Tabs tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
-      <One.iOS.Tab id="home" title="Home" systemImage="house">
+      <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
         <Text>Home.</Text>
       </One.iOS.Tab>
-      <One.iOS.Tab id="other" title="Other" systemImage="star">
+      <One.iOS.Tab value="other" titleKey="Other" systemImage="star">
         <Text>Other.</Text>
       </One.iOS.Tab>
       <One.iOS.TabViewSlot name="tabViewSidebarHeader" height={44}>
@@ -305,7 +305,7 @@ function PlayerBar() {
 
   return (
     <One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
-      <One.iOS.Tab id="home" title="Home" systemImage="house">
+      <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
         <Text>Home.</Text>
       </One.iOS.Tab>
       <One.iOS.TabViewBottomAccessory

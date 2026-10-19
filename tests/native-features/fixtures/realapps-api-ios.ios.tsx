@@ -30,12 +30,12 @@ function NativeTabs({ report }: { report: Report }) {
       }}
       style={{ height: 320 }}
     >
-      <One.iOS.Tab id="first" title="First" systemImage="1.circle">
+      <One.iOS.Tab value="first" titleKey="First" systemImage="1.circle">
         <View>
           <Text testID="realapps-api-tab-first">First native tab</Text>
         </View>
       </One.iOS.Tab>
-      <One.iOS.Tab id="second" title="Second" systemImage="2.circle">
+      <One.iOS.Tab value="second" titleKey="Second" systemImage="2.circle">
         <View>
           <Text testID="realapps-api-tab-second">Second native tab</Text>
         </View>

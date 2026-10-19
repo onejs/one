@@ -17,10 +17,10 @@ export default function OneNativeTabSidebar() {
         style={{ flex: 1 }}
         testID="one-native-tab-sidebar-tabs"
       >
-        <One.iOS.Tab id="home" title="Home" systemImage="house">
+        <One.iOS.Tab value="home" titleKey="Home" systemImage="house">
           <View style={styles.page}><Text>Home page</Text></View>
         </One.iOS.Tab>
-        <One.iOS.Tab id="other" title="Other" systemImage="star">
+        <One.iOS.Tab value="other" titleKey="Other" systemImage="star">
           <View style={styles.page}><Text>Other page</Text></View>
         </One.iOS.Tab>
         <One.iOS.TabViewSlot name="tabViewSidebarHeader" height={44}>

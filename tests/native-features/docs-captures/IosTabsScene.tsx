@@ -23,7 +23,7 @@ export function IosTabsScene() {
       }}
     >
       <One.iOS.Tabs selection="home" onSelectionChange={() => {}}>
-        <One.iOS.Tab id="home" title="Home" systemImage="house.fill">
+        <One.iOS.Tab value="home" titleKey="Home" systemImage="house.fill">
           <View style={{ flex: 1, backgroundColor: 'white', paddingTop: 36, paddingHorizontal: 20, gap: 14 }}>
             <Text style={{ fontSize: 30, fontWeight: '700' }}>Listen Now</Text>
             {albums.map((album) => (
@@ -37,13 +37,13 @@ export function IosTabsScene() {
             ))}
           </View>
         </One.iOS.Tab>
-        <One.iOS.Tab id="new" title="New" systemImage="square.grid.2x2.fill" badge={3}>
+        <One.iOS.Tab value="new" titleKey="New" systemImage="square.grid.2x2.fill" badge={3}>
           <View />
         </One.iOS.Tab>
-        <One.iOS.Tab id="library" title="Library" systemImage="music.note.list">
+        <One.iOS.Tab value="library" titleKey="Library" systemImage="music.note.list">
           <View />
         </One.iOS.Tab>
-        <One.iOS.Tab id="search" title="Search" systemImage="magnifyingglass" role="search">
+        <One.iOS.Tab value="search" titleKey="Search" systemImage="magnifyingglass" role="search">
           <View />
         </One.iOS.Tab>
         <One.iOS.TabViewBottomAccessory>

@@ -210,7 +210,7 @@ export function App() {
   const [lastAction, setLastAction] = useState('none')
   return (
     <One.iOS.Tabs selection={selection} onSelectionChange={setSelection}>
-      <One.iOS.Tab id="inbox" title="Inbox" systemImage="tray" badge="3">
+      <One.iOS.Tab value="inbox" titleKey="Inbox" systemImage="tray" badge="3">
         <View style={{ flex: 1, padding: 24 }}>
           <Text>Last action: {lastAction}</Text>
           <One.iOS.Menu
@@ -224,7 +224,7 @@ export function App() {
           </One.iOS.Menu>
         </View>
       </One.iOS.Tab>
-      <One.iOS.Tab id="settings" title="Settings" systemImage="gearshape">
+      <One.iOS.Tab value="settings" titleKey="Settings" systemImage="gearshape">
         <Text>Ordinary React Native content goes here.</Text>
       </One.iOS.Tab>
     </One.iOS.Tabs>
@@ -328,11 +328,11 @@ are rejected before submitting native props.
   tabViewStyle="sidebarAdaptable"
   swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown' }}
 >
-  <One.iOS.Tab id="home" title="Home" systemImage="house">...</One.iOS.Tab>
+  <One.iOS.Tab value="home" titleKey="Home" systemImage="house">...</One.iOS.Tab>
   <One.iOS.TabSection id="library" title="Library" sectionActions={[{ id: 'add', title: 'Add', systemImage: 'plus', onPress: add }]}>
-    <One.iOS.Tab id="songs" title="Songs" systemImage="music.note" customizationID="songs">...</One.iOS.Tab>
+    <One.iOS.Tab value="songs" titleKey="Songs" systemImage="music.note" customizationID="songs">...</One.iOS.Tab>
   </One.iOS.TabSection>
-  <One.iOS.Tab id="search" title="Search" systemImage="magnifyingglass" role="search">...</One.iOS.Tab>
+  <One.iOS.Tab value="search" titleKey="Search" systemImage="magnifyingglass" role="search">...</One.iOS.Tab>
   <One.iOS.TabViewBottomAccessory>...</One.iOS.TabViewBottomAccessory>
   <One.iOS.Toolbar>
     <One.iOS.ToolbarItem placement="topBarTrailing">

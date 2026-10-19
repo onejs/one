@@ -20,7 +20,7 @@ export default function NativeAutogenProof() {
       onSelectionChange={setSelection}
       swiftStyle={{ tabBarMinimizeBehavior: 'onScrollDown' }}
     >
-      <One.iOS.Tab id="proof" title="Proof" systemImage="wand.and.stars">
+      <One.iOS.Tab value="proof" titleKey="Proof" systemImage="wand.and.stars">
         <ScrollView style={{ flex: 1, backgroundColor: '#f5f6fa' }}>
           <View style={{ padding: 24, gap: 12 }}>
             <Text testID="autogen-heading" style={{ fontSize: 22, fontWeight: '600' }}>
@@ -119,7 +119,7 @@ export default function NativeAutogenProof() {
           </View>
         </ScrollView>
       </One.iOS.Tab>
-      <One.iOS.Tab id="other" title="Other" systemImage="square.grid.2x2">
+      <One.iOS.Tab value="other" titleKey="Other" systemImage="square.grid.2x2">
         <View style={{ flex: 1, padding: 24 }}>
           <Text>Second tab</Text>
         </View>
