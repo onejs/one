@@ -20,15 +20,23 @@ export default function OneNativeUIKitView() {
   const [standaloneDay, setStandaloneDay] = useState<number | null>(null)
   const [composedDay, setComposedDay] = useState<number | null>(null)
   const [generation, setGeneration] = useState(0)
+  const [readyGeneration, setReadyGeneration] = useState<number | null>(null)
   const [composedEventGeneration, setComposedEventGeneration] = useState<number | null>(null)
 
   useEffect(() => {
     let active = true
-    makeCalendar(setStandaloneDay).then((calendar) => { if (active) setStandalone(calendar) })
-    makeCalendar((day) => {
-      setComposedDay(day)
-      setComposedEventGeneration(generation)
-    }).then((calendar) => { if (active) setComposed(calendar) })
+    Promise.all([
+      makeCalendar(setStandaloneDay),
+      makeCalendar((day) => {
+        setComposedDay(day)
+        setComposedEventGeneration(generation)
+      }),
+    ]).then(([nextStandalone, nextComposed]) => {
+      if (!active) return
+      setStandalone(nextStandalone)
+      setComposed(nextComposed)
+      setReadyGeneration(generation)
+    })
     return () => { active = false }
   }, [generation])
 
@@ -36,7 +44,7 @@ export default function OneNativeUIKitView() {
     <View style={styles.screen}>
       <Pressable testID="one-native-uikit-view-replace" style={styles.replace}
         onPress={() => setGeneration((value) => value + 1)}>
-        <Text>{`Replace calendars (${generation}); event ${composedEventGeneration ?? 'none'}`}</Text>
+        <Text>{`Replace calendars (${generation}); ready ${readyGeneration ?? 'none'}; event ${composedEventGeneration ?? 'none'}`}</Text>
       </Pressable>
       <Text testID="one-native-uikit-view-standalone-day">
         Standalone day: {standaloneDay ?? 'none'}
