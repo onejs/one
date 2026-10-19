@@ -949,18 +949,22 @@ try {
         code = await downlevelClassFieldsInBundle(code)
         assertBundleLinesPreserved(chunk.code, code, 'dev')
       } catch (error) {
-        // a post-processing failure is a build failure: record it and wake
-        // the waiting bundle request with its message instead of leaving it
-        // on the generic timeout.
+        // a post-processing failure is a build failure: without a bundle to
+        // serve, record it and wake the waiting request with its message
+        // instead of leaving it on the generic timeout. past a first good
+        // build the last bundle keeps serving, like the rolldown-error
+        // branch: one bad output must not poison later builds.
         const failure = error instanceof Error ? error : new Error(String(error))
         console.error('[vxrn] native bundle post-processing failed:', failure.message)
-        firstBuildError = failure
-        if (bundleReject) {
-          const reject = bundleReject
-          bundleResolve = null
-          bundleReject = null
-          bundlePromise = null
-          reject(failure)
+        if (!currentBundle) {
+          firstBuildError = failure
+          if (bundleReject) {
+            const reject = bundleReject
+            bundleResolve = null
+            bundleReject = null
+            bundlePromise = null
+            reject(failure)
+          }
         }
         return
       }
