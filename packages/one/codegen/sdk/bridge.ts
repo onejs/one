@@ -44,7 +44,21 @@ export type Index = Map<string, DeclarationInfo>
 // a generic requirement as the symbol graph spells it: `T: Protocol`, `T == Type` or `T: Superclass`.
 // `lhs` is a parameter or a member path like `T.Element`.
 type Constraint = { kind: 'conformance' | 'sameType' | 'superclass'; lhs: string; rhs: string; rhsPrecise?: string }
-const constraintsOf = (symbol?: Symbol) => (symbol?.swiftGenerics?.constraints ?? []) as Constraint[]
+const constraintsOf = (symbol?: Symbol): Constraint[] => {
+  const constraints = [...(symbol?.swiftGenerics?.constraints ?? [])] as Constraint[]
+  // clang-imported generic classes can spell class bounds only in their swift
+  // declaration, leaving the structured constraint list empty.
+  const declaration = symbol?.declarationFragments?.map((f) => f.spelling).join('') ?? ''
+  const clause = /\bwhere\s+([^{}]+)/.exec(declaration)?.[1]
+  const params = new Set(symbol?.swiftGenerics?.parameters?.map((p) => p.name))
+  for (const part of clause?.split(',') ?? []) {
+    const bound = /^\s*([A-Za-z_]\w*)\s*:\s*(?:Swift\.)?AnyObject\s*$/.exec(part)
+    if (!bound || !params.has(bound[1])) continue
+    if (!constraints.some((c) => c.kind === 'conformance' && c.lhs === bound[1] && c.rhs.split('.').at(-1) === 'AnyObject'))
+      constraints.push({ kind: 'conformance', lhs: bound[1], rhs: 'AnyObject' })
+  }
+  return constraints
+}
 
 const TYPE_KINDS = new Set(['swift.class', 'swift.struct', 'swift.enum', 'swift.protocol', 'swift.typealias', 'swift.actor', 'swift.associatedtype'])
 
