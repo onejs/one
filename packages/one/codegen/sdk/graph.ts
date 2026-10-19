@@ -32,6 +32,7 @@ export type Symbol = {
   }[]
   swiftGenerics?: { parameters?: { name: string }[]; constraints?: unknown[] }
   swiftExtension?: { extendedModule: string; constraints?: unknown[] }
+  location?: { uri: string }
   // set by addInheritedInitializers for init() the graph omits; the checker
   // uses it to tell synthesized initializers from declared legal ones
   synthesizedInit?: true

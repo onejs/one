@@ -35,6 +35,8 @@ export type DeclarationInfo = {
   // protocols this declaration conforms to, from any framework's graph
   conformsTo?: string[]
   properties?: { name: string; type: SwiftType; writable: boolean }[]
+  // importer-provided zero construction, with no competing overlay initializer
+  cZeroInit?: string
   // typealias: the type it names, when it has no generic parameters
   alias?: SwiftType
 }
@@ -159,10 +161,11 @@ export type IndexFacts = {
   optionSets: string[]
   requirements: { owner: string; blocks: boolean; associated: boolean }[]
   specializations?: { owner: string; arg: string }[]
+  zeroInitializers?: { owner: string; usr: string; imported: boolean }[]
 }
 
 export function collectFacts(graph: Graph): IndexFacts {
-  const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [], properties: [], specializations: [] }
+  const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [], properties: [], specializations: [], zeroInitializers: [] }
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
   const parents = new Map(graph.relationships.filter((r) => r.kind === 'inheritsFrom').map((r) => [r.source, r.target]))
   for (const symbol of graph.symbols) {
@@ -204,6 +207,19 @@ export function collectFacts(graph: Graph): IndexFacts {
     const name = member.pathComponents.at(-1)!
     const kind = member.kind.identifier
     if (rel.kind === 'memberOf') {
+      if (kind === 'swift.init' && rel.target.startsWith('c:@S@')) {
+        const parameters = member.functionSignature?.parameters ?? []
+        if (name === 'init()') {
+          const name = rel.target.slice('c:@S@'.length)
+          const usr = member.identifier.precise
+          facts.zeroInitializers!.push({ owner: rel.target, usr,
+            imported: usr === `s:So${name.length}${name}VABycfc`
+              && !member.swiftExtension && !member.synthesizedInit
+              && !parameters.length && member.declarationFragments?.map((f) => f.spelling).join('') === 'init()'
+              && /\.(h|hh|hpp)$/.test(member.location?.uri ?? ''),
+          })
+        }
+      }
       if (kind === 'swift.property' && ['public', 'open'].includes(member.accessLevel)) {
         const decl = (member.declarationFragments ?? []).map((f) => f.spelling).join('')
         try {
@@ -251,7 +267,18 @@ export function collectFacts(graph: Graph): IndexFacts {
 export function buildIndex(all: IndexFacts[]): Index {
   const index: Index = new Map()
   const rawRepresentable = new Set(all.flatMap((facts) => (facts.conformances ?? []).filter((rel) => rel.target === 's:SY').map((rel) => rel.source)))
-  for (const facts of all) for (const d of facts.declarations) index.set(d.usr, d)
+  for (const facts of all) for (const d of facts.declarations) index.set(d.usr, { ...d, cZeroInit: undefined })
+  // inspect every framework's extensions, including overlays that add an
+  // initializer without repeating the C record declaration in their graph.
+  const zeros = new Map<string, NonNullable<IndexFacts['zeroInitializers']>>()
+  for (const facts of all) for (const init of facts.zeroInitializers ?? []) {
+    zeros.set(init.owner, [...(zeros.get(init.owner) ?? []), init])
+  }
+  for (const [usr, initializers] of zeros) {
+    const owner = index.get(usr)
+    if (owner && initializers.every((init) => init.imported && init.usr === initializers[0].usr))
+      owner.cZeroInit = initializers[0].usr
+  }
   for (const facts of all) {
     for (const property of facts.properties ?? []) {
       const owner = index.get(property.owner)

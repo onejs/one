@@ -681,7 +681,34 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
         skipped.push({ usr, path, reason: 'protocol initializer' })
         continue
       }
-      call = `${owner}(${args.join(', ')})`
+      // imported c memberwise initializers can collide with an overlay that
+      // spells a field through CGFloat instead of Double. mutable c records
+      // have the same memberwise semantics as trivial importer zeroing plus
+      // writes. the whole-sdk index rules out custom overlay zero construction.
+      const fields = (members.get(ownerUsr!) ?? []).flatMap((usr) => {
+        const field = lookup(usr)
+        return field?.kind.identifier === 'swift.property' && usr.startsWith(`${ownerUsr}@FI@`) ? [field] : []
+      })
+      const fieldNames = new Set(fields.map((field) => field.pathComponents.at(-1)!))
+      const cZeroInit = (members.get(ownerUsr!) ?? []).some((usr) => {
+        const initializer = lookup(usr)
+        return usr === ownerInfo?.cZeroInit && initializer?.kind.identifier === 'swift.init'
+          && !initializer.swiftExtension && !initializer.synthesizedInit
+          && !initializer.functionSignature?.parameters?.length && judge(bridge, initializer, ownerSymbol).covered
+      })
+      const cMemberwise = ownerUsr?.startsWith('c:@S@') && usr.startsWith('s:So') && !symbol.swiftExtension && cZeroInit
+        && parameters.length > 0 && fields.length === parameters.length
+        && fields.every((field) => /^var\s/.test(text(field.declarationFragments ?? [])))
+        && params.length === parameters.length && !hoisted.length && !outs.length
+        && !isAsync && !throws && !syncCallbacks
+        && params.every((p) => p.label === p.name && fieldNames.has(p.name) && !p.hasDefault)
+      if (cMemberwise) {
+        // a function reference fixes the arity: overlay initializers whose
+        // parameters all have defaults cannot replace the importer zero init.
+        hoisted.push(`var aggregate = (${owner}.init as () -> ${owner})()`)
+        params.forEach((p, i) => hoisted.push(`aggregate.${member(p.name)} = ${args[i].slice(`${label(p.label)}: `.length)}`))
+        call = 'aggregate'
+      } else call = `${owner}(${args.join(', ')})`
       entryKind = 'init'
     } else if (kind === 'swift.subscript') {
       call = `${isStatic ? owner : 'o'}[${args.join(', ')}]`
